@@ -176,7 +176,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         });
         ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
         if (this.allowSearchImages) {
-            actionBarMenuCreateMenu.addItem(2, R.drawable.ic_ab_search).setContentDescription(LocaleController.getString(R.string.Search));
+            actionBarMenuCreateMenu.addItem(2, R.drawable.outline_header_search).setContentDescription(LocaleController.getString(R.string.Search));
         }
         ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other);
         actionBarMenuItemAddItem.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));

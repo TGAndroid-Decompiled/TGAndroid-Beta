@@ -5,19 +5,31 @@ import org.telegram.tgnet.TLRPC;
 
 public class BotInlineKeyboard {
 
+    public enum BackgroundColor {
+        NONE,
+        PRIMARY,
+        SUCCESS,
+        DANGER
+    }
+
     public static abstract class Button {
-        public abstract int getIcon();
+        public long getIconEmoji() {
+            return 0L;
+        }
+
+        public int getIconRes() {
+            return 0;
+        }
 
         public abstract String getText();
+
+        public BackgroundColor getColor() {
+            return BackgroundColor.NONE;
+        }
     }
 
     public static class ButtonBot extends Button {
         public final TLRPC.KeyboardButton button;
-
-        @Override
-        public int getIcon() {
-            return 0;
-        }
 
         public ButtonBot(TLRPC.KeyboardButton keyboardButton) {
             this.button = keyboardButton;
@@ -26,6 +38,32 @@ public class BotInlineKeyboard {
         @Override
         public String getText() {
             return this.button.text;
+        }
+
+        @Override
+        public BackgroundColor getColor() {
+            TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = this.button.style;
+            if (tL_keyboardButtonStyle != null) {
+                if (tL_keyboardButtonStyle.bg_success) {
+                    return BackgroundColor.SUCCESS;
+                }
+                if (tL_keyboardButtonStyle.bg_danger) {
+                    return BackgroundColor.DANGER;
+                }
+                if (tL_keyboardButtonStyle.bg_primary) {
+                    return BackgroundColor.PRIMARY;
+                }
+            }
+            return BackgroundColor.NONE;
+        }
+
+        @Override
+        public long getIconEmoji() {
+            TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = this.button.style;
+            if (tL_keyboardButtonStyle != null) {
+                return tL_keyboardButtonStyle.icon;
+            }
+            return 0L;
         }
     }
 
@@ -52,7 +90,7 @@ public class BotInlineKeyboard {
         }
 
         @Override
-        public int getIcon() {
+        public int getIconRes() {
             return this.icon;
         }
     }

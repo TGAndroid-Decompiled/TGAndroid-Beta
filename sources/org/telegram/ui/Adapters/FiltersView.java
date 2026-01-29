@@ -3,7 +3,6 @@ package org.telegram.ui.Adapters;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.TextUtils;
@@ -42,6 +41,7 @@ import org.telegram.ui.Components.RecyclerListView;
 
 public class FiltersView extends RecyclerListView {
     DiffUtil.Callback diffUtilsCallback;
+    public boolean drawDivider;
     LinearLayoutManager layoutManager;
     private ArrayList oldItems;
     private ArrayList usersFilters;
@@ -57,6 +57,7 @@ public class FiltersView extends RecyclerListView {
         super(context, resourcesProvider);
         this.usersFilters = new ArrayList();
         this.oldItems = new ArrayList();
+        this.drawDivider = true;
         this.diffUtilsCallback = new DiffUtil.Callback() {
             @Override
             public boolean areContentsTheSame(int i, int i2) {
@@ -492,7 +493,9 @@ public class FiltersView extends RecyclerListView {
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+        if (this.drawDivider) {
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+        }
     }
 
     public void updateColors() {
@@ -535,7 +538,7 @@ public class FiltersView extends RecyclerListView {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ((ViewHolder) viewHolder).filterView.setData((MediaFilterData) FiltersView.this.usersFilters.get(i));
         }
 
@@ -580,7 +583,7 @@ public class FiltersView extends RecyclerListView {
             }
         }
 
-        public void setData(MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+        public void setData(MediaFilterData mediaFilterData) {
             this.data = mediaFilterData;
             this.avatarImageView.getImageReceiver().clearImage();
             if (mediaFilterData.filterType == 7) {

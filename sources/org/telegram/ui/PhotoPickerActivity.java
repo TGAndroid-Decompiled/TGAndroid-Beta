@@ -501,7 +501,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             actionBarMenuItemAddItem.addSubItem(2, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
         }
         if (this.selectedAlbum == null) {
-            ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass4());
+            ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass4());
             this.searchItem = actionBarMenuItemSearchListener;
             EditTextBoldCursor searchField = actionBarMenuItemSearchListener.getSearchField();
             searchField.setTextColor(Theme.getColor(this.textKey));

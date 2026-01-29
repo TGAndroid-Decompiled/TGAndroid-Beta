@@ -681,13 +681,13 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 this.f$0.lambda$openConfirmAlert$8(progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$openConfirmAlert$8(final Browser.Progress progress, final AlertDialog alertDialog, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+    public void lambda$openConfirmAlert$8(final Browser.Progress progress, final AlertDialog alertDialog, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
         }
@@ -728,13 +728,13 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         tL_resolveStarGiftOffer.offer_msg_id = i;
         ConnectionsManager.getInstance(i2).sendRequestTyped(tL_resolveStarGiftOffer, new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 GiftOfferSheet.lambda$openOfferAcceptAlert$11(i2, baseFragment, progressMakeButtonLoading, alertDialog, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$openOfferAcceptAlert$11(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+    public static void lambda$openOfferAcceptAlert$11(int i, final BaseFragment baseFragment, final Browser.Progress progress, final AlertDialog alertDialog, TLRPC.Updates updates, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(i).processUpdates(updates, false);
         }

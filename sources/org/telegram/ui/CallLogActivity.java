@@ -181,6 +181,11 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public boolean isSupportEdgeToEdge() {
         return true;
     }
@@ -1420,13 +1425,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         tL_messages_deletePhoneCallHistory.revoke = z;
         getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$deleteAllMessages$15(z, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deleteAllMessages$15(boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$deleteAllMessages$15(boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
             TLRPC.TL_updateDeleteMessages tL_updateDeleteMessages = new TLRPC.TL_updateDeleteMessages();
@@ -1972,13 +1977,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         togglegroupcallsettings.reset_invite_hash = true;
         ConnectionsManager.getInstance(i).sendRequest(togglegroupcallsettings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 CallLogActivity.lambda$showCallLinkSheet$30(i, inputGroupCall, strArr, frameLayout, linksTextView, bottomSheet, resourcesProvider, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$showCallLinkSheet$30(int i, TLRPC.InputGroupCall inputGroupCall, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$showCallLinkSheet$30(int i, TLRPC.InputGroupCall inputGroupCall, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
         }

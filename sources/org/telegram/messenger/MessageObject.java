@@ -2795,7 +2795,7 @@ public class MessageObject {
                     if (lineLeft < lineWidth) {
                         lineWidth -= lineLeft;
                     }
-                    if (button.getIcon() != 0) {
+                    if (button.getIconRes() != 0) {
                         lineWidth += AndroidUtilities.dp(36.0f);
                     }
                     iMax = Math.max(iMax, ((int) Math.ceil(lineWidth)) + AndroidUtilities.dp(4.0f));
@@ -2839,7 +2839,7 @@ public class MessageObject {
         updateMessageText(MessagesController.getInstance(this.currentAccount).getUsers(), MessagesController.getInstance(this.currentAccount).getChats(), null, null);
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r34, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r35, androidx.collection.LongSparseArray r36, androidx.collection.LongSparseArray r37) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.User> r33, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC.Chat> r34, androidx.collection.LongSparseArray r35, androidx.collection.LongSparseArray r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 

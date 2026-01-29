@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -1270,6 +1271,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         private final Paint fillPaint;
         private final AnimatedFloat fillT;
         private boolean filled;
+        public int strokeColor;
         public final Paint strokePaint;
         public final AnimatedTextView.AnimatedTextDrawable textDrawable;
         public float textOffsetX;
@@ -1344,6 +1346,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         }
 
         public void updateColors(int i, int i2, int i3) {
+            this.strokeColor = i;
             this.strokePaint.setColor(i);
             this.textDrawable.setTextColor(i);
             this.activeTextDrawable.setTextColor(i3);
@@ -1389,35 +1392,33 @@ public abstract class CaptionContainerView extends FrameLayout {
                 this.fillPaint.setAlpha((int) (f * 255.0f * f2));
                 canvas.drawCircle(this.cx, this.cy, AndroidUtilities.dpf2(11.33f) * f2, this.fillPaint);
             }
-            float f3 = f * 255.0f;
-            this.strokePaint.setAlpha((int) ((1.0f - f2) * f3));
+            this.strokePaint.setAlpha((int) (Color.alpha(this.strokeColor) * f * (1.0f - f2)));
             RectF rectF = AndroidUtilities.rectTmp;
-            float f4 = this.cx;
-            float f5 = this.cy;
-            rectF.set(f4 - fDpf2, f5 - fDpf2, f4 + fDpf2, f5 + fDpf2);
+            float f3 = this.cx;
+            float f4 = this.cy;
+            rectF.set(f3 - fDpf2, f4 - fDpf2, f3 + fDpf2, f4 + fDpf2);
             canvas.drawArc(rectF, 90.0f, 180.0f, false, this.strokePaint);
-            float f6 = (this.dashes * 1.0f) + ((r1 + 1) * 1.5f);
-            float f7 = (1.0f / f6) * 180.0f;
-            float f8 = (1.5f / f6) * 180.0f;
-            float f9 = f8;
+            float f5 = (this.dashes * 1.0f) + ((r1 + 1) * 1.5f);
+            float f6 = (1.0f / f5) * 180.0f;
+            float f7 = (1.5f / f5) * 180.0f;
+            float f8 = f7;
             for (int i = 0; i < this.dashes; i++) {
-                canvas.drawArc(AndroidUtilities.rectTmp, f9 + 270.0f, f7, false, this.strokePaint);
-                f9 += f7 + f8;
+                canvas.drawArc(AndroidUtilities.rectTmp, f8 + 270.0f, f6, false, this.strokePaint);
+                f8 += f6 + f7;
             }
             canvas.save();
             canvas.translate(this.textOffsetX + 0.0f, this.textOffsetY);
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((int) (this.cx - AndroidUtilities.dp(20.0f)), (int) (this.cy - AndroidUtilities.dp(20.0f)), (int) (this.cx + AndroidUtilities.dp(20.0f)), (int) (this.cy + AndroidUtilities.dp(20.0f)));
             this.textDrawable.setBounds(rect);
-            int i2 = (int) f3;
-            this.textDrawable.setAlpha(i2);
+            this.textDrawable.setAlpha((int) (Color.alpha(this.strokeColor) * f));
             this.textDrawable.draw(canvas);
             if (f2 > 0.0f) {
                 this.activePath.rewind();
                 this.activePath.addCircle(this.cx, this.cy + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(11.33f) * f2, Path.Direction.CW);
                 canvas.clipPath(this.activePath);
                 this.activeTextDrawable.setBounds(rect);
-                this.activeTextDrawable.setAlpha(i2);
+                this.activeTextDrawable.setAlpha((int) (f * 255.0f));
                 this.activeTextDrawable.draw(canvas);
             }
             canvas.restore();

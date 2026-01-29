@@ -6169,7 +6169,7 @@ public class AndroidUtilities {
     }
 
     public static float getNavigationBarThirdButtonsFactor(int i) {
-        return MathUtils.clamp((i - dp(32.0f)) / dp(16.0f), 0.0f, 1.0f);
+        return Utilities.clamp01((i - dp(32.0f)) / dp(16.0f));
     }
 
     public static float getNavigationBarThirdButtonsFactor(float f, float f2, int i) {
@@ -6183,7 +6183,7 @@ public class AndroidUtilities {
     public static void drawNavigationBarProtection(Canvas canvas, View view, int i, int i2, float f) {
         Paint paint = navbarProtactionPaint;
         paint.setColor(Theme.multAlpha(i, f * getNavigationBarThirdButtonsFactor(0.0f, 0.75f, i2)));
-        canvas.drawRect(0.0f, view.getMeasuredHeight() - i2, view.getMeasuredWidth(), view.getMeasuredHeight(), paint);
+        canvas.drawRect(0.0f, (view.getY() + view.getMeasuredHeight()) - i2, view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight(), paint);
     }
 
     public static WindowInsets fixedDispatchApplyWindowInsets(WindowInsets windowInsets, ViewGroup viewGroup) {

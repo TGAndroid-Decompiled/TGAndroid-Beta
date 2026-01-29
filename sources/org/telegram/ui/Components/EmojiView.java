@@ -6875,7 +6875,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     textView.setTextColor(EmojiView.this.getThemedColor(i2));
                     textView.setTextSize(1, 11.0f);
                     textView.setTypeface(AndroidUtilities.bold());
-                    textView.setText("Create");
+                    textView.setText(LocaleController.getString(R.string.Create));
                     linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 0, 3, 0, 0));
                     frameLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 119, 8.0f, 8.0f, 8.0f, 8.0f));
                     emptyCell = frameLayout2;

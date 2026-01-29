@@ -2540,13 +2540,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_sendPaymentForm, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$sendData$69(tL_payments_sendPaymentForm, tLObject, tL_error);
             }
         }, (this.allowUnregistered ? 8 : 0) | 2);
     }
 
-    public void lambda$sendData$69(final TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$sendData$69(final TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
                 Utilities.Callback callback = this.customResultReceiver;

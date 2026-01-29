@@ -1463,7 +1463,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
             });
             if (this.dialog_id == this.profileActivity.getUserConfig().getClientUserId() && (this.profileActivity instanceof MediaActivity) && canShowSearchItem()) {
-                this.searchItemIcon = actionBarMenuCreateMenu.addItem(11, R.drawable.ic_ab_search);
+                this.searchItemIcon = actionBarMenuCreateMenu.addItem(11, R.drawable.outline_header_search);
             }
             ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, 0).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass4());
             this.searchItem = actionBarMenuItemSearchListener;
@@ -2527,7 +2527,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     show(SharedMediaLayout.this.searching && (SharedMediaLayout.this.getSelectedTab() == 11 || SharedMediaLayout.this.getSelectedTab() == 12) && SharedMediaLayout.this.searchTagsList.hasFilters());
                     ActionBarMenuItem actionBarMenuItem8 = SharedMediaLayout.this.searchItemIcon;
                     if (actionBarMenuItem8 != null) {
-                        actionBarMenuItem8.setIcon((hasFilters() && SharedMediaLayout.this.profileActivity.getUserConfig().isPremium()) ? R.drawable.navbar_search_tag : R.drawable.ic_ab_search, z);
+                        actionBarMenuItem8.setIcon((hasFilters() && SharedMediaLayout.this.profileActivity.getUserConfig().isPremium()) ? R.drawable.navbar_search_tag : R.drawable.outline_header_search, z);
                     }
                     if (SharedMediaLayout.this.searchItem != null) {
                         ActionBarMenuItem actionBarMenuItem9 = SharedMediaLayout.this.searchItem;
@@ -2599,7 +2599,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchCollapse() throws Resources.NotFoundException {
+        public void onSearchCollapse() {
             SharedMediaLayout.this.searching = false;
             SharedMediaLayout.this.searchingReaction = null;
             ActionBarMenuItem actionBarMenuItem = SharedMediaLayout.this.searchItemIcon;
@@ -2639,7 +2639,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onTextChanged(EditText editText) throws Resources.NotFoundException {
+        public void onTextChanged(EditText editText) {
             String string = editText.getText().toString();
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.setSearchQuery(string);
@@ -2960,7 +2960,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 itemOptionsMakeOptions2.setDismissWithButtons(false).setOnTopOfScrim().setDimAlpha(0).show();
                 return;
             }
-            ItemOptions itemOptionsAdd = ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, SharedMediaLayout.this.photoVideoOptionsItem).add(R.drawable.msg_discussion, LocaleController.getString(R.string.SavedViewAsMessages), new Runnable() {
+            ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, SharedMediaLayout.this.photoVideoOptionsItem).add(R.drawable.msg_discussion, LocaleController.getString(R.string.SavedViewAsMessages), new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onClick$8();
@@ -2970,14 +2970,10 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 public final void run() {
                     this.f$0.lambda$onClick$9();
                 }
-            });
-            int i3 = R.drawable.msg_delete;
-            String string2 = LocaleController.getString(R.string.DeleteAll);
-            final Theme.ResourcesProvider resourcesProvider2 = this.val$resourcesProvider;
-            itemOptionsAdd.add(i3, string2, new Runnable() {
+            }).add(R.drawable.msg_delete, LocaleController.getString(R.string.DeleteAll), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClick$11(resourcesProvider2);
+                    this.f$0.lambda$onClick$11();
                 }
             }).translate(0.0f, -AndroidUtilities.dp(52.0f)).setDimAlpha(0).show();
         }
@@ -3047,14 +3043,14 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             }
         }
 
-        public void lambda$onClick$11(Theme.ResourcesProvider resourcesProvider) {
+        public void lambda$onClick$11() {
             final TLRPC.User currentUser = SharedMediaLayout.this.profileActivity.getUserConfig().getCurrentUser();
-            AlertsCreator.createClearOrDeleteDialogAlert(SharedMediaLayout.this.profileActivity, false, null, currentUser, false, true, true, new MessagesStorage.BooleanCallback() {
+            AlertsCreator.createClearOrDeleteDialogAlert(SharedMediaLayout.this.profileActivity, false, null, currentUser, false, true, false, true, new MessagesStorage.BooleanCallback() {
                 @Override
                 public final void run(boolean z) {
                     this.f$0.lambda$onClick$10(currentUser, z);
                 }
-            }, resourcesProvider);
+            });
         }
 
         public void lambda$onClick$10(TLRPC.User user, boolean z) {

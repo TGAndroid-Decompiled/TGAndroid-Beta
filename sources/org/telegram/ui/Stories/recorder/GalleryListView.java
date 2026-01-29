@@ -372,7 +372,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         });
         frameLayout.addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1, 119));
         recyclerListView2.setEmptyView(stickerEmptyView);
-        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass12());
+        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass12());
         this.searchItem = actionBarMenuItemSearchListener;
         actionBarMenuItemSearchListener.setVisibility(8);
         actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));

@@ -606,7 +606,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 this.actionBar.setTitle(LocaleController.getString(R.string.ShareLocation));
                 if (this.locationType != 4) {
                     this.overlayView = new MapOverlayView(context);
-                    ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+                    ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                         @Override
                         public void onSearchExpand() {
                             LocationActivity.this.searching = true;

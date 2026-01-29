@@ -1030,8 +1030,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         List list = this.fragmentsStack;
         BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 2);
         View viewCreateView = baseFragment.fragmentView;
-        if (viewCreateView == null) {
-            viewCreateView = baseFragment.createView(this.parentActivity);
+        if (viewCreateView == null && (viewCreateView = baseFragment.createView(this.parentActivity)) != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+            ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda3(baseFragment));
+            this.containerViewBack.invalidate();
         }
         ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
         if (viewGroup != null) {
@@ -1315,6 +1316,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ActionBarLayout.this.containerView.setAlpha(1.0f);
                 ActionBarLayout.this.onSlideAnimationEnd(true);
                 ActionBarLayout.this.backAnimator = null;
+                ActionBarLayout actionBarLayout = ActionBarLayout.this;
+                if (actionBarLayout.animationInProgress) {
+                    actionBarLayout.animationInProgress = false;
+                }
             }
 
             @Override
@@ -1326,6 +1331,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ActionBarLayout.this.containerView.setAlpha(1.0f);
                 ActionBarLayout.this.onSlideAnimationEnd(z);
                 ActionBarLayout.this.backAnimator = null;
+                ActionBarLayout actionBarLayout = ActionBarLayout.this;
+                if (actionBarLayout.animationInProgress) {
+                    actionBarLayout.animationInProgress = false;
+                }
             }
         });
         this.backAnimator = animatorSet;
@@ -1672,6 +1681,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         View viewCreateView = baseFragment2.fragmentView;
         if (viewCreateView == null) {
             viewCreateView = baseFragment2.createView(this.parentActivity);
+            if (viewCreateView != null && baseFragment2.isSupportEdgeToEdge() && baseFragment2.drawEdgeNavigationBar()) {
+                ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda3(baseFragment2));
+                this.containerViewBack.invalidate();
+            }
         } else {
             ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
             if (viewGroup != null) {
@@ -2060,6 +2073,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         View viewCreateView = baseFragment.fragmentView;
         if (viewCreateView == null) {
             viewCreateView = baseFragment.createView(this.parentActivity);
+            if (viewCreateView != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+                ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda3(baseFragment));
+                this.containerView.invalidate();
+            }
         } else {
             ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
             if (viewGroup != null) {
@@ -2091,6 +2108,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         View viewCreateView = baseFragment.fragmentView;
         if (viewCreateView == null) {
             viewCreateView = baseFragment.createView(this.parentActivity);
+            if (viewCreateView != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+                ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda3(baseFragment));
+                this.containerView.invalidate();
+            }
         } else {
             ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
             if (viewGroup != null) {
@@ -2247,8 +2268,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.containerViewBack = layoutContainer;
                 baseFragment.setParentLayout(this);
                 View viewCreateView = baseFragment.fragmentView;
-                if (viewCreateView == null) {
-                    viewCreateView = baseFragment.createView(this.parentActivity);
+                if (viewCreateView == null && (viewCreateView = baseFragment.createView(this.parentActivity)) != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+                    ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda3(baseFragment));
+                    this.containerView.invalidate();
                 }
                 if (!this.inPreviewMode) {
                     this.containerView.setVisibility(0);
@@ -2449,6 +2471,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             View viewCreateView = baseFragment2.fragmentView;
             if (viewCreateView == null) {
                 viewCreateView = baseFragment2.createView(this.parentActivity);
+                if (viewCreateView != null && baseFragment2.isSupportEdgeToEdge() && baseFragment2.drawEdgeNavigationBar()) {
+                    ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda3(baseFragment2));
+                    this.containerView.invalidate();
+                }
             } else {
                 ViewGroup viewGroup3 = (ViewGroup) viewCreateView.getParent();
                 if (viewGroup3 != null) {

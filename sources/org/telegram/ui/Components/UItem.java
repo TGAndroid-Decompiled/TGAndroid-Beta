@@ -362,6 +362,13 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asSpace(int i, int i2) {
+        UItem uItem = new UItem(28, false);
+        uItem.id = i;
+        uItem.intValue = i2;
+        return uItem;
+    }
+
     public static UItem asRoundCheckbox(int i, CharSequence charSequence) {
         UItem uItem = new UItem(35, false);
         uItem.id = i;
@@ -435,7 +442,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public UItem withOpenButton(Utilities.Callback callback) {
-        this.checked = true;
+        this.locked = true;
         this.object2 = callback;
         return this;
     }

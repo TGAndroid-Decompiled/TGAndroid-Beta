@@ -449,7 +449,8 @@ public class AvatarConstructorFragment extends BaseFragment {
         view.setVisibility(8);
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourceProvider);
         this.button = buttonWithCounterView;
-        buttonWithCounterView.text.setHacks(false, true, false);
+        buttonWithCounterView.setRound();
+        this.button.text.setHacks(false, true, false);
         int i3 = this.imageUpdater.setForType;
         if (i3 == 1) {
             this.buttonText = LocaleController.getString(R.string.SetChannelPhoto);
@@ -731,6 +732,27 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.backgroundSelectView.selectGradient(backgroundGradient);
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = this.selectAnimatedEmojiDialog;
         boolean z = avatarConstructorPreviewCell.forUser;
+        this.forUser = z;
+        selectAnimatedEmojiDialog.setForUser(z);
+    }
+
+    public void startFrom(long j, boolean z) {
+        if (this.previewView == null) {
+            return;
+        }
+        BackgroundGradient backgroundGradient = new BackgroundGradient();
+        int[] iArr = defaultColors[0];
+        backgroundGradient.color1 = iArr[0];
+        backgroundGradient.color2 = iArr[1];
+        backgroundGradient.color3 = iArr[2];
+        backgroundGradient.color4 = iArr[3];
+        this.previewView.setGradient(backgroundGradient, false);
+        updateButton();
+        PreviewView previewView = this.previewView;
+        previewView.documentId = j;
+        previewView.backupImageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(14, this.currentAccount, j));
+        this.backgroundSelectView.selectGradient(backgroundGradient);
+        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = this.selectAnimatedEmojiDialog;
         this.forUser = z;
         selectAnimatedEmojiDialog.setForUser(z);
     }

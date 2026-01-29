@@ -67,6 +67,16 @@ public class DialogObject {
         }
     }
 
+    public static long getDialogId(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            return ((TLRPC.User) tLObject).id;
+        }
+        if (tLObject instanceof TLRPC.Chat) {
+            return -((TLRPC.Chat) tLObject).id;
+        }
+        return 0L;
+    }
+
     public static long getPeerDialogId(TLRPC.Peer peer) {
         if (peer == null) {
             return 0L;
@@ -102,6 +112,16 @@ public class DialogObject {
 
     public static boolean isUserDialog(long j) {
         return (isEncryptedDialog(j) || isFolderDialogId(j) || j <= 0) ? false : true;
+    }
+
+    public static String getShortTitle(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.User) {
+            return UserObject.getForcedFirstName((TLRPC.User) tLObject);
+        }
+        if (tLObject instanceof TLRPC.Chat) {
+            return ((TLRPC.Chat) tLObject).title;
+        }
+        return "";
     }
 
     public static String getDialogTitle(TLObject tLObject) {

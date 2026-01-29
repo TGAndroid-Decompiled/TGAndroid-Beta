@@ -488,7 +488,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.actionBar.setSubtitleColor(getThemedColor(Theme.key_player_actionBarSubtitle));
         this.actionBar.setOccupyStatusBar(true);
         this.actionBar.setAlpha(0.0f);
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchCollapse() {
                 if (AudioPlayerAlert.this.searching) {

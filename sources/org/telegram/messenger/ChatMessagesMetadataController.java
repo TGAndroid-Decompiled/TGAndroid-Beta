@@ -154,7 +154,7 @@ public class ChatMessagesMetadataController {
         }
         this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$loadReactionsForMessages$3(tLObject, tL_error);
             }
         })));
@@ -163,7 +163,7 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadReactionsForMessages$3(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$loadReactionsForMessages$3(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error == null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             for (int i = 0; i < updates.updates.size(); i++) {
@@ -186,7 +186,7 @@ public class ChatMessagesMetadataController {
         }
         this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
             }
         })));
@@ -195,7 +195,7 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadExtendedMediaForMessages$4(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$loadExtendedMediaForMessages$4(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error == null) {
             this.chatActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }

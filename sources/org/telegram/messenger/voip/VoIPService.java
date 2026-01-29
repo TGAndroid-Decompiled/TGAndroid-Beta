@@ -1197,7 +1197,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             discardgroupcall.call = this.groupCall.getInputGroupCall();
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardgroupcall, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$hangUp$4(tLObject, tL_error);
                 }
             });
@@ -1208,19 +1208,19 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         leavegroupcall.source = this.mySource[0];
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$hangUp$5(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$hangUp$4(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$hangUp$4(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
     }
 
-    public void lambda$hangUp$5(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$hangUp$5(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
@@ -1650,7 +1650,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         leavegroupcallpresentation.call = this.groupCall.getInputGroupCall();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcallpresentation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$stopScreenCapture$15(tLObject, tL_error);
             }
         });
@@ -1666,7 +1666,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         AccountInstance.getInstance(this.currentAccount).getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallScreencastStateChanged, new Object[0]);
     }
 
-    public void lambda$stopScreenCapture$15(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$stopScreenCapture$15(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -2212,7 +2212,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$startGroupCall$29(i, z, tLObject, tL_error);
             }
         });
@@ -2282,7 +2282,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.mySource[0] = i;
     }
 
-    public void lambda$startGroupCall$29(final int i, final boolean z, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$startGroupCall$29(final int i, final boolean z, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2717,7 +2717,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$startConferenceGroupCall$54(i, z, str, tLObject, tL_error);
             }
         });
@@ -2727,7 +2727,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.mySource[0] = i;
     }
 
-    public void lambda$startConferenceGroupCall$54(final int i, final boolean z, final String str, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$startConferenceGroupCall$54(final int i, final boolean z, final String str, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2865,7 +2865,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 final int i3 = length;
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(inviteconferencecallparticipant, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.lambda$startConferenceGroupCall$51(j, hashSet, atomicInteger2, i3, str, tLObject, tL_error);
                     }
                 });
@@ -2919,7 +2919,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 final AtomicInteger atomicInteger2 = atomicInteger;
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(inviteconferencecallparticipant, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
                         this.f$0.lambda$startConferenceGroupCall$43(jLongValue, hashSet, atomicInteger2, size, str2, tLObject2, tL_error);
                     }
                 });
@@ -2930,7 +2930,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$startConferenceGroupCall$43(final long j, final HashSet hashSet, AtomicInteger atomicInteger, int i, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$startConferenceGroupCall$43(final long j, final HashSet hashSet, AtomicInteger atomicInteger, int i, final String str, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
@@ -3023,7 +3023,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         runnable.run();
     }
 
-    public void lambda$startConferenceGroupCall$51(final long j, final HashSet hashSet, AtomicInteger atomicInteger, int i, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$startConferenceGroupCall$51(final long j, final HashSet hashSet, AtomicInteger atomicInteger, int i, final String str, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
@@ -3191,7 +3191,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tL_dataJSON.data = str;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(joingroupcallpresentation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$startScreenCapture$60(i, tLObject, tL_error);
             }
         });
@@ -3201,7 +3201,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         this.mySource[1] = i;
     }
 
-    public void lambda$startScreenCapture$60(final int i, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$startScreenCapture$60(final int i, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -4225,13 +4225,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         final int i = this.currentAccount;
         AccountInstance.getInstance(i).getConnectionsManager().sendRequest(editgroupcallparticipant, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$editCallMember$90(i, runnable, tLObject2, tL_error);
             }
         });
     }
 
-    public void lambda$editCallMember$90(int i, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$editCallMember$90(int i, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         } else if (tL_error != null && "GROUPCALL_VIDEO_TOO_MUCH".equals(tL_error.text)) {
@@ -5011,7 +5011,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         FileLog.e("discardCall " + discardcall.reason);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$declineIncomingCall$105(tLObject, tL_error);
             }
         }, 65536);
@@ -5025,7 +5025,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    public void lambda$declineIncomingCall$105(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$declineIncomingCall$105(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("error on phone.discardCall: " + tL_error);

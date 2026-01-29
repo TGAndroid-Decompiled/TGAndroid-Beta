@@ -387,7 +387,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.locationDenied = (Build.VERSION.SDK_INT < 23 || getParentActivity() == null || getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0) ? false : true;
         ActionBarMenu actionBarMenuCreateMenu = this.parentAlert.actionBar.createMenu();
         this.overlayView = new MapOverlayView(context);
-        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
                 ChatAttachAlertLocationLayout.this.searching = true;

@@ -198,6 +198,11 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
     private boolean updateSearchEngine;
     private boolean updatingLocation;
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public ThemeActivity highlightSensitiveRow() {
         this.highlightSensitiveRow = true;
         return this;
@@ -1642,6 +1647,12 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         });
     }
 
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
+    }
+
     public void editTheme() {
         Theme.ThemeInfo currentTheme = Theme.getCurrentTheme();
         presentFragment(new ThemePreviewActivity(currentTheme, false, 1, currentTheme.getAccent(false).id >= 100, this.currentType == 1));
@@ -2246,7 +2257,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeListUpdated, new Object[0]);
         }
 
-        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) throws IOException {
+        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
             Theme.ThemeInfo currentNightTheme = ThemeActivity.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme();
             if (i != themeAccentsListAdapter.getItemCount() - 1) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
@@ -2459,7 +2470,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setAdapter(themeAccentsListAdapter);
                     tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
-                        public final void onItemClick(View view2, int i3) throws IOException {
+                        public final void onItemClick(View view2, int i3) {
                             this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view2, i3);
                         }
                     });

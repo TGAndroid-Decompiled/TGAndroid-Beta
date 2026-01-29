@@ -101,6 +101,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
     private final Rect tmpClipRect;
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public boolean isSupportEdgeToEdge() {
         return true;
     }

@@ -817,6 +817,19 @@ public class AnimatedEmojiDrawable extends Drawable {
         updateAttachState();
     }
 
+    public void clear() {
+        ArrayList arrayList = this.holders;
+        if (arrayList != null) {
+            arrayList.clear();
+        }
+        ArrayList arrayList2 = this.views;
+        if (arrayList2 != null) {
+            arrayList2.clear();
+        }
+        this.preloading = false;
+        updateAttachState();
+    }
+
     public void updateAttachState() {
         ArrayList arrayList;
         if (this.imageReceiver == null) {

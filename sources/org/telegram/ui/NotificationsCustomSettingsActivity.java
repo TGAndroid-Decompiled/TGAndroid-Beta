@@ -389,7 +389,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         });
         ArrayList arrayList = this.exceptions;
         if (arrayList != null && !arrayList.isEmpty()) {
-            this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
                 public void onSearchExpand() {
                     NotificationsCustomSettingsActivity.this.searching = true;

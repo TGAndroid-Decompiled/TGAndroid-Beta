@@ -367,7 +367,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                     final AccountInstance accountInstance = (AccountInstance) pairExtractDeveloperPayload.first;
                     accountInstance.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             this.f$0.lambda$onPurchasesUpdatedInternal$9(alertDialogArr, purchase, tL_payments_assignPlayMarketTransaction, accountInstance, billingResult, atomicInteger2, atomicInteger, runnable, tLObject, tL_error);
                         }
                     }, tL_payments_assignPlayMarketTransaction.purpose instanceof TLRPC.TL_inputStorePaymentAuthCode ? 65608 : 65600);
@@ -407,7 +407,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         alertDialog.showDelayed(500L);
     }
 
-    public void lambda$onPurchasesUpdatedInternal$9(final AlertDialog[] alertDialogArr, Purchase purchase, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, final AccountInstance accountInstance, BillingResult billingResult, final AtomicInteger atomicInteger, final AtomicInteger atomicInteger2, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$onPurchasesUpdatedInternal$9(final AlertDialog[] alertDialogArr, Purchase purchase, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, final AccountInstance accountInstance, BillingResult billingResult, final AtomicInteger atomicInteger, final AtomicInteger atomicInteger2, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

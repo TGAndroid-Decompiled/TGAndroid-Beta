@@ -69,6 +69,8 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private static final Paint sectionBackgroundPaint;
     private View.AccessibilityDelegate accessibilityDelegate;
     private boolean accessibilityEnabled;
+    private int activeTouches;
+    private boolean adaptiveOverScroll;
     private boolean allowItemsInteractionDuringAnimation;
     private boolean allowStopHeaveOperations;
     private boolean animateEmptyView;
@@ -1775,9 +1777,27 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return (onInterceptTouchListener != null && onInterceptTouchListener.onInterceptTouchEvent(motionEvent)) || super.onInterceptTouchEvent(motionEvent);
     }
 
+    public void setAdaptiveOverScroll() {
+        this.adaptiveOverScroll = true;
+        setOverScrollMode(2);
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         View view;
+        int action = motionEvent.getAction();
+        if (action == 0) {
+            if (this.activeTouches == 0 && this.adaptiveOverScroll) {
+                setOverScrollMode(0);
+            }
+            this.activeTouches++;
+        } else if (action == 1 || action == 3) {
+            int i = this.activeTouches - 1;
+            this.activeTouches = i;
+            if (i == 0 && this.adaptiveOverScroll) {
+                setOverScrollMode(2);
+            }
+        }
         FastScroll fastScroll = getFastScroll();
         if (fastScroll != null && fastScroll.isVisible && fastScroll.isMoving && motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return true;
@@ -2878,7 +2898,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         int i2 = -1;
         for (int i3 = 0; i3 < getChildCount(); i3++) {
             View childAt = getChildAt(i3);
-            if (childAt.getVisibility() == 0 && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt)).booleanValue()) {
+            if (childAt != this.emptyView && childAt.getVisibility() == 0 && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt)).booleanValue()) {
                 if (view != null && Math.abs(view2.getAlpha() - childAt.getAlpha()) > 0.1f) {
                     drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
                     view = null;

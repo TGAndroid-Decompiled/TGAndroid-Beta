@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -94,7 +93,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -709,6 +707,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public PhotoViewer.PlaceProviderObject getCloseIntoObject() {
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$getCloseIntoObject(this);
     }
@@ -734,7 +737,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return i2;
     }
 
-    public static void access$39700(ProfileActivity profileActivity, View view) {
+    public static void access$39500(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -2662,7 +2665,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public View createView(final Context context) throws Resources.NotFoundException, IOException {
+    public View createView(final Context context) {
         int i;
         TLRPC.UserFull userFull;
         TLRPC.ChatFull chatFull;
@@ -2827,7 +2830,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         } else {
             r8 = 1;
             r8 = 1;
-            ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(32, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(32, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
                 public Animator getCustomToggleTransition() {
                     ProfileActivity.this.searchMode = !r0.searchMode;
@@ -3051,21 +3054,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
-                if (ProfileActivity.this.bizHoursRow >= 0 && ProfileActivity.this.infoStartRow >= 0 && ProfileActivity.this.infoEndRow >= 0) {
-                    drawSectionBackground(canvas, ProfileActivity.this.infoStartRow, ProfileActivity.this.infoEndRow, getThemedColor(Theme.key_windowBackgroundWhite));
-                }
-                super.dispatchDraw(canvas);
-            }
-
-            @Override
             protected void onLayout(boolean z2, int i11, int i12, int i13, int i14) {
                 super.onLayout(z2, i11, i12, i13, i14);
                 ProfileActivity.this.updateBottomButtonY();
             }
         };
         this.listView = clippedListView;
-        clippedListView.setVerticalScrollBarEnabled(r10);
+        clippedListView.setSections();
+        RecyclerListView recyclerListView = this.listView;
+        recyclerListView.applyPaddingToSections = r10;
+        recyclerListView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+        this.listView.setVerticalScrollBarEnabled(r10);
         final ViewGroupPartRenderer viewGroupPartRenderer = new ViewGroupPartRenderer(this.listView, (ViewGroup) this.fragmentView, new ViewGroupPartRenderer.DrawChildMethod() {
             @Override
             public final boolean drawChild(Canvas canvas, View view, long j3) {
@@ -3148,9 +3147,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.savedScrollOffset = r10;
         }
         if (this.searchItem != null) {
-            RecyclerListView recyclerListView = new RecyclerListView(context2);
-            this.searchListView = recyclerListView;
-            recyclerListView.setVerticalScrollBarEnabled(r10);
+            RecyclerListView recyclerListView2 = new RecyclerListView(context2);
+            this.searchListView = recyclerListView2;
+            recyclerListView2.setVerticalScrollBarEnabled(r10);
             this.searchListView.setLayoutManager(new LinearLayoutManager(context2, r8, r10));
             this.searchListView.setGlowColor(getThemedColor(Theme.key_avatar_backgroundActionBarBlue));
             this.searchListView.setAdapter(this.searchAdapter);
@@ -4034,7 +4033,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (i == 7) {
-                ProfileActivity.this.leaveChatPressed();
+                ProfileActivity.this.leaveChatPressed(false);
+                return;
+            }
+            if (i == 45) {
+                ProfileActivity.this.leaveChatPressed(true);
                 return;
             }
             if (i == 23) {
@@ -5207,7 +5210,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 ReportBottomSheet.openChat(this, getDialogId());
                 break;
             case 9:
-                leaveChatPressed();
+                leaveChatPressed(false);
                 break;
             case 12:
                 getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
@@ -6915,12 +6918,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         if (!this.userBlocked || z) {
-            AlertsCreator.createClearOrDeleteDialogAlert(this, false, this.currentChat, user, this.currentEncryptedChat != null, true, true, new MessagesStorage.BooleanCallback() {
+            AlertsCreator.createClearOrDeleteDialogAlert(this, false, this.currentChat, user, this.currentEncryptedChat != null, true, false, true, new MessagesStorage.BooleanCallback() {
                 @Override
                 public final void run(boolean z2) {
                     this.f$0.lambda$onBlockContactClicked$49(user, z2);
                 }
-            }, getResourceProvider());
+            });
         } else {
             getMessagesController().unblockPeer(this.userId, new Runnable() {
                 @Override
@@ -7716,71 +7719,72 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (getParentActivity() == null) {
             return false;
         }
-        if (z) {
-            final TLRPC.User user = getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-            if (user != null && chatParticipant.user_id != getUserConfig().getClientUserId()) {
-                this.selectedUser = chatParticipant.user_id;
-                if (ChatObject.isChannel(this.currentChat)) {
-                    TLRPC.ChannelParticipant channelParticipant2 = ((TLRPC.TL_chatChannelParticipant) chatParticipant).channelParticipant;
-                    getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                    boolean zCanAddAdmins = ChatObject.canAddAdmins(this.currentChat);
-                    if (zCanAddAdmins && ((channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator) || ((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) && !channelParticipant2.can_edit))) {
-                        zCanAddAdmins = false;
-                    }
-                    boolean z7 = ChatObject.canBlockUsers(this.currentChat) && (!((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) || (channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator)) || channelParticipant2.can_edit);
-                    z3 = channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin;
-                    channelParticipant = channelParticipant2;
-                    z4 = zCanAddAdmins;
-                    z6 = z7;
-                    z5 = this.currentChat.gigagroup ? false : z7;
-                } else {
-                    TLRPC.Chat chat = this.currentChat;
-                    boolean z8 = chat.creator || ((chatParticipant instanceof TLRPC.TL_chatParticipant) && (ChatObject.canBlockUsers(chat) || chatParticipant.inviter_id == getUserConfig().getClientUserId()));
-                    z3 = chatParticipant instanceof TLRPC.TL_chatParticipantAdmin;
-                    channelParticipant = null;
-                    z4 = this.currentChat.creator;
-                    z5 = z4;
-                    z6 = z8;
-                }
-                final boolean z9 = z3;
-                z = z4 || z5 || z6;
-                if (!z2 && z) {
-                    final TLRPC.ChannelParticipant channelParticipant3 = channelParticipant;
-                    final Utilities.Callback callback = new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            this.f$0.lambda$onMemberClick$56(channelParticipant3, user, chatParticipant, z9, (Integer) obj);
-                        }
-                    };
-                    final TLRPC.ChannelParticipant channelParticipant4 = channelParticipant;
-                    ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite))).addIf(z4, R.drawable.msg_admins, LocaleController.getString(z9 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
-                        @Override
-                        public final void run() {
-                            ProfileActivity.lambda$onMemberClick$57(callback);
-                        }
-                    }).addIf(z5, R.drawable.msg_permissions, LocaleController.getString(R.string.ChangePermissions), new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$onMemberClick$59(channelParticipant4, chatParticipant, user, callback);
-                        }
-                    }).addIf(z6, R.drawable.msg_remove, (CharSequence) LocaleController.getString(R.string.KickFromGroup), true, new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$onMemberClick$60(chatParticipant);
-                        }
-                    }).setMinWidth(190).show();
-                }
+        if (!z) {
+            if (chatParticipant.user_id == getUserConfig().getClientUserId()) {
+                return false;
             }
-            return z;
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", chatParticipant.user_id);
+            bundle.putBoolean("preload_messages", true);
+            presentFragment(new ProfileActivity(bundle));
+            return true;
         }
-        if (chatParticipant.user_id == getUserConfig().getClientUserId()) {
-            return false;
+        final TLRPC.User user = getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
+        if (user != null && chatParticipant.user_id != getUserConfig().getClientUserId()) {
+            this.selectedUser = chatParticipant.user_id;
+            if (ChatObject.isChannel(this.currentChat)) {
+                TLRPC.ChannelParticipant channelParticipant2 = ((TLRPC.TL_chatChannelParticipant) chatParticipant).channelParticipant;
+                getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
+                boolean zCanAddAdmins = ChatObject.canAddAdmins(this.currentChat);
+                if (zCanAddAdmins && ((channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator) || ((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) && !channelParticipant2.can_edit))) {
+                    zCanAddAdmins = false;
+                }
+                boolean z7 = ChatObject.canBlockUsers(this.currentChat) && (!((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) || (channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator)) || channelParticipant2.can_edit);
+                z3 = channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin;
+                channelParticipant = channelParticipant2;
+                z4 = zCanAddAdmins;
+                z6 = z7;
+                z5 = this.currentChat.gigagroup ? false : z7;
+            } else {
+                TLRPC.Chat chat = this.currentChat;
+                boolean z8 = chat.creator || ((chatParticipant instanceof TLRPC.TL_chatParticipant) && (ChatObject.canBlockUsers(chat) || chatParticipant.inviter_id == getUserConfig().getClientUserId()));
+                z3 = chatParticipant instanceof TLRPC.TL_chatParticipantAdmin;
+                channelParticipant = null;
+                z4 = this.currentChat.creator;
+                z5 = z4;
+                z6 = z8;
+            }
+            final boolean z9 = z3;
+            z = z4 || z5 || z6;
+            if (!z2 && z) {
+                final TLRPC.ChannelParticipant channelParticipant3 = channelParticipant;
+                final Utilities.Callback callback = new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        this.f$0.lambda$onMemberClick$56(channelParticipant3, user, chatParticipant, z9, (Integer) obj);
+                    }
+                };
+                final TLRPC.ChannelParticipant channelParticipant4 = channelParticipant;
+                ItemOptions.makeOptions(this, view).setScrimViewBackground(this.listView.getClipBackground(view)).addIf(z4, R.drawable.msg_admins, LocaleController.getString(z9 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ProfileActivity.lambda$onMemberClick$57(callback);
+                    }
+                }).addIf(z5, R.drawable.msg_permissions, LocaleController.getString(R.string.ChangePermissions), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onMemberClick$59(channelParticipant4, chatParticipant, user, callback);
+                    }
+                }).addIf(z6, R.drawable.msg_remove, (CharSequence) LocaleController.getString(R.string.KickFromGroup), true, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onMemberClick$60(chatParticipant);
+                    }
+                }).setMinWidth(190).show();
+                return true;
+            }
         }
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", chatParticipant.user_id);
-        bundle.putBoolean("preload_messages", true);
-        presentFragment(new ProfileActivity(bundle));
-        return true;
+        return z;
     }
 
     public void lambda$onMemberClick$56(TLRPC.ChannelParticipant channelParticipant, TLRPC.User user, TLRPC.ChatParticipant chatParticipant, boolean z, Integer num) {
@@ -8206,14 +8210,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void leaveChatPressed() {
+    public void leaveChatPressed(boolean z) {
         boolean zIsForum = ChatObject.isForum(this.currentChat);
-        AlertsCreator.createClearOrDeleteDialogAlert(this, false, this.currentChat, null, false, zIsForum, !zIsForum, new MessagesStorage.BooleanCallback() {
+        TLRPC.Chat chat = this.currentChat;
+        AlertsCreator.createClearOrDeleteDialogAlert(this, false, chat, null, false, zIsForum || z || (chat != null && chat.creator), z, !zIsForum, new MessagesStorage.BooleanCallback() {
             @Override
-            public final void run(boolean z) {
-                this.f$0.lambda$leaveChatPressed$77(z);
+            public final void run(boolean z2) {
+                this.f$0.lambda$leaveChatPressed$77(z2);
             }
-        }, this.resourcesProvider);
+        });
     }
 
     public void lambda$leaveChatPressed$77(boolean z) {
@@ -10714,7 +10719,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return dontApplyPeerColor(i, z, null);
     }
 
-    private int applyPeerColor(int i, boolean z, Boolean bool) throws IOException {
+    private int applyPeerColor(int i, boolean z, Boolean bool) {
         if ((!z && isSettings()) || this.peerColor == null) {
             return i;
         }
@@ -10749,7 +10754,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return Theme.changeColorAccent(getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon), bgColor2, i, Theme.isCurrentThemeDark(), bgColor2);
     }
 
-    private void createActionBarMenu(boolean r24) {
+    private void createActionBarMenu(boolean r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.createActionBarMenu(boolean):void");
     }
 
@@ -11380,258 +11385,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         private Context mContext;
         private final HashMap usernameSpans = new HashMap();
 
-        public ListAdapter(Context context) {
-            this.mContext = context;
+        public void setBackground(View view, int i) {
         }
 
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View shadowSectionCell;
-            switch (i) {
-                case 1:
-                    View headerCell = new HeaderCell(this.mContext, 23, ProfileActivity.this.resourcesProvider);
-                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = headerCell;
-                    break;
-                case 2:
-                case 19:
-                case 30:
-                    TextDetailCell textDetailCell = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 30, i == 19) {
-                        @Override
-                        protected int processColor(int i2) {
-                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
-                        }
-                    };
-                    textDetailCell.setContentDescriptionValueFirst(true);
-                    textDetailCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textDetailCell;
-                    break;
-                case 3:
-                    ProfileActivity profileActivity = ProfileActivity.this;
-                    Context context = this.mContext;
-                    ProfileActivity profileActivity2 = ProfileActivity.this;
-                    View view = profileActivity.aboutLinkCell = new AboutLinkCell(context, profileActivity2, profileActivity2.resourcesProvider) {
-                        @Override
-                        protected void didPressUrl(String str, Browser.Progress progress) {
-                            ProfileActivity.this.openUrl(str, progress);
-                        }
-
-                        @Override
-                        protected void didResizeEnd() {
-                            ProfileActivity.this.layoutManager.mIgnoreTopPadding = false;
-                        }
-
-                        @Override
-                        protected void didResizeStart() {
-                            ProfileActivity.this.layoutManager.mIgnoreTopPadding = true;
-                        }
-
-                        @Override
-                        protected int processColor(int i2) {
-                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
-                        }
-                    };
-                    view.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view;
-                    break;
-                case 4:
-                    View view2 = new TextCell(this.mContext, ProfileActivity.this.resourcesProvider) {
-                        @Override
-                        protected int processColor(int i2) {
-                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
-                        }
-                    };
-                    view2.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view2;
-                    break;
-                case 5:
-                    View dividerCell = new DividerCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    dividerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    dividerCell.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f), 0, 0);
-                    shadowSectionCell = dividerCell;
-                    break;
-                case 6:
-                    View view3 = new NotificationsCheckCell(this.mContext, 23, 70, false, ProfileActivity.this.resourcesProvider) {
-                        @Override
-                        protected int processColor(int i2) {
-                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
-                        }
-                    };
-                    view3.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view3;
-                    break;
-                case 7:
-                    shadowSectionCell = new ShadowSectionCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    break;
-                case 8:
-                    View userCell = new UserCell(this.mContext, ProfileActivity.this.addMemberRow == -1 ? 9 : 6, 0, true, ProfileActivity.this.resourcesProvider);
-                    userCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = userCell;
-                    break;
-                case 9:
-                case 10:
-                case 14:
-                case 16:
-                default:
-                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext, 10, ProfileActivity.this.resourcesProvider);
-                    textInfoPrivacyCell.getTextView().setGravity(1);
-                    textInfoPrivacyCell.getTextView().setTextColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
-                    textInfoPrivacyCell.getTextView().setMovementMethod(null);
-                    textInfoPrivacyCell.setText(AndroidUtilities.getBuildVersionInfo());
-                    textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f));
-                    textInfoPrivacyCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
-                    shadowSectionCell = textInfoPrivacyCell;
-                    break;
-                case 11:
-                    shadowSectionCell = new View(this.mContext) {
-                        @Override
-                        protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-                        }
-                    };
-                    break;
-                case 12:
-                    View view4 = new View(this.mContext) {
-                        private int lastPaddingHeight = 0;
-                        private int lastListViewHeight = 0;
-
-                        @Override
-                        protected void onMeasure(int i2, int i3) {
-                            if (this.lastListViewHeight != ProfileActivity.this.listView.getMeasuredHeight()) {
-                                this.lastPaddingHeight = 0;
-                            }
-                            this.lastListViewHeight = ProfileActivity.this.listView.getMeasuredHeight();
-                            int childCount = ProfileActivity.this.listView.getChildCount();
-                            if (childCount != ProfileActivity.this.listAdapter.getItemCount()) {
-                                setMeasuredDimension(ProfileActivity.this.listView.getMeasuredWidth(), this.lastPaddingHeight);
-                                return;
-                            }
-                            int measuredHeight = 0;
-                            for (int i4 = 0; i4 < childCount; i4++) {
-                                int childAdapterPosition = ProfileActivity.this.listView.getChildAdapterPosition(ProfileActivity.this.listView.getChildAt(i4));
-                                if (childAdapterPosition >= 0 && childAdapterPosition != ProfileActivity.this.bottomPaddingRow) {
-                                    measuredHeight += ProfileActivity.this.listView.getChildAt(i4).getMeasuredHeight();
-                                }
-                            }
-                            View view5 = ProfileActivity.this.fragmentView;
-                            int measuredHeight2 = (((view5 == null ? 0 : view5.getMeasuredHeight()) - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - measuredHeight;
-                            if (measuredHeight2 > ProfileActivity.this.getHeaderExtraHeight()) {
-                                measuredHeight2 = 0;
-                            }
-                            int i5 = measuredHeight2 > 0 ? measuredHeight2 : 0;
-                            int measuredWidth = ProfileActivity.this.listView.getMeasuredWidth();
-                            this.lastPaddingHeight = i5;
-                            setMeasuredDimension(measuredWidth, i5);
-                        }
-                    };
-                    view4.setBackground(new ColorDrawable(0));
-                    shadowSectionCell = view4;
-                    break;
-                case 13:
-                    if (ProfileActivity.this.sharedMediaLayout.getParent() != null) {
-                        ((ViewGroup) ProfileActivity.this.sharedMediaLayout.getParent()).removeView(ProfileActivity.this.sharedMediaLayout);
-                    }
-                    shadowSectionCell = ProfileActivity.this.sharedMediaLayout;
-                    break;
-                case 15:
-                    shadowSectionCell = new AnonymousClass9(this.mContext, ProfileActivity.this.resourcesProvider);
-                    break;
-                case 17:
-                    View textInfoPrivacyCell2 = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    textInfoPrivacyCell2.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textInfoPrivacyCell2;
-                    break;
-                case 18:
-                case 24:
-                    View profilePremiumCell = new ProfilePremiumCell(this.mContext, i == 18 ? 0 : 1, ProfileActivity.this.resourcesProvider);
-                    profilePremiumCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = profilePremiumCell;
-                    break;
-                case 20:
-                    View textCheckCell = new TextCheckCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    textCheckCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = textCheckCell;
-                    break;
-                case 21:
-                    View profileLocationCell = new ProfileLocationCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    profileLocationCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = profileLocationCell;
-                    break;
-                case 22:
-                    View view5 = new ProfileHoursCell(this.mContext, ProfileActivity.this.resourcesProvider) {
-                        @Override
-                        protected int processColor(int i2) {
-                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
-                        }
-                    };
-                    view5.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view5;
-                    break;
-                case 23:
-                    View view6 = new ProfileChannelCell(ProfileActivity.this) {
-                        @Override
-                        public int processColor(int i2) {
-                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
-                        }
-                    };
-                    view6.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view6;
-                    break;
-                case 25:
-                    FrameLayout frameLayout = new FrameLayout(this.mContext);
-                    ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this.mContext, ProfileActivity.this.resourcesProvider);
-                    buttonWithCounterView.setRound();
-                    buttonWithCounterView.setText(LocaleController.getString(R.string.ProfileBotOpenApp), false);
-                    buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view7) {
-                            this.f$0.lambda$onCreateViewHolder$0(view7);
-                        }
-                    });
-                    frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 18.0f, 14.0f, 18.0f, 14.0f));
-                    frameLayout.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = frameLayout;
-                    break;
-                case 26:
-                    shadowSectionCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    break;
-                case 27:
-                    View colorfulTextCell = new AffiliateProgramFragment.ColorfulTextCell(this.mContext, ProfileActivity.this.resourcesProvider);
-                    colorfulTextCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = colorfulTextCell;
-                    break;
-                case 28:
-                    View view7 = new View(this.mContext) {
-                        @Override
-                        protected void onMeasure(int i2, int i3) {
-                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(7.33f), 1073741824));
-                        }
-                    };
-                    view7.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    shadowSectionCell = view7;
-                    break;
-                case 29:
-                    ProfileMusicView profileMusicView = new ProfileMusicView(this.mContext, ProfileActivity.this.resourcesProvider);
-                    ProfileActivity.this.musicView = profileMusicView;
-                    if (ProfileActivity.this.avatarsBlurView != null) {
-                        ProfileActivity.this.avatarsBlurView.setMusicView(ProfileActivity.this.musicView);
-                    }
-                    profileMusicView.setColor(ProfileActivity.this.peerColor);
-                    shadowSectionCell = profileMusicView;
-                    if (ProfileActivity.this.userInfo != null) {
-                        shadowSectionCell = profileMusicView;
-                        if (ProfileActivity.this.userInfo.saved_music != null) {
-                            profileMusicView.setMusicDocument(ProfileActivity.this.userInfo.saved_music);
-                            shadowSectionCell = profileMusicView;
-                            break;
-                        }
-                    }
-                    break;
-            }
-            if (i != 13) {
-                shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            }
-            return new RecyclerListView.Holder(shadowSectionCell);
+        public ListAdapter(Context context) {
+            this.mContext = context;
         }
 
         class AnonymousClass9 extends SettingsSuggestionCell {
@@ -11681,27 +11439,240 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             messagesController.openApp(profileActivity, user, null, profileActivity.getClassGuid(), null);
         }
 
-        public void setBackground(View view, int i) {
-            if (i != 8) {
-                if (i == 14) {
-                    view.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
-                    return;
-                } else if (i != 30 && i != 27 && i != 28) {
-                    switch (i) {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                            break;
-                        default:
-                            switch (i) {
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view;
+            View headerCell;
+            switch (i) {
+                case 1:
+                    headerCell = new HeaderCell(this.mContext, 23, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 2:
+                case 19:
+                case 30:
+                    TextDetailCell textDetailCell = new TextDetailCell(this.mContext, ProfileActivity.this.resourcesProvider, i == 30, i == 19) {
+                        @Override
+                        protected int processColor(int i2) {
+                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
+                        }
+                    };
+                    textDetailCell.setContentDescriptionValueFirst(true);
+                    headerCell = textDetailCell;
+                    break;
+                case 3:
+                    ProfileActivity profileActivity = ProfileActivity.this;
+                    Context context = this.mContext;
+                    ProfileActivity profileActivity2 = ProfileActivity.this;
+                    headerCell = profileActivity.aboutLinkCell = new AboutLinkCell(context, profileActivity2, profileActivity2.resourcesProvider) {
+                        @Override
+                        protected void didPressUrl(String str, Browser.Progress progress) {
+                            ProfileActivity.this.openUrl(str, progress);
+                        }
+
+                        @Override
+                        protected void didResizeEnd() {
+                            ProfileActivity.this.layoutManager.mIgnoreTopPadding = false;
+                        }
+
+                        @Override
+                        protected void didResizeStart() {
+                            ProfileActivity.this.layoutManager.mIgnoreTopPadding = true;
+                        }
+
+                        @Override
+                        protected int processColor(int i2) {
+                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
+                        }
+                    };
+                    break;
+                case 4:
+                    headerCell = new TextCell(this.mContext, ProfileActivity.this.resourcesProvider) {
+                        @Override
+                        protected int processColor(int i2) {
+                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
+                        }
+                    };
+                    break;
+                case 5:
+                    View dividerCell = new DividerCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    dividerCell.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f), 0, 0);
+                    headerCell = dividerCell;
+                    break;
+                case 6:
+                    headerCell = new NotificationsCheckCell(this.mContext, 23, 70, false, ProfileActivity.this.resourcesProvider) {
+                        @Override
+                        protected int processColor(int i2) {
+                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
+                        }
+                    };
+                    break;
+                case 7:
+                    headerCell = new ShadowSectionCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 8:
+                    headerCell = new UserCell(this.mContext, ProfileActivity.this.addMemberRow == -1 ? 9 : 6, 0, true, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 9:
+                case 10:
+                case 14:
+                case 16:
+                default:
+                    TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext, 10, ProfileActivity.this.resourcesProvider);
+                    textInfoPrivacyCell.getTextView().setGravity(1);
+                    textInfoPrivacyCell.getTextView().setTextColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
+                    textInfoPrivacyCell.getTextView().setMovementMethod(null);
+                    textInfoPrivacyCell.setText(AndroidUtilities.getBuildVersionInfo());
+                    textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f));
+                    textInfoPrivacyCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
+                    headerCell = textInfoPrivacyCell;
+                    break;
+                case 11:
+                    View view2 = new View(this.mContext) {
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
+                        }
+                    };
+                    view2.setTag(-33024);
+                    view = view2;
+                    headerCell = view;
+                    break;
+                case 12:
+                    View view3 = new View(this.mContext) {
+                        private int lastPaddingHeight = 0;
+                        private int lastListViewHeight = 0;
+
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            if (this.lastListViewHeight != ProfileActivity.this.listView.getMeasuredHeight()) {
+                                this.lastPaddingHeight = 0;
                             }
+                            this.lastListViewHeight = ProfileActivity.this.listView.getMeasuredHeight();
+                            int childCount = ProfileActivity.this.listView.getChildCount();
+                            if (childCount != ProfileActivity.this.listAdapter.getItemCount()) {
+                                setMeasuredDimension(ProfileActivity.this.listView.getMeasuredWidth(), this.lastPaddingHeight);
+                                return;
+                            }
+                            int measuredHeight = 0;
+                            for (int i4 = 0; i4 < childCount; i4++) {
+                                int childAdapterPosition = ProfileActivity.this.listView.getChildAdapterPosition(ProfileActivity.this.listView.getChildAt(i4));
+                                if (childAdapterPosition >= 0 && childAdapterPosition != ProfileActivity.this.bottomPaddingRow) {
+                                    measuredHeight += ProfileActivity.this.listView.getChildAt(i4).getMeasuredHeight();
+                                }
+                            }
+                            View view4 = ProfileActivity.this.fragmentView;
+                            int measuredHeight2 = (((view4 == null ? 0 : view4.getMeasuredHeight()) - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - measuredHeight;
+                            if (measuredHeight2 > ProfileActivity.this.getHeaderExtraHeight()) {
+                                measuredHeight2 = 0;
+                            }
+                            int i5 = measuredHeight2 > 0 ? measuredHeight2 : 0;
+                            int measuredWidth = ProfileActivity.this.listView.getMeasuredWidth();
+                            this.lastPaddingHeight = i5;
+                            setMeasuredDimension(measuredWidth, i5);
+                        }
+                    };
+                    view3.setBackground(new ColorDrawable(0));
+                    headerCell = view3;
+                    break;
+                case 13:
+                    if (ProfileActivity.this.sharedMediaLayout.getParent() != null) {
+                        ((ViewGroup) ProfileActivity.this.sharedMediaLayout.getParent()).removeView(ProfileActivity.this.sharedMediaLayout);
                     }
-                }
+                    View view4 = ProfileActivity.this.sharedMediaLayout;
+                    view4.setTag(-33024);
+                    view = view4;
+                    headerCell = view;
+                    break;
+                case 15:
+                    headerCell = new AnonymousClass9(this.mContext, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 17:
+                    View textInfoPrivacyCell2 = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    textInfoPrivacyCell2.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    headerCell = textInfoPrivacyCell2;
+                    break;
+                case 18:
+                case 24:
+                    View profilePremiumCell = new ProfilePremiumCell(this.mContext, i == 18 ? 0 : 1, ProfileActivity.this.resourcesProvider);
+                    profilePremiumCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    headerCell = profilePremiumCell;
+                    break;
+                case 20:
+                    headerCell = new TextCheckCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 21:
+                    View profileLocationCell = new ProfileLocationCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    profileLocationCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    headerCell = profileLocationCell;
+                    break;
+                case 22:
+                    View view5 = new ProfileHoursCell(this.mContext, ProfileActivity.this.resourcesProvider) {
+                        @Override
+                        protected int processColor(int i2) {
+                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
+                        }
+                    };
+                    view5.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    headerCell = view5;
+                    break;
+                case 23:
+                    View view6 = new ProfileChannelCell(ProfileActivity.this) {
+                        @Override
+                        public int processColor(int i2) {
+                            return ProfileActivity.this.dontApplyPeerColor(i2, false);
+                        }
+                    };
+                    view6.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    headerCell = view6;
+                    break;
+                case 25:
+                    FrameLayout frameLayout = new FrameLayout(this.mContext);
+                    ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this.mContext, ProfileActivity.this.resourcesProvider);
+                    buttonWithCounterView.setRound();
+                    buttonWithCounterView.setText(LocaleController.getString(R.string.ProfileBotOpenApp), false);
+                    buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view7) {
+                            this.f$0.lambda$onCreateViewHolder$0(view7);
+                        }
+                    });
+                    frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 18.0f, 14.0f, 18.0f, 14.0f));
+                    frameLayout.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    headerCell = frameLayout;
+                    break;
+                case 26:
+                    headerCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 27:
+                    headerCell = new AffiliateProgramFragment.ColorfulTextCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    break;
+                case 28:
+                    headerCell = new View(this.mContext) {
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(7.33f), 1073741824));
+                        }
+                    };
+                    break;
+                case 29:
+                    ProfileMusicView profileMusicView = new ProfileMusicView(this.mContext, ProfileActivity.this.resourcesProvider);
+                    ProfileActivity.this.musicView = profileMusicView;
+                    if (ProfileActivity.this.avatarsBlurView != null) {
+                        ProfileActivity.this.avatarsBlurView.setMusicView(ProfileActivity.this.musicView);
+                    }
+                    profileMusicView.setColor(ProfileActivity.this.peerColor);
+                    if (ProfileActivity.this.userInfo != null && ProfileActivity.this.userInfo.saved_music != null) {
+                        profileMusicView.setMusicDocument(ProfileActivity.this.userInfo.saved_music);
+                    }
+                    profileMusicView.setTag(-33024);
+                    view = profileMusicView;
+                    headerCell = view;
+                    break;
             }
-            view.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+            if (i != 13) {
+                headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            }
+            return new RecyclerListView.Holder(headerCell);
         }
 
         @Override
@@ -14274,6 +14245,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ((UserCell) childAt).update(0);
                 }
             }
+            this.listView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
         }
         if (!this.isPulledDown) {
             SimpleTextView simpleTextView = this.onlineTextView[1];
@@ -15154,6 +15126,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     public boolean editNotes(View view, final int i) {
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.contentView, this.resourcesProvider, view);
+        itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view));
         itemOptionsMakeOptions.addIf(this.userInfo != null, R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
@@ -15257,6 +15230,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             strBirthdayString = i == this.birthdayRow ? UserInfoActivity.birthdayString(this.userInfo.birthday) : null;
         }
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.contentView, this.resourcesProvider, view);
+        itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view));
         itemOptionsMakeOptions.setGravity(3);
         if (i == this.bizLocationRow && (tL_businessLocation = userFull.business_location) != null) {
             if (tL_businessLocation.geo_point != null) {

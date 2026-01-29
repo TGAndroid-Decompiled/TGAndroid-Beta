@@ -347,7 +347,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 223, BuildVars.APP_ID, str3, str8, str2, str4, str7, string, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, zIsPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 224, BuildVars.APP_ID, str3, str8, str2, str4, str7, string, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, zIsPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -543,7 +543,7 @@ public class ConnectionsManager extends BaseController {
             final TLRPC.TL_error tL_error3 = tL_error;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     this.f$0.lambda$sendRequestInternal$5(requestDelegate, tLObject2, tL_error3, requestDelegateTimestamp, j3);
                 }
             });
@@ -552,7 +552,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public void lambda$sendRequestInternal$5(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
+    public void lambda$sendRequestInternal$5(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) throws InterruptedException {
         if (requestDelegate != null) {
             requestDelegate.run(tLObject, tL_error);
         } else if (requestDelegateTimestamp != null) {
@@ -844,7 +844,7 @@ public class ConnectionsManager extends BaseController {
                 KeepAliveJob.finishJob();
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws InterruptedException {
                         ConnectionsManager.lambda$onUnparsedMessageReceived$10(i, tLObjectTLdeserialize);
                     }
                 });
@@ -858,18 +858,18 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onUnparsedMessageReceived$10(int i, TLObject tLObject) {
+    public static void lambda$onUnparsedMessageReceived$10(int i, TLObject tLObject) throws InterruptedException {
         AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
     }
 
-    public static void lambda$onUpdate$11(int i) {
+    public static void lambda$onUpdate$11(int i) throws InterruptedException {
         AccountInstance.getInstance(i).getMessagesController().updateTimerProc();
     }
 
     public static void onUpdate(final int i) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 ConnectionsManager.lambda$onUpdate$11(i);
             }
         });

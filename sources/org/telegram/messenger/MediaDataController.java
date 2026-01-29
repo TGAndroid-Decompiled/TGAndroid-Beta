@@ -73,6 +73,7 @@ import org.telegram.ui.Components.URLSpanUserMention;
 
 public class MediaDataController extends BaseController {
     public static final String ATTACH_MENU_BOT_ANIMATED_ICON_KEY = "android_animated";
+    public static final String ATTACH_MENU_BOT_ANIMATED_ICON_KEY_2 = "android_active_animated";
     public static final String ATTACH_MENU_BOT_COLOR_DARK_ICON = "dark_icon";
     public static final String ATTACH_MENU_BOT_COLOR_DARK_TEXT = "dark_text";
     public static final String ATTACH_MENU_BOT_COLOR_LIGHT_ICON = "light_icon";
@@ -2324,11 +2325,11 @@ public class MediaDataController extends BaseController {
         return false;
     }
 
-    public static TLRPC.TL_attachMenuBotIcon getAnimatedAttachMenuBotIcon(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+    public static TLRPC.TL_attachMenuBotIcon getAnimatedAttachMenuBotIcon(TLRPC.TL_attachMenuBot tL_attachMenuBot, boolean z) {
         Iterator<TLRPC.TL_attachMenuBotIcon> it = tL_attachMenuBot.icons.iterator();
         while (it.hasNext()) {
             TLRPC.TL_attachMenuBotIcon next = it.next();
-            if (next.name.equals("android_animated")) {
+            if (next.name.equals(z ? "android_active_animated" : "android_animated")) {
                 return next;
             }
         }
@@ -7576,7 +7577,7 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = true;
         getConnectionsManager().sendRequest(new TLRPC.TL_messages_getAllDrafts(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$loadDraftsIfNeed$189(tLObject, tL_error);
             }
         });
@@ -7586,7 +7587,7 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = false;
     }
 
-    public void lambda$loadDraftsIfNeed$189(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$loadDraftsIfNeed$189(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

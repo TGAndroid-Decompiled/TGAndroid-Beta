@@ -23,7 +23,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Property;
 import android.util.SparseIntArray;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -62,7 +61,6 @@ public abstract class FilterTabsView extends FrameLayout {
     private int aTabLineColorKey;
     private int aUnactiveTextColorKey;
     private int activeTextColorKey;
-    int activeTouches;
     private final ListAdapter adapter;
     private int additionalTabWidth;
     private int allTabsWidth;
@@ -753,7 +751,7 @@ public abstract class FilterTabsView extends FrameLayout {
                 FilterTabsView.this.invalidate();
             }
         });
-        recyclerListView.setOverScrollMode(2);
+        recyclerListView.setAdaptiveOverScroll();
         addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
@@ -1150,24 +1148,6 @@ public abstract class FilterTabsView extends FrameLayout {
             blurredBackgroundDrawable.updateColors();
         }
         invalidate();
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        if (action == 0) {
-            if (this.activeTouches == 0) {
-                this.listView.setOverScrollMode(0);
-            }
-            this.activeTouches++;
-        } else if (action == 1 || action == 3) {
-            int i = this.activeTouches - 1;
-            this.activeTouches = i;
-            if (i == 0) {
-                this.listView.setOverScrollMode(2);
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override

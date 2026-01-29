@@ -104,7 +104,7 @@ public class HistoryFragment extends UniversalFragment {
             }
         });
         actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
-        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass2());
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass2());
         this.searchItem = actionBarMenuItemSearchListener;
         int i3 = R.string.Search;
         actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(i3));

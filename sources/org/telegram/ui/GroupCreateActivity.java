@@ -169,6 +169,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public boolean isSupportEdgeToEdge() {
         return true;
     }

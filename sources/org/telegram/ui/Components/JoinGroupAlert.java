@@ -367,13 +367,13 @@ public class JoinGroupAlert extends BottomSheet {
         tL_messages_importChatInvite.hash = this.hash;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_importChatInvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$new$9(i, tL_messages_importChatInvite, tLObject, tL_error);
             }
         }, 2);
     }
 
-    public void lambda$new$9(final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$new$9(final int i, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error == null) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }

@@ -280,13 +280,13 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         tL_inputPeerUser.user_id = AccountInstance.getInstance(this.currentAccount).getUserConfig().getClientUserId();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(joingroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$init$9(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$init$9(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$init$9(final TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
@@ -337,7 +337,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                 leavegroupcall.call = this.inputCall;
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) throws InterruptedException {
                         this.f$0.lambda$init$2(tLObject, tLObject2, tL_error2);
                     }
                 });
@@ -409,7 +409,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public void lambda$init$2(TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) {
+    public void lambda$init$2(TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject2 instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -923,7 +923,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             leavegroupcall.call = this.inputCall;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(leavegroupcall, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$destroy$24(tLObject, tL_error);
                 }
             });
@@ -954,7 +954,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         }
     }
 
-    public void lambda$destroy$24(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$destroy$24(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -1276,14 +1276,14 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
         discardgroupcall.call = this.inputCall;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(discardgroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$end$34(tLObject, tL_error);
             }
         });
         destroy();
     }
 
-    public void lambda$end$34(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$end$34(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);

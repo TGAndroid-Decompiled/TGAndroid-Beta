@@ -289,6 +289,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public TLRPC.User getCurrentUser() {
         return ChatActivityInterface.CC.$default$getCurrentUser(this);
     }
@@ -579,7 +584,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         });
         ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
         if (this.parentDialogsActivity != null) {
-            ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search);
+            ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search);
             this.searchItem = actionBarMenuItemAddItem;
             actionBarMenuItemAddItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -588,7 +593,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             });
         } else {
-            ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search);
+            ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search);
             this.searchItem = actionBarMenuItemAddItem2;
             actionBarMenuItemAddItem2.setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
@@ -1159,12 +1164,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     break;
                 case 11:
                     final TLRPC.Chat chat = TopicsFragment.this.getMessagesController().getChat(Long.valueOf(TopicsFragment.this.chatId));
-                    AlertsCreator.createClearOrDeleteDialogAlert(TopicsFragment.this, false, chat, null, false, true, false, new MessagesStorage.BooleanCallback() {
+                    AlertsCreator.createClearOrDeleteDialogAlert(TopicsFragment.this, false, chat, null, false, true, false, false, new MessagesStorage.BooleanCallback() {
                         @Override
                         public final void run(boolean z) {
                             this.f$0.lambda$onItemClick$4(chat, z);
                         }
-                    }, TopicsFragment.this.themeDelegate);
+                    });
                     break;
                 case 12:
                 case 13:

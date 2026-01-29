@@ -149,7 +149,7 @@ public class GroupCallMessagesController extends BaseController {
         AndroidUtilities.runOnUIThread(runnable, 1000L);
         getConnectionsManager().sendRequest(sendgroupcallmessage3, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$sendCallMessage$5(runnable, groupCallMessage, tLObject, tL_error);
             }
         });
@@ -161,7 +161,7 @@ public class GroupCallMessagesController extends BaseController {
         groupCallMessage.notifyStateUpdate();
     }
 
-    public void lambda$sendCallMessage$5(Runnable runnable, final GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$sendCallMessage$5(Runnable runnable, final GroupCallMessage groupCallMessage, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         groupCallMessage.setIsSendDelayed(false);
         if (tLObject instanceof TLRPC.Bool) {

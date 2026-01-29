@@ -308,7 +308,7 @@ public class UndoView extends FrameLayout {
                 this.currentCancelRunnable = null;
             }
             int i2 = this.currentAction;
-            if (i2 == 0 || i2 == 1 || i2 == 26 || i2 == 27) {
+            if (i2 == 0 || i2 == 1 || i2 == 95 || i2 == 26 || i2 == 27) {
                 for (int i3 = 0; i3 < this.currentDialogIds.size(); i3++) {
                     long jLongValue = ((Long) this.currentDialogIds.get(i3)).longValue();
                     MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -449,7 +449,7 @@ public class UndoView extends FrameLayout {
             this.backgroundDrawable.draw(canvas);
         }
         int i = this.currentAction;
-        if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
+        if (i == 1 || i == 95 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
             int iCeil = this.timeLeft > 0 ? (int) Math.ceil(r10 / 1000.0f) : 0;
             if (this.prevSeconds != iCeil) {
                 this.prevSeconds = iCeil;

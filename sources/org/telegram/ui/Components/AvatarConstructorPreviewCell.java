@@ -33,6 +33,43 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     Runnable scheduleSwitchToNextRunnable;
     TextView textView;
 
+    public static TLRPC.TL_emojiList getOrCreateEmojiList(int i, boolean z) {
+        TLRPC.TL_emojiList tL_emojiList;
+        if (z) {
+            tL_emojiList = MediaDataController.getInstance(i).profileAvatarConstructorDefault;
+        } else {
+            tL_emojiList = MediaDataController.getInstance(i).groupAvatarConstructorDefault;
+        }
+        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty()) {
+            return tL_emojiList;
+        }
+        ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i).getStickerSets(5);
+        TLRPC.TL_emojiList tL_emojiList2 = new TLRPC.TL_emojiList();
+        if (stickerSets.isEmpty()) {
+            ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = MediaDataController.getInstance(i).getFeaturedEmojiSets();
+            for (int i2 = 0; i2 < featuredEmojiSets.size(); i2++) {
+                TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i2);
+                TLRPC.Document document = stickerSetCovered.cover;
+                if (document != null) {
+                    tL_emojiList2.document_id.add(Long.valueOf(document.id));
+                } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+                    TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
+                    if (!tL_stickerSetFullCovered.documents.isEmpty()) {
+                        tL_emojiList2.document_id.add(Long.valueOf(tL_stickerSetFullCovered.documents.get(0).id));
+                    }
+                }
+            }
+        } else {
+            for (int i3 = 0; i3 < stickerSets.size(); i3++) {
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSets.get(i3);
+                if (!tL_messages_stickerSet.documents.isEmpty()) {
+                    tL_emojiList2.document_id.add(Long.valueOf(tL_messages_stickerSet.documents.get(Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size())).id));
+                }
+            }
+        }
+        return tL_emojiList2;
+    }
+
     public AvatarConstructorPreviewCell(Context context, boolean z) {
         super(context);
         int i = UserConfig.selectedAccount;
@@ -87,57 +124,26 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
             }
         };
         this.forUser = z;
-        if (z) {
-            this.emojiList = MediaDataController.getInstance(i).profileAvatarConstructorDefault;
-        } else {
-            this.emojiList = MediaDataController.getInstance(i).groupAvatarConstructorDefault;
-        }
-        TLRPC.TL_emojiList tL_emojiList = this.emojiList;
-        if (tL_emojiList == null || tL_emojiList.document_id.isEmpty()) {
-            ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i).getStickerSets(5);
-            this.emojiList = new TLRPC.TL_emojiList();
-            if (stickerSets.isEmpty()) {
-                ArrayList<TLRPC.StickerSetCovered> featuredEmojiSets = MediaDataController.getInstance(i).getFeaturedEmojiSets();
-                for (int i2 = 0; i2 < featuredEmojiSets.size(); i2++) {
-                    TLRPC.StickerSetCovered stickerSetCovered = featuredEmojiSets.get(i2);
-                    TLRPC.Document document = stickerSetCovered.cover;
-                    if (document != null) {
-                        this.emojiList.document_id.add(Long.valueOf(document.id));
-                    } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                        TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
-                        if (!tL_stickerSetFullCovered.documents.isEmpty()) {
-                            this.emojiList.document_id.add(Long.valueOf(tL_stickerSetFullCovered.documents.get(0).id));
-                        }
-                    }
-                }
-            } else {
-                for (int i3 = 0; i3 < stickerSets.size(); i3++) {
-                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = stickerSets.get(i3);
-                    if (!tL_messages_stickerSet.documents.isEmpty()) {
-                        this.emojiList.document_id.add(Long.valueOf(tL_messages_stickerSet.documents.get(Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size())).id));
-                    }
-                }
-            }
-        }
+        this.emojiList = getOrCreateEmojiList(i, z);
         this.currentImage = new BackupImageView(context);
         this.nextImage = new BackupImageView(context);
         addView(this.currentImage, LayoutHelper.createFrame(50, 50, 1));
         addView(this.nextImage, LayoutHelper.createFrame(50, 50, 1));
-        TLRPC.TL_emojiList tL_emojiList2 = this.emojiList;
-        if (tL_emojiList2 != null && !tL_emojiList2.document_id.isEmpty()) {
-            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, this.emojiList.document_id.get(0).longValue());
+        TLRPC.TL_emojiList tL_emojiList = this.emojiList;
+        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty()) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i, this.emojiList.document_id.get(0).longValue());
             this.animatedEmojiDrawable = animatedEmojiDrawable;
             this.currentImage.setAnimatedEmojiDrawable(animatedEmojiDrawable);
             preloadNextEmojiDrawable();
         }
         int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
-        int i4 = iArr[0];
-        int i5 = iArr[1];
-        int i6 = iArr[2];
-        int i7 = iArr[3];
+        int i2 = iArr[0];
+        int i3 = iArr[1];
+        int i4 = iArr[2];
+        int i5 = iArr[3];
         GradientTools gradientTools = new GradientTools();
         this.currentBackgroundDrawable = gradientTools;
-        gradientTools.setColors(i4, i5, i6, i7);
+        gradientTools.setColors(i2, i3, i4, i5);
         TextView textView = new TextView(context);
         this.textView = textView;
         textView.setTextSize(1, 12.0f);

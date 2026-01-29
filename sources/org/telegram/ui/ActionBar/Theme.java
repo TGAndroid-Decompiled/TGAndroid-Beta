@@ -470,6 +470,9 @@ public abstract class Theme {
     public static final int key_avatar_nameInMessageViolet;
     public static final int key_avatar_subtitleInProfileBlue;
     public static final int key_avatar_text;
+    public static final int key_bot_button_danger;
+    public static final int key_bot_button_primary;
+    public static final int key_bot_button_success;
     public static final int key_bot_loadingIcon;
     public static final int key_buttonNeutral;
     public static final int key_buttonNeutralText;
@@ -2127,7 +2130,7 @@ public abstract class Theme {
         ThemeAccent() {
         }
 
-        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) throws java.io.IOException {
+        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.ThemeAccent.fillAccentColors(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
         }
 
@@ -2762,7 +2765,7 @@ public abstract class Theme {
             return this.defaultAccentCount != 0;
         }
 
-        public boolean isDark() throws IOException {
+        public boolean isDark() {
             int i = this.isDark;
             if (i != -1) {
                 return i == 1;
@@ -3522,11 +3525,11 @@ public abstract class Theme {
         return shapeDrawable;
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) throws Resources.NotFoundException {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) {
         return createCircleDrawableWithIcon(i, i2, 0);
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) throws Resources.NotFoundException {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) {
         return createCircleDrawableWithIcon(i, i2 != 0 ? ApplicationLoader.applicationContext.getResources().getDrawable(i2).mutate() : null, i3);
     }
 
@@ -4998,7 +5001,7 @@ public abstract class Theme {
         return currentTheme == currentNightTheme;
     }
 
-    public static boolean isCurrentThemeDark() throws IOException {
+    public static boolean isCurrentThemeDark() {
         return currentTheme.isDark();
     }
 
@@ -5308,13 +5311,13 @@ public abstract class Theme {
     public static void lambda$checkCurrentRemoteTheme$7(final ThemeAccent themeAccent, final ThemeInfo themeInfo, final TLRPC.TL_theme tL_theme, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException, Resources.NotFoundException, IOException {
+            public final void run() throws JSONException, IOException {
                 Theme.lambda$checkCurrentRemoteTheme$6(tLObject, themeAccent, themeInfo, tL_theme);
             }
         });
     }
 
-    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, android.content.res.Resources.NotFoundException, java.io.IOException {
+    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject, org.telegram.ui.ActionBar.Theme$ThemeAccent, org.telegram.ui.ActionBar.Theme$ThemeInfo, org.telegram.tgnet.TLRPC$TL_theme):void");
     }
 
@@ -6012,7 +6015,7 @@ public abstract class Theme {
         setDrawableColorByKey(dialogs_fakeDrawable, i9);
     }
 
-    public static void reloadAllResources(Context context) throws Resources.NotFoundException, IOException {
+    public static void reloadAllResources(Context context) {
         destroyResources();
         if (chat_msgInDrawable != null) {
             chat_msgInDrawable = null;
@@ -6240,7 +6243,7 @@ public abstract class Theme {
         }
     }
 
-    public static void createChatResources(Context context, boolean z) throws Resources.NotFoundException, IOException {
+    public static void createChatResources(Context context, boolean z) {
         TextPaint textPaint;
         createCommonChatResources();
         if (!z && chat_msgInDrawable == null) {
@@ -6533,7 +6536,7 @@ public abstract class Theme {
         chat_commentTextPaint.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void applyChatTheme(boolean z, boolean z2) throws IOException {
+    public static void applyChatTheme(boolean z, boolean z2) {
         if (chat_msgTextPaint == null || chat_msgInDrawable == null || z) {
             return;
         }
@@ -6703,7 +6706,7 @@ public abstract class Theme {
         applyChatMessageSelectedBackgroundColor();
     }
 
-    public static void applyChatServiceMessageColor() throws IOException {
+    public static void applyChatServiceMessageColor() {
         Drawable drawable = wallpaper;
         if (drawable != null) {
             applyChatServiceMessageColor(null, null, drawable);
@@ -6765,7 +6768,7 @@ public abstract class Theme {
         bitmapShader.setLocalMatrix(matrix);
     }
 
-    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) throws IOException {
+    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) {
         int iValueAt;
         int i;
         int iValueAt2;
@@ -7370,13 +7373,13 @@ public abstract class Theme {
         final Drawable drawableLoadWallpaperInternal = loadWallpaperInternal(overrideWallpaperInfo, file, i, z, document, z2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 Theme.lambda$loadWallpaper$11(drawableLoadWallpaperInternal);
             }
         });
     }
 
-    public static void lambda$loadWallpaper$11(Drawable drawable) throws IOException {
+    public static void lambda$loadWallpaper$11(Drawable drawable) {
         wallpaperLoadTask = null;
         createCommonChatResources();
         if (!disallowChangeServiceMessageColor) {

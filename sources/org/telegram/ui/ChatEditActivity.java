@@ -664,7 +664,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         alertDialog.dismiss();
         getConnectionsManager().sendRequest(tL_channels_toggleAutotranslation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$createView$22(z, tLObject, tL_error);
             }
         }, 64);
@@ -695,7 +695,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         presentFragment(StatisticActivity.create(chat));
     }
 
-    public void lambda$createView$22(final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$createView$22(final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -977,12 +977,12 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$createView$50(View view) {
-        AlertsCreator.createClearOrDeleteDialogAlert(this, false, true, false, this.currentChat, null, false, true, false, new MessagesStorage.BooleanCallback() {
+        AlertsCreator.createClearOrDeleteDialogAlert(this, false, this.currentChat, null, false, true, true, false, new MessagesStorage.BooleanCallback() {
             @Override
             public final void run(boolean z) {
                 this.f$0.lambda$createView$49(z);
             }
-        }, null);
+        });
     }
 
     public void lambda$createView$49(boolean z) {

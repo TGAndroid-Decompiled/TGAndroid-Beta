@@ -48,6 +48,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class ViewPagerFixed extends FrameLayout {
@@ -1048,6 +1049,7 @@ public class ViewPagerFixed extends FrameLayout {
         private Runnable animationRunnable;
         private float animationTime;
         private int backgroundColorKey;
+        BlurredBackgroundDrawable blurredBackgroundDrawable;
         private final Paint counterPaint;
         private int currentPosition;
         private TabsViewDelegate delegate;
@@ -1412,15 +1414,21 @@ public class ViewPagerFixed extends FrameLayout {
             this.selectorType = i;
             textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint2.setTypeface(AndroidUtilities.bold());
-            textPaint.setTextSize(AndroidUtilities.dp(i == 9 ? 14.0f : 15.0f));
+            textPaint.setTextSize(AndroidUtilities.dp((i == 9 || i == -2) ? 14.0f : 15.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
             textPaint3.setStyle(Paint.Style.STROKE);
             textPaint3.setStrokeCap(Paint.Cap.ROUND);
             textPaint3.setStrokeWidth(AndroidUtilities.dp(1.5f));
-            this.selectorDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
-            float fDpf2 = AndroidUtilities.dpf2(3.0f);
-            this.selectorDrawable.setCornerRadii(new float[]{fDpf2, fDpf2, fDpf2, fDpf2, 0.0f, 0.0f, 0.0f, 0.0f});
-            this.selectorDrawable.setColor(Theme.getColor(this.tabLineColorKey, resourcesProvider));
+            GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
+            this.selectorDrawable = gradientDrawable;
+            gradientDrawable.setColor(Theme.getColor(this.tabLineColorKey, resourcesProvider));
+            if (i == -2) {
+                float fDpf2 = AndroidUtilities.dpf2(13.0f);
+                this.selectorDrawable.setCornerRadii(new float[]{fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2});
+            } else {
+                float fDpf22 = AndroidUtilities.dpf2(3.0f);
+                this.selectorDrawable.setCornerRadii(new float[]{fDpf22, fDpf22, fDpf22, fDpf22, 0.0f, 0.0f, 0.0f, 0.0f});
+            }
             setHorizontalScrollBarEnabled(false);
             RecyclerListView recyclerListView = new RecyclerListView(context) {
                 @Override
@@ -1462,11 +1470,16 @@ public class ViewPagerFixed extends FrameLayout {
             } else {
                 ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
             }
-            this.listView.setSelectorType(i);
-            if (i == 3) {
-                this.listView.setSelectorRadius(0);
-            } else {
+            if (i == -2) {
+                this.listView.setSelectorType(9);
                 this.listView.setSelectorRadius(6);
+            } else {
+                this.listView.setSelectorType(i);
+                if (i == 3) {
+                    this.listView.setSelectorRadius(0);
+                } else {
+                    this.listView.setSelectorRadius(6);
+                }
             }
             this.listView.setSelectorDrawableColor(Theme.getColor(this.selectorColorKey, resourcesProvider));
             RecyclerListView recyclerListView2 = this.listView;
@@ -1841,6 +1854,10 @@ public class ViewPagerFixed extends FrameLayout {
         }
 
         public void updateColors() {
+            BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
+            if (blurredBackgroundDrawable != null) {
+                blurredBackgroundDrawable.updateColors();
+            }
             this.selectorDrawable.setColor(Theme.getColor(this.tabLineColorKey, this.resourcesProvider));
             this.listView.invalidateViews();
             this.listView.invalidate();
@@ -1970,6 +1987,11 @@ public class ViewPagerFixed extends FrameLayout {
                 }
             });
             this.orderChanged = false;
+        }
+
+        public void setBlurredBackground(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+            this.blurredBackgroundDrawable = blurredBackgroundDrawable;
+            setBackground(blurredBackgroundDrawable);
         }
 
         private class ListAdapter extends RecyclerListView.SelectionAdapter {

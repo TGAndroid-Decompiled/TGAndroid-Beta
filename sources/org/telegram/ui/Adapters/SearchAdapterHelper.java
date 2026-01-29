@@ -203,9 +203,6 @@ public class SearchAdapterHelper {
             }
             z8 = false;
         }
-        if (z8) {
-            this.delegate.onDataSetChanged(i2);
-        }
         final AtomicInteger atomicInteger = new AtomicInteger(0);
         final ArrayList arrayList3 = new ArrayList();
         for (int i4 = 0; i4 < arrayList.size(); i4++) {
@@ -220,6 +217,9 @@ public class SearchAdapterHelper {
                 }
             }));
             this.pendingRequestIds.add(Integer.valueOf(atomicInteger2.get()));
+        }
+        if (z8) {
+            this.delegate.onDataSetChanged(i2);
         }
     }
 

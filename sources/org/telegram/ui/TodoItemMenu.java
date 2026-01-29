@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -35,7 +34,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -353,7 +351,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) throws IOException {
+                protected void onDraw(Canvas canvas) {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -376,7 +374,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -781,7 +779,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -1275,7 +1273,7 @@ public class TodoItemMenu extends Dialog {
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() {
                         this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
@@ -1349,7 +1347,7 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {

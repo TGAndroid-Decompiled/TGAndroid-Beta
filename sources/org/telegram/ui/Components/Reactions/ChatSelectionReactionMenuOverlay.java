@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
@@ -149,20 +148,20 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$onReactionClicked$0();
                 }
             });
         }
 
-        public void lambda$onReactionClicked$0() throws Resources.NotFoundException {
+        public void lambda$onReactionClicked$0() {
             if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
                 ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
             }
             hideMenu();
         }
 
-        public void hideMenu() throws Resources.NotFoundException {
+        public void hideMenu() {
             ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
         }
     }

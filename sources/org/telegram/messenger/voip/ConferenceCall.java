@@ -360,14 +360,14 @@ public class ConferenceCall {
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$processUpdates$4(tLObject);
             }
         });
         return z;
     }
 
-    public void lambda$processUpdates$4(TLObject tLObject) {
+    public void lambda$processUpdates$4(TLObject tLObject) throws InterruptedException {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 

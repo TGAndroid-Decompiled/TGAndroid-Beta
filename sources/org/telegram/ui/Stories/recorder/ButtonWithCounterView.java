@@ -681,7 +681,14 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             int wrapWidth = getWrapWidth();
             this.lastWrapWidth = wrapWidth;
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(wrapWidth, View.MeasureSpec.getSize(i)), 1073741824), i2);
-        } else if (this.wrapWidth) {
+            View view = this.rippleView;
+            if (view != null) {
+                view.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+                return;
+            }
+            return;
+        }
+        if (this.wrapWidth) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(getPaddingLeft() + this.text.getCurrentWidth() + getPaddingRight(), this.minWidth), View.MeasureSpec.getSize(i)), 1073741824), i2);
         } else {
             super.onMeasure(i, i2);

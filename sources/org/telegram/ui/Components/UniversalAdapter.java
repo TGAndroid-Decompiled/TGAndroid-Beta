@@ -450,16 +450,15 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     fullscreenCustomFrameLayout = new TextRightIconCell(this.context, this.resourcesProvider);
                     break;
                 case 31:
-                    GraySectionCell graySectionCell = new GraySectionCell(this.context, 28, this.resourcesProvider);
                     RecyclerListView recyclerListView = this.listView;
-                    fullscreenCustomFrameLayout = graySectionCell;
-                    if (recyclerListView != null) {
+                    if (recyclerListView != null && recyclerListView.hasSections()) {
+                        GraySectionCell graySectionCell = new GraySectionCell(this.context, 28, this.resourcesProvider);
+                        graySectionCell.setNoBackground(true);
                         fullscreenCustomFrameLayout = graySectionCell;
-                        if (recyclerListView.hasSections()) {
-                            graySectionCell.setNoBackground(true);
-                            fullscreenCustomFrameLayout = graySectionCell;
-                            break;
-                        }
+                        break;
+                    } else {
+                        fullscreenCustomFrameLayout = new GraySectionCell(this.context, this.resourcesProvider);
+                        break;
                     }
                     break;
                 case 32:

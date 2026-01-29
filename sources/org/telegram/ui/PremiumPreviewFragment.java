@@ -186,6 +186,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public boolean isActionBarCrossfadeEnabled() {
         return false;
     }
@@ -1093,7 +1098,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentPremiumSubscription;
                         ConnectionsManager.getInstance(i).sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                                 PremiumPreviewFragment.lambda$buyPremium$9(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
                             }
                         }, 66);
@@ -1154,7 +1159,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ((LaunchActivity) baseFragment.getParentActivity()).getFireworksOverlay().start();
     }
 
-    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(runnable);

@@ -145,12 +145,15 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             return ((TL_stars.TL_starGiftAttributeRarity) starGiftAttributeRarity).permille;
         }
         if (starGiftAttributeRarity instanceof TL_stars.TL_starGiftAttributeRarityLegendary) {
-            return 1.0E-4d;
+            return 0.01d;
         }
         if (starGiftAttributeRarity instanceof TL_stars.TL_starGiftAttributeRarityEpic) {
-            return 0.001d;
+            return 0.02d;
         }
-        return starGiftAttributeRarity instanceof TL_stars.TL_starGiftAttributeRarityRare ? 0.01d : 0.0d;
+        if (starGiftAttributeRarity instanceof TL_stars.TL_starGiftAttributeRarityRare) {
+            return 0.03d;
+        }
+        return starGiftAttributeRarity instanceof TL_stars.TL_starGiftAttributeRarityUncommon ? 0.04d : 0.0d;
     }
 
     public StarGiftPreviewSheet(Context context, Theme.ResourcesProvider resourcesProvider, int i, String str, final ArrayList arrayList, boolean z) {
@@ -1019,17 +1022,17 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.onTabSelectListener = callback;
             int i = Theme.key_glass_defaultIcon;
             setLensColor(Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.09411765f), Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1254902f));
-            GlassTabView[] glassTabViewArr = {GlassTabView.create(context, resourcesProvider, R.drawable.filled_gift_models_24, R.string.GiftPreviewModels, new Runnable() {
+            GlassTabView[] glassTabViewArr = {GlassTabView.createGiftTab(context, resourcesProvider, GlassTabView.TabAnimation.MODELS, R.string.GiftPreviewModels, new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$new$0();
                 }
-            }), GlassTabView.create(context, resourcesProvider, R.drawable.filled_gift_palette_24, R.string.GiftPreviewBackdrops, new Runnable() {
+            }), GlassTabView.createGiftTab(context, resourcesProvider, GlassTabView.TabAnimation.COLORS, R.string.GiftPreviewBackdrops, new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$new$1();
                 }
-            }), GlassTabView.create(context, resourcesProvider, R.drawable.filled_gift_symbols_24, R.string.GiftPreviewSymbols, new Runnable() {
+            }), GlassTabView.createGiftTab(context, resourcesProvider, GlassTabView.TabAnimation.SYMBOLS, R.string.GiftPreviewSymbols, new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$new$2();

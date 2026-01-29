@@ -43,7 +43,6 @@ import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -859,13 +858,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             tL_messages_sendWebViewData.data = str;
             ConnectionsManager.getInstance(BotWebViewSheet.this.currentAccount).sendRequest(tL_messages_sendWebViewData, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$onSendWebViewData$1(tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$onSendWebViewData$1(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onSendWebViewData$1(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
             if (tLObject instanceof TLRPC.TL_updates) {
                 MessagesController.getInstance(BotWebViewSheet.this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
             }
@@ -1951,13 +1950,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public void lambda$requestWebView$21(final TLRPC.UserFull userFull) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 this.f$0.lambda$requestWebView$20(userFull);
             }
         });
     }
 
-    public void lambda$requestWebView$20(TLRPC.UserFull userFull) throws IOException {
+    public void lambda$requestWebView$20(TLRPC.UserFull userFull) {
         TL_bots.BotInfo botInfo;
         TL_bots.botAppSettings botappsettings;
         if (userFull == null || (botInfo = userFull.bot_info) == null || (botappsettings = botInfo.app_settings) == null) {
@@ -2298,7 +2297,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    private void applyAppBotSettings(TL_bots.botAppSettings botappsettings, boolean z) throws IOException {
+    private void applyAppBotSettings(TL_bots.botAppSettings botappsettings, boolean z) {
         if (botappsettings == null) {
             return;
         }

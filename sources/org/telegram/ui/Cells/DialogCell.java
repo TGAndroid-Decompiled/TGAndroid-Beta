@@ -1380,7 +1380,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r59) {
+    protected void onDraw(android.graphics.Canvas r60) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 

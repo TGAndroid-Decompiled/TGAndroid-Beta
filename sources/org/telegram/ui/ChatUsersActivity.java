@@ -7,8 +7,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,9 +17,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.util.Consumer;
@@ -34,7 +29,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ChatObject;
@@ -47,11 +41,9 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -76,21 +68,18 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.ChatRightsEditActivity;
 import org.telegram.ui.ChatUsersActivity;
-import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.GigagroupConvertAlert;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.GroupCreateActivity;
-import org.telegram.ui.TwoStepVerificationActivity;
 
 public class ChatUsersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int addNew2Row;
@@ -367,11 +356,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         } else if (i2 == 0) {
             this.actionBar.setTitle(LocaleController.getString("ChannelBlacklist", R.string.ChannelBlacklist));
         } else if (i2 == 1) {
-            if (this.transfer) {
-                this.actionBar.setTitle(LocaleController.getString(R.string.AlertLeaveAppointAnotherOwnerTitle));
-            } else {
-                this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAdministrators));
-            }
+            this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAdministrators));
         } else if (i2 == 2) {
             int i3 = this.selectType;
             if (i3 == 0) {
@@ -403,7 +388,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (this.selectType != 0 || (i = this.type) == 2 || i == 0 || i == 3) {
             this.searchListViewAdapter = new SearchAdapter(context);
             ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
-            ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
                 @Override
                 public void onSearchExpand() {
                     ChatUsersActivity.this.searching = true;
@@ -747,7 +732,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$createView$1(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$createView$1(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
@@ -774,7 +759,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
-    public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
@@ -1559,13 +1544,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
         getConnectionsManager().sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$deletePeer$21(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deletePeer$21(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$deletePeer$21(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             getMessagesController().processUpdates(updates, false);
@@ -3056,231 +3041,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     ((ManageChatUserCell) childAt).update(0);
                 }
             }
-        }
-    }
-
-    public void lambda$initTransfer$34(final TLRPC.User user, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
-        if (getParentActivity() == null) {
-            return;
-        }
-        if (inputCheckPasswordSRP != null && !ChatObject.isChannel(this.currentChat)) {
-            MessagesController.getInstance(this.currentAccount).convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
-                @Override
-                public final void run(long j) {
-                    this.f$0.lambda$initTransfer$33(user, inputCheckPasswordSRP, twoStepVerificationActivity, j);
-                }
-            });
-            return;
-        }
-        final TLRPC.TL_channels_editCreator tL_channels_editCreator = new TLRPC.TL_channels_editCreator();
-        if (ChatObject.isChannel(this.currentChat)) {
-            TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
-            tL_channels_editCreator.channel = tL_inputChannel;
-            TLRPC.Chat chat = this.currentChat;
-            tL_inputChannel.channel_id = chat.id;
-            tL_inputChannel.access_hash = chat.access_hash;
-        } else {
-            tL_channels_editCreator.channel = new TLRPC.TL_inputChannelEmpty();
-        }
-        tL_channels_editCreator.password = inputCheckPasswordSRP != null ? inputCheckPasswordSRP : new TLRPC.TL_inputCheckPasswordEmpty();
-        tL_channels_editCreator.user_id = getMessagesController().getInputUser(user);
-        getConnectionsManager().sendRequest(tL_channels_editCreator, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$initTransfer$40(inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator, tLObject, tL_error);
-            }
-        });
-    }
-
-    public void lambda$initTransfer$33(TLRPC.User user, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TwoStepVerificationActivity twoStepVerificationActivity, long j) {
-        if (j != 0) {
-            this.chatId = j;
-            this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
-            lambda$initTransfer$34(user, inputCheckPasswordSRP, twoStepVerificationActivity);
-        }
-    }
-
-    public void lambda$initTransfer$40(final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.TL_channels_editCreator tL_channels_editCreator, TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$initTransfer$39(tL_error, inputCheckPasswordSRP, user, twoStepVerificationActivity, tL_channels_editCreator);
-            }
-        });
-    }
-
-    public void lambda$initTransfer$39(TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TLRPC.User user, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
-        if (tL_error == null) {
-            if (inputCheckPasswordSRP != null) {
-                onOwnerChaged(user);
-                removeSelfFromStack();
-                twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.finishFragment();
-                return;
-            }
-            return;
-        }
-        if (getParentActivity() == null) {
-            return;
-        }
-        if ("PASSWORD_HASH_INVALID".equals(tL_error.text)) {
-            if (inputCheckPasswordSRP == null) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                if (this.isChannel) {
-                    builder.setTitle(LocaleController.getString(R.string.EditAdminChannelTransfer));
-                } else {
-                    builder.setTitle(LocaleController.getString(R.string.EditAdminGroupTransfer));
-                }
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.EditAdminTransferReadyAlertText, this.currentChat.title, UserObject.getFirstName(user))));
-                builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferChangeOwner), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i) {
-                        this.f$0.lambda$initTransfer$35(user, alertDialog, i);
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                showDialog(builder.create());
-                return;
-            }
-            return;
-        }
-        if ("PASSWORD_MISSING".equals(tL_error.text) || tL_error.text.startsWith("PASSWORD_TOO_FRESH_") || tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
-            if (twoStepVerificationActivity != null) {
-                twoStepVerificationActivity.needHideProgress();
-            }
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
-            builder2.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
-            LinearLayout linearLayout = new LinearLayout(getParentActivity());
-            linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
-            linearLayout.setOrientation(1);
-            builder2.setView(linearLayout);
-            TextView textView = new TextView(getParentActivity());
-            int i = Theme.key_dialogTextBlack;
-            textView.setTextColor(Theme.getColor(i));
-            textView.setTextSize(1, 16.0f);
-            textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            if (this.isChannel) {
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("EditChannelAdminTransferAlertText", R.string.EditChannelAdminTransferAlertText, UserObject.getFirstName(user))));
-            } else {
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("EditAdminTransferAlertText", R.string.EditAdminTransferAlertText, UserObject.getFirstName(user))));
-            }
-            linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-            LinearLayout linearLayout2 = new LinearLayout(getParentActivity());
-            linearLayout2.setOrientation(0);
-            linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-            ImageView imageView = new ImageView(getParentActivity());
-            int i2 = R.drawable.list_circle;
-            imageView.setImageResource(i2);
-            imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-            int color = Theme.getColor(i);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-            TextView textView2 = new TextView(getParentActivity());
-            textView2.setTextColor(Theme.getColor(i));
-            textView2.setTextSize(1, 16.0f);
-            textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
-            if (LocaleController.isRTL) {
-                linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
-                linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
-            } else {
-                linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2));
-                linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
-            }
-            LinearLayout linearLayout3 = new LinearLayout(getParentActivity());
-            linearLayout3.setOrientation(0);
-            linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-            ImageView imageView2 = new ImageView(getParentActivity());
-            imageView2.setImageResource(i2);
-            imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
-            TextView textView3 = new TextView(getParentActivity());
-            textView3.setTextColor(Theme.getColor(i));
-            textView3.setTextSize(1, 16.0f);
-            textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
-            if (LocaleController.isRTL) {
-                linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-                linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
-            } else {
-                linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
-                linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
-            }
-            if ("PASSWORD_MISSING".equals(tL_error.text)) {
-                builder2.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new AlertDialog.OnButtonClickListener() {
-                    @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
-                        this.f$0.lambda$initTransfer$36(alertDialog, i3);
-                    }
-                });
-                builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            } else {
-                TextView textView4 = new TextView(getParentActivity());
-                textView4.setTextColor(Theme.getColor(i));
-                textView4.setTextSize(1, 16.0f);
-                textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-                textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
-                linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-                builder2.setNegativeButton(LocaleController.getString(R.string.OK), null);
-            }
-            showDialog(builder2.create());
-            return;
-        }
-        if ("SRP_ID_INVALID".equals(tL_error.text)) {
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error2) {
-                    this.f$0.lambda$initTransfer$38(twoStepVerificationActivity, user, tLObject, tL_error2);
-                }
-            }, 8);
-            return;
-        }
-        if (tL_error.text.equals("CHANNELS_TOO_MUCH")) {
-            if (getParentActivity() != null && !AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium()) {
-                showDialog(new LimitReachedBottomSheet(this, getParentActivity(), 5, this.currentAccount, null));
-                return;
-            } else {
-                presentFragment(new TooManyCommunitiesActivity(1));
-                return;
-            }
-        }
-        if (twoStepVerificationActivity != null) {
-            twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.finishFragment();
-        }
-        AlertsCreator.showAddUserAlert(tL_error.text, this, this.isChannel, tL_channels_editCreator);
-    }
-
-    public void lambda$initTransfer$35(final TLRPC.User user, AlertDialog alertDialog, int i) {
-        final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
-        twoStepVerificationActivity.setDelegate(0, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
-            @Override
-            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
-                this.f$0.lambda$initTransfer$34(user, twoStepVerificationActivity, inputCheckPasswordSRP);
-            }
-        });
-        presentFragment(twoStepVerificationActivity);
-    }
-
-    public void lambda$initTransfer$36(AlertDialog alertDialog, int i) {
-        presentFragment(new TwoStepVerificationSetupActivity(6, null));
-    }
-
-    public void lambda$initTransfer$38(final TwoStepVerificationActivity twoStepVerificationActivity, final TLRPC.User user, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$initTransfer$37(tL_error, tLObject, twoStepVerificationActivity, user);
-            }
-        });
-    }
-
-    public void lambda$initTransfer$37(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.User user) {
-        if (tL_error == null) {
-            TL_account.Password password = (TL_account.Password) tLObject;
-            twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
-            TwoStepVerificationActivity.initPasswordNewAlgo(password);
-            lambda$initTransfer$34(user, twoStepVerificationActivity.getNewSrpPassword(), twoStepVerificationActivity);
         }
     }
 }

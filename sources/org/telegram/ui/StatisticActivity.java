@@ -200,6 +200,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public boolean isSupportEdgeToEdge() {
         return true;
     }

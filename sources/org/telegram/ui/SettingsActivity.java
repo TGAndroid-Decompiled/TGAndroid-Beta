@@ -192,6 +192,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public PhotoViewer.PlaceProviderObject getCloseIntoObject() {
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$getCloseIntoObject(this);
     }
@@ -335,7 +340,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.actionBar.setBackgroundColor(0);
         this.actionBar.setBackground(null);
         ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
-        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_search, this.resourceProvider).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+        ActionBarMenuItem actionBarMenuItemSearchListener = actionBarMenuCreateMenu.addItem(0, R.drawable.outline_header_search, this.resourceProvider).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchCollapse() {
                 SettingsActivity.this.animatorSearchPageVisible.setValue(false, true);

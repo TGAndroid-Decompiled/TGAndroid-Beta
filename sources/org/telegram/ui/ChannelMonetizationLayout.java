@@ -1317,13 +1317,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         tL_channels_restrictSponsoredMessages.restricted = this.switchOffValue;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_restrictSponsoredMessages, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$sendCpmUpdate$37(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$sendCpmUpdate$37(TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$sendCpmUpdate$37(TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

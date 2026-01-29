@@ -85,7 +85,6 @@ import org.telegram.ui.MainTabsActivity;
 
 public class ContactsActivity extends BaseFragment implements FactorAnimator.Target, NotificationCenter.NotificationCenterDelegate, MainTabsActivity.TabFragmentDelegate, WindowAnimatedInsetsProvider.Listener {
     private final int ADDITIONAL_LIST_HEIGHT_DP;
-    private View actionBarBackgroundView;
     private ImageView actionModeCloseView;
     private int additionFloatingButtonOffset;
     private int additionNavigationBarHeight;
@@ -93,12 +92,10 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     private boolean allowBots;
     private boolean allowSelf;
     private boolean allowUsernameSearch;
-    private final FactorAnimator animatorSearchFieldHeight;
     private final BoolAnimator animatorSearchFieldVisible;
     private final BoolAnimator animatorSearchHasQuery;
     private boolean askAboutContacts;
     private BackDrawable backDrawable;
-    private boolean canScrollByAnimation;
     private long channelId;
     private long chatId;
     private boolean checkPermission;
@@ -124,8 +121,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     private int imeInsetAnimatedHeight;
     private String initialSearchString;
     private boolean lastIsEmpty;
-    private int lastListScrollState;
-    private float lastSearchFieldHeight;
     private LinearLayoutManager layoutManager;
     private RecyclerListView listView;
     private ContactsAdapter listViewAdapter;
@@ -140,7 +135,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     private boolean resetDelegate;
     private boolean returnAsResult;
     boolean scheduled;
-    private float scrollByAcc;
     private RecyclerAnimationScrollHelper scrollHelper;
     private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
     private FragmentSearchField searchField;
@@ -155,7 +149,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     private boolean sortByName;
     Runnable sortContactsRunnable;
     private ActionBarMenuItem sortItem;
-    private final Rect tmpClipRect;
 
     public interface ContactsActivityDelegate {
         void didSelectContact(TLRPC.User user, String str, ContactsActivity contactsActivity);
@@ -166,8 +159,17 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
     public boolean isSupportEdgeToEdge() {
         return true;
+    }
+
+    @Override
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     public ContactsActivity(Bundle bundle) {
@@ -176,7 +178,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         this.ADDITIONAL_LIST_HEIGHT_DP = i >= 31 ? 48 : 0;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorSearchFieldVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 350L);
-        this.animatorSearchFieldHeight = new FactorAnimator(1, this, cubicBezierInterpolator, 350L);
         this.animatorSearchHasQuery = new BoolAnimator(2, this, cubicBezierInterpolator, 350L);
         this.phonebookRow = 0;
         this.floatingButtonVisibleByScroll = true;
@@ -197,7 +198,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 ContactsActivity.this.scheduled = false;
             }
         };
-        this.tmpClipRect = new Rect();
         ArrayList arrayList = new ArrayList();
         this.iBlur3Positions = arrayList;
         RectF rectF = new RectF();
@@ -276,7 +276,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     @Override
-    public android.view.View createView(android.content.Context r26) {
+    public android.view.View createView(android.content.Context r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContactsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -311,8 +311,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 return;
             }
             if (i == 0) {
-                ContactsActivity.this.animatorSearchFieldVisible.setValue(true, true);
-                ContactsActivity.this.animatorSearchFieldHeight.animateTo(AndroidUtilities.dp(44.0f));
+                ContactsActivity.this.listView.smoothScrollToPosition(0);
                 AndroidUtilities.doOnPreDraw(ContactsActivity.this.searchField.editText, new Runnable() {
                     @Override
                     public final void run() {
@@ -337,15 +336,17 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         });
     }
 
-    public void lambda$createView$2() {
-        checkUi_listClip();
-        blur3_InvalidateBlur();
-    }
-
     public void lambda$createView$5(int i, View view, int i2, float f, float f2) {
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         SearchAdapter searchAdapter = this.searchListViewAdapter;
         if (adapter == searchAdapter) {
+            if (searchAdapter.includeSearch) {
+                if (i2 == 0) {
+                    return;
+                } else {
+                    i2--;
+                }
+            }
             Object item = searchAdapter.getItem(i2);
             if (!this.selectedContacts.isEmpty() && (view instanceof ProfileSearchCell)) {
                 ProfileSearchCell profileSearchCell = (ProfileSearchCell) view;
@@ -408,7 +409,15 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             }
             return;
         }
-        int sectionForPosition = this.listViewAdapter.getSectionForPosition(i2);
+        ContactsAdapter contactsAdapter = this.listViewAdapter;
+        if (contactsAdapter.includeSearch) {
+            if (i2 == 0) {
+                return;
+            } else {
+                i2--;
+            }
+        }
+        int sectionForPosition = contactsAdapter.getSectionForPosition(i2);
         int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i2);
         if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
             return;
@@ -466,15 +475,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 }
             }
             if (positionInSectionForPosition == 1) {
-                if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
-                    AccountFrozenAlert.show(this.currentAccount);
-                    return;
-                } else {
-                    new NewContactBottomSheet(this, getContext()).show();
-                    return;
-                }
-            }
-            if (positionInSectionForPosition == 2) {
                 if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
                     AccountFrozenAlert.show(this.currentAccount);
                     return;
@@ -588,7 +588,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         ActionBar actionBarCreateActionBar = super.createActionBar(context);
         actionBarCreateActionBar.setUseContainerForTitles();
         actionBarCreateActionBar.getTitlesContainer().setTranslationX(AndroidUtilities.dp(4.0f));
-        actionBarCreateActionBar.setBackgroundColor(0);
         actionBarCreateActionBar.setAddToContainer(false);
         actionBarCreateActionBar.createTitleOverlayContainer();
         actionBarCreateActionBar.getTitleOverlayContainer().setTranslationX(AndroidUtilities.dp(4.0f));
@@ -1145,66 +1144,30 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.MULTIPLY));
             this.actionModeCloseView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector)));
         }
-        FragmentSearchField fragmentSearchField = this.searchField;
-        if (fragmentSearchField != null) {
-            fragmentSearchField.updateColors();
-        }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
             actionBar.updateColors();
         }
-        RecyclerListView recyclerListView2 = this.listView;
-        if (recyclerListView2 != null) {
-            recyclerListView2.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = this.contentView;
+        if (sizeNotifierFrameLayout != null) {
+            sizeNotifierFrameLayout.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
         }
     }
 
     @Override
     public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         if (i == 0) {
-            this.searchField.setAlpha(this.animatorSearchFieldVisible.getFloatValue() * (this.animatorSearchFieldHeight.getFactor() / AndroidUtilities.dp(44.0f)));
-            this.searchField.setVisibility(f <= 0.0f ? 8 : 0);
             checkUi_searchButton();
-            return;
+        } else if (i == 2) {
+            checkUi_searchButton();
+            checkUi_sortItem();
         }
-        if (i != 1) {
-            if (i == 2) {
-                checkUi_searchButton();
-                checkUi_sortItem();
-                return;
-            }
-            return;
-        }
-        this.searchField.setAlpha(this.animatorSearchFieldVisible.getFloatValue() * (this.animatorSearchFieldHeight.getFactor() / AndroidUtilities.dp(44.0f)));
-        this.headerShadowView.setTranslationY(f);
-        this.searchField.setClipHeight(f / AndroidUtilities.dp(44.0f));
-        this.actionBarBackgroundView.invalidate();
-        if (this.canScrollByAnimation && this.lastListScrollState == 0) {
-            float f3 = this.scrollByAcc + (this.lastSearchFieldHeight - f);
-            this.scrollByAcc = f3;
-            int iRound = Math.round(f3);
-            this.scrollByAcc -= iRound;
-            this.listView.scrollBy(0, iRound);
-        }
-        this.lastSearchFieldHeight = f;
-        checkUi_listClip();
     }
 
     @Override
     public boolean canParentTabsSlide(MotionEvent motionEvent, boolean z) {
         RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null || recyclerListView.getFastScroll() == null || !this.listView.getFastScroll().isPressed()) {
-            return !this.animatorSearchHasQuery.getValue();
-        }
-        return false;
-    }
-
-    @Override
-    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
-        if (i == 1) {
-            this.canScrollByAnimation = false;
-            this.scrollByAcc = 0.0f;
-        }
+        return recyclerListView == null || recyclerListView.getFastScroll() == null || !this.listView.getFastScroll().isPressed();
     }
 
     @Override
@@ -1247,6 +1210,33 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         }
     }
 
+    public void checkUi_searchFieldY() {
+        float y = this.listView.getY() + this.listView.getPaddingTop();
+        int i = 0;
+        while (true) {
+            if (i >= this.listView.getChildCount()) {
+                break;
+            }
+            View childAt = this.listView.getChildAt(i);
+            int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition == 0) {
+                RecyclerView.ItemDecoration itemDecorationAt = this.listView.getItemDecorationAt(i);
+                Rect rect = AndroidUtilities.rectTmp2;
+                RecyclerListView recyclerListView = this.listView;
+                itemDecorationAt.getItemOffsets(rect, childAt, recyclerListView, recyclerListView.mState);
+                y = this.listView.getY() + (childAt.getY() - (this.listViewAdapter.isEmptyWithMainTabs ? 0 : rect.top));
+            } else {
+                if (childAdapterPosition > 0) {
+                    y = -AndroidUtilities.dp(52.0f);
+                    break;
+                }
+                i++;
+            }
+        }
+        this.searchField.setTranslationY(y - AndroidUtilities.dp(48.0f));
+        this.animatorSearchFieldVisible.setValue(y > (this.listView.getY() + ((float) this.listView.getPaddingTop())) - ((float) AndroidUtilities.dp(12.0f)), true);
+    }
+
     public void checkUi_sortItem() {
         float floatValue = 1.0f - this.animatorSearchHasQuery.getFloatValue();
         ContactsAdapter contactsAdapter = this.listViewAdapter;
@@ -1273,16 +1263,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         fragmentFloatingButton.setButtonVisible((!this.floatingButtonVisibleByScroll || this.searching || contactsAdapter.isEmpty()) ? false : true, true);
     }
 
-    public void checkUi_listClip() {
-        if (this.listView.hasActiveEdgeEffects()) {
-            this.listView.setClipBounds(null);
-        } else {
-            this.tmpClipRect.set(0, AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP) + this.actionBar.getMeasuredHeight() + ((int) this.animatorSearchFieldHeight.getFactor()), this.listView.getMeasuredWidth(), this.listView.getMeasuredHeight() - AndroidUtilities.dp(this.ADDITIONAL_LIST_HEIGHT_DP));
-            this.listView.setClipBounds(this.tmpClipRect);
-        }
-    }
-
-    public void blur3_InvalidateBlur() {
+    public void lambda$createView$2() {
         if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
             return;
         }
@@ -1310,7 +1291,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             this.scrollHelper.setScrollDirection(1);
             this.scrollHelper.scrollToPosition(0, 0, false, true);
         }
-        this.animatorSearchFieldHeight.animateTo(AndroidUtilities.dp(44.0f));
         this.animatorSearchFieldVisible.setValue(true, true);
     }
 }
