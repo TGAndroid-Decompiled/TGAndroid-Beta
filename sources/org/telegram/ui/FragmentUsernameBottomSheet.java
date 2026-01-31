@@ -146,25 +146,25 @@ public abstract class FragmentUsernameBottomSheet {
         textView2.setTextSize(1, 14.0f);
         textView2.setText(spannableStringBuilderReplaceCharSequence);
         r11.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 19));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.FragmentUsernameOpen), false);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round.setText(LocaleController.getString(R.string.FragmentUsernameOpen), false);
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 FragmentUsernameBottomSheet.lambda$open$1(context, tL_collectibleInfo, view);
             }
         });
-        r11.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 6.0f, 0.0f, 6.0f, 0.0f));
+        r11.addView(round, LayoutHelper.createLinear(-1, 48, 6.0f, 0.0f, 6.0f, 0.0f));
         if (runnable != null) {
-            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, resourcesProvider);
-            buttonWithCounterView2.setText(LocaleController.getString(i == 0 ? R.string.FragmentUsernameCopy : R.string.FragmentPhoneCopy), false);
-            buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+            ButtonWithCounterView neutral = new ButtonWithCounterView(context, resourcesProvider).setRound().setNeutral();
+            neutral.setText(LocaleController.getString(i == 0 ? R.string.FragmentUsernameCopy : R.string.FragmentPhoneCopy), false);
+            neutral.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     FragmentUsernameBottomSheet.lambda$open$2(runnable, bottomSheet, view);
                 }
             });
-            r11.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 6.0f, 6.0f, 6.0f, 0.0f));
+            r11.addView(neutral, LayoutHelper.createLinear(-1, 48, 6.0f, 6.0f, 6.0f, 0.0f));
         }
         bottomSheet.setCustomView(r11);
         bottomSheet.show();

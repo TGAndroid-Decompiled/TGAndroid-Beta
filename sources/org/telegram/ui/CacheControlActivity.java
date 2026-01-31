@@ -170,6 +170,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean needDelayOpenAnimation() {
         return true;
     }
@@ -1869,9 +1874,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             };
             this.button = frameLayout;
             int i = Theme.key_featuredStickers_addButton;
-            frameLayout.setBackground(Theme.AdaptiveRipple.filledRectByKey(i, 8.0f));
+            frameLayout.setBackground(Theme.AdaptiveRipple.filledRectByKey(i, 24.0f));
             this.button.setImportantForAccessibility(1);
-            BadWayToMakeButtonRound.round(this.button);
             ScaleStateListAnimator.apply(this.button, 0.02f, 1.2f);
             if (LocaleController.isRTL) {
                 TextView textView = new TextView(context);
@@ -1904,7 +1908,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.valueTextView.setTextColor(Theme.blendOver(Theme.getColor(i), Theme.multAlpha(Theme.getColor(i2), 0.7f)));
             this.valueTextView.setText("");
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
         }
 
@@ -2944,5 +2947,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         }
         return false;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + (ActionBar.getCurrentActionBarHeight() / 2), 0, i4);
+        this.cacheRemovedTooltip.setTranslationY(-i4);
+        this.listView.setClipToPadding(false);
     }
 }

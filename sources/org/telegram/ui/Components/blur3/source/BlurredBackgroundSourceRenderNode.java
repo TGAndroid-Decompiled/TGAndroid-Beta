@@ -6,28 +6,30 @@ import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
+import android.os.Build;
 import java.util.Iterator;
 import java.util.List;
 import me.vkryl.core.reference.ReferenceList;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
+import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.RenderNodeWithHash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
 
 public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSource {
-    private final ReferenceList drawables = new ReferenceList();
     private final BlurredBackgroundSource fallbackSource;
     private boolean inRecording;
     private Runnable onDrawablesRelativePositionChangeListener;
     private RecordingCanvas recordingCanvas;
-    private final RenderNode renderNode;
     private RenderNodeWithHash renderNodeWithHash;
+    private DownscaleScrollableNoiseSuppressor scrollableNoiseSuppressor;
+    private int scrollableNoiseSuppressorIndex;
+    public BlurredBackgroundSource underSource;
+    private final ReferenceList drawables = new ReferenceList();
+    private final RenderNode renderNode = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
 
     public BlurredBackgroundSourceRenderNode(BlurredBackgroundSource blurredBackgroundSource) {
         this.fallbackSource = blurredBackgroundSource;
-        RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m(null);
-        this.renderNode = renderNodeM;
-        renderNodeM.setClipToBounds(true);
     }
 
     public void setupRenderer(RenderNodeWithHash.Renderer renderer) {
@@ -42,6 +44,15 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
 
     public void setSize(int i, int i2) {
         this.renderNode.setPosition(0, 0, i, i2);
+    }
+
+    public void setScrollableNoiseSuppressor(DownscaleScrollableNoiseSuppressor downscaleScrollableNoiseSuppressor, int i) {
+        this.scrollableNoiseSuppressor = downscaleScrollableNoiseSuppressor;
+        this.scrollableNoiseSuppressorIndex = i;
+    }
+
+    public void setUnderSource(BlurredBackgroundSource blurredBackgroundSource) {
+        this.underSource = blurredBackgroundSource;
     }
 
     public void setBlur(float f) {
@@ -82,6 +93,7 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
 
     @Override
     public void draw(Canvas canvas, float f, float f2, float f3, float f4) {
+        DownscaleScrollableNoiseSuppressor downscaleScrollableNoiseSuppressor;
         if (!canvas.isHardwareAccelerated()) {
             BlurredBackgroundSource blurredBackgroundSource = this.fallbackSource;
             if (blurredBackgroundSource != null) {
@@ -95,7 +107,15 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         }
         canvas.save();
         canvas.clipRect(f, f2, f3, f4);
-        canvas.drawRenderNode(this.renderNode);
+        BlurredBackgroundSource blurredBackgroundSource2 = this.underSource;
+        if (blurredBackgroundSource2 != null) {
+            blurredBackgroundSource2.draw(canvas, f, f2, f3, f4);
+        }
+        if (Build.VERSION.SDK_INT >= 31 && (downscaleScrollableNoiseSuppressor = this.scrollableNoiseSuppressor) != null) {
+            downscaleScrollableNoiseSuppressor.drawInline(canvas, this.scrollableNoiseSuppressorIndex);
+        } else {
+            canvas.drawRenderNode(this.renderNode);
+        }
         canvas.restore();
     }
 
@@ -134,6 +154,13 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         Runnable runnable = this.onDrawablesRelativePositionChangeListener;
         if (runnable != null) {
             runnable.run();
+        }
+    }
+
+    public void invalidateDisplayListForDrawables() throws InterruptedException {
+        Iterator it = this.drawables.iterator();
+        while (it.hasNext()) {
+            ((BlurredBackgroundDrawableRenderNode) it.next()).invalidateDisplayList();
         }
     }
 

@@ -139,6 +139,11 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean onFragmentCreate() {
         super.onFragmentCreate();
         getContactsController().loadPrivacySettings();
@@ -1690,5 +1695,11 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrack));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));
         return arrayList;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

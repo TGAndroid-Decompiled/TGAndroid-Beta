@@ -81,6 +81,11 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     public static void lambda$onFragmentDestroy$1(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public FiltersSetupActivity highlightTags() {
         this.highlightTags = true;
         return this;
@@ -719,6 +724,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             UndoView undoView = new UndoView(getContext());
             this.undoView = undoView;
             frameLayout.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+            this.undoView.setTranslationY(-getBottomInset());
         }
         return this.undoView;
     }
@@ -1295,5 +1301,15 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_checkboxCheck));
         return arrayList;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
+        UndoView undoView = this.undoView;
+        if (undoView != null) {
+            undoView.setTranslationY(-i4);
+        }
     }
 }

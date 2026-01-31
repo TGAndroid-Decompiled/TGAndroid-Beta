@@ -2088,7 +2088,7 @@ public class StarsController {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$payAfterConfirmed$79(tL_payments_paymentResult);
                 }
             });
@@ -2172,7 +2172,7 @@ public class StarsController {
         });
     }
 
-    public void lambda$payAfterConfirmed$79(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
+    public void lambda$payAfterConfirmed$79(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
@@ -2260,7 +2260,7 @@ public class StarsController {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$payAfterConfirmed$87(tL_payments_paymentResult);
                 }
             });
@@ -2316,7 +2316,7 @@ public class StarsController {
         }
     }
 
-    public void lambda$payAfterConfirmed$87(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
+    public void lambda$payAfterConfirmed$87(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
@@ -2413,7 +2413,7 @@ public class StarsController {
         if (tLObject instanceof TLRPC.Updates) {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$updateMediaPrice$93(tLObject);
                 }
             });
@@ -2435,7 +2435,7 @@ public class StarsController {
         }
     }
 
-    public void lambda$updateMediaPrice$93(TLObject tLObject) throws InterruptedException {
+    public void lambda$updateMediaPrice$93(TLObject tLObject) {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 
@@ -2808,7 +2808,7 @@ public class StarsController {
             if (tLObject != null) {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
-                    public final void run() throws InterruptedException {
+                    public final void run() {
                         StarsController.PendingPaidReactions.lambda$commit$1(messagesController, tLObject);
                     }
                 });
@@ -2844,7 +2844,7 @@ public class StarsController {
             }
         }
 
-        public static void lambda$commit$1(MessagesController messagesController, TLObject tLObject) throws InterruptedException {
+        public static void lambda$commit$1(MessagesController messagesController, TLObject tLObject) {
             messagesController.processUpdates((TLRPC.Updates) tLObject, false);
         }
 
@@ -3460,7 +3460,7 @@ public class StarsController {
         final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$buyPremiumGift$118(tL_payments_paymentResult);
             }
         });
@@ -3491,7 +3491,7 @@ public class StarsController {
         callback2.run(Boolean.FALSE, null);
     }
 
-    public void lambda$buyPremiumGift$118(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
+    public void lambda$buyPremiumGift$118(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
@@ -3610,7 +3610,7 @@ public class StarsController {
         callback2.run(Boolean.FALSE, null);
     }
 
-    public void lambda$buyStarGift$126(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
+    public void lambda$buyStarGift$126(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
@@ -3844,7 +3844,7 @@ public class StarsController {
         final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject;
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$buyResellingGift$140(tL_payments_paymentResult);
             }
         });
@@ -3877,7 +3877,7 @@ public class StarsController {
         callback2.run(Boolean.FALSE, null);
     }
 
-    public void lambda$buyResellingGift$140(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
+    public void lambda$buyResellingGift$140(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 

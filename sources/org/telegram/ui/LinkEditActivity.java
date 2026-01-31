@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -32,6 +31,7 @@ import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.SectionsScrollView;
 import org.telegram.ui.Components.SlideChooseView;
 
 public class LinkEditActivity extends BaseFragment {
@@ -55,7 +55,7 @@ public class LinkEditActivity extends BaseFragment {
     private TextSettingsCell revokeLink;
     boolean scrollToEnd;
     boolean scrollToStart;
-    private ScrollView scrollView;
+    private SectionsScrollView scrollView;
     private TextCheckCell subCell;
     private EditTextCell subEditPriceCell;
     private TextInfoPrivacyCell subInfoCell;

@@ -7,7 +7,6 @@ import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.messenger.AndroidUtilities;
 
 public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFactory {
     private final TrackingEdgeEffect[] edgeEffects = new TrackingEdgeEffect[4];
@@ -71,9 +70,6 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
                 OnEdgeEffectListener onEdgeEffectListener = this.listener;
                 if (onEdgeEffectListener != null) {
                     onEdgeEffectListener.onEdgeEffectVisibilityChange(this.direction, zIsVisible);
-                    if (Build.VERSION.SDK_INT >= 31) {
-                        AndroidUtilities.printStackTrace("onEdgeEffectVisibilityChange " + this.direction + " " + zIsVisible + " " + getDistance());
-                    }
                 }
             }
         }

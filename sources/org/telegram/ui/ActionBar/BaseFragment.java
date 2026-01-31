@@ -60,6 +60,7 @@ import org.telegram.ui.Stories.StoryViewer;
 public abstract class BaseFragment {
     protected ActionBar actionBar;
     protected Bundle arguments;
+    private int bottomInset;
     protected boolean finishing;
     protected boolean fragmentBeginToShow;
     public View fragmentView;
@@ -240,7 +241,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1267getWindowView();
+        View mo1258getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -1286,8 +1287,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1267getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1267getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1258getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1258getWindowView());
                 }
             }
         }
@@ -1298,7 +1299,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1267getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1258getWindowView());
                 }
             }
         }
@@ -1308,7 +1309,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1267getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1258getWindowView()) {
                     return true;
                 }
             }
@@ -1422,7 +1423,16 @@ public abstract class BaseFragment {
 
     public WindowInsetsCompat onInsetsInternal(View view, WindowInsetsCompat windowInsetsCompat) {
         Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.navigationBars() | WindowInsetsCompat.Type.statusBars());
-        onInsets(insets.left, insets.top, insets.right, insets.bottom);
+        int i = insets.left;
+        int i2 = insets.top;
+        int i3 = insets.right;
+        int i4 = insets.bottom;
+        this.bottomInset = i4;
+        onInsets(i, i2, i3, i4);
         return WindowInsetsCompat.CONSUMED;
+    }
+
+    public int getBottomInset() {
+        return this.bottomInset;
     }
 }

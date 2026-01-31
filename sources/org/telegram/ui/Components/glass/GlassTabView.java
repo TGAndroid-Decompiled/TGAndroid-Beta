@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
@@ -40,6 +41,8 @@ import org.telegram.ui.MainTabsLayout;
 
 public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, FactorAnimator.Target {
     private static final RectF tmpRectF = new RectF();
+    private int additionalWidth;
+    public float attachScale;
     private AvatarDrawable avatarDrawable;
     private BackupImageView backupImageView;
     private int colorDefault;
@@ -73,6 +76,9 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
 
+    public void onPreBind() {
+    }
+
     public GlassTabView(Context context) {
         super(context);
         this.paintCounterBackground = new Paint(1);
@@ -80,6 +86,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.isHasCounterAnimator = new BoolAnimator(1, this, cubicBezierInterpolator, 380L);
         this.isHasCounterErrorAnimator = new BoolAnimator(2, this, cubicBezierInterpolator, 380L);
+        this.attachScale = 1.0f;
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         addView(rLottieImageView, LayoutHelper.createFrame(44, 44.0f, 49, 0.0f, -6.0f, 0.0f, 0.0f));
@@ -141,13 +148,13 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             RectF rectF = tmpRectF;
             rectF.set(0.0f, 0.0f, width, getHeight());
             float fMin = Math.min(rectF.width(), rectF.height()) / 2.0f;
-            float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, floatValue);
+            float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, floatValue) * MathUtils.clamp(this.attachScale, 0.0f, 1.0f);
             canvas.save();
             canvas.scale(fLerp, fLerp, rectF.centerX(), rectF.centerY());
             canvas.drawRoundRect(rectF, fMin, fMin, this.paintCounterBackground);
             canvas.restore();
         }
-        float floatValue2 = this.usePremiumCounter ? 1.0f : this.isHasCounterAnimator.getFloatValue();
+        float floatValue2 = (this.usePremiumCounter ? 1.0f : this.isHasCounterAnimator.getFloatValue()) * this.attachScale;
         boolean z = floatValue2 > 0.0f;
         if (z) {
             canvas.saveLayer(0.0f, 0.0f, width, getHeight(), null);
@@ -400,7 +407,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         glassTabView.resourcesProvider = resourcesProvider;
         glassTabView.selfMeasure = true;
         glassTabView.textView.setTextSize(1, 11.0f);
-        glassTabView.textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        glassTabView.textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         glassTabView.checkPlayAnimation(false);
         glassTabView.imageView.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
         glassTabView.colorDefault = Theme.getColor(Theme.key_glass_tabUnselected, resourcesProvider);
@@ -415,7 +422,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         glassTabView.resourcesProvider = resourcesProvider;
         glassTabView.selfMeasure = true;
         glassTabView.textView.setTextSize(1, 11.0f);
-        glassTabView.textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
+        glassTabView.textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         glassTabView.imageView.setVisibility(8);
         glassTabView.checkPlayAnimation(false);
         BackupImageView backupImageView = new BackupImageView(context);
@@ -432,10 +439,34 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         return this.backupImageView;
     }
 
+    public void setAdditionalWidth(int i) {
+        this.additionalWidth = i;
+        this.selfMeasure = true;
+    }
+
+    public float measureAttachTabWidth() {
+        float fMeasureTextWidth = measureTextWidth();
+        return Math.min(AndroidUtilities.dp(84.0f), (int) (fMeasureTextWidth + (AndroidUtilities.lerp(AndroidUtilities.dpf2(16.0f), AndroidUtilities.dp(8.0f), MathUtils.clamp((fMeasureTextWidth - AndroidUtilities.dp(40.0f)) / AndroidUtilities.dp(16.0f), 0.0f, 1.0f)) * 2.0f)));
+    }
+
+    public void setAttachScale(float f) {
+        this.textView.setScaleX(f);
+        this.textView.setScaleY(f);
+        this.imageView.setScaleX(f);
+        this.imageView.setScaleY(f);
+        BackupImageView backupImageView = this.backupImageView;
+        if (backupImageView != null) {
+            backupImageView.setScaleX(f);
+            this.backupImageView.setScaleY(f);
+        }
+        this.attachScale = f;
+        invalidate();
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.selfMeasure) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(84.0f), (int) (measureTextWidth() + AndroidUtilities.dpf2(32.0f))), 1073741824), i2);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(((int) measureAttachTabWidth()) + this.additionalWidth, 1073741824), i2);
         } else {
             super.onMeasure(i, i2);
         }

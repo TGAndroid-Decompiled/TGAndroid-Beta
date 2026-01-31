@@ -754,13 +754,15 @@ public class GroupCallUserCell extends FrameLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (this.needDivider) {
+            int alpha = this.dividerPaint.getAlpha();
             float f = this.progressToAvatarPreview;
             if (f != 0.0f) {
-                this.dividerPaint.setAlpha((int) ((1.0f - f) * 255.0f));
+                this.dividerPaint.setAlpha((int) ((1.0f - f) * alpha));
             } else {
-                this.dividerPaint.setAlpha((int) ((1.0f - this.statusTextView[4].getFullAlpha()) * 255.0f));
+                this.dividerPaint.setAlpha((int) ((1.0f - this.statusTextView[4].getFullAlpha()) * alpha));
             }
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
+            this.dividerPaint.setAlpha(alpha);
         }
         int left = this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2);
         int top = this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2);

@@ -59,6 +59,11 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
     private HashSet selectedLanguages;
     private int separatorRow = -1;
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public static HashSet getRestrictedLanguages() {
         if (!gotRestrictedLanguages) {
             Set<String> stringSet = MessagesController.getGlobalMainSettings().getStringSet("translate_button_restricted_languages", null);
@@ -606,5 +611,11 @@ public class RestrictedLanguagesSelectActivity extends BaseFragment implements N
             FileLog.e(e);
         }
         runnable.run();
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

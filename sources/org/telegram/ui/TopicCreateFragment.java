@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,7 +31,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -122,24 +120,29 @@ public class TopicCreateFragment extends BaseFragment {
         } else {
             this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_done);
         }
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_windowBackgroundGray;
+        actionBar.setBackgroundColor(getThemedColor(i));
+        this.actionBar.setCastShadows(false);
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             boolean keyboardWasShown;
 
             @Override
-            protected void onMeasure(int i, int i2) {
+            protected void onMeasure(int i2, int i3) {
                 measureKeyboardHeight();
                 if (getKeyboardHeight() == 0 && !this.keyboardWasShown) {
-                    int i3 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
-                    this.keyboardHeight = i3;
-                    setPadding(0, 0, 0, i3);
+                    int i4 = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
+                    this.keyboardHeight = i4;
+                    setPadding(0, 0, 0, i4);
                 } else {
                     this.keyboardWasShown = true;
                     setPadding(0, 0, 0, 0);
                 }
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
         };
         this.fragmentView = sizeNotifierFrameLayout;
+        sizeNotifierFrameLayout.setBackgroundColor(getThemedColor(i));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         sizeNotifierFrameLayout.addView(linearLayout);
@@ -164,11 +167,11 @@ public class TopicCreateFragment extends BaseFragment {
         frameLayout.addView(this.editTextBoldCursor, LayoutHelper.createFrame(-1, -1.0f, 0, 51.0f, 4.0f, 21.0f, 4.0f));
         this.editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
             }
 
             @Override
@@ -198,19 +201,20 @@ public class TopicCreateFragment extends BaseFragment {
                 this.f$0.lambda$createView$0(view);
             }
         });
-        for (int i = 0; i < 2; i++) {
-            this.backupImageView[i] = new BackupImageView(context);
-            anonymousClass4.addView(this.backupImageView[i], LayoutHelper.createFrame(28, 28, 17));
+        for (int i2 = 0; i2 < 2; i2++) {
+            this.backupImageView[i2] = new BackupImageView(context);
+            anonymousClass4.addView(this.backupImageView[i2], LayoutHelper.createFrame(28, 28, 17));
         }
         frameLayout.addView(anonymousClass4, LayoutHelper.createFrame(40, 40.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
-        linearLayout.addView(headerCell);
-        linearLayout.addView(frameLayout);
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        linearLayout2.addView(headerCell);
+        linearLayout2.addView(frameLayout);
+        int iDp = AndroidUtilities.dp(16.0f);
+        int i3 = Theme.key_windowBackgroundWhite;
+        linearLayout2.setBackground(Theme.createRoundRectDrawableShadowed(iDp, getThemedColor(i3)));
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 48, 9, 1, 9, 0));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        int i2 = R.drawable.greydivider_top;
-        int i3 = Theme.key_windowBackgroundGrayShadow;
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, i2, Theme.getColor(i3)), 0, 0);
-        combinedDrawable.setFullsize(true);
-        frameLayout2.setBackgroundDrawable(combinedDrawable);
         frameLayout2.setClipChildren(false);
         TLRPC.TL_forumTopic tL_forumTopic2 = this.topicForEdit;
         if (tL_forumTopic2 == null || tL_forumTopic2.id != 1) {
@@ -245,10 +249,10 @@ public class TopicCreateFragment extends BaseFragment {
             Drawable drawableCreateTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor, false);
             this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) drawableCreateTopicDrawable).getBackgroundDrawable();
             this.replaceableIconDrawable = new ReplaceableIconDrawable(context);
-            CombinedDrawable combinedDrawable2 = new CombinedDrawable(drawableCreateTopicDrawable, this.replaceableIconDrawable, 0, 0);
-            combinedDrawable2.setFullsize(true);
-            this.selectAnimatedEmojiDialog.setForumIconDrawable(combinedDrawable2);
-            this.defaultIconDrawable = combinedDrawable2;
+            CombinedDrawable combinedDrawable = new CombinedDrawable(drawableCreateTopicDrawable, this.replaceableIconDrawable, 0, 0);
+            combinedDrawable.setFullsize(true);
+            this.selectAnimatedEmojiDialog.setForumIconDrawable(combinedDrawable);
+            this.defaultIconDrawable = combinedDrawable;
             this.replaceableIconDrawable.addView(this.backupImageView[0]);
             this.replaceableIconDrawable.addView(this.backupImageView[1]);
             this.backupImageView[0].setImageDrawable(this.defaultIconDrawable);
@@ -261,22 +265,24 @@ public class TopicCreateFragment extends BaseFragment {
             imageView.setImageResource(R.drawable.msg_filled_general);
             imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_inMenu), PorterDuff.Mode.MULTIPLY));
             anonymousClass4.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
-            frameLayout2.addView(new ActionBarPopupWindow.GapView(context, getResourceProvider()), LayoutHelper.createFrame(-1, 8.0f));
+            frameLayout2.addView(new View(context), LayoutHelper.createFrame(-1, 8.0f));
+            FrameLayout frameLayout3 = new FrameLayout(context);
+            frameLayout3.setBackground(Theme.createRoundRectDrawableShadowed(AndroidUtilities.dp(16.0f), getThemedColor(i3)));
             TextCheckCell2 textCheckCell2 = new TextCheckCell2(context);
             this.checkBoxCell = textCheckCell2;
             textCheckCell2.getCheckBox().setDrawIconType(0);
             this.checkBoxCell.setTextAndCheck(LocaleController.getString(R.string.EditTopicHide), !this.topicForEdit.hidden, false);
-            this.checkBoxCell.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor(Theme.key_windowBackgroundWhite), getThemedColor(Theme.key_listSelector)));
+            this.checkBoxCell.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i3), getThemedColor(Theme.key_listSelector), 16, 16));
             this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     this.f$0.lambda$createView$1(view);
                 }
             });
-            frameLayout2.addView(this.checkBoxCell, LayoutHelper.createFrame(-1, 50.0f, 48, 0.0f, 8.0f, 0.0f, 0.0f));
+            frameLayout3.addView(this.checkBoxCell, LayoutHelper.createFrame(-1, 50, 119));
+            frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-1, 56.0f, 48, 9.0f, 8.0f, 9.0f, 0.0f));
             TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
             textInfoPrivacyCell.setText(LocaleController.getString(R.string.EditTopicHideInfo));
-            textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, i3, getResourceProvider()));
             frameLayout2.addView(textInfoPrivacyCell, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 58.0f, 0.0f, 0.0f));
         }
         linearLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));

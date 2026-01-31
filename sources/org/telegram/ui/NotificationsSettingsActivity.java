@@ -119,6 +119,11 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean onFragmentCreate() {
         MessagesController.getInstance(this.currentAccount).loadSignUpNotificationsSettings();
         loadExceptions(null);
@@ -248,7 +253,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("NotificationsAndSounds", R.string.NotificationsAndSounds));
+        this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsAndSounds));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -838,5 +843,11 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LINKCOLOR, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteLinkText));
         return arrayList;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

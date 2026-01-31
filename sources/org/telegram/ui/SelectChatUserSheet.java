@@ -355,7 +355,19 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         return universalAdapter;
     }
 
+    private boolean isInitialOwnerAdmin() {
+        Iterator it = this.admins.users.iterator();
+        while (it.hasNext()) {
+            if (DialogObject.getDialogId((TLObject) it.next()) == DialogObject.getDialogId(this.initialOwner)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        boolean z;
+        boolean z2;
         if (this.admins == null || this.members == null) {
             return;
         }
@@ -383,18 +395,24 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             }
             return;
         }
-        arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelAdmins : R.string.GroupAdmins)));
-        TLObject tLObject2 = this.initialOwner;
-        if (tLObject2 != null) {
-            hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject2)));
+        if (this.initialOwner == null || !isInitialOwnerAdmin() || hashSet.contains(Long.valueOf(DialogObject.getDialogId(this.initialOwner)))) {
+            z = true;
+        } else {
+            arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelAdmins : R.string.GroupAdmins)));
+            hashSet.add(Long.valueOf(DialogObject.getDialogId(this.initialOwner)));
             arrayList.add(UItem.asProfileCell(this.initialOwner).setChecked(DialogObject.getDialogId(this.initialOwner) == DialogObject.getDialogId(this.selectedOwner)));
+            z = false;
         }
         Iterator it2 = this.admins.users.iterator();
         while (it2.hasNext()) {
-            TLObject tLObject3 = (TLObject) it2.next();
-            if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject3)))) {
-                hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject3)));
-                arrayList.add(UItem.asProfileCell(tLObject3).setChecked(DialogObject.getDialogId(tLObject3) == DialogObject.getDialogId(this.selectedOwner)));
+            TLObject tLObject2 = (TLObject) it2.next();
+            if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject2)))) {
+                if (z) {
+                    arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelAdmins : R.string.GroupAdmins)));
+                    z = false;
+                }
+                hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject2)));
+                arrayList.add(UItem.asProfileCell(tLObject2).setChecked(DialogObject.getDialogId(tLObject2) == DialogObject.getDialogId(this.selectedOwner)));
             }
         }
         if (this.admins.loading) {
@@ -402,14 +420,22 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
             arrayList.add(UItem.asFlicker(29));
             arrayList.add(UItem.asFlicker(29));
         }
+        TLObject tLObject3 = this.initialOwner;
+        if (tLObject3 == null || hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject3)))) {
+            z2 = true;
+        } else {
+            arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelSubscribers2 : R.string.GroupMembers2)));
+            hashSet.add(Long.valueOf(DialogObject.getDialogId(this.initialOwner)));
+            arrayList.add(UItem.asProfileCell(this.initialOwner).setChecked(DialogObject.getDialogId(this.initialOwner) == DialogObject.getDialogId(this.selectedOwner)));
+            z2 = false;
+        }
         Iterator it3 = this.members.users.iterator();
-        boolean z = true;
         while (it3.hasNext()) {
             TLObject tLObject4 = (TLObject) it3.next();
             if (!hashSet.contains(Long.valueOf(DialogObject.getDialogId(tLObject4)))) {
-                if (z) {
+                if (z2) {
                     arrayList.add(UItem.asGraySection(LocaleController.getString(ChatObject.isChannelAndNotMegaGroup(this.chat) ? R.string.ChannelSubscribers2 : R.string.GroupMembers2)));
-                    z = false;
+                    z2 = false;
                 }
                 hashSet.add(Long.valueOf(DialogObject.getDialogId(tLObject4)));
                 arrayList.add(UItem.asProfileCell(tLObject4).setChecked(DialogObject.getDialogId(tLObject4) == DialogObject.getDialogId(this.selectedOwner)));

@@ -94,9 +94,11 @@ public class ChatActivityTopPanelLayout extends AnimatedLinearLayout {
             ListAnimator.Entry entry = getEntry(i);
             float paddingTop = getPaddingTop() + entry.getRectF().top;
             float visibility = entry.getVisibility() * Math.min(1.0f, entry.getPosition());
-            Theme.dividerPaint.setAlpha((int) (255.0f * visibility));
+            int alpha = Theme.dividerPaint.getAlpha();
+            Theme.dividerPaint.setAlpha((int) (alpha * visibility));
             float f = 1.0f - visibility;
-            canvas.drawLine((AndroidUtilities.dp(16.0f) * f) + getPaddingLeft(), paddingTop, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop, Theme.dividerPaint);
+            canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop, Theme.dividerPaint);
+            Theme.dividerPaint.setAlpha(alpha);
         }
         super.dispatchDraw(canvas);
         canvas.restore();

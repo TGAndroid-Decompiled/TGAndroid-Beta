@@ -2207,7 +2207,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     togglegroupcallsettings.send_paid_messages_stars = Long.valueOf(i);
                     ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(togglegroupcallsettings, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             this.f$0.lambda$onCreate$37(storyPrivacyBottomSheet, tLObject, tL_error);
                         }
                     });
@@ -2215,7 +2215,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$37(final StoryPrivacyBottomSheet storyPrivacyBottomSheet, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$onCreate$37(final StoryPrivacyBottomSheet storyPrivacyBottomSheet, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject instanceof TLRPC.Updates) {
                 MessagesController.getInstance(PeerStoriesView.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }

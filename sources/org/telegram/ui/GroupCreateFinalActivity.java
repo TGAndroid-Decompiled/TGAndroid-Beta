@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
@@ -51,7 +50,6 @@ import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.EditTextEmoji;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.FragmentFloatingButton;
@@ -296,10 +294,14 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.NewGroup));
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_windowBackgroundGray;
+        actionBar.setBackgroundColor(getThemedColor(i));
+        this.actionBar.setCastShadows(false);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
                     GroupCreateFinalActivity.this.finishFragment();
                 }
             }
@@ -308,20 +310,20 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             private boolean ignoreLayout;
 
             @Override
-            protected void onMeasure(int i, int i2) {
-                int size = View.MeasureSpec.getSize(i);
-                int size2 = View.MeasureSpec.getSize(i2);
+            protected void onMeasure(int i2, int i3) {
+                int size = View.MeasureSpec.getSize(i2);
+                int size2 = View.MeasureSpec.getSize(i3);
                 setMeasuredDimension(size, size2);
                 int paddingTop = size2 - getPaddingTop();
-                measureChildWithMargins(((BaseFragment) GroupCreateFinalActivity.this).actionBar, i, 0, i2, 0);
+                measureChildWithMargins(((BaseFragment) GroupCreateFinalActivity.this).actionBar, i2, 0, i3, 0);
                 if (measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !GroupCreateFinalActivity.this.editText.isPopupShowing()) {
                     this.ignoreLayout = true;
                     GroupCreateFinalActivity.this.editText.hideEmojiView();
                     this.ignoreLayout = false;
                 }
                 int childCount = getChildCount();
-                for (int i3 = 0; i3 < childCount; i3++) {
-                    View childAt = getChildAt(i3);
+                for (int i4 = 0; i4 < childCount; i4++) {
+                    View childAt = getChildAt(i4);
                     if (childAt != null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) GroupCreateFinalActivity.this).actionBar) {
                         if (GroupCreateFinalActivity.this.editText != null && GroupCreateFinalActivity.this.editText.isPopupView(childAt)) {
                             if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
@@ -334,7 +336,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                             }
                         } else {
-                            measureChildWithMargins(childAt, i, 0, i2, 0);
+                            measureChildWithMargins(childAt, i2, 0, i3, 0);
                         }
                     }
                 }
@@ -353,6 +355,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 super.requestLayout();
             }
         };
+        sizeNotifierFrameLayout.setBackgroundColor(getThemedColor(i));
         this.fragmentView = sizeNotifierFrameLayout;
         sizeNotifierFrameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
@@ -378,7 +381,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         sizeNotifierFrameLayout.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         this.editTextContainer = frameLayout;
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
+        frameLayout.setBackground(Theme.createRoundRectDrawableShadowed(AndroidUtilities.dp(16.0f), getThemedColor(Theme.key_windowBackgroundWhite)));
+        linearLayout.addView(this.editTextContainer, LayoutHelper.createLinear(-1, -2, 9.0f, 0.0f, 9.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public void invalidate() {
@@ -389,11 +393,11 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
 
             @Override
-            public void invalidate(int i, int i2, int i3, int i4) {
+            public void invalidate(int i2, int i3, int i4, int i5) {
                 if (GroupCreateFinalActivity.this.avatarOverlay != null) {
                     GroupCreateFinalActivity.this.avatarOverlay.invalidate();
                 }
-                super.invalidate(i, i2, i3, i4);
+                super.invalidate(i2, i3, i4, i5);
             }
         };
         this.avatarImage = backupImageView;
@@ -426,12 +430,12 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 this.f$0.lambda$createView$4(view2);
             }
         });
-        int i = R.raw.camera;
-        this.cameraDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
+        int i2 = R.raw.camera;
+        this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context) {
             @Override
-            public void invalidate(int i2, int i3, int i4, int i5) {
-                super.invalidate(i2, i3, i4, i5);
+            public void invalidate(int i3, int i4, int i5, int i6) {
+                super.invalidate(i3, i4, i5, i6);
                 GroupCreateFinalActivity.this.avatarOverlay.invalidate();
             }
 
@@ -469,8 +473,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         showAvatarProgress(false, false);
         EditTextEmoji editTextEmoji2 = new EditTextEmoji(context, sizeNotifierFrameLayout, this, 0, false);
         this.editText = editTextEmoji2;
-        int i2 = this.chatType;
-        editTextEmoji2.setHint(LocaleController.getString((i2 == 0 || i2 == 4 || i2 == 5) ? R.string.EnterGroupNamePlaceholder : R.string.EnterListName));
+        int i3 = this.chatType;
+        editTextEmoji2.setHint(LocaleController.getString((i3 == 0 || i3 == 4 || i3 == 5) ? R.string.EnterGroupNamePlaceholder : R.string.EnterListName));
         String str = this.nameToSet;
         if (str != null) {
             this.editText.setText(str);
@@ -486,7 +490,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         frameLayout6.addView(editTextEmoji4, LayoutHelper.createFrame(-1, -2.0f, 16, z5 ? 5.0f : 96.0f, 0.0f, z5 ? 96.0f : 5.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        this.linearLayoutManager = new FillLastLinearLayoutManager(context, 1, recyclerListView);
+        recyclerListView.setSections();
+        this.linearLayoutManager = new FillLastLinearLayoutManager(context, 1, this.listView);
         RecyclerListView recyclerListView2 = this.listView;
         GroupCreateAdapter groupCreateAdapter = new GroupCreateAdapter(context);
         this.adapter = groupCreateAdapter;
@@ -497,26 +502,26 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         linearLayout.addView(this.listView, LayoutHelper.createLinear(-1, -1));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
-                if (i3 == 1) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i4) {
+                if (i4 == 1) {
                     AndroidUtilities.hideKeyboard(GroupCreateFinalActivity.this.editText);
                 }
             }
         });
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view2, int i3) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i3);
+            public boolean hasDoubleTap(View view2, int i4) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i4);
             }
 
             @Override
-            public void onDoubleTap(View view2, int i3, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i3, f, f2);
+            public void onDoubleTap(View view2, int i4, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i4, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view2, int i3, float f, float f2) {
-                this.f$0.lambda$createView$6(view2, i3, f, f2);
+            public final void onItemClick(View view2, int i4, float f, float f2) {
+                this.f$0.lambda$createView$6(view2, i4, f, f2);
             }
         });
         FragmentFloatingButton fragmentFloatingButton = new FragmentFloatingButton(context, this.resourceProvider);
@@ -916,8 +921,8 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
                 for (int i = 0; i < GroupCreateFinalActivity.this.selectedContacts.size(); i++) {
                     this.items.add(new InnerItem(2));
                 }
+                this.items.add(new InnerItem(7));
             }
-            this.items.add(new InnerItem(7));
             super.notifyDataSetChanged();
         }
 
@@ -934,42 +939,28 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shadowSectionCell;
-            View groupCreateUserCell;
             if (i == 0) {
                 shadowSectionCell = new ShadowSectionCell(this.context);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.context, R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
-                combinedDrawable.setFullsize(true);
-                shadowSectionCell.setBackgroundDrawable(combinedDrawable);
+            } else if (i == 1) {
+                HeaderCell headerCell = new HeaderCell(this.context);
+                headerCell.setHeight(46);
+                shadowSectionCell = headerCell;
+            } else if (i == 2) {
+                shadowSectionCell = new GroupCreateUserCell(this.context, 0, 3, false);
+            } else if (i == 4) {
+                shadowSectionCell = new TextCell(this.context);
+            } else if (i == 5) {
+                shadowSectionCell = new TextInfoPrivacyCell(this.context);
+            } else if (i == 6) {
+                shadowSectionCell = new TextCell(this.context, 23, false, true, GroupCreateFinalActivity.this.getResourceProvider());
+            } else if (i != 7) {
+                shadowSectionCell = new TextSettingsCell(this.context);
             } else {
-                if (i == 1) {
-                    HeaderCell headerCell = new HeaderCell(this.context);
-                    headerCell.setHeight(46);
-                    groupCreateUserCell = headerCell;
-                } else if (i == 2) {
-                    groupCreateUserCell = new GroupCreateUserCell(this.context, 0, 3, false);
-                } else if (i == 4) {
-                    groupCreateUserCell = new TextCell(this.context);
-                } else if (i == 5) {
-                    shadowSectionCell = new TextInfoPrivacyCell(this.context);
-                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.context, GroupCreateFinalActivity.this.selectedContacts.size() == 0 ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    combinedDrawable2.setFullsize(true);
-                    shadowSectionCell.setBackgroundDrawable(combinedDrawable2);
-                } else if (i == 6) {
-                    groupCreateUserCell = new TextCell(this.context, 23, false, true, GroupCreateFinalActivity.this.getResourceProvider());
-                } else if (i != 7) {
-                    groupCreateUserCell = new TextSettingsCell(this.context);
-                } else {
-                    View view = new View(this.context);
-                    groupCreateUserCell = view;
-                    if (GroupCreateFinalActivity.this.selectedContacts.isEmpty()) {
-                        view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-                        groupCreateUserCell = view;
-                    }
-                }
-                return new RecyclerListView.Holder(groupCreateUserCell);
+                View view = new View(this.context);
+                view.setTag(-33024);
+                shadowSectionCell = view;
             }
-            groupCreateUserCell = shadowSectionCell;
-            return new RecyclerListView.Holder(groupCreateUserCell);
+            return new RecyclerListView.Holder(shadowSectionCell);
         }
 
         @Override
@@ -1056,9 +1047,9 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
         ActionBar actionBar = this.actionBar;
         int i = ThemeDescription.FLAG_BACKGROUND;
-        int i2 = Theme.key_actionBarDefault;
+        int i2 = Theme.key_windowBackgroundGray;
         arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
@@ -1076,7 +1067,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         arrayList.add(new ThemeDescription(this.editText, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_windowBackgroundWhiteInputField));
         arrayList.add(new ThemeDescription(this.editText, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_windowBackgroundWhiteInputFieldActivated));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGray));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ShadowSectionCell.class}, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{GroupCreateUserCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_groupcreate_sectionText));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{GroupCreateUserCell.class}, new String[]{"statusTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText));

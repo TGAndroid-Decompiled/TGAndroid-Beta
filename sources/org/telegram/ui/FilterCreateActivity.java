@@ -95,6 +95,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.PeerColorActivity;
@@ -132,6 +133,12 @@ public class FilterCreateActivity extends BaseFragment {
     float shiftDp;
     private Runnable showBulletinOnResume;
     private boolean showedUpdateBulletin;
+    private UndoView undoView;
+
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
 
     private boolean canCreateLink() {
         return !(TextUtils.isEmpty(this.newFilterName) && TextUtils.isEmpty(this.filter.name)) && (this.newFilterFlags & (~(MessagesController.DIALOG_FILTER_FLAG_CHATLIST | MessagesController.DIALOG_FILTER_FLAG_CHATLIST_ADMIN))) == 0 && this.newNeverShow.isEmpty() && !this.newAlwaysShow.isEmpty();
@@ -2187,26 +2194,27 @@ public class FilterCreateActivity extends BaseFragment {
 
         public void options() {
             BaseFragment baseFragment = this.fragment;
-            if (baseFragment == null) {
-                return;
-            }
-            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(baseFragment, this);
-            itemOptionsMakeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.qrcode();
+            if (baseFragment instanceof FilterCreateActivity) {
+                RecyclerListView recyclerListView = ((FilterCreateActivity) baseFragment).listView;
+                ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.fragment, this);
+                itemOptionsMakeOptions.setScrimViewBackground(recyclerListView.getClipBackground(this));
+                itemOptionsMakeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.qrcode();
+                    }
+                });
+                itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DeleteLink), true, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.deleteLink();
+                    }
+                });
+                if (LocaleController.isRTL) {
+                    itemOptionsMakeOptions.setGravity(3);
                 }
-            });
-            itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DeleteLink), true, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.deleteLink();
-                }
-            });
-            if (LocaleController.isRTL) {
-                itemOptionsMakeOptions.setGravity(3);
+                itemOptionsMakeOptions.show();
             }
-            itemOptionsMakeOptions.show();
         }
 
         private String getSlug() {
@@ -3094,6 +3102,16 @@ public class FilterCreateActivity extends BaseFragment {
             animatedTextView.setTextSize(AndroidUtilities.dpf2(15.0f));
             addView(animatedTextView, LayoutHelper.createFrame(-1, 18.0f, (LocaleController.isRTL ? 3 : 5) | 48, 22.0f, 17.0f, 22.0f, 0.0f));
             ScaleStateListAnimator.apply(animatedTextView, 0.04f, 1.2f);
+        }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
+        UndoView undoView = this.undoView;
+        if (undoView != null) {
+            undoView.setTranslationY(-i4);
         }
     }
 }

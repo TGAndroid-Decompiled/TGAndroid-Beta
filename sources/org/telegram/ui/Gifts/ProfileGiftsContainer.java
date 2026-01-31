@@ -156,6 +156,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     ((Page) view).listView.setPadding(AndroidUtilities.dp(9.0f), this.externalPaddingTop, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(86.0f));
                 }
             }
+            updateTabsY();
             updateButton();
         }
     }
@@ -624,10 +625,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
                 if (childAt instanceof GiftSheet.GiftCell) {
                     if (childAdapterPosition == 0) {
-                        return Math.max(0.0f, this.listView.getPaddingTop() + childAt.getY());
+                        return Math.max(0.0f, childAt.getY());
                     }
                 } else if (childAdapterPosition == 0) {
-                    return Math.max(0.0f, this.listView.getPaddingTop() + childAt.getY() + (childAt.getHeight() * childAt.getAlpha()));
+                    return Math.max(0.0f, childAt.getY() + (childAt.getHeight() * childAt.getAlpha()));
                 }
             }
             return 0.0f;
@@ -1386,10 +1387,18 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         if (this.tabsView == null) {
             return;
         }
-        float fMin = Math.min(0.0f, getTabsHeight() - AndroidUtilities.dp(42.0f));
+        float fMin = Math.min(this.externalPaddingTop, getTabsHeight() - AndroidUtilities.dp(42.0f));
         float fClamp01 = Utilities.clamp01(AndroidUtilities.ilerp(fMin, -AndroidUtilities.dp(42.0f), 0.0f));
         this.tabsView.setTranslationY(fMin);
         this.tabsView.setAlpha(fClamp01);
+    }
+
+    public float getTabsVisibility() {
+        ViewPagerFixed.TabsView tabsView = this.tabsView;
+        if (tabsView != null) {
+            return tabsView.getAlpha();
+        }
+        return 0.0f;
     }
 
     public boolean isReordering() {

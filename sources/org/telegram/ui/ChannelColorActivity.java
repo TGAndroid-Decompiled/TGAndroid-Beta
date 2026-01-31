@@ -801,7 +801,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$buttonClick$8(callback, tLObject, tL_error);
                 }
             });
@@ -839,7 +839,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor2, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$buttonClick$9(callback, tLObject, tL_error);
                 }
             });
@@ -878,7 +878,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$buttonClick$10(callback, tLObject, tL_error);
                 }
             });
@@ -929,7 +929,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateEmojiStatus, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$buttonClick$11(callback, tLObject, tL_error);
                 }
             });
@@ -981,7 +981,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$8(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$buttonClick$8(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -990,7 +990,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$9(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$buttonClick$9(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -999,7 +999,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$10(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$buttonClick$10(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -1008,7 +1008,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$11(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$buttonClick$11(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }

@@ -197,8 +197,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                     textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(chatReactionsEditActivity.currentChat) ? LocaleController.getString(R.string.EnableReactionsChannelInfo) : LocaleController.getString(R.string.EnableReactionsGroupInfo));
                     return;
                 }
-                textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(chatReactionsEditActivity.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                int i4 = ChatReactionsEditActivity.this.selectedType;
+                int i4 = chatReactionsEditActivity.selectedType;
                 if (i4 == 1) {
                     textInfoPrivacyCell.setText(LocaleController.getString(R.string.EnableSomeReactionsInfo));
                 } else if (i4 == 0) {
@@ -243,6 +242,8 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             }
         });
         linearLayout.addView(this.listView, LayoutHelper.createLinear(-1, 0, 1.0f));
+        this.listView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.contentView = linearLayout;
         this.fragmentView = linearLayout;
         updateColors();

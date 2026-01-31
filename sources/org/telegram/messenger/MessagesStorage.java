@@ -1037,7 +1037,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$32(long j, long j2, int i) {
-        getMessagesController().lambda$checkDeletingTask$80(j, j2, i);
+        getMessagesController().lambda$checkDeletingTask$83(j, j2, i);
     }
 
     public void saveChannelPts(final long j, final int i) {
@@ -4644,7 +4644,7 @@ public class MessagesStorage extends BaseController {
         return loadChatInfo(j, z, countDownLatch, z2, z3, 0);
     }
 
-    public TLRPC.ChatFull loadChatInfo(final long j, final boolean z, final CountDownLatch countDownLatch, final boolean z2, final boolean z3, final int i) {
+    public TLRPC.ChatFull loadChatInfo(final long j, final boolean z, final CountDownLatch countDownLatch, final boolean z2, final boolean z3, final int i) throws InterruptedException {
         final TLRPC.ChatFull[] chatFullArr = new TLRPC.ChatFull[1];
         this.storageQueue.postRunnable(new Runnable() {
             @Override
@@ -6860,7 +6860,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageStateAndId$199(long, long, java.lang.Integer, int, int, int, int):long[]");
     }
 
-    public void lambda$updateMessageStateAndIdInternal$198(TLRPC.TL_updates tL_updates) throws InterruptedException {
+    public void lambda$updateMessageStateAndIdInternal$198(TLRPC.TL_updates tL_updates) {
         getMessagesController().processUpdates(tL_updates, false);
     }
 
@@ -7365,12 +7365,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(224);
+                messageMedia.bytes = Utilities.intToBytes(222);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(224);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(222);
             message.flags |= 512;
         }
     }

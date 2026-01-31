@@ -11,10 +11,13 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -328,9 +331,15 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     public class LayoutContainer extends FrameLayout {
         private int backgroundColor;
         private Paint backgroundPaint;
+        private boolean drawNavigationBar;
         private int fragmentPanTranslationOffset;
         private boolean isKeyboardVisible;
         private boolean isSupportEdgeToEdge;
+        private int navbarColor;
+        private LinearGradient navbarGradient;
+        private Matrix navbarGradientMatrix;
+        private int navbarHeight;
+        private Paint navbarPaint;
         private Rect rect;
         private boolean wasPortrait;
 
@@ -338,6 +347,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             super(context);
             this.rect = new Rect();
             this.backgroundPaint = new Paint();
+            this.navbarGradientMatrix = new Matrix();
             setWillNotDraw(false);
         }
 
@@ -369,7 +379,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1267getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1258getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -406,7 +416,31 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ActionBarLayout.headerShadowDrawable.draw(canvas);
                 ActionBarLayout.headerShadowDrawable.setAlpha(alpha);
             }
+            drawNavigationBarGradient(canvas, baseFragment);
             return zDrawChild;
+        }
+
+        private void drawNavigationBarGradient(Canvas canvas, BaseFragment baseFragment) {
+            int i;
+            if (!this.drawNavigationBar || !this.isSupportEdgeToEdge || baseFragment == null || (i = AndroidUtilities.navigationBarHeight) < AndroidUtilities.dp(32.0f)) {
+                return;
+            }
+            int i2 = (int) (i * 1.33f);
+            int navigationBarColor = baseFragment.getNavigationBarColor();
+            if (i2 != this.navbarHeight || this.navbarColor != navigationBarColor || this.navbarPaint == null) {
+                if (this.navbarPaint == null) {
+                    this.navbarPaint = new Paint(1);
+                }
+                this.navbarColor = navigationBarColor;
+                this.navbarHeight = i2;
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, i2, new int[]{Theme.multAlpha(navigationBarColor, 0.1f), Theme.multAlpha(navigationBarColor, 1.0f)}, new float[]{0.0f, 0.88f}, Shader.TileMode.CLAMP);
+                this.navbarGradient = linearGradient;
+                this.navbarPaint.setShader(linearGradient);
+            }
+            this.navbarGradientMatrix.reset();
+            this.navbarGradientMatrix.postTranslate(0.0f, getHeight() - i2);
+            this.navbarGradient.setLocalMatrix(this.navbarGradientMatrix);
+            canvas.drawRect(0.0f, getHeight() - i2, getWidth(), getHeight(), this.navbarPaint);
         }
 
         @Override
@@ -543,6 +577,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
         }
 
+        public void setDrawNavigationBar(boolean z) {
+            if (this.drawNavigationBar != z) {
+                this.drawNavigationBar = z;
+                invalidate();
+            }
+        }
+
         public void setFragmentPanTranslationOffset(int i) {
             this.fragmentPanTranslationOffset = i;
             invalidate();
@@ -581,6 +622,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 AndroidUtilities.removeFromParent(viewCreateView);
                 this.sheetContainer.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
                 this.sheetContainer.setShouldHandleBottomInsets(this.sheetFragment.isSupportEdgeToEdge());
+                this.sheetContainer.setShouldHandleBottomInsets(this.sheetFragment.drawEdgeNavigationBar());
             }
             this.sheetFragment.onResume();
             this.sheetFragment.onBecomeFullyVisible();
@@ -1041,6 +1083,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         this.containerViewBack.addView(viewCreateView);
         this.containerViewBack.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
+        this.containerViewBack.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
         layoutParams.width = -1;
         layoutParams.height = -1;
@@ -1629,6 +1672,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             return false;
         }
         final boolean zIsSupportEdgeToEdge = baseFragment2.isSupportEdgeToEdge();
+        boolean zDrawEdgeNavigationBar = baseFragment2.drawEdgeNavigationBar();
         BaseFragment lastFragment = getLastFragment();
         Dialog visibleDialog = lastFragment != null ? lastFragment.getVisibleDialog() : null;
         if (visibleDialog == null && (launchActivity = LaunchActivity.instance) != null && launchActivity.getVisibleDialog() != null) {
@@ -1694,6 +1738,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         this.containerViewBack.addView(viewCreateView);
         this.containerViewBack.setShouldHandleBottomInsets(!z5 && zIsSupportEdgeToEdge);
+        this.containerViewBack.setDrawNavigationBar(!z5 && zDrawEdgeNavigationBar);
         if (actionBarPopupWindowLayout != null) {
             this.containerViewBack.addView(actionBarPopupWindowLayout);
             actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
@@ -2089,6 +2134,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         this.containerView.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
+        this.containerView.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
         ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             if (this.removeActionBarExtraHeight) {
@@ -2125,6 +2171,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         LayoutContainer layoutContainer = this.containerView;
         layoutContainer.addView(viewCreateView, Utilities.clamp(i, layoutContainer.getChildCount(), 0), LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
+        this.containerView.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
         ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             if (this.removeActionBarExtraHeight) {
@@ -2210,6 +2257,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         } catch (Exception unused) {
         }
         this.containerView.setShouldHandleBottomInsets(baseFragment2.isSupportEdgeToEdge());
+        this.containerView.setDrawNavigationBar(baseFragment2.drawEdgeNavigationBar());
         baseFragment2.setInPreviewMode(false);
         baseFragment2.setInMenuMode(false);
         try {
@@ -2285,6 +2333,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                     this.containerView.addView(viewCreateView);
                     this.containerView.setShouldHandleBottomInsets(baseFragment.isSupportEdgeToEdge());
+                    this.containerView.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
                     FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
                     layoutParams.width = -1;
                     layoutParams.height = -1;
@@ -2484,6 +2533,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
             this.containerView.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
             this.containerView.setShouldHandleBottomInsets(baseFragment2.isSupportEdgeToEdge());
+            this.containerView.setDrawNavigationBar(baseFragment2.drawEdgeNavigationBar());
             ActionBar actionBar2 = baseFragment2.actionBar;
             if (actionBar2 != null && actionBar2.shouldAddToContainer()) {
                 if (this.removeActionBarExtraHeight) {

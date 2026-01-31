@@ -150,9 +150,9 @@ public class PostsSearchContainer extends FrameLayout {
         textView2.setMaxLines(4);
         textView2.setEllipsize(truncateAt);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 9, 0, 0));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null);
-        this.emptyButton = buttonWithCounterView;
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 44, 7, 0, 19, 0, 0));
+        ButtonWithCounterView round = new ButtonWithCounterView(context, null).setRound();
+        this.emptyButton = round;
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 44, 7, 0, 19, 0, 0));
         TextView textView3 = new TextView(context);
         this.emptyUnderButtonTextView = textView3;
         textView3.setTextSize(1, 12.0f);

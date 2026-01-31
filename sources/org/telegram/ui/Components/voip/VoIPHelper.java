@@ -515,13 +515,13 @@ public abstract class VoIPHelper {
         setcallrating.user_initiative = false;
         ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 VoIPHelper.lambda$sendCallRating$10(i3, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$sendCallRating$10(int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$sendCallRating$10(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
@@ -741,7 +741,7 @@ public abstract class VoIPHelper {
             setcallrating.user_initiative = z;
             ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     VoIPHelper.lambda$showRateAlert$17(i2, zArr, file, setcallrating, arrayList, context, tLObject, tL_error);
                 }
             });
@@ -761,7 +761,7 @@ public abstract class VoIPHelper {
         ((TextView) view).setText(LocaleController.getString(R.string.Send).toUpperCase());
     }
 
-    public static void lambda$showRateAlert$17(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$showRateAlert$17(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }

@@ -943,13 +943,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$onTabLongClick$8(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onTabLongClick$8(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$onTabLongClick$8(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);

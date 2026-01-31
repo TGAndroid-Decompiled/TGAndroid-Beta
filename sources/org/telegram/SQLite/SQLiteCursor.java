@@ -83,7 +83,7 @@ public class SQLiteCursor {
         return columnType(this.preparedStatement.getStatementHandle(), i);
     }
 
-    public boolean next() throws InterruptedException, SQLiteException {
+    public boolean next() {
         SQLitePreparedStatement sQLitePreparedStatement = this.preparedStatement;
         int iStep = sQLitePreparedStatement.step(sQLitePreparedStatement.getStatementHandle());
         if (iStep == -1) {

@@ -33,9 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
-import androidx.core.view.OnApplyWindowInsetsListener;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
@@ -178,11 +175,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     @Override
     public boolean canParentTabsSlide(MotionEvent motionEvent, boolean z) {
         return true;
-    }
-
-    @Override
-    public boolean drawEdgeNavigationBar() {
-        return false;
     }
 
     @Override
@@ -367,7 +359,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     } else if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
                         long fromChatId2 = messageObject.getFromChatId();
-                        Set<Long> set = (Set) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new CallLogActivity$$ExternalSyntheticLambda12()).collect(Collectors.toSet());
+                        Set<Long> set = (Set) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new CallLogActivity$$ExternalSyntheticLambda11()).collect(Collectors.toSet());
                         set.add(Long.valueOf(fromChatId2 == getUserConfig().getClientUserId() ? messageObject.messageOwner.peer_id.user_id : fromChatId2));
                         int i4 = fromChatId2 == getUserConfig().getClientUserId() ? 0 : 1;
                         if (i4 == 1 && tL_messageActionConferenceCall.missed) {
@@ -853,10 +845,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     CallLogActivity.this.iBlur3Invalidated = false;
                 }
                 super.dispatchDraw(canvas);
-                if (CallLogActivity.this.hasMainTabs) {
-                    return;
-                }
-                AndroidUtilities.drawNavigationBarProtection(canvas, this, CallLogActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), CallLogActivity.this.navigationBarHeight);
             }
 
             @Override
@@ -1005,12 +993,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             @Override
             public int getBottomOffset(int i) {
                 return CallLogActivity.this.navigationBarHeight + CallLogActivity.this.additionFloatingButtonOffset;
-            }
-        });
-        ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
-            @Override
-            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
             }
         });
         return this.fragmentView;
@@ -1425,13 +1407,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         tL_messages_deletePhoneCallHistory.revoke = z;
         getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$deleteAllMessages$15(z, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deleteAllMessages$15(boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$deleteAllMessages$15(boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
             TLRPC.TL_updateDeleteMessages tL_updateDeleteMessages = new TLRPC.TL_updateDeleteMessages();
@@ -1668,11 +1650,11 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-        this.navigationBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.navigationBarHeight = i4;
         checkUi_listViewPadding();
         checkUi_floatingButton();
-        return WindowInsetsCompat.CONSUMED;
     }
 
     public void checkUi_floatingButton() {
@@ -1977,13 +1959,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         togglegroupcallsettings.reset_invite_hash = true;
         ConnectionsManager.getInstance(i).sendRequest(togglegroupcallsettings, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 CallLogActivity.lambda$showCallLinkSheet$30(i, inputGroupCall, strArr, frameLayout, linksTextView, bottomSheet, resourcesProvider, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$showCallLinkSheet$30(int i, TLRPC.InputGroupCall inputGroupCall, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$showCallLinkSheet$30(int i, TLRPC.InputGroupCall inputGroupCall, final String[] strArr, final FrameLayout frameLayout, final LinkSpanDrawable.LinksTextView linksTextView, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
         }

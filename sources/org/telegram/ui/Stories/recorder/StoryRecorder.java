@@ -643,7 +643,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         frameLayout.setBackgroundColor(i);
     }
 
-    public void openBot(long j, String str, SourceView sourceView) {
+    public void openBot(long j, String str, SourceView sourceView) throws Resources.NotFoundException, IOException {
         this.botId = j;
         this.botLang = str;
         this.botEdit = null;
@@ -710,11 +710,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         addNotificationObservers();
     }
 
-    public void open(SourceView sourceView) {
+    public void open(SourceView sourceView) throws Resources.NotFoundException, IOException {
         open(sourceView, true);
     }
 
-    public void open(SourceView sourceView, boolean z) {
+    public void open(SourceView sourceView, boolean z) throws Resources.NotFoundException, IOException {
         StoriesController.StoryLimit storyLimitCheckStoryLimit;
         WindowView windowView;
         if (this.isShown) {
@@ -3766,13 +3766,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     public void lambda$startLive$55(final TL_stories.TL_startLive tL_startLive, final boolean z, final long j, final boolean z2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$startLive$54(tLObject, tL_startLive, z, j, z2, tL_error, runnable);
             }
         });
     }
 
-    public void lambda$startLive$54(org.telegram.tgnet.TLObject r15, org.telegram.tgnet.tl.TL_stories.TL_startLive r16, final boolean r17, final long r18, final boolean r20, org.telegram.tgnet.TLRPC.TL_error r21, java.lang.Runnable r22) throws java.lang.InterruptedException {
+    public void lambda$startLive$54(org.telegram.tgnet.TLObject r15, org.telegram.tgnet.tl.TL_stories.TL_startLive r16, final boolean r17, final long r18, final boolean r20, org.telegram.tgnet.TLRPC.TL_error r21, java.lang.Runnable r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.lambda$startLive$54(org.telegram.tgnet.TLObject, org.telegram.tgnet.tl.TL_stories$TL_startLive, boolean, long, boolean, org.telegram.tgnet.TLRPC$TL_error, java.lang.Runnable):void");
     }
 

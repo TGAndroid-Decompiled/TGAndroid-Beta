@@ -68,6 +68,11 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     private int doNotTranslatePosition = -1;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean onFragmentCreate() {
         fillLanguages();
         LocaleController.getInstance().loadRemoteLanguages(this.currentAccount, false);
@@ -728,5 +733,11 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LanguageCell.class}, new String[]{"textView2"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LanguageCell.class}, new String[]{"checkImage"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_featuredStickers_addedIcon));
         return arrayList;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

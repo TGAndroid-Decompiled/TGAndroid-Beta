@@ -1840,6 +1840,8 @@ public class ResaleGiftsFragment extends BaseFragment {
         public SelectGiftSheet(final Context context, String str, final State state) {
             super(context, null, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
             this.without = new HashSet();
+            this.headerMoveTop = AndroidUtilities.dp(12.0f);
+            fixNavigationBar();
             this.collectionName = str;
             this.state = state;
             this.actionBar.setTitle(getTitle());
@@ -1925,6 +1927,12 @@ public class ResaleGiftsFragment extends BaseFragment {
                 }
             });
             this.recyclerListView.setPadding(this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0, this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0);
+            this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                    SelectGiftSheet.this.onScroll();
+                }
+            });
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
             defaultItemAnimator.setSupportsChangeAnimations(false);
             defaultItemAnimator.setDelayAnimations(false);
@@ -2490,6 +2498,29 @@ public class ResaleGiftsFragment extends BaseFragment {
             this.adapter.update(true);
         }
 
+        public void onScroll() {
+            int childAdapterPosition;
+            UItem item;
+            boolean z = false;
+            boolean z2 = false;
+            for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+                View childAt = this.recyclerListView.getChildAt(i);
+                if ((childAt instanceof FlickerLoadingView) && (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1) >= 0 && (item = this.adapter.getItem(childAdapterPosition)) != null) {
+                    if (item.id < 10) {
+                        z = true;
+                    } else {
+                        z2 = true;
+                    }
+                }
+            }
+            if (z) {
+                this.state.list.load();
+            }
+            if (z2) {
+                this.state.resaleList.load();
+            }
+        }
+
         private void buyGift(final TL_stars.TL_starGiftUnique tL_starGiftUnique) {
             final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
             alertDialog.showDelayed(400L);
@@ -2575,7 +2606,7 @@ public class ResaleGiftsFragment extends BaseFragment {
         @Override
         protected CharSequence getTitle() {
             String str = this.collectionName;
-            return str != null ? str : "Select Gift";
+            return str != null ? str : LocaleController.getString(R.string.GiftCraftSelectTitle);
         }
 
         @Override
@@ -2606,29 +2637,30 @@ public class ResaleGiftsFragment extends BaseFragment {
             if (state == null || state.list == null || this.state.resaleList == null) {
                 return;
             }
-            arrayList.add(UItem.asHeader(-1, "Your gifts"));
+            arrayList.add(UItem.asHeader(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
             Iterator it = this.state.list.gifts.iterator();
+            int i = 0;
             boolean z = true;
             while (it.hasNext()) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
                 if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true));
+                    i++;
                     z = false;
                 }
             }
-            if (this.state.list.loading || (this.state.list.gifts.isEmpty() && !this.state.list.endReached)) {
-                arrayList.add(UItem.asFlicker(1, 34).setSpanCount(1));
-                arrayList.add(UItem.asFlicker(2, 34).setSpanCount(1));
-                arrayList.add(UItem.asFlicker(3, 34).setSpanCount(1));
-                arrayList.add(UItem.asFlicker(4, 34).setSpanCount(1));
-                arrayList.add(UItem.asFlicker(5, 34).setSpanCount(1));
-                arrayList.add(UItem.asFlicker(6, 34).setSpanCount(1));
+            if (this.state.list.loading || !this.state.list.endReached) {
+                int i2 = i % 3;
+                int i3 = 6 - i2;
+                for (int i4 = 0; i4 < i3; i4++) {
+                    arrayList.add(UItem.asFlicker((i4 - i2) + 1, 34).setSpanCount(1));
+                }
             } else if (z) {
-                arrayList.add(UItem.asCenterShadow("You don't have other gifts\nfrom this collection."));
+                arrayList.add(UItem.asCenterShadow(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
             }
             if (this.state.resaleList.getTotalCount() > 0 || this.hadResaleGifts) {
                 this.hadResaleGifts = true;
-                arrayList.add(UItem.asAnimatedHeader(-2, this.state.resaleList.getTotalCount() + " suitable gifts for resale"));
+                arrayList.add(UItem.asAnimatedHeader(-2, LocaleController.getString(R.string.GiftCraftSelectResale)));
                 HorizontalScrollView horizontalScrollView = this.filterScrollView;
                 if (horizontalScrollView != null) {
                     arrayList.add(UItem.asCustom(-3, horizontalScrollView));
@@ -2637,7 +2669,7 @@ public class ResaleGiftsFragment extends BaseFragment {
                 while (it2.hasNext()) {
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it2.next(), false, true, false, true, true));
                 }
-                if (this.state.resaleList.loading || (this.state.resaleList.gifts.isEmpty() && !this.state.resaleList.endReached)) {
+                if (this.state.resaleList.loading || !this.state.resaleList.endReached) {
                     arrayList.add(UItem.asFlicker(10, 34).setSpanCount(1));
                     arrayList.add(UItem.asFlicker(11, 34).setSpanCount(1));
                     arrayList.add(UItem.asFlicker(12, 34).setSpanCount(1));

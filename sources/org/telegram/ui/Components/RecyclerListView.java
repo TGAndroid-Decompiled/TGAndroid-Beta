@@ -41,7 +41,10 @@ import j$.util.Objects;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
@@ -59,6 +62,7 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.EdgeEffectTrackerFactory;
 import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.FiltersSetupActivity;
 
@@ -66,7 +70,9 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private static int[] attributes;
     private static boolean gotAttributes;
     private static final Method initializeScrollbars;
+    private static final float[] radii;
     private static final Paint sectionBackgroundPaint;
+    private static final Path sectionBackgroundPath;
     private View.AccessibilityDelegate accessibilityDelegate;
     private boolean accessibilityEnabled;
     private int activeTouches;
@@ -85,7 +91,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private int currentVisible;
     private boolean disableHighlightState;
     private boolean disallowInterceptTouchEvents;
-    private Utilities.Callback4 drawSectionBackground;
+    private Utilities.Callback5 drawSectionBackground;
     private boolean drawSelection;
     private boolean drawSelectorBehind;
     private final EdgeEffectTrackerFactory edgeEffectTrackerFactory;
@@ -143,6 +149,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private float sectionRadius;
     private float[] sectionRadiusBottom;
     private float[] sectionRadiusTop;
+    private ArrayList sections;
     private SectionsAdapter sectionsAdapter;
     private int sectionsCount;
     private ListSectionsDecoration sectionsItemDecoration;
@@ -273,6 +280,8 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
         initializeScrollbars = declaredMethod;
         sectionBackgroundPaint = new Paint(1);
+        sectionBackgroundPath = new Path();
+        radii = new float[8];
     }
 
     public void setSelectorTransformer(Consumer consumer) {
@@ -2792,17 +2801,17 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return Boolean.valueOf(i == 1);
     }
 
-    public void setSections(Utilities.CallbackReturn callbackReturn, int i, float f, Utilities.Callback4 callback4, boolean z) {
+    public void setSections(Utilities.CallbackReturn callbackReturn, int i, float f, Utilities.Callback5 callback5, boolean z) {
         Pair pairCachedIsViewTypeShadow = cachedIsViewTypeShadow(this, callbackReturn);
-        setSections((Utilities.CallbackReturn) pairCachedIsViewTypeShadow.first, (Utilities.CallbackReturn) pairCachedIsViewTypeShadow.second, i, f, callback4, z);
+        setSections((Utilities.CallbackReturn) pairCachedIsViewTypeShadow.first, (Utilities.CallbackReturn) pairCachedIsViewTypeShadow.second, i, f, callback5, z);
     }
 
-    public void setSections(Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i, float f, Utilities.Callback4 callback4, boolean z) {
+    public void setSections(Utilities.CallbackReturn callbackReturn, Utilities.CallbackReturn callbackReturn2, int i, float f, Utilities.Callback5 callback5, boolean z) {
         this.isViewTypeSection = callbackReturn2;
         this.sectionRadius = f;
         this.sectionRadiusTop = new float[]{f, f, f, f, 0.0f, 0.0f, 0.0f, 0.0f};
         this.sectionRadiusBottom = new float[]{0.0f, 0.0f, 0.0f, 0.0f, f, f, f, f};
-        this.drawSectionBackground = callback4;
+        this.drawSectionBackground = callback5;
         RecyclerView.ItemDecoration itemDecoration = this.sectionsItemDecoration;
         if (itemDecoration != null) {
             removeItemDecoration(itemDecoration);
@@ -2818,6 +2827,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     }
 
     public static class ListSectionsDecoration extends RecyclerView.ItemDecoration {
+        private ArrayList childrenSorted = new ArrayList();
         private boolean enableTopPadding;
         public final Utilities.CallbackReturn isSectionItem;
         private int padding;
@@ -2869,7 +2879,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         if (rectF.bottom < rectF.top) {
             return;
         }
-        this.drawSectionBackground.run(canvas, rectF, Float.valueOf(this.sectionRadius), Float.valueOf(view.getAlpha()));
+        this.drawSectionBackground.run(canvas, rectF, Float.valueOf(this.sectionRadius), Float.valueOf(this.sectionRadius), Float.valueOf(view.getAlpha()));
     }
 
     private boolean hasAbove(View view, int i) {
@@ -2888,51 +2898,41 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return ((Boolean) this.isViewTypeSection.run(Integer.valueOf(getAdapter().getItemViewType(childAdapterPosition + 1)))).booleanValue();
     }
 
-    public void drawSectionsBackgrounds(Canvas canvas) {
-        if (this.drawSectionBackground == null) {
+    public void drawSectionsBackgrounds(final android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.drawSectionsBackgrounds(android.graphics.Canvas):void");
+    }
+
+    public void lambda$drawSectionsBackgrounds$5(Canvas canvas, Float f, Float f2, Float f3, Float f4, Float f5) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(this.sectionsItemDecoration.padding, f.floatValue(), getWidth() - this.sectionsItemDecoration.padding, f2.floatValue());
+        this.drawSectionBackground.run(canvas, rectF, f3, f4, f5);
+    }
+
+    public static void drawBackgroundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, Theme.ResourcesProvider resourcesProvider) {
+        Paint paint = sectionBackgroundPaint;
+        paint.setShadowLayer(AndroidUtilities.dpf2(2.0f), 0.0f, AndroidUtilities.dpf2(0.33f), Theme.multAlpha(285212672, f3));
+        paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), f3));
+        if (f == f2) {
+            canvas.drawRoundRect(rectF, f, f, paint);
             return;
         }
-        View view = null;
-        View view2 = null;
-        int i = -1;
-        int i2 = -1;
-        for (int i3 = 0; i3 < getChildCount(); i3++) {
-            View childAt = getChildAt(i3);
-            if (childAt != this.emptyView && childAt.getVisibility() == 0 && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(childAt)).booleanValue()) {
-                if (view != null && Math.abs(view2.getAlpha() - childAt.getAlpha()) > 0.1f) {
-                    drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
-                    view = null;
-                    i = -1;
-                }
-                if (view == null) {
-                    i = i3;
-                    view = childAt;
-                }
-                i2 = i3;
-                view2 = childAt;
-            } else {
-                drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
-                view = null;
-                view2 = null;
-                i = -1;
-                i2 = -1;
-            }
-        }
-        drawSectionBackground(canvas, view, view2, hasAbove(view, i), hasBelow(view2, i2));
+        Path path = sectionBackgroundPath;
+        path.rewind();
+        float[] fArr = radii;
+        fArr[3] = f;
+        fArr[2] = f;
+        fArr[1] = f;
+        fArr[0] = f;
+        fArr[7] = f2;
+        fArr[6] = f2;
+        fArr[5] = f2;
+        fArr[4] = f2;
+        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+        canvas.drawPath(path, paint);
     }
 
-    public static void drawBackgroundRect(Canvas canvas, RectF rectF, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
-        Paint paint = sectionBackgroundPaint;
-        paint.setShadowLayer(AndroidUtilities.dpf2(2.0f), 0.0f, AndroidUtilities.dpf2(0.33f), Theme.multAlpha(285212672, f2));
-        paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), f2));
-        canvas.drawRoundRect(rectF, f, f, paint);
-    }
-
-    public void drawBackgroundRect(Canvas canvas, RectF rectF, float f, float f2) {
-        Paint paint = sectionBackgroundPaint;
-        paint.setShadowLayer(AndroidUtilities.dpf2(2.0f), 0.0f, AndroidUtilities.dpf2(0.33f), Theme.multAlpha(285212672, f2));
-        paint.setColor(Theme.multAlpha(getThemedColor(Theme.key_windowBackgroundWhite), f2));
-        canvas.drawRoundRect(rectF, f, f, paint);
+    public void drawBackgroundRect(Canvas canvas, RectF rectF, float f, float f2, float f3) {
+        drawBackgroundRect(canvas, rectF, f, f2, f3, this.resourcesProvider);
     }
 
     private void clipChild(Canvas canvas, View view) {
@@ -3049,5 +3049,84 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 this.paint.setAlpha(i);
             }
         };
+    }
+
+    public static class SectionsDrawer {
+        private static final ArrayList groups = new ArrayList();
+
+        public static class Section {
+            public float alpha;
+            public float from;
+            public float to;
+
+            public Section(float f, float f2, float f3) {
+                this.from = f;
+                this.to = f2;
+                this.alpha = f3;
+            }
+        }
+
+        public static void draw(List list, float f, Utilities.Callback5 callback5) {
+            int i;
+            if (list == null || list.isEmpty()) {
+                return;
+            }
+            Collections.sort(list, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    return RecyclerListView.SectionsDrawer.lambda$draw$0((RecyclerListView.SectionsDrawer.Section) obj, (RecyclerListView.SectionsDrawer.Section) obj2);
+                }
+            });
+            groups.clear();
+            for (int i2 = 0; i2 < list.size(); i2 = i) {
+                float fMax = ((Section) list.get(i2)).to;
+                i = i2 + 1;
+                while (i < list.size() && ((Section) list.get(i)).from <= 1.5f + fMax) {
+                    fMax = Math.max(fMax, ((Section) list.get(i)).to);
+                    i++;
+                }
+                float[] fArrCalculateGroup = calculateGroup(list, i2, i, f);
+                if (fArrCalculateGroup != null) {
+                    groups.add(fArrCalculateGroup);
+                }
+            }
+            int i3 = 0;
+            while (true) {
+                ArrayList arrayList = groups;
+                if (i3 >= arrayList.size()) {
+                    return;
+                }
+                float[] fArr = (float[]) arrayList.get(i3);
+                float f2 = fArr[0];
+                float f3 = fArr[1];
+                float fMin = fArr[2];
+                float fMin2 = fArr[3];
+                float f4 = fArr[4];
+                if (i3 > 0) {
+                    float f5 = f2 - ((float[]) arrayList.get(i3 - 1))[1];
+                    float f6 = f * 0.2f;
+                    if (f5 < f6) {
+                        fMin = Math.min(fMin, (f5 / f6) * f);
+                    }
+                }
+                if (i3 < arrayList.size() - 1) {
+                    float f7 = ((float[]) arrayList.get(i3 + 1))[0] - f3;
+                    float f8 = f * 0.2f;
+                    if (f7 < f8) {
+                        fMin2 = Math.min(fMin2, (f7 / f8) * f);
+                    }
+                }
+                callback5.run(Float.valueOf(f2), Float.valueOf(f3), Float.valueOf(fMin), Float.valueOf(fMin2), Float.valueOf(f4));
+                i3++;
+            }
+        }
+
+        public static int lambda$draw$0(Section section, Section section2) {
+            return Float.compare(section.from, section2.from);
+        }
+
+        private static float[] calculateGroup(java.util.List r18, int r19, int r20, float r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.SectionsDrawer.calculateGroup(java.util.List, int, int, float):float[]");
+        }
     }
 }

@@ -235,7 +235,7 @@ public class VoIPGroupNotification {
         declineconferencecallinvite.msg_id = i2;
         ConnectionsManager.getInstance(i).sendRequest(declineconferencecallinvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 VoIPGroupNotification.lambda$decline$3(i, tLObject, tL_error);
             }
         });
@@ -244,7 +244,7 @@ public class VoIPGroupNotification {
         }
     }
 
-    public static void lambda$decline$3(int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$decline$3(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
         }

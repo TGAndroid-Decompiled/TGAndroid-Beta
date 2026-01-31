@@ -244,6 +244,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean needDelayOpenAnimation() {
         return true;
     }
@@ -490,14 +495,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     view.invalidate();
                 }
             }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                if (ChatUsersActivity.this.permissionsSectionRow >= 0 && ChatUsersActivity.this.participantsDivider2Row >= 0) {
-                    drawSectionBackground(canvas, ChatUsersActivity.this.permissionsSectionRow, Math.max(0, ChatUsersActivity.this.participantsDivider2Row - 1), getThemedColor(Theme.key_windowBackgroundWhite));
-                }
-                super.dispatchDraw(canvas);
-            }
         };
         this.listView = recyclerListView;
         recyclerListView.setSections();
@@ -732,7 +729,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$createView$1(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$createView$1(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
@@ -759,7 +756,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
-    public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$createView$3(final TextCell textCell, final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             getMessagesController().putChatFull(this.info);
@@ -1544,13 +1541,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
         getConnectionsManager().sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$deletePeer$21(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deletePeer$21(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$deletePeer$21(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             getMessagesController().processUpdates(updates, false);
@@ -3042,5 +3039,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 }
             }
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
+        this.undoView.setTranslationY(-i4);
     }
 }

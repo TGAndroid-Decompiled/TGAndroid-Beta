@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import android.content.res.Resources;
 import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -113,14 +114,14 @@ public class ChatMessagesMetadataController {
             storyItem.id = i;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$loadStoriesForMessages$1(messageObject, j, storyItem);
                 }
             });
         }
     }
 
-    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) {
+    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) throws Resources.NotFoundException, NumberFormatException {
         boolean zIsExpiredStory = messageObject.isExpiredStory();
         StoriesStorage.applyStory(this.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
         final ArrayList arrayList = new ArrayList();
@@ -154,7 +155,7 @@ public class ChatMessagesMetadataController {
         }
         this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getMessagesReactions, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$loadReactionsForMessages$3(tLObject, tL_error);
             }
         })));
@@ -163,7 +164,7 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadReactionsForMessages$3(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$loadReactionsForMessages$3(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             for (int i = 0; i < updates.updates.size(); i++) {
@@ -186,7 +187,7 @@ public class ChatMessagesMetadataController {
         }
         this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tL_messages_getExtendedMedia, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$loadExtendedMediaForMessages$4(tLObject, tL_error);
             }
         })));
@@ -195,7 +196,7 @@ public class ChatMessagesMetadataController {
         }
     }
 
-    public void lambda$loadExtendedMediaForMessages$4(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$loadExtendedMediaForMessages$4(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             this.chatActivity.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }

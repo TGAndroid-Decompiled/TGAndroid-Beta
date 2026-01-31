@@ -898,9 +898,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             arrayList.add(new PremiumFeatureData(31, R.drawable.filled_open_message, LocaleController.getString(R.string.PremiumBusinessQuickReplies), LocaleController.getString(R.string.PremiumBusinessQuickRepliesDescription)));
             arrayList.add(new PremiumFeatureData(32, R.drawable.premium_status, LocaleController.getString(R.string.PremiumBusinessGreetingMessages), LocaleController.getString(R.string.PremiumBusinessGreetingMessagesDescription)));
             arrayList.add(new PremiumFeatureData(33, R.drawable.filled_premium_away, LocaleController.getString(R.string.PremiumBusinessAwayMessages), LocaleController.getString(R.string.PremiumBusinessAwayMessagesDescription)));
-            arrayList.add(new PremiumFeatureData(34, R.drawable.filled_premium_bots, applyNewSpan(LocaleController.getString(R.string.PremiumBusinessChatbots2)), LocaleController.getString(R.string.PremiumBusinessChatbotsDescription)));
-            arrayList.add(new PremiumFeatureData(37, R.drawable.filled_premium_chatlink, applyNewSpan(LocaleController.getString(R.string.PremiumBusinessChatLinks)), LocaleController.getString(R.string.PremiumBusinessChatLinksDescription)));
-            arrayList.add(new PremiumFeatureData(36, R.drawable.filled_premium_intro, applyNewSpan(LocaleController.getString(R.string.PremiumBusinessIntro)), LocaleController.getString(R.string.PremiumBusinessIntroDescription)));
+            arrayList.add(new PremiumFeatureData(34, R.drawable.filled_premium_bots, LocaleController.getString(R.string.PremiumBusinessChatbots2), LocaleController.getString(R.string.PremiumBusinessChatbotsDescription)));
+            arrayList.add(new PremiumFeatureData(37, R.drawable.filled_premium_chatlink, LocaleController.getString(R.string.PremiumBusinessChatLinks), LocaleController.getString(R.string.PremiumBusinessChatLinksDescription)));
+            arrayList.add(new PremiumFeatureData(36, R.drawable.filled_premium_intro, LocaleController.getString(R.string.PremiumBusinessIntro), LocaleController.getString(R.string.PremiumBusinessIntroDescription)));
         } else {
             arrayList.add(new PremiumFeatureData(12, R.drawable.filled_premium_status2, LocaleController.getString(R.string.PremiumPreviewBusinessEmojiStatus), LocaleController.getString(R.string.PremiumPreviewBusinessEmojiStatusDescription)));
             arrayList.add(new PremiumFeatureData(35, R.drawable.premium_tags, LocaleController.getString(R.string.PremiumPreviewFolderTags), LocaleController.getString(R.string.PremiumPreviewFolderTagsDescription)));
@@ -1098,7 +1098,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentPremiumSubscription;
                         ConnectionsManager.getInstance(i).sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 PremiumPreviewFragment.lambda$buyPremium$9(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
                             }
                         }, 66);
@@ -1159,7 +1159,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ((LaunchActivity) baseFragment.getParentActivity()).getFireworksOverlay().start();
     }
 
-    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(runnable);

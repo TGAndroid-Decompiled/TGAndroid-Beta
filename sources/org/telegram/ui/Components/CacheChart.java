@@ -36,8 +36,8 @@ public abstract class CacheChart extends View {
     private static Long loadedStart;
     private static long particlesStart;
     private static Long start;
-    private AnimatedTextView.AnimatedTextDrawable bottomCompleteText;
-    private AnimatedTextView.AnimatedTextDrawable bottomText;
+    private final AnimatedTextView.AnimatedTextDrawable bottomCompleteText;
+    private final AnimatedTextView.AnimatedTextDrawable bottomText;
     private RectF chartBounds;
     private RectF chartInnerBounds;
     private RectF chartMeasureBounds;
@@ -67,8 +67,8 @@ public abstract class CacheChart extends View {
     private final boolean svgParticles;
     private float[] tempFloat;
     private int[] tempPercents;
-    private AnimatedTextView.AnimatedTextDrawable topCompleteText;
-    private AnimatedTextView.AnimatedTextDrawable topText;
+    private final AnimatedTextView.AnimatedTextDrawable topCompleteText;
+    private final AnimatedTextView.AnimatedTextDrawable topText;
     private final int type;
 
     public static float toRad(float f) {
@@ -340,7 +340,6 @@ public abstract class CacheChart extends View {
         this.loading = true;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.loadingFloat = new AnimatedFloat(this, 750L, cubicBezierInterpolator);
-        int i3 = 0;
         this.complete = false;
         this.completeFloat = new AnimatedFloat(this, 650L, cubicBezierInterpolator);
         this.segmentsTmp = new float[2];
@@ -349,10 +348,14 @@ public abstract class CacheChart extends View {
         this.completePath = new Path();
         this.completePaintStroke = new Paint(1);
         this.completePaint = new Paint(1);
-        this.topText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-        this.bottomText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-        this.topCompleteText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-        this.bottomCompleteText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        this.topText = animatedTextDrawable;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        this.bottomText = animatedTextDrawable2;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        this.topCompleteText = animatedTextDrawable3;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable4 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+        this.bottomCompleteText = animatedTextDrawable4;
         this.interceptTouch = true;
         this.selectedIndex = -1;
         setLayerType(2, null);
@@ -377,25 +380,30 @@ public abstract class CacheChart extends View {
         this.completePaintStroke.setStyle(style);
         this.completePaintStroke.setStrokeCap(Paint.Cap.ROUND);
         this.completePaintStroke.setStrokeJoin(Paint.Join.ROUND);
-        this.topText.setAnimationProperties(0.2f, 0L, 450L, cubicBezierInterpolator);
-        this.topText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.topText.setTypeface(AndroidUtilities.bold());
-        this.topText.setTextSize(AndroidUtilities.dp(32.0f));
-        this.topText.setGravity(17);
-        this.bottomText.setAnimationProperties(0.6f, 0L, 450L, cubicBezierInterpolator);
-        this.bottomText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-        this.bottomText.setTextSize(AndroidUtilities.dp(12.0f));
-        this.bottomText.setGravity(17);
-        this.topCompleteText.setAnimationProperties(0.2f, 0L, 450L, cubicBezierInterpolator);
-        this.topCompleteText.getPaint().setShader(this.completeTextGradient);
-        this.topCompleteText.setTypeface(AndroidUtilities.bold());
-        this.topCompleteText.setTextSize(AndroidUtilities.dp(32.0f));
-        this.topCompleteText.setGravity(17);
-        this.bottomCompleteText.setAnimationProperties(0.6f, 0L, 450L, cubicBezierInterpolator);
-        this.bottomCompleteText.getPaint().setShader(this.completeTextGradient);
-        this.bottomCompleteText.setTypeface(AndroidUtilities.bold());
-        this.bottomCompleteText.setTextSize(AndroidUtilities.dp(12.0f));
-        this.bottomCompleteText.setGravity(17);
+        animatedTextDrawable.setAnimationProperties(0.2f, 0L, 450L, cubicBezierInterpolator);
+        animatedTextDrawable.setScaleProperty(0.6f);
+        animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setTextSize(AndroidUtilities.dp(32.0f));
+        animatedTextDrawable.setGravity(17);
+        animatedTextDrawable2.setAnimationProperties(0.6f, 0L, 450L, cubicBezierInterpolator);
+        animatedTextDrawable2.setScaleProperty(0.6f);
+        animatedTextDrawable2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        animatedTextDrawable2.setTextSize(AndroidUtilities.dp(12.0f));
+        animatedTextDrawable2.setGravity(17);
+        animatedTextDrawable3.setAnimationProperties(0.2f, 0L, 450L, cubicBezierInterpolator);
+        animatedTextDrawable3.setScaleProperty(0.6f);
+        animatedTextDrawable3.getPaint().setShader(this.completeTextGradient);
+        animatedTextDrawable3.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable3.setTextSize(AndroidUtilities.dp(32.0f));
+        animatedTextDrawable3.setGravity(17);
+        animatedTextDrawable4.setAnimationProperties(0.6f, 0L, 450L, cubicBezierInterpolator);
+        animatedTextDrawable4.setScaleProperty(0.6f);
+        animatedTextDrawable4.getPaint().setShader(this.completeTextGradient);
+        animatedTextDrawable4.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable4.setTextSize(AndroidUtilities.dp(12.0f));
+        animatedTextDrawable4.setGravity(17);
+        int i3 = 0;
         while (true) {
             Sector[] sectorArr = this.sectors;
             if (i3 >= sectorArr.length) {

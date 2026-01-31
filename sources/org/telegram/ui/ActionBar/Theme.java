@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda82;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda90;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -470,9 +470,9 @@ public abstract class Theme {
     public static final int key_avatar_nameInMessageViolet;
     public static final int key_avatar_subtitleInProfileBlue;
     public static final int key_avatar_text;
-    public static final int key_bot_button_danger;
-    public static final int key_bot_button_primary;
-    public static final int key_bot_button_success;
+    public static final int key_botKeyboard_button_danger;
+    public static final int key_botKeyboard_button_primary;
+    public static final int key_botKeyboard_button_success;
     public static final int key_bot_loadingIcon;
     public static final int key_buttonNeutral;
     public static final int key_buttonNeutralText;
@@ -4476,7 +4476,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda82(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4522,7 +4522,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda82(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4637,7 +4637,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda82(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
                 }
             }
             currentTheme = themeInfo;

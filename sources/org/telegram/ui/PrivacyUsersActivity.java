@@ -59,6 +59,11 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
     private int currentType = 1;
     private boolean blockedUsersActivity = true;
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public PrivacyUsersActivity loadBlocked() {
         getMessagesController().getBlockedPeers(true);
         return this;
@@ -623,5 +628,11 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                 }
             }
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

@@ -46,7 +46,7 @@ public class ProfileLocationCell extends LinearLayout {
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
         textView.setTextSize(1, 16.0f);
         boolean z = LocaleController.isRTL;
-        addView(textView, LayoutHelper.createLinear(-1, -2, 55, z ? 70 : 22, 10, z ? 22 : 70, 4));
+        addView(textView, LayoutHelper.createLinear(-1, -2, 55, z ? 70 : 18, 10, z ? 18 : 70, 4));
         TextView textView2 = new TextView(context);
         this.textView2 = textView2;
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -54,7 +54,7 @@ public class ProfileLocationCell extends LinearLayout {
         textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
         textView2.setTextSize(1, 13.0f);
         boolean z2 = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createLinear(-1, -2, 55, z2 ? 70 : 22, 0, z2 ? 22 : 70, 8));
+        addView(textView2, LayoutHelper.createLinear(-1, -2, 55, z2 ? 70 : 18, 0, z2 ? 18 : 70, 8));
         setWillNotDraw(false);
     }
 

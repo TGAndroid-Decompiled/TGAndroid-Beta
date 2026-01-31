@@ -1325,7 +1325,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         sendgroupcallmessage.send_as = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(sendgroupcallmessage, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$send$16(sendgroupcallmessage, newMessageId, j2, j, tL_textWithEntities, tLObject, tL_error);
             }
         });
@@ -1362,7 +1362,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return newMessageId;
     }
 
-    public void lambda$send$16(TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$send$16(TL_phone.sendGroupCallMessage sendgroupcallmessage, final int i, final long j, final long j2, final TLRPC.TL_textWithEntities tL_textWithEntities, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (!(tLObject instanceof TLRPC.Updates)) {
             if (tL_error != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {

@@ -139,6 +139,11 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     private boolean deactivatingLinks = false;
     private boolean activatingEditableLink = false;
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public ChatEditTypeActivity(long j, boolean z) {
         this.chatId = j;
         this.isForcePublic = z;
@@ -1861,6 +1866,14 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         InviteLinkBottomSheet inviteLinkBottomSheet = this.inviteLinkBottomSheet;
         if (inviteLinkBottomSheet != null) {
             inviteLinkBottomSheet.updateColors();
+        }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        LinearLayout linearLayout = this.linearLayout;
+        if (linearLayout != null) {
+            linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + i4);
         }
     }
 }

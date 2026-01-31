@@ -10708,7 +10708,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentAuthCode;
                         LoginActivity.this.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 this.f$0.lambda$setParams$20(tL_inputStorePaymentAuthCode, purchase, tL_payments_canPurchaseStore, runnable, tLObject, tL_error);
                             }
                         }, 74);
@@ -10719,7 +10719,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             runnable.run();
         }
 
-        public void lambda$setParams$20(final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$setParams$20(final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
             if (!(tLObject instanceof TLRPC.Updates)) {
                 if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new Runnable() {

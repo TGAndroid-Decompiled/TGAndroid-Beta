@@ -139,7 +139,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setImportantForAccessibility(2);
         this.valueTextView.setFocusable(false);
-        this.container.addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 0.0f, 23.0f, 10.0f));
+        this.container.addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 18.0f, 0.0f, 18.0f, 10.0f));
         this.bottomShadow = new FrameLayout(context);
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.gradient_bottom).mutate();
         int i = Theme.key_windowBackgroundWhite;
@@ -252,8 +252,8 @@ public abstract class AboutLinkCell extends FrameLayout {
         int i2;
         StaticLayout staticLayout;
         canvas.save();
-        canvas.clipRect(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f), getWidth() - AndroidUtilities.dp(23.0f), getHeight());
-        int iDp = AndroidUtilities.dp(23.0f);
+        canvas.clipRect(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(8.0f), getWidth() - AndroidUtilities.dp(18.0f), getHeight());
+        int iDp = AndroidUtilities.dp(18.0f);
         this.textX = iDp;
         float f = 0.0f;
         canvas.translate(iDp, 0.0f);
@@ -346,7 +346,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         MessageObject.addLinks(false, spannableStringBuilder, false, false, !z);
         Emoji.replaceEmoji(this.stringBuilder, Theme.profile_aboutTextPaint.getFontMetricsInt(), false);
         if (this.lastMaxWidth <= 0) {
-            this.lastMaxWidth = AndroidUtilities.displaySize.x - AndroidUtilities.dp(46.0f);
+            this.lastMaxWidth = AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f);
         }
         checkTextLayout(this.lastMaxWidth, true);
         updateHeight();
@@ -427,7 +427,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         if (i >= this.showMoreTextView.getLeft() && i <= this.showMoreTextView.getRight() && i2 >= this.showMoreTextView.getTop() && i2 <= this.showMoreTextView.getBottom()) {
             return null;
         }
-        if (getMeasuredWidth() > 0 && i > getMeasuredWidth() - AndroidUtilities.dp(23.0f)) {
+        if (getMeasuredWidth() > 0 && i > getMeasuredWidth() - AndroidUtilities.dp(18.0f)) {
             return null;
         }
         StaticLayout staticLayout = this.firstThreeLinesLayout;
@@ -706,7 +706,7 @@ public abstract class AboutLinkCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        checkTextLayout(View.MeasureSpec.getSize(i) - AndroidUtilities.dp(46.0f), false);
+        checkTextLayout(View.MeasureSpec.getSize(i) - AndroidUtilities.dp(36.0f), false);
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(updateHeight(), 1073741824));
     }
 

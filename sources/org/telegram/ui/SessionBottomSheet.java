@@ -58,6 +58,7 @@ public class SessionBottomSheet extends BottomSheet {
         fixNavigationBar();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
         linearLayout.setOrientation(1);
+        linearLayout.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         RLottieImageView rLottieImageView = new RLottieImageView(parentActivity);
         this.imageView = rLottieImageView;
         rLottieImageView.setOnClickListener(new View.OnClickListener() {
@@ -219,7 +220,7 @@ public class SessionBottomSheet extends BottomSheet {
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setText(LocaleController.getString(R.string.TerminateSession));
             textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-            textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
+            textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(24.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
             linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
             textView3.setOnClickListener(new AnonymousClass8(callback, tL_authorization, baseFragment));
         }

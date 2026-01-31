@@ -38,7 +38,7 @@ import org.telegram.ui.Stories.MessageMediaStoryFull;
 import org.telegram.ui.Stories.MessageMediaStoryFull_old;
 
 public class TLRPC {
-    public static final int LAYER = 224;
+    public static final int LAYER = 222;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -4496,6 +4496,7 @@ public class TLRPC {
         public int can_export_at;
         public int can_resell_at;
         public int can_transfer_at;
+        public boolean craft;
         public long drop_original_details_stars;
         public Peer from_id;
         public boolean from_offer;
@@ -4522,6 +4523,7 @@ public class TLRPC {
             this.prepaid_upgrade = (int32 & 2048) != 0;
             this.assigned = (int32 & 8192) != 0;
             this.from_offer = TLObject.hasFlag(int32, 16384);
+            this.craft = TLObject.hasFlag(this.flags, 65536);
             this.gift = TL_stars.StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 8) != 0) {
                 this.can_export_at = inputSerializedData.readInt32(z);
@@ -4572,7 +4574,9 @@ public class TLRPC {
             this.flags = flag3;
             int flag4 = TLObject.setFlag(flag3, 16384, this.from_offer);
             this.flags = flag4;
-            outputSerializedData.writeInt32(flag4);
+            int flag5 = TLObject.setFlag(flag4, 65536, this.craft);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
             this.gift.serializeToStream(outputSerializedData);
             if ((this.flags & 8) != 0) {
                 outputSerializedData.writeInt32(this.can_export_at);
@@ -71142,7 +71146,13 @@ public class TLRPC {
             if ((this instanceof TL_reactionEmpty) && (reaction instanceof TL_reactionEmpty)) {
                 return true;
             }
-            return ((this instanceof TL_reactionEmoji) && (reaction instanceof TL_reactionEmoji)) ? ((TL_reactionEmoji) this).emoticon == ((TL_reactionEmoji) reaction).emoticon : (this instanceof TL_reactionCustomEmoji) && (reaction instanceof TL_reactionCustomEmoji) && ((TL_reactionCustomEmoji) this).document_id == ((TL_reactionCustomEmoji) reaction).document_id;
+            if ((this instanceof TL_reactionPaid) && (reaction instanceof TL_reactionPaid)) {
+                return true;
+            }
+            if ((this instanceof TL_reactionEmoji) && (reaction instanceof TL_reactionEmoji)) {
+                return TextUtils.equals(((TL_reactionEmoji) this).emoticon, ((TL_reactionEmoji) reaction).emoticon);
+            }
+            return (this instanceof TL_reactionCustomEmoji) && (reaction instanceof TL_reactionCustomEmoji) && ((TL_reactionCustomEmoji) this).document_id == ((TL_reactionCustomEmoji) reaction).document_id;
         }
     }
 
@@ -79319,8 +79329,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 224;
-                this.params.put("legacy_layer", "224");
+                this.layer = 222;
+                this.params.put("legacy_layer", "222");
             }
             if ((this.id < 0 || this.send_state == 3 || this.legacy) && (map2 = this.params) != null && map2.size() > 0) {
                 for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

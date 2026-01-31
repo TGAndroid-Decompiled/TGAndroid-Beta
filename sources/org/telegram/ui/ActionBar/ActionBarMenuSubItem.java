@@ -101,7 +101,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
             CheckBox2 checkBox2 = new CheckBox2(getContext(), 26, this.resourcesProvider);
             this.checkView = checkBox2;
             checkBox2.setDrawUnchecked(false);
-            this.checkView.setColor(-1, -1, Theme.key_radioBackgroundChecked);
+            this.checkView.setColor(-1, -1, Theme.key_actionBarDefaultSubmenuItem);
             this.checkView.setDrawBackgroundAsArc(-1);
             if (i == 1) {
                 boolean z = LocaleController.isRTL;

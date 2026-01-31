@@ -118,7 +118,7 @@ public abstract class ProfileHoursCell extends LinearLayout {
                 frameLayout2.addView(this.todayTimeTextContainer2, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 0.0f));
                 frameLayout.addView(this.todayTimeContainer, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 12.0f));
                 this.lines[i] = frameLayout;
-                addView(frameLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 51, 22.0f, 0.0f, 13.0f, 0.0f));
+                addView(frameLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 51, 18.0f, 0.0f, 8.0f, 0.0f));
             } else {
                 LinearLayout linearLayout2 = new LinearLayout(context);
                 linearLayout2.setOrientation(0);
@@ -143,7 +143,7 @@ public abstract class ProfileHoursCell extends LinearLayout {
                     linearLayout2.addView(frameLayout3, LayoutHelper.createLinear(-1, -1, 53));
                 }
                 this.lines[i] = linearLayout2;
-                addView(linearLayout2, LayoutHelper.createLinearRelatively(-1.0f, -2.0f, 51, 22.0f, i == 1 ? 1.0f : 11.66f, 33.0f, i == 6 ? 16.66f : 0.0f));
+                addView(linearLayout2, LayoutHelper.createLinearRelatively(-1.0f, -2.0f, 51, 18.0f, i == 1 ? 1.0f : 11.66f, 28.0f, i == 6 ? 16.66f : 0.0f));
             }
             i++;
         }

@@ -128,7 +128,7 @@ public class SectionsScrollView extends ScrollView {
         if (rectF.bottom < rectF.top) {
             return;
         }
-        RecyclerListView.drawBackgroundRect(canvas, rectF, AndroidUtilities.dp(16.0f), view.getAlpha(), this.resourcesProvider);
+        RecyclerListView.drawBackgroundRect(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.resourcesProvider);
     }
 
     @Override

@@ -241,7 +241,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$createCall$4(updates);
                 }
             });
@@ -280,7 +280,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall2, z, groupcall.call, hashSet);
     }
 
-    public void lambda$createCall$4(TLRPC.Updates updates) throws InterruptedException {
+    public void lambda$createCall$4(TLRPC.Updates updates) {
         MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
     }
 

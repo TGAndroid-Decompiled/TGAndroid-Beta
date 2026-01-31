@@ -6,7 +6,9 @@ import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.NestedScrollingParentHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.CachedMediaLayout;
 
 public abstract class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements NestedScrollingParent3, View.OnLayoutChangeListener {
     boolean attached;
@@ -55,11 +57,16 @@ public abstract class NestedSizeNotifierLayout extends SizeNotifierFrameLayout i
     }
 
     private void updateMaxTop() {
+        ChildLayout childLayout;
         View view = this.targetListView;
-        if (view == null || this.childLayout == null) {
+        if (view == null || (childLayout = this.childLayout) == null) {
             return;
         }
-        this.maxTop = (view.getMeasuredHeight() - this.targetListView.getPaddingBottom()) - this.childLayout.getMeasuredHeight();
+        if (childLayout instanceof CachedMediaLayout) {
+            this.maxTop = view.getPaddingTop() + AndroidUtilities.dp(40.0f);
+        } else {
+            this.maxTop = (view.getMeasuredHeight() - this.targetListView.getPaddingBottom()) - this.childLayout.getMeasuredHeight();
+        }
     }
 
     @Override

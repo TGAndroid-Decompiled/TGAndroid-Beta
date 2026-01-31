@@ -7577,7 +7577,7 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = true;
         getConnectionsManager().sendRequest(new TLRPC.TL_messages_getAllDrafts(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$loadDraftsIfNeed$189(tLObject, tL_error);
             }
         });
@@ -7587,7 +7587,7 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = false;
     }
 
-    public void lambda$loadDraftsIfNeed$189(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$loadDraftsIfNeed$189(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

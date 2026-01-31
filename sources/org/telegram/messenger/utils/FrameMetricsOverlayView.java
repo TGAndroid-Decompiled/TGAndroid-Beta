@@ -104,7 +104,7 @@ public final class FrameMetricsOverlayView extends View {
         };
         paint.setColor(-1342177280);
         paint2.setColor(-1);
-        paint2.setTextSize(dp(context, 10));
+        paint2.setTextSize(AndroidUtilities.dp(10.0f));
         paint2.setFakeBoldText(true);
         paint2.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
         setWillNotDraw(false);
@@ -116,11 +116,11 @@ public final class FrameMetricsOverlayView extends View {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-2, -2, 2, 792, -3);
         this.lp = layoutParams;
         layoutParams.gravity = i;
-        int iDp = dp(activity, i2);
+        int iDp = AndroidUtilities.dp(i2);
         WindowManager.LayoutParams layoutParams2 = this.lp;
         layoutParams2.x = iDp;
         layoutParams2.y = iDp;
-        layoutParams2.width = dp(activity, 260);
+        layoutParams2.width = AndroidUtilities.dp(260.0f);
         this.wm.addView(this, this.lp);
         this.attachedToWindowManager.set(true);
         start();
@@ -179,16 +179,12 @@ public final class FrameMetricsOverlayView extends View {
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r19) {
+    protected void onDraw(android.graphics.Canvas r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.utils.FrameMetricsOverlayView.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(dp(getContext(), 260), (dp(getContext(), 8) * 2) + (dp(getContext(), 14) * Metric.values().length));
-    }
-
-    private static int dp(Context context, int i) {
-        return Math.round(i * context.getResources().getDisplayMetrics().density);
+        setMeasuredDimension(AndroidUtilities.dp(260.0f), (AndroidUtilities.dp(8.0f) * 2) + (AndroidUtilities.dp(14.0f) * (Metric.values().length + 6)));
     }
 }

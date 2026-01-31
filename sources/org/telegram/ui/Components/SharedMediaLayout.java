@@ -53,6 +53,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -445,7 +446,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     public void showChatPreview(DialogCell dialogCell) {
     }
 
-    static int access$14308(SharedMediaLayout sharedMediaLayout) {
+    static int access$14408(SharedMediaLayout sharedMediaLayout) {
         int i = sharedMediaLayout.tabIndexCounter;
         sharedMediaLayout.tabIndexCounter = i + 1;
         return i;
@@ -1100,7 +1101,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         public ArrayList frozenMessages = new ArrayList();
         RecyclerView.RecycledViewPool recycledViewPool = new RecyclerView.RecycledViewPool();
 
-        static int access$11710(SharedMediaData sharedMediaData) {
+        static int access$11810(SharedMediaData sharedMediaData) {
             int i = sharedMediaData.endLoadingStubs;
             sharedMediaData.endLoadingStubs = i - 1;
             return i;
@@ -1855,6 +1856,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         }
                     }
                     SharedMediaLayout.this.checkStoriesTabsPosition();
+                    SharedMediaLayout.this.checkUi_topPanelLayoutY();
                     SharedMediaLayout.this.invalidateBlur();
                 }
             };
@@ -2599,7 +2601,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchCollapse() {
+        public void onSearchCollapse() throws Resources.NotFoundException, NumberFormatException {
             SharedMediaLayout.this.searching = false;
             SharedMediaLayout.this.searchingReaction = null;
             ActionBarMenuItem actionBarMenuItem = SharedMediaLayout.this.searchItemIcon;
@@ -2639,7 +2641,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onTextChanged(EditText editText) {
+        public void onTextChanged(EditText editText) throws Resources.NotFoundException, NumberFormatException {
             String string = editText.getText().toString();
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.setSearchQuery(string);
@@ -2828,7 +2830,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             if (closestTab == 13 && user != null && user.bot && user.bot_has_main_app && user.bot_can_edit && SharedMediaLayout.this.botPreviewsContainer != null) {
                 ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, SharedMediaLayout.this.photoVideoOptionsItem).addIf(SharedMediaLayout.this.botPreviewsContainer.getItemsCount() < SharedMediaLayout.this.profileActivity.getMessagesController().botPreviewMediasMax, R.drawable.msg_addbot, LocaleController.getString(R.string.ProfileBotAddPreview), new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException, IOException {
                         this.f$0.lambda$onClick$4();
                     }
                 }).addIf(SharedMediaLayout.this.botPreviewsContainer.getItemsCount() > 1 && !SharedMediaLayout.this.botPreviewsContainer.isSelectedAll(), R.drawable.tabs_reorder, LocaleController.getString(R.string.ProfileBotReorder), new Runnable() {
@@ -3008,7 +3010,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             giftsList.invalidate(true);
         }
 
-        public void lambda$onClick$4() {
+        public void lambda$onClick$4() throws Resources.NotFoundException, IOException {
             StoryRecorder.getInstance(SharedMediaLayout.this.profileActivity.getParentActivity(), SharedMediaLayout.this.profileActivity.getCurrentAccount()).openBot(SharedMediaLayout.this.dialog_id, SharedMediaLayout.this.botPreviewsContainer.getCurrentLang(), null);
         }
 
@@ -3520,6 +3522,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     }
                 }
             }
+            SharedMediaLayout.this.checkUi_topPanelLayoutY();
         }
     }
 
@@ -3812,7 +3815,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.topLayoutPadding = (int) this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(14.0f));
         ProfileGiftsContainer profileGiftsContainer = this.giftsContainer;
         if (profileGiftsContainer != null) {
-            profileGiftsContainer.setPaddingTop((int) this.topPanelLayout.getAnimatedHeightWithPadding(0.0f));
+            profileGiftsContainer.setPaddingTop((int) this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(10.0f)));
         }
         MediaPage[] mediaPageArr = this.mediaPages;
         if (mediaPageArr != null) {
@@ -5639,9 +5642,8 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             mediaPageArr[i5].setTranslationY(this.topPadding - this.lastMeasuredTopPadding);
             i5++;
         }
-        DialogsActivityTopPanelLayout dialogsActivityTopPanelLayout = this.topPanelLayout;
-        if (dialogsActivityTopPanelLayout != null) {
-            dialogsActivityTopPanelLayout.setTranslationY(AndroidUtilities.dp(48.0f) + i2);
+        if (this.topPanelLayout != null) {
+            checkUi_topPanelLayoutY();
         } else {
             FragmentContextView fragmentContextView = this.fragmentContextView;
             if (fragmentContextView != null) {
@@ -5655,6 +5657,17 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.additionalFloatingTranslation = i2;
         ChatActionCell chatActionCell = this.floatingDateView;
         chatActionCell.setTranslationY((chatActionCell.getTag() == null ? -AndroidUtilities.dp(48.0f) : 0) + this.additionalFloatingTranslation);
+    }
+
+    public void checkUi_topPanelLayoutY() {
+        if (this.topPanelLayout != null) {
+            ProfileStoriesCollectionTabs profileStoriesCollectionTabs = this.storiesContainer;
+            float fDp = 0.0f;
+            if (profileStoriesCollectionTabs != null) {
+                fDp = 0.0f + (AndroidUtilities.dp(38.0f) * this.storiesContainer.getVisibilityFactor() * (1.0f - Math.abs(profileStoriesCollectionTabs.getTranslationX() / this.storiesContainer.getMeasuredWidth())));
+            }
+            this.topPanelLayout.setTranslationY(this.topPadding + fDp);
+        }
     }
 
     @Override
@@ -6501,7 +6514,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.switchToCurrentSelectedMode(boolean):void");
     }
 
-    public void lambda$switchToCurrentSelectedMode$36(boolean z, int i, View view) {
+    public void lambda$switchToCurrentSelectedMode$36(boolean z, int i, View view) throws Resources.NotFoundException, IOException {
         if (z) {
             openAddStoriesToAlbumSheet(this.profileActivity, this.dialog_id, i);
         } else {
@@ -6510,7 +6523,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$switchToCurrentSelectedMode$37(View view) {
+    public void lambda$switchToCurrentSelectedMode$37(View view) throws Resources.NotFoundException, IOException {
         this.profileActivity.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
         StoryRecorder.getInstance(this.profileActivity.getParentActivity(), this.profileActivity.getCurrentAccount()).open(null);
     }
@@ -10331,6 +10344,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 fAbs = 1.0f - (Math.abs(this.storiesContainer.getTranslationX()) / this.storiesContainer.getMeasuredWidth());
             }
         }
+        checkUi_topPanelLayoutY();
         if (this.subTabsVisibilityFactor != fAbs) {
             this.subTabsVisibilityFactor = fAbs;
             invalidateBlur();
@@ -10840,7 +10854,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
 
         private StoryAlbumData(Context context, int i) {
             this.albumId = i;
-            this.tabType = SharedMediaLayout.getStoryAlbumType(SharedMediaLayout.access$14308(SharedMediaLayout.this));
+            this.tabType = SharedMediaLayout.getStoryAlbumType(SharedMediaLayout.access$14408(SharedMediaLayout.this));
             this.adapter = new StoriesAdapter(context, i, false) {
                 {
                     SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;

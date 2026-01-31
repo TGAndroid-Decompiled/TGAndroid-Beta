@@ -173,7 +173,7 @@ public class TranslateController extends BaseController {
     public static boolean isSummarizable(MessageObject messageObject) {
         TLRPC.Message message;
         int i;
-        return (messageObject == null || (message = messageObject.messageOwner) == null || (!BuildVars.DEBUG_PRIVATE_VERSION && message.summary_from_language == null) || messageObject.isOutOwner() || messageObject.isRestrictedMessage || messageObject.isSponsored() || (((i = messageObject.type) != 0 && i != 3 && i != 1 && i != 9 && i != 14 && i != 17) || TextUtils.isEmpty(messageObject.messageOwner.message) || messageObject.messageOwner.message.length() <= 100)) ? false : true;
+        return (messageObject == null || (message = messageObject.messageOwner) == null || message.summary_from_language == null || messageObject.isOutOwner() || messageObject.isRestrictedMessage || messageObject.isSponsored() || ((i = messageObject.type) != 0 && i != 3 && i != 1 && i != 9 && i != 14 && i != 17) || TextUtils.isEmpty(messageObject.messageOwner.message) || messageObject.messageOwner.message.length() <= 100) ? false : true;
     }
 
     public static boolean isTranslatable(MessageObject messageObject) {

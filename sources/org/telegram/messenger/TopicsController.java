@@ -795,13 +795,13 @@ public class TopicsController extends BaseController {
         tL_channels_toggleViewForumAsMessages.enabled = z;
         getConnectionsManager().sendRequest(tL_channels_toggleViewForumAsMessages, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$toggleViewForumAsMessages$18(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$toggleViewForumAsMessages$18(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }

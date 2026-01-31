@@ -549,13 +549,13 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         tL_messages_hideChatJoinRequest.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(user);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_hideChatJoinRequest, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$hideChatJoinRequest$7(tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$hideChatJoinRequest$7(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final TLRPC.User user, final TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$hideChatJoinRequest$7(final TLRPC.TL_chatInviteImporter tL_chatInviteImporter, final boolean z, final TLRPC.User user, final TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
         }

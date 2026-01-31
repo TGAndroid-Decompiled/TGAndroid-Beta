@@ -35,4 +35,11 @@ public class SearchTabsAndFiltersLayout extends FrameLayout {
         this.blurredBackgroundDrawable = blurredBackgroundDrawable;
         setBackground(blurredBackgroundDrawable);
     }
+
+    public void updateColors() {
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.updateColors();
+        }
+    }
 }

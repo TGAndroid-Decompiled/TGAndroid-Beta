@@ -208,6 +208,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public void onUploadProgressChanged(float f) {
         ImageUpdater.ImageUpdaterDelegate.CC.$default$onUploadProgressChanged(this, f);
     }
@@ -2824,5 +2829,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         arrayList.add(new ThemeDescription(this.listView, 0, null, null, null, null, Theme.key_chat_inTimeSelectedText));
         arrayList.add(new ThemeDescription(this.listView, 0, null, null, null, null, Theme.key_chat_outTimeSelectedText));
         return arrayList;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

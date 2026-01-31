@@ -91,8 +91,10 @@ public class EnableTopicsActivity extends BaseFragment {
             }
         };
         this.listView = universalRecyclerView;
-        universalRecyclerView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider));
+        universalRecyclerView.setSections();
+        this.listView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider));
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 119));
+        this.actionBar.setAdaptiveBackground(this.listView);
         this.fragmentView = frameLayout;
         return frameLayout;
     }

@@ -522,7 +522,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             }
         });
         this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(this.searchListView, true);
-        this.postsAreNew = MessagesController.getGlobalMainSettings().getInt("searchpostsnew", 0) < 3;
+        this.postsAreNew = false;
         PostsSearchContainer postsSearchContainer = new PostsSearchContainer(context, dialogsActivity);
         this.postsSearchContainer = postsSearchContainer;
         postsSearchContainer.listView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);

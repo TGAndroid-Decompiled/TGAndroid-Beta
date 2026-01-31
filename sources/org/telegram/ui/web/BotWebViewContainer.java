@@ -1447,13 +1447,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void lambda$onEventReceived$12(final String[] strArr, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 this.f$0.lambda$onEventReceived$11(tLObject, strArr, tL_error, alertDialog);
             }
         });
     }
 
-    public void lambda$onEventReceived$11(TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, AlertDialog alertDialog) throws InterruptedException {
+    public void lambda$onEventReceived$11(TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, AlertDialog alertDialog) {
         if (tLObject != null) {
             strArr[0] = "allowed";
             if (tLObject instanceof TLRPC.Updates) {

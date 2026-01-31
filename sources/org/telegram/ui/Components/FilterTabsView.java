@@ -198,7 +198,7 @@ public abstract class FilterTabsView extends FrameLayout {
                 tabCounter = this.counter;
             }
             if (tabCounter > 0) {
-                iDp = AndroidUtilities.dp(5.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(String.format("%d", Integer.valueOf(tabCounter))))) + AndroidUtilities.dp(10.0f);
+                iDp = AndroidUtilities.dp(-2.0f) + Math.max(AndroidUtilities.dp(7.333f), (int) Math.ceil(FilterTabsView.this.textCounterPaint.measureText(String.format("%d", Integer.valueOf(tabCounter))))) + AndroidUtilities.dp(10.0f);
             } else if (!this.isDefault && FilterTabsView.this.isEditing) {
                 iDp = AndroidUtilities.dp(12.333f);
             }
@@ -329,11 +329,11 @@ public abstract class FilterTabsView extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(this.currentTab.getWidth(false) + AndroidUtilities.dp(20.0f) + FilterTabsView.this.additionalTabWidth, View.MeasureSpec.getSize(i2));
+            setMeasuredDimension(this.currentTab.getWidth(false) + AndroidUtilities.dp(24.0f) + FilterTabsView.this.additionalTabWidth, View.MeasureSpec.getSize(i2));
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r39) {
+        protected void onDraw(android.graphics.Canvas r38) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterTabsView.TabView.onDraw(android.graphics.Canvas):void");
         }
 
@@ -632,7 +632,7 @@ public abstract class FilterTabsView extends FrameLayout {
         textPaint3.setStrokeWidth(AndroidUtilities.dp(1.5f));
         GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, null);
         this.selectorDrawable = gradientDrawable;
-        float fDpf2 = AndroidUtilities.dpf2(13.0f);
+        float fDpf2 = AndroidUtilities.dpf2(14.0f);
         gradientDrawable.setCornerRadii(new float[]{fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2, fDpf2});
         gradientDrawable.setColor(Theme.getColor(this.tabLineColorKey, resourcesProvider));
         setHorizontalScrollBarEnabled(false);
@@ -713,7 +713,7 @@ public abstract class FilterTabsView extends FrameLayout {
         this.layoutManager = linearLayoutManager;
         recyclerListView.setLayoutManager(linearLayoutManager);
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(recyclerListView);
-        int iMax = Math.max(0, AndroidUtilities.dp(13.5f));
+        int iMax = Math.max(0, AndroidUtilities.dp(11.5f));
         this.listViewPaddingH = iMax;
         recyclerListView.setPadding(iMax, 0, iMax, 0);
         recyclerListView.setClipToPadding(false);
@@ -1032,7 +1032,7 @@ public abstract class FilterTabsView extends FrameLayout {
         Tab tab = new Tab(i, text(str, arrayList), z);
         tab.isDefault = z2;
         tab.isLocked = z3;
-        this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(20.0f);
+        this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(24.0f);
         this.tabs.add(tab);
     }
 
@@ -1114,7 +1114,7 @@ public abstract class FilterTabsView extends FrameLayout {
             this.positionToWidth.put(i, width);
             this.positionToCount.put(i, ((Tab) this.tabs.get(i)).counter);
             this.positionToX.put(i, (this.additionalTabWidth / 2) + iDp);
-            iDp += width + AndroidUtilities.dp(20.0f) + this.additionalTabWidth;
+            iDp += width + AndroidUtilities.dp(24.0f) + this.additionalTabWidth;
         }
     }
 
@@ -1123,7 +1123,7 @@ public abstract class FilterTabsView extends FrameLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterTabsView.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
-    private void drawSelector(android.graphics.Canvas r18) {
+    private void drawSelector(android.graphics.Canvas r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterTabsView.drawSelector(android.graphics.Canvas):void");
     }
 
@@ -1315,7 +1315,7 @@ public abstract class FilterTabsView extends FrameLayout {
             findDefaultTab().setTitle(LocaleController.getString(R.string.FilterAllChats), null, false);
             int size = this.tabs.size();
             for (int i3 = 0; i3 < size; i3++) {
-                this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(20.0f);
+                this.allTabsWidth += ((Tab) this.tabs.get(i3)).getWidth(true) + AndroidUtilities.dp(24.0f);
             }
         }
     }

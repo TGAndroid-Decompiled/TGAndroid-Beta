@@ -760,9 +760,9 @@ public abstract class ThemeColors {
         iArr[Theme.key_glass_tabSelected] = -15035930;
         iArr[Theme.key_glass_tabSelectedText] = -15892529;
         iArr[Theme.key_glass_tabUnselected] = -15065823;
-        iArr[Theme.key_bot_button_danger] = -1495129558;
-        iArr[Theme.key_bot_button_primary] = -1509918256;
-        iArr[Theme.key_bot_button_success] = -1508470489;
+        iArr[Theme.key_botKeyboard_button_danger] = -2406842;
+        iArr[Theme.key_botKeyboard_button_primary] = -14509328;
+        iArr[Theme.key_botKeyboard_button_success] = -12537547;
         iArr[Theme.key_telegram_color_dialogsLogo] = -15299621;
         iArr[Theme.key_telegram_color] = -14509328;
         iArr[Theme.key_telegram_color_text] = -14054705;
@@ -1535,9 +1535,9 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_glass_targetMainTopPanel, "glass_targetMainTopPanel");
         sparseArray.put(Theme.key_glass_tabSelectedText, "glass_tabSelectedText");
         sparseArray.put(Theme.key_glass_tabUnselected, "glass_tabUnselected");
-        sparseArray.put(Theme.key_bot_button_danger, "bot_button_danger");
-        sparseArray.put(Theme.key_bot_button_primary, "bot_button_primary");
-        sparseArray.put(Theme.key_bot_button_success, "bot_button_success");
+        sparseArray.put(Theme.key_botKeyboard_button_danger, "botKeyboard_button_danger");
+        sparseArray.put(Theme.key_botKeyboard_button_primary, "botKeyboard_button_primary");
+        sparseArray.put(Theme.key_botKeyboard_button_success, "botKeyboard_button_success");
         sparseArray.put(Theme.key_telegram_color, "telegram_color");
         sparseArray.put(Theme.key_telegram_color_text, "telegram_color_text");
         sparseArray.put(Theme.key_telegram_color_dialogsLogo, "telegram_color_dialogsLogo");

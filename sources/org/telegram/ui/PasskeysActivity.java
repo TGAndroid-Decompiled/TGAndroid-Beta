@@ -47,6 +47,11 @@ public class PasskeysActivity extends BaseFragment {
     private UniversalRecyclerView listView;
     private ArrayList passkeys;
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public PasskeysActivity(ArrayList arrayList) {
         this.passkeys = arrayList;
     }
@@ -377,16 +382,16 @@ public class PasskeysActivity extends BaseFragment {
         featureCell3.set(R.drawable.menu_privacy, LocaleController.getString(R.string.PasskeyFeature3Title), LocaleController.getString(R.string.PasskeyFeature3Subtitle));
         linearLayout.addView(featureCell3, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 8.0f));
         final BottomSheet bottomSheetCreate = builder.create();
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.PasskeyFeatureButton), false);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        final ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round.setText(LocaleController.getString(R.string.PasskeyFeatureButton), false);
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PasskeysActivity.lambda$showLearnSheet$9(buttonWithCounterView, context, i, bottomSheetCreate, view);
+                PasskeysActivity.lambda$showLearnSheet$9(round, context, i, bottomSheetCreate, view);
             }
         });
         if (z) {
-            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 16.0f, 0.0f, 8.0f));
+            linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 0.0f, 16.0f, 0.0f, 8.0f));
         }
         bottomSheetCreate.fixNavigationBar();
         bottomSheetCreate.show();
@@ -484,5 +489,11 @@ public class PasskeysActivity extends BaseFragment {
                 this.f$0.added(passkey);
             }
         }, 150L);
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

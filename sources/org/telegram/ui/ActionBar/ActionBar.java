@@ -1871,72 +1871,34 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         setAdaptiveBackground(recyclerView, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
     }
 
-    public void setAdaptiveBackground(RecyclerView recyclerView, int i, int i2) {
-        this.adaptiveBackground = true;
+    public void setAdaptiveBackground(final RecyclerView recyclerView, int i, int i2) {
         this.adaptive_topColorKey = i;
         this.adaptive_lowerColorKey = i2;
-        adaptive_updateColor();
-        recyclerView.addOnScrollListener(new AnonymousClass10());
-    }
-
-    class AnonymousClass10 extends RecyclerView.OnScrollListener {
-        AnonymousClass10() {
-        }
-
-        @Override
-        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-            final boolean z = !recyclerView.canScrollVertically(-1);
-            if (ActionBar.this.onTop == z) {
-                return;
-            }
-            if (ActionBar.this.adaptive_animator != null) {
-                ActionBar.this.adaptive_animator.cancel();
-            }
-            ActionBar actionBar = ActionBar.this;
-            actionBar.adaptive_animator = ValueAnimator.ofFloat(actionBar.onTopAnimated, ActionBar.this.onTop = z ? 1.0f : 0.0f);
-            ActionBar.this.adaptive_animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$onScrolled$0(valueAnimator);
-                }
-            });
-            ActionBar.this.adaptive_animator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ActionBar.this.onTopAnimated = z ? 1.0f : 0.0f;
-                    ActionBar.this.adaptive_updateColor();
-                }
-            });
-            ActionBar.this.adaptive_animator.setDuration(320L);
-            ActionBar.this.adaptive_animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            ActionBar.this.adaptive_animator.start();
-        }
-
-        public void lambda$onScrolled$0(ValueAnimator valueAnimator) {
-            ActionBar.this.onTopAnimated = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            ActionBar.this.adaptive_updateColor();
-        }
-    }
-
-    public void setAdaptiveBackground(SectionsScrollView sectionsScrollView) {
-        setAdaptiveBackground(sectionsScrollView, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
-    }
-
-    public void setAdaptiveBackground(final SectionsScrollView sectionsScrollView, int i, int i2) {
-        this.adaptiveBackground = true;
-        this.adaptive_topColorKey = i;
-        this.adaptive_lowerColorKey = i2;
-        adaptive_updateColor();
-        sectionsScrollView.onScroll(new Runnable() {
+        final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setAdaptiveBackground$6(sectionsScrollView);
+                this.f$0.lambda$setAdaptiveBackground$6(recyclerView);
+            }
+        };
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView2, int i3, int i4) {
+                runnable.run();
             }
         });
+        if (this.adaptiveBackground) {
+            runnable.run();
+            return;
+        }
+        this.adaptiveBackground = true;
+        boolean zCanScrollVertically = recyclerView.canScrollVertically(-1);
+        this.onTop = !zCanScrollVertically;
+        this.onTopAnimated = !zCanScrollVertically ? 1.0f : 0.0f;
+        adaptive_updateColor();
     }
 
-    public void lambda$setAdaptiveBackground$6(SectionsScrollView sectionsScrollView) {
-        boolean zCanScrollVertically = sectionsScrollView.canScrollVertically(-1);
+    public void lambda$setAdaptiveBackground$6(RecyclerView recyclerView) {
+        boolean zCanScrollVertically = recyclerView.canScrollVertically(-1);
         final boolean z = !zCanScrollVertically;
         if (this.onTop == z) {
             return;
@@ -1968,6 +1930,69 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     }
 
     public void lambda$setAdaptiveBackground$5(ValueAnimator valueAnimator) {
+        this.onTopAnimated = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        adaptive_updateColor();
+    }
+
+    public void setAdaptiveBackground(SectionsScrollView sectionsScrollView) {
+        setAdaptiveBackground(sectionsScrollView, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
+    }
+
+    public void setAdaptiveBackground(final SectionsScrollView sectionsScrollView, int i, int i2) {
+        this.adaptive_topColorKey = i;
+        this.adaptive_lowerColorKey = i2;
+        adaptive_updateColor();
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$setAdaptiveBackground$8(sectionsScrollView);
+            }
+        };
+        sectionsScrollView.onScroll(runnable);
+        if (this.adaptiveBackground) {
+            runnable.run();
+            return;
+        }
+        this.adaptiveBackground = true;
+        boolean zCanScrollVertically = sectionsScrollView.canScrollVertically(-1);
+        this.onTop = !zCanScrollVertically;
+        this.onTopAnimated = !zCanScrollVertically ? 1.0f : 0.0f;
+        adaptive_updateColor();
+    }
+
+    public void lambda$setAdaptiveBackground$8(SectionsScrollView sectionsScrollView) {
+        boolean zCanScrollVertically = sectionsScrollView.canScrollVertically(-1);
+        final boolean z = !zCanScrollVertically;
+        if (this.onTop == z) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.adaptive_animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        float f = this.onTopAnimated;
+        this.onTop = z;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, !zCanScrollVertically ? 1.0f : 0.0f);
+        this.adaptive_animator = valueAnimatorOfFloat;
+        valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                this.f$0.lambda$setAdaptiveBackground$7(valueAnimator2);
+            }
+        });
+        this.adaptive_animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ActionBar.this.onTopAnimated = z ? 1.0f : 0.0f;
+                ActionBar.this.adaptive_updateColor();
+            }
+        });
+        this.adaptive_animator.setDuration(320L);
+        this.adaptive_animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.adaptive_animator.start();
+    }
+
+    public void lambda$setAdaptiveBackground$7(ValueAnimator valueAnimator) {
         this.onTopAnimated = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         adaptive_updateColor();
     }

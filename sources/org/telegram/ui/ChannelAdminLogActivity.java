@@ -10,6 +10,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -2831,7 +2832,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) {
+            public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) throws Resources.NotFoundException {
                 MessageObject messageObject = chatMessageCell.getMessageObject().replyMessageObject;
                 if (messageObject.getDialogId() == (-ChannelAdminLogActivity.this.currentChat.id)) {
                     for (int i2 = 0; i2 < ChannelAdminLogActivity.this.filteredMessages.size(); i2++) {
@@ -3100,7 +3101,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -3543,7 +3544,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         return arrayList;
     }
 
-    public void scrollToMessage(org.telegram.messenger.MessageObject r13, boolean r14) {
+    public void scrollToMessage(org.telegram.messenger.MessageObject r13, boolean r14) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.scrollToMessage(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -3554,7 +3555,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$startMessageUnselect$25();
             }
         };
@@ -3562,7 +3563,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         AndroidUtilities.runOnUIThread(runnable2, this.highlightMessageQuote != null ? 2500L : 1000L);
     }
 
-    public void lambda$startMessageUnselect$25() {
+    public void lambda$startMessageUnselect$25() throws Resources.NotFoundException {
         this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuote = null;
@@ -3586,11 +3587,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.highlightMessageQuote = null;
     }
 
-    public void updateVisibleRows() {
+    public void updateVisibleRows() throws Resources.NotFoundException {
         updateVisibleRows(false);
     }
 
-    private void updateVisibleRows(boolean z) {
+    private void updateVisibleRows(boolean z) throws Resources.NotFoundException {
         String str;
         RecyclerListView recyclerListView = this.chatListView;
         if (recyclerListView == null) {
@@ -3751,7 +3752,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onEndAnimation() {
+        public void onEndAnimation() throws Resources.NotFoundException {
             if (this.scrollTo != null) {
                 int iIndexOf = ChannelAdminLogActivity.this.chatAdapter.messagesStartRow + ChannelAdminLogActivity.this.filteredMessages.indexOf(this.scrollTo);
                 if (iIndexOf >= 0) {

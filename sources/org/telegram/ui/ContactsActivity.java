@@ -159,11 +159,6 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     @Override
-    public boolean drawEdgeNavigationBar() {
-        return false;
-    }
-
-    @Override
     public boolean isSupportEdgeToEdge() {
         return true;
     }
@@ -1187,6 +1182,14 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         checkUi_floatingButtonPosition();
         checkUi_emptyView();
         return WindowInsetsCompat.CONSUMED;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.navigationBarHeight = i4;
+        checkUi_listViewPadding();
+        checkUi_floatingButtonPosition();
+        checkUi_emptyView();
     }
 
     public void checkUi_emptyView() {

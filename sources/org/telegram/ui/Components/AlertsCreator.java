@@ -920,13 +920,13 @@ public abstract class AlertsCreator {
         }
         accountInstance.getConnectionsManager().sendRequest(tL_contacts_blockFromReplies, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 AlertsCreator.lambda$showBlockReportSpamReplyAlert$21(accountInstance, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$showBlockReportSpamReplyAlert$21(AccountInstance accountInstance, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$showBlockReportSpamReplyAlert$21(AccountInstance accountInstance, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -7944,7 +7944,7 @@ public abstract class AlertsCreator {
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     AlertsCreator.lambda$showCallsForbidden$219(i, updates);
                 }
             });
@@ -7990,7 +7990,7 @@ public abstract class AlertsCreator {
         SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupcall.call.invite_link, j));
     }
 
-    public static void lambda$showCallsForbidden$219(int i, TLRPC.Updates updates) throws InterruptedException {
+    public static void lambda$showCallsForbidden$219(int i, TLRPC.Updates updates) {
         MessagesController.getInstance(i).processUpdates(updates, false);
     }
 

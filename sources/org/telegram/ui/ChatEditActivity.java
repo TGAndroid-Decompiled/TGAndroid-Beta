@@ -74,6 +74,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.Reactions.ChatCustomReactionsEditActivity;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
+import org.telegram.ui.Components.SectionsScrollView;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.LocationActivity;
@@ -146,6 +147,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     private PhotoViewer.PhotoViewerProvider provider;
     private TextCell publicLinkCell;
     private TextCell reactionsCell;
+    private SectionsScrollView scrollView;
     private TextCell setAvatarCell;
     private LinearLayout settingsContainer;
     private TextInfoPrivacyCell settingsSectionCell;
@@ -183,6 +185,11 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     @Override
     public PhotoViewer.PlaceProviderObject getCloseIntoObject() {
         return ImageUpdater.ImageUpdaterDelegate.CC.$default$getCloseIntoObject(this);
+    }
+
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
     }
 
     @Override
@@ -664,7 +671,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         alertDialog.dismiss();
         getConnectionsManager().sendRequest(tL_channels_toggleAutotranslation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$createView$22(z, tLObject, tL_error);
             }
         }, 64);
@@ -695,7 +702,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         presentFragment(StatisticActivity.create(chat));
     }
 
-    public void lambda$createView$22(final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$createView$22(final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -2270,6 +2277,18 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         BackupImageView backupImageView = this.avatarImage;
         if (backupImageView != null) {
             backupImageView.invalidate();
+        }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        LinearLayout linearLayout = this.linearLayout;
+        if (linearLayout != null) {
+            linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + i4);
+        }
+        UndoView undoView = this.undoView;
+        if (undoView != null) {
+            undoView.setTranslationY(-i4);
         }
     }
 }

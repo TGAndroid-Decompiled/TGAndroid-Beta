@@ -1483,7 +1483,7 @@ public class QrActivity extends BaseFragment {
             frameLayout.addView(view2);
             TextView textView2 = new TextView(parentActivity);
             this.shareButton = textView2;
-            textView2.setBackground(Theme.AdaptiveRipple.filledRect(baseFragment.getThemedColor(i), 6.0f));
+            textView2.setBackground(Theme.AdaptiveRipple.filledRect(baseFragment.getThemedColor(i), 24.0f));
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
             textView2.setEllipsize(truncateAt);
             textView2.setGravity(17);
@@ -1497,7 +1497,7 @@ public class QrActivity extends BaseFragment {
             if (UserConfig.getInstance(((BaseFragment) QrActivity.this).currentAccount).getClientUserId() == QrActivity.this.userId) {
                 LinearLayout linearLayout = new LinearLayout(parentActivity);
                 this.scanButtonWrap = linearLayout;
-                linearLayout.setBackground(Theme.AdaptiveRipple.createRect(ColorUtils.setAlphaComponent(Theme.AdaptiveRipple.calcRippleColor(baseFragment.getThemedColor(i)), 25), 6.0f));
+                linearLayout.setBackground(Theme.AdaptiveRipple.createRect(ColorUtils.setAlphaComponent(Theme.AdaptiveRipple.calcRippleColor(baseFragment.getThemedColor(i)), 25), 24.0f));
                 linearLayout.setOrientation(0);
                 linearLayout.setGravity(17);
                 ImageView imageView = new ImageView(parentActivity);

@@ -418,6 +418,50 @@ public class Bulletin {
                 Bulletin.this.layout.onShow();
                 Bulletin bulletin = Bulletin.this;
                 bulletin.currentDelegate = Bulletin.findDelegate(bulletin.containerFragment, Bulletin.this.containerLayout);
+                if (Bulletin.this.currentDelegate == null && Bulletin.this.containerFragment != null) {
+                    final BaseFragment baseFragment = Bulletin.this.containerFragment;
+                    Bulletin.this.currentDelegate = new Delegate() {
+                        @Override
+                        public boolean allowLayoutChanges() {
+                            return Delegate.CC.$default$allowLayoutChanges(this);
+                        }
+
+                        @Override
+                        public boolean bottomOffsetAnimated() {
+                            return Delegate.CC.$default$bottomOffsetAnimated(this);
+                        }
+
+                        @Override
+                        public boolean clipWithGradient(int i9) {
+                            return Delegate.CC.$default$clipWithGradient(this, i9);
+                        }
+
+                        @Override
+                        public int getTopOffset(int i9) {
+                            return Delegate.CC.$default$getTopOffset(this, i9);
+                        }
+
+                        @Override
+                        public void onBottomOffsetChange(float f) {
+                            Delegate.CC.$default$onBottomOffsetChange(this, f);
+                        }
+
+                        @Override
+                        public void onHide(Bulletin bulletin2) {
+                            Delegate.CC.$default$onHide(this, bulletin2);
+                        }
+
+                        @Override
+                        public void onShow(Bulletin bulletin2) {
+                            Delegate.CC.$default$onShow(this, bulletin2);
+                        }
+
+                        @Override
+                        public int getBottomOffset(int i9) {
+                            return baseFragment.getBottomInset();
+                        }
+                    };
+                }
                 if (Bulletin.this.bottomOffsetSpring == null || !Bulletin.this.bottomOffsetSpring.isRunning()) {
                     Bulletin bulletin2 = Bulletin.this;
                     bulletin2.lastBottomOffset = bulletin2.currentDelegate != null ? Bulletin.this.currentDelegate.getBottomOffset(Bulletin.this.tag) : 0;
