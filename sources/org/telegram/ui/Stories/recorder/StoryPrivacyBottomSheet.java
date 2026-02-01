@@ -250,7 +250,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             searchUsersCell.setBackgroundColor(StoryPrivacyBottomSheet.this.getThemedColor(i));
             this.searchField.setOnSearchTextChange(new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws NumberFormatException {
                     this.f$0.onSearch((String) obj);
                 }
             });
@@ -330,7 +330,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
 
                 @Override
-                public final void onItemClick(View view, int i2, float f, float f2) {
+                public final void onItemClick(View view, int i2, float f, float f2) throws NumberFormatException {
                     this.f$0.lambda$new$14(context, view, i2, f, f2);
                 }
             });
@@ -384,7 +384,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.button = buttonWithCounterView;
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws NumberFormatException {
                     this.f$0.onButton1Click(view);
                 }
             });
@@ -421,7 +421,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$14(Context context, View view, int i, float f, float f2) {
+        public void lambda$new$14(Context context, View view, int i, float f, float f2) throws NumberFormatException {
             TLRPC.ChatParticipants chatParticipants;
             ArrayList<TLRPC.ChatParticipant> arrayList;
             if (i < 0 || i >= this.items.size()) {
@@ -493,7 +493,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                         itemOptionsMakeOptions.addGap();
                         ItemOptions.addAlbumsItemOptions(itemOptionsMakeOptions, StoryPrivacyBottomSheet.this.getStoriesController().getStoryAlbumsList(dialogId), StoryPrivacyBottomSheet.this.selectedAlbums, false, null, new Utilities.Callback() {
                             @Override
-                            public final void run(Object obj) {
+                            public final void run(Object obj) throws NumberFormatException {
                                 this.f$0.lambda$new$10(itemOptionsMakeOptions, (StoriesController.StoryAlbum) obj);
                             }
                         });
@@ -530,7 +530,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (itemInner.sendAs && StoryPrivacyBottomSheet.this.canChangePeer) {
                 new ChoosePeerSheet(context, ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, StoryPrivacyBottomSheet.this.isLive, StoryPrivacyBottomSheet.this.selectedPeer, new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) {
+                    public final void run(Object obj) throws NumberFormatException {
                         this.f$0.lambda$new$2((TLRPC.InputPeer) obj);
                     }
                 }, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).show();
@@ -671,7 +671,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        public void lambda$new$2(TLRPC.InputPeer inputPeer) {
+        public void lambda$new$2(TLRPC.InputPeer inputPeer) throws NumberFormatException {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
             storyPrivacyBottomSheet.selectedPeer = inputPeer;
             storyPrivacyBottomSheet.selectedAlbums.clear();
@@ -702,7 +702,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             } else {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$new$5(j, chatFullLoadChatInfoInQueue);
                     }
                 });
@@ -713,7 +713,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             if (z) {
                 MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadChannelParticipants(Long.valueOf(j), new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) {
+                    public final void run(Object obj) throws NumberFormatException {
                         this.f$0.lambda$new$3(j, (TLRPC.TL_channels_channelParticipants) obj);
                     }
                 }, 200);
@@ -722,7 +722,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$3(long j, TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants) {
+        public void lambda$new$3(long j, TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants) throws NumberFormatException {
             long peerDialogId;
             AlertDialog alertDialog = this.progressDialog;
             if (alertDialog != null) {
@@ -750,7 +750,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             selectChat(j, tL_chatParticipants);
         }
 
-        public void lambda$new$5(long j, TLRPC.ChatFull chatFull) {
+        public void lambda$new$5(long j, TLRPC.ChatFull chatFull) throws NumberFormatException {
             selectChat(j, chatFull.participants);
         }
 
@@ -768,13 +768,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public void lambda$new$8(long j, String str) {
             StoryPrivacyBottomSheet.this.getStoriesController().createAlbum(j, str, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws NumberFormatException {
                     this.f$0.lambda$new$7((StoriesController.StoryAlbum) obj);
                 }
             });
         }
 
-        public void lambda$new$7(StoriesController.StoryAlbum storyAlbum) {
+        public void lambda$new$7(StoriesController.StoryAlbum storyAlbum) throws NumberFormatException {
             StoryPrivacyBottomSheet.this.selectedAlbums.add(Integer.valueOf(storyAlbum.album_id));
             updateItems(true);
             if (StoryPrivacyBottomSheet.this.onSelectedAlbums != null) {
@@ -782,7 +782,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$10(ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) {
+        public void lambda$new$10(ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) throws NumberFormatException {
             itemOptions.dismiss();
             updateItems(true);
             if (StoryPrivacyBottomSheet.this.onSelectedAlbums != null) {
@@ -805,7 +805,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 final CreateRtmpStreamBottomSheet[] createRtmpStreamBottomSheetArr = new CreateRtmpStreamBottomSheet[1];
                 CreateRtmpStreamBottomSheet createRtmpStreamBottomSheet = new CreateRtmpStreamBottomSheet(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, getgroupcallstreamrtmpurl, (TL_phone.groupCallStreamRtmpUrl) tLObject, StoryPrivacyBottomSheet.this.liveSettings ? null : new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) {
+                    public final void run(Object obj) throws NumberFormatException {
                         this.f$0.lambda$new$11(createRtmpStreamBottomSheetArr, (Browser.Progress) obj);
                     }
                 }, new DarkThemeResourceProvider());
@@ -819,7 +819,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$new$11(CreateRtmpStreamBottomSheet[] createRtmpStreamBottomSheetArr, Browser.Progress progress) {
+        public void lambda$new$11(CreateRtmpStreamBottomSheet[] createRtmpStreamBottomSheetArr, Browser.Progress progress) throws NumberFormatException {
             StoryPrivacyBottomSheet.this.isRtmpStream = true;
             createRtmpStreamBottomSheetArr[0].lambda$new$0();
             updateItems(true);
@@ -927,7 +927,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         @Override
-        public void didReceivedNotification(int i, int i2, Object... objArr) {
+        public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
             TLRPC.ChatFull chatFull;
             AlertDialog alertDialog;
             if (i != NotificationCenter.chatInfoDidLoad || (chatFull = (TLRPC.ChatFull) objArr[0]) == null || (alertDialog = this.progressDialog) == null || this.waitingForChatId != chatFull.id) {
@@ -939,7 +939,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             selectChat(chatFull.id, chatFull.participants);
         }
 
-        private void selectChat(final long j, TLRPC.ChatParticipants chatParticipants) {
+        private void selectChat(final long j, TLRPC.ChatParticipants chatParticipants) throws NumberFormatException {
             final ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             int i = this.pageType;
@@ -965,7 +965,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
                 new AlertDialog.Builder(getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).setMessage(arrayList2.size() + " members are not in your contact list").setPositiveButton("Add " + arrayList.size() + " contacts", new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
+                    public final void onClick(AlertDialog alertDialog, int i3) throws NumberFormatException {
                         this.f$0.lambda$selectChat$15(j, arrayList, alertDialog, i3);
                     }
                 }).setNegativeButton("Cancel", null).show();
@@ -982,7 +982,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        public void lambda$selectChat$15(long j, ArrayList arrayList, AlertDialog alertDialog, int i) {
+        public void lambda$selectChat$15(long j, ArrayList arrayList, AlertDialog alertDialog, int i) throws NumberFormatException {
             this.selectedUsersByGroup.put(Long.valueOf(j), arrayList);
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {
@@ -995,7 +995,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.scrollToBottom();
         }
 
-        private void updateSpans(boolean z) {
+        private void updateSpans(boolean z) throws NumberFormatException {
             Object chat;
             HashSet hashSetMergeUsers = StoryPrivacyBottomSheet.this.mergeUsers(this.selectedUsers, this.selectedUsersByGroup);
             int i = this.pageType;
@@ -1044,7 +1044,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.searchField.spansContainer.updateSpans(arrayList, arrayList2, z);
         }
 
-        public void onButton1Click(View view) {
+        public void onButton1Click(View view) throws NumberFormatException {
             StoryPrivacy storyPrivacy;
             if (this.button.isLoading()) {
                 return;
@@ -1162,13 +1162,13 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public void lambda$onButton1Click$17(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$onButton1Click$16(tLObject, messagesController);
                 }
             });
         }
 
-        public void lambda$onButton1Click$16(TLObject tLObject, MessagesController messagesController) {
+        public void lambda$onButton1Click$16(TLObject tLObject, MessagesController messagesController) throws NumberFormatException {
             boolean zContains;
             this.button.setLoading(false);
             if (tLObject != null) {
@@ -1211,7 +1211,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             } else {
                 StoryPrivacyBottomSheet storyPrivacyBottomSheetWhenSelectedShare = new StoryPrivacyBottomSheet(i, getContext(), ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider).whenSelectedShare(new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) {
+                    public final void run(Object obj) throws NumberFormatException {
                         this.f$0.lambda$onButton2Click$20((ArrayList) obj);
                     }
                 });
@@ -1220,7 +1220,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void lambda$onButton2Click$20(ArrayList arrayList) {
+        public void lambda$onButton2Click$20(ArrayList arrayList) throws NumberFormatException {
             StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
             storyPrivacyBottomSheet.done(new StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda13(StoryPrivacyBottomSheet.this));
         }
@@ -1255,7 +1255,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             return fMin;
         }
 
-        public void bind(int i) {
+        public void bind(int i) throws NumberFormatException {
             this.pageType = i;
             this.changelog.clear();
             this.selectedUsers.clear();
@@ -1294,7 +1294,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.lastSelectedType = -1;
         }
 
-        public void applyBlocklist(boolean z) {
+        public void applyBlocklist(boolean z) throws NumberFormatException {
             if (this.pageType != 6) {
                 return;
             }
@@ -1317,11 +1317,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
         }
 
-        public void updateItems(boolean z) {
+        public void updateItems(boolean z) throws NumberFormatException {
             updateItems(z, true);
         }
 
-        public void updateItems(boolean r20, boolean r21) {
+        public void updateItems(boolean r20, boolean r21) throws java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet.Page.updateItems(boolean, boolean):void");
         }
 
@@ -1383,7 +1383,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             return false;
         }
 
-        public void onSearch(String str) {
+        public void onSearch(String str) throws NumberFormatException {
             if (str != null && str.isEmpty()) {
                 str = null;
             }
@@ -2133,7 +2133,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
 
             @Override
-            public void bindView(View view, int i2, int i3) {
+            public void bindView(View view, int i2, int i3) throws NumberFormatException {
                 ((Page) view).bind(i3);
             }
         });
@@ -2326,7 +2326,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
 
             @Override
-            public void bindView(View view, int i2, int i3) {
+            public void bindView(View view, int i2, int i3) throws NumberFormatException {
                 ((Page) view).bind(i3);
             }
         });
@@ -2343,11 +2343,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
     }
 
-    public void done(StoryPrivacy storyPrivacy, Runnable runnable) {
+    public void done(StoryPrivacy storyPrivacy, Runnable runnable) throws NumberFormatException {
         done(storyPrivacy, runnable, false);
     }
 
-    private void done(final StoryPrivacy storyPrivacy, final Runnable runnable, boolean z) {
+    private void done(final StoryPrivacy storyPrivacy, final Runnable runnable, boolean z) throws NumberFormatException {
         ArrayList arrayList = new ArrayList();
         if (this.warnUsers != null && storyPrivacy != null) {
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -2378,7 +2378,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             }
             new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.StoryRestrictions)).setMessage(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder)).setPositiveButton(LocaleController.getString(R.string.Proceed), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i3) {
+                public final void onClick(AlertDialog alertDialog, int i3) throws NumberFormatException {
                     this.f$0.lambda$done$2(storyPrivacy, runnable, alertDialog, i3);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
@@ -2407,7 +2407,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
     }
 
-    public void lambda$done$2(StoryPrivacy storyPrivacy, Runnable runnable, AlertDialog alertDialog, int i) {
+    public void lambda$done$2(StoryPrivacy storyPrivacy, Runnable runnable, AlertDialog alertDialog, int i) throws NumberFormatException {
         done(storyPrivacy, runnable, true);
     }
 
@@ -2594,7 +2594,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet isEdit(boolean z) {
+    public StoryPrivacyBottomSheet isEdit(boolean z) throws NumberFormatException {
         this.isEdit = z;
         ViewPagerFixed viewPagerFixed = this.viewPager;
         if (viewPagerFixed != null) {
@@ -2614,7 +2614,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet setPeer(TLRPC.InputPeer inputPeer) {
+    public StoryPrivacyBottomSheet setPeer(TLRPC.InputPeer inputPeer) throws NumberFormatException {
         this.selectedPeer = inputPeer;
         this.selectedAlbums.clear();
         View[] viewPages = this.viewPager.getViewPages();
@@ -2631,7 +2631,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet set(boolean z, boolean z2, boolean z3, int i) {
+    public StoryPrivacyBottomSheet set(boolean z, boolean z2, boolean z3, int i) throws NumberFormatException {
         this.allowComments = z;
         this.allowScreenshots = z2;
         this.keepOnMyPage = z3;
@@ -2650,7 +2650,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet setLive(boolean z) {
+    public StoryPrivacyBottomSheet setLive(boolean z) throws NumberFormatException {
         this.isLive = z;
         View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
@@ -2666,7 +2666,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet setLiveSettings(boolean z) {
+    public StoryPrivacyBottomSheet setLiveSettings(boolean z) throws NumberFormatException {
         this.liveSettings = z;
         View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
@@ -2682,7 +2682,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return this;
     }
 
-    public StoryPrivacyBottomSheet setValue(StoryPrivacy storyPrivacy) {
+    public StoryPrivacyBottomSheet setValue(StoryPrivacy storyPrivacy) throws NumberFormatException {
         if (storyPrivacy == null) {
             return this;
         }
@@ -2910,7 +2910,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
     }
 
-    public ArrayList getContacts() {
+    public ArrayList getContacts() throws NumberFormatException {
         TLRPC.User user;
         ArrayList arrayList = new ArrayList();
         ArrayList<TLRPC.TL_contact> arrayList2 = ContactsController.getInstance(this.currentAccount).contacts;
@@ -2929,7 +2929,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return arrayList;
     }
 
-    public ArrayList getCloseFriends() {
+    public ArrayList getCloseFriends() throws NumberFormatException {
         TLRPC.User user;
         ArrayList contacts = getContacts();
         int i = 0;
@@ -2944,7 +2944,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return contacts;
     }
 
-    public ArrayList getUsers(boolean z, boolean z2) {
+    public ArrayList getUsers(boolean z, boolean z2) throws NumberFormatException {
         TLRPC.User user;
         TLRPC.Chat chat;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -2999,7 +2999,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         return chat.participants_count;
     }
 
-    public ArrayList getChats() {
+    public ArrayList getChats() throws NumberFormatException {
         TLRPC.Chat chat;
         ArrayList arrayList = new ArrayList();
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -3917,7 +3917,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public final ArrayList sendToUsers;
         public final int type;
 
-        public StoryPrivacy(int i, ArrayList arrayList) {
+        public StoryPrivacy(int i, ArrayList arrayList) throws NumberFormatException {
             ArrayList arrayList2 = new ArrayList();
             this.rules = arrayList2;
             this.selectedUserIds = new ArrayList();
@@ -4260,7 +4260,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             return arrayList;
         }
 
-        public static ArrayList toInput(int i, ArrayList arrayList) {
+        public static ArrayList toInput(int i, ArrayList arrayList) throws NumberFormatException {
             MessagesController messagesController = MessagesController.getInstance(i);
             ArrayList arrayList2 = new ArrayList();
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -4359,7 +4359,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
         ViewPagerFixed viewPagerFixed = this.viewPager;
         if (viewPagerFixed == null) {
             return;

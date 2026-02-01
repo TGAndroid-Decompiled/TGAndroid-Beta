@@ -213,7 +213,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     @Override
-    public boolean onFragmentCreate() {
+    public boolean onFragmentCreate() throws NumberFormatException {
         super.onFragmentCreate();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
@@ -331,7 +331,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         });
     }
 
-    public void lambda$createView$5(int i, View view, int i2, float f, float f2) {
+    public void lambda$createView$5(int i, View view, int i2, float f, float f2) throws NumberFormatException {
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         SearchAdapter searchAdapter = this.searchListViewAdapter;
         if (adapter == searchAdapter) {
@@ -584,9 +584,9 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         actionBarCreateActionBar.setUseContainerForTitles();
         actionBarCreateActionBar.getTitlesContainer().setTranslationX(AndroidUtilities.dp(4.0f));
         actionBarCreateActionBar.setAddToContainer(false);
-        actionBarCreateActionBar.createTitleOverlayContainer();
-        actionBarCreateActionBar.getTitleOverlayContainer().setTranslationX(AndroidUtilities.dp(4.0f));
-        actionBarCreateActionBar.getTitleOverlayContainer().setTranslationY(-AndroidUtilities.dp(2.0f));
+        actionBarCreateActionBar.createAdditionalSubTitleOverlayContainer();
+        actionBarCreateActionBar.getAdditionalSubTitleOverlayContainer().setTranslationX(AndroidUtilities.dp(4.0f));
+        actionBarCreateActionBar.getAdditionalSubTitleOverlayContainer().setTranslationY(-AndroidUtilities.dp(2.0f));
         return actionBarCreateActionBar;
     }
 

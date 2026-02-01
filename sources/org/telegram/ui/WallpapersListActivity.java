@@ -342,7 +342,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public void onSearchCollapse() {
+                public void onSearchCollapse() throws NumberFormatException {
                     WallpapersListActivity.this.listView.setAdapter(WallpapersListActivity.this.listAdapter);
                     WallpapersListActivity.this.listView.invalidate();
                     WallpapersListActivity.this.searchAdapter.processSearch(null, true);
@@ -351,12 +351,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public void onTextChanged(EditText editText) {
+                public void onTextChanged(EditText editText) throws NumberFormatException {
                     WallpapersListActivity.this.searchAdapter.processSearch(editText.getText().toString(), false);
                 }
 
                 @Override
-                public void onCaptionCleared() {
+                public void onCaptionCleared() throws NumberFormatException {
                     WallpapersListActivity.this.searchAdapter.clearColor();
                     WallpapersListActivity.this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
                 }
@@ -431,7 +431,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
+            public void onScrolled(RecyclerView recyclerView, int i5, int i6) throws NumberFormatException {
                 if (WallpapersListActivity.this.listView.getAdapter() == WallpapersListActivity.this.searchAdapter) {
                     int iFindFirstVisibleItemPosition = WallpapersListActivity.this.layoutManager.findFirstVisibleItemPosition();
                     int iAbs = iFindFirstVisibleItemPosition == -1 ? 0 : Math.abs(WallpapersListActivity.this.layoutManager.findLastVisibleItemPosition() - iFindFirstVisibleItemPosition) + 1;
@@ -747,7 +747,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws NumberFormatException {
         TLRPC.WallPaper wallPaper;
         super.onResume();
         MessagesController.getGlobalMainSettings();
@@ -975,7 +975,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int r21, int r22, java.lang.Object... r23) {
+    public void didReceivedNotification(int r21, int r22, java.lang.Object... r23) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.WallpapersListActivity.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -1008,13 +1008,13 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     public void lambda$loadWallpapers$8(final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$loadWallpapers$7(tLObject, z);
             }
         });
     }
 
-    public void lambda$loadWallpapers$7(TLObject tLObject, boolean z) {
+    public void lambda$loadWallpapers$7(TLObject tLObject, boolean z) throws NumberFormatException {
         ColorWallpaper colorWallpaper;
         int i;
         TLRPC.WallPaperSettings wallPaperSettings;
@@ -1078,7 +1078,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         }
     }
 
-    private void fillWallpapersWithCustom() {
+    private void fillWallpapersWithCustom() throws NumberFormatException {
         TLRPC.TL_wallPaper tL_wallPaper;
         final String str;
         Object obj;
@@ -1451,12 +1451,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
         }
 
-        public void clearColor() {
+        public void clearColor() throws NumberFormatException {
             this.selectedColor = null;
             processSearch(null, true);
         }
 
-        public void processSearch(final String str, boolean z) {
+        public void processSearch(final String str, boolean z) throws NumberFormatException {
             if (str != null && this.selectedColor != null) {
                 str = "#color" + this.selectedColor + " " + str;
             }
@@ -1472,7 +1472,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 } else {
                     Runnable runnable2 = new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws NumberFormatException {
                             this.f$0.lambda$processSearch$0(str);
                         }
                     };
@@ -1493,12 +1493,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             notifyDataSetChanged();
         }
 
-        public void lambda$processSearch$0(String str) {
+        public void lambda$processSearch$0(String str) throws NumberFormatException {
             doSearch(str);
             this.searchRunnable = null;
         }
 
-        private void doSearch(String str) {
+        private void doSearch(String str) throws NumberFormatException {
             this.searchResult.clear();
             this.searchResultKeys.clear();
             this.bingSearchEndReached = true;
@@ -1526,14 +1526,14 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             if (tLObject != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$searchBotUser$1(tLObject);
                     }
                 });
             }
         }
 
-        public void lambda$searchBotUser$1(TLObject tLObject) {
+        public void lambda$searchBotUser$1(TLObject tLObject) throws NumberFormatException {
             TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
             MessagesController.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
             MessagesController.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
@@ -1543,14 +1543,14 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             searchImages(str, "", false);
         }
 
-        public void loadMoreResults() {
+        public void loadMoreResults() throws NumberFormatException {
             if (this.bingSearchEndReached || this.imageReqId != 0) {
                 return;
             }
             searchImages(this.lastSearchString, this.nextImagesSearchOffset, true);
         }
 
-        private void searchImages(String str, String str2, boolean z) {
+        private void searchImages(String str, String str2, boolean z) throws NumberFormatException {
             if (this.imageReqId != 0) {
                 ConnectionsManager.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).cancelRequest(this.imageReqId, true);
                 this.imageReqId = 0;
@@ -1676,7 +1676,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             return viewHolder.getItemViewType() != 2;
         }
 
-        public void lambda$onCreateViewHolder$5(View view, int i) {
+        public void lambda$onCreateViewHolder$5(View view, int i) throws NumberFormatException {
             String string = LocaleController.getString(R.string.BackgroundSearchColor);
             SpannableString spannableString = new SpannableString(string + " " + LocaleController.getString(WallpapersListActivity.searchColorsNames[i], WallpapersListActivity.searchColorsNamesR[i]));
             spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_actionBarDefaultSubtitle)), string.length(), spannableString.length(), 33);
@@ -1718,7 +1718,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     recyclerListView.setAdapter(new CategoryAdapterRecycler(this, objArr == true ? 1 : 0));
                     recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
-                        public final void onItemClick(View view, int i2) {
+                        public final void onItemClick(View view, int i2) throws NumberFormatException {
                             this.f$0.lambda$onCreateViewHolder$5(view, i2);
                         }
                     });

@@ -1923,7 +1923,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }
 
                 @Override
-                public void afterTextChanged(Editable editable) throws Resources.NotFoundException {
+                public void afterTextChanged(Editable editable) throws Resources.NotFoundException, NumberFormatException {
                     String str;
                     boolean z;
                     CountrySelectActivity.Country country;
@@ -2409,7 +2409,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return true;
         }
 
-        public boolean lambda$new$8(TextView textView, int i, KeyEvent keyEvent) {
+        public boolean lambda$new$8(TextView textView, int i, KeyEvent keyEvent) throws NumberFormatException {
             if (i != 5) {
                 return false;
             }
@@ -2479,13 +2479,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         public void lambda$loadCountries$15(final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$loadCountries$14(tL_error, tLObject);
                 }
             });
         }
 
-        public void lambda$loadCountries$14(TLRPC.TL_error tL_error, TLObject tLObject) {
+        public void lambda$loadCountries$14(TLRPC.TL_error tL_error, TLObject tLObject) throws NumberFormatException {
             if (tL_error == null) {
                 this.countriesArray.clear();
                 this.codesMap.clear();
@@ -2754,7 +2754,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         @Override
-        public void lambda$onNextPressed$16(final String str) {
+        public void lambda$onNextPressed$16(final String str) throws NumberFormatException {
             int i;
             boolean z;
             boolean z2;
@@ -3016,7 +3016,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         public void lambda$onNextPressed$17(final String str) {
             postDelayed(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$onNextPressed$16(str);
                 }
             }, 200L);
@@ -3030,7 +3030,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
 
             @Override
-            public void onFabPressed(PhoneNumberConfirmView phoneNumberConfirmView, TransformableLoginButtonView transformableLoginButtonView) {
+            public void onFabPressed(PhoneNumberConfirmView phoneNumberConfirmView, TransformableLoginButtonView transformableLoginButtonView) throws NumberFormatException {
                 onConfirm(phoneNumberConfirmView);
             }
 
@@ -3040,7 +3040,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
 
             @Override
-            public void onConfirmPressed(PhoneNumberConfirmView phoneNumberConfirmView, TextView textView) {
+            public void onConfirmPressed(PhoneNumberConfirmView phoneNumberConfirmView, TextView textView) throws NumberFormatException {
                 onConfirm(phoneNumberConfirmView);
             }
 
@@ -3049,7 +3049,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 LoginActivity.this.phoneNumberConfirmView = null;
             }
 
-            private void onConfirm(final PhoneNumberConfirmView phoneNumberConfirmView) {
+            private void onConfirm(final PhoneNumberConfirmView phoneNumberConfirmView) throws NumberFormatException {
                 int i;
                 PhoneView.this.confirmedNumber = true;
                 LoginActivity.this.currentDoneType = 0;
@@ -3125,13 +3125,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 phoneNumberConfirmView.dismiss();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$onConfirm$0(str, phoneNumberConfirmView);
                     }
                 }, 150L);
             }
 
-            public void lambda$onConfirm$0(String str, PhoneNumberConfirmView phoneNumberConfirmView) {
+            public void lambda$onConfirm$0(String str, PhoneNumberConfirmView phoneNumberConfirmView) throws NumberFormatException {
                 PhoneView.this.lambda$onNextPressed$16(str);
                 LoginActivity.this.floatingButton.progressView.sync(phoneNumberConfirmView.fabButton.progressView);
             }
@@ -3265,7 +3265,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             final ArrayList arrayList = new ArrayList(LoginActivity.this.permissionsShowItems);
                             Runnable runnable = new Runnable() {
                                 @Override
-                                public final void run() {
+                                public final void run() throws NumberFormatException {
                                     this.f$0.lambda$fillNumber$24(arrayList);
                                 }
                             };
@@ -3356,7 +3356,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$fillNumber$24(List list) {
+        public void lambda$fillNumber$24(List list) throws NumberFormatException {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (globalMainSettings.getBoolean("firstloginshow", true) || LoginActivity.this.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE")) {
                 globalMainSettings.edit().putBoolean("firstloginshow", false).commit();
@@ -10708,7 +10708,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                         tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentAuthCode;
                         LoginActivity.this.getConnectionsManager().sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                                 this.f$0.lambda$setParams$20(tL_inputStorePaymentAuthCode, purchase, tL_payments_canPurchaseStore, runnable, tLObject, tL_error);
                             }
                         }, 74);
@@ -10719,7 +10719,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             runnable.run();
         }
 
-        public void lambda$setParams$20(final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$setParams$20(final TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, Purchase purchase, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
             if (!(tLObject instanceof TLRPC.Updates)) {
                 if (tL_error != null) {
                     AndroidUtilities.runOnUIThread(new Runnable() {

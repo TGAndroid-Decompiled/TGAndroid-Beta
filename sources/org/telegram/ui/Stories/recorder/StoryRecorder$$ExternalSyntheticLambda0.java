@@ -10,7 +10,7 @@ public final class StoryRecorder$$ExternalSyntheticLambda0 implements Runnable {
     }
 
     @Override
-    public final void run() throws Resources.NotFoundException {
+    public final void run() throws Resources.NotFoundException, NumberFormatException {
         this.f$0.createCameraView();
     }
 }

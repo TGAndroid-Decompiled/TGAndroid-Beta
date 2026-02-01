@@ -2312,13 +2312,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runLinkRequest$52(final int i, final String str, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$runLinkRequest$51(tL_error, tLObject, i, str, runnable);
             }
         });
     }
 
-    public void lambda$runLinkRequest$51(TLRPC.TL_error tL_error, TLObject tLObject, int i, String str, Runnable runnable) {
+    public void lambda$runLinkRequest$51(TLRPC.TL_error tL_error, TLObject tLObject, int i, String str, Runnable runnable) throws NumberFormatException {
         if (tL_error != null) {
             BaseFragment safeLastFragment = getSafeLastFragment();
             if (safeLastFragment == null) {
@@ -2954,13 +2954,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runLinkRequest$85(final int i, final AlertDialog alertDialog, final Runnable runnable, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$runLinkRequest$84(tL_error, tLObject, i, alertDialog, runnable, str);
             }
         });
     }
 
-    public void lambda$runLinkRequest$84(org.telegram.tgnet.TLRPC.TL_error r10, org.telegram.tgnet.TLObject r11, int r12, org.telegram.ui.ActionBar.AlertDialog r13, final java.lang.Runnable r14, java.lang.String r15) {
+    public void lambda$runLinkRequest$84(org.telegram.tgnet.TLRPC.TL_error r10, org.telegram.tgnet.TLObject r11, int r12, org.telegram.ui.ActionBar.AlertDialog r13, final java.lang.Runnable r14, java.lang.String r15) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runLinkRequest$84(org.telegram.tgnet.TLRPC$TL_error, org.telegram.tgnet.TLObject, int, org.telegram.ui.ActionBar.AlertDialog, java.lang.Runnable, java.lang.String):void");
     }
 
@@ -3002,7 +3002,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j, chat.title))).show(true);
     }
 
-    public void lambda$runLinkRequest$87(final int i, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$87(final int i, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
         if (tL_error == null) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -3871,7 +3871,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private java.util.List findContacts(java.lang.String r19, java.lang.String r20, boolean r21) {
+    private java.util.List findContacts(java.lang.String r19, java.lang.String r20, boolean r21) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.findContacts(java.lang.String, java.lang.String, boolean):java.util.List");
     }
 
@@ -4018,7 +4018,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             alertDialogShow.setCanceledOnTouchOutside(true);
             alertDialogShow.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
+                public final void onDismiss(DialogInterface dialogInterface) throws NumberFormatException {
                     this.f$0.lambda$showAlertDialog$138(alertDialogShow, dialogInterface);
                 }
             });
@@ -4030,7 +4030,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$showAlertDialog$138(AlertDialog alertDialog, DialogInterface dialogInterface) {
+    public void lambda$showAlertDialog$138(AlertDialog alertDialog, DialogInterface dialogInterface) throws NumberFormatException {
         if (alertDialog != null) {
             if (alertDialog == this.localeDialog) {
                 ActionBarLayout actionBarLayout = this.actionBarLayout;
@@ -4105,7 +4105,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
@@ -4266,7 +4266,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onActivityResult(int i, int i2, Intent intent) throws InterruptedException {
+    protected void onActivityResult(int i, int i2, Intent intent) throws InterruptedException, NumberFormatException {
         VoIPService sharedInstance;
         if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.lastPauseTime != 0) {
             SharedConfig.lastPauseTime = 0;
@@ -4353,7 +4353,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException, NumberFormatException {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4597,7 +4597,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() throws Resources.NotFoundException {
+    protected void onResume() throws Resources.NotFoundException, NumberFormatException {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
@@ -6218,7 +6218,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         BulletinFactory.global().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.StoryNotFound)).show(false);
     }
 
-    private void openStories(long[] jArr, boolean z) {
+    private void openStories(long[] jArr, boolean z) throws NumberFormatException {
         boolean z2;
         StoriesListPlaceProvider storiesListPlaceProviderOf;
         final long[] array = jArr;
@@ -6267,7 +6267,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             final int[] iArr = {arrayList3.size()};
             final Runnable runnable = new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$openStories$175(iArr, array);
                 }
             };
@@ -6314,7 +6314,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, storiesListPlaceProvider, false);
     }
 
-    public void lambda$openStories$175(int[] iArr, long[] jArr) {
+    public void lambda$openStories$175(int[] iArr, long[] jArr) throws NumberFormatException {
         int i = iArr[0] - 1;
         iArr[0] = i;
         if (i == 0) {

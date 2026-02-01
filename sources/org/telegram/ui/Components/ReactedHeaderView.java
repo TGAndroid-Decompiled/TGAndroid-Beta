@@ -106,7 +106,7 @@ public class ReactedHeaderView extends FrameLayout {
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    protected void onAttachedToWindow() throws NumberFormatException {
         super.onAttachedToWindow();
         if (this.isLoaded) {
             return;
@@ -159,7 +159,7 @@ public class ReactedHeaderView extends FrameLayout {
             final ArrayList arrayList3 = new ArrayList();
             final Runnable runnable = new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$onAttachedToWindow$0(arrayList3);
                 }
             };
@@ -188,7 +188,7 @@ public class ReactedHeaderView extends FrameLayout {
         }
     }
 
-    public void lambda$onAttachedToWindow$0(List list) {
+    public void lambda$onAttachedToWindow$0(List list) throws NumberFormatException {
         this.seenUsers.addAll(list);
         Iterator it = list.iterator();
         while (it.hasNext()) {
@@ -260,7 +260,7 @@ public class ReactedHeaderView extends FrameLayout {
         runnable.run();
     }
 
-    private void loadReactions() {
+    private void loadReactions() throws NumberFormatException {
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
         tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(this.message.getDialogId());

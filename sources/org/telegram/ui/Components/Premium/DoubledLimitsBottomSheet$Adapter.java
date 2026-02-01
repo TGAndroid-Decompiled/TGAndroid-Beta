@@ -38,7 +38,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         return false;
     }
 
-    public DoubledLimitsBottomSheet$Adapter(int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public DoubledLimitsBottomSheet$Adapter(int i, boolean z, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
         ArrayList arrayList = new ArrayList();
         this.limits = arrayList;
         this.drawHeader = z;

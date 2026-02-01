@@ -497,7 +497,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.muteIconViewAlpha = 1.0f;
         this.updateStealthModeTimer = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$new$43();
             }
         };
@@ -1786,7 +1786,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException, IOException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1796,7 +1796,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, NumberFormatException, IOException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1908,7 +1908,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException, IOException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1918,7 +1918,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, NumberFormatException, IOException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -2168,7 +2168,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$39(Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, View view) {
+        public void lambda$onCreate$39(Theme.ResourcesProvider resourcesProvider, StoryViewer storyViewer, View view) throws NumberFormatException {
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
             if (customPopupMenu != null) {
                 customPopupMenu.dismiss();
@@ -2207,7 +2207,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                     togglegroupcallsettings.send_paid_messages_stars = Long.valueOf(i);
                     ConnectionsManager.getInstance(PeerStoriesView.this.currentAccount).sendRequest(togglegroupcallsettings, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                             this.f$0.lambda$onCreate$37(storyPrivacyBottomSheet, tLObject, tL_error);
                         }
                     });
@@ -2215,7 +2215,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$37(final StoryPrivacyBottomSheet storyPrivacyBottomSheet, TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onCreate$37(final StoryPrivacyBottomSheet storyPrivacyBottomSheet, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
             if (tLObject instanceof TLRPC.Updates) {
                 MessagesController.getInstance(PeerStoriesView.this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             }
@@ -2287,7 +2287,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$46(View view) {
+        public void lambda$onCreate$46(View view) throws NumberFormatException {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2296,7 +2296,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }
 
-        public void lambda$onCreate$47(View view) {
+        public void lambda$onCreate$47(View view) throws NumberFormatException {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             peerStoriesView.toggleArchiveForStory(peerStoriesView.dialogId);
             CustomPopupMenu customPopupMenu = PeerStoriesView.this.popupMenu;
@@ -2856,7 +2856,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return arrayList2;
     }
 
-    public void toggleArchiveForStory(final long j) {
+    public void toggleArchiveForStory(final long j) throws NumberFormatException {
         String str;
         boolean z;
         TLRPC.Chat chat;
@@ -2936,7 +2936,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition();
     }
 
-    private void createPremiumBlockedText() {
+    private void createPremiumBlockedText() throws NumberFormatException {
         if (this.premiumBlockedText != null) {
             return;
         }
@@ -3299,7 +3299,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void createEnterView() {
+    private void createEnterView() throws NumberFormatException {
         AnonymousClass19 anonymousClass19 = new AnonymousClass19(AndroidUtilities.findActivity(getContext()), this, null, true, new WrappedResourceProvider(this.resourcesProvider) {
             @Override
             public void appendColors() {
@@ -3353,13 +3353,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void updateSendAsButton(boolean z) {
+        public void updateSendAsButton(boolean z) throws NumberFormatException {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             super.updateSendAsButton(peerStoriesView.isPremiumBlocked || peerStoriesView.areLiveCommentsDisabled, z);
         }
 
         @Override
-        public boolean sendMessage() {
+        public boolean sendMessage() throws NumberFormatException {
             int length;
             if (this.sendButtonContainer.getAlpha() < 0.5f) {
                 openKeyboard();
@@ -3535,7 +3535,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        protected void updateRecordInterface(int i, boolean z) {
+        protected void updateRecordInterface(int i, boolean z) throws NumberFormatException {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
@@ -3747,7 +3747,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public boolean setDefaultSendAs(long j, long j2) {
+        public boolean setDefaultSendAs(long j, long j2) throws NumberFormatException {
             TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
             if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
                 TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
@@ -3772,20 +3772,20 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void onMessageSend(CharSequence charSequence, boolean z, int i, int i2, final long j) {
+        public void onMessageSend(CharSequence charSequence, boolean z, int i, int i2, final long j) throws NumberFormatException {
             if (!PeerStoriesView.this.isRecording) {
                 PeerStoriesView.this.afterMessageSend(j <= 0);
             } else {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$onMessageSend$0(j);
                     }
                 }, 200L);
             }
         }
 
-        public void lambda$onMessageSend$0(long j) {
+        public void lambda$onMessageSend$0(long j) throws NumberFormatException {
             PeerStoriesView.this.afterMessageSend(j <= 0);
         }
 
@@ -3925,13 +3925,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         public void onStickerSelected(final TLRPC.TL_document tL_document, final String str, final Object obj) {
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj2) {
+                public final void run(Object obj2) throws NumberFormatException {
                     this.f$0.lambda$onStickerSelected$0(tL_document, str, obj, (Long) obj2);
                 }
             });
         }
 
-        public void lambda$onStickerSelected$0(TLRPC.TL_document tL_document, String str, Object obj, Long l) {
+        public void lambda$onStickerSelected$0(TLRPC.TL_document tL_document, String str, Object obj, Long l) throws NumberFormatException {
             SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, null, true, 0, 0, false, obj, null, 0, l.longValue(), PeerStoriesView.this.chatActivityEnterView.getSendMonoForumPeerId(), PeerStoriesView.this.chatActivityEnterView.getSendMessageSuggestionParams());
             PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tL_document);
             PeerStoriesView.this.chatActivityEnterView.setFieldText("");
@@ -3949,7 +3949,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void addEmojiToRecent(String str) {
+        public void addEmojiToRecent(String str) throws NumberFormatException {
             PeerStoriesView.this.chatActivityEnterView.addEmojiToRecent(str);
         }
 
@@ -3957,13 +3957,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         public void sendBotInlineResult(final TLRPC.BotInlineResult botInlineResult, final boolean z, final int i) {
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws NumberFormatException {
                     this.f$0.lambda$sendBotInlineResult$1(botInlineResult, z, i, (Long) obj);
                 }
             });
         }
 
-        public void lambda$sendBotInlineResult$1(TLRPC.BotInlineResult botInlineResult, boolean z, int i, Long l) {
+        public void lambda$sendBotInlineResult$1(TLRPC.BotInlineResult botInlineResult, boolean z, int i, Long l) throws NumberFormatException {
             long contextBotId = PeerStoriesView.this.mentionContainer.getAdapter().getContextBotId();
             HashMap map = new HashMap();
             map.put("id", botInlineResult.id);
@@ -4106,7 +4106,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
 
                 @Override
-                public void didPressedButton(int i, boolean z2, boolean z3, int i2, int i3, long j, boolean z4, boolean z5, long j2) {
+                public void didPressedButton(int i, boolean z2, boolean z3, int i2, int i3, long j, boolean z4, boolean z5, long j2) throws NumberFormatException {
                     String str;
                     if (PeerStoriesView.this.storyViewer.isShowing) {
                         PeerStoriesView peerStoriesView = PeerStoriesView.this;
@@ -4188,7 +4188,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
 
                 @Override
-                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) {
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) throws NumberFormatException {
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
                     if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
@@ -4218,7 +4218,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
 
                 @Override
-                public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z2, int i, int i2, long j, boolean z3, long j2) {
+                public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z2, int i, int i2, long j, boolean z3, long j2) throws NumberFormatException {
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     TL_stories.StoryItem storyItem = peerStoriesView.currentStory.storyItem;
                     if (storyItem == null || (storyItem instanceof TL_stories.TL_storyItemSkipped)) {
@@ -4348,7 +4348,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException, IOException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4358,7 +4358,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, IOException {
+    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, NumberFormatException, IOException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
@@ -4503,13 +4503,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         });
     }
 
-    public void setDay(long j, ArrayList arrayList, int i) {
+    public void setDay(long j, ArrayList arrayList, int i) throws NumberFormatException {
         this.dialogId = j;
         this.day = arrayList;
         bindInternal(i);
     }
 
-    public void setDialogId(long j, int i) {
+    public void setDialogId(long j, int i) throws NumberFormatException {
         if (this.dialogId != j) {
             this.currentStory.clear();
         }
@@ -4569,7 +4569,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.headerView.titleView.setRightDrawable((Drawable) null);
     }
 
-    private void bindInternal(int i) {
+    private void bindInternal(int i) throws NumberFormatException {
         this.deletedPeer = false;
         this.forceUpdateOffsets = true;
         this.userCanSeeViews = false;
@@ -4805,7 +4805,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void preloadMainImage(long j) {
+    public void preloadMainImage(long j) throws NumberFormatException {
         if (this.dialogId == j && this.day == null) {
             return;
         }
@@ -5209,7 +5209,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
         LivePlayer livePlayer;
         if (i != NotificationCenter.storiesUpdated) {
             boolean z = false;
@@ -5319,7 +5319,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void loadSendAsPeers(boolean z) {
+    private void loadSendAsPeers(boolean z) throws NumberFormatException {
         LivePlayer livePlayer;
         if (this.sendAsPeersObj != null) {
             return;
@@ -5336,11 +5336,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$43() {
+    public void lambda$new$43() throws NumberFormatException {
         checkStealthMode(true);
     }
 
-    public void checkStealthMode(boolean z) {
+    public void checkStealthMode(boolean z) throws NumberFormatException {
         if (this.chatActivityEnterView != null && this.isVisible && this.attachedToWindow) {
             AndroidUtilities.cancelRunOnUIThread(this.updateStealthModeTimer);
             TL_stories.TL_storiesStealthMode stealthMode = this.storiesController.getStealthMode();
@@ -5401,7 +5401,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition(false);
     }
 
-    private void updatePosition(boolean r45) {
+    private void updatePosition(boolean r45) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePosition(boolean):void");
     }
 
@@ -5447,14 +5447,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }).addIf(this.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$updatePosition$47();
             }
         }).setGravity(5).forceTop(true).show();
         return true;
     }
 
-    public void lambda$updatePosition$47() {
+    public void lambda$updatePosition$47() throws NumberFormatException {
         this.messageStars = 0L;
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5513,13 +5513,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         int i = this.currentAccount;
         HighlightMessageSheet.open(context, i, clientUserId, DialogObject.getShortName(i, this.dialogId), textWithEntities, getMessageMinPrice(), this.messageStars, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws NumberFormatException {
                 this.f$0.lambda$onHighlightLiveMessage$52((Long) obj);
             }
         }, new DarkThemeResourceProvider());
     }
 
-    public void lambda$onHighlightLiveMessage$52(Long l) {
+    public void lambda$onHighlightLiveMessage$52(Long l) throws NumberFormatException {
         this.messageStars = l.longValue();
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -6049,7 +6049,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void reset() {
+    public void reset() throws NumberFormatException {
         this.headerView.backupImageView.getImageReceiver().setVisible(true, true);
         if (this.changeBoundAnimator != null) {
             this.chatActivityEnterView.reset();
@@ -6078,7 +6078,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         cancelTextSelection();
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) {
+    public void onActivityResult(int i, int i2, Intent intent) throws NumberFormatException {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();
@@ -6143,7 +6143,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this.storyContainer, null, null, null, null);
     }
 
-    public void setIsVisible(boolean z) {
+    public void setIsVisible(boolean z) throws NumberFormatException {
         if (this.isVisible == z) {
             return;
         }
@@ -6766,7 +6766,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) throws NumberFormatException {
         int size;
         ReactionsContainerLayout reactionsContainerLayout;
         MentionsContainerView mentionsContainerView;
@@ -7132,7 +7132,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 }
 
                 @Override
-                public void sendMedia(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z, int i, int i2, boolean z2, long j) {
+                public void sendMedia(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z, int i, int i2, boolean z2, long j) throws NumberFormatException {
                     if (photoEntry == null) {
                         return;
                     }
@@ -7175,7 +7175,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void afterMessageSend(boolean z) {
+    public void afterMessageSend(boolean z) throws NumberFormatException {
         BulletinFactory bulletinFactoryOf;
         InstantCameraView instantCameraView = this.instantCameraView;
         if (instantCameraView != null) {
@@ -7571,7 +7571,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public boolean needEnterText() {
+    public boolean needEnterText() throws NumberFormatException {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView == null) {
             return false;
@@ -7770,7 +7770,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         builder.setPositiveButton(LocaleController.getString(R.string.DiscardVoiceMessageAction), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws NumberFormatException {
                 this.f$0.lambda$checkRecordLocked$58(z, alertDialog, i);
             }
         });
@@ -7779,7 +7779,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return true;
     }
 
-    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) {
+    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) throws NumberFormatException {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             if (z) {

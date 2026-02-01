@@ -886,7 +886,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
     }
 
-    public boolean onTabLongClick(org.telegram.ui.Components.UItem r23, android.view.View r24, int r25, float r26, float r27) {
+    public boolean onTabLongClick(org.telegram.ui.Components.UItem r23, android.view.View r24, int r25, float r26, float r27) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TopicsTabsView.onTabLongClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):boolean");
     }
 
@@ -943,13 +943,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$onTabLongClick$8(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onTabLongClick$8(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$onTabLongClick$8(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);

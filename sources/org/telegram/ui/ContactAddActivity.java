@@ -141,7 +141,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     }
 
     @Override
-    public boolean onFragmentCreate() {
+    public boolean onFragmentCreate() throws NumberFormatException {
         getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
         getNotificationCenter().addObserver(this, NotificationCenter.dialogPhotosUpdate);
         this.user_id = getArguments().getLong("user_id", 0L);

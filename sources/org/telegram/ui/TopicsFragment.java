@@ -435,10 +435,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
-    public View createView(Context context) throws InterruptedException {
+    public View createView(Context context) throws NumberFormatException {
+        DialogsActivity dialogsActivity = this.parentDialogsActivity;
         int i = 0;
-        this.additionNavigationBarHeight = this.parentDialogsActivity != null ? AndroidUtilities.dp(72.0f) : 0;
-        this.additionFloatingButtonOffset = this.parentDialogsActivity != null ? AndroidUtilities.dp(64.0f) : 0;
+        this.additionNavigationBarHeight = (dialogsActivity == null || !dialogsActivity.hasMainTabs) ? 0 : AndroidUtilities.dp(72.0f);
+        DialogsActivity dialogsActivity2 = this.parentDialogsActivity;
+        this.additionFloatingButtonOffset = (dialogsActivity2 == null || !dialogsActivity2.hasMainTabs) ? 0 : AndroidUtilities.dp(64.0f);
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             private Paint actionBarPaint;
 
@@ -522,10 +524,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             protected void dispatchDraw(Canvas canvas) {
                 if (Build.VERSION.SDK_INT >= 31 && TopicsFragment.this.scrollableViewNoiseSuppressor != null) {
                     TopicsFragment.this.blur3_InvalidateBlur();
-                    DialogsActivity dialogsActivity = TopicsFragment.this.parentDialogsActivity;
-                    int measuredWidth = dialogsActivity != null ? dialogsActivity.fragmentView.getMeasuredWidth() : getMeasuredWidth();
-                    DialogsActivity dialogsActivity2 = TopicsFragment.this.parentDialogsActivity;
-                    int measuredHeight = dialogsActivity2 != null ? dialogsActivity2.fragmentView.getMeasuredHeight() : getMeasuredHeight();
+                    DialogsActivity dialogsActivity3 = TopicsFragment.this.parentDialogsActivity;
+                    int measuredWidth = dialogsActivity3 != null ? dialogsActivity3.fragmentView.getMeasuredWidth() : getMeasuredWidth();
+                    DialogsActivity dialogsActivity4 = TopicsFragment.this.parentDialogsActivity;
+                    int measuredHeight = dialogsActivity4 != null ? dialogsActivity4.fragmentView.getMeasuredHeight() : getMeasuredHeight();
                     if (TopicsFragment.this.iBlur3SourceGlassFrosted != null && !TopicsFragment.this.iBlur3SourceGlassFrosted.inRecording() && (TopicsFragment.this.iBlur3SourceGlassFrosted.needUpdateDisplayList(measuredWidth, measuredHeight) || TopicsFragment.this.iBlur3Invalidated)) {
                         TopicsFragment.this.scrollableViewNoiseSuppressor.draw(TopicsFragment.this.iBlur3SourceGlassFrosted.beginRecording(measuredWidth, measuredHeight), -3);
                         TopicsFragment.this.iBlur3SourceGlassFrosted.endRecording();
@@ -580,7 +582,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass2(context));
         this.actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws NumberFormatException {
                 this.f$0.lambda$createView$0(view);
             }
         });
@@ -650,7 +652,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (!this.openedForSelect) {
             this.avatarContainer.getAvatarImageView().setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View view) throws NumberFormatException {
                     TopicsFragment.this.openProfile(true);
                 }
             });
@@ -673,8 +675,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         };
         this.iBlur3FactoryLiquidGlass.setSourceRootView(new ViewPositionWatcher(this.contentView), this.contentView);
         TopicsRecyclerView topicsRecyclerView = this.recyclerListView;
-        DialogsActivity dialogsActivity = this.parentDialogsActivity;
-        ViewGroup viewGroup = dialogsActivity != null ? (ViewGroup) dialogsActivity.getFragmentView() : this.contentView;
+        DialogsActivity dialogsActivity3 = this.parentDialogsActivity;
+        ViewGroup viewGroup = dialogsActivity3 != null ? (ViewGroup) dialogsActivity3.getFragmentView() : this.contentView;
         final TopicsRecyclerView topicsRecyclerView2 = this.recyclerListView;
         Objects.requireNonNull(topicsRecyclerView2);
         this.iBlur3Capture = new ViewGroupPartRenderer(topicsRecyclerView, viewGroup, new ViewGroupPartRenderer.DrawChildMethod() {
@@ -876,7 +878,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.bottomOverlayContainer.addView(this.closeReportSpam, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 6.0f, 2.0f, 0.0f));
         this.closeReportSpam.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws NumberFormatException {
                 this.f$0.lambda$createView$6(view);
             }
         });
@@ -990,9 +992,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
                 BaseFragment baseFragment = (BaseFragment) it.next();
                 if (baseFragment instanceof DialogsActivity) {
-                    DialogsActivity dialogsActivity2 = (DialogsActivity) baseFragment;
-                    if (dialogsActivity2.isMainDialogList()) {
-                        MessagesStorage.TopicKey openedDialogId = dialogsActivity2.getOpenedDialogId();
+                    DialogsActivity dialogsActivity4 = (DialogsActivity) baseFragment;
+                    if (dialogsActivity4.isMainDialogList()) {
+                        MessagesStorage.TopicKey openedDialogId = dialogsActivity4.getOpenedDialogId();
                         if (openedDialogId.dialogId == (-this.chatId)) {
                             this.selectedTopicForTablet = openedDialogId.topicId;
                             break;
@@ -1285,7 +1287,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$0(View view) {
+    public void lambda$createView$0(View view) throws NumberFormatException {
         if (this.searching) {
             return;
         }
@@ -1432,7 +1434,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
     }
 
-    public boolean lambda$createView$4(View view, int i, float f, float f2) {
+    public boolean lambda$createView$4(View view, int i, float f, float f2) throws NumberFormatException {
         if (this.openedForSelect || getParentLayout() == null || getParentLayout().isInPreviewMode()) {
             return false;
         }
@@ -1528,21 +1530,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onClick(View view) {
+        public void onClick(View view) throws NumberFormatException {
             if (TopicsFragment.this.bottomButtonType != 1) {
                 TopicsFragment.this.joinToGroup();
             } else {
                 TopicsFragment topicsFragment = TopicsFragment.this;
                 AlertsCreator.showBlockReportSpamAlert(topicsFragment, -topicsFragment.chatId, null, topicsFragment.getCurrentChat(), null, false, TopicsFragment.this.chatFull, new MessagesStorage.IntCallback() {
                     @Override
-                    public final void run(int i) {
+                    public final void run(int i) throws NumberFormatException {
                         this.f$0.lambda$onClick$0(i);
                     }
                 }, TopicsFragment.this.getResourceProvider());
             }
         }
 
-        public void lambda$onClick$0(int i) {
+        public void lambda$onClick$0(int i) throws NumberFormatException {
             if (i == 0) {
                 TopicsFragment.this.updateChatInfo();
             } else {
@@ -1551,7 +1553,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$6(View view) {
+    public void lambda$createView$6(View view) throws NumberFormatException {
         getMessagesController().hidePeerSettingsBar(-this.chatId, null, getCurrentChat());
         updateChatInfo();
     }
@@ -1611,7 +1613,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.searchContainer.setBackgroundColor(getThemedColor(i));
     }
 
-    public void openProfile(boolean z) {
+    public void openProfile(boolean z) throws NumberFormatException {
         TLRPC.Chat currentChat;
         TLRPC.ChatPhoto chatPhoto;
         if (z && (currentChat = getCurrentChat()) != null && ((chatPhoto = currentChat.photo) == null || (chatPhoto instanceof TLRPC.TL_chatPhotoEmpty))) {
@@ -2011,7 +2013,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         runnable.run();
     }
 
-    public boolean showChatPreview(DialogCell dialogCell) {
+    public boolean showChatPreview(DialogCell dialogCell) throws NumberFormatException {
         try {
             dialogCell.performHapticFeedback(0);
         } catch (Exception unused) {
@@ -2110,7 +2112,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void toggleSound() {
+        public void toggleSound() throws NumberFormatException {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) TopicsFragment.this).currentAccount);
             boolean z = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(-TopicsFragment.this.chatId, this.val$topic.id), true);
             boolean z2 = !z;
@@ -2327,10 +2329,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void joinToGroup() {
+    public void joinToGroup() throws NumberFormatException {
         getMessagesController().addUserToChat(this.chatId, getUserConfig().getCurrentUser(), 0, null, this, false, new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$joinToGroup$21();
             }
         }, new MessagesController.ErrorDelegate() {
@@ -2343,12 +2345,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         updateChatInfo();
     }
 
-    public void lambda$joinToGroup$21() {
+    public void lambda$joinToGroup$21() throws NumberFormatException {
         this.joinRequested = false;
         updateChatInfo(true);
     }
 
-    public boolean lambda$joinToGroup$22(TLRPC.TL_error tL_error) {
+    public boolean lambda$joinToGroup$22(TLRPC.TL_error tL_error) throws NumberFormatException {
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
         }
@@ -2515,11 +2517,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void updateChatInfo() {
+    public void updateChatInfo() throws NumberFormatException {
         updateChatInfo(false);
     }
 
-    private void updateChatInfo(boolean r15) {
+    private void updateChatInfo(boolean r15) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.updateChatInfo(boolean):void");
     }
 
@@ -2673,7 +2675,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
         TLRPC.ChatFull chatFull;
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull2 = (TLRPC.ChatFull) objArr[0];
@@ -3291,7 +3293,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.searchContainer = new FrameLayout(context);
             this.chatPreviewDelegate = new SearchViewPager.ChatPreviewDelegate() {
                 @Override
-                public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) {
+                public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) throws NumberFormatException {
                     TopicsFragment.this.showChatPreview(dialogCell);
                 }
 
@@ -4057,6 +4059,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (chatAvatarContainer != null) {
             chatAvatarContainer.setAlpha(f);
             this.other.setAlpha(f);
+            ActionBarMenuItem actionBarMenuItem = this.searchItem;
+            if (actionBarMenuItem != null) {
+                actionBarMenuItem.setAlpha(f);
+            }
             this.actionBar.getBackButton().setAlpha(f);
         }
     }

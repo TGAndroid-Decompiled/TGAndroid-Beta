@@ -1441,7 +1441,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     }
                 }, new Utilities.Callback5() {
                     @Override
-                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws NumberFormatException {
                         this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                     }
                 }, null, resourcesProvider);
@@ -1538,7 +1538,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 arrayList.add(UItem.asFlicker(arrayList.size(), 7));
             }
 
-            public void onClick(UItem uItem, View view, int i, float f, float f2) {
+            public void onClick(UItem uItem, View view, int i, float f, float f2) throws NumberFormatException {
                 if (uItem.object instanceof TL_stars.StarsTransaction) {
                     StarsIntroActivity.showTransactionSheet(getContext(), false, 0L, this.currentAccount, (TL_stars.StarsTransaction) uItem.object, this.resourcesProvider);
                 }
@@ -2223,7 +2223,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static BottomSheet openStarsChannelInviteSheet(final Context context, Theme.ResourcesProvider resourcesProvider, int i, TLRPC.ChatInvite chatInvite, final Utilities.Callback callback, final Runnable runnable) throws Resources.NotFoundException {
+    public static BottomSheet openStarsChannelInviteSheet(final Context context, Theme.ResourcesProvider resourcesProvider, int i, TLRPC.ChatInvite chatInvite, final Utilities.Callback callback, final Runnable runnable) throws Resources.NotFoundException, NumberFormatException {
         BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -3337,7 +3337,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         return spannableStringBuilder;
     }
 
-    public static java.lang.CharSequence getTransactionTitle(int r5, boolean r6, org.telegram.tgnet.tl.TL_stars.StarsTransaction r7) {
+    public static java.lang.CharSequence getTransactionTitle(int r5, boolean r6, org.telegram.tgnet.tl.TL_stars.StarsTransaction r7) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.getTransactionTitle(int, boolean, org.telegram.tgnet.tl.TL_stars$StarsTransaction):java.lang.CharSequence");
     }
 
@@ -3592,7 +3592,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         runnable2.run();
     }
 
-    public static org.telegram.ui.ActionBar.BottomSheet showTransactionSheet(final android.content.Context r61, final boolean r62, final long r63, final int r65, final org.telegram.tgnet.tl.TL_stars.StarsTransaction r66, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r67) {
+    public static org.telegram.ui.ActionBar.BottomSheet showTransactionSheet(final android.content.Context r61, final boolean r62, final long r63, final int r65, final org.telegram.tgnet.tl.TL_stars.StarsTransaction r66, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r67) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarsIntroActivity.showTransactionSheet(android.content.Context, boolean, long, int, org.telegram.tgnet.tl.TL_stars$StarsTransaction, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.ActionBar.BottomSheet");
     }
 
@@ -3690,7 +3690,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(textViewButtons.getText());
             spannableStringBuilder.append((CharSequence) " ").append(ButtonSpan.make(LocaleController.getString(R.string.StarGiftReasonUpgradeView), new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     StarsIntroActivity.lambda$showTransactionSheet$29(i, context, resourcesProvider, savedStarGift);
                 }
             }, resourcesProvider));
@@ -3698,7 +3698,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
     }
 
-    public static void lambda$showTransactionSheet$29(int i, Context context, Theme.ResourcesProvider resourcesProvider, TL_stars.SavedStarGift savedStarGift) {
+    public static void lambda$showTransactionSheet$29(int i, Context context, Theme.ResourcesProvider resourcesProvider, TL_stars.SavedStarGift savedStarGift) throws NumberFormatException {
         new StarGiftSheet(context, i, UserConfig.getInstance(i).getClientUserId(), resourcesProvider).set(savedStarGift, (StarsController.IGiftsList) null).show();
     }
 

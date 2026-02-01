@@ -89,13 +89,13 @@ public abstract class Weather {
         }
         getUserLocation(z, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws NumberFormatException {
                 Weather.lambda$fetch$2(callback, z, (Location) obj);
             }
         });
     }
 
-    public static void lambda$fetch$2(final Utilities.Callback callback, final boolean z, Location location) {
+    public static void lambda$fetch$2(final Utilities.Callback callback, final boolean z, Location location) throws NumberFormatException {
         if (location == null) {
             callback.run(null);
             return;
@@ -140,7 +140,7 @@ public abstract class Weather {
         return cacheValue;
     }
 
-    public static Runnable fetch(final double d, final double d2, final Utilities.Callback callback) {
+    public static Runnable fetch(final double d, final double d2, final Utilities.Callback callback) throws NumberFormatException {
         if (callback == null) {
             return null;
         }

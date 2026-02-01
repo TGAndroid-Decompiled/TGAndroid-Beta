@@ -400,7 +400,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws NumberFormatException {
                 this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -804,7 +804,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         return false;
     }
 
-    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
+    public void onItemClick(UItem uItem, View view, int i, float f, float f2) throws NumberFormatException {
         if (uItem.instanceOf(StarsIntroActivity.StarsTransactionView.Factory.class)) {
             StarsIntroActivity.showTransactionSheet(getContext(), true, this.bot_id, this.currentAccount, (TL_stars.StarsTransaction) uItem.object, getResourceProvider());
         } else if (uItem.object instanceof TL_stats.BroadcastRevenueTransaction) {

@@ -80,7 +80,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         }
     }
 
-    public DialogOrContactPickerActivity() {
+    public DialogOrContactPickerActivity() throws NumberFormatException {
         Bundle bundle = new Bundle();
         bundle.putBoolean("onlySelect", true);
         bundle.putBoolean("checkCanWrite", false);
@@ -571,7 +571,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws NumberFormatException {
         super.onResume();
         DialogsActivity dialogsActivity = this.dialogsActivity;
         if (dialogsActivity != null) {

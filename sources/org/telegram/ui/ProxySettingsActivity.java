@@ -140,7 +140,7 @@ public class ProxySettingsActivity extends BaseFragment {
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
+            public void onItemClick(int i) throws NumberFormatException {
                 boolean z;
                 if (i == -1) {
                     ProxySettingsActivity.this.finishFragment();

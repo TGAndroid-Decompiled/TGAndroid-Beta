@@ -28,7 +28,7 @@ public class RestrictedDomainsList {
         return instance;
     }
 
-    public void load() throws JSONException {
+    public void load() throws JSONException, NumberFormatException {
         if (this.loaded) {
             return;
         }
@@ -61,7 +61,7 @@ public class RestrictedDomainsList {
         this.loaded = true;
     }
 
-    public int incrementOpen(String str) throws JSONException {
+    public int incrementOpen(String str) throws JSONException, NumberFormatException {
         load();
         Integer num = (Integer) this.openedDomains.get(str);
         if (num == null) {
@@ -73,7 +73,7 @@ public class RestrictedDomainsList {
         return iIntValue;
     }
 
-    public boolean isRestricted(String... strArr) throws JSONException {
+    public boolean isRestricted(String... strArr) throws JSONException, NumberFormatException {
         load();
         for (String str : strArr) {
             if (this.restrictedDomainsSet.contains(str)) {
@@ -83,7 +83,7 @@ public class RestrictedDomainsList {
         return false;
     }
 
-    public boolean isRestricted(String str) throws JSONException {
+    public boolean isRestricted(String str) throws JSONException, NumberFormatException {
         load();
         return this.restrictedDomainsSet.contains(str);
     }

@@ -548,7 +548,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.actionBar.setAddToContainer(false);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i7) {
+            public void onItemClick(int i7) throws NumberFormatException {
                 if (i7 == -1) {
                     LocationActivity.this.finishFragment();
                     return;
@@ -731,7 +731,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 this.searchAreaButton.setText(LocaleController.getString(R.string.PlacesInThisArea));
                 this.searchAreaButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
+                    public final void onClick(View view) throws NumberFormatException {
                         this.f$0.lambda$createView$1(view);
                     }
                 });
@@ -793,7 +793,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.mapViewClip.addView(this.locationButton, layoutParamsCreateFrame);
         this.locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws NumberFormatException {
                 this.f$0.lambda$createView$4(view);
             }
         });
@@ -1042,7 +1042,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         });
         locationActivity.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i14) {
+            public final void onItemClick(View view, int i14) throws NumberFormatException {
                 this.f$0.lambda$createView$17(view, i14);
             }
         });
@@ -1208,7 +1208,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$createView$1(View view) {
+    public void lambda$createView$1(View view) throws NumberFormatException {
         showSearchPlacesButton(false);
         this.adapter.searchPlacesWithQuery(null, this.userLocation, true, true);
         this.searchedForCustomLocations = true;
@@ -1233,7 +1233,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$createView$4(View view) {
+    public void lambda$createView$4(View view) throws NumberFormatException {
         IMapsProvider.IMap iMap;
         Activity parentActivity;
         if (Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
@@ -1366,7 +1366,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$createView$17(View view, int i) {
+    public void lambda$createView$17(View view, int i) throws NumberFormatException {
         MessageObject messageObject;
         final TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         this.selectedMarkerId = -1L;
@@ -1632,7 +1632,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             ApplicationLoader.getMapsProvider().initializeMaps(ApplicationLoader.applicationContext);
             this.mapView.getMapAsync(new Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void accept(Object obj) throws NumberFormatException {
                     this.f$0.lambda$createView$22((IMapsProvider.IMap) obj);
                 }
             });
@@ -1645,7 +1645,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$createView$22(IMapsProvider.IMap iMap) {
+    public void lambda$createView$22(IMapsProvider.IMap iMap) throws NumberFormatException {
         this.map = iMap;
         int mapThemeResId = getMapThemeResId();
         if (mapThemeResId != 0) {
@@ -1987,7 +1987,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.proximitySheet = null;
     }
 
-    public void openShareLiveLocation(final boolean z, final int i) {
+    public void openShareLiveLocation(final boolean z, final int i) throws NumberFormatException {
         Activity parentActivity;
         if (this.delegate == null || disablePermissionCheck() || getParentActivity() == null || this.myLocation == null || !checkGpsEnabled()) {
             return;
@@ -2000,7 +2000,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 globalMainSettings.edit().putInt("backgroundloc", (int) (System.currentTimeMillis() / 1000)).commit();
                 AlertsCreator.createBackgroundLocationPermissionDialog(parentActivity, getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId())), new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$openShareLiveLocation$32(z);
                     }
                 }, null).show();
@@ -2016,7 +2016,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }, null));
     }
 
-    public void lambda$openShareLiveLocation$32(boolean z) {
+    public void lambda$openShareLiveLocation$32(boolean z) throws NumberFormatException {
         openShareLiveLocation(z, this.askWithRadius);
     }
 
@@ -2251,7 +2251,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return liveLocation;
     }
 
-    private void onMapInit() {
+    private void onMapInit() throws NumberFormatException {
         LocationController.SharingLocationInfo sharingLocationInfo;
         int i;
         if (this.map == null) {
@@ -2314,7 +2314,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         });
         this.map.setOnMyLocationChangeListener(new Consumer() {
             @Override
-            public final void accept(Object obj) {
+            public final void accept(Object obj) throws NumberFormatException {
                 this.f$0.lambda$onMapInit$35((Location) obj);
             }
         });
@@ -2367,7 +2367,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$onMapInit$35(Location location) {
+    public void lambda$onMapInit$35(Location location) throws NumberFormatException {
         positionMarker(location);
         getLocationController().setMapLocation(location, this.isFirstLocation);
         this.isFirstLocation = false;
@@ -2732,7 +2732,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return lastKnownLocation;
     }
 
-    private void positionMarker(Location location) {
+    private void positionMarker(Location location) throws NumberFormatException {
         int i;
         if (location == null) {
             return;
@@ -3275,7 +3275,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
+    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) throws NumberFormatException {
         if (i == 30) {
             openShareLiveLocation(false, this.askWithRadius);
         }

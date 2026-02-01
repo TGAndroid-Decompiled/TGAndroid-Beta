@@ -197,7 +197,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     @Override
-    protected void fillItems(java.util.ArrayList r8, org.telegram.ui.Components.UniversalAdapter r9) throws org.json.JSONException {
+    protected void fillItems(java.util.ArrayList r8, org.telegram.ui.Components.UniversalAdapter r9) throws org.json.JSONException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebBrowserSettings.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 

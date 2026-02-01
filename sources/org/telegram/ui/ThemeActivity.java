@@ -1057,7 +1057,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
 
             @Override
-            public final void onItemClick(View view, int i3, float f, float f2) {
+            public final void onItemClick(View view, int i3, float f, float f2) throws NumberFormatException {
                 this.f$0.lambda$createView$13(context, view, i3, f, f2);
             }
         });
@@ -1149,7 +1149,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
     }
 
-    public void lambda$createView$13(Context context, final View view, final int i, float f, float f2) {
+    public void lambda$createView$13(Context context, final View view, final int i, float f, float f2) throws NumberFormatException {
         int i2;
         int i3;
         String string;

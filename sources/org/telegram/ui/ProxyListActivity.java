@@ -339,7 +339,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
-    public boolean onFragmentCreate() {
+    public boolean onFragmentCreate() throws NumberFormatException {
         super.onFragmentCreate();
         SharedConfig.loadProxyList();
         this.currentConnectionState = ConnectionsManager.getInstance(this.currentAccount).getConnectionState();
@@ -400,7 +400,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) {
+            public final void onItemClick(View view, int i) throws NumberFormatException {
                 this.f$0.lambda$createView$1(view, i);
             }
         });
@@ -429,7 +429,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         return this.fragmentView;
     }
 
-    public void lambda$createView$1(View view, int i) {
+    public void lambda$createView$1(View view, int i) throws NumberFormatException {
         if (i == this.useProxyRow) {
             if (SharedConfig.currentProxy == null) {
                 if (!this.proxyList.isEmpty()) {
@@ -545,7 +545,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             builder.setTitle(LocaleController.getString(R.string.DeleteProxyTitle));
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i5) {
+                public final void onClick(AlertDialog alertDialog, int i5) throws NumberFormatException {
                     this.f$0.lambda$createView$0(alertDialog, i5);
                 }
             });
@@ -558,7 +558,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$createView$0(AlertDialog alertDialog, int i) {
+    public void lambda$createView$0(AlertDialog alertDialog, int i) throws NumberFormatException {
         Iterator it = this.proxyList.iterator();
         while (it.hasNext()) {
             SharedConfig.deleteProxy((SharedConfig.ProxyInfo) it.next());
@@ -594,7 +594,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             this.val$context = context;
         }
 
-        public void lambda$onItemClick$0(AlertDialog alertDialog, int i) {
+        public void lambda$onItemClick$0(AlertDialog alertDialog, int i) throws NumberFormatException {
             Iterator it = ProxyListActivity.this.selectedItems.iterator();
             while (it.hasNext()) {
                 SharedConfig.deleteProxy((SharedConfig.ProxyInfo) it.next());
@@ -637,7 +637,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                 builder.setTitle(LocaleController.getString(R.string.DeleteProxyTitle));
                 builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i2) {
+                    public final void onClick(AlertDialog alertDialog, int i2) throws NumberFormatException {
                         this.f$0.lambda$onItemClick$0(alertDialog, i2);
                     }
                 });

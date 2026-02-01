@@ -308,7 +308,7 @@ public class DataSettingsActivity extends BaseFragment {
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) {
+            public final void onItemClick(View view, int i, float f, float f2) throws NumberFormatException {
                 this.f$0.lambda$createView$9(context, view, i, f, f2);
             }
         });
@@ -321,7 +321,7 @@ public class DataSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$9(android.content.Context r21, android.view.View r22, final int r23, float r24, float r25) {
+    public void lambda$createView$9(android.content.Context r21, android.view.View r22, final int r23, float r24, float r25) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.lambda$createView$9(android.content.Context, android.view.View, int, float, float):void");
     }
 

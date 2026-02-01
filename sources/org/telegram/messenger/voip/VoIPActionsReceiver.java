@@ -7,7 +7,7 @@ import android.content.Intent;
 
 public class VoIPActionsReceiver extends BroadcastReceiver {
     @Override
-    public void onReceive(Context context, Intent intent) throws InterruptedException, PendingIntent.CanceledException {
+    public void onReceive(Context context, Intent intent) throws InterruptedException, PendingIntent.CanceledException, NumberFormatException {
         if (!intent.hasExtra("group_call_invite_msg_id") && VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().handleNotificationAction(intent);
             return;

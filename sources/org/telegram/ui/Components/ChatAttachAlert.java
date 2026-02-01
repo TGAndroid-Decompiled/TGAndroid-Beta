@@ -1897,7 +1897,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 GradientDrawable gradientDrawable = this.d;
                 ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
                 int i13 = Theme.key_windowBackgroundWhite;
-                gradientDrawable.setColors(new int[]{ColorUtils.setAlphaComponent(chatAttachAlert.getThemedColor(i13), 0), ChatAttachAlert.this.getThemedColor(i13)}, null);
+                gradientDrawable.setColors(new int[]{ColorUtils.setAlphaComponent(chatAttachAlert.getThemedColor(i13), 0), ChatAttachAlert.this.getThemedColor(i13)});
                 this.d.setAlpha((int) (AndroidUtilities.getNavigationBarThirdButtonsFactor(0.0f, 0.75f, AndroidUtilities.navigationBarHeight) * 255.0f));
             }
 
@@ -3101,7 +3101,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public void actionButtonPressed(boolean z2, boolean z3, int i, int i2) {
+            public void actionButtonPressed(boolean z2, boolean z3, int i, int i2) throws NumberFormatException {
                 if (z2 || map.isEmpty() || this.sendPressed) {
                     return;
                 }
@@ -3306,7 +3306,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
                         chatAttachAlertLocationLayout.setDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
                             @Override
-                            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i4, boolean z, int i5, long j) {
+                            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i4, boolean z, int i5, long j) throws NumberFormatException {
                                 this.f$0.lambda$new$7(messageMedia, i4, z, i5, j);
                             }
                         });
@@ -3329,7 +3329,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         attachAlertLayoutArr2[1] = chatAttachAlertPollLayout;
                         chatAttachAlertPollLayout.setDelegate(new ChatAttachAlertPollLayout.PollCreateActivityDelegate() {
                             @Override
-                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) {
+                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) throws NumberFormatException {
                                 this.f$0.lambda$new$8(messageMedia, map, z, i4, j);
                             }
                         });
@@ -3354,7 +3354,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         attachAlertLayoutArr3[1] = chatAttachAlertPollLayout2;
                         chatAttachAlertPollLayout2.setDelegate(new ChatAttachAlertPollLayout.PollCreateActivityDelegate() {
                             @Override
-                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) {
+                            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i4, long j) throws NumberFormatException {
                                 this.f$0.lambda$new$9(messageMedia, map, z, i4, j);
                             }
                         });
@@ -3397,15 +3397,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$new$7(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public void lambda$new$7(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) throws NumberFormatException {
         ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2, j);
     }
 
-    public void lambda$new$8(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) {
+    public void lambda$new$8(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) throws NumberFormatException {
         ((ChatActivity) this.baseFragment).sendPoll((TLRPC.TL_messageMediaPoll) messageMedia, map, z, i, j);
     }
 
-    public void lambda$new$9(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) {
+    public void lambda$new$9(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i, long j) throws NumberFormatException {
         ((ChatActivity) this.baseFragment).sendTodo((TLRPC.TL_messageMediaToDo) messageMedia, z, i, j);
     }
 
@@ -4528,12 +4528,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             attachAlertLayoutArr[2] = chatAttachAlertContactsLayout;
             chatAttachAlertContactsLayout.setDelegate(new ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate() {
                 @Override
-                public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) {
+                public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) throws NumberFormatException {
                     ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContact(user, z, i, j, z2, j2);
                 }
 
                 @Override
-                public void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) {
+                public void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) throws NumberFormatException {
                     ((ChatActivity) ChatAttachAlert.this.baseFragment).sendContacts(arrayList, str, z, i, j, z2, 0L);
                 }
             });
@@ -4574,7 +4574,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             attachAlertLayoutArr[3] = chatAttachAlertAudioLayout;
             chatAttachAlertAudioLayout.setDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
                 @Override
-                public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) {
+                public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, int i2, long j, boolean z3, long j2) throws NumberFormatException {
                     this.f$0.lambda$openAudioLayout$41(arrayList, charSequence, z2, i, i2, j, z3, j2);
                 }
             });
@@ -4589,7 +4589,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$openAudioLayout$41(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public void lambda$openAudioLayout$41(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) throws NumberFormatException {
         BaseFragment baseFragment = this.baseFragment;
         if (baseFragment != null && (baseFragment instanceof ChatActivity)) {
             ((ChatActivity) baseFragment).sendAudio(arrayList, charSequence, z, i, i2, j, z2, j2);
@@ -4651,7 +4651,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
 
                 @Override
-                public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, int i3, long j) {
+                public void didSelectPhotos(ArrayList arrayList, boolean z3, int i2, int i3, long j) throws NumberFormatException {
                     if (ChatAttachAlert.this.documentsDelegate != null) {
                         ChatAttachAlert.this.documentsDelegate.didSelectPhotos(arrayList, z3, i2, i3, j);
                         return;
@@ -5388,7 +5388,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.init():void");
     }
 
-    public void lambda$init$50(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public void lambda$init$50(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) throws NumberFormatException {
         ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2, 0L);
     }
 

@@ -97,7 +97,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         gradientButtonWithCounterView.setCounterColor(-6785796);
         gradientButtonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws NumberFormatException {
                 this.f$0.lambda$new$3(chat, view);
             }
         });
@@ -160,7 +160,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         });
     }
 
-    public void lambda$new$3(final TLRPC.Chat chat, View view) {
+    public void lambda$new$3(final TLRPC.Chat chat, View view) throws NumberFormatException {
         if (this.selectedBoosts.isEmpty() || this.actionButton.isLoading()) {
             return;
         }

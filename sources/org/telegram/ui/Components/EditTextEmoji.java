@@ -850,7 +850,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) throws NumberFormatException {
                 int i6;
                 super.onLayout(z2, i2, i3, i4, i5);
                 if (EditTextEmoji.this.allowSearch()) {

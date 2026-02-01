@@ -679,6 +679,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
     }
 
+    @Override
+    public void requestLayout() {
+        if (getParent() != null && getParent().isLayoutRequested()) {
+            getParent().requestLayout();
+        }
+        super.requestLayout();
+    }
+
     public void setCustomMessage(String str) {
         if (TextUtils.equals(this.customMessage, str)) {
             return;
@@ -1031,7 +1039,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         invalidate();
     }
 
-    private CharSequence formatArchivedDialogNames() {
+    private CharSequence formatArchivedDialogNames() throws NumberFormatException {
         TLRPC.User user;
         String strEscape;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);

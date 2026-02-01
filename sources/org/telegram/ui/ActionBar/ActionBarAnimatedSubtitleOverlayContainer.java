@@ -70,7 +70,9 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
             charSequence2 = charSequence;
         }
         SimpleTextViewReplaceable simpleTextViewReplaceable = new SimpleTextViewReplaceable(getContext());
-        simpleTextViewReplaceable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubtitle, this.resourcesProvider));
+        int i = Theme.key_telegram_color_dialogsLogo;
+        simpleTextViewReplaceable.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        simpleTextViewReplaceable.setLinkTextColor(Theme.getColor(i, this.resourcesProvider));
         simpleTextViewReplaceable.setTextSize(1, 14.0f);
         simpleTextViewReplaceable.setAlpha(0.0f);
         simpleTextViewReplaceable.setText(charSequence2);
@@ -97,7 +99,11 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
     public void updateColors() {
         Iterator it = this.titleOverlayAnimator.iterator();
         while (it.hasNext()) {
-            ((SimpleTextViewReplaceable) ((ListAnimator.Entry) it.next()).item).setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubtitle, this.resourcesProvider));
+            ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
+            SimpleTextViewReplaceable simpleTextViewReplaceable = (SimpleTextViewReplaceable) entry.item;
+            int i = Theme.key_telegram_color_dialogsLogo;
+            simpleTextViewReplaceable.setTextColor(Theme.getColor(i, this.resourcesProvider));
+            ((SimpleTextViewReplaceable) entry.item).setLinkTextColor(Theme.getColor(i, this.resourcesProvider));
         }
     }
 

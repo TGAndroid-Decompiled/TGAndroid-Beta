@@ -3770,7 +3770,11 @@ public abstract class Theme {
         return createInsetRoundRectDrawable(i, f, i2, i2);
     }
 
-    public static Drawable createInsetRoundRectDrawable(int i, final float f, final int i2, final int i3) {
+    public static Drawable createInsetRoundRectDrawable(int i, float f, int i2, int i3) {
+        return createInsetRoundRectDrawable(i, f, i2, i3, i2, i3);
+    }
+
+    public static Drawable createInsetRoundRectDrawable(int i, final float f, final int i2, final int i3, final int i4, final int i5) {
         maskPaint.setColor(-1);
         return new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
             private final RectF rectF = new RectF();
@@ -3781,7 +3785,7 @@ public abstract class Theme {
             }
 
             @Override
-            public void setAlpha(int i4) {
+            public void setAlpha(int i6) {
             }
 
             @Override
@@ -3791,8 +3795,11 @@ public abstract class Theme {
             @Override
             public void draw(Canvas canvas) {
                 this.rectF.set(getBounds());
-                this.rectF.inset(i2, i3);
                 RectF rectF = this.rectF;
+                rectF.left += i2;
+                rectF.top += i3;
+                rectF.right -= i4;
+                rectF.bottom -= i5;
                 float f2 = f;
                 canvas.drawRoundRect(rectF, f2, f2, Theme.maskPaint);
             }
@@ -4801,7 +4808,7 @@ public abstract class Theme {
         return Color.argb(Color.alpha(i), iRed < 0 ? 0 : Math.min(iRed, 255), iGreen < 0 ? 0 : Math.min(iGreen, 255), iBlue >= 0 ? Math.min(iBlue, 255) : 0);
     }
 
-    public static boolean deleteThemeAccent(ThemeInfo themeInfo, ThemeAccent themeAccent, boolean z) throws IOException {
+    public static boolean deleteThemeAccent(ThemeInfo themeInfo, ThemeAccent themeAccent, boolean z) throws IOException, NumberFormatException {
         boolean z2 = false;
         if (themeAccent == null || themeInfo == null || themeInfo.themeAccents == null) {
             return false;

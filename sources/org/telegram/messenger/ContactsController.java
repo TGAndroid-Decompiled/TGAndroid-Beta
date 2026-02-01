@@ -365,7 +365,7 @@ public class ContactsController extends BaseController {
         this.completedRequestsCount = 0;
     }
 
-    public void checkInviteText() {
+    public void checkInviteText() throws NumberFormatException {
         SharedPreferences mainSettings = MessagesController.getMainSettings(this.currentAccount);
         this.inviteLink = mainSettings.getString("invitelink", null);
         int i = mainSettings.getInt("invitelinktime", 0);
@@ -1981,13 +1981,13 @@ public class ContactsController extends BaseController {
         }
         getConnectionsManager().sendRequest(tL_contacts_addContact, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$addContact$52(user, tLObject, tL_error);
             }
         }, 6);
     }
 
-    public void lambda$addContact$52(final TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$addContact$52(final TLRPC.User user, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         int iIndexOf;
         if (tL_error != null) {
             return;
@@ -2167,13 +2167,13 @@ public class ContactsController extends BaseController {
         final String str = arrayList.get(0).first_name;
         getConnectionsManager().sendRequest(tL_contacts_deleteContacts, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$deleteContact$57(arrayList2, arrayList, z, str, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deleteContact$57(ArrayList arrayList, final ArrayList arrayList2, final boolean z, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$deleteContact$57(ArrayList arrayList, final ArrayList arrayList2, final boolean z, final String str, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         int iIndexOf;
         if (tL_error != null) {
             return;

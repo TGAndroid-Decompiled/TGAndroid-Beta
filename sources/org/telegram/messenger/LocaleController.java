@@ -1212,7 +1212,7 @@ public class LocaleController {
         reloadCurrentRemoteLocale(i, null, true, null);
     }
 
-    public void checkForcePatchLangpack(int i, final Runnable runnable) {
+    public void checkForcePatchLangpack(int i, final Runnable runnable) throws NumberFormatException {
         final String currentLanguageName = getCurrentLanguageName();
         if (MessagesController.getInstance(i).checkResetLangpack > 0) {
             if (MessagesController.getGlobalMainSettings().getBoolean("langpack_patched" + currentLanguageName, false) || this.patching) {
@@ -4228,7 +4228,7 @@ public class LocaleController {
         return formatDistance(f, i, null);
     }
 
-    private boolean shouldReinstallLangpack(String str) {
+    private boolean shouldReinstallLangpack(String str) throws NumberFormatException {
         int iCalculateTranslatedCount;
         int i = MessagesController.getInstance(UserConfig.selectedAccount).checkResetLangpack;
         if (i <= 0) {

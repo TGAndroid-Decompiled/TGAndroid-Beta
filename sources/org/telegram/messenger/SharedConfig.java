@@ -1312,7 +1312,7 @@ public class SharedConfig {
         return MessagesController.getGlobalMainSettings().getBoolean("proxy_enabled", false) && currentProxy != null;
     }
 
-    public static void deleteProxy(ProxyInfo proxyInfo) {
+    public static void deleteProxy(ProxyInfo proxyInfo) throws NumberFormatException {
         if (currentProxy == proxyInfo) {
             currentProxy = null;
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();

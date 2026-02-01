@@ -191,13 +191,13 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     public void lambda$search$1(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$search$0(tLObject);
             }
         });
     }
 
-    public void lambda$search$0(TLObject tLObject) {
+    public void lambda$search$0(TLObject tLObject) throws NumberFormatException {
         TLObject userOrChat;
         TLObject userOrChat2;
         this.searchResult.clear();

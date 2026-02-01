@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -94,7 +93,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -1511,7 +1509,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onPhotosLoaded() {
+        public void onPhotosLoaded() throws NumberFormatException {
             ProfileActivity.this.updateProfileData(false);
         }
 
@@ -2140,7 +2138,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean onFragmentCreate() throws InterruptedException {
+    public boolean onFragmentCreate() throws InterruptedException, NumberFormatException {
         this.userId = this.arguments.getLong("user_id", 0L);
         this.chatId = this.arguments.getLong("chat_id", 0L);
         this.topicId = this.arguments.getLong("topic_id", 0L);
@@ -2667,7 +2665,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public View createView(final Context context) {
+    public View createView(final Context context) throws NumberFormatException {
         int i;
         TLRPC.UserFull userFull;
         TLRPC.ChatFull chatFull;
@@ -2752,7 +2750,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                    public final void onClick(View view) {
                         this.f$0.lambda$createView$11(i7, view);
                     }
                 });
@@ -2796,7 +2794,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateNotifications(false);
             this.actionsView.setOnActionClickListener(new ProfileActionsView.OnActionClickListener() {
                 @Override
-                public final void onClick(int i11, float f4, float f5) throws Resources.NotFoundException, IOException {
+                public final void onClick(int i11, float f4, float f5) throws NumberFormatException {
                     this.f$0.lambda$createView$15(i11, f4, f5);
                 }
             });
@@ -3124,7 +3122,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i12, float f4, float f5) {
+            public final void onItemClick(View view, int i12, float f4, float f5) throws NumberFormatException {
                 this.f$0.lambda$createView$28(context2, j2, view, i12, f4, f5);
             }
         });
@@ -3951,7 +3949,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) {
+        public void onItemClick(int i) throws NumberFormatException {
             long jMakeEncryptedDialogId;
             SharedMediaLayout.ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner;
             if (ProfileActivity.this.getParentActivity() == null) {
@@ -4008,7 +4006,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 builder.setMessage(LocaleController.getString(R.string.AreYouSureDeleteContact));
                 builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i2) {
+                    public final void onClick(AlertDialog alertDialog, int i2) throws NumberFormatException {
                         this.f$0.lambda$onItemClick$0(user2, alertDialog, i2);
                     }
                 });
@@ -4321,7 +4319,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             builder4.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i3) {
+                public final void onClick(AlertDialog alertDialog, int i3) throws NumberFormatException {
                     this.f$0.lambda$onItemClick$11(alertDialog, i3);
                 }
             });
@@ -4334,7 +4332,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$0(TLRPC.User user, AlertDialog alertDialog, int i) {
+        public void lambda$onItemClick$0(TLRPC.User user, AlertDialog alertDialog, int i) throws NumberFormatException {
             ArrayList<TLRPC.User> arrayList = new ArrayList<>();
             arrayList.add(user);
             ProfileActivity.this.getContactsController().deleteContact(arrayList, true);
@@ -4483,7 +4481,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$11(AlertDialog alertDialog, int i) {
+        public void lambda$onItemClick$11(AlertDialog alertDialog, int i) throws NumberFormatException {
             TLRPC.Photo photo;
             int realPosition = ProfileActivity.this.avatarsViewPager.getRealPosition();
             TLRPC.Photo photo2 = ProfileActivity.this.avatarsViewPager.getPhoto(realPosition);
@@ -4598,7 +4596,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onMeasure(int r18, int r19) {
+        protected void onMeasure(int r18, int r19) throws java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.AnonymousClass7.onMeasure(int, int):void");
         }
 
@@ -4798,7 +4796,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$11(int i, View view) {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5150,7 +5148,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$createView$15(int i, float f, float f2) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$15(int i, float f, float f2) throws NumberFormatException {
         switch (i) {
             case 0:
                 if (!this.isTopic) {
@@ -5324,7 +5322,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$28(final Context context, long j, final View view, int i, float f, float f2) {
+    public void lambda$createView$28(final Context context, long j, final View view, int i, float f, float f2) throws NumberFormatException {
         TLRPC.Document document;
         TLRPC.ChatParticipant chatParticipant;
         ListAdapter listAdapter;
@@ -5401,7 +5399,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             builder.setPositiveButton(LocaleController.getString(R.string.ReportChat), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i3) {
+                public final void onClick(AlertDialog alertDialog, int i3) throws NumberFormatException {
                     this.f$0.lambda$createView$22(checkBoxCellArr, alertDialog, i3);
                 }
             });
@@ -5781,7 +5779,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         checkBoxCellArr[0].setChecked(!r1.isChecked(), true);
     }
 
-    public void lambda$createView$22(CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
+    public void lambda$createView$22(CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) throws NumberFormatException {
         TLRPC.TL_messages_reportReaction tL_messages_reportReaction = new TLRPC.TL_messages_reportReaction();
         tL_messages_reportReaction.user_id = getMessagesController().getInputUser(this.userId);
         tL_messages_reportReaction.peer = getMessagesController().getInputPeer(this.reportReactionFromDialogId);
@@ -5958,7 +5956,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i5) {
+                    public final void onClick(DialogInterface dialogInterface, int i5) throws NumberFormatException {
                         this.f$0.lambda$onItemClick$3(context, dialogInterface, i5);
                     }
                 });
@@ -5975,7 +5973,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onItemClick$3(Context context, DialogInterface dialogInterface, int i) {
+        public void lambda$onItemClick$3(Context context, DialogInterface dialogInterface, int i) throws NumberFormatException {
             int i2;
             int i3;
             int i4 = 0;
@@ -7110,7 +7108,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         rect.offset((int) this.nameTextView[1].getX(), (int) this.nameTextView[1].getY());
     }
 
-    private void onNotificationsClicked(boolean z, float f, float f2, View view) {
+    private void onNotificationsClicked(boolean z, float f, float f2, View view) throws NumberFormatException {
         float f3;
         float height;
         long j;
@@ -7188,7 +7186,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void toggleSound() {
+            public void toggleSound() throws NumberFormatException {
                 SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) ProfileActivity.this).currentAccount);
                 boolean z4 = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(j3, ProfileActivity.this.topicId), true);
                 boolean z5 = !z4;
@@ -7282,7 +7280,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         profileActionsView.setNotifications(isNotificationsEnabled());
     }
 
-    private boolean isNotificationsEnabled() {
+    private boolean isNotificationsEnabled() throws NumberFormatException {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
         long j = this.dialogId;
         if (j == 0) {
@@ -7373,7 +7371,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+            protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) throws NumberFormatException {
                 TLRPC.EmojiStatus tL_emojiStatusEmpty;
                 if (tL_starGiftUnique != null) {
                     TL_stars.SavedStarGift savedStarGiftFindUserStarGift = StarsController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).findUserStarGift(tL_starGiftUnique.id);
@@ -7491,7 +7489,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         final boolean[] zArr = {true};
         getMessagesController().addUserToChat(this.currentChat.id, getUserConfig().getCurrentUser(), 0, null, this, true, new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$onJoinClicked$52(z, zArr);
             }
         }, new MessagesController.ErrorDelegate() {
@@ -7503,7 +7501,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
     }
 
-    public void lambda$onJoinClicked$52(boolean z, boolean[] zArr) {
+    public void lambda$onJoinClicked$52(boolean z, boolean[] zArr) throws NumberFormatException {
         if (!z || this.joinRow != -1) {
             updateRowsIds();
             ListAdapter listAdapter = this.listAdapter;
@@ -7525,7 +7523,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public boolean lambda$onJoinClicked$53(boolean[] zArr, boolean z, BaseFragment baseFragment, TLRPC.TL_error tL_error) {
+    public boolean lambda$onJoinClicked$53(boolean[] zArr, boolean z, BaseFragment baseFragment, TLRPC.TL_error tL_error) throws NumberFormatException {
         zArr[0] = false;
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
@@ -7767,7 +7765,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                 }).addIf(z6, R.drawable.msg_remove, (CharSequence) LocaleController.getString(R.string.KickFromGroup), true, new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$onMemberClick$60(chatParticipant);
                     }
                 }).setMinWidth(190).show();
@@ -7806,7 +7804,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         callback.run(1);
     }
 
-    public void lambda$onMemberClick$60(TLRPC.ChatParticipant chatParticipant) {
+    public void lambda$onMemberClick$60(TLRPC.ChatParticipant chatParticipant) throws NumberFormatException {
         kickUser(this.selectedUser, chatParticipant);
     }
 
@@ -7822,7 +7820,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         };
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
-            public void didSetRights(int i2, TLRPC.TL_chatAdminRights tL_chatAdminRights2, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str2) {
+            public void didSetRights(int i2, TLRPC.TL_chatAdminRights tL_chatAdminRights2, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str2) throws NumberFormatException {
                 boolean z2;
                 TLRPC.ChatParticipant tL_chatParticipant;
                 int i3 = i;
@@ -8244,7 +8242,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public void lambda$getChannelParticipants$79(final TLRPC.TL_error tL_error, final TLObject tLObject, final TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
         getNotificationCenter().doOnIdle(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$getChannelParticipants$78(tL_error, tLObject, tL_channels_getParticipants);
             }
         });
@@ -8259,7 +8257,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }, i);
     }
 
-    public void lambda$getChannelParticipants$78(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
+    public void lambda$getChannelParticipants$78(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) throws NumberFormatException {
         if (tL_error == null) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
             getMessagesController().putUsers(tL_channels_channelParticipants.users, false);
@@ -8487,18 +8485,18 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
         }, new androidx.core.util.Consumer() {
             @Override
-            public final void accept(Object obj) {
+            public final void accept(Object obj) throws NumberFormatException {
                 this.f$0.lambda$openAddMember$83((TLRPC.User) obj);
             }
         }, new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$openAddMember$84(arrayList2, hashSet);
             }
         });
     }
 
-    public void lambda$openAddMember$83(TLRPC.User user) {
+    public void lambda$openAddMember$83(TLRPC.User user) throws NumberFormatException {
         for (int i = 0; i < this.chatInfo.participants.participants.size(); i++) {
             if (this.chatInfo.participants.participants.get(i).user_id == user.id) {
                 this.chatInfo.participants.participants.remove(i);
@@ -8508,7 +8506,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$openAddMember$84(ArrayList arrayList, HashSet hashSet) {
+    public void lambda$openAddMember$84(ArrayList arrayList, HashSet hashSet) throws NumberFormatException {
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             TLRPC.User user = (TLRPC.User) arrayList.get(i);
@@ -9089,7 +9087,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, final Object... objArr) {
+    public void didReceivedNotification(int i, int i2, final Object... objArr) throws NumberFormatException {
         ListAdapter listAdapter;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
@@ -9386,7 +9384,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     this.profileChannelMessageFetcher = channelMessageFetcher;
                     channelMessageFetcher.subscribe(new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws NumberFormatException {
                             this.f$0.lambda$didReceivedNotification$87();
                         }
                     });
@@ -9623,7 +9621,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChatActivity(bundle), true);
     }
 
-    public void lambda$didReceivedNotification$87() {
+    public void lambda$didReceivedNotification$87() throws NumberFormatException {
         updateListAnimated(false);
     }
 
@@ -9730,7 +9728,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void mediaCountUpdated() {
+    public void mediaCountUpdated() throws NumberFormatException {
         SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
         SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
         if (sharedMediaLayout != null && (sharedMediaPreloader = this.sharedMediaPreloader) != null) {
@@ -9744,7 +9742,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws NumberFormatException {
         TLRPC.User user;
         View view;
         super.onResume();
@@ -9866,7 +9864,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.fullyVisible = false;
     }
 
-    public void setPlayProfileAnimation(int i) {
+    public void setPlayProfileAnimation(int i) throws NumberFormatException {
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
         if (AndroidUtilities.isTablet()) {
             return;
@@ -9880,7 +9878,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void updateSharedMediaRows() {
+    private void updateSharedMediaRows() throws NumberFormatException {
         if (this.listAdapter == null) {
             return;
         }
@@ -10193,7 +10191,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         this.profileChannelMessageFetcher.subscribe(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$setUserInfo$92();
             }
         });
@@ -10222,7 +10220,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$setUserInfo$92() {
+    public void lambda$setUserInfo$92() throws NumberFormatException {
         updateListAnimated(false);
     }
 
@@ -10246,7 +10244,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void kickUser(long j, TLRPC.ChatParticipant chatParticipant) {
+    private void kickUser(long j, TLRPC.ChatParticipant chatParticipant) throws NumberFormatException {
         if (j != 0) {
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(j));
             getMessagesController().deleteParticipantFromChat(this.chatId, user);
@@ -10276,7 +10274,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return this.chatId != 0;
     }
 
-    public void updateRowsIds() {
+    public void updateRowsIds() throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateRowsIds():void");
     }
 
@@ -10502,7 +10500,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void updateProfileData(boolean r29) {
+    public void updateProfileData(boolean r29) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateProfileData(boolean):void");
     }
 
@@ -11118,7 +11116,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, final String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z, final TLRPC.VideoSize videoSize) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$didUploadPhoto$104(inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
             }
         });
@@ -11127,13 +11125,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public void lambda$didUploadPhoto$103(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$didUploadPhoto$102(tL_error, tLObject, str);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$102(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
+    public void lambda$didUploadPhoto$102(TLRPC.TL_error tL_error, TLObject tLObject, String str) throws NumberFormatException {
         if (tL_error == null) {
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
             if (user == null) {
@@ -11193,7 +11191,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getUserConfig().saveConfig(true);
     }
 
-    public void lambda$didUploadPhoto$104(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+    public void lambda$didUploadPhoto$104(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) throws NumberFormatException {
         if (inputFile != null || inputFile2 != null || videoSize != null) {
             if (this.avatar == null) {
                 return;
@@ -11391,13 +11389,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             protected void onYesClick(final int i) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$onYesClick$0(i);
                     }
                 });
             }
 
-            public void lambda$onYesClick$0(int i) {
+            public void lambda$onYesClick$0(int i) throws NumberFormatException {
                 NotificationCenter notificationCenter = ProfileActivity.this.getNotificationCenter();
                 ProfileActivity profileActivity = ProfileActivity.this;
                 int i2 = NotificationCenter.newSuggestionsAvailable;
@@ -11688,11 +11686,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onBindViewHolder(final androidx.recyclerview.widget.RecyclerView.ViewHolder r30, final int r31) {
+        public void onBindViewHolder(final androidx.recyclerview.widget.RecyclerView.ViewHolder r30, final int r31) throws java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
-        public void lambda$onBindViewHolder$1(RecyclerView.ViewHolder viewHolder, int i) {
+        public void lambda$onBindViewHolder$1(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
             if (viewHolder.getAdapterPosition() == i && ProfileActivity.this.birthdayRow == i && viewHolder.getItemViewType() == 2) {
                 onBindViewHolder(viewHolder, i);
             }
@@ -13763,7 +13761,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.SearchAdapter.lambda$loadFaqWebPage$142(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
         }
 
-        public void lambda$loadFaqWebPage$141(ArrayList arrayList) {
+        public void lambda$loadFaqWebPage$141(ArrayList arrayList) throws NumberFormatException {
             this.faqSearchArray.addAll(arrayList);
             MessagesController.getInstance(this.currentAccount).faqSearchArray = arrayList;
             MessagesController.getInstance(this.currentAccount).faqWebPage = this.faqWebPage;
@@ -14274,11 +14272,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         updatedPeerColor();
     }
 
-    public void updateListAnimated(boolean z) {
+    public void updateListAnimated(boolean z) throws NumberFormatException {
         updateListAnimated(z, false);
     }
 
-    private void updateListAnimated(final boolean z, boolean z2) {
+    private void updateListAnimated(final boolean z, boolean z2) throws NumberFormatException {
         if (this.listAdapter == null) {
             if (z) {
                 updateOnlineCount(false);
@@ -14290,7 +14288,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (this.listView.isAttachedToWindow()) {
                 this.listView.post(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$updateListAnimated$109(z);
                     }
                 });
@@ -14326,7 +14324,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.updateVisibleRows(this.listView);
     }
 
-    public void lambda$updateListAnimated$109(boolean z) {
+    public void lambda$updateListAnimated$109(boolean z) throws NumberFormatException {
         updateListAnimated(z, true);
     }
 
@@ -14435,14 +14433,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ContactAddActivity contactAddActivity = new ContactAddActivity(bundle, this.resourcesProvider);
         contactAddActivity.setDelegate(new ContactAddActivity.ContactAddActivityDelegate() {
             @Override
-            public final void didAddToContacts() {
+            public final void didAddToContacts() throws NumberFormatException {
                 this.f$0.lambda$openAddToContact$110(user);
             }
         });
         presentFragment(contactAddActivity);
     }
 
-    public void lambda$openAddToContact$110(TLRPC.User user) {
+    public void lambda$openAddToContact$110(TLRPC.User user) throws NumberFormatException {
         if (this.addToContactsRow >= 0) {
             if (this.sharedMediaRow == -1) {
                 updateRowsIds();
@@ -15161,13 +15159,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public void lambda$editNotes$115(final int i) {
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.ProfileNotesRemoveTitle)).setMessage(LocaleController.getString(R.string.ProfileNotesRemoveText)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) throws NumberFormatException {
                 this.f$0.lambda$editNotes$114(i, alertDialog, i2);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
 
-    public void lambda$editNotes$114(int i, AlertDialog alertDialog, int i2) {
+    public void lambda$editNotes$114(int i, AlertDialog alertDialog, int i2) throws NumberFormatException {
         TLRPC.UserFull userFull = getMessagesController().getUserFull(this.userId);
         if (userFull != null) {
             userFull.flags2 &= -4194305;
@@ -15355,7 +15353,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         builder.setMessage(LocaleController.getString(R.string.BusinessHoursClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) throws NumberFormatException {
                 this.f$0.lambda$editRow$122(userFull, i, alertDialog, i2);
             }
         });
@@ -15363,7 +15361,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$122(TLRPC.UserFull userFull, int i, AlertDialog alertDialog, int i2) {
+    public void lambda$editRow$122(TLRPC.UserFull userFull, int i, AlertDialog alertDialog, int i2) throws NumberFormatException {
         TL_account.updateBusinessWorkHours updatebusinessworkhours = new TL_account.updateBusinessWorkHours();
         if (userFull != null) {
             userFull.business_work_hours = null;
@@ -15407,7 +15405,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         builder.setMessage(LocaleController.getString(R.string.BusinessLocationClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) throws NumberFormatException {
                 this.f$0.lambda$editRow$127(userFull, i, alertDialog, i2);
             }
         });
@@ -15415,7 +15413,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$127(TLRPC.UserFull userFull, int i, AlertDialog alertDialog, int i2) {
+    public void lambda$editRow$127(TLRPC.UserFull userFull, int i, AlertDialog alertDialog, int i2) throws NumberFormatException {
         TL_account.updateBusinessLocation updatebusinesslocation = new TL_account.updateBusinessLocation();
         if (userFull != null) {
             userFull.business_location = null;
@@ -15540,7 +15538,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         builder.setMessage(LocaleController.getString(R.string.BirthdayClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws NumberFormatException {
                 this.f$0.lambda$editRow$139(userFull, alertDialog, i);
             }
         });
@@ -15548,7 +15546,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$139(TLRPC.UserFull userFull, AlertDialog alertDialog, int i) {
+    public void lambda$editRow$139(TLRPC.UserFull userFull, AlertDialog alertDialog, int i) throws NumberFormatException {
         TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
         if (userFull != null) {
             userFull.birthday = null;
@@ -15596,7 +15594,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         builder.setMessage(LocaleController.getString(R.string.ProfileChannelClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws NumberFormatException {
                 this.f$0.lambda$editRow$145(userFull, alertDialog, i);
             }
         });
@@ -15604,7 +15602,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$145(TLRPC.UserFull userFull, AlertDialog alertDialog, int i) {
+    public void lambda$editRow$145(TLRPC.UserFull userFull, AlertDialog alertDialog, int i) throws NumberFormatException {
         TL_account.updatePersonalChannel updatepersonalchannel = new TL_account.updatePersonalChannel();
         updatepersonalchannel.channel = new TLRPC.TL_inputChannelEmpty();
         if (userFull != null) {

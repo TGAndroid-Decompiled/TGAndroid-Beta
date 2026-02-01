@@ -139,7 +139,7 @@ public class BusinessRecipientsHelper {
         this.neverShow.addAll(this.currentValue.exclude_users);
     }
 
-    public TL_account.TL_businessRecipients getValue() {
+    public TL_account.TL_businessRecipients getValue() throws NumberFormatException {
         TL_account.TL_businessRecipients tL_businessRecipients = new TL_account.TL_businessRecipients();
         int flags = getFlags();
         tL_businessRecipients.flags = flags & (-49);
@@ -164,7 +164,7 @@ public class BusinessRecipientsHelper {
         return tL_businessRecipients;
     }
 
-    public TL_account.TL_businessBotRecipients getBotValue() {
+    public TL_account.TL_businessBotRecipients getBotValue() throws NumberFormatException {
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = new TL_account.TL_businessBotRecipients();
         int flags = getFlags();
         tL_businessBotRecipients.flags = flags & (-49);
@@ -200,7 +200,7 @@ public class BusinessRecipientsHelper {
         return tL_businessBotRecipients;
     }
 
-    public TL_account.TL_inputBusinessRecipients getInputValue() {
+    public TL_account.TL_inputBusinessRecipients getInputValue() throws NumberFormatException {
         TL_account.TL_inputBusinessRecipients tL_inputBusinessRecipients = new TL_account.TL_inputBusinessRecipients();
         int flags = getFlags();
         tL_inputBusinessRecipients.flags = flags & (-49);
@@ -226,7 +226,7 @@ public class BusinessRecipientsHelper {
         return tL_inputBusinessRecipients;
     }
 
-    public TL_account.TL_inputBusinessBotRecipients getBotInputValue() {
+    public TL_account.TL_inputBusinessBotRecipients getBotInputValue() throws NumberFormatException {
         TL_account.TL_inputBusinessBotRecipients tL_inputBusinessBotRecipients = new TL_account.TL_inputBusinessBotRecipients();
         int flags = getFlags();
         tL_inputBusinessBotRecipients.flags = flags & (-49);

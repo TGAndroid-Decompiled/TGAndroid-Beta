@@ -269,7 +269,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) {
+        public void sendEmoji(TLRPC.Document document) throws NumberFormatException {
             if (SuggestEmojiView.this.enterView == null) {
                 return;
             }

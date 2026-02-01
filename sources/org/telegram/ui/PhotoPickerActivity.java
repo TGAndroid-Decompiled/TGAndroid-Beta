@@ -554,7 +554,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.listView.setGlowColor(Theme.getColor(this.dialogBackgroundKey));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) {
+            public final void onItemClick(View view, int i4) throws NumberFormatException {
                 this.f$0.lambda$createView$1(view, i4);
             }
         });
@@ -640,7 +640,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+            public void onScrolled(RecyclerView recyclerView, int i4, int i5) throws NumberFormatException {
                 if (PhotoPickerActivity.this.selectedAlbum == null) {
                     int iFindFirstVisibleItemPosition = PhotoPickerActivity.this.layoutManager.findFirstVisibleItemPosition();
                     int iAbs = iFindFirstVisibleItemPosition == -1 ? 0 : Math.abs(PhotoPickerActivity.this.layoutManager.findLastVisibleItemPosition() - iFindFirstVisibleItemPosition) + 1;
@@ -789,7 +789,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
     class AnonymousClass4 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
         Runnable updateSearch = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$$0();
             }
         };
@@ -828,13 +828,13 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(this.updateSearch, 1200L);
         }
 
-        public void lambda$$0() {
+        public void lambda$$0() throws NumberFormatException {
             PhotoPickerActivity photoPickerActivity = PhotoPickerActivity.this;
             photoPickerActivity.processSearch(photoPickerActivity.searchItem.getSearchField());
         }
 
         @Override
-        public void onSearchPressed(EditText editText) {
+        public void onSearchPressed(EditText editText) throws NumberFormatException {
             PhotoPickerActivity.this.processSearch(editText);
         }
     }
@@ -946,7 +946,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$createView$1(View view, int i) {
+    public void lambda$createView$1(View view, int i) throws NumberFormatException {
         ArrayList<MediaController.PhotoEntry> arrayList;
         int i2;
         if (this.selectedAlbum == null && this.searchResult.isEmpty()) {
@@ -1224,7 +1224,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws NumberFormatException {
         super.onResume();
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter != null) {
@@ -1317,7 +1317,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         saveRecentSearch();
     }
 
-    public void processSearch(EditText editText) {
+    public void processSearch(EditText editText) throws NumberFormatException {
         if (editText.getText().length() == 0) {
             return;
         }
@@ -1560,14 +1560,14 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$searchBotUser$10(tLObject, z);
                 }
             });
         }
     }
 
-    public void lambda$searchBotUser$10(TLObject tLObject, boolean z) {
+    public void lambda$searchBotUser$10(TLObject tLObject, boolean z) throws NumberFormatException {
         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
         MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
         MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
@@ -1577,7 +1577,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         searchImages(z, str, "", false);
     }
 
-    public void searchImages(final boolean z, final String str, String str2, boolean z2) {
+    public void searchImages(final boolean z, final String str, String str2, boolean z2) throws NumberFormatException {
         if (this.searching) {
             this.searching = false;
             if (this.imageReqId != 0) {

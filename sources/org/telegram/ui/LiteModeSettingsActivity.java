@@ -67,7 +67,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
     Bulletin restrictBulletin;
     private Utilities.Callback onPowerAppliedChange = new Utilities.Callback() {
         @Override
-        public final void run(Object obj) throws IOException {
+        public final void run(Object obj) throws NumberFormatException, IOException {
             this.f$0.lambda$new$1((Boolean) obj);
         }
     };
@@ -127,7 +127,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) throws IOException {
+            public final void onItemClick(View view, int i, float f, float f2) throws NumberFormatException, IOException {
                 this.f$0.lambda$createView$0(view, i, f, f2);
             }
         });
@@ -137,7 +137,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i, float f, float f2) throws IOException {
+    public void lambda$createView$0(View view, int i, float f, float f2) throws NumberFormatException, IOException {
         int expandedIndex;
         if (view == null || i < 0 || i >= this.items.size()) {
             return;
@@ -183,7 +183,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         LiteMode.removeOnPowerSaverAppliedListener(this.onPowerAppliedChange);
     }
 
-    public void lambda$new$1(Boolean bool) throws IOException {
+    public void lambda$new$1(Boolean bool) throws NumberFormatException, IOException {
         updateValues();
     }
 
@@ -315,7 +315,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
     }
 
-    public void updateValues() throws IOException {
+    public void updateValues() throws NumberFormatException, IOException {
         int childAdapterPosition;
         if (this.listView == null) {
             return;
@@ -375,7 +375,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws IOException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException, IOException {
             if (i < 0 || i >= LiteModeSettingsActivity.this.items.size()) {
                 return;
             }
@@ -682,7 +682,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         SeekBarView seekBarView;
         FrameLayout valuesView;
 
-        public PowerSaverSlider(Context context) throws IOException {
+        public PowerSaverSlider(Context context) throws NumberFormatException, IOException {
             super(context);
             LinearLayout linearLayout = new LinearLayout(context);
             this.headerLayout = linearLayout;
@@ -734,7 +734,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onSeekBarDrag(boolean z, float f) throws IOException {
+                public void onSeekBarDrag(boolean z, float f) throws NumberFormatException, IOException {
                     int iRound = Math.round(f * 100.0f);
                     if (iRound != LiteMode.getPowerSaverLevel()) {
                         LiteMode.setPowerSaverLevel(iRound);
@@ -830,7 +830,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
 
                 @Override
-                public void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) throws IOException {
+                public void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) throws NumberFormatException, IOException {
                     super.onPopulateAccessibilityEvent(view, accessibilityEvent);
                     StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.LiteBatteryTitle));
                     sb.append(", ");
@@ -866,7 +866,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             return this.seekBarAccessibilityDelegate.performAccessibilityAction(this, i, bundle);
         }
 
-        public void update() throws IOException {
+        public void update() throws NumberFormatException, IOException {
             int powerSaverLevel = LiteMode.getPowerSaverLevel();
             this.middleTextView.cancelAnimation();
             if (powerSaverLevel <= 0) {

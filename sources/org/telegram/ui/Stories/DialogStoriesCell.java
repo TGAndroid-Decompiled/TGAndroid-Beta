@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -14,6 +13,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -132,6 +131,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     ArrayList oldItems;
     ArrayList oldMiniItems;
     private float overScrollCoef;
+    private int overlayTextId;
     private float overscrollProgress;
     private int overscrollSelectedPosition;
     private StoryCell overscrollSelectedView;
@@ -287,7 +287,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), true, true, false);
         this.titleView = animatedTextView;
         animatedTextView.setGravity(3);
-        this.titleView.setTextColor(getTextColor());
+        this.titleView.setTextColor(getTextLogoColor());
         this.titleView.setEllipsizeByGradient(true);
         this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
@@ -503,6 +503,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     }
 
     public void updateItems(boolean z, boolean z2) {
+        boolean z3 = true;
         if ((this.currentState == 1 || this.overscrollProgress != 0.0f) && !z2) {
             this.updateOnIdleState = true;
             return;
@@ -552,7 +553,11 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         if (!this.hasOverlayText) {
             this.titleView.setText(this.currentTitle, z && !LocaleController.isRTL);
         }
-        this.animatorHasTitleText.setValue(true ^ TextUtils.isEmpty(this.currentTitle), z);
+        BoolAnimator boolAnimator = this.animatorHasTitleText;
+        if (TextUtils.isEmpty(this.currentTitle) && !this.hasOverlayText) {
+            z3 = false;
+        }
+        boolAnimator.setValue(z3, z);
         this.miniItems.clear();
         for (int i2 = 0; i2 < this.items.size(); i2++) {
             if (((Item) this.items.get(i2)).dialogId != UserConfig.getInstance(this.currentAccount).clientUserId || shouldDrawSelfInMini()) {
@@ -777,7 +782,11 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     public void updateColors() {
         StoriesUtilities.updateColors();
         final int textColor = getTextColor();
-        this.titleView.setTextColor(textColor);
+        this.titleView.setTextColor(getTextLogoColor());
+        ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.subtitleOverlayContainer;
+        if (actionBarAnimatedSubtitleOverlayContainer != null) {
+            actionBarAnimatedSubtitleOverlayContainer.updateColors();
+        }
         this.telegramLogoView.setColorFilter(getTextLogoColor(), PorterDuff.Mode.MULTIPLY);
         AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, new Consumer() {
             @Override
@@ -896,7 +905,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             alertDialog.showDelayed(500L);
             MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(j, new Consumer() {
                 @Override
-                public final void accept(Object obj) throws Resources.NotFoundException, IOException {
+                public final void accept(Object obj) {
                     this.f$0.lambda$openStoryRecorder$14(alertDialog, j, storyCell, (Boolean) obj);
                 }
             }, true, resourceProvider);
@@ -905,7 +914,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
     }
 
-    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws Resources.NotFoundException, IOException {
+    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).selectedPeerId(j).canChangePeer(false).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
@@ -913,7 +922,38 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     }
 
     public void setTitleOverlayText(String str, int i) {
-        this.subtitleOverlayContainer.setText(str != null ? LocaleController.getString(str, i) : null, true);
+        this.subtitleOverlayContainer.setText(i == R.string.ConnectingToProxyWithDots ? AndroidUtilities.replaceArrows(LocaleController.getString(R.string.TitleSetupProxy), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(2.0f)) : null, true);
+        boolean z = false;
+        if (str != null) {
+            this.hasOverlayText = true;
+            if (this.overlayTextId != i) {
+                this.overlayTextId = i;
+                String string = LocaleController.getString(str, i);
+                boolean zIsEmpty = TextUtils.isEmpty(string);
+                String str2 = string;
+                if (!zIsEmpty) {
+                    int iIndexOf = TextUtils.indexOf(string, "...");
+                    str2 = string;
+                    if (iIndexOf >= 0) {
+                        SpannableString spannableStringValueOf = SpannableString.valueOf(string);
+                        this.ellipsizeSpanAnimator.wrap(spannableStringValueOf, iIndexOf);
+                        z = true;
+                        str2 = spannableStringValueOf;
+                    }
+                }
+                this.titleView.setText(str2, !LocaleController.isRTL);
+            }
+        } else {
+            this.hasOverlayText = false;
+            this.overlayTextId = 0;
+            this.titleView.setText(this.currentTitle, !LocaleController.isRTL);
+        }
+        this.animatorHasTitleText.setValue(this.hasOverlayText, true);
+        if (z) {
+            this.ellipsizeSpanAnimator.addView(this.titleView);
+        } else {
+            this.ellipsizeSpanAnimator.removeView(this.titleView);
+        }
     }
 
     public void setClipTop(int i) {

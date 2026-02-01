@@ -6,8 +6,12 @@ import org.telegram.messenger.Utilities;
 public final class ChatActivity$$ExternalSyntheticLambda181 implements Utilities.Callback {
     public final ChatActivity f$0;
 
+    public ChatActivity$$ExternalSyntheticLambda181(ChatActivity chatActivity) {
+        this.f$0 = chatActivity;
+    }
+
     @Override
-    public final void run(Object obj) {
+    public final void run(Object obj) throws NumberFormatException {
         this.f$0.showFieldPanelForSuggestionParams((MessageSuggestionParams) obj);
     }
 }

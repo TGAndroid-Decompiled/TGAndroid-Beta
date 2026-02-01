@@ -471,7 +471,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void onBecomeFullyVisible() {
+    public void onBecomeFullyVisible() throws NumberFormatException {
         super.onBecomeFullyVisible();
         LocaleController.getInstance().checkForcePatchLangpack(this.currentAccount, new Runnable() {
             @Override

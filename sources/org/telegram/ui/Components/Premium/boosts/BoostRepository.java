@@ -102,7 +102,7 @@ public abstract class BoostRepository {
         });
     }
 
-    public static ArrayList getMyChannels(long j) {
+    public static ArrayList getMyChannels(long j) throws NumberFormatException {
         ArrayList arrayList = new ArrayList();
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ArrayList<TLRPC.Dialog> allDialogs = messagesController.getAllDialogs();
@@ -118,7 +118,7 @@ public abstract class BoostRepository {
         return arrayList;
     }
 
-    public static void payGiftCode(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
+    public static void payGiftCode(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) throws NumberFormatException {
         invalidateGiftOptionsToCache(UserConfig.selectedAccount);
         if (!isGoogleBillingAvailable()) {
             payGiftCodeByInvoice(list, tL_premiumGiftCodeOption, chat, tL_textWithEntities, baseFragment, callback, callback2);
@@ -134,7 +134,7 @@ public abstract class BoostRepository {
         return BillingController.getInstance().isReady();
     }
 
-    public static void payGiftCodeByInvoice(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiftCodeByInvoice(List list, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
@@ -220,7 +220,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void payGiftCodeByGoogle(List list, final TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiftCodeByGoogle(List list, final TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, final BaseFragment baseFragment, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = new TLRPC.TL_inputStorePaymentPremiumGiftCode();
@@ -310,7 +310,7 @@ public abstract class BoostRepository {
         });
     }
 
-    public static void launchPreparedGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway, List list, List list2, TLRPC.Chat chat, int i, boolean z, boolean z2, boolean z3, int i2, String str, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void launchPreparedGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway, List list, List list2, TLRPC.Chat chat, int i, boolean z, boolean z2, boolean z3, int i2, String str, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         ?? tL_inputStorePaymentStarsGiveaway;
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
@@ -378,13 +378,13 @@ public abstract class BoostRepository {
         tL_payments_launchPrepaidGiveaway.purpose = tL_inputStorePaymentStarsGiveaway;
         connectionsManager.sendRequest(tL_payments_launchPrepaidGiveaway, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject3, TLRPC.TL_error tL_error) throws InterruptedException {
                 BoostRepository.lambda$launchPreparedGiveaway$14(callback2, messagesController, callback, tLObject3, tL_error);
             }
         });
     }
 
-    public static void lambda$launchPreparedGiveaway$14(final Utilities.Callback callback, MessagesController messagesController, final Utilities.Callback callback2, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$launchPreparedGiveaway$14(final Utilities.Callback callback, MessagesController messagesController, final Utilities.Callback callback2, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -403,7 +403,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void payGiveAway(List list, List list2, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, int i, boolean z, BaseFragment baseFragment, boolean z2, boolean z3, String str, Utilities.Callback callback, Utilities.Callback callback2) {
+    public static void payGiveAway(List list, List list2, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, int i, boolean z, BaseFragment baseFragment, boolean z2, boolean z3, String str, Utilities.Callback callback, Utilities.Callback callback2) throws NumberFormatException {
         if (!isGoogleBillingAvailable()) {
             payGiveAwayByInvoice(list, list2, tL_premiumGiftCodeOption, chat, i, z, baseFragment, z2, z3, str, callback, callback2);
         } else {
@@ -411,7 +411,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void payGiveAwayByInvoice(List list, List list2, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, int i, boolean z, final BaseFragment baseFragment, boolean z2, boolean z3, String str, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiveAwayByInvoice(List list, List list2, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, int i, boolean z, final BaseFragment baseFragment, boolean z2, boolean z3, String str, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
@@ -505,7 +505,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void payGiveAwayByGoogle(List list, List list2, final TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, int i, boolean z, final BaseFragment baseFragment, boolean z2, boolean z3, String str, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void payGiveAwayByGoogle(List list, List list2, final TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, int i, boolean z, final BaseFragment baseFragment, boolean z2, boolean z3, String str, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         final ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
@@ -823,7 +823,7 @@ public abstract class BoostRepository {
         callback.run(list);
     }
 
-    public static int searchContacts(String str, final boolean z, final Utilities.Callback callback) {
+    public static int searchContacts(String str, final boolean z, final Utilities.Callback callback) throws NumberFormatException {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         if (str == null || str.isEmpty()) {
@@ -870,11 +870,11 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void searchContactsLocally(java.lang.String r12, boolean r13, org.telegram.messenger.Utilities.Callback r14) {
+    public static void searchContactsLocally(java.lang.String r12, boolean r13, org.telegram.messenger.Utilities.Callback r14) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.BoostRepository.searchContactsLocally(java.lang.String, boolean, org.telegram.messenger.Utilities$Callback):void");
     }
 
-    public static void searchChats(final long j, int i, String str, int i2, final Utilities.Callback callback) {
+    public static void searchChats(final long j, int i, String str, int i2, final Utilities.Callback callback) throws NumberFormatException {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
@@ -909,7 +909,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void loadChatParticipants(long j, int i, String str, int i2, int i3, final Utilities.Callback callback) {
+    public static void loadChatParticipants(long j, int i, String str, int i2, int i3, final Utilities.Callback callback) throws NumberFormatException {
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
@@ -957,7 +957,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void checkGiftCode(String str, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void checkGiftCode(String str, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_checkGiftCode tL_payments_checkGiftCode = new TLRPC.TL_payments_checkGiftCode();
@@ -1018,7 +1018,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void getGiveawayInfo(MessageObject messageObject, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void getGiveawayInfo(MessageObject messageObject, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_payments_getGiveawayInfo tL_payments_getGiveawayInfo = new TLRPC.TL_payments_getGiveawayInfo();
@@ -1049,7 +1049,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void getMyBoosts(final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void getMyBoosts(final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         connectionsManager.sendRequest(new TL_stories.TL_premium_getMyBoosts(), new RequestDelegate() {
@@ -1080,7 +1080,7 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void applyBoost(long j, List list, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void applyBoost(long j, List list, final Utilities.Callback callback, final Utilities.Callback callback2) throws NumberFormatException {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         TL_stories.TL_premium_applyBoost tL_premium_applyBoost = new TL_stories.TL_premium_applyBoost();

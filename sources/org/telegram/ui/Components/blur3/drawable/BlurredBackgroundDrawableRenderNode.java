@@ -117,9 +117,13 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         recordingCanvasBeginRecording.restore();
         this.renderNodeFill.endRecording();
         RecordingCanvas recordingCanvasBeginRecording2 = this.renderNode.beginRecording();
-        recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeFill);
-        if (this.liquidGlassEffect == null && Color.alpha(this.backgroundColor) != 0) {
+        if (Color.alpha(this.backgroundColor) == 255) {
             recordingCanvasBeginRecording2.drawColor(this.backgroundColor);
+        } else {
+            recordingCanvasBeginRecording2.drawRenderNode(this.renderNodeFill);
+            if (this.liquidGlassEffect == null && Color.alpha(this.backgroundColor) != 0) {
+                recordingCanvasBeginRecording2.drawColor(this.backgroundColor);
+            }
         }
         if (this.strokeColorTop != 0) {
             float fWidth2 = this.boundProps.boundsWithPadding.width();

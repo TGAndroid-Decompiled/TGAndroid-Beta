@@ -141,7 +141,7 @@ public class VoIPPreNotificationService {
         return currentState;
     }
 
-    private static Notification makeNotification(Context context, int i, long j, long j2, boolean z) {
+    private static Notification makeNotification(Context context, int i, long j, long j2, boolean z) throws NumberFormatException {
         boolean z2;
         int i2;
         int i3;
@@ -468,14 +468,14 @@ public class VoIPPreNotificationService {
         FileLog.e("discardCall " + discardcall.reason);
         ConnectionsManager.getInstance(intExtra).sendRequest(discardcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
                 VoIPPreNotificationService.lambda$decline$4(intExtra, tLObject, tL_error);
             }
         }, 2);
         dismiss(context, false);
     }
 
-    public static void lambda$decline$4(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$decline$4(int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
         if (tL_error != null) {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.e("(VoIPPreNotification) error on phone.discardCall: " + tL_error);

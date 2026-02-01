@@ -276,7 +276,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.starCached = new ColoredImageSpan[1];
         this.tickUpgradePriceRunnable = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.tickUpgradePrice();
             }
         };
@@ -533,7 +533,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
         }, new View.OnClickListener() {
             @Override
-            public final void onClick(View view4) {
+            public final void onClick(View view4) throws NumberFormatException {
                 this.f$0.onWearPressed(view4);
             }
         }, new View.OnClickListener() {
@@ -981,13 +981,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(craftstargift, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 this.f$0.lambda$openCrafting$4(callback2, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$openCrafting$4(Utilities.Callback2 callback2, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public void lambda$openCrafting$4(Utilities.Callback2 callback2, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         final MessageObject messageObject;
         if (updates == null) {
             if (tL_error != null) {
@@ -1241,7 +1241,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         dialogsActivity.presentFragment(ChatActivity.of(j), true);
     }
 
-    public void onWearPressed(View view) {
+    public void onWearPressed(View view) throws NumberFormatException {
         if (UserConfig.getInstance(this.currentAccount).isPremium() && (isWorn(this.currentAccount, getUniqueGift()) || this.shownWearInfo)) {
             toggleWear();
             return;
@@ -1268,7 +1268,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setSubText(null, true);
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
+            public final void onClick(View view2) throws NumberFormatException {
                 this.f$0.lambda$onWearPressed$17(view2);
             }
         });
@@ -1276,7 +1276,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         switchPage(2, true);
     }
 
-    public void lambda$onWearPressed$17(View view) {
+    public void lambda$onWearPressed$17(View view) throws NumberFormatException {
         this.shownWearInfo = true;
         toggleWear();
     }
@@ -1304,7 +1304,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.button.setSubText(null, true);
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws NumberFormatException {
                 this.f$0.lambda$setupWearPage$18(view);
             }
         });
@@ -1314,7 +1314,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return this;
     }
 
-    public void lambda$setupWearPage$18(View view) {
+    public void lambda$setupWearPage$18(View view) throws NumberFormatException {
         this.shownWearInfo = true;
         toggleWear();
     }
@@ -1347,11 +1347,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return (emojiStatus2 instanceof TLRPC.TL_emojiStatusCollectible) && ((TLRPC.TL_emojiStatusCollectible) emojiStatus2).collectible_id == tL_starGiftUnique.id;
     }
 
-    public void toggleWear() {
+    public void toggleWear() throws NumberFormatException {
         toggleWear(false);
     }
 
-    public void toggleWear(boolean z) {
+    public void toggleWear(boolean z) throws NumberFormatException {
         TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
         if (uniqueGift == null) {
             return;
@@ -1378,7 +1378,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.button.setLoading(true);
                 MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(dialogId, new Consumer() {
                     @Override
-                    public final void accept(Object obj) {
+                    public final void accept(Object obj) throws NumberFormatException {
                         this.f$0.lambda$toggleWear$22(messagesController, dialogId, (TL_stories.TL_premium_boostsStatus) obj);
                     }
                 });
@@ -1418,7 +1418,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         new PremiumFeatureBottomSheet(getDummyFragment(), 12, false).show();
     }
 
-    public void lambda$toggleWear$22(final MessagesController messagesController, final long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public void lambda$toggleWear$22(final MessagesController messagesController, final long j, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) throws NumberFormatException {
         if (tL_premium_boostsStatus == null || tL_premium_boostsStatus.level >= messagesController.channelEmojiStatusLevelMin) {
             this.button.setLoading(false);
             toggleWear(true);
@@ -1577,13 +1577,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         updatestargiftprice.resell_amount = tl;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$onUpdatePriceClick$27(tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onUpdatePriceClick$27(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onUpdatePriceClick$27(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1669,13 +1669,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         updatestargiftprice.resell_amount = TL_stars.StarsAmount.ofStars(0L);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws NumberFormatException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
                 this.f$0.lambda$onResellPressed$32(progressMakeButtonLoading, tL_starGiftUnique, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onResellPressed$32(final Browser.Progress progress, final TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject, final TLRPC.TL_error tL_error) throws NumberFormatException {
+    public void lambda$onResellPressed$32(final Browser.Progress progress, final TL_stars.TL_starGiftUnique tL_starGiftUnique, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1732,13 +1732,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         updatestargiftprice.resell_amount = tl;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatestargiftprice, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws NumberFormatException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
                 this.f$0.lambda$onResellPressed$38(tL_starGiftUnique, amountUtils$Amount, runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onResellPressed$38(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) throws NumberFormatException {
+    public void lambda$onResellPressed$38(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final AmountUtils$Amount amountUtils$Amount, final Runnable runnable, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -4746,7 +4746,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 ScaleStateListAnimator.apply(imageView);
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
+                    public final void onClick(View view) throws NumberFormatException {
                         this.f$0.lambda$set$55(spannable, view);
                     }
                 });
@@ -4851,7 +4851,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         openValueStats(tL_starGiftUnique.gift_id, tL_starGiftUnique.title, getGiftName(), str, tL_starGiftUnique.getDocument(), tL_starGiftUnique.slug);
     }
 
-    public void lambda$set$55(CharSequence charSequence, View view) {
+    public void lambda$set$55(CharSequence charSequence, View view) throws NumberFormatException {
         lambda$showDeleteDescriptionAlert$66(charSequence);
     }
 
@@ -4949,7 +4949,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.recyclerListView.scrollToPosition(this.adapter.getItemCount() - 1);
     }
 
-    public void lambda$showDeleteDescriptionAlert$66(final CharSequence charSequence) {
+    public void lambda$showDeleteDescriptionAlert$66(final CharSequence charSequence) throws NumberFormatException {
         final TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
         TL_stars.InputSavedStarGift inputStarGift = getInputStarGift();
         if (inputStarGift == null || uniqueGift == null) {
@@ -5069,7 +5069,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         if (tL_error != null && "BALANCE_TOO_LOW".equalsIgnoreCase(tL_error.text)) {
             new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, j, 16, null, new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$showDeleteDescriptionAlert$66(charSequence);
                 }
             }, 0L).show();
@@ -5379,13 +5379,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.isLearnMore = true;
         StarsController.getInstance(this.currentAccount).getStarGiftPreview(j, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws NumberFormatException {
                 this.f$0.lambda$openAsLearnMore$98(str, (TL_stars.starGiftUpgradePreview) obj);
             }
         });
     }
 
-    public void lambda$openAsLearnMore$98(String str, TL_stars.starGiftUpgradePreview stargiftupgradepreview) {
+    public void lambda$openAsLearnMore$98(String str, TL_stars.starGiftUpgradePreview stargiftupgradepreview) throws NumberFormatException {
         if (stargiftupgradepreview == null) {
             return;
         }
@@ -5553,7 +5553,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return ((((this.dialogId > 0L ? 1 : (this.dialogId == 0L ? 0 : -1)) < 0 ? 2048 : 8) & i) == 0 || (i & 16) == 0 || (i & 2) == 0 || currentTime <= 0) ? false : true;
     }
 
-    public void convert() {
+    public void convert() throws NumberFormatException {
         int i;
         long peerDialogId;
         long j;
@@ -5697,7 +5697,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         BulletinFactory.of(statisticActivity).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j)).show(true);
     }
 
-    public void toggleShow() {
+    public void toggleShow() throws NumberFormatException {
         final boolean z;
         final TLRPC.Document document;
         StarsController.GiftsCollections profileGiftCollectionsList;
@@ -5810,7 +5810,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     @Override
-    public void show() {
+    public void show() throws NumberFormatException {
         MessageObject messageObject;
         TLRPC.Message message;
         if (MessagesController.getInstance(this.currentAccount).isFrozen()) {
@@ -6136,7 +6136,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         upgradePricesSheet.show();
     }
 
-    public void tickUpgradePrice() {
+    public void tickUpgradePrice() throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftSheet.tickUpgradePrice():void");
     }
 
@@ -6268,7 +6268,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         });
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$doUpgrade$122(tLObject);
             }
         });
@@ -6279,7 +6279,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         switchPage(0, true);
     }
 
-    public void lambda$doUpgrade$122(TLObject tLObject) {
+    public void lambda$doUpgrade$122(TLObject tLObject) throws InterruptedException {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 
@@ -6323,7 +6323,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             });
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     this.f$0.lambda$doUpgrade$129(tL_payments_paymentResult);
                 }
             });
@@ -6406,7 +6406,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         presentFragment(new ProfileActivity(bundle));
     }
 
-    public void lambda$doUpgrade$129(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
+    public void lambda$doUpgrade$129(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
@@ -6548,7 +6548,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         final TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         twoStepVerificationActivity.setDelegate(2, new TwoStepVerificationActivity.TwoStepVerificationActivityDelegate() {
             @Override
-            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+            public final void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) throws NumberFormatException {
                 this.f$0.lambda$openTransfer$136(twoStepVerificationActivity, inputCheckPasswordSRP);
             }
         });
@@ -6571,13 +6571,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     public void lambda$openTransfer$142(final Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr) {
         openTransferAlert(l.longValue(), new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws NumberFormatException {
                 this.f$0.lambda$openTransfer$141(l, userSelectorBottomSheetArr, (Browser.Progress) obj);
             }
         });
     }
 
-    public void lambda$openTransfer$141(Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Browser.Progress progress) {
+    public void lambda$openTransfer$141(Long l, final UserSelectorBottomSheet[] userSelectorBottomSheetArr, final Browser.Progress progress) throws NumberFormatException {
         progress.init();
         doTransfer(l.longValue(), new Utilities.Callback() {
             @Override
@@ -6740,7 +6740,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         callback.run(alertDialog.makeButtonLoading(i));
     }
 
-    public void lambda$openTransfer$136(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void lambda$openTransfer$136(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity) throws NumberFormatException {
         TL_stars.getStarGiftWithdrawalUrl getstargiftwithdrawalurl = new TL_stars.getStarGiftWithdrawalUrl();
         TL_stars.InputSavedStarGift inputStarGift = getInputStarGift();
         getstargiftwithdrawalurl.stargift = inputStarGift;
@@ -6889,13 +6889,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     public void lambda$initTONTransfer$151(final TwoStepVerificationActivity twoStepVerificationActivity, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$initTONTransfer$150(tL_error, tLObject, twoStepVerificationActivity);
             }
         });
     }
 
-    public void lambda$initTONTransfer$150(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) {
+    public void lambda$initTONTransfer$150(TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity) throws NumberFormatException {
         if (tL_error == null) {
             TL_account.Password password = (TL_account.Password) tLObject;
             twoStepVerificationActivity.setCurrentPasswordInfo(null, password);
@@ -6915,7 +6915,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         safeLastFragment.showAsSheet(baseFragment, bottomSheetParams);
     }
 
-    private TL_stars.InputSavedStarGift getInputStarGift() {
+    private TL_stars.InputSavedStarGift getInputStarGift() throws NumberFormatException {
         TLRPC.Message message;
         TLRPC.Message message2;
         TLRPC.Message message3;
@@ -7005,7 +7005,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return tL_inputSavedStarGiftSlug2;
     }
 
-    public void doTransfer(final long j, final Utilities.Callback callback) {
+    public void doTransfer(final long j, final Utilities.Callback callback) throws NumberFormatException {
         TLRPC.Message message;
         final long peerDialogId;
         long j2;
@@ -7036,7 +7036,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             transferstargift.to_id = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(transferstargift, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$doTransfer$156(callback, j, peerDialogId, tLObject, tL_error);
                 }
             });
@@ -7046,7 +7046,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         if (!starsController.balanceAvailable()) {
             starsController.getBalance(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$doTransfer$157(starsController, j, callback);
                 }
             });
@@ -7072,7 +7072,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         });
     }
 
-    public void lambda$doTransfer$156(final Utilities.Callback callback, final long j, final long j2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$doTransfer$156(final Utilities.Callback callback, final long j, final long j2, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -7113,7 +7113,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.forward, LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, getGiftName(), DialogObject.getShortName(j)))).ignoreDetach().show();
     }
 
-    public void lambda$doTransfer$157(StarsController starsController, long j, Utilities.Callback callback) {
+    public void lambda$doTransfer$157(StarsController starsController, long j, Utilities.Callback callback) throws NumberFormatException {
         if (!starsController.balanceAvailable()) {
             getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE")).ignoreDetach().show();
         } else {
@@ -7194,7 +7194,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     this.f$0.lambda$doTransfer$159(tL_payments_paymentResult);
                 }
             });
@@ -7225,7 +7225,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         BulletinFactory.of(chatActivity).createSimpleBulletin(R.raw.forward, LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, getGiftName(), DialogObject.getShortName(j)))).ignoreDetach().show();
     }
 
-    public void lambda$doTransfer$159(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
+    public void lambda$doTransfer$159(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 
@@ -7233,7 +7233,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         final boolean[] zArr = {false};
         StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, j, 11, null, new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$doTransfer$160(zArr, j2, callback);
             }
         }, 0L);
@@ -7246,7 +7246,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         starsNeededSheet.show();
     }
 
-    public void lambda$doTransfer$160(boolean[] zArr, long j, Utilities.Callback callback) {
+    public void lambda$doTransfer$160(boolean[] zArr, long j, Utilities.Callback callback) throws NumberFormatException {
         zArr[0] = true;
         this.button.setLoading(false);
         doTransfer(j, callback);

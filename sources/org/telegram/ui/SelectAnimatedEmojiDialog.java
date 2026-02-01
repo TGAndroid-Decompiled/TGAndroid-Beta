@@ -552,7 +552,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         this(baseFragment, context, z, num, i, z2, resourcesProvider, i2, Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, resourcesProvider));
     }
 
-    public SelectAnimatedEmojiDialog(org.telegram.ui.ActionBar.BaseFragment r36, android.content.Context r37, boolean r38, java.lang.Integer r39, final int r40, boolean r41, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r42, int r43, int r44) throws android.content.res.Resources.NotFoundException {
+    public SelectAnimatedEmojiDialog(org.telegram.ui.ActionBar.BaseFragment r36, android.content.Context r37, boolean r38, java.lang.Integer r39, final int r40, boolean r41, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r42, int r43, int r44) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SelectAnimatedEmojiDialog.<init>(org.telegram.ui.ActionBar.BaseFragment, android.content.Context, boolean, java.lang.Integer, int, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider, int, int):void");
     }
 
@@ -4833,10 +4833,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 attributes.width = -1;
                 attributes.gravity = 51;
                 attributes.dimAmount = 0.0f;
-                int i = attributes.flags & (-3);
-                attributes.flags = 131072 | i;
-                int i2 = Build.VERSION.SDK_INT;
-                attributes.flags = i | (-2147286784);
+                attributes.flags = (attributes.flags & (-3)) | (-2147286784);
                 this.contentView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                     @Override
                     public final WindowInsets onApplyWindowInsets(View view3, WindowInsets windowInsets) {
@@ -4847,7 +4844,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 this.contentView.setFitsSystemWindows(true);
                 this.contentView.setSystemUiVisibility(1284);
                 attributes.height = -1;
-                if (i2 >= 28) {
+                if (Build.VERSION.SDK_INT >= 28) {
                     attributes.layoutInDisplayCutoutMode = 1;
                 }
                 window.setAttributes(attributes);
@@ -4899,9 +4896,9 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             view.getLocationOnScreen(this.tempLocation);
             int[] iArr = this.tempLocation;
             this.parentDialogX = iArr[0];
-            int i3 = iArr[1];
-            this.parentDialogY = i3;
-            this.clipBottom = i3 + view.getHeight();
+            int i = iArr[1];
+            this.parentDialogY = i;
+            this.clipBottom = i + view.getHeight();
         }
 
         public void lambda$new$0(View view) {

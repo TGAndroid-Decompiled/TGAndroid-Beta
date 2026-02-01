@@ -105,6 +105,14 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         onSourceOffsetChange(f, f2);
     }
 
+    public float getSourceOffsetX() {
+        return this.sourceOffsetX;
+    }
+
+    public float getSourceOffsetY() {
+        return this.sourceOffsetY;
+    }
+
     public void setPadding(int i) {
         Props props = this.boundProps;
         if (props.padding != i) {

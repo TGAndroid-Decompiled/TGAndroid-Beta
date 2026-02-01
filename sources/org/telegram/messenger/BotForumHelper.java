@@ -213,13 +213,13 @@ public class BotForumHelper extends BaseController {
         tL_messages_createForumTopic.random_id = j;
         getConnectionsManager().sendRequestTyped(tL_messages_createForumTopic, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
+            public final void run(Object obj, Object obj2) throws InterruptedException {
                 this.f$0.lambda$performSendBotTopicCreate$3(peerDialogId, str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$performSendBotTopicCreate$3(long j, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+    public void lambda$performSendBotTopicCreate$3(long j, String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
         TLRPC.TL_updateMessageID tL_updateMessageID;
         if (updates == null) {
             performSendBotTopicCreateComplete(j, -1);

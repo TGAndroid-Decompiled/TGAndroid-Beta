@@ -697,7 +697,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     @Override
-    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
+    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws NumberFormatException {
         BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.y = this.scrollOffsetY;

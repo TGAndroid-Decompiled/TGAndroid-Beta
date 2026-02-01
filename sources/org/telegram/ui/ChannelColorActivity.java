@@ -516,7 +516,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 68.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i3) {
+            public final void onItemClick(View view, int i3) throws NumberFormatException {
                 this.f$0.lambda$createView$4(chatFull, view, i3);
             }
         });
@@ -586,7 +586,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         return frameLayout;
     }
 
-    public void lambda$createView$4(TLRPC.ChatFull chatFull, final View view, final int i) {
+    public void lambda$createView$4(TLRPC.ChatFull chatFull, final View view, final int i) throws NumberFormatException {
         long emojiStatusDocumentId = 0;
         if (view instanceof EmojiCell) {
             if (i == this.packStickerRow) {
@@ -626,7 +626,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             EmojiCell emojiCell = (EmojiCell) view;
             showSelectStatusDialog(emojiCell, j, i == this.statusEmojiRow, new Utilities.Callback3() {
                 @Override
-                public final void run(Object obj, Object obj2, Object obj3) throws IOException {
+                public final void run(Object obj, Object obj2, Object obj3) throws IOException, NumberFormatException {
                     this.f$0.lambda$createView$1(i, view, (Long) obj, (Integer) obj2, (TL_stars.TL_starGiftUnique) obj3);
                 }
             }, this.selectedStatusEmoji instanceof TLRPC.TL_emojiStatusCollectible ? Theme.getColor(Theme.key_windowBackgroundWhiteBlueIcon, this.resourceProvider) : emojiCell.getColor());
@@ -672,7 +672,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$createView$1(int i, View view, Long l, Integer num, TL_stars.TL_starGiftUnique tL_starGiftUnique) throws IOException {
+    public void lambda$createView$1(int i, View view, Long l, Integer num, TL_stars.TL_starGiftUnique tL_starGiftUnique) throws IOException, NumberFormatException {
         if (i == this.replyEmojiRow) {
             this.selectedReplyEmoji = l.longValue();
             updateMessagesPreview(true);
@@ -801,7 +801,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$buttonClick$8(callback, tLObject, tL_error);
                 }
             });
@@ -839,7 +839,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateColor2, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$buttonClick$9(callback, tLObject, tL_error);
                 }
             });
@@ -878,7 +878,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$buttonClick$10(callback, tLObject, tL_error);
                 }
             });
@@ -929,7 +929,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             iArr[0] = iArr[0] + 1;
             getConnectionsManager().sendRequest(tL_channels_updateEmojiStatus, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                     this.f$0.lambda$buttonClick$11(callback, tLObject, tL_error);
                 }
             });
@@ -981,7 +981,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$8(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$buttonClick$8(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -990,7 +990,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$9(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$buttonClick$9(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -999,7 +999,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$10(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$buttonClick$10(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -1008,7 +1008,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$buttonClick$11(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$buttonClick$11(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -1243,7 +1243,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 final PeerColorPicker peerColorPicker = new PeerColorPicker(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 peerColorPicker.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
-                    public final void onItemClick(View view, int i3) throws IOException {
+                    public final void onItemClick(View view, int i3) throws IOException, NumberFormatException {
                         this.f$0.lambda$onCreateViewHolder$1(peerColorPicker, view, i3);
                     }
                 });
@@ -1254,7 +1254,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 peerColorGrid.setDivider(false);
                 peerColorGrid.setOnColorClick(new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) {
+                    public final void run(Object obj) throws NumberFormatException {
                         this.f$0.lambda$onCreateViewHolder$2((Integer) obj);
                     }
                 });
@@ -1298,7 +1298,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             ChannelColorActivity.this.updateMessagesPreview(true);
         }
 
-        public void lambda$onCreateViewHolder$1(PeerColorPicker peerColorPicker, View view, int i) throws IOException {
+        public void lambda$onCreateViewHolder$1(PeerColorPicker peerColorPicker, View view, int i) throws IOException, NumberFormatException {
             ChannelColorActivity.this.selectedReplyColor = peerColorPicker.toColorId(i);
             ChannelColorActivity.this.updateButton(true);
             ChannelColorActivity.this.updateMessagesPreview(true);
@@ -1311,7 +1311,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
         }
 
-        public void lambda$onCreateViewHolder$2(Integer num) {
+        public void lambda$onCreateViewHolder$2(Integer num) throws NumberFormatException {
             ChannelColorActivity.this.selectedProfileColor = num.intValue();
             ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
             if (channelColorActivity.selectedStatusEmoji instanceof TLRPC.TL_emojiStatusCollectible) {
@@ -1322,7 +1322,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
             TLRPC.StickerSet stickerSet;
             TLRPC.StickerSet stickerSet2;
             int itemViewType = viewHolder.getItemViewType();
@@ -1471,7 +1471,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+        public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) throws NumberFormatException {
             View view = viewHolder.itemView;
             if (view instanceof ProfilePreview) {
                 ProfilePreview profilePreview = (ProfilePreview) view;
@@ -1570,7 +1570,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void updateProfilePreview(boolean z) {
+    public void updateProfilePreview(boolean z) throws NumberFormatException {
         TLRPC.StickerSet stickerSet;
         TLRPC.StickerSet stickerSet2;
         View viewFindChildAt = findChildAt(this.profilePreviewRow);

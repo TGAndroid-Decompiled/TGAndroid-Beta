@@ -73,7 +73,7 @@ public class DialogCellTags {
         }
     }
 
-    public boolean update(int i, int i2, long j) {
+    public boolean update(int i, int i2, long j) throws NumberFormatException {
         MessagesController.DialogFilter dialogFilter;
         Tag tag;
         MessagesController.DialogFilter dialogFilter2;

@@ -90,7 +90,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         this.keySearchIconUnscrolled = Theme.key_voipgroup_mutedIconUnscrolled;
     }
 
-    public GroupVoipInviteAlert(Context context, int i, TLRPC.Chat chat, TLRPC.ChatFull chatFull, LongSparseArray longSparseArray, HashSet hashSet) {
+    public GroupVoipInviteAlert(Context context, int i, TLRPC.Chat chat, TLRPC.ChatFull chatFull, LongSparseArray longSparseArray, HashSet hashSet) throws NumberFormatException {
         super(context, false, i, null);
         this.participants = new ArrayList();
         this.contacts = new ArrayList();
@@ -189,7 +189,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         this.lastRow = i7;
     }
 
-    private void loadChatParticipants(int i, int i2) {
+    private void loadChatParticipants(int i, int i2) throws NumberFormatException {
         if (this.loadingUsers) {
             return;
         }
@@ -197,7 +197,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         loadChatParticipants(i, i2, true);
     }
 
-    private void fillContacts() {
+    private void fillContacts() throws NumberFormatException {
         if (this.showContacts) {
             this.contacts.addAll(ContactsController.getInstance(this.currentAccount).contacts);
             long j = UserConfig.getInstance(this.currentAccount).clientUserId;
@@ -230,7 +230,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupVoipInviteAlert.lambda$fillContacts$1(org.telegram.messenger.MessagesController, int, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLObject):int");
     }
 
-    protected void loadChatParticipants(int i, int i2, boolean z) {
+    protected void loadChatParticipants(int i, int i2, boolean z) throws NumberFormatException {
         LongSparseArray longSparseArray;
         if (!ChatObject.isChannel(this.currentChat)) {
             this.loadingUsers = false;
@@ -299,13 +299,13 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
     public void lambda$loadChatParticipants$4(final TLRPC.TL_channels_getParticipants tL_channels_getParticipants, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$loadChatParticipants$3(tL_error, tLObject, tL_channels_getParticipants);
             }
         });
     }
 
-    public void lambda$loadChatParticipants$3(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) {
+    public void lambda$loadChatParticipants$3(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants) throws NumberFormatException {
         int itemCount;
         ArrayList arrayList;
         LongSparseArray longSparseArray;

@@ -71,19 +71,19 @@ public abstract class CastSync {
                 }
 
                 @Override
-                public void onSessionEnded(CastSession castSession, int i2) {
+                public void onSessionEnded(CastSession castSession, int i2) throws NumberFormatException {
                     CastSync.doSyncVolume(false);
                     CastSync.syncInterface();
                 }
 
                 @Override
-                public void onSessionEnding(CastSession castSession) {
+                public void onSessionEnding(CastSession castSession) throws NumberFormatException {
                     CastSync.doSyncVolume(false);
                     CastSync.syncInterface();
                 }
 
                 @Override
-                public void onSessionStarted(CastSession castSession, String str) {
+                public void onSessionStarted(CastSession castSession, String str) throws NumberFormatException {
                     RemoteMediaClient remoteMediaClient;
                     long currentPosition;
                     if (castSession == null || (remoteMediaClient = castSession.getRemoteMediaClient()) == null) {
@@ -95,7 +95,7 @@ public abstract class CastSync {
                     }
                     remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
                         @Override
-                        public void onStatusUpdated() {
+                        public void onStatusUpdated() throws NumberFormatException {
                             FileLog.d("onStatusUpdated");
                             CastSync.syncInterface();
                         }
@@ -326,7 +326,7 @@ public abstract class CastSync {
         return (float) mediaStatus.getPlaybackRate();
     }
 
-    public static void doSyncVolume(boolean z) {
+    public static void doSyncVolume(boolean z) throws NumberFormatException {
         Context context;
         AudioManager audioManager;
         ContentObserver contentObserver = syncingVolume;
@@ -365,7 +365,7 @@ public abstract class CastSync {
         }
     }
 
-    public static void syncInterface() {
+    public static void syncInterface() throws NumberFormatException {
         int i = type;
         if (i == 0) {
             PhotoViewer.getInstance().syncCastedPlayer();

@@ -314,13 +314,13 @@ public class TopicCreateFragment extends BaseFragment {
         public void lambda$onItemClick$1(final String str, final AlertDialog alertDialog, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$onItemClick$0(tLObject, str, alertDialog);
                 }
             });
         }
 
-        public void lambda$onItemClick$0(TLObject tLObject, String str, AlertDialog alertDialog) {
+        public void lambda$onItemClick$0(TLObject tLObject, String str, AlertDialog alertDialog) throws NumberFormatException {
             if (tLObject != null) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 for (int i = 0; i < updates.updates.size(); i++) {

@@ -396,7 +396,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             private boolean ignoreLayout;
 
             @Override
-            protected void onMeasure(int i2, int i3) {
+            protected void onMeasure(int i2, int i3) throws NumberFormatException {
                 int size = View.MeasureSpec.getSize(i2);
                 int size2 = View.MeasureSpec.getSize(i3);
                 setMeasuredDimension(size, size2);
@@ -844,7 +844,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     @Override
-    public void onPause() {
+    public void onPause() throws NumberFormatException {
         super.onPause();
         if (this.isPremium) {
             hideEmojiPopup(false);
@@ -1009,7 +1009,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     @Override
-    public boolean onBackPressed(boolean z) {
+    public boolean onBackPressed(boolean z) throws NumberFormatException {
         if (!this.emojiViewVisible) {
             return checkDiscard(z);
         }
@@ -1187,7 +1187,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     @Override
-    public void onSizeChanged(int i, boolean z) {
+    public void onSizeChanged(int i, boolean z) throws NumberFormatException {
         boolean z2;
         if (this.isPremium) {
             if (i > AndroidUtilities.dp(50.0f) && this.keyboardVisible && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
@@ -1271,7 +1271,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.emojiView.setTranslationY(AndroidUtilities.lerp(f, f2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
     }
 
-    public void onEmojiClicked(PollEditTextCell pollEditTextCell) {
+    public void onEmojiClicked(PollEditTextCell pollEditTextCell) throws NumberFormatException {
         this.currentCell = pollEditTextCell;
         if (this.emojiViewVisible) {
             collapseSearchEmojiView();
@@ -1294,7 +1294,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    private void openKeyboardInternal() {
+    private void openKeyboardInternal() throws NumberFormatException {
         this.keyboardNotifier.awaitKeyboard();
         EditTextBoldCursor editField = this.currentCell.getEditField();
         editField.requestFocus();
@@ -1308,7 +1308,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         AndroidUtilities.runOnUIThread(this.openKeyboardRunnable, 100L);
     }
 
-    private void showEmojiPopup(int i) {
+    private void showEmojiPopup(int i) throws NumberFormatException {
         PollEditTextCell pollEditTextCell;
         if (this.isPremium) {
             if (i == 1) {
@@ -1394,7 +1394,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void onCellFocusChanges(PollEditTextCell pollEditTextCell, boolean z) {
+    public void onCellFocusChanges(PollEditTextCell pollEditTextCell, boolean z) throws NumberFormatException {
         if (this.isPremium && z) {
             if (this.currentCell == pollEditTextCell && this.emojiViewVisible && this.isEmojiSearchOpened) {
                 collapseSearchEmojiView();
@@ -1420,7 +1420,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void hideEmojiPopup(boolean z) {
+    public void hideEmojiPopup(boolean z) throws NumberFormatException {
         if (this.isPremium) {
             if (this.emojiViewVisible) {
                 this.emojiView.scrollEmojiToTop();
@@ -1444,7 +1444,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     this.isAnimatePopupClosing = true;
                     valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                         @Override
-                        public void onAnimationEnd(Animator animator) {
+                        public void onAnimationEnd(Animator animator) throws NumberFormatException {
                             PollCreateActivity.this.isAnimatePopupClosing = false;
                             PollCreateActivity.this.emojiView.setTranslationY(0.0f);
                             PollCreateActivity.this.hideEmojiView();
@@ -1464,7 +1464,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void hideEmojiView() {
+    public void hideEmojiView() throws NumberFormatException {
         EmojiView emojiView;
         ChatActivityEnterViewAnimatedIconView emojiButton;
         if (!this.emojiViewVisible && (emojiView = this.emojiView) != null && emojiView.getVisibility() != 8) {
@@ -1485,7 +1485,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         return this.emojiPadding;
     }
 
-    private void createEmojiView() {
+    private void createEmojiView() throws NumberFormatException {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null && emojiView.currentAccount != UserConfig.selectedAccount) {
             this.sizeNotifierFrameLayout.removeView(emojiView);
@@ -1864,7 +1864,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
 
         @Override
-        public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) {
+        public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) throws NumberFormatException {
             if (viewHolder.getItemViewType() == 4 || viewHolder.getItemViewType() == 5) {
                 EditTextBoldCursor textView = ((PollEditTextCell) viewHolder.itemView).getTextView();
                 if (textView.isFocused()) {
@@ -1918,12 +1918,12 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
-                    protected void onEditTextFocusChanged(boolean z) {
+                    protected void onEditTextFocusChanged(boolean z) throws NumberFormatException {
                         PollCreateActivity.this.onCellFocusChanges(this, z);
                     }
 
                     @Override
-                    public void lambda$new$1(PollEditTextCell pollEditTextCell2) {
+                    public void lambda$new$1(PollEditTextCell pollEditTextCell2) throws NumberFormatException {
                         PollCreateActivity.this.onEmojiClicked(pollEditTextCell2);
                     }
 
@@ -1995,7 +1995,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                 final PollCreateActivity pollCreateActivity = PollCreateActivity.this;
                 final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(context, false, z ? 1 : 0, new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
+                    public final void onClick(View view) throws NumberFormatException {
                         pollCreateActivity.deleteItem(view);
                     }
                 }) {
@@ -2011,7 +2011,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
-                    protected void onEditTextFocusChanged(boolean z2) {
+                    protected void onEditTextFocusChanged(boolean z2) throws NumberFormatException {
                         PollCreateActivity.this.onCellFocusChanges(this, z2);
                     }
 
@@ -2067,7 +2067,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
-                    public void lambda$new$1(PollEditTextCell pollEditTextCell3) {
+                    public void lambda$new$1(PollEditTextCell pollEditTextCell3) throws NumberFormatException {
                         PollCreateActivity.this.onEmojiClicked(pollEditTextCell3);
                     }
 
@@ -2162,12 +2162,12 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
                     }
 
                     @Override
-                    public void lambda$new$1(PollEditTextCell pollEditTextCell4) {
+                    public void lambda$new$1(PollEditTextCell pollEditTextCell4) throws NumberFormatException {
                         PollCreateActivity.this.onEmojiClicked(pollEditTextCell4);
                     }
 
                     @Override
-                    protected void onEditTextFocusChanged(boolean z2) {
+                    protected void onEditTextFocusChanged(boolean z2) throws NumberFormatException {
                         PollCreateActivity.this.onCellFocusChanges(this, z2);
                     }
                 };
@@ -2338,7 +2338,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         return this.requestFieldFocusAtPosition < 0;
     }
 
-    public void deleteItem(android.view.View r10) {
+    public void deleteItem(android.view.View r10) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PollCreateActivity.deleteItem(android.view.View):void");
     }
 }

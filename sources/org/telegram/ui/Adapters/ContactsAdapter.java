@@ -348,7 +348,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     }
 
     @Override
-    public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
+    public void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) throws NumberFormatException {
         int i3;
         ArrayList<TLRPC.TL_contact> arrayList;
         if (i != 0 || !this.includeSearch) {

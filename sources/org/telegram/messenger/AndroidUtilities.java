@@ -4304,7 +4304,7 @@ public class AndroidUtilities {
         final boolean[] zArr = new boolean[1];
         textViewButtonsArr[0].setText(replaceSingleLink(LocaleController.getString(R.string.ProxyBottomSheetCheckStatus), Theme.getColor(Theme.key_chat_messageLinkIn), new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 AndroidUtilities.lambda$showProxyAlert$21(zArr, textViewButtonsArr, str, str2, str3, str4, str5, activity);
             }
         }));
@@ -4327,7 +4327,7 @@ public class AndroidUtilities {
         builder.show();
     }
 
-    public static void lambda$showProxyAlert$21(final boolean[] zArr, final ButtonSpan.TextViewButtons[] textViewButtonsArr, final String str, final String str2, final String str3, final String str4, final String str5, Activity activity) {
+    public static void lambda$showProxyAlert$21(final boolean[] zArr, final ButtonSpan.TextViewButtons[] textViewButtonsArr, final String str, final String str2, final String str3, final String str4, final String str5, Activity activity) throws NumberFormatException {
         if (zArr[0]) {
             return;
         }

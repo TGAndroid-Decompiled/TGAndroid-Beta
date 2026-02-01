@@ -1903,7 +1903,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             this.loadingDrawable = new ColorDrawable(285212671);
             this.searchRunnable = new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.loadInternal();
                 }
             };
@@ -1973,7 +1973,7 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             }
         }
 
-        public void loadInternal() {
+        public void loadInternal() throws NumberFormatException {
             if (this.loading) {
                 return;
             }
@@ -2025,13 +2025,13 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         public void lambda$loadInternal$1(final MessagesController messagesController, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$loadInternal$0(tLObject, messagesController);
                 }
             });
         }
 
-        public void lambda$loadInternal$0(TLObject tLObject, MessagesController messagesController) {
+        public void lambda$loadInternal$0(TLObject tLObject, MessagesController messagesController) throws NumberFormatException {
             this.triedResolvingBot = true;
             this.loading = false;
             if (tLObject instanceof TLRPC.TL_contacts_resolvedPeer) {

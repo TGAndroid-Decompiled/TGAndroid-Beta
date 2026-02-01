@@ -136,7 +136,7 @@ public class PushListenerController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$6(java.lang.String, java.lang.String, long):void");
     }
 
-    public static void lambda$processRemoteMessage$2(int i, TLRPC.TL_updates tL_updates) {
+    public static void lambda$processRemoteMessage$2(int i, TLRPC.TL_updates tL_updates) throws InterruptedException {
         MessagesController.getInstance(i).processUpdates(tL_updates, false);
     }
 

@@ -8,7 +8,7 @@ public final class StarGiftSheet$$ExternalSyntheticLambda11 implements Runnable 
     }
 
     @Override
-    public final void run() {
+    public final void run() throws NumberFormatException {
         this.f$0.toggleShow();
     }
 }

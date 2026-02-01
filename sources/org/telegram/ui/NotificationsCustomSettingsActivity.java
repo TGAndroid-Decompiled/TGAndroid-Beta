@@ -469,7 +469,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$createView$17(context, view, i, f, f2);
             }
         });
@@ -504,7 +504,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         return this.fragmentView;
     }
 
-    public void lambda$createView$17(android.content.Context r29, final android.view.View r30, final int r31, float r32, float r33) throws android.content.res.Resources.NotFoundException {
+    public void lambda$createView$17(android.content.Context r29, final android.view.View r30, final int r31, float r32, float r33) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsCustomSettingsActivity.lambda$createView$17(android.content.Context, android.view.View, int, float, float):void");
     }
 

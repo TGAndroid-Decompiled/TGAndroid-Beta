@@ -674,7 +674,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
             linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
             linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 48, 10.0f, 14.0f, 10.0f, 0.0f));
+            addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 48, 10.0f, 20.0f, 10.0f, 0.0f));
         }
 
         public void set(CharSequence charSequence, CharSequence charSequence2) {
@@ -968,7 +968,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     public static void lambda$showConnectAffiliateAlert$10(BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             safeLastFragment.presentFragment(ProfileActivity.of(starrefprogram.bot_id));
         }
     }
@@ -1013,7 +1013,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
         TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
         BotStarsController.getInstance(i).getChannelConnectedBots(j).apply(connectedstarrefbots);
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         while (true) {
             if (i2 >= connectedstarrefbots.connected_bots.size()) {
                 connectedbotstarref = null;
@@ -1105,7 +1105,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     public static void lambda$showConnectAffiliateAlert$18(final BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", starrefprogram.bot_id);
             safeLastFragment.presentFragment(new ChatActivity(bundle) {
@@ -1458,7 +1458,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
@@ -1512,7 +1512,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         showShareAffiliateAlert(context, i, connectedbotstarref2, j, resourcesProvider);
     }
 
@@ -1529,12 +1529,12 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
     public static void lambda$showShareAffiliateAlert$30(BottomSheet bottomSheet, TL_payments.connectedBotStarRef connectedbotstarref, View view) {
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             safeLastFragment.presentFragment(ProfileActivity.of(connectedbotstarref.bot_id));

@@ -71,6 +71,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     private int adaptive_lowerColorKey;
     private int adaptive_topColorKey;
     private boolean addToContainer;
+    private ActionBarAnimatedSubtitleOverlayContainer additionalSubTitleOverlayContainer;
     private SimpleTextView additionalSubtitleTextView;
     private boolean allowOverlayTitle;
     private boolean attachState;
@@ -131,7 +132,6 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     private Runnable titleActionRunnable;
     private boolean titleAnimationRunning;
     private int titleColorToSet;
-    private ActionBarAnimatedSubtitleOverlayContainer titleOverlayContainer;
     private boolean titleOverlayShown;
     private int titleRightMargin;
     private final SimpleTextView[] titleTextView;
@@ -1357,14 +1357,8 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         }
         if (charSequence2 == null || !charSequence2.equals(str)) {
             this.lastOverlayTitle = str;
-            if (this.titleOverlayContainer != null) {
-                this.titleOverlayContainer.setText(str != null ? LocaleController.getString(str, i) : null, true);
-                if (runnable == null) {
-                    runnable = this.lastRunnable;
-                }
-                this.titleActionRunnable = runnable;
-                this.titleOverlayShown = str != null;
-                return;
+            if (this.additionalSubTitleOverlayContainer != null) {
+                this.additionalSubTitleOverlayContainer.setText(i == R.string.ConnectingToProxyWithDots ? AndroidUtilities.replaceArrows(LocaleController.getString(R.string.TitleSetupProxy), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(2.0f)) : null, true);
             }
             CharSequence string = str != null ? LocaleController.getString(str, i) : this.lastTitle;
             Drawable drawable = str == null ? this.lastRightDrawable : null;
@@ -1838,33 +1832,33 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     @Override
     public void updateColors() {
         adaptive_updateColor();
-        ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.titleOverlayContainer;
+        ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = this.additionalSubTitleOverlayContainer;
         if (actionBarAnimatedSubtitleOverlayContainer != null) {
             actionBarAnimatedSubtitleOverlayContainer.updateColors();
         }
     }
 
-    public FrameLayout createTitleOverlayContainer() {
-        if (this.titleOverlayContainer == null) {
+    public FrameLayout createAdditionalSubTitleOverlayContainer() {
+        if (this.additionalSubTitleOverlayContainer == null) {
             ActionBarAnimatedSubtitleOverlayContainer actionBarAnimatedSubtitleOverlayContainer = new ActionBarAnimatedSubtitleOverlayContainer(getContext(), this.resourcesProvider, this.ellipsizeSpanAnimator) {
                 @Override
                 public void onItemChanged(ReplaceAnimator replaceAnimator) {
                     super.onItemChanged(replaceAnimator);
                     float totalVisibility = getTotalVisibility();
                     if (ActionBar.this.titlesContainer != null) {
-                        ActionBar.this.titlesContainer.setTranslationY(totalVisibility * AndroidUtilities.dp(-9.0f));
+                        ActionBar.this.titlesContainer.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
                     }
                 }
             };
-            this.titleOverlayContainer = actionBarAnimatedSubtitleOverlayContainer;
+            this.additionalSubTitleOverlayContainer = actionBarAnimatedSubtitleOverlayContainer;
             actionBarAnimatedSubtitleOverlayContainer.setClipChildren(false);
-            addView(this.titleOverlayContainer);
+            addView(this.additionalSubTitleOverlayContainer);
         }
-        return this.titleOverlayContainer;
+        return this.additionalSubTitleOverlayContainer;
     }
 
-    public FrameLayout getTitleOverlayContainer() {
-        return this.titleOverlayContainer;
+    public FrameLayout getAdditionalSubTitleOverlayContainer() {
+        return this.additionalSubTitleOverlayContainer;
     }
 
     public void setAdaptiveBackground(RecyclerView recyclerView) {

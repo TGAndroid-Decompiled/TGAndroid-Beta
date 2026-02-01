@@ -4593,13 +4593,13 @@ public class StoriesController {
     public void lambda$canSendStoryFor$34(final boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$canSendStoryFor$33(tL_error, z, j, consumer, resourcesProvider);
             }
         });
     }
 
-    public void lambda$canSendStoryFor$33(TLRPC.TL_error tL_error, boolean z, final long j, final Consumer consumer, Theme.ResourcesProvider resourcesProvider) {
+    public void lambda$canSendStoryFor$33(TLRPC.TL_error tL_error, boolean z, final long j, final Consumer consumer, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
         if (tL_error != null) {
             if (tL_error.text.contains("BOOSTS_REQUIRED")) {
                 if (z) {

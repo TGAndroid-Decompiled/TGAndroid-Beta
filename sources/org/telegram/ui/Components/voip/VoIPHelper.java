@@ -150,7 +150,7 @@ public abstract class VoIPHelper {
         initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 
-    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) throws InterruptedException {
+    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) throws InterruptedException, NumberFormatException {
         String name;
         int i;
         String name2;
@@ -214,7 +214,7 @@ public abstract class VoIPHelper {
                     }
                     new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, name, name2))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                         @Override
-                        public final void onClick(AlertDialog alertDialog, int i4) throws InterruptedException {
+                        public final void onClick(AlertDialog alertDialog, int i4) throws InterruptedException, NumberFormatException {
                             VoIPHelper.lambda$initiateCall$3(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i4);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
@@ -236,7 +236,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) throws InterruptedException {
+    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) throws InterruptedException, NumberFormatException {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
@@ -262,14 +262,14 @@ public abstract class VoIPHelper {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException {
+    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException, NumberFormatException {
         if (activity == null) {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() throws InterruptedException, NumberFormatException {
                     VoIPHelper.lambda$joinConference$4(activity, i, inputGroupCall, z, groupCall, hashSet);
                 }
             });
@@ -313,7 +313,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException {
+    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException, NumberFormatException {
         lastCallTime = 0L;
         joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
     }
@@ -515,13 +515,13 @@ public abstract class VoIPHelper {
         setcallrating.user_initiative = false;
         ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
                 VoIPHelper.lambda$sendCallRating$10(i3, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$sendCallRating$10(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$sendCallRating$10(int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
@@ -741,7 +741,7 @@ public abstract class VoIPHelper {
             setcallrating.user_initiative = z;
             ConnectionsManager.getInstance(i).sendRequest(setcallrating, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
                     VoIPHelper.lambda$showRateAlert$17(i2, zArr, file, setcallrating, arrayList, context, tLObject, tL_error);
                 }
             });
@@ -761,7 +761,7 @@ public abstract class VoIPHelper {
         ((TextView) view).setText(LocaleController.getString(R.string.Send).toUpperCase());
     }
 
-    public static void lambda$showRateAlert$17(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$showRateAlert$17(int i, boolean[] zArr, File file, TL_phone.setCallRating setcallrating, ArrayList arrayList, Context context, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
         if (tLObject instanceof TLRPC.TL_updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }

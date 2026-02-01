@@ -285,7 +285,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
 
     protected abstract void updateKeyboard();
 
-    public LPhotoPaintView(final Context context, Activity activity, final int i, Bitmap bitmap, final Bitmap bitmap2, int i2, ArrayList arrayList, MediaController.CropState cropState, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+    public LPhotoPaintView(final Context context, Activity activity, final int i, Bitmap bitmap, final Bitmap bitmap2, int i2, ArrayList arrayList, MediaController.CropState cropState, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
         int i3;
         Emoji.EmojiSpan[] emojiSpanArr;
         PhotoView photoView;
@@ -669,7 +669,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.cancelTextButton.setTextSize(1, 16.0f);
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
+            public final void onClick(View view2) throws NumberFormatException {
                 this.f$0.lambda$new$5(view2);
             }
         });
@@ -1038,7 +1038,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
     }
 
-    public void lambda$new$5(View view) {
+    public void lambda$new$5(View view) throws NumberFormatException {
         EntityView entityView = this.currentEntityView;
         if (entityView instanceof TextPaintView) {
             AndroidUtilities.hideKeyboard(((TextPaintView) entityView).getFocusedView());
@@ -1202,7 +1202,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return y + height;
     }
 
-    private TextPaintView createText(boolean z) {
+    private TextPaintView createText(boolean z) throws NumberFormatException {
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
@@ -1280,7 +1280,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return selectEntity(entityView, true);
     }
 
-    private boolean selectEntity(EntityView entityView, boolean z) {
+    private boolean selectEntity(EntityView entityView, boolean z) throws NumberFormatException {
         boolean z2;
         int i;
         boolean z3 = entityView instanceof TextPaintView;
@@ -1515,7 +1515,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.textTab.setSingleLine();
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws NumberFormatException {
                 this.f$0.lambda$setupTabsLayout$16(view);
             }
         });
@@ -1534,7 +1534,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         openStickersView();
     }
 
-    public void lambda$setupTabsLayout$16(View view) {
+    public void lambda$setupTabsLayout$16(View view) throws NumberFormatException {
         switchTab(2);
         if (this.currentEntityView instanceof TextPaintView) {
             return;
@@ -1882,7 +1882,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) throws NumberFormatException {
         float currentActionBarHeight;
         float width;
         this.ignoreLayout = true;
@@ -2543,7 +2543,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
     }
 
-    public boolean onBackPressed() {
+    public boolean onBackPressed() throws NumberFormatException {
         if (this.isColorListShown) {
             showColorList(false);
             return true;
@@ -2738,7 +2738,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     @Override
-    public void onNewTextSelected() {
+    public void onNewTextSelected() throws NumberFormatException {
         if (this.keyboardVisible || this.emojiViewVisible) {
             onEmojiButtonClick();
         } else {
@@ -3385,7 +3385,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
     }
 
-    public void onEmojiButtonClick() {
+    public void onEmojiButtonClick() throws NumberFormatException {
         boolean z = this.emojiViewVisible;
         if (z && (this.currentEntityView instanceof TextPaintView)) {
             this.bottomPanelIgnoreOnce = true;
@@ -3402,7 +3402,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
     }
 
-    private void showEmojiPopup(int i) {
+    private void showEmojiPopup(int i) throws NumberFormatException {
         this.bottomPanelIgnoreOnce = false;
         if (i == 1) {
             EmojiView emojiView = this.emojiView;
@@ -3489,7 +3489,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    private void hideEmojiPopup(boolean z) {
+    private void hideEmojiPopup(boolean z) throws NumberFormatException {
         if (this.emojiViewVisible) {
             showEmojiPopup(0);
         }
@@ -3507,7 +3507,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
                 this.isAnimatePopupClosing = true;
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(Animator animator) {
+                    public void onAnimationEnd(Animator animator) throws NumberFormatException {
                         LPhotoPaintView lPhotoPaintView = LPhotoPaintView.this;
                         lPhotoPaintView.isAnimatePopupClosing = false;
                         lPhotoPaintView.emojiView.setTranslationY(0.0f);
@@ -3537,7 +3537,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return this.emojiPadding;
     }
 
-    public void hideEmojiView() {
+    public void hideEmojiView() throws NumberFormatException {
         EmojiView emojiView;
         if (this.emojiPadding > 0) {
             updateKeyboard();
@@ -3553,7 +3553,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     }
 
     @Override
-    public void onSizeChanged(int i, boolean z) {
+    public void onSizeChanged(int i, boolean z) throws NumberFormatException {
         boolean z2;
         if (i > AndroidUtilities.dp(50.0f) && this.keyboardVisible && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
             if (z) {
@@ -3631,7 +3631,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         AndroidUtilities.updateViewShow(this.cancelTextButton, this.keyboardVisible || this.emojiViewVisible, false, 1.0f, true, null);
     }
 
-    protected void createEmojiView() {
+    protected void createEmojiView() throws NumberFormatException {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null && emojiView.currentAccount != UserConfig.selectedAccount) {
             removeView(emojiView);

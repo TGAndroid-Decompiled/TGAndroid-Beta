@@ -97,7 +97,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         return bool == null || user.premium == bool.booleanValue();
     }
 
-    public void loadData(final String str) {
+    public void loadData(final String str) throws NumberFormatException {
         if (this.lastRequestId >= 0) {
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastRequestId, true);
             this.lastRequestId = -1;
@@ -185,7 +185,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         this.lastRequestId = -1;
         this.remoteSearchRunnable = new Runnable() {
             @Override
-            public void run() {
+            public void run() throws NumberFormatException {
                 String str = MultiContactsSelectorBottomSheet.this.query;
                 if (str != null) {
                     MultiContactsSelectorBottomSheet.this.loadData(str);

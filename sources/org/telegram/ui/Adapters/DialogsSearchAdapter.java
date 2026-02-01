@@ -659,7 +659,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         } else {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$searchMessagesInternal$3(hashSet, runnable);
                 }
             });
@@ -670,7 +670,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsSearchAdapter.lambda$searchMessagesInternal$2(int, int, org.telegram.tgnet.TLRPC$TL_error, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_messages_searchGlobal, java.util.ArrayList):void");
     }
 
-    public void lambda$searchMessagesInternal$3(HashSet hashSet, Runnable runnable) {
+    public void lambda$searchMessagesInternal$3(HashSet hashSet, Runnable runnable) throws NumberFormatException {
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {

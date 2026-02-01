@@ -618,35 +618,39 @@ public abstract class StoriesUtilities {
             canvas.drawPath(path2, paint);
             return;
         }
-        if (!avatarStoryParams.useArcProgress) {
-            if (f < 90.0f) {
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, avatarStoryParams.rightTopAngleToExclude, avatarStoryParams.rightBottomAngleToExclude);
-                return;
-            } else {
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, -avatarStoryParams.leftTopAngleToExclude, avatarStoryParams.leftBottomAngleToExclude);
-                return;
+        if (avatarStoryParams.useArcProgress) {
+            boolean z2 = avatarStoryParams.isFirst;
+            if (!z2 && !avatarStoryParams.isLast) {
+                if (f < 90.0f) {
+                    float f5 = avatarStoryParams.progressToArc;
+                    drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f5) / 2.0f, f5 / 2.0f);
+                    return;
+                } else {
+                    float f6 = avatarStoryParams.progressToArc;
+                    drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f6) / 2.0f) + 180.0f, 180.0f + (f6 / 2.0f));
+                    return;
+                }
             }
-        }
-        boolean z2 = avatarStoryParams.isFirst;
-        if (!z2 && !avatarStoryParams.isLast) {
-            if (f < 90.0f) {
-                float f5 = avatarStoryParams.progressToArc;
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f5) / 2.0f, f5 / 2.0f);
+            if (avatarStoryParams.isLast) {
+                float f7 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f7) / 2.0f) + 180.0f, 180.0f + (f7 / 2.0f));
+                return;
+            } else if (z2) {
+                float f8 = avatarStoryParams.progressToArc;
+                drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f8) / 2.0f, f8 / 2.0f);
                 return;
             } else {
-                float f6 = avatarStoryParams.progressToArc;
-                drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f6) / 2.0f) + 180.0f, 180.0f + (f6 / 2.0f));
+                canvas.drawArc(rectF, f, f2 - f, false, paint);
                 return;
             }
         }
         if (avatarStoryParams.isLast) {
-            float f7 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f7) / 2.0f) + 180.0f, 180.0f + (f7 / 2.0f));
-        } else if (z2) {
-            float f8 = avatarStoryParams.progressToArc;
-            drawArcExcludeArc(canvas, rectF, paint, f, f2, (-f8) / 2.0f, f8 / 2.0f);
+            float f9 = avatarStoryParams.progressToArc;
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, ((-f9) / 2.0f) + 180.0f, 180.0f + (f9 / 2.0f));
+        } else if (f < 90.0f) {
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, avatarStoryParams.rightTopAngleToExclude, avatarStoryParams.rightBottomAngleToExclude);
         } else {
-            canvas.drawArc(rectF, f, f2 - f, false, paint);
+            drawArcExcludeArc(canvas, rectF, paint, f, f2, -avatarStoryParams.leftTopAngleToExclude, avatarStoryParams.leftBottomAngleToExclude);
         }
     }
 
@@ -1322,7 +1326,7 @@ public abstract class StoriesUtilities {
             onLongPress();
         }
 
-        private void processOpenStory(View view) {
+        private void processOpenStory(View view) throws NumberFormatException {
             TLRPC.TL_recentStory tL_recentStory;
             TLRPC.TL_recentStory tL_recentStory2;
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -1395,7 +1399,7 @@ public abstract class StoriesUtilities {
         int reqId;
         View view;
 
-        void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) {
+        void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) throws NumberFormatException {
             int i = UserConfig.selectedAccount;
             this.currentAccount = i;
             this.dialogId = j;

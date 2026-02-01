@@ -86,13 +86,13 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
     public void lambda$searchDelayed$1(final String str, final Location location) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$searchDelayed$0(str, location);
             }
         });
     }
 
-    public void lambda$searchDelayed$0(String str, Location location) {
+    public void lambda$searchDelayed$0(String str, Location location) throws NumberFormatException {
         this.searchRunnable = null;
         this.lastSearchLocation = null;
         searchPlacesWithQuery(str, location, true);
@@ -123,14 +123,14 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$searchBotUser$2(tLObject);
                 }
             });
         }
     }
 
-    public void lambda$searchBotUser$2(TLObject tLObject) {
+    public void lambda$searchBotUser$2(TLObject tLObject) throws NumberFormatException {
         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
         MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_resolvedPeer.users, false);
         MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_resolvedPeer.chats, false);
@@ -148,11 +148,11 @@ public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
         return this.lastFoundQuery;
     }
 
-    public void searchPlacesWithQuery(String str, Location location, boolean z) {
+    public void searchPlacesWithQuery(String str, Location location, boolean z) throws NumberFormatException {
         searchPlacesWithQuery(str, location, z, false);
     }
 
-    public void searchPlacesWithQuery(final String str, final Location location, boolean z, boolean z2) {
+    public void searchPlacesWithQuery(final String str, final Location location, boolean z, boolean z2) throws NumberFormatException {
         String str2;
         final Locale locale;
         if (location != null || this.stories) {

@@ -58,7 +58,6 @@ import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -532,7 +531,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public static void access$21700(DialogsActivity dialogsActivity) {
+    public static void access$21700(DialogsActivity dialogsActivity) throws NumberFormatException {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -1230,23 +1229,24 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         float f6 = f2 * f5;
         if (f6 != 1.0f) {
             this.actionBar.getTitlesContainer().setPivotY(AndroidUtilities.statusBarHeight);
-            this.actionBar.getTitlesContainer().setPivotX(AndroidUtilities.dp(72.0f));
+            this.actionBar.getTitlesContainer().setPivotX(AndroidUtilities.dp(20.0f));
             float f7 = (0.6f * f6) + 0.4f;
             this.actionBar.getTitlesContainer().setScaleY(f7);
             this.actionBar.getTitlesContainer().setScaleX(f7);
             this.actionBar.getTitlesContainer().setAlpha((1.0f - this.progressToActionMode) * f6);
-            this.actionBar.getTitleOverlayContainer().setPivotX(AndroidUtilities.dp(72.0f));
-            this.actionBar.getTitleOverlayContainer().setScaleY(f7);
-            this.actionBar.getTitleOverlayContainer().setScaleX(f7);
-            this.actionBar.getTitleOverlayContainer().setAlpha(f6 * (1.0f - this.progressToActionMode));
+            this.actionBar.getAdditionalSubTitleOverlayContainer().setPivotX(0.0f);
+            this.actionBar.getAdditionalSubTitleOverlayContainer().setPivotY(-AndroidUtilities.dp(30.0f));
+            this.actionBar.getAdditionalSubTitleOverlayContainer().setScaleY(f7);
+            this.actionBar.getAdditionalSubTitleOverlayContainer().setScaleX(f7);
+            this.actionBar.getAdditionalSubTitleOverlayContainer().setAlpha(f6 * (1.0f - this.progressToActionMode));
             return;
         }
         this.actionBar.getTitlesContainer().setScaleY(1.0f);
         this.actionBar.getTitlesContainer().setScaleX(1.0f);
         this.actionBar.getTitlesContainer().setAlpha(1.0f - this.progressToActionMode);
-        this.actionBar.getTitleOverlayContainer().setScaleY(1.0f);
-        this.actionBar.getTitleOverlayContainer().setScaleX(1.0f);
-        this.actionBar.getTitleOverlayContainer().setAlpha(1.0f - this.progressToActionMode);
+        this.actionBar.getAdditionalSubTitleOverlayContainer().setScaleY(1.0f);
+        this.actionBar.getAdditionalSubTitleOverlayContainer().setScaleX(1.0f);
+        this.actionBar.getAdditionalSubTitleOverlayContainer().setAlpha(1.0f - this.progressToActionMode);
     }
 
     public class DialogsRecyclerView extends BlurredRecyclerView implements StoriesListPlaceProvider.ClippedView {
@@ -1499,7 +1499,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
+        public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
             if (this.fastScrollAnimationRunning || DialogsActivity.this.waitingForScrollFinished || DialogsActivity.this.rightFragmentTransitionInProgress) {
                 return false;
             }
@@ -1822,7 +1822,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
             if (viewHolder == null) {
                 DialogsActivity.this.slidingView = null;
                 return;
@@ -1843,7 +1843,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 final int itemCount = this.parentPage.dialogsAdapter.getItemCount();
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$onSwiped$3(dialog, itemCount, adapterPosition);
                     }
                 };
@@ -1865,7 +1865,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.performSelectedDialogsAction(arrayList, 101, true, false);
         }
 
-        public void lambda$onSwiped$3(final TLRPC.Dialog dialog, int i, int i2) {
+        public void lambda$onSwiped$3(final TLRPC.Dialog dialog, int i, int i2) throws NumberFormatException {
             if (DialogsActivity.this.frozenDialogsList == null) {
                 return;
             }
@@ -2614,9 +2614,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), true);
         actionBar.setItemsColor(getThemedColor(Theme.key_actionBarDefaultIcon), false);
         actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), true);
-        actionBar.createTitleOverlayContainer();
-        actionBar.getTitleOverlayContainer().setTranslationX(AndroidUtilities.dp(4.0f));
-        actionBar.getTitleOverlayContainer().setTranslationY(-AndroidUtilities.dp(2.0f));
+        actionBar.createAdditionalSubTitleOverlayContainer();
+        actionBar.getAdditionalSubTitleOverlayContainer().setTranslationX(AndroidUtilities.dp(4.0f));
+        actionBar.getAdditionalSubTitleOverlayContainer().setTranslationY(-AndroidUtilities.dp(3.0f));
         if (this.inPreviewMode || (AndroidUtilities.isTablet() && this.folderId != 0 && !isArchive())) {
             actionBar.setOccupyStatusBar(false);
         }
@@ -2629,7 +2629,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r39) {
+    public android.view.View createView(final android.content.Context r39) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -2907,7 +2907,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) {
+        public void onItemClick(int i) throws NumberFormatException {
             if ((i == 201 || i == 200 || i == 202 || i == 203) && DialogsActivity.this.searchViewPager != null) {
                 DialogsActivity.this.searchViewPager.onActionBarItemClick(i);
                 return;
@@ -3314,7 +3314,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$17(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$17(View view) {
         openStoriesRecorder();
     }
 
@@ -3575,7 +3575,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             final DialogsActivity dialogsActivity = DialogsActivity.this;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     DialogsActivity.access$21700(dialogsActivity);
                 }
             }, 100L);
@@ -4036,7 +4036,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    private void resetCacheHintVisible() {
+    private void resetCacheHintVisible() throws NumberFormatException {
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
         long j = globalMainSettings.getLong("cache_hint_period", 604800000L);
         if (j <= 604800000) {
@@ -4069,7 +4069,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 rect.set(titleTextView.getRightDrawable().getBounds());
                 rect.offset((int) titleTextView.getX(), (int) titleTextView.getY());
                 int iDp = (-(this.actionBar.getHeight() - rect.centerY())) - AndroidUtilities.dp(16.0f);
-                iCenterX = rect.centerX() - AndroidUtilities.dp(16.0f);
+                iCenterX = (rect.centerX() - AndroidUtilities.dp(16.0f)) + AndroidUtilities.dp(4.0f);
                 AnimatedStatusView animatedStatusView = this.animatedStatusView;
                 if (animatedStatusView != null) {
                     animatedStatusView.translate(rect.centerX(), rect.centerY());
@@ -4084,7 +4084,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
 
                 @Override
-                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) throws NumberFormatException {
                     TLRPC.TL_emojiStatus tL_emojiStatus;
                     TLRPC.EmojiStatus tL_emojiStatusEmpty;
                     if (l == null) {
@@ -4384,13 +4384,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new CacheControlActivity());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$updateDialogsHint$56();
             }
         }, 250L);
     }
 
-    public void lambda$updateDialogsHint$56() {
+    public void lambda$updateDialogsHint$56() throws NumberFormatException {
         resetCacheHintVisible();
         lambda$updateDialogsHint$38();
     }
@@ -4958,7 +4958,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(true);
     }
 
-    public boolean lambda$createActionMode$75(View view) {
+    public boolean lambda$createActionMode$75(View view) throws NumberFormatException {
         performSelectedDialogsAction(this.selectedDialogs, 104, true, true);
         return true;
     }
@@ -5266,7 +5266,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws NumberFormatException {
         ViewPage viewPage;
         int i;
         View view;
@@ -5318,7 +5318,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 final boolean z6 = z2;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$onResume$79(z5, z6, z3, parentActivity);
                     }
                 }, (this.afterSignup && (z2 || z4)) ? 4000L : 0L);
@@ -5450,7 +5450,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$onResume$79(boolean z, boolean z2, boolean z3, final Activity activity) {
+    public void lambda$onResume$79(boolean z, boolean z2, boolean z3, final Activity activity) throws NumberFormatException {
         if (getParentActivity() == null) {
             return;
         }
@@ -5469,7 +5469,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (z2 && this.askAboutContacts && getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
                 AlertDialog alertDialogCreate = AlertsCreator.createContactsPermissionDialog(activity, new MessagesStorage.IntCallback() {
                     @Override
-                    public final void run(int i) {
+                    public final void run(int i) throws NumberFormatException {
                         this.f$0.lambda$onResume$78(i);
                     }
                 }).create();
@@ -5512,7 +5512,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$onResume$78(int i) {
+    public void lambda$onResume$78(int i) throws NumberFormatException {
         this.askAboutContacts = i != 0;
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", this.askAboutContacts).apply();
         askForPermissons(false);
@@ -5731,7 +5731,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onBecomeFullyVisible() {
+    public void onBecomeFullyVisible() throws NumberFormatException {
         HintView2 hintView2;
         super.onBecomeFullyVisible();
         if (isArchive()) {
@@ -6611,7 +6611,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$99(ArrayList arrayList, View view) {
+    public void lambda$showChatPreview$99(ArrayList arrayList, View view) throws NumberFormatException {
         performSelectedDialogsAction(arrayList, 102, false, false);
         finishPreviewFragment();
     }
@@ -6962,11 +6962,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return dialog.pinned;
     }
 
-    public void performSelectedDialogsAction(ArrayList arrayList, int i, boolean z, boolean z2) {
+    public void performSelectedDialogsAction(ArrayList arrayList, int i, boolean z, boolean z2) throws NumberFormatException {
         performSelectedDialogsAction(arrayList, i, z, z2, null);
     }
 
-    private void performSelectedDialogsAction(final java.util.ArrayList r31, final int r32, boolean r33, boolean r34, java.util.HashSet r35) {
+    private void performSelectedDialogsAction(final java.util.ArrayList r31, final int r32, boolean r33, boolean r34, java.util.HashSet r35) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.performSelectedDialogsAction(java.util.ArrayList, int, boolean, boolean, java.util.HashSet):void");
     }
 
@@ -6983,7 +6983,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (undoView != null) {
             undoView.showWithAction(arrayList2, i == 102 ? 27 : 26, (Object) null, (Object) null, new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$performSelectedDialogsAction$103(i, arrayList2, z, hashSet);
                 }
             }, (Runnable) null);
@@ -6991,7 +6991,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(i == 103);
     }
 
-    public void lambda$performSelectedDialogsAction$103(int i, ArrayList arrayList, boolean z, HashSet hashSet) {
+    public void lambda$performSelectedDialogsAction$103(int i, ArrayList arrayList, boolean z, HashSet hashSet) throws NumberFormatException {
         if (i == 102) {
             getMessagesController().setDialogsInTransaction(true);
             performSelectedDialogsAction(arrayList, i, false, false, z ? hashSet : null);
@@ -7794,7 +7794,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.doneItemAnimator.start();
     }
 
-    public void updateSelectedCount() {
+    public void updateSelectedCount() throws NumberFormatException {
         if (this.commentView != null) {
             this.animatorForwardButtonVisible.setValue(!this.selectedDialogs.isEmpty(), true);
             if (this.selectedDialogs.isEmpty()) {
@@ -7840,7 +7840,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.writeButton.setResourceId(zShouldShowNextButton ? R.drawable.msg_arrow_forward : R.drawable.send_plane_24);
     }
 
-    private void askForPermissons(boolean z) {
+    private void askForPermissons(boolean z) throws NumberFormatException {
         final Activity parentActivity = getParentActivity();
         if (parentActivity == null) {
             return;
@@ -7862,7 +7862,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (z) {
                 AlertDialog alertDialogCreate = AlertsCreator.createContactsPermissionDialog(parentActivity, new MessagesStorage.IntCallback() {
                     @Override
-                    public final void run(int i) {
+                    public final void run(int i) throws NumberFormatException {
                         this.f$0.lambda$askForPermissons$114(i);
                     }
                 }).create();
@@ -7914,14 +7914,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$askForPermissons$114(int i) {
+    public void lambda$askForPermissons$114(int i) throws NumberFormatException {
         this.askAboutContacts = i != 0;
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", this.askAboutContacts).commit();
         askForPermissons(false);
     }
 
     @Override
-    protected void onDialogDismiss(Dialog dialog) {
+    protected void onDialogDismiss(Dialog dialog) throws NumberFormatException {
         AlertDialog alertDialog;
         super.onDialogDismiss(dialog);
         if (this.folderId != 0 || (alertDialog = this.permissionDialog) == null || dialog != alertDialog || getParentActivity() == null) {
@@ -7940,7 +7940,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
+    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) throws NumberFormatException {
         FilesMigrationService.FilesMigrationBottomSheet filesMigrationBottomSheet;
         if (i != 1) {
             if (i == 4) {
@@ -8047,7 +8047,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, final Object... objArr) {
+    public void didReceivedNotification(int i, int i2, final Object... objArr) throws NumberFormatException {
         MessagesController.DialogFilter dialogFilter;
         boolean zBooleanValue;
         final boolean zBooleanValue2;
@@ -8599,7 +8599,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         onSuggestionDismiss();
     }
 
-    private void showFiltersHint() {
+    private void showFiltersHint() throws NumberFormatException {
         if (this.askingForPermissions || !getMessagesController().dialogFiltersLoaded || !getMessagesController().showFiltersTooltip || this.filterTabsView == null || !getMessagesController().getDialogFilters().isEmpty() || this.isPaused || !getUserConfig().filtersLoaded || this.inPreviewMode) {
             return;
         }
@@ -9830,7 +9830,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void didPressedOnSubDialog(long j) {
+        public void didPressedOnSubDialog(long j) throws NumberFormatException {
             if (DialogsActivity.this.onlySelect) {
                 if (DialogsActivity.this.validateSlowModeDialog(j)) {
                     if (!DialogsActivity.this.selectedDialogs.isEmpty()) {
@@ -10348,7 +10348,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -10909,6 +10909,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private void checkUi_itemSearchVisibility() {
         float f = isSupportSearch() ? 1.0f : 0.0f;
         FragmentFloatingButton.setAnimatedVisibility(this.searchItem, f * this.animatorSearchButtonVisible.getFloatValue() * (1.0f - getRightSlidingProgress()) * (1.0f - this.animatorDoneButtonVisible.getFloatValue()));
+        DialogStoriesCell dialogStoriesCell = this.dialogStoriesCell;
+        if (dialogStoriesCell != null) {
+            dialogStoriesCell.invalidate();
+        }
     }
 
     private boolean isSupportSearch() {

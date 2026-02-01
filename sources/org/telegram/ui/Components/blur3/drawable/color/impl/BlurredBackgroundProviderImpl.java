@@ -1,9 +1,13 @@
 package org.telegram.ui.Components.blur3.drawable.color.impl;
 
 import android.graphics.Color;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
@@ -35,17 +39,20 @@ public abstract class BlurredBackgroundProviderImpl {
         return solveSrcColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), Theme.getColor(Theme.key_glass_targetMainTopPanel, resourcesProvider), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
-    public static BlurredBackgroundProvider topPanelChatActivity(Theme.ResourcesProvider resourcesProvider) {
+    public static BlurredBackgroundProvider topPanelChatActivity(final Theme.ResourcesProvider resourcesProvider) {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.lambda$topPanelChatActivity$2(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.lambda$topPanelChatActivity$2(resourcesProvider, resourcesProvider2, z);
             }
         }).setStrokeColorTop(-1, 687865855).setStrokeColorBottom(-1, 352321535).setShadowColor(536870912, 0).setStrokeWidth(AndroidUtilities.dpf2(0.5f), AndroidUtilities.dpf2(0.5f)).build();
     }
 
-    public static int lambda$topPanelChatActivity$2(Theme.ResourcesProvider resourcesProvider, boolean z) {
-        return Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
+    public static int lambda$topPanelChatActivity$2(Theme.ResourcesProvider resourcesProvider, Theme.ResourcesProvider resourcesProvider2, boolean z) {
+        if (!checkBlurEnabled(resourcesProvider)) {
+            return ColorUtils.setAlphaComponent(Theme.getColor(z ? Theme.key_actionBarDefault : Theme.key_chat_topPanelBackground, resourcesProvider2), 255);
+        }
+        return Theme.multAlpha(Theme.getColor(Theme.key_chat_topPanelBackground, resourcesProvider2), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
     public static BlurredBackgroundProvider inputFieldDialogActivity(Theme.ResourcesProvider resourcesProvider) {
@@ -78,5 +85,21 @@ public abstract class BlurredBackgroundProviderImpl {
         int iBlue = Color.blue(i);
         float f2 = 1.0f - fClamp;
         return Color.argb(MathUtils.clamp(Math.round(fClamp * 255.0f), 0, 255), MathUtils.clamp(Math.round((Color.red(i2) - (iRed * f2)) / fClamp), 0, 255), MathUtils.clamp(Math.round((Color.green(i2) - (iGreen * f2)) / fClamp), 0, 255), MathUtils.clamp(Math.round((Color.blue(i2) - (iBlue * f2)) / fClamp), 0, 255));
+    }
+
+    public static boolean checkBlurEnabled(Theme.ResourcesProvider resourcesProvider) {
+        return checkBlurEnabled(UserConfig.selectedAccount, resourcesProvider);
+    }
+
+    public static boolean checkBlurEnabled(int i, Theme.ResourcesProvider resourcesProvider) {
+        boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
+        boolean zChatBlurEnabled = SharedConfig.chatBlurEnabled();
+        if (zChatBlurEnabled && !zIsDark && MessagesController.getInstance(i).config.disableBlurInLightTheme.get()) {
+            zChatBlurEnabled = false;
+        }
+        if (zChatBlurEnabled && zIsDark && MessagesController.getInstance(i).config.disableBlurInDarkTheme.get()) {
+            return false;
+        }
+        return zChatBlurEnabled;
     }
 }

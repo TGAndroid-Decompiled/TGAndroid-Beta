@@ -1119,7 +1119,7 @@ public class ViewPagerFixed extends FrameLayout {
             void onSamePageSelected();
         }
 
-        public static void lambda$setIsEditing$4(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void lambda$setIsEditing$5(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         static float access$3116(TabsView tabsView, float f) {
@@ -1872,11 +1872,24 @@ public class ViewPagerFixed extends FrameLayout {
             super.requestLayout();
         }
 
-        private void scrollToChild(int i) {
+        private void scrollToChild(final int i) {
             if (this.tabs.isEmpty() || this.scrollingToChild == i || i < 0 || i >= this.tabs.size()) {
                 return;
             }
             this.scrollingToChild = i;
+            if (this.listView.getVisibility() == 8 || this.listView.getMeasuredWidth() == 0) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$scrollToChild$4(i);
+                    }
+                }, 100L);
+            } else {
+                this.listView.smoothScrollToPosition(i);
+            }
+        }
+
+        public void lambda$scrollToChild$4(int i) {
             this.listView.smoothScrollToPosition(i);
         }
 
@@ -1983,7 +1996,7 @@ public class ViewPagerFixed extends FrameLayout {
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_updateDialogFiltersOrder, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ViewPagerFixed.TabsView.lambda$setIsEditing$4(tLObject, tL_error);
+                    ViewPagerFixed.TabsView.lambda$setIsEditing$5(tLObject, tL_error);
                 }
             });
             this.orderChanged = false;

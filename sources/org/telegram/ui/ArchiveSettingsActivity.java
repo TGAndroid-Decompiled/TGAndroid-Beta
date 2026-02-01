@@ -234,10 +234,15 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
                 if (TextUtils.isEmpty(itemInner.text)) {
                     textInfoPrivacyCell.setFixedSize(12);
                     textInfoPrivacyCell.setText(null);
-                    return;
                 } else {
                     textInfoPrivacyCell.setFixedSize(0);
                     textInfoPrivacyCell.setText(itemInner.text);
+                }
+                if (z2) {
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ArchiveSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    return;
+                } else {
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ArchiveSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     return;
                 }
             }

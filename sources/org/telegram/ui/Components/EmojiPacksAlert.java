@@ -277,7 +277,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) {
+        public void sendEmoji(TLRPC.Document document) throws NumberFormatException {
             if (EmojiPacksAlert.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiPacksAlert.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -1206,13 +1206,13 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     public static void lambda$installSet$7(final TLRPC.StickerSet stickerSet, final boolean z, final View view, final BaseFragment baseFragment, final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final int i, final Utilities.Callback callback, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 EmojiPacksAlert.lambda$installSet$6(stickerSet, tL_error, z, view, baseFragment, tL_messages_stickerSet, tLObject, i, callback, runnable);
             }
         });
     }
 
-    public static void lambda$installSet$6(TLRPC.StickerSet stickerSet, TLRPC.TL_error tL_error, boolean z, View view, BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLObject tLObject, int i, Utilities.Callback callback, final Runnable runnable) {
+    public static void lambda$installSet$6(TLRPC.StickerSet stickerSet, TLRPC.TL_error tL_error, boolean z, View view, BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLObject tLObject, int i, Utilities.Callback callback, final Runnable runnable) throws NumberFormatException {
         int i2;
         if (stickerSet.masks) {
             i2 = 1;

@@ -53,7 +53,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -2238,7 +2237,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
 
                 @Override
-                public final void onItemClick(View view, int i25, float f, float f2) {
+                public final void onItemClick(View view, int i25, float f, float f2) throws NumberFormatException {
                     this.f$0.lambda$new$16(mediaPage2, context, view, i25, f, f2);
                 }
             });
@@ -2470,7 +2469,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             this.topPanelLayout.setOnAnimatedHeightChangedListener(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$18();
+                    this.f$0.lambda$new$19();
                 }
             });
             FragmentContextView fragmentContextView = new FragmentContextView(context, baseFragment, this, false, resourcesProvider) {
@@ -2486,7 +2485,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             this.fragmentContextView.setDelegate(new FragmentContextView.FragmentContextViewDelegate() {
                 @Override
                 public final void onAnimation(boolean z, boolean z2) {
-                    this.f$0.lambda$new$19(z, z2);
+                    this.f$0.lambda$new$20(z, z2);
                 }
             });
             addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 48, 51));
@@ -2563,7 +2562,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.iBlur3Capture = new IBlur3Capture() {
             @Override
             public final void capture(Canvas canvas, RectF rectF) {
-                this.f$0.lambda$new$20(canvas, rectF);
+                this.f$0.lambda$new$21(canvas, rectF);
             }
 
             @Override
@@ -2830,7 +2829,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             if (closestTab == 13 && user != null && user.bot && user.bot_has_main_app && user.bot_can_edit && SharedMediaLayout.this.botPreviewsContainer != null) {
                 ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, SharedMediaLayout.this.photoVideoOptionsItem).addIf(SharedMediaLayout.this.botPreviewsContainer.getItemsCount() < SharedMediaLayout.this.profileActivity.getMessagesController().botPreviewMediasMax, R.drawable.msg_addbot, LocaleController.getString(R.string.ProfileBotAddPreview), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, IOException {
+                    public final void run() {
                         this.f$0.lambda$onClick$4();
                     }
                 }).addIf(SharedMediaLayout.this.botPreviewsContainer.getItemsCount() > 1 && !SharedMediaLayout.this.botPreviewsContainer.isSelectedAll(), R.drawable.tabs_reorder, LocaleController.getString(R.string.ProfileBotReorder), new Runnable() {
@@ -3010,7 +3009,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             giftsList.invalidate(true);
         }
 
-        public void lambda$onClick$4() throws Resources.NotFoundException, IOException {
+        public void lambda$onClick$4() {
             StoryRecorder.getInstance(SharedMediaLayout.this.profileActivity.getParentActivity(), SharedMediaLayout.this.profileActivity.getCurrentAccount()).openBot(SharedMediaLayout.this.dialog_id, SharedMediaLayout.this.botPreviewsContainer.getCurrentLang(), null);
         }
 
@@ -3478,7 +3477,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         public void lambda$onTabAlbumLongClick$4(int i) {
-            SharedMediaLayout.this.lambda$onItemLongClick$44(i);
+            SharedMediaLayout.this.lambda$onItemLongClick$45(i);
         }
 
         public void lambda$onTabAlbumLongClick$5(int i) {
@@ -3526,7 +3525,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$new$16(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) {
+    public void lambda$new$16(MediaPage mediaPage, final Context context, View view, int i, final float f, final float f2) throws NumberFormatException {
         long peerId;
         if (mediaPage.selectedType != 7) {
             if (mediaPage.selectedType != 6 || !(view instanceof ProfileSearchCell)) {
@@ -3586,7 +3585,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                                     boolean firstCreateView = true;
 
                                                     @Override
-                                                    public void onTransitionAnimationStart(boolean z, boolean z2) {
+                                                    public void onTransitionAnimationStart(boolean z, boolean z2) throws NumberFormatException {
                                                         if (this.firstCreateView) {
                                                             if (this.searchItem != null) {
                                                                 lambda$openSearchWithText$341("");
@@ -3811,16 +3810,17 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         baseFragment.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
     }
 
-    public void lambda$new$18() {
+    public void lambda$new$19() {
         this.topLayoutPadding = (int) this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(14.0f));
         ProfileGiftsContainer profileGiftsContainer = this.giftsContainer;
         if (profileGiftsContainer != null) {
-            profileGiftsContainer.setPaddingTop((int) this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(10.0f)));
+            profileGiftsContainer.setPaddingTop((int) this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(7.0f)));
         }
         MediaPage[] mediaPageArr = this.mediaPages;
         if (mediaPageArr != null) {
-            for (MediaPage mediaPage : mediaPageArr) {
+            for (final MediaPage mediaPage : mediaPageArr) {
                 if (mediaPage != null) {
+                    int paddingTop = mediaPage.listView.getPaddingTop();
                     InternalListView internalListView = mediaPage.listView;
                     int paddingLeft = mediaPage.listView.getPaddingLeft();
                     int iDp = this.topLayoutPadding + (this.changeColumnsTab == 9 ? AndroidUtilities.dp(64.0f) : 0);
@@ -3829,19 +3829,30 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     int pagePaddingBottom = getPagePaddingBottom(isStoriesView());
                     internalListView2.hintPaddingBottom = pagePaddingBottom;
                     internalListView.setPadding(paddingLeft, iDp, paddingRight, pagePaddingBottom);
+                    final int paddingTop2 = paddingTop - mediaPage.listView.getPaddingTop();
+                    AndroidUtilities.doOnLayout(mediaPage.listView, new Runnable() {
+                        @Override
+                        public final void run() {
+                            SharedMediaLayout.lambda$new$18(mediaPage, paddingTop2);
+                        }
+                    });
                 }
             }
         }
     }
 
-    public void lambda$new$19(boolean z, boolean z2) {
+    public static void lambda$new$18(MediaPage mediaPage, int i) {
+        mediaPage.listView.scrollBy(0, i);
+    }
+
+    public void lambda$new$20(boolean z, boolean z2) {
         if (!z) {
             requestLayout();
         }
         setVisibleHeight(this.lastVisibleHeight);
     }
 
-    public void lambda$new$20(Canvas canvas, RectF rectF) {
+    public void lambda$new$21(Canvas canvas, RectF rectF) {
         IBlur3Capture iBlur3Capture;
         for (MediaPage mediaPage : this.mediaPages) {
             if (mediaPage.iBlur3Capture != null) {
@@ -4521,7 +4532,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         canvas.drawRect(rect, paint);
     }
 
-    public void lambda$onItemLongClick$44(int i) {
+    public void lambda$onItemLongClick$45(int i) {
         MediaPage mediaPage;
         if (storyAlbums_getAlbumIdByTabType(getClosestTab()) != i) {
             ProfileStoriesCollectionTabs profileStoriesCollectionTabs = this.storiesContainer;
@@ -4718,7 +4729,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         Runnable runnable = new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$checkLoadMoreScroll$21(i3, recyclerListView);
+                                this.f$0.lambda$checkLoadMoreScroll$22(i3, recyclerListView);
                             }
                         };
                         this.jumpToRunnable = runnable;
@@ -4832,7 +4843,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$checkLoadMoreScroll$21(int i, RecyclerListView recyclerListView) {
+    public void lambda$checkLoadMoreScroll$22(int i, RecyclerListView recyclerListView) {
         findPeriodAndJumpToDate(i, recyclerListView, false);
         this.jumpToRunnable = null;
     }
@@ -5027,15 +5038,24 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             ConnectionsManager.getInstance(this.profileActivity.getCurrentAccount()).bindRequestToGuid(ConnectionsManager.getInstance(this.profileActivity.getCurrentAccount()).sendRequest(tL_messages_getSearchResultsPositions, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadFastScrollData$25(i4, i2, tLObject, tL_error);
+                    this.f$0.lambda$loadFastScrollData$26(i4, i2, tLObject, tL_error);
                 }
             }), this.profileActivity.getClassGuid());
             i++;
         }
     }
 
-    public void lambda$loadFastScrollData$25(final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$loadFastScrollData$26(final int i, final int i2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$loadFastScrollData$25(tL_error, i, i2, tLObject);
+            }
+        });
+    }
+
+    public void lambda$loadFastScrollData$25(final TLRPC.TL_error tL_error, final int i, final int i2, final TLObject tLObject) {
+        NotificationCenter.getInstance(this.profileActivity.getCurrentAccount()).doOnIdle(new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$loadFastScrollData$24(tL_error, i, i2, tLObject);
@@ -5043,16 +5063,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         });
     }
 
-    public void lambda$loadFastScrollData$24(final TLRPC.TL_error tL_error, final int i, final int i2, final TLObject tLObject) {
-        NotificationCenter.getInstance(this.profileActivity.getCurrentAccount()).doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$loadFastScrollData$23(tL_error, i, i2, tLObject);
-            }
-        });
-    }
-
-    public void lambda$loadFastScrollData$23(TLRPC.TL_error tL_error, int i, int i2, TLObject tLObject) {
+    public void lambda$loadFastScrollData$24(TLRPC.TL_error tL_error, int i, int i2, TLObject tLObject) {
         if (tL_error != null) {
             return;
         }
@@ -5073,7 +5084,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         Collections.sort(this.sharedMediaData[i2].fastScrollPeriods, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return SharedMediaLayout.lambda$loadFastScrollData$22((SharedMediaLayout.Period) obj, (SharedMediaLayout.Period) obj2);
+                return SharedMediaLayout.lambda$loadFastScrollData$23((SharedMediaLayout.Period) obj, (SharedMediaLayout.Period) obj2);
             }
         });
         this.sharedMediaData[i2].setTotalCount(tL_messages_searchResultsPositions.count);
@@ -5096,7 +5107,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.photoVideoAdapter.notifyDataSetChanged();
     }
 
-    public static int lambda$loadFastScrollData$22(Period period, Period period2) {
+    public static int lambda$loadFastScrollData$23(Period period, Period period2) {
         return period2.date - period.date;
     }
 
@@ -5119,7 +5130,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    SharedMediaLayout.lambda$showFastScrollHint$26(mediaPage, sharedMediaFastScrollTooltip);
+                    SharedMediaLayout.lambda$showFastScrollHint$27(mediaPage, sharedMediaFastScrollTooltip);
                 }
             };
             mediaPage.fastScrollHideHintRunnable = runnable2;
@@ -5135,7 +5146,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         mediaPage.fastScrollHintView = null;
     }
 
-    public static void lambda$showFastScrollHint$26(MediaPage mediaPage, final SharedMediaFastScrollTooltip sharedMediaFastScrollTooltip) {
+    public static void lambda$showFastScrollHint$27(MediaPage mediaPage, final SharedMediaFastScrollTooltip sharedMediaFastScrollTooltip) {
         mediaPage.fastScrollHintView = null;
         mediaPage.fastScrollHideHintRunnable = null;
         sharedMediaFastScrollTooltip.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(220L).setListener(new AnimatorListenerAdapter() {
@@ -5199,7 +5210,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
 
                     @Override
                     public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i2, int i3, TopicsFragment topicsFragment) {
-                        return this.f$0.lambda$onActionBarItemClick$33(dialogsActivity2, arrayList, charSequence, z2, z3, i2, i3, topicsFragment);
+                        return this.f$0.lambda$onActionBarItemClick$34(dialogsActivity2, arrayList, charSequence, z2, z3, i2, i3, topicsFragment);
                     }
 
                     @Override
@@ -5305,7 +5316,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                         @Override
                         public final void onClick(AlertDialog alertDialog, int i6) {
-                            this.f$0.lambda$onActionBarItemClick$27(currentList, arrayList3, alertDialog, i6);
+                            this.f$0.lambda$onActionBarItemClick$28(currentList, arrayList3, alertDialog, i6);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -5335,7 +5346,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 builder2.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i7) {
-                        this.f$0.lambda$onActionBarItemClick$29(arrayList4, alertDialog, i7);
+                        this.f$0.lambda$onActionBarItemClick$30(arrayList4, alertDialog, i7);
                     }
                 });
                 builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -5383,7 +5394,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             AlertDialog alertDialogCreate3 = new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(arrayList5.size() == 1 ? LocaleController.formatString(z ? R.string.ClearHistoryMyNotesTitle : R.string.ClearHistoryTitleSingle2, userName) : LocaleController.formatPluralString("ClearHistoryTitleMultiple", arrayList5.size(), new Object[0])).setMessage(arrayList5.size() == 1 ? LocaleController.formatString(z ? R.string.ClearHistoryMyNotesMessage : R.string.ClearHistoryMessageSingle, userName) : LocaleController.formatPluralString("ClearHistoryMessageMultiple", arrayList5.size(), new Object[0])).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i8) {
-                    this.f$0.lambda$onActionBarItemClick$31(arrayList5, alertDialog, i8);
+                    this.f$0.lambda$onActionBarItemClick$32(arrayList5, alertDialog, i8);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             this.profileActivity.showDialog(alertDialogCreate3);
@@ -5410,37 +5421,37 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         AlertsCreator.createDeleteMessagesAlert(this.profileActivity, user, chat, encryptedChat, null, this.mergeDialogId, null, this.selectedFiles, null, 0, 0, null, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onActionBarItemClick$32();
+                this.f$0.lambda$onActionBarItemClick$33();
             }
         }, null, this.resourcesProvider);
     }
 
-    public void lambda$onActionBarItemClick$27(StoriesController.BotPreviewsList botPreviewsList, ArrayList arrayList, AlertDialog alertDialog, int i) {
+    public void lambda$onActionBarItemClick$28(StoriesController.BotPreviewsList botPreviewsList, ArrayList arrayList, AlertDialog alertDialog, int i) {
         botPreviewsList.delete(arrayList);
         BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.ic_delete, LocaleController.formatPluralString("BotPreviewsDeleted", arrayList.size(), new Object[0])).show();
         closeActionMode(false);
     }
 
-    public void lambda$onActionBarItemClick$29(ArrayList arrayList, AlertDialog alertDialog, int i) {
+    public void lambda$onActionBarItemClick$30(ArrayList arrayList, AlertDialog alertDialog, int i) {
         this.profileActivity.getMessagesController().getStoriesController().deleteStories(this.dialog_id, arrayList);
         BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.ic_delete, LocaleController.formatPluralString("StoriesDeleted", arrayList.size(), new Object[0])).show();
         closeActionMode(false);
     }
 
-    public void lambda$onActionBarItemClick$31(ArrayList arrayList, AlertDialog alertDialog, int i) {
+    public void lambda$onActionBarItemClick$32(ArrayList arrayList, AlertDialog alertDialog, int i) {
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             this.profileActivity.getMessagesController().deleteSavedDialog(((Long) arrayList.get(i2)).longValue());
         }
         closeActionMode();
     }
 
-    public void lambda$onActionBarItemClick$32() {
+    public void lambda$onActionBarItemClick$33() {
         showActionMode(false);
         this.actionBar.closeSearchField();
         this.cantDeleteMessagesCount = 0;
     }
 
-    public boolean lambda$onActionBarItemClick$33(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public boolean lambda$onActionBarItemClick$34(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i3 = 1;
         while (true) {
@@ -5824,7 +5835,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$stopScroll$34(valueAnimator);
+                    this.f$0.lambda$stopScroll$35(valueAnimator);
                 }
             });
             if (this.backAnimation) {
@@ -5919,7 +5930,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$stopScroll$34(ValueAnimator valueAnimator) {
+    public void lambda$stopScroll$35(ValueAnimator valueAnimator) {
         onTabProgress(getTabProgress());
     }
 
@@ -6476,7 +6487,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.updateTabs(boolean):void");
     }
 
-    public static Boolean lambda$updateTabs$35(ArrayList arrayList, Integer num) {
+    public static Boolean lambda$updateTabs$36(ArrayList arrayList, Integer num) {
         for (int i = 0; i < arrayList.size(); i++) {
             if (((Pair) arrayList.get(i)).first == num) {
                 return Boolean.TRUE;
@@ -6514,7 +6525,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.switchToCurrentSelectedMode(boolean):void");
     }
 
-    public void lambda$switchToCurrentSelectedMode$36(boolean z, int i, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$switchToCurrentSelectedMode$37(boolean z, int i, View view) {
         if (z) {
             openAddStoriesToAlbumSheet(this.profileActivity, this.dialog_id, i);
         } else {
@@ -6523,7 +6534,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$switchToCurrentSelectedMode$37(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$switchToCurrentSelectedMode$38(View view) {
         this.profileActivity.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
         StoryRecorder.getInstance(this.profileActivity.getParentActivity(), this.profileActivity.getCurrentAccount()).open(null);
     }
@@ -6565,12 +6576,12 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             ItemOptions.addAlbumsItemOptions(itemOptionsMakeSwipeback, getStoriesController().getStoryAlbumsList(this.dialog_id), hashSet, true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onItemLongClick$40(storyItem, itemOptionsMakeOptions);
+                    this.f$0.lambda$onItemLongClick$41(storyItem, itemOptionsMakeOptions);
                 }
             }, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onItemLongClick$41(hashSet, storyItem, itemOptionsMakeOptions, (StoriesController.StoryAlbum) obj);
+                    this.f$0.lambda$onItemLongClick$42(hashSet, storyItem, itemOptionsMakeOptions, (StoriesController.StoryAlbum) obj);
                 }
             });
             itemOptionsMakeOptions.add(R.drawable.menu_album_add, LocaleController.getString(R.string.StoriesAlbumAddToAlbum), new Runnable() {
@@ -6583,7 +6594,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             itemOptionsMakeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.StoriesAlbumMenuSelect), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onItemLongClick$43(messageObject, view, i);
+                    this.f$0.lambda$onItemLongClick$44(messageObject, view, i);
                 }
             });
             if (zIsStoryAlbumPageType) {
@@ -6592,13 +6603,13 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.StoriesAlbumMenuReorder), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongClick$44(iStoryAlbums_getAlbumIdByTabType);
+                        this.f$0.lambda$onItemLongClick$45(iStoryAlbums_getAlbumIdByTabType);
                     }
                 });
                 itemOptionsMakeOptions.add(R.drawable.msg_removefolder, LocaleController.getString(R.string.StoriesAlbumMenuRemoveFromAlbum), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongClick$46(iStoryAlbums_getAlbumIdByTabType, storyItem, albumName);
+                        this.f$0.lambda$onItemLongClick$47(iStoryAlbums_getAlbumIdByTabType, storyItem, albumName);
                     }
                 });
             } else {
@@ -6607,14 +6618,14 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         itemOptionsMakeOptions.add(R.drawable.chats_unpin, LocaleController.getString(R.string.StoriesAlbumMenuUnpin), new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onItemLongClick$47(storyItem);
+                                this.f$0.lambda$onItemLongClick$48(storyItem);
                             }
                         });
                     } else {
                         itemOptionsMakeOptions.add(R.drawable.chats_pin, LocaleController.getString(R.string.StoriesAlbumMenuPin), new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onItemLongClick$48(storyItem);
+                                this.f$0.lambda$onItemLongClick$49(storyItem);
                             }
                         });
                     }
@@ -6622,14 +6633,14 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 itemOptionsMakeOptions.add(R.drawable.msg_archive, LocaleController.getString(R.string.StoriesAlbumMenuArchive), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onItemLongClick$49(storyItem);
+                        this.f$0.lambda$onItemLongClick$50(storyItem);
                     }
                 });
             }
             itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onItemLongClick$52(storyItem);
+                    this.f$0.lambda$onItemLongClick$53(storyItem);
                 }
             });
             itemOptionsMakeOptions.setGravity(3);
@@ -6695,31 +6706,31 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         return true;
     }
 
-    public void lambda$onItemLongClick$40(final TL_stories.StoryItem storyItem, ItemOptions itemOptions) {
+    public void lambda$onItemLongClick$41(final TL_stories.StoryItem storyItem, ItemOptions itemOptions) {
         AlertsCreator.createStoriesAlbumEnterNameForCreate(getContext(), null, this.resourcesProvider, new MessagesStorage.StringCallback() {
             @Override
             public final void run(String str) {
-                this.f$0.lambda$onItemLongClick$39(storyItem, str);
+                this.f$0.lambda$onItemLongClick$40(storyItem, str);
             }
         });
         itemOptions.dismiss();
     }
 
-    public void lambda$onItemLongClick$39(final TL_stories.StoryItem storyItem, String str) {
+    public void lambda$onItemLongClick$40(final TL_stories.StoryItem storyItem, String str) {
         getStoriesController().createAlbum(this.dialog_id, str, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onItemLongClick$38(storyItem, (StoriesController.StoryAlbum) obj);
+                this.f$0.lambda$onItemLongClick$39(storyItem, (StoriesController.StoryAlbum) obj);
             }
         });
     }
 
-    public void lambda$onItemLongClick$38(TL_stories.StoryItem storyItem, StoriesController.StoryAlbum storyAlbum) {
+    public void lambda$onItemLongClick$39(TL_stories.StoryItem storyItem, StoriesController.StoryAlbum storyAlbum) {
         getStoriesController().addStoryToAlbum(this.dialog_id, storyAlbum.album_id, storyItem);
         onStoryAlbumCreate(storyAlbum);
     }
 
-    public void lambda$onItemLongClick$41(HashSet hashSet, TL_stories.StoryItem storyItem, ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) {
+    public void lambda$onItemLongClick$42(HashSet hashSet, TL_stories.StoryItem storyItem, ItemOptions itemOptions, StoriesController.StoryAlbum storyAlbum) {
         String string;
         if (hashSet.contains(Integer.valueOf(storyAlbum.album_id))) {
             getStoriesController().addStoryToAlbum(this.dialog_id, storyAlbum.album_id, storyItem);
@@ -6732,46 +6743,46 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         itemOptions.dismiss();
     }
 
-    public void lambda$onItemLongClick$43(MessageObject messageObject, View view, int i) {
+    public void lambda$onItemLongClick$44(MessageObject messageObject, View view, int i) {
         onItemLongClick(messageObject, view, i, false);
     }
 
-    public void lambda$onItemLongClick$45(int i, TL_stories.StoryItem storyItem) {
+    public void lambda$onItemLongClick$46(int i, TL_stories.StoryItem storyItem) {
         getStoriesController().addStoryToAlbum(this.dialog_id, i, storyItem);
     }
 
-    public void lambda$onItemLongClick$46(final int i, final TL_stories.StoryItem storyItem, String str) {
+    public void lambda$onItemLongClick$47(final int i, final TL_stories.StoryItem storyItem, String str) {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onItemLongClick$45(i, storyItem);
+                this.f$0.lambda$onItemLongClick$46(i, storyItem);
             }
         };
         getStoriesController().removeStoryFromAlbum(this.dialog_id, i, storyItem);
         BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.chats_archived, AndroidUtilities.replaceTags(LocaleController.formatPluralString("StoryRemovedFromAlbumTitle", 1, str)), LocaleController.getString(R.string.UndoNoCaps), runnable).show();
     }
 
-    public void lambda$onItemLongClick$47(TL_stories.StoryItem storyItem) {
+    public void lambda$onItemLongClick$48(TL_stories.StoryItem storyItem) {
         pinOnUnpinStories(new ArrayList(Collections.singletonList(Integer.valueOf(storyItem.id))), false);
     }
 
-    public void lambda$onItemLongClick$48(TL_stories.StoryItem storyItem) {
+    public void lambda$onItemLongClick$49(TL_stories.StoryItem storyItem) {
         pinOnUnpinStories(new ArrayList(Collections.singletonList(Integer.valueOf(storyItem.id))), true);
     }
 
-    public void lambda$onItemLongClick$49(TL_stories.StoryItem storyItem) {
+    public void lambda$onItemLongClick$50(TL_stories.StoryItem storyItem) {
         getStoriesController().updateStoriesPinned(this.dialog_id, new ArrayList(Collections.singletonList(storyItem)), false, null);
         BulletinFactory.of(this.profileActivity).createSimpleBulletin(R.raw.chats_archived, LocaleController.formatPluralString("StoryArchived", 1, new Object[0]), 5000).show();
     }
 
-    public void lambda$onItemLongClick$52(final TL_stories.StoryItem storyItem) {
+    public void lambda$onItemLongClick$53(final TL_stories.StoryItem storyItem) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         builder.setTitle(LocaleController.getString(R.string.DeleteStoryTitle));
         builder.setMessage(LocaleController.formatPluralString("DeleteStoriesSubtitle", 1, new Object[0]));
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$onItemLongClick$50(storyItem, alertDialog, i);
+                this.f$0.lambda$onItemLongClick$51(storyItem, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -6785,7 +6796,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         alertDialogCreate.redPositive();
     }
 
-    public void lambda$onItemLongClick$50(TL_stories.StoryItem storyItem, AlertDialog alertDialog, int i) {
+    public void lambda$onItemLongClick$51(TL_stories.StoryItem storyItem, AlertDialog alertDialog, int i) {
         ArrayList arrayList = new ArrayList(1);
         arrayList.add(storyItem);
         this.profileActivity.getMessagesController().getStoriesController().deleteStories(this.dialog_id, arrayList);
@@ -6944,7 +6955,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 StoriesListPlaceProvider storiesListPlaceProviderWith = StoriesListPlaceProvider.of(this.mediaPages[i2].listView).with(new StoriesListPlaceProvider.LoadNextInterface() {
                     @Override
                     public final void loadNext(boolean z) {
-                        SharedMediaLayout.lambda$onItemClick$53(storiesList, z);
+                        SharedMediaLayout.lambda$onItemClick$54(storiesList, z);
                     }
                 });
                 BaseFragment baseFragment = this.profileActivity;
@@ -6957,7 +6968,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public static void lambda$onItemClick$53(StoriesController.StoriesList storiesList, boolean z) {
+    public static void lambda$onItemClick$54(StoriesController.StoriesList storiesList, boolean z) {
         if (z) {
             storiesList.load(false, 30);
         }
@@ -9965,7 +9976,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
                 @Override
                 public final void didSetColor() {
-                    this.f$0.lambda$getThemeDescriptions$54(i7);
+                    this.f$0.lambda$getThemeDescriptions$55(i7);
                 }
 
                 @Override
@@ -10048,7 +10059,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$54(int i) {
+    public void lambda$getThemeDescriptions$55(int i) {
         if (this.mediaPages[i].listView != null) {
             int childCount = this.mediaPages[i].listView.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {
@@ -10550,12 +10561,12 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         AlertsCreator.createStoriesAlbumEnterNameForRename(baseFragment.getContext(), baseFragment, getStoriesController().getAlbumName(j, i), baseFragment.getResourceProvider(), new MessagesStorage.StringCallback() {
             @Override
             public final void run(String str) {
-                this.f$0.lambda$openRenameStoriesAlbumAlert$56(j, i, str);
+                this.f$0.lambda$openRenameStoriesAlbumAlert$57(j, i, str);
             }
         });
     }
 
-    public void lambda$openRenameStoriesAlbumAlert$56(long j, int i, String str) {
+    public void lambda$openRenameStoriesAlbumAlert$57(long j, int i, String str) {
         getStoriesController().renameAlbum(j, i, str);
     }
 
@@ -10565,12 +10576,12 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         AlertsCreator.showSimpleConfirmAlert(baseFragment, LocaleController.getString(i2), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesAlbumMenuDeleteAlbumAsk, albumName)), LocaleController.getString(i2), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openDeleteStoriesAlbumAlert$57(j, i);
+                this.f$0.lambda$openDeleteStoriesAlbumAlert$58(j, i);
             }
         });
     }
 
-    public void lambda$openDeleteStoriesAlbumAlert$57(long j, int i) {
+    public void lambda$openDeleteStoriesAlbumAlert$58(long j, int i) {
         getStoriesController().removeAlbum(j, i);
     }
 
@@ -10578,12 +10589,12 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         new SelectStoriesBottomSheet(baseFragment, j, this.mediaColumnsCount[1], new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$openAddStoriesToAlbumSheet$58(j, i, (ArrayList) obj);
+                this.f$0.lambda$openAddStoriesToAlbumSheet$59(j, i, (ArrayList) obj);
             }
         }).show();
     }
 
-    public void lambda$openAddStoriesToAlbumSheet$58(long j, int i, ArrayList arrayList) {
+    public void lambda$openAddStoriesToAlbumSheet$59(long j, int i, ArrayList arrayList) {
         getStoriesController().addStoriesToAlbum(j, i, arrayList);
     }
 
@@ -10592,20 +10603,20 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         itemOptionsMakeOptions.add(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$buildItemOptionsForStoryAlbumActionBar$59(baseFragment, j, i, itemOptionsMakeOptions);
+                this.f$0.lambda$buildItemOptionsForStoryAlbumActionBar$60(baseFragment, j, i, itemOptionsMakeOptions);
             }
         });
         addStoryAlbumShareItemOptions(itemOptionsMakeOptions, baseFragment, j, i);
         itemOptionsMakeOptions.add(R.drawable.tabs_reorder, LocaleController.getString(R.string.StoriesAlbumMenuReorder), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$buildItemOptionsForStoryAlbumActionBar$60(i, itemOptionsMakeOptions);
+                this.f$0.lambda$buildItemOptionsForStoryAlbumActionBar$61(i, itemOptionsMakeOptions);
             }
         });
         itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.StoriesAlbumMenuDeleteAlbum), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$buildItemOptionsForStoryAlbumActionBar$61(baseFragment, j, i, itemOptionsMakeOptions);
+                this.f$0.lambda$buildItemOptionsForStoryAlbumActionBar$62(baseFragment, j, i, itemOptionsMakeOptions);
             }
         });
         itemOptionsMakeOptions.addGap();
@@ -10614,17 +10625,17 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         return itemOptionsMakeOptions;
     }
 
-    public void lambda$buildItemOptionsForStoryAlbumActionBar$59(BaseFragment baseFragment, long j, int i, ItemOptions itemOptions) {
+    public void lambda$buildItemOptionsForStoryAlbumActionBar$60(BaseFragment baseFragment, long j, int i, ItemOptions itemOptions) {
         openAddStoriesToAlbumSheet(baseFragment, j, i);
         itemOptions.dismiss();
     }
 
-    public void lambda$buildItemOptionsForStoryAlbumActionBar$60(int i, ItemOptions itemOptions) {
-        lambda$onItemLongClick$44(i);
+    public void lambda$buildItemOptionsForStoryAlbumActionBar$61(int i, ItemOptions itemOptions) {
+        lambda$onItemLongClick$45(i);
         itemOptions.dismiss();
     }
 
-    public void lambda$buildItemOptionsForStoryAlbumActionBar$61(BaseFragment baseFragment, long j, int i, ItemOptions itemOptions) {
+    public void lambda$buildItemOptionsForStoryAlbumActionBar$62(BaseFragment baseFragment, long j, int i, ItemOptions itemOptions) {
         openDeleteStoriesAlbumAlert(baseFragment, j, i);
         itemOptions.dismiss();
     }
@@ -10643,7 +10654,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         itemOptions.add(R.drawable.media_share, LocaleController.getString(R.string.StoriesAlbumMenuShareLink), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$addStoryAlbumShareItemOptions$62(str, baseFragment);
+                this.f$0.lambda$addStoryAlbumShareItemOptions$63(str, baseFragment);
             }
         });
     }
@@ -10685,7 +10696,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$addStoryAlbumShareItemOptions$62(String str, BaseFragment baseFragment) {
+    public void lambda$addStoryAlbumShareItemOptions$63(String str, BaseFragment baseFragment) {
         AnonymousClass47 anonymousClass47 = new AnonymousClass47(getContext(), null, str, false, str, false, this.resourcesProvider, baseFragment);
         if (baseFragment != null) {
             baseFragment.showDialog(anonymousClass47);
@@ -10699,13 +10710,13 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         itemOptions.add(R.drawable.msg_zoomin, LocaleController.getString(R.string.MediaZoomIn), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$addZoomInZoomOutItemOptions$63(viewArr);
+                this.f$0.lambda$addZoomInZoomOutItemOptions$64(viewArr);
             }
         });
         itemOptions.add(R.drawable.msg_zoomout, LocaleController.getString(R.string.MediaZoomOut), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$addZoomInZoomOutItemOptions$64(viewArr);
+                this.f$0.lambda$addZoomInZoomOutItemOptions$65(viewArr);
             }
         });
         final View[] viewArr = {itemOptions.getItemAt(itemsCount), itemOptions.getItemAt(itemsCount + 1)};
@@ -10720,11 +10731,11 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         viewArr[1].setAlpha(0.5f);
     }
 
-    public void lambda$addZoomInZoomOutItemOptions$63(View[] viewArr) {
+    public void lambda$addZoomInZoomOutItemOptions$64(View[] viewArr) {
         zoomIn(viewArr[0], viewArr[1]);
     }
 
-    public void lambda$addZoomInZoomOutItemOptions$64(View[] viewArr) {
+    public void lambda$addZoomInZoomOutItemOptions$65(View[] viewArr) {
         zoomOut(viewArr[0], viewArr[1]);
     }
 
@@ -10732,12 +10743,12 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onStoryAlbumCreate$65(storyAlbum);
+                this.f$0.lambda$onStoryAlbumCreate$66(storyAlbum);
             }
         }, 100L);
     }
 
-    public void lambda$onStoryAlbumCreate$65(StoriesController.StoryAlbum storyAlbum) {
+    public void lambda$onStoryAlbumCreate$66(StoriesController.StoryAlbum storyAlbum) {
         ProfileStoriesCollectionTabs profileStoriesCollectionTabs = this.storiesContainer;
         if (profileStoriesCollectionTabs != null) {
             profileStoriesCollectionTabs.lambda$setInitialTabId$2(storyAlbum.album_id);

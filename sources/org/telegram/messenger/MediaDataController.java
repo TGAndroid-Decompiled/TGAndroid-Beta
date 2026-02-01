@@ -3090,7 +3090,7 @@ public class MediaDataController extends BaseController {
         getMessagesStorage().updateMessageVerifyFlags(arrayList);
     }
 
-    public void loadArchivedStickersCount(final int i, boolean z) {
+    public void loadArchivedStickersCount(final int i, boolean z) throws NumberFormatException {
         if (z) {
             int i2 = MessagesController.getNotificationsSettings(this.currentAccount).getInt("archivedStickersCount" + i, -1);
             if (i2 == -1) {
@@ -3582,18 +3582,18 @@ public class MediaDataController extends BaseController {
         loadStickers(i, z, z2, false, null);
     }
 
-    public void loadStickers(int i, boolean z, boolean z2, boolean z3) {
+    public void loadStickers(int i, boolean z, boolean z2, boolean z3) throws NumberFormatException {
         loadStickers(i, z, z2, z3, null);
     }
 
-    public void loadStickers(final int i, boolean z, final boolean z2, boolean z3, final Utilities.Callback<ArrayList<TLRPC.TL_messages_stickerSet>> callback) {
+    public void loadStickers(final int i, boolean z, final boolean z2, boolean z3, final Utilities.Callback<ArrayList<TLRPC.TL_messages_stickerSet>> callback) throws NumberFormatException {
         long j;
         TLRPC.TL_messages_getMaskStickers tL_messages_getMaskStickers;
         if (this.loadingStickers[i]) {
             if (z3) {
                 this.scheduledLoadStickers[i] = new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws NumberFormatException {
                         this.f$0.lambda$loadStickers$91(i, z2, callback);
                     }
                 };
@@ -3687,7 +3687,7 @@ public class MediaDataController extends BaseController {
         });
     }
 
-    public void lambda$loadStickers$91(int i, boolean z, Utilities.Callback callback) {
+    public void lambda$loadStickers$91(int i, boolean z, Utilities.Callback callback) throws NumberFormatException {
         loadStickers(i, false, z, false, callback);
     }
 
@@ -4418,13 +4418,13 @@ public class MediaDataController extends BaseController {
     public void lambda$toggleStickerSetInternal$114(final TLRPC.StickerSet stickerSet, final BaseFragment baseFragment, final boolean z, final int i, final boolean z2, final Context context, final TLObject tLObject, final TLObject tLObject2, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$toggleStickerSetInternal$113(stickerSet, tLObject2, baseFragment, z, i, tL_error, z2, context, tLObject);
             }
         });
     }
 
-    public void lambda$toggleStickerSetInternal$113(final TLRPC.StickerSet stickerSet, TLObject tLObject, BaseFragment baseFragment, boolean z, int i, TLRPC.TL_error tL_error, boolean z2, Context context, TLObject tLObject2) {
+    public void lambda$toggleStickerSetInternal$113(final TLRPC.StickerSet stickerSet, TLObject tLObject, BaseFragment baseFragment, boolean z, int i, TLRPC.TL_error tL_error, boolean z2, Context context, TLObject tLObject2) throws NumberFormatException {
         this.removingStickerSetsUndos.remove(stickerSet.id);
         if (tLObject instanceof TLRPC.TL_messages_stickerSetInstallResultArchive) {
             processStickerSetInstallResultArchive(baseFragment, z, i, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject);
@@ -4447,13 +4447,13 @@ public class MediaDataController extends BaseController {
     public void lambda$toggleStickerSetInternal$117(final TLRPC.StickerSet stickerSet, final int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$toggleStickerSetInternal$116(stickerSet, i);
             }
         });
     }
 
-    public void lambda$toggleStickerSetInternal$116(final TLRPC.StickerSet stickerSet, int i) {
+    public void lambda$toggleStickerSetInternal$116(final TLRPC.StickerSet stickerSet, int i) throws NumberFormatException {
         this.removingStickerSetsUndos.remove(stickerSet.id);
         loadStickers(i, false, true, false, new Utilities.Callback() {
             @Override
@@ -4533,13 +4533,13 @@ public class MediaDataController extends BaseController {
     public void lambda$toggleStickerSets$119(final int i, final BaseFragment baseFragment, final boolean z, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$toggleStickerSets$118(i, tLObject, baseFragment, z, i2);
             }
         });
     }
 
-    public void lambda$toggleStickerSets$118(int i, TLObject tLObject, BaseFragment baseFragment, boolean z, int i2) {
+    public void lambda$toggleStickerSets$118(int i, TLObject tLObject, BaseFragment baseFragment, boolean z, int i2) throws NumberFormatException {
         if (i != 0) {
             if (tLObject instanceof TLRPC.TL_messages_stickerSetInstallResultArchive) {
                 processStickerSetInstallResultArchive(baseFragment, z, i2, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject);
@@ -4550,7 +4550,7 @@ public class MediaDataController extends BaseController {
         loadStickers(i2, false, true);
     }
 
-    public void processStickerSetInstallResultArchive(BaseFragment baseFragment, boolean z, int i, TLRPC.TL_messages_stickerSetInstallResultArchive tL_messages_stickerSetInstallResultArchive) {
+    public void processStickerSetInstallResultArchive(BaseFragment baseFragment, boolean z, int i, TLRPC.TL_messages_stickerSetInstallResultArchive tL_messages_stickerSetInstallResultArchive) throws NumberFormatException {
         int size = tL_messages_stickerSetInstallResultArchive.sets.size();
         for (int i2 = 0; i2 < size; i2++) {
             this.installedStickerSetsById.remove(tL_messages_stickerSetInstallResultArchive.sets.get(i2).set.id);
@@ -7577,7 +7577,7 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = true;
         getConnectionsManager().sendRequest(new TLRPC.TL_messages_getAllDrafts(), new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
                 this.f$0.lambda$loadDraftsIfNeed$189(tLObject, tL_error);
             }
         });
@@ -7587,7 +7587,7 @@ public class MediaDataController extends BaseController {
         this.loadingDrafts = false;
     }
 
-    public void lambda$loadDraftsIfNeed$189(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$loadDraftsIfNeed$189(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -8968,7 +8968,7 @@ public class MediaDataController extends BaseController {
             final boolean[] zArr = new boolean[1];
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws NumberFormatException {
                     this.f$0.lambda$fillWithAnimatedEmoji$229(zArr, arrayListArr, runnable2);
                 }
             });
@@ -8987,7 +8987,7 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fillWithAnimatedEmoji$227(java.lang.Integer, java.util.ArrayList, boolean, boolean, java.util.ArrayList[], java.lang.Runnable):void");
     }
 
-    public void lambda$fillWithAnimatedEmoji$229(final boolean[] zArr, final ArrayList[] arrayListArr, final Runnable runnable) {
+    public void lambda$fillWithAnimatedEmoji$229(final boolean[] zArr, final ArrayList[] arrayListArr, final Runnable runnable) throws NumberFormatException {
         loadStickers(5, true, false, false, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {

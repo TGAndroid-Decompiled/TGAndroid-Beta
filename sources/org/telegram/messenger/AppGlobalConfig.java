@@ -9,6 +9,8 @@ import org.telegram.tgnet.TLRPC;
 
 public class AppGlobalConfig {
     public final ConfigInt contactNoteLengthLimit;
+    public final ConfigBoolean disableBlurInDarkTheme;
+    public final ConfigBoolean disableBlurInLightTheme;
     public final ConfigInt groupCallMessageLengthLimit;
     public final ConfigTime groupCallMessageTtl;
     public final ConfigTime messageTypingDraftTtl;
@@ -69,6 +71,8 @@ public class AppGlobalConfig {
         this.contactNoteLengthLimit = ofInt("contact_note_length_limit", 128);
         this.passkeysAccountPasskeysMax = ofInt("passkeys_account_passkeys_max", 5);
         this.settingsDisplayPasskeys = ofBoolean("settings_display_passkeys", BuildVars.DEBUG_VERSION);
+        this.disableBlurInLightTheme = ofBoolean("android_disable_blur_in_light_theme", false);
+        this.disableBlurInDarkTheme = ofBoolean("android_disable_blur_in_dark_theme", false);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

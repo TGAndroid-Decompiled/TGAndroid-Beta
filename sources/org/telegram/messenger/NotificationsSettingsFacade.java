@@ -79,13 +79,13 @@ public class NotificationsSettingsFacade {
         }
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws NumberFormatException {
                 this.f$0.lambda$applyDialogNotificationsSettings$1(j, j2, peerNotifySettings);
             }
         });
     }
 
-    public void lambda$applyDialogNotificationsSettings$1(long r20, long r22, org.telegram.tgnet.TLRPC.PeerNotifySettings r24) {
+    public void lambda$applyDialogNotificationsSettings$1(long r20, long r22, org.telegram.tgnet.TLRPC.PeerNotifySettings r24) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsSettingsFacade.lambda$applyDialogNotificationsSettings$1(long, long, org.telegram.tgnet.TLRPC$PeerNotifySettings):void");
     }
 
