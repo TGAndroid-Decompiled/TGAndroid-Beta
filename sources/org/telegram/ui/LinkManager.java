@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -124,7 +125,7 @@ public class LinkManager {
         return Uri.parse(scheme + "://" + schemeSpecificPart);
     }
 
-    private boolean handleTg(Uri uri) {
+    private boolean handleTg(Uri uri) throws Resources.NotFoundException {
         Uri uriNormalizeTgUri = normalizeTgUri(uri);
         List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
         if (pathSegments == null) {

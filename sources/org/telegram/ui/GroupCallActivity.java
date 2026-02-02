@@ -1192,13 +1192,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         this.parentActivity.removeOnUserLeaveHintListener(this.onUserLeaveHintListener);
         this.parentActivity.setRequestedOrientation(-1);
         groupCallUiVisible = false;
         GroupVoipInviteAlert groupVoipInviteAlert = this.groupVoipInviteAlert;
         if (groupVoipInviteAlert != null) {
-            groupVoipInviteAlert.dismiss();
+            groupVoipInviteAlert.lambda$new$0();
         }
         this.delayedGroupCallUpdated = true;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -1215,7 +1215,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.accountInstance.getNotificationCenter().removeObserver(this, NotificationCenter.conferenceEmojiUpdated);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didEndCall);
-        super.dismiss();
+        super.lambda$new$0();
     }
 
     public boolean isStillConnecting() {
@@ -1251,7 +1251,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
             ChatObject.Call call2 = this.call;
             if (call2.call instanceof TLRPC.TL_groupCallDiscarded) {
-                dismiss();
+                lambda$new$0();
                 return;
             }
             if (this.creatingServiceTime == 0 && (((i4 = this.muteButtonState) == 7 || i4 == 5 || i4 == 6) && !call2.isScheduled())) {
@@ -1429,7 +1429,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         if (i == NotificationCenter.didEndCall) {
             if (VoIPService.getSharedInstance() == null) {
-                dismiss();
+                lambda$new$0();
                 return;
             }
             return;
@@ -1548,7 +1548,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     public void lambda$didReceivedNotification$2(DialogInterface dialogInterface) {
-        dismiss();
+        lambda$new$0();
     }
 
     private void setMicAmplitude(float f) {
@@ -2570,7 +2570,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (motionEvent.getAction() == 0 && GroupCallActivity.this.scrollOffsetY != 0.0f && motionEvent.getY() < GroupCallActivity.this.scrollOffsetY - AndroidUtilities.dp(37.0f) && GroupCallActivity.this.actionBar.getAlpha() == 0.0f && !GroupCallActivity.this.avatarsPreviewShowed) {
                     GroupCallActivity groupCallActivity = GroupCallActivity.this;
                     if (groupCallActivity.previewDialog == null && !groupCallActivity.renderersContainer.inFullscreenMode) {
-                        GroupCallActivity.this.dismiss();
+                        GroupCallActivity.this.lambda$new$0();
                         return true;
                     }
                 }
@@ -4042,10 +4042,10 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                         z2 = false;
                     }
                     lastFragment.presentFragment(profileActivity, false, z2);
-                    GroupCallActivity.this.dismiss();
+                    GroupCallActivity.this.lambda$new$0();
                     return;
                 }
-                GroupCallActivity.this.dismiss();
+                GroupCallActivity.this.lambda$new$0();
             }
         });
         if (this.call != null) {
@@ -4824,7 +4824,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().hangUp(1);
             }
-            GroupCallActivity.this.dismiss();
+            GroupCallActivity.this.lambda$new$0();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didStartedCall, new Object[0]);
         }
 
@@ -5090,7 +5090,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     bundle.putBoolean("expandPhoto", true);
                 }
                 this.parentActivity.lambda$runLinkRequest$97(new ProfileActivity(bundle));
-                dismiss();
+                lambda$new$0();
                 return;
             }
             if (i - this.listAdapter.shadyJoinStartRow < 0 || i - this.listAdapter.shadyJoinStartRow >= this.call.shadyJoinParticipants.size()) {
@@ -5548,13 +5548,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.renderersContainer.delayHideUi();
         ChatObject.Call call = this.call;
         if (call == null || call.isScheduled()) {
-            dismiss();
+            lambda$new$0();
         } else {
             updateItems();
             onLeaveClick(activity, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.dismiss();
+                    this.f$0.lambda$new$0();
                 }
             }, false);
         }
@@ -5797,7 +5797,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         if (isRtmpStream()) {
             if (PipUtils.checkAnyPipPermissions(this.parentActivity)) {
                 RTMPStreamPipOverlay.show(this.parentActivity);
-                dismiss();
+                lambda$new$0();
                 return;
             } else {
                 AlertsCreator.createDrawOverlayPermissionDialog(this.parentActivity, null, true).show();
@@ -5806,7 +5806,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         if (AndroidUtilities.checkInlinePermissions(this.parentActivity)) {
             GroupCallPip.clearForce();
-            dismiss();
+            lambda$new$0();
         } else {
             AlertsCreator.createDrawOverlayGroupCallPermissionDialog(getContext()).show();
         }
@@ -6015,7 +6015,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     public void lambda$new$43(TLRPC.TL_error tL_error) {
         this.accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 6, tL_error.text);
-        dismiss();
+        lambda$new$0();
     }
 
     public static String lambda$new$46(long j, Calendar calendar, int i, int i2) {
@@ -6979,7 +6979,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         applyCallParticipantUpdates(true);
         GroupVoipInviteAlert groupVoipInviteAlert = this.groupVoipInviteAlert;
         if (groupVoipInviteAlert != null) {
-            groupVoipInviteAlert.dismiss();
+            groupVoipInviteAlert.lambda$new$0();
         }
         try {
             alertDialogArr[0].dismiss();
@@ -7859,14 +7859,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 bundle.putLong("chat_id", -j);
             }
             this.parentActivity.lambda$runLinkRequest$97(new ChatActivity(bundle));
-            dismiss();
+            lambda$new$0();
             return;
         }
         if (i == 8) {
             this.parentActivity.switchToAccount(this.currentAccount, true);
             BaseFragment baseFragment = (BaseFragment) this.parentActivity.getActionBarLayout().getFragmentStack().get(this.parentActivity.getActionBarLayout().getFragmentStack().size() - 1);
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getDialogId() == j) {
-                dismiss();
+                lambda$new$0();
                 return;
             }
             Bundle bundle2 = new Bundle();
@@ -7876,7 +7876,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 bundle2.putLong("chat_id", -j);
             }
             this.parentActivity.lambda$runLinkRequest$97(new ChatActivity(bundle2));
-            dismiss();
+            lambda$new$0();
             return;
         }
         if (i == 7) {
@@ -8892,7 +8892,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     public void onUserLeaveHint() {
         if (isRtmpStream() && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !RTMPStreamPipOverlay.isVisible()) {
-            dismiss();
+            lambda$new$0();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

@@ -71,16 +71,23 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 public class StickersActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private int activeReorderingRequests;
     private ActionBarMenuItem archiveMenuItem;
+    private int archivedRow;
     private int currentType;
     private ActionBarMenuItem deleteMenuItem;
+    private int dynamicPackOrder;
+    private int emojiPacksRow;
     private ArrayList featured;
+    private int featuredRow;
     ArrayList frozenEmojiPacks;
+    private int largeEmojiRow;
     private LinearLayoutManager layoutManager;
     private UniversalRecyclerView listView;
     private boolean needReorder;
+    private int reactionsDoubleTapRow;
     private NumberTextView selectedCountTextView;
     private ArrayList sets;
     private ActionBarMenuItem shareMenuItem;
+    private int suggestRow;
     private TrendingStickersAlert trendingStickersAlert;
     private final List loadingFeaturedStickerSets = new ArrayList();
     private final HashSet selectedSets = new HashSet();
@@ -309,29 +316,34 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         int size = this.featured.size();
         int archivedStickersCount = mediaDataController.getArchivedStickersCount(this.currentType);
         int size2 = mediaDataController.getStickerSets(5).size();
-        int i2 = this.currentType;
-        if (i2 == 0) {
+        if (this.currentType == 0) {
+            this.featuredRow = arrayList.size();
             arrayList.add(UItem.asButton(1, R.drawable.msg2_trending, LocaleController.getString(R.string.FeaturedStickers), size > 0 ? LocaleController.formatNumber(size, ',') : ""));
             if (archivedStickersCount > 0) {
-                int i3 = this.currentType;
-                if (i3 == 0) {
+                this.archivedRow = arrayList.size();
+                int i2 = this.currentType;
+                if (i2 == 0) {
                     arrayList.add(UItem.asButton(2, R.drawable.msg2_archived_stickers, LocaleController.getString(R.string.ArchivedStickers), LocaleController.formatNumber(archivedStickersCount, ',')));
                 } else {
-                    arrayList.add(UItem.asButton(2, LocaleController.getString(i3 == 5 ? R.string.ArchivedEmojiPacks : R.string.ArchivedMasks), LocaleController.formatNumber(archivedStickersCount, ',')));
+                    arrayList.add(UItem.asButton(2, LocaleController.getString(i2 == 5 ? R.string.ArchivedEmojiPacks : R.string.ArchivedMasks), LocaleController.formatNumber(archivedStickersCount, ',')));
                 }
             }
+            this.emojiPacksRow = arrayList.size();
             arrayList.add(UItem.asSettingsCell(3, R.drawable.msg2_smile_status, LocaleController.getString(R.string.Emoji), size2 > 0 ? LocaleController.formatNumber(size2, ',') : ""));
         } else if (archivedStickersCount > 0) {
-            if (i2 == 0) {
+            this.archivedRow = arrayList.size();
+            int i3 = this.currentType;
+            if (i3 == 0) {
                 arrayList.add(UItem.asButton(2, R.drawable.msg2_archived_stickers, LocaleController.getString(R.string.ArchivedStickers), LocaleController.formatNumber(archivedStickersCount, ',')));
             } else {
-                arrayList.add(UItem.asButton(2, LocaleController.getString(i2 == 5 ? R.string.ArchivedEmojiPacks : R.string.ArchivedMasks), LocaleController.formatNumber(archivedStickersCount, ',')));
+                arrayList.add(UItem.asButton(2, LocaleController.getString(i3 == 5 ? R.string.ArchivedEmojiPacks : R.string.ArchivedMasks), LocaleController.formatNumber(archivedStickersCount, ',')));
             }
             if (this.currentType == 1) {
                 arrayList.add(UItem.asShadow(LocaleController.getString(R.string.ArchivedMasksInfo)));
             }
         }
         if (this.currentType == 0) {
+            this.reactionsDoubleTapRow = arrayList.size();
             arrayList.add(UItem.asSettingsCell(4, R.drawable.msg2_reactions2, LocaleController.getString(R.string.DoubleTapSetting)).onBind(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) throws NumberFormatException {
@@ -340,8 +352,11 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             }));
             arrayList.add(UItem.asShadow(addStickersBotSpan(LocaleController.getString(this.currentType == 5 ? R.string.EmojiBotInfo : R.string.StickersBotInfo))));
             arrayList.add(UItem.asHeader(LocaleController.getString(R.string.StickersSettings)));
+            this.suggestRow = arrayList.size();
             arrayList.add(UItem.asSettingsCell(5, LocaleController.getString(R.string.SuggestStickers), suggestStickersName()));
+            this.largeEmojiRow = arrayList.size();
             arrayList.add(UItem.asCheck(6, LocaleController.getString(R.string.LargeEmoji)).setChecked(SharedConfig.allowBigEmoji));
+            this.dynamicPackOrder = arrayList.size();
             arrayList.add(UItem.asCheck(7, LocaleController.getString(R.string.DynamicPackOrder)).setChecked(SharedConfig.updateStickersOrderOnSend));
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.DynamicPackOrderInfo)));
         }
