@@ -32,9 +32,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
-import androidx.core.view.OnApplyWindowInsetsListener;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.billingclient.api.BillingFlowParams;
@@ -138,7 +135,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     int moreFeaturesStartRow;
     int moreHeaderRow;
     ArrayList morePremiumFeatures;
-    private int navigationBarHeight;
     int paddingRow;
     StarParticlesView particlesView;
     private PremiumButtonView premiumButtonView;
@@ -186,18 +182,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     @Override
-    public boolean drawEdgeNavigationBar() {
-        return false;
-    }
-
-    @Override
     public boolean isActionBarCrossfadeEnabled() {
         return false;
-    }
-
-    @Override
-    public boolean isSupportEdgeToEdge() {
-        return true;
     }
 
     @Override
@@ -572,7 +558,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.listView = recyclerListView;
         recyclerListView.setSections(true);
         this.listView.setClipToPadding(false);
-        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, this.navigationBarHeight);
+        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, 0);
         RecyclerListView recyclerListView2 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, (AndroidUtilities.dp(68.0f) + this.statusBarHeight) - AndroidUtilities.dp(16.0f), this.listView);
         this.layoutManager = fillLastLinearLayoutManager;
@@ -691,12 +677,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
         MediaDataController.getInstance(this.currentAccount).preloadPremiumPreviewStickers();
         sentShowScreenStat(this.source);
-        ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
-            @Override
-            public final WindowInsetsCompat onApplyWindowInsets(View view2, WindowInsetsCompat windowInsetsCompat) {
-                return this.f$0.onApplyWindowInsets(view2, windowInsetsCompat);
-            }
-        });
         return this.fragmentView;
     }
 
@@ -829,13 +809,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
     public void lambda$createView$4() {
         getMediaDataController().loadPremiumPromo(false);
-    }
-
-    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-        int i = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-        this.navigationBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
-        this.listView.setPadding(0, i + ActionBar.getCurrentActionBarHeight(), 0, this.navigationBarHeight);
-        return WindowInsetsCompat.CONSUMED;
     }
 
     public static void buyPremium(BaseFragment baseFragment) throws Throwable {
@@ -1098,7 +1071,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         tL_payments_assignPlayMarketTransaction.purpose = tL_inputStorePaymentPremiumSubscription;
                         ConnectionsManager.getInstance(i).sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
-                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                                 PremiumPreviewFragment.lambda$buyPremium$9(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
                             }
                         }, 66);
@@ -1159,7 +1132,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ((LaunchActivity) baseFragment.getParentActivity()).getFireworksOverlay().start();
     }
 
-    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(runnable);

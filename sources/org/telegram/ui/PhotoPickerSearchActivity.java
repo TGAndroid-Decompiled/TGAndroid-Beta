@@ -571,7 +571,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
     }
 
     @Override
-    public void onResume() throws NumberFormatException {
+    public void onResume() {
         super.onResume();
         ActionBarMenuItem actionBarMenuItem = this.searchItem;
         if (actionBarMenuItem != null) {

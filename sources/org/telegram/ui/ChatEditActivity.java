@@ -671,7 +671,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         alertDialog.dismiss();
         getConnectionsManager().sendRequest(tL_channels_toggleAutotranslation, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$createView$22(z, tLObject, tL_error);
             }
         }, 64);
@@ -702,7 +702,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         presentFragment(StatisticActivity.create(chat));
     }
 
-    public void lambda$createView$22(final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$createView$22(final boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {

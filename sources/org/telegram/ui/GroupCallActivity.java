@@ -1788,7 +1788,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         AndroidUtilities.runOnUIThread(this.updateCallRecordRunnable, 1000L);
     }
 
-    protected void makeFocusable(final BottomSheet bottomSheet, final AlertDialog alertDialog, final EditTextBoldCursor editTextBoldCursor, final boolean z) throws NumberFormatException {
+    protected void makeFocusable(final BottomSheet bottomSheet, final AlertDialog alertDialog, final EditTextBoldCursor editTextBoldCursor, final boolean z) {
         if (this.enterEventSent) {
             return;
         }
@@ -2106,7 +2106,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
 
             @Override
-            public void onOpenAnimationEnd() throws NumberFormatException {
+            public void onOpenAnimationEnd() {
                 CountDownLatch groupCallBottomSheetLatch;
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
                 if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
@@ -3248,7 +3248,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
 
             @Override
-            public final void onItemClick(View view, int i7, float f, float f2) throws NumberFormatException {
+            public final void onItemClick(View view, int i7, float f, float f2) {
                 this.f$0.lambda$new$24(activity, call, view, i7, f, f2);
             }
         });
@@ -3349,7 +3349,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivityButtonsLayout.addButton(voIPToggleButton);
         voIPToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$new$27(view);
             }
         });
@@ -4457,7 +4457,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         profileGalleryView.setPinchToZoomHelper(this.pinchToZoomHelper);
         this.cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view6) throws InterruptedException, NumberFormatException {
+            public final void onClick(View view6) throws InterruptedException {
                 this.f$0.lambda$new$50(activity, view6);
             }
         });
@@ -4510,7 +4510,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
-        public void onItemClick(int i) throws NumberFormatException {
+        public void onItemClick(int i) {
             VoIPService sharedInstance;
             int i2;
             int color;
@@ -4554,7 +4554,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 builder.setDialogButtonColorKey(Theme.key_voipgroup_listeningText);
                 builder.setPositiveButton(LocaleController.getString(R.string.VoipGroupEnd), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws InterruptedException, NumberFormatException {
+                    public final void onClick(AlertDialog alertDialog, int i3) throws InterruptedException {
                         this.f$0.lambda$onItemClick$1(alertDialog, i3);
                     }
                 });
@@ -4711,7 +4711,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 alertDialogCreate3.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_inviteMembersBackground));
                 alertDialogCreate3.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
-                    public final void onShow(DialogInterface dialogInterface) throws NumberFormatException {
+                    public final void onShow(DialogInterface dialogInterface) {
                         this.f$0.lambda$onItemClick$6(alertDialogCreate3, editTextBoldCursor, dialogInterface);
                     }
                 });
@@ -4729,7 +4729,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             if (i == 8) {
                 JoinCallAlert.open(GroupCallActivity.this.getContext(), -GroupCallActivity.this.getChatId(), GroupCallActivity.this.accountInstance, null, 2, GroupCallActivity.this.selfPeer, new JoinCallAlert.JoinCallAlertDelegate() {
                     @Override
-                    public final void didSelectChat(TLRPC.InputPeer inputPeer, boolean z2, boolean z3, boolean z4) throws InterruptedException, NumberFormatException {
+                    public final void didSelectChat(TLRPC.InputPeer inputPeer, boolean z2, boolean z3, boolean z4) throws InterruptedException {
                         this.f$0.lambda$onItemClick$9(inputPeer, z2, z3, z4);
                     }
                 });
@@ -4805,7 +4805,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
         }
 
-        public void lambda$onItemClick$1(AlertDialog alertDialog, int i) throws InterruptedException, NumberFormatException {
+        public void lambda$onItemClick$1(AlertDialog alertDialog, int i) throws InterruptedException {
             if (GroupCallActivity.this.call.isScheduled()) {
                 TLRPC.ChatFull chatFull = GroupCallActivity.this.accountInstance.getMessagesController().getChatFull(GroupCallActivity.this.getChatId());
                 if (chatFull != null) {
@@ -4817,7 +4817,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 discardgroupcall.call = GroupCallActivity.this.call.getInputGroupCall();
                 GroupCallActivity.this.accountInstance.getConnectionsManager().sendRequest(discardgroupcall, new RequestDelegate() {
                     @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         this.f$0.lambda$onItemClick$0(tLObject, tL_error);
                     }
                 });
@@ -4828,7 +4828,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didStartedCall, new Object[0]);
         }
 
-        public void lambda$onItemClick$0(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$onItemClick$0(TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject instanceof TLRPC.TL_updates) {
                 GroupCallActivity.this.accountInstance.getMessagesController().processUpdates((TLRPC.TL_updates) tLObject, false);
             }
@@ -4889,7 +4889,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 alertDialogCreate.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_inviteMembersBackground));
                 alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
-                    public final void onShow(DialogInterface dialogInterface) throws NumberFormatException {
+                    public final void onShow(DialogInterface dialogInterface) {
                         this.f$0.lambda$onStartRecord$1(alertDialogCreate, editTextBoldCursor, dialogInterface);
                     }
                 });
@@ -4924,7 +4924,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 return false;
             }
 
-            public void lambda$onStartRecord$1(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) throws NumberFormatException {
+            public void lambda$onStartRecord$1(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
                 GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
             }
 
@@ -4950,11 +4950,11 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             builder.getDismissRunnable().run();
         }
 
-        public void lambda$onItemClick$6(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) throws NumberFormatException {
+        public void lambda$onItemClick$6(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
             GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
         }
 
-        public void lambda$onItemClick$9(TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) throws InterruptedException, NumberFormatException {
+        public void lambda$onItemClick$9(TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3) throws InterruptedException {
             TLObject chat;
             GroupCallActivity groupCallActivity = GroupCallActivity.this;
             if (groupCallActivity.call == null) {
@@ -5061,7 +5061,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$24(Activity activity, final ChatObject.Call call, View view, int i, float f, float f2) throws NumberFormatException {
+    public void lambda$new$24(Activity activity, final ChatObject.Call call, View view, int i, float f, float f2) {
         TLRPC.Chat chat;
         final ChatObject.Call.InvitedUser invitedUser;
         if (view instanceof GroupCallGridCell) {
@@ -5164,7 +5164,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             });
             this.groupVoipInviteAlert.setDelegate(new GroupVoipInviteAlert.GroupVoipInviteAlertDelegate() {
                 @Override
-                public void copyInviteLink() throws NumberFormatException {
+                public void copyInviteLink() {
                     GroupCallActivity.this.getLink(true);
                 }
 
@@ -5174,7 +5174,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                public void needOpenSearch(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor) throws NumberFormatException {
+                public void needOpenSearch(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor) {
                     if (GroupCallActivity.this.enterEventSent) {
                         return;
                     }
@@ -5217,7 +5217,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
             }).setOnUsersSelector(new Utilities.Callback2() {
                 @Override
-                public final void run(Object obj, Object obj2) throws InterruptedException, NumberFormatException {
+                public final void run(Object obj, Object obj2) throws InterruptedException {
                     this.f$0.lambda$new$23(call, (Boolean) obj, (HashSet) obj2);
                 }
             }).show();
@@ -5233,7 +5233,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         declineconferencecallinvite.msg_id = invitedUser.msg_id;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(declineconferencecallinvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$new$11(tLObject, tL_error);
             }
         });
@@ -5245,7 +5245,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$11(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$new$11(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -5256,7 +5256,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         declineconferencecallinvite.msg_id = invitedUser.msg_id;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(declineconferencecallinvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$new$13(tLObject, tL_error);
             }
         });
@@ -5272,7 +5272,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$13(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$new$13(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -5286,7 +5286,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return Long.valueOf(DialogObject.getPeerDialogId(groupCallParticipant.peer));
     }
 
-    public void lambda$new$23(final ChatObject.Call call, Boolean bool, HashSet hashSet) throws InterruptedException, NumberFormatException {
+    public void lambda$new$23(final ChatObject.Call call, Boolean bool, HashSet hashSet) throws InterruptedException {
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance;
         ChatObject.Call call2 = this.call;
@@ -5313,7 +5313,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             final int i = size;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(inviteconferencecallparticipant, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$new$22(jLongValue, hashSet2, atomicInteger2, i, call, str, tLObject, tL_error);
                 }
             });
@@ -5335,7 +5335,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         updateState(true, true);
     }
 
-    public void lambda$new$22(final long j, final HashSet hashSet, AtomicInteger atomicInteger, int i, final ChatObject.Call call, final String str, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$new$22(final long j, final HashSet hashSet, AtomicInteger atomicInteger, int i, final ChatObject.Call call, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
@@ -5485,7 +5485,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$27(View view) throws NumberFormatException {
+    public void lambda$new$27(View view) {
         ChatObject.Call call = this.call;
         if (call == null || call.isScheduled() || isRtmpStream()) {
             getLink(false);
@@ -5593,7 +5593,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     startscheduledgroupcall.call = GroupCallActivity.this.call.getInputGroupCall();
                     GroupCallActivity.this.accountInstance.getConnectionsManager().sendRequest(startscheduledgroupcall, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             this.f$0.lambda$onClick$1(tLObject, tL_error);
                         }
                     });
@@ -5612,7 +5612,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                     togglegroupcallstartsubscription.subscribed = z;
                     groupCallActivity2.accountInstance.getConnectionsManager().sendRequest(togglegroupcallstartsubscription, new RequestDelegate() {
                         @Override
-                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             this.f$0.lambda$onClick$2(tLObject, tL_error);
                         }
                     });
@@ -5727,13 +5727,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             groupCallActivity.updateMuteButton(groupCallActivity.muteButtonState, true);
         }
 
-        public void lambda$onClick$1(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$onClick$1(TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject != null) {
                 GroupCallActivity.this.accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             }
         }
 
-        public void lambda$onClick$2(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$onClick$2(TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject != null) {
                 GroupCallActivity.this.accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             }
@@ -5938,7 +5938,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         creategroupcall.flags |= 2;
         accountInstance.getConnectionsManager().sendRequest(creategroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$new$44(chat, inputPeer, tLObject, tL_error);
             }
         }, 2);
@@ -5951,7 +5951,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.listView.invalidate();
     }
 
-    public void lambda$new$44(final TLRPC.Chat chat, final TLRPC.InputPeer inputPeer, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$new$44(final TLRPC.Chat chat, final TLRPC.InputPeer inputPeer, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             int i = 0;
@@ -6046,7 +6046,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         return String.format("%02d", Integer.valueOf(i));
     }
 
-    public void lambda$new$50(Activity activity, View view) throws InterruptedException, NumberFormatException {
+    public void lambda$new$50(Activity activity, View view) throws InterruptedException {
         LaunchActivity launchActivity;
         if (Build.VERSION.SDK_INT >= 23 && (launchActivity = this.parentActivity) != null && launchActivity.checkSelfPermission("android.permission.CAMERA") != 0) {
             this.parentActivity.requestPermissions(new String[]{"android.permission.CAMERA"}, 104);
@@ -6808,7 +6808,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.container.invalidate();
     }
 
-    public void getLink(final boolean z) throws NumberFormatException {
+    public void getLink(final boolean z) {
         String str;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         TLRPC.Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(getChatId()));
@@ -6855,13 +6855,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$getLink$56(final TLRPC.ChatFull chatFull, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$getLink$55(tLObject, chatFull, z);
             }
         });
     }
 
-    public void lambda$getLink$55(TLObject tLObject, TLRPC.ChatFull chatFull, boolean z) throws NumberFormatException {
+    public void lambda$getLink$55(TLObject tLObject, TLRPC.ChatFull chatFull, boolean z) {
         if (tLObject instanceof TLRPC.TL_chatInviteExported) {
             TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tLObject;
             if (chatFull != null) {
@@ -6875,13 +6875,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$getLink$58(final int i, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$getLink$57(tLObject, i, z);
             }
         });
     }
 
-    public void lambda$getLink$57(TLObject tLObject, int i, boolean z) throws NumberFormatException {
+    public void lambda$getLink$57(TLObject tLObject, int i, boolean z) {
         if (tLObject instanceof TL_phone.exportedGroupCallInvite) {
             this.invites[i] = ((TL_phone.exportedGroupCallInvite) tLObject).link;
         } else {
@@ -6908,7 +6908,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         openShareAlert(false, strArr2[0], strArr2[1], z);
     }
 
-    private void openShareAlert(boolean r16, java.lang.String r17, java.lang.String r18, boolean r19) throws java.lang.NumberFormatException {
+    private void openShareAlert(boolean r16, java.lang.String r17, java.lang.String r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCallActivity.openShareAlert(boolean, java.lang.String, java.lang.String, boolean):void");
     }
 
@@ -6937,7 +6937,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         invitetogroupcall.users.add(tL_inputUser);
         final int iSendRequest = this.accountInstance.getConnectionsManager().sendRequest(invitetogroupcall, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$inviteUserToCall$63(j, alertDialogArr, user, z, invitetogroupcall, tLObject, tL_error);
             }
         });
@@ -6951,7 +6951,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$inviteUserToCall$63(final long j, final AlertDialog[] alertDialogArr, final TLRPC.User user, final boolean z, final TL_phone.inviteToGroupCall invitetogroupcall, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$inviteUserToCall$63(final long j, final AlertDialog[] alertDialogArr, final TLRPC.User user, final boolean z, final TL_phone.inviteToGroupCall invitetogroupcall, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             this.accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -7537,7 +7537,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.recordHintView.showForView(view, true);
     }
 
-    public void showReminderHint() throws NumberFormatException {
+    public void showReminderHint() {
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
         if (globalMainSettings.getBoolean("reminderhint", false)) {
             return;
@@ -7607,7 +7607,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.buttonsContainer.invalidate();
     }
 
-    private static void processOnLeave(ChatObject.Call call, boolean z, long j, Runnable runnable) throws InterruptedException, NumberFormatException {
+    private static void processOnLeave(ChatObject.Call call, boolean z, long j, Runnable runnable) throws InterruptedException {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(z ? 1 : 0);
         }
@@ -7702,7 +7702,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         builder.setDialogButtonColorKey(Theme.key_voipgroup_listeningText);
         builder.setPositiveButton(LocaleController.getString(R.string.VoipGroupLeave), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws InterruptedException, NumberFormatException {
+            public final void onClick(AlertDialog alertDialog, int i) throws InterruptedException {
                 GroupCallActivity.lambda$onLeaveClick$68(call, checkBoxCellArr, selfId, runnable, alertDialog, i);
             }
         });
@@ -7737,7 +7737,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         checkBoxCellArr[((Integer) view.getTag()).intValue()].setChecked(!checkBoxCellArr[r2.intValue()].isChecked(), true);
     }
 
-    public static void lambda$onLeaveClick$68(ChatObject.Call call, CheckBoxCell[] checkBoxCellArr, long j, Runnable runnable, AlertDialog alertDialog, int i) throws InterruptedException, NumberFormatException {
+    public static void lambda$onLeaveClick$68(ChatObject.Call call, CheckBoxCell[] checkBoxCellArr, long j, Runnable runnable, AlertDialog alertDialog, int i) throws InterruptedException {
         boolean z = false;
         CheckBoxCell checkBoxCell = checkBoxCellArr[0];
         if (checkBoxCell != null && checkBoxCell.isChecked()) {
@@ -8492,13 +8492,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         Objects.requireNonNull(dispatchQueue);
         connectionsManager.sendRequestTyped(togglegroupcallsettings, new ChatThemeController$$ExternalSyntheticLambda10(dispatchQueue), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$toggleAdminSpeak$77((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$toggleAdminSpeak$77(TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$toggleAdminSpeak$77(TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             this.accountInstance.getMessagesController().processUpdates(updates, false);
         }
@@ -8518,13 +8518,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         Objects.requireNonNull(dispatchQueue);
         connectionsManager.sendRequestTyped(togglegroupcallsettings, new ChatThemeController$$ExternalSyntheticLambda10(dispatchQueue), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$setCommentsEnabled$79((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$setCommentsEnabled$79(TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$setCommentsEnabled$79(TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             this.accountInstance.getMessagesController().processUpdates(updates, false);
         }
@@ -8892,7 +8892,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     public void onUserLeaveHint() {
         if (isRtmpStream() && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !RTMPStreamPipOverlay.isVisible()) {
-            dismiss();
+            lambda$new$0();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

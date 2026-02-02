@@ -290,7 +290,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    public LimitReachedBottomSheet(BaseFragment baseFragment, Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public LimitReachedBottomSheet(BaseFragment baseFragment, Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         super(context, baseFragment, false, hasFixedSize(i), false, resourcesProvider);
         this.linkRow = -1;
         this.lockInvalidation = false;
@@ -1816,7 +1816,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         TextView title;
         LinearLayout titleLinearLayout;
 
-        public HeaderView(android.content.Context r53) throws java.lang.NumberFormatException {
+        public HeaderView(android.content.Context r53) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.LimitReachedBottomSheet.HeaderView.<init>(org.telegram.ui.Components.Premium.LimitReachedBottomSheet, android.content.Context):void");
         }
 
@@ -1921,7 +1921,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         return Math.max(chatFull.boosts_unrestrict - chatFull.boosts_applied, 0);
     }
 
-    private String getBoostDescriptionStringAfterBoost() throws NumberFormatException {
+    private String getBoostDescriptionStringAfterBoost() {
         String string;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         boolean zIsGroup = isGroup();
@@ -2126,7 +2126,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         return limitParams;
     }
 
-    private void loadAdminedChannels() throws NumberFormatException {
+    private void loadAdminedChannels() {
         this.loadingAdminedChannels = true;
         this.loading = true;
         updateRows();
@@ -2141,13 +2141,13 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     public void lambda$loadAdminedChannels$23(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$loadAdminedChannels$22(tLObject);
             }
         });
     }
 
-    public void lambda$loadAdminedChannels$22(TLObject tLObject) throws NumberFormatException {
+    public void lambda$loadAdminedChannels$22(TLObject tLObject) {
         int top;
         this.loadingAdminedChannels = false;
         if (tLObject != null) {
@@ -2179,7 +2179,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         this.limitPreviewView.startDelayedAnimation();
     }
 
-    private void updateRows() throws NumberFormatException {
+    private void updateRows() {
         ArrayList arrayList;
         ArrayList arrayList2;
         ArrayList arrayList3;
@@ -2321,7 +2321,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    private void loadInactiveChannels() throws NumberFormatException {
+    private void loadInactiveChannels() {
         this.loading = true;
         updateRows();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getInactiveChannels(), new RequestDelegate() {
@@ -2358,14 +2358,14 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$loadInactiveChannels$26(arrayList, iMin, tL_messages_inactiveChats);
                 }
             });
         }
     }
 
-    public void lambda$loadInactiveChannels$26(ArrayList arrayList, int i, TLRPC.TL_messages_inactiveChats tL_messages_inactiveChats) throws NumberFormatException {
+    public void lambda$loadInactiveChannels$26(ArrayList arrayList, int i, TLRPC.TL_messages_inactiveChats tL_messages_inactiveChats) {
         int top;
         this.inactiveChatsSignatures.clear();
         this.inactiveChats.clear();
@@ -2404,7 +2404,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    private void setupBoostFeatures() throws NumberFormatException {
+    private void setupBoostFeatures() {
         this.boostFeatures = new ArrayList();
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.boostsStatus;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -2432,7 +2432,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
     }
 
-    private ArrayList boostFeaturesForLevel(int i) throws NumberFormatException {
+    private ArrayList boostFeaturesForLevel(int i) {
         boolean zIsGroup = isGroup();
         ArrayList arrayList = new ArrayList();
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);

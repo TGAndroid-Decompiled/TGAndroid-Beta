@@ -314,7 +314,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public PaintView(final Context context, boolean z, File file, boolean z2, boolean z3, final StoryRecorder.WindowView windowView, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, final Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, final Runnable runnable, BlurringShader.BlurManager blurManager, final Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder, PreviewView previewView) throws NumberFormatException {
+    public PaintView(final Context context, boolean z, File file, boolean z2, boolean z3, final StoryRecorder.WindowView windowView, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, final Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, final Runnable runnable, BlurringShader.BlurManager blurManager, final Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder, PreviewView previewView) {
         Bitmap bitmap4;
         BlurringShader.BlurManager blurManager2;
         int i5;
@@ -632,7 +632,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            protected void onMeasure(int i6, int i7) throws NumberFormatException {
+            protected void onMeasure(int i6, int i7) {
                 super.onMeasure(i6, i7);
                 if (PaintView.this.w <= 0) {
                     PaintView paintView = PaintView.this;
@@ -746,7 +746,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.cancelTextButton.setTextSize(1, 16.0f);
         this.cancelTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) throws NumberFormatException {
+            public final void onClick(View view3) {
                 this.f$0.lambda$new$4(view3);
             }
         });
@@ -972,7 +972,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.bottomLayout.addView(this.cancelButton, LayoutHelper.createFrame(32, 32.0f, 83, 12.0f, 0.0f, 0.0f, 4.0f));
         this.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) throws NumberFormatException {
+            public final void onClick(View view3) {
                 this.f$0.lambda$new$9(view3);
             }
         });
@@ -1060,7 +1060,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         clearAll();
     }
 
-    public void lambda$new$4(View view) throws NumberFormatException {
+    public void lambda$new$4(View view) {
         EntityView entityView = this.currentEntityView;
         if (entityView instanceof TextPaintView) {
             AndroidUtilities.hideKeyboard(((TextPaintView) entityView).getFocusedView());
@@ -1092,7 +1092,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showColorList(false);
     }
 
-    public void lambda$new$9(View view) throws NumberFormatException {
+    public void lambda$new$9(View view) {
         if (this.isColorListShown) {
             showColorList(false);
             return;
@@ -1253,7 +1253,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.bottomLayout.invalidate();
     }
 
-    private LocationView createLocationSticker(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, boolean z) throws NumberFormatException {
+    private LocationView createLocationSticker(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, boolean z) {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1288,7 +1288,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return locationView;
     }
 
-    private WeatherView createWeatherView(Weather.State state, boolean z) throws NumberFormatException {
+    private WeatherView createWeatherView(Weather.State state, boolean z) {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1323,7 +1323,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return weatherView;
     }
 
-    private LinkView createLinkSticker(LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea, boolean z) throws NumberFormatException {
+    private LinkView createLinkSticker(LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea, boolean z) {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1358,7 +1358,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return linkView;
     }
 
-    private TextPaintView createText(boolean z) throws NumberFormatException {
+    private TextPaintView createText(boolean z) {
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
@@ -1449,7 +1449,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return selectEntity(entityView, true);
     }
 
-    private boolean selectEntity(EntityView entityView, boolean z) throws NumberFormatException {
+    private boolean selectEntity(EntityView entityView, boolean z) {
         boolean z2;
         int i;
         boolean z3 = entityView instanceof TextPaintView;
@@ -1877,7 +1877,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.textTab.setSingleLine();
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$setupTabsLayout$19(view);
             }
         });
@@ -1896,7 +1896,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         openStickersView();
     }
 
-    public void lambda$setupTabsLayout$19(View view) throws NumberFormatException {
+    public void lambda$setupTabsLayout$19(View view) {
         switchTab(2);
         if (this.currentEntityView instanceof TextPaintView) {
             return;
@@ -2466,7 +2466,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     @Override
-    protected void onMeasure(int i, int i2) throws NumberFormatException {
+    protected void onMeasure(int i, int i2) {
         float currentActionBarHeight;
         float width;
         this.ignoreLayout = true;
@@ -2531,7 +2531,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.renderInputView.setVisibility(0);
     }
 
-    public void setupEntities() throws NumberFormatException {
+    public void setupEntities() {
         Emoji.EmojiSpan[] emojiSpanArr;
         RoundView roundView;
         ArrayList arrayList = this.initialEntities;
@@ -3218,7 +3218,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public boolean onBackPressed() throws NumberFormatException {
+    public boolean onBackPressed() {
         if (this.reactionLayoutShowing) {
             if (this.reactionLayout.getReactionsWindow() != null && this.reactionLayout.getReactionsWindow().isShowing()) {
                 this.reactionLayout.dismissWindow();
@@ -3469,7 +3469,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     @Override
-    public void onNewTextSelected() throws NumberFormatException {
+    public void onNewTextSelected() {
         if (this.keyboardVisible || this.emojiViewVisible) {
             onEmojiButtonClick();
         } else {
@@ -4545,7 +4545,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public void onEmojiButtonClick() throws NumberFormatException {
+    public void onEmojiButtonClick() {
         if (this.emojiViewVisible && (this.currentEntityView instanceof TextPaintView)) {
             this.keyboardNotifier.awaitKeyboard();
             AndroidUtilities.showKeyboard(((TextPaintView) this.currentEntityView).getEditText());
@@ -4553,7 +4553,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         showEmojiPopup(!this.emojiViewVisible ? 1 : 0);
     }
 
-    private void showEmojiPopup(int i) throws NumberFormatException {
+    private void showEmojiPopup(int i) {
         if (i == 1) {
             EmojiView emojiView = this.emojiView;
             boolean z = emojiView != null && emojiView.getVisibility() == 0;
@@ -4643,7 +4643,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    private void hideEmojiPopup(boolean z) throws NumberFormatException {
+    private void hideEmojiPopup(boolean z) {
         if (this.emojiViewVisible) {
             showEmojiPopup(0);
         }
@@ -4660,7 +4660,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
                 this.isAnimatePopupClosing = true;
                 valueAnimatorOfFloat.addListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationEnd(Animator animator) throws NumberFormatException {
+                    public void onAnimationEnd(Animator animator) {
                         PaintView.this.isAnimatePopupClosing = false;
                         PaintView.this.emojiView.setTranslationY(0.0f);
                         PaintView.this.hideEmojiView();
@@ -4679,7 +4679,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void hideEmojiView() throws NumberFormatException {
+    public void hideEmojiView() {
         EmojiView emojiView;
         if (!this.emojiViewVisible && (emojiView = this.emojiView) != null && emojiView.getVisibility() != 8) {
             this.emojiView.setVisibility(8);
@@ -4697,7 +4697,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     @Override
-    public void onSizeChanged(int i, boolean z) throws NumberFormatException {
+    public void onSizeChanged(int i, boolean z) {
         boolean z2;
         if (i > AndroidUtilities.dp(50.0f) && this.keyboardVisible && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
             if (z) {
@@ -4793,7 +4793,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         AndroidUtilities.updateViewShow(this.cancelTextButton, z3, false, 1.0f, true, null);
     }
 
-    protected void createEmojiView() throws NumberFormatException {
+    protected void createEmojiView() {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null && emojiView.currentAccount != UserConfig.selectedAccount) {
             this.parent.removeView(emojiView);

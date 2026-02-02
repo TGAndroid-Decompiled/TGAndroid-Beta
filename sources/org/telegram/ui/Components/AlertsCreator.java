@@ -920,13 +920,13 @@ public abstract class AlertsCreator {
         }
         accountInstance.getConnectionsManager().sendRequest(tL_contacts_blockFromReplies, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 AlertsCreator.lambda$showBlockReportSpamReplyAlert$21(accountInstance, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$showBlockReportSpamReplyAlert$21(AccountInstance accountInstance, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$showBlockReportSpamReplyAlert$21(AccountInstance accountInstance, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             accountInstance.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
         }
@@ -1228,7 +1228,7 @@ public abstract class AlertsCreator {
         builder.setTitle(LocaleController.getString(R.string.AskAQuestion));
         builder.setPositiveButton(LocaleController.getString(R.string.AskButton), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws NumberFormatException {
+            public final void onClick(AlertDialog alertDialog, int i) {
                 AlertsCreator.performAskAQuestion(baseFragment);
             }
         });
@@ -1236,7 +1236,7 @@ public abstract class AlertsCreator {
         return builder.create();
     }
 
-    public static void performAskAQuestion(final org.telegram.ui.ActionBar.BaseFragment r11) throws java.lang.NumberFormatException {
+    public static void performAskAQuestion(final org.telegram.ui.ActionBar.BaseFragment r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.performAskAQuestion(org.telegram.ui.ActionBar.BaseFragment):void");
     }
 
@@ -5574,7 +5574,7 @@ public abstract class AlertsCreator {
         return createColorSelectDialog(activity, j, i, i2, runnable, null);
     }
 
-    public static Dialog createColorSelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public static Dialog createColorSelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         int i2;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
         final String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2);
@@ -5726,7 +5726,7 @@ public abstract class AlertsCreator {
         return createVibrationSelectDialog(activity, j, j2, str, runnable, null);
     }
 
-    public static Dialog createVibrationSelectDialog(Activity activity, final long j, final long j2, final String str, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public static Dialog createVibrationSelectDialog(Activity activity, final long j, final long j2, final String str, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         String[] strArr;
         Activity activity2 = activity;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
@@ -6119,7 +6119,7 @@ public abstract class AlertsCreator {
         return createPrioritySelectDialog(activity, j, i, i2, runnable, null);
     }
 
-    public static Dialog createPrioritySelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public static Dialog createPrioritySelectDialog(Activity activity, final long j, final long j2, final int i, final Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         String[] strArr;
         Activity activity2 = activity;
         final SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
@@ -6244,7 +6244,7 @@ public abstract class AlertsCreator {
         }
     }
 
-    public static Dialog createPopupSelectDialog(Activity activity, final int i, final Runnable runnable) throws NumberFormatException {
+    public static Dialog createPopupSelectDialog(Activity activity, final int i, final Runnable runnable) {
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(UserConfig.selectedAccount);
         final int[] iArr = new int[1];
         if (i == 1) {
@@ -7926,13 +7926,13 @@ public abstract class AlertsCreator {
     public static void lambda$showCallsForbidden$221(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException, NumberFormatException {
+            public final void run() throws InterruptedException {
                 AlertsCreator.lambda$showCallsForbidden$220(tLObject, i, buttonWithCounterView, bottomSheet, j, tL_error, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$showCallsForbidden$220(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException, NumberFormatException {
+    public static void lambda$showCallsForbidden$220(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(i).putUsers(updates.users, false);
@@ -7944,7 +7944,7 @@ public abstract class AlertsCreator {
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     AlertsCreator.lambda$showCallsForbidden$219(i, updates);
                 }
             });
@@ -7990,7 +7990,7 @@ public abstract class AlertsCreator {
         SendMessagesHelper.getInstance(i).sendMessage(SendMessagesHelper.SendMessageParams.of(groupcall.call.invite_link, j));
     }
 
-    public static void lambda$showCallsForbidden$219(int i, TLRPC.Updates updates) throws InterruptedException {
+    public static void lambda$showCallsForbidden$219(int i, TLRPC.Updates updates) {
         MessagesController.getInstance(i).processUpdates(updates, false);
     }
 

@@ -351,14 +351,14 @@ public class ChatThemeController extends BaseController {
             tL_messages_setChatTheme.peer = getMessagesController().getInputPeer(j);
             getConnectionsManager().sendRequestTyped(tL_messages_setChatTheme, null, new Utilities.Callback2() {
                 @Override
-                public final void run(Object obj, Object obj2) throws InterruptedException {
+                public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$setDialogTheme$4((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 }
             });
         }
     }
 
-    public void lambda$setDialogTheme$4(TLRPC.Updates updates, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$setDialogTheme$4(TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (updates != null) {
             getMessagesController().processUpdates(updates, false);
         }

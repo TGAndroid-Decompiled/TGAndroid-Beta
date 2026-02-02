@@ -59,7 +59,7 @@ public class LiteMode {
         return getValue(false);
     }
 
-    public static int getValue(boolean z) throws NumberFormatException, IOException {
+    public static int getValue(boolean z) throws IOException {
         if (!loaded) {
             loadPreference();
         }
@@ -126,7 +126,7 @@ public class LiteMode {
         toggleFlag(i, !isEnabled(i));
     }
 
-    public static void toggleFlag(int i, boolean z) throws NumberFormatException, IOException {
+    public static void toggleFlag(int i, boolean z) throws IOException {
         int value2;
         if (z) {
             value2 = i | getValue(true);
@@ -145,7 +145,7 @@ public class LiteMode {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.updatePresets(org.telegram.tgnet.TLRPC$TL_jsonObject):void");
     }
 
-    public static void loadPreference() throws NumberFormatException, IOException {
+    public static void loadPreference() throws IOException {
         int i = PRESET_HIGH;
         int i2 = BATTERY_HIGH;
         if (SharedConfig.getDevicePerformanceClass() == 0) {
@@ -210,20 +210,20 @@ public class LiteMode {
         MessagesController.getGlobalMainSettings().edit().putInt("lite_mode6", value).putInt("lite_mode_battery_level", powerSaverLevel).apply();
     }
 
-    public static int getPowerSaverLevel() throws NumberFormatException, IOException {
+    public static int getPowerSaverLevel() throws IOException {
         if (!loaded) {
             loadPreference();
         }
         return powerSaverLevel;
     }
 
-    public static void setPowerSaverLevel(int i) throws NumberFormatException, IOException {
+    public static void setPowerSaverLevel(int i) throws IOException {
         powerSaverLevel = MathUtils.clamp(i, 0, 100);
         savePreference();
         getValue(false);
     }
 
-    public static boolean isPowerSaverApplied() throws NumberFormatException, IOException {
+    public static boolean isPowerSaverApplied() throws IOException {
         getValue(false);
         return lastPowerSaverApplied;
     }

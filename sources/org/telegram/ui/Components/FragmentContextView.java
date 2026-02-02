@@ -1018,7 +1018,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         this.playbackSpeedButton.setContentDescription(LocaleController.getString(R.string.AccDescrPlayerSpeed));
         this.playbackSpeedButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i) throws NumberFormatException {
+            public final void onItemClick(int i) {
                 this.f$0.lambda$createPlaybackSpeedButton$9(i);
             }
         });
@@ -1033,7 +1033,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         this.speedSlider.setDrawShadow(true);
         this.speedSlider.setOnValueChange(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws NumberFormatException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$createPlaybackSpeedButton$10((Float) obj, (Boolean) obj2);
             }
         });
@@ -1050,7 +1050,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         addView(this.playbackSpeedButton, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 0.0f, 36.0f, 0.0f));
         this.playbackSpeedButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createPlaybackSpeedButton$11(fArr, view);
             }
         });
@@ -1063,7 +1063,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         updatePlaybackButton(false);
     }
 
-    public void lambda$createPlaybackSpeedButton$9(int i) throws NumberFormatException {
+    public void lambda$createPlaybackSpeedButton$9(int i) {
         if (i >= 0) {
             float[] fArr = speeds;
             if (i >= fArr.length) {
@@ -1078,12 +1078,12 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$createPlaybackSpeedButton$10(Float f, Boolean bool) throws NumberFormatException {
+    public void lambda$createPlaybackSpeedButton$10(Float f, Boolean bool) {
         this.slidingSpeed = !bool.booleanValue();
         MediaController.getInstance().setPlaybackSpeed(this.isMusic, this.speedSlider.getSpeed(f.floatValue()));
     }
 
-    public void lambda$createPlaybackSpeedButton$11(float[] fArr, View view) throws NumberFormatException {
+    public void lambda$createPlaybackSpeedButton$11(float[] fArr, View view) {
         float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(this.isMusic);
         int i = 0;
         while (true) {

@@ -2576,7 +2576,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void loadMoreMusic() throws java.lang.NumberFormatException {
+    public void loadMoreMusic() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.loadMoreMusic():void");
     }
 
@@ -3064,7 +3064,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void setPlaybackSpeed(boolean z, float f) throws NumberFormatException {
+    public void setPlaybackSpeed(boolean z, float f) {
         if (z) {
             if (this.currentMusicPlaybackSpeed >= 6.0f && f == 1.0f && this.playingMessageObject != null) {
                 this.audioPlayer.pause();
@@ -4144,7 +4144,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.fileLoaded, FileLoader.getAttachFileName(messageObject.getDocument()), file);
     }
 
-    public void syncCastedPlayer() throws NumberFormatException {
+    public void syncCastedPlayer() {
         if (this.playingMessageObject == null) {
             return;
         }

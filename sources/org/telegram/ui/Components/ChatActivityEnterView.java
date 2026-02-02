@@ -1837,7 +1837,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this(activity, sizeNotifierFrameLayout, chatActivity, z, null);
     }
 
-    public ChatActivityEnterView(final Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, final ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public ChatActivityEnterView(final Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, final ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) {
         int i;
         String str;
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate;
@@ -1904,7 +1904,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             private int lastKnownPage = -1;
 
             @Override
-            public void run() throws NumberFormatException {
+            public void run() {
                 int currentPage;
                 if (ChatActivityEnterView.this.emojiView == null || (currentPage = ChatActivityEnterView.this.emojiView.getCurrentPage()) == this.lastKnownPage) {
                     return;
@@ -1973,7 +1973,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         };
         this.recordAudioVideoRunnable = new Runnable() {
             @Override
-            public void run() throws NumberFormatException {
+            public void run() {
                 if (ChatActivityEnterView.this.delegate == null || ChatActivityEnterView.this.parentActivity == null) {
                     return;
                 }
@@ -2235,7 +2235,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         chatActivityEnterViewAnimatedIconView3.setBackground(Theme.createInsetRoundRectDrawable(getThemedColor(i4), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(3.0f)));
         this.emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$new$1(view);
             }
         });
@@ -2280,7 +2280,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.attachLayout.addView(this.notifyButton, LayoutHelper.createLinear(44, 44));
             this.notifyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) throws NumberFormatException {
+                public void onClick(View view) {
                     int i5;
                     String str2;
                     if (chatActivity == null) {
@@ -2570,7 +2570,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void lambda$new$1(View view) throws NumberFormatException {
+    public void lambda$new$1(View view) {
         AdjustPanLayoutHelper adjustPanLayoutHelper = this.adjustPanLayoutHelper;
         if (adjustPanLayoutHelper == null || !adjustPanLayoutHelper.animationInProgress()) {
             if (this.emojiButtonRestricted) {
@@ -2602,7 +2602,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 this.waitingForKeyboardOpenAfterAnimation = true;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$new$0();
                     }
                 }, 200L);
@@ -2612,7 +2612,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void lambda$new$0() throws NumberFormatException {
+    public void lambda$new$0() {
         this.waitingForKeyboardOpenAfterAnimation = false;
         openKeyboardInternal();
     }
@@ -2647,7 +2647,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             FrameLayout frameLayout;
             if (ChatActivityEnterView.this.isLiveComment) {
                 return false;
@@ -2721,7 +2721,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         chatActivityEnterView2.messageTransitionIsRunning = false;
                         AndroidUtilities.runOnUIThread(chatActivityEnterView2.moveToSendStateRunnable = new Runnable() {
                             @Override
-                            public final void run() throws NumberFormatException {
+                            public final void run() {
                                 this.f$0.lambda$onTouchEvent$4();
                             }
                         }, 200L);
@@ -2860,7 +2860,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     chatActivityEnterView6.messageTransitionIsRunning = false;
                     AndroidUtilities.runOnUIThread(chatActivityEnterView6.moveToSendStateRunnable = new Runnable() {
                         @Override
-                        public final void run() throws NumberFormatException {
+                        public final void run() {
                             this.f$0.lambda$onTouchEvent$9();
                         }
                     }, ChatActivityEnterView.this.shouldDrawBackground ? 500L : 0L);
@@ -2928,7 +2928,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             ChatActivityEnterView.this.sendMessageInternal(true, 0, 0, l.longValue(), false);
         }
 
-        public void lambda$onTouchEvent$4() throws NumberFormatException {
+        public void lambda$onTouchEvent$4() {
             ChatActivityEnterView.this.moveToSendStateRunnable = null;
             ChatActivityEnterView.this.updateRecordInterface(1, true);
         }
@@ -2949,7 +2949,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             MediaController.getInstance().stopRecording(0, false, 0, false, 0L);
         }
 
-        public void lambda$onTouchEvent$9() throws NumberFormatException {
+        public void lambda$onTouchEvent$9() {
             ChatActivityEnterView.this.moveToSendStateRunnable = null;
             ChatActivityEnterView.this.updateRecordInterface(1, true);
         }
@@ -3010,7 +3010,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.viewParentForEmojiView = viewGroup;
     }
 
-    public void updateSendButtonPaid() throws NumberFormatException {
+    public void updateSendButtonPaid() {
         long starsPrice = getStarsPrice();
         if (starsPrice > 0) {
             starsPrice *= getMessagesCount();
@@ -3078,7 +3078,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         sendButton.setOnLongClickListener(onLongClickListener);
     }
 
-    public long getStarsPrice() throws NumberFormatException {
+    public long getStarsPrice() {
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity != null) {
             return chatActivity.getMessagesController().getSendPaidMessagesStars(this.parentFragment.getDialogId());
@@ -3292,7 +3292,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setSuggestionButtonVisible(final boolean z, boolean z2) throws NumberFormatException {
+    public void setSuggestionButtonVisible(final boolean z, boolean z2) {
         if (this.suggestButtonVisible == z && z2) {
             return;
         }
@@ -3384,13 +3384,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.attachLayout.addView(this.botButton, 0, LayoutHelper.createLinear(44, 44));
         this.botButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createBotButton$14(view);
             }
         });
     }
 
-    public void lambda$createBotButton$14(View view) throws NumberFormatException {
+    public void lambda$createBotButton$14(View view) {
         if (this.searchingType != 0) {
             setSearchingTypeInternal(0, false);
             this.emojiView.closeSearch(false);
@@ -3467,14 +3467,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.sendButtonContainer.addView(this.expandStickersButton, LayoutHelper.createFrame(44, 44, 85));
         this.expandStickersButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createExpandStickersButton$15(view);
             }
         });
         this.expandStickersButton.setContentDescription(LocaleController.getString("AccDescrExpandPanel", R.string.AccDescrExpandPanel));
     }
 
-    public void lambda$createExpandStickersButton$15(View view) throws NumberFormatException {
+    public void lambda$createExpandStickersButton$15(View view) {
         EmojiView emojiView;
         EditTextCaption editTextCaption;
         if (this.expandStickersButton.getVisibility() == 0 && this.expandStickersButton.getAlpha() == 1.0f && !this.waitingForKeyboardOpen) {
@@ -3508,7 +3508,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
-            public void setVisibility(int i) throws NumberFormatException {
+            public void setVisibility(int i) {
                 super.setVisibility(i);
                 ChatActivityEnterView.this.updateSendAsButton();
             }
@@ -3530,7 +3530,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.recordedAudioPanel.addView(this.recordDeleteImageView, LayoutHelper.createFrame(44, 44.0f));
         this.recordDeleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createRecordAudioPanel$16(view);
             }
         });
@@ -3579,14 +3579,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         updateFieldRight(this.lastAttachVisible);
     }
 
-    public void lambda$createRecordAudioPanel$16(View view) throws NumberFormatException {
+    public void lambda$createRecordAudioPanel$16(View view) {
         AnimatorSet animatorSet = this.runningAnimationAudio;
         if (animatorSet == null || !animatorSet.isRunning()) {
             resetRecordedState();
         }
     }
 
-    private void resetRecordedState() throws NumberFormatException {
+    private void resetRecordedState() {
         RecordedAudioPlayerView recordedAudioPlayerView = this.audioTimelineView;
         if (recordedAudioPlayerView != null) {
             recordedAudioPlayerView.setPlaying(false);
@@ -3628,7 +3628,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.senderSelectView = senderSelectView;
         senderSelectView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createSenderSelectView$23(view);
             }
         });
@@ -3636,7 +3636,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditTextContainer.addView(this.senderSelectView, LayoutHelper.createFrame(32, 32.0f, 83, 8.0f, 6.0f, 8.0f, 6.0f));
     }
 
-    public void lambda$createSenderSelectView$23(View view) throws NumberFormatException {
+    public void lambda$createSenderSelectView$23(View view) {
         final TLRPC.ChatFull chatFull;
         int i;
         int iDp;
@@ -3710,7 +3710,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
             SenderSelectPopup senderSelectPopup2 = new SenderSelectPopup(getContext(), this.parentFragment, messagesController, zIsChannelAndNotMegaGroup, peer, this.delegate.getSendAsPeers(), new SenderSelectPopup.OnSelectCallback() {
                 @Override
-                public final void onPeerSelected(RecyclerView recyclerView, SenderSelectPopup.SenderView senderView, TLRPC.Peer peer2) throws NumberFormatException {
+                public final void onPeerSelected(RecyclerView recyclerView, SenderSelectPopup.SenderView senderView, TLRPC.Peer peer2) {
                     this.f$0.lambda$createSenderSelectView$22(chatFull, messagesController, recyclerView, senderView, peer2);
                 }
             }, this.resourcesProvider) {
@@ -3791,7 +3791,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.senderSelectView.callOnClick();
     }
 
-    public void lambda$createSenderSelectView$22(TLRPC.ChatFull chatFull, MessagesController messagesController, RecyclerView recyclerView, final SenderSelectPopup.SenderView senderView, TLRPC.Peer peer) throws NumberFormatException {
+    public void lambda$createSenderSelectView$22(TLRPC.ChatFull chatFull, MessagesController messagesController, RecyclerView recyclerView, final SenderSelectPopup.SenderView senderView, TLRPC.Peer peer) {
         TLRPC.User user;
         if (this.senderSelectPopupWindow == null) {
             return;
@@ -4086,7 +4086,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         createBotWebViewMenuContainer();
         final Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$openWebViewMenu$27();
             }
         };
@@ -4107,7 +4107,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void lambda$openWebViewMenu$27() throws NumberFormatException {
+    public void lambda$openWebViewMenu$27() {
         AndroidUtilities.hideKeyboard(this);
         int i = this.currentAccount;
         long j = this.dialog_id;
@@ -4693,7 +4693,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             if (!ChatActivityEnterView.this.stickersDragging && ChatActivityEnterView.this.stickersExpansionAnim == null) {
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
                 if (!chatActivityEnterView.sendPlainEnabled && !chatActivityEnterView.isEditingMessage()) {
@@ -4722,7 +4722,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         ChatActivityEnterView.this.waitingForKeyboardOpenAfterAnimation = true;
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws NumberFormatException {
+                            public final void run() {
                                 this.f$0.lambda$onTouchEvent$3();
                             }
                         }, 200L);
@@ -4744,7 +4744,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             ChatActivityEnterView.this.showRestrictedHint();
         }
 
-        public void lambda$onTouchEvent$3() throws NumberFormatException {
+        public void lambda$onTouchEvent$3() {
             ChatActivityEnterView.this.waitingForKeyboardOpenAfterAnimation = false;
             ChatActivityEnterView.this.openKeyboardInternal();
         }
@@ -4946,7 +4946,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return string == null || !string.startsWith("com.samsung");
     }
 
-    private void createMessageEditText() throws NumberFormatException {
+    private void createMessageEditText() {
         if (this.messageEditText != null) {
             return;
         }
@@ -4957,7 +4957,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             float touchY;
 
             @Override
-            protected void onDraw(Canvas canvas) throws NumberFormatException {
+            protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 if (getLayout() == null || !this.firstDraw) {
                     return;
@@ -5066,7 +5066,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditTextContainer.addView(this.messageEditText, 1, LayoutHelper.createFrame(-1, -2.0f, 80, 52.0f, 0.0f, this.isChat ? 50.0f : 2.0f, 1.5f));
         this.messageEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey(android.view.View r5, int r6, android.view.KeyEvent r7) throws java.lang.NumberFormatException {
+            public boolean onKey(android.view.View r5, int r6, android.view.KeyEvent r7) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass49.onKey(android.view.View, int, android.view.KeyEvent):boolean");
             }
         });
@@ -5141,7 +5141,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) throws NumberFormatException {
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             int currentPage;
             if (this.ignorePrevTextChange) {
                 return;
@@ -5224,7 +5224,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.sendButton.getVisibility() == 0;
     }
 
-    public void setRecordVideoButtonVisible(boolean z, boolean z2) throws NumberFormatException {
+    public void setRecordVideoButtonVisible(boolean z, boolean z2) {
         if (this.audioVideoSendButton == null) {
             return;
         }
@@ -5255,7 +5255,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.recordingAudioVideo && this.recordCircle.isSendButtonVisible();
     }
 
-    public void cancelRecordingAudioVideo() throws NumberFormatException {
+    public void cancelRecordingAudioVideo() {
         if (this.hasRecordVideo && isInVideoMode()) {
             CameraController.getInstance().cancelOnInitRunnable(this.onFinishInitCameraRunnable);
             this.delegate.needStartRecordVideo(5, true, 0, 0, this.voiceOnce ? Integer.MAX_VALUE : 0, this.effectId, 0L);
@@ -5282,7 +5282,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setCaption(String str) throws NumberFormatException {
+    public void setCaption(String str) {
         EditTextCaption editTextCaption = this.messageEditText;
         if (editTextCaption != null) {
             editTextCaption.setCaption(str);
@@ -5290,7 +5290,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setSlowModeTimer(int i) throws NumberFormatException {
+    public void setSlowModeTimer(int i) {
         this.slowModeTimer = i;
         updateSlowModeText();
     }
@@ -5302,7 +5302,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return null;
     }
 
-    public void updateSlowModeText() throws NumberFormatException {
+    public void updateSlowModeText() {
         int i;
         boolean zIsUploadingMessageIdDialog;
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
@@ -5336,7 +5336,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.updateSlowModeText();
                 }
             };
@@ -5361,16 +5361,16 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         checkUi_TopViewVisibility();
     }
 
-    public void setForceShowSendButton(boolean z, boolean z2) throws NumberFormatException {
+    public void setForceShowSendButton(boolean z, boolean z2) {
         this.forceShowSendButton = z;
         checkSendButton(z2);
     }
 
-    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3) throws NumberFormatException {
+    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3) {
         setAllowStickersAndGifs(z, z2, z3, false);
     }
 
-    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3, boolean z4) throws NumberFormatException {
+    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3, boolean z4) {
         if ((this.allowStickers != z2 || this.allowGifs != z3) && this.emojiView != null) {
             if (this.emojiViewVisible && !z4) {
                 this.removeEmojiViewAfterAnimation = true;
@@ -5389,12 +5389,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         setEmojiButtonImage(false, !this.isPaused);
     }
 
-    public void addEmojiToRecent(String str) throws NumberFormatException {
+    public void addEmojiToRecent(String str) {
         createEmojiView();
         this.emojiView.addEmojiToRecent(str);
     }
 
-    public void setOpenGifsTabFirst() throws NumberFormatException {
+    public void setOpenGifsTabFirst() {
         createEmojiView();
         MediaDataController.getInstance(this.currentAccount).loadRecents(0, true, true, false);
         this.emojiView.switchToGifRecent();
@@ -5635,7 +5635,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void checkChannelRights() throws NumberFormatException {
+    public void checkChannelRights() {
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null) {
             return;
@@ -5643,7 +5643,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         updateRecordButton(chatActivity.getCurrentChat(), this.parentFragment.getCurrentUserInfo());
     }
 
-    public void updateRecordButton(TLRPC.Chat chat, TLRPC.UserFull userFull) throws NumberFormatException {
+    public void updateRecordButton(TLRPC.Chat chat, TLRPC.UserFull userFull) {
         EmojiView emojiView;
         this.emojiButtonRestricted = false;
         boolean z = true;
@@ -5775,7 +5775,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setDialogId(long j, int i) throws NumberFormatException {
+    public void setDialogId(long j, int i) {
         this.dialog_id = j;
         if (this.currentAccount != i) {
             this.notificationsLocker.unlock();
@@ -5849,7 +5849,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setChatInfo(TLRPC.ChatFull chatFull) throws NumberFormatException {
+    public void setChatInfo(TLRPC.ChatFull chatFull) {
         this.info = chatFull;
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
@@ -5865,7 +5865,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         setSlowModeTimer(chatFull.slowmode_next_send_date);
     }
 
-    public void checkRoundVideo() throws NumberFormatException {
+    public void checkRoundVideo() {
         boolean z;
         boolean z2;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
@@ -5926,7 +5926,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.replyingMessageObject;
     }
 
-    public void updateFieldHint(boolean z) throws NumberFormatException {
+    public void updateFieldHint(boolean z) {
         boolean zIsChannelAndNotMegaGroup;
         ChatActivity chatActivity;
         String str;
@@ -6077,11 +6077,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditText.setHintText(LocaleController.getString(R.string.TypeMessage));
     }
 
-    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote) throws NumberFormatException {
+    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote) {
         setReplyingMessageObject(messageObject, replyQuote, null);
     }
 
-    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject2) throws NumberFormatException {
+    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject2) {
         MessageObject messageObject3;
         ChatActivity chatActivity = this.parentFragment;
         boolean z = (chatActivity == null || !chatActivity.isForumInViewAsMessagesMode() || this.replyingTopMessage == messageObject2) ? false : true;
@@ -6391,7 +6391,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     protected boolean sendMessageInternal(final boolean z, final int i, final int i2, final long j, final boolean z2) {
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$sendMessageInternal$50(z, z2, i, i2, j);
             }
         };
@@ -6433,7 +6433,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return false;
     }
 
-    public void lambda$sendMessageInternal$50(final boolean z, boolean z2, final int i, final int i2, final long j) throws NumberFormatException {
+    public void lambda$sendMessageInternal$50(final boolean z, boolean z2, final int i, final int i2, final long j) {
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate;
         long j2;
         TLRPC.Chat currentChat;
@@ -6733,7 +6733,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         BulletinFactory.of(this.parentFragment).createSuccessBulletin(LocaleController.getString(R.string.BusinessLinkSaved)).show();
     }
 
-    public void doneEditingMessage() throws NumberFormatException {
+    public void doneEditingMessage() {
         MessagePreviewParams messagePreviewParams;
         MessageSuggestionParams messageSuggestionParamsOf;
         int i;
@@ -6779,7 +6779,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 this.waitingForKeyboardOpenAfterAnimation = true;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$doneEditingMessage$55();
                     }
                 }, 200L);
@@ -6902,12 +6902,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         setEditingMessageObject(null, null, false);
     }
 
-    public void lambda$doneEditingMessage$55() throws NumberFormatException {
+    public void lambda$doneEditingMessage$55() {
         this.waitingForKeyboardOpenAfterAnimation = false;
         openKeyboardInternal();
     }
 
-    public boolean processSendingText(java.lang.CharSequence r25, boolean r26, int r27, int r28, long r29) throws java.lang.NumberFormatException {
+    public boolean processSendingText(java.lang.CharSequence r25, boolean r26, int r27, int r28, long r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.processSendingText(java.lang.CharSequence, boolean, int, int, long):boolean");
     }
 
@@ -6941,7 +6941,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return currentEncryptedChat == null || AndroidUtilities.getPeerLayerVersion(currentEncryptedChat.layer) >= 101;
     }
 
-    public void checkSendButton(boolean z) throws NumberFormatException {
+    public void checkSendButton(boolean z) {
         int themedColor;
         int i;
         ImageView imageView;
@@ -7936,7 +7936,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return z;
     }
 
-    protected void updateRecordInterface(int i, boolean z) throws NumberFormatException {
+    protected void updateRecordInterface(int i, boolean z) {
         boolean zIsRunning;
         Property property;
         char c;
@@ -8809,7 +8809,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             i2 = i;
             this.runningAnimationAudio.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animator) throws NumberFormatException {
+                public void onAnimationEnd(Animator animator) {
                     if (animator.equals(ChatActivityEnterView.this.runningAnimationAudio)) {
                         if (i2 != 3 && ChatActivityEnterView.this.messageEditText != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                             ChatActivityEnterView.this.messageEditText.requestFocus();
@@ -8847,7 +8847,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         isRecordingStateChanged();
     }
 
-    public void cancelRecordInterfaceInternal() throws NumberFormatException {
+    public void cancelRecordInterfaceInternal() {
         FrameLayout frameLayout = this.recordPanel;
         if (frameLayout != null) {
             frameLayout.setVisibility(8);
@@ -8980,7 +8980,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(sendMessageParamsOf);
     }
 
-    public void setEditingBusinessLink(TL_account.TL_businessChatLink tL_businessChatLink) throws NumberFormatException {
+    public void setEditingBusinessLink(TL_account.TL_businessChatLink tL_businessChatLink) {
         String str;
         this.editingBusinessLink = tL_businessChatLink;
         updateFieldHint(false);
@@ -9083,11 +9083,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return messageObject2;
     }
 
-    public void setEditingMessageObject(final org.telegram.messenger.MessageObject r18, final org.telegram.messenger.MessageObject.GroupedMessages r19, boolean r20) throws java.lang.NumberFormatException {
+    public void setEditingMessageObject(final org.telegram.messenger.MessageObject r18, final org.telegram.messenger.MessageObject.GroupedMessages r19, boolean r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setEditingMessageObject(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean):void");
     }
 
-    public void lambda$setEditingMessageObject$59(View view) throws NumberFormatException {
+    public void lambda$setEditingMessageObject$59(View view) {
         doneEditingMessage();
     }
 
@@ -9130,7 +9130,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         messageSendPreview.setItemOptions(itemOptionsMakeOptions);
         messageSendPreview.setSendButton(this.doneButton, false, new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws NumberFormatException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$setEditingMessageObject$61(groupedMessages, messageObject, messageSendPreview, view2);
             }
         });
@@ -9150,7 +9150,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         messageSendPreview.scrollTo(!this.captionAbove);
     }
 
-    public void lambda$setEditingMessageObject$61(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) throws NumberFormatException {
+    public void lambda$setEditingMessageObject$61(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) {
         if (groupedMessages != null) {
             Iterator<MessageObject> it = groupedMessages.messages.iterator();
             while (it.hasNext()) {
@@ -9701,7 +9701,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void updateScheduleButton(boolean z) throws NumberFormatException {
+    public void updateScheduleButton(boolean z) {
         boolean z2;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         if (DialogObject.isChatDialog(this.dialog_id)) {
@@ -9803,15 +9803,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void updateSendAsButton() throws NumberFormatException {
+    public void updateSendAsButton() {
         updateSendAsButton(true);
     }
 
-    public void updateSendAsButton(boolean z) throws NumberFormatException {
+    public void updateSendAsButton(boolean z) {
         updateSendAsButton(false, z);
     }
 
-    public void updateSendAsButton(boolean r16, boolean r17) throws java.lang.NumberFormatException {
+    public void updateSendAsButton(boolean r16, boolean r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.updateSendAsButton(boolean, boolean):void");
     }
 
@@ -9864,15 +9864,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         updateBotButton(z3);
     }
 
-    public void setButtons(MessageObject messageObject) throws NumberFormatException {
+    public void setButtons(MessageObject messageObject) {
         setButtons(messageObject, true);
     }
 
-    public void setButtons(org.telegram.messenger.MessageObject r5, boolean r6) throws java.lang.NumberFormatException {
+    public void setButtons(org.telegram.messenger.MessageObject r5, boolean r6) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setButtons(org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$setButtons$71(TLRPC.KeyboardButton keyboardButton) throws NumberFormatException {
+    public void lambda$setButtons$71(TLRPC.KeyboardButton keyboardButton) {
         ChatActivity chatActivity;
         boolean z = this.replyingMessageObject != null && (chatActivity = this.parentFragment) != null && chatActivity.isTopic && chatActivity.getTopicId() == ((long) this.replyingMessageObject.getId());
         MessageObject messageObject = ((this.replyingMessageObject == null || z) && !BotForumHelper.isBotForum(this.currentAccount, this.dialog_id)) ? DialogObject.isChatDialog(this.dialog_id) ? this.botButtonsMessageObject : null : this.replyingMessageObject;
@@ -9952,7 +9952,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     final TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2));
                     final Runnable runnable = new Runnable() {
                         @Override
-                        public void run() throws NumberFormatException {
+                        public void run() {
                             if (ChatActivityEnterView.this.sizeNotifierLayout.measureKeyboardHeight() <= AndroidUtilities.dp(20.0f) && !ChatActivityEnterView.this.isPopupShowing()) {
                                 if (ChatActivityEnterView.this.parentFragment == null) {
                                     return;
@@ -10251,7 +10251,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.sizeNotifierLayout;
     }
 
-    protected void createEmojiView() throws NumberFormatException {
+    protected void createEmojiView() {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null && emojiView.currentAccount != UserConfig.selectedAccount) {
             this.viewParentForEmojiView.removeView(emojiView);
@@ -10861,24 +10861,24 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.editingBusinessLink != null;
     }
 
-    public void addStickerToRecent(TLRPC.Document document) throws NumberFormatException {
+    public void addStickerToRecent(TLRPC.Document document) {
         createEmojiView();
         this.emojiView.addRecentSticker(document);
     }
 
-    public void showEmojiView() throws NumberFormatException {
+    public void showEmojiView() {
         showPopup(1, 0);
     }
 
-    public void showPopup(int i, int i2) throws NumberFormatException {
+    public void showPopup(int i, int i2) {
         showPopup(i, i2, true, true);
     }
 
-    private void showPopup(int i, int i2, boolean z) throws NumberFormatException {
+    private void showPopup(int i, int i2, boolean z) {
         showPopup(i, i2, z, true);
     }
 
-    public void showPopup(final int i, int i2, boolean z, boolean z2) throws NumberFormatException {
+    public void showPopup(final int i, int i2, boolean z, boolean z2) {
         int measuredHeight;
         int measuredHeight2;
         if (i == 2) {
@@ -11023,7 +11023,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         emojiView2.setShowing(false);
                         final Runnable runnable2 = new Runnable() {
                             @Override
-                            public final void run() throws NumberFormatException {
+                            public final void run() {
                                 this.f$0.lambda$showPopup$81(i);
                             }
                         };
@@ -11139,7 +11139,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         requestLayout();
     }
 
-    public void lambda$showPopup$81(int i) throws NumberFormatException {
+    public void lambda$showPopup$81(int i) {
         if (i == 0) {
             this.emojiPadding = 0;
         }
@@ -11181,7 +11181,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return "" + this.dialog_id;
     }
 
-    public void setEmojiButtonImage(boolean z, boolean z2) throws NumberFormatException {
+    public void setEmojiButtonImage(boolean z, boolean z2) {
         int currentPage;
         ChatActivityEnterViewAnimatedIconView.State state;
         ChatActivityEnterViewAnimatedIconView.State state2;
@@ -11230,7 +11230,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         onEmojiIconChanged(state);
     }
 
-    protected void onEmojiIconChanged(ChatActivityEnterViewAnimatedIconView.State state) throws NumberFormatException {
+    protected void onEmojiIconChanged(ChatActivityEnterViewAnimatedIconView.State state) {
         if (state == ChatActivityEnterViewAnimatedIconView.State.GIF && this.emojiView == null) {
             MediaDataController.getInstance(this.currentAccount).loadRecents(0, true, true, false);
             ArrayList<String> arrayList = MessagesController.getInstance(this.currentAccount).gifSearchEmojies;
@@ -11249,7 +11249,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return hidePopup(z, z2, true);
     }
 
-    public boolean hidePopup(boolean z, boolean z2, boolean z3) throws NumberFormatException {
+    public boolean hidePopup(boolean z, boolean z2, boolean z3) {
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
         if (!isPopupShowing()) {
             return false;
@@ -11337,7 +11337,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void openKeyboardInternal() throws NumberFormatException {
+    public void openKeyboardInternal() {
         ChatActivity chatActivity;
         if ((hasBotWebView() && botCommandsMenuIsShowing()) || BaseFragment.hasSheets(this.parentFragment)) {
             return;
@@ -11424,7 +11424,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.waitingForKeyboardOpen;
     }
 
-    public void addRecentGif(TLRPC.Document document) throws NumberFormatException {
+    public void addRecentGif(TLRPC.Document document) {
         MediaDataController.getInstance(this.currentAccount).addRecentGif(document, (int) (System.currentTimeMillis() / 1000), true);
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
@@ -11451,7 +11451,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     @Override
-    public void onSizeChanged(int i, boolean z) throws NumberFormatException {
+    public void onSizeChanged(int i, boolean z) {
         MessageObject messageObject;
         EditTextCaption editTextCaption;
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
@@ -11612,7 +11612,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         TLRPC.ChatFull chatFull;
         TLRPC.Chat chat;
         double d;
@@ -12173,7 +12173,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     }
                     animatorSet2.addListener(new AnimatorListenerAdapter() {
                         @Override
-                        public void onAnimationEnd(Animator animator2) throws NumberFormatException {
+                        public void onAnimationEnd(Animator animator2) {
                             ChatActivityEnterView.this.closeAnimationInProgress = false;
                             ChatActivityEnterView.this.stickersExpansionAnim = null;
                             if (ChatActivityEnterView.this.emojiView != null) {
@@ -12347,7 +12347,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         float xOffset;
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
                 setPressed(false);
             }
@@ -12379,7 +12379,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             return true;
         }
 
-        public void onCancelButtonPressed() throws NumberFormatException {
+        public void onCancelButtonPressed() {
             long topicId = 0;
             if (!ChatActivityEnterView.this.hasRecordVideo || !ChatActivityEnterView.this.isInVideoMode()) {
                 ChatActivityEnterView.this.delegate.needStartRecordAudio(0);
@@ -13063,17 +13063,17 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.emojiButton.setAlpha(this.emojiButtonPaddingAlpha * this.emojiButtonAlpha);
     }
 
-    public void setOverrideHint(CharSequence charSequence) throws NumberFormatException {
+    public void setOverrideHint(CharSequence charSequence) {
         setOverrideHint(charSequence, false);
     }
 
-    public void setOverrideHint(CharSequence charSequence, boolean z) throws NumberFormatException {
+    public void setOverrideHint(CharSequence charSequence, boolean z) {
         this.overrideHint = charSequence;
         this.overrideHint2 = null;
         updateFieldHint(z);
     }
 
-    public void setOverrideHint(CharSequence charSequence, CharSequence charSequence2, boolean z) throws NumberFormatException {
+    public void setOverrideHint(CharSequence charSequence, CharSequence charSequence2, boolean z) {
         this.overrideHint = charSequence;
         this.overrideHint2 = charSequence2;
         updateFieldHint(z);
@@ -13095,7 +13095,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.stickersExpandedHeight;
     }
 
-    public void reset() throws NumberFormatException {
+    public void reset() {
         setStickersExpanded(false, true, false);
         showPopup(0, 0, false);
         if (getEditField() != null && !TextUtils.isEmpty(getEditField().getText())) {
@@ -13120,7 +13120,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void freezeEmojiView(boolean z) throws NumberFormatException {
+    public void freezeEmojiView(boolean z) {
         this.emojiViewFrozen = z;
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
@@ -13766,7 +13766,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.currentIslandTotalHeight;
     }
 
-    public void setLiveComment(boolean z, boolean z2) throws NumberFormatException {
+    public void setLiveComment(boolean z, boolean z2) {
         if (this.isLiveComment == z) {
             return;
         }

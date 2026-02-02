@@ -5987,13 +5987,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         final int i = UserConfig.selectedAccount;
         ConnectionsManager.getInstance(i).sendRequest(tL_channels_joinChannel, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$joinChannel$63(blockChannelCell, i, tL_channels_joinChannel, chat, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$joinChannel$63(final BlockChannelCell blockChannelCell, final int i, final TLRPC.TL_channels_joinChannel tL_channels_joinChannel, final TLRPC.Chat chat, TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$joinChannel$63(final BlockChannelCell blockChannelCell, final int i, final TLRPC.TL_channels_joinChannel tL_channels_joinChannel, final TLRPC.Chat chat, TLObject tLObject, final TLRPC.TL_error tL_error) {
         boolean z;
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {

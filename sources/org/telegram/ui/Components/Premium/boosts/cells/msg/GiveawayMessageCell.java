@@ -238,7 +238,7 @@ public class GiveawayMessageCell {
         }
     }
 
-    public void setMessageContent(MessageObject messageObject, int i, int i2) throws NumberFormatException {
+    public void setMessageContent(MessageObject messageObject, int i, int i2) {
         int iDp;
         this.messageObject = null;
         this.titleLayout = null;

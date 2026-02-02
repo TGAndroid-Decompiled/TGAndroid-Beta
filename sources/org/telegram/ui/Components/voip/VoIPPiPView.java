@@ -348,7 +348,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
             this.closeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) throws InterruptedException, NumberFormatException {
+                public final void onClick(View view2) throws InterruptedException {
                     VoIPPiPView.lambda$new$1(view2);
                 }
             });
@@ -366,7 +366,7 @@ public class VoIPPiPView implements VoIPService.StateListener, IPipSourceDelegat
         updateViewState();
     }
 
-    public static void lambda$new$1(View view) throws InterruptedException, NumberFormatException {
+    public static void lambda$new$1(View view) throws InterruptedException {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             sharedInstance.hangUp();

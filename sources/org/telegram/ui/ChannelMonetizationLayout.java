@@ -1318,13 +1318,13 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         tL_channels_restrictSponsoredMessages.restricted = this.switchOffValue;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_restrictSponsoredMessages, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$sendCpmUpdate$37(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$sendCpmUpdate$37(TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$sendCpmUpdate$37(TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2047,7 +2047,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                     }
                 }, new Utilities.Callback5() {
                     @Override
-                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws NumberFormatException {
+                    public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                         this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                     }
                 }, null, resourcesProvider);
@@ -2113,7 +2113,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
                 }
             }
 
-            public void onClick(UItem uItem, View view, int i, float f, float f2) throws NumberFormatException {
+            public void onClick(UItem uItem, View view, int i, float f, float f2) {
                 Object obj = uItem.object;
                 if (obj instanceof TL_stars.StarsTransaction) {
                     StarsIntroActivity.showTransactionSheet(getContext(), true, ChannelTransactionsView.this.dialogId, this.currentAccount, (TL_stars.StarsTransaction) uItem.object, this.resourcesProvider);

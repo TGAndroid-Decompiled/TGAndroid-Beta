@@ -156,13 +156,13 @@ public class VoIPGroupNotification {
     public static void lambda$request$1(final int i, final long j, final long j2, final int i2, final boolean z, final Context context, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 VoIPGroupNotification.lambda$request$0(tLObject, i, j, j2, i2, z, context, str);
             }
         });
     }
 
-    public static void lambda$request$0(TLObject tLObject, int i, long j, long j2, int i2, boolean z, Context context, String str) throws NumberFormatException {
+    public static void lambda$request$0(TLObject tLObject, int i, long j, long j2, int i2, boolean z, Context context, String str) {
         if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             MessagesController.getInstance(i).putUsers(groupcall.users, false);
@@ -177,7 +177,7 @@ public class VoIPGroupNotification {
         ignoreCalls.add(Integer.valueOf(i2));
     }
 
-    private static void showNotification(final android.content.Context r19, final int r20, long r21, final int r23, long r24, java.lang.String r26) throws java.lang.NumberFormatException {
+    private static void showNotification(final android.content.Context r19, final int r20, long r21, final int r23, long r24, java.lang.String r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPGroupNotification.showNotification(android.content.Context, int, long, int, long, java.lang.String):void");
     }
 
@@ -235,7 +235,7 @@ public class VoIPGroupNotification {
         declineconferencecallinvite.msg_id = i2;
         ConnectionsManager.getInstance(i).sendRequest(declineconferencecallinvite, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 VoIPGroupNotification.lambda$decline$3(i, tLObject, tL_error);
             }
         });
@@ -244,7 +244,7 @@ public class VoIPGroupNotification {
         }
     }
 
-    public static void lambda$decline$3(int i, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public static void lambda$decline$3(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
         }

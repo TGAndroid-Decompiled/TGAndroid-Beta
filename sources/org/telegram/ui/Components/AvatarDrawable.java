@@ -105,7 +105,7 @@ public class AvatarDrawable extends Drawable {
         this(chat, false);
     }
 
-    public AvatarDrawable(TLRPC.User user, boolean z) throws NumberFormatException {
+    public AvatarDrawable(TLRPC.User user, boolean z) {
         this();
         this.isProfile = z;
         if (user != null) {
@@ -318,11 +318,11 @@ public class AvatarDrawable extends Drawable {
         }
     }
 
-    public void setInfo(TLRPC.ChatInvite chatInvite) throws NumberFormatException {
+    public void setInfo(TLRPC.ChatInvite chatInvite) {
         setInfo(UserConfig.selectedAccount, chatInvite);
     }
 
-    public void setInfo(int i, TLRPC.ChatInvite chatInvite) throws NumberFormatException {
+    public void setInfo(int i, TLRPC.ChatInvite chatInvite) {
         if (chatInvite != null) {
             String str = chatInvite.title;
             TLRPC.Chat chat = chatInvite.chat;
@@ -381,15 +381,15 @@ public class AvatarDrawable extends Drawable {
         getAvatarSymbols("", "", "", this.stringBuilder);
     }
 
-    public void setInfo(long j, String str, String str2, String str3) throws NumberFormatException {
+    public void setInfo(long j, String str, String str2, String str3) {
         setInfo(j, str, str2, str3, null, null);
     }
 
-    public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor) throws NumberFormatException {
+    public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor) {
         setInfo(j, str, str2, str3, num, peerColor, false);
     }
 
-    public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor, boolean z) throws NumberFormatException {
+    public void setInfo(long j, String str, String str2, String str3, Integer num, MessagesController.PeerColor peerColor, boolean z) {
         this.invalidateTextLayout = true;
         if (z) {
             this.hasGradient = false;
@@ -428,7 +428,7 @@ public class AvatarDrawable extends Drawable {
         getAvatarSymbols(str, str2, str3, this.stringBuilder);
     }
 
-    public void setPeerColor(int i) throws NumberFormatException {
+    public void setPeerColor(int i) {
         MessagesController.PeerColors peerColors;
         GradientTools gradientTools = this.advancedGradient;
         if (gradientTools != null) {

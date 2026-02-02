@@ -223,13 +223,13 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
     public void lambda$createCall$6(final ButtonWithCounterView buttonWithCounterView, final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException, NumberFormatException {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$createCall$5(tLObject, buttonWithCounterView, z, hashSet, tL_error);
             }
         });
     }
 
-    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException, NumberFormatException {
+    public void lambda$createCall$5(TLObject tLObject, ButtonWithCounterView buttonWithCounterView, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
@@ -241,7 +241,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$createCall$4(updates);
                 }
             });
@@ -280,7 +280,7 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
         VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall2, z, groupcall.call, hashSet);
     }
 
-    public void lambda$createCall$4(TLRPC.Updates updates) throws InterruptedException {
+    public void lambda$createCall$4(TLRPC.Updates updates) {
         MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
     }
 

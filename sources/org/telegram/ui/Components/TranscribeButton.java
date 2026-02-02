@@ -936,7 +936,7 @@ public abstract class TranscribeButton {
         return ChatObject.isMegagroup(chat) && chat.level >= messagesController.groupTranscribeLevelMin;
     }
 
-    public static int getTranscribeTrialCount(int i) throws NumberFormatException {
+    public static int getTranscribeTrialCount(int i) {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i);
         MessagesController messagesController = MessagesController.getInstance(i);
         if (messagesController.transcribeAudioTrialWeeklyNumber <= 0) {

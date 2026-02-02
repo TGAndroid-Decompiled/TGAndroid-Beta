@@ -603,7 +603,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) throws NumberFormatException {
+        public void sendEmoji(TLRPC.Document document) {
             if (EmojiView.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiView.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -1036,7 +1036,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 });
                 this.categoriesListView.setOnCategoryClick(new Utilities.Callback() {
                     @Override
-                    public final void run(Object obj) throws NumberFormatException {
+                    public final void run(Object obj) {
                         this.f$0.lambda$new$3((StickerCategoriesListView.EmojiCategory) obj);
                     }
                 });
@@ -1088,7 +1088,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             updateButton();
         }
 
-        public void lambda$new$3(StickerCategoriesListView.EmojiCategory emojiCategory) throws NumberFormatException {
+        public void lambda$new$3(StickerCategoriesListView.EmojiCategory emojiCategory) {
             if (emojiCategory == this.recent) {
                 showInputBoxGradient(false);
                 this.categoriesListView.selectCategory(this.recent);
@@ -1568,7 +1568,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) throws NumberFormatException {
+        public void onTransitionAnimationEnd(boolean z, boolean z2) {
             ChatActivityEnterView chatActivityEnterView;
             super.onTransitionAnimationEnd(z, z2);
             if (!z || (chatActivityEnterView = this.chatActivityEnterView) == null) {
@@ -1698,7 +1698,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, false);
     }
 
-    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) throws NumberFormatException {
+    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
         final boolean z8;
         Theme.ResourcesProvider resourcesProvider2;
         final Theme.ResourcesProvider resourcesProvider3;
@@ -2197,7 +2197,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 updateGifTabs();
                 this.gifTabs.setDelegate(new ScrollSlidingTabStrip.ScrollSlidingTabStripDelegate() {
                     @Override
-                    public final void onPageSelected(int i8) throws NumberFormatException {
+                    public final void onPageSelected(int i8) {
                         this.f$0.lambda$new$7(i8);
                     }
                 });
@@ -2358,7 +2358,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             });
             RecyclerListView.OnItemClickListener onItemClickListener2 = new RecyclerListView.OnItemClickListener() {
                 @Override
-                public final void onItemClick(View view3, int i8) throws NumberFormatException {
+                public final void onItemClick(View view3, int i8) {
                     this.f$0.lambda$new$9(view3, i8);
                 }
             };
@@ -2861,7 +2861,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this.delegate.lambda$onGifSelected$1(view, this.gifAdapter.results.get(i), null, this.gifAdapter.bot, true, 0, 0);
     }
 
-    public void lambda$new$7(int i) throws NumberFormatException {
+    public void lambda$new$7(int i) {
         if (i == this.gifTrendingTabNum && this.gifAdapter.results.isEmpty()) {
             return;
         }
@@ -2904,7 +2904,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, this.stickersGridView, getMeasuredHeight(), this.stickersOnItemClickListener, this.contentPreviewViewerDelegate, resourcesProvider);
     }
 
-    public void lambda$new$9(View view, int i) throws NumberFormatException {
+    public void lambda$new$9(View view, int i) {
         String str;
         RecyclerView.Adapter adapter = this.stickersGridView.getAdapter();
         StickersSearchGridAdapter stickersSearchGridAdapter = this.stickersSearchGridAdapter;
@@ -2960,7 +2960,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        protected void stickerSetPositionChanged(int i, int i2) throws NumberFormatException {
+        protected void stickerSetPositionChanged(int i, int i2) {
             int i3 = i - EmojiView.this.stickersTabOffset;
             int i4 = i2 - EmojiView.this.stickersTabOffset;
             MediaDataController mediaDataController = MediaDataController.getInstance(EmojiView.this.currentAccount);
@@ -4526,7 +4526,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
 
             @Override
-            public void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered2, boolean z) throws NumberFormatException {
+            public void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered2, boolean z) {
                 EmojiView.this.delegate.onStickerSetAdd(stickerSetCovered2);
                 if (z) {
                     EmojiView.this.updateStickerTabs(true);
@@ -5633,7 +5633,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public void updateStickerTabs(boolean r15) throws java.lang.NumberFormatException {
+    public void updateStickerTabs(boolean r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.updateStickerTabs(boolean):void");
     }
 
@@ -5703,7 +5703,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public void addRecentSticker(TLRPC.Document document) throws NumberFormatException {
+    public void addRecentSticker(TLRPC.Document document) {
         if (document == null) {
             return;
         }
@@ -5719,7 +5719,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public void addRecentGif(TLRPC.Document document) throws NumberFormatException {
+    public void addRecentGif(TLRPC.Document document) {
         if (document == null) {
             return;
         }
@@ -5945,7 +5945,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws NumberFormatException {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5 = i3 - i;
         if (this.lastNotifyWidth != i5) {
             this.lastNotifyWidth = i5;
@@ -5956,7 +5956,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         updateStickerTabsPosition();
     }
 
-    public void reloadStickersAdapter() throws NumberFormatException {
+    public void reloadStickersAdapter() {
         StickersGridAdapter stickersGridAdapter = this.stickersGridAdapter;
         if (stickersGridAdapter != null) {
             stickersGridAdapter.notifyDataSetChanged();
@@ -5979,7 +5979,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this.dragListener = dragListener;
     }
 
-    public void setChatInfo(TLRPC.ChatFull chatFull) throws NumberFormatException {
+    public void setChatInfo(TLRPC.ChatFull chatFull) {
         this.info = chatFull;
         updateStickerTabs(false);
     }
@@ -6084,20 +6084,20 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$onAttachedToWindow$24();
                 }
             });
         }
     }
 
-    public void lambda$onAttachedToWindow$24() throws NumberFormatException {
+    public void lambda$onAttachedToWindow$24() {
         updateStickerTabs(false);
         reloadStickersAdapter();
     }
 
     @Override
-    public void setVisibility(int i) throws NumberFormatException {
+    public void setVisibility(int i) {
         boolean z = getVisibility() != i;
         super.setVisibility(i);
         if (z) {
@@ -6150,7 +6150,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         ContentPreviewViewer.getInstance().clearDelegate(this.contentPreviewViewerDelegate);
     }
 
-    private void checkDocuments(boolean z) throws NumberFormatException {
+    private void checkDocuments(boolean z) {
         if (z) {
             updateRecentGifs();
             return;
@@ -6396,7 +6396,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         Utilities.Callback callback;
         TLRPC.StickerSet stickerSet;
         if (i == NotificationCenter.stickersDidLoad) {
@@ -6712,7 +6712,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             return "recent".equals(obj2) ? EmojiView.this.recentTabNum : EmojiView.this.favTabNum;
         }
 
-        public void lambda$onCreateViewHolder$1(StickerSetNameCell stickerSetNameCell, View view) throws NumberFormatException {
+        public void lambda$onCreateViewHolder$1(StickerSetNameCell stickerSetNameCell, View view) {
             RecyclerView.ViewHolder childViewHolder;
             if (EmojiView.this.stickersGridView.indexOfChild(stickerSetNameCell) == -1 || (childViewHolder = EmojiView.this.stickersGridView.getChildViewHolder(stickerSetNameCell)) == null) {
                 return;
@@ -6758,7 +6758,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             }
         }
 
-        public void lambda$onCreateViewHolder$3(View view) throws NumberFormatException {
+        public void lambda$onCreateViewHolder$3(View view) {
             ArrayList<TLRPC.StickerSetCovered> featuredStickerSets = MediaDataController.getInstance(EmojiView.this.currentAccount).getFeaturedStickerSets();
             if (featuredStickerSets.isEmpty()) {
                 return;
@@ -6795,7 +6795,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     final StickerSetNameCell stickerSetNameCell = new StickerSetNameCell(this.context, false, EmojiView.this.resourcesProvider, EmojiView.this.glassDesign);
                     stickerSetNameCell.setOnIconClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view) throws NumberFormatException {
+                        public final void onClick(View view) {
                             this.f$0.lambda$onCreateViewHolder$1(stickerSetNameCell, view);
                         }
                     });
@@ -6823,7 +6823,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     StickerSetNameCell stickerSetNameCell2 = new StickerSetNameCell(this.context, false, EmojiView.this.resourcesProvider, EmojiView.this.glassDesign);
                     stickerSetNameCell2.setOnIconClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) throws NumberFormatException {
+                        public final void onClick(View view2) {
                             this.f$0.lambda$onCreateViewHolder$3(view2);
                         }
                     });
@@ -7003,18 +7003,18 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             EmojiView.this.delegate.onShowStickerSet(tL_messages_stickerSet.set, null, false);
         }
 
-        private void updateItems() throws java.lang.NumberFormatException {
+        private void updateItems() {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.StickersGridAdapter.updateItems():void");
         }
 
         @Override
-        public void notifyItemRangeRemoved(int i, int i2) throws NumberFormatException {
+        public void notifyItemRangeRemoved(int i, int i2) {
             updateItems();
             super.notifyItemRangeRemoved(i, i2);
         }
 
         @Override
-        public void notifyDataSetChanged() throws NumberFormatException {
+        public void notifyDataSetChanged() {
             updateItems();
             super.notifyDataSetChanged();
         }
@@ -8760,11 +8760,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             return this.loadingKeys.contains(str);
         }
 
-        public void preload(String str) throws NumberFormatException {
+        public void preload(String str) {
             preload(str, "", true);
         }
 
-        private void preload(final String str, final String str2, final boolean z) throws NumberFormatException {
+        private void preload(final String str, final String str2, final boolean z) {
             final String str3 = "gif_search_" + str + "_" + str2;
             if (z && EmojiView.this.gifCache.containsKey(str3)) {
                 return;
@@ -8799,13 +8799,13 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         public void lambda$preload$1(final String str, final String str2, final boolean z, final String str3, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$preload$0(str, str2, z, str3, tLObject);
                 }
             });
         }
 
-        public void lambda$preload$0(String str, String str2, boolean z, String str3, TLObject tLObject) throws NumberFormatException {
+        public void lambda$preload$0(String str, String str2, boolean z, String str3, TLObject tLObject) {
             this.loadingKeys.remove(str3);
             if (EmojiView.this.gifSearchAdapter.lastSearchIsEmoji && EmojiView.this.gifSearchAdapter.lastSearchImageString.equals(str)) {
                 EmojiView.this.gifSearchAdapter.lambda$search$3(str, str2, false, true, z, str3, tLObject);
@@ -9137,7 +9137,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 runnable.run();
             }
 
-            public void addLocalPacks(Runnable runnable) throws NumberFormatException {
+            public void addLocalPacks(Runnable runnable) {
                 int iIndexOfIgnoreCase;
                 int iIndexOfIgnoreCase2;
                 ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSets(0);
@@ -9311,7 +9311,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         }
                     }, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) throws NumberFormatException {
+                        public final void run(Object obj) {
                             this.f$0.addLocalPacks((Runnable) obj);
                         }
                     }, new Utilities.Callback() {
@@ -9753,7 +9753,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
     }
 
-    public void freeze(boolean z) throws NumberFormatException {
+    public void freeze(boolean z) {
         StickersGridAdapter stickersGridAdapter;
         boolean z2 = this.frozen;
         this.frozen = z;

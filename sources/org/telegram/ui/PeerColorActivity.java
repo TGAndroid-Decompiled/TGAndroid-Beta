@@ -231,7 +231,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                         peerColorGrid.setSelected(Page.this.selectedColor, false);
                         peerColorGrid.setOnColorClick(new Utilities.Callback() {
                             @Override
-                            public final void run(Object obj) throws NumberFormatException {
+                            public final void run(Object obj) {
                                 this.f$0.lambda$onCreateViewHolder$0((Integer) obj);
                             }
                         });
@@ -305,7 +305,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 return new RecyclerListView.Holder(emptyView);
             }
 
-            public void lambda$onCreateViewHolder$0(Integer num) throws NumberFormatException {
+            public void lambda$onCreateViewHolder$0(Integer num) {
                 Page.this.selectedColor = num.intValue();
                 Page.this.selectedEmojiCollectible = null;
                 Page.this.selectedPeerCollectible = null;
@@ -327,7 +327,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 boolean z = true;
                 switch (getItemViewType(i)) {
                     case 1:
@@ -559,7 +559,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
         }
 
-        public void lambda$new$0(int i, View view, int i2) throws NumberFormatException {
+        public void lambda$new$0(int i, View view, int i2) {
             ProfilePreview profilePreview;
             Page page;
             if (view instanceof SetReplyIconCell) {
@@ -1263,13 +1263,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.buttonShadow.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_divider));
             AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
                 @Override
-                public final void accept(Object obj) throws NumberFormatException {
+                public final void accept(Object obj) {
                     this.f$0.lambda$updateColors$2((View) obj);
                 }
             });
         }
 
-        public void lambda$updateColors$2(View view) throws NumberFormatException {
+        public void lambda$updateColors$2(View view) {
             if (view instanceof PeerColorGrid) {
                 view.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 ((PeerColorGrid) view).updateColors();
@@ -1978,7 +1978,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         private final Paint userTextBackgroundPaint;
         private int userTextColorKey;
 
-        public ChangeNameColorCell(int i, long j, Context context, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+        public ChangeNameColorCell(int i, long j, Context context, Theme.ResourcesProvider resourcesProvider) {
             int i2;
             int iMin;
             int iMax;
@@ -2436,7 +2436,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.lock = z;
         }
 
-        public void updateColors() throws NumberFormatException {
+        public void updateColors() {
             int i;
             if (this.buttons == null) {
                 return;
@@ -2480,7 +2480,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
 
         @Override
-        protected void onMeasure(int i, int i2) throws NumberFormatException {
+        protected void onMeasure(int i, int i2) {
             int i3;
             int size = View.MeasureSpec.getSize(i);
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
@@ -3159,7 +3159,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             setWillNotDraw(false);
         }
 
-        public void overrideAvatarColor(int i) throws NumberFormatException {
+        public void overrideAvatarColor(int i) {
             int themedColor;
             int themedColor2;
             if (i >= 14) {

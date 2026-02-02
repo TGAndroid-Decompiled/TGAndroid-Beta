@@ -308,7 +308,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void onInputFocus() throws NumberFormatException {
+        protected void onInputFocus() {
             if (CustomEmojiReactionsWindow.this.wasFocused) {
                 return;
             }

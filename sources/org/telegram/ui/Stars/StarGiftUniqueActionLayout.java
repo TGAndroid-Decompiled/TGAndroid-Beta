@@ -211,7 +211,7 @@ public class StarGiftUniqueActionLayout {
         this.view.invalidateOutbounds();
     }
 
-    public boolean onTouchEvent(float f, float f2, MotionEvent motionEvent) throws NumberFormatException {
+    public boolean onTouchEvent(float f, float f2, MotionEvent motionEvent) {
         boolean zContains = this.buttonRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
         boolean zContains2 = this.backgroundRect.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
         if (motionEvent.getAction() == 0) {

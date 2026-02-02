@@ -4808,7 +4808,7 @@ public abstract class Theme {
         return Color.argb(Color.alpha(i), iRed < 0 ? 0 : Math.min(iRed, 255), iGreen < 0 ? 0 : Math.min(iGreen, 255), iBlue >= 0 ? Math.min(iBlue, 255) : 0);
     }
 
-    public static boolean deleteThemeAccent(ThemeInfo themeInfo, ThemeAccent themeAccent, boolean z) throws IOException, NumberFormatException {
+    public static boolean deleteThemeAccent(ThemeInfo themeInfo, ThemeAccent themeAccent, boolean z) throws IOException {
         boolean z2 = false;
         if (themeAccent == null || themeInfo == null || themeInfo.themeAccents == null) {
             return false;

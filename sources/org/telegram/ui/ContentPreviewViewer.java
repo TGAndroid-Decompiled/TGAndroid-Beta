@@ -776,7 +776,7 @@ public class ContentPreviewViewer {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContentPreviewViewer.onInterceptTouchEvent(android.view.MotionEvent, org.telegram.ui.Components.RecyclerListView, int, org.telegram.ui.ContentPreviewViewer$ContentPreviewViewerDelegate, org.telegram.ui.ActionBar.Theme$ResourcesProvider):boolean");
     }
 
-    public void lambda$onInterceptTouchEvent$5(RecyclerListView recyclerListView, int i, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public void lambda$onInterceptTouchEvent$5(RecyclerListView recyclerListView, int i, Theme.ResourcesProvider resourcesProvider) {
         TLRPC.Document documentFindDocument;
         if (this.openPreviewRunnable == null) {
             return;
@@ -862,7 +862,7 @@ public class ContentPreviewViewer {
         }
     }
 
-    public void setParentActivity(Activity activity) throws NumberFormatException {
+    public void setParentActivity(Activity activity) {
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
         this.centerImage.setCurrentAccount(i);
@@ -1271,7 +1271,7 @@ public class ContentPreviewViewer {
         }
     }
 
-    public boolean showMenuFor(View view) throws NumberFormatException {
+    public boolean showMenuFor(View view) {
         if (!(view instanceof StickerEmojiCell)) {
             return false;
         }
@@ -1301,7 +1301,7 @@ public class ContentPreviewViewer {
         return true;
     }
 
-    public void showCustomStickerActions(String str, VideoEditedInfo videoEditedInfo, View view, ArrayList arrayList, ContentPreviewViewerDelegate contentPreviewViewerDelegate) throws NumberFormatException {
+    public void showCustomStickerActions(String str, VideoEditedInfo videoEditedInfo, View view, ArrayList arrayList, ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
         Activity activityFindActivity = AndroidUtilities.findActivity(view.getContext());
         if (activityFindActivity == null) {
             return;

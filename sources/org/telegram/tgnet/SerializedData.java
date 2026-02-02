@@ -485,7 +485,7 @@ public class SerializedData extends AbstractSerializedData {
     }
 
     @Override
-    public byte[] readByteArray(boolean z) {
+    public byte[] readByteArray(boolean z) throws IOException {
         int i;
         try {
             int i2 = this.in.read();

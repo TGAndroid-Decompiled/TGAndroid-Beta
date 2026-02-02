@@ -877,7 +877,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         presentFragment(paymentFormActivity);
     }
 
-    public void lambda$createView$23(java.lang.String r23, final android.view.View r24) throws java.lang.NumberFormatException {
+    public void lambda$createView$23(java.lang.String r23, final android.view.View r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.lambda$createView$23(java.lang.String, android.view.View):void");
     }
 
@@ -2540,13 +2540,13 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_sendPaymentForm, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 this.f$0.lambda$sendData$69(tL_payments_sendPaymentForm, tLObject, tL_error);
             }
         }, (this.allowUnregistered ? 8 : 0) | 2);
     }
 
-    public void lambda$sendData$69(final TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$sendData$69(final TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
                 Utilities.Callback callback = this.customResultReceiver;

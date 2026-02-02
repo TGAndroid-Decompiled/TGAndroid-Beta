@@ -47,6 +47,11 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     public int inactivityDays = 7;
     private final String[] daysOfInactivityTexts = new String[4];
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public GreetMessagesActivity() {
         int i = 0;
         while (true) {
@@ -406,5 +411,11 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         super.onFragmentDestroy();
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

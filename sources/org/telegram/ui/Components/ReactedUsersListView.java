@@ -155,7 +155,7 @@ public class ReactedUsersListView extends FrameLayout {
         });
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) throws NumberFormatException {
+            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
                 ReactedUsersListView reactedUsersListView = ReactedUsersListView.this;
                 if (!reactedUsersListView.isLoaded || !reactedUsersListView.canLoadMore || reactedUsersListView.isLoading || linearLayoutManager.findLastVisibleItemPosition() < (ReactedUsersListView.this.adapter.getItemCount() - 1) - ReactedUsersListView.this.getLoadCount()) {
                     return;
@@ -279,7 +279,7 @@ public class ReactedUsersListView extends FrameLayout {
     }
 
     @Override
-    protected void onAttachedToWindow() throws NumberFormatException {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (this.isLoaded || this.isLoading) {
             return;
@@ -287,7 +287,7 @@ public class ReactedUsersListView extends FrameLayout {
         load();
     }
 
-    public void load() throws NumberFormatException {
+    public void load() {
         this.isLoading = true;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();

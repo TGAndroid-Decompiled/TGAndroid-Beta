@@ -712,7 +712,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             ContactsController.Contact contact;
             CharSequence charSequence;
             if (viewHolder.getItemViewType() == 0) {
@@ -849,7 +849,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         ArrayList arrayList = new ArrayList();
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
-            public final void didSetColor() throws NumberFormatException {
+            public final void didSetColor() {
                 this.f$0.lambda$getThemeDescriptions$5();
             }
 
@@ -898,7 +898,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$5() throws NumberFormatException {
+    public void lambda$getThemeDescriptions$5() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

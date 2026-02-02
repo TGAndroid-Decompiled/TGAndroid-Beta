@@ -300,7 +300,7 @@ public class GiftAuctionController extends BaseController {
             final TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) payments_paymentresult;
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$sendBid$7(tL_payments_paymentResult);
                 }
             });
@@ -312,7 +312,7 @@ public class GiftAuctionController extends BaseController {
         }
     }
 
-    public void lambda$sendBid$7(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) throws InterruptedException {
+    public void lambda$sendBid$7(TLRPC.TL_payments_paymentResult tL_payments_paymentResult) {
         MessagesController.getInstance(this.currentAccount).processUpdates(tL_payments_paymentResult.updates, false);
     }
 

@@ -212,7 +212,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         this.actionBtn = actionBtnCell;
         actionBtnCell.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$new$20(prepaidGiveaway, j, baseFragment, view);
             }
         });
@@ -356,7 +356,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         updateRows(true, true);
     }
 
-    public void lambda$new$20(final TL_stories.PrepaidGiveaway prepaidGiveaway, final long j, BaseFragment baseFragment, View view) throws NumberFormatException {
+    public void lambda$new$20(final TL_stories.PrepaidGiveaway prepaidGiveaway, final long j, BaseFragment baseFragment, View view) {
         if (this.actionBtn.isLoading()) {
             return;
         }
@@ -365,7 +365,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             final long j2 = tL_prepaidStarsGiveaway != null ? tL_prepaidStarsGiveaway.stars : 0L;
             BoostDialogs.showStartGiveawayDialog(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$new$10(prepaidGiveaway, tL_prepaidStarsGiveaway, j, j2);
                 }
             });
@@ -450,7 +450,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         }
     }
 
-    public void lambda$new$10(final TL_stories.PrepaidGiveaway prepaidGiveaway, final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, final long j, final long j2) throws NumberFormatException {
+    public void lambda$new$10(final TL_stories.PrepaidGiveaway prepaidGiveaway, final TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, final long j, final long j2) {
         int iPrepareServerDate = BoostRepository.prepareServerDate(this.selectedEndDate);
         boolean z = this.selectedParticipantsType == ParticipantsTypeCell.TYPE_NEW;
         this.actionBtn.updateLoading(true);

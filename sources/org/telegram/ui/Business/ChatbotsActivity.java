@@ -108,6 +108,11 @@ public class ChatbotsActivity extends BaseFragment {
     private boolean expandedGiftsSection = false;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -954,7 +959,7 @@ public class ChatbotsActivity extends BaseFragment {
         if (tLObject instanceof TLRPC.Updates) {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$processDone$19(tLObject);
                 }
             });
@@ -968,7 +973,7 @@ public class ChatbotsActivity extends BaseFragment {
         }
     }
 
-    public void lambda$processDone$19(TLObject tLObject) throws InterruptedException {
+    public void lambda$processDone$19(TLObject tLObject) {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 
@@ -1086,5 +1091,11 @@ public class ChatbotsActivity extends BaseFragment {
     public boolean onFragmentCreate() {
         setValue();
         return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

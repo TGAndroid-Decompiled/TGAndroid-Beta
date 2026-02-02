@@ -88,6 +88,11 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(true);
@@ -1011,5 +1016,11 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             this.arrowPath.lineTo(((LocaleController.isRTL ? -1 : 1) * AndroidUtilities.dpf2(5.33f)) + fDpf2, measuredHeight);
             this.arrowPath.lineTo(fDpf2, measuredHeight + AndroidUtilities.dpf2(5.66f));
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

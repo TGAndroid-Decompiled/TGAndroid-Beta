@@ -79,6 +79,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private final int BUTTON_CLEAR = 2;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public View createView(Context context) throws SAXException, IOException {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -698,5 +703,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     public void lambda$showLocationAlert$8(AlertDialog alertDialog, org.telegram.ui.LocationActivity locationActivity) {
         alertDialog.dismiss();
         presentFragment(locationActivity);
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

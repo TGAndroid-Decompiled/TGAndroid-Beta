@@ -93,7 +93,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         void onUsersSelected(List list);
     }
 
-    public SelectorBottomSheet(BaseFragment baseFragment, boolean z, long j) throws NumberFormatException {
+    public SelectorBottomSheet(BaseFragment baseFragment, boolean z, long j) {
         super(baseFragment, z, false);
         this.backgroundPaint = new Paint(1);
         this.oldItems = new ArrayList();
@@ -110,7 +110,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.listPaddingTop = AndroidUtilities.dp(134.0f);
         this.remoteSearchRunnable = new Runnable() {
             @Override
-            public void run() throws NumberFormatException {
+            public void run() {
                 String str = SelectorBottomSheet.this.query;
                 if (str != null) {
                     SelectorBottomSheet selectorBottomSheet = SelectorBottomSheet.this;
@@ -427,7 +427,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void loadData(int i, final boolean z, String str) throws NumberFormatException {
+    public void loadData(int i, final boolean z, String str) {
         if (i == 1) {
             BoostRepository.loadChatParticipants(this.currentChat.id, 0, str, 0, 50, new Utilities.Callback() {
                 @Override

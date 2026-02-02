@@ -298,14 +298,14 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) throws NumberFormatException {
+            public final void onItemClick(View view, int i, float f, float f2) {
                 this.f$0.lambda$createView$10(view, i, f, f2);
             }
         });
         return this.fragmentView;
     }
 
-    public void lambda$createView$10(View view, final int i, float f, float f2) throws NumberFormatException {
+    public void lambda$createView$10(View view, final int i, float f, float f2) {
         ArrayList arrayList;
         boolean zIsGlobalNotificationsEnabled;
         z = false;
@@ -787,7 +787,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r21, int r22) throws java.lang.NumberFormatException {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r21, int r22) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSettingsActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 

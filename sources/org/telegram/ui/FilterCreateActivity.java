@@ -2194,26 +2194,27 @@ public class FilterCreateActivity extends BaseFragment {
 
         public void options() {
             BaseFragment baseFragment = this.fragment;
-            if (baseFragment == null) {
-                return;
-            }
-            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(baseFragment, this);
-            itemOptionsMakeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.qrcode();
+            if (baseFragment instanceof FilterCreateActivity) {
+                RecyclerListView recyclerListView = ((FilterCreateActivity) baseFragment).listView;
+                ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.fragment, this);
+                itemOptionsMakeOptions.setScrimViewBackground(recyclerListView.getClipBackground(this));
+                itemOptionsMakeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.GetQRCode), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.qrcode();
+                    }
+                });
+                itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DeleteLink), true, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.deleteLink();
+                    }
+                });
+                if (LocaleController.isRTL) {
+                    itemOptionsMakeOptions.setGravity(3);
                 }
-            });
-            itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DeleteLink), true, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.deleteLink();
-                }
-            });
-            if (LocaleController.isRTL) {
-                itemOptionsMakeOptions.setGravity(3);
+                itemOptionsMakeOptions.show();
             }
-            itemOptionsMakeOptions.show();
         }
 
         private String getSlug() {
@@ -2307,7 +2308,7 @@ public class FilterCreateActivity extends BaseFragment {
         MessagesController.getGlobalMainSettings().edit().putBoolean("n_" + i, true).apply();
     }
 
-    public static CharSequence withNew(int i, CharSequence charSequence, boolean z) throws NumberFormatException {
+    public static CharSequence withNew(int i, CharSequence charSequence, boolean z) {
         Context context;
         if (i >= 0) {
             if (MessagesController.getGlobalMainSettings().getBoolean("n_" + i, false) || (context = ApplicationLoader.applicationContext) == null) {

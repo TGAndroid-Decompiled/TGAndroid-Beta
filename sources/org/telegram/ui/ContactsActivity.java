@@ -213,7 +213,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     @Override
-    public boolean onFragmentCreate() throws NumberFormatException {
+    public boolean onFragmentCreate() {
         super.onFragmentCreate();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
@@ -331,7 +331,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
         });
     }
 
-    public void lambda$createView$5(int i, View view, int i2, float f, float f2) throws NumberFormatException {
+    public void lambda$createView$5(int i, View view, int i2, float f, float f2) {
         RecyclerView.Adapter adapter = this.listView.getAdapter();
         SearchAdapter searchAdapter = this.searchListViewAdapter;
         if (adapter == searchAdapter) {

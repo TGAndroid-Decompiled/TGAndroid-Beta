@@ -89,7 +89,7 @@ public class InviteUserCell extends FrameLayout {
         performClick();
     }
 
-    public void setUser(ContactsController.Contact contact, CharSequence charSequence) throws NumberFormatException {
+    public void setUser(ContactsController.Contact contact, CharSequence charSequence) {
         this.currentContact = contact;
         this.currentName = charSequence;
         update(0);
@@ -110,7 +110,7 @@ public class InviteUserCell extends FrameLayout {
         this.avatarImageView.getImageReceiver().cancelLoadImage();
     }
 
-    public void update(int i) throws NumberFormatException {
+    public void update(int i) {
         ContactsController.Contact contact = this.currentContact;
         if (contact == null) {
             return;

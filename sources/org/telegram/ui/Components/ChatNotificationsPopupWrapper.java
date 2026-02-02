@@ -195,13 +195,13 @@ public class ChatNotificationsPopupWrapper {
     public static void lambda$new$5(final int i, final Callback callback, boolean z, final int i2, int i3) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 ChatNotificationsPopupWrapper.lambda$new$4(i2, i, callback);
             }
         }, 16L);
     }
 
-    public static void lambda$new$4(int i, int i2, Callback callback) throws NumberFormatException {
+    public static void lambda$new$4(int i, int i2, Callback callback) {
         if (i != 0) {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
             notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();
@@ -241,14 +241,14 @@ public class ChatNotificationsPopupWrapper {
         this.lastDismissTime = System.currentTimeMillis();
     }
 
-    public void lambda$update$11(final long j, final long j2, final HashSet hashSet) throws NumberFormatException {
+    public void lambda$update$11(final long j, final long j2, final HashSet hashSet) {
         int color;
         int i;
         int i2;
         if (System.currentTimeMillis() - this.lastDismissTime < 200) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$update$11(j, j2, hashSet);
                 }
             });
@@ -385,7 +385,7 @@ public class ChatNotificationsPopupWrapper {
         itemOptionsMakeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda320(itemOptions));
         itemOptionsMakeSwipeback.add(R.drawable.msg_tone_on, LocaleController.getString(R.string.SoundOn), new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 ChatNotificationsPopupWrapper.lambda$addAsItemOptions$13(itemOptions, currentAccount, j, j2, itemOptionsMakeSwipeback, baseFragment, resourceProvider);
             }
         });
@@ -436,7 +436,7 @@ public class ChatNotificationsPopupWrapper {
         }
     }
 
-    public static void lambda$addAsItemOptions$13(ItemOptions itemOptions, int i, long j, long j2, ItemOptions itemOptions2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public static void lambda$addAsItemOptions$13(ItemOptions itemOptions, int i, long j, long j2, ItemOptions itemOptions2, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         itemOptions.dismiss();
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i);
         boolean z = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(j, j2), true);
@@ -460,13 +460,13 @@ public class ChatNotificationsPopupWrapper {
     public static void lambda$addAsItemOptions$15(final int i, final Utilities.Callback callback, boolean z, final int i2, int i3) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 ChatNotificationsPopupWrapper.lambda$addAsItemOptions$14(i2, i, callback);
             }
         }, 16L);
     }
 
-    public static void lambda$addAsItemOptions$14(int i, int i2, Utilities.Callback callback) throws NumberFormatException {
+    public static void lambda$addAsItemOptions$14(int i, int i2, Utilities.Callback callback) {
         if (i != 0) {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i2);
             notificationsSettings.edit().putInt("last_selected_mute_until_time", i).putInt("last_selected_mute_until_time2", notificationsSettings.getInt("last_selected_mute_until_time", 0)).apply();

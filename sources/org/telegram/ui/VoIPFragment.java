@@ -2308,7 +2308,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             this.bottomEndCallBtn.setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString(R.string.VoipEndCall2), false, z);
             this.bottomEndCallBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws InterruptedException, NumberFormatException {
+                public final void onClick(View view) throws InterruptedException {
                     this.f$0.lambda$updateButtons$35(view);
                 }
             });
@@ -2331,7 +2331,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         updateSpeakerPhoneIcon();
     }
 
-    public void lambda$updateButtons$35(View view) throws InterruptedException, NumberFormatException {
+    public void lambda$updateButtons$35(View view) throws InterruptedException {
         if (VoIPService.getSharedInstance() != null) {
             AndroidUtilities.cancelRunOnUIThread(this.hideUIRunnable);
             this.hideUiRunnableWaiting = false;
@@ -2379,7 +2379,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             }
             voIpSwitchLayout.setOnBtnClickedListener(new VoIpSwitchLayout.VoIpButtonView.OnBtnClickedListener() {
                 @Override
-                public final void onClicked(View view) throws InterruptedException, NumberFormatException, IOException {
+                public final void onClicked(View view) throws InterruptedException, IOException {
                     this.f$0.lambda$setVideoAction$38(voIPService, view);
                 }
             });
@@ -2391,7 +2391,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         voIpSwitchLayout.setEnabled(false);
     }
 
-    public void lambda$setVideoAction$38(VoIPService voIPService, View view) throws InterruptedException, NumberFormatException, IOException {
+    public void lambda$setVideoAction$38(VoIPService voIPService, View view) throws InterruptedException, IOException {
         AndroidUtilities.cancelRunOnUIThread(this.hideUIRunnable);
         this.hideUiRunnableWaiting = false;
         if (Build.VERSION.SDK_INT >= 23 && this.activity.checkSelfPermission("android.permission.CAMERA") != 0) {
@@ -2502,7 +2502,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         privateVideoPreviewDialogNew.dismiss(true, true);
     }
 
-    private void toggleCameraInput() throws InterruptedException, NumberFormatException, IOException {
+    private void toggleCameraInput() throws InterruptedException, IOException {
         String string;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
@@ -2596,7 +2596,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     }
 
-    private void onRequestPermissionsResultInternal(int i, String[] strArr, int[] iArr) throws InterruptedException, NumberFormatException, IOException {
+    private void onRequestPermissionsResultInternal(int i, String[] strArr, int[] iArr) throws InterruptedException, IOException {
         if (i == 101) {
             if (VoIPService.getSharedState() == null) {
                 this.windowView.finish();

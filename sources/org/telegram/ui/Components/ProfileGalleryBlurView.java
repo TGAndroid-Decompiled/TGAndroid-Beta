@@ -198,11 +198,14 @@ public class ProfileGalleryBlurView extends View {
     }
 
     public void setSize(int i) {
+        if (i > 0) {
+            i += AndroidUtilities.dp(6.0f);
+        }
         if (this.actionSize != i) {
             invalidate();
         }
         this.actionSize = i;
-        this.size = (int) (AndroidUtilities.dp(64.0f) * 1.5f);
+        this.size = AndroidUtilities.dp(64.0f) * 2;
     }
 
     public void setView(ProfileGalleryView profileGalleryView) {

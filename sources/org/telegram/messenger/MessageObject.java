@@ -1970,7 +1970,7 @@ public class MessageObject {
         setType();
     }
 
-    private boolean allowsBigEmoji() throws NumberFormatException {
+    private boolean allowsBigEmoji() {
         TLRPC.Peer peer;
         if (!SharedConfig.allowBigEmoji) {
             return false;

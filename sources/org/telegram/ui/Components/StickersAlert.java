@@ -2812,7 +2812,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                     stickerEmojiCell.setSticker(document, null, stickersAlert.stickerSet, null, stickersAlert.showEmoji, StickersAlert.this.isEditModeEnabled);
                     stickerEmojiCell.editModeIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view) throws NumberFormatException {
+                        public final void onClick(View view) {
                             this.f$0.lambda$onBindViewHolder$0(stickerEmojiCell, view);
                         }
                     });
@@ -2833,7 +2833,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
         }
 
-        public void lambda$onBindViewHolder$0(StickerEmojiCell stickerEmojiCell, View view) throws NumberFormatException {
+        public void lambda$onBindViewHolder$0(StickerEmojiCell stickerEmojiCell, View view) {
             ContentPreviewViewer.getInstance().setDelegate(StickersAlert.this.previewDelegate);
             ContentPreviewViewer.getInstance().showMenuFor(stickerEmojiCell);
         }

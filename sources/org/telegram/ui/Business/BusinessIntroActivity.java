@@ -77,6 +77,11 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     private int shiftDp = -4;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
@@ -708,5 +713,11 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         if (i == NotificationCenter.userInfoDidLoad) {
             setValue();
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

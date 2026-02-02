@@ -828,7 +828,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
 
         @Override
-        public void onItemClick(int i) throws NumberFormatException {
+        public void onItemClick(int i) {
             if (i == -1) {
                 if (ChannelCreateActivity.this.donePressed) {
                     ChannelCreateActivity.this.showDoneCancelDialog();

@@ -104,7 +104,7 @@ public class PostsSearchContainer extends FrameLayout {
         this.listView = universalRecyclerView;
         universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) throws NumberFormatException {
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 BaseFragment baseFragment2;
                 if (!(TextUtils.isEmpty(PostsSearchContainer.this.lastQuery) ? PostsSearchContainer.this.newsMessages : PostsSearchContainer.this.messages).isEmpty() && (!PostsSearchContainer.this.listView.canScrollVertically(1) || PostsSearchContainer.this.isLoadingVisible())) {
                     PostsSearchContainer.this.load(false);
@@ -191,7 +191,7 @@ public class PostsSearchContainer extends FrameLayout {
         return false;
     }
 
-    public void load(final boolean z) throws NumberFormatException {
+    public void load(final boolean z) {
         long j;
         TLRPC.SearchPostsFlood searchPostsFlood;
         if (this.loading) {
@@ -303,7 +303,7 @@ public class PostsSearchContainer extends FrameLayout {
             if (!arrayList.isEmpty() && (!z ? !this.endReached : !this.newsMessagesEndReached)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$load$0(z, arrayList);
                     }
                 });
@@ -349,7 +349,7 @@ public class PostsSearchContainer extends FrameLayout {
         }
     }
 
-    public void lambda$load$0(boolean z, ArrayList arrayList) throws NumberFormatException {
+    public void lambda$load$0(boolean z, ArrayList arrayList) {
         if (z) {
             arrayList = this.newsMessages;
         }
@@ -366,13 +366,13 @@ public class PostsSearchContainer extends FrameLayout {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         new StarsIntroActivity.StarsNeededSheet(activity, (PhotoViewer.getInstance().isVisible() || (safeLastFragment != null && safeLastFragment.hasShownSheet())) ? new DarkThemeResourceProvider() : safeLastFragment != null ? safeLastFragment.getResourceProvider() : null, j, 15, "", new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$load$1();
             }
         }, 0L).show();
     }
 
-    public void lambda$load$1() throws NumberFormatException {
+    public void lambda$load$1() {
         load(true);
     }
 
@@ -434,13 +434,13 @@ public class PostsSearchContainer extends FrameLayout {
     public void lambda$loadFlood$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$loadFlood$5(tLObject);
             }
         });
     }
 
-    public void lambda$loadFlood$5(TLObject tLObject) throws NumberFormatException {
+    public void lambda$loadFlood$5(TLObject tLObject) {
         this.floodLoading = false;
         if (tLObject instanceof TLRPC.SearchPostsFlood) {
             TLRPC.SearchPostsFlood searchPostsFlood = (TLRPC.SearchPostsFlood) tLObject;
@@ -590,7 +590,7 @@ public class PostsSearchContainer extends FrameLayout {
             this.emptyButton.subText.setHacks(false, true, true);
             this.emptyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws NumberFormatException {
+                public final void onClick(View view) {
                     this.f$0.lambda$updateEmptyView$8(view);
                 }
             });
@@ -630,7 +630,7 @@ public class PostsSearchContainer extends FrameLayout {
             this.emptyButton.setSubText(null, true);
             this.emptyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws NumberFormatException {
+                public final void onClick(View view) {
                     this.f$0.lambda$updateEmptyView$9(view);
                 }
             });
@@ -670,12 +670,12 @@ public class PostsSearchContainer extends FrameLayout {
         this.fragment.presentFragment(new PremiumPreviewFragment("search"));
     }
 
-    public void lambda$updateEmptyView$8(View view) throws NumberFormatException {
+    public void lambda$updateEmptyView$8(View view) {
         this.emptyButton.setLoading(true);
         load(true);
     }
 
-    public void lambda$updateEmptyView$9(View view) throws NumberFormatException {
+    public void lambda$updateEmptyView$9(View view) {
         this.emptyButton.setLoading(true);
         load(false);
     }

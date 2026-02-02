@@ -48,6 +48,11 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
     public ArrayList[] value = {new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList(), new ArrayList()};
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -628,5 +633,11 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         } else {
             this.listView.adapter.update(true);
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

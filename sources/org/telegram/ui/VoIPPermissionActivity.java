@@ -40,7 +40,7 @@ public class VoIPPermissionActivity extends Activity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws InterruptedException, NumberFormatException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws InterruptedException {
         if (i == 101 || i == 102) {
             boolean z = false;
             int i2 = 0;

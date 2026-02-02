@@ -703,7 +703,7 @@ public class FactCheckController {
         if (tLObject instanceof TLRPC.Updates) {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     this.f$0.lambda$applyFactCheck$14(tLObject);
                 }
             });
@@ -718,7 +718,7 @@ public class FactCheckController {
         alertDialog.dismiss();
     }
 
-    public void lambda$applyFactCheck$14(TLObject tLObject) throws InterruptedException {
+    public void lambda$applyFactCheck$14(TLObject tLObject) {
         MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.Updates) tLObject, false);
     }
 }

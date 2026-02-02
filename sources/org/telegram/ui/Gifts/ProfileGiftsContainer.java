@@ -224,7 +224,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
             }, new Utilities.Callback5() {
                 @Override
-                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws NumberFormatException {
+                public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                     this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, new Utilities.Callback5Return() {
@@ -734,7 +734,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
         }
 
-        public void onItemClick(UItem uItem, View view, int i, float f, float f2) throws NumberFormatException {
+        public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
             if (this.list == null) {
                 return;
             }
@@ -930,7 +930,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     boolean zIsWorn = StarGiftSheet.isWorn(this.currentAccount, tL_starGiftUnique);
                     itemOptionsMakeOptions.add(zIsWorn ? R.drawable.menu_takeoff : R.drawable.menu_wear, LocaleController.getString(zIsWorn ? R.string.Gift2Unwear : R.string.Gift2Wear), new Runnable() {
                         @Override
-                        public final void run() throws NumberFormatException {
+                        public final void run() {
                             this.f$0.lambda$onItemLongPress$16(savedStarGift);
                         }
                     });
@@ -1089,7 +1089,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             setReordering(true);
         }
 
-        public void lambda$onItemLongPress$16(TL_stars.SavedStarGift savedStarGift) throws NumberFormatException {
+        public void lambda$onItemLongPress$16(TL_stars.SavedStarGift savedStarGift) {
             new StarGiftSheet(getContext(), this.currentAccount, this.parent.dialogId, this.resourcesProvider) {
                 @Override
                 public BulletinFactory getBulletinFactory() {

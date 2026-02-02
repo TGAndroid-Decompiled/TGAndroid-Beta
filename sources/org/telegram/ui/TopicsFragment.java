@@ -435,7 +435,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
-    public View createView(Context context) throws NumberFormatException {
+    public View createView(Context context) throws InterruptedException {
         DialogsActivity dialogsActivity = this.parentDialogsActivity;
         int i = 0;
         this.additionNavigationBarHeight = (dialogsActivity == null || !dialogsActivity.hasMainTabs) ? 0 : AndroidUtilities.dp(72.0f);
@@ -582,7 +582,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass2(context));
         this.actionBar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createView$0(view);
             }
         });
@@ -652,7 +652,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (!this.openedForSelect) {
             this.avatarContainer.getAvatarImageView().setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) throws NumberFormatException {
+                public void onClick(View view) {
                     TopicsFragment.this.openProfile(true);
                 }
             });
@@ -878,7 +878,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.bottomOverlayContainer.addView(this.closeReportSpam, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 6.0f, 2.0f, 0.0f));
         this.closeReportSpam.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws NumberFormatException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createView$6(view);
             }
         });
@@ -1287,7 +1287,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$0(View view) throws NumberFormatException {
+    public void lambda$createView$0(View view) {
         if (this.searching) {
             return;
         }
@@ -1434,7 +1434,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
     }
 
-    public boolean lambda$createView$4(View view, int i, float f, float f2) throws NumberFormatException {
+    public boolean lambda$createView$4(View view, int i, float f, float f2) {
         if (this.openedForSelect || getParentLayout() == null || getParentLayout().isInPreviewMode()) {
             return false;
         }
@@ -1530,21 +1530,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onClick(View view) throws NumberFormatException {
+        public void onClick(View view) {
             if (TopicsFragment.this.bottomButtonType != 1) {
                 TopicsFragment.this.joinToGroup();
             } else {
                 TopicsFragment topicsFragment = TopicsFragment.this;
                 AlertsCreator.showBlockReportSpamAlert(topicsFragment, -topicsFragment.chatId, null, topicsFragment.getCurrentChat(), null, false, TopicsFragment.this.chatFull, new MessagesStorage.IntCallback() {
                     @Override
-                    public final void run(int i) throws NumberFormatException {
+                    public final void run(int i) {
                         this.f$0.lambda$onClick$0(i);
                     }
                 }, TopicsFragment.this.getResourceProvider());
             }
         }
 
-        public void lambda$onClick$0(int i) throws NumberFormatException {
+        public void lambda$onClick$0(int i) {
             if (i == 0) {
                 TopicsFragment.this.updateChatInfo();
             } else {
@@ -1553,7 +1553,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void lambda$createView$6(View view) throws NumberFormatException {
+    public void lambda$createView$6(View view) {
         getMessagesController().hidePeerSettingsBar(-this.chatId, null, getCurrentChat());
         updateChatInfo();
     }
@@ -1613,7 +1613,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.searchContainer.setBackgroundColor(getThemedColor(i));
     }
 
-    public void openProfile(boolean z) throws NumberFormatException {
+    public void openProfile(boolean z) {
         TLRPC.Chat currentChat;
         TLRPC.ChatPhoto chatPhoto;
         if (z && (currentChat = getCurrentChat()) != null && ((chatPhoto = currentChat.photo) == null || (chatPhoto instanceof TLRPC.TL_chatPhotoEmpty))) {
@@ -2013,7 +2013,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         runnable.run();
     }
 
-    public boolean showChatPreview(DialogCell dialogCell) throws NumberFormatException {
+    public boolean showChatPreview(DialogCell dialogCell) {
         try {
             dialogCell.performHapticFeedback(0);
         } catch (Exception unused) {
@@ -2112,7 +2112,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void toggleSound() throws NumberFormatException {
+        public void toggleSound() {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) TopicsFragment.this).currentAccount);
             boolean z = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(-TopicsFragment.this.chatId, this.val$topic.id), true);
             boolean z2 = !z;
@@ -2329,10 +2329,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void joinToGroup() throws NumberFormatException {
+    public void joinToGroup() {
         getMessagesController().addUserToChat(this.chatId, getUserConfig().getCurrentUser(), 0, null, this, false, new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$joinToGroup$21();
             }
         }, new MessagesController.ErrorDelegate() {
@@ -2345,12 +2345,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         updateChatInfo();
     }
 
-    public void lambda$joinToGroup$21() throws NumberFormatException {
+    public void lambda$joinToGroup$21() {
         this.joinRequested = false;
         updateChatInfo(true);
     }
 
-    public boolean lambda$joinToGroup$22(TLRPC.TL_error tL_error) throws NumberFormatException {
+    public boolean lambda$joinToGroup$22(TLRPC.TL_error tL_error) {
         if (tL_error == null || !"INVITE_REQUEST_SENT".equals(tL_error.text)) {
             return true;
         }
@@ -2517,11 +2517,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
     }
 
-    public void updateChatInfo() throws NumberFormatException {
+    public void updateChatInfo() {
         updateChatInfo(false);
     }
 
-    private void updateChatInfo(boolean r15) throws java.lang.NumberFormatException {
+    private void updateChatInfo(boolean r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.updateChatInfo(boolean):void");
     }
 
@@ -2675,7 +2675,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         TLRPC.ChatFull chatFull;
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull2 = (TLRPC.ChatFull) objArr[0];
@@ -3293,7 +3293,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.searchContainer = new FrameLayout(context);
             this.chatPreviewDelegate = new SearchViewPager.ChatPreviewDelegate() {
                 @Override
-                public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) throws NumberFormatException {
+                public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) {
                     TopicsFragment.this.showChatPreview(dialogCell);
                 }
 

@@ -113,7 +113,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.SendGiftSheet.<init>(android.content.Context, int, org.telegram.tgnet.tl.TL_stars$StarGift, org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier, long, java.lang.Runnable, boolean, boolean):void");
     }
 
-    public void lambda$new$0(long j, Context context, Runnable runnable, TL_stars.StarGift starGift, View view) throws NumberFormatException {
+    public void lambda$new$0(long j, Context context, Runnable runnable, TL_stars.StarGift starGift, View view) {
         if (this.button.isLoading()) {
             return;
         }
@@ -371,7 +371,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this.recyclerListView.invalidateItemDecorations();
     }
 
-    private void buyPremiumTier() throws NumberFormatException {
+    private void buyPremiumTier() {
         Object starsOption;
         final TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
         if (user == null) {

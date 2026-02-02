@@ -531,7 +531,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public static void access$21700(DialogsActivity dialogsActivity) throws NumberFormatException {
+    public static void access$21700(DialogsActivity dialogsActivity) {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -1499,7 +1499,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws NumberFormatException {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             if (this.fastScrollAnimationRunning || DialogsActivity.this.waitingForScrollFinished || DialogsActivity.this.rightFragmentTransitionInProgress) {
                 return false;
             }
@@ -1822,7 +1822,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder == null) {
                 DialogsActivity.this.slidingView = null;
                 return;
@@ -1843,7 +1843,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 final int itemCount = this.parentPage.dialogsAdapter.getItemCount();
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$onSwiped$3(dialog, itemCount, adapterPosition);
                     }
                 };
@@ -1865,7 +1865,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.performSelectedDialogsAction(arrayList, 101, true, false);
         }
 
-        public void lambda$onSwiped$3(final TLRPC.Dialog dialog, int i, int i2) throws NumberFormatException {
+        public void lambda$onSwiped$3(final TLRPC.Dialog dialog, int i, int i2) {
             if (DialogsActivity.this.frozenDialogsList == null) {
                 return;
             }
@@ -2629,7 +2629,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r39) throws java.lang.NumberFormatException {
+    public android.view.View createView(final android.content.Context r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -2907,7 +2907,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) throws NumberFormatException {
+        public void onItemClick(int i) {
             if ((i == 201 || i == 200 || i == 202 || i == 203) && DialogsActivity.this.searchViewPager != null) {
                 DialogsActivity.this.searchViewPager.onActionBarItemClick(i);
                 return;
@@ -3232,7 +3232,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -3314,7 +3314,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$17(View view) {
+    public void lambda$createView$17(View view) throws Resources.NotFoundException {
         openStoriesRecorder();
     }
 
@@ -3575,7 +3575,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             final DialogsActivity dialogsActivity = DialogsActivity.this;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     DialogsActivity.access$21700(dialogsActivity);
                 }
             }, 100L);
@@ -4036,7 +4036,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    private void resetCacheHintVisible() throws NumberFormatException {
+    private void resetCacheHintVisible() {
         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
         long j = globalMainSettings.getLong("cache_hint_period", 604800000L);
         if (j <= 604800000) {
@@ -4084,7 +4084,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
 
                 @Override
-                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) throws NumberFormatException {
+                protected void onEmojiSelected(View view, Long l, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
                     TLRPC.TL_emojiStatus tL_emojiStatus;
                     TLRPC.EmojiStatus tL_emojiStatusEmpty;
                     if (l == null) {
@@ -4384,13 +4384,13 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new CacheControlActivity());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$updateDialogsHint$56();
             }
         }, 250L);
     }
 
-    public void lambda$updateDialogsHint$56() throws NumberFormatException {
+    public void lambda$updateDialogsHint$56() {
         resetCacheHintVisible();
         lambda$updateDialogsHint$38();
     }
@@ -4958,7 +4958,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(true);
     }
 
-    public boolean lambda$createActionMode$75(View view) throws NumberFormatException {
+    public boolean lambda$createActionMode$75(View view) {
         performSelectedDialogsAction(this.selectedDialogs, 104, true, true);
         return true;
     }
@@ -5266,7 +5266,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onResume() throws NumberFormatException {
+    public void onResume() {
         ViewPage viewPage;
         int i;
         View view;
@@ -5318,7 +5318,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 final boolean z6 = z2;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$onResume$79(z5, z6, z3, parentActivity);
                     }
                 }, (this.afterSignup && (z2 || z4)) ? 4000L : 0L);
@@ -5450,7 +5450,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$onResume$79(boolean z, boolean z2, boolean z3, final Activity activity) throws NumberFormatException {
+    public void lambda$onResume$79(boolean z, boolean z2, boolean z3, final Activity activity) {
         if (getParentActivity() == null) {
             return;
         }
@@ -5469,7 +5469,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (z2 && this.askAboutContacts && getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
                 AlertDialog alertDialogCreate = AlertsCreator.createContactsPermissionDialog(activity, new MessagesStorage.IntCallback() {
                     @Override
-                    public final void run(int i) throws NumberFormatException {
+                    public final void run(int i) {
                         this.f$0.lambda$onResume$78(i);
                     }
                 }).create();
@@ -5512,7 +5512,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$onResume$78(int i) throws NumberFormatException {
+    public void lambda$onResume$78(int i) {
         this.askAboutContacts = i != 0;
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", this.askAboutContacts).apply();
         askForPermissons(false);
@@ -5731,7 +5731,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onBecomeFullyVisible() throws NumberFormatException {
+    public void onBecomeFullyVisible() {
         HintView2 hintView2;
         super.onBecomeFullyVisible();
         if (isArchive()) {
@@ -6254,7 +6254,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6314,7 +6314,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, NumberFormatException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -6611,7 +6611,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$99(ArrayList arrayList, View view) throws NumberFormatException {
+    public void lambda$showChatPreview$99(ArrayList arrayList, View view) {
         performSelectedDialogsAction(arrayList, 102, false, false);
         finishPreviewFragment();
     }
@@ -6962,11 +6962,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return dialog.pinned;
     }
 
-    public void performSelectedDialogsAction(ArrayList arrayList, int i, boolean z, boolean z2) throws NumberFormatException {
+    public void performSelectedDialogsAction(ArrayList arrayList, int i, boolean z, boolean z2) {
         performSelectedDialogsAction(arrayList, i, z, z2, null);
     }
 
-    private void performSelectedDialogsAction(final java.util.ArrayList r31, final int r32, boolean r33, boolean r34, java.util.HashSet r35) throws java.lang.NumberFormatException {
+    private void performSelectedDialogsAction(final java.util.ArrayList r31, final int r32, boolean r33, boolean r34, java.util.HashSet r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.performSelectedDialogsAction(java.util.ArrayList, int, boolean, boolean, java.util.HashSet):void");
     }
 
@@ -6983,7 +6983,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (undoView != null) {
             undoView.showWithAction(arrayList2, i == 102 ? 27 : 26, (Object) null, (Object) null, new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$performSelectedDialogsAction$103(i, arrayList2, z, hashSet);
                 }
             }, (Runnable) null);
@@ -6991,7 +6991,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(i == 103);
     }
 
-    public void lambda$performSelectedDialogsAction$103(int i, ArrayList arrayList, boolean z, HashSet hashSet) throws NumberFormatException {
+    public void lambda$performSelectedDialogsAction$103(int i, ArrayList arrayList, boolean z, HashSet hashSet) {
         if (i == 102) {
             getMessagesController().setDialogsInTransaction(true);
             performSelectedDialogsAction(arrayList, i, false, false, z ? hashSet : null);
@@ -7794,7 +7794,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.doneItemAnimator.start();
     }
 
-    public void updateSelectedCount() throws NumberFormatException {
+    public void updateSelectedCount() {
         if (this.commentView != null) {
             this.animatorForwardButtonVisible.setValue(!this.selectedDialogs.isEmpty(), true);
             if (this.selectedDialogs.isEmpty()) {
@@ -7840,7 +7840,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.writeButton.setResourceId(zShouldShowNextButton ? R.drawable.msg_arrow_forward : R.drawable.send_plane_24);
     }
 
-    private void askForPermissons(boolean z) throws NumberFormatException {
+    private void askForPermissons(boolean z) {
         final Activity parentActivity = getParentActivity();
         if (parentActivity == null) {
             return;
@@ -7862,7 +7862,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (z) {
                 AlertDialog alertDialogCreate = AlertsCreator.createContactsPermissionDialog(parentActivity, new MessagesStorage.IntCallback() {
                     @Override
-                    public final void run(int i) throws NumberFormatException {
+                    public final void run(int i) {
                         this.f$0.lambda$askForPermissons$114(i);
                     }
                 }).create();
@@ -7914,14 +7914,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$askForPermissons$114(int i) throws NumberFormatException {
+    public void lambda$askForPermissons$114(int i) {
         this.askAboutContacts = i != 0;
         MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", this.askAboutContacts).commit();
         askForPermissons(false);
     }
 
     @Override
-    protected void onDialogDismiss(Dialog dialog) throws NumberFormatException {
+    protected void onDialogDismiss(Dialog dialog) {
         AlertDialog alertDialog;
         super.onDialogDismiss(dialog);
         if (this.folderId != 0 || (alertDialog = this.permissionDialog) == null || dialog != alertDialog || getParentActivity() == null) {
@@ -7940,7 +7940,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) throws NumberFormatException {
+    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
         FilesMigrationService.FilesMigrationBottomSheet filesMigrationBottomSheet;
         if (i != 1) {
             if (i == 4) {
@@ -8047,7 +8047,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, final Object... objArr) throws NumberFormatException {
+    public void didReceivedNotification(int i, int i2, final Object... objArr) {
         MessagesController.DialogFilter dialogFilter;
         boolean zBooleanValue;
         final boolean zBooleanValue2;
@@ -8295,7 +8295,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (i == NotificationCenter.needDeleteDialog) {
-                if (this.fragmentView == null || this.isPaused) {
+                if (this.fragmentView == null) {
                     return;
                 }
                 final long jLongValue3 = ((Long) objArr[0]).longValue();
@@ -8599,7 +8599,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         onSuggestionDismiss();
     }
 
-    private void showFiltersHint() throws NumberFormatException {
+    private void showFiltersHint() {
         if (this.askingForPermissions || !getMessagesController().dialogFiltersLoaded || !getMessagesController().showFiltersTooltip || this.filterTabsView == null || !getMessagesController().getDialogFilters().isEmpty() || this.isPaused || !getUserConfig().filtersLoaded || this.inPreviewMode) {
             return;
         }
@@ -9760,7 +9760,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException {
                 this.f$0.lambda$createSearchViewPager$148(view, i2, f, f2);
             }
         });
@@ -9830,7 +9830,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void didPressedOnSubDialog(long j) throws NumberFormatException {
+        public void didPressedOnSubDialog(long j) {
             if (DialogsActivity.this.onlySelect) {
                 if (DialogsActivity.this.validateSlowModeDialog(j)) {
                     if (!DialogsActivity.this.selectedDialogs.isEmpty()) {
@@ -10049,7 +10049,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$148(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createSearchViewPager$148(View view, int i, float f, float f2) throws Resources.NotFoundException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -10348,7 +10348,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() {
+    private void openStoriesRecorder() throws Resources.NotFoundException {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {

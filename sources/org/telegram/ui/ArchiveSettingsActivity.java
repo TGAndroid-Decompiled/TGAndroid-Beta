@@ -44,6 +44,11 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -234,15 +239,10 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
                 if (TextUtils.isEmpty(itemInner.text)) {
                     textInfoPrivacyCell.setFixedSize(12);
                     textInfoPrivacyCell.setText(null);
+                    return;
                 } else {
                     textInfoPrivacyCell.setFixedSize(0);
                     textInfoPrivacyCell.setText(itemInner.text);
-                }
-                if (z2) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ArchiveSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                    return;
-                } else {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(ArchiveSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     return;
                 }
             }
@@ -341,5 +341,11 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
         if (i == NotificationCenter.dialogFiltersUpdated) {
             updateItems(true);
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

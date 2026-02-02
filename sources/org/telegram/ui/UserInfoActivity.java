@@ -1027,7 +1027,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         }
 
         @Override
-        protected void onClick(UItem uItem, View view, int i, float f, float f2) throws NumberFormatException {
+        protected void onClick(UItem uItem, View view, int i, float f, float f2) {
             int i2 = uItem.id;
             if (i2 == 1) {
                 this.whenSelected.run(null);

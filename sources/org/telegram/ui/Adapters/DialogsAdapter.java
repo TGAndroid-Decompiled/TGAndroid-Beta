@@ -511,7 +511,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
@@ -597,7 +597,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     @Override
-    public void openStory(DialogCell dialogCell, Runnable runnable) throws NumberFormatException {
+    public void openStory(DialogCell dialogCell, Runnable runnable) {
         MessagesController.getInstance(this.currentAccount);
         if (MessagesController.getInstance(this.currentAccount).getStoriesController().hasStories(dialogCell.getDialogId())) {
             this.parentFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
@@ -668,7 +668,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         ArrayList preloadDialogsPool = new ArrayList();
         Runnable clearNetworkRequestCount = new Runnable() {
             @Override
-            public final void run() throws NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$new$0();
             }
         };
@@ -680,12 +680,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         public void updateList() {
         }
 
-        public void lambda$new$0() throws NumberFormatException {
+        public void lambda$new$0() {
             this.networkRequestCount = 0;
             start();
         }
 
-        public void add(long j) throws NumberFormatException {
+        public void add(long j) {
             if (isReady(j) || this.preloadedErrorMap.contains(Long.valueOf(j)) || this.loadingDialogs.contains(Long.valueOf(j)) || this.preloadDialogsPool.contains(Long.valueOf(j))) {
                 return;
             }
@@ -693,7 +693,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             start();
         }
 
-        public void start() throws NumberFormatException {
+        public void start() {
             if (!preloadIsAvilable() || !this.resumed || this.preloadDialogsPool.isEmpty() || this.currentRequestCount >= 4 || this.networkRequestCount > 6) {
                 return;
             }
@@ -716,13 +716,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 final long j = this.val$dialog_id;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$onMessagesLoaded$0(z, j);
                     }
                 });
             }
 
-            public void lambda$onMessagesLoaded$0(boolean z, long j) throws NumberFormatException {
+            public void lambda$onMessagesLoaded$0(boolean z, long j) {
                 if (!z) {
                     DialogsPreloader dialogsPreloader = DialogsPreloader.this;
                     int i = dialogsPreloader.networkRequestCount + 1;
@@ -745,13 +745,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 final long j = this.val$dialog_id;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws NumberFormatException {
+                    public final void run() {
                         this.f$0.lambda$onError$1(j);
                     }
                 });
             }
 
-            public void lambda$onError$1(long j) throws NumberFormatException {
+            public void lambda$onError$1(long j) {
                 if (DialogsPreloader.this.loadingDialogs.remove(Long.valueOf(j))) {
                     DialogsPreloader.this.preloadedErrorMap.add(Long.valueOf(j));
                     r3.currentRequestCount--;
@@ -779,7 +779,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             updateList();
         }
 
-        public void resume() throws NumberFormatException {
+        public void resume() {
             this.resumed = true;
             start();
         }
@@ -818,7 +818,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         }
     }
 
-    private void updateItemList() throws java.lang.NumberFormatException {
+    private void updateItemList() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.updateItemList():void");
     }
 

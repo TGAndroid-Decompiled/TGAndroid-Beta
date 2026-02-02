@@ -76,6 +76,11 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     public void didReceivedNotification(int i, int i2, Object... objArr) {
     }
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public AffiliateProgramFragment(long j) {
         this.bot_id = j;
         setWhiteBackground(true);
@@ -880,5 +885,11 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     public static CharSequence percents(int i) {
         float f = i / 10.0f;
         return ((float) ((int) f)) == f ? String.format(Locale.US, "%d%%", Integer.valueOf(i / 10)) : String.format(Locale.US, "%.1f%%", Float.valueOf(f));
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i4);
+        this.listView.setClipToPadding(false);
     }
 }

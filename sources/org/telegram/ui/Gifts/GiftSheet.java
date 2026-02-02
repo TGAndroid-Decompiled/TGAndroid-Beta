@@ -313,7 +313,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     }.set(savedStarGift, (StarsController.IGiftsList) null);
                     starGiftSheet.openTransferAlert(j, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj2) throws NumberFormatException {
+                        public final void run(Object obj2) {
                             this.f$0.lambda$new$10(starGiftSheet, j, runnable, (Browser.Progress) obj2);
                         }
                     });
@@ -430,7 +430,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         lambda$new$0();
     }
 
-    public void lambda$new$10(final StarGiftSheet starGiftSheet, long j, final Runnable runnable, final Browser.Progress progress) throws NumberFormatException {
+    public void lambda$new$10(final StarGiftSheet starGiftSheet, long j, final Runnable runnable, final Browser.Progress progress) {
         progress.init();
         starGiftSheet.doTransfer(j, new Utilities.Callback() {
             @Override

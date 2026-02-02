@@ -715,7 +715,7 @@ public class PollVotesAlert extends BottomSheet {
         this.listView.setGlowColor(Theme.getColor(Theme.key_dialogScrollGlow));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i11) throws NumberFormatException {
+            public final void onItemClick(View view, int i11) {
                 this.f$0.lambda$new$4(chatActivity, view, i11);
             }
         });
@@ -883,7 +883,7 @@ public class PollVotesAlert extends BottomSheet {
         lambda$new$0();
     }
 
-    public void lambda$new$4(final ChatActivity chatActivity, View view, int i) throws NumberFormatException {
+    public void lambda$new$4(final ChatActivity chatActivity, View view, int i) {
         if (chatActivity == null || chatActivity.getParentActivity() == null) {
             return;
         }

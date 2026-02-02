@@ -5870,13 +5870,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
         }
 
-        public void lambda$onItemClick$7(AlertDialog alertDialog, int i) throws NumberFormatException {
+        public void lambda$onItemClick$7(AlertDialog alertDialog, int i) {
             ArrayList arrayList = new ArrayList(1);
             arrayList.add(PhotoViewer.this.currentMessageObject);
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public void lambda$onItemClick$8(ArrayList arrayList, AlertDialog alertDialog, int i) throws NumberFormatException {
+        public void lambda$onItemClick$8(ArrayList arrayList, AlertDialog alertDialog, int i) {
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
@@ -7791,7 +7791,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return captionView != null && (captionView.keyboardNotifier.keyboardVisible() || captionView.editText.isPopupShowing());
     }
 
-    public void showShareAlert(ArrayList arrayList) throws NumberFormatException {
+    public void showShareAlert(ArrayList arrayList) {
         boolean z;
         VideoPlayer videoPlayer;
         MessageObject messageObject;
@@ -15861,7 +15861,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void run() throws NumberFormatException {
+        public void run() {
             if (PhotoViewer.this.currentLoadingVideoRunnable != this) {
                 return;
             }
@@ -15937,7 +15937,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public int selectCompression() throws NumberFormatException {
+    public int selectCompression() {
         if (this.originalSize > 1048576000) {
             return this.compressionsCount - 1;
         }
@@ -16583,7 +16583,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void lambda$openAdsMenu$153(int i, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public void lambda$openAdsMenu$153(int i, Theme.ResourcesProvider resourcesProvider) {
         if (UserConfig.getInstance(i).isPremium()) {
             BulletinFactory.of(this.containerView, resourcesProvider).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             MessagesController.getInstance(i).disableAds(true);
@@ -16603,7 +16603,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         RevenueSharingAdsInfoBottomSheet.showAlert(this.activityContext, this.parentFragment, false, resourcesProvider);
     }
 
-    public void lambda$openAdsMenu$155(int i, Theme.ResourcesProvider resourcesProvider) throws NumberFormatException {
+    public void lambda$openAdsMenu$155(int i, Theme.ResourcesProvider resourcesProvider) {
         if (UserConfig.getInstance(i).isPremium()) {
             BulletinFactory.of(this.containerView, resourcesProvider).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             MessagesController.getInstance(i).disableAds(true);

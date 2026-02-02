@@ -1027,7 +1027,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             private boolean shownToast = false;
 
             @Override
-            public void onBecomeFullyVisible() throws NumberFormatException {
+            public void onBecomeFullyVisible() {
                 super.onBecomeFullyVisible();
                 if (this.shownToast) {
                     return;

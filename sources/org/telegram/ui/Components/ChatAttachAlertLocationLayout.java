@@ -527,7 +527,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.mapViewClip.addView(this.searchAreaButton, LayoutHelper.createFrame(-2, 40.0f, 49, 80.0f, 12.0f, 80.0f, 0.0f));
         this.searchAreaButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws NumberFormatException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$new$0(view2);
             }
         });
@@ -577,7 +577,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.mapViewClip.addView(this.locationButton, LayoutHelper.createFrame(40, 40.0f, 85, 0.0f, 0.0f, 12.0f, 12.0f));
         this.locationButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws NumberFormatException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$new$3(view2);
             }
         });
@@ -783,7 +783,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         updateEmptyView();
     }
 
-    public void lambda$new$0(View view) throws NumberFormatException {
+    public void lambda$new$0(View view) {
         showSearchPlacesButton(false);
         this.adapter.searchPlacesWithQuery(null, this.userLocation, true, true);
         this.searchedForCustomLocations = true;
@@ -808,7 +808,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$new$3(View view) throws NumberFormatException {
+    public void lambda$new$3(View view) {
         Activity parentActivity;
         if (Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
             AlertsCreator.createLocationRequiredDialog(getParentActivity(), true).show();
@@ -1422,7 +1422,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         });
         this.map.setOnMyLocationChangeListener(new Consumer() {
             @Override
-            public final void accept(Object obj) throws NumberFormatException {
+            public final void accept(Object obj) {
                 this.f$0.lambda$onMapInit$24((Location) obj);
             }
         });
@@ -1506,7 +1506,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.adapter.fetchLocationAddress();
     }
 
-    public void lambda$onMapInit$24(Location location) throws NumberFormatException {
+    public void lambda$onMapInit$24(Location location) {
         int i;
         ChatAttachAlert chatAttachAlert = this.parentAlert;
         if (chatAttachAlert == null || chatAttachAlert.baseFragment == null) {
@@ -1560,7 +1560,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public void lambda$positionMarker$30(double d, double d2) throws NumberFormatException {
+    public void lambda$positionMarker$30(double d, double d2) {
         IMapsProvider.ICameraUpdate iCameraUpdateNewCameraUpdateLatLngZoom;
         if (this.map == null) {
             return;
@@ -1788,20 +1788,20 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertLocationLayout.positionMarker():void");
     }
 
-    public void lambda$positionMarker$29() throws NumberFormatException {
+    public void lambda$positionMarker$29() {
         double[] dArr = this.parentAlert.storyLocationPickerLatLong;
         lambda$positionMarker$30(dArr[0], dArr[1]);
     }
 
-    public void lambda$positionMarker$31(float[] fArr) throws NumberFormatException {
+    public void lambda$positionMarker$31(float[] fArr) {
         lambda$positionMarker$30(fArr[0], fArr[1]);
     }
 
-    public void lambda$positionMarker$32() throws NumberFormatException {
+    public void lambda$positionMarker$32() {
         lambda$positionMarker$30(0.0d, 0.0d);
     }
 
-    private void positionMarker(Location location) throws NumberFormatException {
+    private void positionMarker(Location location) {
         if (location == null) {
             return;
         }

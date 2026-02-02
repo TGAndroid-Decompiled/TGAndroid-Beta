@@ -123,7 +123,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     }
 
     @Override
-    public boolean onFragmentCreate() throws java.lang.NumberFormatException {
+    public boolean onFragmentCreate() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileNotificationsActivity.onFragmentCreate():boolean");
     }
 
@@ -150,7 +150,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         final String sharedPrefKey = NotificationsController.getSharedPrefKey(this.dialogId, this.topicId);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) throws NumberFormatException {
+            public void onItemClick(int i) {
                 if (i == -1) {
                     if (!ProfileNotificationsActivity.this.addingException && ProfileNotificationsActivity.this.notificationsEnabled) {
                         MessagesController.getNotificationsSettings(((BaseFragment) ProfileNotificationsActivity.this).currentAccount).edit().putInt("notify2_" + sharedPrefKey, 0).apply();
@@ -245,14 +245,14 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         });
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) throws NumberFormatException {
+            public final void onItemClick(View view, int i) {
                 this.f$0.lambda$createView$6(context, sharedPrefKey, view, i);
             }
         });
         return this.fragmentView;
     }
 
-    public void lambda$createView$6(Context context, final String str, View view, int i) throws NumberFormatException {
+    public void lambda$createView$6(Context context, final String str, View view, int i) {
         if (view.isEnabled()) {
             Parcelable parcelable = null;
             if (i == this.customResetRow) {
@@ -634,7 +634,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws NumberFormatException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             int i2;
             switch (viewHolder.getItemViewType()) {
                 case 0:

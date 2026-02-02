@@ -630,13 +630,13 @@ public class ChatObject {
             editgroupcalltitle.title = str;
             this.currentAccount.getConnectionsManager().sendRequest(editgroupcalltitle, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$setTitle$4(tLObject, tL_error);
                 }
             });
         }
 
-        public void lambda$setTitle$4(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$setTitle$4(TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject != null) {
                 this.currentAccount.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             }
@@ -1440,14 +1440,14 @@ public class ChatObject {
             }
             this.currentAccount.getConnectionsManager().sendRequest(togglegroupcallrecord, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$toggleRecord$13(tLObject, tL_error);
                 }
             });
             this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(this.chatId), Long.valueOf(this.call.id), Boolean.FALSE);
         }
 
-        public void lambda$toggleRecord$13(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+        public void lambda$toggleRecord$13(TLObject tLObject, TLRPC.TL_error tL_error) {
             if (tLObject != null) {
                 this.currentAccount.getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
             }
@@ -1707,7 +1707,7 @@ public class ChatObject {
         return isChannel(chat) && !isMegagroup(chat);
     }
 
-    public static boolean isDiscussionGroup(int i, long j) throws NumberFormatException {
+    public static boolean isDiscussionGroup(int i, long j) {
         MessagesController messagesController = MessagesController.getInstance(i);
         return isDiscussionGroup(messagesController.getChat(Long.valueOf(j)), messagesController.getChatFull(j));
     }

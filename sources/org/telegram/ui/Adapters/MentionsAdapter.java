@@ -557,7 +557,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return user != null ? user.username : "";
     }
 
-    public void processFoundUser(TLRPC.User user) throws NumberFormatException {
+    public void processFoundUser(TLRPC.User user) {
         ChatActivity chatActivity;
         TLRPC.Chat currentChat;
         this.contextUsernameReqid = 0;
@@ -645,7 +645,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         onLocationUnavailable();
     }
 
-    private void searchForContextBot(String str, String str2) throws NumberFormatException {
+    private void searchForContextBot(String str, String str2) {
         String str3;
         String str4;
         String str5;
@@ -732,7 +732,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
 
         @Override
-        public void run() throws NumberFormatException {
+        public void run() {
             if (MentionsAdapter.this.contextQueryRunnable != this) {
                 return;
             }
@@ -769,13 +769,13 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         public void lambda$run$1(final String str, final MessagesController messagesController, final MessagesStorage messagesStorage, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws NumberFormatException {
+                public final void run() {
                     this.f$0.lambda$run$0(str, tL_error, tLObject, messagesController, messagesStorage);
                 }
             });
         }
 
-        public void lambda$run$0(String str, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) throws NumberFormatException {
+        public void lambda$run$0(String str, TLRPC.TL_error tL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) {
             if (MentionsAdapter.this.searchingContextUsername == null || !MentionsAdapter.this.searchingContextUsername.equals(str)) {
                 return;
             }

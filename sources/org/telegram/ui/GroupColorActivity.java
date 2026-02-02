@@ -341,7 +341,7 @@ public class GroupColorActivity extends ChannelColorActivity {
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws NumberFormatException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         super.didReceivedNotification(i, i2, objArr);
         if (i == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).id == (-this.dialogId)) {
             updateProfilePreview(true);

@@ -439,7 +439,7 @@ public class DataUsage2Activity extends BaseFragment {
                 }
                 this.itemInners.addAll(arrayList);
                 if (!this.empty) {
-                    this.itemInners.add(ItemInner.asSeparator(LocaleController.getString(R.string.DataUsageSectionsInfo)));
+                    this.itemInners.add(ItemInner.asSeparator(LocaleController.getString(R.string.DataUsageSectionsInfo) + "\n"));
                 }
             }
             if (!this.empty) {

@@ -1326,7 +1326,7 @@ public abstract class StoriesUtilities {
             onLongPress();
         }
 
-        private void processOpenStory(View view) throws NumberFormatException {
+        private void processOpenStory(View view) {
             TLRPC.TL_recentStory tL_recentStory;
             TLRPC.TL_recentStory tL_recentStory2;
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -1399,7 +1399,7 @@ public abstract class StoriesUtilities {
         int reqId;
         View view;
 
-        void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) throws NumberFormatException {
+        void load(final long j, final View view, final AvatarStoryParams avatarStoryParams) {
             int i = UserConfig.selectedAccount;
             this.currentAccount = i;
             this.dialogId = j;

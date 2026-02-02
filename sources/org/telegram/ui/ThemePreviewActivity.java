@@ -333,7 +333,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         return this.themeDelegate;
     }
 
-    public void lambda$new$0() throws NoSuchFieldException, IOException, SecurityException, NumberFormatException {
+    public void lambda$new$0() throws NoSuchFieldException, IOException, SecurityException {
         this.applyColorScheduled = false;
         applyColor(this.lastPickedColor, this.lastPickedColorNum);
         this.lastPickedColorNum = -1;
@@ -460,7 +460,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.lastPickedColorNum = -1;
         this.applyColorAction = new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, IOException, SecurityException, NumberFormatException {
+            public final void run() throws NoSuchFieldException, IOException, SecurityException {
                 this.f$0.lambda$new$0();
             }
         };
@@ -580,7 +580,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.lastPickedColorNum = -1;
         this.applyColorAction = new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, IOException, SecurityException, NumberFormatException {
+            public final void run() throws NoSuchFieldException, IOException, SecurityException {
                 this.f$0.lambda$new$0();
             }
         };
@@ -709,7 +709,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     @Override
-    public android.view.View createView(android.content.Context r46) throws java.lang.NoSuchFieldException, java.lang.SecurityException, java.lang.NumberFormatException {
+    public android.view.View createView(android.content.Context r46) throws java.lang.NoSuchFieldException, java.lang.SecurityException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -738,7 +738,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws IOException, NumberFormatException {
+        public void onItemClick(int i) throws IOException {
             File file;
             Theme.ThemeAccent accent;
             String url;
@@ -984,7 +984,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.dropDownContainer.toggleSubMenu();
     }
 
-    public void lambda$createView$6(View view, int i, float f, float f2) throws NumberFormatException {
+    public void lambda$createView$6(View view, int i, float f, float f2) {
         if (view instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) view;
             if (chatMessageCell.isInsideBackground(f, f2)) {
@@ -1215,7 +1215,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             builder.setMessage(LocaleController.getString(R.string.DeleteThemeAlert));
             builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i) throws IOException, NumberFormatException {
+                public final void onClick(AlertDialog alertDialog, int i) throws IOException {
                     this.f$0.lambda$deleteTheme$0(alertDialog, i);
                 }
             });
@@ -1228,7 +1228,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             }
         }
 
-        public void lambda$deleteTheme$0(AlertDialog alertDialog, int i) throws IOException, NumberFormatException {
+        public void lambda$deleteTheme$0(AlertDialog alertDialog, int i) throws IOException {
             Theme.deleteThemeAccent(ThemePreviewActivity.this.applyingTheme, ThemePreviewActivity.this.accent, true);
             Theme.applyPreviousTheme();
             Theme.refreshThemeColors();
@@ -1418,11 +1418,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    public void selectColorType(int i) throws NumberFormatException {
+    public void selectColorType(int i) {
         selectColorType(i, true);
     }
 
-    private void selectColorType(int i, boolean z) throws NumberFormatException {
+    private void selectColorType(int i, boolean z) {
         int i2;
         if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent == null) {
             return;
@@ -1434,13 +1434,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 builder.setMessage(LocaleController.getString(R.string.ChangeColorToColor));
                 builder.setPositiveButton(LocaleController.getString(R.string.Reset), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException, NumberFormatException {
+                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException {
                         this.f$0.lambda$selectColorType$22(alertDialog, i3);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Continue), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException, NumberFormatException {
+                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException {
                         this.f$0.lambda$selectColorType$23(alertDialog, i3);
                     }
                 });
@@ -1448,7 +1448,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 builder.setMessage(LocaleController.getString(R.string.ChangeWallpaperToColor));
                 builder.setPositiveButton(LocaleController.getString(R.string.Change), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException, NumberFormatException {
+                    public final void onClick(AlertDialog alertDialog, int i3) throws IOException {
                         this.f$0.lambda$selectColorType$24(alertDialog, i3);
                     }
                 });
@@ -1582,7 +1582,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         this.colorPicker.setMaxBrightness(1.0f);
     }
 
-    public void lambda$selectColorType$22(AlertDialog alertDialog, int i) throws IOException, NumberFormatException {
+    public void lambda$selectColorType$22(AlertDialog alertDialog, int i) throws IOException {
         Theme.ThemeAccent themeAccent = this.accent;
         if (themeAccent.backgroundOverrideColor == 4294967296L) {
             themeAccent.backgroundOverrideColor = 0L;
@@ -1597,7 +1597,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         selectColorType(2, false);
     }
 
-    public void lambda$selectColorType$23(AlertDialog alertDialog, int i) throws IOException, NumberFormatException {
+    public void lambda$selectColorType$23(AlertDialog alertDialog, int i) throws IOException {
         if (Theme.isCustomWallpaperColor()) {
             Theme.ThemeAccent themeAccent = this.accent;
             Theme.OverrideWallpaperInfo overrideWallpaperInfo = themeAccent.overrideWallpaper;
@@ -1660,7 +1660,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         selectColorType(2, false);
     }
 
-    public void lambda$selectColorType$24(AlertDialog alertDialog, int i) throws IOException, NumberFormatException {
+    public void lambda$selectColorType$24(AlertDialog alertDialog, int i) throws IOException {
         Theme.ThemeAccent themeAccent = this.accent;
         if (themeAccent.backgroundOverrideColor == 4294967296L) {
             themeAccent.backgroundOverrideColor = 0L;
@@ -2541,7 +2541,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    private void applyColor(int i, int i2) throws NoSuchFieldException, IOException, SecurityException, NumberFormatException {
+    private void applyColor(int i, int i2) throws NoSuchFieldException, IOException, SecurityException {
         int i3 = this.colorType;
         if (i3 == 1) {
             if (i2 == 0) {
@@ -2738,7 +2738,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    private void showAnimationHint() throws NumberFormatException {
+    private void showAnimationHint() {
         if (this.page2 == null || this.messagesCheckBoxView == null || this.accent.myMessagesGradientAccentColor2 == 0) {
             return;
         }

@@ -265,7 +265,7 @@ public class DownloadController extends BaseController implements NotificationCe
         return downloadController;
     }
 
-    public DownloadController(int i) throws NumberFormatException {
+    public DownloadController(int i) {
         Object obj;
         super(i);
         this.lastCheckMask = 0;

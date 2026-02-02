@@ -276,7 +276,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             }
 
             @Override
-            public void afterTextChanged(Editable editable) throws NumberFormatException {
+            public void afterTextChanged(Editable editable) {
                 String str2;
                 boolean z;
                 CountrySelectActivity.Country country2;

@@ -528,7 +528,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public void onPause() throws NumberFormatException {
+    public void onPause() {
         super.onPause();
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter != null) {
@@ -1016,7 +1016,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public boolean onBackPressed() throws NumberFormatException {
+    public boolean onBackPressed() {
         if (this.emojiViewVisible) {
             hideEmojiPopup(true);
             return true;
@@ -1146,7 +1146,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public void onSizeChanged(int i, boolean z) throws NumberFormatException {
+    public void onSizeChanged(int i, boolean z) {
         boolean z2;
         if (this.isPremium) {
             if (i > AndroidUtilities.dp(50.0f) && this.keyboardVisible && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
@@ -1211,7 +1211,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return this.waitingForKeyboardOpen;
     }
 
-    public void onEmojiClicked(PollEditTextCell pollEditTextCell) throws NumberFormatException {
+    public void onEmojiClicked(PollEditTextCell pollEditTextCell) {
         this.currentCell = pollEditTextCell;
         if (this.emojiViewVisible) {
             collapseSearchEmojiView();
@@ -1234,7 +1234,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    private void openKeyboardInternal() throws NumberFormatException {
+    private void openKeyboardInternal() {
         if (this.currentCell != null) {
             this.keyboardNotifier.awaitKeyboard();
             EditTextBoldCursor editField = this.currentCell.getEditField();
@@ -1250,7 +1250,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         AndroidUtilities.runOnUIThread(this.openKeyboardRunnable, 100L);
     }
 
-    private void showEmojiPopup(int i) throws NumberFormatException {
+    private void showEmojiPopup(int i) {
         ChatActivityEnterViewAnimatedIconView emojiButton;
         PollEditTextCell pollEditTextCell;
         if (this.isPremium) {
@@ -1339,7 +1339,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void onCellFocusChanges(PollEditTextCell pollEditTextCell, boolean z) throws NumberFormatException {
+    public void onCellFocusChanges(PollEditTextCell pollEditTextCell, boolean z) {
         if (this.isPremium && z) {
             if (this.currentCell == pollEditTextCell && this.emojiViewVisible && this.isEmojiSearchOpened) {
                 collapseSearchEmojiView();
@@ -1365,7 +1365,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void hideEmojiPopup(boolean z) throws NumberFormatException {
+    public void hideEmojiPopup(boolean z) {
         if (this.isPremium) {
             if (this.emojiViewVisible) {
                 this.emojiView.scrollEmojiToTop();
@@ -1443,7 +1443,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return this.emojiPadding;
     }
 
-    private void createEmojiView() throws NumberFormatException {
+    private void createEmojiView() {
         EmojiView emojiView = this.emojiView;
         if (emojiView != null && emojiView.currentAccount != UserConfig.selectedAccount) {
             this.parentAlert.sizeNotifierFrameLayout.removeView(emojiView);
@@ -1818,7 +1818,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) throws NumberFormatException {
+        public void onViewDetachedFromWindow(RecyclerView.ViewHolder viewHolder) {
             if (viewHolder.getItemViewType() == 4 || viewHolder.getItemViewType() == 5) {
                 EditTextBoldCursor textView = ((PollEditTextCell) viewHolder.itemView).getTextView();
                 if (textView.isFocused()) {
@@ -1872,12 +1872,12 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        protected void onEditTextFocusChanged(boolean z2) throws NumberFormatException {
+                        protected void onEditTextFocusChanged(boolean z2) {
                             ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z2);
                         }
 
                         @Override
-                        public void lambda$new$1(PollEditTextCell pollEditTextCell2) throws NumberFormatException {
+                        public void lambda$new$1(PollEditTextCell pollEditTextCell2) {
                             ChatAttachAlertPollLayout.this.onEmojiClicked(pollEditTextCell2);
                         }
 
@@ -1946,7 +1946,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     boolean z2 = ChatAttachAlertPollLayout.this.isPremium;
                     final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(context2, false, z2 ? 1 : 0, new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view) throws NumberFormatException {
+                        public final void onClick(View view) {
                             this.f$0.lambda$onCreateViewHolder$0(view);
                         }
                     }, ChatAttachAlertPollLayout.this.resourcesProvider) {
@@ -1984,7 +1984,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        protected void onEditTextFocusChanged(boolean z3) throws NumberFormatException {
+                        protected void onEditTextFocusChanged(boolean z3) {
                             ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z3);
                         }
 
@@ -2023,7 +2023,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        public void lambda$new$1(PollEditTextCell pollEditTextCell3) throws NumberFormatException {
+                        public void lambda$new$1(PollEditTextCell pollEditTextCell3) {
                             ChatAttachAlertPollLayout.this.onEmojiClicked(pollEditTextCell3);
                         }
 
@@ -2117,7 +2117,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        protected void onEditTextFocusChanged(boolean z3) throws NumberFormatException {
+                        protected void onEditTextFocusChanged(boolean z3) {
                             ChatAttachAlertPollLayout.this.onCellFocusChanges(this, z3);
                         }
 
@@ -2133,7 +2133,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
-                        public void lambda$new$1(PollEditTextCell pollEditTextCell4) throws NumberFormatException {
+                        public void lambda$new$1(PollEditTextCell pollEditTextCell4) {
                             ChatAttachAlertPollLayout.this.onEmojiClicked(pollEditTextCell4);
                         }
                     };
@@ -2191,7 +2191,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return new RecyclerListView.Holder(headerCell);
         }
 
-        public void lambda$onCreateViewHolder$0(android.view.View r8) throws java.lang.NumberFormatException {
+        public void lambda$onCreateViewHolder$0(android.view.View r8) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.ListAdapter.lambda$onCreateViewHolder$0(android.view.View):void");
         }
 

@@ -40,7 +40,7 @@ public class FeaturesPageView extends BaseListPageView {
     ArrayList items;
     public final int type;
 
-    public FeaturesPageView(android.content.Context r17, int r18, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19) throws java.lang.NumberFormatException {
+    public FeaturesPageView(android.content.Context r17, int r18, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.FeaturesPageView.<init>(android.content.Context, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 

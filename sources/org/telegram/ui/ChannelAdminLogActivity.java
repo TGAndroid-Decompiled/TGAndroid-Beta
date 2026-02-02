@@ -2660,7 +2660,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) throws NumberFormatException {
+            public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) {
                 if (user == null || user.id == UserConfig.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getClientUserId()) {
                     return;
                 }
@@ -2683,7 +2683,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         ChannelAdminLogActivity channelAdminLogActivity = ChannelAdminLogActivity.this;
                         avatarPreviewer.show((ViewGroup) channelAdminLogActivity.fragmentView, channelAdminLogActivity.getResourceProvider(), dataOf, new AvatarPreviewer.Callback() {
                             @Override
-                            public final void onMenuClick(AvatarPreviewer.MenuItem menuItem) throws NumberFormatException {
+                            public final void onMenuClick(AvatarPreviewer.MenuItem menuItem) {
                                 this.f$0.lambda$didLongPressUserAvatar$0(chatMessageCell, user, menuItem);
                             }
                         });
@@ -2693,7 +2693,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 return false;
             }
 
-            public void lambda$didLongPressUserAvatar$0(ChatMessageCell chatMessageCell, TLRPC.User user, AvatarPreviewer.MenuItem menuItem) throws NumberFormatException {
+            public void lambda$didLongPressUserAvatar$0(ChatMessageCell chatMessageCell, TLRPC.User user, AvatarPreviewer.MenuItem menuItem) {
                 int i = AnonymousClass24.$SwitchMap$org$telegram$ui$AvatarPreviewer$MenuItem[menuItem.ordinal()];
                 if (i == 1) {
                     openDialog(chatMessageCell, user);
@@ -2705,7 +2705,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 }
             }
 
-            private void openProfile(TLRPC.User user) throws NumberFormatException {
+            private void openProfile(TLRPC.User user) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", user.id);
                 ChannelAdminLogActivity.this.addCanBanUser(bundle, user.id);
@@ -2990,7 +2990,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void needOpenUserProfile(long j) throws NumberFormatException {
+            public void needOpenUserProfile(long j) {
                 if (j < 0) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("chat_id", -j);

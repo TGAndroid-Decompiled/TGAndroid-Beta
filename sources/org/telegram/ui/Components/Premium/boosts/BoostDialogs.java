@@ -865,7 +865,7 @@ public abstract class BoostDialogs {
         return chat != null ? chat.title : "";
     }
 
-    public static void showBulletinAbout(final MessageObject messageObject) throws NumberFormatException {
+    public static void showBulletinAbout(final MessageObject messageObject) {
         if (messageObject == null || messageObject.messageOwner == null) {
             return;
         }

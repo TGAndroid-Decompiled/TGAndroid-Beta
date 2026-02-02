@@ -935,7 +935,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i2) throws NumberFormatException {
+            public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (PrivacyControlActivity.this.checkDiscard(true)) {
                         PrivacyControlActivity.this.finishFragment();
@@ -1872,7 +1872,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         return checkDiscard(z);
     }
 
-    public void processDone() throws NumberFormatException {
+    public void processDone() {
         if (getParentActivity() == null) {
             return;
         }
@@ -1921,7 +1921,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         builder.setMessage(LocaleController.getString(R.string.PrivacySettingsChangedAlert));
         builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws NumberFormatException {
+            public final void onClick(AlertDialog alertDialog, int i) {
                 this.f$0.lambda$checkDiscard$27(alertDialog, i);
             }
         });
@@ -1935,7 +1935,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         return false;
     }
 
-    public void lambda$checkDiscard$27(AlertDialog alertDialog, int i) throws NumberFormatException {
+    public void lambda$checkDiscard$27(AlertDialog alertDialog, int i) {
         processDone();
     }
 

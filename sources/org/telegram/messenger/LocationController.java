@@ -408,7 +408,7 @@ public class LocationController extends BaseController implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocationController.broadcastLastKnownLocation(boolean):void");
     }
 
-    public void lambda$broadcastLastKnownLocation$7(final SharingLocationInfo sharingLocationInfo, int[] iArr, TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$broadcastLastKnownLocation$7(final SharingLocationInfo sharingLocationInfo, int[] iArr, TLRPC.TL_messages_editMessage tL_messages_editMessage, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (tL_error.text.equals("MESSAGE_ID_INVALID")) {
                 this.sharingLocations.remove(sharingLocationInfo);
@@ -815,7 +815,7 @@ public class LocationController extends BaseController implements NotificationCe
             tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
             getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$removeSharingLocation$19(tLObject, tL_error);
                 }
             });
@@ -833,7 +833,7 @@ public class LocationController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$removeSharingLocation$19(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$removeSharingLocation$19(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             return;
         }
@@ -886,7 +886,7 @@ public class LocationController extends BaseController implements NotificationCe
             tL_inputMediaGeoLive.geo_point = new TLRPC.TL_inputGeoPointEmpty();
             getConnectionsManager().sendRequest(tL_messages_editMessage, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                     this.f$0.lambda$removeAllLocationSharings$22(tLObject, tL_error);
                 }
             });
@@ -903,7 +903,7 @@ public class LocationController extends BaseController implements NotificationCe
         });
     }
 
-    public void lambda$removeAllLocationSharings$22(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$removeAllLocationSharings$22(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             return;
         }

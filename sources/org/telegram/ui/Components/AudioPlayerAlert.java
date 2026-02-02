@@ -682,7 +682,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.playbackSpeedButton.setContentDescription(LocaleController.getString(R.string.AccDescrPlayerSpeed));
         this.playbackSpeedButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i6) throws NumberFormatException {
+            public final void onItemClick(int i6) {
                 this.f$0.lambda$new$1(i6);
             }
         });
@@ -697,7 +697,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.speedSlider.setDrawShadow(true);
         this.speedSlider.setOnValueChange(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws NumberFormatException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$new$2((Float) obj, (Boolean) obj2);
             }
         });
@@ -716,7 +716,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.playerLayout.addView(this.playbackSpeedButton, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 86.0f, 20.0f, 0.0f));
         this.playbackSpeedButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) throws NumberFormatException {
+            public final void onClick(View view3) {
                 this.f$0.lambda$new$3(fArr, view3);
             }
         });
@@ -999,7 +999,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i10, int i11) throws NumberFormatException {
+            public void onScrolled(RecyclerView recyclerView, int i10, int i11) {
                 AudioPlayerAlert.this.updateLayout();
                 AudioPlayerAlert.this.updateEmptyViewPosition();
                 if (AudioPlayerAlert.this.searchWas) {
@@ -1224,7 +1224,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.seekBarView.setBufferedProgress(f / 1000.0f);
     }
 
-    public void lambda$new$1(int i) throws NumberFormatException {
+    public void lambda$new$1(int i) {
         if (i >= 0) {
             float[] fArr = speeds;
             if (i >= fArr.length) {
@@ -1235,12 +1235,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
     }
 
-    public void lambda$new$2(Float f, Boolean bool) throws NumberFormatException {
+    public void lambda$new$2(Float f, Boolean bool) {
         this.slidingSpeed = !bool.booleanValue();
         MediaController.getInstance().setPlaybackSpeed(true, this.speedSlider.getSpeed(f.floatValue()));
     }
 
-    public void lambda$new$3(float[] fArr, View view) throws NumberFormatException {
+    public void lambda$new$3(float[] fArr, View view) {
         float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(true);
         int i = 0;
         while (true) {
@@ -1418,7 +1418,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.val$touchSlop = f;
             this.pressedRunnable = new Runnable() {
                 @Override
-                public void run() throws NumberFormatException {
+                public void run() {
                     if (MediaController.getInstance().getPlayingMessageObject() == null) {
                         return;
                     }
@@ -1454,7 +1454,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r7) throws java.lang.NumberFormatException {
+        public boolean onTouchEvent(android.view.MotionEvent r7) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AudioPlayerAlert.AnonymousClass14.onTouchEvent(android.view.MotionEvent):boolean");
         }
 

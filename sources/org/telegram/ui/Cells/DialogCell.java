@@ -1039,7 +1039,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         invalidate();
     }
 
-    private CharSequence formatArchivedDialogNames() throws NumberFormatException {
+    private CharSequence formatArchivedDialogNames() {
         TLRPC.User user;
         String strEscape;
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
