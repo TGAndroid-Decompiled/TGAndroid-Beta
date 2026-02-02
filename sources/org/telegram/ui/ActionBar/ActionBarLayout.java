@@ -1003,19 +1003,17 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         if (!z) {
-            if (this.fragmentsStack.size() < 2) {
-                checkBlackScreen("onSlideAnimationEnd exit");
-                return;
+            if (this.fragmentsStack.size() >= 2) {
+                List list = this.fragmentsStack;
+                BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
+                baseFragment.prepareFragmentToSlide(true, false);
+                baseFragment.onPause();
+                baseFragment.onFragmentDestroy();
+                baseFragment.setParentLayout(null);
+                List list2 = this.fragmentsStack;
+                list2.remove(list2.size() - 1);
+                onFragmentStackChanged("onSlideAnimationEnd");
             }
-            List list = this.fragmentsStack;
-            BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
-            baseFragment.prepareFragmentToSlide(true, false);
-            baseFragment.onPause();
-            baseFragment.onFragmentDestroy();
-            baseFragment.setParentLayout(null);
-            List list2 = this.fragmentsStack;
-            list2.remove(list2.size() - 1);
-            onFragmentStackChanged("onSlideAnimationEnd");
             LayoutContainer layoutContainer = this.containerView;
             layoutContainer.setAlpha(1.0f);
             LayoutContainer layoutContainer2 = this.containerViewBack;
@@ -1026,12 +1024,14 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             if (view != null) {
                 bringChildToFront(view);
             }
-            List list3 = this.fragmentsStack;
-            BaseFragment baseFragment2 = (BaseFragment) list3.get(list3.size() - 1);
-            this.currentActionBar = baseFragment2.actionBar;
-            baseFragment2.onResume();
-            baseFragment2.onBecomeFullyVisible();
-            baseFragment2.prepareFragmentToSlide(false, false);
+            if (this.fragmentsStack.size() > 0) {
+                List list3 = this.fragmentsStack;
+                BaseFragment baseFragment2 = (BaseFragment) list3.get(list3.size() - 1);
+                this.currentActionBar = baseFragment2.actionBar;
+                baseFragment2.onResume();
+                baseFragment2.onBecomeFullyVisible();
+                baseFragment2.prepareFragmentToSlide(false, false);
+            }
             this.layoutToIgnore = this.containerView;
         } else {
             if (this.fragmentsStack.size() >= 2) {
@@ -1242,11 +1242,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     public void onBackStarted(float f, float f2) {
         if (this.animationInProgress) {
-            if (this.backAnimator == null) {
+            AnimatorSet animatorSet = this.backAnimator;
+            if (animatorSet == null) {
                 return;
             }
-            checkBlackScreen("onBackStarted: backAnimator.end()");
-            this.backAnimator.end();
+            animatorSet.end();
             this.backAnimator = null;
             if (this.animationInProgress) {
                 return;
@@ -1318,7 +1318,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (baseFragment == null) {
             return;
         }
-        checkBlackScreen("animateBack");
         float x = this.containerView.getX();
         AnimatorSet animatorSet = new AnimatorSet();
         boolean zShouldOverrideSlideTransition = baseFragment.shouldOverrideSlideTransition(false, z);
@@ -1356,15 +1355,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
             @Override
             public void onAnimationCancel(Animator animator) {
-                ActionBarLayout.this.checkBlackScreen("backanim.onCancel");
                 this.cancelled = true;
                 ActionBarLayout.this.predictiveBackInProgress = false;
                 ActionBarLayout.this.containerView.setAlpha(1.0f);
                 ActionBarLayout.this.onSlideAnimationEnd(true);
                 ActionBarLayout.this.backAnimator = null;
-                if (ActionBarLayout.this.animationInProgress) {
-                    throw new RuntimeException("animationInProgress is still true: " + TextUtils.join(", ", ActionBarLayout.this.lastActions));
-                }
             }
 
             @Override
@@ -1372,14 +1367,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 if (this.cancelled) {
                     return;
                 }
-                ActionBarLayout.this.checkBlackScreen("backanim.onEnd");
                 ActionBarLayout.this.predictiveBackInProgress = false;
                 ActionBarLayout.this.containerView.setAlpha(1.0f);
                 ActionBarLayout.this.onSlideAnimationEnd(z);
                 ActionBarLayout.this.backAnimator = null;
-                if (ActionBarLayout.this.animationInProgress) {
-                    throw new RuntimeException("animationInProgress is still true: " + TextUtils.join(", ", ActionBarLayout.this.lastActions));
-                }
             }
         });
         this.backAnimator = animatorSet;

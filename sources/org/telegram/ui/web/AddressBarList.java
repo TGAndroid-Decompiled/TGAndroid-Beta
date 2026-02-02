@@ -54,6 +54,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
@@ -552,7 +553,7 @@ public class AddressBarList extends FrameLayout {
             }
 
             @Override
-            public Address2View createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public Address2View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new Address2View(context);
             }
 
@@ -875,7 +876,7 @@ public class AddressBarList extends FrameLayout {
             }
 
             @Override
-            public BookmarkView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public BookmarkView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new BookmarkView(context, resourcesProvider);
             }
 

@@ -1795,7 +1795,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         @Override
-        public LinkSpanDrawable.LinksTextView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        public LinkSpanDrawable.LinksTextView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             return new LinkSpanDrawable.LinksTextView(context) {
                 @Override
                 protected void onMeasure(int i3, int i4) {

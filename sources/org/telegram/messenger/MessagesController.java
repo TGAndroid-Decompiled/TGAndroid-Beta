@@ -711,10 +711,6 @@ public class MessagesController extends BaseController implements NotificationCe
     public void markSponsoredAsRead(long j, MessageObject messageObject) {
     }
 
-    public void setStoryQuality(boolean r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.setStoryQuality(boolean):void");
-    }
-
     public static TLRPC.Peer getPeerFromInputPeer(TLRPC.InputPeer inputPeer) {
         if (inputPeer.chat_id != 0) {
             TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
@@ -17133,6 +17129,15 @@ public class MessagesController extends BaseController implements NotificationCe
         this.loadingProfilePeerColors = false;
         this.profilePeerColors = PeerColors.fromTL(1, (TLRPC.TL_help_peerColors) tLObject);
         this.mainPreferences.edit().putString("profilePeerColors", this.profilePeerColors.toString()).apply();
+    }
+
+    public void setStoryQuality(boolean z) {
+        if (this.storyQualityFull != z) {
+            SharedPreferences.Editor editorEdit = this.mainPreferences.edit();
+            this.storyQualityFull = z;
+            editorEdit.putBoolean("storyQualityFull", z).apply();
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyQualityUpdate, new Object[0]);
+        }
     }
 
     public void setSavedViewAs(boolean z) {

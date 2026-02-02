@@ -3570,7 +3570,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
 
             @Override
-            public GiftCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public GiftCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new GiftCell(context, true, resourcesProvider);
             }
 

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -27,6 +28,7 @@ import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextCheckCell2;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextRightIconCell;
+import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChannelMonetizationLayout;
 import org.telegram.ui.Charts.BaseChartView;
@@ -42,7 +44,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     private BaseChartView.SharedUiComponents chartSharedUI;
     private final int classGuid;
     private final Context context;
-    private final int currentAccount;
+    public final int currentAccount;
     private Section currentReorderSection;
     private Section currentWhiteSection;
     private final boolean dialog;
@@ -123,6 +125,24 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         Section section = this.currentReorderSection;
         if (section != null) {
             section.end = Math.max(0, this.items.size() - 1);
+        }
+    }
+
+    private void updateReorderSections() {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView == null) {
+            return;
+        }
+        ArrayList arrayList = recyclerListView.forcedSections;
+        if (arrayList == null) {
+            recyclerListView.forcedSections = new ArrayList();
+        } else {
+            arrayList.clear();
+        }
+        Iterator it = this.whiteSections.iterator();
+        while (it.hasNext()) {
+            Section section = (Section) it.next();
+            this.listView.forcedSections.add(Long.valueOf(AndroidUtilities.pack(section.start, section.end)));
         }
     }
 
@@ -211,6 +231,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         Utilities.Callback2 callback2 = this.fillItems;
         if (callback2 != null) {
             callback2.run(this.items, this);
+            updateReorderSections();
             RecyclerListView recyclerListView = this.listView;
             if (recyclerListView != null && recyclerListView.isComputingLayout()) {
                 this.listView.post(new Runnable() {
@@ -248,6 +269,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         if (callback2 != null) {
             callback2.run(this.items, this);
         }
+        updateReorderSections();
     }
 
     public boolean shouldApplyBackground(int i) {
@@ -296,6 +318,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 40:
             case 41:
             case 42:
+            case 43:
                 return true;
             case -2:
             case -1:
@@ -318,7 +341,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         if (i >= UItem.factoryViewTypeStartsWith) {
             UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i);
             if (uItemFactoryFindFactory != null) {
-                fullscreenCustomFrameLayout = uItemFactoryFindFactory.createView(this.context, this.currentAccount, this.classGuid, this.resourcesProvider);
+                fullscreenCustomFrameLayout = uItemFactoryFindFactory.createView(this.context, this.listView, this.currentAccount, this.classGuid, this.resourcesProvider);
             } else {
                 fullscreenCustomFrameLayout = new View(this.context);
             }
@@ -490,6 +513,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 case 42:
                     fullscreenCustomFrameLayout = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, true, this.resourcesProvider);
                     break;
+                case 43:
+                    fullscreenCustomFrameLayout = new TextSettingsCell(this.context, this.resourcesProvider);
+                    break;
             }
         }
         if (shouldApplyBackground(i)) {
@@ -600,7 +626,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         } else {
             UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(itemViewType);
             if (uItemFactoryFindFactory != null) {
-                uItemFactoryFindFactory.attachedView(viewHolder.itemView, getItem(viewHolder.getAdapterPosition()));
+                uItemFactoryFindFactory.attachedView(this.listView, viewHolder.itemView, getItem(viewHolder.getAdapterPosition()));
             }
         }
     }

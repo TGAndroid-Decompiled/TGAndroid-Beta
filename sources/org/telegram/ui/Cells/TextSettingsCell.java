@@ -206,6 +206,10 @@ public class TextSettingsCell extends FrameLayout {
         requestLayout();
     }
 
+    public void setValue(CharSequence charSequence, boolean z) {
+        this.valueTextView.setText(charSequence, z);
+    }
+
     public void setIcon(int i) {
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.textView.getLayoutParams();
         this.imageViewIsColorful = false;

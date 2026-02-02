@@ -367,6 +367,10 @@ public class AndroidUtilities {
         return ((f + ((((((f2 - f) + 360.0f) + 180.0f) % 360.0f) - 180.0f) * f3)) + 360.0f) % 360.0f;
     }
 
+    public static long pack(int i, int i2) {
+        return (i2 & 4294967295L) | (i << 32);
+    }
+
     public static void printStackTrace(String str) {
     }
 
@@ -376,6 +380,14 @@ public class AndroidUtilities {
 
     public static int setPeerLayerVersion(int i, int i2) {
         return (i & 65535) | (i2 << 16);
+    }
+
+    public static int unpackA(long j) {
+        return (int) (j >> 32);
+    }
+
+    public static int unpackB(long j) {
+        return (int) j;
     }
 
     static {

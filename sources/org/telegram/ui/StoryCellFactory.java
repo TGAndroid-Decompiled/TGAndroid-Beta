@@ -6,6 +6,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
@@ -18,7 +19,7 @@ public class StoryCellFactory extends UItem.UItemFactory {
     }
 
     @Override
-    public SharedPhotoVideoCell2 createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+    public SharedPhotoVideoCell2 createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         if (this.sharedResources == null) {
             this.sharedResources = new SharedPhotoVideoCell2.SharedResources(context, resourcesProvider);
         }
@@ -37,7 +38,7 @@ public class StoryCellFactory extends UItem.UItemFactory {
     }
 
     @Override
-    public void attachedView(View view, UItem uItem) {
+    public void attachedView(RecyclerListView recyclerListView, View view, UItem uItem) {
         ((SharedPhotoVideoCell2) view).setReordering(uItem.reordering, false);
     }
 

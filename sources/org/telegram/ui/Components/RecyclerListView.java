@@ -100,6 +100,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private int emptyViewAnimationType;
     private FastScroll fastScroll;
     public boolean fastScrollAnimationRunning;
+    public ArrayList forcedSections;
     private GestureDetectorFixDoubleTap gestureDetector;
     private GenericProvider getSelectorColor;
     private ArrayList headers;
@@ -2773,7 +2774,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return new Pair(new Utilities.CallbackReturn() {
             @Override
             public final Object run(Object obj) {
-                return RecyclerListView.lambda$cachedIsViewTypeShadow$3(callbackReturn, recyclerListView, sparseIntArray, (View) obj);
+                return RecyclerListView.lambda$cachedIsViewTypeShadow$3(this.f$0, callbackReturn, sparseIntArray, (View) obj);
             }
         }, new Utilities.CallbackReturn() {
             @Override
@@ -2783,14 +2784,21 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         });
     }
 
-    public static Boolean lambda$cachedIsViewTypeShadow$3(Utilities.CallbackReturn callbackReturn, RecyclerListView recyclerListView, SparseIntArray sparseIntArray, View view) {
-        Boolean bool = (Boolean) callbackReturn.run(view);
-        boolean zBooleanValue = bool.booleanValue();
-        RecyclerView.ViewHolder childViewHolder = recyclerListView.getChildViewHolder(view);
-        if (childViewHolder != null) {
-            sparseIntArray.put(childViewHolder.getItemViewType(), zBooleanValue ? 1 : 0);
+    public static Boolean lambda$cachedIsViewTypeShadow$3(RecyclerListView recyclerListView, Utilities.CallbackReturn callbackReturn, SparseIntArray sparseIntArray, View view) {
+        try {
+            if (view.getParent() != recyclerListView) {
+                return Boolean.FALSE;
+            }
+            Boolean bool = (Boolean) callbackReturn.run(view);
+            boolean zBooleanValue = bool.booleanValue();
+            RecyclerView.ViewHolder childViewHolder = recyclerListView.getChildViewHolder(view);
+            if (childViewHolder != null) {
+                sparseIntArray.put(childViewHolder.getItemViewType(), zBooleanValue ? 1 : 0);
+            }
+            return bool;
+        } catch (Exception unused) {
+            return Boolean.FALSE;
         }
-        return bool;
     }
 
     public static Boolean lambda$cachedIsViewTypeShadow$4(SparseIntArray sparseIntArray, Integer num) {
@@ -2827,7 +2835,6 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     }
 
     public static class ListSectionsDecoration extends RecyclerView.ItemDecoration {
-        private ArrayList childrenSorted = new ArrayList();
         private boolean enableTopPadding;
         public final Utilities.CallbackReturn isSectionItem;
         private int padding;
@@ -2898,7 +2905,21 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return ((Boolean) this.isViewTypeSection.run(Integer.valueOf(getAdapter().getItemViewType(childAdapterPosition + 1)))).booleanValue();
     }
 
-    public void drawSectionsBackgrounds(final android.graphics.Canvas r12) {
+    public boolean isInsideForcedSection(int i) {
+        if (this.forcedSections != null && i >= 0) {
+            for (int i2 = 0; i2 < this.forcedSections.size(); i2++) {
+                long jLongValue = ((Long) this.forcedSections.get(i2)).longValue();
+                int iUnpackA = AndroidUtilities.unpackA(jLongValue);
+                int iUnpackB = AndroidUtilities.unpackB(jLongValue);
+                if (i >= iUnpackA && i <= iUnpackB) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void drawSectionsBackgrounds(final android.graphics.Canvas r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.drawSectionsBackgrounds(android.graphics.Canvas):void");
     }
 
@@ -2987,7 +3008,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     public Drawable getClipBackground(final View view) {
         boolean z;
         boolean z2;
-        if (!hasSections() || !((Boolean) this.sectionsItemDecoration.isSectionItem.run(view)).booleanValue()) {
+        if (view.getParent() != this || !hasSections() || !((Boolean) this.sectionsItemDecoration.isSectionItem.run(view)).booleanValue()) {
             return null;
         }
         int childAdapterPosition = getChildAdapterPosition(view);
@@ -3000,7 +3021,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             z = viewFindViewByPosition != null && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(viewFindViewByPosition)).booleanValue();
             z2 = viewFindViewByPosition2 != null && ((Boolean) this.sectionsItemDecoration.isSectionItem.run(viewFindViewByPosition2)).booleanValue();
         }
-        RectF rectF = AndroidUtilities.rectTmp;
+        final RectF rectF = new RectF();
         rectF.set(view.getX(), Math.max(this.applyPaddingToSections ? getPaddingTop() : 0.0f, view.getY()), view.getX() + view.getWidth(), Math.min(getHeight() - (this.applyPaddingToSections ? getPaddingBottom() : 0), view.getY() + view.getHeight()));
         if (z && z2) {
             z = view.getY() >= rectF.top;
@@ -3040,7 +3061,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 canvas.translate(-view.getX(), -view.getY());
                 canvas.clipPath(path);
                 this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite, RecyclerListView.this.resourcesProvider), this.paint.getAlpha()));
-                canvas.drawRect(AndroidUtilities.rectTmp, this.paint);
+                canvas.drawRect(rectF, this.paint);
                 canvas.restore();
             }
 

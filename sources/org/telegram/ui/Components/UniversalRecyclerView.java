@@ -19,7 +19,7 @@ import org.telegram.ui.Components.RecyclerListView;
 public class UniversalRecyclerView extends RecyclerListView {
     public final UniversalAdapter adapter;
     private boolean doNotDetachViews;
-    private ItemTouchHelper itemTouchHelper;
+    public ItemTouchHelper itemTouchHelper;
     public LinearLayoutManager layoutManager;
     private boolean reorderingAllowed;
     private boolean reorderingOnOtherAxis;

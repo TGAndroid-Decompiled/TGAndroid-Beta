@@ -39,6 +39,7 @@ import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
@@ -798,7 +799,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             }
 
             @Override
-            public EntryView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public EntryView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new EntryView(context, resourcesProvider);
             }
 

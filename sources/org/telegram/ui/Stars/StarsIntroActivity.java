@@ -1129,7 +1129,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public StarTierView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public StarTierView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new StarTierView(context, resourcesProvider);
             }
 
@@ -1253,7 +1253,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public ExpandView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public ExpandView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new ExpandView(context, resourcesProvider);
             }
 
@@ -1952,7 +1952,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public StarsTransactionView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public StarsTransactionView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 StarsTransactionView starsTransactionView = (StarsTransactionView) getCached();
                 return starsTransactionView != null ? starsTransactionView : new StarsTransactionView(context, i, resourcesProvider);
             }
@@ -2131,7 +2131,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             }
 
             @Override
-            public StarsSubscriptionView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public StarsSubscriptionView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 StarsSubscriptionView starsSubscriptionView = (StarsSubscriptionView) getCached();
                 return starsSubscriptionView != null ? starsSubscriptionView : new StarsSubscriptionView(context, i, resourcesProvider);
             }

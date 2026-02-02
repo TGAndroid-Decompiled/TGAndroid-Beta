@@ -191,7 +191,7 @@ public class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
-            public AcquiredGiftsCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public AcquiredGiftsCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 AcquiredGiftsCell acquiredGiftsCell = new AcquiredGiftsCell(context, resourcesProvider, i);
                 acquiredGiftsCell.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f));
                 return acquiredGiftsCell;

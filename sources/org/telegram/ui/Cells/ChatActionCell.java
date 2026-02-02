@@ -1397,7 +1397,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         boolean z4;
         int iCutInFancyHalf;
         int i4;
-        CharSequence charSequenceReplaceEmoji = charSequence4;
+        CharSequence charSequenceSubSequence = charSequence4;
         int iDp = i2 - AndroidUtilities.dp(16.0f);
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null && messageObject.type == 30) {
@@ -1438,10 +1438,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
         int iDp2 = iDp - AndroidUtilities.dp(12.0f);
         MessageObject messageObject3 = this.currentMessageObject;
-        if (messageObject3 != null && messageObject3.type == 22 && messageObject3.getDialogId() >= 0 && (iCutInFancyHalf = HintView2.cutInFancyHalf(charSequenceReplaceEmoji, this.giftTextPaint)) < iDp2 && iCutInFancyHalf > iDp2 / 5.0f) {
+        if (messageObject3 != null && messageObject3.type == 22 && messageObject3.getDialogId() >= 0 && (iCutInFancyHalf = HintView2.cutInFancyHalf(charSequenceSubSequence, this.giftTextPaint)) < iDp2 && iCutInFancyHalf > iDp2 / 5.0f) {
             iDp2 = iCutInFancyHalf;
         }
-        if (charSequenceReplaceEmoji == null) {
+        if (charSequenceSubSequence == null) {
             TextLayout textLayout = this.giftPremiumText;
             if (textLayout != null) {
                 textLayout.detach();
@@ -1455,10 +1455,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 this.giftPremiumText = new TextLayout();
             }
             try {
-                charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequenceReplaceEmoji, this.giftTextPaint.getFontMetricsInt(), false);
+                charSequenceSubSequence = Emoji.replaceEmoji(charSequenceSubSequence, this.giftTextPaint.getFontMetricsInt(), false);
             } catch (Exception unused) {
             }
-            this.giftPremiumText.setText(charSequenceReplaceEmoji, this.giftTextPaint, iDp2);
+            this.giftPremiumText.setText(charSequenceSubSequence, this.giftTextPaint, iDp2);
             if (z && this.giftPremiumText.layout.getLineCount() > 3) {
                 this.giftPremiumTextCollapsed = !this.giftPremiumTextUncollapsed;
                 this.giftPremiumTextCollapsedHeight = this.giftPremiumText.layout.getLineBottom(2);
@@ -1473,7 +1473,12 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 this.giftPremiumTextCollapsedHeight = 0;
             }
             if (this.giftPremiumTextCollapsed) {
-                this.giftPremiumText.setText(charSequenceReplaceEmoji.subSequence(0, this.giftPremiumText.layout.getLineEnd(2) - 1), this.giftTextPaint, iDp2);
+                int lineEnd = this.giftPremiumText.layout.getLineEnd(2) - 1;
+                TextLayout textLayout2 = this.giftPremiumText;
+                if (lineEnd >= 0) {
+                    charSequenceSubSequence = charSequenceSubSequence.subSequence(0, lineEnd);
+                }
+                textLayout2.setText(charSequenceSubSequence, this.giftTextPaint, iDp2);
             }
         }
         if (charSequence5 != null) {

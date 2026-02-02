@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -767,7 +768,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             }
 
             @Override
-            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws Resources.NotFoundException {
+            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws Resources.NotFoundException, IOException {
                 if (chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty()) {
                     return;
                 }
@@ -2107,7 +2108,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                 }
 
                 @Override
-                public LanguageView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                public LanguageView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                     return new LanguageView(context);
                 }
 

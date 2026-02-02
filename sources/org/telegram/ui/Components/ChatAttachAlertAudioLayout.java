@@ -625,6 +625,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             } else if (i == 1) {
                 view = new View(this.mContext);
                 view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+                view.setTag(-33024);
             } else {
                 view = new View(this.mContext);
             }

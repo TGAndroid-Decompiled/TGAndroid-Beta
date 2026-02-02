@@ -394,7 +394,7 @@ public class CreateRtmpStreamBottomSheet extends BottomSheetWithRecyclerListView
         }
 
         @Override
-        public TextDetailCell createView(final Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        public TextDetailCell createView(final Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             final TextDetailCell textDetailCell = new TextDetailCell(context, resourcesProvider, true, false);
             textDetailCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
             Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.msg_copy).mutate();

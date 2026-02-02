@@ -32,6 +32,7 @@ import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
@@ -705,7 +706,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         }
 
         @Override
-        public SharedAudioCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        public SharedAudioCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             SharedAudioCell sharedAudioCell = new SharedAudioCell(context, resourcesProvider);
             sharedAudioCell.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
             return sharedAudioCell;

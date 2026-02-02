@@ -1794,7 +1794,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
 
             @Override
-            public GiftCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public GiftCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new GiftCell(context, i, resourcesProvider);
             }
 
@@ -1820,7 +1820,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
 
             @Override
-            public void attachedView(View view, UItem uItem) {
+            public void attachedView(RecyclerListView recyclerListView, View view, UItem uItem) {
                 ((GiftCell) view).setReordering(uItem.reordering, false);
             }
 
@@ -2718,7 +2718,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
 
             @Override
-            public Tabs createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public Tabs createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new Tabs(context, true, resourcesProvider);
             }
 

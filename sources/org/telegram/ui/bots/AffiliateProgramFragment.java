@@ -732,7 +732,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             @Override
-            public FeatureCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public FeatureCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new FeatureCell(context, resourcesProvider);
             }
 
@@ -861,7 +861,7 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
             }
 
             @Override
-            public ColorfulTextCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public ColorfulTextCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new ColorfulTextCell(context, resourcesProvider);
             }
 

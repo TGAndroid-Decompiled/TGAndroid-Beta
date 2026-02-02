@@ -27,6 +27,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public static int factoryViewTypeStartsWith = 10000;
     public boolean accent;
     public CharSequence animatedText;
+    public Utilities.Callback bind;
     public String chatType;
     public boolean checked;
     public View.OnClickListener clickCallback;
@@ -473,6 +474,31 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asSettingsCell(int i, int i2, CharSequence charSequence) {
+        UItem uItem = new UItem(43, false);
+        uItem.id = i;
+        uItem.iconResId = i2;
+        uItem.text = charSequence;
+        return uItem;
+    }
+
+    public static UItem asSettingsCell(int i, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(43, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.subtext = charSequence2;
+        return uItem;
+    }
+
+    public static UItem asSettingsCell(int i, int i2, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(43, false);
+        uItem.id = i;
+        uItem.iconResId = i2;
+        uItem.text = charSequence;
+        uItem.subtext = charSequence2;
+        return uItem;
+    }
+
     public UItem withUsername(boolean z) {
         this.withUsername = z;
         return this;
@@ -485,6 +511,11 @@ public class UItem extends AdapterWithDiffUtils.Item {
 
     public UItem setClickCallback(View.OnClickListener onClickListener) {
         this.clickCallback = onClickListener;
+        return this;
+    }
+
+    public UItem setClickCallback2(View.OnClickListener onClickListener) {
+        this.clickCallback2 = onClickListener;
         return this;
     }
 
@@ -538,6 +569,11 @@ public class UItem extends AdapterWithDiffUtils.Item {
 
     public UItem setReordering(boolean z) {
         this.reordering = z;
+        return this;
+    }
+
+    public UItem onBind(Utilities.Callback callback) {
+        this.bind = callback;
         return this;
     }
 
@@ -616,12 +652,12 @@ public class UItem extends AdapterWithDiffUtils.Item {
         private ArrayList cache;
         public final int viewType = UItem.access$208();
 
-        public void attachedView(View view, UItem uItem) {
+        public void attachedView(RecyclerListView recyclerListView, View view, UItem uItem) {
         }
 
         public abstract void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView);
 
-        public abstract View createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider);
+        public abstract View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider);
 
         public boolean isClickable() {
             return true;

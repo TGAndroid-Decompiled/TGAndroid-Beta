@@ -650,6 +650,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         });
         this.adapter.setMyLocationDenied(this.locationDenied, this.askedForLocation);
         this.listView.setVerticalScrollBarEnabled(false);
+        this.listView.setSections();
         RecyclerListView recyclerListView4 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, 0, recyclerListView4) {
             @Override
@@ -712,7 +713,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
                 this.f$0.updatePlacesMarkers(arrayList);
             }
         });
-        this.adapter.setOverScrollHeight(this.overScrollHeight);
+        this.adapter.setOverScrollHeight(this.overScrollHeight + AndroidUtilities.dp(16.0f));
         addView(this.mapViewClip, LayoutHelper.createFrame(-1, -1, 51));
         IMapsProvider.IMapView iMapViewOnCreateMapView = ApplicationLoader.getMapsProvider().onCreateMapView(context);
         this.mapView = iMapViewOnCreateMapView;
@@ -741,7 +742,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.mapViewClip.addView(this.markerImageView, LayoutHelper.createFrame(28, 48, 49));
         RecyclerListView recyclerListView5 = new RecyclerListView(context, resourcesProvider);
         this.searchListView = recyclerListView5;
-        recyclerListView5.setVisibility(8);
+        recyclerListView5.setSections(true);
+        this.searchListView.setClipToPadding(false);
+        this.searchListView.setVisibility(8);
         this.searchListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         ChatAttachAlert chatAttachAlert4 = this.parentAlert;
         LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert4.isStoryLocationPicker, chatAttachAlert4.isBizLocationPicker) {
@@ -1756,7 +1759,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) this.searchListView.getLayoutParams();
         layoutParams4.topMargin = currentActionBarHeight;
         this.searchListView.setLayoutParams(layoutParams4);
-        this.adapter.setOverScrollHeight((this.locationDenied && isTypeSend()) ? this.overScrollHeight - this.listView.getPaddingTop() : this.overScrollHeight);
+        this.adapter.setOverScrollHeight(((this.locationDenied && isTypeSend()) ? this.overScrollHeight - this.listView.getPaddingTop() : this.overScrollHeight) + AndroidUtilities.dp(16.0f));
         FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) this.mapView.getView().getLayoutParams();
         if (layoutParams5 != null) {
             layoutParams5.height = this.mapHeight + AndroidUtilities.dp(10.0f);

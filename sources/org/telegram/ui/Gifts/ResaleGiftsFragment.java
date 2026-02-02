@@ -1423,7 +1423,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public EmptyView createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public EmptyView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new EmptyView(context, resourcesProvider);
             }
 
@@ -1573,7 +1573,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public ModelItem createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public ModelItem createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new ModelItem(context, i, resourcesProvider);
             }
 
@@ -1680,7 +1680,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public PatternItem createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public PatternItem createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new PatternItem(context, i, resourcesProvider);
             }
 
@@ -1743,7 +1743,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             }
 
             @Override
-            public BackdropItem createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public BackdropItem createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new BackdropItem(context, resourcesProvider);
             }
 
@@ -2496,6 +2496,12 @@ public class ResaleGiftsFragment extends BaseFragment {
 
         public void lambda$new$24() {
             this.adapter.update(true);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.onScroll();
+                }
+            }, 150L);
         }
 
         public void onScroll() {
@@ -2653,7 +2659,7 @@ public class ResaleGiftsFragment extends BaseFragment {
                 int i2 = i % 3;
                 int i3 = 6 - i2;
                 for (int i4 = 0; i4 < i3; i4++) {
-                    arrayList.add(UItem.asFlicker((i4 - i2) + 1, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker((i4 - i2) + 1, 35).setSpanCount(1));
                 }
             } else if (z) {
                 arrayList.add(UItem.asCenterShadow(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
@@ -2670,12 +2676,12 @@ public class ResaleGiftsFragment extends BaseFragment {
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it2.next(), false, true, false, true, true));
                 }
                 if (this.state.resaleList.loading || !this.state.resaleList.endReached) {
-                    arrayList.add(UItem.asFlicker(10, 34).setSpanCount(1));
-                    arrayList.add(UItem.asFlicker(11, 34).setSpanCount(1));
-                    arrayList.add(UItem.asFlicker(12, 34).setSpanCount(1));
-                    arrayList.add(UItem.asFlicker(13, 34).setSpanCount(1));
-                    arrayList.add(UItem.asFlicker(14, 34).setSpanCount(1));
-                    arrayList.add(UItem.asFlicker(15, 34).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(10, 35).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(11, 35).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(12, 35).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(13, 35).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(14, 35).setSpanCount(1));
+                    arrayList.add(UItem.asFlicker(15, 35).setSpanCount(1));
                 }
             }
         }

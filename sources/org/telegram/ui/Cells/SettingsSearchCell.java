@@ -20,6 +20,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
@@ -211,7 +212,7 @@ public class SettingsSearchCell extends FrameLayout {
         }
 
         @Override
-        public SettingsSearchCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        public SettingsSearchCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             return new SettingsSearchCell(context);
         }
 

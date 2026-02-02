@@ -26,6 +26,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.TextHelper;
 import org.telegram.ui.Components.UItem;
@@ -344,7 +345,7 @@ public class EnableTopicsActivity extends BaseFragment {
             }
 
             @Override
-            public TopicsLayoutSwitcher createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public TopicsLayoutSwitcher createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new TopicsLayoutSwitcher(context, resourcesProvider);
             }
 

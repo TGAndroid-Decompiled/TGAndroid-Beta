@@ -294,6 +294,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.itemAnimator.setDurations(350L);
         this.listView.setClipToPadding(false);
         this.listView.setVerticalScrollBarEnabled(false);
+        this.listView.setSections();
         RecyclerListView recyclerListView4 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(53.0f), this.listView) {
             @Override
@@ -762,7 +763,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         if (y < 0 || holder == null || holder.getAdapterPosition() != 1) {
             y = i;
         }
-        return y + AndroidUtilities.dp(25.0f);
+        return y + AndroidUtilities.dp(12.0f);
     }
 
     @Override
@@ -1168,7 +1169,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 int i3 = AndroidUtilities.displaySize.x;
                 if (i2 != i3 || layoutParams.height != iDp || this.wasEmojiSearchOpened != this.isEmojiSearchOpened) {
                     layoutParams.width = i3;
-                    layoutParams.height = iDp;
+                    layoutParams.height = iDp + AndroidUtilities.navigationBarHeight;
                     this.emojiView.setLayoutParams(layoutParams);
                     this.emojiPadding = layoutParams.height;
                     this.keyboardNotifier.fire();
@@ -1279,7 +1280,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 android.graphics.Point point = AndroidUtilities.displaySize;
                 int i2 = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) emojiView2.getLayoutParams();
-                layoutParams.height = i2;
+                layoutParams.height = AndroidUtilities.navigationBarHeight + i2;
                 emojiView2.setLayoutParams(layoutParams);
                 if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet() && (pollEditTextCell = this.currentCell) != null) {
                     AndroidUtilities.hideKeyboard(pollEditTextCell.getEditField());
@@ -1455,8 +1456,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), true, null, null, true, this.resourcesProvider, false);
         this.emojiView = emojiView2;
         emojiView2.emojiCacheType = 3;
+        emojiView2.shouldLightenBackground = false;
         emojiView2.fixBottomTabContainerTranslation = false;
-        emojiView2.allowEmojisForNonPremium(false);
+        emojiView2.setShouldDrawBackground(false);
+        this.emojiView.allowEmojisForNonPremium(false);
         this.emojiView.setVisibility(8);
         if (AndroidUtilities.isTablet()) {
             this.emojiView.setForseMultiwindowLayout(true);
@@ -1751,9 +1754,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     return;
                 }
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(ChatAttachAlertPollLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                combinedDrawable.setFullsize(true);
-                textInfoPrivacyCell.setBackgroundDrawable(combinedDrawable);
+                new CombinedDrawable(new ColorDrawable(ChatAttachAlertPollLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow)).setFullsize(true);
                 if (i != ChatAttachAlertPollLayout.this.solutionInfoRow) {
                     if (i == ChatAttachAlertPollLayout.this.settingsSectionRow) {
                         if (ChatAttachAlertPollLayout.this.quizOnly != 0) {
@@ -1843,6 +1844,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view;
             View headerCell;
             switch (i) {
                 case 0:
@@ -1850,9 +1852,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     break;
                 case 1:
                     View shadowSectionCell = new ShadowSectionCell(this.mContext, ChatAttachAlertPollLayout.this.resourcesProvider);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(ChatAttachAlertPollLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                    combinedDrawable.setFullsize(true);
-                    shadowSectionCell.setBackgroundDrawable(combinedDrawable);
+                    new CombinedDrawable(new ColorDrawable(ChatAttachAlertPollLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow)).setFullsize(true);
                     headerCell = shadowSectionCell;
                     break;
                 case 2:
@@ -1946,8 +1946,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     boolean z2 = ChatAttachAlertPollLayout.this.isPremium;
                     final PollEditTextCell pollEditTextCell2 = new PollEditTextCell(context2, false, z2 ? 1 : 0, new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view) {
-                            this.f$0.lambda$onCreateViewHolder$0(view);
+                        public final void onClick(View view2) {
+                            this.f$0.lambda$onCreateViewHolder$0(view2);
                         }
                     }, ChatAttachAlertPollLayout.this.resourcesProvider) {
                         @Override
@@ -1997,9 +1997,9 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                 for (int i2 = ChatAttachAlertPollLayout.this.answerStartRow; i2 < ChatAttachAlertPollLayout.this.answerStartRow + ChatAttachAlertPollLayout.this.answersCount; i2++) {
                                     RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(i2);
                                     if (viewHolderFindViewHolderForAdapterPosition != null) {
-                                        View view = viewHolderFindViewHolderForAdapterPosition.itemView;
-                                        if (view instanceof PollEditTextCell) {
-                                            ((PollEditTextCell) view).setChecked(false, true);
+                                        View view2 = viewHolderFindViewHolderForAdapterPosition.itemView;
+                                        if (view2 instanceof PollEditTextCell) {
+                                            ((PollEditTextCell) view2).setChecked(false, true);
                                         }
                                     }
                                 }
@@ -2100,8 +2100,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     });
                     textView.setOnKeyListener(new View.OnKeyListener() {
                         @Override
-                        public final boolean onKey(View view, int i2, KeyEvent keyEvent) {
-                            return ChatAttachAlertPollLayout.ListAdapter.lambda$onCreateViewHolder$2(pollEditTextCell2, view, i2, keyEvent);
+                        public final boolean onKey(View view2, int i2, KeyEvent keyEvent) {
+                            return ChatAttachAlertPollLayout.ListAdapter.lambda$onCreateViewHolder$2(pollEditTextCell2, view2, i2, keyEvent);
                         }
                     });
                     headerCell = pollEditTextCell2;
@@ -2175,16 +2175,20 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     break;
                 case 8:
                     View emptyView = new EmptyView(this.mContext);
-                    emptyView.setBackgroundColor(ChatAttachAlertPollLayout.this.getThemedColor(Theme.key_windowBackgroundGray));
-                    headerCell = emptyView;
+                    emptyView.setTag(-33024);
+                    view = emptyView;
+                    headerCell = view;
                     break;
                 case 9:
-                    headerCell = new View(this.mContext) {
+                    View view2 = new View(this.mContext) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             setMeasuredDimension(View.MeasureSpec.getSize(i2), ChatAttachAlertPollLayout.this.topPadding);
                         }
                     };
+                    view2.setTag(-33024);
+                    view = view2;
+                    headerCell = view;
                     break;
             }
             headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));

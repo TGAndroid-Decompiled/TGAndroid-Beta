@@ -3232,7 +3232,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -3314,7 +3314,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$17(View view) throws Resources.NotFoundException {
+    public void lambda$createView$17(View view) {
         openStoriesRecorder();
     }
 
@@ -5966,8 +5966,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 this.viewPages[0].setScaleX(1.0f);
                 this.viewPages[0].setScaleY(1.0f);
             } else {
-                arrayList.add(ObjectAnimator.ofFloat(this.viewPages[0], (Property<ViewPage, Float>) View.SCALE_X, z ? 0.9f : 1.0f));
-                arrayList.add(ObjectAnimator.ofFloat(this.viewPages[0], (Property<ViewPage, Float>) View.SCALE_Y, z ? 0.9f : 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this.viewPages[0], (Property<ViewPage, Float>) View.SCALE_X, z ? 0.95f : 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this.viewPages[0], (Property<ViewPage, Float>) View.SCALE_Y, z ? 0.95f : 1.0f));
             }
             RightSlidingDialogContainer rightSlidingDialogContainer2 = this.rightSlidingDialogContainer;
             if (rightSlidingDialogContainer2 != null) {
@@ -6088,8 +6088,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             this.viewPages[0].setAlpha(z ? 0.0f : 1.0f);
             if (!z7) {
-                this.viewPages[0].setScaleX(z ? 0.9f : 1.0f);
-                this.viewPages[0].setScaleY(z ? 0.9f : 1.0f);
+                this.viewPages[0].setScaleX(z ? 0.95f : 1.0f);
+                this.viewPages[0].setScaleY(z ? 0.95f : 1.0f);
             } else {
                 this.viewPages[0].setScaleX(1.0f);
                 this.viewPages[0].setScaleY(1.0f);
@@ -6254,7 +6254,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6314,7 +6314,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, NumberFormatException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -9651,6 +9651,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
         }) {
             GradientDrawable gradientDrawable;
+            GradientDrawable gradientDrawable2;
 
             @Override
             protected boolean onBackProgress(float f) {
@@ -9677,6 +9678,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     int i2 = Theme.key_windowBackgroundWhite;
                     gradientDrawable.setColors(new int[]{dialogsActivity.getThemedColor(i2), ColorUtils.setAlphaComponent(DialogsActivity.this.getThemedColor(i2), 0)});
                 }
+                GradientDrawable gradientDrawable2 = this.gradientDrawable2;
+                if (gradientDrawable2 != null) {
+                    DialogsActivity dialogsActivity2 = DialogsActivity.this;
+                    int i3 = Theme.key_windowBackgroundWhite;
+                    gradientDrawable2.setColors(new int[]{dialogsActivity2.getThemedColor(i3), ColorUtils.setAlphaComponent(DialogsActivity.this.getThemedColor(i3), 0)});
+                }
             }
 
             @Override
@@ -9696,9 +9703,18 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     int i2 = Theme.key_windowBackgroundWhite;
                     this.gradientDrawable = new GradientDrawable(orientation, new int[]{dialogsActivity.getThemedColor(i2), ColorUtils.setAlphaComponent(DialogsActivity.this.getThemedColor(i2), 0)});
                 }
+                if (this.gradientDrawable2 == null) {
+                    GradientDrawable.Orientation orientation2 = GradientDrawable.Orientation.BOTTOM_TOP;
+                    DialogsActivity dialogsActivity2 = DialogsActivity.this;
+                    int i3 = Theme.key_windowBackgroundWhite;
+                    this.gradientDrawable2 = new GradientDrawable(orientation2, new int[]{dialogsActivity2.getThemedColor(i3), ColorUtils.setAlphaComponent(DialogsActivity.this.getThemedColor(i3), 0)});
+                }
                 this.gradientDrawable.setBounds(0, 0, getMeasuredWidth(), AndroidUtilities.dp(4.0f));
                 this.gradientDrawable.draw(canvas);
-                AndroidUtilities.drawNavigationBarProtection(canvas, this, DialogsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), DialogsActivity.this.navigationBarHeight);
+                if (DialogsActivity.this.navigationBarHeight > AndroidUtilities.dp(32.0f)) {
+                    this.gradientDrawable2.setBounds(0, getMeasuredHeight() - DialogsActivity.this.navigationBarHeight, getMeasuredWidth(), getMeasuredHeight());
+                    this.gradientDrawable2.draw(canvas);
+                }
             }
         };
         this.searchViewPager = searchViewPager2;
@@ -9760,7 +9776,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$createSearchViewPager$148(view, i2, f, f2);
             }
         });
@@ -9800,6 +9816,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 this.f$0.lambda$createSearchViewPager$149(z, arrayList, arrayList2, z2);
             }
         });
+        this.searchViewPager.setAlpha(0.0f);
+        this.searchViewPager.setScaleX(1.05f);
+        this.searchViewPager.setScaleY(1.05f);
         this.searchViewPager.setVisibility(8);
     }
 
@@ -10049,7 +10068,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$148(View view, int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$createSearchViewPager$148(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -10348,7 +10367,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -11006,18 +11025,20 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (this.parentLayout == null || this.actionBar == null) {
             return;
         }
+        float fMax = Math.max(this.animatorShadowVisible.getFloatValue(), getRightSlidingProgress());
         float f = 1.0f;
-        float fMax = Math.max(this.animatorShadowVisible.getFloatValue(), getRightSlidingProgress()) * (1.0f - this.searchAnimationProgress);
-        if (fMax == 0.0f) {
+        float f2 = 1.0f - this.searchAnimationProgress;
+        float f3 = fMax * f2 * f2;
+        if (f3 == 0.0f) {
             return;
         }
         if (-1 >= i) {
             i = -1;
             f = 0.0f;
         }
-        if (f <= 0.0f || fMax <= 0.0f || i <= 0 || (iNavigationLayout = this.parentLayout) == null) {
+        if (f <= 0.0f || f3 <= 0.0f || i <= 0 || (iNavigationLayout = this.parentLayout) == null) {
             return;
         }
-        iNavigationLayout.drawHeaderShadow(canvas, (int) (f * 255.0f * fMax), i);
+        iNavigationLayout.drawHeaderShadow(canvas, (int) (f * 255.0f * f3), i);
     }
 }

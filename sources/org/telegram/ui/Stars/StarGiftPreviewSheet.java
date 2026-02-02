@@ -820,7 +820,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
-            public GiftAttributeCell createView(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public GiftAttributeCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new GiftAttributeCell(context, i, resourcesProvider);
             }
 
