@@ -484,11 +484,16 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         }
         blur3_invalidateBlur();
         ViewPagerFixed viewPagerFixed = this.viewPager;
-        if (viewPagerFixed == null || viewPagerFixed.getCurrentPosition() == 2 || !this.dropCallsFragmentAfterPageScroll) {
-            return;
+        if (viewPagerFixed != null) {
+            int currentPosition = viewPagerFixed.getCurrentPosition();
+            if (currentPosition != 2 && this.dropCallsFragmentAfterPageScroll) {
+                dropFragmentAtPosition(2);
+                this.dropCallsFragmentAfterPageScroll = false;
+            }
+            if (currentPosition != 3) {
+                dropFragmentAtPosition(3);
+            }
         }
-        dropFragmentAtPosition(2);
-        this.dropCallsFragmentAfterPageScroll = false;
     }
 
     @Override

@@ -924,16 +924,16 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (currentChat != null) {
             ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = new ChatActivityMemberRequestsDelegate(this, currentChat);
             this.pendingRequestsDelegate = chatActivityMemberRequestsDelegate;
-            chatActivityMemberRequestsDelegate.setDelegate(new ChatActivityMemberRequestsDelegate.ChangeVisibilityDelegate() {
+            this.topPanelLayout.addView(chatActivityMemberRequestsDelegate.getView(), LayoutHelper.createLinear(-1, 40));
+            this.topPanelLayout.setPriority(this.pendingRequestsDelegate.getView(), 3);
+            this.topPanelLayout.setDebugName(this.pendingRequestsDelegate.getView(), "pendingRequestsDelegate");
+            this.pendingRequestsDelegate.setDelegate(new ChatActivityMemberRequestsDelegate.ChangeVisibilityDelegate() {
                 @Override
                 public final void setVisible(boolean z, boolean z2) {
                     this.f$0.lambda$createView$8(z, z2);
                 }
             });
             this.pendingRequestsDelegate.setChatInfo(this.chatFull, false);
-            this.topPanelLayout.addView(this.pendingRequestsDelegate.getView(), LayoutHelper.createLinear(-1, 40));
-            this.topPanelLayout.setPriority(this.pendingRequestsDelegate.getView(), 3);
-            this.topPanelLayout.setDebugName(this.pendingRequestsDelegate.getView(), "pendingRequestsDelegate");
         }
         if (!this.inPreviewMode) {
             FrameLayout frameLayout2 = new FrameLayout(context);

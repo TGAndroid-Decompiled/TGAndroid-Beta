@@ -520,7 +520,7 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws Resources.NotFoundException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws InterruptedException, Resources.NotFoundException {
                 MessageObject.GroupedMessagePosition position;
                 MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
                 View view = viewHolder.itemView;
