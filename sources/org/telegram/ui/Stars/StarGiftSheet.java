@@ -8927,6 +8927,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         private boolean attributesTwoLines;
         private final AttributeView[] backdropAttributes;
         private final SwitchGradientDrawable bg;
+        private RLottieImageView brokenGiftImage;
         private final LinearLayout button;
         private final ButtonBackground buttonBackground;
         private final AnimatedTextView buttonSubtitle;
@@ -8939,6 +8940,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         public boolean crafting;
         private final TextView craftingChanceView;
         private final TextView craftingFooterView;
+        private final RLottieImageView craftingIconView;
         private final FrameLayout craftingLayout;
         private final TextView craftingSubtitleView;
         private final TextView craftingTitleView;
@@ -9163,18 +9165,23 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             animatedTextView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftSuccessChance, "0%")));
             animatedTextView2.setTextSize(AndroidUtilities.dp(12.0f));
             linearLayout5.addView(animatedTextView2, LayoutHelper.createLinear(-1, 14, 55, 16.0f, 2.66f, 16.0f, 7.66f));
+            LinearLayout linearLayout6 = new LinearLayout(context);
+            linearLayout6.setOrientation(0);
+            linearLayout6.setGravity(17);
+            RLottieImageView rLottieImageView = new RLottieImageView(context);
+            this.craftingIconView = rLottieImageView;
+            rLottieImageView.setAutoRepeat(true);
+            rLottieImageView.setAnimation(R.raw.gift_crafting, 30, 30);
+            linearLayout6.addView(rLottieImageView, LayoutHelper.createLinear(30, 30, 17, 0, 0, 4, 0));
             TextView textView2 = new TextView(context);
             this.craftingTitleView = textView2;
             textView2.setTextSize(1, 20.0f);
             textView2.setTextColor(-1);
             textView2.setTypeface(AndroidUtilities.bold());
             textView2.setGravity(17);
-            SpannableString spannableString = new SpannableString("🛠");
-            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.large_forge);
-            coloredImageSpan.setScale(0.45f, 0.45f);
-            spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-            textView2.setText(TextUtils.concat(spannableString, "  " + LocaleController.getString(R.string.GiftCraftProgressTitle)));
-            this.craftingLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 350.0f, 0.0f, 0.0f));
+            textView2.setText(LocaleController.getString(R.string.GiftCraftProgressTitle));
+            linearLayout6.addView(textView2, LayoutHelper.createLinear(-2, -2, 17, 0, 0, 0, 0));
+            this.craftingLayout.addView(linearLayout6, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 350.0f, 0.0f, 0.0f));
             TextView textView3 = new TextView(context);
             this.craftingSubtitleView = textView3;
             textView3.setTextSize(1, 13.0f);
@@ -9212,10 +9219,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             textView7.setTextSize(1, 13.0f);
             textView7.setGravity(17);
             this.failedLayout.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 55, 32.0f, 383.0f, 32.0f, 0.0f));
-            LinearLayout linearLayout6 = new LinearLayout(context);
-            this.failedGiftsLayout = linearLayout6;
-            linearLayout6.setOrientation(0);
-            this.failedLayout.addView(linearLayout6, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 250.0f, 0.0f, 0.0f));
+            LinearLayout linearLayout7 = new LinearLayout(context);
+            this.failedGiftsLayout = linearLayout7;
+            linearLayout7.setOrientation(0);
+            this.failedLayout.addView(linearLayout7, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 250.0f, 0.0f, 0.0f));
             this.failedGifts = null;
             updateCounts();
         }
@@ -9294,7 +9301,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.currentHint.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
             addView(this.currentHint, LayoutHelper.createFrame(-1, 100.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
             this.currentHint.setTranslationY(y - AndroidUtilities.dp(100.0f));
-            this.currentHint.setJointPx(0.0f, x);
+            this.currentHint.setJointPx(0.0f, (x + (view.getWidth() / 2.0f)) - AndroidUtilities.dp(2.0f));
             this.currentHint.show();
         }
 
@@ -9487,6 +9494,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.button.animate().alpha(0.0f).start();
             this.craftingLayout.animate().alpha(1.0f).start();
             this.buttonsLayout.animate().alpha(0.5f).start();
+            this.craftingIconView.playAnimation();
             final ArrayList arrayList = new ArrayList();
             while (true) {
                 SelectGiftView[] selectGiftViewArr3 = this.gifts;
@@ -9513,63 +9521,75 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
 
         public void lambda$playAnimation$11(final ArrayList arrayList, final TL_stars.StarGift starGift, final Runnable runnable) {
-            SelectGiftView[] selectGiftViewArr;
+            int i;
             this.crafted = true;
-            int i = 0;
             this.failed = starGift == null;
             this.craftedGift = starGift;
             this.openCraftedGift = runnable;
-            int[] iArr = {5, 2, 1, 0, 4};
             Cube3D.AnimSequence animSequence = new Cube3D.AnimSequence(this.cube);
             ArrayList arrayList2 = new ArrayList();
             int i2 = 0;
             while (true) {
-                selectGiftViewArr = this.gifts;
+                SelectGiftView[] selectGiftViewArr = this.gifts;
                 if (i2 >= selectGiftViewArr.length) {
                     break;
                 }
-                SelectGiftView selectGiftView = selectGiftViewArr[0];
+                SelectGiftView selectGiftView = selectGiftViewArr[i2];
                 if (selectGiftView != null && selectGiftView.getGift() != null) {
                     arrayList2.add(Integer.valueOf(i2));
                 }
                 i2++;
             }
-            SelectGiftView selectGiftView2 = selectGiftViewArr[0];
-            if (selectGiftView2 != null && selectGiftView2.getGift() != null) {
-                animSequence.put(this.gifts[0], iArr[0], 32).fling(15.0f, -12.0f);
-                i = 1;
-            }
-            SelectGiftView selectGiftView3 = this.gifts[1];
-            if (selectGiftView3 != null && selectGiftView3.getGift() != null) {
-                if (i > 0) {
-                    animSequence.delay(42);
+            final int i3 = 4;
+            int i4 = 40;
+            if (arrayList2.size() == 1) {
+                animSequence.put(this.gifts[((Integer) arrayList2.get(0)).intValue()], 5, 32).friction(false).fling(26.0f, -26.0f).delay(90).friction(true).delay(20);
+            } else {
+                int[] iArr = {5, 0, 2, 3, 4};
+                SelectGiftView selectGiftView2 = this.gifts[0];
+                if (selectGiftView2 == null || selectGiftView2.getGift() == null) {
+                    i = 0;
+                } else {
+                    animSequence.put(this.gifts[0], iArr[0], 32).fling(25.0f, -22.0f);
+                    i = 1;
                 }
-                animSequence.put(this.gifts[1], iArr[i], 32, -90.0f).fling(15.0f, 21.0f);
-                i++;
-            }
-            SelectGiftView selectGiftView4 = this.gifts[2];
-            if (selectGiftView4 != null && selectGiftView4.getGift() != null) {
-                if (i > 0) {
-                    animSequence.delay(42);
+                SelectGiftView selectGiftView3 = this.gifts[1];
+                if (selectGiftView3 != null && selectGiftView3.getGift() != null) {
+                    if (i > 0) {
+                        animSequence.delay(42);
+                    }
+                    animSequence.put(this.gifts[1], iArr[i], 32).fling(25.0f, 31.0f);
+                    i++;
                 }
-                animSequence.put(this.gifts[2], iArr[i], 32, 90.0f).fling(-30.0f, -30.0f);
-                i++;
-            }
-            SelectGiftView selectGiftView5 = this.gifts[3];
-            if (selectGiftView5 != null && selectGiftView5.getGift() != null) {
-                if (i > 0) {
-                    animSequence.delay(42);
+                SelectGiftView selectGiftView4 = this.gifts[2];
+                if (selectGiftView4 != null && selectGiftView4.getGift() != null) {
+                    if (i > 0) {
+                        animSequence.delay(42);
+                    }
+                    animSequence.put(this.gifts[2], iArr[i], 32, 180.0f).fling(-36.0f, -36.0f);
+                    i++;
                 }
-                animSequence.put(this.gifts[3], iArr[i], 32).fling(-21.0f, 21.0f);
-                i++;
+                SelectGiftView selectGiftView5 = this.gifts[3];
+                if (selectGiftView5 != null && selectGiftView5.getGift() != null) {
+                    if (i > 0) {
+                        animSequence.delay(42);
+                    }
+                    animSequence.put(this.gifts[3], iArr[i], 32).fling(-31.0f, 31.0f);
+                    i++;
+                }
+                animSequence.friction(false);
+                animSequence.delay(40);
+                animSequence.friction(true);
+                animSequence.delay(40);
+                i3 = iArr[i];
+                i4 = 80;
             }
-            final int i3 = iArr[i];
-            animSequence.delay(40).run(new Runnable() {
+            animSequence.run(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$playAnimation$9(i3, starGift);
                 }
-            }).steerTo(i3, 80, 90).start(new Runnable() {
+            }).steerTo(i3, i4, -90).start(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$playAnimation$10(starGift, arrayList, runnable);
@@ -9580,6 +9600,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         public void lambda$playAnimation$10(TL_stars.StarGift starGift, ArrayList arrayList, Runnable runnable) {
             this.crafting = false;
             if (starGift == null) {
+                RLottieImageView rLottieImageView = this.brokenGiftImage;
+                if (rLottieImageView != null) {
+                    rLottieImageView.playAnimation();
+                }
                 this.precraftingLayout.animate().alpha(0.0f).start();
                 this.failedLayout.animate().alpha(1.0f).start();
                 this.button.animate().alpha(1.0f).start();
@@ -9658,13 +9682,14 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 return;
             }
             FrameLayout frameLayout = new FrameLayout(getContext());
-            ImageView imageView = new ImageView(getContext());
-            imageView.setImageResource(R.drawable.filled_gift_broken);
-            frameLayout.addView(imageView, LayoutHelper.createFrame(32, 32, 17));
-            imageView.setScaleX(0.5f);
-            imageView.setScaleY(0.5f);
-            imageView.setAlpha(0.0f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
+            RLottieImageView rLottieImageView = new RLottieImageView(getContext());
+            rLottieImageView.setAnimation(R.raw.gift_broken, 32, 32);
+            frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(32, 32, 17));
+            rLottieImageView.setScaleX(0.5f);
+            rLottieImageView.setScaleY(0.5f);
+            rLottieImageView.setAlpha(0.0f);
+            rLottieImageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).start();
+            this.brokenGiftImage = rLottieImageView;
             frameLayout.setBackground(new RoundRectStrokeDrawable(AndroidUtilities.dp(12.0f), Theme.multAlpha(-1, 0.075f)));
             this.cube.faces[i].setVisibility(8);
             frameLayout.setRotation(180.0f);
@@ -9677,7 +9702,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             switchGradientDrawable.setColors(iArr2[2], iArr2[3]);
             RaysView raysView = this.rays;
             int[] iArr3 = this.COLORS;
-            raysView.setColor(iArr3[2], iArr3[3]);
+            raysView.setColor(iArr3[3], iArr3[2]);
         }
 
         public void lambda$setupFinishFace$13(ValueAnimator valueAnimator) {
@@ -9735,7 +9760,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             switchGradientDrawable.setColors(iArr2[i2], iArr2[i3]);
             RaysView raysView = this.rays;
             int[] iArr3 = this.COLORS;
-            raysView.setColor(iArr3[i2], iArr3[i3]);
+            raysView.setColor(iArr3[i3], iArr3[i2]);
             if (this.document != null) {
                 if (getFirstGift() != null) {
                     SpannableString spannableString = new SpannableString("x");
@@ -10340,6 +10365,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             private final float[] faceRotations;
             private View[] faces;
             private final float friction;
+            private boolean frictionEnabled;
             private final HashMap index2Position;
             private final HashMap index2face;
             private ValueAnimator pulling;
@@ -10361,6 +10387,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.vx = 0.0f;
                 this.vy = 0.0f;
                 this.friction = 0.96f;
+                this.frictionEnabled = true;
                 this.faceNormals = new float[][]{new float[]{-1.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.0f, 1.0f, 0.0f, 0.0f}, new float[]{0.0f, -1.0f, 0.0f, 0.0f}, new float[]{0.0f, 0.0f, -1.0f, 0.0f}, new float[]{0.0f, 0.0f, 1.0f, 0.0f}};
                 this.transformedNormal = new float[4];
                 this.faceDepths = new float[6];
@@ -10416,7 +10443,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     FLING,
                     DELAY,
                     STEER,
-                    PUT
+                    PUT,
+                    FRICTION
                 }
 
                 public AnimSequence(Cube3D cube3D) {
@@ -10449,6 +10477,11 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
                 public AnimSequence put(View view, int i, int i2, float f) {
                     this.commands.add(new Cmd(CmdType.PUT, 0.0f, 0.0f, i2, i, f, view, null));
+                    return this;
+                }
+
+                public AnimSequence friction(boolean z) {
+                    this.commands.add(new Cmd(CmdType.FRICTION, z ? 1.0f : -1.0f, 0.0f, 0, -1, 0.0f, null, null));
                     return this;
                 }
 
@@ -10513,15 +10546,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         int i = cmd.frames;
                         this.framesRemaining = i;
                         this.totalFrames = i;
-                    } else {
-                        if (iOrdinal != 3) {
-                            if (iOrdinal != 4) {
-                                return;
-                            }
-                            this.waitingForPull = true;
-                            this.cube.doPull(cmd.view, cmd.face, cmd.frames);
-                            return;
-                        }
+                        return;
+                    }
+                    if (iOrdinal == 3) {
                         System.arraycopy(this.cube.rotationMatrix, 0, this.startMatrix, 0, 16);
                         this.targetMatrix = this.cube.createFaceMatrix(cmd.face, cmd.rotation);
                         int i2 = cmd.frames;
@@ -10529,6 +10556,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         this.framesRemaining = i2;
                         this.startVx = this.cube.vx;
                         this.startVy = this.cube.vy;
+                        return;
+                    }
+                    if (iOrdinal == 4) {
+                        this.waitingForPull = true;
+                        this.cube.doPull(cmd.view, cmd.face, cmd.frames);
+                    } else {
+                        if (iOrdinal != 5) {
+                            return;
+                        }
+                        this.cube.frictionEnabled = cmd.x > 0.0f;
+                        executeNext();
                     }
                 }
 
@@ -10644,6 +10682,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                         android.opengl.Matrix.setIdentityM(this.rotationMatrix, 0);
                         this.vy = 0.0f;
                         this.vx = 0.0f;
+                        this.frictionEnabled = true;
                         return;
                     }
                 }
@@ -10868,8 +10907,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     axisAngleToMatrix(0.0f, 1.0f, 0.0f, this.vy, fArr);
                     float[] fArr3 = this.rotationMatrix;
                     multiplyMatrix(fArr, fArr3, fArr3);
-                    this.vx *= 0.96f;
-                    this.vy *= 0.96f;
+                    if (this.frictionEnabled) {
+                        this.vx *= 0.96f;
+                        this.vy *= 0.96f;
+                    }
                 }
             }
 

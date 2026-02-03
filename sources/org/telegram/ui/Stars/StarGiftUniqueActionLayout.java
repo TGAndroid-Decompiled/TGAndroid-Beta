@@ -12,15 +12,20 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Gifts.GiftSheet;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 
 public class StarGiftUniqueActionLayout {
@@ -28,6 +33,7 @@ public class StarGiftUniqueActionLayout {
     private boolean attached;
     private TL_stars.starGiftAttributeBackdrop backdrop;
     private final ButtonBounce bounce;
+    private boolean burned;
     private final ButtonBounce buttonBounce;
     private float buttonHeight;
     private Text buttonText;
@@ -225,7 +231,14 @@ public class StarGiftUniqueActionLayout {
             }
         } else {
             if (motionEvent.getAction() == 1 && (this.buttonBounce.isPressed() || this.bounce.isPressed())) {
-                new StarGiftSheet(this.view.getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.resourcesProvider).set(this.currentMessageObject).show();
+                if (this.burned) {
+                    BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                    if (safeLastFragment != null) {
+                        BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(R.string.UniqueGiftNotFoundBurned)).show();
+                    }
+                } else {
+                    new StarGiftSheet(this.view.getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.resourcesProvider).set(this.currentMessageObject).show();
+                }
                 this.buttonBounce.setPressed(false);
                 this.bounce.setPressed(false);
                 return true;

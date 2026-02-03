@@ -7,6 +7,8 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.SQLite.SQLiteCursor;
@@ -18,7 +20,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
@@ -38,8 +39,9 @@ import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
-public abstract class ProfileChannelCell extends FrameLayout {
+public abstract class ProfileChannelCell extends FrameLayout implements Theme.Colorable {
     public final DialogCell dialogCell;
+    private final TextView headerView;
     private boolean loading;
     private AnimatedFloat loadingAlpha;
     private final LoadingDrawable loadingDrawable;
@@ -57,31 +59,24 @@ public abstract class ProfileChannelCell extends FrameLayout {
         final Context context = baseFragment.getContext();
         Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
         this.resourcesProvider = resourceProvider;
-        ClickableAnimatedTextView clickableAnimatedTextView = new ClickableAnimatedTextView(context) {
-            @Override
-            protected void onSizeChanged(int i, int i2, int i3, int i4) {
-                super.onSizeChanged(i, i2, i3, i4);
-                DialogCell dialogCell = ProfileChannelCell.this.dialogCell;
-                if (dialogCell == null || i <= 0) {
-                    return;
-                }
-                int i5 = dialogCell.namePaddingEnd;
-                dialogCell.namePaddingEnd = i;
-                if (i5 != i) {
-                    dialogCell.buildLayout();
-                    ProfileChannelCell.this.dialogCell.invalidate();
-                }
-            }
-        };
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 16.66f, 11.6f, 16.66f, 0.0f));
+        TextView textView = new TextView(context);
+        this.headerView = textView;
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 14.0f);
+        textView.setText(LocaleController.getString(R.string.ProfileChannel));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 51));
+        ClickableAnimatedTextView clickableAnimatedTextView = new ClickableAnimatedTextView(context);
         this.subscribersView = clickableAnimatedTextView;
         clickableAnimatedTextView.getDrawable().setHacks(true, true, true);
         clickableAnimatedTextView.setAnimationProperties(0.3f, 0L, 165L, cubicBezierInterpolator);
         clickableAnimatedTextView.setTypeface(AndroidUtilities.bold());
         clickableAnimatedTextView.setTextSize(AndroidUtilities.dp(11.0f));
-        clickableAnimatedTextView.setPadding(AndroidUtilities.dp(5.33f), 0, AndroidUtilities.dp(5.33f), 0);
+        clickableAnimatedTextView.setPadding(AndroidUtilities.dp(4.33f), 0, AndroidUtilities.dp(4.33f), 0);
         clickableAnimatedTextView.setGravity(3);
-        clickableAnimatedTextView.setTag(null);
-        addView(clickableAnimatedTextView, LayoutHelper.createFrame(-2, 17, 51));
+        linearLayout.addView(clickableAnimatedTextView, LayoutHelper.createLinear(-1, 17, 51, 4, 1, 4, 0));
         DialogCell dialogCell = new DialogCell(null, context, false, true, UserConfig.selectedAccount, resourceProvider);
         this.dialogCell = dialogCell;
         dialogCell.setBackgroundColor(0);
@@ -128,10 +123,9 @@ public abstract class ProfileChannelCell extends FrameLayout {
                 baseFragment.getOrCreateStoryViewer().open(context, null, arrayList, 0, null, null, StoriesListPlaceProvider.of(ProfileChannelCell.this), false);
             }
         });
-        dialogCell.isForChannelSubscriberCell = true;
         dialogCell.avatarStart = 15;
         dialogCell.messagePaddingStart = 83;
-        addView(dialogCell, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 4.0f, 0.0f, 0.0f));
+        addView(dialogCell, LayoutHelper.createFrame(-1, -2, 87));
         updateColors();
         setWillNotDraw(false);
         LoadingDrawable loadingDrawable = new LoadingDrawable();
@@ -139,57 +133,10 @@ public abstract class ProfileChannelCell extends FrameLayout {
         int i = Theme.key_listSelector;
         loadingDrawable.setColors(Theme.multAlpha(Theme.getColor(i, resourceProvider), 1.25f), Theme.multAlpha(Theme.getColor(i, resourceProvider), 0.8f));
         loadingDrawable.setRadiiDp(8.0f);
-        updatePosition();
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        if (this.subscribersView.getLeft() == 0) {
-            this.subscribersView.layout(0, 0, 0, 0);
-        }
-    }
-
-    private void updatePosition() {
-        int iDp = AndroidUtilities.dp((this.dialogCell.useForceThreeLines || SharedConfig.useThreeLinesLayout) ? 10.0f : 13.0f);
-        DialogCell dialogCell = this.dialogCell;
-        if (((!dialogCell.useForceThreeLines && !SharedConfig.useThreeLinesLayout) || dialogCell.isForumCell()) && this.dialogCell.hasTags()) {
-            iDp -= AndroidUtilities.dp(this.dialogCell.isForumCell() ? 8.0f : 9.0f);
-        }
-        if (this.dialogCell.nameLayout != null) {
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.subscribersView.getLayoutParams();
-            int i = layoutParams.leftMargin;
-            int i2 = layoutParams.topMargin;
-            layoutParams.topMargin = iDp + ((FrameLayout.LayoutParams) this.dialogCell.getLayoutParams()).topMargin;
-            DialogCell dialogCell2 = this.dialogCell;
-            int iDp2 = dialogCell2.nameAdditionalsForChannelSubscriber;
-            if (iDp2 == 0) {
-                if (!LocaleController.isRTL && dialogCell2.nameLayout.getLineLeft(0) <= 0.0f && AndroidUtilities.charSequenceContains(this.dialogCell.nameLayout.getText(), "…")) {
-                    iDp2 = AndroidUtilities.dp(-12.0f);
-                } else {
-                    iDp2 = AndroidUtilities.dp(4.0f);
-                }
-            }
-            if (LocaleController.isRTL) {
-                layoutParams.leftMargin = (int) (((r0.nameLeft + this.dialogCell.nameLayoutTranslateX) - r0.namePaddingEnd) - iDp2);
-            } else {
-                DialogCell dialogCell3 = this.dialogCell;
-                float lineRight = dialogCell3.channelShouldUseLineWidth ? dialogCell3.nameLayout.getLineRight(0) : dialogCell3.nameWidth;
-                layoutParams.leftMargin = (int) (r6.nameLeft + this.dialogCell.nameLayoutTranslateX + ((int) lineRight) + iDp2);
-            }
-            this.subscribersView.setVisibility(0);
-            int i3 = layoutParams.leftMargin;
-            if (i3 != i || layoutParams.topMargin != i2) {
-                this.subscribersView.requestLayout();
-            } else if (i3 == 0) {
-                this.subscribersView.postInvalidate();
-            }
-        }
     }
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        updatePosition();
         super.dispatchDraw(canvas);
         float f = this.loadingAlpha.set(this.loading);
         if (f > 0.0f) {
@@ -216,10 +163,10 @@ public abstract class ProfileChannelCell extends FrameLayout {
     public void set(TLRPC.Chat chat, MessageObject messageObject) {
         String shortNumber;
         boolean z = this.set;
-        boolean z2 = chat != null;
+        boolean z2 = chat == null || chat.participants_count > 0;
         this.subscribersView.cancelAnimation();
-        this.subscribersView.setPivotX(LocaleController.isRTL ? 1.0f : 0.0f);
-        if (z && (chat == null || this.subscribersView.getTag() == null || ((Integer) this.subscribersView.getTag()).intValue() != chat.participants_count)) {
+        this.subscribersView.setPivotX(0.0f);
+        if (z) {
             this.subscribersView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.8f).scaleY(z2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
         } else {
             this.subscribersView.setAlpha(z2 ? 1.0f : 0.0f);
@@ -228,19 +175,14 @@ public abstract class ProfileChannelCell extends FrameLayout {
         }
         if (chat != null) {
             int[] iArr = new int[1];
-            this.subscribersView.setTag(Integer.valueOf(chat.participants_count));
-            if (chat.participants_count > 0) {
-                if (AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                    int i = chat.participants_count;
-                    iArr[0] = i;
-                    shortNumber = String.valueOf(i);
-                } else {
-                    shortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
-                }
-                this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true);
+            if (AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                int i = chat.participants_count;
+                iArr[0] = i;
+                shortNumber = String.valueOf(i);
             } else {
-                this.subscribersView.setText(LocaleController.getString(R.string.PersonalChannel), true);
+                shortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
             }
+            this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true);
             boolean z3 = messageObject == null;
             this.loading = z3;
             if (z3) {
@@ -252,14 +194,13 @@ public abstract class ProfileChannelCell extends FrameLayout {
         if (!z) {
             this.loadingAlpha.set(this.loading, true);
         }
-        updatePosition();
         invalidate();
         this.set = true;
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
     }
 
     public static class ChannelMessageFetcher {
@@ -493,9 +434,11 @@ public abstract class ProfileChannelCell extends FrameLayout {
         }
     }
 
+    @Override
     public void updateColors() {
         int iProcessColor = processColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider));
         this.subscribersView.setTextColor(iProcessColor);
         this.subscribersView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(iProcessColor, 0.1f)));
+        this.headerView.setTextColor(iProcessColor);
     }
 }

@@ -77,6 +77,8 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CacheChart;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -93,7 +95,6 @@ import org.telegram.ui.Components.SlideChooseView;
 import org.telegram.ui.Components.StorageDiagramView;
 import org.telegram.ui.Components.StorageUsageView;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.DilogCacheBottomSheet;
 import org.telegram.ui.KeepMediaPopupView;
 import org.telegram.ui.Storage.CacheModel;
@@ -122,7 +123,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     private CacheChart cacheChart;
     private CacheChartHeader cacheChartHeader;
     CacheModel cacheModel;
-    private UndoView cacheRemovedTooltip;
     private CachedMediaLayout cachedMediaLayout;
     private boolean changeStatusBar;
     private ClearCacheButtonInternal clearCacheButton;
@@ -768,8 +768,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$cleanupFoldersInternal$15(long j) {
-        this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j)));
-        this.cacheRemovedTooltip.showWithAction(0L, 19, null, null);
+        Bulletin bulletinCreateSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.ic_delete, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j)));
+        bulletinCreateSimpleBulletin.hideAfterBottomSheet = false;
+        bulletinCreateSimpleBulletin.show();
     }
 
     @Override
@@ -1010,9 +1011,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         });
         nestedSizeNotifierLayout.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
-        UndoView undoView = new UndoView(context);
-        this.cacheRemovedTooltip = undoView;
-        nestedSizeNotifierLayout.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         this.nestedSizeNotifierLayout.setTargetListView(this.listView);
         return this.fragmentView;
     }
@@ -1244,8 +1242,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         while (it2.hasNext()) {
             this.cacheModel.onFileDeleted((CacheModel.FileInfo) it2.next());
         }
-        this.cacheRemovedTooltip.setInfoText(LocaleController.formatString("CacheWasCleared", R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j - this.totalSize)));
-        this.cacheRemovedTooltip.showWithAction(0L, 19, null, null);
+        Bulletin bulletinCreateSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.ic_delete, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j - this.totalSize)));
+        bulletinCreateSimpleBulletin.hideAfterBottomSheet = false;
+        bulletinCreateSimpleBulletin.show();
         final ArrayList arrayList = new ArrayList(hashSet);
         getFileLoader().getFileDatabase().removeFiles(arrayList);
         getFileLoader().cancelLoadAllFiles();
@@ -2952,7 +2951,6 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     @Override
     public void onInsets(int i, int i2, int i3, int i4) {
         this.listView.setPadding(0, AndroidUtilities.statusBarHeight + (ActionBar.getCurrentActionBarHeight() / 2), 0, i4);
-        this.cacheRemovedTooltip.setTranslationY(-i4);
         this.listView.setClipToPadding(false);
     }
 }

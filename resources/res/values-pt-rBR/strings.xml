@@ -1014,7 +1014,6 @@
     <string name="SettingsRecent">Buscas recentes</string>
     <string name="SettingsSearchFaq">FAQ</string>
     <string name="ShareContactTitle">Compartilhar Contato</string>
-    <string name="ShareTelegram">Compartilhar o Telegram...</string>
     <string name="ShareYouLocationInfo">Isso irá enviar sua localização atual ao bot.</string>
     <string name="ShareYouLocationInline">Este bot gostaria de saber a sua localização sempre que você o usar. Isso pode ser utilizado para mostrar resultados baseados em localização.</string>
     <string name="ShareYouLocationTitle">Compartilhar a Sua Localização?</string>

@@ -33,6 +33,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
@@ -73,7 +76,6 @@ import org.telegram.ui.CallLogActivity;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.LoadingCell;
-import org.telegram.ui.Cells.LocationCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
@@ -214,7 +216,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         arrayList.add(rectF2);
         BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
         this.iBlur3SourceColor = blurredBackgroundSourceColor;
-        blurredBackgroundSourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
+        blurredBackgroundSourceColor.setColor(getThemedColor(Theme.key_windowBackgroundGray));
         if (i >= 31) {
             this.scrollableViewNoiseSuppressor = new DownscaleScrollableNoiseSuppressor();
             this.iBlur3SourceGlassFrosted = new BlurredBackgroundSourceRenderNode(null);
@@ -360,7 +362,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     } else if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
                         long fromChatId2 = messageObject.getFromChatId();
-                        Set<Long> set = (Set) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new CallLogActivity$$ExternalSyntheticLambda11()).collect(Collectors.toSet());
+                        Set<Long> set = (Set) Collection.EL.stream(tL_messageActionConferenceCall.other_participants).map(new CallLogActivity$$ExternalSyntheticLambda12()).collect(Collectors.toSet());
                         set.add(Long.valueOf(fromChatId2 == getUserConfig().getClientUserId() ? messageObject.messageOwner.peer_id.user_id : fromChatId2));
                         int i4 = fromChatId2 == getUserConfig().getClientUserId() ? 0 : 1;
                         if (i4 == 1 && tL_messageActionConferenceCall.missed) {
@@ -800,23 +802,24 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             }
         });
         this.listView = universalRecyclerView;
-        universalRecyclerView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider));
+        int i = Theme.key_windowBackgroundGray;
+        universalRecyclerView.setBackgroundColor(Theme.getColor(i, this.resourceProvider));
         this.listView.setSections();
         this.listView.adapter.setApplyBackground(false);
         this.contentView = new SizeNotifierFrameLayout(context) {
             @Override
-            protected void onMeasure(int i, int i2) {
-                measureChildWithMargins(((BaseFragment) CallLogActivity.this).actionBar, i, 0, i2, 0);
+            protected void onMeasure(int i2, int i3) {
+                measureChildWithMargins(((BaseFragment) CallLogActivity.this).actionBar, i2, 0, i3, 0);
                 ((ViewGroup.MarginLayoutParams) CallLogActivity.this.topPanelLayout.getLayoutParams()).topMargin = ((BaseFragment) CallLogActivity.this).actionBar.getMeasuredHeight() - AndroidUtilities.dp(14.0f);
                 ((ViewGroup.MarginLayoutParams) CallLogActivity.this.emptyView.getLayoutParams()).topMargin = ((BaseFragment) CallLogActivity.this).actionBar.getMeasuredHeight();
                 ((ViewGroup.MarginLayoutParams) CallLogActivity.this.headerShadowView.getLayoutParams()).topMargin = ((BaseFragment) CallLogActivity.this).actionBar.getMeasuredHeight();
                 CallLogActivity.this.checkUi_listViewPadding();
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
 
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                super.onLayout(z, i, i2, i3, i4);
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
                 CallLogActivity.this.checkUi_floatingButton();
                 CallLogActivity.this.checkUi_listClip();
             }
@@ -829,7 +832,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     int measuredHeight = getMeasuredHeight();
                     if (CallLogActivity.this.iBlur3SourceGlassFrosted != null && !CallLogActivity.this.iBlur3SourceGlassFrosted.inRecording()) {
                         RecordingCanvas recordingCanvasBeginRecording = CallLogActivity.this.iBlur3SourceGlassFrosted.beginRecording(measuredWidth, measuredHeight);
-                        recordingCanvasBeginRecording.drawColor(CallLogActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                        recordingCanvasBeginRecording.drawColor(CallLogActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
                         if (SharedConfig.chatBlurEnabled()) {
                             CallLogActivity.this.scrollableViewNoiseSuppressor.draw(recordingCanvasBeginRecording, -3);
                         }
@@ -837,7 +840,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     }
                     if (CallLogActivity.this.iBlur3SourceGlass != null && !CallLogActivity.this.iBlur3SourceGlass.inRecording()) {
                         RecordingCanvas recordingCanvasBeginRecording2 = CallLogActivity.this.iBlur3SourceGlass.beginRecording(measuredWidth, measuredHeight);
-                        recordingCanvasBeginRecording2.drawColor(CallLogActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                        recordingCanvasBeginRecording2.drawColor(CallLogActivity.this.getThemedColor(Theme.key_windowBackgroundGray));
                         if (SharedConfig.chatBlurEnabled()) {
                             CallLogActivity.this.scrollableViewNoiseSuppressor.draw(recordingCanvasBeginRecording2, -2);
                         }
@@ -875,11 +878,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 this.f$0.lambda$createView$2();
             }
         });
-        this.fragmentView = this.contentView;
+        SizeNotifierFrameLayout sizeNotifierFrameLayout2 = this.contentView;
+        this.fragmentView = sizeNotifierFrameLayout2;
+        sizeNotifierFrameLayout2.setBackgroundColor(Theme.getColor(i));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
         flickerLoadingView.setViewType(8);
-        this.flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.flickerLoadingView.setBackgroundColor(Theme.getColor(i));
         this.flickerLoadingView.showDate(false);
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, this.flickerLoadingView);
         this.emptyView = emptyTextProgressView;
@@ -899,10 +904,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 this.f$0.blur3_InvalidateBlur();
             }
         });
-        SizeNotifierFrameLayout sizeNotifierFrameLayout2 = this.contentView;
+        SizeNotifierFrameLayout sizeNotifierFrameLayout3 = this.contentView;
         UniversalRecyclerView universalRecyclerView4 = this.listView;
         float f = -this.ADDITIONAL_LIST_HEIGHT_DP;
-        sizeNotifierFrameLayout2.addView(universalRecyclerView4, LayoutHelper.createFrame(-1, -1.0f, 3, 0.0f, f, 0.0f, f));
+        sizeNotifierFrameLayout3.addView(universalRecyclerView4, LayoutHelper.createFrame(-1, -1.0f, 3, 0.0f, f, 0.0f, f));
         this.listView.setOnScrollListener(new AnonymousClass3());
         if (this.loading) {
             this.emptyView.showProgress();
@@ -939,8 +944,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.topPanelLayout.setViewVisible(this.fragmentContextViewWrapper, true, false);
         FragmentContextView fragmentContextView = new FragmentContextView(context, this, this.contentView, false, this.resourceProvider) {
             @Override
-            public void setVisibility(int i) {
-                CallLogActivity.this.topPanelLayout.setViewVisible(CallLogActivity.this.fragmentContextViewWrapper, i == 0);
+            public void setVisibility(int i2) {
+                CallLogActivity.this.topPanelLayout.setViewVisible(CallLogActivity.this.fragmentContextViewWrapper, i2 == 0);
             }
         };
         this.fragmentContextView = fragmentContextView;
@@ -966,13 +971,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public boolean clipWithGradient(int i) {
-                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+            public boolean clipWithGradient(int i2) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i2);
             }
 
             @Override
-            public int getTopOffset(int i) {
-                return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+            public int getTopOffset(int i2) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i2);
             }
 
             @Override
@@ -992,10 +997,18 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public int getBottomOffset(int i) {
+            public int getBottomOffset(int i2) {
                 return CallLogActivity.this.navigationBarHeight + CallLogActivity.this.additionFloatingButtonOffset;
             }
         });
+        if (this.hasMainTabs) {
+            ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
+                @Override
+                public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                    return this.f$0.onInsetsInternal(view, windowInsetsCompat);
+                }
+            });
+        }
         return this.fragmentView;
     }
 
@@ -1702,12 +1715,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        if (this.hasMainTabs) {
-            arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{LocationCell.class, HeaderCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
-        } else {
-            arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{LocationCell.class, CallCell.class, HeaderCell.class, GroupCallCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
-            arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
-        }
+        View view = this.fragmentView;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_windowBackgroundGray;
+        arrayList.add(new ThemeDescription(view, i, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
@@ -1717,8 +1728,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{EmptyTextProgressView.class}, new String[]{"emptyTextView1"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
         arrayList.add(new ThemeDescription(this.emptyView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{EmptyTextProgressView.class}, new String[]{"emptyTextView2"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_emptyListPlaceholder));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{LoadingCell.class}, new String[]{"progressBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_progressCircle));
-        int i = Theme.key_windowBackgroundGrayShadow;
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i));
+        int i3 = Theme.key_windowBackgroundGrayShadow;
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
         if (this.floatingButton != null) {
             arrayList.add(new ThemeDescription(this.floatingButton.imageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_chats_actionIcon));
@@ -1729,8 +1740,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CallCell.class}, null, new Drawable[]{Theme.dialogs_verifiedCheckDrawable}, null, Theme.key_chats_verifiedCheck));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CallCell.class}, null, new Drawable[]{Theme.dialogs_verifiedDrawable}, null, Theme.key_chats_verifiedBackground));
         TextPaint textPaint = Theme.dialogs_offlinePaint;
-        int i2 = Theme.key_windowBackgroundWhiteGrayText3;
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CallCell.class}, textPaint, null, null, i2));
+        int i4 = Theme.key_windowBackgroundWhiteGrayText3;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CallCell.class}, textPaint, null, null, i4));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CallCell.class}, Theme.dialogs_onlinePaint, null, null, Theme.key_windowBackgroundWhiteBlueText3));
         TextPaint[] textPaintArr = Theme.dialogs_namePaint;
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{CallCell.class}, (String[]) null, new Paint[]{textPaintArr[0], textPaintArr[1], Theme.dialogs_searchNamePaint}, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_name));
@@ -1744,10 +1755,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundCyan));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundBlue));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, new Drawable[]{this.greenDrawable, this.greenDrawable2, Theme.calllog_msgCallUpRedDrawable, Theme.calllog_msgCallDownRedDrawable}, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, new Drawable[]{this.greenDrawable, this.greenDrawable2, Theme.calllog_msgCallUpRedDrawable, Theme.calllog_msgCallDownRedDrawable}, null, i4));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, new Drawable[]{this.redDrawable, this.redDrawable2, Theme.calllog_msgCallUpGreenDrawable, Theme.calllog_msgCallDownGreenDrawable}, null, Theme.key_fill_RedNormal));
-        arrayList.add(new ThemeDescription(this.flickerLoadingView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i));
+        arrayList.add(new ThemeDescription(this.flickerLoadingView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i3));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
         return arrayList;
     }
@@ -1762,7 +1773,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                     ((CallCell) childAt).profileSearchCell.update(0);
                 }
             }
-            this.listView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider));
         }
         ImageView imageView = this.actionModeCloseView;
         if (imageView != null) {

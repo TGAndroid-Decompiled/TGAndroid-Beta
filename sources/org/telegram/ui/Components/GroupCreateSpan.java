@@ -46,10 +46,6 @@ public class GroupCreateSpan extends View {
         this(context, obj, null);
     }
 
-    public GroupCreateSpan(Context context, ContactsController.Contact contact) {
-        this(context, null, contact);
-    }
-
     public GroupCreateSpan(Context context, Object obj, ContactsController.Contact contact) {
         this(context, obj, contact, null);
     }

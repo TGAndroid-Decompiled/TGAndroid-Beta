@@ -1,6 +1,8 @@
 package org.telegram.ui.bots;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.GradientDrawable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +34,11 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
     private int buttonHeight;
     private final ArrayList buttonViews;
     private BotKeyboardViewDelegate delegate;
+    private final GradientDrawable fadeDrawable;
     private final FrameLayout frameLayout;
     private boolean isFullSize;
+    private int lastFadeColor;
+    private int navigationBarHeight;
     private int panelHeight;
     private final Theme.ResourcesProvider resourcesProvider;
     private final ScrollView scrollView;
@@ -74,6 +79,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
     public BotKeyboardView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.buttonViews = new ArrayList();
+        this.fadeDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
         this.animator = new ReplaceAnimator(this, CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
         this.resourcesProvider = resourcesProvider;
         setOrientation(1);
@@ -293,8 +299,28 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
 
     @Override
     public void applyNavigationBarHeight(int i) {
+        if (this.navigationBarHeight == i) {
+            return;
+        }
+        this.navigationBarHeight = i;
         if (this.scrollView.getPaddingBottom() != i) {
             this.scrollView.setPadding(0, 0, 0, i);
+        }
+        invalidate();
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(this.navigationBarHeight);
+        if (navigationBarThirdButtonsFactor > 0.0f) {
+            int iMultAlpha = Theme.multAlpha(getThemedColor(Theme.key_chat_emojiPanelBackground), navigationBarThirdButtonsFactor);
+            if (this.lastFadeColor != iMultAlpha) {
+                this.fadeDrawable.setColors(new int[]{iMultAlpha, Theme.multAlpha(iMultAlpha, 0.66f), ColorUtils.setAlphaComponent(iMultAlpha, 0)});
+                this.lastFadeColor = iMultAlpha;
+            }
+            this.fadeDrawable.setBounds(0, getMeasuredHeight() - this.navigationBarHeight, getMeasuredWidth(), getMeasuredHeight());
+            this.fadeDrawable.draw(canvas);
         }
     }
 

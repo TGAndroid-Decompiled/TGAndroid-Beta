@@ -51,6 +51,7 @@ public class StoriesIntro extends FrameLayout {
             }
         };
         ImageView imageView = new ImageView(context);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         addView(imageView, -1, -1);
         View view2 = new View(context);
         view2.setBackgroundColor(1677721600);

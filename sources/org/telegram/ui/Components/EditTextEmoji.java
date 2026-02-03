@@ -61,6 +61,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     private int emojiViewCacheType;
     private boolean emojiViewVisible;
     private ItemOptions formatOptions;
+    public boolean glassDesignForEmojiView;
     public boolean includeNavigationBar;
     private int innerTextChange;
     private boolean isAnimatePopupClosing;
@@ -836,7 +837,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         Context context = getContext();
         boolean zAllowSearch = allowSearch();
         int i = this.currentStyle;
-        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, zAllowSearch, null, null, (i == 2 || i == 3 || i == 5) ? false : true, this.resourcesProvider, false) {
+        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, zAllowSearch, null, null, (i == 2 || i == 3 || i == 5) ? false : true, this.resourcesProvider, false, this.glassDesignForEmojiView) {
             private boolean changedExpanded;
             private boolean lastExpanded;
             private int lastHeight;

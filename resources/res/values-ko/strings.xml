@@ -906,7 +906,6 @@
     <string name="SettingsRecent">최근 검색들</string>
     <string name="SettingsSearchFaq">자주 묻는 질문</string>
     <string name="ShareContactTitle">연락처 공유</string>
-    <string name="ShareTelegram">텔레그램 공유하기...</string>
     <string name="ShareYouLocationInfo">현재 위치를 봇에게 보냅니다.</string>
     <string name="ShareYouLocationInline">봇이 요청을 받을 때마다 회원님의 위치를 확인합니다.이는 상세 위치 정보를 제공하는 데 사용됩니다.</string>
     <string name="ShareYouLocationTitle">현재 위치를 공유할까요?</string>

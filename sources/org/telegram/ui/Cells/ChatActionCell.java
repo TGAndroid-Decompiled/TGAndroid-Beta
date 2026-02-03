@@ -364,7 +364,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws InterruptedException, Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         MessageObject messageObject;
         if (i == NotificationCenter.startSpoilers) {
             setSpoilersSuppressed(false);
@@ -636,11 +636,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.overrideText = i2;
     }
 
-    public void setMessageObject(MessageObject messageObject) throws InterruptedException, Resources.NotFoundException {
+    public void setMessageObject(MessageObject messageObject) throws Resources.NotFoundException {
         setMessageObject(messageObject, false);
     }
 
-    public void setMessageObject(org.telegram.messenger.MessageObject r30, boolean r31) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+    public void setMessageObject(org.telegram.messenger.MessageObject r30, boolean r31) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.setMessageObject(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -745,7 +745,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    protected void onAttachedToWindow() throws InterruptedException, Resources.NotFoundException {
+    protected void onAttachedToWindow() throws Resources.NotFoundException {
         ChatActionCellDelegate chatActionCellDelegate;
         super.onAttachedToWindow();
         this.attachedToWindow = true;
@@ -908,18 +908,26 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 return;
             }
             new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(this.currentMessageObject).show();
-        } else {
-            if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(this.currentMessageObject).show();
+            return;
+        }
+        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
+            if (((TLRPC.TL_messageActionStarGiftUnique) messageAction).gift.burned) {
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment == null) {
+                    return;
+                }
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(R.string.UniqueGiftNotFoundBurned)).show();
                 return;
             }
-            if (messageAction instanceof TLRPC.TL_messageActionSetChatTheme) {
-                TLRPC.ChatTheme chatTheme = ((TLRPC.TL_messageActionSetChatTheme) messageAction).theme;
-                if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
-                    TL_stars.StarGift starGift = ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift;
-                    if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(starGift.slug, (TL_stars.TL_starGiftUnique) starGift, null).show();
-                    }
+            new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(this.currentMessageObject).show();
+            return;
+        }
+        if (messageAction instanceof TLRPC.TL_messageActionSetChatTheme) {
+            TLRPC.ChatTheme chatTheme = ((TLRPC.TL_messageActionSetChatTheme) messageAction).theme;
+            if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+                TL_stars.StarGift starGift = ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift;
+                if (starGift instanceof TL_stars.TL_starGiftUnique) {
+                    new StarGiftSheet(getContext(), this.currentAccount, this.currentMessageObject.getDialogId(), this.themeDelegate).set(starGift.slug, (TL_stars.TL_starGiftUnique) starGift, null).show();
                 }
             }
         }

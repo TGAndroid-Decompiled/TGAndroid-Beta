@@ -4454,16 +4454,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (this.forceDarkTheme) {
             return getThemedColor(Theme.key_voipgroup_listViewBackground);
         }
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
         Iterator it = this.animatorCurrentVisibleLayout.iterator();
         float visibility = 0.0f;
         while (it.hasNext()) {
             ListAnimator.Entry entry = (ListAnimator.Entry) it.next();
             long jLongValue = ((Long) entry.item).longValue();
-            if (jLongValue == 3 || jLongValue == 6 || jLongValue == 9 || jLongValue == 12) {
+            if (jLongValue == 6 || jLongValue == 9 || jLongValue == 12) {
                 visibility += entry.getVisibility();
             }
         }
-        return ColorUtils.blendARGB(getThemedColor(Theme.key_dialogBackground), getThemedColor(Theme.key_dialogBackgroundGray), MathUtils.clamp(visibility, 0.0f, 1.0f));
+        return ColorUtils.blendARGB(getThemedColor(Theme.key_dialogBackground), getThemedColor(zIsDark ? Theme.key_windowBackgroundGray : Theme.key_dialogBackgroundGray), MathUtils.clamp(visibility, 0.0f, 1.0f));
     }
 
     public AttachAlertLayout getCurrentAttachLayout() {

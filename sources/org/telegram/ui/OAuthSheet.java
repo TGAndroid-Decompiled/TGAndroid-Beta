@@ -65,7 +65,7 @@ public abstract class OAuthSheet {
                 boolean z4 = urlAuthResult2 instanceof TLRPC.TL_urlAuthResultRequest;
                 String str2 = z4 ? ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).domain : null;
                 if (!TextUtils.isEmpty(str2)) {
-                    getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.BotAuthLoggedInSuccessTitle), AndroidUtilities.replaceSingleLink(LocaleController.formatString(z4 && ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).request_phone_number && !z2 ? R.string.BotAuthLoggedInSuccessWithoutPhoneNumber : R.string.BotAuthLoggedInSuccess, str2), Theme.getColor(Theme.key_featuredStickers_addButton))).show();
+                    getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.BotAuthLoggedInSuccessTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(z4 && ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).request_phone_number && !z2 ? R.string.BotAuthLoggedInSuccessWithoutPhoneNumber : R.string.BotAuthLoggedInSuccess, str2), Theme.getColor(Theme.key_featuredStickers_addButton))).show();
                 }
                 if (!z || (safeLastFragment2 = LaunchActivity.getSafeLastFragment()) == null || (context2 = safeLastFragment2.getContext()) == null) {
                     return;

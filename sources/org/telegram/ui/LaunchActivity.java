@@ -1885,30 +1885,30 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runCommentRequest$29(final int i, final TLRPC.Chat chat, final Long l, final Integer num, final Integer num2, final Runnable runnable, final String str, final Integer num3, final int i2, final int i3, final TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$runCommentRequest$28(tLObject, i, chat, l, num, num2, runnable, str, num3, i2, i3, tL_messages_getDiscussionMessage, runnable2);
             }
         });
     }
 
-    public void lambda$runCommentRequest$28(org.telegram.tgnet.TLObject r17, int r18, org.telegram.tgnet.TLRPC.Chat r19, java.lang.Long r20, java.lang.Integer r21, java.lang.Integer r22, java.lang.Runnable r23, java.lang.String r24, java.lang.Integer r25, int r26, int r27, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r28, java.lang.Runnable r29) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void lambda$runCommentRequest$28(org.telegram.tgnet.TLObject r17, int r18, org.telegram.tgnet.TLRPC.Chat r19, java.lang.Long r20, java.lang.Integer r21, java.lang.Integer r22, java.lang.Runnable r23, java.lang.String r24, java.lang.Integer r25, int r26, int r27, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r28, java.lang.Runnable r29) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$28(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, java.lang.Integer, int, int, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
     }
 
-    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final int r25, final java.util.ArrayList r26, final int r27) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final int r25, final java.util.ArrayList r26, final int r27) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, java.lang.Integer, int, java.util.ArrayList, int):void");
     }
 
     public void lambda$openTopicRequest$31(final int i, final TLRPC.Chat chat, final int i2, final int i3, final Runnable runnable, final String str, final Integer num, final int i4, final ArrayList arrayList, final int i5, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$openTopicRequest$30(tL_error, tLObject, i, chat, i2, i3, runnable, str, num, i4, arrayList, i5);
             }
         });
     }
 
-    public void lambda$openTopicRequest$30(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, int i4, ArrayList arrayList, int i5) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+    public void lambda$openTopicRequest$30(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, NumberFormatException {
         if (tL_error == null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
             LongSparseArray longSparseArray = new LongSparseArray();

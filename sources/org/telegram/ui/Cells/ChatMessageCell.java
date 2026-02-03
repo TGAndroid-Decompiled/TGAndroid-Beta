@@ -2473,7 +2473,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             invalidate();
                             return true;
                         }
-                        if ((this.drawPhotoImage && this.currentMessageObject.sponsoredMedia != null && this.photoImage.isInsideImage(eventX, eventY)) || (this.drawPhotoImage && this.drawImageButton && this.buttonState != -1 && ((!this.checkOnlyButtonPressed && this.photoImage.isInsideImage(eventX, eventY)) || (eventX >= (i2 = this.buttonX) && eventX <= i2 + AndroidUtilities.dp(48.0f) && eventY >= (i3 = this.buttonY) && eventY <= i3 + AndroidUtilities.dp(48.0f) && this.radialProgress.getIcon() != 4)))) {
+                        if ((this.drawPhotoImage && this.currentMessageObject.sponsoredMedia != null && this.photoImage.isInsideImage(eventX, eventY)) || (this.drawPhotoImage && this.drawImageButton && ((this.buttonState != -1 || this.documentAttachType == 4) && ((!this.checkOnlyButtonPressed && this.photoImage.isInsideImage(eventX, eventY)) || (eventX >= (i2 = this.buttonX) && eventX <= i2 + AndroidUtilities.dp(48.0f) && eventY >= (i3 = this.buttonY) && eventY <= i3 + AndroidUtilities.dp(48.0f) && this.radialProgress.getIcon() != 4))))) {
                             this.buttonPressed = 1;
                             invalidate();
                             TLRPC.MessageMedia messageMedia = this.currentMessageObject.sponsoredMedia;
@@ -2576,7 +2576,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         } else if (this.buttonPressed != 0) {
                             this.buttonPressed = 0;
                             playSoundEffect(0);
-                            if (this.drawVideoImageButton || this.currentMessageObject.sponsoredMedia != null) {
+                            if (this.drawVideoImageButton || ((this.buttonState == -1 && this.documentAttachType == 4) || this.currentMessageObject.sponsoredMedia != null)) {
                                 didClickedImage();
                             } else {
                                 didPressButton(true, false);

@@ -1033,6 +1033,21 @@ public class ItemOptions {
         return null;
     }
 
+    public View getLastView() {
+        LinearLayout linearLayout = this.linearLayout;
+        if (linearLayout != null) {
+            if (linearLayout.getChildCount() <= 0) {
+                return null;
+            }
+            return this.linearLayout.getChildAt(r0.getChildCount() - 1);
+        }
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+        if (actionBarPopupWindowLayout == null || actionBarPopupWindowLayout.getItemsCount() <= 0) {
+            return null;
+        }
+        return this.lastLayout.getItemAt(r0.getItemsCount() - 1);
+    }
+
     public ViewGroup getLayout() {
         return this.layout;
     }

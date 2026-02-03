@@ -235,7 +235,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.buttonTextView.setTypeface(AndroidUtilities.bold());
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setText(LocaleController.getString(R.string.CloseTranslation));
-        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 6.0f));
+        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 24.0f));
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {

@@ -1236,7 +1236,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                 i++;
             }
         }
-        this.searchField.setTranslationY(y - AndroidUtilities.dp(48.0f));
+        this.searchField.setTranslationY(AndroidUtilities.lerp(y, this.listView.getY() + this.listView.getPaddingTop(), this.animatorSearchHasQuery.getFloatValue()) - AndroidUtilities.dp(48.0f));
         this.animatorSearchFieldVisible.setValue(y > (this.listView.getY() + ((float) this.listView.getPaddingTop())) - ((float) AndroidUtilities.dp(12.0f)), true);
     }
 

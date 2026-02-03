@@ -799,6 +799,55 @@ public class AndroidUtilities {
         return spannableStringBuilder;
     }
 
+    public static SpannableStringBuilder replaceSingleLinkBold(String str, int i) {
+        return replaceSingleLinkBold(str, i, null);
+    }
+
+    public static SpannableStringBuilder replaceSingleLinkBold(String str, final int i, final Runnable runnable) {
+        int i2;
+        int i3;
+        int iIndexOf = str.indexOf("**");
+        int iIndexOf2 = str.indexOf("**", iIndexOf + 1);
+        String strReplace = str.replace("**", "");
+        if (iIndexOf < 0 || iIndexOf2 < 0 || (i3 = iIndexOf2 - iIndexOf) <= 2) {
+            iIndexOf = -1;
+            i2 = 0;
+        } else {
+            i2 = i3 - 2;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(strReplace);
+        if (iIndexOf >= 0) {
+            if (runnable != null) {
+                spannableStringBuilder.setSpan(new ClickableSpan() {
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        super.updateDrawState(textPaint);
+                        textPaint.setUnderlineText(false);
+                        textPaint.setTypeface(AndroidUtilities.bold());
+                        textPaint.setColor(i);
+                    }
+
+                    @Override
+                    public void onClick(View view) {
+                        Runnable runnable2 = runnable;
+                        if (runnable2 != null) {
+                            runnable2.run();
+                        }
+                    }
+                }, iIndexOf, i2 + iIndexOf, 0);
+            } else {
+                spannableStringBuilder.setSpan(new CharacterStyle() {
+                    @Override
+                    public void updateDrawState(TextPaint textPaint) {
+                        textPaint.setUnderlineText(false);
+                        textPaint.setColor(i);
+                    }
+                }, iIndexOf, i2 + iIndexOf, 0);
+            }
+        }
+        return spannableStringBuilder;
+    }
+
     public static CharSequence replaceArrows(CharSequence charSequence, boolean z) {
         return replaceArrows(charSequence, z, dp(2.6666667f), 0.0f, 1.0f);
     }

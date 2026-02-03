@@ -58,7 +58,6 @@ import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -644,6 +643,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         public void setTranslationY(float f) {
             super.setTranslationY(f);
             DialogsActivity.this.blur3_InvalidateBlur();
+            AndroidUtilities.printStackTrace("translationY: " + f);
         }
 
         @Override
@@ -877,7 +877,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
                         int iDp = AndroidUtilities.dp(2.0f) + size2;
                         if (DialogsActivity.this.rightSlidingDialogContainer.hasFragment()) {
-                            if (DialogsActivity.this.animatorFilterTabsVisible.getValue()) {
+                            if (DialogsActivity.this.canShowFilterTabsView) {
                                 iDp += AndroidUtilities.dp(50.0f);
                             }
                             if (DialogsActivity.this.hasStories) {
@@ -3233,7 +3233,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$14(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -3315,7 +3315,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$17(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$17(View view) {
         openStoriesRecorder();
     }
 
@@ -3354,6 +3354,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (topicsFragment != null) {
             topicsFragment.checkUi_listViewPadding();
         }
+        updateContextViewPosition();
     }
 
     public void lambda$createView$21(Long l) {
@@ -4837,7 +4838,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityTopBubblesFadeView dialogsActivityTopBubblesFadeView = this.topBubblesFadeView;
         if (dialogsActivityTopBubblesFadeView != null) {
             dialogsActivityTopBubblesFadeView.setTranslationY(f6);
-            float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(50.0f), f3);
+            float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(50.0f), Math.min(f3, alpha));
             this.topBubblesFadeView.setPosition(fLerp, Math.min(AndroidUtilities.dp(40.0f), (animatedHeightWithPadding + fDp) - fLerp));
             this.topBubblesFadeView.setAlpha(Math.max(alpha, f3));
         }
@@ -6255,7 +6256,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6315,7 +6316,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, NumberFormatException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -6708,6 +6709,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (this.fragmentView == null || f == this.scrollYOffset) {
             return;
         }
+        AndroidUtilities.printStackTrace("setScrollY: " + f);
         this.scrollYOffset = f;
         Bulletin bulletin = this.topBulletin;
         if (bulletin != null) {
@@ -9777,7 +9779,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$createSearchViewPager$148(view, i2, f, f2);
             }
         });
@@ -10069,7 +10071,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$148(View view, int i, float f, float f2) throws InterruptedException, Resources.NotFoundException, NumberFormatException {
+    public void lambda$createSearchViewPager$148(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -10368,7 +10370,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -10973,9 +10975,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public float getTopPanelAnimatedHeight() {
+        return getTopPanelAnimatedHeight(AndroidUtilities.dp(14.0f));
+    }
+
+    public float getTopPanelAnimatedHeight(int i) {
         DialogsActivityTopPanelLayout dialogsActivityTopPanelLayout = this.topPanelLayout;
         if (dialogsActivityTopPanelLayout != null) {
-            return dialogsActivityTopPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(14.0f));
+            return dialogsActivityTopPanelLayout.getAnimatedHeightWithPadding(i);
+        }
+        return 0.0f;
+    }
+
+    public float getTopPanelVisibility() {
+        DialogsActivityTopPanelLayout dialogsActivityTopPanelLayout = this.topPanelLayout;
+        if (dialogsActivityTopPanelLayout != null) {
+            return dialogsActivityTopPanelLayout.getMetadata().getTotalVisibility();
         }
         return 0.0f;
     }

@@ -1646,7 +1646,22 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void checkUi_listViewPadding() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.checkUi_listViewPadding():void");
+        DialogsActivity dialogsActivity = this.parentDialogsActivity;
+        float animatedHeightWithPadding = 0.0f;
+        if (dialogsActivity != null) {
+            animatedHeightWithPadding = 0.0f + dialogsActivity.getTopPanelAnimatedHeight();
+            DialogsActivityTopPanelLayout dialogsActivityTopPanelLayout = this.topPanelLayout;
+            if (dialogsActivityTopPanelLayout != null) {
+                dialogsActivityTopPanelLayout.setTranslationY(animatedHeightWithPadding - (AndroidUtilities.dp(7.0f) * this.parentDialogsActivity.getTopPanelVisibility()));
+                animatedHeightWithPadding += this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(7.0f), this.parentDialogsActivity.getTopPanelVisibility()));
+            }
+        } else {
+            DialogsActivityTopPanelLayout dialogsActivityTopPanelLayout2 = this.topPanelLayout;
+            if (dialogsActivityTopPanelLayout2 != null) {
+                animatedHeightWithPadding = 0.0f + dialogsActivityTopPanelLayout2.getAnimatedHeightWithPadding(AndroidUtilities.dp(14.0f));
+            }
+        }
+        this.recyclerListView.setPadding(0, (int) animatedHeightWithPadding, 0, this.navigationBarHeight + this.additionNavigationBarHeight + (this.bottomPannelVisible ? AndroidUtilities.dp(51.0f) : 0));
     }
 
     public void setTransitionPadding(int i) {
@@ -4153,7 +4168,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         EmptyViewContainer emptyViewContainer = this.emptyViewContainer;
         if (emptyViewContainer != null) {
-            emptyViewContainer.textView.setTranslationY(-this.navigationBarHeight);
+            emptyViewContainer.textView.setTranslationY((-this.navigationBarHeight) - this.additionFloatingButtonOffset);
         }
         updateFloatingButtonOffset();
         checkUi_listViewPadding();

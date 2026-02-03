@@ -710,7 +710,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return false;
     }
 
-    public static void access$10000(ChatActivityEnterView chatActivityEnterView) {
+    public static void access$10100(ChatActivityEnterView chatActivityEnterView) {
         chatActivityEnterView.checkBirthdayHint();
     }
 
@@ -2460,7 +2460,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         };
         this.sendButton = sendButton;
         sendButton.setVisibility(4);
-        getThemedColor(Theme.key_chat_messagePanelSend);
         this.sendButton.setContentDescription(LocaleController.getString(R.string.Send));
         this.sendButton.setSoundEffectsEnabled(false);
         this.sendButton.setScaleX(0.1f);
@@ -2953,11 +2952,18 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         @Override
         protected void dispatchDraw(Canvas canvas) {
             if (!ChatActivityEnterView.this.audioVideoButtonContainerForbidden) {
+                float alpha = 1.0f;
+                if (ChatActivityEnterView.this.expandStickersButton != null && ChatActivityEnterView.this.expandStickersButton.getVisibility() == 0) {
+                    alpha = 1.0f - ChatActivityEnterView.this.expandStickersButton.getAlpha();
+                }
                 float fDpf2 = AndroidUtilities.dpf2(19.0f);
                 this.paint.setColor(ChatActivityEnterView.this.getThemedColor(Theme.key_chat_messagePanelSend));
                 float fDpf22 = AndroidUtilities.dpf2(3.0f);
                 this.backgroundRect.set((getMeasuredWidth() - AndroidUtilities.dpf2(38.0f)) - fDpf22, (getMeasuredHeight() - AndroidUtilities.dpf2(38.0f)) - fDpf22, getMeasuredWidth() - fDpf22, getMeasuredHeight() - fDpf22);
+                canvas.save();
+                canvas.scale(alpha, alpha, this.backgroundRect.centerX(), this.backgroundRect.centerY());
                 canvas.drawRoundRect(this.backgroundRect, fDpf2, fDpf2, this.paint);
+                canvas.restore();
             }
             super.dispatchDraw(canvas);
         }
@@ -3198,7 +3204,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.access$10000(chatActivityEnterView);
+                    ChatActivityEnterView.access$10100(chatActivityEnterView);
                 }
             });
         }
@@ -3442,6 +3448,22 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             return;
         }
         ImageView imageView = new ImageView(getContext()) {
+            @Override
+            public void setAlpha(float f) {
+                super.setAlpha(f);
+                if (ChatActivityEnterView.this.audioVideoButtonContainer != null) {
+                    ChatActivityEnterView.this.audioVideoButtonContainer.invalidate();
+                }
+            }
+
+            @Override
+            public void setVisibility(int i) {
+                super.setVisibility(i);
+                if (ChatActivityEnterView.this.audioVideoButtonContainer != null) {
+                    ChatActivityEnterView.this.audioVideoButtonContainer.invalidate();
+                }
+            }
+
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (getAlpha() <= 0.0f) {
