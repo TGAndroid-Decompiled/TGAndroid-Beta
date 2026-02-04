@@ -606,7 +606,7 @@ public class EmojiThemes {
         return (ThemeItem) this.items.get(i);
     }
 
-    public static void saveCustomTheme(Theme.ThemeInfo themeInfo, int i) {
+    public static void saveCustomTheme(Theme.ThemeInfo themeInfo, int i) throws IOException {
         SparseArray sparseArray;
         Theme.ThemeAccent themeAccent;
         if (themeInfo == null) {

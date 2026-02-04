@@ -21,7 +21,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        return VideoEncoder.CC.$default$setRates(this, rateControlParameters);
+        return setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
     }
 
     @Override

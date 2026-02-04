@@ -850,52 +850,6 @@ public class ProfileActionsView extends View {
         return this.allAvailableActions.contains(5) && this.callAction != null;
     }
 
-    public void applyCallTransition(View view, boolean z, float f, float f2) {
-        if (view == null || getMeasuredWidth() <= 0.0f) {
-            return;
-        }
-        float left = view.getLeft();
-        float top = view.getTop();
-        if (z) {
-            int size = this.actions.size();
-            float f3 = this.xpadding / 2.0f;
-            float itemWidth = getItemWidth();
-            float f4 = this.xpadding;
-            int i = 0;
-            while (true) {
-                if (i >= size) {
-                    break;
-                }
-                Action action = (Action) this.actions.get(i);
-                if (!action.isDeleted) {
-                    if (action.key == 5) {
-                        RectF rectF = this.callAction.rect;
-                        float f5 = this.top;
-                        rectF.set(f4, f5, itemWidth + f4, this.targetHeight + f5);
-                        break;
-                    }
-                    f4 += itemWidth + f3;
-                }
-                i++;
-            }
-            updateBounds(this.callAction);
-            float fCenterY = (((((f - this.targetHeight) - this.ypadding) - this.top) + this.callAction.bounds.centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
-            view.setTranslationX(AndroidUtilities.lerp(0.0f, (this.callAction.bounds.centerX() - (view.getMeasuredWidth() / 2.0f)) - left, f2));
-            view.setTranslationY(AndroidUtilities.lerp(0.0f, fCenterY, f2));
-        } else {
-            if (!this.callAnimationStateLoaded) {
-                this.callAnimationStateLoaded = true;
-                this.callBackwardAnimateFromY = ((getTranslationY() + this.callAction.bounds.centerY()) - (view.getMeasuredHeight() / 2.0f)) - top;
-                this.callBackwardAnimateFromX = (this.callAction.bounds.centerX() - (view.getMeasuredWidth() / 2.0f)) - left;
-            }
-            view.setTranslationX(AndroidUtilities.lerp(0.0f, this.callBackwardAnimateFromX, f2));
-            view.setTranslationY(AndroidUtilities.lerp(0.0f, this.callBackwardAnimateFromY, f2));
-        }
-        if (view.getVisibility() != 0) {
-            view.setVisibility(0);
-        }
-    }
-
     class Action {
         private final ButtonBounce bounce;
         private RLottieDrawable drawableAnimated;

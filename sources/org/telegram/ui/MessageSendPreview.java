@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -289,7 +290,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) {
+            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
                 if (MessageSendPreview.this.openInProgress && ((view == MessageSendPreview.this.mainMessageCell && MessageSendPreview.this.mainMessageCell != null && MessageSendPreview.this.mainMessageCell.getCurrentPosition() == null) || view == MessageSendPreview.this.sendButton)) {
                     return false;
                 }
@@ -1090,7 +1091,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(final android.graphics.Canvas r30) {
+        protected void dispatchDraw(final android.graphics.Canvas r30) throws java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass3.dispatchDraw(android.graphics.Canvas):void");
         }
 

@@ -1310,7 +1310,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.updateThemeColors():void");
     }
 
-    public PeerColorActivity(long j) {
+    public PeerColorActivity(long j) throws IOException {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.forceDark = zIsCurrentThemeDark;

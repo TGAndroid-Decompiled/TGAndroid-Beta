@@ -1003,17 +1003,19 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         if (!z) {
-            if (this.fragmentsStack.size() >= 2) {
-                List list = this.fragmentsStack;
-                BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
-                baseFragment.prepareFragmentToSlide(true, false);
-                baseFragment.onPause();
-                baseFragment.onFragmentDestroy();
-                baseFragment.setParentLayout(null);
-                List list2 = this.fragmentsStack;
-                list2.remove(list2.size() - 1);
-                onFragmentStackChanged("onSlideAnimationEnd");
+            if (this.fragmentsStack.size() < 2) {
+                checkBlackScreen("onSlideAnimationEnd exit");
+                return;
             }
+            List list = this.fragmentsStack;
+            BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
+            baseFragment.prepareFragmentToSlide(true, false);
+            baseFragment.onPause();
+            baseFragment.onFragmentDestroy();
+            baseFragment.setParentLayout(null);
+            List list2 = this.fragmentsStack;
+            list2.remove(list2.size() - 1);
+            onFragmentStackChanged("onSlideAnimationEnd");
             LayoutContainer layoutContainer = this.containerView;
             layoutContainer.setAlpha(1.0f);
             LayoutContainer layoutContainer2 = this.containerViewBack;
