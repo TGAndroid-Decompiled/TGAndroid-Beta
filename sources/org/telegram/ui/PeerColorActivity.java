@@ -111,7 +111,6 @@ import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class PeerColorActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    private static final float[] particles = {-18.0f, -24.66f, 24.0f, 0.4f, 5.33f, -53.0f, 28.0f, 0.38f, -4.0f, -86.0f, 19.0f, 0.18f, 31.0f, -30.0f, 21.0f, 0.35f, 12.0f, -3.0f, 24.0f, 0.18f, 30.0f, -73.0f, 19.0f, 0.3f, 43.0f, -101.0f, 16.0f, 0.1f, -50.0f, 1.33f, 20.0f, 0.22f, -58.0f, -33.0f, 24.0f, 0.22f, -35.0f, -62.0f, 25.0f, 0.22f, -59.0f, -88.0f, 19.0f, 0.18f, -86.0f, -61.0f, 19.0f, 0.1f, -90.0f, -14.33f, 19.66f, 0.18f};
     private FrameLayout actionBarContainer;
     private boolean applying;
     private boolean applyingName;
@@ -1310,7 +1309,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.updateThemeColors():void");
     }
 
-    public PeerColorActivity(long j) throws IOException {
+    public PeerColorActivity(long j) {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.forceDark = zIsCurrentThemeDark;
@@ -3324,13 +3323,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         @Override
         protected void dispatchDraw(Canvas canvas) {
             this.rectF.set((getWidth() - AndroidUtilities.dp(86.0f)) / 2.0f, getHeight() - AndroidUtilities.dp(168.0f), (getWidth() + AndroidUtilities.dp(86.0f)) / 2.0f, getHeight() - AndroidUtilities.dp(82.0f));
+            StarGiftPatterns.drawProfileAnimatedPattern(canvas, this.emoji, getWidth(), getHeight(), 1.0f, this.rectF, 1.0f);
             this.imageReceiver.setRoundRadius(AndroidUtilities.dp(this.isForum ? 18.0f : 54.0f));
             this.imageReceiver.setImageCoords(this.rectF);
             this.imageReceiver.draw(canvas);
             float fWidth = (this.rectF.width() / 2.0f) + AndroidUtilities.dp(4.0f);
             float fDp = AndroidUtilities.dp(this.isForum ? 22.0f : 58.0f);
             canvas.drawRoundRect(this.rectF.centerX() - fWidth, this.rectF.centerY() - fWidth, this.rectF.centerX() + fWidth, this.rectF.centerY() + fWidth, fDp, fDp, this.storyGradient.getPaint(this.rectF));
-            StarGiftPatterns.drawProfileAnimatedPattern(canvas, this.emoji, getWidth(), getHeight(), 1.0f, this.rectF, 1.0f);
             super.dispatchDraw(canvas);
         }
     }

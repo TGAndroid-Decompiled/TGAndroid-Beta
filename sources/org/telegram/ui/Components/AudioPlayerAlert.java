@@ -1034,7 +1034,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         }), true, AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.0f)));
         this.playerLayout.addView(this.unsaveFromProfileTextView, LayoutHelper.createFrame(-1, 42.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
-        this.saveToProfileButton = new ButtonWithCounterView(context, resourcesProvider);
+        this.saveToProfileButton = new ButtonWithCounterView(context, resourcesProvider).setRound();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "+ ");
         spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_track_add), 0, 1, 33);
@@ -2039,14 +2039,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void lambda$openCrafting$9() {
         ActionBar actionBar = this.actionBar;
         if (actionBar != null && actionBar.isSearchFieldVisible()) {
             this.actionBar.closeSearchField();
         } else if (this.blurredView.getTag() != null) {
             showAlbumCover(false, true);
         } else {
-            super.lambda$openCrafting$8();
+            super.lambda$openCrafting$9();
         }
     }
 

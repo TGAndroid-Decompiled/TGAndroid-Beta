@@ -178,6 +178,7 @@ public class TimerDrawable extends Drawable {
             return;
         }
         int i = AndroidUtilities.density != 3.0f ? 0 : -1;
+        canvas.save();
         if (this.isDialog) {
             canvas.translate((float) (((getBounds().width() / 2) - Math.ceil(this.timeWidth / 2.0f)) + i), (getBounds().height() - this.timeHeight) / 2.0f);
             this.timeLayout.draw(canvas);
@@ -185,6 +186,7 @@ public class TimerDrawable extends Drawable {
             canvas.translate(((int) ((intrinsicWidth / 2) - Math.ceil(this.timeWidth / 2.0f))) + i, (intrinsicHeight - this.timeHeight) / 2.0f);
             this.timeLayout.draw(canvas);
         }
+        canvas.restore();
     }
 
     @Override

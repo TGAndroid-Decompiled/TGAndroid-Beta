@@ -117,7 +117,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     BaseFragment parentFragment;
     private int photoViewerClassGuid;
     private PhotoViewer.PhotoViewerProvider provider;
-    public RecyclerListView recyclerListView;
+    public final RecyclerListView recyclerListView;
     private int requestIndex;
     Runnable searchRunnable;
     public HashMap sectionArrays;
@@ -240,7 +240,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 this.f$0.lambda$new$1(view, i);
             }
         });
-        this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
+        blurredRecyclerView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
             @Override
             public boolean onItemClick(View view, int i, float f, float f2) {
                 if (view instanceof SharedDocumentCell) {
@@ -274,10 +274,10 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 FilteredSearchView.this.chatPreviewDelegate.finish();
             }
         });
-        this.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
+        blurredRecyclerView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(parentActivity);
         this.layoutManager = linearLayoutManager;
-        this.recyclerListView.setLayoutManager(linearLayoutManager);
+        blurredRecyclerView.setLayoutManager(linearLayoutManager);
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(parentActivity) {
             @Override
             public int getColumnsCount() {
@@ -286,9 +286,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         };
         this.loadingView = flickerLoadingView;
         addView(flickerLoadingView);
-        addView(this.recyclerListView);
-        this.recyclerListView.setSectionsType(2);
-        this.recyclerListView.setOnScrollListener(new AnonymousClass6());
+        addView(blurredRecyclerView);
+        blurredRecyclerView.setSectionsType(2);
+        blurredRecyclerView.setOnScrollListener(new AnonymousClass6());
         ChatActionCell chatActionCell = new ChatActionCell(parentActivity);
         this.floatingDateView = chatActionCell;
         chatActionCell.setCustomDate((int) (System.currentTimeMillis() / 1000), false, false);
@@ -305,7 +305,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         StickerEmptyView stickerEmptyView = new StickerEmptyView(parentActivity, flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         addView(stickerEmptyView);
-        this.recyclerListView.setEmptyView(this.emptyView);
+        blurredRecyclerView.setEmptyView(this.emptyView);
         this.emptyView.setVisibility(8);
     }
 

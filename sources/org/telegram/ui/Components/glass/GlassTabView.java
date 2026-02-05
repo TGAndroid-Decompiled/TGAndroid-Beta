@@ -394,12 +394,18 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setForUserOrChat(user, avatarDrawable);
         backupImageView.setRoundRadius(AndroidUtilities.dp(11.0f));
+        glassTabView.backupImageView = backupImageView;
         glassTabView.addView(backupImageView, LayoutHelper.createFrame(22, 22.0f, 49, 0.0f, 5.0f, 0.0f, 0.0f));
         glassTabView.colorDefault = Theme.getColor(Theme.key_glass_tabUnselected, resourcesProvider);
         glassTabView.colorSelected = Theme.getColor(Theme.key_glass_tabSelected, resourcesProvider);
         glassTabView.colorSelectedText = Theme.getColor(Theme.key_glass_tabSelectedText, resourcesProvider);
         glassTabView.updateColors();
         return glassTabView;
+    }
+
+    public void updateUserAvatar(int i) {
+        TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(UserConfig.getInstance(i).getClientUserId()));
+        this.backupImageView.setForUserOrChat(user, new AvatarDrawable(user));
     }
 
     public static GlassTabView createAttachTab(Context context, Theme.ResourcesProvider resourcesProvider) {

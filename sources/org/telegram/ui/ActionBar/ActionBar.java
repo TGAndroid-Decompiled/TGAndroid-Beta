@@ -688,8 +688,8 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 ActionBar actionBar = ActionBar.this;
-                if (actionBar.blurredBackground && this.drawBlur) {
-                    actionBar.rectTmp.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                if (actionBar.blurredBackground && this.drawBlur && actionBar.actionModeColor != 0) {
+                    ActionBar.this.rectTmp.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
                     ActionBar actionBar2 = ActionBar.this;
                     actionBar2.blurScrimPaint.setColor(actionBar2.actionModeColor);
                     ActionBar actionBar3 = ActionBar.this;
@@ -769,7 +769,28 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
             if (view != null) {
                 arrayList.add(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.TRANSLATION_Y, 0.0f));
             }
-            if (ColorUtils.calculateLuminance(this.actionModeColor) < 0.699999988079071d) {
+            if (this.actionModeColor == 0) {
+                if (!this.isSearchFieldVisible) {
+                    SimpleTextView simpleTextView = this.titleTextView[0];
+                    if (simpleTextView != null) {
+                        arrayList.add(ObjectAnimator.ofFloat(simpleTextView, (Property<SimpleTextView, Float>) View.ALPHA, 0.0f));
+                    }
+                    if (this.subtitleTextView != null && !TextUtils.isEmpty(this.subtitle)) {
+                        arrayList.add(ObjectAnimator.ofFloat(this.subtitleTextView, (Property<SimpleTextView, Float>) View.ALPHA, 0.0f));
+                    }
+                }
+                ActionBarMenu actionBarMenu2 = this.menu;
+                if (actionBarMenu2 != null) {
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenu2, (Property<ActionBarMenu, Float>) View.ALPHA, 0.0f));
+                }
+            }
+            int i2 = this.actionModeColor;
+            if (i2 == 0) {
+                i2 = this.actionBarColor;
+            }
+            if (i2 == 0) {
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            } else if (ColorUtils.calculateLuminance(i2) < 0.699999988079071d) {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
             } else {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
@@ -815,14 +836,14 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
                     if (ActionBar.this.subtitleTextView != null && !TextUtils.isEmpty(ActionBar.this.subtitle)) {
                         ActionBar.this.subtitleTextView.setVisibility(4);
                     }
-                    ActionBarMenu actionBarMenu2 = ActionBar.this.menu;
-                    if (actionBarMenu2 != null) {
-                        actionBarMenu2.setVisibility(4);
+                    ActionBarMenu actionBarMenu3 = ActionBar.this.menu;
+                    if (actionBarMenu3 != null) {
+                        actionBarMenu3.setVisibility(4);
                     }
                     if (ActionBar.this.actionModeHidingViews != null) {
-                        for (int i2 = 0; i2 < ActionBar.this.actionModeHidingViews.length; i2++) {
-                            if (ActionBar.this.actionModeHidingViews[i2] != null && ((zArr2 = zArr) == null || i2 >= zArr2.length || zArr2[i2])) {
-                                ActionBar.this.actionModeHidingViews[i2].setVisibility(4);
+                        for (int i3 = 0; i3 < ActionBar.this.actionModeHidingViews.length; i3++) {
+                            if (ActionBar.this.actionModeHidingViews[i3] != null && ((zArr2 = zArr) == null || i3 >= zArr2.length || zArr2[i3])) {
+                                ActionBar.this.actionModeHidingViews[i3].setVisibility(4);
                             }
                         }
                     }
@@ -869,35 +890,41 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         }
         this.actionModeShowingView = view2;
         this.actionModeHidingViews = viewArr;
-        if (ColorUtils.calculateLuminance(this.actionModeColor) < 0.699999988079071d) {
+        int i3 = this.actionModeColor;
+        if (i3 == 0) {
+            i3 = this.actionBarColor;
+        }
+        if (i3 == 0) {
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+        } else if (ColorUtils.calculateLuminance(i3) < 0.699999988079071d) {
             AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
         } else {
             AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
         }
         this.actionMode.setVisibility(0);
-        SimpleTextView simpleTextView = this.titleTextView[0];
-        if (simpleTextView != null) {
-            simpleTextView.setVisibility(4);
+        SimpleTextView simpleTextView2 = this.titleTextView[0];
+        if (simpleTextView2 != null) {
+            simpleTextView2.setVisibility(4);
         }
         if (this.subtitleTextView != null && !TextUtils.isEmpty(this.subtitle)) {
             this.subtitleTextView.setVisibility(4);
         }
-        ActionBarMenu actionBarMenu2 = this.menu;
-        if (actionBarMenu2 != null) {
-            actionBarMenu2.setVisibility(4);
+        ActionBarMenu actionBarMenu3 = this.menu;
+        if (actionBarMenu3 != null) {
+            actionBarMenu3.setVisibility(4);
         }
         if (this.actionModeHidingViews != null) {
-            int i2 = 0;
+            int i4 = 0;
             while (true) {
                 View[] viewArr2 = this.actionModeHidingViews;
-                if (i2 >= viewArr2.length) {
+                if (i4 >= viewArr2.length) {
                     break;
                 }
-                View view6 = viewArr2[i2];
-                if (view6 != null && (zArr == null || i2 >= zArr.length || zArr[i2])) {
+                View view6 = viewArr2[i4];
+                if (view6 != null && (zArr == null || i4 >= zArr.length || zArr[i4])) {
                     view6.setVisibility(4);
                 }
-                i2++;
+                i4++;
             }
         }
         ImageView imageView2 = this.backButtonImageView;
@@ -954,6 +981,19 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         if (view4 != null) {
             arrayList.add(ObjectAnimator.ofFloat(view4, (Property<View, Float>) View.TRANSLATION_Y, view4.getMeasuredHeight()));
         }
+        if (!this.isSearchFieldVisible) {
+            SimpleTextView simpleTextView = this.titleTextView[0];
+            if (simpleTextView != null) {
+                arrayList.add(ObjectAnimator.ofFloat(simpleTextView, (Property<SimpleTextView, Float>) View.ALPHA, 1.0f));
+            }
+            if (this.subtitleTextView != null && !TextUtils.isEmpty(this.subtitle)) {
+                arrayList.add(ObjectAnimator.ofFloat(this.subtitleTextView, (Property<SimpleTextView, Float>) View.ALPHA, 1.0f));
+            }
+        }
+        ActionBarMenu actionBarMenu2 = this.menu;
+        if (actionBarMenu2 != null) {
+            arrayList.add(ObjectAnimator.ofFloat(actionBarMenu2, (Property<ActionBarMenu, Float>) View.ALPHA, 1.0f));
+        }
         int i2 = this.actionBarColor;
         if (i2 == 0) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
@@ -1007,17 +1047,17 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         });
         this.actionModeAnimation.start();
         if (!this.isSearchFieldVisible) {
-            SimpleTextView simpleTextView = this.titleTextView[0];
-            if (simpleTextView != null) {
-                simpleTextView.setVisibility(0);
+            SimpleTextView simpleTextView2 = this.titleTextView[0];
+            if (simpleTextView2 != null) {
+                simpleTextView2.setVisibility(0);
             }
             if (this.subtitleTextView != null && !TextUtils.isEmpty(this.subtitle)) {
                 this.subtitleTextView.setVisibility(0);
             }
         }
-        ActionBarMenu actionBarMenu2 = this.menu;
-        if (actionBarMenu2 != null) {
-            actionBarMenu2.setVisibility(0);
+        ActionBarMenu actionBarMenu3 = this.menu;
+        if (actionBarMenu3 != null) {
+            actionBarMenu3.setVisibility(0);
         }
         ImageView imageView = this.backButtonImageView;
         if (imageView != null) {
@@ -1652,7 +1692,13 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         this.attached = true;
         updateAttachState();
         if (this.actionModeVisible) {
-            if (ColorUtils.calculateLuminance(this.actionModeColor) < 0.699999988079071d) {
+            int i = this.actionModeColor;
+            if (i == 0) {
+                i = this.actionBarColor;
+            }
+            if (i == 0) {
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            } else if (ColorUtils.calculateLuminance(i) < 0.699999988079071d) {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
             } else {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
@@ -1671,7 +1717,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         updateAttachState();
         if (this.actionModeVisible) {
             int i = this.actionBarColor;
-            if (i == 0) {
+            if (i == 0 || this.actionModeColor == 0) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             } else if (ColorUtils.calculateLuminance(i) < 0.699999988079071d) {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);

@@ -156,6 +156,7 @@ public class SharedConfig {
     public static String searchEngineCustomURLQuery;
     public static int searchEngineType;
     public static boolean searchMessagesAsListUsed;
+    public static boolean shadowsInSections;
     public static boolean showNotificationsForAllAccounts;
     public static boolean shuffleMusic;
     public static boolean sortContactsByName;

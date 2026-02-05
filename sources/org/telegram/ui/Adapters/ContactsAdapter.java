@@ -445,7 +445,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                     return;
                 } else {
                     if (i3 == 1) {
-                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.RecentCalls), "", false, R.drawable.filled_profile_call_24, -11154873, -14175180, false);
+                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString(R.string.RecentCalls), "", false, R.drawable.settings_calls, -11154873, -14175180, false);
                         return;
                     }
                     return;

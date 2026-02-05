@@ -305,7 +305,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         StarGiftSheet.TopView topView = new StarGiftSheet.TopView(context, resourcesProvider, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openCrafting$8();
+                this.f$0.lambda$openCrafting$9();
             }
         }, new View.OnClickListener() {
             @Override

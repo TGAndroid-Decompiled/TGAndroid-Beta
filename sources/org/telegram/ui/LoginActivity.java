@@ -1300,7 +1300,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (this.newAccount) {
                 this.newAccount = false;
                 this.pendingSwitchingAccount = true;
-                ((LaunchActivity) getParentActivity()).switchToAccount(this.currentAccount, false, new GenericProvider() {
+                ((LaunchActivity) getParentActivity()).switchToAccount(this.currentAccount, true, new GenericProvider() {
                     @Override
                     public final Object provide(Object obj) {
                         return LoginActivity.lambda$needFinishActivity$17(z, (Void) obj);
@@ -3139,7 +3139,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(int i, AlertDialog alertDialog, int i2) {
             if (UserConfig.selectedAccount != i) {
-                ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
+                ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, true);
             }
             LoginActivity.this.finishFragment();
         }
@@ -3455,7 +3455,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     UserConfig userConfig = UserConfig.getInstance(i);
                     if (userConfig.isClientActivated() && userConfig.getClientUserId() == l.longValue() && ConnectionsManager.getInstance(i).isTestBackend() == LoginActivity.this.testBackend) {
                         if (UserConfig.selectedAccount != i) {
-                            ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
+                            ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, true);
                         }
                         LoginActivity.this.finishFragment();
                         LoginActivity.this.needHideProgress(false);

@@ -1271,7 +1271,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
             return;
         }
         int iDp = AndroidUtilities.dp(48.0f);
-        int iDp2 = AndroidUtilities.dp(44.0f);
+        int iDp2 = AndroidUtilities.dp(48.0f);
         int measuredHeight = (this.fragmentView.getMeasuredHeight() - this.navigationBarHeight) - AndroidUtilities.dp(8.0f);
         int iDp3 = measuredHeight - AndroidUtilities.dp(56.0f);
         this.iBlur3PositionActionBar.set(0.0f, -iDp, this.fragmentView.getMeasuredWidth(), this.actionBar.getMeasuredHeight() + iDp + iDp2);

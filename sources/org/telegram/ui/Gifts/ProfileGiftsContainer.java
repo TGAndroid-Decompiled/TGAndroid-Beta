@@ -1829,9 +1829,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
     }
 
     public void updateColors() {
-        int iBlendOver = Theme.blendOver(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), 0.04f));
-        this.backgroundColor = iBlendOver;
-        setBackgroundColor(iBlendOver);
+        int color = Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider);
+        this.backgroundColor = color;
+        setBackgroundColor(color);
         this.button.updateColors();
         this.button.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(19.0f), processColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider))));
         View[] viewPages = this.viewPager.getViewPages();

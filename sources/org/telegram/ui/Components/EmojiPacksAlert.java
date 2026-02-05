@@ -733,11 +733,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void lambda$openCrafting$9() {
         if (ContentPreviewViewer.getInstance().isVisible()) {
             ContentPreviewViewer.getInstance().closeWithMenu();
         } else {
-            super.lambda$openCrafting$8();
+            super.lambda$openCrafting$9();
         }
     }
 

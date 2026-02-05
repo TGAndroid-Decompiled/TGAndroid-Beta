@@ -588,7 +588,7 @@ public abstract class FilterTabsView extends FrameLayout {
                     if (jElapsedRealtime > 17) {
                         jElapsedRealtime = 17;
                     }
-                    FilterTabsView.access$2716(FilterTabsView.this, jElapsedRealtime / 200.0f);
+                    FilterTabsView.access$2716(FilterTabsView.this, jElapsedRealtime / 320.0f);
                     FilterTabsView filterTabsView = FilterTabsView.this;
                     filterTabsView.setAnimationIdicatorProgress(filterTabsView.interpolator.getInterpolation(FilterTabsView.this.animationTime));
                     if (FilterTabsView.this.animationTime > 1.0f) {
@@ -1066,7 +1066,7 @@ public abstract class FilterTabsView extends FrameLayout {
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.colorChangeAnimator = animatorSet2;
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<FilterTabsView, Float>) this.COLORS, 0.0f, 1.0f));
-        this.colorChangeAnimator.setDuration(200L);
+        this.colorChangeAnimator.setDuration(320L);
         this.colorChangeAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {

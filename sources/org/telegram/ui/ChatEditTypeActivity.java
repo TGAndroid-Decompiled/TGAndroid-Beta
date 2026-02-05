@@ -437,11 +437,11 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         });
         this.permanentLinkView.setUsers(0, null, false);
         this.privateContainer.addView(this.permanentLinkView);
-        AnonymousClass6 anonymousClass6 = new AnonymousClass6(context);
+        AnonymousClass6 anonymousClass6 = new AnonymousClass6(context, 12, this.resourceProvider);
         this.checkTextView = anonymousClass6;
         anonymousClass6.setBottomPadding(6);
         this.linearLayout.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2));
-        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
+        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         this.typeInfoCell = textInfoPrivacyCell;
         textInfoPrivacyCell.setImportantForAccessibility(1);
         this.linearLayout.addView(this.typeInfoCell, LayoutHelper.createLinear(-1, -2));
@@ -470,7 +470,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             }
         });
         this.linearLayout.addView(this.manageLinksTextView, LayoutHelper.createLinear(-1, -2));
-        TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
+        TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         this.manageLinksInfoCell = textInfoPrivacyCell2;
         this.linearLayout.addView(textInfoPrivacyCell2, LayoutHelper.createLinear(-1, -2));
         JoinToSendSettingsView joinToSendSettingsView = new JoinToSendSettingsView(context, this.currentChat);
@@ -497,7 +497,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             }
         });
         this.saveContainer.addView(this.saveRestrictCell, LayoutHelper.createLinear(-1, -2));
-        this.saveRestrictInfoCell = new TextInfoPrivacyCell(context);
+        this.saveRestrictInfoCell = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         if (this.isChannel && !ChatObject.isMegagroup(this.currentChat)) {
             this.saveRestrictInfoCell.setText(LocaleController.getString(R.string.RestrictSavingContentInfoChannel));
         } else {
@@ -538,8 +538,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         int prevHeight;
         ValueAnimator translateAnimator;
 
-        AnonymousClass6(Context context) {
-            super(context);
+        AnonymousClass6(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+            super(context, i, resourcesProvider);
             this.prevHeight = -1;
         }
 
@@ -1152,7 +1152,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                 if (i != 2) {
                     return null;
                 }
-                return new RecyclerListView.Holder(new TextInfoPrivacyCell(UsernamesListView.this.getContext(), ((RecyclerListView) UsernamesListView.this).resourcesProvider));
+                return new RecyclerListView.Holder(new TextInfoPrivacyCell(UsernamesListView.this.getContext(), 12, ((RecyclerListView) UsernamesListView.this).resourcesProvider));
             }
 
             @Override

@@ -76,13 +76,13 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     public DialogsBotsAdapter botsSearchAdapter;
     public FrameLayout botsSearchContainer;
     private LinearLayoutManager botsSearchLayoutManager;
-    public RecyclerListView botsSearchListView;
+    public final RecyclerListView botsSearchListView;
     public StickerEmptyView channelsEmptyView;
     private DefaultItemAnimator channelsItemAnimator;
     public DialogsChannelsAdapter channelsSearchAdapter;
     public FrameLayout channelsSearchContainer;
     private LinearLayoutManager channelsSearchLayoutManager;
-    public RecyclerListView channelsSearchListView;
+    public final RecyclerListView channelsSearchListView;
     ChatPreviewDelegate chatPreviewDelegate;
     int currentAccount;
     private ArrayList currentSearchFilters;
@@ -101,7 +101,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     public HashtagsSearchAdapter hashtagSearchAdapter;
     public FrameLayout hashtagSearchContainer;
     private LinearLayoutManager hashtagSearchLayoutManager;
-    public RecyclerListView hashtagSearchListView;
+    public final RecyclerListView hashtagSearchListView;
     private boolean isActionModeShowed;
     private DefaultItemAnimator itemAnimator;
     private RecyclerItemsEnterAnimator itemsEnterAnimator;
@@ -109,12 +109,14 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     private boolean lastSearchScrolledToTop;
     String lastSearchString;
     private FilteredSearchView noMediaFiltersSearchView;
+    private int pagesPaddingBottom;
+    private int pagesPaddingTop;
     DialogsActivity parent;
     public boolean postsAreNew;
-    public PostsSearchContainer postsSearchContainer;
+    public final PostsSearchContainer postsSearchContainer;
     public FrameLayout searchContainer;
     private LinearLayoutManager searchLayoutManager;
-    public RecyclerListView searchListView;
+    public final RecyclerListView searchListView;
     private HashMap selectedFiles;
     private NumberTextView selectedMessagesCountTextView;
     private boolean showOnlyDialogsAdapter;
@@ -202,19 +204,17 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         };
         this.searchListView = blurredRecyclerView;
         blurredRecyclerView.setItemAnimator(this.itemAnimator);
-        this.searchListView.setPivotY(0.0f);
-        this.searchListView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-        this.searchListView.setClipToPadding(false);
-        this.searchListView.setAdapter(this.dialogsSearchAdapter);
-        this.searchListView.setVerticalScrollBarEnabled(true);
-        this.searchListView.setInstantClick(true);
-        this.searchListView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        RecyclerListView recyclerListView = this.searchListView;
+        blurredRecyclerView.setPivotY(0.0f);
+        blurredRecyclerView.setClipToPadding(false);
+        blurredRecyclerView.setAdapter(this.dialogsSearchAdapter);
+        blurredRecyclerView.setVerticalScrollBarEnabled(true);
+        blurredRecyclerView.setInstantClick(true);
+        blurredRecyclerView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false);
         this.searchLayoutManager = linearLayoutManager;
-        recyclerListView.setLayoutManager(linearLayoutManager);
-        this.searchListView.setAnimateEmptyView(true, 0);
-        this.searchListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        blurredRecyclerView.setLayoutManager(linearLayoutManager);
+        blurredRecyclerView.setAnimateEmptyView(true, 0);
+        blurredRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i6) {
                 if (i6 == 1) {
@@ -264,10 +264,10 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         FrameLayout frameLayout = new FrameLayout(context);
         this.searchContainer = frameLayout;
         frameLayout.addView(this.emptyView);
-        this.searchContainer.addView(this.searchListView);
+        this.searchContainer.addView(blurredRecyclerView);
         this.searchContainer.addView(this.noMediaFiltersSearchView);
-        this.searchListView.setEmptyView(this.emptyView);
-        this.searchListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        blurredRecyclerView.setEmptyView(this.emptyView);
+        blurredRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i7, int i8) {
                 super.onScrolled(recyclerView, i7, i8);
@@ -292,17 +292,15 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         BlurredRecyclerView blurredRecyclerView2 = new BlurredRecyclerView(context);
         this.channelsSearchListView = blurredRecyclerView2;
         blurredRecyclerView2.setItemAnimator(this.channelsItemAnimator);
-        this.channelsSearchListView.setPivotY(0.0f);
-        this.channelsSearchListView.setVerticalScrollBarEnabled(true);
-        this.channelsSearchListView.setInstantClick(true);
-        this.channelsSearchListView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        RecyclerListView recyclerListView2 = this.channelsSearchListView;
+        blurredRecyclerView2.setPivotY(0.0f);
+        blurredRecyclerView2.setVerticalScrollBarEnabled(true);
+        blurredRecyclerView2.setInstantClick(true);
+        blurredRecyclerView2.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(context, 1, false);
         this.channelsSearchLayoutManager = linearLayoutManager2;
-        recyclerListView2.setLayoutManager(linearLayoutManager2);
-        this.channelsSearchListView.setAnimateEmptyView(true, 0);
-        this.channelsSearchListView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-        this.channelsSearchListView.setClipToPadding(false);
+        blurredRecyclerView2.setLayoutManager(linearLayoutManager2);
+        blurredRecyclerView2.setAnimateEmptyView(true, 0);
+        blurredRecyclerView2.setClipToPadding(false);
         FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(context);
         flickerLoadingView2.setViewType(1);
         StickerEmptyView stickerEmptyView2 = new StickerEmptyView(context, flickerLoadingView2, i4) {
@@ -322,10 +320,9 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         this.channelsEmptyView.addView(flickerLoadingView2, 0);
         this.channelsEmptyView.showProgress(true, false);
         this.channelsSearchContainer.addView(this.channelsEmptyView);
-        this.channelsSearchContainer.addView(this.channelsSearchListView);
-        this.channelsSearchListView.setEmptyView(this.channelsEmptyView);
-        RecyclerListView recyclerListView3 = this.channelsSearchListView;
-        DialogsChannelsAdapter dialogsChannelsAdapter = new DialogsChannelsAdapter(recyclerListView3, context, this.currentAccount, i3, null) {
+        this.channelsSearchContainer.addView(blurredRecyclerView2);
+        blurredRecyclerView2.setEmptyView(this.channelsEmptyView);
+        DialogsChannelsAdapter dialogsChannelsAdapter = new DialogsChannelsAdapter(blurredRecyclerView2, context, this.currentAccount, i3, null) {
             @Override
             public void update(boolean z) {
                 ArrayList arrayList2;
@@ -350,8 +347,8 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             }
         };
         this.channelsSearchAdapter = dialogsChannelsAdapter;
-        recyclerListView3.setAdapter(dialogsChannelsAdapter);
-        this.channelsSearchListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        blurredRecyclerView2.setAdapter(dialogsChannelsAdapter);
+        blurredRecyclerView2.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i7) {
                 if (i7 == 1) {
@@ -380,18 +377,16 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         BlurredRecyclerView blurredRecyclerView3 = new BlurredRecyclerView(context);
         this.botsSearchListView = blurredRecyclerView3;
         blurredRecyclerView3.setItemAnimator(this.botsItemAnimator);
-        this.botsSearchListView.setPivotY(0.0f);
-        this.botsSearchListView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-        this.botsSearchListView.setClipToPadding(false);
+        blurredRecyclerView3.setPivotY(0.0f);
+        blurredRecyclerView3.setClipToPadding(false);
         int i7 = 1;
-        this.botsSearchListView.setVerticalScrollBarEnabled(true);
-        this.botsSearchListView.setInstantClick(true);
-        this.botsSearchListView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        RecyclerListView recyclerListView4 = this.botsSearchListView;
+        blurredRecyclerView3.setVerticalScrollBarEnabled(true);
+        blurredRecyclerView3.setInstantClick(true);
+        blurredRecyclerView3.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
         LinearLayoutManager linearLayoutManager3 = new LinearLayoutManager(context, 1, false);
         this.botsSearchLayoutManager = linearLayoutManager3;
-        recyclerListView4.setLayoutManager(linearLayoutManager3);
-        this.botsSearchListView.setAnimateEmptyView(true, 0);
+        blurredRecyclerView3.setLayoutManager(linearLayoutManager3);
+        blurredRecyclerView3.setAnimateEmptyView(true, 0);
         FlickerLoadingView flickerLoadingView3 = new FlickerLoadingView(context);
         flickerLoadingView3.setViewType(1);
         StickerEmptyView stickerEmptyView3 = new StickerEmptyView(context, flickerLoadingView3, i7) {
@@ -411,10 +406,9 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         this.botsEmptyView.addView(flickerLoadingView3, 0);
         this.botsEmptyView.showProgress(true, false);
         this.botsSearchContainer.addView(this.botsEmptyView);
-        this.botsSearchContainer.addView(this.botsSearchListView);
-        this.botsSearchListView.setEmptyView(this.botsEmptyView);
-        RecyclerListView recyclerListView5 = this.botsSearchListView;
-        DialogsBotsAdapter dialogsBotsAdapter = new DialogsBotsAdapter(recyclerListView5, context, this.currentAccount, i3, false, null) {
+        this.botsSearchContainer.addView(blurredRecyclerView3);
+        blurredRecyclerView3.setEmptyView(this.botsEmptyView);
+        DialogsBotsAdapter dialogsBotsAdapter = new DialogsBotsAdapter(blurredRecyclerView3, context, this.currentAccount, i3, false, null) {
             @Override
             public void update(boolean z) {
                 ArrayList arrayList2;
@@ -425,8 +419,8 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             }
         };
         this.botsSearchAdapter = dialogsBotsAdapter;
-        recyclerListView5.setAdapter(dialogsBotsAdapter);
-        this.botsSearchListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        blurredRecyclerView3.setAdapter(dialogsBotsAdapter);
+        blurredRecyclerView3.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i8) {
                 if (i8 == 1) {
@@ -455,18 +449,16 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         BlurredRecyclerView blurredRecyclerView4 = new BlurredRecyclerView(context);
         this.hashtagSearchListView = blurredRecyclerView4;
         blurredRecyclerView4.setItemAnimator(this.hashtagItemAnimator);
-        this.hashtagSearchListView.setPivotY(0.0f);
+        blurredRecyclerView4.setPivotY(0.0f);
         int i8 = 1;
-        this.hashtagSearchListView.setVerticalScrollBarEnabled(true);
-        this.hashtagSearchListView.setInstantClick(true);
-        this.hashtagSearchListView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        RecyclerListView recyclerListView6 = this.hashtagSearchListView;
+        blurredRecyclerView4.setVerticalScrollBarEnabled(true);
+        blurredRecyclerView4.setInstantClick(true);
+        blurredRecyclerView4.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
         LinearLayoutManager linearLayoutManager4 = new LinearLayoutManager(context, 1, false);
         this.hashtagSearchLayoutManager = linearLayoutManager4;
-        recyclerListView6.setLayoutManager(linearLayoutManager4);
-        this.hashtagSearchListView.setAnimateEmptyView(true, 0);
-        this.hashtagSearchListView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-        this.hashtagSearchListView.setClipToPadding(false);
+        blurredRecyclerView4.setLayoutManager(linearLayoutManager4);
+        blurredRecyclerView4.setAnimateEmptyView(true, 0);
+        blurredRecyclerView4.setClipToPadding(false);
         FlickerLoadingView flickerLoadingView4 = new FlickerLoadingView(context);
         flickerLoadingView4.setViewType(1);
         StickerEmptyView stickerEmptyView4 = new StickerEmptyView(context, flickerLoadingView4, i8) {
@@ -486,10 +478,9 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         this.hashtagEmptyView.addView(flickerLoadingView4, 0);
         this.hashtagEmptyView.showProgress(true, false);
         this.hashtagSearchContainer.addView(this.hashtagEmptyView);
-        this.hashtagSearchContainer.addView(this.hashtagSearchListView);
-        this.hashtagSearchListView.setEmptyView(this.hashtagEmptyView);
-        RecyclerListView recyclerListView7 = this.hashtagSearchListView;
-        HashtagsSearchAdapter hashtagsSearchAdapter = new HashtagsSearchAdapter(recyclerListView7, context, this.currentAccount, i3, null) {
+        this.hashtagSearchContainer.addView(blurredRecyclerView4);
+        blurredRecyclerView4.setEmptyView(this.hashtagEmptyView);
+        HashtagsSearchAdapter hashtagsSearchAdapter = new HashtagsSearchAdapter(blurredRecyclerView4, context, this.currentAccount, i3, null) {
             @Override
             public void update(boolean z) {
                 super.update(z);
@@ -507,8 +498,8 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             }
         };
         this.hashtagSearchAdapter = hashtagsSearchAdapter;
-        recyclerListView7.setAdapter(hashtagsSearchAdapter);
-        this.hashtagSearchListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        blurredRecyclerView4.setAdapter(hashtagsSearchAdapter);
+        blurredRecyclerView4.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i9) {
                 if (i9 == 1) {
@@ -521,12 +512,11 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 SearchViewPager.this.hashtagSearchAdapter.checkBottom();
             }
         });
-        this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(this.searchListView, true);
+        this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(blurredRecyclerView, true);
         this.postsAreNew = false;
         PostsSearchContainer postsSearchContainer = new PostsSearchContainer(context, dialogsActivity);
         this.postsSearchContainer = postsSearchContainer;
-        postsSearchContainer.listView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
-        this.postsSearchContainer.listView.setClipToPadding(false);
+        postsSearchContainer.listView.setClipToPadding(false);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter();
         this.viewPagerAdapter = viewPagerAdapter;
         setAdapter(viewPagerAdapter);
@@ -1395,6 +1385,27 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         invalidate();
     }
 
+    public void setPagesPadding(int i, int i2) {
+        this.pagesPaddingTop = i;
+        this.pagesPaddingBottom = i2;
+        this.searchListView.setPadding(0, i, 0, i2);
+        this.channelsSearchListView.setPadding(0, this.pagesPaddingTop, 0, this.pagesPaddingBottom);
+        this.botsSearchListView.setPadding(0, this.pagesPaddingTop, 0, this.pagesPaddingBottom);
+        this.hashtagSearchListView.setPadding(0, this.pagesPaddingTop, 0, this.pagesPaddingBottom);
+        this.postsSearchContainer.listView.setPadding(0, this.pagesPaddingTop, 0, this.pagesPaddingBottom);
+        SearchDownloadsContainer searchDownloadsContainer = this.downloadsContainer;
+        if (searchDownloadsContainer != null) {
+            searchDownloadsContainer.recyclerListView.setPadding(0, this.pagesPaddingTop, 0, this.pagesPaddingBottom);
+        }
+        int size = this.viewsByType.size();
+        for (int i3 = 0; i3 < size; i3++) {
+            View view = (View) this.viewsByType.valueAt(i3);
+            if (view instanceof FilteredSearchView) {
+                ((FilteredSearchView) view).recyclerListView.setPadding(0, this.pagesPaddingTop, 0, this.pagesPaddingBottom);
+            }
+        }
+    }
+
     public void setKeyboardHeight(int i) {
         this.keyboardSize = i;
         boolean z = getVisibility() == 0 && getAlpha() > 0.0f;
@@ -1602,7 +1613,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
                 SearchViewPager searchViewPager = SearchViewPager.this;
                 SearchViewPager searchViewPager2 = SearchViewPager.this;
                 searchViewPager.downloadsContainer = new SearchDownloadsContainer(searchViewPager2.parent, searchViewPager2.currentAccount);
-                SearchViewPager.this.downloadsContainer.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
+                SearchViewPager.this.downloadsContainer.recyclerListView.setPadding(0, SearchViewPager.this.pagesPaddingTop, 0, SearchViewPager.this.pagesPaddingBottom);
                 SearchViewPager.this.downloadsContainer.recyclerListView.setClipToPadding(false);
                 SearchViewPager.this.downloadsContainer.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
@@ -1620,7 +1631,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             FilteredSearchView filteredSearchView = new FilteredSearchView(SearchViewPager.this.parent);
             filteredSearchView.setChatPreviewDelegate(SearchViewPager.this.chatPreviewDelegate);
             filteredSearchView.setUiCallback(SearchViewPager.this);
-            filteredSearchView.recyclerListView.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
+            filteredSearchView.recyclerListView.setPadding(0, SearchViewPager.this.pagesPaddingTop, 0, SearchViewPager.this.pagesPaddingBottom);
             filteredSearchView.recyclerListView.setClipToPadding(false);
             filteredSearchView.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override

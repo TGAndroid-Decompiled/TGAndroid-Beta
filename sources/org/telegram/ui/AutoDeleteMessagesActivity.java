@@ -135,7 +135,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         this.arrayList.add(this.afterOneMonth);
         this.arrayList.add(this.customTimeButton);
         updateItems();
-        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
+        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         textInfoPrivacyCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.GlobalAutoDeleteInfo), new AnonymousClass2()));
         sectionsLinearLayout.addView(textInfoPrivacyCell, LayoutHelper.createLinear(-1, -2));
         selectDate(this.startFromTtl, false);

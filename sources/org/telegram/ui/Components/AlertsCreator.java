@@ -2123,7 +2123,7 @@ public abstract class AlertsCreator {
         builder.setTopViewAspectRatio(-1.0f);
         builder.setTopView(frameLayout);
         builder.setTitle(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.LeaveChannelTitle : R.string.LeaveGroupTitle));
-        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveGroupNewOwnerText, UserObject.getUserName(user), UserObject.getUserName(currentUser))));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(zIsChannelAndNotMegaGroup ? R.string.LeaveChannelNewOwnerText : R.string.LeaveGroupNewOwnerText, UserObject.getUserName(user), chat.title)));
         builder.setNegativeButton(LocaleController.getString(R.string.AppointNewOwner), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {

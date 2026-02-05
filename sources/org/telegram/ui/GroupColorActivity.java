@@ -76,15 +76,16 @@ public class GroupColorActivity extends ChannelColorActivity {
         ChannelColorActivity.Adapter adapter;
         ChannelColorActivity.Adapter adapter2;
         this.profilePreviewRow = 0;
-        this.profileColorGridRow = 1;
-        this.rowsCount = 3;
-        this.profileEmojiRow = 2;
+        this.emptyRow = 1;
+        this.profileColorGridRow = 2;
+        this.rowsCount = 4;
+        this.profileEmojiRow = 3;
         if (this.selectedProfileEmoji != 0 || this.selectedProfileColor >= 0) {
             boolean z = this.removeProfileColorRow >= 0;
-            this.rowsCount = 4;
-            this.removeProfileColorRow = 3;
+            this.rowsCount = 5;
+            this.removeProfileColorRow = 4;
             if (!z && (adapter = this.adapter) != null) {
-                adapter.notifyItemInserted(3);
+                adapter.notifyItemInserted(4);
                 this.adapter.notifyItemChanged(this.profileEmojiRow);
                 this.listView.scrollToPosition(0);
             }
@@ -180,7 +181,7 @@ public class GroupColorActivity extends ChannelColorActivity {
     @Override
     public View createView(Context context) {
         View viewCreateView = super.createView(context);
-        updateColors();
+        updateColors(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setTitle("");
         ((ViewGroup) viewCreateView).addView(this.actionBar);
@@ -278,6 +279,7 @@ public class GroupColorActivity extends ChannelColorActivity {
                 }
             }
         });
+        this.listView.setSections(true);
     }
 
     @Override
@@ -318,17 +320,19 @@ public class GroupColorActivity extends ChannelColorActivity {
     }
 
     @Override
-    public void updateColors() {
-        super.updateColors();
+    public void updateColors(boolean z) {
+        super.updateColors(z);
         this.actionBar.setBackgroundColor(0);
         CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourceProvider)), Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
         combinedDrawable.setFullsize(true);
         this.buttonContainer.setBackground(combinedDrawable);
         ChannelColorActivity.ProfilePreview profilePreview = this.profilePreview;
-        if (profilePreview != null) {
-            profilePreview.backgroundView.setColor(this.currentAccount, this.selectedProfileColor, false);
-            this.profilePreview.profileView.setColor(this.selectedProfileColor, false);
+        if (profilePreview == null || z) {
+            return;
         }
+        profilePreview.backgroundView.setColor(this.currentAccount, this.selectedProfileColor, false);
+        this.profilePreview.profileView.setColor(this.selectedProfileColor, false);
+        this.profilePreview.updateColors();
     }
 
     @Override

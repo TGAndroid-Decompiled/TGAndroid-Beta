@@ -120,6 +120,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     private ActionBarMenuItem dayNightItem;
     public final long dialogId;
     private final Paint dividerPaint;
+    protected int emptyRow;
     private boolean forceDark;
     public TLRPC.WallPaper galleryWallpaper;
     private boolean isDark;
@@ -356,7 +357,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         public void toggle() throws IOException {
             ChannelColorActivity.this.isDark = !r0.isDark;
             ChannelColorActivity.this.updateThemeColors();
-            ChannelColorActivity.this.updateColors();
+            ChannelColorActivity.this.updateColors(false);
         }
     }
 
@@ -377,7 +378,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
     }
 
-    public ChannelColorActivity(long j) throws IOException {
+    public ChannelColorActivity(long j) {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.rowsCount = 0;
@@ -432,7 +433,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
     protected void createListView() {
         RecyclerListView recyclerListView = new RecyclerListView(getContext(), this.resourceProvider);
         this.listView = recyclerListView;
-        recyclerListView.setSections(true);
+        recyclerListView.setSections(false);
     }
 
     @Override
@@ -504,6 +505,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         FrameLayout frameLayout = new FrameLayout(context);
         updateRows();
         createListView();
+        if (!this.isGroup) {
+            this.actionBar.setAdaptiveBackground(this.listView);
+        }
         RecyclerListView recyclerListView = this.listView;
         Adapter adapter = new Adapter();
         this.adapter = adapter;
@@ -526,9 +530,9 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         defaultItemAnimator.setDelayAnimations(false);
         defaultItemAnimator.setSupportsChangeAnimations(false);
         this.listView.setItemAnimator(defaultItemAnimator);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourceProvider);
-        this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.ApplyChanges), false);
+        ButtonWithCounterView round = new ButtonWithCounterView(context, this.resourceProvider).setRound();
+        this.button = round;
+        round.setText(LocaleController.getString(R.string.ApplyChanges), false);
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -641,6 +645,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             updateProfilePreview(true);
             updateButton(true);
             updateRows();
+            updateColors(true);
             return;
         }
         if (i == this.wallpaperRow) {
@@ -666,7 +671,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         ((ThemeDelegate) ((BaseFragment) ChannelColorActivity.this).resourceProvider).toggle();
                     }
                     ChannelColorActivity.this.setForceDark(isDark(), false);
-                    ChannelColorActivity.this.updateColors();
+                    ChannelColorActivity.this.updateColors(false);
                 }
             }, this.boostsStatus);
         }
@@ -704,6 +709,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
         updateButton(true);
         ((EmojiCell) view).setEmoji(l.longValue(), tL_starGiftUnique != null, true);
+        updateColors(true);
     }
 
     public void lambda$createView$3(TLRPC.WallPaper wallPaper) throws IOException {
@@ -1229,16 +1235,11 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         this.f$0.lambda$onCreateViewHolder$0((String) obj);
                     }
                 });
-                themeChooser.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 textInfoPrivacyCell = themeChooser;
             } else if (i == 5) {
-                FrameLayout textCell = new TextCell(ChannelColorActivity.this.getContext(), ChannelColorActivity.this.getResourceProvider());
-                textCell.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                textInfoPrivacyCell = textCell;
+                textInfoPrivacyCell = new TextCell(ChannelColorActivity.this.getContext(), ChannelColorActivity.this.getResourceProvider());
             } else if (i == 6) {
-                FrameLayout emojiCell = new EmojiCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
-                emojiCell.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                textInfoPrivacyCell = emojiCell;
+                textInfoPrivacyCell = new EmojiCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
             } else if (i == 3) {
                 final PeerColorPicker peerColorPicker = new PeerColorPicker(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
                 peerColorPicker.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
@@ -1247,7 +1248,6 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         this.f$0.lambda$onCreateViewHolder$1(peerColorPicker, view, i3);
                     }
                 });
-                peerColorPicker.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 textInfoPrivacyCell = peerColorPicker;
             } else if (i == 4) {
                 PeerColorActivity.PeerColorGrid peerColorGrid = new PeerColorActivity.PeerColorGrid(ChannelColorActivity.this.getContext(), 0, ((BaseFragment) ChannelColorActivity.this).currentAccount, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
@@ -1258,15 +1258,17 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                         this.f$0.lambda$onCreateViewHolder$2((Integer) obj);
                     }
                 });
-                peerColorGrid.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 textInfoPrivacyCell = peerColorGrid;
             } else if (i == 1) {
                 ChannelColorActivity channelColorActivity4 = ChannelColorActivity.this;
-                textInfoPrivacyCell = channelColorActivity4.new ProfilePreview(channelColorActivity4.getContext());
+                FrameLayout profilePreview = channelColorActivity4.new ProfilePreview(channelColorActivity4.getContext());
+                textInfoPrivacyCell = profilePreview;
+                if (ChannelColorActivity.this.isGroup) {
+                    profilePreview.setTag(-33024);
+                    textInfoPrivacyCell = profilePreview;
+                }
             } else if (i == 8) {
-                FrameLayout headerCell = new HeaderCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
-                headerCell.setBackgroundColor(ChannelColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                textInfoPrivacyCell = headerCell;
+                textInfoPrivacyCell = new HeaderCell(ChannelColorActivity.this.getContext(), ((BaseFragment) ChannelColorActivity.this).resourceProvider);
             } else if (i == 9) {
                 textInfoPrivacyCell = new PeerColorActivity.GiftCell(ChannelColorActivity.this.getContext(), false, ((BaseFragment) ChannelColorActivity.this).resourceProvider);
             } else if (i == 10) {
@@ -1319,6 +1321,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             }
             channelColorActivity.updateButton(true);
             ChannelColorActivity.this.updateProfilePreview(true);
+            ChannelColorActivity.this.updateColors(true);
         }
 
         @Override
@@ -1368,6 +1371,11 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setFixedSize(0);
                 ChannelColorActivity channelColorActivity3 = ChannelColorActivity.this;
+                if (i == channelColorActivity3.emptyRow) {
+                    textInfoPrivacyCell.setFixedSize(12);
+                    textInfoPrivacyCell.setText("");
+                    return;
+                }
                 if (i == channelColorActivity3.replyHintRow) {
                     textInfoPrivacyCell.setText(LocaleController.getString(R.string.ChannelReplyInfo));
                     return;
@@ -1593,6 +1601,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             ProfilePreview profilePreview3 = (ProfilePreview) viewFindChildAt;
             profilePreview3.setEmojiStatus(this.selectedStatusEmoji, z);
             profilePreview3.profileView.overrideAvatarColor(this.selectedReplyColor);
+            profilePreview3.updateColors();
         }
         if (viewFindChildAt2 instanceof PeerColorActivity.PeerColorGrid) {
             ((PeerColorActivity.PeerColorGrid) viewFindChildAt2).setSelected(this.selectedProfileColor, z);
@@ -1666,7 +1675,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         return null;
     }
 
-    protected class ProfilePreview extends FrameLayout {
+    protected class ProfilePreview extends FrameLayout implements Theme.Colorable {
         public final PeerColorActivity.ColoredActionBar backgroundView;
         public LinearLayout infoLayout;
         public final PeerColorActivity.ProfilePreview profileView;
@@ -1693,7 +1702,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             this.backgroundView = coloredActionBar;
             coloredActionBar.setProgressToGradient(1.0f);
             coloredActionBar.ignoreMeasure = true;
-            addView(coloredActionBar, LayoutHelper.createFrame(-1, ChannelColorActivity.this.isGroup ? 320 : 260, 119));
+            addView(coloredActionBar, LayoutHelper.createFrame(-1, -1, 119));
             PeerColorActivity.ProfilePreview profilePreview = new PeerColorActivity.ProfilePreview(getContext(), ((BaseFragment) ChannelColorActivity.this).currentAccount, ChannelColorActivity.this.dialogId, ((BaseFragment) ChannelColorActivity.this).resourceProvider) {
                 @Override
                 public void setColor(int i, boolean z) {
@@ -1706,12 +1715,15 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 }
             };
             this.profileView = profilePreview;
-            addView(profilePreview, LayoutHelper.createFrame(-1, 230.0f, 80, 0.0f, 0.0f, 0.0f, ChannelColorActivity.this.isGroup ? 24.0f : 0.0f));
+            boolean z = ChannelColorActivity.this.isGroup;
+            addView(profilePreview, LayoutHelper.createFrame(-1, z ? 230.0f : 190.0f, 80, 0.0f, 0.0f, 0.0f, z ? 24.0f : 0.0f));
             if (ChannelColorActivity.this.needBoostInfoSection()) {
                 SimpleTextView simpleTextView = new SimpleTextView(getContext());
                 this.title = simpleTextView;
                 simpleTextView.setGravity(19);
-                this.title.setTextColor(ChannelColorActivity.this.getThemedColor(Theme.key_actionBarDefaultTitle));
+                SimpleTextView simpleTextView2 = this.title;
+                int i = Theme.key_actionBarDefaultTitle;
+                simpleTextView2.setTextColor(ChannelColorActivity.this.getThemedColor(i));
                 this.title.setTypeface(AndroidUtilities.bold());
                 this.title.setText(LocaleController.getString(R.string.ChangeChannelNameColor2));
                 this.title.setAlpha(0.0f);
@@ -1730,7 +1742,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 TextView textView2 = new TextView(context);
                 this.textInfo2 = textView2;
                 textView2.setTextSize(1, 12.0f);
-                this.textInfo2.setTextColor(-1);
+                this.textInfo2.setTextColor((ChannelColorActivity.this.isGroup && ChannelColorActivity.this.selectedProfileColor == -1) ? ChannelColorActivity.this.getThemedColor(i) : -1);
                 TextView textView3 = this.textInfo1;
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = ChannelColorActivity.this.boostsStatus;
                 textView3.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGroupBoostCount", tL_premium_boostsStatus != null ? tL_premium_boostsStatus.boosts : 0, new Object[0])));
@@ -1738,6 +1750,22 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
                 this.infoLayout.addView(this.textInfo1);
                 this.infoLayout.addView(this.textInfo2, LayoutHelper.createLinear(-2, -2, 3.0f, 0.0f, 0.0f, 0.0f));
                 addView(this.infoLayout, LayoutHelper.createFrame(-1, -2, 80));
+            }
+        }
+
+        @Override
+        public void updateColors() {
+            SimpleTextView simpleTextView = this.title;
+            if (simpleTextView != null) {
+                ChannelColorActivity channelColorActivity = ChannelColorActivity.this;
+                int themedColor = -1;
+                simpleTextView.setTextColor((!channelColorActivity.isGroup || channelColorActivity.selectedProfileColor == -1) ? channelColorActivity.getThemedColor(Theme.key_actionBarDefaultTitle) : -1);
+                TextView textView = this.textInfo2;
+                ChannelColorActivity channelColorActivity2 = ChannelColorActivity.this;
+                if (channelColorActivity2.isGroup && channelColorActivity2.selectedProfileColor == -1) {
+                    themedColor = channelColorActivity2.getThemedColor(Theme.key_actionBarDefaultTitle);
+                }
+                textView.setTextColor(themedColor);
             }
         }
 
@@ -1772,7 +1800,6 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             super(context);
             this.needDivider = false;
             this.resourcesProvider = resourcesProvider;
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView = simpleTextView;
             simpleTextView.setTextSize(16);
@@ -2411,11 +2438,14 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void updateColors() {
+    public void updateColors(boolean z) {
         this.actionBar.setBackgroundColor(getThemedColor(Theme.key_actionBarDefault));
-        this.actionBar.setTitleColor(getThemedColor(Theme.key_actionBarDefaultTitle));
-        this.actionBar.setItemsColor(getThemedColor(Theme.key_actionBarDefaultIcon), false);
+        this.actionBar.setTitleColor((!this.isGroup || this.selectedProfileColor == -1) ? getThemedColor(Theme.key_actionBarDefaultTitle) : -1);
+        this.actionBar.setItemsColor((!this.isGroup || this.selectedProfileColor == -1) ? getThemedColor(Theme.key_actionBarDefaultIcon) : -1, false);
         this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSelector), false);
+        if (z) {
+            return;
+        }
         RecyclerListView recyclerListView = this.listView;
         int i = Theme.key_windowBackgroundGray;
         recyclerListView.setBackgroundColor(getThemedColor(i));
@@ -2787,7 +2817,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
             updateThemeColors();
         }
         setForceDark(this.isDark, true);
-        updateColors();
+        updateColors(false);
     }
 
     public void setForceDark(boolean z, boolean z2) {

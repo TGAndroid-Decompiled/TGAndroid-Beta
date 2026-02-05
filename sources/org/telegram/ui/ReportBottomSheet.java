@@ -230,7 +230,7 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void lambda$openCrafting$9() {
         if (this.viewPager.getCurrentView() instanceof Page) {
             Page page = (Page) this.viewPager.getCurrentView();
             if (page.editTextCell != null) {
@@ -240,7 +240,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (this.viewPager.getCurrentPosition() > 0) {
             this.viewPager.scrollToPosition(r0.getCurrentPosition() - 1);
         } else {
-            super.lambda$openCrafting$8();
+            super.lambda$openCrafting$9();
         }
     }
 
@@ -505,7 +505,7 @@ public class ReportBottomSheet extends BottomSheet {
             if (this.pageType == 0) {
                 ReportBottomSheet.this.lambda$new$0();
             } else {
-                ReportBottomSheet.this.lambda$openCrafting$8();
+                ReportBottomSheet.this.lambda$openCrafting$9();
             }
         }
 

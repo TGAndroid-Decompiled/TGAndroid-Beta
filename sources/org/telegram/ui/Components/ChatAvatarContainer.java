@@ -4,10 +4,12 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -330,6 +332,21 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     }
 
     @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        ImageView imageView;
+        if (view == this.avatarImageView && (imageView = this.timeItem) != null && imageView.getVisibility() == 0) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
+            canvas.saveLayer(rectF, null);
+            boolean zDrawChild = super.drawChild(canvas, view, j);
+            canvas.drawCircle(this.timeItem.getX() + (this.timeItem.getWidth() / 2.0f), this.timeItem.getY() + (this.timeItem.getHeight() / 2.0f), AndroidUtilities.dpf2(11.5f) * this.timeItem.getScaleX(), Theme.PAINT_CLEAR);
+            canvas.restore();
+            return zDrawChild;
+        }
+        return super.drawChild(canvas, view, j);
+    }
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (this.ignoreTouches) {
             return false;
@@ -622,13 +639,22 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.timeItem.setVisibility(0);
             this.timeItem.setTag(1);
             if (z) {
-                this.timeItem.animate().setDuration(180L).alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setListener(null).start();
+                this.timeItem.animate().setDuration(180L).alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setListener(null).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        this.f$0.lambda$showTimeItem$6(valueAnimator);
+                    }
+                }).start();
                 return;
             }
             this.timeItem.setAlpha(1.0f);
             this.timeItem.setScaleY(1.0f);
             this.timeItem.setScaleX(1.0f);
         }
+    }
+
+    public void lambda$showTimeItem$6(ValueAnimator valueAnimator) {
+        invalidate();
     }
 
     public void hideTimeItem(boolean z) {
@@ -645,6 +671,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     ChatAvatarContainer.this.timeItem.setVisibility(8);
                     super.onAnimationEnd(animator);
                 }
+            }).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    this.f$0.lambda$hideTimeItem$7(valueAnimator);
+                }
             }).start();
             return;
         }
@@ -652,6 +683,10 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.timeItem.setAlpha(0.0f);
         this.timeItem.setScaleY(0.0f);
         this.timeItem.setScaleX(0.0f);
+    }
+
+    public void lambda$hideTimeItem$7(ValueAnimator valueAnimator) {
+        invalidate();
     }
 
     public void setTime(int i, boolean z) {

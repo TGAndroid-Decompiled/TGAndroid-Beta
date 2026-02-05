@@ -72,9 +72,9 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void lambda$openCrafting$9() {
         if (this.delegate.onBackPressed(true)) {
-            super.lambda$openCrafting$8();
+            super.lambda$openCrafting$9();
         }
     }
 

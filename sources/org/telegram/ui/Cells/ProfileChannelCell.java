@@ -9,8 +9,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import j$.util.Comparator$CC;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.function.ToIntFunction;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -160,7 +163,7 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
         return this.loadingDrawable == drawable || super.verifyDrawable(drawable);
     }
 
-    public void set(TLRPC.Chat chat, MessageObject messageObject) {
+    public void set(TLRPC.Chat chat, ArrayList arrayList) {
         String shortNumber;
         boolean z = this.set;
         boolean z2 = chat == null || chat.participants_count > 0;
@@ -183,12 +186,13 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
                 shortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
             }
             this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true);
-            boolean z3 = messageObject == null;
+            boolean z3 = arrayList == null || arrayList.isEmpty();
             this.loading = z3;
             if (z3) {
                 this.dialogCell.setDialog(-chat.id, null, 0, false, z);
             } else {
-                this.dialogCell.setDialog(-chat.id, messageObject, messageObject.messageOwner.date, false, z);
+                MessageObject messageObject = (MessageObject) arrayList.get(arrayList.size() - 1);
+                this.dialogCell.setDialog(-chat.id, messageObject, arrayList, messageObject.messageOwner.date, false, z);
             }
         }
         if (!z) {
@@ -204,15 +208,15 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
     }
 
     public static class ChannelMessageFetcher {
-        private ArrayList callbacks = new ArrayList();
         public long channel_id;
         public final int currentAccount;
         public boolean error;
         public boolean loaded;
         public boolean loading;
-        public MessageObject messageObject;
         public int message_id;
         private int searchId;
+        public ArrayList messageObjects = new ArrayList();
+        private ArrayList callbacks = new ArrayList();
 
         public ChannelMessageFetcher(int i) {
             this.currentAccount = i;
@@ -222,7 +226,7 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
             if (userFull == null || (userFull.flags2 & 64) == 0) {
                 this.searchId++;
                 this.loaded = true;
-                this.messageObject = null;
+                this.messageObjects.clear();
                 done(false);
                 return;
             }
@@ -235,7 +239,7 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
                     return;
                 }
                 this.loaded = false;
-                this.messageObject = null;
+                this.messageObjects.clear();
             }
             final int i2 = this.searchId + 1;
             this.searchId = i2;
@@ -247,161 +251,175 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
             messagesStorage.getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    this.f$0.lambda$fetch$3(i, messagesStorage, j, clientUserId, i2);
+                    this.f$0.lambda$fetch$5(i, messagesStorage, j, clientUserId, i2);
                 }
             });
         }
 
-        public void lambda$fetch$3(final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) throws Throwable {
-            TLRPC.Message messageTLdeserialize;
+        public void lambda$fetch$5(final int i, final MessagesStorage messagesStorage, final long j, long j2, final int i2) throws Throwable {
             SQLiteCursor sQLiteCursorQueryFinalized;
-            NativeByteBuffer nativeByteBufferByteBufferValue;
-            ArrayList<TLRPC.User> arrayList = new ArrayList<>();
-            ArrayList<TLRPC.Chat> arrayList2 = new ArrayList<>();
+            boolean z = false;
+            int i3 = 1;
+            final ArrayList arrayList = new ArrayList();
+            ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+            ArrayList<TLRPC.Chat> arrayList3 = new ArrayList<>();
             SQLiteCursor sQLiteCursor = null;
-            message = null;
-            message = null;
-            final TLRPC.Message message = null;
-            sQLiteCursor = null;
             try {
                 try {
                     if (i <= 0) {
-                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 1", Long.valueOf(-j));
+                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? ORDER BY mid DESC LIMIT 10", Long.valueOf(-j));
                     } else {
-                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid = ? LIMIT 1", Long.valueOf(-j), Integer.valueOf(i));
+                        sQLiteCursorQueryFinalized = messagesStorage.getDatabase().queryFinalized("SELECT data, mid FROM messages_v2 WHERE uid = ? AND mid <= ? ORDER BY mid DESC LIMIT 10", Long.valueOf(-j), Integer.valueOf(i));
                     }
-                    try {
-                        try {
-                            ArrayList<Long> arrayList3 = new ArrayList<>();
-                            ArrayList arrayList4 = new ArrayList();
-                            if (sQLiteCursorQueryFinalized.next() && (nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0)) != null) {
-                                messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
-                                try {
-                                    messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j2);
-                                    nativeByteBufferByteBufferValue.reuse();
-                                    messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(1);
-                                    messageTLdeserialize.dialog_id = -j;
-                                    MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList3, arrayList4, null);
-                                    message = messageTLdeserialize;
-                                } catch (Exception e) {
-                                    e = e;
-                                    sQLiteCursor = sQLiteCursorQueryFinalized;
-                                    FileLog.e(e);
-                                    if (sQLiteCursor != null) {
-                                        sQLiteCursorQueryFinalized = sQLiteCursor;
-                                        message = messageTLdeserialize;
-                                        sQLiteCursorQueryFinalized.dispose();
-                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                            @Override
-                                            public final void run() {
-                                                this.f$0.lambda$fetch$2(i2, message, j, i, messagesStorage);
-                                            }
-                                        });
-                                    }
-                                    message = messageTLdeserialize;
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            this.f$0.lambda$fetch$2(i2, message, j, i, messagesStorage);
-                                        }
-                                    });
-                                }
-                            }
-                            sQLiteCursorQueryFinalized.dispose();
-                            if (message != null) {
-                                if (!arrayList3.isEmpty()) {
-                                    messagesStorage.getUsersInternal(arrayList3, arrayList);
-                                }
-                                if (!arrayList4.isEmpty()) {
-                                    messagesStorage.getChatsInternal(TextUtils.join(",", arrayList4), arrayList2);
-                                }
-                            }
-                        } catch (Throwable th) {
-                            th = th;
-                            sQLiteCursor = sQLiteCursorQueryFinalized;
-                            if (sQLiteCursor != null) {
-                                sQLiteCursor.dispose();
-                            }
-                            throw th;
-                        }
-                    } catch (Exception e2) {
-                        e = e2;
-                        messageTLdeserialize = message;
+                } catch (Exception e) {
+                    e = e;
+                }
+            } catch (Throwable th) {
+                th = th;
+            }
+            try {
+                ArrayList<Long> arrayList4 = new ArrayList<>();
+                ArrayList arrayList5 = new ArrayList();
+                while (sQLiteCursorQueryFinalized.next()) {
+                    NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(z ? 1 : 0);
+                    if (nativeByteBufferByteBufferValue != null) {
+                        TLRPC.Message messageTLdeserialize = TLRPC.Message.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(z), z);
+                        messageTLdeserialize.readAttachPath(nativeByteBufferByteBufferValue, j2);
+                        nativeByteBufferByteBufferValue.reuse();
+                        messageTLdeserialize.id = sQLiteCursorQueryFinalized.intValue(i3);
+                        messageTLdeserialize.dialog_id = -j;
+                        MessagesStorage.addUsersAndChatsFromMessage(messageTLdeserialize, arrayList4, arrayList5, null);
+                        arrayList.add(messageTLdeserialize);
+                        z = false;
+                        i3 = 1;
                     }
-                } catch (Exception e3) {
-                    e = e3;
-                    messageTLdeserialize = null;
                 }
                 sQLiteCursorQueryFinalized.dispose();
+                if (!arrayList.isEmpty()) {
+                    if (!arrayList4.isEmpty()) {
+                        messagesStorage.getUsersInternal(arrayList4, arrayList2);
+                    }
+                    if (!arrayList5.isEmpty()) {
+                        messagesStorage.getChatsInternal(TextUtils.join(",", arrayList5), arrayList3);
+                    }
+                }
+            } catch (Exception e2) {
+                e = e2;
+                sQLiteCursor = sQLiteCursorQueryFinalized;
+                FileLog.e(e);
+                if (sQLiteCursor != null) {
+                    sQLiteCursorQueryFinalized = sQLiteCursor;
+                    sQLiteCursorQueryFinalized.dispose();
+                }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$fetch$2(i2, message, j, i, messagesStorage);
+                        this.f$0.lambda$fetch$4(i2, arrayList, j, i, messagesStorage);
                     }
                 });
             } catch (Throwable th2) {
                 th = th2;
+                sQLiteCursor = sQLiteCursorQueryFinalized;
+                if (sQLiteCursor != null) {
+                    sQLiteCursor.dispose();
+                }
+                throw th;
             }
-        }
-
-        public void lambda$fetch$2(final int i, TLRPC.Message message, final long j, final int i2, final MessagesStorage messagesStorage) {
-            if (i != this.searchId) {
-                return;
-            }
-            MessageObject messageObject = message != null ? new MessageObject(this.currentAccount, message, true, true) : null;
-            if (messageObject != null) {
-                this.messageObject = messageObject;
-                done(false);
-            } else {
-                TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
-                tL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
-                tL_channels_getMessages.id.add(Integer.valueOf(i2));
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$fetch$1(messagesStorage, j, i, i2, tLObject, tL_error);
-                    }
-                });
-            }
-        }
-
-        public void lambda$fetch$1(final MessagesStorage messagesStorage, final long j, final int i, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            sQLiteCursorQueryFinalized.dispose();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$fetch$0(tLObject, messagesStorage, j, i, i2);
+                    this.f$0.lambda$fetch$4(i2, arrayList, j, i, messagesStorage);
                 }
             });
         }
 
-        public void lambda$fetch$0(TLObject tLObject, MessagesStorage messagesStorage, long j, int i, int i2) {
-            TLRPC.Message next;
+        public void lambda$fetch$4(final int i, final ArrayList arrayList, final long j, int i2, final MessagesStorage messagesStorage) {
+            if (i != this.searchId) {
+                return;
+            }
+            if (!arrayList.isEmpty()) {
+                this.messageObjects.clear();
+                Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
+                    @Override
+                    public final int applyAsInt(Object obj) {
+                        return ((TLRPC.Message) obj).id;
+                    }
+                }));
+                TLRPC.Message message = (TLRPC.Message) arrayList.get(arrayList.size() - 1);
+                long j2 = message.grouped_id;
+                if (j2 != 0) {
+                    Iterator it = arrayList.iterator();
+                    while (it.hasNext()) {
+                        TLRPC.Message message2 = (TLRPC.Message) it.next();
+                        if (message2.grouped_id == j2) {
+                            this.messageObjects.add(new MessageObject(this.currentAccount, message2, false, true));
+                        }
+                    }
+                } else {
+                    this.messageObjects.add(new MessageObject(this.currentAccount, message, false, true));
+                }
+                if (!this.messageObjects.isEmpty()) {
+                    done(false);
+                    return;
+                }
+            }
+            TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
+            tL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(j);
+            for (int i3 = 10; i3 >= 0; i3--) {
+                int i4 = i2 - i3;
+                if (i4 >= 0) {
+                    tL_channels_getMessages.id.add(Integer.valueOf(i4));
+                }
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$fetch$3(messagesStorage, j, i, arrayList, tLObject, tL_error);
+                }
+            });
+        }
+
+        public void lambda$fetch$3(final MessagesStorage messagesStorage, final long j, final int i, final ArrayList arrayList, final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$fetch$2(tLObject, messagesStorage, j, i, arrayList);
+                }
+            });
+        }
+
+        public void lambda$fetch$2(TLObject tLObject, MessagesStorage messagesStorage, long j, int i, ArrayList arrayList) {
             if (tLObject instanceof TLRPC.messages_Messages) {
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
                 MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
                 MessagesController.getInstance(this.currentAccount).putChats(messages_messages.chats, false);
                 messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
-                messagesStorage.putMessages(messages_messages, -j, -1, 0, false, 0, 0L);
-                if (i != this.searchId) {
-                    return;
-                }
-                Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        next = null;
-                        break;
-                    } else {
-                        next = it.next();
-                        if (next.id == i2) {
-                            break;
+                messagesStorage.putMessages(messages_messages, -j, 3, 0, false, 0, 0L);
+                if (i == this.searchId && !messages_messages.messages.isEmpty()) {
+                    this.messageObjects.clear();
+                    Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
+                        @Override
+                        public final int applyAsInt(Object obj) {
+                            return ((TLRPC.Message) obj).id;
                         }
-                    }
-                }
-                if (next != null) {
-                    if (next instanceof TLRPC.TL_messageEmpty) {
-                        this.messageObject = null;
+                    }));
+                    ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
+                    TLRPC.Message message = arrayList2.get(arrayList2.size() - 1);
+                    long j2 = message.grouped_id;
+                    if (j2 != 0) {
+                        Iterator<TLRPC.Message> it = messages_messages.messages.iterator();
+                        while (it.hasNext()) {
+                            TLRPC.Message next = it.next();
+                            if (next.grouped_id == j2) {
+                                this.messageObjects.add(new MessageObject(this.currentAccount, next, false, true));
+                            }
+                        }
                     } else {
-                        this.messageObject = new MessageObject(this.currentAccount, next, true, true);
+                        this.messageObjects.add(new MessageObject(this.currentAccount, message, false, true));
+                    }
+                    if (this.messageObjects.isEmpty()) {
+                        return;
                     }
                     done(false);
                     return;

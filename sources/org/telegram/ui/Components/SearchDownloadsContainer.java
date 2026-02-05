@@ -64,7 +64,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
     int recentFilesStartRow;
     ArrayList recentLoadingFiles;
     ArrayList recentLoadingFilesTmp;
-    public RecyclerListView recyclerListView;
+    public final RecyclerListView recyclerListView;
     int rowCount;
     String searchQuery;
     FilteredSearchView.UiCallback uiCallback;
@@ -86,23 +86,24 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.parentFragment = baseFragment;
         this.parentActivity = baseFragment.getParentActivity();
         this.currentAccount = i;
-        this.recyclerListView = new BlurredRecyclerView(getContext()) {
+        BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(getContext()) {
             @Override
             protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 super.onLayout(z, i2, i3, i4, i5);
                 SearchDownloadsContainer.this.checkItemsFloodWait();
             }
         };
-        new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.recyclerListView);
-        addView(this.recyclerListView);
-        this.recyclerListView.setLayoutManager(new LinearLayoutManager(baseFragment.getParentActivity()) {
+        this.recyclerListView = blurredRecyclerView;
+        new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(blurredRecyclerView);
+        addView(blurredRecyclerView);
+        blurredRecyclerView.setLayoutManager(new LinearLayoutManager(baseFragment.getParentActivity()) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
             }
         });
-        this.recyclerListView.setAdapter(this.adapter);
-        this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        blurredRecyclerView.setAdapter(this.adapter);
+        blurredRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
                 if (i2 == 1) {
@@ -114,20 +115,20 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDelayAnimations(false);
         defaultItemAnimator.setSupportsChangeAnimations(false);
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        blurredRecyclerView.setItemAnimator(defaultItemAnimator);
+        blurredRecyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$new$0(i, view, i2);
             }
         });
-        this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+        blurredRecyclerView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
                 return this.f$0.lambda$new$1(view, i2);
             }
         });
-        this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(this.recyclerListView, true);
+        this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(blurredRecyclerView, true);
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(getContext());
         this.loadingView = flickerLoadingView;
         addView(flickerLoadingView);
@@ -137,7 +138,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         StickerEmptyView stickerEmptyView = new StickerEmptyView(getContext(), flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         addView(stickerEmptyView);
-        this.recyclerListView.setEmptyView(this.emptyView);
+        blurredRecyclerView.setEmptyView(this.emptyView);
         FileLoader.getInstance(i).getCurrentLoadingFiles(this.currentLoadingFiles);
     }
 

@@ -387,7 +387,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                     InviteContactsActivity.this.maxSize = AndroidUtilities.dp(56.0f);
                 }
                 measureChildWithMargins(((BaseFragment) InviteContactsActivity.this).actionBar, i, 0, i2, 0);
-                ((ViewGroup.MarginLayoutParams) InviteContactsActivity.this.emptyView.getLayoutParams()).topMargin = ((BaseFragment) InviteContactsActivity.this).actionBar.getMeasuredHeight() + AndroidUtilities.dp(44.0f);
+                ((ViewGroup.MarginLayoutParams) InviteContactsActivity.this.emptyView.getLayoutParams()).topMargin = ((BaseFragment) InviteContactsActivity.this).actionBar.getMeasuredHeight() + AndroidUtilities.dp(48.0f);
                 InviteContactsActivity.this.searchField.getLayoutParams().height = InviteContactsActivity.this.maxSize + AndroidUtilities.dp(18.0f);
                 InviteContactsActivity.this.checkUi_listViewPadding();
                 super.onMeasure(i, i2);
@@ -671,20 +671,21 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             ImageView imageView = new ImageView(context);
             this.iconView = imageView;
             imageView.setImageResource(R.drawable.outline_search_1_24);
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(InviteContactsActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText), 0.6f), PorterDuff.Mode.SRC_IN));
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(InviteContactsActivity.this.getThemedColor(i), 0.6f), PorterDuff.Mode.SRC_IN));
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 11.0f, 8.0f, 11.0f, 8.0f));
             scrollView.setClipChildren(true);
             addView(scrollView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 40.0f));
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
                 @Override
-                public boolean onKeyDown(int i, KeyEvent keyEvent) {
-                    if (i == 67 && SearchField.this.editText.length() == 0 && !InviteContactsActivity.this.allSpans.isEmpty()) {
+                public boolean onKeyDown(int i2, KeyEvent keyEvent) {
+                    if (i2 == 67 && SearchField.this.editText.length() == 0 && !InviteContactsActivity.this.allSpans.isEmpty()) {
                         InviteContactsActivity.this.spansContainer.removeSpan((GroupCreateSpan) InviteContactsActivity.this.allSpans.get(InviteContactsActivity.this.allSpans.size() - 1));
                         InviteContactsActivity.this.updateHint();
                         InviteContactsActivity.this.checkVisibleRows();
                         return true;
                     }
-                    return super.onKeyDown(i, keyEvent);
+                    return super.onKeyDown(i2, keyEvent);
                 }
             };
             this.editText = editTextBoldCursor;
@@ -703,11 +704,11 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             editTextBoldCursor.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             editTextBoldCursor.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 }
 
                 @Override
@@ -731,6 +732,8 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             if (Build.VERSION.SDK_INT >= 35) {
                 editTextBoldCursor.setLocalePreferredLineHeightForMinimumUsed(false);
             }
+            editTextBoldCursor.setTextColor(InviteContactsActivity.this.getThemedColor(i));
+            editTextBoldCursor.setHintTextColor(InviteContactsActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteHintText));
             addView(editTextBoldCursor, LayoutHelper.createFrame(-1, 40.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));
             updateColors();
         }
@@ -1097,7 +1100,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             return;
         }
         int iDp = AndroidUtilities.dp(48.0f);
-        this.iBlur3PositionActionBar.set(0.0f, -iDp, this.fragmentView.getMeasuredWidth(), this.actionBar.getMeasuredHeight() + iDp + AndroidUtilities.dp(44.0f) + this.maxSize);
+        this.iBlur3PositionActionBar.set(0.0f, -iDp, this.fragmentView.getMeasuredWidth(), this.actionBar.getMeasuredHeight() + iDp + AndroidUtilities.dp(48.0f) + this.maxSize);
         this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3Positions, 1);
         this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight());
     }

@@ -116,9 +116,10 @@ public abstract class ThemeColors {
         iArr[Theme.key_checkboxSquareUnchecked] = -9211021;
         iArr[Theme.key_checkboxSquareDisabled] = -5197648;
         iArr[Theme.key_listSelector] = 251658240;
+        iArr[Theme.key_settings_listSelector] = 486539280;
         iArr[Theme.key_radioBackground] = -5000269;
         iArr[Theme.key_radioBackgroundChecked] = -14509328;
-        iArr[Theme.key_windowBackgroundGray] = -986896;
+        iArr[Theme.key_windowBackgroundGray] = -921101;
         iArr[Theme.key_windowBackgroundGrayShadow] = -16777216;
         iArr[Theme.key_emptyListPlaceholder] = -9209733;
         iArr[Theme.key_divider] = -2500135;
@@ -189,7 +190,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_actionBarTabActiveText] = -14054705;
         iArr[Theme.key_actionBarTabUnactiveText] = -8946561;
         iArr[Theme.key_actionBarTabLine] = -14054705;
-        iArr[Theme.key_chats_tabUnreadActiveBackground] = -14054705;
+        iArr[Theme.key_chats_tabUnreadActiveBackground] = -10048031;
         iArr[Theme.key_chats_tabUnreadUnactiveBackground] = -3814964;
         iArr[Theme.key_actionBarTabSelector] = 303701281;
         iArr[Theme.key_actionBarBrowser] = -1;

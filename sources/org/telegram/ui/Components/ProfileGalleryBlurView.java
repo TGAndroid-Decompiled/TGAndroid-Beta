@@ -53,9 +53,11 @@ public class ProfileGalleryBlurView extends View {
     private boolean shouldBlurActions;
     public int size;
     private boolean sizeChanged;
-    private ProfileSuggestionView suggestionView;
     private boolean usingRenderNode;
     private ProfileGalleryView view;
+
+    public void setSuggestionView(ProfileSuggestionView profileSuggestionView) {
+    }
 
     public ProfileGalleryBlurView(Context context) {
         super(context);
@@ -145,10 +147,6 @@ public class ProfileGalleryBlurView extends View {
         this.actionsView = profileActionsView;
     }
 
-    public void setSuggestionView(ProfileSuggestionView profileSuggestionView) {
-        this.suggestionView = profileSuggestionView;
-    }
-
     public void setMusicView(ProfileMusicView profileMusicView) {
         this.musicView = profileMusicView;
     }
@@ -198,14 +196,11 @@ public class ProfileGalleryBlurView extends View {
     }
 
     public void setSize(int i) {
-        if (i > 0) {
-            i += AndroidUtilities.dp(6.0f);
-        }
         if (this.actionSize != i) {
             invalidate();
         }
         this.actionSize = i;
-        this.size = AndroidUtilities.dp(64.0f) * 2;
+        this.size = (int) (AndroidUtilities.dp(64.0f) * 1.5f);
     }
 
     public void setView(ProfileGalleryView profileGalleryView) {
@@ -237,7 +232,6 @@ public class ProfileGalleryBlurView extends View {
             }
         }
         this.actionsView = null;
-        this.suggestionView = null;
         this.musicView = null;
         synchronized (this.lock) {
             for (int i = 0; i < 3; i++) {
@@ -468,10 +462,6 @@ public class ProfileGalleryBlurView extends View {
         if (profileActionsView != null) {
             profileActionsView.drawingBlur(false);
         }
-        ProfileSuggestionView profileSuggestionView = this.suggestionView;
-        if (profileSuggestionView != null) {
-            profileSuggestionView.drawingBlur(false);
-        }
         ProfileMusicView profileMusicView = this.musicView;
         if (profileMusicView != null) {
             profileMusicView.drawingBlur(false);
@@ -543,7 +533,7 @@ public class ProfileGalleryBlurView extends View {
     }
 
     private void initActionsRenderNode() {
-        if (this.actionsView == null && this.suggestionView == null && this.musicView == null) {
+        if (this.actionsView == null && this.musicView == null) {
             this.shouldBlurActions = false;
             return;
         }
@@ -654,10 +644,6 @@ public class ProfileGalleryBlurView extends View {
             if (profileActionsView != null) {
                 profileActionsView.drawingBlur(false);
             }
-            ProfileSuggestionView profileSuggestionView = this.suggestionView;
-            if (profileSuggestionView != null) {
-                profileSuggestionView.drawingBlur(false);
-            }
             ProfileMusicView profileMusicView = this.musicView;
             if (profileMusicView != null) {
                 profileMusicView.drawingBlur(false);
@@ -678,14 +664,6 @@ public class ProfileGalleryBlurView extends View {
                 profileActionsView2.drawingBlur(this.actionsBlurNode, avatarImageView, renderNodeScale / f2, -f3);
             } else {
                 profileActionsView2.drawingBlur(this.actionsBlurNode, null, renderNodeScale, -f3);
-            }
-        }
-        ProfileSuggestionView profileSuggestionView2 = this.suggestionView;
-        if (profileSuggestionView2 != null) {
-            if (avatarImageView != null) {
-                profileSuggestionView2.drawingBlur(this.actionsBlurNode, avatarImageView, renderNodeScale / f2, -f3);
-            } else {
-                profileSuggestionView2.drawingBlur(this.actionsBlurNode, null, renderNodeScale, -f3);
             }
         }
         ProfileMusicView profileMusicView2 = this.musicView;

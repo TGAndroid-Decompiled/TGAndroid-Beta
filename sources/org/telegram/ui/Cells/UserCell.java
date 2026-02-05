@@ -218,7 +218,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.checkBox.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             View view6 = this.checkBox;
             boolean z9 = LocaleController.isRTL;
-            addView(view6, LayoutHelper.createFrame(24, 24.0f, (z9 ? 5 : 3) | 48, z9 ? 0.0f : i + 37, 36.0f, z9 ? i + 37 : 0.0f, 0.0f));
+            addView(view6, LayoutHelper.createFrame(24, 24.0f, (z9 ? 5 : 3) | 48, z9 ? 0.0f : i + 24, 36.0f, z9 ? i + 24 : 0.0f, 0.0f));
         } else if (i2 == 3) {
             ImageView imageView3 = new ImageView(context);
             this.checkBox3 = imageView3;
@@ -272,8 +272,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
             FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) checkBox2.getLayoutParams();
-            layoutParams4.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : i + 37 + i2);
-            layoutParams4.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 37 + i2 : 0.0f);
+            layoutParams4.leftMargin = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : i + 32 + i2);
+            layoutParams4.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? i + 32 + i2 : 0.0f);
         }
     }
 

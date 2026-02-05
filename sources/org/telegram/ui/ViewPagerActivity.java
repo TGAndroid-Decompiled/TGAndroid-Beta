@@ -64,7 +64,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
         this.viewPager = new ViewPagerFixed(context) {
             @Override
             protected long getManualScrollDuration() {
-                return 380L;
+                return 320L;
             }
 
             @Override

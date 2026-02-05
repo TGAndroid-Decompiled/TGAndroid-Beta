@@ -817,6 +817,31 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         update(0, z2);
     }
 
+    public void setDialog(long j, MessageObject messageObject, ArrayList arrayList, int i, boolean z, boolean z2) {
+        if (this.currentDialogId != j) {
+            this.lastStatusDrawableParams = -1;
+        }
+        this.currentDialogId = j;
+        this.lastDialogChangedTime = System.currentTimeMillis();
+        this.message = messageObject;
+        this.useMeForMyMessages = z;
+        this.isDialogCell = false;
+        this.lastMessageDate = i;
+        this.currentEditDate = messageObject != null ? messageObject.messageOwner.edit_date : 0;
+        this.unreadCount = 0;
+        this.markUnread = false;
+        this.messageId = messageObject != null ? messageObject.getId() : 0;
+        this.mentionCount = 0;
+        this.reactionMentionCount = 0;
+        this.lastUnreadState = messageObject != null && messageObject.isUnread();
+        this.groupMessages = arrayList;
+        MessageObject messageObject2 = this.message;
+        if (messageObject2 != null) {
+            this.lastSendState = messageObject2.messageOwner.send_state;
+        }
+        update(0, z2);
+    }
+
     public long getDialogId() {
         return this.currentDialogId;
     }

@@ -3173,7 +3173,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 }
                 this.lastActions = arrayList;
             }
-            AndroidUtilities.printStackTrace("fragment debug " + TextUtils.join(", ", this.lastActions));
         }
         AndroidUtilities.cancelRunOnUIThread(this.debugBlackScreenRunnable);
         AndroidUtilities.runOnUIThread(this.debugBlackScreenRunnable, 500L);

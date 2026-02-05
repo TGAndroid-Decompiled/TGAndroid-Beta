@@ -321,6 +321,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     public void lambda$createView$1(int i, View view) {
+        if (this.viewPager.isManualScrolling() || this.viewPager.isTouch()) {
+            return;
+        }
         if (this.viewPager.getCurrentPosition() == i) {
             Object currentVisibleFragment = getCurrentVisibleFragment();
             if (currentVisibleFragment instanceof TabFragmentDelegate) {
@@ -643,6 +646,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
+        GlassTabView[] glassTabViewArr;
+        GlassTabView glassTabView;
         IUpdateLayout iUpdateLayout;
         IUpdateLayout iUpdateLayout2;
         if (i == NotificationCenter.notificationsCountUpdated || i == NotificationCenter.updateInterfaces) {
@@ -708,7 +713,12 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 return;
             }
             dropFragmentAtPosition(2);
+            return;
         }
+        if (i != NotificationCenter.mainUserInfoChanged || (glassTabViewArr = this.tabs) == null || (glassTabView = glassTabViewArr[4]) == null) {
+            return;
+        }
+        glassTabView.updateUserAvatar(this.currentAccount);
     }
 
     @Override
@@ -719,6 +729,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.notificationsCountUpdated);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.callTabsVisibleToggled);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.mainUserInfoChanged);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateAvailable);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.appUpdateLoading);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needSetDayNightTheme);
@@ -733,6 +744,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.notificationsCountUpdated);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.callTabsVisibleToggled);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.mainUserInfoChanged);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateAvailable);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateLoading);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.needSetDayNightTheme);

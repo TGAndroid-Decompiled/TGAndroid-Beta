@@ -2235,12 +2235,12 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     @Override
     public boolean onAttachedBackPressed() {
-        lambda$openCrafting$8();
+        lambda$openCrafting$9();
         return true;
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void lambda$openCrafting$9() {
         if (this.attachedFragment == null) {
             super.onBackPressed();
         } else {

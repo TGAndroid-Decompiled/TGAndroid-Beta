@@ -5805,7 +5805,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     @Override
-    public void lambda$openCrafting$8() {
+    public void lambda$openCrafting$9() {
         if (this.passcodeView.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
@@ -5821,7 +5821,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if (getCommentView() != null && getCommentView().isPopupShowing()) {
                 getCommentView().hidePopup(true);
             } else {
-                super.lambda$openCrafting$8();
+                super.lambda$openCrafting$9();
             }
         }
     }
