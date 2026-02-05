@@ -435,7 +435,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     @Override
-    public View createView(Context context) throws InterruptedException {
+    public View createView(Context context) {
         DialogsActivity dialogsActivity = this.parentDialogsActivity;
         int i = 0;
         this.additionNavigationBarHeight = (dialogsActivity == null || !dialogsActivity.hasMainTabs) ? 0 : AndroidUtilities.dp(72.0f);

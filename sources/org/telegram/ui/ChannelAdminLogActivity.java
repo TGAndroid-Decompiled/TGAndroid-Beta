@@ -833,7 +833,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(Context context) throws Resources.NotFoundException, IOException {
         if (this.chatMessageCellsCache.isEmpty()) {
             for (int i = 0; i < 8; i++) {
                 this.chatMessageCellsCache.add(new ChatMessageCell(context, this.currentAccount));

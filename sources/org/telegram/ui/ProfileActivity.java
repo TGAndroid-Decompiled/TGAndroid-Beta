@@ -2663,7 +2663,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public View createView(final Context context) {
+    public View createView(final Context context) throws Resources.NotFoundException, IOException {
         int i;
         TLRPC.UserFull userFull;
         TLRPC.ChatFull chatFull;
@@ -2749,7 +2749,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                    public final void onClick(View view) throws Resources.NotFoundException {
                         this.f$0.lambda$createView$11(i7, view);
                     }
                 });
@@ -2815,7 +2815,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateNotifications(false);
             this.actionsView.setOnActionClickListener(new ProfileActionsView.OnActionClickListener() {
                 @Override
-                public final void onClick(int i11, float f2, float f3) throws Resources.NotFoundException, IOException {
+                public final void onClick(int i11, float f2, float f3) throws Resources.NotFoundException {
                     this.f$0.lambda$createView$16(i11, f2, f3);
                 }
             });
@@ -4756,7 +4756,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5141,7 +5141,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$createView$16(int i, float f, float f2) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$16(int i, float f, float f2) throws Resources.NotFoundException {
         switch (i) {
             case 0:
                 if (!this.isTopic) {
@@ -10590,7 +10590,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return dontApplyPeerColor(i, z, null);
     }
 
-    private int applyPeerColor(int i, boolean z, Boolean bool) {
+    private int applyPeerColor(int i, boolean z, Boolean bool) throws IOException {
         if ((!z && isSettings()) || this.peerColor == null) {
             return i;
         }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
@@ -931,7 +932,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         updateCustomPhotoInfo();
     }
 
-    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException {
+    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException, IOException, NumberFormatException {
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
             if (chatActivity.getDialogId() == this.user_id && chatActivity.getChatMode() == 0) {

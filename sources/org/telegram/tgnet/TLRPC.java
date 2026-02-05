@@ -71146,9 +71146,6 @@ public class TLRPC {
             if ((this instanceof TL_reactionEmpty) && (reaction instanceof TL_reactionEmpty)) {
                 return true;
             }
-            if ((this instanceof TL_reactionPaid) && (reaction instanceof TL_reactionPaid)) {
-                return true;
-            }
             if ((this instanceof TL_reactionEmoji) && (reaction instanceof TL_reactionEmoji)) {
                 return TextUtils.equals(((TL_reactionEmoji) this).emoticon, ((TL_reactionEmoji) reaction).emoticon);
             }
