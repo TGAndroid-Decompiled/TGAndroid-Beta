@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -32,6 +33,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -905,7 +907,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             alertDialog.showDelayed(500L);
             MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(j, new Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void accept(Object obj) throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$openStoryRecorder$14(alertDialog, j, storyCell, (Boolean) obj);
                 }
             }, true, resourceProvider);
@@ -914,7 +916,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
     }
 
-    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) {
+    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws Resources.NotFoundException, IOException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).selectedPeerId(j).canChangePeer(false).open(StoryRecorder.SourceView.fromStoryCell(storyCell));

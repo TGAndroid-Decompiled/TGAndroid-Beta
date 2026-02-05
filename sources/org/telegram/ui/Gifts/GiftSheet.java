@@ -1801,22 +1801,24 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             @Override
             public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 boolean starsGift;
+                GiftCell giftCell = (GiftCell) view;
                 Object obj = uItem.object;
                 if (obj instanceof GiftPremiumBottomSheet$GiftTier) {
-                    starsGift = ((GiftCell) view).setPremiumGift((GiftPremiumBottomSheet$GiftTier) obj);
+                    starsGift = giftCell.setPremiumGift((GiftPremiumBottomSheet$GiftTier) obj);
                 } else if (obj instanceof TL_stars.StarGift) {
                     TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                    GiftCell giftCell = (GiftCell) view;
                     boolean z2 = uItem.checked;
                     Object obj2 = uItem.object2;
                     starsGift = giftCell.setStarsGift(starGift, z2, obj2 instanceof Boolean ? ((Boolean) obj2).booleanValue() : false, uItem.accent, uItem.red, uItem.locked);
                 } else {
-                    starsGift = obj instanceof TL_stars.SavedStarGift ? ((GiftCell) view).setStarsGift((TL_stars.SavedStarGift) obj, uItem.accent, uItem.red) : false;
+                    starsGift = obj instanceof TL_stars.SavedStarGift ? giftCell.setStarsGift((TL_stars.SavedStarGift) obj, uItem.accent, uItem.red) : false;
                 }
                 if (uItem.collapsed) {
-                    ((GiftCell) view).setChecked(uItem.checked, starsGift);
+                    giftCell.setChecked(uItem.checked, starsGift);
                 }
-                ((GiftCell) view).setReordering(uItem.reordering, starsGift);
+                giftCell.setReordering(uItem.reordering, starsGift);
+                giftCell.card.setAlpha(uItem.enabled ? 1.0f : 0.65f);
+                giftCell.ribbon.setAlpha(uItem.enabled ? 1.0f : 0.5f);
             }
 
             @Override

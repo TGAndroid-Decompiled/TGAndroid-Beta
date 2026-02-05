@@ -1141,29 +1141,6 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         canvas.drawRect(rect, paint);
     }
 
-    public void drawBlurCircle(Canvas canvas, float f, float f2, float f3, float f4, Paint paint, boolean z) {
-        int iAlpha = Color.alpha(Theme.getColor(DRAW_USING_RENDERNODE() ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow));
-        if (this.currentBitmap == null || !SharedConfig.chatBlurEnabled()) {
-            canvas.drawCircle(f2, f3, f4, paint);
-            return;
-        }
-        updateBlurShaderPosition(f, z);
-        paint.setAlpha(255);
-        if (this.blurCrossfadeProgress != 1.0f && this.selectedBlurPaint2.getShader() != null) {
-            canvas.drawCircle(f2, f3, f4, paint);
-            canvas.drawCircle(f2, f3, f4, this.selectedBlurPaint2);
-            canvas.saveLayerAlpha(f2 - f4, f3 - f4, f2 + f4, f3 + f4, (int) (this.blurCrossfadeProgress * 255.0f), 31);
-            canvas.drawCircle(f2, f3, f4, paint);
-            canvas.drawCircle(f2, f3, f4, this.selectedBlurPaint);
-            canvas.restore();
-        } else {
-            canvas.drawCircle(f2, f3, f4, paint);
-            canvas.drawCircle(f2, f3, f4, this.selectedBlurPaint);
-        }
-        paint.setAlpha(iAlpha);
-        canvas.drawCircle(f2, f3, f4, paint);
-    }
-
     private void updateBlurShaderPosition(float f, boolean z) {
         this.selectedBlurPaint = z ? this.blurPaintTop : this.blurPaintBottom;
         this.selectedBlurPaint2 = z ? this.blurPaintTop2 : this.blurPaintBottom2;

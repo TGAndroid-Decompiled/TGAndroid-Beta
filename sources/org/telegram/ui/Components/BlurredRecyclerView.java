@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 
-public class BlurredRecyclerView extends RecyclerListView {
+public abstract class BlurredRecyclerView extends RecyclerListView {
     public int additionalClipBottom;
     public boolean alwaysDrawChild;
     public int blurTopPadding;

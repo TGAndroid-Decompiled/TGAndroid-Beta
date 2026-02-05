@@ -167,7 +167,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     return new RecyclerListView.Holder(overviewCell);
                 case 10:
                     TextCell textCell = new TextCell(BoostsActivity.this.getContext());
-                    textCell.setTextAndIcon((CharSequence) LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.formatString(R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
                     textCell.offsetFromImage = 64;
                     int i2 = Theme.key_windowBackgroundWhiteBlueText4;
                     textCell.setColors(i2, i2);
@@ -232,13 +232,15 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
                 case 15:
-                    overviewCell = new View(BoostsActivity.this.getContext()) {
+                    View view = new View(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             LinearLayoutManager linearLayoutManager = BoostsActivity.this.layoutManager;
                             super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(Math.max(0, linearLayoutManager instanceof FillLastLinearLayoutManager ? ((FillLastLinearLayoutManager) linearLayoutManager).getLastItemHeight() : 0), 1073741824));
                         }
                     };
+                    view.setTag(-33024);
+                    overviewCell = view;
                     overviewCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(overviewCell);
             }

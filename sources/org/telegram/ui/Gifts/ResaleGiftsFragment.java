@@ -2663,14 +2663,15 @@ public class ResaleGiftsFragment extends BaseFragment {
             if (state == null || state.list == null || this.state.resaleList == null) {
                 return;
             }
+            int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             arrayList.add(UItem.asHeader(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
             Iterator it = this.state.list.gifts.iterator();
-            int i = 0;
             boolean z = true;
+            int i = 0;
             while (it.hasNext()) {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
                 if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
-                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true));
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true).setEnabled(savedStarGift.can_craft_at <= currentTime));
                     i++;
                     z = false;
                 }

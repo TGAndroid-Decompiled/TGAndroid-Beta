@@ -2433,6 +2433,14 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         super.requestLayout();
     }
 
+    public void setPadding(int i, int i2, int i3, int i4, boolean z) {
+        if (z) {
+            setPaddingWithoutRequestLayout(i, i2, i3, i4);
+        } else {
+            setPadding(i, i2, i3, i4);
+        }
+    }
+
     public void setPaddingWithoutRequestLayout(int i, int i2, int i3, int i4) {
         if (getPaddingLeft() == i && getPaddingTop() == i2 && getPaddingRight() == i3 && getPaddingBottom() == i4) {
             return;

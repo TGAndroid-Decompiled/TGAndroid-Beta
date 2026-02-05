@@ -86,24 +86,24 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.parentFragment = baseFragment;
         this.parentActivity = baseFragment.getParentActivity();
         this.currentAccount = i;
-        BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(getContext()) {
+        RecyclerListView recyclerListView = new RecyclerListView(getContext()) {
             @Override
             protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 super.onLayout(z, i2, i3, i4, i5);
                 SearchDownloadsContainer.this.checkItemsFloodWait();
             }
         };
-        this.recyclerListView = blurredRecyclerView;
-        new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(blurredRecyclerView);
-        addView(blurredRecyclerView);
-        blurredRecyclerView.setLayoutManager(new LinearLayoutManager(baseFragment.getParentActivity()) {
+        this.recyclerListView = recyclerListView;
+        new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(recyclerListView);
+        addView(recyclerListView);
+        recyclerListView.setLayoutManager(new LinearLayoutManager(baseFragment.getParentActivity()) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
             }
         });
-        blurredRecyclerView.setAdapter(this.adapter);
-        blurredRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerListView.setAdapter(this.adapter);
+        recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
                 if (i2 == 1) {
@@ -115,20 +115,20 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDelayAnimations(false);
         defaultItemAnimator.setSupportsChangeAnimations(false);
-        blurredRecyclerView.setItemAnimator(defaultItemAnimator);
-        blurredRecyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        recyclerListView.setItemAnimator(defaultItemAnimator);
+        recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$new$0(i, view, i2);
             }
         });
-        blurredRecyclerView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+        recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
                 return this.f$0.lambda$new$1(view, i2);
             }
         });
-        this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(blurredRecyclerView, true);
+        this.itemsEnterAnimator = new RecyclerItemsEnterAnimator(recyclerListView, true);
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(getContext());
         this.loadingView = flickerLoadingView;
         addView(flickerLoadingView);
@@ -138,7 +138,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         StickerEmptyView stickerEmptyView = new StickerEmptyView(getContext(), flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         addView(stickerEmptyView);
-        blurredRecyclerView.setEmptyView(this.emptyView);
+        recyclerListView.setEmptyView(this.emptyView);
         FileLoader.getInstance(i).getCurrentLoadingFiles(this.currentLoadingFiles);
     }
 

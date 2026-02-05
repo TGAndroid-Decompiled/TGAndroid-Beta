@@ -643,7 +643,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         frameLayout.setBackgroundColor(i);
     }
 
-    public void openBot(long j, String str, SourceView sourceView) {
+    public void openBot(long j, String str, SourceView sourceView) throws Resources.NotFoundException, IOException {
         this.botId = j;
         this.botLang = str;
         this.botEdit = null;
@@ -710,11 +710,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         addNotificationObservers();
     }
 
-    public void open(SourceView sourceView) {
+    public void open(SourceView sourceView) throws Resources.NotFoundException, IOException {
         open(sourceView, true);
     }
 
-    public void open(SourceView sourceView, boolean z) {
+    public void open(SourceView sourceView, boolean z) throws Resources.NotFoundException, IOException {
         StoriesController.StoryLimit storyLimitCheckStoryLimit;
         WindowView windowView;
         if (this.isShown) {

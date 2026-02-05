@@ -65,7 +65,6 @@ import org.telegram.ui.Cells.SharedLinkCell;
 import org.telegram.ui.Cells.SharedMediaSectionCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.BlurredRecyclerView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmbedBottomSheet;
@@ -208,7 +207,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         Activity parentActivity = baseFragment.getParentActivity();
         this.parentActivity = parentActivity;
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(parentActivity) {
+        RecyclerListView recyclerListView = new RecyclerListView(parentActivity) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 if (getAdapter() == FilteredSearchView.this.sharedPhotoVideoAdapter) {
@@ -233,14 +232,14 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 return super.drawChild(canvas, view, j);
             }
         };
-        this.recyclerListView = blurredRecyclerView;
-        blurredRecyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        this.recyclerListView = recyclerListView;
+        recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i) {
                 this.f$0.lambda$new$1(view, i);
             }
         });
-        blurredRecyclerView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
+        recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
             @Override
             public boolean onItemClick(View view, int i, float f, float f2) {
                 if (view instanceof SharedDocumentCell) {
@@ -274,10 +273,10 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 FilteredSearchView.this.chatPreviewDelegate.finish();
             }
         });
-        blurredRecyclerView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
+        recyclerListView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(parentActivity);
         this.layoutManager = linearLayoutManager;
-        blurredRecyclerView.setLayoutManager(linearLayoutManager);
+        recyclerListView.setLayoutManager(linearLayoutManager);
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(parentActivity) {
             @Override
             public int getColumnsCount() {
@@ -286,9 +285,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         };
         this.loadingView = flickerLoadingView;
         addView(flickerLoadingView);
-        addView(blurredRecyclerView);
-        blurredRecyclerView.setSectionsType(2);
-        blurredRecyclerView.setOnScrollListener(new AnonymousClass6());
+        addView(recyclerListView);
+        recyclerListView.setSectionsType(2);
+        recyclerListView.setOnScrollListener(new AnonymousClass6());
         ChatActionCell chatActionCell = new ChatActionCell(parentActivity);
         this.floatingDateView = chatActionCell;
         chatActionCell.setCustomDate((int) (System.currentTimeMillis() / 1000), false, false);
@@ -305,7 +304,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         StickerEmptyView stickerEmptyView = new StickerEmptyView(parentActivity, flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         addView(stickerEmptyView);
-        blurredRecyclerView.setEmptyView(this.emptyView);
+        recyclerListView.setEmptyView(this.emptyView);
         this.emptyView.setVisibility(8);
     }
 
