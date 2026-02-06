@@ -39,7 +39,7 @@ import org.telegram.ui.Components.NestedSizeNotifierLayout;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.RecyclerListView$$ExternalSyntheticLambda2;
+import org.telegram.ui.Components.RecyclerListView$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Stories.recorder.HintView2;
@@ -208,7 +208,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             float fDp = AndroidUtilities.dp(16.0f);
             RecyclerListView recyclerListView2 = this.listView;
             Objects.requireNonNull(recyclerListView2);
-            recyclerListView.setSections(callbackReturn, iDp, fDp, new RecyclerListView$$ExternalSyntheticLambda2(recyclerListView2), true);
+            recyclerListView.setSections(callbackReturn, iDp, fDp, new RecyclerListView$$ExternalSyntheticLambda1(recyclerListView2), true);
         } else {
             this.listView.setSections(true);
         }

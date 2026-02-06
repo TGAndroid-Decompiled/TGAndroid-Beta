@@ -101,6 +101,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.utils.RectFMergeBounding;
 import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -141,6 +142,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.RenderNodeWithHash;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
@@ -253,8 +255,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private final BlurredBackgroundDrawableViewFactory iBlur3FactoryFrostedLiquidGlass;
     private final BlurredBackgroundDrawableViewFactory iBlur3FactoryLiquidGlass;
     private final RectF iBlur3PositionActionBar;
+    private final RectF iBlur3PositionFastScroll;
     private final RectF iBlur3PositionMainTabs;
     private final ArrayList iBlur3Positions;
+    private final ArrayList iBlur3PositionsMerged;
     private final BlurredBackgroundSourceColor iBlur3SourceColor;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlass;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
@@ -1374,10 +1378,16 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.allowPassConfirmationAlert = false;
         ArrayList arrayList = new ArrayList();
         this.iBlur3Positions = arrayList;
-        this.iBlur3PositionActionBar = new RectF();
         RectF rectF = new RectF();
-        this.iBlur3PositionMainTabs = rectF;
+        this.iBlur3PositionActionBar = rectF;
+        RectF rectF2 = new RectF();
+        this.iBlur3PositionMainTabs = rectF2;
+        RectF rectF3 = new RectF();
+        this.iBlur3PositionFastScroll = rectF3;
         arrayList.add(rectF);
+        arrayList.add(rectF2);
+        arrayList.add(rectF3);
+        this.iBlur3PositionsMerged = new ArrayList();
         this.occupyNavigationBarWithoutKeyboard = true;
         boolean z4 = baseFragment instanceof ChatActivity;
         if (z4) {
@@ -1392,9 +1402,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             this.iBlur3SourceGlass = blurredBackgroundSourceRenderNode;
             blurredBackgroundSourceRenderNode.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public void renderNodeCalculateHash(RenderNodeWithHash.HashBuilder hashBuilder) {
-                    hashBuilder.add(ChatAttachAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    hashBuilder.add(SharedConfig.chatBlurEnabled());
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(ChatAttachAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
                 }
 
                 @Override
@@ -1409,9 +1419,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             this.iBlur3SourceGlassFrosted = blurredBackgroundSourceRenderNode2;
             blurredBackgroundSourceRenderNode2.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public void renderNodeCalculateHash(RenderNodeWithHash.HashBuilder hashBuilder) {
-                    hashBuilder.add(ChatAttachAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    hashBuilder.add(SharedConfig.chatBlurEnabled());
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(ChatAttachAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
                 }
 
                 @Override
@@ -1439,29 +1449,25 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.iBlur3FactoryFade = blurredBackgroundDrawableViewFactory3;
         this.iBlur3Capture = new IBlur3Capture() {
             @Override
-            public long captureCalculateHash(RectF rectF2) {
-                long jCalcHash = 0;
+            public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF4) {
                 int i4 = 0;
                 while (i4 < 2) {
                     AttachAlertLayout attachAlertLayout = i4 == 0 ? ChatAttachAlert.this.currentAttachLayout : ChatAttachAlert.this.nextAttachLayout;
                     if (attachAlertLayout != null && attachAlertLayout.iBlur3Capture != null && attachAlertLayout.getVisibility() == 0 && attachAlertLayout.getAlpha() > 0.9f) {
-                        if (Build.VERSION.SDK_INT >= 29) {
-                            jCalcHash = MediaDataController.calcHash(jCalcHash, attachAlertLayout.getUniqueDrawingId());
-                        }
-                        jCalcHash = MediaDataController.calcHash(jCalcHash, attachAlertLayout.iBlur3Capture.captureCalculateHash(rectF2));
+                        iBlur3Hash.add(attachAlertLayout);
+                        attachAlertLayout.iBlur3Capture.captureCalculateHash(iBlur3Hash, rectF4);
                     }
                     i4++;
                 }
-                return jCalcHash;
             }
 
             @Override
-            public void capture(Canvas canvas, RectF rectF2) {
+            public void capture(Canvas canvas, RectF rectF4) {
                 int i4 = 0;
                 while (i4 < 2) {
                     AttachAlertLayout attachAlertLayout = i4 == 0 ? ChatAttachAlert.this.currentAttachLayout : ChatAttachAlert.this.nextAttachLayout;
                     if (attachAlertLayout != null && attachAlertLayout.iBlur3Capture != null && attachAlertLayout.getVisibility() == 0 && attachAlertLayout.getAlpha() > 0.9f) {
-                        attachAlertLayout.iBlur3Capture.capture(canvas, rectF2);
+                        attachAlertLayout.iBlur3Capture.capture(canvas, rectF4);
                     }
                     i4++;
                 }
@@ -1479,7 +1485,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         NotificationCenter.getInstance(i3).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         NotificationCenter.getInstance(i3).addObserver(this, NotificationCenter.quickRepliesUpdated);
         this.exclusionRects.add(this.exclustionRect);
-        AnonymousClass6 anonymousClass6 = new AnonymousClass6(context, z);
+        AnonymousClass6 anonymousClass6 = new AnonymousClass6(context, z, resourcesProvider);
         this.sizeNotifierFrameLayout = anonymousClass6;
         anonymousClass6.setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate() {
             @Override
@@ -1538,6 +1544,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.actionBar.setTitleColor(getThemedColor(i5));
         this.actionBar.setOccupyStatusBar(true);
         this.actionBar.setAlpha(0.0f);
+        this.actionBar.setDrawBlurBackground(this.sizeNotifierFrameLayout);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i7) {
@@ -1730,19 +1737,19 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 float fDp = AndroidUtilities.dp(20.0f);
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+                RectF rectF4 = AndroidUtilities.rectTmp;
+                rectF4.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
                 this.path.rewind();
-                this.path.addRoundRect(rectF2, fDp, fDp, Path.Direction.CW);
+                this.path.addRoundRect(rectF4, fDp, fDp, Path.Direction.CW);
                 canvas.save();
                 canvas.clipRect(0.0f, 0.0f, getWidth(), getHeight() * getAlpha());
                 canvas.clipPath(this.path);
-                canvas.saveLayerAlpha(rectF2, 255, 31);
+                canvas.saveLayerAlpha(rectF4, 255, 31);
                 super.dispatchDraw(canvas);
-                rectF2.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + AndroidUtilities.dp(6.0f));
-                this.clip.draw(canvas, rectF2, 1, 1.0f);
-                rectF2.set(getPaddingLeft(), (getHeight() - getPaddingBottom()) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
-                this.clip.draw(canvas, rectF2, 3, 1.0f);
+                rectF4.set(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + AndroidUtilities.dp(6.0f));
+                this.clip.draw(canvas, rectF4, 1, 1.0f);
+                rectF4.set(getPaddingLeft(), (getHeight() - getPaddingBottom()) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
+                this.clip.draw(canvas, rectF4, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
             }
@@ -1989,19 +1996,19 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 float fDp = AndroidUtilities.dp(20.0f);
                 int iDp2 = AndroidUtilities.dp(7.0f);
                 int iDp3 = AndroidUtilities.dp(7.0f);
-                RectF rectF2 = AndroidUtilities.rectTmp;
+                RectF rectF4 = AndroidUtilities.rectTmp;
                 float f = iDp2;
-                rectF2.set(getPaddingLeft(), f, getWidth() - getPaddingRight(), getHeight() - iDp3);
+                rectF4.set(getPaddingLeft(), f, getWidth() - getPaddingRight(), getHeight() - iDp3);
                 this.path.rewind();
-                this.path.addRoundRect(rectF2, fDp, fDp, Path.Direction.CW);
+                this.path.addRoundRect(rectF4, fDp, fDp, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(this.path);
-                canvas.saveLayerAlpha(rectF2, 255, 31);
+                canvas.saveLayerAlpha(rectF4, 255, 31);
                 super.dispatchDraw(canvas);
-                rectF2.set(getPaddingLeft(), f, getWidth() - getPaddingRight(), iDp2 + AndroidUtilities.dp(6.0f));
-                this.clip.draw(canvas, rectF2, 1, 1.0f);
-                rectF2.set(getPaddingLeft(), (getHeight() - iDp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - iDp3);
-                this.clip.draw(canvas, rectF2, 3, 1.0f);
+                rectF4.set(getPaddingLeft(), f, getWidth() - getPaddingRight(), iDp2 + AndroidUtilities.dp(6.0f));
+                this.clip.draw(canvas, rectF4, 1, 1.0f);
+                rectF4.set(getPaddingLeft(), (getHeight() - iDp3) - AndroidUtilities.dp(6.0f), getWidth() - getPaddingRight(), getHeight() - iDp3);
+                this.clip.draw(canvas, rectF4, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
             }
@@ -2404,6 +2411,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             checkColors();
             this.navBarColorKey = -1;
         }
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = this.photoLayout;
+        if (chatAttachAlertPhotoLayout3 != null) {
+            chatAttachAlertPhotoLayout3.gridView.getFastScroll().applyBlurDrawables(this.iBlur3FactoryLiquidGlass, BlurredBackgroundProviderImpl.topPanel(resourcesProvider));
+        }
         PasscodeView passcodeView = new PasscodeView(context);
         this.passcodeView = passcodeView;
         this.containerView.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
@@ -2417,10 +2428,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         private int lastNotifyWidth;
         private RectF rect;
         final boolean val$forceDarkTheme;
+        final Theme.ResourcesProvider val$resourcesProvider;
 
-        AnonymousClass6(Context context, boolean z) {
+        AnonymousClass6(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.val$forceDarkTheme = z;
+            this.val$resourcesProvider = resourcesProvider;
             this.bulletinDelegate = new Bulletin.Delegate() {
                 @Override
                 public boolean allowLayoutChanges() {
@@ -2947,16 +2960,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
-            if (Build.VERSION.SDK_INT < 29 || !SharedConfig.chatBlurEnabled() || ChatAttachAlert.this.iBlur3SourceGlassFrosted == null) {
+            if (ChatAttachAlert.this.currentAttachLayout != ChatAttachAlert.this.photoLayout || Build.VERSION.SDK_INT < 29 || !SharedConfig.chatBlurEnabled() || ChatAttachAlert.this.iBlur3SourceGlassFrosted == null || !BlurredBackgroundProviderImpl.checkBlurEnabled(ChatAttachAlert.this.currentAccount, this.val$resourcesProvider)) {
                 canvas.drawRect(rect, paint);
                 return;
             }
+            Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
+            int i = (resourcesProvider == null ? Theme.isCurrentThemeDark() : resourcesProvider.isDark()) ? 178 : 216;
             canvas.save();
             canvas.translate(0.0f, -f);
             ChatAttachAlert.this.iBlur3SourceGlassFrosted.draw(canvas, rect.left, rect.top + f, rect.right, rect.bottom + f);
             canvas.restore();
             int alpha = paint.getAlpha();
-            paint.setAlpha(178);
+            paint.setAlpha(i);
             canvas.drawRect(rect, paint);
             paint.setAlpha(alpha);
         }
@@ -6159,7 +6174,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             chatAttachAlertPhotoLayout.checkCameraViewPosition();
             RecyclerListView recyclerListView = this.photoLayout.gridView;
             if (recyclerListView != null && recyclerListView.getFastScroll() != null) {
-                this.photoLayout.gridView.getFastScroll().topOffset = (this.captionAbove ? (int) (this.topCommentContainer.getMeasuredHeight() * this.topCommentContainer.getAlpha()) : 0) + ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
+                this.photoLayout.gridView.getFastScroll().topOffset = ActionBar.getCurrentActionBarHeight() + this.photoLayout.listAdditionalH + (this.captionAbove ? (int) (this.topCommentContainer.getMeasuredHeight() * this.topCommentContainer.getAlpha()) : 0);
                 this.photoLayout.gridView.getFastScroll().invalidate();
             }
         }
@@ -6172,13 +6187,33 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void blur3_InvalidateBlur() {
+        boolean z;
         if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
             return;
         }
         ViewPositionWatcher.computeRectInParent(this.buttonsRecyclerViewWrapper, this.containerView, this.iBlur3PositionMainTabs);
+        this.iBlur3PositionActionBar.set(0.0f, 0.0f, this.containerView.getMeasuredWidth(), this.actionBar.getMeasuredHeight());
+        this.iBlur3PositionActionBar.inset(0.0f, -AndroidUtilities.dp(48.0f));
         this.iBlur3PositionMainTabs.set(0.0f, this.containerView.getMeasuredHeight() - (Math.max(AndroidUtilities.navigationBarHeight, getEmojiPadding()) + AndroidUtilities.dp(180.0f)), this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
         this.iBlur3PositionMainTabs.inset(0.0f, LiteMode.isEnabled(262144) ? 0.0f : -AndroidUtilities.dp(48.0f));
-        this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3Positions, 1);
+        AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.photoLayout;
+        if (attachAlertLayout != chatAttachAlertPhotoLayout || chatAttachAlertPhotoLayout == null || chatAttachAlertPhotoLayout.gridView.getFastScroll() == null) {
+            z = false;
+        } else {
+            this.photoLayout.gridView.getFastScroll().fillDrawablesRect(this.iBlur3PositionFastScroll);
+            RecyclerListView.FastScroll fastScroll = this.photoLayout.gridView.getFastScroll();
+            ViewGroup viewGroup = this.containerView;
+            RectF rectF = AndroidUtilities.rectTmp;
+            ViewPositionWatcher.computeRectInParent(fastScroll, viewGroup, rectF);
+            this.iBlur3PositionFastScroll.offset(rectF.left, rectF.top);
+            this.iBlur3PositionFastScroll.inset(-AndroidUtilities.dp(48.0f), -AndroidUtilities.dp(48.0f));
+            RectF rectF2 = this.iBlur3PositionFastScroll;
+            rectF2.left = Math.max(0.0f, rectF2.left);
+            this.iBlur3PositionFastScroll.right = Math.min(this.containerView.getMeasuredWidth(), this.iBlur3PositionFastScroll.right);
+            z = true;
+        }
+        this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3PositionsMerged, RectFMergeBounding.mergeOverlapping(this.iBlur3Positions, z ? 3 : 2, this.iBlur3PositionsMerged));
         this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
     }
 }

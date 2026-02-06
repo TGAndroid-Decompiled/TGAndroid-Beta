@@ -49,6 +49,7 @@ import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
 import org.telegram.ui.Components.blur3.RenderNodeWithHash;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
@@ -113,9 +114,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             this.iBlur3SourceTabGlass = blurredBackgroundSourceRenderNode;
             blurredBackgroundSourceRenderNode.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public void renderNodeCalculateHash(RenderNodeWithHash.HashBuilder hashBuilder) {
-                    hashBuilder.add(MainTabsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    hashBuilder.add(SharedConfig.chatBlurEnabled());
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(MainTabsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
                     int size = MainTabsActivity.this.fragmentsArr.size();
                     for (int i = 0; i < size; i++) {
                         BaseFragment baseFragment = ((ViewPagerActivity.FragmentState) MainTabsActivity.this.fragmentsArr.valueAt(i)).fragment;
@@ -123,9 +124,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                         if (view != null) {
                             MainTabsActivity mainTabsActivity = MainTabsActivity.this;
                             if (ViewPositionWatcher.computeRectInParent(view, mainTabsActivity.contentView, mainTabsActivity.fragmentPosition) && MainTabsActivity.this.fragmentPosition.right > 0.0f && MainTabsActivity.this.fragmentPosition.left < MainTabsActivity.this.fragmentView.getMeasuredWidth() && (baseFragment instanceof TabFragmentDelegate) && ((TabFragmentDelegate) baseFragment).getGlassSource() != null) {
-                                hashBuilder.addF(MainTabsActivity.this.fragmentPosition.left);
-                                hashBuilder.addF(MainTabsActivity.this.fragmentPosition.top);
-                                hashBuilder.add(baseFragment.getClassGuid());
+                                iBlur3Hash.addF(MainTabsActivity.this.fragmentPosition.left);
+                                iBlur3Hash.addF(MainTabsActivity.this.fragmentPosition.top);
+                                iBlur3Hash.add(baseFragment.getClassGuid());
                             }
                         }
                     }

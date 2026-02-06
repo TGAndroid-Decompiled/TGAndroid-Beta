@@ -89,6 +89,7 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.Gifts.ProfileGiftsContainer;
 import org.telegram.ui.LaunchActivity;
@@ -2579,8 +2580,8 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             }
 
             @Override
-            public long captureCalculateHash(RectF rectF) {
-                return IBlur3Capture.CC.$default$captureCalculateHash(this, rectF);
+            public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
+                iBlur3Hash.unsupported();
             }
         };
     }

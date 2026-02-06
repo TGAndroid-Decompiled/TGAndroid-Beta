@@ -108,6 +108,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
@@ -939,8 +940,8 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             final RectF fragmentPosition = new RectF();
 
             @Override
-            public long captureCalculateHash(RectF rectF) {
-                return IBlur3Capture.CC.$default$captureCalculateHash(this, rectF);
+            public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
+                iBlur3Hash.unsupported();
             }
 
             @Override

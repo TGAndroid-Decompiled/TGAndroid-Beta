@@ -146,7 +146,7 @@ public class TableView extends android.widget.TableLayout {
         boolean z;
         final LinkSpanDrawable.LinksSimpleTextView linksSimpleTextView = new LinkSpanDrawable.LinksSimpleTextView(getContext(), this.resourcesProvider);
         linksSimpleTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
-        int i2 = Theme.key_chat_messageLinkIn;
+        int i2 = Theme.key_featuredStickers_addButton;
         linksSimpleTextView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         linksSimpleTextView.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
         linksSimpleTextView.setTextSize(14);
@@ -196,7 +196,7 @@ public class TableView extends android.widget.TableLayout {
                 }
             }, 3, spannableStringBuilder.length(), 33);
         }
-        final int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+        final int color = Theme.getColor(i2, this.resourcesProvider);
         final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(linksSimpleTextView, AndroidUtilities.dp(20.0f));
         swapAnimatedEmojiDrawable.setColor(Integer.valueOf(color));
         swapAnimatedEmojiDrawable.offset(AndroidUtilities.dp(12.0f), 0);
@@ -457,7 +457,7 @@ public class TableView extends android.widget.TableLayout {
                 canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.backgroundPaint);
                 canvas.drawRect(this.table.hw, this.table.hw, getWidth() + this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
-                float fDp = AndroidUtilities.dp(8.0f);
+                float fDp = AndroidUtilities.dp(10.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
                 float f = this.first ? fDp : 0.0f;
@@ -525,7 +525,7 @@ public class TableView extends android.widget.TableLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             if (this.first || this.last) {
-                float fDp = AndroidUtilities.dp(8.0f);
+                float fDp = AndroidUtilities.dp(10.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
                 float f = this.first ? fDp : 0.0f;
@@ -614,7 +614,7 @@ public class TableView extends android.widget.TableLayout {
             if (!this.first && !this.last) {
                 canvas.drawRect(this.table.hw, this.table.hw, getWidth() - this.table.hw, getHeight() + this.table.hw, this.table.borderPaint);
             } else {
-                float fDp = AndroidUtilities.dp(8.0f);
+                float fDp = AndroidUtilities.dp(10.0f);
                 float[] fArr = this.table.radii;
                 float[] fArr2 = this.table.radii;
                 float f = (this.first && this.left) ? fDp : 0.0f;

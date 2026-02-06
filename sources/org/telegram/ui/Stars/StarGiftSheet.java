@@ -384,8 +384,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         linksTextView.setTextSize(1, 12.0f);
         linksTextView.setGravity(17);
         linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        int i4 = Theme.key_chat_messageLinkIn;
-        linksTextView.setLinkTextColor(Theme.getColor(i4, resourcesProvider));
+        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
         linksTextView.setDisablePaddingsOffsetY(true);
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-2, -2, 1, 4, -2, 4, 16));
         linksTextView.setVisibility(8);
@@ -398,6 +397,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         linksTextView2.setTextSize(1, 12.0f);
         linksTextView2.setGravity(17);
         linksTextView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        int i4 = Theme.key_featuredStickers_addButton;
         linksTextView2.setLinkTextColor(Theme.getColor(i4, resourcesProvider));
         linksTextView2.setDisablePaddingsOffsetY(true);
         linksTextView2.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
@@ -573,16 +573,15 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(context);
         this.underButtonLinkTextView = linksTextView3;
         linksTextView3.setTextSize(1, 12.0f);
-        int i9 = Theme.key_featuredStickers_addButton;
-        linksTextView3.setTextColor(Theme.getColor(i9, resourcesProvider));
-        linksTextView3.setLinkTextColor(Theme.getColor(i9, resourcesProvider));
+        linksTextView3.setTextColor(Theme.getColor(i4, resourcesProvider));
+        linksTextView3.setLinkTextColor(Theme.getColor(i4, resourcesProvider));
         linksTextView3.setGravity(17);
         frameLayout2.addView(linksTextView3, LayoutHelper.createFrame(-1, -2.0f, 17, 16.0f, 8.0f, 16.0f, 14.0f));
         this.container.addView(frameLayout2, LayoutHelper.createFrame(-1, -2, 87));
         frameLayout2.setVisibility(8);
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i10, int i11) {
+            public void onScrolled(RecyclerView recyclerView, int i9, int i10) {
                 StarGiftSheet.this.container.updateTranslations();
             }
         });
@@ -2487,7 +2486,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     this.buttons[i4].set(R.drawable.filled_share, LocaleController.getString(R.string.Gift2ActionShare), false);
                     this.buttons[i4].setOnClickListener(onClickListener5);
                 }
-                this.buttons[i4].setBackground(Theme.createRadSelectorDrawable(0, 285212671, 10, 10));
+                this.buttons[i4].setBackground(Theme.createRadSelectorDrawable(0, 285212671, 16, 16));
                 ScaleStateListAnimator.apply(this.buttons[i4], 0.075f, 1.5f);
                 LinearLayout linearLayout2 = this.buttonsLayout;
                 Button[] buttonArr2 = this.buttons;
@@ -2756,10 +2755,14 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 }
                 i2++;
             }
-            LinkSpanDrawable.LinksTextView linksTextView2 = this.subtitleView[2];
+            TextView textView = this.collectionReleasedView;
+            int iDp = AndroidUtilities.dp(24.0f);
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop4 = this.backdrop[0];
-            if (stargiftattributebackdrop4 != null) {
-                color = stargiftattributebackdrop4.text_color | (-16777216);
+            textView.setBackground(Theme.createRoundRectDrawable(iDp, stargiftattributebackdrop4 == null ? 553648127 : ColorUtils.blendARGB(stargiftattributebackdrop4.edge_color | (-16777216), stargiftattributebackdrop4.pattern_color | (-16777216), 0.25f)));
+            LinkSpanDrawable.LinksTextView linksTextView2 = this.subtitleView[2];
+            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop5 = this.backdrop[0];
+            if (stargiftattributebackdrop5 != null) {
+                color = stargiftattributebackdrop5.text_color | (-16777216);
             }
             linksTextView2.setTextColor(color);
             this.imageView[0].setAlpha(Math.max(this.currentPage.at(0, 2), this.currentPage.at(3)));
@@ -4515,7 +4518,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         if (TextUtils.isEmpty(publicUsername)) {
             return null;
         }
-        return AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.Gift2ReleasedBy, "@" + publicUsername), new Runnable() {
+        return AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.Gift2ReleasedBy2, "@" + publicUsername), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$releasedByText$50(publicUsername);
@@ -4524,27 +4527,6 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$releasedByText$50(String str) {
-        lambda$new$0();
-        Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + str);
-    }
-
-    private CharSequence releasedByUniqueText(int i, TLRPC.Peer peer) {
-        if (peer == null) {
-            return null;
-        }
-        final String publicUsername = DialogObject.getPublicUsername(MessagesController.getInstance(this.currentAccount).getUserOrChat(DialogObject.getPeerDialogId(peer)));
-        if (TextUtils.isEmpty(publicUsername)) {
-            return null;
-        }
-        return replaceSingleTagToLink(LocaleController.formatPluralStringComma("Gift2CollectionNumberBy", i, "@" + publicUsername), new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$releasedByUniqueText$51(publicUsername);
-            }
-        });
-    }
-
-    public void lambda$releasedByUniqueText$51(String str) {
         lambda$new$0();
         Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + str);
     }
@@ -4615,7 +4597,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         spannableStringBuilder.setSpan(new EllipsizeSpanAnimator.TextAlphaSpan(190), length, spannableStringBuilder.length(), 33);
         TopView topView = this.topView;
         TLRPC.Peer peer = tL_starGiftUnique.released_by;
-        topView.setText(0, spannableStringBuilder, peer == null ? stargiftattributemodel != null ? stargiftattributemodel.name : "" : null, releasedByUniqueText(tL_starGiftUnique.num, peer), null);
+        topView.setText(0, spannableStringBuilder, peer == null ? stargiftattributemodel != null ? stargiftattributemodel.name : "" : null, releasedByText(peer), null);
         this.ownerTextView = null;
         this.tableView.clear();
         if (z) {

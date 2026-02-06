@@ -58,7 +58,6 @@ import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -189,6 +188,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.RenderNodeWithHash;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
@@ -2148,16 +2148,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.iBlur3SourceGlassFrosted = blurredBackgroundSourceRenderNode;
             blurredBackgroundSourceRenderNode.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public void renderNodeCalculateHash(RenderNodeWithHash.HashBuilder hashBuilder) {
-                    hashBuilder.add(DialogsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    hashBuilder.add(SharedConfig.chatBlurEnabled());
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(DialogsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
                     if (SharedConfig.chatBlurEnabled()) {
                         RightSlidingDialogContainer rightSlidingDialogContainer = DialogsActivity.this.rightSlidingDialogContainer;
                         TopicsFragment topicsFragment = (rightSlidingDialogContainer == null || !(rightSlidingDialogContainer.getFragment() instanceof TopicsFragment)) ? null : (TopicsFragment) DialogsActivity.this.rightSlidingDialogContainer.getFragment();
                         if (topicsFragment == null || topicsFragment.getFragmentView() == null || DialogsActivity.this.searching) {
                             return;
                         }
-                        hashBuilder.unsupported();
+                        iBlur3Hash.unsupported();
                     }
                 }
 
@@ -2184,16 +2184,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.iBlur3SourceGlass = blurredBackgroundSourceRenderNode2;
             blurredBackgroundSourceRenderNode2.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public void renderNodeCalculateHash(RenderNodeWithHash.HashBuilder hashBuilder) {
-                    hashBuilder.add(DialogsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    hashBuilder.add(SharedConfig.chatBlurEnabled());
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(DialogsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
                     if (SharedConfig.chatBlurEnabled()) {
                         RightSlidingDialogContainer rightSlidingDialogContainer = DialogsActivity.this.rightSlidingDialogContainer;
                         TopicsFragment topicsFragment = (rightSlidingDialogContainer == null || !(rightSlidingDialogContainer.getFragment() instanceof TopicsFragment)) ? null : (TopicsFragment) DialogsActivity.this.rightSlidingDialogContainer.getFragment();
                         if (topicsFragment == null || topicsFragment.getFragmentView() == null || DialogsActivity.this.searching) {
                             return;
                         }
-                        hashBuilder.unsupported();
+                        iBlur3Hash.unsupported();
                     }
                 }
 
@@ -2696,7 +2696,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(View view) throws IOException {
+    public void lambda$createView$11(View view) {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
     }
@@ -3276,7 +3276,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$15(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$createView$15(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -3358,7 +3358,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$18(View view) throws Resources.NotFoundException {
+    public void lambda$createView$18(View view) {
         openStoriesRecorder();
     }
 
@@ -6302,7 +6302,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6362,7 +6362,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -9842,7 +9842,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException {
                 this.f$0.lambda$createSearchViewPager$149(view, i2, f, f2);
             }
         });
@@ -10134,7 +10134,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$149(View view, int i, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$createSearchViewPager$149(View view, int i, float f, float f2) throws Resources.NotFoundException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -10433,7 +10433,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -10564,7 +10564,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return z ? z3 && !z2 : z2;
     }
 
-    private void showItemOptions() throws IOException {
+    private void showItemOptions() {
         boolean zIsCurrentThemeDark;
         ArrayList<TLRPC.TL_attachMenuBot> arrayList;
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.optionsItem);

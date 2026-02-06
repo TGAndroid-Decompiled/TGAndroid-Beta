@@ -2205,7 +2205,7 @@ public class MessagesStorage extends BaseController {
         arrayList2.add(message);
     }
 
-    protected void loadReplyMessages(androidx.collection.LongSparseArray r23, androidx.collection.LongSparseArray r24, java.util.ArrayList<java.lang.Long> r25, java.util.ArrayList<java.lang.Long> r26, int r27) throws java.lang.Throwable {
+    protected void loadReplyMessages(androidx.collection.LongSparseArray r23, androidx.collection.LongSparseArray r24, java.util.ArrayList<java.lang.Long> r25, java.util.ArrayList<java.lang.Long> r26, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadReplyMessages(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
@@ -3119,7 +3119,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public TLRPC.Message getMessageWithCustomParamsOnlyInternal(int i, long j) throws Throwable {
+    public TLRPC.Message getMessageWithCustomParamsOnlyInternal(int i, long j) {
         SQLiteCursor sQLiteCursorQueryFinalized;
         boolean z;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
@@ -7419,7 +7419,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void doneHolesInMedia(long r19, int r21, int r22, long r23) throws java.lang.Throwable {
+    public void doneHolesInMedia(long r19, int r21, int r22, long r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.doneHolesInMedia(long, int, int, long):void");
     }
 
@@ -7440,7 +7440,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void closeHolesInMedia(long r38, int r40, int r41, int r42, long r43) throws java.lang.Throwable {
+    public void closeHolesInMedia(long r38, int r40, int r41, int r42, long r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.closeHolesInMedia(long, int, int, int, long):void");
     }
 

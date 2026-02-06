@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -94,7 +93,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -262,6 +260,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
@@ -2663,7 +2662,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public View createView(final Context context) throws Resources.NotFoundException, IOException {
+    public View createView(final Context context) {
         int i;
         TLRPC.UserFull userFull;
         TLRPC.ChatFull chatFull;
@@ -2749,7 +2748,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException {
+                    public final void onClick(View view) {
                         this.f$0.lambda$createView$11(i7, view);
                     }
                 });
@@ -2815,7 +2814,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             updateNotifications(false);
             this.actionsView.setOnActionClickListener(new ProfileActionsView.OnActionClickListener() {
                 @Override
-                public final void onClick(int i11, float f2, float f3) throws Resources.NotFoundException {
+                public final void onClick(int i11, float f2, float f3) {
                     this.f$0.lambda$createView$16(i11, f2, f3);
                 }
             });
@@ -3922,8 +3921,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public long captureCalculateHash(RectF rectF) {
-                return IBlur3Capture.CC.$default$captureCalculateHash(this, rectF);
+            public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
+                iBlur3Hash.unsupported();
             }
         };
         ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
@@ -4756,7 +4755,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException {
+    public void lambda$createView$11(int i, View view) {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5141,7 +5140,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$createView$16(int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$createView$16(int i, float f, float f2) {
         switch (i) {
             case 0:
                 if (!this.isTopic) {
@@ -10590,7 +10589,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return dontApplyPeerColor(i, z, null);
     }
 
-    private int applyPeerColor(int i, boolean z, Boolean bool) throws IOException {
+    private int applyPeerColor(int i, boolean z, Boolean bool) {
         if ((!z && isSettings()) || this.peerColor == null) {
             return i;
         }

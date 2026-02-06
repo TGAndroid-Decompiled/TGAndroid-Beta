@@ -7,8 +7,8 @@ import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
 public class ViewGroupPartRenderer implements IBlur3Capture {
@@ -58,19 +58,22 @@ public class ViewGroupPartRenderer implements IBlur3Capture {
     }
 
     @Override
-    public long captureCalculateHash(RectF rectF) {
+    public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
         if (!ViewPositionWatcher.computeCoordinatesInParent(this.listView, this.listViewParent, this.tmpDrawListViewPointF)) {
-            return -1L;
+            iBlur3Hash.unsupported();
+            return;
         }
-        ViewParent viewParent = this.listView;
-        if (!(viewParent instanceof IBlur3Capture) || this.ignoreBlurCap) {
-            return -1L;
+        if ((this.listView instanceof IBlur3Capture) && !this.ignoreBlurCap) {
+            iBlur3Hash.addF(this.tmpDrawListViewPointF.x);
+            iBlur3Hash.addF(this.tmpDrawListViewPointF.y);
+            IBlur3Capture iBlur3Capture = (IBlur3Capture) this.listView;
+            this.savedPos.set(rectF);
+            PointF pointF = this.tmpDrawListViewPointF;
+            rectF.offset(-pointF.x, -pointF.y);
+            iBlur3Capture.captureCalculateHash(iBlur3Hash, rectF);
+            rectF.set(this.savedPos);
+            return;
         }
-        this.savedPos.set(rectF);
-        PointF pointF = this.tmpDrawListViewPointF;
-        rectF.offset(-pointF.x, -pointF.y);
-        long jCaptureCalculateHash = ((IBlur3Capture) viewParent).captureCalculateHash(rectF);
-        rectF.set(this.savedPos);
-        return MediaDataController.calcHash(MediaDataController.calcHash(jCaptureCalculateHash, Float.floatToIntBits(this.tmpDrawListViewPointF.x)), Float.floatToIntBits(this.tmpDrawListViewPointF.y));
+        iBlur3Hash.unsupported();
     }
 }

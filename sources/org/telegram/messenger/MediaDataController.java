@@ -460,13 +460,13 @@ public class MediaDataController extends BaseController {
         }
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws Throwable {
+            public final void run() {
                 this.f$0.lambda$loadRepliesOfDraftReplies$0(arrayList);
             }
         });
     }
 
-    public void lambda$loadRepliesOfDraftReplies$0(ArrayList arrayList) throws Throwable {
+    public void lambda$loadRepliesOfDraftReplies$0(ArrayList arrayList) {
         try {
             ArrayList<Long> arrayList2 = new ArrayList<>();
             ArrayList<Long> arrayList3 = new ArrayList<>();
@@ -5228,7 +5228,7 @@ public class MediaDataController extends BaseController {
         if (getMessagesController().getTranslateController().isFeatureAvailable(j)) {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() {
                     this.f$0.lambda$processLoadedMedia$135(arrayList, runnable);
                 }
             });
@@ -5253,7 +5253,7 @@ public class MediaDataController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mediaDidLoad, Long.valueOf(j), Integer.valueOf(i6), arrayList, Integer.valueOf(i2), Integer.valueOf(i3), Boolean.valueOf(z), Boolean.valueOf(i4 != 0), Integer.valueOf(i5));
     }
 
-    public void lambda$processLoadedMedia$135(ArrayList arrayList, Runnable runnable) throws Throwable {
+    public void lambda$processLoadedMedia$135(ArrayList arrayList, Runnable runnable) {
         for (int i = 0; i < arrayList.size(); i++) {
             MessageObject messageObject = (MessageObject) arrayList.get(i);
             TLRPC.Message messageWithCustomParamsOnlyInternal = getMessagesStorage().getMessageWithCustomParamsOnlyInternal(messageObject.getId(), messageObject.getDialogId());
@@ -5404,13 +5404,13 @@ public class MediaDataController extends BaseController {
     private void putMediaDatabase(final long j, final long j2, final int i, final ArrayList<TLRPC.Message> arrayList, final int i2, final int i3, final boolean z) {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
-            public final void run() throws Throwable {
+            public final void run() {
                 this.f$0.lambda$putMediaDatabase$140(i3, arrayList, z, j, i2, i, j2);
             }
         });
     }
 
-    public void lambda$putMediaDatabase$140(int i, ArrayList arrayList, boolean z, long j, int i2, int i3, long j2) throws Throwable {
+    public void lambda$putMediaDatabase$140(int i, ArrayList arrayList, boolean z, long j, int i2, int i3, long j2) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
         if (i == 0) {
             try {
@@ -7831,7 +7831,7 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.saveDraft(long, long, org.telegram.tgnet.TLRPC$DraftMessage, org.telegram.tgnet.TLRPC$Message, boolean):void");
     }
 
-    public void lambda$saveDraft$193(int i, long j, long j2, final long j3, final long j4) throws Throwable {
+    public void lambda$saveDraft$193(int i, long j, long j2, final long j3, final long j4) {
         TLRPC.Message message;
         TLRPC.Message messageTLdeserialize;
         NativeByteBuffer nativeByteBufferByteBufferValue;

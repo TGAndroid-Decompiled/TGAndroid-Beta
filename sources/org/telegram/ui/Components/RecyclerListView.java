@@ -49,7 +49,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -63,7 +62,11 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.EdgeEffectTrackerFactory;
 import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
 import org.telegram.ui.FiltersSetupActivity;
 
 public class RecyclerListView extends RecyclerView implements IBlur3Capture {
@@ -523,6 +526,8 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     public class FastScroll extends View {
         private int activeColor;
         private Path arrowPath;
+        BlurredBackgroundDrawable blurredCircleDrawable;
+        BlurredBackgroundDrawable blurredTagDrawable;
         private float bubbleProgress;
         private String currentLetter;
         Drawable fastScrollBackgroundDrawable;
@@ -722,7 +727,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r18) {
+        protected void onDraw(android.graphics.Canvas r19) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.FastScroll.onDraw(android.graphics.Canvas):void");
         }
 
@@ -790,6 +795,28 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
 
         public float getProgress() {
             return this.progress;
+        }
+
+        public void applyBlurDrawables(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundProvider blurredBackgroundProvider) {
+            BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(RecyclerListView.this.fastScroll, blurredBackgroundProvider);
+            this.blurredCircleDrawable = blurredBackgroundDrawableCreate;
+            blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(4.0f));
+            this.blurredCircleDrawable.setRadius(AndroidUtilities.dp(24.0f));
+            BlurredBackgroundDrawable blurredBackgroundDrawableCreate2 = blurredBackgroundDrawableViewFactory.create(RecyclerListView.this.fastScroll, blurredBackgroundProvider);
+            this.blurredTagDrawable = blurredBackgroundDrawableCreate2;
+            blurredBackgroundDrawableCreate2.setPadding(AndroidUtilities.dp(6.0f));
+            this.blurredTagDrawable.setRadius(AndroidUtilities.dp(14.0f));
+        }
+
+        public boolean fillDrawablesRect(RectF rectF) {
+            if (this.blurredCircleDrawable == null && this.blurredTagDrawable == null) {
+                return false;
+            }
+            rectF.set(this.blurredTagDrawable.getBounds());
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(this.blurredCircleDrawable.getBounds());
+            rectF.union(rectF2);
+            return true;
         }
     }
 
@@ -2724,27 +2751,41 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 this.ignoreClipChild = false;
             }
         }
+        int itemDecorationCount = getItemDecorationCount();
+        for (int i2 = 0; i2 < itemDecorationCount; i2++) {
+            Object itemDecorationAt = getItemDecorationAt(i2);
+            if (itemDecorationAt instanceof IBlur3Capture) {
+                ((IBlur3Capture) itemDecorationAt).capture(canvas, rectF);
+            }
+        }
     }
 
     @Override
-    public long captureCalculateHash(RectF rectF) {
+    public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
         if (Build.VERSION.SDK_INT < 29) {
-            return -1L;
+            iBlur3Hash.unsupported();
+            return;
         }
         if (hasActiveEdgeEffects() && getOverScrollMode() != 2) {
-            return -1L;
+            iBlur3Hash.unsupported();
+            return;
         }
         int childCount = getChildCount();
-        long jCalcHash = 0;
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
             float x = childAt.getX();
             float y = childAt.getY();
             if (rectF.intersects(x, y, childAt.getWidth() + x, childAt.getHeight() + y)) {
-                jCalcHash = MediaDataController.calcHash(jCalcHash, childAt.getUniqueDrawingId());
+                iBlur3Hash.add(childAt);
             }
         }
-        return jCalcHash;
+        int itemDecorationCount = getItemDecorationCount();
+        for (int i2 = 0; i2 < itemDecorationCount; i2++) {
+            Object itemDecorationAt = getItemDecorationAt(i2);
+            if (itemDecorationAt instanceof IBlur3Capture) {
+                ((IBlur3Capture) itemDecorationAt).captureCalculateHash(iBlur3Hash, rectF);
+            }
+        }
     }
 
     public View findViewByPosition(int i) {
@@ -2779,7 +2820,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             public final Object run(Object obj) {
                 return RecyclerListView.lambda$setSections$2((View) obj);
             }
-        }, i, f, new RecyclerListView$$ExternalSyntheticLambda2(this), z);
+        }, i, f, new RecyclerListView$$ExternalSyntheticLambda1(this), z);
     }
 
     public static Boolean lambda$setSections$2(View view) {
