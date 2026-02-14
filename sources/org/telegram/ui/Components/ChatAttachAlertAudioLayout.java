@@ -1,9 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Paint;
@@ -11,9 +7,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
-import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +20,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader;
@@ -38,40 +35,41 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.TextWatcherImpl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 
-public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
+public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
+    private final BoolAnimator animatorFadeVisible;
     private ArrayList audioEntries;
     private View currentEmptyView;
     private float currentPanTranslationProgress;
     private AudioSelectDelegate delegate;
-    private ImageView emptyImageView;
-    private TextView emptySubtitleTextView;
-    private TextView emptyTitleTextView;
-    private LinearLayout emptyView;
-    private FrameLayout frameLayout;
-    private LinearLayoutManager layoutManager;
-    private ListAdapter listAdapter;
-    private RecyclerListView listView;
+    private final ImageView emptyImageView;
+    private final TextView emptySubtitleTextView;
+    private final TextView emptyTitleTextView;
+    private final LinearLayout emptyView;
+    private final View fadeView;
+    private final FrameLayout frameLayout;
+    private final LinearLayoutManager layoutManager;
+    private final ListAdapter listAdapter;
+    private final RecyclerListView listView;
     private boolean loadingAudio;
     private int maxSelectedFiles;
     private MessageObject playingAudio;
-    private EmptyTextProgressView progressView;
-    private SearchAdapter searchAdapter;
-    private SearchField searchField;
-    private LongSparseArray selectedAudios;
-    private ArrayList selectedAudiosOrder;
+    private final EmptyTextProgressView progressView;
+    private final SearchAdapter searchAdapter;
+    private final FragmentSearchField searchField;
+    private final LongSparseArray selectedAudios;
+    private final ArrayList selectedAudiosOrder;
     private boolean sendPressed;
-    private View shadow;
-    private AnimatorSet shadowAnimation;
 
     public interface AudioSelectDelegate {
         void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2);
@@ -81,8 +79,14 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         return true;
     }
 
+    @Override
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+    }
+
     public ChatAttachAlertAudioLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
+        this.animatorFadeVisible = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
         this.maxSelectedFiles = -1;
         this.audioEntries = new ArrayList();
         this.selectedAudiosOrder = new ArrayList();
@@ -91,54 +95,53 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         NotificationCenter.getInstance(this.parentAlert.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(this.parentAlert.currentAccount).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
         loadAudio();
+        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, resourcesProvider);
+        this.fadeView = searchFadeView;
+        searchFadeView.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
-        frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
-        SearchField searchField = new SearchField(context, false, resourcesProvider) {
+        ChatAttachAlert.AttachSearchField attachSearchField = new ChatAttachAlert.AttachSearchField(context, this.parentAlert, resourcesProvider);
+        this.searchField = attachSearchField;
+        attachSearchField.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        attachSearchField.editText.addTextChangedListener(new TextWatcherImpl() {
             @Override
-            public void onTextChange(String str) {
-                if (str.length() == 0 && ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.listAdapter) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                TextWatcherImpl.CC.$default$beforeTextChanged(this, charSequence, i, i2, i3);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                TextWatcherImpl.CC.$default$onTextChanged(this, charSequence, i, i2, i3);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String string = editable.toString();
+                if (string.isEmpty() && ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.listAdapter) {
                     ChatAttachAlertAudioLayout.this.listView.setAdapter(ChatAttachAlertAudioLayout.this.listAdapter);
                     ChatAttachAlertAudioLayout.this.listAdapter.notifyDataSetChanged();
                 }
                 if (ChatAttachAlertAudioLayout.this.searchAdapter != null) {
-                    ChatAttachAlertAudioLayout.this.searchAdapter.search(str);
+                    ChatAttachAlertAudioLayout.this.searchAdapter.search(string);
                 }
             }
-
-            @Override
-            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                ChatAttachAlertAudioLayout.this.parentAlert.makeFocusable(getSearchEditText(), true);
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-
-            @Override
-            public void processTouchEvent(MotionEvent motionEvent) {
-                MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
-                motionEventObtain.setLocation(motionEventObtain.getRawX(), (motionEventObtain.getRawY() - ChatAttachAlertAudioLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.dp(58.0f));
-                ChatAttachAlertAudioLayout.this.listView.dispatchTouchEvent(motionEventObtain);
-                motionEventObtain.recycle();
-            }
-
-            @Override
-            protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
-                ChatAttachAlertAudioLayout.this.parentAlert.makeFocusable(editTextBoldCursor, true);
-            }
-        };
-        this.searchField = searchField;
-        searchField.setHint(LocaleController.getString(R.string.SearchMusic));
-        this.frameLayout.addView(this.searchField, LayoutHelper.createFrame(-1, -1, 51));
+        });
+        attachSearchField.editText.setHint(LocaleController.getString(R.string.SearchMusic));
+        frameLayout.addView(searchFadeView, LayoutHelper.createFrameMatchParent());
+        FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
+        ((ViewGroup.MarginLayoutParams) layoutParamsCreateFrame).topMargin += AndroidUtilities.statusBarHeight;
+        frameLayout.addView(attachSearchField, layoutParamsCreateFrame);
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.progressView = emptyTextProgressView;
         emptyTextProgressView.showProgress();
-        addView(this.progressView, LayoutHelper.createFrame(-1, -1.0f));
+        addView(emptyTextProgressView, LayoutHelper.createFrame(-1, -1.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.emptyView = linearLayout;
         linearLayout.setOrientation(1);
-        this.emptyView.setGravity(17);
-        this.emptyView.setVisibility(8);
-        addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f));
+        linearLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
                 return ChatAttachAlertAudioLayout.lambda$new$0(view, motionEvent);
@@ -147,24 +150,24 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         ImageView imageView = new ImageView(context);
         this.emptyImageView = imageView;
         imageView.setImageResource(R.drawable.music_empty);
-        this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), PorterDuff.Mode.MULTIPLY));
-        this.emptyView.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
+        imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), PorterDuff.Mode.MULTIPLY));
+        linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2));
         TextView textView = new TextView(context);
         this.emptyTitleTextView = textView;
         int i = Theme.key_dialogEmptyText;
         textView.setTextColor(getThemedColor(i));
-        this.emptyTitleTextView.setGravity(17);
-        this.emptyTitleTextView.setTypeface(AndroidUtilities.bold());
-        this.emptyTitleTextView.setTextSize(1, 17.0f);
-        this.emptyTitleTextView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-        this.emptyView.addView(this.emptyTitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));
+        textView.setGravity(17);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 17.0f);
+        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
+        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));
         TextView textView2 = new TextView(context);
         this.emptySubtitleTextView = textView2;
         textView2.setTextColor(getThemedColor(i));
-        this.emptySubtitleTextView.setGravity(17);
-        this.emptySubtitleTextView.setTextSize(1, 15.0f);
-        this.emptySubtitleTextView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-        this.emptyView.addView(this.emptySubtitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 15.0f);
+        textView2.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
             protected boolean allowSelectChildAtPosition(float f, float f2) {
@@ -172,20 +175,19 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         this.listView = recyclerListView;
-        ViewGroup containerView = chatAttachAlert.getContainerView();
-        RecyclerListView recyclerListView2 = this.listView;
-        Objects.requireNonNull(recyclerListView2);
-        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        recyclerListView.setSections();
+        this.iBlur3Capture = recyclerListView;
+        this.iBlur3CaptureView = recyclerListView;
+        this.occupyStatusBar = true;
         this.occupyNavigationBar = true;
-        this.listView.setClipToPadding(false);
-        RecyclerListView recyclerListView3 = this.listView;
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.dp(9.0f), this.listView) {
+        recyclerListView.setClipToPadding(false);
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(getContext(), 1, false, AndroidUtilities.dp(9.0f), recyclerListView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i2) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public int calculateDyToMakeVisible(View view, int i3) {
-                        return super.calculateDyToMakeVisible(view, i3) - (ChatAttachAlertAudioLayout.this.listView.getPaddingTop() - AndroidUtilities.dp(7.0f));
+                        return super.calculateDyToMakeVisible(view, i3) - ((ChatAttachAlertAudioLayout.this.listView.getPaddingTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(7.0f));
                     }
 
                     @Override
@@ -198,28 +200,27 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         this.layoutManager = fillLastLinearLayoutManager;
-        recyclerListView3.setLayoutManager(fillLastLinearLayoutManager);
-        this.listView.setHorizontalScrollBarEnabled(false);
-        this.listView.setVerticalScrollBarEnabled(false);
-        addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-        RecyclerListView recyclerListView4 = this.listView;
+        recyclerListView.setLayoutManager(fillLastLinearLayoutManager);
+        recyclerListView.setHorizontalScrollBarEnabled(false);
+        recyclerListView.setVerticalScrollBarEnabled(false);
+        addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         ListAdapter listAdapter = new ListAdapter(context);
         this.listAdapter = listAdapter;
-        recyclerListView4.setAdapter(listAdapter);
-        this.listView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
-        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+        recyclerListView.setAdapter(listAdapter);
+        recyclerListView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
+        recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$new$1(view, i2);
             }
         });
-        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+        recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i2) {
                 return this.f$0.lambda$new$2(view, i2);
             }
         });
-        this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
                 ChatAttachAlertAudioLayout chatAttachAlertAudioLayout = ChatAttachAlertAudioLayout.this;
@@ -228,15 +229,9 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
         });
         this.searchAdapter = new SearchAdapter(context);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 51);
-        layoutParams.topMargin = AndroidUtilities.dp(58.0f);
-        View view = new View(context);
-        this.shadow = view;
-        view.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
-        this.shadow.setAlpha(0.0f);
-        this.shadow.setTag(1);
-        addView(this.shadow, layoutParams);
-        addView(this.frameLayout, LayoutHelper.createFrame(-1, 58, 51));
+        FrameLayout.LayoutParams layoutParamsCreateFrame2 = LayoutHelper.createFrame(-1, 60, 51);
+        ((ViewGroup.MarginLayoutParams) layoutParamsCreateFrame2).height += AndroidUtilities.statusBarHeight;
+        addView(frameLayout, layoutParamsCreateFrame2);
         updateEmptyView();
     }
 
@@ -247,6 +242,13 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     public boolean lambda$new$2(View view, int i) {
         onItemClick(view);
         return true;
+    }
+
+    public void setupBlurredSearchField(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
+        FragmentSearchField fragmentSearchField = this.searchField;
+        if (fragmentSearchField != null) {
+            fragmentSearchField.setupBlurredBackground(blurredBackgroundDrawableViewFactory.create(fragmentSearchField, BlurredBackgroundProviderImpl.attachMenuSearch(this.resourcesProvider)));
+        }
     }
 
     @Override
@@ -314,12 +316,12 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
+        int top = (childAt.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(8.0f);
         int i = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
         if (top >= 0 && holder != null && holder.getAdapterPosition() == 0) {
-            runShadowAnimation(false);
+            this.animatorFadeVisible.setValue(false, true);
         } else {
-            runShadowAnimation(true);
+            this.animatorFadeVisible.setValue(true, true);
             top = i;
         }
         this.frameLayout.setTranslationY(top);
@@ -371,45 +373,6 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     public void onHidden() {
         this.selectedAudios.clear();
         this.selectedAudiosOrder.clear();
-    }
-
-    private void runShadowAnimation(final boolean z) {
-        if ((!z || this.shadow.getTag() == null) && (z || this.shadow.getTag() != null)) {
-            return;
-        }
-        this.shadow.setTag(z ? null : 1);
-        if (z) {
-            this.shadow.setVisibility(0);
-        }
-        AnimatorSet animatorSet = this.shadowAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.shadowAnimation = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.shadow, (Property<View, Float>) View.ALPHA, z ? 1.0f : 0.0f));
-        this.shadowAnimation.setDuration(150L);
-        this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ChatAttachAlertAudioLayout.this.shadowAnimation == null || !ChatAttachAlertAudioLayout.this.shadowAnimation.equals(animator)) {
-                    return;
-                }
-                if (!z) {
-                    ChatAttachAlertAudioLayout.this.shadow.setVisibility(4);
-                }
-                ChatAttachAlertAudioLayout.this.shadowAnimation = null;
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (ChatAttachAlertAudioLayout.this.shadowAnimation == null || !ChatAttachAlertAudioLayout.this.shadowAnimation.equals(animator)) {
-                    return;
-                }
-                ChatAttachAlertAudioLayout.this.shadowAnimation = null;
-            }
-        });
-        this.shadowAnimation.start();
     }
 
     @Override
@@ -628,6 +591,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 view.setTag(-33024);
             } else {
                 view = new View(this.mContext);
+                view.setTag(-33024);
             }
             return new RecyclerListView.Holder(view);
         }
@@ -805,8 +769,10 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             } else if (i == 1) {
                 view = new View(this.mContext);
                 view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+                view.setTag(-33024);
             } else {
                 view = new View(this.mContext);
+                view.setTag(-33024);
             }
             return new RecyclerListView.Holder(view);
         }
@@ -840,22 +806,22 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
+    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        if (i == 0) {
+            this.fadeView.setAlpha(f);
+            this.fadeView.setVisibility(f > 0.0f ? 0 : 4);
+        }
+    }
+
+    @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.frameLayout, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogBackground));
-        arrayList.add(new ThemeDescription(this.searchField.getSearchBackground(), ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_dialogSearchBackground));
-        int i = Theme.key_dialogSearchIcon;
-        arrayList.add(new ThemeDescription(this.searchField, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{SearchField.class}, new String[]{"searchIconImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
-        arrayList.add(new ThemeDescription(this.searchField, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{SearchField.class}, new String[]{"clearSearchImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
-        arrayList.add(new ThemeDescription(this.searchField.getSearchEditText(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_dialogSearchText));
-        arrayList.add(new ThemeDescription(this.searchField.getSearchEditText(), ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, Theme.key_dialogSearchHint));
-        arrayList.add(new ThemeDescription(this.searchField.getSearchEditText(), ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, Theme.key_featuredStickers_addedIcon));
         arrayList.add(new ThemeDescription(this.emptyImageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_dialogEmptyImage));
         TextView textView = this.emptyTitleTextView;
-        int i2 = ThemeDescription.FLAG_IMAGECOLOR;
-        int i3 = Theme.key_dialogEmptyText;
-        arrayList.add(new ThemeDescription(textView, i2, null, null, null, null, i3));
-        arrayList.add(new ThemeDescription(this.emptySubtitleTextView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i3));
+        int i = ThemeDescription.FLAG_IMAGECOLOR;
+        int i2 = Theme.key_dialogEmptyText;
+        arrayList.add(new ThemeDescription(textView, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.emptySubtitleTextView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_dialogScrollGlow));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));

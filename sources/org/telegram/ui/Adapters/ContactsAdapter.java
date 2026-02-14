@@ -217,7 +217,7 @@ public abstract class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         ArrayList<String> arrayList = this.onlyUsers == 2 ? ContactsController.getInstance(this.currentAccount).sortedUsersMutualSectionsArray : ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray;
         if (this.onlyUsers == 0 || this.isAdmin) {
             if (i == 0) {
-                return this.isEmpty ? (this.includeSearch ? 1 : 0) + 1 : this.isAdmin ? (this.includeSearch ? 1 : 0) + 3 : this.needPhonebook ? (this.includeSearch ? 1 : 0) + 4 : (this.includeSearch ? 1 : 0) + 4;
+                return this.isEmpty ? (this.includeSearch ? 1 : 0) + 2 : this.isAdmin ? (this.includeSearch ? 1 : 0) + 3 : this.needPhonebook ? (this.includeSearch ? 1 : 0) + 4 : (this.includeSearch ? 1 : 0) + 4;
             }
             if (this.isEmpty) {
                 return 1;

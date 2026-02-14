@@ -170,6 +170,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     protected View selectorView;
     private boolean selfOnLayout;
     private Matrix selfTransformationsMatrix;
+    private boolean skipDrawSection;
     private int startSection;
     int startSelectionFrom;
     private boolean stoppedAllHeavyOperations;
@@ -1089,6 +1090,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         this.allowItemsInteractionDuringAnimation = true;
         this.currentFirst = -1;
         this.currentVisible = -1;
+        this.skipDrawSection = false;
         this.hideIfEmpty = true;
         this.selectorType = 2;
         this.selectorRect = new android.graphics.Rect();
@@ -2342,6 +2344,9 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         if (frameLayout != null) {
             frameLayout.draw(canvas);
         }
+        if (this.skipDrawSection) {
+            return;
+        }
         int i = this.sectionsType;
         if (i == 1) {
             if (this.sectionsAdapter == null || this.headers.isEmpty()) {
@@ -2391,6 +2396,10 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         canvas.clipRect(0, 0, getWidth(), this.pinnedHeader.getMeasuredHeight());
         this.pinnedHeader.draw(canvas);
         canvas.restoreToCount(iSave2);
+    }
+
+    public void setSkipDrawSection(boolean z) {
+        this.skipDrawSection = z;
     }
 
     public void relayoutPinnedHeader() {

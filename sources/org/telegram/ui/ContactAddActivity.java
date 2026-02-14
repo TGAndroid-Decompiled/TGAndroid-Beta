@@ -122,14 +122,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
 
     public ContactAddActivity(Bundle bundle) {
         super(bundle);
-        this.checkShare = true;
+        this.checkShare = false;
         this.firstSet = true;
         this.imageUpdater = new ImageUpdater(true, 0, true);
     }
 
     public ContactAddActivity(Bundle bundle, Theme.ResourcesProvider resourcesProvider) {
         super(bundle);
-        this.checkShare = true;
+        this.checkShare = false;
         this.firstSet = true;
         this.resourcesProvider = resourcesProvider;
         this.imageUpdater = new ImageUpdater(true, 0, true);
@@ -442,6 +442,10 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.listView.setBackgroundColor(getThemedColor(i));
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 119));
         this.actionBar.setAdaptiveBackground(this.listView);
+        if (this.addContact && this.needAddException) {
+            this.checkShare = true;
+        }
+        this.listView.adapter.update(false);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -931,7 +935,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         updateCustomPhotoInfo();
     }
 
-    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException {
+    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException, NumberFormatException {
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
             if (chatActivity.getDialogId() == this.user_id && chatActivity.getChatMode() == 0) {

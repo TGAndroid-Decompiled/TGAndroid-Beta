@@ -53,13 +53,13 @@ import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.GroupCreateSectionCell;
 import org.telegram.ui.Cells.InviteUserCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.GroupCreateSpan;
@@ -501,7 +501,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         this.actionBar.setBackgroundColor(getThemedColor(i));
         RecyclerListView recyclerListView2 = this.listView;
         Objects.requireNonNull(recyclerListView2);
-        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView2, frameLayout, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView2, frameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView2));
         this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {

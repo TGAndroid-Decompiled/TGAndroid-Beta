@@ -372,8 +372,16 @@ public class UserObject {
         return (userFull == null || userFull.id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
+    public static boolean isBotForum(int i, long j) {
+        return isBotForum(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+    }
+
     public static boolean isBotForum(TLRPC.User user) {
         return user != null && user.bot_forum_view;
+    }
+
+    public static boolean isBotForumWithEditableTopics(int i, long j) {
+        return isBotForumWithEditableTopics(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
     }
 
     public static boolean isBotForumWithEditableTopics(TLRPC.User user) {

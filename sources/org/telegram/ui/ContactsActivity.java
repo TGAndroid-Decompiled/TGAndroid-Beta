@@ -108,7 +108,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     private StickerEmptyView emptyView;
     private FragmentFloatingButton floatingButton;
     private boolean floatingButtonVisibleByScroll;
-    private boolean hasMainTabs;
+    public boolean hasMainTabs;
     private HeaderShadowView headerShadowView;
     private IBlur3Capture iBlur3Capture;
     private boolean iBlur3Invalidated;
@@ -935,6 +935,8 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     public void lambda$askForPermissons$13(int i) {
+        MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts2", false).commit();
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.contactsPermissionBadgeCheck, new Object[0]);
         this.askAboutContacts = i != 0;
         if (i == 0) {
             return;
@@ -953,7 +955,7 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
                     }
                     SharedPreferences.Editor editorEdit = MessagesController.getGlobalNotificationsSettings().edit();
                     this.askAboutContacts = false;
-                    editorEdit.putBoolean("askAboutContacts", false).commit();
+                    editorEdit.putBoolean("askAboutContacts", false).putBoolean("askAboutContacts2", false).apply();
                     if (SystemClock.elapsedRealtime() - this.permissionRequestTime < 200) {
                         try {
                             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");

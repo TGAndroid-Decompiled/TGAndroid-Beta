@@ -4418,7 +4418,7 @@ public class StarsController {
             return (i & 768) != 0 ? 768 : 0;
         }
 
-        public static void lambda$sendPinnedOrder$4(TLObject tLObject, TLRPC.TL_error tL_error) {
+        public static void lambda$sendPinnedOrder$6(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
         public GiftsList(int i, long j) {
@@ -4697,6 +4697,72 @@ public class StarsController {
             this.loading = false;
         }
 
+        public void processCrafting(ArrayList arrayList, TL_stars.StarGift starGift) {
+            if (arrayList != null && !arrayList.isEmpty()) {
+                Iterator it = arrayList.iterator();
+                boolean z = false;
+                while (it.hasNext()) {
+                    TL_stars.StarGift starGift2 = (TL_stars.StarGift) it.next();
+                    int i = 0;
+                    while (true) {
+                        if (i < this.gifts.size()) {
+                            TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) this.gifts.get(i)).gift;
+                            if (starGift3 != null && starGift3.id == starGift2.id) {
+                                this.gifts.remove(i);
+                                this.totalCount = Math.max(0, this.totalCount - 1);
+                                z = true;
+                                break;
+                            }
+                            i++;
+                        } else {
+                            break;
+                        }
+                    }
+                }
+                if (z) {
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
+                }
+            }
+            if (starGift != null) {
+                TL_stars.getSavedStarGift getsavedstargift = new TL_stars.getSavedStarGift();
+                TL_stars.TL_inputSavedStarGiftSlug tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
+                tL_inputSavedStarGiftSlug.slug = starGift.slug;
+                getsavedstargift.stargift.add(tL_inputSavedStarGiftSlug);
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedstargift, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        this.f$0.lambda$processCrafting$3(tLObject, tL_error);
+                    }
+                });
+            }
+        }
+
+        public void lambda$processCrafting$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processCrafting$2(tLObject);
+                }
+            });
+        }
+
+        public void lambda$processCrafting$2(TLObject tLObject) {
+            if (tLObject instanceof TL_stars.TL_payments_savedStarGifts) {
+                TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(tL_payments_savedStarGifts.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(tL_payments_savedStarGifts.chats, false);
+                if (tL_payments_savedStarGifts.gifts.size() > 0) {
+                    TL_stars.SavedStarGift savedStarGift = tL_payments_savedStarGifts.gifts.get(0);
+                    int i = 0;
+                    while (i < this.gifts.size() && ((TL_stars.SavedStarGift) this.gifts.get(i)).pinned_to_top) {
+                        i++;
+                    }
+                    this.gifts.add(i, savedStarGift);
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
+                }
+            }
+        }
+
         public ArrayList getPinned() {
             ArrayList arrayList = new ArrayList();
             for (int i = 0; i < this.gifts.size(); i++) {
@@ -4744,7 +4810,7 @@ public class StarsController {
                 Collections.sort(this.gifts, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return StarsController.GiftsList.lambda$setPinned$2((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
+                        return StarsController.GiftsList.lambda$setPinned$4((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
                     }
                 });
             }
@@ -4753,7 +4819,7 @@ public class StarsController {
             sendPinnedOrder();
         }
 
-        public static int lambda$setPinned$2(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
+        public static int lambda$setPinned$4(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
             return savedStarGift2.date - savedStarGift.date;
         }
 
@@ -4792,7 +4858,7 @@ public class StarsController {
                 Collections.sort(this.gifts, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return StarsController.GiftsList.lambda$togglePinned$3((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
+                        return StarsController.GiftsList.lambda$togglePinned$5((TL_stars.SavedStarGift) obj, (TL_stars.SavedStarGift) obj2);
                     }
                 });
             }
@@ -4802,7 +4868,7 @@ public class StarsController {
             return z3;
         }
 
-        public static int lambda$togglePinned$3(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
+        public static int lambda$togglePinned$5(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
             return savedStarGift2.date - savedStarGift.date;
         }
 
@@ -4858,7 +4924,7 @@ public class StarsController {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(togglestargiftspinnedtotop, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    StarsController.GiftsList.lambda$sendPinnedOrder$4(tLObject, tL_error);
+                    StarsController.GiftsList.lambda$sendPinnedOrder$6(tLObject, tL_error);
                 }
             }, 64);
         }

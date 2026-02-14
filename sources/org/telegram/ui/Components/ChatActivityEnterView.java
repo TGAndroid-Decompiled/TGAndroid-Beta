@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -1837,7 +1838,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this(activity, sizeNotifierFrameLayout, chatActivity, z, null);
     }
 
-    public ChatActivityEnterView(final Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, final ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public ChatActivityEnterView(final Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, final ChatActivity chatActivity, boolean z, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         int i;
         String str;
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate;
@@ -1973,7 +1974,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         };
         this.recordAudioVideoRunnable = new Runnable() {
             @Override
-            public void run() {
+            public void run() throws Resources.NotFoundException {
                 if (ChatActivityEnterView.this.delegate == null || ChatActivityEnterView.this.parentActivity == null) {
                     return;
                 }
@@ -2642,7 +2643,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
+        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             FrameLayout frameLayout;
             if (ChatActivityEnterView.this.isLiveComment) {
                 return false;
@@ -2716,7 +2717,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         chatActivityEnterView2.messageTransitionIsRunning = false;
                         AndroidUtilities.runOnUIThread(chatActivityEnterView2.moveToSendStateRunnable = new Runnable() {
                             @Override
-                            public final void run() {
+                            public final void run() throws Resources.NotFoundException {
                                 this.f$0.lambda$onTouchEvent$4();
                             }
                         }, 200L);
@@ -2855,7 +2856,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     chatActivityEnterView6.messageTransitionIsRunning = false;
                     AndroidUtilities.runOnUIThread(chatActivityEnterView6.moveToSendStateRunnable = new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws Resources.NotFoundException {
                             this.f$0.lambda$onTouchEvent$9();
                         }
                     }, ChatActivityEnterView.this.shouldDrawBackground ? 500L : 0L);
@@ -2923,7 +2924,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             ChatActivityEnterView.this.sendMessageInternal(true, 0, 0, l.longValue(), false);
         }
 
-        public void lambda$onTouchEvent$4() {
+        public void lambda$onTouchEvent$4() throws Resources.NotFoundException {
             ChatActivityEnterView.this.moveToSendStateRunnable = null;
             ChatActivityEnterView.this.updateRecordInterface(1, true);
         }
@@ -2944,7 +2945,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             MediaController.getInstance().stopRecording(0, false, 0, false, 0L);
         }
 
-        public void lambda$onTouchEvent$9() {
+        public void lambda$onTouchEvent$9() throws Resources.NotFoundException {
             ChatActivityEnterView.this.moveToSendStateRunnable = null;
             ChatActivityEnterView.this.updateRecordInterface(1, true);
         }
@@ -3527,7 +3528,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
-            public void setVisibility(int i) {
+            public void setVisibility(int i) throws Resources.NotFoundException {
                 super.setVisibility(i);
                 ChatActivityEnterView.this.updateSendAsButton();
             }
@@ -3729,7 +3730,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
             SenderSelectPopup senderSelectPopup2 = new SenderSelectPopup(getContext(), this.parentFragment, messagesController, zIsChannelAndNotMegaGroup, peer, this.delegate.getSendAsPeers(), new SenderSelectPopup.OnSelectCallback() {
                 @Override
-                public final void onPeerSelected(RecyclerView recyclerView, SenderSelectPopup.SenderView senderView, TLRPC.Peer peer2) {
+                public final void onPeerSelected(RecyclerView recyclerView, SenderSelectPopup.SenderView senderView, TLRPC.Peer peer2) throws Resources.NotFoundException {
                     this.f$0.lambda$createSenderSelectView$22(chatFull, messagesController, recyclerView, senderView, peer2);
                 }
             }, this.resourcesProvider) {
@@ -3810,7 +3811,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.senderSelectView.callOnClick();
     }
 
-    public void lambda$createSenderSelectView$22(TLRPC.ChatFull chatFull, MessagesController messagesController, RecyclerView recyclerView, final SenderSelectPopup.SenderView senderView, TLRPC.Peer peer) {
+    public void lambda$createSenderSelectView$22(TLRPC.ChatFull chatFull, MessagesController messagesController, RecyclerView recyclerView, final SenderSelectPopup.SenderView senderView, TLRPC.Peer peer) throws Resources.NotFoundException {
         TLRPC.User user;
         if (this.senderSelectPopupWindow == null) {
             return;
@@ -4965,7 +4966,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return string == null || !string.startsWith("com.samsung");
     }
 
-    private void createMessageEditText() {
+    private void createMessageEditText() throws Resources.NotFoundException {
         if (this.messageEditText != null) {
             return;
         }
@@ -5274,7 +5275,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.recordingAudioVideo && this.recordCircle.isSendButtonVisible();
     }
 
-    public void cancelRecordingAudioVideo() {
+    public void cancelRecordingAudioVideo() throws Resources.NotFoundException {
         if (this.hasRecordVideo && isInVideoMode()) {
             CameraController.getInstance().cancelOnInitRunnable(this.onFinishInitCameraRunnable);
             this.delegate.needStartRecordVideo(5, true, 0, 0, this.voiceOnce ? Integer.MAX_VALUE : 0, this.effectId, 0L);
@@ -5794,7 +5795,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setDialogId(long j, int i) {
+    public void setDialogId(long j, int i) throws Resources.NotFoundException {
         this.dialog_id = j;
         if (this.currentAccount != i) {
             this.notificationsLocker.unlock();
@@ -7955,7 +7956,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return z;
     }
 
-    protected void updateRecordInterface(int i, boolean z) {
+    protected void updateRecordInterface(int i, boolean z) throws Resources.NotFoundException {
         boolean zIsRunning;
         Property property;
         char c;
@@ -8828,7 +8829,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             i2 = i;
             this.runningAnimationAudio.addListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animator) {
+                public void onAnimationEnd(Animator animator) throws Resources.NotFoundException {
                     if (animator.equals(ChatActivityEnterView.this.runningAnimationAudio)) {
                         if (i2 != 3 && ChatActivityEnterView.this.messageEditText != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
                             ChatActivityEnterView.this.messageEditText.requestFocus();
@@ -8866,7 +8867,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         isRecordingStateChanged();
     }
 
-    public void cancelRecordInterfaceInternal() {
+    public void cancelRecordInterfaceInternal() throws Resources.NotFoundException {
         FrameLayout frameLayout = this.recordPanel;
         if (frameLayout != null) {
             frameLayout.setVisibility(8);
@@ -9822,15 +9823,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void updateSendAsButton() {
+    public void updateSendAsButton() throws Resources.NotFoundException {
         updateSendAsButton(true);
     }
 
-    public void updateSendAsButton(boolean z) {
+    public void updateSendAsButton(boolean z) throws Resources.NotFoundException {
         updateSendAsButton(false, z);
     }
 
-    public void updateSendAsButton(boolean r16, boolean r17) {
+    public void updateSendAsButton(boolean r16, boolean r17) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.updateSendAsButton(boolean, boolean):void");
     }
 
@@ -11631,7 +11632,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         TLRPC.ChatFull chatFull;
         TLRPC.Chat chat;
         double d;
@@ -12366,7 +12367,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         float xOffset;
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
+        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
                 setPressed(false);
             }
@@ -12398,7 +12399,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             return true;
         }
 
-        public void onCancelButtonPressed() {
+        public void onCancelButtonPressed() throws Resources.NotFoundException {
             long topicId = 0;
             if (!ChatActivityEnterView.this.hasRecordVideo || !ChatActivityEnterView.this.isInVideoMode()) {
                 ChatActivityEnterView.this.delegate.needStartRecordAudio(0);
@@ -13114,7 +13115,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.stickersExpandedHeight;
     }
 
-    public void reset() {
+    public void reset() throws Resources.NotFoundException {
         setStickersExpanded(false, true, false);
         showPopup(0, 0, false);
         if (getEditField() != null && !TextUtils.isEmpty(getEditField().getText())) {
@@ -13785,7 +13786,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.currentIslandTotalHeight;
     }
 
-    public void setLiveComment(boolean z, boolean z2) {
+    public void setLiveComment(boolean z, boolean z2) throws Resources.NotFoundException {
         if (this.isLiveComment == z) {
             return;
         }

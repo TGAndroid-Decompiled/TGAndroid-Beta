@@ -62,7 +62,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.GroupCreateSectionCell;
@@ -73,6 +72,7 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.FragmentSearchField;
@@ -847,7 +847,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         frameLayout.addView(this.scrollView);
         RecyclerListView recyclerListView4 = this.listView;
         Objects.requireNonNull(recyclerListView4);
-        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, frameLayout, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView4));
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, frameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView4));
         this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {

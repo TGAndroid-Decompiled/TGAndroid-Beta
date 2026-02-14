@@ -80,6 +80,7 @@ public class NotificationCenter {
     public static final int configLoaded = 178;
     public static final int contactsDidLoad = 25;
     public static final int contactsImported = 26;
+    public static final int contactsPermissionBadgeCheck = 335;
     public static final int contentSettingsLoaded = 243;
     public static final int currentUserPremiumStatusChanged = 300;
     public static final int currentUserShowLimitReachedDialog = 303;
@@ -318,7 +319,7 @@ public class NotificationCenter {
     public static final int timezonesUpdated = 213;
     public static final int tlSchemeParseException = 333;
     public static final int topicsDidLoaded = 311;
-    private static int totalEvents = 335;
+    private static int totalEvents = 336;
     public static final int translationModelDownloaded = 329;
     public static final int translationModelDownloading = 328;
     public static final int twoStepPasswordChanged = 52;

@@ -106,7 +106,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.FeaturedStickerSetInfoCell;
@@ -2726,7 +2725,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             });
             RecyclerListView recyclerListView6 = this.gifGridView;
             Objects.requireNonNull(recyclerListView6);
-            iBlur3CaptureArr[1] = new ViewGroupPartRenderer(recyclerListView6, this, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView6));
+            iBlur3CaptureArr[1] = new ViewGroupPartRenderer(recyclerListView6, this, new EmojiView$$ExternalSyntheticLambda12(recyclerListView6));
         }
         RecyclerListView recyclerListView7 = this.stickersGridView;
         if (recyclerListView7 != null) {
@@ -3180,15 +3179,15 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     }
 
     public void lambda$new$15() {
-        this.emojiGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda24(this));
+        this.emojiGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda25(this));
     }
 
     public void lambda$new$16() {
-        this.gifGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda24(this));
+        this.gifGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda25(this));
     }
 
     public void lambda$new$17() {
-        this.stickersGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda24(this));
+        this.stickersGridView.postOnAnimation(new EmojiView$$ExternalSyntheticLambda25(this));
     }
 
     public boolean lambda$new$18(Canvas canvas, View view, long j) {

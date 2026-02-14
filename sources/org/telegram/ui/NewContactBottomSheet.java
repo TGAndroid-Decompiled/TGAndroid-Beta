@@ -549,7 +549,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.checkTextView = textView2;
         textView2.setTextColor(Theme.getColor(i3, this.resourcesProvider));
         this.checkTextView.setTextSize(1, 14.0f);
-        this.checkTextView.setText("Sync Contact to Phone");
+        this.checkTextView.setText(LocaleController.getString(R.string.AddContactSync));
         LinearLayout linearLayout3 = new LinearLayout(context);
         this.checkLayout = linearLayout3;
         linearLayout3.setOrientation(0);
@@ -579,7 +579,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("QR");
         spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.header_qr_24), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) "  ");
-        spannableStringBuilder.append((CharSequence) "Add via QR Code");
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AddContactQr));
         this.qrButton.setText(spannableStringBuilder, false);
         this.qrButton.setOnClickListener(new View.OnClickListener() {
             @Override

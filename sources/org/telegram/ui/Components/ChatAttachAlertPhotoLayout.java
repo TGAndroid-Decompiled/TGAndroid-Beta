@@ -42,7 +42,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -82,7 +81,6 @@ import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.PhotoAttachCameraCell;
 import org.telegram.ui.Cells.PhotoAttachPermissionCell;
 import org.telegram.ui.Cells.PhotoAttachPhotoCell;
@@ -96,7 +94,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.RecyclerViewItemRangeSelector;
 import org.telegram.ui.Components.ShutterButton;
 import org.telegram.ui.Components.ZoomControlView;
-import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.LaunchActivity;
@@ -1011,15 +1008,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.itemRangeSelector = recyclerViewItemRangeSelector;
         this.gridView.addOnItemTouchListener(recyclerViewItemRangeSelector);
         RecyclerListView recyclerListView4 = this.gridView;
-        ViewGroup containerView = chatAttachAlert.getContainerView();
-        RecyclerListView recyclerListView5 = this.gridView;
-        Objects.requireNonNull(recyclerListView5);
-        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView5)) {
-            @Override
-            public void capture(Canvas canvas, RectF rectF) {
-                super.capture(canvas, rectF);
-            }
-        };
+        this.iBlur3Capture = recyclerListView4;
+        this.iBlur3CaptureView = recyclerListView4;
         this.occupyNavigationBar = true;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.progressView = emptyTextProgressView;
@@ -1148,7 +1138,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         ShutterButton shutterButton = new ShutterButton(context);
         this.shutterButton = shutterButton;
         this.cameraPanel.addView(shutterButton, LayoutHelper.createFrame(84, 84, 17));
-        this.shutterButton.setDelegate(new AnonymousClass11(resourcesProvider, container));
+        this.shutterButton.setDelegate(new AnonymousClass10(resourcesProvider, container));
         this.shutterButton.setFocusable(true);
         this.shutterButton.setContentDescription(LocaleController.getString(R.string.AccDescrShutter));
         ImageView imageView = new ImageView(context);
@@ -1183,7 +1173,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.tooltipTextView.setShadowLayer(AndroidUtilities.dp(3.33333f), 0.0f, AndroidUtilities.dp(0.666f), 1275068416);
         this.tooltipTextView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         this.cameraPanel.addView(this.tooltipTextView, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 16.0f));
-        RecyclerListView recyclerListView6 = new RecyclerListView(context, resourcesProvider) {
+        RecyclerListView recyclerListView5 = new RecyclerListView(context, resourcesProvider) {
             @Override
             public void requestLayout() {
                 if (ChatAttachAlertPhotoLayout.this.cameraPhotoRecyclerViewIgnoreLayout) {
@@ -1192,12 +1182,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 super.requestLayout();
             }
         };
-        this.cameraPhotoRecyclerView = recyclerListView6;
-        recyclerListView6.setVerticalScrollBarEnabled(true);
-        RecyclerListView recyclerListView7 = this.cameraPhotoRecyclerView;
+        this.cameraPhotoRecyclerView = recyclerListView5;
+        recyclerListView5.setVerticalScrollBarEnabled(true);
+        RecyclerListView recyclerListView6 = this.cameraPhotoRecyclerView;
         PhotoAttachAdapter photoAttachAdapter2 = new PhotoAttachAdapter(context, false);
         this.cameraAttachAdapter = photoAttachAdapter2;
-        recyclerListView7.setAdapter(photoAttachAdapter2);
+        recyclerListView6.setAdapter(photoAttachAdapter2);
         this.cameraAttachAdapter.createCache();
         this.cameraPhotoRecyclerView.setClipToPadding(false);
         this.cameraPhotoRecyclerView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
@@ -1436,13 +1426,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         showZoomControls(true, true);
     }
 
-    class AnonymousClass11 implements ShutterButton.ShutterButtonDelegate {
+    class AnonymousClass10 implements ShutterButton.ShutterButtonDelegate {
         private File outputFile;
         final FrameLayout val$container;
         final Theme.ResourcesProvider val$resourcesProvider;
         private boolean zoomingWas;
 
-        AnonymousClass11(Theme.ResourcesProvider resourcesProvider, FrameLayout frameLayout) {
+        AnonymousClass10(Theme.ResourcesProvider resourcesProvider, FrameLayout frameLayout) {
             this.val$resourcesProvider = resourcesProvider;
             this.val$container = frameLayout;
         }
@@ -1624,7 +1614,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         public void lambda$shutterReleased$3(java.io.File r18, boolean r19, java.lang.Integer r20) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayout.AnonymousClass11.lambda$shutterReleased$3(java.io.File, boolean, java.lang.Integer):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayout.AnonymousClass10.lambda$shutterReleased$3(java.io.File, boolean, java.lang.Integer):void");
         }
 
         @Override
@@ -2351,7 +2341,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (this.parentAlert.getAvatarFor() != null && photoEntry != null) {
             this.parentAlert.getAvatarFor().isVideo = photoEntry.isVideo;
         }
-        PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new AnonymousClass16(z), chatActivity);
+        PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new AnonymousClass15(z), chatActivity);
         PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
         if (this.parentAlert.isStickerMode) {
             PhotoViewer.getInstance().enableStickerMode(null, false, this.parentAlert.customStickerHandler);
@@ -2359,7 +2349,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    class AnonymousClass16 extends BasePhotoProvider {
+    class AnonymousClass15 extends BasePhotoProvider {
         final boolean val$sameTakePictureOrientation;
 
         @Override
@@ -2372,7 +2362,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return null;
         }
 
-        AnonymousClass16(boolean z) {
+        AnonymousClass15(boolean z) {
             super(ChatAttachAlertPhotoLayout.this, null);
             this.val$sameTakePictureOrientation = z;
         }

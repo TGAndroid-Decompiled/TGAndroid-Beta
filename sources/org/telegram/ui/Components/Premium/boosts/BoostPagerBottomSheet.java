@@ -245,7 +245,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         selectorBottomSheet.setOnCloseClick(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openCrafting$9();
+                this.f$0.lambda$openCrafting$8();
             }
         });
         loadData(z2);
@@ -323,7 +323,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
     }
 
     @Override
-    public void lambda$openCrafting$9() {
+    public void lambda$openCrafting$8() {
         if (this.viewPager.getCurrentPosition() > 0) {
             if (this.rightSheet.hasChanges()) {
                 return;
@@ -332,7 +332,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             this.viewPager.scrollToPosition(0);
             return;
         }
-        super.lambda$openCrafting$9();
+        super.lambda$openCrafting$8();
     }
 
     private boolean isLightStatusBar() {

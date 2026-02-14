@@ -63,6 +63,7 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TopicsController;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -103,6 +104,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.DialogsActivityTopPanelLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.FlickerLoadingView;
+import org.telegram.ui.Components.Forum.ForumBubbleDrawable;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.FragmentFloatingButton;
@@ -1393,11 +1395,18 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void lambda$createView$3(View view, int i) {
+        long peerDialogId;
         if (getParentLayout() == null || getParentLayout().isInPreviewMode() || !(view instanceof TopicDialogCell)) {
             return;
         }
         TLRPC.TL_forumTopic tL_forumTopic = ((TopicDialogCell) view).forumTopic;
-        long peerDialogId = getMessagesController().isMonoForum(-this.chatId) ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id;
+        boolean zIsMonoForum = getMessagesController().isMonoForum(-this.chatId);
+        if (tL_forumTopic == null) {
+            peerDialogId = 0;
+        } else {
+            peerDialogId = zIsMonoForum ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id;
+        }
+        long j = peerDialogId;
         if (this.openedForSelect) {
             OnTopicSelectedListener onTopicSelectedListener = this.onTopicSelectedListener;
             if (onTopicSelectedListener != null) {
@@ -1405,7 +1414,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             DialogsActivity dialogsActivity = this.dialogsActivity;
             if (dialogsActivity != null) {
-                dialogsActivity.didSelectResult(-this.chatId, peerDialogId, true, false, this);
+                dialogsActivity.didSelectResult(-this.chatId, j, true, false, this);
                 return;
             }
             return;
@@ -1420,7 +1429,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     DialogsActivity dialogsActivity2 = (DialogsActivity) baseFragment;
                     if (dialogsActivity2.isMainDialogList()) {
                         MessagesStorage.TopicKey openedDialogId = dialogsActivity2.getOpenedDialogId();
-                        if (openedDialogId.dialogId == (-this.chatId) && openedDialogId.topicId == peerDialogId) {
+                        if (openedDialogId.dialogId == (-this.chatId) && openedDialogId.topicId == j) {
                             return;
                         }
                     } else {
@@ -1428,7 +1437,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     }
                 }
             }
-            this.selectedTopicForTablet = peerDialogId;
+            this.selectedTopicForTablet = j;
             updateTopicsList(false, false);
         }
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
@@ -2649,6 +2658,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int size = this.forumTopics.size();
             ArrayList arrayList = new ArrayList(this.forumTopics);
             this.forumTopics.clear();
+            if (UserObject.isBotForumWithEditableTopics(this.currentAccount, -this.chatId) && this.openedForForward) {
+                this.forumTopics.add(new Item(3, null));
+            }
             for (int i = 0; i < topics.size(); i++) {
                 HashSet hashSet = this.excludeTopics;
                 if (hashSet == null || !hashSet.contains(Integer.valueOf(topics.get(i).id))) {
@@ -2827,8 +2839,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            if (i == 0) {
+            if (i == 0 || i == 3) {
                 TopicDialogCell topicDialogCell = TopicsFragment.this.new TopicDialogCell(null, viewGroup.getContext(), true, false);
+                if (i == 3) {
+                    topicDialogCell.setForumIcon(ForumUtilities.createTopicDrawable("", ForumBubbleDrawable.serverSupportedColor[0], false));
+                    topicDialogCell.setTitleOverride(LocaleController.getString(R.string.BotForumAskForStartNewChatTitle));
+                    topicDialogCell.setCustomMessage(LocaleController.getString(R.string.BotForumAskForStartNewChatForward));
+                }
                 topicDialogCell.inPreviewMode = ((BaseFragment) TopicsFragment.this).inPreviewMode;
                 topicDialogCell.setArchivedPullAnimation(TopicsFragment.this.pullForegroundDrawable);
                 return new RecyclerListView.Holder(topicDialogCell);
@@ -2886,60 +2903,59 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             boolean z;
             int i2;
-            TopicDialogCell topicDialogCell;
-            boolean z2;
             if (viewHolder.getItemViewType() == 0) {
                 TLRPC.TL_forumTopic tL_forumTopic = ((Item) getArray().get(i)).topic;
                 int i3 = i + 1;
                 TLRPC.TL_forumTopic tL_forumTopic2 = i3 < getArray().size() ? ((Item) getArray().get(i3)).topic : null;
-                TopicDialogCell topicDialogCell2 = (TopicDialogCell) viewHolder.itemView;
+                TopicDialogCell topicDialogCell = (TopicDialogCell) viewHolder.itemView;
                 TLRPC.Message message = tL_forumTopic.topMessage;
-                TLRPC.TL_forumTopic tL_forumTopic3 = topicDialogCell2.forumTopic;
+                TLRPC.TL_forumTopic tL_forumTopic3 = topicDialogCell.forumTopic;
                 int i4 = tL_forumTopic3 == null ? 0 : tL_forumTopic3.id;
                 int i5 = tL_forumTopic.id;
-                boolean z3 = i4 == i5 && topicDialogCell2.position == i && TopicsFragment.this.animatedUpdateEnabled;
+                boolean z2 = i4 == i5 && topicDialogCell.position == i && TopicsFragment.this.animatedUpdateEnabled;
                 if (message != null) {
                     MessageObject messageObject = new MessageObject(((BaseFragment) TopicsFragment.this).currentAccount, message, false, false);
                     if (TopicsFragment.this.getMessagesController().isMonoForum(-TopicsFragment.this.chatId)) {
-                        topicDialogCell2.isMonoForumTopicDialog = true;
-                        topicDialogCell2.drawAvatar = true;
-                        topicDialogCell2.forumTopic = tL_forumTopic;
-                        topicDialogCell2.messagePaddingStart = 72;
-                        topicDialogCell2.chekBoxPaddingTop = 42.0f;
-                        topicDialogCell2.heightDefault = 72;
-                        topicDialogCell2.heightThreeLines = 78;
-                        topicDialogCell2.setDialog(DialogObject.getPeerDialogId(tL_forumTopic.from_id), messageObject, message.date, false, false);
-                        topicDialogCell2.isSavedDialogCell = true;
-                        topicDialogCell2.useSeparator = i3 < getItemCount();
-                        z = z3;
+                        topicDialogCell.isMonoForumTopicDialog = true;
+                        topicDialogCell.drawAvatar = true;
+                        topicDialogCell.forumTopic = tL_forumTopic;
+                        topicDialogCell.messagePaddingStart = 72;
+                        topicDialogCell.chekBoxPaddingTop = 42.0f;
+                        topicDialogCell.heightDefault = 72;
+                        topicDialogCell.heightThreeLines = 78;
+                        topicDialogCell.setDialog(DialogObject.getPeerDialogId(tL_forumTopic.from_id), messageObject, message.date, false, false);
+                        topicDialogCell.isSavedDialogCell = true;
+                        topicDialogCell.useSeparator = i3 < getItemCount();
+                        z = z2;
                         i2 = i5;
-                        topicDialogCell = topicDialogCell2;
-                        z2 = true;
                     } else {
                         TopicsFragment topicsFragment = TopicsFragment.this;
-                        z = z3;
-                        z2 = true;
+                        z = z2;
                         i2 = i5;
-                        topicDialogCell = topicDialogCell2;
-                        topicDialogCell2.setForumTopic(tL_forumTopic, -topicsFragment.chatId, messageObject, topicsFragment.isInPreviewMode(), z);
+                        topicDialogCell.setForumTopic(tL_forumTopic, -topicsFragment.chatId, messageObject, topicsFragment.isInPreviewMode(), z);
                         topicDialogCell.drawDivider = i != TopicsFragment.this.forumTopics.size() - 1 || TopicsFragment.this.recyclerListView.emptyViewIsVisible();
-                        boolean z4 = tL_forumTopic.pinned;
-                        topicDialogCell.fullSeparator = z4 && (tL_forumTopic2 == null || !tL_forumTopic2.pinned);
-                        topicDialogCell.setPinForced(z4 && !tL_forumTopic.hidden);
+                        boolean z3 = tL_forumTopic.pinned;
+                        topicDialogCell.fullSeparator = z3 && (tL_forumTopic2 == null || !tL_forumTopic2.pinned);
+                        topicDialogCell.setPinForced(z3 && !tL_forumTopic.hidden);
                         topicDialogCell.position = i;
                     }
                 } else {
-                    z = z3;
+                    z = z2;
                     i2 = i5;
-                    topicDialogCell = topicDialogCell2;
-                    z2 = true;
                 }
                 if (!TopicsFragment.this.getMessagesController().isMonoForum(-TopicsFragment.this.chatId)) {
                     topicDialogCell.setTopicIcon(tL_forumTopic);
                 }
                 topicDialogCell.setChecked(TopicsFragment.this.selectedTopics.contains(Integer.valueOf(i2)), z);
                 topicDialogCell.setDialogSelected(TopicsFragment.this.selectedTopicForTablet == ((long) i2));
-                topicDialogCell.onReorderStateChanged(TopicsFragment.this.reordering, z2);
+                topicDialogCell.onReorderStateChanged(TopicsFragment.this.reordering, true);
+                return;
+            }
+            if (viewHolder.getItemViewType() == 3) {
+                TopicDialogCell topicDialogCell2 = (TopicDialogCell) viewHolder.itemView;
+                topicDialogCell2.setCurrentDialogId(-TopicsFragment.this.chatId);
+                topicDialogCell2.drawDivider = i != TopicsFragment.this.forumTopics.size() - 1 || TopicsFragment.this.recyclerListView.emptyViewIsVisible();
+                topicDialogCell2.position = i;
             }
         }
 
@@ -2950,7 +2966,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 0;
+            return viewHolder.getItemViewType() == 0 || viewHolder.getItemViewType() == 3;
         }
 
         public void swapElements(int i, int i2) {

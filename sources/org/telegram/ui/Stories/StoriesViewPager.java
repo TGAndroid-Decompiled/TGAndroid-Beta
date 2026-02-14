@@ -78,7 +78,7 @@ public abstract class StoriesViewPager extends ViewPager {
             }
 
             @Override
-            public Object instantiateItem(ViewGroup viewGroup, int i2) {
+            public Object instantiateItem(ViewGroup viewGroup, int i2) throws Resources.NotFoundException {
                 PeerStoriesView peerStoriesView;
                 PageLayout pageLayout = StoriesViewPager.this.new PageLayout(context);
                 if (!this.cachedViews.isEmpty()) {
@@ -135,7 +135,7 @@ public abstract class StoriesViewPager extends ViewPager {
         setAdapter(pagerAdapter);
         setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
-            public final void transformPage(View view, float f) {
+            public final void transformPage(View view, float f) throws Resources.NotFoundException {
                 this.f$0.lambda$new$1(view, f);
             }
         });
@@ -180,13 +180,13 @@ public abstract class StoriesViewPager extends ViewPager {
         setOverScrollMode(2);
     }
 
-    public void lambda$new$1(View view, float f) {
+    public void lambda$new$1(View view, float f) throws Resources.NotFoundException {
         final PageLayout pageLayout = (PageLayout) view;
         if (Math.abs(f) >= 1.0f) {
             pageLayout.setVisible(false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     StoriesViewPager.lambda$new$0(pageLayout);
                 }
             }, 16L);
@@ -207,7 +207,7 @@ public abstract class StoriesViewPager extends ViewPager {
         view.setRotationY(f * 90.0f);
     }
 
-    public static void lambda$new$0(PageLayout pageLayout) {
+    public static void lambda$new$0(PageLayout pageLayout) throws Resources.NotFoundException {
         ArrayList arrayList = pageLayout.day;
         if (arrayList != null) {
             pageLayout.peerStoryView.day = arrayList;
@@ -490,7 +490,7 @@ public abstract class StoriesViewPager extends ViewPager {
         }
     }
 
-    public void setCurrentDate(long j, int i) {
+    public void setCurrentDate(long j, int i) throws Resources.NotFoundException {
         for (int i2 = 0; i2 < this.days.size(); i2++) {
             if (j == StoriesController.StoriesList.day(this.storyViewer.storiesList.findMessageObject(((Integer) ((ArrayList) this.days.get(i2)).get(0)).intValue()))) {
                 int size = this.storyViewer.reversed ? (this.days.size() - 1) - i2 : i2;

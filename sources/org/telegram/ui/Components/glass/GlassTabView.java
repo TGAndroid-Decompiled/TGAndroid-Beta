@@ -36,7 +36,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.MainTabsLayout;
 
 public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, FactorAnimator.Target {
@@ -347,28 +346,6 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             animatedDrawable2.setCustomEndFrame(0);
         }
         this.imageView.playAnimation();
-    }
-
-    public static GlassTabView createGiftTab(Context context, Theme.ResourcesProvider resourcesProvider, TabAnimation tabAnimation, int i, final Runnable runnable) {
-        GlassTabView glassTabView = new GlassTabView(context);
-        glassTabView.resourcesProvider = resourcesProvider;
-        glassTabView.tabAnimation = tabAnimation;
-        glassTabView.textView.setText(LocaleController.getString(i));
-        glassTabView.checkPlayAnimation(false);
-        glassTabView.imageView.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, 49, 0.0f, 6.0f, 0.0f, 0.0f));
-        int i2 = Theme.key_glass_defaultIcon;
-        glassTabView.colorDefault = ColorUtils.setAlphaComponent(Theme.getColor(i2, resourcesProvider), 153);
-        glassTabView.colorSelected = ColorUtils.setAlphaComponent(Theme.getColor(i2, resourcesProvider), 255);
-        glassTabView.colorSelectedText = ColorUtils.setAlphaComponent(Theme.getColor(i2, resourcesProvider), 255);
-        glassTabView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                runnable.run();
-            }
-        });
-        glassTabView.updateColors();
-        ScaleStateListAnimator.apply(glassTabView);
-        return glassTabView;
     }
 
     public static GlassTabView createMainTab(Context context, Theme.ResourcesProvider resourcesProvider, TabAnimation tabAnimation, int i) {

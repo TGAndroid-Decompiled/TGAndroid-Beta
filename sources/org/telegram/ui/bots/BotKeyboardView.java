@@ -18,6 +18,7 @@ import me.vkryl.android.animator.ReplaceAnimator;
 import me.vkryl.core.lambda.Destroyable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -214,6 +215,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             spoilersTextView.setTextSize(1, 14.0f);
             spoilersTextView.setTypeface(AndroidUtilities.bold());
             addView(spoilersTextView, LayoutHelper.createFrame(-2, -2, 17));
+            NotificationCenter.listenEmojiLoading(spoilersTextView);
             setTag(keyboardButton);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = keyboardButton.style;

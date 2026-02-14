@@ -243,13 +243,13 @@ public class MessagePrivateSeenView extends FrameLayout {
         }
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, str)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false);
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 1));
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        final ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false);
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 1));
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                MessagePrivateSeenView.lambda$showSheet$7(buttonWithCounterView, z, i, bottomSheet2, runnable2, context, resourcesProvider, view);
+                MessagePrivateSeenView.lambda$showSheet$7(round, z, i, bottomSheet2, runnable2, context, resourcesProvider, view);
             }
         });
         if (zPremiumFeaturesBlocked) {

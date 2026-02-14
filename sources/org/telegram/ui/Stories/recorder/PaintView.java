@@ -2782,6 +2782,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return this.offsetTranslationY;
     }
 
+    @Override
     public void updateColors() {
         this.toolsPaint.setColor(-15132391);
     }

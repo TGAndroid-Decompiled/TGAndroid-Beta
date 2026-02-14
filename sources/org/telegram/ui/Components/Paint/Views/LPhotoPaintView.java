@@ -2128,6 +2128,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return this.offsetTranslationY;
     }
 
+    @Override
     public void updateColors() {
         this.toolsPaint.setColor(-15132391);
     }

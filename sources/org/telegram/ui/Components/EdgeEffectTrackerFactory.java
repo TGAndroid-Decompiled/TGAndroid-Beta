@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.widget.EdgeEffect;
@@ -31,7 +30,7 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
 
     @Override
     protected EdgeEffect createEdgeEffect(RecyclerView recyclerView, int i) {
-        TrackingEdgeEffect trackingEdgeEffect = new TrackingEdgeEffect(recyclerView.getContext(), i, new OnEdgeEffectListener() {
+        TrackingEdgeEffect trackingEdgeEffect = new TrackingEdgeEffect(recyclerView, i, new OnEdgeEffectListener() {
             @Override
             public final void onEdgeEffectVisibilityChange(int i2, boolean z) {
                 this.f$0.onEdgeEffectVisibilityChange(i2, z);
@@ -48,13 +47,22 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
         }
     }
 
-    private static final class TrackingEdgeEffect extends EdgeEffect {
+    static final class TrackingEdgeEffect extends EdgeEffect {
         private final int direction;
         private boolean lastVisibility;
         private final OnEdgeEffectListener listener;
+        private final Runnable mCheckEdgeVisibility;
+        private final RecyclerView view;
 
-        TrackingEdgeEffect(Context context, int i, OnEdgeEffectListener onEdgeEffectListener) {
-            super(context);
+        TrackingEdgeEffect(RecyclerView recyclerView, int i, OnEdgeEffectListener onEdgeEffectListener) {
+            super(recyclerView.getContext());
+            this.mCheckEdgeVisibility = new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.checkEdgeVisibility();
+                }
+            };
+            this.view = recyclerView;
             this.direction = i;
             this.listener = onEdgeEffectListener;
         }
@@ -63,7 +71,7 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
             return !isFinished() && (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f);
         }
 
-        private void checkEdgeVisibility() {
+        public void checkEdgeVisibility() {
             boolean zIsVisible = isVisible();
             if (this.lastVisibility != zIsVisible) {
                 this.lastVisibility = zIsVisible;
@@ -120,7 +128,7 @@ public final class EdgeEffectTrackerFactory extends RecyclerView.EdgeEffectFacto
         @Override
         public boolean draw(Canvas canvas) {
             boolean zDraw = super.draw(canvas);
-            checkEdgeVisibility();
+            this.view.postOnAnimation(this.mCheckEdgeVisibility);
             return zDraw;
         }
     }

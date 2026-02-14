@@ -35,6 +35,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
 public class FragmentSearchField extends FrameLayout implements FactorAnimator.Target, Theme.Colorable {
     private final LinearLayout additionalIconsLayout;
@@ -42,7 +43,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
     private final FactorAnimator animatorSearchFiltersWidth;
     private final BoolAnimator animatorSearchIconVisible;
     private Drawable bg;
-    private float clipHeight;
+    private BlurredBackgroundDrawable blurredBackgroundDrawable;
     private boolean closeButtonForcedVisible;
     private final ImageView closeIcon;
     private final ArrayList currentSearchFilters;
@@ -73,7 +74,6 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         this.animatorCloseIconVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 380L, false);
         this.animatorSearchIconVisible = new BoolAnimator(1, this, cubicBezierInterpolator, 380L, true);
         this.animatorSearchFiltersWidth = new FactorAnimator(2, this, AnimatorUtils.DECELERATE_INTERPOLATOR, 280L);
-        this.clipHeight = 1.0f;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.currentSearchFilters = new ArrayList();
         this.resourcesProvider = resourcesProvider;
@@ -198,35 +198,50 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         this.additionalIconsLayout.addView(view);
     }
 
-    public void setClipHeight(float f) {
-        if (Math.abs(this.clipHeight - f) < 0.01f) {
-            return;
-        }
-        this.clipHeight = f;
-        invalidate();
-        float fLerp = AndroidUtilities.lerp(0.75f, 1.0f, this.clipHeight);
-        this.editText.setScaleX(fLerp);
-        this.editText.setScaleY(fLerp);
-        this.searchIcon.setScaleX(fLerp);
-        this.searchIcon.setScaleY(fLerp);
-        this.closeIcon.setScaleX(fLerp);
-        this.closeIcon.setScaleY(fLerp);
-    }
-
     @Override
     protected void dispatchDraw(Canvas canvas) {
         canvas.save();
         Drawable drawable = this.bg;
         if (drawable != null) {
-            drawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), (int) ((getHeight() - getPaddingBottom()) * this.clipHeight));
+            drawable.setBounds(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getHeight() - getPaddingBottom());
             this.bg.draw(canvas);
         }
-        if (this.clipHeight < 1.0f) {
-            canvas.clipRect(0.0f, 0.0f, getWidth(), getHeight() * this.clipHeight);
-            canvas.translate(0.0f, ((-getHeight()) * (1.0f - this.clipHeight)) / 2.0f);
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.setBounds(getPaddingLeft() - AndroidUtilities.dp(4.0f), getPaddingTop() - AndroidUtilities.dp(4.0f), (getWidth() - getPaddingRight()) + AndroidUtilities.dp(4.0f), (getHeight() - getPaddingBottom()) + AndroidUtilities.dp(4.0f));
+            this.blurredBackgroundDrawable.draw(canvas);
         }
         super.dispatchDraw(canvas);
         canvas.restore();
+    }
+
+    public void setupBlurredBackground(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        blurredBackgroundDrawable.setRadius(AndroidUtilities.dp(20.0f));
+        blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(4.0f));
+        this.blurredBackgroundDrawable = blurredBackgroundDrawable;
+    }
+
+    public void setBlurredBackgroundVisibility(float f) {
+        boolean z;
+        int i;
+        int i2 = (int) (f * 255.0f);
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
+        boolean z2 = true;
+        if (blurredBackgroundDrawable == null || blurredBackgroundDrawable.getAlpha() == i2) {
+            z = false;
+        } else {
+            this.blurredBackgroundDrawable.setAlpha(i2);
+            z = true;
+        }
+        Drawable drawable = this.bg;
+        if (drawable == null || drawable.getAlpha() == (i = 255 - i2)) {
+            z2 = z;
+        } else {
+            this.bg.setAlpha(i);
+        }
+        if (z2) {
+            invalidate();
+        }
     }
 
     @Override
@@ -276,6 +291,10 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         this.editText.setHintTextColor(getThemedColor(i, 0.5f));
         this.editText.setTextColor(getThemedColor(i));
         this.editText.setCursorColor(getThemedColor(Theme.key_groupcreate_cursor));
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.updateColors();
+        }
         int childCount = this.additionalIconsLayout.getChildCount();
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = this.additionalIconsLayout.getChildAt(i2);

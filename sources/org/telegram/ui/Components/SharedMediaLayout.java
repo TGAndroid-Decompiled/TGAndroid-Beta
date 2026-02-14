@@ -120,7 +120,7 @@ import org.telegram.ui.Cells.SharedPhotoVideoCell;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda320;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda319;
 import org.telegram.ui.ChatActivityContainer;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentContextView;
@@ -2495,7 +2495,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             r12 = 0;
             SearchTagsList searchTagsList3 = new SearchTagsList(context2, baseFragment4, null, baseFragment4.getCurrentAccount(), includeSavedDialogs() ? 0L : this.dialog_id, resourcesProvider, false) {
                 @Override
-                protected boolean setFilter(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+                protected boolean setFilter(ReactionsLayoutInBubble.VisibleReaction visibleReaction) throws Resources.NotFoundException {
                     if (SharedMediaLayout.this.searchItem == null) {
                         return false;
                     }
@@ -2601,7 +2601,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchCollapse() throws Resources.NotFoundException {
+        public void onSearchCollapse() throws Resources.NotFoundException, NumberFormatException {
             SharedMediaLayout.this.searching = false;
             SharedMediaLayout.this.searchingReaction = null;
             ActionBarMenuItem actionBarMenuItem = SharedMediaLayout.this.searchItemIcon;
@@ -2641,7 +2641,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onTextChanged(EditText editText) throws Resources.NotFoundException {
+        public void onTextChanged(EditText editText) throws Resources.NotFoundException, NumberFormatException {
             String string = editText.getText().toString();
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.setSearchQuery(string);
@@ -2692,7 +2692,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchPressed(EditText editText) {
+        public void onSearchPressed(EditText editText) throws Resources.NotFoundException {
             super.onSearchPressed(editText);
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.hitSearch();
@@ -3586,7 +3586,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                                     boolean firstCreateView = true;
 
                                                     @Override
-                                                    public void onTransitionAnimationStart(boolean z, boolean z2) {
+                                                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException {
                                                         if (this.firstCreateView) {
                                                             if (this.searchItem != null) {
                                                                 lambda$openSearchWithText$341("");
@@ -6573,7 +6573,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             boolean zIsStoryAlbumPageType = isStoryAlbumPageType(getClosestTab());
             final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.profileActivity, view, true);
             final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda320(itemOptionsMakeOptions));
+            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda319(itemOptionsMakeOptions));
             itemOptionsMakeSwipeback.addGap();
             ItemOptions.addAlbumsItemOptions(itemOptionsMakeSwipeback, getStoriesController().getStoryAlbumsList(this.dialog_id), hashSet, true, new Runnable() {
                 @Override

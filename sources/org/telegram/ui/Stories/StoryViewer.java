@@ -380,7 +380,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
     public void open(int i, Context context, TL_stories.StoryItem storyItem, ArrayList arrayList, int i2, StoriesController.StoriesList storiesList, TL_stories.PeerStories peerStories, PlaceProvider placeProvider, boolean z) {
         OnBackInvokedDispatcher onBackInvokedDispatcherFindOnBackInvokedDispatcher;
-        if (context == null) {
+        if (!AndroidUtilities.isContextSafe(context)) {
             this.doOnAnimationReadyRunnables.clear();
             return;
         }
@@ -706,7 +706,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (!this.ATTACH_TO_FRAGMENT) {
             globalInstances.add(this);
         }
-        AndroidUtilities.hideKeyboard(lastFragment.getFragmentView());
+        if (lastFragment != null) {
+            AndroidUtilities.hideKeyboard(lastFragment.getFragmentView());
+        }
     }
 
     class AnonymousClass2 extends SizeNotifierFrameLayout {

@@ -49,11 +49,11 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -170,7 +170,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         RecyclerListView recyclerListView = this.recyclerListView;
         BottomSheet.ContainerView containerView = this.container;
         Objects.requireNonNull(recyclerListView);
-        this.viewGroupPartRenderer = new ViewGroupPartRenderer(recyclerListView, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView));
+        this.viewGroupPartRenderer = new ViewGroupPartRenderer(recyclerListView, containerView, new EmojiView$$ExternalSyntheticLambda12(recyclerListView));
         ArrayList arrayListFindAllInstances = TlUtils.findAllInstances(arrayList, TL_stars.starGiftAttributeBackdrop.class);
         this.backdrops = arrayListFindAllInstances;
         BagRandomizer bagRandomizer = new BagRandomizer(arrayListFindAllInstances);
@@ -305,7 +305,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         StarGiftSheet.TopView topView = new StarGiftSheet.TopView(context, resourcesProvider, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openCrafting$9();
+                this.f$0.lambda$openCrafting$8();
             }
         }, new View.OnClickListener() {
             @Override
@@ -1022,39 +1022,28 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.onTabSelectListener = callback;
             int i = Theme.key_glass_defaultIcon;
             setLensColor(Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.09411765f), Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1254902f));
-            GlassTabView[] glassTabViewArr = {GlassTabView.createGiftTab(context, resourcesProvider, GlassTabView.TabAnimation.MODELS, R.string.GiftPreviewModels, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$new$0();
+            this.tabs = new GlassTabView[]{GlassTabView.createMainTab(context, resourcesProvider, GlassTabView.TabAnimation.MODELS, R.string.GiftPreviewModels), GlassTabView.createMainTab(context, resourcesProvider, GlassTabView.TabAnimation.COLORS, R.string.GiftPreviewBackdrops), GlassTabView.createMainTab(context, resourcesProvider, GlassTabView.TabAnimation.SYMBOLS, R.string.GiftPreviewSymbols)};
+            final int i2 = 0;
+            while (true) {
+                GlassTabView[] glassTabViewArr = this.tabs;
+                if (i2 < glassTabViewArr.length) {
+                    this.linearLayout.addView(glassTabViewArr[i2], LayoutHelper.createLinear(0, -1, 1.0f));
+                    this.tabs[i2].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$new$0(i2, view);
+                        }
+                    });
+                    i2++;
+                } else {
+                    glassTabViewArr[0].setSelected(true, false);
+                    return;
                 }
-            }), GlassTabView.createGiftTab(context, resourcesProvider, GlassTabView.TabAnimation.COLORS, R.string.GiftPreviewBackdrops, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$new$1();
-                }
-            }), GlassTabView.createGiftTab(context, resourcesProvider, GlassTabView.TabAnimation.SYMBOLS, R.string.GiftPreviewSymbols, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$new$2();
-                }
-            })};
-            this.tabs = glassTabViewArr;
-            this.linearLayout.addView(glassTabViewArr[0], LayoutHelper.createLinear(0, -1, 1.0f));
-            this.linearLayout.addView(this.tabs[1], LayoutHelper.createLinear(0, -1, 1.0f));
-            this.linearLayout.addView(this.tabs[2], LayoutHelper.createLinear(0, -1, 1.0f));
-            this.tabs[0].setSelected(true, false);
+            }
         }
 
-        public void lambda$new$0() {
-            selectTab(0);
-        }
-
-        public void lambda$new$1() {
-            selectTab(1);
-        }
-
-        public void lambda$new$2() {
-            selectTab(2);
+        public void lambda$new$0(int i, View view) {
+            selectTab(i);
         }
 
         public void selectTab(int i) {

@@ -516,6 +516,7 @@ public class ViewPagerFixed extends FrameLayout {
                 ((ViewGroup) viewCreateView.getParent()).removeView(viewCreateView);
             }
             addView(viewCreateView);
+            viewCreateView.setTranslationX(getMeasuredWidth());
             this.viewPages[i] = viewCreateView;
             this.adapter.bindView(viewCreateView, i2, this.viewTypes[i]);
             this.viewPages[i].setVisibility(0);

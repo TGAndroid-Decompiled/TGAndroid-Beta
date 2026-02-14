@@ -3000,11 +3000,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
     }
 
     @Override
-    public void lambda$openCrafting$9() {
+    public void lambda$openCrafting$8() {
         if (ContentPreviewViewer.getInstance().isVisible()) {
             ContentPreviewViewer.getInstance().closeWithMenu();
         } else {
-            super.lambda$openCrafting$9();
+            super.lambda$openCrafting$8();
         }
     }
 

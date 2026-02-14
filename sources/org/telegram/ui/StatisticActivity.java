@@ -66,7 +66,6 @@ import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
@@ -94,6 +93,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.CombinedDrawable;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
 import org.telegram.ui.Components.FlatCheckBox;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
@@ -903,12 +903,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.recyclerListView.setClipToPadding(false);
         RecyclerListView recyclerListView2 = this.recyclerListView;
         Objects.requireNonNull(recyclerListView2);
-        this.listBlur3Capture = new ViewGroupPartRenderer(recyclerListView2, sizeNotifierFrameLayout, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView2));
+        this.listBlur3Capture = new ViewGroupPartRenderer(recyclerListView2, sizeNotifierFrameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView2));
         ChannelBoostLayout channelBoostLayout = this.boostLayout;
         if (channelBoostLayout != null) {
             RecyclerListView recyclerListView3 = channelBoostLayout.listView;
             Objects.requireNonNull(recyclerListView3);
-            channelBoostLayout.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView3, sizeNotifierFrameLayout, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView3));
+            channelBoostLayout.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView3, sizeNotifierFrameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView3));
             this.boostLayout.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i3, int i4) {

@@ -1,9 +1,9 @@
 package org.telegram.ui.Stars;
 
-public final class StarGiftSheet$$ExternalSyntheticLambda66 implements Runnable {
+public final class StarGiftSheet$$ExternalSyntheticLambda75 implements Runnable {
     public final StarGiftSheet f$0;
 
-    public StarGiftSheet$$ExternalSyntheticLambda66(StarGiftSheet starGiftSheet) {
+    public StarGiftSheet$$ExternalSyntheticLambda75(StarGiftSheet starGiftSheet) {
         this.f$0 = starGiftSheet;
     }
 

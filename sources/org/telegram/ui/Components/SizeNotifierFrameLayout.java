@@ -44,7 +44,7 @@ import org.telegram.ui.BlurSettingsBottomSheet;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.WallpaperParallaxEffect;
 
-public class SizeNotifierFrameLayout extends FrameLayout {
+public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colorable {
     private static DispatchQueue blurQueue;
     public static boolean drawingBlur;
     private final float DOWN_SCALE;
@@ -162,6 +162,9 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     }
 
     public void onUpdateBackgroundDrawable(Drawable drawable) {
+    }
+
+    public void updateColors() {
     }
 
     protected boolean useRootView() {

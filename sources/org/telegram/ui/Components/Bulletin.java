@@ -74,6 +74,7 @@ import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.quickforward.BlurVisibilityDrawable;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ViewPagerActivity;
 
 public class Bulletin {
     private static final HashMap delegates = new HashMap();
@@ -416,10 +417,13 @@ public class Bulletin {
             Bulletin.this.layout.removeOnLayoutChangeListener(this);
             if (Bulletin.this.showing) {
                 Bulletin.this.layout.onShow();
+                final BaseFragment currentVisibleFragment = Bulletin.this.containerFragment;
+                if (this.val$top && (currentVisibleFragment instanceof ViewPagerActivity)) {
+                    currentVisibleFragment = ((ViewPagerActivity) currentVisibleFragment).getCurrentVisibleFragment();
+                }
                 Bulletin bulletin = Bulletin.this;
-                bulletin.currentDelegate = Bulletin.findDelegate(bulletin.containerFragment, Bulletin.this.containerLayout);
-                if (Bulletin.this.currentDelegate == null && Bulletin.this.containerFragment != null) {
-                    final BaseFragment baseFragment = Bulletin.this.containerFragment;
+                bulletin.currentDelegate = Bulletin.findDelegate(currentVisibleFragment, bulletin.containerLayout);
+                if (Bulletin.this.currentDelegate == null && currentVisibleFragment != null) {
                     Bulletin.this.currentDelegate = new Delegate() {
                         @Override
                         public boolean allowLayoutChanges() {
@@ -458,7 +462,7 @@ public class Bulletin {
 
                         @Override
                         public int getBottomOffset(int i9) {
-                            return baseFragment.getBottomInset();
+                            return currentVisibleFragment.getBottomInset();
                         }
                     };
                 }

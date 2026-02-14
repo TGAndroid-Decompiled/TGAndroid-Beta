@@ -25,7 +25,6 @@ import androidx.core.content.ContextCompat;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BotForumHelper;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -939,9 +938,8 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         this.subtitleIsThinkingBot = false;
         CharSequence printingString = MessagesController.getInstance(this.currentAccount).getPrintingString(this.parentFragment.getDialogId(), this.parentFragment.getThreadId(), false);
-        if (printingString == null && UserObject.isBotForum(currentUser) && BotForumHelper.getInstance(this.currentAccount).isThinking(currentUser.id, (int) this.parentFragment.getTopicId())) {
-            this.subtitleIsThinkingBot = true;
-            printingString = "thinking";
+        if (printingString == null) {
+            UserObject.isBotForum(currentUser);
         }
         CharSequence string2 = "";
         if (printingString != null) {

@@ -52,6 +52,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
     int downloadingFilesStartRow;
     StickerEmptyView emptyView;
     private boolean hasCurrentDownload;
+    private boolean ignoreRequestLayout;
     RecyclerItemsEnterAnimator itemsEnterAnimator;
     String lastQueryString;
     Runnable lastSearchRunnable;
@@ -233,6 +234,29 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
         this.messageHashIdTmp.set(message.getId(), message.getDialogId());
         return true;
+    }
+
+    public void setPagesPaddings(int i, int i2) {
+        setPagesPaddings(i, i2, false);
+    }
+
+    public void setPagesPaddings(int i, int i2, boolean z) {
+        setClipToPadding(false);
+        this.ignoreRequestLayout = z;
+        setPadding(0, i, 0, i2);
+        this.recyclerListView.setPadding(0, i, 0, i2, z);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.recyclerListView.getLayoutParams();
+        marginLayoutParams.topMargin = -i;
+        marginLayoutParams.bottomMargin = -i2;
+        this.ignoreRequestLayout = false;
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.ignoreRequestLayout) {
+            return;
+        }
+        super.requestLayout();
     }
 
     private void checkFilesExist() {

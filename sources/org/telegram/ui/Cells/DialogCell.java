@@ -354,6 +354,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private TimerDrawable timerDrawable;
     private Paint timerPaint;
     private Paint timerPaint2;
+    private String titleOverride;
     private int topClip;
     int topMessageTopicEndIndex;
     int topMessageTopicStartIndex;
@@ -490,6 +491,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             this.rightFragmentOpenedProgress = f;
             invalidate();
         }
+    }
+
+    public void setCurrentDialogId(long j) {
+        this.currentDialogId = j;
     }
 
     public void setIsTransitionSupport(boolean z) {
@@ -1127,6 +1132,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.buildLayout():void");
     }
 
+    public void setTitleOverride(String str) {
+        this.titleOverride = str;
+    }
+
     private SpannableStringBuilder formatInternal(int i, CharSequence charSequence, CharSequence charSequence2) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (i == 1) {
@@ -1750,7 +1759,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         TLRPC.User user;
         super.onPopulateAccessibilityEvent(accessibilityEvent);
         StringBuilder sb = new StringBuilder();
-        if (this.currentDialogFolderId == 1) {
+        String str = this.titleOverride;
+        if (str != null) {
+            sb.append(str);
+            sb.append(". ");
+        } else if (this.currentDialogFolderId == 1) {
             sb.append(LocaleController.getString(R.string.ArchivedChats));
             sb.append(". ");
         } else {

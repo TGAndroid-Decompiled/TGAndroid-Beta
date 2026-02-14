@@ -50,11 +50,14 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
+import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Set;
 import me.vkryl.android.animator.BoolAnimator;
@@ -73,6 +76,7 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -134,6 +138,7 @@ import org.telegram.ui.TON.TONIntroActivity;
 import org.telegram.ui.bots.BotBiometry;
 import org.telegram.ui.bots.BotDownloads;
 import org.telegram.ui.bots.BotLocation;
+import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.SetupEmojiStatusSheet;
 
 public class SettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ImageUpdater.ImageUpdaterDelegate, MainTabsActivity.TabFragmentDelegate, FactorAnimator.Target {
@@ -155,7 +160,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private FrameLayout cameraButton;
     private ImageView cameraImageView;
     private SizeNotifierFrameLayout contentView;
-    private boolean hasMainTabs;
+    public boolean hasMainTabs;
     private IBlur3Capture iBlur3Capture;
     private boolean iBlur3Invalidated;
     private final RectF iBlur3PositionActionBar;
@@ -300,10 +305,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     SettingsActivity.this.iBlur3Invalidated = false;
                 }
                 super.dispatchDraw(canvas);
-                if (SettingsActivity.this.hasMainTabs) {
+                SettingsActivity settingsActivity = SettingsActivity.this;
+                if (settingsActivity.hasMainTabs) {
                     return;
                 }
-                AndroidUtilities.drawNavigationBarProtection(canvas, this, SettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), SettingsActivity.this.navigationBarHeight);
+                AndroidUtilities.drawNavigationBarProtection(canvas, this, settingsActivity.getThemedColor(Theme.key_windowBackgroundWhite), SettingsActivity.this.navigationBarHeight);
             }
 
             @Override
@@ -320,6 +326,12 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 paint.setAlpha(178);
                 canvas.drawRect(rect, paint);
                 paint.setAlpha(alpha);
+            }
+
+            @Override
+            public void updateColors() {
+                super.updateColors();
+                SettingsActivity.this.updateColors();
             }
         };
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
@@ -652,12 +664,18 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void updateColors() {
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        actionBar.setTitleColor(getThemedColor(i));
+        this.actionBar.setItemsColor(getThemedColor(i), false);
         this.contentView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
-        this.titleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.titleView.setTextColor(getThemedColor(i));
         this.subtitleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
         this.searchItem.updateColor();
         int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
         this.navigationBar.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{Theme.multAlpha(themedColor, 0.0f), themedColor}));
+        this.actionBarBackground.invalidate();
+        this.listView.invalidate();
     }
 
     public void updateActionBarVisible() {
@@ -675,6 +693,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        ArrayList<TLRPC.TL_attachMenuBot> arrayList2;
         if (this.searchItem.isSearchFieldVisible2()) {
             arrayList.add(UItem.asSpace(ActionBar.getCurrentActionBarHeight()));
             this.search.fillItems(arrayList);
@@ -770,6 +789,18 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             arrayList.add(SettingCell.Factory.of(13, -14965523, -15431455, i3, string, null, starsAmount));
         }
+        TLRPC.TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
+        if (attachMenuBots != null && (arrayList2 = attachMenuBots.bots) != null && !arrayList2.isEmpty()) {
+            Iterator<TLRPC.TL_attachMenuBot> it = attachMenuBots.bots.iterator();
+            while (it.hasNext()) {
+                TLRPC.TL_attachMenuBot next = it.next();
+                if (next.show_in_side_menu && next.bot_id == 1985737506) {
+                    UItem uItemOfBot = SettingCell.Factory.ofBot(next, -14965523, -15431455, R.drawable.settings_wallet);
+                    uItemOfBot.object = next;
+                    arrayList.add(uItemOfBot);
+                }
+            }
+        }
         if (!getMessagesController().premiumFeaturesBlocked()) {
             arrayList.add(SettingCell.Factory.of(15, -765355, -2148011, R.drawable.settings_business, LocaleController.getString(R.string.TelegramBusiness)));
         }
@@ -829,24 +860,40 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        Object obj = uItem.object;
+        if (obj instanceof TLRPC.TL_attachMenuBot) {
+            final TLRPC.TL_attachMenuBot tL_attachMenuBot = (TLRPC.TL_attachMenuBot) obj;
+            if (tL_attachMenuBot.inactive || tL_attachMenuBot.side_menu_disclaimer_needed) {
+                WebAppDisclaimerAlert.show(getContext(), new Consumer() {
+                    @Override
+                    public final void accept(Object obj2) {
+                        this.f$0.lambda$onClick$15(tL_attachMenuBot, (Boolean) obj2);
+                    }
+                }, null, null);
+            } else {
+                LaunchActivity.showAttachMenuBot(LaunchActivity.instance, this.currentAccount, tL_attachMenuBot, null, true);
+                return;
+            }
+        }
         if (uItem.instanceOf(AccountCell.Factory.class)) {
             int i2 = uItem.intValue;
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null) {
                 launchActivity.switchToAccount(i2, true);
+                return;
             }
             return;
         }
         if (uItem.instanceOf(SettingsSearchCell.Factory.class)) {
-            Object obj = uItem.object;
-            if (obj instanceof ProfileActivity.SearchAdapter.SearchResult) {
-                ((ProfileActivity.SearchAdapter.SearchResult) obj).open(getParentLayout());
-            } else if (obj instanceof MessagesController.FaqSearchResult) {
-                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, this.search.faqWebPage, ((MessagesController.FaqSearchResult) obj).url);
-            }
             Object obj2 = uItem.object;
-            if (obj2 != null) {
-                this.search.addRecent(obj2);
+            if (obj2 instanceof ProfileActivity.SearchAdapter.SearchResult) {
+                ((ProfileActivity.SearchAdapter.SearchResult) obj2).open(getParentLayout());
+            } else if (obj2 instanceof MessagesController.FaqSearchResult) {
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, this.search.faqWebPage, ((MessagesController.FaqSearchResult) obj2).url);
+            }
+            Object obj3 = uItem.object;
+            if (obj3 != null) {
+                this.search.addRecent(obj3);
                 return;
             }
             return;
@@ -923,16 +970,55 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
+    public void lambda$onClick$15(final TLRPC.TL_attachMenuBot tL_attachMenuBot, Boolean bool) {
+        TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
+        tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tL_attachMenuBot.bot_id);
+        tL_messages_toggleBotInAttachMenu.enabled = true;
+        tL_messages_toggleBotInAttachMenu.write_allowed = true;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$onClick$14(tL_attachMenuBot, tLObject, tL_error);
+            }
+        }, 66);
+    }
+
+    public void lambda$onClick$14(final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$onClick$13(tL_attachMenuBot);
+            }
+        });
+    }
+
+    public void lambda$onClick$13(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        tL_attachMenuBot.side_menu_disclaimer_needed = false;
+        tL_attachMenuBot.inactive = false;
+        LaunchActivity.showAttachMenuBot(LaunchActivity.instance, this.currentAccount, tL_attachMenuBot, null, true);
+        MediaDataController.getInstance(this.currentAccount).updateAttachMenuBotsInCache();
+    }
+
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         final String str;
+        Object obj = uItem.object;
+        if (obj instanceof TLRPC.TL_attachMenuBot) {
+            BotWebViewSheet.deleteBot(this.currentAccount, ((TLRPC.TL_attachMenuBot) obj).bot_id, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onLongClick$16();
+                }
+            });
+            return true;
+        }
         if (!uItem.instanceOf(SettingsSearchCell.Factory.class)) {
             return false;
         }
-        Object obj = uItem.object;
-        if (obj instanceof ProfileActivity.SearchAdapter.SearchResult) {
-            str = ((ProfileActivity.SearchAdapter.SearchResult) obj).link;
+        Object obj2 = uItem.object;
+        if (obj2 instanceof ProfileActivity.SearchAdapter.SearchResult) {
+            str = ((ProfileActivity.SearchAdapter.SearchResult) obj2).link;
         } else {
-            str = obj instanceof MessagesController.FaqSearchResult ? ((MessagesController.FaqSearchResult) obj).url : null;
+            str = obj2 instanceof MessagesController.FaqSearchResult ? ((MessagesController.FaqSearchResult) obj2).url : null;
         }
         if (TextUtils.isEmpty(str)) {
             return false;
@@ -940,13 +1026,17 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         ItemOptions.makeOptions(this, view).add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onLongClick$13(str);
+                this.f$0.lambda$onLongClick$17(str);
             }
         }).setScrimViewBackground(this.listView.getClipBackground(view)).show();
         return true;
     }
 
-    public void lambda$onLongClick$13(String str) {
+    public void lambda$onLongClick$16() {
+        this.listView.adapter.update(true);
+    }
+
+    public void lambda$onLongClick$17(String str) {
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this).createCopyLinkBulletin().show();
     }
@@ -979,7 +1069,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         return WindowInsetsCompat.CONSUMED;
     }
 
-    public static class AccountCell extends LinearLayout {
+    public static class AccountCell extends LinearLayout implements Theme.Colorable {
         private ImageView arrowView;
         private AvatarDrawable avatarDrawable;
         private BackupImageView avatarView;
@@ -1046,6 +1136,13 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             addView(this.arrowView, LayoutHelper.createLinear(24, 24, 0.0f, 21, 0, 0, 12, 0));
         }
 
+        @Override
+        public void updateColors() {
+            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+            this.counterView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)));
+            this.arrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+        }
+
         public void set(int r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SettingsActivity.AccountCell.set(int):void");
         }
@@ -1101,7 +1198,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         return false;
     }
 
-    public static class SettingCell extends LinearLayout {
+    public static class SettingCell extends LinearLayout implements Theme.Colorable {
         private final Background iconBackground;
         private final ImageView iconView;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -1147,6 +1244,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             updateColors();
         }
 
+        @Override
         public void updateColors() {
             this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
             this.subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
@@ -1272,17 +1370,29 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 uItemOfFactory.longValue = (i2 & 4294967295L) | (i3 << 32);
                 return uItemOfFactory;
             }
+
+            public static UItem ofBot(TLRPC.TL_attachMenuBot tL_attachMenuBot, int i, int i2, int i3) {
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = SessionDetails$$ExternalSyntheticBackport0.m(tL_attachMenuBot.bot_id);
+                uItemOfFactory.object = tL_attachMenuBot;
+                uItemOfFactory.iconResId = i3;
+                uItemOfFactory.text = tL_attachMenuBot.short_name;
+                uItemOfFactory.longValue = (i & 4294967295L) | (i2 << 32);
+                return uItemOfFactory;
+            }
         }
     }
 
-    public static class SuggestionCell extends LinearLayout {
+    public static class SuggestionCell extends LinearLayout implements Theme.Colorable {
         private ButtonWithCounterView no;
+        private final Theme.ResourcesProvider resourcesProvider;
         private LinkSpanDrawable.LinksTextView textView;
         private LinkSpanDrawable.LinksTextView titleView;
         private ButtonWithCounterView yes;
 
         public SuggestionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.resourcesProvider = resourcesProvider;
             setOrientation(1);
             int i = Theme.key_windowBackgroundWhiteBlackText;
             LinkSpanDrawable.LinksTextView linksTextViewMakeLinkTextView = TextHelper.makeLinkTextView(context, 15.0f, i, true, resourcesProvider);
@@ -1300,6 +1410,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             linearLayout.addView(this.no, LayoutHelper.createLinear(0, 42, 1.0f, 112, 0, 0, 12, 0));
             linearLayout.addView(this.yes, LayoutHelper.createLinear(0, 42, 1.0f, 112, 0, 0, 0, 0));
             addView(linearLayout, LayoutHelper.createLinear(-1, -2, 55, 24, 18, 24, 16));
+        }
+
+        @Override
+        public void updateColors() {
+            LinkSpanDrawable.LinksTextView linksTextView = this.titleView;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            linksTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+            this.textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         }
 
         public void set(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, CharSequence charSequence4, View.OnClickListener onClickListener2) {
@@ -1422,14 +1540,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings" : null}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
-                this.f$0.lambda$openDebugMenu$17(dialogInterface, i3);
+                this.f$0.lambda$openDebugMenu$21(dialogInterface, i3);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$openDebugMenu$17(DialogInterface dialogInterface, int i) {
+    public void lambda$openDebugMenu$21(DialogInterface dialogInterface, int i) {
         int i2;
         int i3;
         int i4 = 0;
@@ -1589,7 +1707,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$openDebugMenu$15(tLObject, tL_error);
+                        this.f$0.lambda$openDebugMenu$19(tLObject, tL_error);
                     }
                 });
                 return;
@@ -1614,7 +1732,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     builder.setItems(new CharSequence[]{spannableStringBuilderReplaceTags, spannableStringBuilderReplaceTags2, AndroidUtilities.replaceTags(sb3.toString())}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface2, int i5) {
-                            SettingsActivity.lambda$openDebugMenu$16(iMeasureDevicePerformanceClass, dialogInterface2, i5);
+                            SettingsActivity.lambda$openDebugMenu$20(iMeasureDevicePerformanceClass, dialogInterface2, i5);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1872,19 +1990,19 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$openDebugMenu$15(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openDebugMenu$19(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
         tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
         tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
         getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                this.f$0.lambda$openDebugMenu$14(tLObject2, tL_error2);
+                this.f$0.lambda$openDebugMenu$18(tLObject2, tL_error2);
             }
         });
     }
 
-    public void lambda$openDebugMenu$14(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openDebugMenu$18(TLObject tLObject, TLRPC.TL_error tL_error) {
         getMessagesController().loadAppConfig();
     }
 
@@ -1910,7 +2028,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public static void lambda$openDebugMenu$16(int i, DialogInterface dialogInterface, int i2) {
+    public static void lambda$openDebugMenu$20(int i, DialogInterface dialogInterface, int i2) {
         int i3 = 2 - i2;
         if (i3 == i) {
             SharedConfig.overrideDevicePerformanceClass(-1);
@@ -2011,21 +2129,21 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$20(inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
+                this.f$0.lambda$didUploadPhoto$24(inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$19(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$didUploadPhoto$23(final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$18(tL_error, tLObject, str);
+                this.f$0.lambda$didUploadPhoto$22(tL_error, tLObject, str);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$18(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
+    public void lambda$didUploadPhoto$22(TLRPC.TL_error tL_error, TLObject tLObject, String str) {
         this.avatarUploadingRequest = -1;
         if (tL_error == null) {
             TLRPC.User user = getMessagesController().getUser(Long.valueOf(getUserConfig().getClientUserId()));
@@ -2081,7 +2199,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         getUserConfig().saveConfig(true);
     }
 
-    public void lambda$didUploadPhoto$20(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
+    public void lambda$didUploadPhoto$24(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2) {
         if (inputFile != null || inputFile2 != null || videoSize != null) {
             if (this.avatar == null) {
                 return;
@@ -2104,7 +2222,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             this.avatarUploadingRequest = getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$didUploadPhoto$19(str, tLObject, tL_error);
+                    this.f$0.lambda$didUploadPhoto$23(str, tLObject, tL_error);
                 }
             });
         } else {

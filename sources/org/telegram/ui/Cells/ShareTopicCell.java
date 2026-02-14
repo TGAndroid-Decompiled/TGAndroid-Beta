@@ -9,7 +9,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -23,11 +25,11 @@ import org.telegram.ui.Components.LetterDrawable;
 
 public class ShareTopicCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
-    private int currentAccount;
+    private final int currentAccount;
     private long currentDialog;
     private long currentTopic;
-    private BackupImageView imageView;
-    private TextView nameTextView;
+    private final BackupImageView imageView;
+    private final TextView nameTextView;
     private final Theme.ResourcesProvider resourcesProvider;
 
     public ShareTopicCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -38,16 +40,16 @@ public class ShareTopicCell extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
-        addView(this.imageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+        addView(backupImageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.nameTextView = textView;
         textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-        this.nameTextView.setTextSize(1, 12.0f);
-        this.nameTextView.setMaxLines(2);
-        this.nameTextView.setGravity(49);
-        this.nameTextView.setLines(2);
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(this.nameTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
+        textView.setTextSize(1, 12.0f);
+        textView.setMaxLines(2);
+        textView.setGravity(49);
+        textView.setLines(2);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
         this.avatarDrawable = new AvatarDrawable(resourcesProvider) {
             @Override
             public void invalidateSelf() {
@@ -63,6 +65,18 @@ public class ShareTopicCell extends FrameLayout {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(103.0f), 1073741824));
     }
 
+    public void setAsNewBotForumTopic(TLRPC.Dialog dialog) {
+        this.nameTextView.setText(LocaleController.getString(R.string.ShareSendToNewTopic));
+        this.imageView.setAnimatedEmojiDrawable(null);
+        ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(ForumBubbleDrawable.serverSupportedColor[0]);
+        LetterDrawable letterDrawable = new LetterDrawable(null, 1);
+        letterDrawable.setTitle("");
+        letterDrawable.scale = 1.8f;
+        CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
+        combinedDrawable.setFullsize(true);
+        this.imageView.setImageDrawable(combinedDrawable);
+    }
+
     public void setTopic(TLRPC.Dialog dialog, TLRPC.TL_forumTopic tL_forumTopic, boolean z, CharSequence charSequence) {
         if (dialog == null) {
             return;
@@ -70,6 +84,8 @@ public class ShareTopicCell extends FrameLayout {
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);
+        } else if (dialog.id > 0) {
+            this.nameTextView.setText(tL_forumTopic.title);
         } else if (chat != null) {
             if (chat.monoforum) {
                 this.nameTextView.setText(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id)));

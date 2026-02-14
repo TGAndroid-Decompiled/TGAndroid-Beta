@@ -31,7 +31,6 @@ import android.widget.EditText;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,7 +66,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.FiltersView;
-import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
@@ -77,7 +75,6 @@ import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.FilteredSearchView;
 import org.telegram.ui.PhotoPickerActivity;
 
@@ -367,14 +364,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.listView = recyclerListView4;
-        ViewGroup containerView = chatAttachAlert.getContainerView();
-        RecyclerListView recyclerListView5 = this.listView;
-        Objects.requireNonNull(recyclerListView5);
-        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, containerView, new ChatAttachAlertQuickRepliesLayout$$ExternalSyntheticLambda1(recyclerListView5));
+        this.iBlur3Capture = recyclerListView4;
+        this.iBlur3CaptureView = recyclerListView4;
         this.occupyNavigationBar = true;
-        this.listView.setSectionsType(2);
+        recyclerListView4.setSectionsType(2);
         this.listView.setVerticalScrollBarEnabled(false);
-        RecyclerListView recyclerListView6 = this.listView;
+        RecyclerListView recyclerListView5 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i4) {
@@ -394,7 +389,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.layoutManager = fillLastLinearLayoutManager2;
-        recyclerListView6.setLayoutManager(fillLastLinearLayoutManager2);
+        recyclerListView5.setLayoutManager(fillLastLinearLayoutManager2);
         this.listView.setClipToPadding(false);
         this.listView.setAdapter(this.listAdapter);
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));

@@ -1786,7 +1786,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws IOException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1796,7 +1796,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1908,7 +1908,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws IOException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1918,7 +1918,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -2936,7 +2936,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition();
     }
 
-    private void createPremiumBlockedText() {
+    private void createPremiumBlockedText() throws Resources.NotFoundException {
         if (this.premiumBlockedText != null) {
             return;
         }
@@ -3299,7 +3299,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void createEnterView() {
+    private void createEnterView() throws Resources.NotFoundException {
         AnonymousClass19 anonymousClass19 = new AnonymousClass19(AndroidUtilities.findActivity(getContext()), this, null, true, new WrappedResourceProvider(this.resourcesProvider) {
             @Override
             public void appendColors() {
@@ -3353,7 +3353,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void updateSendAsButton(boolean z) {
+        public void updateSendAsButton(boolean z) throws Resources.NotFoundException {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             super.updateSendAsButton(peerStoriesView.isPremiumBlocked || peerStoriesView.areLiveCommentsDisabled, z);
         }
@@ -3535,7 +3535,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        protected void updateRecordInterface(int i, boolean z) {
+        protected void updateRecordInterface(int i, boolean z) throws Resources.NotFoundException {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
@@ -3747,7 +3747,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public boolean setDefaultSendAs(long j, long j2) {
+        public boolean setDefaultSendAs(long j, long j2) throws Resources.NotFoundException {
             TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
             if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
                 TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
@@ -4348,7 +4348,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() throws IOException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4358,7 +4358,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, IOException {
+    public void lambda$openRepostStory$38(Activity activity) throws IOException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
@@ -4503,13 +4503,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         });
     }
 
-    public void setDay(long j, ArrayList arrayList, int i) {
+    public void setDay(long j, ArrayList arrayList, int i) throws Resources.NotFoundException {
         this.dialogId = j;
         this.day = arrayList;
         bindInternal(i);
     }
 
-    public void setDialogId(long j, int i) {
+    public void setDialogId(long j, int i) throws Resources.NotFoundException {
         if (this.dialogId != j) {
             this.currentStory.clear();
         }
@@ -4569,7 +4569,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.headerView.titleView.setRightDrawable((Drawable) null);
     }
 
-    private void bindInternal(int i) {
+    private void bindInternal(int i) throws Resources.NotFoundException {
         this.deletedPeer = false;
         this.forceUpdateOffsets = true;
         this.userCanSeeViews = false;
@@ -4805,7 +4805,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void preloadMainImage(long j) {
+    public void preloadMainImage(long j) throws Resources.NotFoundException {
         if (this.dialogId == j && this.day == null) {
             return;
         }
@@ -5209,7 +5209,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         LivePlayer livePlayer;
         if (i != NotificationCenter.storiesUpdated) {
             boolean z = false;
@@ -5319,7 +5319,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void loadSendAsPeers(boolean z) {
+    private void loadSendAsPeers(boolean z) throws Resources.NotFoundException {
         LivePlayer livePlayer;
         if (this.sendAsPeersObj != null) {
             return;
@@ -5401,7 +5401,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition(false);
     }
 
-    private void updatePosition(boolean r45) {
+    private void updatePosition(boolean r45) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePosition(boolean):void");
     }
 
@@ -6049,7 +6049,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void reset() {
+    public void reset() throws Resources.NotFoundException {
         this.headerView.backupImageView.getImageReceiver().setVisible(true, true);
         if (this.changeBoundAnimator != null) {
             this.chatActivityEnterView.reset();
@@ -7774,7 +7774,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         builder.setPositiveButton(LocaleController.getString(R.string.DiscardVoiceMessageAction), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$checkRecordLocked$58(z, alertDialog, i);
             }
         });
@@ -7783,7 +7783,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return true;
     }
 
-    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) {
+    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             if (z) {

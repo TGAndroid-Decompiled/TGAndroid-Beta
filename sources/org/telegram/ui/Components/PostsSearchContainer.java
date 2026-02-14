@@ -8,6 +8,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -56,6 +57,7 @@ public class PostsSearchContainer extends FrameLayout {
     private boolean floodLoading;
     private int floodLoadingRequestId;
     private final BaseFragment fragment;
+    private boolean ignoreRequestLayout;
     private boolean isEmpty;
     private String lastQuery;
     private int lastRate;
@@ -164,6 +166,25 @@ public class PostsSearchContainer extends FrameLayout {
         universalRecyclerView.setAnimateEmptyView(true, 0);
         updateColors();
         updateEmptyView();
+    }
+
+    public void setPagesPaddings(int i, int i2, boolean z) {
+        setClipToPadding(false);
+        this.ignoreRequestLayout = z;
+        setPadding(0, i, 0, i2);
+        this.listView.setPadding(0, i, 0, i2, z);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.listView.getLayoutParams();
+        marginLayoutParams.topMargin = -i;
+        marginLayoutParams.bottomMargin = -i2;
+        this.ignoreRequestLayout = false;
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.ignoreRequestLayout) {
+            return;
+        }
+        super.requestLayout();
     }
 
     public void updateColors() {

@@ -434,6 +434,10 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$5(View view, int i) {
+        if (this.shareTopicsAdapter.botforumWithManageTopics && i == 1) {
+            onTopicCreateCellClick();
+            return;
+        }
         TLRPC.TL_forumTopic itemTopic = this.shareTopicsAdapter.getItemTopic(i);
         if (itemTopic != null) {
             onTopicCellClick(itemTopic);
@@ -842,8 +846,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             updateSelectedCount(1);
         } else {
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog.id));
             TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
-            if (DialogObject.isChatDialog(dialog.id) && (ChatObject.isForum(chat2) || (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2)))) {
+            if (UserObject.isBotForum(user) || (DialogObject.isChatDialog(dialog.id) && (ChatObject.isForum(chat2) || (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2))))) {
                 this.selectedTopicDialog = dialog;
                 this.topicsLayoutManager.scrollToPositionWithOffset(0, this.scrollOffsetY - this.topicsGridView.getPaddingTop());
                 final AtomicReference atomicReference = new AtomicReference();
@@ -913,6 +918,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             if (((Long) objArr[0]).longValue() == (-this.val$dialog.id)) {
                 boolean z = (ShareAlert.this.shareTopicsAdapter.topics == null && MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getTopicsController().getTopics(-this.val$dialog.id) != null) || this.val$timeoutRef.get() == null;
                 ShareAlert.this.shareTopicsAdapter.topics = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getTopicsController().getTopics(-this.val$dialog.id);
+                ShareAlert.this.shareTopicsAdapter.botforumWithManageTopics = UserObject.isBotForumWithEditableTopics(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id);
                 if (z) {
                     ShareAlert.this.shareTopicsAdapter.notifyDataSetChanged();
                 }
@@ -924,17 +930,23 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     ShareAlert.this.topicsGridView.setAlpha(0.0f);
                     ShareAlert.this.topicsBackActionBar.setVisibility(0);
                     ShareAlert.this.topicsBackActionBar.setAlpha(0.0f);
-                    if (ChatObject.isMonoForum(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id)) {
-                        ShareAlert shareAlert = ShareAlert.this;
-                        shareAlert.topicsBackActionBar.setTitle(ForumUtilities.getMonoForumTitle(((BottomSheet) shareAlert).currentAccount, MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getChat(Long.valueOf(-this.val$dialog.id))));
-                        ShareAlert.this.topicsBackActionBar.setSubtitle(LocaleController.getString(R.string.SelectChat));
+                    if (!UserObject.isBotForum(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id)) {
+                        if (ChatObject.isMonoForum(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id)) {
+                            ShareAlert shareAlert = ShareAlert.this;
+                            shareAlert.topicsBackActionBar.setTitle(ForumUtilities.getMonoForumTitle(((BottomSheet) shareAlert).currentAccount, MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getChat(Long.valueOf(-this.val$dialog.id))));
+                            ShareAlert.this.topicsBackActionBar.setSubtitle(LocaleController.getString(R.string.SelectChat));
+                        } else {
+                            ShareAlert shareAlert2 = ShareAlert.this;
+                            shareAlert2.topicsBackActionBar.setTitle(MessagesController.getInstance(((BottomSheet) shareAlert2).currentAccount).getChat(Long.valueOf(-this.val$dialog.id)).title);
+                            ShareAlert.this.topicsBackActionBar.setSubtitle(LocaleController.getString(R.string.SelectTopic));
+                        }
                     } else {
-                        ShareAlert shareAlert2 = ShareAlert.this;
-                        shareAlert2.topicsBackActionBar.setTitle(MessagesController.getInstance(((BottomSheet) shareAlert2).currentAccount).getChat(Long.valueOf(-this.val$dialog.id)).title);
-                        ShareAlert.this.topicsBackActionBar.setSubtitle(LocaleController.getString(R.string.SelectTopic));
+                        ShareAlert shareAlert3 = ShareAlert.this;
+                        shareAlert3.topicsBackActionBar.setTitle(DialogObject.getShortName(MessagesController.getInstance(((BottomSheet) shareAlert3).currentAccount).getUser(Long.valueOf(this.val$dialog.id))));
+                        ShareAlert.this.topicsBackActionBar.setSubtitle(LocaleController.getString(R.string.SelectChat));
                     }
-                    ShareAlert shareAlert3 = ShareAlert.this;
-                    shareAlert3.searchWasVisibleBeforeTopics = shareAlert3.searchIsVisible;
+                    ShareAlert shareAlert4 = ShareAlert.this;
+                    shareAlert4.searchWasVisibleBeforeTopics = shareAlert4.searchIsVisible;
                     if (ShareAlert.this.topicsAnimation != null) {
                         ShareAlert.this.topicsAnimation.cancel();
                     }
@@ -1592,7 +1604,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     @Override
-    public void lambda$openCrafting$9() {
+    public void lambda$openCrafting$8() {
         if (this.selectedTopicDialog != null) {
             collapseTopics();
             return;
@@ -1601,7 +1613,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         if (editTextEmoji != null && editTextEmoji.isPopupShowing()) {
             this.commentTextView.hidePopup(true);
         } else {
-            super.lambda$openCrafting$9();
+            super.lambda$openCrafting$8();
         }
     }
 
@@ -2028,6 +2040,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     private class ShareTopicsAdapter extends RecyclerListView.SelectionAdapter {
+        private boolean botforumWithManageTopics;
         private Context context;
         private List topics;
 
@@ -2043,14 +2056,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         @Override
         public int getItemCount() {
             List list = this.topics;
-            if (list != null) {
-                return list.size() + 1;
-            }
-            return 0;
+            return (list != null ? list.size() + 1 : 0) + (this.botforumWithManageTopics ? 1 : 0);
         }
 
         public TLRPC.TL_forumTopic getItemTopic(int i) {
             int i2 = i - 1;
+            if (this.botforumWithManageTopics) {
+                i2 = i - 2;
+            }
             List list = this.topics;
             if (list == null || i2 < 0 || i2 >= list.size()) {
                 return null;
@@ -2066,7 +2079,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View shareTopicCell;
-            if (i == 0) {
+            if (i == 0 || i == 2) {
                 shareTopicCell = new ShareTopicCell(this.context, ((BottomSheet) ShareAlert.this).resourcesProvider);
                 shareTopicCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(100.0f)));
             } else {
@@ -2080,7 +2093,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0) {
                 ShareTopicCell shareTopicCell = (ShareTopicCell) viewHolder.itemView;
-                if (this.topics != null) {
+                if (i == 1 && this.botforumWithManageTopics) {
+                    shareTopicCell.setAsNewBotForumTopic(ShareAlert.this.selectedTopicDialog);
+                } else if (this.topics != null) {
                     TLRPC.TL_forumTopic itemTopic = getItemTopic(i);
                     shareTopicCell.setTopic(ShareAlert.this.selectedTopicDialog, itemTopic, itemTopic != null && ShareAlert.this.selectedDialogs.indexOfKey((long) itemTopic.id) >= 0, null);
                 }
@@ -2753,6 +2768,37 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 ShareDialogCell shareDialogCell = (ShareDialogCell) childAt;
                 if (shareDialogCell.getCurrentDialog() == this.selectedTopicDialog.id) {
                     shareDialogCell.setTopic(tL_forumTopic, zIsMonoForum, true);
+                    shareDialogCell.setChecked(true, true);
+                }
+            }
+        }
+        collapseTopics();
+    }
+
+    private void onTopicCreateCellClick() {
+        TLRPC.Dialog dialog = this.selectedTopicDialog;
+        if (dialog == null) {
+            return;
+        }
+        this.selectedDialogs.put(dialog.id, dialog);
+        this.selectedDialogTopics.remove(dialog);
+        updateSelectedCount(2);
+        if (this.searchIsVisible || this.searchWasVisibleBeforeTopics) {
+            if (((TLRPC.Dialog) this.listAdapter.dialogsMap.get(dialog.id)) == null) {
+                this.listAdapter.dialogsMap.put(dialog.id, dialog);
+                this.listAdapter.dialogs.add(!this.listAdapter.dialogs.isEmpty() ? 1 : 0, dialog);
+            }
+            this.listAdapter.notifyDataSetChanged();
+            this.updateSearchAdapter = false;
+            this.searchView.editText.setText("");
+            checkCurrentList(false);
+        }
+        for (int i = 0; i < getMainGridView().getChildCount(); i++) {
+            View childAt = getMainGridView().getChildAt(i);
+            if (childAt instanceof ShareDialogCell) {
+                ShareDialogCell shareDialogCell = (ShareDialogCell) childAt;
+                if (shareDialogCell.getCurrentDialog() == this.selectedTopicDialog.id) {
+                    shareDialogCell.setTopic(null, false, true);
                     shareDialogCell.setChecked(true, true);
                 }
             }

@@ -21,11 +21,6 @@ public class BotForumHelper extends BaseController {
     private final DialogTopicIdKeyMap<BotDraftMessage> botTextDraftsByRandomIds;
     private final LongSparseArray<List<MessagesStorage.IntCallback>> pendingBotTopics;
 
-    public boolean isThinking(long j, int i) {
-        LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j, i);
-        return longSparseArray != null && longSparseArray.size() > 0;
-    }
-
     private MessageObject createDraftMessage(long j, int i, long j2, int i2, TLRPC.TL_textWithEntities tL_textWithEntities) {
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.dialog_id = j;
@@ -100,7 +95,12 @@ public class BotForumHelper extends BaseController {
                 return botDraftMessageValueAt.messageObject;
             }
         }
-        return null;
+        if (longSparseArray.size() <= 0) {
+            return null;
+        }
+        BotDraftMessage botDraftMessageValueAt2 = longSparseArray.valueAt(0);
+        FileLog.d("[BotForum] onDraftNewMessage " + j + " " + i);
+        return botDraftMessageValueAt2.messageObject;
     }
 
     public void lambda$onBotForumDraftUpdate$0(long j, int i, long j2) {

@@ -652,7 +652,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
     }
 
     @Override
-    public void lambda$openCrafting$9() {
+    public void lambda$openCrafting$8() {
         close();
     }
 

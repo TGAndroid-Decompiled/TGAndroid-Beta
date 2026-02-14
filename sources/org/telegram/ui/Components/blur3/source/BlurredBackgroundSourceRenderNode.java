@@ -157,7 +157,7 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         }
     }
 
-    public void invalidateDisplayListForDrawables() throws InterruptedException {
+    public void invalidateDisplayListForDrawables() {
         Iterator it = this.drawables.iterator();
         while (it.hasNext()) {
             ((BlurredBackgroundDrawableRenderNode) it.next()).invalidateDisplayList();
