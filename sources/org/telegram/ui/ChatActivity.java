@@ -667,6 +667,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean hasBotWebView;
     private boolean hasBotsCommands;
     private boolean hasQuickReplies;
+    private boolean hasSendingMessagesInBotForum;
     private boolean hasUnfavedSelected;
     private HashtagHistoryView hashtagHistoryView;
     private FlickerLoadingView hashtagLoadingView;
@@ -1229,7 +1230,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$57210(ChatActivity chatActivity) {
+    static int access$57310(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -2373,6 +2374,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public void prepareMessageSending() {
             ChatActivity.this.waitingForSendingMessageLoad = true;
+            if (ChatActivity.this.chatAdapter != null) {
+                ChatActivity.this.chatAdapter.checkRemoveBotForumRowsStartThreadRow();
+            }
         }
 
         @Override
@@ -7778,6 +7782,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (num.intValue() == getTopicId()) {
             return;
         }
+        if (num.intValue() == 0) {
+            this.hasSendingMessagesInBotForum = false;
+        }
         TLRPC.TL_forumTopic topic = this.topicsTabs.getTopic(num.intValue());
         TLRPC.Message message = topic == null ? null : topic.topicStartMessage;
         if (message == null && topic != null && (tL_forumTopicFindTopic = getMessagesController().getTopicsController().findTopic(-getDialogId(), topic.id)) != null) {
@@ -7820,6 +7827,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 this.replyOriginalChat = null;
                 this.isTopic = false;
                 this.isComments = false;
+            }
+            ChatActivityAdapter chatActivityAdapter = this.chatAdapter;
+            if (chatActivityAdapter != null) {
+                chatActivityAdapter.updateRowsSafe();
             }
             firstLoadMessages();
             updateTitle(true);
@@ -12400,6 +12411,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         if ((i != 0) == (this.chatMode == 1)) {
             this.waitingForSendingMessageLoad = true;
+            ChatActivityAdapter chatActivityAdapter = this.chatAdapter;
+            if (chatActivityAdapter != null) {
+                chatActivityAdapter.checkRemoveBotForumRowsStartThreadRow();
+            }
         }
         int iSendMessage = getSendMessagesHelper().sendMessage(arrayList, this.dialog_id, z, z2, z3, i, 0, getThreadMessage(), -1, j, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
         AlertsCreator.showSendMediaAlert(iSendMessage, this, this.themeDelegate);
@@ -22684,6 +22699,26 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             TLRPC.User user = ChatActivity.this.currentUser;
             this.isBot = user != null && user.bot;
             setHasStableIds(true);
+        }
+
+        public void checkRemoveBotForumRowsStartThreadRow() {
+            boolean z = false;
+            if (UserObject.isBotForum(ChatActivity.this.currentUser) && ChatActivity.this.getTopicId() == 0) {
+                ChatActivity.this.hasSendingMessagesInBotForum = true;
+                int i = this.botInfoRow;
+                if (i >= 0) {
+                    super.notifyItemRemoved(i);
+                    z = true;
+                }
+                int i2 = this.botForumStartThreadRow;
+                if (i2 >= 0) {
+                    super.notifyItemRemoved(i2);
+                    z = true;
+                }
+            }
+            if (z) {
+                updateRowsInternal();
+            }
         }
 
         public void updateRowsSafe() {

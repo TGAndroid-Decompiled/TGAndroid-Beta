@@ -395,8 +395,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             }
         }
         if (this.featured.size() > 3) {
-            ArrayList arrayList3 = this.featured;
-            arrayList3.removeAll(arrayList3.subList(3, arrayList3.size()));
+            this.featured = new ArrayList(this.featured.subList(0, 3));
             z = true;
         }
         if (this.currentType == 5 && !this.featured.isEmpty()) {

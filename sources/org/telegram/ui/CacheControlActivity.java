@@ -727,7 +727,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CacheControlActivity.cleanDirJava(java.lang.String, int, int[], org.telegram.messenger.Utilities$Callback):void");
     }
 
-    public void lambda$cleanupFolders$11(final org.telegram.messenger.Utilities.Callback2 r25, final java.lang.Runnable r26) {
+    public void lambda$cleanupFolders$11(final org.telegram.messenger.Utilities.Callback2 r23, final java.lang.Runnable r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CacheControlActivity.lambda$cleanupFolders$11(org.telegram.messenger.Utilities$Callback2, java.lang.Runnable):void");
     }
 
