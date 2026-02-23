@@ -122,6 +122,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.OAuthSheet;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.bots.BotBiometry;
@@ -237,7 +238,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public void onWebViewDestroyed(MyWebView myWebView) {
     }
 
-    static int access$1508() {
+    static int access$1408() {
         int i = tags;
         tags = i + 1;
         return i;
@@ -267,7 +268,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.notifyLocationChecked = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$49();
+                this.f$0.lambda$new$51();
             }
         };
         this.lastDialogType = -1;
@@ -547,9 +548,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (webViewProxy == null) {
                 WebViewProxy webViewProxy2 = new WebViewProxy(this.webView, this);
                 this.webViewProxy = webViewProxy2;
-                this.webView.addJavascriptInterface(webViewProxy2, "TelegramWebview");
+                this.webView.addJavascriptInterface(webViewProxy2, "TelegramWebviewProxy");
             } else if (myWebView == null) {
-                this.webView.addJavascriptInterface(webViewProxy, "TelegramWebview");
+                this.webView.addJavascriptInterface(webViewProxy, "TelegramWebviewProxy");
             }
             this.webViewProxy.setContainer(this);
         }
@@ -1299,6 +1300,35 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 } catch (Exception unused) {
                     return;
                 }
+            case "oauth_request":
+                d("oauth_request " + str2);
+                if (this.webView != null) {
+                    String originHost = getOriginHost();
+                    if (!TextUtils.isEmpty(originHost)) {
+                        try {
+                            final String strOptString = new JSONObject(str2).optString("url");
+                            notifyEvent("oauth_supported", obj("version", 1));
+                            if (!TextUtils.isEmpty(strOptString)) {
+                                final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
+                                tL_messages_requestUrlAuth.url = strOptString;
+                                int i = tL_messages_requestUrlAuth.flags;
+                                tL_messages_requestUrlAuth.in_app_origin = originHost;
+                                tL_messages_requestUrlAuth.flags = i | 12;
+                                ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestUrlAuth, new RequestDelegate() {
+                                    @Override
+                                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                        this.f$0.lambda$onWebEventReceived$6(tL_messages_requestUrlAuth, strOptString, tLObject, tL_error);
+                                    }
+                                }, 2);
+                                break;
+                            }
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                    }
+                }
+                break;
             case "siteName":
                 d("siteName " + str2);
                 MyWebView myWebView2 = this.webView;
@@ -1327,30 +1357,54 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
+    public void lambda$onWebEventReceived$6(final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$onWebEventReceived$5(tLObject, tL_messages_requestUrlAuth, str, tL_error);
+            }
+        });
+    }
+
+    public void lambda$onWebEventReceived$5(TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error) {
+        if (tLObject == null) {
+            if (tL_error != null) {
+                BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+            }
+        } else if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
+            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, false, this);
+        } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
+            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, false, this);
+        } else if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
+            AlertsCreator.showOpenUrlAlert(getContext(), str, false, true, true, false, 0L, null, null);
+        }
+    }
+
+    public String getOriginHost() {
+        String url;
+        MyWebView myWebView = this.webView;
+        if (myWebView != null && (url = myWebView.getUrl()) != null && !url.isEmpty()) {
+            Uri uri = Uri.parse(url);
+            String scheme = uri.getScheme();
+            String host = uri.getHost();
+            int port = uri.getPort();
+            if (scheme != null && host != null) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(scheme);
+                sb.append("://");
+                sb.append(host);
+                if (port != 0 && ((!scheme.equalsIgnoreCase("http") || port != 80) && (!scheme.equalsIgnoreCase("https") || port != 443))) {
+                    sb.append(":");
+                    sb.append(port);
+                }
+                return sb.toString();
+            }
+        }
+        return null;
+    }
+
     public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r41, java.lang.String r42, java.lang.String r43) throws org.json.JSONException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onEventReceived(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, java.lang.String, java.lang.String):void");
-    }
-
-    public void lambda$onEventReceived$5(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
-        alertDialog.dismiss();
-        try {
-            this.lastClickMs = System.currentTimeMillis();
-            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
-            atomicBoolean.set(true);
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
-    }
-
-    public void lambda$onEventReceived$6(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
-        alertDialog.dismiss();
-        try {
-            this.lastClickMs = System.currentTimeMillis();
-            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
-            atomicBoolean.set(true);
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
     }
 
     public void lambda$onEventReceived$7(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
@@ -1364,7 +1418,29 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$8(AtomicBoolean atomicBoolean, DialogInterface dialogInterface) {
+    public void lambda$onEventReceived$8(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
+        alertDialog.dismiss();
+        try {
+            this.lastClickMs = System.currentTimeMillis();
+            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
+            atomicBoolean.set(true);
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$9(PopupButton popupButton, AtomicBoolean atomicBoolean, AlertDialog alertDialog, int i) {
+        alertDialog.dismiss();
+        try {
+            this.lastClickMs = System.currentTimeMillis();
+            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
+            atomicBoolean.set(true);
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$10(AtomicBoolean atomicBoolean, DialogInterface dialogInterface) {
         if (!atomicBoolean.get()) {
             notifyEvent("popup_closed", new JSONObject());
         }
@@ -1372,16 +1448,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.lastDialogClosed = System.currentTimeMillis();
     }
 
-    public void lambda$onEventReceived$10(final String str, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$12(final String str, final TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws JSONException {
-                this.f$0.lambda$onEventReceived$9(tL_error, str, tL_inputInvoiceSlug, tLObject);
+                this.f$0.lambda$onEventReceived$11(tL_error, str, tL_inputInvoiceSlug, tLObject);
             }
         });
     }
 
-    public void lambda$onEventReceived$9(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) throws JSONException {
+    public void lambda$onEventReceived$11(TLRPC.TL_error tL_error, String str, TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, TLObject tLObject) throws JSONException {
         if (tL_error != null) {
             onInvoiceStatusUpdate(str, "failed");
         } else {
@@ -1389,16 +1465,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$17(final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$19(final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws JSONException {
-                this.f$0.lambda$onEventReceived$16(tLObject, i, myWebView, tL_error);
+                this.f$0.lambda$onEventReceived$18(tLObject, i, myWebView, tL_error);
             }
         });
     }
 
-    public void lambda$onEventReceived$16(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) throws JSONException {
+    public void lambda$onEventReceived$18(TLObject tLObject, final int i, final MyWebView myWebView, TLRPC.TL_error tL_error) throws JSONException {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             if (tL_error != null) {
                 unknownError(tL_error.text);
@@ -1408,7 +1484,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 showDialog(3, new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotWebViewRequestWriteTitle)).setMessage(LocaleController.getString(R.string.BotWebViewRequestWriteMessage)).setPositiveButton(LocaleController.getString(R.string.BotWebViewRequestAllow), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i2) {
-                        this.f$0.lambda$onEventReceived$13(strArr, alertDialog, i2);
+                        this.f$0.lambda$onEventReceived$15(strArr, alertDialog, i2);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new AlertDialog.OnButtonClickListener() {
                     @Override
@@ -1418,7 +1494,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }).create(), new Runnable() {
                     @Override
                     public final void run() throws JSONException {
-                        BotWebViewContainer.lambda$onEventReceived$15(strArr, i, myWebView);
+                        BotWebViewContainer.lambda$onEventReceived$17(strArr, i, myWebView);
                     }
                 });
                 return;
@@ -1433,27 +1509,27 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$13(final String[] strArr, final AlertDialog alertDialog, int i) {
+    public void lambda$onEventReceived$15(final String[] strArr, final AlertDialog alertDialog, int i) {
         TL_bots.allowSendMessage allowsendmessage = new TL_bots.allowSendMessage();
         allowsendmessage.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(allowsendmessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$onEventReceived$12(strArr, alertDialog, tLObject, tL_error);
+                this.f$0.lambda$onEventReceived$14(strArr, alertDialog, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$onEventReceived$12(final String[] strArr, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$14(final String[] strArr, final AlertDialog alertDialog, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onEventReceived$11(tLObject, strArr, tL_error, alertDialog);
+                this.f$0.lambda$onEventReceived$13(tLObject, strArr, tL_error, alertDialog);
             }
         });
     }
 
-    public void lambda$onEventReceived$11(TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, AlertDialog alertDialog) {
+    public void lambda$onEventReceived$13(TLObject tLObject, String[] strArr, TLRPC.TL_error tL_error, AlertDialog alertDialog) {
         if (tLObject != null) {
             strArr[0] = "allowed";
             if (tLObject instanceof TLRPC.Updates) {
@@ -1466,7 +1542,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.dismiss();
     }
 
-    public static void lambda$onEventReceived$15(String[] strArr, int i, MyWebView myWebView) throws JSONException {
+    public static void lambda$onEventReceived$17(String[] strArr, int i, MyWebView myWebView) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", strArr[0]);
@@ -1476,16 +1552,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$19(final String str, final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$21(final String str, final int i, final MyWebView myWebView, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws JSONException {
-                this.f$0.lambda$onEventReceived$18(str, tLObject, tL_error, i, myWebView);
+                this.f$0.lambda$onEventReceived$20(str, tLObject, tL_error, i, myWebView);
             }
         });
     }
 
-    public void lambda$onEventReceived$18(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) throws JSONException {
+    public void lambda$onEventReceived$20(String str, TLObject tLObject, TLRPC.TL_error tL_error, int i, MyWebView myWebView) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("req_id", str);
@@ -1501,14 +1577,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$21(String[] strArr, boolean z, final int i, final MyWebView myWebView, AlertDialog alertDialog, int i2) throws JSONException {
+    public void lambda$onEventReceived$23(String[] strArr, boolean z, final int i, final MyWebView myWebView, AlertDialog alertDialog, int i2) throws JSONException {
         strArr[0] = null;
         alertDialog.dismiss();
         if (z) {
             MessagesController.getInstance(this.currentAccount).unblockPeer(this.botUser.id, new Runnable() {
                 @Override
                 public final void run() throws JSONException {
-                    this.f$0.lambda$onEventReceived$20(i, myWebView);
+                    this.f$0.lambda$onEventReceived$22(i, myWebView);
                 }
             });
             return;
@@ -1523,7 +1599,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$20(int i, MyWebView myWebView) throws JSONException {
+    public void lambda$onEventReceived$22(int i, MyWebView myWebView) throws JSONException {
         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
         try {
             JSONObject jSONObject = new JSONObject();
@@ -1534,7 +1610,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public static void lambda$onEventReceived$23(String[] strArr, int i, MyWebView myWebView) throws JSONException {
+    public static void lambda$onEventReceived$25(String[] strArr, int i, MyWebView myWebView) throws JSONException {
         if (strArr[0] == null) {
             return;
         }
@@ -1547,14 +1623,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$24() {
+    public void lambda$onEventReceived$26() {
         BotBiometry botBiometry = this.biometry;
         botBiometry.access_requested = true;
         botBiometry.save();
         notifyBiometryReceived();
     }
 
-    public void lambda$onEventReceived$26(Runnable[] runnableArr, AlertDialog alertDialog, int i) {
+    public void lambda$onEventReceived$28(Runnable[] runnableArr, AlertDialog alertDialog, int i) {
         if (runnableArr[0] != null) {
             runnableArr[0] = null;
         }
@@ -1564,12 +1640,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.biometry.requestToken(null, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$onEventReceived$25((Boolean) obj, (String) obj2);
+                this.f$0.lambda$onEventReceived$27((Boolean) obj, (String) obj2);
             }
         });
     }
 
-    public void lambda$onEventReceived$25(Boolean bool, String str) {
+    public void lambda$onEventReceived$27(Boolean bool, String str) {
         if (bool.booleanValue()) {
             BotBiometry botBiometry = this.biometry;
             botBiometry.access_granted = true;
@@ -1578,7 +1654,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         notifyBiometryReceived();
     }
 
-    public void lambda$onEventReceived$27(Runnable[] runnableArr, AlertDialog alertDialog, int i) {
+    public void lambda$onEventReceived$29(Runnable[] runnableArr, AlertDialog alertDialog, int i) {
         if (runnableArr[0] != null) {
             runnableArr[0] = null;
         }
@@ -1589,7 +1665,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         notifyBiometryReceived();
     }
 
-    public static void lambda$onEventReceived$28(Runnable[] runnableArr, DialogInterface dialogInterface) {
+    public static void lambda$onEventReceived$30(Runnable[] runnableArr, DialogInterface dialogInterface) {
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
             runnable.run();
@@ -1597,7 +1673,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$29(Boolean bool, String str) throws JSONException {
+    public void lambda$onEventReceived$31(Boolean bool, String str) throws JSONException {
         if (bool.booleanValue()) {
             this.biometry.access_granted = true;
         }
@@ -1611,7 +1687,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$30(String str, Boolean bool) throws JSONException {
+    public void lambda$onEventReceived$32(String str, Boolean bool) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("status", bool.booleanValue() ? TextUtils.isEmpty(str) ? "removed" : "updated" : "failed");
@@ -1621,16 +1697,16 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$34(final AlertDialog alertDialog, final String str, final String str2, final String str3, final File file) {
+    public void lambda$onEventReceived$36(final AlertDialog alertDialog, final String str, final String str2, final String str3, final File file) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onEventReceived$33(file, alertDialog, str, str2, str3);
+                this.f$0.lambda$onEventReceived$35(file, alertDialog, str, str2, str3);
             }
         });
     }
 
-    public void lambda$onEventReceived$33(final File file, final AlertDialog alertDialog, final String str, final String str2, final String str3) {
+    public void lambda$onEventReceived$35(final File file, final AlertDialog alertDialog, final String str, final String str2, final String str3) {
         if (file == null) {
             alertDialog.dismissUnless(500L);
             return;
@@ -1639,18 +1715,18 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onEventReceived$31(iArr, file, alertDialog, str, str2, str3);
+                this.f$0.lambda$onEventReceived$33(iArr, file, alertDialog, str, str2, str3);
             }
         };
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.lambda$onEventReceived$32(file, iArr, runnable);
+                BotWebViewContainer.lambda$onEventReceived$34(file, iArr, runnable);
             }
         });
     }
 
-    public void lambda$onEventReceived$31(int[] iArr, File file, AlertDialog alertDialog, String str, String str2, String str3) {
+    public void lambda$onEventReceived$33(int[] iArr, File file, AlertDialog alertDialog, String str, String str2, String str3) {
         StoryRecorder.SourceView sourceView;
         StoryEntry storyEntryFromPhotoShoot;
         File file2;
@@ -1713,12 +1789,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.dismissUnless(500L);
     }
 
-    public static void lambda$onEventReceived$32(File file, int[] iArr, Runnable runnable) {
+    public static void lambda$onEventReceived$34(File file, int[] iArr, Runnable runnable) {
         AnimatedFileDrawable.getVideoInfo(file.getAbsolutePath(), iArr);
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$onEventReceived$35(Boolean bool) {
+    public void lambda$onEventReceived$37(Boolean bool) {
         if (bool.booleanValue()) {
             notifyEvent("home_screen_added", null);
         } else {
@@ -1726,7 +1802,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$36(String str, TLRPC.Document document) {
+    public void lambda$onEventReceived$38(String str, TLRPC.Document document) {
         if (str == null) {
             notifyEvent("emoji_status_set", null);
             Delegate delegate = this.delegate;
@@ -1739,7 +1815,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         notifyEvent("emoji_status_failed", obj("error", str));
     }
 
-    public void lambda$onEventReceived$37(Boolean bool, String str) {
+    public void lambda$onEventReceived$39(Boolean bool, String str) {
         Delegate delegate;
         notifyEmojiStatusAccess(str);
         if (bool.booleanValue() && "allowed".equalsIgnoreCase(str) && (delegate = this.delegate) != null) {
@@ -1747,49 +1823,49 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$39(Boolean bool, Boolean bool2) {
+    public void lambda$onEventReceived$41(Boolean bool, Boolean bool2) {
         if (this.delegate != null && bool.booleanValue()) {
             this.delegate.onLocationGranted(bool2.booleanValue());
         }
         this.location.requestObject(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onEventReceived$38((JSONObject) obj);
+                this.f$0.lambda$onEventReceived$40((JSONObject) obj);
             }
         });
-    }
-
-    public void lambda$onEventReceived$38(JSONObject jSONObject) {
-        notifyEvent("location_requested", jSONObject);
     }
 
     public void lambda$onEventReceived$40(JSONObject jSONObject) {
         notifyEvent("location_requested", jSONObject);
     }
 
-    public void lambda$onEventReceived$43(final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$42(JSONObject jSONObject) {
+        notifyEvent("location_requested", jSONObject);
+    }
+
+    public void lambda$onEventReceived$45(final String str, final String str2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onEventReceived$42(tLObject, str, str2);
+                this.f$0.lambda$onEventReceived$44(tLObject, str, str2);
             }
         });
     }
 
-    public void lambda$onEventReceived$42(TLObject tLObject, final String str, final String str2) {
+    public void lambda$onEventReceived$44(TLObject tLObject, final String str, final String str2) {
         if (!(tLObject instanceof TLRPC.TL_boolTrue)) {
             notifyEvent("file_download_requested", obj("status", "cancelled"));
         } else {
             BotDownloads.showAlert(getContext(), str, str2, UserObject.getUserName(this.botUser), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onEventReceived$41(str, str2, (Boolean) obj);
+                    this.f$0.lambda$onEventReceived$43(str, str2, (Boolean) obj);
                 }
             });
         }
     }
 
-    public void lambda$onEventReceived$41(String str, String str2, Boolean bool) {
+    public void lambda$onEventReceived$43(String str, String str2, Boolean bool) {
         if (!bool.booleanValue()) {
             notifyEvent("file_download_requested", obj("status", "cancelled"));
         } else {
@@ -1798,7 +1874,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$44() {
+    public void lambda$onEventReceived$46() {
         Delegate delegate = this.delegate;
         if (delegate != null) {
             delegate.onCloseToTabs();
@@ -1806,7 +1882,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         LaunchActivity.dismissAllWeb();
     }
 
-    public void lambda$onEventReceived$46(final BotWebViewProxy botWebViewProxy, String str, final ArrayList arrayList) {
+    public void lambda$onEventReceived$48(final BotWebViewProxy botWebViewProxy, String str, final ArrayList arrayList) {
         if (TextUtils.isEmpty(str)) {
             notifyEvent("prepared_message_sent", null);
             Delegate delegate = this.delegate;
@@ -1816,7 +1892,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewContainer.lambda$onEventReceived$45(botWebViewProxy, arrayList);
+                    BotWebViewContainer.lambda$onEventReceived$47(botWebViewProxy, arrayList);
                 }
             }, 500L);
             return;
@@ -1824,7 +1900,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         notifyEvent("prepared_message_failed", obj("error", str));
     }
 
-    public static void lambda$onEventReceived$45(BotWebViewProxy botWebViewProxy, ArrayList arrayList) {
+    public static void lambda$onEventReceived$47(BotWebViewProxy botWebViewProxy, ArrayList arrayList) {
         BotWebViewContainer botWebViewContainer;
         Delegate delegate;
         if (botWebViewProxy == null || (botWebViewContainer = botWebViewProxy.container) == null || (delegate = botWebViewContainer.delegate) == null) {
@@ -1833,7 +1909,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         delegate.onSharedTo(arrayList);
     }
 
-    public void lambda$onEventReceived$47(boolean z, double d, String str, double d2) {
+    public void lambda$onEventReceived$49(boolean z, double d, String str, double d2) {
         this.onVerifiedAge.run(Boolean.valueOf(z), Double.valueOf(d), str, Double.valueOf(d2));
     }
 
@@ -1929,7 +2005,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         botStorage.showChooseStorage(getContext(), storagesWithKey, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                this.f$0.lambda$restoreStorageKey$48(str3, string, botStorage, strOptString, str2, (String) obj);
+                                this.f$0.lambda$restoreStorageKey$50(str3, string, botStorage, strOptString, str2, (String) obj);
                             }
                         });
                     }
@@ -1948,7 +2024,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$restoreStorageKey$48(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
+    public void lambda$restoreStorageKey$50(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
         if (str5 == null) {
             notifyEvent(str, obj("req_id", str2, "error", "RESTORE_CANCELLED"));
             return;
@@ -2056,7 +2132,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         BulletinFactory.of(this, this.resourcesProvider).createSimpleBulletin(R.raw.error, str).show();
     }
 
-    public void lambda$new$49() {
+    public void lambda$new$51() {
         notifyEvent("location_checked", this.location.checkObject());
     }
 
@@ -2082,7 +2158,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$showDialog$50(runnable, dialogInterface);
+                this.f$0.lambda$showDialog$52(runnable, dialogInterface);
             }
         });
         this.currentDialog = alertDialog;
@@ -2097,7 +2173,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return true;
     }
 
-    public void lambda$showDialog$50(Runnable runnable, DialogInterface dialogInterface) {
+    public void lambda$showDialog$52(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }
@@ -2219,19 +2295,19 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
 
         @JavascriptInterface
-        public void post(final String str, final String str2) {
+        public void postEvent(final String str, final String str2) {
             if (this.container == null) {
                 return;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$post$0(str, str2);
+                    this.f$0.lambda$postEvent$0(str, str2);
                 }
             });
         }
 
-        public void lambda$post$0(String str, String str2) {
+        public void lambda$postEvent$0(String str, String str2) {
             BotWebViewContainer botWebViewContainer = this.container;
             if (botWebViewContainer == null) {
                 return;
@@ -2529,7 +2605,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         public MyWebView(Context context, boolean z, long j) {
             super(context);
-            this.tag = BotWebViewContainer.access$1508();
+            this.tag = BotWebViewContainer.access$1408();
             this.urlFallback = "about:blank";
             this.lastFavicons = new HashMap();
             this.bot = z;
@@ -4359,7 +4435,15 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return (hostAuthority.endsWith(sb.toString()) && (str2 = (String) rotatedTONHosts.get(hostAuthority)) != null) ? Browser.replace(Uri.parse(str), "tonsite", null, str2, null) : str;
     }
 
-    private static JSONObject obj(String str, Object obj) throws JSONException {
+    public static JSONObject obj() {
+        try {
+            return new JSONObject();
+        } catch (Exception unused) {
+            return null;
+        }
+    }
+
+    public static JSONObject obj(String str, Object obj) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4369,7 +4453,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private static JSONObject obj(String str, Object obj, String str2, Object obj2) throws JSONException {
+    public static JSONObject obj(String str, Object obj, String str2, Object obj2) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4380,7 +4464,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) throws JSONException {
+    public static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);
@@ -4392,7 +4476,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    private static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) throws JSONException {
+    public static JSONObject obj(String str, Object obj, String str2, Object obj2, String str3, Object obj3, String str4, Object obj4) throws JSONException {
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put(str, obj);

@@ -193,6 +193,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int slowmodeRow;
     private int slowmodeSelectRow;
     private long starsPrice;
+    private int tagsInfoRow;
+    private int tagsRow;
     private boolean transfer;
     private int type;
     private UndoView undoView;
@@ -241,7 +243,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return i == 7 ? 3600 : 0;
     }
 
-    public static void lambda$processDone$26() {
+    public static void lambda$processDone$27() {
     }
 
     @Override
@@ -571,13 +573,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
             @Override
             public final void onItemClick(View view, int i6, float f, float f2) {
-                this.f$0.lambda$createView$5(view, i6, f, f2);
+                this.f$0.lambda$createView$6(view, i6, f, f2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i6) {
-                return this.f$0.lambda$createView$6(view, i6);
+                return this.f$0.lambda$createView$7(view, i6);
             }
         });
         if (this.searchItem != null) {
@@ -606,8 +608,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return this.fragmentView;
     }
 
-    public void lambda$createView$5(android.view.View r28, int r29, float r30, float r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$createView$5(android.view.View, int, float, float):void");
+    public void lambda$createView$6(android.view.View r28, int r29, float r30, float r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$createView$6(android.view.View, int, float, float):void");
     }
 
     class AnonymousClass8 implements ChatUsersActivityDelegate {
@@ -785,6 +787,15 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.of(this).createSimpleBulletin(R.raw.error, LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
+    public void lambda$createView$4(TextCell textCell, boolean z, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+        if (updates != null) {
+            getMessagesController().processUpdates(updates, false);
+        } else if (tL_error != null) {
+            textCell.setChecked(z);
+            BulletinFactory.of(this).showForError(tL_error);
+        }
+    }
+
     class AnonymousClass10 extends GigagroupConvertAlert {
         @Override
         protected void onCancel() {
@@ -824,11 +835,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$createView$4(TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, AlertDialog alertDialog, int i) {
+    public void lambda$createView$5(TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, AlertDialog alertDialog, int i) {
         openRightsEdit(user.id, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z, this.selectType == 1 ? 0 : 1, false);
     }
 
-    public boolean lambda$createView$6(View view, int i) {
+    public boolean lambda$createView$7(View view, int i) {
         if (getParentActivity() != null) {
             RecyclerView.Adapter adapter = this.listView.getAdapter();
             ListAdapter listAdapter = this.listViewAdapter;
@@ -860,12 +871,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return ChatUsersActivity.lambda$sortAdmins$7((TLObject) obj, (TLObject) obj2);
+                return ChatUsersActivity.lambda$sortAdmins$8((TLObject) obj, (TLObject) obj2);
             }
         });
     }
 
-    public static int lambda$sortAdmins$7(TLObject tLObject, TLObject tLObject2) {
+    public static int lambda$sortAdmins$8(TLObject tLObject, TLObject tLObject2) {
         int channelAdminParticipantType = getChannelAdminParticipantType(tLObject);
         int channelAdminParticipantType2 = getChannelAdminParticipantType(tLObject2);
         if (channelAdminParticipantType > channelAdminParticipantType2) {
@@ -1014,7 +1025,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 Collections.sort(arrayList, new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return ChatUsersActivity.lambda$onOwnerChaged$8((TLObject) obj, (TLObject) obj2);
+                        return ChatUsersActivity.lambda$onOwnerChaged$9((TLObject) obj, (TLObject) obj2);
                     }
                 });
             }
@@ -1037,7 +1048,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static int lambda$onOwnerChaged$8(TLObject tLObject, TLObject tLObject2) {
+    public static int lambda$onOwnerChaged$9(TLObject tLObject, TLObject tLObject2) {
         int channelAdminParticipantType = getChannelAdminParticipantType(tLObject);
         int channelAdminParticipantType2 = getChannelAdminParticipantType(tLObject2);
         if (channelAdminParticipantType > channelAdminParticipantType2) {
@@ -1344,18 +1355,18 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$createMenuForParticipant$9(j3, i, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z11, (Integer) obj);
+                    this.f$0.lambda$createMenuForParticipant$10(j3, i, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z11, (Integer) obj);
                 }
             };
             ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(this.listView.getClipBackground(view)).addIf(z8, R.drawable.msg_admins, LocaleController.getString(z6 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatUsersActivity.lambda$createMenuForParticipant$10(callback);
+                    ChatUsersActivity.lambda$createMenuForParticipant$11(callback);
                 }
             }).addIf(z10, R.drawable.msg_permissions, LocaleController.getString("ChangePermissions", R.string.ChangePermissions), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createMenuForParticipant$12(tLObject, user, callback);
+                    this.f$0.lambda$createMenuForParticipant$13(tLObject, user, callback);
                 }
             });
             boolean z12 = ChatObject.canBlockUsers(this.currentChat) && z5;
@@ -1370,7 +1381,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             itemOptionsAddIf.addIf(z12, i5, (CharSequence) LocaleController.getString(str3, i3), true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createMenuForParticipant$13(user, j4);
+                    this.f$0.lambda$createMenuForParticipant$14(user, j4);
                 }
             }).setMinWidth(190).show();
             return true;
@@ -1383,14 +1394,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             itemOptionsMakeOptions.add(R.drawable.msg_permissions, LocaleController.getString(R.string.ChannelEditPermissions), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createMenuForParticipant$14(j5, tL_chatBannedRights3, str4, tLObject);
+                    this.f$0.lambda$createMenuForParticipant$15(j5, tL_chatBannedRights3, str4, tLObject);
                 }
             });
             z2 = true;
             itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createMenuForParticipant$15(j5);
+                    this.f$0.lambda$createMenuForParticipant$16(j5);
                 }
             });
         } else {
@@ -1408,14 +1419,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     itemOptionsMakeOptions.add(i6, LocaleController.getString(str2, i2), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$createMenuForParticipant$16(j5);
+                            this.f$0.lambda$createMenuForParticipant$17(j5);
                         }
                     });
                 }
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createMenuForParticipant$17(j5);
+                        this.f$0.lambda$createMenuForParticipant$18(j5);
                     }
                 });
             } else if (this.type == 1 && ChatObject.canAddAdmins(this.currentChat) && zCanAddAdmins) {
@@ -1425,14 +1436,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     itemOptionsMakeOptions.add(R.drawable.msg_admins, LocaleController.getString("EditAdminRights", R.string.EditAdminRights), new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$createMenuForParticipant$18(j5, tL_chatAdminRights3, str5, tLObject);
+                            this.f$0.lambda$createMenuForParticipant$19(j5, tL_chatAdminRights3, str5, tLObject);
                         }
                     });
                 }
                 itemOptionsMakeOptions.add(R.drawable.msg_remove, (CharSequence) LocaleController.getString("ChannelRemoveUserAdmin", R.string.ChannelRemoveUserAdmin), true, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createMenuForParticipant$19(j5);
+                        this.f$0.lambda$createMenuForParticipant$20(j5);
                     }
                 });
             }
@@ -1447,20 +1458,20 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return z2;
     }
 
-    public void lambda$createMenuForParticipant$9(long j, int i, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, Integer num) {
+    public void lambda$createMenuForParticipant$10(long j, int i, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z, Integer num) {
         openRightsEdit2(j, i, tLObject, tL_chatAdminRights, tL_chatBannedRights, str, z, num.intValue(), false);
     }
 
-    public static void lambda$createMenuForParticipant$10(Utilities.Callback callback) {
+    public static void lambda$createMenuForParticipant$11(Utilities.Callback callback) {
         callback.run(0);
     }
 
-    public void lambda$createMenuForParticipant$12(TLObject tLObject, TLRPC.User user, final Utilities.Callback callback) {
+    public void lambda$createMenuForParticipant$13(TLObject tLObject, TLRPC.User user, final Utilities.Callback callback) {
         if ((tLObject instanceof TLRPC.TL_channelParticipantAdmin) || (tLObject instanceof TLRPC.TL_chatParticipantAdmin)) {
             showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(LocaleController.formatString(R.string.AdminWillBeRemoved, UserObject.getUserName(user))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    ChatUsersActivity.lambda$createMenuForParticipant$11(callback, alertDialog, i);
+                    ChatUsersActivity.lambda$createMenuForParticipant$12(callback, alertDialog, i);
                 }
             }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create());
         } else {
@@ -1468,11 +1479,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void lambda$createMenuForParticipant$11(Utilities.Callback callback, AlertDialog alertDialog, int i) {
+    public static void lambda$createMenuForParticipant$12(Utilities.Callback callback, AlertDialog alertDialog, int i) {
         callback.run(1);
     }
 
-    public void lambda$createMenuForParticipant$13(TLRPC.User user, long j) {
+    public void lambda$createMenuForParticipant$14(TLRPC.User user, long j) {
         getMessagesController().deleteParticipantFromChat(this.chatId, user);
         removeParticipants(j);
         if (this.currentChat == null || user == null || !BulletinFactory.canShowBulletin(this)) {
@@ -1481,7 +1492,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         BulletinFactory.createRemoveFromChatBulletin(this, user, this.currentChat.title).show();
     }
 
-    public void lambda$createMenuForParticipant$14(long j, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, final TLObject tLObject) {
+    public void lambda$createMenuForParticipant$15(long j, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, final TLObject tLObject) {
         ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, null, this.defaultBannedRights, tL_chatBannedRights, str, 1, true, false, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
@@ -1504,12 +1515,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         presentFragment(chatRightsEditActivity);
     }
 
-    public void lambda$createMenuForParticipant$16(long j) {
-        lambda$createMenuForParticipant$17(j);
+    public void lambda$createMenuForParticipant$17(long j) {
+        lambda$createMenuForParticipant$18(j);
         getMessagesController().addUserToChat(this.chatId, getMessagesController().getUser(Long.valueOf(j)), 0, null, this, null);
     }
 
-    public void lambda$createMenuForParticipant$18(long j, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, final TLObject tLObject) {
+    public void lambda$createMenuForParticipant$19(long j, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, final TLObject tLObject) {
         ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tL_chatAdminRights, null, null, str, 0, true, false, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
@@ -1532,12 +1543,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         presentFragment(chatRightsEditActivity);
     }
 
-    public void lambda$createMenuForParticipant$19(long j) {
+    public void lambda$createMenuForParticipant$20(long j) {
         getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC.TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
         removeParticipants(j);
     }
 
-    public void lambda$createMenuForParticipant$17(long j) {
+    public void lambda$createMenuForParticipant$18(long j) {
         TLRPC.TL_channels_editBanned tL_channels_editBanned = new TLRPC.TL_channels_editBanned();
         tL_channels_editBanned.participant = getMessagesController().getInputPeer(j);
         tL_channels_editBanned.channel = getMessagesController().getInputChannel(this.chatId);
@@ -1545,12 +1556,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         getConnectionsManager().sendRequest(tL_channels_editBanned, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$deletePeer$21(tLObject, tL_error);
+                this.f$0.lambda$deletePeer$22(tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$deletePeer$21(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$deletePeer$22(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             getMessagesController().processUpdates(updates, false);
@@ -1560,13 +1571,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$deletePeer$20(updates);
+                    this.f$0.lambda$deletePeer$21(updates);
                 }
             }, 1000L);
         }
     }
 
-    public void lambda$deletePeer$20(TLRPC.Updates updates) {
+    public void lambda$deletePeer$21(TLRPC.Updates updates) {
         getMessagesController().loadFullChat(updates.chats.get(0).id, 0, true);
     }
 
@@ -1603,7 +1614,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$didReceivedNotification$22();
+                        this.f$0.lambda$didReceivedNotification$23();
                     }
                 });
                 return;
@@ -1620,7 +1631,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$didReceivedNotification$22() {
+    public void lambda$didReceivedNotification$23() {
         loadChatParticipants(0, 200);
     }
 
@@ -1691,13 +1702,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$checkDiscard$23(alertDialog, i);
+                    this.f$0.lambda$checkDiscard$24(alertDialog, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i) {
-                    this.f$0.lambda$checkDiscard$24(alertDialog, i);
+                    this.f$0.lambda$checkDiscard$25(alertDialog, i);
                 }
             });
             showDialog(builder.create());
@@ -1705,11 +1716,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return false;
     }
 
-    public void lambda$checkDiscard$23(AlertDialog alertDialog, int i) {
+    public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
         processDone();
     }
 
-    public void lambda$checkDiscard$24(AlertDialog alertDialog, int i) {
+    public void lambda$checkDiscard$25(AlertDialog alertDialog, int i) {
         finishFragment();
     }
 
@@ -1842,7 +1853,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.processDone():void");
     }
 
-    public void lambda$processDone$25(long j) {
+    public void lambda$processDone$26(long j) {
         if (j != 0) {
             this.chatId = j;
             this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
@@ -1850,11 +1861,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public static void lambda$processDone$27(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$processDone$28(TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatUsersActivity.lambda$processDone$26();
+                ChatUsersActivity.lambda$processDone$27();
             }
         });
     }
@@ -2049,7 +2060,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadChatParticipants$28(arrayListLoadChatParticipantsRequests, arrayList);
+                this.f$0.lambda$loadChatParticipants$29(arrayListLoadChatParticipantsRequests, arrayList);
             }
         };
         final AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -2059,27 +2070,27 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest((TLObject) arrayListLoadChatParticipantsRequests.get(i3), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    ChatUsersActivity.lambda$loadChatParticipants$30(arrayList, i5, atomicInteger, arrayListLoadChatParticipantsRequests, runnable, tLObject, tL_error);
+                    ChatUsersActivity.lambda$loadChatParticipants$31(arrayList, i5, atomicInteger, arrayListLoadChatParticipantsRequests, runnable, tLObject, tL_error);
                 }
             }), this.classGuid);
             i3++;
         }
     }
 
-    public void lambda$loadChatParticipants$28(java.util.ArrayList r19, java.util.ArrayList r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$loadChatParticipants$28(java.util.ArrayList, java.util.ArrayList):void");
+    public void lambda$loadChatParticipants$29(java.util.ArrayList r19, java.util.ArrayList r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$loadChatParticipants$29(java.util.ArrayList, java.util.ArrayList):void");
     }
 
-    public static void lambda$loadChatParticipants$30(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$loadChatParticipants$31(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatUsersActivity.lambda$loadChatParticipants$29(tL_error, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
+                ChatUsersActivity.lambda$loadChatParticipants$30(tL_error, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
             }
         });
     }
 
-    public static void lambda$loadChatParticipants$29(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
+    public static void lambda$loadChatParticipants$30(TLRPC.TL_error tL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
         if (tL_error == null && (tLObject instanceof TLRPC.TL_channels_channelParticipants)) {
             arrayList.set(i, (TLRPC.TL_channels_channelParticipants) tLObject);
         }
@@ -2094,12 +2105,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return this.f$0.lambda$sortUsers$31(currentTime, (TLObject) obj, (TLObject) obj2);
+                return this.f$0.lambda$sortUsers$32(currentTime, (TLObject) obj, (TLObject) obj2);
             }
         });
     }
 
-    public int lambda$sortUsers$31(int i, TLObject tLObject, TLObject tLObject2) {
+    public int lambda$sortUsers$32(int i, TLObject tLObject, TLObject tLObject2) {
         int i2;
         TLRPC.UserStatus userStatus;
         TLRPC.UserStatus userStatus2;
@@ -2500,6 +2511,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 if (adapterPosition == ChatUsersActivity.this.hideMembersRow) {
                     return ChatObject.canUserDoAdminAction(ChatUsersActivity.this.currentChat, 2);
                 }
+                if (adapterPosition == ChatUsersActivity.this.tagsRow) {
+                    return true;
+                }
             }
             return itemViewType == 13;
         }
@@ -2698,7 +2712,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (i == ChatUsersActivity.this.restricted1SectionRow || i == ChatUsersActivity.this.permissionsSectionRow || i == ChatUsersActivity.this.slowmodeRow || i == ChatUsersActivity.this.gigaHeaderRow || i == ChatUsersActivity.this.priceHeaderRow) {
                 return 5;
             }
-            if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow || i == ChatUsersActivity.this.signMessagesInfoRow || i == ChatUsersActivity.this.payInfoRow || i == ChatUsersActivity.this.priceInfoRow) {
+            if (i == ChatUsersActivity.this.participantsInfoRow || i == ChatUsersActivity.this.slowmodeInfoRow || i == ChatUsersActivity.this.dontRestrictBoostersInfoRow || i == ChatUsersActivity.this.gigaInfoRow || i == ChatUsersActivity.this.antiSpamInfoRow || i == ChatUsersActivity.this.hideMembersInfoRow || i == ChatUsersActivity.this.tagsInfoRow || i == ChatUsersActivity.this.signMessagesInfoRow || i == ChatUsersActivity.this.payInfoRow || i == ChatUsersActivity.this.priceInfoRow) {
                 return 1;
             }
             if (i == ChatUsersActivity.this.blockedEmptyRow) {
@@ -2722,7 +2736,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (i == ChatUsersActivity.this.loadingUserCellRow) {
                 return 11;
             }
-            if (i == ChatUsersActivity.this.antiSpamRow || i == ChatUsersActivity.this.hideMembersRow) {
+            if (i == ChatUsersActivity.this.antiSpamRow || i == ChatUsersActivity.this.hideMembersRow || i == ChatUsersActivity.this.tagsRow) {
                 return 12;
             }
             if (ChatUsersActivity.this.isExpandableSendMediaRow(i)) {
@@ -2978,7 +2992,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$32();
+                this.f$0.lambda$getThemeDescriptions$33();
             }
 
             @Override
@@ -3039,7 +3053,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$32() {
+    public void lambda$getThemeDescriptions$33() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

@@ -3965,24 +3965,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             if (i == 46) {
-                if (!ProfileActivity.this.getUserConfig().isPremium()) {
-                    ProfileActivity profileActivity2 = ProfileActivity.this;
-                    new PremiumFeatureBottomSheet(profileActivity2, profileActivity2.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, false, 41, false, null).show();
-                    return;
-                }
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$onItemClick$1();
-                    }
-                };
-                int i2 = MessagesController.getGlobalNotificationsSettings().getInt("disable_sharing_learn", 0);
-                if (i2 < 3) {
-                    AlertsCreator.showDisableSharingInfo(this.val$context, ProfileActivity.this.resourcesProvider, runnable);
-                    MessagesController.getGlobalNotificationsSettings().edit().putInt("disable_sharing_learn", i2 + 1).apply();
+                if (ProfileActivity.this.getUserConfig().isPremium()) {
+                    AlertsCreator.showDisableSharingInfo(this.val$context, ProfileActivity.this.resourcesProvider, new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onItemClick$1();
+                        }
+                    });
                     return;
                 } else {
-                    runnable.run();
+                    ProfileActivity profileActivity2 = ProfileActivity.this;
+                    new PremiumFeatureBottomSheet(profileActivity2, profileActivity2.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, false, 41, false, null).show();
                     return;
                 }
             }
@@ -3997,13 +3990,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 builder2.setMessage(LocaleController.formatString("DeleteSelectedTopic", R.string.DeleteSelectedTopic, tL_forumTopicFindTopic == null ? "topic" : tL_forumTopicFindTopic.title));
                 builder2.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
-                        this.f$0.lambda$onItemClick$2(alertDialog, i3);
+                    public final void onClick(AlertDialog alertDialog, int i2) {
+                        this.f$0.lambda$onItemClick$2(alertDialog, i2);
                     }
                 });
                 builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
+                    public final void onClick(AlertDialog alertDialog, int i2) {
                         alertDialog.dismiss();
                     }
                 });
@@ -4064,8 +4057,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
 
                     @Override
-                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i3, int i4, TopicsFragment topicsFragment) {
-                        return this.f$0.lambda$onItemClick$7(user3, dialogsActivity2, dialogsActivity3, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
+                        return this.f$0.lambda$onItemClick$7(user3, dialogsActivity2, dialogsActivity3, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
                     }
 
                     @Override
@@ -4143,8 +4136,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 builder3.setMessage(LocaleController.getString(R.string.AreYouSureSecretChat));
                 builder3.setPositiveButton(LocaleController.getString(R.string.Start), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i3) {
-                        this.f$0.lambda$onItemClick$8(alertDialog, i3);
+                    public final void onClick(AlertDialog alertDialog, int i2) {
+                        this.f$0.lambda$onItemClick$8(alertDialog, i2);
                     }
                 });
                 builder3.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -4159,8 +4152,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (ProfileActivity.this.getParentActivity() == null) {
                     return;
                 }
-                int i3 = Build.VERSION.SDK_INT;
-                if (i3 < 23 || ((i3 > 28 && !BuildVars.NO_SCOPED_STORAGE) || ProfileActivity.this.getParentActivity().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0)) {
+                int i2 = Build.VERSION.SDK_INT;
+                if (i2 < 23 || ((i2 > 28 && !BuildVars.NO_SCOPED_STORAGE) || ProfileActivity.this.getParentActivity().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0)) {
                     ImageLocation imageLocation = ProfileActivity.this.avatarsViewPager.getImageLocation(ProfileActivity.this.avatarsViewPager.getRealPosition());
                     if (imageLocation == null) {
                         return;
@@ -4281,8 +4274,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             builder4.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i4) {
-                    this.f$0.lambda$onItemClick$12(alertDialog, i4);
+                public final void onClick(AlertDialog alertDialog, int i3) {
+                    this.f$0.lambda$onItemClick$12(alertDialog, i3);
                 }
             });
             builder4.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -7667,11 +7660,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         boolean z4;
         boolean z5;
         boolean z6;
-        boolean z7;
-        String str;
         TLRPC.ChannelParticipant channelParticipant;
+        String str;
+        boolean z7;
         boolean z8;
         boolean z9;
+        boolean z10;
+        boolean z11;
         if (getParentActivity() == null) {
             return false;
         }
@@ -7691,91 +7686,94 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         long j = chatParticipant.user_id;
         this.selectedUser = j;
-        boolean z10 = j == getUserConfig().getClientUserId();
+        boolean z12 = j == getUserConfig().getClientUserId();
         if (ChatObject.isChannel(this.currentChat)) {
             TLRPC.ChannelParticipant channelParticipant2 = ((TLRPC.TL_chatChannelParticipant) chatParticipant).channelParticipant;
             String str2 = channelParticipant2.rank;
-            boolean z11 = channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator;
-            boolean z12 = z11 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin);
+            boolean z13 = channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator;
+            boolean z14 = z13 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin);
             getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
             zCanAddAdmins = ChatObject.canAddAdmins(this.currentChat);
             zCanManageTags = ChatObject.canManageTags(this.currentChat);
-            if (z11 || ((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) && !channelParticipant2.can_edit)) {
+            if (z13 || ((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) && !channelParticipant2.can_edit)) {
                 zCanAddAdmins = false;
                 zCanManageTags = false;
             }
-            if ((z10 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantSelf)) && ChatObject.canManageMyTag(this.currentChat)) {
+            if ((z12 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantSelf)) && ChatObject.canManageMyTag(this.currentChat)) {
                 zCanManageTags = true;
             }
-            z3 = ChatObject.canBlockUsers(this.currentChat) && (!((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) || z11) || channelParticipant2.can_edit);
-            z5 = z11;
-            z4 = z12;
-            z7 = channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin;
-            str = str2;
-            z6 = this.currentChat.gigagroup ? false : z3;
+            z3 = ChatObject.canBlockUsers(this.currentChat) && (!((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) || z13) || channelParticipant2.can_edit);
+            z5 = z13;
+            z4 = z14;
+            z6 = channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin;
             channelParticipant = channelParticipant2;
+            z7 = this.currentChat.gigagroup ? false : z3;
+            str = str2;
         } else {
             String str3 = chatParticipant.rank;
-            boolean z13 = chatParticipant instanceof TLRPC.TL_chatParticipantAdmin;
-            boolean z14 = z13 || (chatParticipant instanceof TLRPC.TL_chatParticipantCreator);
-            boolean z15 = chatParticipant instanceof TLRPC.TL_chatParticipantCreator;
+            boolean z15 = chatParticipant instanceof TLRPC.TL_chatParticipantAdmin;
+            boolean z16 = z15 || (chatParticipant instanceof TLRPC.TL_chatParticipantCreator);
+            boolean z17 = chatParticipant instanceof TLRPC.TL_chatParticipantCreator;
             TLRPC.Chat chat = this.currentChat;
             z3 = chat.creator || ((chatParticipant instanceof TLRPC.TL_chatParticipant) && (ChatObject.canBlockUsers(chat) || chatParticipant.inviter_id == getUserConfig().getClientUserId()));
             TLRPC.Chat chat2 = this.currentChat;
             zCanAddAdmins = chat2.creator;
-            zCanManageTags = ChatObject.canManageTags(chat2) || (z10 && ChatObject.canManageMyTag(this.currentChat));
-            z4 = z14;
-            z5 = z15;
-            z6 = this.currentChat.creator;
-            z7 = z13;
-            str = str3;
+            zCanManageTags = ChatObject.canManageTags(chat2) || (z12 && ChatObject.canManageMyTag(this.currentChat));
+            z4 = z16;
+            z5 = z17;
+            z6 = z15;
             channelParticipant = null;
+            str = str3;
+            z7 = this.currentChat.creator;
         }
-        boolean z16 = z3;
-        boolean z17 = zCanManageTags;
-        if (z10) {
-            zCanAddAdmins = false;
+        if (z12) {
+            z11 = (ChatObject.canManageMyTag(this.currentChat) || (z4 && ChatObject.canManageTags(this.currentChat))) ? true : zCanManageTags;
+            z10 = false;
             z9 = false;
             z8 = false;
         } else {
-            z8 = z16;
-            z9 = z6;
+            z8 = z3;
+            z9 = z7;
+            boolean z18 = zCanManageTags;
+            z10 = zCanAddAdmins;
+            z11 = z18;
         }
-        boolean z18 = zCanAddAdmins || z17 || z9 || z8;
-        if (z2 || !z18) {
-            return z18;
+        boolean z19 = z10 || z11 || z9 || z8;
+        if (z2 || !z19) {
+            return z19;
         }
         final TLRPC.ChannelParticipant channelParticipant3 = channelParticipant;
-        boolean z19 = zCanAddAdmins;
-        boolean z20 = z9;
-        final boolean z21 = z7;
+        boolean z20 = z11;
+        boolean z21 = z10;
+        final boolean z22 = z6;
         final TLRPC.ChannelParticipant channelParticipant4 = channelParticipant;
+        boolean z23 = z9;
         final String str4 = str;
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onMemberClick$56(channelParticipant3, user, chatParticipant, z21, str4, (Integer) obj);
+                this.f$0.lambda$onMemberClick$56(channelParticipant3, user, chatParticipant, z22, str4, (Integer) obj);
             }
         };
         final String str5 = str;
-        final boolean z22 = z4;
-        final boolean z23 = z5;
-        ItemOptions.makeOptions(this, view).setScrimViewBackground(this.listView.getClipBackground(view)).addIf(!z10, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
+        final boolean z24 = z4;
+        final boolean z25 = z5;
+        ItemOptions.makeOptions(this, view).setScrimViewBackground(view.getParent() instanceof RecyclerListView ? ((RecyclerListView) view.getParent()).getClipBackground(view) : null).addIf(!z12, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMemberClick$57(user);
             }
-        }).addGapIf(!z10 && (z19 || z17 || z20 || z8)).addIf(z17, (z4 || !TextUtils.isEmpty(str)) ? R.drawable.menu_tag_edit : R.drawable.menu_tag_plus, LocaleController.getString(z4 ? R.string.EditAdminTag : TextUtils.isEmpty(str) ? R.string.AddMemberTag : R.string.EditMemberTag), new Runnable() {
+        }).addGapIf(!z12 && (z21 || z20 || z23 || z8)).addIf(z20, (z4 || !TextUtils.isEmpty(str)) ? R.drawable.menu_tag_edit : R.drawable.menu_tag_plus, LocaleController.getString(z4 ? R.string.EditAdminTag : TextUtils.isEmpty(str) ? R.string.AddMemberTag : R.string.EditMemberTag), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMemberClick$58(user, str5, z22, z23);
+                this.f$0.lambda$onMemberClick$58(user, str5, z24, z25);
             }
-        }).addIf(z19, R.drawable.msg_admins, LocaleController.getString(z7 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
+        }).addIf(z21, R.drawable.msg_admins, LocaleController.getString(z6 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
             @Override
             public final void run() {
                 ProfileActivity.lambda$onMemberClick$59(callback);
             }
-        }).addIf(z20, R.drawable.msg_permissions, LocaleController.getString(R.string.ChangePermissions), new Runnable() {
+        }).addIf(z23, R.drawable.msg_permissions, LocaleController.getString(R.string.ChangePermissions), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMemberClick$61(channelParticipant4, chatParticipant, user, callback);
@@ -9600,17 +9598,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             String str = (String) objArr[2];
             TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.participantsMap.get(jLongValue5);
             if (chatParticipant != null) {
-                chatParticipant.rank = str;
+                chatParticipant.setRank(jLongValue5, str);
             }
             TLRPC.ChannelParticipant channelParticipant = this.currentChannelParticipant;
             if (channelParticipant != null && channelParticipant.user_id == jLongValue5) {
                 channelParticipant.rank = str;
             }
             for (int i8 = 0; i8 < this.visibleChatParticipants.size(); i8++) {
-                TLRPC.ChatParticipant chatParticipant2 = (TLRPC.ChatParticipant) this.visibleChatParticipants.get(i8);
-                if (chatParticipant2.user_id == jLongValue5) {
-                    chatParticipant2.rank = str;
-                }
+                ((TLRPC.ChatParticipant) this.visibleChatParticipants.get(i8)).setRank(jLongValue5, str);
             }
             AndroidUtilities.updateVisibleRows(this.listView);
         }
@@ -11361,9 +11356,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View headerCell;
+            View shadowSectionCell;
             switch (i) {
                 case 1:
                     headerCell = new HeaderCell(this.mContext, 18, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = headerCell;
                     break;
                 case 2:
                 case 19:
@@ -11375,13 +11372,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
                     };
                     textDetailCell.setContentDescriptionValueFirst(true);
-                    headerCell = textDetailCell;
+                    shadowSectionCell = textDetailCell;
                     break;
                 case 3:
                     ProfileActivity profileActivity = ProfileActivity.this;
                     Context context = this.mContext;
                     ProfileActivity profileActivity2 = ProfileActivity.this;
-                    headerCell = profileActivity.aboutLinkCell = new AboutLinkCell(context, profileActivity2, profileActivity2.resourcesProvider) {
+                    shadowSectionCell = profileActivity.aboutLinkCell = new AboutLinkCell(context, profileActivity2, profileActivity2.resourcesProvider) {
                         @Override
                         protected void didPressUrl(String str, Browser.Progress progress) {
                             ProfileActivity.this.openUrl(str, progress);
@@ -11404,7 +11401,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     };
                     break;
                 case 4:
-                    headerCell = new TextCell(this.mContext, 18, false, false, ProfileActivity.this.resourcesProvider) {
+                    shadowSectionCell = new TextCell(this.mContext, 18, false, false, ProfileActivity.this.resourcesProvider) {
                         @Override
                         protected int processColor(int i2) {
                             return ProfileActivity.this.dontApplyPeerColor(i2, false);
@@ -11414,10 +11411,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 case 5:
                     View dividerCell = new DividerCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     dividerCell.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f), 0, 0);
-                    headerCell = dividerCell;
+                    shadowSectionCell = dividerCell;
                     break;
                 case 6:
-                    headerCell = new NotificationsCheckCell(this.mContext, 18, 70, false, ProfileActivity.this.resourcesProvider) {
+                    shadowSectionCell = new NotificationsCheckCell(this.mContext, 18, 70, false, ProfileActivity.this.resourcesProvider) {
                         @Override
                         protected int processColor(int i2) {
                             return ProfileActivity.this.dontApplyPeerColor(i2, false);
@@ -11425,10 +11422,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     };
                     break;
                 case 7:
-                    headerCell = new ShadowSectionCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = new ShadowSectionCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 8:
-                    headerCell = new UserCell(this.mContext, ProfileActivity.this.addMemberRow == -1 ? 9 : 6, 0, true, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = new UserCell(this.mContext, ProfileActivity.this.addMemberRow == -1 ? 9 : 6, 0, true, ProfileActivity.this.resourcesProvider);
                     break;
                 case 9:
                 case 10:
@@ -11442,7 +11439,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     textInfoPrivacyCell.getTextView().setMovementMethod(null);
                     textInfoPrivacyCell.setText(AndroidUtilities.getBuildVersionInfo());
                     textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f));
-                    headerCell = textInfoPrivacyCell;
+                    shadowSectionCell = textInfoPrivacyCell;
                     break;
                 case 11:
                 case 31:
@@ -11454,7 +11451,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
                     };
                     view.setTag(-33024);
-                    headerCell = view;
+                    shadowSectionCell = view;
                     break;
                 case 12:
                     View view2 = new View(this.mContext) {
@@ -11491,7 +11488,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
                     };
                     view2.setBackground(new ColorDrawable(0));
-                    headerCell = view2;
+                    view2.setTag(-33024);
+                    shadowSectionCell = view2;
                     break;
                 case 13:
                     if (ProfileActivity.this.sharedMediaLayout.getParent() != null) {
@@ -11499,27 +11497,28 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                     View view3 = ProfileActivity.this.sharedMediaLayout;
                     view3.setTag(-33024);
-                    headerCell = view3;
+                    shadowSectionCell = view3;
                     break;
                 case 15:
-                    headerCell = new AnonymousClass9(this.mContext, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = new AnonymousClass9(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 17:
-                    headerCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 18:
                 case 24:
-                    View profilePremiumCell = new ProfilePremiumCell(this.mContext, i == 18 ? 0 : 1, ProfileActivity.this.resourcesProvider);
-                    profilePremiumCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    headerCell = profilePremiumCell;
+                    headerCell = new ProfilePremiumCell(this.mContext, i == 18 ? 0 : 1, ProfileActivity.this.resourcesProvider);
+                    headerCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = headerCell;
                     break;
                 case 20:
                     headerCell = new TextCheckCell(this.mContext, 18, false, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = headerCell;
                     break;
                 case 21:
                     View profileLocationCell = new ProfileLocationCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     profileLocationCell.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    headerCell = profileLocationCell;
+                    shadowSectionCell = profileLocationCell;
                     break;
                 case 22:
                     View view4 = new ProfileHoursCell(this.mContext, ProfileActivity.this.resourcesProvider) {
@@ -11529,10 +11528,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         }
                     };
                     view4.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    headerCell = view4;
+                    shadowSectionCell = view4;
                     break;
                 case 23:
-                    headerCell = new ProfileChannelCell(ProfileActivity.this) {
+                    shadowSectionCell = new ProfileChannelCell(ProfileActivity.this) {
                         @Override
                         public int processColor(int i2) {
                             return ProfileActivity.this.dontApplyPeerColor(i2, false);
@@ -11552,27 +11551,29 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     });
                     frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 18.0f, 14.0f, 18.0f, 14.0f));
                     frameLayout.setBackgroundColor(ProfileActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    headerCell = frameLayout;
+                    shadowSectionCell = frameLayout;
                     break;
                 case 26:
-                    headerCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = new TextInfoPrivacyCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 27:
-                    headerCell = new AffiliateProgramFragment.ColorfulTextCell(this.mContext, ProfileActivity.this.resourcesProvider);
+                    shadowSectionCell = new AffiliateProgramFragment.ColorfulTextCell(this.mContext, ProfileActivity.this.resourcesProvider);
                     break;
                 case 28:
-                    headerCell = new View(this.mContext) {
+                    View view5 = new View(this.mContext) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(7.33f), 1073741824));
                         }
                     };
+                    view5.setTag(-33024);
+                    shadowSectionCell = view5;
                     break;
             }
             if (i != 13) {
-                headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             }
-            return new RecyclerListView.Holder(headerCell);
+            return new RecyclerListView.Holder(shadowSectionCell);
         }
 
         class AnonymousClass9 extends SettingsSuggestionCell {

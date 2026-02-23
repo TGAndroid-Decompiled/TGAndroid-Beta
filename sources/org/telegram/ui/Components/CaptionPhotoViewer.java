@@ -114,7 +114,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
         imageView2.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         imageView2.setScaleType(scaleType);
         setTimerVisible(false, false);
-        addView(imageView2, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 5, 0.0f, isAtTop() ? 6.0f : 0.0f, 8.0f, isAtTop() ? 0.0f : 6.0f));
+        addView(imageView2, LayoutHelper.createFrame(44, 44.0f, (isAtTop() ? 48 : 80) | 5, 0.0f, isAtTop() ? 6.0f : 0.0f, 10.0f, isAtTop() ? 0.0f : 6.0f));
         HintView2 hintView2 = new HintView2(context, isAtTop() ? 1 : 3);
         this.hint = hintView2;
         hintView2.setRounding(12.0f);

@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -275,13 +276,14 @@ public class PollVotesAlert extends BottomSheet {
         }
     }
 
-    public class UserCell extends FrameLayout {
+    public class UserCell extends LinearLayout {
         private ArrayList animators;
         private AvatarDrawable avatarDrawable;
         private BackupImageView avatarImageView;
         private int currentAccount;
         private TLRPC.Chat currentChat;
         private TLRPC.User currentUser;
+        private TextView dateTextView;
         private boolean drawPlaceholder;
         private TLRPC.FileLocation lastAvatar;
         private CharSequence lastName;
@@ -291,6 +293,7 @@ public class PollVotesAlert extends BottomSheet {
         private float placeholderAlpha;
         private int placeholderNum;
         private StatusBadgeComponent statusBadgeComponent;
+        private TextView timeTextView;
 
         @Override
         public boolean hasOverlappingRendering() {
@@ -301,27 +304,37 @@ public class PollVotesAlert extends BottomSheet {
             super(context);
             this.currentAccount = UserConfig.selectedAccount;
             this.placeholderAlpha = 1.0f;
+            setOrientation(0);
+            setLayoutDirection(3);
             setWillNotDraw(false);
+            setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
             this.avatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(18.0f));
-            BackupImageView backupImageView2 = this.avatarImageView;
-            boolean z = LocaleController.isRTL;
-            addView(backupImageView2, LayoutHelper.createFrame(36, 36.0f, (z ? 5 : 3) | 48, z ? 0.0f : 14.0f, 6.0f, z ? 14.0f : 0.0f, 0.0f));
+            addView(this.avatarImageView, LayoutHelper.createLinear(34, 34, 16, 0, 0, 11, 0));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.nameTextView = simpleTextView;
-            simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+            int i = Theme.key_dialogTextBlack;
+            simpleTextView.setTextColor(Theme.getColor(i));
             this.nameTextView.setTypeface(AndroidUtilities.bold());
             this.nameTextView.setTextSize(16);
-            this.nameTextView.setGravity(16 | (LocaleController.isRTL ? 5 : 3));
-            SimpleTextView simpleTextView2 = this.nameTextView;
-            boolean z2 = LocaleController.isRTL;
-            addView(simpleTextView2, LayoutHelper.createFrame(-1, 24.0f, (z2 ? 5 : 3) | 48, z2 ? 28.0f : 65.0f, 12.0f, z2 ? 65.0f : 28.0f, 0.0f));
+            this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            addView(this.nameTextView, LayoutHelper.createLinear(0, 24, 1.0f, 16, 0, 0, 0, 0));
+            TextView textView = new TextView(context);
+            this.dateTextView = textView;
+            textView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
+            this.dateTextView.setTextSize(1, 13.0f);
+            addView(this.dateTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 21, 4, 0, 4, 0));
+            TextView textView2 = new TextView(context);
+            this.timeTextView = textView2;
+            textView2.setTextColor(Theme.getColor(i));
+            this.timeTextView.setTextSize(1, 13.0f);
+            addView(this.timeTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 21, 4, 0, 4, 0));
             this.statusBadgeComponent = new StatusBadgeComponent(this.nameTextView, 20);
         }
 
-        public void setData(TLObject tLObject, int i, boolean z) {
+        public void setData(TLObject tLObject, int i, int i2, boolean z) {
             if (tLObject instanceof TLRPC.User) {
                 this.currentUser = (TLRPC.User) tLObject;
                 this.currentChat = null;
@@ -332,9 +345,12 @@ public class PollVotesAlert extends BottomSheet {
                 this.currentUser = null;
                 this.currentChat = null;
             }
+            long j = i;
+            this.timeTextView.setText(LocaleController.getInstance().getFormatterDay().format(1000 * j));
+            this.dateTextView.setText(LocaleController.formatDate(j, true));
             this.needDivider = z;
             this.drawPlaceholder = tLObject == null;
-            this.placeholderNum = i;
+            this.placeholderNum = i2;
             if (tLObject == null) {
                 this.nameTextView.setText("");
                 this.avatarImageView.setImageDrawable(null);
@@ -1315,12 +1331,14 @@ public class PollVotesAlert extends BottomSheet {
                 int positionInSectionForPosition = getPositionInSectionForPosition(adapterPosition) - 1;
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 VotesList votesList = (VotesList) PollVotesAlert.this.voters.get(sectionForPosition - 1);
-                TLObject userOrChat = PollVotesAlert.this.chatActivity.getMessagesController().getUserOrChat(DialogObject.getPeerDialogId(((TLRPC.MessagePeerVote) votesList.votes.get(positionInSectionForPosition)).peer));
+                TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) votesList.votes.get(positionInSectionForPosition);
+                TLObject userOrChat = PollVotesAlert.this.chatActivity.getMessagesController().getUserOrChat(DialogObject.getPeerDialogId(messagePeerVote.peer));
+                int i = messagePeerVote.date;
                 boolean z = true;
                 if (positionInSectionForPosition == votesList.getCount() - 1 && TextUtils.isEmpty(votesList.next_offset) && !votesList.collapsed) {
                     z = false;
                 }
-                userCell.setData(userOrChat, positionInSectionForPosition, z);
+                userCell.setData(userOrChat, i, positionInSectionForPosition, z);
             }
         }
 

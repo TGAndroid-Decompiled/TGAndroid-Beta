@@ -15,6 +15,8 @@ import org.telegram.ui.Components.inset.WindowAnimatedInsetsProvider;
 import org.telegram.ui.Components.inset.WindowInsetsInAppController;
 
 public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInsetsInAppController, WindowAnimatedInsetsProvider.Listener {
+    private int activeAnimations;
+    private int animatedImeInset;
     private WindowAnimatedInsetsProvider animatedInsetsProvider;
     private View animatedInsetsProviderTarget;
     private int inAppKeyboardHeight;
@@ -38,11 +40,6 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
             this.f$0.lambda$new$0();
         }
     };
-
-    @Override
-    public void onAnimatedInsetsStarted() {
-        WindowAnimatedInsetsProvider.Listener.CC.$default$onAnimatedInsetsStarted(this);
-    }
 
     @Override
     public void requestInAppKeyboardHeightIncludeNavbar(int i) {
@@ -162,15 +159,24 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
 
     @Override
     public float getAnimatedMaxBottomInset() {
+        if (this.animatedInsetsProvider != null && this.activeAnimations > 0) {
+            return Math.max(this.animatedImeInset, this.insetsMaxRect.getBottom());
+        }
         return this.insetsMaxRect.getBottom();
     }
 
     public int getCurrentMaxBottomInset() {
+        if (this.animatedInsetsProvider != null && this.activeAnimations > 0) {
+            return Math.max(this.animatedImeInset, Math.max(getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars()).bottom, this.inAppKeyboardHeight));
+        }
         return Math.max(getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars()).bottom, this.inAppKeyboardHeight);
     }
 
     @Override
     public float getAnimatedImeBottomInset() {
+        if (this.animatedInsetsProvider != null && this.activeAnimations > 0) {
+            return Math.max(this.animatedImeInset, this.insetsImeRect.getBottom());
+        }
         return this.insetsImeRect.getBottom();
     }
 
@@ -222,7 +228,13 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
 
     @Override
     public void onAnimatedInsetsChanged(View view, WindowInsetsCompat windowInsetsCompat) {
-        setInsets(windowInsetsCompat, false);
+        this.animatedImeInset = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom;
+        this.onUpdateListener.run();
+    }
+
+    @Override
+    public void onAnimatedInsetsStarted() {
+        this.activeAnimations++;
     }
 
     @Override
@@ -239,6 +251,7 @@ public class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInse
     }
 
     public void lambda$onAnimatedInsetsFinished$1() {
+        this.activeAnimations--;
         setInsets(ViewCompat.getRootWindowInsets(this.animatedInsetsProviderTarget), false);
     }
 }

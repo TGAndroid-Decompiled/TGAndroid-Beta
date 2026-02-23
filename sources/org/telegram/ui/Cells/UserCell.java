@@ -236,7 +236,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         if (z) {
             TextView textView2 = new TextView(context);
             this.adminTextView = textView2;
-            textView2.setTextSize(1, 14.0f);
+            ScaleStateListAnimator.apply(textView2, 0.05f, 1.2f);
+            this.adminTextView.setTextSize(1, 14.0f);
             this.adminTextView.setTextColor(Theme.getColor(Theme.key_profile_creatorIcon, resourcesProvider));
             View view8 = this.adminTextView;
             boolean z11 = LocaleController.isRTL;
@@ -322,7 +323,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.adminTextView.setPadding(0, 0, 0, 0);
             this.adminTextView.setTranslationX(0.0f);
             this.adminTextView.setBackground(null);
-            this.adminTextView.setOnClickListener(null);
+            this.adminTextView.setOnClickListener(onClickListener);
         }
         this.adminTextView.setVisibility((str != null || z3) ? 0 : 8);
         if (str != null || z3) {

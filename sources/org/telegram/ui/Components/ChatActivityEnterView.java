@@ -10593,7 +10593,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
                 @Override
                 public boolean allowSendingSubmenu() {
-                    return false;
+                    return true;
                 }
 
                 @Override
@@ -10603,7 +10603,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
                 @Override
                 public boolean canEdit(int i3) {
-                    return true;
+                    return false;
                 }
 
                 @Override

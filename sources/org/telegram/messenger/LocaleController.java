@@ -2376,6 +2376,10 @@ public class LocaleController {
     }
 
     public static String formatDate(long j) {
+        return formatDate(j, false);
+    }
+
+    public static String formatDate(long j, boolean z) {
         long j2 = j * 1000;
         try {
             Calendar calendar = Calendar.getInstance();
@@ -2385,6 +2389,9 @@ public class LocaleController {
             int i3 = calendar.get(6);
             int i4 = calendar.get(1);
             if (i3 == i && i2 == i4) {
+                if (z) {
+                    return getString(R.string.ShortToday);
+                }
                 return getInstance().getFormatterDay().format(new Date(j2));
             }
             if (i3 + 1 == i && i2 == i4) {

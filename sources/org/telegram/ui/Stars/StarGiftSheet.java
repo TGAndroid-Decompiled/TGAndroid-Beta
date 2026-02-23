@@ -72,7 +72,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
@@ -5260,14 +5259,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
 
     public boolean showCraft() {
         TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
-        if (uniqueGift == null || uniqueGift.crafted) {
-            return false;
-        }
-        TLRPC.Peer peer = uniqueGift.owner_id;
-        if (peer == null) {
-            peer = uniqueGift.host_id;
-        }
-        if (peer == null || !isMineWithActions(this.currentAccount, DialogObject.getPeerDialogId(peer))) {
+        if (uniqueGift == null || uniqueGift.crafted || !isMineWithActions(this.currentAccount, DialogObject.getPeerDialogId(uniqueGift.owner_id))) {
             return false;
         }
         MessageObject messageObject = this.messageObject;
@@ -5280,23 +5272,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             return (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) && ((TLRPC.TL_messageActionStarGiftUnique) messageAction).can_craft_at > 0;
         }
         TL_stars.SavedStarGift savedStarGift = this.savedStarGift;
-        if (savedStarGift == null || !(savedStarGift.gift instanceof TL_stars.TL_starGiftUnique)) {
-            return false;
-        }
-        return (BuildVars.DEBUG_PRIVATE_VERSION && uniqueGift.host_id != null) || savedStarGift.can_craft_at > 0;
+        return savedStarGift != null && (savedStarGift.gift instanceof TL_stars.TL_starGiftUnique) && savedStarGift.can_craft_at > 0;
     }
 
     public boolean canCraft() {
         int i;
         TL_stars.TL_starGiftUnique uniqueGift = getUniqueGift();
-        if (uniqueGift == null || uniqueGift.crafted) {
-            return false;
-        }
-        TLRPC.Peer peer = uniqueGift.owner_id;
-        if (peer == null) {
-            peer = uniqueGift.host_id;
-        }
-        if (peer == null || !isMineWithActions(this.currentAccount, DialogObject.getPeerDialogId(peer))) {
+        if (uniqueGift == null || uniqueGift.crafted || !isMineWithActions(this.currentAccount, DialogObject.getPeerDialogId(uniqueGift.owner_id))) {
             return false;
         }
         MessageObject messageObject = this.messageObject;
@@ -5317,11 +5299,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             i = savedStarGift.can_craft_at;
         }
-        int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        if (!BuildVars.DEBUG_PRIVATE_VERSION || uniqueGift.host_id == null) {
-            return i > 0 && currentTime >= i;
-        }
-        return true;
+        return i > 0 && ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() >= i;
     }
 
     public StarGiftSheet set(MessageObject messageObject) {
