@@ -4152,6 +4152,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
                     }
@@ -4407,8 +4412,18 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public boolean isAdmin(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                    }
+
+                    @Override
                     public boolean isLandscape() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                    }
+
+                    @Override
+                    public boolean isOwner(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
                     }
 
                     @Override
@@ -4603,7 +4618,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) throws android.content.res.Resources.NotFoundException {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.MessagesAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 

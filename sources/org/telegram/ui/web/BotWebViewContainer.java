@@ -2292,9 +2292,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         void onSetSettingsButtonVisible(boolean z);
 
-        void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4);
+        void onSetupMainButton(boolean z, boolean z2, String str, long j, int i, int i2, boolean z3, boolean z4);
 
-        void onSetupSecondaryButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4, String str2);
+        void onSetupSecondaryButton(boolean z, boolean z2, String str, long j, int i, int i2, boolean z3, boolean z4, String str2);
 
         void onSharedTo(ArrayList arrayList);
 

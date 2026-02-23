@@ -4819,6 +4819,11 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         int innerTextChange;
 
         @Override
+        public boolean canAddCaptionToGif(TLRPC.Document document) {
+            return EmojiView.EmojiViewDelegate.CC.$default$canAddCaptionToGif(this, document);
+        }
+
+        @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
         }
@@ -4873,8 +4878,13 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+        public void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
             EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
+        }
+
+        @Override
+        public void onGifSelectedForAddCaption(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onGifSelectedForAddCaption(this, view, obj, str, obj2, z, i, i2);
         }
 
         @Override

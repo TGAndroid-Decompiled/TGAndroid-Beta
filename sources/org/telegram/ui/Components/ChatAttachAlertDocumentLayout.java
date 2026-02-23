@@ -12,7 +12,6 @@ import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
@@ -364,12 +363,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.listView = recyclerListView4;
-        this.iBlur3Capture = recyclerListView4;
-        this.iBlur3CaptureView = recyclerListView4;
-        this.occupyNavigationBar = true;
-        recyclerListView4.setSectionsType(2);
-        this.listView.setVerticalScrollBarEnabled(false);
+        recyclerListView4.setSections();
         RecyclerListView recyclerListView5 = this.listView;
+        this.iBlur3Capture = recyclerListView5;
+        this.iBlur3CaptureView = recyclerListView5;
+        this.occupyNavigationBar = true;
+        recyclerListView5.setSectionsType(2);
+        this.listView.setVerticalScrollBarEnabled(false);
+        RecyclerListView recyclerListView6 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager2 = new FillLastLinearLayoutManager(context, 1, false, AndroidUtilities.dp(56.0f), this.listView) {
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i4) {
@@ -389,7 +390,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
         };
         this.layoutManager = fillLastLinearLayoutManager2;
-        recyclerListView5.setLayoutManager(fillLastLinearLayoutManager2);
+        recyclerListView6.setLayoutManager(fillLastLinearLayoutManager2);
         this.listView.setClipToPadding(false);
         this.listView.setAdapter(this.listAdapter);
         addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
@@ -733,7 +734,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         int i = 0;
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int y = ((int) childAt.getY()) - AndroidUtilities.dp(8.0f);
+        int y = (((int) childAt.getY()) - AndroidUtilities.dp(4.0f)) - AndroidUtilities.dp(8.0f);
         if (y > 0 && holder != null && holder.getAdapterPosition() == 0) {
             i = y;
         }
@@ -1323,19 +1324,15 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View headerCell;
-            View sharedDocumentCell;
-            if (i != 0) {
-                if (i == 1) {
-                    sharedDocumentCell = new SharedDocumentCell(this.mContext, 1, ChatAttachAlertDocumentLayout.this.resourcesProvider);
-                } else if (i == 2) {
-                    sharedDocumentCell = new ShadowSectionCell(this.mContext);
-                    new CombinedDrawable(new ColorDrawable(ChatAttachAlertDocumentLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow)).setFullsize(true);
-                } else {
-                    headerCell = new View(this.mContext);
-                }
-                headerCell = sharedDocumentCell;
-            } else {
+            if (i == 0) {
                 headerCell = new HeaderCell(this.mContext, ChatAttachAlertDocumentLayout.this.resourcesProvider);
+            } else if (i == 1) {
+                headerCell = new SharedDocumentCell(this.mContext, 1, ChatAttachAlertDocumentLayout.this.resourcesProvider);
+            } else if (i == 2) {
+                headerCell = new ShadowSectionCell(this.mContext);
+            } else {
+                headerCell = new View(this.mContext);
+                headerCell.setTag(-33024);
             }
             return new RecyclerListView.Holder(headerCell);
         }

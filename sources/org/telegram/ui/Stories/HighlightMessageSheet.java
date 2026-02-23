@@ -16,7 +16,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda325;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda344;
 import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda66;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -70,7 +70,7 @@ public abstract class HighlightMessageSheet {
             return getDefaultTiers();
         }
         try {
-            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda325()).toArray();
+            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda344()).toArray();
         } catch (Exception e) {
             FileLog.e(e);
             return getDefaultTiers();

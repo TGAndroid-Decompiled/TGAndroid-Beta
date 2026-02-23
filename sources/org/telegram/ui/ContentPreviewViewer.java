@@ -141,11 +141,18 @@ public class ContentPreviewViewer {
     public interface ContentPreviewViewerDelegate {
 
         public abstract class CC {
+            public static void $default$addCaptionToGif(ContentPreviewViewerDelegate contentPreviewViewerDelegate, Object obj, Object obj2, boolean z, int i, int i2) {
+            }
+
             public static void $default$addToFavoriteSelected(ContentPreviewViewerDelegate contentPreviewViewerDelegate, String str) {
             }
 
             public static boolean $default$can(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
                 return true;
+            }
+
+            public static boolean $default$canAddCaption(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document) {
+                return false;
             }
 
             public static boolean $default$canDeleteSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document) {
@@ -261,9 +268,13 @@ public class ContentPreviewViewer {
             }
         }
 
+        void addCaptionToGif(Object obj, Object obj2, boolean z, int i, int i2);
+
         void addToFavoriteSelected(String str);
 
         boolean can();
+
+        boolean canAddCaption(TLRPC.Document document);
 
         boolean canDeleteSticker(TLRPC.Document document);
 
@@ -549,6 +560,8 @@ public class ContentPreviewViewer {
                         ContentPreviewViewer.AnonymousClass1.lambda$run$7(contentPreviewViewerDelegate, document, botInlineResult, obj, z, i, i2);
                     }
                 }, ContentPreviewViewer.this.resourcesProvider);
+            } else if (((Integer) arrayList.get(iIntValue)).intValue() == 11) {
+                ContentPreviewViewer.this.delegate.addCaptionToGif(ContentPreviewViewer.this.currentDocument != null ? ContentPreviewViewer.this.currentDocument : ContentPreviewViewer.this.inlineResult, ContentPreviewViewer.this.parentObject, true, 0, 0);
             }
             ContentPreviewViewer.this.dismissPopupWindow();
         }
@@ -704,7 +717,7 @@ public class ContentPreviewViewer {
             if (launchActivity.getActionBarLayout() != null && launchActivity.getActionBarLayout().getLastFragment() != null) {
                 launchActivity.getActionBarLayout().getLastFragment().dismissCurrentDialog();
             }
-            launchActivity.lambda$runLinkRequest$97(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
+            launchActivity.lambda$runLinkRequest$99(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
         }
         this.menuVisible = false;
         this.containerView.invalidate();

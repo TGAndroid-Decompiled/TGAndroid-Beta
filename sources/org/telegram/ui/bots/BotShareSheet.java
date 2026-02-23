@@ -2,6 +2,7 @@ package org.telegram.ui.bots;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -160,7 +161,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         runnable.run();
     }
 
-    public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
+    public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) throws Resources.NotFoundException, NumberFormatException {
         super(context, null, false, false, false, resourcesProvider);
         this.openedDialogsActivity = false;
         this.sent = false;
@@ -320,6 +321,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             @Override
             public void didPressAboutRevenueSharingAds() {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+            }
+
+            @Override
+            public void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell2);
             }
 
             @Override
@@ -578,8 +584,18 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
+            public boolean isAdmin(long j2) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j2);
+            }
+
+            @Override
             public boolean isLandscape() {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+            }
+
+            @Override
+            public boolean isOwner(long j2) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j2);
             }
 
             @Override

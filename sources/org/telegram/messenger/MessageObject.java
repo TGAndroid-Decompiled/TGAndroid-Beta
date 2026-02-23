@@ -121,6 +121,7 @@ public class MessageObject {
     public static final int TYPE_PHOTO = 1;
     public static final int TYPE_POLL = 17;
     public static final int TYPE_ROUND_VIDEO = 5;
+    public static final int TYPE_SHARING_OFFER = 35;
     public static final int TYPE_STICKER = 13;
     public static final int TYPE_STORY = 23;
     public static final int TYPE_STORY_MENTION = 24;
@@ -218,6 +219,7 @@ public class MessageObject {
     public boolean isLiveStoryPush;
     public boolean isMediaSpoilersRevealed;
     public boolean isMediaSpoilersRevealedInSharedMedia;
+    public boolean isOauthPush;
     public Boolean isOutOwnerCached;
     public boolean isPrimaryGroupMessage;
     public boolean isReactionPush;
@@ -3914,7 +3916,7 @@ public class MessageObject {
         return addEntitiesToText(charSequence, arrayList, z, z2, z3, z4, 0);
     }
 
-    public static boolean addEntitiesToText(java.lang.CharSequence r19, java.util.ArrayList<org.telegram.tgnet.TLRPC.MessageEntity> r20, boolean r21, boolean r22, boolean r23, boolean r24, int r25) {
+    public static boolean addEntitiesToText(java.lang.CharSequence r18, java.util.ArrayList<org.telegram.tgnet.TLRPC.MessageEntity> r19, boolean r20, boolean r21, boolean r22, boolean r23, int r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.addEntitiesToText(java.lang.CharSequence, java.util.ArrayList, boolean, boolean, boolean, boolean, int):boolean");
     }
 
@@ -6100,16 +6102,7 @@ public class MessageObject {
 
     public boolean canForwardMessage() {
         int i;
-        return (isQuickReply() || (i = this.type) == 30 || i == 31 || i == 32 || i == 33 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
-    }
-
-    public boolean isNoforwards() {
-        TLRPC.Message message = this.messageOwner;
-        if (message != null && message.noforwards) {
-            return true;
-        }
-        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()));
-        return chat != null && chat.noforwards;
+        return (isQuickReply() || (i = this.type) == 30 || i == 31 || i == 32 || i == 33 || i == 35 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
     }
 
     public boolean canEditMedia() {

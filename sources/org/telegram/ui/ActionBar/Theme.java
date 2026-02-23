@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda90;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda103;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -753,6 +753,8 @@ public abstract class Theme {
     public static final int key_chat_stickerReplyNameText;
     public static final int key_chat_stickerViaBotNameText;
     public static final int key_chat_stickersHintPanel;
+    public static final int key_chat_tagAdmin;
+    public static final int key_chat_tagCreator;
     public static final int key_chat_textSelectBackground;
     public static final int key_chat_topPanelBackground;
     public static final int key_chat_topPanelClose;
@@ -2891,10 +2893,10 @@ public abstract class Theme {
                     themeAccent.patternSlug = strArr[i];
                 }
                 if ((Theme.isHome(themeAccent) && this.name.equals("Dark Blue")) || this.name.equals("Night")) {
-                    themeAccent.myMessagesAccentColor = -10128392;
-                    themeAccent.myMessagesGradientAccentColor1 = -9026357;
-                    themeAccent.myMessagesGradientAccentColor2 = -7845452;
-                    themeAccent.myMessagesGradientAccentColor3 = -5811800;
+                    themeAccent.myMessagesAccentColor = -14316059;
+                    themeAccent.myMessagesGradientAccentColor1 = -12422433;
+                    themeAccent.myMessagesGradientAccentColor2 = -8304937;
+                    themeAccent.myMessagesGradientAccentColor3 = -6340950;
                     if (this.name.equals("Night")) {
                         themeAccent.patternIntensity = -0.57f;
                         themeAccent.backgroundOverrideColor = -9666650L;
@@ -4484,7 +4486,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda103(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4530,7 +4532,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda103(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4645,7 +4647,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda103(), 2100L);
                 }
             }
             currentTheme = themeInfo;

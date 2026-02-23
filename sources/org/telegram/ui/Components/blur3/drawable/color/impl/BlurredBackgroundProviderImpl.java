@@ -98,6 +98,20 @@ public abstract class BlurredBackgroundProviderImpl {
         return solveSrcColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), Theme.getColor(Theme.key_chat_messagePanelBackground, resourcesProvider), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
+    public static BlurredBackgroundProvider photoViewer(Theme.ResourcesProvider resourcesProvider) {
+        return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
+            @Override
+            public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
+                return BlurredBackgroundProviderImpl.lambda$photoViewer$6(resourcesProvider2, z);
+            }
+        }).setStrokeColorTop(687865855, 687865855).setStrokeColorBottom(352321535, 352321535).setStrokeWidth(AndroidUtilities.dpf2(0.6666667f), AndroidUtilities.dpf2(0.6666667f)).build();
+    }
+
+    public static int lambda$photoViewer$6(Theme.ResourcesProvider resourcesProvider, boolean z) {
+        LiteMode.isEnabled(262144);
+        return 0;
+    }
+
     public static int solveSrcColor(int i, int i2, float f) {
         float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
         if (fClamp <= 0.0f) {

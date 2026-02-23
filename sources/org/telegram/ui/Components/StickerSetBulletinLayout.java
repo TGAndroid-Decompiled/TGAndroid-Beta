@@ -213,14 +213,14 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
     public static void lambda$new$0(Context context) {
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity instanceof LaunchActivity) {
-            ((LaunchActivity) activityFindActivity).lambda$runLinkRequest$97(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(10)));
+            ((LaunchActivity) activityFindActivity).lambda$runLinkRequest$99(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(10)));
         }
     }
 
     public static void lambda$new$1(Context context) {
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         if (activityFindActivity instanceof LaunchActivity) {
-            ((LaunchActivity) activityFindActivity).lambda$runLinkRequest$97(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));
+            ((LaunchActivity) activityFindActivity).lambda$runLinkRequest$99(new PremiumPreviewFragment(LimitReachedBottomSheet.limitTypeToServerString(9)));
         }
     }
 }

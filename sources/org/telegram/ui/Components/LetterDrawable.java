@@ -118,7 +118,7 @@ public class LetterDrawable extends Drawable {
         }
         if (this.style == 0) {
             this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+            canvas.drawRoundRect(this.rect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
         }
         canvas.save();
         float f = this.scale;

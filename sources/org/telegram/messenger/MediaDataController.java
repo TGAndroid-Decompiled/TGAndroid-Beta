@@ -63,6 +63,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
+import org.telegram.ui.Components.FormattedDateSpan;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.StickerSetBulletinLayout;
@@ -7377,6 +7378,32 @@ public class MediaDataController extends BaseController {
                         }
                     }
                 }
+                FormattedDateSpan[] formattedDateSpanArr = (FormattedDateSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), FormattedDateSpan.class);
+                if (formattedDateSpanArr != null && formattedDateSpanArr.length > 0) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>();
+                    }
+                    for (FormattedDateSpan formattedDateSpan : formattedDateSpanArr) {
+                        if (formattedDateSpan != null) {
+                            try {
+                                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
+                                tL_messageEntityFormattedDate.offset = spanned.getSpanStart(formattedDateSpan);
+                                tL_messageEntityFormattedDate.length = Math.min(spanned.getSpanEnd(formattedDateSpan), charSequenceArr[0].length()) - tL_messageEntityFormattedDate.offset;
+                                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate2 = formattedDateSpan.entity;
+                                tL_messageEntityFormattedDate.relative = tL_messageEntityFormattedDate2.relative;
+                                tL_messageEntityFormattedDate.short_time = tL_messageEntityFormattedDate2.short_time;
+                                tL_messageEntityFormattedDate.long_time = tL_messageEntityFormattedDate2.long_time;
+                                tL_messageEntityFormattedDate.long_date = tL_messageEntityFormattedDate2.long_date;
+                                tL_messageEntityFormattedDate.short_date = tL_messageEntityFormattedDate2.short_date;
+                                tL_messageEntityFormattedDate.day_of_week = tL_messageEntityFormattedDate2.day_of_week;
+                                tL_messageEntityFormattedDate.date = tL_messageEntityFormattedDate2.date;
+                                arrayList.add(tL_messageEntityFormattedDate);
+                            } catch (Exception e4) {
+                                FileLog.e(e4);
+                            }
+                        }
+                    }
+                }
                 if (spanned instanceof Spannable) {
                     Spannable spannable = (Spannable) spanned;
                     AndroidUtilities.addLinksSafe(spannable, 1, false, false);
@@ -7387,7 +7414,7 @@ public class MediaDataController extends BaseController {
                         }
                         for (int i20 = 0; i20 < uRLSpanArr.length; i20++) {
                             URLSpan uRLSpan = uRLSpanArr[i20];
-                            if (!(uRLSpan instanceof URLSpanReplacement) && !(uRLSpan instanceof URLSpanUserMention)) {
+                            if (!(uRLSpan instanceof URLSpanReplacement) && !(uRLSpan instanceof URLSpanUserMention) && !(uRLSpan instanceof FormattedDateSpan)) {
                                 TLRPC.MessageEntity tL_messageEntityUrl = new TLRPC.TL_messageEntityUrl();
                                 tL_messageEntityUrl.offset = spanned.getSpanStart(uRLSpanArr[i20]);
                                 tL_messageEntityUrl.length = Math.min(spanned.getSpanEnd(uRLSpanArr[i20]), charSequenceArr[0].length()) - tL_messageEntityUrl.offset;

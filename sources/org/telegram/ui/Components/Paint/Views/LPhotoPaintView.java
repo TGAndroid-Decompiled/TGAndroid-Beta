@@ -108,12 +108,14 @@ import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayoutPhoto;
 import org.telegram.ui.Components.ThanosEffect;
 import org.telegram.ui.Components.TrendingStickersLayout;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 
 public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPaintView, PaintToolsView.Delegate, EntityView.EntityViewDelegate, PaintTextOptionsView.Delegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, NotificationCenter.NotificationCenterDelegate {
     private float baseScale;
     private Bitmap bitmapToEdit;
+    private BlurredBackgroundDrawable blurredBackgroundDrawableForTools;
     public FrameLayout bottomLayout;
     private boolean bottomPanelIgnoreOnce;
     public PaintCancelView cancelButton;
@@ -727,10 +729,19 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 ViewGroup barView = LPhotoPaintView.this.getBarView();
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set(AndroidUtilities.lerp(barView.getLeft(), LPhotoPaintView.this.colorsListView.getLeft(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getTop(), LPhotoPaintView.this.colorsListView.getTop(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getRight(), LPhotoPaintView.this.colorsListView.getRight(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getBottom(), LPhotoPaintView.this.colorsListView.getBottom(), LPhotoPaintView.this.toolsTransformProgress));
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(AndroidUtilities.lerp(barView.getLeft(), LPhotoPaintView.this.colorsListView.getLeft(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getTop(), LPhotoPaintView.this.colorsListView.getTop(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getRight(), LPhotoPaintView.this.colorsListView.getRight(), LPhotoPaintView.this.toolsTransformProgress), AndroidUtilities.lerp(barView.getBottom(), LPhotoPaintView.this.colorsListView.getBottom(), LPhotoPaintView.this.toolsTransformProgress));
+                rectF.set(rect);
                 float fLerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), LPhotoPaintView.this.toolsTransformProgress);
-                canvas.drawRoundRect(rectF, fLerp, fLerp, LPhotoPaintView.this.toolsPaint);
+                if (LPhotoPaintView.this.blurredBackgroundDrawableForTools == null) {
+                    canvas.drawRoundRect(rectF, fLerp, fLerp, LPhotoPaintView.this.toolsPaint);
+                } else {
+                    rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+                    LPhotoPaintView.this.blurredBackgroundDrawableForTools.setRadius(fLerp);
+                    LPhotoPaintView.this.blurredBackgroundDrawableForTools.setBounds(rect);
+                    LPhotoPaintView.this.blurredBackgroundDrawableForTools.draw(canvas);
+                }
                 if (barView.getChildCount() < 1 || LPhotoPaintView.this.toolsTransformProgress == 1.0f) {
                     return;
                 }
@@ -2131,6 +2142,10 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
     @Override
     public void updateColors() {
         this.toolsPaint.setColor(-15132391);
+    }
+
+    public void setBlurredBackgroundDrawableForTools(BlurredBackgroundDrawable blurredBackgroundDrawable) {
+        this.blurredBackgroundDrawableForTools = blurredBackgroundDrawable.setPadding(AndroidUtilities.dp(4.0f));
     }
 
     public boolean hasChanges() {
@@ -3656,6 +3671,11 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         int innerTextChange;
 
         @Override
+        public boolean canAddCaptionToGif(TLRPC.Document document) {
+            return EmojiView.EmojiViewDelegate.CC.$default$canAddCaptionToGif(this, document);
+        }
+
+        @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
         }
@@ -3710,8 +3730,13 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         }
 
         @Override
-        public void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+        public void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
             EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
+        }
+
+        @Override
+        public void onGifSelectedForAddCaption(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            EmojiView.EmojiViewDelegate.CC.$default$onGifSelectedForAddCaption(this, view, obj, str, obj2, z, i, i2);
         }
 
         @Override

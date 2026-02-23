@@ -2815,6 +2815,20 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         return this.sectionsItemDecoration != null;
     }
 
+    public void disableSections() {
+        setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
+        this.isViewTypeSection = null;
+        this.sectionRadius = 0.0f;
+        this.sectionRadiusTop = null;
+        this.sectionRadiusBottom = null;
+        this.drawSectionBackground = null;
+        ListSectionsDecoration listSectionsDecoration = this.sectionsItemDecoration;
+        if (listSectionsDecoration != null) {
+            removeItemDecoration(listSectionsDecoration);
+            this.sectionsItemDecoration = null;
+        }
+    }
+
     public void setSections() {
         setSections(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), false);
     }

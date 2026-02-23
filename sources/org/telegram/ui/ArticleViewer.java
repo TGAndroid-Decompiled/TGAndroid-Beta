@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -5402,7 +5403,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return open(null, null, null, str, progress);
     }
 
-    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws PackageManager.NameNotFoundException {
+    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws Resources.NotFoundException, PackageManager.NameNotFoundException {
         final TLRPC.WebPage webPage2;
         int iLastIndexOf;
         String strSubstring;
@@ -13056,11 +13057,11 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
 
                 @Override
-                public void onSetupMainButton(boolean z, boolean z2, String str, int i2, int i3, boolean z3, boolean z4) {
+                public void onSetupMainButton(boolean z, boolean z2, String str, long j, int i2, int i3, boolean z3, boolean z4) {
                 }
 
                 @Override
-                public void onSetupSecondaryButton(boolean z, boolean z2, String str, int i2, int i3, boolean z3, boolean z4, String str2) {
+                public void onSetupSecondaryButton(boolean z, boolean z2, String str, long j, int i2, int i3, boolean z3, boolean z4, String str2) {
                 }
 
                 @Override
@@ -13845,7 +13846,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1257getWindowView() {
+        public WindowView mo1275getWindowView() {
             return this.windowView;
         }
 
@@ -13895,7 +13896,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             return !this.dismissing && !this.released && this.openProgress > 0.5f && (windowView = this.windowView) != null && windowView.isAttachedToWindow() && this.windowView.isVisible() && this.backProgress < 1.0f;
         }
 
-        public void attachInternal(BaseFragment baseFragment) {
+        public void attachInternal(BaseFragment baseFragment) throws Resources.NotFoundException {
             this.released = false;
             this.fragment = baseFragment;
             this.resourcesProvider = baseFragment.getResourceProvider();
@@ -13926,7 +13927,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             ArticleViewer.activeSheets.add(ArticleViewer.this);
         }
 
-        public void show() {
+        public void show() throws Resources.NotFoundException {
             if (this.dismissing) {
                 return;
             }
@@ -14240,7 +14241,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1257getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1275getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

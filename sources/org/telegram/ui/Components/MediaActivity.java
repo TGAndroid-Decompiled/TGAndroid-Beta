@@ -84,6 +84,11 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private ActionBarMenuSubItem zoomInItem;
     private ActionBarMenuSubItem zoomOutItem;
 
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
     public MediaActivity(Bundle bundle, SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader) {
         super(bundle);
         this.titles = new FrameLayout[2];
@@ -627,7 +632,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         if (this.sharedMediaLayout.getSearchOptionsItem() != null) {
             this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
         }
-        this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ActionBar actionBar = this.actionBar;
         int i = Theme.key_windowBackgroundWhiteBlackText;
         actionBar.setItemsColor(Theme.getColor(i), false);
@@ -709,5 +714,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     public int getNavigationBarColor() {
         int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
         return (getLastStoryViewer() == null || !getLastStoryViewer().attachedToParent()) ? themedColor : getLastStoryViewer().getNavigationBarColor(themedColor);
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
+        if (sharedMediaLayout != null) {
+            sharedMediaLayout.setPagesPaddingBottom(i4);
+        }
     }
 }

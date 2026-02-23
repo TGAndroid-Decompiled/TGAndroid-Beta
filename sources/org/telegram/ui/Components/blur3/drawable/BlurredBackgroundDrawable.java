@@ -45,6 +45,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     protected BlurredBackgroundColorProvider colorProvider;
     protected boolean inAppKeyboardOptimization;
     private final Paint paintStrokeFill;
+    protected float shadowAlpha;
     protected int shadowColor;
     protected float shadowLayerDx;
     protected float shadowLayerDy;
@@ -76,6 +77,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         Props props = new Props();
         this.boundProps = props;
         this.alpha = 255;
+        this.shadowAlpha = 1.0f;
         this.backgroundColorPaint = new Paint(1);
         this.paintStrokeFill = new Paint(1);
         Paint paint = new Paint(1);
@@ -113,20 +115,22 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this.sourceOffsetY;
     }
 
-    public void setPadding(int i) {
+    public BlurredBackgroundDrawable setPadding(int i) {
         Props props = this.boundProps;
         if (props.padding != i) {
             props.padding = i;
             props.build();
             onBoundPropsChanged();
         }
+        return this;
     }
 
-    public void setRadius(float f) {
+    public BlurredBackgroundDrawable setRadius(float f) {
         Arrays.fill(this.boundProps.radii, f);
         Arrays.fill(this.boundProps.shaderRadii, f);
         this.boundProps.build();
         onBoundPropsChanged();
+        return this;
     }
 
     public void setRadius(float f, float f2, float f3, float f4) {
@@ -212,7 +216,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return source;
     }
 
-    public void setColorProvider(BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+    public BlurredBackgroundDrawable setColorProvider(BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         this.colorProvider = blurredBackgroundColorProvider;
         updateColors();
         if (blurredBackgroundColorProvider instanceof BlurredBackgroundProvider) {
@@ -220,6 +224,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             setStrokeWidth(blurredBackgroundProvider.getStrokeWidthTop(), blurredBackgroundProvider.getStrokeWidthBottom());
             setShadowParams(blurredBackgroundProvider.getShadowRadius(), blurredBackgroundProvider.getShadowDx(), blurredBackgroundProvider.getShadowDy());
         }
+        return this;
     }
 
     public void updateColors() {
@@ -424,6 +429,10 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         this.shadowLayerDy = f3;
     }
 
+    public void setShadowAlpha(float f) {
+        this.shadowAlpha = f;
+    }
+
     public void setStrokeWidth(float f, float f2) {
         Props props = this.boundProps;
         props.strokeWidthTop = f;
@@ -452,8 +461,11 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     private void drawSourceColor(Canvas canvas, BlurredBackgroundSourceColor blurredBackgroundSourceColor) {
         int iMultAlpha = Theme.multAlpha(ColorUtils.compositeColors(this.backgroundColor, blurredBackgroundSourceColor.getColor()), this.alpha / 255.0f);
         if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
-            this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, this.shadowColor);
-            this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
+            float f = this.shadowAlpha;
+            if (f > 0.0f) {
+                this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, Theme.multAlpha(this.shadowColor, f));
+                this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
+            }
         }
         this.backgroundColorPaint.setColor(iMultAlpha);
         this.boundProps.draw(canvas, this.backgroundColorPaint);
@@ -474,8 +486,11 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             }
         }
         if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
-            this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, this.shadowColor);
-            this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
+            float f = this.shadowAlpha;
+            if (f > 0.0f) {
+                this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, Theme.multAlpha(this.shadowColor, f));
+                this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
+            }
         }
         if (this.bitmapShader != null && bitmap != null && !bitmap.isRecycled() && this.alpha > 0) {
             this.bitmapShaderMatrix.set(blurredBackgroundSourceBitmap.getMatrix());

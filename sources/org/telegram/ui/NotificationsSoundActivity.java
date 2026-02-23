@@ -106,6 +106,11 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public void startMusicSelectActivity() {
         ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startMusicSelectActivity(this);
     }
@@ -240,7 +245,9 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        frameLayout.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         Adapter adapter = new Adapter(this, anonymousClass1);
         this.adapter = adapter;
         adapter.setHasStableIds(true);
@@ -1006,5 +1013,11 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             }
             return Uri.fromFile(file);
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setClipToPadding(false);
+        this.listView.setPadding(0, 0, 0, i4);
     }
 }

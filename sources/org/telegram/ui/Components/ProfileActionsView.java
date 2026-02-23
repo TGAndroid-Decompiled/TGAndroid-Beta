@@ -434,7 +434,7 @@ public abstract class ProfileActionsView extends View {
         LoadingDrawable loadingDrawable4 = action.loadingDrawable;
         if (loadingDrawable4 != null) {
             loadingDrawable4.setBounds(action.rect);
-            action.loadingDrawable.setRadiiDp(8.0f);
+            action.loadingDrawable.setRadii(getRoundRadius());
             action.loadingDrawable.setAlpha((int) (f * 255.0f));
             action.loadingDrawable.draw(canvas);
         }

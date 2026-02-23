@@ -3,9 +3,15 @@ package org.telegram.ui.Components.blur3.source;
 import android.graphics.Canvas;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 
 public class BlurredBackgroundSourceWrapped implements BlurredBackgroundSource {
     private BlurredBackgroundSource sourceInternal;
+
+    @Override
+    public void dispatchOnDrawablesRelativePositionChange() {
+        BlurredBackgroundSource.CC.$default$dispatchOnDrawablesRelativePositionChange(this);
+    }
 
     @Override
     public BlurredBackgroundDrawable createDrawable() {

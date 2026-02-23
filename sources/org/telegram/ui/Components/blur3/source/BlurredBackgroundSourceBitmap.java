@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 
 public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
     protected int actionBarHeight;
@@ -19,6 +20,11 @@ public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
     private final Matrix matrixForDraw;
     protected int parentHeight;
     protected int parentWidth;
+
+    @Override
+    public void dispatchOnDrawablesRelativePositionChange() {
+        BlurredBackgroundSource.CC.$default$dispatchOnDrawablesRelativePositionChange(this);
+    }
 
     public BlurredBackgroundSourceBitmap() {
         Paint paint = new Paint(3);

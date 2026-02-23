@@ -23,14 +23,17 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.util.Property;
 import android.view.MotionEvent;
+import android.view.RoundedCorner;
 import android.view.View;
 import android.view.ViewOutlineProvider;
+import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
@@ -64,8 +67,11 @@ import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.StrokeDrawable;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
@@ -74,6 +80,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     private Drawable applyButtonCheck;
     private CombinedDrawable applyButtonDrawable;
     protected final BlurringShader.StoryBlurDrawer backgroundBlur;
+    private BlurredBackgroundDrawable backgroundForCaptionField;
     protected final Paint backgroundPaint;
     int beforeScrollY;
     private Bitmap blurBitmap;
@@ -99,6 +106,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     protected int currentAccount;
     private long dialogId;
     public final EditTextEmoji editText;
+    protected BlurredBackgroundDrawableViewFactory factoryForMentions;
     private final LinearGradient fadeGradient;
     private final Paint fadePaint;
     private Utilities.CallbackVoidReturn getUiBlurBitmap;
@@ -218,7 +226,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.currentAccount = i;
     }
 
-    public CaptionContainerView(Context context, FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, final BlurringShader.BlurManager blurManager) {
+    public CaptionContainerView(Context context, FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, final Theme.ResourcesProvider resourcesProvider, final BlurringShader.BlurManager blurManager) {
         super(context);
         StrokeDrawable strokeDrawable = new StrokeDrawable();
         this.strokeDrawable = strokeDrawable;
@@ -292,6 +300,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         });
         EditTextEmoji editTextEmoji = new EditTextEmoji(context, sizeNotifierFrameLayout, null, getEditTextStyle(), true, new DarkThemeResourceProvider()) {
             private BlurringShader.StoryBlurDrawer blurDrawer;
+            private BlurredBackgroundDrawable blurredBackgroundDrawable;
 
             @Override
             protected boolean allowSearch() {
@@ -350,21 +359,67 @@ public abstract class CaptionContainerView extends FrameLayout {
 
             @Override
             protected void drawEmojiBackground(Canvas canvas, View view) {
+                int radius;
+                WindowInsets rootWindowInsets;
                 CaptionContainerView.this.rectF.set(0.0f, 0.0f, view.getWidth(), view.getHeight() + AndroidUtilities.dp(29.0f));
-                if (CaptionContainerView.this.customBlur()) {
+                CaptionContainerView captionContainerView = CaptionContainerView.this;
+                if (captionContainerView.factoryForMentions != null) {
+                    if (this.blurredBackgroundDrawable == null) {
+                        int i2 = 0;
+                        if (Build.VERSION.SDK_INT >= 31 && (rootWindowInsets = getRootWindowInsets()) != null) {
+                            RoundedCorner roundedCorner = rootWindowInsets.getRoundedCorner(3);
+                            RoundedCorner roundedCorner2 = rootWindowInsets.getRoundedCorner(2);
+                            int radius2 = roundedCorner == null ? 0 : roundedCorner.getRadius();
+                            if (roundedCorner2 != null) {
+                                radius = roundedCorner2.getRadius();
+                                i2 = radius2;
+                                BlurredBackgroundDrawable colorProvider = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
+                                this.blurredBackgroundDrawable = colorProvider;
+                                colorProvider.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
+                                this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
+                                this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
+                                this.blurredBackgroundDrawable.setIntensity(0.4f);
+                            } else {
+                                i2 = radius2;
+                                radius = 0;
+                                BlurredBackgroundDrawable colorProvider2 = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
+                                this.blurredBackgroundDrawable = colorProvider2;
+                                colorProvider2.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
+                                this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
+                                this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
+                                this.blurredBackgroundDrawable.setIntensity(0.4f);
+                            }
+                        } else {
+                            radius = 0;
+                            BlurredBackgroundDrawable colorProvider22 = CaptionContainerView.this.factoryForMentions.create(view).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(resourcesProvider));
+                            this.blurredBackgroundDrawable = colorProvider22;
+                            colorProvider22.setRadius(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f), radius, i2, true);
+                            this.blurredBackgroundDrawable.enableInAppKeyboardOptimization();
+                            this.blurredBackgroundDrawable.setThickness(AndroidUtilities.dp(32.0f));
+                            this.blurredBackgroundDrawable.setIntensity(0.4f);
+                        }
+                    }
+                    RectF rectF = CaptionContainerView.this.rectF;
+                    Rect rect = AndroidUtilities.rectTmp2;
+                    rectF.round(rect);
+                    this.blurredBackgroundDrawable.setBounds(rect);
+                    this.blurredBackgroundDrawable.draw(canvas);
+                    return;
+                }
+                if (captionContainerView.customBlur()) {
                     if (this.blurDrawer == null) {
                         this.blurDrawer = new BlurringShader.StoryBlurDrawer(blurManager, view, 7);
                     }
-                    CaptionContainerView captionContainerView = CaptionContainerView.this;
-                    captionContainerView.drawBlur(this.blurDrawer, canvas, captionContainerView.rectF, AndroidUtilities.dp(29.0f), false, 0.0f, -view.getY(), false, 1.0f);
-                    CaptionContainerView.this.strokeDrawableEmoji.radius = AndroidUtilities.dp(29.0f);
                     CaptionContainerView captionContainerView2 = CaptionContainerView.this;
-                    captionContainerView2.strokeDrawableEmoji.setBounds((int) captionContainerView2.rectF.left, (int) CaptionContainerView.this.rectF.top, (int) CaptionContainerView.this.rectF.right, ((int) CaptionContainerView.this.rectF.bottom) + AndroidUtilities.dp(29.0f));
+                    captionContainerView2.drawBlur(this.blurDrawer, canvas, captionContainerView2.rectF, AndroidUtilities.dp(29.0f), false, 0.0f, -view.getY(), false, 1.0f);
+                    CaptionContainerView.this.strokeDrawableEmoji.radius = AndroidUtilities.dp(29.0f);
+                    CaptionContainerView captionContainerView3 = CaptionContainerView.this;
+                    captionContainerView3.strokeDrawableEmoji.setBounds((int) captionContainerView3.rectF.left, (int) CaptionContainerView.this.rectF.top, (int) CaptionContainerView.this.rectF.right, ((int) CaptionContainerView.this.rectF.bottom) + AndroidUtilities.dp(29.0f));
                     CaptionContainerView.this.strokeDrawableEmoji.draw(canvas);
                     return;
                 }
-                CaptionContainerView captionContainerView3 = CaptionContainerView.this;
-                captionContainerView3.drawBackground(canvas, captionContainerView3.rectF, 0.0f, 0.95f, view);
+                CaptionContainerView captionContainerView4 = CaptionContainerView.this;
+                captionContainerView4.drawBackground(canvas, captionContainerView4.rectF, 0.0f, 0.95f, view);
             }
 
             @Override
@@ -427,7 +482,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         editTextEmoji.getEditText().setHintColor(-1);
         editTextEmoji.getEditText().setHintText(LocaleController.getString(R.string.AddCaption), false);
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        editTextEmoji.getEditText().setTranslationX(AndroidUtilities.dp(-22.0f));
+        editTextEmoji.getEditText().setTranslationX(AndroidUtilities.dp(-26.0f));
         if (isAtTop()) {
             editTextEmoji.getEditText().setGravity(48);
         }
@@ -637,6 +692,10 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.scrollAnimator.start();
     }
 
+    public void setBlurredBackgroundDrawableForMentions(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
+        this.factoryForMentions = blurredBackgroundDrawableViewFactory;
+    }
+
     public void createMentionsContainer() {
         MentionsContainerView mentionsContainerView = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0L, LaunchActivity.getLastFragment(), new DarkThemeResourceProvider()) {
             @Override
@@ -692,6 +751,11 @@ public abstract class CaptionContainerView extends FrameLayout {
                 return CaptionContainerView.this.editText.getEditText().getPaint().getFontMetricsInt();
             }
         });
+        BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = this.factoryForMentions;
+        if (blurredBackgroundDrawableViewFactory != null) {
+            MentionsContainerView mentionsContainerView2 = this.mentionContainer;
+            mentionsContainerView2.setBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(mentionsContainerView2).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(this.resourcesProvider)));
+        }
         this.containerView.addView(this.mentionContainer, LayoutHelper.createFrame(-1, -1, 83));
         setupMentionContainer();
     }
@@ -793,7 +857,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     protected void updateEditTextLeft() {
-        this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
+        this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-26.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
     }
 
     private void updateShowKeyboard(final boolean z, boolean z2) {
@@ -858,7 +922,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             this.keyboardAnimator.start();
         } else {
             this.keyboardT = z ? 1.0f : 0.0f;
-            this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
+            this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-26.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
             this.limitTextContainer.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
             this.limitTextContainer.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, this.keyboardT));
             this.editText.getEmojiButton().setAlpha(this.keyboardT);
@@ -908,7 +972,7 @@ public abstract class CaptionContainerView extends FrameLayout {
 
     public void lambda$updateShowKeyboard$3(ValueAnimator valueAnimator) {
         this.keyboardT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
+        this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-26.0f) + getEditTextLeft(), AndroidUtilities.dp(2.0f), this.keyboardT));
         this.limitTextContainer.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
         this.limitTextContainer.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, this.keyboardT));
         this.editText.getEmojiButton().setAlpha(this.keyboardT);

@@ -352,7 +352,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -375,7 +375,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -433,6 +433,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressAboutRevenueSharingAds() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
+                public void didPressAdmin(ChatMessageCell chatMessageCell3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell3);
                 }
 
                 @Override
@@ -686,8 +691,18 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean isAdmin(long j) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                }
+
+                @Override
                 public boolean isLandscape() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                }
+
+                @Override
+                public boolean isOwner(long j) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
                 }
 
                 @Override
@@ -780,7 +795,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -839,6 +854,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressAboutRevenueSharingAds() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
+                public void didPressAdmin(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell6);
                 }
 
                 @Override
@@ -1097,8 +1117,18 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean isAdmin(long j) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                }
+
+                @Override
                 public boolean isLandscape() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                }
+
+                @Override
+                public boolean isOwner(long j) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
                 }
 
                 @Override

@@ -765,7 +765,6 @@ public class BlurringShader {
         private float oldPaintAlpha;
         private boolean oldPaintSet;
         public Paint paint;
-        public RenderNode renderNode;
         private Paint[] tempPaints;
         private final int type;
         private final View view;

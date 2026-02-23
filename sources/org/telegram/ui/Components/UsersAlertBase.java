@@ -388,9 +388,9 @@ public abstract class UsersAlertBase extends BottomSheet {
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         AndroidUtilities.hideKeyboard(this.searchView.searchEditText);
-        super.dismiss();
+        super.lambda$new$0();
     }
 
     protected void updateLayout() {
@@ -583,7 +583,7 @@ public abstract class UsersAlertBase extends BottomSheet {
                 float y = motionEvent.getY();
                 UsersAlertBase usersAlertBase = UsersAlertBase.this;
                 if (y < usersAlertBase.scrollOffsetY) {
-                    usersAlertBase.dismiss();
+                    usersAlertBase.lambda$new$0();
                     return true;
                 }
             }

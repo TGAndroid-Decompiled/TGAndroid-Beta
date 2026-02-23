@@ -521,7 +521,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         TextView textView2 = this.titleView;
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView2.setEllipsize(truncateAt);
-        this.topView.addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 126.33299f, 0.0f, 0.0f));
+        this.topView.addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 49, 16.0f, 126.33299f, 16.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.subtitleView = textView3;
         textView3.setTextSize(1, 13.0f);
@@ -1594,6 +1594,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             SharedConfig.setNoSoundHintShowed(false);
             MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").remove("taptostoryhighlighthint").remove("proxycheckstatusip").remove("callmiconstart").apply();
             MessagesController.getEmojiSettings(this.currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
+            MessagesController.getGlobalNotificationsSettings().edit().remove("disable_sharing_learn").apply();
             SharedConfig.textSelectionHintShows = 0;
             SharedConfig.lockRecordAudioVideoHint = 0;
             SharedConfig.stickersReorderingHintUsed = false;

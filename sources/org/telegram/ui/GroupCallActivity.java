@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -1192,13 +1193,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     @Override
-    public void dismiss() {
+    public void lambda$new$0() {
         this.parentActivity.removeOnUserLeaveHintListener(this.onUserLeaveHintListener);
         this.parentActivity.setRequestedOrientation(-1);
         groupCallUiVisible = false;
         GroupVoipInviteAlert groupVoipInviteAlert = this.groupVoipInviteAlert;
         if (groupVoipInviteAlert != null) {
-            groupVoipInviteAlert.dismiss();
+            groupVoipInviteAlert.lambda$new$0();
         }
         this.delayedGroupCallUpdated = true;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -1215,7 +1216,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.accountInstance.getNotificationCenter().removeObserver(this, NotificationCenter.conferenceEmojiUpdated);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.webRtcMicAmplitudeEvent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didEndCall);
-        super.dismiss();
+        super.lambda$new$0();
     }
 
     public boolean isStillConnecting() {
@@ -1251,7 +1252,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
             ChatObject.Call call2 = this.call;
             if (call2.call instanceof TLRPC.TL_groupCallDiscarded) {
-                dismiss();
+                lambda$new$0();
                 return;
             }
             if (this.creatingServiceTime == 0 && (((i4 = this.muteButtonState) == 7 || i4 == 5 || i4 == 6) && !call2.isScheduled())) {
@@ -1429,7 +1430,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         if (i == NotificationCenter.didEndCall) {
             if (VoIPService.getSharedInstance() == null) {
-                dismiss();
+                lambda$new$0();
                 return;
             }
             return;
@@ -1548,7 +1549,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     public void lambda$didReceivedNotification$2(DialogInterface dialogInterface) {
-        dismiss();
+        lambda$new$0();
     }
 
     private void setMicAmplitude(float f) {
@@ -1788,7 +1789,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         AndroidUtilities.runOnUIThread(this.updateCallRecordRunnable, 1000L);
     }
 
-    protected void makeFocusable(final BottomSheet bottomSheet, final AlertDialog alertDialog, final EditTextBoldCursor editTextBoldCursor, final boolean z) {
+    protected void makeFocusable(final BottomSheet bottomSheet, final AlertDialog alertDialog, final EditTextBoldCursor editTextBoldCursor, final boolean z) throws Resources.NotFoundException {
         if (this.enterEventSent) {
             return;
         }
@@ -2570,7 +2571,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (motionEvent.getAction() == 0 && GroupCallActivity.this.scrollOffsetY != 0.0f && motionEvent.getY() < GroupCallActivity.this.scrollOffsetY - AndroidUtilities.dp(37.0f) && GroupCallActivity.this.actionBar.getAlpha() == 0.0f && !GroupCallActivity.this.avatarsPreviewShowed) {
                     GroupCallActivity groupCallActivity = GroupCallActivity.this;
                     if (groupCallActivity.previewDialog == null && !groupCallActivity.renderersContainer.inFullscreenMode) {
-                        GroupCallActivity.this.dismiss();
+                        GroupCallActivity.this.lambda$new$0();
                         return true;
                     }
                 }
@@ -3248,7 +3249,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             }
 
             @Override
-            public final void onItemClick(View view, int i7, float f, float f2) {
+            public final void onItemClick(View view, int i7, float f, float f2) throws Resources.NotFoundException {
                 this.f$0.lambda$new$24(activity, call, view, i7, f, f2);
             }
         });
@@ -3349,7 +3350,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         groupCallActivityButtonsLayout.addButton(voIPToggleButton);
         voIPToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$new$27(view);
             }
         });
@@ -4042,10 +4043,10 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                         z2 = false;
                     }
                     lastFragment.presentFragment(profileActivity, false, z2);
-                    GroupCallActivity.this.dismiss();
+                    GroupCallActivity.this.lambda$new$0();
                     return;
                 }
-                GroupCallActivity.this.dismiss();
+                GroupCallActivity.this.lambda$new$0();
             }
         });
         if (this.call != null) {
@@ -4510,7 +4511,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
-        public void onItemClick(int i) {
+        public void onItemClick(int i) throws Resources.NotFoundException {
             VoIPService sharedInstance;
             int i2;
             int color;
@@ -4711,7 +4712,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 alertDialogCreate3.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_inviteMembersBackground));
                 alertDialogCreate3.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
-                    public final void onShow(DialogInterface dialogInterface) {
+                    public final void onShow(DialogInterface dialogInterface) throws Resources.NotFoundException {
                         this.f$0.lambda$onItemClick$6(alertDialogCreate3, editTextBoldCursor, dialogInterface);
                     }
                 });
@@ -4824,7 +4825,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().hangUp(1);
             }
-            GroupCallActivity.this.dismiss();
+            GroupCallActivity.this.lambda$new$0();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didStartedCall, new Object[0]);
         }
 
@@ -4889,7 +4890,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 alertDialogCreate.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_inviteMembersBackground));
                 alertDialogCreate.setOnShowListener(new DialogInterface.OnShowListener() {
                     @Override
-                    public final void onShow(DialogInterface dialogInterface) {
+                    public final void onShow(DialogInterface dialogInterface) throws Resources.NotFoundException {
                         this.f$0.lambda$onStartRecord$1(alertDialogCreate, editTextBoldCursor, dialogInterface);
                     }
                 });
@@ -4924,7 +4925,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 return false;
             }
 
-            public void lambda$onStartRecord$1(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+            public void lambda$onStartRecord$1(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) throws Resources.NotFoundException {
                 GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
             }
 
@@ -4950,7 +4951,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             builder.getDismissRunnable().run();
         }
 
-        public void lambda$onItemClick$6(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+        public void lambda$onItemClick$6(AlertDialog alertDialog, EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) throws Resources.NotFoundException {
             GroupCallActivity.this.makeFocusable(null, alertDialog, editTextBoldCursor, true);
         }
 
@@ -5061,7 +5062,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$24(Activity activity, final ChatObject.Call call, View view, int i, float f, float f2) {
+    public void lambda$new$24(Activity activity, final ChatObject.Call call, View view, int i, float f, float f2) throws Resources.NotFoundException {
         TLRPC.Chat chat;
         final ChatObject.Call.InvitedUser invitedUser;
         if (view instanceof GroupCallGridCell) {
@@ -5089,8 +5090,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 if (groupCallInvitedCell.hasAvatarSet()) {
                     bundle.putBoolean("expandPhoto", true);
                 }
-                this.parentActivity.lambda$runLinkRequest$97(new ProfileActivity(bundle));
-                dismiss();
+                this.parentActivity.lambda$runLinkRequest$99(new ProfileActivity(bundle));
+                lambda$new$0();
                 return;
             }
             if (i - this.listAdapter.shadyJoinStartRow < 0 || i - this.listAdapter.shadyJoinStartRow >= this.call.shadyJoinParticipants.size()) {
@@ -5164,7 +5165,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             });
             this.groupVoipInviteAlert.setDelegate(new GroupVoipInviteAlert.GroupVoipInviteAlertDelegate() {
                 @Override
-                public void copyInviteLink() {
+                public void copyInviteLink() throws Resources.NotFoundException {
                     GroupCallActivity.this.getLink(true);
                 }
 
@@ -5174,7 +5175,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                public void needOpenSearch(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor) {
+                public void needOpenSearch(MotionEvent motionEvent, EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
                     if (GroupCallActivity.this.enterEventSent) {
                         return;
                     }
@@ -5485,7 +5486,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
     }
 
-    public void lambda$new$27(View view) {
+    public void lambda$new$27(View view) throws Resources.NotFoundException {
         ChatObject.Call call = this.call;
         if (call == null || call.isScheduled() || isRtmpStream()) {
             getLink(false);
@@ -5548,13 +5549,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.renderersContainer.delayHideUi();
         ChatObject.Call call = this.call;
         if (call == null || call.isScheduled()) {
-            dismiss();
+            lambda$new$0();
         } else {
             updateItems();
             onLeaveClick(activity, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.dismiss();
+                    this.f$0.lambda$new$0();
                 }
             }, false);
         }
@@ -5797,7 +5798,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         if (isRtmpStream()) {
             if (PipUtils.checkAnyPipPermissions(this.parentActivity)) {
                 RTMPStreamPipOverlay.show(this.parentActivity);
-                dismiss();
+                lambda$new$0();
                 return;
             } else {
                 AlertsCreator.createDrawOverlayPermissionDialog(this.parentActivity, null, true).show();
@@ -5806,7 +5807,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
         if (AndroidUtilities.checkInlinePermissions(this.parentActivity)) {
             GroupCallPip.clearForce();
-            dismiss();
+            lambda$new$0();
         } else {
             AlertsCreator.createDrawOverlayGroupCallPermissionDialog(getContext()).show();
         }
@@ -6015,7 +6016,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     public void lambda$new$43(TLRPC.TL_error tL_error) {
         this.accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 6, tL_error.text);
-        dismiss();
+        lambda$new$0();
     }
 
     public static String lambda$new$46(long j, Calendar calendar, int i, int i2) {
@@ -6808,7 +6809,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         this.container.invalidate();
     }
 
-    public void getLink(final boolean z) {
+    public void getLink(final boolean z) throws Resources.NotFoundException {
         String str;
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
         TLRPC.Chat chat = this.accountInstance.getMessagesController().getChat(Long.valueOf(getChatId()));
@@ -6855,13 +6856,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$getLink$56(final TLRPC.ChatFull chatFull, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$getLink$55(tLObject, chatFull, z);
             }
         });
     }
 
-    public void lambda$getLink$55(TLObject tLObject, TLRPC.ChatFull chatFull, boolean z) {
+    public void lambda$getLink$55(TLObject tLObject, TLRPC.ChatFull chatFull, boolean z) throws Resources.NotFoundException {
         if (tLObject instanceof TLRPC.TL_chatInviteExported) {
             TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tLObject;
             if (chatFull != null) {
@@ -6875,13 +6876,13 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     public void lambda$getLink$58(final int i, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$getLink$57(tLObject, i, z);
             }
         });
     }
 
-    public void lambda$getLink$57(TLObject tLObject, int i, boolean z) {
+    public void lambda$getLink$57(TLObject tLObject, int i, boolean z) throws Resources.NotFoundException {
         if (tLObject instanceof TL_phone.exportedGroupCallInvite) {
             this.invites[i] = ((TL_phone.exportedGroupCallInvite) tLObject).link;
         } else {
@@ -6908,7 +6909,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         openShareAlert(false, strArr2[0], strArr2[1], z);
     }
 
-    private void openShareAlert(boolean r16, java.lang.String r17, java.lang.String r18, boolean r19) {
+    private void openShareAlert(boolean r16, java.lang.String r17, java.lang.String r18, boolean r19) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCallActivity.openShareAlert(boolean, java.lang.String, java.lang.String, boolean):void");
     }
 
@@ -6979,7 +6980,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         applyCallParticipantUpdates(true);
         GroupVoipInviteAlert groupVoipInviteAlert = this.groupVoipInviteAlert;
         if (groupVoipInviteAlert != null) {
-            groupVoipInviteAlert.dismiss();
+            groupVoipInviteAlert.lambda$new$0();
         }
         try {
             alertDialogArr[0].dismiss();
@@ -7858,15 +7859,15 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$97(new ChatActivity(bundle));
-            dismiss();
+            this.parentActivity.lambda$runLinkRequest$99(new ChatActivity(bundle));
+            lambda$new$0();
             return;
         }
         if (i == 8) {
             this.parentActivity.switchToAccount(this.currentAccount, true);
             BaseFragment baseFragment = (BaseFragment) this.parentActivity.getActionBarLayout().getFragmentStack().get(this.parentActivity.getActionBarLayout().getFragmentStack().size() - 1);
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getDialogId() == j) {
-                dismiss();
+                lambda$new$0();
                 return;
             }
             Bundle bundle2 = new Bundle();
@@ -7875,8 +7876,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle2.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$97(new ChatActivity(bundle2));
-            dismiss();
+            this.parentActivity.lambda$runLinkRequest$99(new ChatActivity(bundle2));
+            lambda$new$0();
             return;
         }
         if (i == 7) {
@@ -8892,7 +8893,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     public void onUserLeaveHint() {
         if (isRtmpStream() && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !RTMPStreamPipOverlay.isVisible()) {
-            dismiss();
+            lambda$new$0();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

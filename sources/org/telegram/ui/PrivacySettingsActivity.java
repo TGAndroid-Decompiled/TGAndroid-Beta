@@ -77,6 +77,10 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     private int contactsSectionRow;
     private int contactsSuggestRow;
     private int contactsSyncRow;
+    private int contentProtectionDetailRow;
+    private int contentProtectionRow;
+    private int contentProtectionSectionRow;
+    private boolean currentContentProtection;
     public ArrayList currentPasskeys;
     private TL_account.Password currentPassword;
     private boolean currentSuggest;
@@ -99,6 +103,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     private int newChatsHeaderRow;
     private int newChatsRow;
     private int newChatsSectionRow;
+    private boolean newContentProtection;
     private boolean newSuggest;
     private boolean newSync;
     private int noncontactsRow;
@@ -154,6 +159,8 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         boolean z2 = getUserConfig().suggestContacts;
         this.newSuggest = z2;
         this.currentSuggest = z2;
+        this.newContentProtection = false;
+        this.currentContentProtection = false;
         TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
         if (globalPrivacySettings != null) {
             this.archiveChats = globalPrivacySettings.archive_and_mute_new_noncontact_peers;
@@ -498,17 +505,23 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 textCheckCell.setChecked(true);
                 return;
             }
-            if (i == this.newChatsRow) {
-                boolean z = !this.archiveChats;
-                this.archiveChats = z;
+            if (i == this.contentProtectionRow) {
+                boolean z = !this.newContentProtection;
+                this.newContentProtection = z;
                 ((TextCheckCell) view).setChecked(z);
                 return;
             }
+            if (i == this.newChatsRow) {
+                boolean z2 = !this.archiveChats;
+                this.archiveChats = z2;
+                ((TextCheckCell) view).setChecked(z2);
+                return;
+            }
             if (i == this.contactsSyncRow) {
-                boolean z2 = !this.newSync;
-                this.newSync = z2;
+                boolean z3 = !this.newSync;
+                this.newSync = z3;
                 if (view instanceof TextCheckCell) {
-                    ((TextCheckCell) view).setChecked(z2);
+                    ((TextCheckCell) view).setChecked(z3);
                     return;
                 }
                 return;
@@ -851,13 +864,16 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         int i4 = this.rowCount;
         this.sessionsRow = i4;
         this.sessionsDetailRow = i4 + 1;
-        this.privacySectionRow = i4 + 2;
-        this.phoneNumberRow = i4 + 3;
-        this.lastSeenRow = i4 + 4;
-        this.profilePhotoRow = i4 + 5;
-        this.forwardsRow = i4 + 6;
-        this.rowCount = i4 + 8;
-        this.callsRow = i4 + 7;
+        this.contentProtectionSectionRow = i4 + 2;
+        this.contentProtectionRow = i4 + 3;
+        this.contentProtectionDetailRow = i4 + 4;
+        this.privacySectionRow = i4 + 5;
+        this.phoneNumberRow = i4 + 6;
+        this.lastSeenRow = i4 + 7;
+        this.profilePhotoRow = i4 + 8;
+        this.forwardsRow = i4 + 9;
+        this.rowCount = i4 + 11;
+        this.callsRow = i4 + 10;
         this.groupsDetailRow = -1;
         if (!getMessagesController().premiumFeaturesBlocked() || getUserConfig().isPremium()) {
             int i5 = this.rowCount;
@@ -1197,7 +1213,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             if (adapterPosition == PrivacySettingsActivity.this.phoneNumberRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(6)) {
                 return true;
             }
-            if ((adapterPosition == PrivacySettingsActivity.this.voicesRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(8)) || adapterPosition == PrivacySettingsActivity.this.noncontactsRow) {
+            if ((adapterPosition == PrivacySettingsActivity.this.voicesRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(8)) || adapterPosition == PrivacySettingsActivity.this.noncontactsRow || adapterPosition == PrivacySettingsActivity.this.contentProtectionRow) {
                 return true;
             }
             if (adapterPosition != PrivacySettingsActivity.this.deleteAccountRow || PrivacySettingsActivity.this.getContactsController().getLoadingDeleteInfo()) {
@@ -1430,10 +1446,14 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                                 if (i != PrivacySettingsActivity.this.botsDetailRow) {
                                     if (i != PrivacySettingsActivity.this.privacyShadowRow) {
                                         if (i != PrivacySettingsActivity.this.contactsDetailRow) {
-                                            if (i == PrivacySettingsActivity.this.newChatsSectionRow) {
-                                                textInfoPrivacyCell.setText(LocaleController.getString("ArchiveAndMuteInfo", R.string.ArchiveAndMuteInfo));
+                                            if (i != PrivacySettingsActivity.this.newChatsSectionRow) {
+                                                if (i == PrivacySettingsActivity.this.contentProtectionDetailRow) {
+                                                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.PrivacyContentProtectionInfo));
+                                                    return;
+                                                }
                                                 return;
                                             }
+                                            textInfoPrivacyCell.setText(LocaleController.getString("ArchiveAndMuteInfo", R.string.ArchiveAndMuteInfo));
                                             return;
                                         }
                                         textInfoPrivacyCell.setText(LocaleController.getString("SuggestContactsInfo", R.string.SuggestContactsInfo));
@@ -1460,30 +1480,34 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             if (itemViewType == 2) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (i != PrivacySettingsActivity.this.privacySectionRow) {
-                    if (i != PrivacySettingsActivity.this.securitySectionRow) {
-                        if (i != PrivacySettingsActivity.this.advancedSectionRow) {
-                            if (i != PrivacySettingsActivity.this.secretSectionRow) {
-                                if (i != PrivacySettingsActivity.this.botsSectionRow) {
-                                    if (i != PrivacySettingsActivity.this.contactsSectionRow) {
-                                        if (i == PrivacySettingsActivity.this.newChatsHeaderRow) {
-                                            headerCell.setText(LocaleController.getString("NewChatsFromNonContacts", R.string.NewChatsFromNonContacts));
+                    if (i != PrivacySettingsActivity.this.contentProtectionSectionRow) {
+                        if (i != PrivacySettingsActivity.this.securitySectionRow) {
+                            if (i != PrivacySettingsActivity.this.advancedSectionRow) {
+                                if (i != PrivacySettingsActivity.this.secretSectionRow) {
+                                    if (i != PrivacySettingsActivity.this.botsSectionRow) {
+                                        if (i != PrivacySettingsActivity.this.contactsSectionRow) {
+                                            if (i == PrivacySettingsActivity.this.newChatsHeaderRow) {
+                                                headerCell.setText(LocaleController.getString("NewChatsFromNonContacts", R.string.NewChatsFromNonContacts));
+                                                return;
+                                            }
                                             return;
                                         }
+                                        headerCell.setText(LocaleController.getString("Contacts", R.string.Contacts));
                                         return;
                                     }
-                                    headerCell.setText(LocaleController.getString("Contacts", R.string.Contacts));
+                                    headerCell.setText(LocaleController.getString("PrivacyBots", R.string.PrivacyBots));
                                     return;
                                 }
-                                headerCell.setText(LocaleController.getString("PrivacyBots", R.string.PrivacyBots));
+                                headerCell.setText(LocaleController.getString("SecretChat", R.string.SecretChat));
                                 return;
                             }
-                            headerCell.setText(LocaleController.getString("SecretChat", R.string.SecretChat));
+                            headerCell.setText(LocaleController.getString("DeleteMyAccount", R.string.DeleteMyAccount));
                             return;
                         }
-                        headerCell.setText(LocaleController.getString("DeleteMyAccount", R.string.DeleteMyAccount));
+                        headerCell.setText(LocaleController.getString("SecurityTitle", R.string.SecurityTitle));
                         return;
                     }
-                    headerCell.setText(LocaleController.getString("SecurityTitle", R.string.SecurityTitle));
+                    headerCell.setText(LocaleController.getString(R.string.PrivacyContentProtection));
                     return;
                 }
                 headerCell.setText(LocaleController.getString("PrivacyTitle", R.string.PrivacyTitle));
@@ -1495,12 +1519,16 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     if (i == PrivacySettingsActivity.this.contactsSyncRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString("SyncContacts", R.string.SyncContacts), PrivacySettingsActivity.this.newSync, true);
                         return;
-                    } else if (i == PrivacySettingsActivity.this.contactsSuggestRow) {
+                    }
+                    if (i == PrivacySettingsActivity.this.contactsSuggestRow) {
                         textCheckCell.setTextAndCheck(LocaleController.getString("SuggestContacts", R.string.SuggestContacts), PrivacySettingsActivity.this.newSuggest, false);
                         return;
+                    } else if (i == PrivacySettingsActivity.this.newChatsRow) {
+                        textCheckCell.setTextAndCheck(LocaleController.getString("ArchiveAndMute", R.string.ArchiveAndMute), PrivacySettingsActivity.this.archiveChats, false);
+                        return;
                     } else {
-                        if (i == PrivacySettingsActivity.this.newChatsRow) {
-                            textCheckCell.setTextAndCheck(LocaleController.getString("ArchiveAndMute", R.string.ArchiveAndMute), PrivacySettingsActivity.this.archiveChats, false);
+                        if (i == PrivacySettingsActivity.this.contentProtectionRow) {
+                            textCheckCell.setTextAndCheck(LocaleController.getString(R.string.PrivacyContentProtectionSwitch), PrivacySettingsActivity.this.newContentProtection, false);
                             return;
                         }
                         return;
@@ -1647,13 +1675,13 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             if (i == PrivacySettingsActivity.this.passportRow || i == PrivacySettingsActivity.this.lastSeenRow || i == PrivacySettingsActivity.this.phoneNumberRow || i == PrivacySettingsActivity.this.deleteAccountRow || i == PrivacySettingsActivity.this.webSessionsRow || i == PrivacySettingsActivity.this.groupsRow || i == PrivacySettingsActivity.this.paymentsClearRow || i == PrivacySettingsActivity.this.secretMapRow || i == PrivacySettingsActivity.this.contactsDeleteRow || i == PrivacySettingsActivity.this.botsBiometryRow) {
                 return 0;
             }
-            if (i == PrivacySettingsActivity.this.privacyShadowRow || i == PrivacySettingsActivity.this.deleteAccountDetailRow || i == PrivacySettingsActivity.this.groupsDetailRow || i == PrivacySettingsActivity.this.sessionsDetailRow || i == PrivacySettingsActivity.this.secretDetailRow || i == PrivacySettingsActivity.this.botsDetailRow || i == PrivacySettingsActivity.this.contactsDetailRow || i == PrivacySettingsActivity.this.newChatsSectionRow) {
+            if (i == PrivacySettingsActivity.this.privacyShadowRow || i == PrivacySettingsActivity.this.deleteAccountDetailRow || i == PrivacySettingsActivity.this.groupsDetailRow || i == PrivacySettingsActivity.this.sessionsDetailRow || i == PrivacySettingsActivity.this.contentProtectionDetailRow || i == PrivacySettingsActivity.this.secretDetailRow || i == PrivacySettingsActivity.this.botsDetailRow || i == PrivacySettingsActivity.this.contactsDetailRow || i == PrivacySettingsActivity.this.newChatsSectionRow) {
                 return 1;
             }
-            if (i == PrivacySettingsActivity.this.securitySectionRow || i == PrivacySettingsActivity.this.advancedSectionRow || i == PrivacySettingsActivity.this.privacySectionRow || i == PrivacySettingsActivity.this.secretSectionRow || i == PrivacySettingsActivity.this.botsSectionRow || i == PrivacySettingsActivity.this.contactsSectionRow || i == PrivacySettingsActivity.this.newChatsHeaderRow) {
+            if (i == PrivacySettingsActivity.this.securitySectionRow || i == PrivacySettingsActivity.this.advancedSectionRow || i == PrivacySettingsActivity.this.privacySectionRow || i == PrivacySettingsActivity.this.contentProtectionSectionRow || i == PrivacySettingsActivity.this.secretSectionRow || i == PrivacySettingsActivity.this.botsSectionRow || i == PrivacySettingsActivity.this.contactsSectionRow || i == PrivacySettingsActivity.this.newChatsHeaderRow) {
                 return 2;
             }
-            if (i == PrivacySettingsActivity.this.secretWebpageRow || i == PrivacySettingsActivity.this.contactsSyncRow || i == PrivacySettingsActivity.this.contactsSuggestRow || i == PrivacySettingsActivity.this.newChatsRow) {
+            if (i == PrivacySettingsActivity.this.secretWebpageRow || i == PrivacySettingsActivity.this.contentProtectionRow || i == PrivacySettingsActivity.this.contactsSyncRow || i == PrivacySettingsActivity.this.contactsSuggestRow || i == PrivacySettingsActivity.this.newChatsRow) {
                 return 3;
             }
             if (i == PrivacySettingsActivity.this.botsAndWebsitesShadowRow) {

@@ -8,6 +8,7 @@ import org.telegram.tgnet.tl.TL_account;
 
 public class UserObject {
     public static final long ANONYMOUS = 2666000;
+    public static final long OAUTH = 489001;
     public static final long REPLY_BOT = 1271266957;
     public static final long VERIFY = 489000;
 

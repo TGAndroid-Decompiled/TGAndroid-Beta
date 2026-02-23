@@ -1087,6 +1087,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                         SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
                         int childAdapterPosition = BotPreviewsEditLangContainer.this.listView.getChildAdapterPosition(sharedPhotoVideoCell2);
                         int spanCount = BotPreviewsEditLangContainer.this.layoutManager.getSpanCount();
+                        sharedPhotoVideoCell2.isTop = childAdapterPosition < spanCount;
                         int i = childAdapterPosition % spanCount;
                         sharedPhotoVideoCell2.isFirst = i == 0;
                         sharedPhotoVideoCell2.isLast = i == spanCount - 1;
@@ -1139,6 +1140,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
                         SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) view;
                         int childAdapterPosition = BotPreviewsEditLangContainer.this.supportingListView.getChildAdapterPosition(sharedPhotoVideoCell2);
                         int spanCount = BotPreviewsEditLangContainer.this.supportingLayoutManager.getSpanCount();
+                        sharedPhotoVideoCell2.isTop = childAdapterPosition < spanCount;
                         int i = childAdapterPosition % spanCount;
                         sharedPhotoVideoCell2.isFirst = i == 0;
                         sharedPhotoVideoCell2.isLast = i == spanCount - 1;

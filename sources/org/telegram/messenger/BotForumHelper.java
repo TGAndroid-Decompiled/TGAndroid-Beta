@@ -48,19 +48,47 @@ public class BotForumHelper extends BaseController {
     }
 
     public void onBotForumDraftUpdate(final long j, final int i, final long j2, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        long j3;
+        long[] jArr;
+        long[] jArr2;
         BotDraftMessage botDraftMessage;
+        int i2;
         FileLog.d("[BotForum] onDraftNewDraft " + j + " " + i + " " + j2);
-        long j4 = (long) i;
-        BotDraftMessage botDraftMessage2 = this.botTextDraftsByRandomIds.get(j, j4, j2);
-        if (botDraftMessage2 == null) {
-            j3 = j4;
-            BotDraftMessage botDraftMessage3 = new BotDraftMessage(j, i, j2, getUserConfig().getNewMessageId());
-            this.botTextDraftsByRandomIds.put(j, j3, j2, botDraftMessage3);
-            botDraftMessage = botDraftMessage3;
+        long j3 = (long) i;
+        LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j, j3);
+        if (longSparseArray == null || longSparseArray.size() <= 0) {
+            jArr = null;
         } else {
-            j3 = j4;
+            jArr = new long[longSparseArray.size()];
+            int size = longSparseArray.size();
+            for (int i3 = 0; i3 < size; i3++) {
+                jArr[i3] = longSparseArray.keyAt(i3);
+            }
+        }
+        long[] jArr3 = jArr;
+        BotDraftMessage botDraftMessage2 = this.botTextDraftsByRandomIds.get(j, j3, j2);
+        if (botDraftMessage2 == null) {
+            jArr2 = jArr3;
+            botDraftMessage = new BotDraftMessage(j, i, j2, getUserConfig().getNewMessageId());
+            this.botTextDraftsByRandomIds.put(j, j3, j2, botDraftMessage);
+        } else {
+            jArr2 = jArr3;
             botDraftMessage = botDraftMessage2;
+        }
+        if (jArr2 != null) {
+            int length = jArr2.length;
+            for (int i4 = 0; i4 < length; i4 = i2 + 1) {
+                long j4 = jArr2[i4];
+                if (j4 == j2) {
+                    i2 = i4;
+                } else {
+                    BotDraftMessage botDraftMessage3 = longSparseArray.get(j4);
+                    if (botDraftMessage3.selfDestruct != null) {
+                        AndroidUtilities.cancelRunOnUIThread(botDraftMessage3.selfDestruct);
+                    }
+                    i2 = i4;
+                    lambda$onBotForumDraftUpdate$0(j, i, j4);
+                }
+            }
         }
         boolean z = botDraftMessage.messageObject == null;
         if (botDraftMessage.selfDestruct != null) {
@@ -73,9 +101,10 @@ public class BotForumHelper extends BaseController {
             }
         };
         botDraftMessage.text = tL_textWithEntities;
-        botDraftMessage.messageObject = createDraftMessage(j, i, j2, botDraftMessage.localMessageId, tL_textWithEntities);
-        AndroidUtilities.runOnUIThread(botDraftMessage.selfDestruct, getAppGlobalConfig().messageTypingDraftTtl.get(TimeUnit.MILLISECONDS));
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumDraftUpdate, new BotForumTextDraftUpdateNotification(j, j3, botDraftMessage.messageObject, z));
+        BotDraftMessage botDraftMessage4 = botDraftMessage;
+        botDraftMessage4.messageObject = createDraftMessage(j, i, j2, botDraftMessage.localMessageId, tL_textWithEntities);
+        AndroidUtilities.runOnUIThread(botDraftMessage4.selfDestruct, getAppGlobalConfig().messageTypingDraftTtl.get(TimeUnit.MILLISECONDS));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumDraftUpdate, new BotForumTextDraftUpdateNotification(j, j3, botDraftMessage4.messageObject, z));
     }
 
     public MessageObject onBotForumDraftCheckNewMessages(long j, int i, int i2, String str) {

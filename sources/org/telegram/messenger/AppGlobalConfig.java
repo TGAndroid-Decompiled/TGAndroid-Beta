@@ -15,6 +15,7 @@ public class AppGlobalConfig {
     public final ConfigTime groupCallMessageTtl;
     public final ConfigTime messageTypingDraftTtl;
     public final ConfigBoolean needAgeVideoVerification;
+    public final ConfigTime noForwardsRequestExpirePeriod;
     public final ConfigInt passkeysAccountPasskeysMax;
     public final ConfigBoolean settingsDisplayPasskeys;
     public final ConfigInt stargiftsCollectionGiftsLimit;
@@ -73,6 +74,7 @@ public class AppGlobalConfig {
         this.settingsDisplayPasskeys = ofBoolean("settings_display_passkeys", BuildVars.DEBUG_VERSION);
         this.disableBlurInLightTheme = ofBoolean("android_disable_blur_in_light_theme", false);
         this.disableBlurInDarkTheme = ofBoolean("android_disable_blur_in_dark_theme", false);
+        this.noForwardsRequestExpirePeriod = ofTime("no_forwards_request_expire_period", 86400L, timeUnit);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

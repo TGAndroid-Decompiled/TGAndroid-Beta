@@ -3,6 +3,7 @@ package org.telegram.ui.Gifts;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ShapeDrawable;
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
@@ -1027,7 +1029,7 @@ public class ResaleGiftsFragment extends BaseFragment {
             private boolean shownToast = false;
 
             @Override
-            public void onBecomeFullyVisible() {
+            public void onBecomeFullyVisible() throws Resources.NotFoundException {
                 super.onBecomeFullyVisible();
                 if (this.shownToast) {
                     return;
@@ -2659,19 +2661,38 @@ public class ResaleGiftsFragment extends BaseFragment {
         }
 
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+            boolean z;
+            int i;
+            StarsController.GiftsList profileGiftsList;
             State state = this.state;
             if (state == null || state.list == null || this.state.resaleList == null) {
                 return;
             }
             int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             arrayList.add(UItem.asHeader(-1, LocaleController.getString(R.string.GiftCraftSelectYour)));
-            Iterator it = this.state.list.gifts.iterator();
-            boolean z = true;
-            int i = 0;
-            while (it.hasNext()) {
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
-                if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
-                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true).setEnabled(savedStarGift.can_craft_at <= currentTime));
+            if (!BuildVars.DEBUG_PRIVATE_VERSION || (profileGiftsList = StarsController.getInstance(this.currentAccount).getProfileGiftsList(UserConfig.getInstance(this.currentAccount).getClientUserId(), false)) == null || profileGiftsList.gifts.isEmpty()) {
+                z = true;
+                i = 0;
+            } else {
+                Iterator it = profileGiftsList.gifts.iterator();
+                z = true;
+                i = 0;
+                while (it.hasNext()) {
+                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) it.next();
+                    long j = this.state.giftId;
+                    TL_stars.StarGift starGift = savedStarGift.gift;
+                    if (j == starGift.gift_id && !TextUtils.isEmpty(starGift.owner_address) && !this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
+                        arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true).setEnabled(true));
+                        i++;
+                        z = false;
+                    }
+                }
+            }
+            Iterator it2 = this.state.list.gifts.iterator();
+            while (it2.hasNext()) {
+                TL_stars.SavedStarGift savedStarGift2 = (TL_stars.SavedStarGift) it2.next();
+                if (!this.without.contains(Long.valueOf(savedStarGift2.gift.id))) {
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift2.gift, false, true, false, false, true).setEnabled(savedStarGift2.can_craft_at <= currentTime));
                     i++;
                     z = false;
                 }
@@ -2692,9 +2713,9 @@ public class ResaleGiftsFragment extends BaseFragment {
                 if (horizontalScrollView != null) {
                     arrayList.add(UItem.asCustom(-3, horizontalScrollView));
                 }
-                Iterator it2 = this.state.resaleList.gifts.iterator();
-                while (it2.hasNext()) {
-                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it2.next(), false, true, false, true, true));
+                Iterator it3 = this.state.resaleList.gifts.iterator();
+                while (it3.hasNext()) {
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) it3.next(), false, true, false, true, true));
                 }
                 if (this.state.resaleList.loading || !this.state.resaleList.endReached) {
                     arrayList.add(UItem.asFlicker(10, 35).setSpanCount(1));

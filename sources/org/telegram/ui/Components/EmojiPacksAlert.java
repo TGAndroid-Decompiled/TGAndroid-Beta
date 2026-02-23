@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
@@ -130,6 +131,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
 
     class AnonymousClass1 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
+        public void addCaptionToGif(Object obj, Object obj2, boolean z, int i, int i2) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addCaptionToGif(this, obj, obj2, z, i, i2);
+        }
+
+        @Override
         public void addToFavoriteSelected(String str) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
         }
@@ -137,6 +143,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         @Override
         public boolean can() {
             return true;
+        }
+
+        @Override
+        public boolean canAddCaption(TLRPC.Document document) {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canAddCaption(this, document);
         }
 
         @Override
@@ -277,7 +288,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) {
+        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
             if (EmojiPacksAlert.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiPacksAlert.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -1169,7 +1180,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) getContext()).lambda$runLinkRequest$97(new PremiumPreviewFragment(null));
+            ((LaunchActivity) getContext()).lambda$runLinkRequest$99(new PremiumPreviewFragment(null));
         }
     }
 

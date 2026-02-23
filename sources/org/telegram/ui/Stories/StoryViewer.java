@@ -107,7 +107,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     public boolean fromBottomSheet;
     float fromDismissOffset;
     float fromHeight;
-    private int fromRadius;
+    private int[] fromRadius;
     float fromWidth;
     float fromX;
     float fromXCell;
@@ -717,6 +717,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         final RectF outFromRectAvatar;
         final RectF outFromRectContainer;
         final Path path;
+        final float[] radii;
         final RectF rect1;
         final RectF rect2;
         final RectF rect3;
@@ -727,6 +728,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         AnonymousClass2(Context context, BaseFragment baseFragment) {
             super(context);
             this.val$fragment = baseFragment;
+            this.radii = new float[8];
             this.path = new Path();
             this.rect1 = new RectF();
             this.rect2 = new RectF();
@@ -745,7 +747,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void dispatchDraw(android.graphics.Canvas r18) {
+        protected void dispatchDraw(android.graphics.Canvas r17) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryViewer.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1830,7 +1832,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             this.fromY = iArr[1] + this.transitionViewHolder.storyImage.getCenterY();
                             this.fromWidth = this.transitionViewHolder.storyImage.getImageWidth();
                             this.fromHeight = this.transitionViewHolder.storyImage.getImageHeight();
-                            this.fromRadius = this.transitionViewHolder.storyImage.getRoundRadius()[0];
+                            this.fromRadius = this.transitionViewHolder.storyImage.getRoundRadius();
                         }
                     }
                     this.transitionViewHolder.clipParent.getLocationOnScreen(iArr);
@@ -2389,7 +2391,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1257getWindowView() {
+    public View mo1275getWindowView() {
         return this.windowView;
     }
 

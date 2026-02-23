@@ -56,8 +56,9 @@ public class PhotoViewerCoverEditor extends FrameLayout {
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.button = buttonWithCounterView;
         buttonWithCounterView.setText(LocaleController.getString(R.string.EditorSetCoverSave), false);
-        addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 87, 10.0f, 10.0f, 10.0f, 10.0f));
-        EditCoverButton editCoverButton = new EditCoverButton(context, photoViewer, LocaleController.getString(R.string.EditorSetCoverGallery), true);
+        this.button.setRound();
+        addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 16.0f));
+        EditCoverButton editCoverButton = new EditCoverButton(context, LocaleController.getString(R.string.EditorSetCoverGallery), true);
         this.openGalleryButton = editCoverButton;
         editCoverButton.setOnClickListener(new View.OnClickListener() {
             @Override

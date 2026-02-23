@@ -82,13 +82,13 @@ public class GiftAuctionController extends BaseController {
         tL_getStarGiftAuctionState.version = orCreateAuction.getVersion();
         getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$subscribeToGiftAuctionStateInternal$1(j, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$subscribeToGiftAuctionStateInternal$1(final long j, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$subscribeToGiftAuctionStateInternal$1(final long j, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, TLRPC.TL_error tL_error) {
         if (tL_StarGiftAuctionState != null) {
             getMessagesController().putUsers(tL_StarGiftAuctionState.users, false);
             getMessagesController().putChats(tL_StarGiftAuctionState.chats, false);
@@ -97,7 +97,7 @@ public class GiftAuctionController extends BaseController {
             this.upgrades.put(j, Boolean.TRUE);
             requestAuctionUpgrades(j, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws InterruptedException {
+                public final void run(Object obj) {
                     this.f$0.lambda$subscribeToGiftAuctionStateInternal$0(j, tL_StarGiftAuctionState, (ArrayList) obj);
                 }
             });
@@ -106,12 +106,12 @@ public class GiftAuctionController extends BaseController {
         }
     }
 
-    public void lambda$subscribeToGiftAuctionStateInternal$0(long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, ArrayList arrayList) throws InterruptedException {
+    public void lambda$subscribeToGiftAuctionStateInternal$0(long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, ArrayList arrayList) {
         getOrCreateAuction(j).previewAttributes = arrayList;
         onGiftAuctionStateReceivedInternal(j, tL_StarGiftAuctionState);
     }
 
-    private void onGiftAuctionStateReceivedInternal(final long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) throws InterruptedException {
+    private void onGiftAuctionStateReceivedInternal(final long j, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
         applyGiftAuctionStateAndPerformUpdate(tL_StarGiftAuctionState.gift, tL_StarGiftAuctionState.state, tL_StarGiftAuctionState.user_state);
         final AuctionInternal auctionInternal = this.auctions.get(j);
         if (auctionInternal == null || !auctionInternal.subscription) {
@@ -149,13 +149,13 @@ public class GiftAuctionController extends BaseController {
         tL_getStarGiftAuctionState.version = 0;
         return getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$requestGiftAuctionInternal$4(callback2, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$requestGiftAuctionInternal$4(final Utilities.Callback2 callback2, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, final TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$requestGiftAuctionInternal$4(final Utilities.Callback2 callback2, final TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, final TLRPC.TL_error tL_error) {
         if (tL_StarGiftAuctionState != null) {
             getMessagesController().putUsers(tL_StarGiftAuctionState.users, false);
             getMessagesController().putChats(tL_StarGiftAuctionState.chats, false);
@@ -164,7 +164,7 @@ public class GiftAuctionController extends BaseController {
             this.upgrades.put(tL_StarGiftAuctionState.gift.id, Boolean.TRUE);
             requestAuctionUpgrades(tL_StarGiftAuctionState.gift.id, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws InterruptedException {
+                public final void run(Object obj) {
                     this.f$0.lambda$requestGiftAuctionInternal$3(tL_StarGiftAuctionState, callback2, tL_error, (ArrayList) obj);
                 }
             });
@@ -176,7 +176,7 @@ public class GiftAuctionController extends BaseController {
         }
     }
 
-    public void lambda$requestGiftAuctionInternal$3(TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, Utilities.Callback2 callback2, TLRPC.TL_error tL_error, ArrayList arrayList) throws InterruptedException {
+    public void lambda$requestGiftAuctionInternal$3(TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState, Utilities.Callback2 callback2, TLRPC.TL_error tL_error, ArrayList arrayList) {
         getOrCreateAuction(tL_StarGiftAuctionState.gift.id).previewAttributes = arrayList;
         onGiftAuctionStateReceivedInternal(tL_StarGiftAuctionState.gift.id, tL_StarGiftAuctionState);
         callback2.run(tL_StarGiftAuctionState, tL_error);
@@ -338,13 +338,13 @@ public class GiftAuctionController extends BaseController {
         tL_getStarGiftActiveAuctions.hash = calculateUserAuctionsHash();
         getConnectionsManager().sendRequestTyped(tL_getStarGiftActiveAuctions, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws InterruptedException {
+            public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$requestUserAuctions$10(TL_payments.StarGiftActiveAuctions starGiftActiveAuctions, TLRPC.TL_error tL_error) throws InterruptedException {
+    public void lambda$requestUserAuctions$10(TL_payments.StarGiftActiveAuctions starGiftActiveAuctions, TLRPC.TL_error tL_error) {
         if (starGiftActiveAuctions == null || tL_error != null) {
             return;
         }
@@ -429,7 +429,7 @@ public class GiftAuctionController extends BaseController {
         performAuctionUpdate(auctionInternal.giftId);
     }
 
-    private void applyGiftAuctionStateAndPerformUpdate(TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) throws InterruptedException {
+    private void applyGiftAuctionStateAndPerformUpdate(TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
         boolean zApplyAuctionState;
         AuctionInternal orCreateAuction = getOrCreateAuction(starGift.id);
         if (orCreateAuction.internalState == null) {
@@ -488,7 +488,7 @@ public class GiftAuctionController extends BaseController {
         return auctionInternal2;
     }
 
-    private void updateActiveAuctions() throws InterruptedException {
+    private void updateActiveAuctions() {
         getMessagesController().putLastGiftAuctionUpdate();
         this.activeAuctions.clear();
         int size = this.auctions.size();
@@ -546,7 +546,7 @@ public class GiftAuctionController extends BaseController {
         this.onActiveAuctionsUpdateListeners.remove(onActiveAuctionsUpdateListeners);
     }
 
-    private void performUpdateActiveAuctions() throws InterruptedException {
+    private void performUpdateActiveAuctions() {
         Iterator it = this.onActiveAuctionsUpdateListeners.iterator();
         while (it.hasNext()) {
             ((OnActiveAuctionsUpdateListeners) it.next()).onActiveAuctionsUpdate(this.activeAuctions);

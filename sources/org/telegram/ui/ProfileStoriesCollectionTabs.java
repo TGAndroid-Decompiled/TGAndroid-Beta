@@ -15,6 +15,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -30,7 +31,7 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
     int initialAlbumId;
     private boolean reorderingCollections;
     private final Runnable sendCollectionsOrder;
-    private final ViewPagerFixed.TabsView tabsView;
+    public final ViewPagerFixed.TabsView tabsView;
     private final ViewPagerFixed viewPager;
     private ValueAnimator visibilityAnimator;
     private float visibilityFactor;
@@ -95,8 +96,9 @@ public abstract class ProfileStoriesCollectionTabs extends BlurredFrameLayout im
         adapter.canCreateNewAlbum = storiesCollections.canCreateNewAlbum();
         viewPagerFixed.setAdapter(adapter);
         viewPagerFixed.setTranslationY(AndroidUtilities.dp(42.0f));
-        ViewPagerFixed.TabsView tabsViewCreateTabsView = viewPagerFixed.createTabsView(true, 9);
+        ViewPagerFixed.TabsView tabsViewCreateTabsView = viewPagerFixed.createTabsView(true, 10);
         this.tabsView = tabsViewCreateTabsView;
+        tabsViewCreateTabsView.setColors(Theme.key_profile_tabSelectedLine, Theme.key_windowBackgroundWhiteBlackText, Theme.key_profile_tabText, Theme.key_profile_tabSelector, Theme.key_actionBarDefault);
         tabsViewCreateTabsView.tabMarginDp = 12;
         tabsViewCreateTabsView.setPreTabClick(new Utilities.Callback2Return() {
             @Override

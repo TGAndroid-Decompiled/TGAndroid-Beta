@@ -1356,6 +1356,15 @@ public class ViewPagerFixed extends FrameLayout {
             }
         }
 
+        public void setColors(int i, int i2, int i3, int i4, int i5) {
+            this.tabLineColorKey = i;
+            this.activeTextColorKey = i2;
+            this.unactiveTextColorKey = i3;
+            this.selectorColorKey = i4;
+            this.backgroundColorKey = i5;
+            this.selectorDrawable.setColor(Theme.getColor(i, this.resourcesProvider));
+        }
+
         public TabsView(Context context, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             int i2 = 0;
@@ -1415,7 +1424,7 @@ public class ViewPagerFixed extends FrameLayout {
             this.selectorType = i;
             textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
             textPaint2.setTypeface(AndroidUtilities.bold());
-            textPaint.setTextSize(AndroidUtilities.dp((i == 9 || i == -2) ? 14.0f : 15.0f));
+            textPaint.setTextSize(AndroidUtilities.dp((i == 9 || i == 10 || i == -2) ? 14.0f : 15.0f));
             textPaint.setTypeface(AndroidUtilities.bold());
             textPaint3.setStyle(Paint.Style.STROKE);
             textPaint3.setStrokeCap(Paint.Cap.ROUND);
@@ -1475,7 +1484,7 @@ public class ViewPagerFixed extends FrameLayout {
                 this.listView.setSelectorType(9);
                 this.listView.setSelectorRadius(6);
             } else {
-                this.listView.setSelectorType(i);
+                this.listView.setSelectorType(i == 10 ? 9 : i);
                 if (i == 3) {
                     this.listView.setSelectorRadius(0);
                 } else {
@@ -1552,7 +1561,7 @@ public class ViewPagerFixed extends FrameLayout {
                     TabsView.this.invalidate();
                 }
             });
-            if (i == 9) {
+            if (i == 9 || i == 10) {
                 addView(this.listView, LayoutHelper.createFrame(-2, -1, 1));
             } else {
                 addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
@@ -1834,16 +1843,17 @@ public class ViewPagerFixed extends FrameLayout {
 
         @Override
         protected void onMeasure(int i, int i2) {
+            int i3;
             if (!this.tabs.isEmpty()) {
                 int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
-                int i3 = this.additionalTabWidth;
-                if (this.tabs.size() == 1 || this.selectorType == 9) {
+                int i4 = this.additionalTabWidth;
+                if (this.tabs.size() == 1 || (i3 = this.selectorType) == 9 || i3 == 10) {
                     this.additionalTabWidth = 0;
                 } else {
-                    int i4 = this.allTabsWidth;
-                    this.additionalTabWidth = i4 < size ? (size - i4) / this.tabs.size() : 0;
+                    int i5 = this.allTabsWidth;
+                    this.additionalTabWidth = i5 < size ? (size - i5) / this.tabs.size() : 0;
                 }
-                if (i3 != this.additionalTabWidth) {
+                if (i4 != this.additionalTabWidth) {
                     this.ignoreLayout = true;
                     this.adapter.notifyDataSetChanged();
                     this.ignoreLayout = false;

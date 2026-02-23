@@ -50,7 +50,6 @@ public final class ViewPositionWatcher implements ViewTreeObserver.OnPreDrawList
         arrayList.add(tracked);
         computeRectInParent(view, viewGroup, this.tmpRect);
         tracked.last.set(this.tmpRect);
-        tracked.hasLast = true;
         ensureListening();
     }
 

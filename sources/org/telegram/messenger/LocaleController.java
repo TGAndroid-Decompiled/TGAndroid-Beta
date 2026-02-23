@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.Spannable;
@@ -13,6 +14,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.text.format.DateUtils;
 import android.util.Xml;
 import j$.util.DesugarTimeZone;
 import java.io.BufferedWriter;
@@ -20,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Currency;
@@ -4316,6 +4319,103 @@ public class LocaleController {
         } catch (Exception e) {
             FileLog.e(e);
             return null;
+        }
+    }
+
+    public static String formatEntityFormattedDate(TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
+        return formatEntityFormattedDate(tL_messageEntityFormattedDate, false);
+    }
+
+    public static String formatEntityFormattedDate(TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate, boolean z) {
+        return formatEntityFormattedDate(tL_messageEntityFormattedDate, System.currentTimeMillis(), Locale.getDefault(), TimeZone.getDefault(), z);
+    }
+
+    public static String formatEntityFormattedDate(TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate, long j, Locale locale, TimeZone timeZone, boolean z) {
+        int i;
+        int i2;
+        long j2 = tL_messageEntityFormattedDate.date * 1000;
+        if (tL_messageEntityFormattedDate.relative && !z) {
+            return formatRelative(j2, j, locale);
+        }
+        if (tL_messageEntityFormattedDate.short_date) {
+            i = 3;
+        } else {
+            i = tL_messageEntityFormattedDate.long_date ? !tL_messageEntityFormattedDate.day_of_week ? 1 : 0 : -1;
+        }
+        if (tL_messageEntityFormattedDate.short_time) {
+            i2 = 3;
+        } else {
+            i2 = tL_messageEntityFormattedDate.long_time ? 2 : -1;
+        }
+        if (i == -1 && i2 == -1) {
+            i = !tL_messageEntityFormattedDate.day_of_week ? 1 : 0;
+        }
+        Date date = new Date(j2);
+        if (i != -1 && i2 != -1) {
+            java.text.DateFormat dateTimeInstance = java.text.DateFormat.getDateTimeInstance(i, i2, locale);
+            dateTimeInstance.setTimeZone(timeZone);
+            return dateTimeInstance.format(date);
+        }
+        if (i != -1) {
+            if (tL_messageEntityFormattedDate.day_of_week && tL_messageEntityFormattedDate.short_date) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, ", locale);
+                simpleDateFormat.setTimeZone(timeZone);
+                java.text.DateFormat dateInstance = java.text.DateFormat.getDateInstance(3, locale);
+                dateInstance.setTimeZone(timeZone);
+                return simpleDateFormat.format(date) + dateInstance.format(date);
+            }
+            java.text.DateFormat dateInstance2 = java.text.DateFormat.getDateInstance(i, locale);
+            dateInstance2.setTimeZone(timeZone);
+            return dateInstance2.format(date);
+        }
+        java.text.DateFormat timeInstance = java.text.DateFormat.getTimeInstance(i2, locale);
+        timeInstance.setTimeZone(timeZone);
+        return timeInstance.format(date);
+    }
+
+    private static String formatRelative(long j, long j2, Locale locale) {
+        long j3 = j - j2;
+        Math.abs(j3);
+        if (Build.VERSION.SDK_INT >= 24) {
+            return RelativeIcu.format(j3, locale);
+        }
+        return DateUtils.getRelativeTimeSpanString(j, j2, 1000L, 262144).toString();
+    }
+
+    private static final class RelativeIcu {
+        private RelativeIcu() {
+        }
+
+        static String format(long j, Locale locale) {
+            RelativeDateTimeFormatter.RelativeUnit relativeUnit;
+            RelativeDateTimeFormatter.Direction direction;
+            RelativeDateTimeFormatter relativeDateTimeFormatter = RelativeDateTimeFormatter.getInstance(locale);
+            boolean z = j > 0;
+            long jMax = Math.max(1L, Math.round(Math.abs(j) / 1000.0d));
+            if (jMax < 60) {
+                relativeUnit = RelativeDateTimeFormatter.RelativeUnit.SECONDS;
+            } else if (jMax < 3600) {
+                relativeUnit = RelativeDateTimeFormatter.RelativeUnit.MINUTES;
+                jMax = Math.round(jMax / 60.0d);
+            } else if (jMax < 86400) {
+                relativeUnit = RelativeDateTimeFormatter.RelativeUnit.HOURS;
+                jMax = Math.round(jMax / 3600.0d);
+            } else if (jMax < 2592000) {
+                relativeUnit = RelativeDateTimeFormatter.RelativeUnit.DAYS;
+                jMax = Math.round(jMax / 86400.0d);
+            } else if (jMax < 31536000) {
+                relativeUnit = RelativeDateTimeFormatter.RelativeUnit.MONTHS;
+                jMax = Math.round(jMax / 2592000.0d);
+            } else {
+                relativeUnit = RelativeDateTimeFormatter.RelativeUnit.YEARS;
+                jMax = Math.round(jMax / 3.1536E7d);
+            }
+            if (z) {
+                direction = RelativeDateTimeFormatter.Direction.NEXT;
+            } else {
+                direction = RelativeDateTimeFormatter.Direction.LAST;
+            }
+            return relativeDateTimeFormatter.format(jMax, direction, relativeUnit);
         }
     }
 }

@@ -75,7 +75,7 @@ import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda237;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda241;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -846,7 +846,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 public final boolean test(Object obj) {
                     return this.f$0.lambda$fillItems$24((TL_stars.StarGift) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda237()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda241()));
         }
         if (this.dialogId < 0) {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new Predicate() {
@@ -866,7 +866,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 public final boolean test(Object obj) {
                     return GiftSheet.lambda$fillItems$25((TL_stars.StarGift) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda237()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda241()));
         }
         if (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || (giftsList3 = this.myGifts) == null) {
             z2 = false;
@@ -1667,11 +1667,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     this.ribbon.setColor(Theme.getColor(Theme.key_gift_ribbon, this.resourcesProvider));
                     this.ribbon.setStrokeColor(0);
                     this.ribbon.setBackdrop((TL_stars.starGiftAttributeBackdrop) StarsController.findAttribute(this.userGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class));
-                    if (this.pinned) {
-                        this.ribbon.setText("#" + LocaleController.formatNumber(this.userGift.gift.num, ','), true);
-                        return;
-                    }
-                    this.ribbon.setText(LocaleController.formatString(R.string.Gift2Limited1OfRibbon, AndroidUtilities.formatWholeNumber(this.userGift.gift.availability_issued, 0)), true);
+                    this.ribbon.setText("#" + LocaleController.formatNumber(this.userGift.gift.num, ','), true);
                     return;
                 }
                 if (starGift.limited) {

@@ -15,7 +15,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
-import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 
 public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawable {
     private LiquidGlassEffect liquidGlassEffect;
@@ -27,9 +26,9 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
     private final RenderNode renderNode;
     private final RenderNode renderNodeFill;
     private boolean renderNodeInvalidated;
-    private final BlurredBackgroundSourceRenderNode source;
+    private final BlurredBackgroundSource source;
 
-    public BlurredBackgroundDrawableRenderNode(BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode) {
+    public BlurredBackgroundDrawableRenderNode(BlurredBackgroundSource blurredBackgroundSource) {
         Paint paint = new Paint(1);
         this.paintShadow = paint;
         Paint paint2 = new Paint(1);
@@ -41,7 +40,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         this.renderNodeFill = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("BlurredFill");
         renderNodeM.setClipToOutline(true);
         renderNodeM.setClipToBounds(true);
-        this.source = blurredBackgroundSourceRenderNode;
+        this.source = blurredBackgroundSource;
         paint.setColor(0);
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
@@ -114,7 +113,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
             liquidGlassEffect.update(0.0f, 0.0f, fWidth, fHeight, f7, f8, f9, f10, f11, props2.liquidIntensity, props2.liquidIndex, this.backgroundColor);
         }
         this.source.draw(recordingCanvasBeginRecording, f3, f4, f5, f6);
-        recordingCanvasBeginRecording.restore();
+        recordingCanvasBeginRecording.save();
         this.renderNodeFill.endRecording();
         RecordingCanvas recordingCanvasBeginRecording2 = this.renderNode.beginRecording();
         if (Color.alpha(this.backgroundColor) == 255) {
@@ -165,7 +164,7 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
             updateDisplayList();
         }
         this.renderNodeInvalidated = false;
-        int iMultAlpha = Theme.multAlpha(this.shadowColor, this.renderNode.getAlpha());
+        int iMultAlpha = Theme.multAlpha(this.shadowColor, this.renderNode.getAlpha() * this.shadowAlpha);
         if (Color.alpha(iMultAlpha) != 0) {
             this.paintShadow.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, iMultAlpha);
             this.boundProps.drawShadows(canvas, this.paintShadow, this.inAppKeyboardOptimization);

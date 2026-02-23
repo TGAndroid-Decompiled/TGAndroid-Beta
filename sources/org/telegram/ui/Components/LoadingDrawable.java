@@ -126,9 +126,13 @@ public class LoadingDrawable extends Drawable {
     }
 
     public void setRadiiDp(float f) {
+        setRadii(AndroidUtilities.dp(f));
+    }
+
+    public void setRadii(float f) {
         if (this.usePath != null) {
-            this.paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
-            this.strokePaint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(f)));
+            this.paint.setPathEffect(new CornerPathEffect(f));
+            this.strokePaint.setPathEffect(new CornerPathEffect(f));
         } else {
             setRadiiDp(f, f, f, f);
         }

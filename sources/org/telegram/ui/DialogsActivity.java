@@ -537,7 +537,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public static void access$21700(DialogsActivity dialogsActivity) {
+    public static void access$21700(DialogsActivity dialogsActivity) throws Resources.NotFoundException {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -2652,7 +2652,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r40) {
+    public android.view.View createView(final android.content.Context r40) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -3628,7 +3628,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             final DialogsActivity dialogsActivity = DialogsActivity.this;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     DialogsActivity.access$21700(dialogsActivity);
                 }
             }, 100L);
@@ -5674,7 +5674,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean onBackPressed(boolean z) {
+    public boolean onBackPressed(boolean z) throws Resources.NotFoundException {
         if (hasShownSheet()) {
             if (z) {
                 closeSheet();
@@ -7850,7 +7850,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.doneItemAnimator.start();
     }
 
-    public void updateSelectedCount() {
+    public void updateSelectedCount() throws Resources.NotFoundException {
         if (this.commentView != null) {
             this.animatorForwardButtonVisible.setValue(!this.selectedDialogs.isEmpty(), true);
             if (this.selectedDialogs.isEmpty()) {
@@ -9903,7 +9903,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void didPressedOnSubDialog(long j) {
+        public void didPressedOnSubDialog(long j) throws Resources.NotFoundException {
             if (DialogsActivity.this.onlySelect) {
                 if (DialogsActivity.this.validateSlowModeDialog(j)) {
                     if (!DialogsActivity.this.selectedDialogs.isEmpty()) {

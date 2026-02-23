@@ -149,7 +149,7 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
     }
 
     @Override
-    public final Iterator iterator() throws InterruptedException {
+    public final Iterator iterator() {
         Semaphore semaphore = this.semaphore;
         if (semaphore != null) {
             try {

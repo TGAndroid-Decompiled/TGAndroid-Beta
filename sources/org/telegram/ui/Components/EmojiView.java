@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -338,6 +339,10 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     public interface EmojiViewDelegate {
 
         public abstract class CC {
+            public static boolean $default$canAddCaptionToGif(EmojiViewDelegate emojiViewDelegate, TLRPC.Document document) {
+                return false;
+            }
+
             public static boolean $default$canSchedule(EmojiViewDelegate emojiViewDelegate) {
                 return false;
             }
@@ -382,6 +387,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             public static void $default$onGifSelected(EmojiViewDelegate emojiViewDelegate, View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
             }
 
+            public static void $default$onGifSelectedForAddCaption(EmojiViewDelegate emojiViewDelegate, View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+            }
+
             public static void $default$onSearchOpenClose(EmojiViewDelegate emojiViewDelegate, int i) {
             }
 
@@ -409,6 +417,8 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             public static void $default$showTrendingStickersAlert(EmojiViewDelegate emojiViewDelegate, TrendingStickersLayout trendingStickersLayout) {
             }
         }
+
+        boolean canAddCaptionToGif(TLRPC.Document document);
 
         boolean canSchedule();
 
@@ -440,7 +450,9 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
         void onEmojiSettingsClick(ArrayList arrayList);
 
-        void lambda$onGifSelected$1(View view, Object obj, String str, Object obj2, boolean z, int i, int i2);
+        void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i, int i2);
+
+        void onGifSelectedForAddCaption(View view, Object obj, String str, Object obj2, boolean z, int i, int i2);
 
         void onSearchOpenClose(int i);
 
@@ -607,7 +619,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) {
+        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
             if (EmojiView.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiView.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -737,9 +749,21 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         @Override
         public void sendGif(Object obj, Object obj2, boolean z, int i, int i2) {
             if (EmojiView.this.gifGridView.getAdapter() == EmojiView.this.gifAdapter) {
-                EmojiView.this.delegate.lambda$onGifSelected$1(null, obj, null, obj2, z, i, i2);
+                EmojiView.this.delegate.onGifSelected(null, obj, null, obj2, z, i, i2);
             } else if (EmojiView.this.gifGridView.getAdapter() == EmojiView.this.gifSearchAdapter) {
-                EmojiView.this.delegate.lambda$onGifSelected$1(null, obj, null, obj2, z, i, i2);
+                EmojiView.this.delegate.onGifSelected(null, obj, null, obj2, z, i, i2);
+            }
+        }
+
+        @Override
+        public boolean canAddCaption(TLRPC.Document document) {
+            return EmojiView.this.delegate.canAddCaptionToGif(document);
+        }
+
+        @Override
+        public void addCaptionToGif(Object obj, Object obj2, boolean z, int i, int i2) {
+            if (EmojiView.this.gifGridView.getAdapter() == EmojiView.this.gifAdapter || EmojiView.this.gifGridView.getAdapter() == EmojiView.this.gifSearchAdapter) {
+                EmojiView.this.delegate.onGifSelectedForAddCaption(null, obj, null, obj2, z, i, i2);
             }
         }
 
@@ -1572,7 +1596,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) {
+        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
             ChatActivityEnterView chatActivityEnterView;
             super.onTransitionAnimationEnd(z, z2);
             if (!z || (chatActivityEnterView = this.chatActivityEnterView) == null) {
@@ -2846,7 +2870,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             if (adapter2 != gifAdapter2 || i < 0 || i >= gifAdapter2.results.size()) {
                 return;
             }
-            this.delegate.lambda$onGifSelected$1(view, this.gifSearchAdapter.results.get(i), this.gifSearchAdapter.lastSearchImageString, this.gifSearchAdapter.bot, true, 0, 0);
+            this.delegate.onGifSelected(view, this.gifSearchAdapter.results.get(i), this.gifSearchAdapter.lastSearchImageString, this.gifSearchAdapter.bot, true, 0, 0);
             updateRecentGifs();
             return;
         }
@@ -2854,7 +2878,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         if (i < gifAdapter.recentItemsCount) {
-            this.delegate.lambda$onGifSelected$1(view, this.recentGifs.get(i), null, "gif", true, 0, 0);
+            this.delegate.onGifSelected(view, this.recentGifs.get(i), null, "gif", true, 0, 0);
             return;
         }
         if (this.gifAdapter.recentItemsCount > 0) {
@@ -2863,7 +2887,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         if (i < 0 || i >= this.gifAdapter.results.size()) {
             return;
         }
-        this.delegate.lambda$onGifSelected$1(view, this.gifAdapter.results.get(i), null, this.gifAdapter.bot, true, 0, 0);
+        this.delegate.onGifSelected(view, this.gifAdapter.results.get(i), null, this.gifAdapter.bot, true, 0, 0);
     }
 
     public void lambda$new$7(int i) {

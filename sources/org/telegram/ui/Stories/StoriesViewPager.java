@@ -480,7 +480,7 @@ public abstract class StoriesViewPager extends ViewPager {
             }
         }
 
-        public void setVisible(boolean z) {
+        public void setVisible(boolean z) throws Resources.NotFoundException {
             if (this.isVisible != z) {
                 this.isVisible = z;
                 invalidate();

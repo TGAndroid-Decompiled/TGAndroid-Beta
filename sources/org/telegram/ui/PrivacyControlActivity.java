@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -226,13 +227,13 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     public void didUploadPhoto(final TLRPC.InputFile inputFile, final TLRPC.InputFile inputFile2, final double d, String str, final TLRPC.PhotoSize photoSize, final TLRPC.PhotoSize photoSize2, boolean z, final TLRPC.VideoSize videoSize) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$didUploadPhoto$2(photoSize2, inputFile, inputFile2, d, videoSize, photoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$2(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2) {
+    public void lambda$didUploadPhoto$2(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2) throws Resources.NotFoundException, NumberFormatException {
         this.avatarForRest = photoSize;
         this.avatarForRestPhoto = null;
         updateAvatarForRestInfo();
@@ -355,7 +356,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             return false;
         }
 
-        public MessageCell(Context context) {
+        public MessageCell(Context context) throws Resources.NotFoundException, NumberFormatException {
             super(context);
             this.invalidateRunnable = new Runnable() {
                 @Override
@@ -439,6 +440,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 @Override
                 public void didPressAboutRevenueSharingAds() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
+                public void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell2);
                 }
 
                 @Override
@@ -697,8 +703,18 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
+                public boolean isAdmin(long j) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                }
+
+                @Override
                 public boolean isLandscape() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                }
+
+                @Override
+                public boolean isOwner(long j) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
                 }
 
                 @Override
@@ -880,7 +896,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public boolean onFragmentCreate() {
+    public boolean onFragmentCreate() throws Resources.NotFoundException, NumberFormatException {
         super.onFragmentCreate();
         checkPrivacy();
         updateRows(false);
@@ -899,7 +915,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(Context context) throws Resources.NotFoundException, NumberFormatException {
         if (this.rulesType == 5) {
             this.messageCell = new MessageCell(context);
         }
@@ -972,7 +988,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i3) {
+            public final void onItemClick(View view, int i3) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$createView$9(view, i3);
             }
         });
@@ -991,11 +1007,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public void lambda$createView$9(android.view.View r10, final int r11) {
+    public void lambda$createView$9(android.view.View r10, final int r11) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PrivacyControlActivity.lambda$createView$9(android.view.View, int):void");
     }
 
-    public void lambda$createView$3() {
+    public void lambda$createView$3() throws Resources.NotFoundException, NumberFormatException {
         TLRPC.Photo photo;
         this.avatarForRest = null;
         this.avatarForRestPhoto = null;
@@ -1075,7 +1091,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException, NumberFormatException {
         MessageCell messageCell;
         if (i == NotificationCenter.privacyRulesUpdated) {
             checkPrivacy();
@@ -1564,7 +1580,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         return (this.selectedGiftUniqueValue || this.selectedGiftUnlimitedValue || this.selectedGiftLimitedValue) ? false : true;
     }
 
-    private void checkPrivacy() {
+    private void checkPrivacy() throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PrivacyControlActivity.checkPrivacy():void");
     }
 
@@ -1608,7 +1624,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         return false;
     }
 
-    public void updateRows(boolean z) {
+    public void updateRows(boolean z) throws Resources.NotFoundException, NumberFormatException {
         ArrayList arrayList;
         int i;
         RecyclerView.ViewHolder viewHolderFindContainingViewHolder;
@@ -1829,7 +1845,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         }
     }
 
-    private void setMessageText() {
+    private void setMessageText() throws Resources.NotFoundException, NumberFormatException {
         MessageCell messageCell = this.messageCell;
         if (messageCell != null) {
             messageCell.messageObject.messageOwner.fwd_from.from_id = new TLRPC.TL_peerUser();
@@ -1849,7 +1865,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     @Override
-    public void onResume() {
+    public void onResume() throws Resources.NotFoundException, NumberFormatException {
         super.onResume();
         updateRows(false);
         ImageUpdater imageUpdater = this.imageUpdater;
@@ -2563,13 +2579,13 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             PrivacyControlActivity privacyControlActivity = PrivacyControlActivity.this;
             privacyControlActivity.showDialog(AlertsCreator.createBirthdayPickerDialog(privacyControlActivity.getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$onBindViewHolder$4((TL_account.TL_birthday) obj);
                 }
             }, null, false, false, PrivacyControlActivity.this.getResourceProvider()).create());
         }
 
-        public void lambda$onBindViewHolder$4(TL_account.TL_birthday tL_birthday) {
+        public void lambda$onBindViewHolder$4(TL_account.TL_birthday tL_birthday) throws Resources.NotFoundException, NumberFormatException {
             TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
             updatebirthday.flags |= 1;
             updatebirthday.birthday = tL_birthday;

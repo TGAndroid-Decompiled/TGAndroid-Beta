@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -63,6 +64,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
     private TLRPC.EncryptedChat encryptedChat;
     private ImageView imageView;
+    private boolean isAdmin;
+    private boolean isOwner;
     private TLRPC.FileLocation lastAvatar;
     private String lastName;
     private int lastStatus;
@@ -123,7 +126,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.addButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.addButton.setTextSize(1, 14.0f);
             this.addButton.setTypeface(AndroidUtilities.bold());
-            this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
+            this.addButton.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             this.addButton.setText(LocaleController.getString(R.string.Add));
             this.addButton.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
             View view = this.addButton;
@@ -285,14 +288,44 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         textView.setVisibility(z ? 0 : 8);
     }
 
-    public void setAdminRole(String str) {
-        TextView textView = this.adminTextView;
-        if (textView == null) {
+    public void setAdminRole(String str, boolean z, boolean z2, boolean z3, View.OnClickListener onClickListener) {
+        int color;
+        if (this.adminTextView == null) {
             return;
         }
-        textView.setVisibility(str != null ? 0 : 8);
-        this.adminTextView.setText(str);
-        if (str != null) {
+        this.isAdmin = z;
+        this.isOwner = z2;
+        if (z2) {
+            color = Theme.getColor(Theme.key_chat_tagCreator, this.resourcesProvider);
+        } else if (z) {
+            color = Theme.getColor(Theme.key_chat_tagAdmin, this.resourcesProvider);
+        } else if (z3 && TextUtils.isEmpty(str)) {
+            color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+        } else {
+            color = Theme.getColor(Theme.key_chat_inAdminText, this.resourcesProvider);
+        }
+        this.adminTextView.setTextColor(color);
+        if (z || z2) {
+            this.adminTextView.setText(str);
+            this.adminTextView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(0.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f));
+            this.adminTextView.setTranslationX(AndroidUtilities.dp(6.0f));
+            this.adminTextView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(32.0f), Theme.multAlpha(color, 0.12f)));
+            this.adminTextView.setOnClickListener(onClickListener);
+        } else if (z3 && TextUtils.isEmpty(str)) {
+            this.adminTextView.setText(LocaleController.getString(R.string.AddTag));
+            this.adminTextView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(0.66f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f));
+            this.adminTextView.setTranslationX(AndroidUtilities.dp(6.0f));
+            this.adminTextView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(color, 0.12f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f)));
+            this.adminTextView.setOnClickListener(onClickListener);
+        } else {
+            this.adminTextView.setText(str);
+            this.adminTextView.setPadding(0, 0, 0, 0);
+            this.adminTextView.setTranslationX(0.0f);
+            this.adminTextView.setBackground(null);
+            this.adminTextView.setOnClickListener(null);
+        }
+        this.adminTextView.setVisibility((str != null || z3) ? 0 : 8);
+        if (str != null || z3) {
             CharSequence text = this.adminTextView.getText();
             setRightPadding((int) Math.ceil(this.adminTextView.getPaint().measureText(text, 0, text.length())), true, false);
         } else {
@@ -733,10 +766,6 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         }
         this.avatarImageView.setRoundRadius(AndroidUtilities.dp((chat == null || !chat.forum) ? 24.0f : 14.0f));
         this.nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-        TextView textView2 = this.adminTextView;
-        if (textView2 != null) {
-            textView2.setTextColor(Theme.getColor(Theme.key_profile_creatorIcon, this.resourcesProvider));
-        }
     }
 
     public void setSelfAsSavedMessages(boolean z) {

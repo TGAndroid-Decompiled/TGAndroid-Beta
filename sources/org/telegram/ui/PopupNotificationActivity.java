@@ -1207,7 +1207,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() throws Resources.NotFoundException {
         if (this.chatActivityEnterView.isPopupShowing()) {
             this.chatActivityEnterView.hidePopup(true);
         } else {
@@ -1229,7 +1229,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause() throws Resources.NotFoundException {
         super.onPause();
         overridePendingTransition(0, 0);
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;

@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,6 +13,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedColor;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ButtonBounce;
@@ -39,6 +41,7 @@ public abstract class BotButtons extends FrameLayout {
     public static class ButtonState {
         public boolean active;
         public int color;
+        public long emojiId;
         public String position;
         public boolean progressVisible;
         public boolean shineEffect;
@@ -46,17 +49,18 @@ public abstract class BotButtons extends FrameLayout {
         public int textColor;
         public boolean visible;
 
-        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, int i, int i2) {
-            return of(z, z2, z3, z4, str, i, i2, null);
+        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, long j, int i, int i2) {
+            return of(z, z2, z3, z4, str, j, i, i2, null);
         }
 
-        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, int i, int i2, String str2) {
+        public static ButtonState of(boolean z, boolean z2, boolean z3, boolean z4, String str, long j, int i, int i2, String str2) {
             ButtonState buttonState = new ButtonState();
             buttonState.visible = z;
             buttonState.active = z2;
             buttonState.progressVisible = z3;
             buttonState.shineEffect = z4;
             buttonState.text = str;
+            buttonState.emojiId = j;
             buttonState.color = i;
             buttonState.textColor = i2;
             buttonState.position = str2;
@@ -95,7 +99,7 @@ public abstract class BotButtons extends FrameLayout {
             this.flickerAlpha = new AnimatedFloat(BotButtons.this, 0L, 320L, cubicBezierInterpolator);
             this.bounce = new ButtonBounce(BotButtons.this);
             this.backgroundPaint = new Paint(1);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, false, true);
             this.textDrawable = animatedTextDrawable;
             Drawable drawableCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(0, 9, 9);
             this.ripple = drawableCreateRadSelectorDrawable;
@@ -108,6 +112,7 @@ public abstract class BotButtons extends FrameLayout {
             animatedTextDrawable.setTypeface(AndroidUtilities.bold());
             animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x * 4);
             animatedTextDrawable.setEllipsizeByGradient(true);
+            animatedTextDrawable.setCallback(BotButtons.this);
             circularProgressDrawable.setCallback(BotButtons.this);
             drawableCreateRadSelectorDrawable.setCallback(BotButtons.this);
             cellFlickerDrawable.frameInside = true;
@@ -212,12 +217,14 @@ public abstract class BotButtons extends FrameLayout {
                 float fLerp4 = AndroidUtilities.lerp(0.75f, 1.0f, f11);
                 canvas.scale(fLerp4, fLerp4, fLerp2, fLerp3);
                 canvas.translate(0.0f, AndroidUtilities.dp(-10.0f) * f9);
-                button.textDrawable.setTextColor(Theme.multAlpha(button.textColor.set(buttonState.textColor), f11 * f6));
+                float f12 = f11 * f6;
+                button.textDrawable.setEmojiColor(Theme.multAlpha(button.textColor.set(buttonState.textColor), f12));
+                button.textDrawable.setTextColor(Theme.multAlpha(button.textColor.set(buttonState.textColor), f12));
                 button.textDrawable.setBounds(button.bounds);
                 button.textDrawable.draw(canvas);
                 canvas.restore();
             }
-            float f12 = 0.0f;
+            float f13 = 0.0f;
             if (f9 > 0.0f) {
                 canvas.save();
                 float fLerp5 = AndroidUtilities.lerp(0.75f, 1.0f, f9);
@@ -229,9 +236,9 @@ public abstract class BotButtons extends FrameLayout {
                 circularProgressDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                 button.progress.draw(canvas);
                 canvas.restore();
-                f12 = 0.0f;
+                f13 = 0.0f;
             }
-            if (f10 > f12) {
+            if (f10 > f13) {
                 button.flicker.setColors(Theme.multAlpha(button.textColor.set(buttonState.textColor), f6 * f10));
                 button.flicker.draw(canvas, button.bounds, AndroidUtilities.dp(8.0f), this);
             }
@@ -256,7 +263,15 @@ public abstract class BotButtons extends FrameLayout {
         int totalHeight = getTotalHeight();
         this.state.main = buttonState;
         this.buttons[0].textDrawable.cancelAnimation();
-        this.buttons[0].textDrawable.setText(buttonState.text, z);
+        if (buttonState.emojiId != 0) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) "* ");
+            spannableStringBuilder.append((CharSequence) buttonState.text);
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, this.buttons[0].textDrawable.getPaint().getFontMetricsInt()), 0, 1, 33);
+            this.buttons[0].textDrawable.setText(spannableStringBuilder, z);
+        } else {
+            this.buttons[0].textDrawable.setText(buttonState.text, z);
+        }
         invalidate();
         if (totalHeight == getTotalHeight() || this.whenResized == null) {
             return;
@@ -272,7 +287,15 @@ public abstract class BotButtons extends FrameLayout {
         int totalHeight = getTotalHeight();
         this.state.secondary = buttonState;
         this.buttons[1].textDrawable.cancelAnimation();
-        this.buttons[1].textDrawable.setText(buttonState.text, z);
+        if (buttonState.emojiId != 0) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) "* ");
+            spannableStringBuilder.append((CharSequence) buttonState.text);
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, this.buttons[1].textDrawable.getPaint().getFontMetricsInt()), 0, 1, 33);
+            this.buttons[1].textDrawable.setText(spannableStringBuilder, z);
+        } else {
+            this.buttons[1].textDrawable.setText(buttonState.text, z);
+        }
         invalidate();
         if (totalHeight == getTotalHeight() || this.whenResized == null) {
             return;

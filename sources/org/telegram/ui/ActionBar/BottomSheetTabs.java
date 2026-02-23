@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -128,7 +129,7 @@ public class BottomSheetTabs extends FrameLayout {
         closeAttachedSheets();
         new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws Resources.NotFoundException {
                 this.f$0.lambda$openTab$0(webTabData, (BaseFragment) obj);
             }
         }.run(lastFragment);
@@ -147,7 +148,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) {
+    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) throws Resources.NotFoundException {
         if (baseFragment == null) {
             return;
         }

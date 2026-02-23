@@ -112,6 +112,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int dontRestrictBoostersInfoRow;
     private int dontRestrictBoostersRow;
     private int dontRestrictBoostersSliderRow;
+    private int editTagRow;
     private int embedLinksRow;
     private StickerEmptyView emptyView;
     private boolean enablePrice;
@@ -285,6 +286,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             tL_chatBannedRights2.send_inline = tL_chatBannedRights.send_inline;
             tL_chatBannedRights2.send_gifs = tL_chatBannedRights.send_gifs;
             tL_chatBannedRights2.pin_messages = tL_chatBannedRights.pin_messages;
+            tL_chatBannedRights2.edit_rank = tL_chatBannedRights.edit_rank;
             tL_chatBannedRights2.send_polls = tL_chatBannedRights.send_polls;
             tL_chatBannedRights2.invite_users = tL_chatBannedRights.invite_users;
             tL_chatBannedRights2.manage_topics = tL_chatBannedRights.manage_topics;
@@ -988,6 +990,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 TLRPC.TL_chatAdminRights tL_chatAdminRights = new TLRPC.TL_chatAdminRights();
                 tL_channelParticipantAdmin.admin_rights = tL_chatAdminRights;
                 tL_chatAdminRights.add_admins = true;
+                tL_chatAdminRights.manage_ranks = true;
                 tL_chatAdminRights.pin_messages = true;
                 tL_chatAdminRights.manage_topics = true;
                 tL_chatAdminRights.invite_users = true;
@@ -1377,7 +1380,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (this.type == 3 && ChatObject.canBlockUsers(this.currentChat)) {
             final TLRPC.TL_chatBannedRights tL_chatBannedRights3 = tL_chatBannedRights;
             final String str4 = str;
-            itemOptionsMakeOptions.add(R.drawable.msg_permissions, LocaleController.getString("ChannelEditPermissions", R.string.ChannelEditPermissions), new Runnable() {
+            itemOptionsMakeOptions.add(R.drawable.msg_permissions, LocaleController.getString(R.string.ChannelEditPermissions), new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$createMenuForParticipant$14(j5, tL_chatBannedRights3, str4, tLObject);
@@ -1812,10 +1815,17 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (sb.length() != 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("UserRestrictionsNoPinMessages", R.string.UserRestrictionsNoPinMessages));
+            sb.append(LocaleController.getString(R.string.UserRestrictionsNoPinMessages));
         }
-        boolean z14 = tL_chatBannedRights.change_info;
-        if (z14 && this.defaultBannedRights.change_info != z14) {
+        boolean z14 = tL_chatBannedRights.edit_rank;
+        if (z14 && this.defaultBannedRights.edit_rank != z14) {
+            if (sb.length() != 0) {
+                sb.append(", ");
+            }
+            sb.append(LocaleController.getString(R.string.UserRestrictionsEditTags));
+        }
+        boolean z15 = tL_chatBannedRights.change_info;
+        if (z15 && this.defaultBannedRights.change_info != z15) {
             if (sb.length() != 0) {
                 sb.append(", ");
             }
@@ -2697,7 +2707,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (i == ChatUsersActivity.this.removedUsersRow) {
                 return 6;
             }
-            if (i == ChatUsersActivity.this.changeInfoRow || i == ChatUsersActivity.this.addUsersRow || i == ChatUsersActivity.this.pinMessagesRow || i == ChatUsersActivity.this.sendMessagesRow || i == ChatUsersActivity.this.sendStickersRow || i == ChatUsersActivity.this.embedLinksRow || i == ChatUsersActivity.this.manageTopicsRow || i == ChatUsersActivity.this.dontRestrictBoostersRow) {
+            if (i == ChatUsersActivity.this.changeInfoRow || i == ChatUsersActivity.this.addUsersRow || i == ChatUsersActivity.this.pinMessagesRow || i == ChatUsersActivity.this.editTagRow || i == ChatUsersActivity.this.sendMessagesRow || i == ChatUsersActivity.this.sendStickersRow || i == ChatUsersActivity.this.embedLinksRow || i == ChatUsersActivity.this.manageTopicsRow || i == ChatUsersActivity.this.dontRestrictBoostersRow) {
                 return 7;
             }
             if (i == ChatUsersActivity.this.membersHeaderRow || i == ChatUsersActivity.this.contactsHeaderRow || i == ChatUsersActivity.this.botHeaderRow || i == ChatUsersActivity.this.loadingHeaderRow) {
@@ -2894,11 +2904,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             put(17, ChatUsersActivity.this.sendPollsRow, sparseIntArray);
             put(18, ChatUsersActivity.this.embedLinksRow, sparseIntArray);
             put(19, ChatUsersActivity.this.addUsersRow, sparseIntArray);
-            int i = 20;
             put(20, ChatUsersActivity.this.pinMessagesRow, sparseIntArray);
+            int i = 21;
+            put(21, ChatUsersActivity.this.editTagRow, sparseIntArray);
             if (ChatUsersActivity.this.isForum) {
-                i = 21;
-                put(21, ChatUsersActivity.this.manageTopicsRow, sparseIntArray);
+                put(22, ChatUsersActivity.this.manageTopicsRow, sparseIntArray);
+                i = 22;
             }
             put(i + 1, ChatUsersActivity.this.changeInfoRow, sparseIntArray);
             put(i + 2, ChatUsersActivity.this.removedUsersRow, sparseIntArray);

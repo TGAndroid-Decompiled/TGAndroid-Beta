@@ -186,6 +186,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             super(context);
             this.previewDelegate = new ContentPreviewViewer.ContentPreviewViewerDelegate() {
                 @Override
+                public void addCaptionToGif(Object obj, Object obj2, boolean z, int i, int i2) {
+                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addCaptionToGif(this, obj, obj2, z, i, i2);
+                }
+
+                @Override
                 public void addToFavoriteSelected(String str) {
                     ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$addToFavoriteSelected(this, str);
                 }
@@ -193,6 +198,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 @Override
                 public boolean can() {
                     return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$can(this);
+                }
+
+                @Override
+                public boolean canAddCaption(TLRPC.Document document) {
+                    return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canAddCaption(this, document);
                 }
 
                 @Override

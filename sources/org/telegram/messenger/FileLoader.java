@@ -1089,8 +1089,7 @@ public class FileLoader extends BaseController {
         MessageObject messageObject;
         if (!BuildVars.NO_SCOPED_STORAGE && (fileMetadataFromParent = getFileMetadataFromParent(this.currentAccount, obj)) != null) {
             long j = fileMetadataFromParent.dialogId;
-            long j2 = -j;
-            if (!getMessagesController().isChatNoForwards(getMessagesController().getChat(Long.valueOf(j2))) && !DialogObject.isEncryptedDialog(j)) {
+            if (!getMessagesController().isPeerNoForwards(j) && !DialogObject.isEncryptedDialog(j)) {
                 int i = 2;
                 if (obj instanceof MessageObject) {
                     messageObject = (MessageObject) obj;
@@ -1105,7 +1104,7 @@ public class FileLoader extends BaseController {
                 }
                 if (j >= 0) {
                     i = 1;
-                } else if (ChatObject.isChannelAndNotMegaGroup(getMessagesController().getChat(Long.valueOf(j2)))) {
+                } else if (ChatObject.isChannelAndNotMegaGroup(getMessagesController().getChat(Long.valueOf(-j)))) {
                     i = 4;
                 }
                 if (SaveToGallerySettingsHelper.needSave(i, fileMetadataFromParent, messageObject, this.currentAccount)) {

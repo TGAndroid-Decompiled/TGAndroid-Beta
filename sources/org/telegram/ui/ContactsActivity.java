@@ -164,6 +164,16 @@ public class ContactsActivity extends BaseFragment implements FactorAnimator.Tar
     }
 
     @Override
+    public void onAnimatedInsetsFinished() {
+        WindowAnimatedInsetsProvider.Listener.CC.$default$onAnimatedInsetsFinished(this);
+    }
+
+    @Override
+    public void onAnimatedInsetsStarted() {
+        WindowAnimatedInsetsProvider.Listener.CC.$default$onAnimatedInsetsStarted(this);
+    }
+
+    @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 

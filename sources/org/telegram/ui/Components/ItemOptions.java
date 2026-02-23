@@ -800,6 +800,10 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions addGapIf(boolean z) {
+        return !z ? this : addGap();
+    }
+
     public ItemOptions addGap() {
         ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(this.context, this.resourcesProvider);
         gapView.setTag(R.id.fit_width_tag, 1);
@@ -1517,6 +1521,7 @@ public class ItemOptions {
                         if (ItemOptions.this.scrimView instanceof ScrimView) {
                             ((ScrimView) ItemOptions.this.scrimView).drawScrim(canvas, this.dimProgress);
                         } else {
+                            canvas.translate(-ItemOptions.this.scrimView.getScrollX(), -ItemOptions.this.scrimView.getScrollY());
                             ItemOptions.this.scrimView.draw(canvas);
                         }
                         canvas.restore();

@@ -497,7 +497,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.muteIconViewAlpha = 1.0f;
         this.updateStealthModeTimer = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$new$43();
             }
         };
@@ -3353,13 +3353,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void updateSendAsButton(boolean z) throws Resources.NotFoundException {
+        public void updateSendAsButton(boolean z) {
             PeerStoriesView peerStoriesView = PeerStoriesView.this;
             super.updateSendAsButton(peerStoriesView.isPremiumBlocked || peerStoriesView.areLiveCommentsDisabled, z);
         }
 
         @Override
-        public boolean sendMessage() {
+        public boolean sendMessage() throws Resources.NotFoundException {
             int length;
             if (this.sendButtonContainer.getAlpha() < 0.5f) {
                 openKeyboard();
@@ -3535,7 +3535,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        protected void updateRecordInterface(int i, boolean z) throws Resources.NotFoundException {
+        protected void updateRecordInterface(int i, boolean z) {
             super.updateRecordInterface(i, z);
             checkRecording();
         }
@@ -5319,7 +5319,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void loadSendAsPeers(boolean z) throws Resources.NotFoundException {
+    private void loadSendAsPeers(boolean z) {
         LivePlayer livePlayer;
         if (this.sendAsPeersObj != null) {
             return;
@@ -5336,11 +5336,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$43() {
+    public void lambda$new$43() throws Resources.NotFoundException {
         checkStealthMode(true);
     }
 
-    public void checkStealthMode(boolean z) {
+    public void checkStealthMode(boolean z) throws Resources.NotFoundException {
         if (this.chatActivityEnterView != null && this.isVisible && this.attachedToWindow) {
             AndroidUtilities.cancelRunOnUIThread(this.updateStealthModeTimer);
             TL_stories.TL_storiesStealthMode stealthMode = this.storiesController.getStealthMode();
@@ -5447,14 +5447,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }).addIf(this.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$updatePosition$47();
             }
         }).setGravity(5).forceTop(true).show();
         return true;
     }
 
-    public void lambda$updatePosition$47() {
+    public void lambda$updatePosition$47() throws Resources.NotFoundException {
         this.messageStars = 0L;
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5513,13 +5513,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         int i = this.currentAccount;
         HighlightMessageSheet.open(context, i, clientUserId, DialogObject.getShortName(i, this.dialogId), textWithEntities, getMessageMinPrice(), this.messageStars, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws Resources.NotFoundException {
                 this.f$0.lambda$onHighlightLiveMessage$52((Long) obj);
             }
         }, new DarkThemeResourceProvider());
     }
 
-    public void lambda$onHighlightLiveMessage$52(Long l) {
+    public void lambda$onHighlightLiveMessage$52(Long l) throws Resources.NotFoundException {
         this.messageStars = l.longValue();
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5837,7 +5837,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return this.selectedPosition;
     }
 
-    public boolean closeKeyboardOrEmoji() {
+    public boolean closeKeyboardOrEmoji() throws Resources.NotFoundException {
         if (this.likesReactionShowing) {
             if (this.likesReactionLayout.getReactionsWindow() != null) {
                 if (this.realKeyboardHeight > 0) {
@@ -6143,7 +6143,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this.storyContainer, null, null, null, null);
     }
 
-    public void setIsVisible(boolean z) {
+    public void setIsVisible(boolean z) throws Resources.NotFoundException {
         if (this.isVisible == z) {
             return;
         }
@@ -6770,7 +6770,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) throws Resources.NotFoundException {
         int size;
         ReactionsContainerLayout reactionsContainerLayout;
         MentionsContainerView mentionsContainerView;
@@ -7290,7 +7290,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$onReactionClickedInternal$2(z, visibleReaction, view, (Long) obj);
                 }
             });
@@ -7300,7 +7300,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             onReactionClickedInternal(view, visibleReaction, z, z2, false);
         }
 
-        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) {
+        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) throws Resources.NotFoundException {
             ReactionsEffectOverlay reactionsEffectOverlay;
             TLRPC.Document documentFindDocument;
             if (z && visibleReaction.emojicon != null) {
@@ -7575,7 +7575,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public boolean needEnterText() {
+    public boolean needEnterText() throws Resources.NotFoundException {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView == null) {
             return false;
@@ -7774,7 +7774,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         builder.setPositiveButton(LocaleController.getString(R.string.DiscardVoiceMessageAction), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+            public final void onClick(AlertDialog alertDialog, int i) {
                 this.f$0.lambda$checkRecordLocked$58(z, alertDialog, i);
             }
         });
@@ -7783,7 +7783,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return true;
     }
 
-    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+    public void lambda$checkRecordLocked$58(boolean z, AlertDialog alertDialog, int i) {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             if (z) {

@@ -105,12 +105,12 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         if (this.inRecording) {
             throw new IllegalStateException();
         }
-        canvas.save();
-        canvas.clipRect(f, f2, f3, f4);
         BlurredBackgroundSource blurredBackgroundSource2 = this.underSource;
         if (blurredBackgroundSource2 != null) {
             blurredBackgroundSource2.draw(canvas, f, f2, f3, f4);
         }
+        canvas.save();
+        canvas.clipRect(f, f2, f3, f4);
         if (Build.VERSION.SDK_INT >= 31 && (downscaleScrollableNoiseSuppressor = this.scrollableNoiseSuppressor) != null) {
             downscaleScrollableNoiseSuppressor.drawInline(canvas, this.scrollableNoiseSuppressorIndex);
         } else {
@@ -123,7 +123,7 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         return this.fallbackSource;
     }
 
-    public int getVisiblePositions(List list, int i, int i2) throws InterruptedException {
+    public int getVisiblePositions(List list, int i, int i2) {
         RectF rectF;
         Iterator it = this.drawables.iterator();
         int i3 = 0;
@@ -150,6 +150,7 @@ public class BlurredBackgroundSourceRenderNode implements BlurredBackgroundSourc
         this.onDrawablesRelativePositionChangeListener = runnable;
     }
 
+    @Override
     public void dispatchOnDrawablesRelativePositionChange() {
         Runnable runnable = this.onDrawablesRelativePositionChangeListener;
         if (runnable != null) {

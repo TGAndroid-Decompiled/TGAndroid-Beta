@@ -236,7 +236,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
 
     public void lambda$new$0(View view) {
         onStartRecord(this.currentPage);
-        dismiss();
+        lambda$new$0();
     }
 
     public void lambda$new$1(int i, View view) {
@@ -351,7 +351,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
 
         public void lambda$instantiateItem$0(int i, View view) {
             GroupCallRecordAlert.this.onStartRecord(i);
-            GroupCallRecordAlert.this.dismiss();
+            GroupCallRecordAlert.this.lambda$new$0();
         }
 
         @Override

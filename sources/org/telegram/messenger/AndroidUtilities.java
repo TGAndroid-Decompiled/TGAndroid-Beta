@@ -42,6 +42,7 @@ import android.os.PowerManager;
 import android.os.Process;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.provider.CalendarContract;
 import android.provider.CallLog;
 import android.provider.Settings;
 import android.system.ErrnoException;
@@ -857,7 +858,10 @@ public class AndroidUtilities {
     }
 
     public static CharSequence replaceArrows(CharSequence charSequence, boolean z, float f, float f2, float f3) {
-        int i = R.drawable.msg_mini_forumarrow;
+        return replaceArrows(charSequence, z, f, f2, f3, R.drawable.msg_mini_forumarrow);
+    }
+
+    public static CharSequence replaceArrows(CharSequence charSequence, boolean z, float f, float f2, float f3, int i) {
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(i, 0);
         float f4 = f3 * 0.88f;
         coloredImageSpan.setScale(f4, f4);
@@ -6362,5 +6366,47 @@ public class AndroidUtilities {
             return isContextSafe(((ContextWrapper) context).getBaseContext());
         }
         return true;
+    }
+
+    public static int applyColorMatrix(int i, ColorMatrix colorMatrix) {
+        float[] array = colorMatrix.getArray();
+        int iAlpha = Color.alpha(i);
+        int iRed = Color.red(i);
+        float f = iRed;
+        float fGreen = Color.green(i);
+        float fBlue = Color.blue(i);
+        float f2 = iAlpha;
+        float f3 = (array[0] * f) + (array[1] * fGreen) + (array[2] * fBlue) + (array[3] * f2) + array[4];
+        float f4 = (array[5] * f) + (array[6] * fGreen) + (array[7] * fBlue) + (array[8] * f2) + array[9];
+        float f5 = (array[10] * f) + (array[11] * fGreen) + (array[12] * fBlue) + (array[13] * f2) + array[14];
+        return Color.argb(MathUtils.clamp(Math.round((array[15] * f) + (array[16] * fGreen) + (array[17] * fBlue) + (array[18] * f2) + array[19]), 0, 255), MathUtils.clamp(Math.round(f3), 0, 255), MathUtils.clamp(Math.round(f4), 0, 255), MathUtils.clamp(Math.round(f5), 0, 255));
+    }
+
+    public static void createCalendarEvent(Activity activity, long j, String str, String str2, boolean z) {
+        long millis;
+        if (z) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(j);
+            calendar.set(11, 0);
+            calendar.set(12, 0);
+            calendar.set(13, 0);
+            calendar.set(14, 0);
+            j = calendar.getTimeInMillis();
+            millis = TimeUnit.DAYS.toMillis(1L);
+        } else {
+            millis = TimeUnit.MINUTES.toMillis(10L);
+        }
+        Intent intentPutExtra = new Intent("android.intent.action.INSERT").setData(CalendarContract.Events.CONTENT_URI).putExtra("beginTime", j).putExtra("endTime", millis + j).putExtra("allDay", z);
+        if (!TextUtils.isEmpty(str)) {
+            intentPutExtra.putExtra("title", str);
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            intentPutExtra.putExtra("description", str2);
+        }
+        try {
+            activity.startActivity(intentPutExtra);
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
     }
 }

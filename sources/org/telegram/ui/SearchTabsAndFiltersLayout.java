@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Path;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
-public class SearchTabsAndFiltersLayout extends FrameLayout {
+public class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Colorable {
     private BlurredBackgroundDrawable blurredBackgroundDrawable;
     private final Path clipPath;
 
@@ -36,6 +37,7 @@ public class SearchTabsAndFiltersLayout extends FrameLayout {
         setBackground(blurredBackgroundDrawable);
     }
 
+    @Override
     public void updateColors() {
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
         if (blurredBackgroundDrawable != null) {

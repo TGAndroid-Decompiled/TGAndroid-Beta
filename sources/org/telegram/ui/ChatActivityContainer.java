@@ -14,6 +14,7 @@ public abstract class ChatActivityContainer extends FrameLayout {
     private View fragmentView;
     private boolean isActive;
     private final INavigationLayout parentLayout;
+    private int topPadding;
 
     protected void onSearchLoadingUpdate(boolean z) {
     }
@@ -36,6 +37,10 @@ public abstract class ChatActivityContainer extends FrameLayout {
         chatActivity.isInsideContainer = true;
     }
 
+    public void setTopPadding(int i) {
+        this.topPadding = i;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -56,6 +61,9 @@ public abstract class ChatActivityContainer extends FrameLayout {
                     this.chatActivity.onRemoveFromParent();
                     viewGroup.removeView(this.fragmentView);
                 }
+            }
+            if (this.chatActivity.getChatListView() != null && this.topPadding != 0) {
+                this.chatActivity.getChatListView().setPadding(0, this.topPadding, 0, 0);
             }
             this.chatActivity.openedInstantly();
             addView(this.fragmentView, LayoutHelper.createFrame(-1, -1.0f));

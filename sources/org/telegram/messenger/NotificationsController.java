@@ -39,6 +39,7 @@ import androidx.core.app.Person;
 import androidx.core.graphics.drawable.IconCompat;
 import com.google.android.gms.cast.framework.media.internal.zzo$$ExternalSyntheticApiModelOutline2;
 import com.google.android.search.verification.client.SearchActionVerificationClientService$$ExternalSyntheticApiModelOutline2;
+import com.google.common.collect.Lists;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -140,13 +141,13 @@ public class NotificationsController extends BaseController {
     private static final DispatchQueue notificationsQueue = new DispatchQueue("notificationsQueue");
     public static long globalSecretChatId = DialogObject.makeEncryptedDialogId(1);
 
-    public static void lambda$updateServerNotificationsSettings$47(TLObject tLObject, TLRPC.TL_error tL_error) {
-    }
-
     public static void lambda$updateServerNotificationsSettings$48(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public static void lambda$updateServerNotificationsSettings$49(TLObject tLObject, TLRPC.TL_error tL_error) {
+    }
+
+    public static void lambda$updateServerNotificationsSettings$50(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     public void processReadStories() {
@@ -427,7 +428,7 @@ public class NotificationsController extends BaseController {
                 List notificationChannels = systemNotificationManager.getNotificationChannels();
                 int size = notificationChannels.size();
                 for (int i = 0; i < size; i++) {
-                    String id = NotificationsController$$ExternalSyntheticApiModelOutline13.m(notificationChannels.get(i)).getId();
+                    String id = NotificationsController$$ExternalSyntheticApiModelOutline15.m(notificationChannels.get(i)).getId();
                     if (id.startsWith(str)) {
                         try {
                             systemNotificationManager.deleteNotificationChannel(id);
@@ -509,7 +510,7 @@ public class NotificationsController extends BaseController {
             long dialogId = messageObject.getDialogId();
             if (!messageObject.isReactionPush) {
                 TLRPC.Message message = messageObject.messageOwner;
-                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !DialogObject.isEncryptedDialog(dialogId) && ((messageObject.messageOwner.peer_id.channel_id == 0 || messageObject.isSupergroup()) && dialogId != 489000)) {
+                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !DialogObject.isEncryptedDialog(dialogId) && ((messageObject.messageOwner.peer_id.channel_id == 0 || messageObject.isSupergroup()) && dialogId != 489000 && dialogId != 489001)) {
                     return true;
                 }
             }
@@ -1233,7 +1234,7 @@ public class NotificationsController extends BaseController {
             notificationsQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processNewMessages$25(arrayList, arrayList2, z2, z, countDownLatch);
+                    this.f$0.lambda$processNewMessages$26(arrayList, arrayList2, z2, z, countDownLatch);
                 }
             });
         } else if (countDownLatch != null) {
@@ -1241,11 +1242,17 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public void lambda$processNewMessages$25(java.util.ArrayList r42, final java.util.ArrayList r43, boolean r44, boolean r45, java.util.concurrent.CountDownLatch r46) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processNewMessages$25(java.util.ArrayList, java.util.ArrayList, boolean, boolean, java.util.concurrent.CountDownLatch):void");
+    public void lambda$processNewMessages$26(java.util.ArrayList r45, final java.util.ArrayList r46, boolean r47, boolean r48, java.util.concurrent.CountDownLatch r49) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processNewMessages$26(java.util.ArrayList, java.util.ArrayList, boolean, boolean, java.util.concurrent.CountDownLatch):void");
     }
 
-    public void lambda$processNewMessages$23(ArrayList arrayList, int i) {
+    public void lambda$processNewMessages$23(int i) {
+        LongSparseArray longSparseArray = new LongSparseArray();
+        longSparseArray.put(0L, Lists.newArrayList(Integer.valueOf(i)));
+        removeDeletedMessagesFromNotifications(longSparseArray, false);
+    }
+
+    public void lambda$processNewMessages$24(ArrayList arrayList, int i) {
         this.popupMessages.addAll(0, arrayList);
         if (ApplicationLoader.mainInterfacePaused || !ApplicationLoader.isScreenOn) {
             if (i == 3 || ((i == 1 && ApplicationLoader.isScreenOn) || (i == 2 && !ApplicationLoader.isScreenOn))) {
@@ -1259,7 +1266,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public void lambda$processNewMessages$24(int i) {
+    public void lambda$processNewMessages$25(int i) {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsCountUpdated, Integer.valueOf(this.currentAccount));
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsUnreadCounterChanged, Integer.valueOf(i));
     }
@@ -1282,16 +1289,16 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDialogsUpdateRead$28(longSparseIntArray, arrayList);
+                this.f$0.lambda$processDialogsUpdateRead$29(longSparseIntArray, arrayList);
             }
         });
     }
 
-    public void lambda$processDialogsUpdateRead$28(org.telegram.messenger.support.LongSparseIntArray r19, final java.util.ArrayList r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processDialogsUpdateRead$28(org.telegram.messenger.support.LongSparseIntArray, java.util.ArrayList):void");
+    public void lambda$processDialogsUpdateRead$29(org.telegram.messenger.support.LongSparseIntArray r19, final java.util.ArrayList r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processDialogsUpdateRead$29(org.telegram.messenger.support.LongSparseIntArray, java.util.ArrayList):void");
     }
 
-    public void lambda$processDialogsUpdateRead$26(ArrayList arrayList) {
+    public void lambda$processDialogsUpdateRead$27(ArrayList arrayList) {
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             this.popupMessages.remove(arrayList.get(i));
@@ -1299,7 +1306,7 @@ public class NotificationsController extends BaseController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.pushMessagesUpdated, new Object[0]);
     }
 
-    public void lambda$processDialogsUpdateRead$27(int i) {
+    public void lambda$processDialogsUpdateRead$28(int i) {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsCountUpdated, Integer.valueOf(this.currentAccount));
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsUnreadCounterChanged, Integer.valueOf(i));
     }
@@ -1311,16 +1318,16 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processLoadedUnreadMessages$31(arrayList, longSparseArray, arrayList2, collection);
+                this.f$0.lambda$processLoadedUnreadMessages$32(arrayList, longSparseArray, arrayList2, collection);
             }
         });
     }
 
-    public void lambda$processLoadedUnreadMessages$31(java.util.ArrayList r28, androidx.collection.LongSparseArray r29, java.util.ArrayList r30, java.util.Collection r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processLoadedUnreadMessages$31(java.util.ArrayList, androidx.collection.LongSparseArray, java.util.ArrayList, java.util.Collection):void");
+    public void lambda$processLoadedUnreadMessages$32(java.util.ArrayList r28, androidx.collection.LongSparseArray r29, java.util.ArrayList r30, java.util.Collection r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processLoadedUnreadMessages$32(java.util.ArrayList, androidx.collection.LongSparseArray, java.util.ArrayList, java.util.Collection):void");
     }
 
-    public void lambda$processLoadedUnreadMessages$30(int i) {
+    public void lambda$processLoadedUnreadMessages$31(int i) {
         if (this.total_unread_count == 0) {
             this.popupMessages.clear();
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.pushMessagesUpdated, new Object[0]);
@@ -1376,7 +1383,7 @@ public class NotificationsController extends BaseController {
         return dialogUnreadCount;
     }
 
-    public void lambda$updateBadge$32() {
+    public void lambda$updateBadge$33() {
         setBadge(getTotalAllUnreadCount());
     }
 
@@ -1384,7 +1391,7 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateBadge$32();
+                this.f$0.lambda$updateBadge$33();
             }
         });
     }
@@ -1425,7 +1432,7 @@ public class NotificationsController extends BaseController {
         return sb.toString();
     }
 
-    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r25, boolean r26, boolean[] r27, boolean[] r28) {
+    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r29, boolean r30, boolean[] r31, boolean[] r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getStringForMessage(org.telegram.messenger.MessageObject, boolean, boolean[], boolean[]):java.lang.String");
     }
 
@@ -1459,7 +1466,7 @@ public class NotificationsController extends BaseController {
         return 2;
     }
 
-    public void lambda$showNotifications$33() {
+    public void lambda$showNotifications$34() {
         showOrUpdateNotification(false);
     }
 
@@ -1467,7 +1474,7 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showNotifications$33();
+                this.f$0.lambda$showNotifications$34();
             }
         });
     }
@@ -1476,12 +1483,12 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$hideNotifications$34();
+                this.f$0.lambda$hideNotifications$35();
             }
         });
     }
 
-    public void lambda$hideNotifications$34() {
+    public void lambda$hideNotifications$35() {
         notificationManager.cancel(this.notificationId);
         this.lastWearNotifiedMessageId.clear();
         for (int i = 0; i < this.wearNotificationsIds.size(); i++) {
@@ -1506,7 +1513,7 @@ public class NotificationsController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationsController.lambda$dismissNotification$35();
+                    NotificationsController.lambda$dismissNotification$36();
                 }
             });
         } catch (Exception e) {
@@ -1514,7 +1521,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public static void lambda$dismissNotification$35() {
+    public static void lambda$dismissNotification$36() {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.pushMessagesUpdated, new Object[0]);
     }
 
@@ -1536,7 +1543,7 @@ public class NotificationsController extends BaseController {
             notificationsQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$playInChatSound$37();
+                    this.f$0.lambda$playInChatSound$38();
                 }
             });
         } catch (Exception e2) {
@@ -1544,7 +1551,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public void lambda$playInChatSound$37() {
+    public void lambda$playInChatSound$38() {
         if (Math.abs(SystemClock.elapsedRealtime() - this.lastSoundPlay) <= 500) {
             return;
         }
@@ -1555,7 +1562,7 @@ public class NotificationsController extends BaseController {
                 soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
                     @Override
                     public final void onLoadComplete(SoundPool soundPool2, int i, int i2) {
-                        NotificationsController.lambda$playInChatSound$36(soundPool2, i, i2);
+                        NotificationsController.lambda$playInChatSound$37(soundPool2, i, i2);
                     }
                 });
             }
@@ -1576,7 +1583,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public static void lambda$playInChatSound$36(SoundPool soundPool, int i, int i2) {
+    public static void lambda$playInChatSound$37(SoundPool soundPool, int i, int i2) {
         if (i2 == 0) {
             try {
                 soundPool.play(i, 1.0f, 1.0f, 1, 0, 1.0f);
@@ -1605,12 +1612,12 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$repeatNotificationMaybe$38();
+                this.f$0.lambda$repeatNotificationMaybe$39();
             }
         });
     }
 
-    public void lambda$repeatNotificationMaybe$38() {
+    public void lambda$repeatNotificationMaybe$39() {
         int i = Calendar.getInstance().get(11);
         if (i >= 11 && i <= 22) {
             notificationManager.cancel(this.notificationId);
@@ -1636,7 +1643,7 @@ public class NotificationsController extends BaseController {
         deleteNotificationChannel(j, j2, -1);
     }
 
-    public void lambda$deleteNotificationChannel$39(long j, long j2, int i) {
+    public void lambda$deleteNotificationChannel$40(long j, long j2, int i) {
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
@@ -1689,7 +1696,7 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteNotificationChannel$39(j, j2, i);
+                this.f$0.lambda$deleteNotificationChannel$40(j, j2, i);
             }
         });
     }
@@ -1698,7 +1705,7 @@ public class NotificationsController extends BaseController {
         deleteNotificationChannelGlobal(i, -1);
     }
 
-    public void lambda$deleteNotificationChannelGlobal$40(int i, int i2) {
+    public void lambda$deleteNotificationChannelGlobal$41(int i, int i2) {
         String str;
         String str2;
         String str3;
@@ -1783,7 +1790,7 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteNotificationChannelGlobal$40(i, i2);
+                this.f$0.lambda$deleteNotificationChannelGlobal$41(i, i2);
             }
         });
     }
@@ -1795,12 +1802,12 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteAllNotificationChannels$41();
+                this.f$0.lambda$deleteAllNotificationChannels$42();
             }
         });
     }
 
-    public void lambda$deleteAllNotificationChannels$41() {
+    public void lambda$deleteAllNotificationChannels$42() {
         try {
             SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
             Map<String, ?> all = notificationsSettings.getAll();
@@ -1844,7 +1851,7 @@ public class NotificationsController extends BaseController {
                 int size = notificationChannels.size();
                 SharedPreferences.Editor editorEdit = null;
                 for (int i = 0; i < size; i++) {
-                    NotificationChannel notificationChannelM = NotificationsController$$ExternalSyntheticApiModelOutline13.m(notificationChannels.get(i));
+                    NotificationChannel notificationChannelM = NotificationsController$$ExternalSyntheticApiModelOutline15.m(notificationChannels.get(i));
                     String id = notificationChannelM.getId();
                     if (id.startsWith(str)) {
                         int importance = notificationChannelM.getImportance();
@@ -1908,7 +1915,7 @@ public class NotificationsController extends BaseController {
         String str10 = str5;
         String str11 = str4;
         for (int i2 = 0; i2 < size2; i2++) {
-            String id2 = NotificationsController$$ExternalSyntheticApiModelOutline16.m(notificationChannelGroups.get(i2)).getId();
+            String id2 = NotificationsController$$ExternalSyntheticApiModelOutline18.m(notificationChannelGroups.get(i2)).getId();
             if (str2 != null && str2.equals(id2)) {
                 str2 = null;
             } else if (str3 != null && str3.equals(id2)) {
@@ -2014,18 +2021,18 @@ public class NotificationsController extends BaseController {
             } else if (i3 == 4 || i3 == 5) {
                 editorEdit.putString("ReactionSound", string);
             }
-            getNotificationsController().lambda$deleteNotificationChannelGlobal$40(i3, -1);
+            getNotificationsController().lambda$deleteNotificationChannelGlobal$41(i3, -1);
         } else {
             editorEdit.putString("sound_" + getSharedPrefKey(j, j2), string2);
             editorEdit.putString("sound_path_" + getSharedPrefKey(j, j2), string);
-            lambda$deleteNotificationChannel$39(j, j2, -1);
+            lambda$deleteNotificationChannel$40(j, j2, -1);
         }
         editorEdit.commit();
         builder.setChannelId(validateChannelId(j, j2, str, jArr, i, uri2, i2, z, z2, z3, i3));
         notificationManager.notify(this.notificationId, builder.build());
     }
 
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r87, java.lang.String r88, long r89, long r91, java.lang.String r93, long[] r94, int r95, android.net.Uri r96, int r97, boolean r98, boolean r99, boolean r100, int r101) throws java.io.IOException {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r90, java.lang.String r91, long r92, long r94, java.lang.String r96, long[] r97, int r98, android.net.Uri r99, int r100, boolean r101, boolean r102, boolean r103, int r104) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 
@@ -2083,7 +2090,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public static void lambda$showExtraNotifications$42(Uri uri, File file) {
+    public static void lambda$showExtraNotifications$43(Uri uri, File file) {
         try {
             ApplicationLoader.applicationContext.revokeUriPermission(uri, 1);
         } catch (Exception e) {
@@ -2163,13 +2170,17 @@ public class NotificationsController extends BaseController {
         return new Pair<>(Integer.valueOf(size), Boolean.valueOf(z));
     }
 
-    public static Person.Builder loadRoundAvatar(File file, Person.Builder builder) {
+    public static Person.Builder loadRoundAvatar(long j, File file, Person.Builder builder) {
+        if (j == 489001) {
+            builder.setIcon(IconCompat.createWithResource(ApplicationLoader.applicationContext, R.drawable.logo_middle));
+            return builder;
+        }
         if (file != null && Build.VERSION.SDK_INT >= 28) {
             try {
                 builder.setIcon(IconCompat.createWithBitmap(ImageDecoder.decodeBitmap(ImageDecoder.createSource(file), new ImageDecoder.OnHeaderDecodedListener() {
                     @Override
                     public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
-                        NotificationsController.lambda$loadRoundAvatar$44(imageDecoder, imageInfo, source);
+                        NotificationsController.lambda$loadRoundAvatar$45(imageDecoder, imageInfo, source);
                     }
                 })));
             } catch (Throwable unused) {
@@ -2178,16 +2189,16 @@ public class NotificationsController extends BaseController {
         return builder;
     }
 
-    public static void lambda$loadRoundAvatar$44(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
+    public static void lambda$loadRoundAvatar$45(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
         imageDecoder.setPostProcessor(new PostProcessor() {
             @Override
             public final int onPostProcess(Canvas canvas) {
-                return NotificationsController.lambda$loadRoundAvatar$43(canvas);
+                return NotificationsController.lambda$loadRoundAvatar$44(canvas);
             }
         });
     }
 
-    public static int lambda$loadRoundAvatar$43(Canvas canvas) {
+    public static int lambda$loadRoundAvatar$44(Canvas canvas) {
         Path path = new Path();
         path.setFillType(Path.FillType.INVERSE_EVEN_ODD);
         int width = canvas.getWidth();
@@ -2399,12 +2410,12 @@ public class NotificationsController extends BaseController {
         notificationsQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$playOutChatSound$46();
+                this.f$0.lambda$playOutChatSound$47();
             }
         });
     }
 
-    public void lambda$playOutChatSound$46() {
+    public void lambda$playOutChatSound$47() {
         try {
             if (Math.abs(SystemClock.elapsedRealtime() - this.lastSoundOutPlay) <= 100) {
                 return;
@@ -2416,7 +2427,7 @@ public class NotificationsController extends BaseController {
                 soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
                     @Override
                     public final void onLoadComplete(SoundPool soundPool2, int i, int i2) {
-                        NotificationsController.lambda$playOutChatSound$45(soundPool2, i, i2);
+                        NotificationsController.lambda$playOutChatSound$46(soundPool2, i, i2);
                     }
                 });
             }
@@ -2437,7 +2448,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public static void lambda$playOutChatSound$45(SoundPool soundPool, int i, int i2) {
+    public static void lambda$playOutChatSound$46(SoundPool soundPool, int i, int i2) {
         if (i2 == 0) {
             try {
                 soundPool.play(i, 1.0f, 1.0f, 1, 0, 1.0f);
@@ -2573,7 +2584,7 @@ public class NotificationsController extends BaseController {
         getConnectionsManager().sendRequest(updatenotifysettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NotificationsController.lambda$updateServerNotificationsSettings$47(tLObject, tL_error);
+                NotificationsController.lambda$updateServerNotificationsSettings$48(tLObject, tL_error);
             }
         });
     }
@@ -2604,7 +2615,7 @@ public class NotificationsController extends BaseController {
             getConnectionsManager().sendRequest(setreactionsnotifysettings, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    NotificationsController.lambda$updateServerNotificationsSettings$48(tLObject, tL_error);
+                    NotificationsController.lambda$updateServerNotificationsSettings$49(tLObject, tL_error);
                 }
             });
             return;
@@ -2649,7 +2660,7 @@ public class NotificationsController extends BaseController {
         getConnectionsManager().sendRequest(updatenotifysettings, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                NotificationsController.lambda$updateServerNotificationsSettings$49(tLObject, tL_error);
+                NotificationsController.lambda$updateServerNotificationsSettings$50(tLObject, tL_error);
             }
         });
     }
@@ -2744,12 +2755,12 @@ public class NotificationsController extends BaseController {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadTopicsNotificationsExceptions$51(j, consumer);
+                this.f$0.lambda$loadTopicsNotificationsExceptions$52(j, consumer);
             }
         });
     }
 
-    public void lambda$loadTopicsNotificationsExceptions$51(long j, final Consumer consumer) {
+    public void lambda$loadTopicsNotificationsExceptions$52(long j, final Consumer consumer) {
         final HashSet hashSet = new HashSet();
         Iterator<Map.Entry<String, ?>> it = MessagesController.getNotificationsSettings(this.currentAccount).getAll().entrySet().iterator();
         while (it.hasNext()) {
@@ -2765,12 +2776,12 @@ public class NotificationsController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NotificationsController.lambda$loadTopicsNotificationsExceptions$50(consumer, hashSet);
+                NotificationsController.lambda$loadTopicsNotificationsExceptions$51(consumer, hashSet);
             }
         });
     }
 
-    public static void lambda$loadTopicsNotificationsExceptions$50(Consumer consumer, HashSet hashSet) {
+    public static void lambda$loadTopicsNotificationsExceptions$51(Consumer consumer, HashSet hashSet) {
         if (consumer != null) {
             consumer.p(hashSet);
         }

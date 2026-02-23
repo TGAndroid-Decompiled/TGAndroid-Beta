@@ -1106,6 +1106,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
                     }
@@ -1346,8 +1351,18 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public boolean isAdmin(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                    }
+
+                    @Override
                     public boolean isLandscape() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                    }
+
+                    @Override
+                    public boolean isOwner(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
                     }
 
                     @Override
@@ -1428,7 +1443,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
+                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) throws Resources.NotFoundException {
                         Page page2 = Page.this;
                         if (page2.currentTab != 2 || MessagePreviewView.this.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
                             return;
@@ -1476,7 +1491,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException, NumberFormatException {
                 MessagePreviewParams.Messages messages = Page.this.messages;
                 if (messages == null) {
                     return;
@@ -1542,6 +1557,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                         @Override
                         public void didPressAboutRevenueSharingAds() {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                        }
+
+                        @Override
+                        public void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell2);
                         }
 
                         @Override
@@ -1800,8 +1820,18 @@ public abstract class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public boolean isAdmin(long j) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                        }
+
+                        @Override
                         public boolean isLandscape() {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                        }
+
+                        @Override
+                        public boolean isOwner(long j) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
                         }
 
                         @Override

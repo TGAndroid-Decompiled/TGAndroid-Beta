@@ -514,6 +514,8 @@ public abstract class ThemeColors {
         iArr[Theme.key_profile_verifiedCheck] = -1;
         iArr[Theme.key_profile_title] = -14540254;
         iArr[Theme.key_profile_status] = -14540254;
+        iArr[Theme.key_chat_tagAdmin] = -12539616;
+        iArr[Theme.key_chat_tagCreator] = -6988581;
         iArr[Theme.key_profile_tabText] = -7893872;
         iArr[Theme.key_profile_tabSelectedText] = -12937771;
         iArr[Theme.key_profile_tabSelectedLine] = -11557143;
@@ -1365,6 +1367,8 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_passport_authorizeBackgroundSelected, "passport_authorizeBackgroundSelected");
         sparseArray.put(Theme.key_passport_authorizeText, "passport_authorizeText");
         sparseArray.put(Theme.key_profile_creatorIcon, "profile_creatorIcon");
+        sparseArray.put(Theme.key_chat_tagAdmin, "chat_tagAdmin");
+        sparseArray.put(Theme.key_chat_tagCreator, "chat_tagCreator");
         sparseArray.put(Theme.key_profile_title, "profile_title");
         sparseArray.put(Theme.key_profile_actionIcon, "profile_actionIcon");
         sparseArray.put(Theme.key_profile_actionBackground, "profile_actionBackground");

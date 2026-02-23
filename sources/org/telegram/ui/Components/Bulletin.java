@@ -319,6 +319,14 @@ public class Bulletin {
         return this;
     }
 
+    public Bulletin wrapContent() {
+        if (this.layout.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+            ((FrameLayout.LayoutParams) this.layout.getLayoutParams()).width = -2;
+            ((FrameLayout.LayoutParams) this.layout.getLayoutParams()).gravity |= 1;
+        }
+        return this;
+    }
+
     public Bulletin show(final boolean z) {
         if (!this.showing && this.containerLayout != null) {
             this.showing = true;

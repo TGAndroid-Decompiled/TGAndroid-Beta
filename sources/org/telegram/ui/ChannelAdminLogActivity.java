@@ -100,6 +100,8 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.AvatarPreviewer;
 import org.telegram.ui.Cells.ChatActionCell;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticApiModelOutline0;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticApiModelOutline1;
 import org.telegram.ui.Cells.ChatLoadingCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.ChatUnreadCell;
@@ -386,8 +388,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             if (!(charSequence instanceof Spannable)) {
                 charSequence = new SpannableStringBuilder(charSequence);
             }
-            ChannelAdminLogActivity$$ExternalSyntheticApiModelOutline1.m();
-            ((SpannableStringBuilder) charSequence).setSpan(ChannelAdminLogActivity$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.dp(8.0f)), iCharSequenceIndexOf + 1, iCharSequenceIndexOf + 2, 33);
+            ChatActionCell$$ExternalSyntheticApiModelOutline1.m();
+            ((SpannableStringBuilder) charSequence).setSpan(ChatActionCell$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.dp(8.0f)), iCharSequenceIndexOf + 1, iCharSequenceIndexOf + 2, 33);
         }
         return charSequence;
     }
@@ -738,7 +740,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException, NumberFormatException {
         ChatMessageCell chatMessageCell;
         MessageObject messageObject;
         ChatMessageCell chatMessageCell2;
@@ -2347,6 +2349,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public void didPressAdmin(ChatMessageCell chatMessageCell) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell);
+            }
+
+            @Override
             public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell, animatedEmojiSpan);
             }
@@ -2555,8 +2562,18 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean isAdmin(long j) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+            }
+
+            @Override
             public boolean isLandscape() {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+            }
+
+            @Override
+            public boolean isOwner(long j) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
             }
 
             @Override
@@ -3101,7 +3118,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws android.content.res.Resources.NotFoundException {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 

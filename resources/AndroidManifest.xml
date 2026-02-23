@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="65279"
-    android:versionName="12.4.3"
+    android:versionCode="65419"
+    android:versionName="12.5.0"
     android:installLocation="auto"
     android:compileSdkVersion="35"
     android:compileSdkVersionCodename="15"
@@ -556,7 +556,7 @@
         </receiver>
         <receiver
             android:name="org.telegram.messenger.AutoMessageReplyReceiver"
-            android:exported="false"> e 
+            android:exported="false">
             <intent-filter>
                 <action android:name="org.telegram.messenger.ACTION_MESSAGE_REPLY"/>
             </intent-filter>

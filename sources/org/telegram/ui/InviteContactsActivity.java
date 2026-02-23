@@ -107,6 +107,16 @@ public class InviteContactsActivity extends BaseFragment implements Notification
     }
 
     @Override
+    public void onAnimatedInsetsFinished() {
+        WindowAnimatedInsetsProvider.Listener.CC.$default$onAnimatedInsetsFinished(this);
+    }
+
+    @Override
+    public void onAnimatedInsetsStarted() {
+        WindowAnimatedInsetsProvider.Listener.CC.$default$onAnimatedInsetsStarted(this);
+    }
+
+    @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
