@@ -167,6 +167,10 @@ public class ContentPreviewViewer {
                 return false;
             }
 
+            public static boolean $default$canSendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+                return true;
+            }
+
             public static Boolean $default$canSetAsStatus(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document) {
                 return null;
             }
@@ -252,7 +256,7 @@ public class ContentPreviewViewer {
             public static void $default$sendGif(ContentPreviewViewerDelegate contentPreviewViewerDelegate, Object obj, Object obj2, boolean z, int i, int i2) {
             }
 
-            public static void $default$sendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+            public static void $default$sendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate, String str) {
             }
 
             public static void $default$sendSticker(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
@@ -281,6 +285,8 @@ public class ContentPreviewViewer {
         boolean canEditSticker();
 
         boolean canSchedule();
+
+        boolean canSendSticker();
 
         Boolean canSetAsStatus(TLRPC.Document document);
 
@@ -332,7 +338,7 @@ public class ContentPreviewViewer {
 
         void sendGif(Object obj, Object obj2, boolean z, int i, int i2);
 
-        void sendSticker();
+        void sendSticker(String str);
 
         void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2);
 
@@ -441,7 +447,7 @@ public class ContentPreviewViewer {
                     if (ContentPreviewViewer.this.delegate.isSettingIntroSticker()) {
                         ContentPreviewViewer.this.delegate.setIntroSticker(TextUtils.join("", ContentPreviewViewer.this.selectedEmojis));
                     } else {
-                        ContentPreviewViewer.this.delegate.sendSticker();
+                        ContentPreviewViewer.this.delegate.sendSticker(TextUtils.join("", ContentPreviewViewer.this.selectedEmojis));
                     }
                 }
             }
@@ -452,11 +458,11 @@ public class ContentPreviewViewer {
             actionBarPopupWindowLayout.getSwipeBack().closeForeground();
         }
 
-        class ViewOnClickListenerC00401 implements View.OnClickListener {
+        class ViewOnClickListenerC00391 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            ViewOnClickListenerC00401(ArrayList arrayList, boolean z) {
+            ViewOnClickListenerC00391(ArrayList arrayList, boolean z) {
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }

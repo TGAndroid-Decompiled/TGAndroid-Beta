@@ -26,7 +26,6 @@ import android.widget.TextView;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -208,7 +207,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             selectionStart = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        AlertsCreator.createFormattedDatePickerDialog(getContext(), "Create Date", -1L, new AlertsCreator.FormattedDatePickerDelegate() {
+        AlertsCreator.createFormattedDatePickerDialog(getContext(), new AlertsCreator.FormattedDatePickerDelegate() {
             @Override
             public final void didSelectDate(int i, int i2) {
                 this.f$0.lambda$makeSelectedDate$0(selectionStart, selectionEnd, i, i2);
@@ -746,9 +745,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString(R.string.Underline)));
             accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString(R.string.CreateLink)));
             accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString(R.string.Regular)));
-            if (BuildVars.SUPPORT_SEND_DATES) {
-                accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_date, LocaleController.getString(R.string.FormattedDate)));
-            }
+            accessibilityNodeInfoCompatWrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_date, LocaleController.getString(R.string.FormattedDate)));
         }
     }
 

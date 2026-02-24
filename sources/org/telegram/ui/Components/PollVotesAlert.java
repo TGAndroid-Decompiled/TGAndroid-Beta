@@ -325,12 +325,12 @@ public class PollVotesAlert extends BottomSheet {
             this.dateTextView = textView;
             textView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
             this.dateTextView.setTextSize(1, 13.0f);
-            addView(this.dateTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 21, 4, 0, 4, 0));
+            addView(this.dateTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 21, 4, 0, 2, 0));
             TextView textView2 = new TextView(context);
             this.timeTextView = textView2;
             textView2.setTextColor(Theme.getColor(i));
             this.timeTextView.setTextSize(1, 13.0f);
-            addView(this.timeTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 21, 4, 0, 4, 0));
+            addView(this.timeTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 21, 2, 0, 4, 0));
             this.statusBadgeComponent = new StatusBadgeComponent(this.nameTextView, 20);
         }
 

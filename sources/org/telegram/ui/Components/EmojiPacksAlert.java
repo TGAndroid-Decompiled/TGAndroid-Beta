@@ -166,6 +166,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
+        public boolean canSendSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canSendSticker(this);
+        }
+
+        @Override
         public void deleteSticker(TLRPC.Document document) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$deleteSticker(this, document);
         }
@@ -260,8 +265,8 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendSticker() {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this);
+        public void sendSticker(String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, str);
         }
 
         @Override

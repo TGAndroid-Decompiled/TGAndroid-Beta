@@ -1833,14 +1833,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (sb.length() != 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString(R.string.UserRestrictionsEditTags));
+            sb.append(LocaleController.getString(R.string.UserRestrictionsNoEditTags));
         }
         boolean z15 = tL_chatBannedRights.change_info;
         if (z15 && this.defaultBannedRights.change_info != z15) {
             if (sb.length() != 0) {
                 sb.append(", ");
             }
-            sb.append(LocaleController.getString("UserRestrictionsNoChangeInfo", R.string.UserRestrictionsNoChangeInfo));
+            sb.append(LocaleController.getString(R.string.UserRestrictionsNoChangeInfo));
         }
         if (sb.length() != 0) {
             sb.replace(0, 1, sb.substring(0, 1).toUpperCase());

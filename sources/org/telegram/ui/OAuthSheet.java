@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
@@ -55,8 +56,7 @@ import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.web.BotWebViewContainer;
 
 public abstract class OAuthSheet {
-    public static void lambda$handle$12() {
-    }
+    private static BottomSheet showing;
 
     public static void handle(boolean z, int i, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult) {
         handle(z, i, tL_messages_requestUrlAuth, urlAuthResult, null, null, false, null);
@@ -132,6 +132,7 @@ public abstract class OAuthSheet {
             if (safeLastFragment5 == null || (context = safeLastFragment5.getContext()) == null) {
                 return;
             }
+            final Theme.ResourcesProvider resourceProvider = safeLastFragment5.getResourceProvider();
             BottomSheet.Builder builder = new BottomSheet.Builder(context, false, safeLastFragment5.getResourceProvider());
             FrameLayout frameLayout = new FrameLayout(context);
             builder.setCustomView(frameLayout);
@@ -148,7 +149,7 @@ public abstract class OAuthSheet {
                     return OAuthSheet.lambda$handle$1((Integer) obj, (Integer) obj2);
                 }
             });
-            boolean z5 = tL_messages_requestUrlAuth.peer != null;
+            final boolean z5 = tL_messages_requestUrlAuth.peer != null;
             FrameLayout frameLayout2 = new FrameLayout(context);
             final FrameLayout frameLayout3 = new FrameLayout(context);
             frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), safeLastFragment5.getThemedColor(Theme.key_dialogBackgroundGray)));
@@ -283,11 +284,12 @@ public abstract class OAuthSheet {
             linearLayout.addView(linearLayout7, LayoutHelper.createLinear(-1, -2, 7, 12, 12, 12, 8));
             final BottomSheet bottomSheetCreate = builder.create();
             bottomSheetCreate.setBackgroundColor(safeLastFragment5.getThemedColor(Theme.key_windowBackgroundGray));
+            final TextCheckCell textCheckCell3 = textCheckCell;
             final ArrayList arrayList3 = arrayList;
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    OAuthSheet.lambda$handle$4(iArr, tL_messages_requestUrlAuth, bottomSheetCreate, z, str, urlAuthResult2, z2, (Integer) obj);
+                    OAuthSheet.lambda$handle$4(iArr, tL_messages_requestUrlAuth, bottomSheetCreate, z, str, urlAuthResult2, z2, botWebViewContainer, tL_urlAuthResultRequest, resourceProvider, (Integer) obj);
                 }
             };
             if (tL_urlAuthResultRequest.user_id_hint != 0 && UserConfig.getInstance(i).getClientUserId() != tL_urlAuthResultRequest.user_id_hint) {
@@ -309,56 +311,54 @@ public abstract class OAuthSheet {
                     OAuthSheet.lambda$handle$6(bottomSheetCreate, frameLayout3, arrayList3, iArr, callback, view);
                 }
             });
+            final boolean[] zArr = new boolean[1];
             round.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OAuthSheet.lambda$handle$8(tL_messages_requestUrlAuth, bottomSheetCreate, round, botWebViewContainer, i, view);
+                    OAuthSheet.lambda$handle$8(tL_messages_requestUrlAuth, zArr, bottomSheetCreate, round, botWebViewContainer, i, view);
                 }
             });
-            final boolean[] zArr = new boolean[1];
+            final boolean[] zArr2 = new boolean[1];
             final String[] strArr = new String[1];
-            if (!tL_urlAuthResultRequest.match_codes.isEmpty()) {
-                if (ConnectionsManager.getInstance(i).isTestBackend()) {
-                    int i5 = 0;
-                    while (i5 < 4) {
-                        if (UserConfig.getInstance(i5).isClientActivated() && !ConnectionsManager.getInstance(i5).isTestBackend()) {
-                            break;
-                        } else {
-                            i5++;
-                        }
-                    }
-                    i5 = i;
-                    TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-                    tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-                    MediaDataController.getInstance(i5).getStickerSet(tL_inputStickerSetShortName, false);
-                } else {
-                    i5 = i;
-                    TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-                    tL_inputStickerSetShortName2.short_name = "RestrictedEmoji";
-                    MediaDataController.getInstance(i5).getStickerSet(tL_inputStickerSetShortName2, false);
-                }
-            }
-            final TextCheckCell textCheckCell3 = textCheckCell;
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    OAuthSheet.lambda$handle$10(round2, round, tL_messages_requestUrlAuth, strArr, textCheckCell3, zArr, iArr, bottomSheetCreate, z, str, tL_urlAuthResultRequest, botWebViewContainer);
+                    OAuthSheet.lambda$handle$10(round2, round, tL_messages_requestUrlAuth, strArr, textCheckCell3, zArr2, iArr, zArr, bottomSheetCreate, tL_urlAuthResultRequest, resourceProvider, z, str, botWebViewContainer);
                 }
             };
-            final Runnable runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    OAuthSheet.lambda$handle$13(round2, round, safeLastFragment5, tL_urlAuthResultRequest, runnable, context, i, strArr);
-                }
-            };
-            final boolean z6 = z5;
             round2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OAuthSheet.lambda$handle$16(round2, round, tL_urlAuthResultRequest, iArr, context, safeLastFragment5, z6, zArr, runnable2, view);
+                    OAuthSheet.lambda$handle$13(round2, round, tL_urlAuthResultRequest, iArr, context, safeLastFragment5, z5, zArr2, runnable, view);
                 }
             });
-            bottomSheetCreate.show();
+            bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public final void onDismiss(DialogInterface dialogInterface) {
+                    OAuthSheet.showing = null;
+                }
+            });
+            BottomSheet bottomSheet = showing;
+            if (bottomSheet != null) {
+                bottomSheet.lambda$new$0();
+                showing = null;
+            }
+            if (tL_urlAuthResultRequest.match_codes.isEmpty()) {
+                showing = bottomSheetCreate;
+                bottomSheetCreate.show();
+            } else {
+                showing = showMatchCodeSheet(context, i, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        OAuthSheet.lambda$handle$15(strArr, bottomSheetCreate, (String) obj);
+                    }
+                }, new Runnable() {
+                    @Override
+                    public final void run() {
+                        OAuthSheet.lambda$handle$16(zArr, botWebViewContainer, tL_messages_requestUrlAuth, i);
+                    }
+                }, safeLastFragment5.getResourceProvider());
+            }
         }
     }
 
@@ -386,7 +386,7 @@ public abstract class OAuthSheet {
         textCheckCell.setChecked(!textCheckCell.isChecked());
     }
 
-    public static void lambda$handle$4(int[] iArr, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final BottomSheet bottomSheet, final boolean z, final String str, final TLRPC.UrlAuthResult urlAuthResult, final boolean z2, final Integer num) {
+    public static void lambda$handle$4(int[] iArr, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final BottomSheet bottomSheet, final boolean z, final String str, final TLRPC.UrlAuthResult urlAuthResult, final boolean z2, final BotWebViewContainer botWebViewContainer, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final Theme.ResourcesProvider resourcesProvider, final Integer num) {
         if (iArr[0] == num.intValue()) {
             return;
         }
@@ -395,18 +395,23 @@ public abstract class OAuthSheet {
         ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OAuthSheet.lambda$handle$3(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, z2, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                OAuthSheet.lambda$handle$3(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, z2, botWebViewContainer, tL_urlAuthResultRequest, resourcesProvider, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$handle$3(AlertDialog alertDialog, BottomSheet bottomSheet, boolean z, Integer num, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.UrlAuthResult urlAuthResult, boolean z2, TLRPC.UrlAuthResult urlAuthResult2, TLRPC.TL_error tL_error) {
+    public static void lambda$handle$3(AlertDialog alertDialog, BottomSheet bottomSheet, boolean z, Integer num, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.UrlAuthResult urlAuthResult, boolean z2, BotWebViewContainer botWebViewContainer, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, Theme.ResourcesProvider resourcesProvider, TLRPC.UrlAuthResult urlAuthResult2, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (urlAuthResult2 != null) {
             bottomSheet.lambda$new$0();
-            handle(z, num.intValue(), tL_messages_requestUrlAuth, urlAuthResult2, str, urlAuthResult, z2, null);
-        } else {
-            BulletinFactory.of(bottomSheet.topBulletinContainer, bottomSheet.getResourcesProvider()).showForError(tL_error);
+            handle(z, num.intValue(), tL_messages_requestUrlAuth, urlAuthResult2, str, urlAuthResult, z2, botWebViewContainer);
+        } else if (tL_error != null) {
+            if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                bottomSheet.lambda$new$0();
+                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(tL_urlAuthResultRequest.domain) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, tL_urlAuthResultRequest.domain), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+            } else {
+                BulletinFactory.of(bottomSheet.topBulletinContainer, bottomSheet.getResourcesProvider()).showForError(tL_error);
+            }
         }
     }
 
@@ -435,29 +440,35 @@ public abstract class OAuthSheet {
         callback.run(Integer.valueOf(i));
     }
 
-    public static void lambda$handle$8(TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final BottomSheet bottomSheet, ButtonWithCounterView buttonWithCounterView, BotWebViewContainer botWebViewContainer, int i, View view) {
+    public static void lambda$handle$8(TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final boolean[] zArr, final BottomSheet bottomSheet, ButtonWithCounterView buttonWithCounterView, BotWebViewContainer botWebViewContainer, int i, View view) {
         if (tL_messages_requestUrlAuth == null || TextUtils.isEmpty(tL_messages_requestUrlAuth.url)) {
+            zArr[0] = true;
             bottomSheet.lambda$new$0();
-            return;
-        }
-        if (buttonWithCounterView.isLoading()) {
-            return;
-        }
-        buttonWithCounterView.setLoading(true);
-        if (botWebViewContainer != null) {
-            botWebViewContainer.notifyEvent("oauth_result_failed", BotWebViewContainer.obj());
-        }
-        TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
-        tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
-        ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_declineUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                bottomSheet.lambda$new$0();
+        } else {
+            if (buttonWithCounterView.isLoading()) {
+                return;
             }
-        });
+            buttonWithCounterView.setLoading(true);
+            if (botWebViewContainer != null) {
+                botWebViewContainer.notifyEvent("oauth_result_failed", BotWebViewContainer.obj());
+            }
+            TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
+            tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
+            ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_declineUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    OAuthSheet.lambda$handle$7(zArr, bottomSheet, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                }
+            });
+        }
     }
 
-    public static void lambda$handle$10(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, TextCheckCell textCheckCell, boolean[] zArr, final int[] iArr, final BottomSheet bottomSheet, final boolean z, final String str, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final BotWebViewContainer botWebViewContainer) {
+    public static void lambda$handle$7(boolean[] zArr, BottomSheet bottomSheet, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+        zArr[0] = true;
+        bottomSheet.lambda$new$0();
+    }
+
+    public static void lambda$handle$10(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, TextCheckCell textCheckCell, boolean[] zArr, final int[] iArr, final boolean[] zArr2, final BottomSheet bottomSheet, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final Theme.ResourcesProvider resourcesProvider, final boolean z, final String str, final BotWebViewContainer botWebViewContainer) {
         if (buttonWithCounterView.isLoading() || buttonWithCounterView2.isLoading()) {
             return;
         }
@@ -482,47 +493,27 @@ public abstract class OAuthSheet {
         ConnectionsManager.getInstance(iArr[0]).sendRequestTyped(tL_messages_acceptUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OAuthSheet.lambda$handle$9(bottomSheet, z, iArr, tL_messages_requestUrlAuth, str, tL_urlAuthResultRequest, tL_messages_acceptUrlAuth, botWebViewContainer, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                OAuthSheet.lambda$handle$9(zArr2, bottomSheet, tL_urlAuthResultRequest, resourcesProvider, z, iArr, tL_messages_requestUrlAuth, str, tL_messages_acceptUrlAuth, botWebViewContainer, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$handle$9(BottomSheet bottomSheet, boolean z, int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth, BotWebViewContainer botWebViewContainer, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
+    public static void lambda$handle$9(boolean[] zArr, BottomSheet bottomSheet, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth, BotWebViewContainer botWebViewContainer, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
+        zArr[0] = true;
         bottomSheet.lambda$new$0();
         if (tL_error != null) {
-            getBulletinFactory().showForError(tL_error);
-        } else {
-            handle(z, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str, tL_urlAuthResultRequest, tL_messages_acceptUrlAuth.share_phone_number, botWebViewContainer);
+            if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(tL_urlAuthResultRequest.domain) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, tL_urlAuthResultRequest.domain), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+                return;
+            } else {
+                getBulletinFactory().showForError(tL_error);
+                return;
+            }
         }
+        handle(z, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str, tL_urlAuthResultRequest, tL_messages_acceptUrlAuth.share_phone_number, botWebViewContainer);
     }
 
-    public static void lambda$handle$13(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, BaseFragment baseFragment, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final Runnable runnable, Context context, int i, final String[] strArr) {
-        if (buttonWithCounterView.isLoading() || buttonWithCounterView2.isLoading() || baseFragment == null) {
-            return;
-        }
-        if (tL_urlAuthResultRequest.match_codes.isEmpty()) {
-            runnable.run();
-        } else {
-            showMatchCodeSheet(context, i, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    OAuthSheet.lambda$handle$11(strArr, runnable, (String) obj);
-                }
-            }, new Runnable() {
-                @Override
-                public final void run() {
-                    OAuthSheet.lambda$handle$12();
-                }
-            }, baseFragment.getResourceProvider());
-        }
-    }
-
-    public static void lambda$handle$11(String[] strArr, Runnable runnable, String str) {
-        strArr[0] = str;
-        runnable.run();
-    }
-
-    public static void lambda$handle$16(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, int[] iArr, Context context, BaseFragment baseFragment, boolean z, final boolean[] zArr, final Runnable runnable, View view) {
+    public static void lambda$handle$13(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, int[] iArr, Context context, BaseFragment baseFragment, boolean z, final boolean[] zArr, final Runnable runnable, View view) {
         if (buttonWithCounterView.isLoading() || buttonWithCounterView2.isLoading()) {
             return;
         }
@@ -534,12 +525,12 @@ public abstract class OAuthSheet {
             title.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, userName, PhoneFormat.getInstance().format("+" + currentUser.phone).replaceAll(" ", " ")))).setNegativeButton(LocaleController.getString(R.string.BotAuthPhoneNumberDeny), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    OAuthSheet.lambda$handle$14(zArr, runnable, alertDialog, i2);
+                    OAuthSheet.lambda$handle$11(zArr, runnable, alertDialog, i2);
                 }
             }).setPositiveButton(LocaleController.getString(R.string.BotAuthPhoneNumberAccept), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    OAuthSheet.lambda$handle$15(zArr, runnable, alertDialog, i2);
+                    OAuthSheet.lambda$handle$12(zArr, runnable, alertDialog, i2);
                 }
             }).makeRed(-2).show();
             return;
@@ -547,17 +538,40 @@ public abstract class OAuthSheet {
         runnable.run();
     }
 
-    public static void lambda$handle$14(boolean[] zArr, Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void lambda$handle$11(boolean[] zArr, Runnable runnable, AlertDialog alertDialog, int i) {
         zArr[0] = false;
         runnable.run();
     }
 
-    public static void lambda$handle$15(boolean[] zArr, Runnable runnable, AlertDialog alertDialog, int i) {
+    public static void lambda$handle$12(boolean[] zArr, Runnable runnable, AlertDialog alertDialog, int i) {
         zArr[0] = true;
         runnable.run();
     }
 
-    public static void showMatchCodeSheet(Context context, int i, final ArrayList arrayList, String str, final Utilities.Callback callback, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+    public static void lambda$handle$15(String[] strArr, BottomSheet bottomSheet, String str) {
+        strArr[0] = str;
+        showing = bottomSheet;
+        bottomSheet.show();
+    }
+
+    public static void lambda$handle$16(boolean[] zArr, BotWebViewContainer botWebViewContainer, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, int i) {
+        showing = null;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        if (botWebViewContainer != null) {
+            botWebViewContainer.notifyEvent("oauth_result_failed", BotWebViewContainer.obj());
+        }
+        if (tL_messages_requestUrlAuth == null || TextUtils.isEmpty(tL_messages_requestUrlAuth.url)) {
+            return;
+        }
+        TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
+        tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_declineUrlAuth, null);
+    }
+
+    public static BottomSheet showMatchCodeSheet(Context context, int i, final ArrayList arrayList, String str, final Utilities.Callback callback, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
         int i2;
         Drawable drawable;
         final BottomSheet[] bottomSheetArr = new BottomSheet[1];
@@ -570,7 +584,6 @@ public abstract class OAuthSheet {
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        textView.setText("Tap the emoji shown\non your other device");
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 0, 25, 0, 19));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
@@ -582,9 +595,8 @@ public abstract class OAuthSheet {
             while (i2 < 4) {
                 if (UserConfig.getInstance(i2).isClientActivated() && !ConnectionsManager.getInstance(i2).isTestBackend()) {
                     break;
-                } else {
-                    i2++;
                 }
+                i2++;
             }
             i2 = i;
         } else {
@@ -592,9 +604,12 @@ public abstract class OAuthSheet {
         }
         final BackupImageView[] backupImageViewArr = new BackupImageView[arrayList.size()];
         int i3 = 0;
+        boolean z = true;
+        BottomSheet.Builder builder2 = builder;
         while (i3 < arrayList.size()) {
             final String str2 = (String) arrayList.get(i3);
             FrameLayout frameLayout = new FrameLayout(context);
+            BottomSheet.Builder builder3 = builder2;
             frameLayout.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(70.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 0.05f)));
             Drawable emojiBigDrawable = Emoji.getEmojiBigDrawable(str2);
             if (emojiBigDrawable == null) {
@@ -618,6 +633,7 @@ public abstract class OAuthSheet {
                         text.draw(canvas, getBounds().centerX() - (text.getCurrentWidth() / 2.0f), getBounds().centerY(), Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 1.0f);
                     }
                 };
+                z = false;
             } else {
                 drawable = emojiBigDrawable;
             }
@@ -636,7 +652,9 @@ public abstract class OAuthSheet {
                 }
             });
             i3++;
+            builder2 = builder3;
         }
+        BottomSheet.Builder builder4 = builder2;
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
         MediaDataController.getInstance(i2).getStickerSet(tL_inputStickerSetShortName, null, false, new Utilities.Callback() {
@@ -645,22 +663,26 @@ public abstract class OAuthSheet {
                 OAuthSheet.lambda$showMatchCodeSheet$18(arrayList, backupImageViewArr, (TLRPC.TL_messages_stickerSet) obj);
             }
         });
+        textView.setText(LocaleController.getString(z ? R.string.BotAuthSelectEmoji : R.string.BotAuthSelectCode));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
         textView2.setTextSize(1, 12.0f);
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
-        textView2.setText(AndroidUtilities.replaceSingleLink("Login request from **" + str + "**", Theme.getColor(Theme.key_featuredStickers_addButton)));
+        textView2.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(R.string.BotAuthLoginRequestFrom, str), Theme.getColor(Theme.key_featuredStickers_addButton)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 0, 23, 0, 11));
-        final ButtonWithCounterView neutral = new ButtonWithCounterView(context, resourcesProvider).setRound().setNeutral();
-        neutral.setText(LocaleController.getString(R.string.Cancel), false);
-        linearLayout.addView(neutral, LayoutHelper.createLinear(-1, 48, 7, 12, 12, 12, 12));
-        neutral.setOnClickListener(new View.OnClickListener() {
+        final ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round.setColor(Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
+        round.setText(LocaleController.getString(R.string.Decline), false);
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 7, 12, 12, 12, 12));
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                OAuthSheet.lambda$showMatchCodeSheet$19(neutral, bottomSheetArr, runnable, view);
+                OAuthSheet.lambda$showMatchCodeSheet$19(round, bottomSheetArr, runnable, view);
             }
         });
-        bottomSheetArr[0] = builder.show();
+        BottomSheet bottomSheetShow = builder4.show();
+        bottomSheetArr[0] = bottomSheetShow;
+        return bottomSheetShow;
     }
 
     public static void lambda$showMatchCodeSheet$17(BottomSheet[] bottomSheetArr, Utilities.Callback callback, String str, View view) {

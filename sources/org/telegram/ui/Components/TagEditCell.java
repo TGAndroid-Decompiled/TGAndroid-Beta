@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -170,7 +169,7 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) throws Resources.NotFoundException, NumberFormatException {
+            public void afterTextChanged(Editable editable) {
                 if (TagEditCell.this.ignoreEdit) {
                     return;
                 }
@@ -465,6 +464,11 @@ public class TagEditCell extends LinearLayout {
             @Override
             public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z);
+            }
+
+            @Override
+            public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell2, z);
             }
 
             @Override
@@ -772,7 +776,7 @@ public class TagEditCell extends LinearLayout {
         if (TextUtils.isEmpty(tL_messages_editChatParticipantRank.rank) || safeLastFragment == null) {
             return;
         }
-        BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, z ? "Tag added" : "Tag edited", tL_messages_editChatParticipantRank.rank).wrapContent().show();
+        BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(z ? R.string.TagAdded : R.string.TagEdited), tL_messages_editChatParticipantRank.rank).wrapContent().show();
     }
 
     public static void lambda$showSheet$5(EditTextBoldCursor editTextBoldCursor) {
@@ -781,13 +785,13 @@ public class TagEditCell extends LinearLayout {
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void showInfoSheet(final Context context, final int i, final long j, final TLRPC.User user, final String str, final boolean z, final boolean z2, final Theme.ResourcesProvider resourcesProvider) {
+    public static void showInfoSheet(final Context context, final int i, final long j, final TLRPC.User user, final String str, final boolean z, final boolean z2, boolean z3, final Theme.ResourcesProvider resourcesProvider) {
         int i2;
         final String string;
         int i3;
         final boolean[] zArr;
         BottomSheet bottomSheet;
-        boolean z3;
+        boolean z4;
         int i4;
         TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         if (chat == null) {
@@ -884,7 +888,7 @@ public class TagEditCell extends LinearLayout {
                     return (AndroidUtilities.displaySize.x - AndroidUtilities.dp(128.0f)) / 2;
                 }
             };
-            final boolean z4 = i8 == 1;
+            final boolean z5 = i8 == 1;
             chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                 @Override
                 public boolean canDrawOutboundsContent() {
@@ -962,13 +966,13 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat2, int i9, float f, float f2, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, chat2, i9, f, f2, z5);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat2, int i9, float f, float f2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, chat2, i9, f, f2, z6);
                 }
 
                 @Override
-                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell2, TLObject tLObject, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell2, tLObject, z5);
+                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell2, TLObject tLObject, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell2, tLObject, z6);
                 }
 
                 @Override
@@ -1032,8 +1036,8 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell2, f, f2, z5);
+                public void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell2, f, f2, z6);
                 }
 
                 @Override
@@ -1052,13 +1056,13 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z5, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, reactionCount, z5, f, f2);
+                public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z6, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, reactionCount, z6, f, f2);
                 }
 
                 @Override
-                public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i9, float f, float f2, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i9, f, f2, z5);
+                public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i9, float f, float f2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i9, f, f2, z6);
                 }
 
                 @Override
@@ -1082,8 +1086,8 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public void didPressSummarize(ChatMessageCell chatMessageCell2, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell2, z5);
+                public void didPressSummarize(ChatMessageCell chatMessageCell2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell2, z6);
                 }
 
                 @Override
@@ -1092,18 +1096,18 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z5) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell2, todoItem, z5);
+                public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell2, todoItem, z6);
                 }
 
                 @Override
-                public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell2, characterStyle, z5);
+                public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell2, characterStyle, z6);
                 }
 
                 @Override
-                public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user2, float f, float f2, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, user2, f, f2, z5);
+                public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user2, float f, float f2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, user2, f, f2, z6);
                 }
 
                 @Override
@@ -1127,7 +1131,7 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str3, boolean z5) {
+                public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str3, boolean z6) {
                     Browser.openUrl(chatMessageCell2.getContext(), str3);
                 }
 
@@ -1157,8 +1161,13 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z5) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z5);
+                public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z6);
+                }
+
+                @Override
+                public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell2, z6);
                 }
 
                 @Override
@@ -1217,8 +1226,8 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject, boolean z5) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell2, messageObject, z5);
+                public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject, boolean z6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell2, messageObject, z6);
                 }
 
                 @Override
@@ -1247,8 +1256,8 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
-                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z5) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z5);
+                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z6);
                 }
 
                 @Override
@@ -1263,17 +1272,17 @@ public class TagEditCell extends LinearLayout {
 
                 @Override
                 public boolean isAdmin(long j2) {
-                    return z4;
+                    return z5;
                 }
 
                 @Override
                 public boolean isOwner(long j2) {
-                    return z4 && z2;
+                    return z5 && z2;
                 }
 
                 @Override
                 public String getAdminRank(long j2) {
-                    return z4 ? z2 ? "Owner Tag" : "Admin Tag" : "Member Tag";
+                    return LocaleController.getString(z5 ? z2 ? R.string.TagInfoOwnerTitle : R.string.TagInfoAdminTitle : R.string.TagInfoMemberTitle);
                 }
             });
             SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
@@ -1352,8 +1361,8 @@ public class TagEditCell extends LinearLayout {
             linearLayout2 = linearLayout3;
         }
         ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
-        boolean z5 = (ChatObject.canManageTags(chat) && (!z2 || UserObject.isUserSelf(user))) || (ChatObject.canManageMyTag(chat) && UserObject.isUserSelf(user));
-        if (!z5 && !ChatObject.canManageTags(chat) && !chat.creator) {
+        boolean z6 = (ChatObject.canManageTags(chat) && (!z || ((!z2 && z3) || UserObject.isUserSelf(user)))) || (ChatObject.canManageMyTag(chat) && UserObject.isUserSelf(user));
+        if (!z6 && !ChatObject.canManageTags(chat) && !chat.creator) {
             TextView textViewMakeTextView3 = TextHelper.makeTextView(context, 12.0f, Theme.key_windowBackgroundWhiteGrayText, false);
             textViewMakeTextView3.setGravity(1);
             textViewMakeTextView3.setText(LocaleController.getString(R.string.CantEditTagAdmins));
@@ -1362,7 +1371,7 @@ public class TagEditCell extends LinearLayout {
         linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 7, 16, 16, 16, 16));
         final boolean[] zArr2 = new boolean[1];
         final BottomSheet bottomSheetCreate = builder.create();
-        if (!z5) {
+        if (!z6) {
             round.setText(StarGiftSheet.replaceUnderstood(LocaleController.getString(R.string.Understood)));
             round.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1372,12 +1381,12 @@ public class TagEditCell extends LinearLayout {
             });
             zArr = zArr2;
             bottomSheet = bottomSheetCreate;
-            z3 = true;
+            z4 = true;
         } else {
             round.setText(LocaleController.getString(UserObject.isUserSelf(user) ? TextUtils.isEmpty(str) ? R.string.TagInfoButtonAddMyTag : R.string.TagInfoButtonEditMyTag : TextUtils.isEmpty(str) ? R.string.TagInfoButtonAddTag : R.string.TagInfoButtonEditTag));
             zArr = zArr2;
             bottomSheet = bottomSheetCreate;
-            z3 = true;
+            z4 = true;
             round.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1385,7 +1394,7 @@ public class TagEditCell extends LinearLayout {
                 }
             });
         }
-        bottomSheet.smoothKeyboardAnimationEnabled = z3;
+        bottomSheet.smoothKeyboardAnimationEnabled = z4;
         bottomSheet.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
         final boolean[] zArr3 = zArr;
         bottomSheet.setOnDismissListener(new Runnable() {
@@ -1394,7 +1403,7 @@ public class TagEditCell extends LinearLayout {
                 TagEditCell.lambda$showInfoSheet$8(zArr3);
             }
         });
-        if (MessagesController.getGlobalMainSettings().getInt("showchattagsinfo", 3) <= 0 && z5) {
+        if (MessagesController.getGlobalMainSettings().getInt("showchattagsinfo", 3) <= 0 && z6) {
             showSheet(context, i, j, user, str, z, z2, resourcesProvider);
         } else {
             bottomSheet.show();

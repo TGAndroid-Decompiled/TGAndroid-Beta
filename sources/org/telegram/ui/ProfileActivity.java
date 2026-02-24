@@ -7656,17 +7656,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public boolean onMemberClick(final TLRPC.ChatParticipant chatParticipant, boolean z, boolean z2, View view) {
         boolean z3;
         boolean zCanAddAdmins;
-        boolean zCanManageTags;
         boolean z4;
         boolean z5;
-        boolean z6;
-        TLRPC.ChannelParticipant channelParticipant;
         String str;
+        boolean z6;
         boolean z7;
+        TLRPC.ChannelParticipant channelParticipant;
         boolean z8;
         boolean z9;
         boolean z10;
         boolean z11;
+        boolean z12;
         if (getParentActivity() == null) {
             return false;
         }
@@ -7686,99 +7686,99 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         long j = chatParticipant.user_id;
         this.selectedUser = j;
-        boolean z12 = j == getUserConfig().getClientUserId();
+        boolean z13 = j == getUserConfig().getClientUserId();
         if (ChatObject.isChannel(this.currentChat)) {
             TLRPC.ChannelParticipant channelParticipant2 = ((TLRPC.TL_chatChannelParticipant) chatParticipant).channelParticipant;
             String str2 = channelParticipant2.rank;
-            boolean z13 = channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator;
-            boolean z14 = z13 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin);
+            boolean z14 = channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator;
+            boolean z15 = z14 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin);
             getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
             zCanAddAdmins = ChatObject.canAddAdmins(this.currentChat);
-            zCanManageTags = ChatObject.canManageTags(this.currentChat);
-            if (z13 || ((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) && !channelParticipant2.can_edit)) {
+            z4 = ChatObject.canManageTags(this.currentChat) && (!z15 || ((!z14 && channelParticipant2.can_edit) || z13));
+            if (z14 || ((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) && !channelParticipant2.can_edit)) {
                 zCanAddAdmins = false;
-                zCanManageTags = false;
+                z4 = false;
             }
-            if ((z12 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantSelf)) && ChatObject.canManageMyTag(this.currentChat)) {
-                zCanManageTags = true;
+            if ((z13 || (channelParticipant2 instanceof TLRPC.TL_channelParticipantSelf)) && ChatObject.canManageMyTag(this.currentChat)) {
+                z4 = true;
             }
-            z3 = ChatObject.canBlockUsers(this.currentChat) && (!((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) || z13) || channelParticipant2.can_edit);
-            z5 = z13;
-            z4 = z14;
-            z6 = channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin;
+            z3 = ChatObject.canBlockUsers(this.currentChat) && (!((channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) || z14) || channelParticipant2.can_edit);
             channelParticipant = channelParticipant2;
-            z7 = this.currentChat.gigagroup ? false : z3;
             str = str2;
+            z6 = z14;
+            z7 = channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin;
+            z8 = z15;
+            z5 = this.currentChat.gigagroup ? false : z3;
         } else {
             String str3 = chatParticipant.rank;
-            boolean z15 = chatParticipant instanceof TLRPC.TL_chatParticipantAdmin;
-            boolean z16 = z15 || (chatParticipant instanceof TLRPC.TL_chatParticipantCreator);
-            boolean z17 = chatParticipant instanceof TLRPC.TL_chatParticipantCreator;
+            boolean z16 = chatParticipant instanceof TLRPC.TL_chatParticipantAdmin;
+            boolean z17 = z16 || (chatParticipant instanceof TLRPC.TL_chatParticipantCreator);
+            boolean z18 = chatParticipant instanceof TLRPC.TL_chatParticipantCreator;
             TLRPC.Chat chat = this.currentChat;
             z3 = chat.creator || ((chatParticipant instanceof TLRPC.TL_chatParticipant) && (ChatObject.canBlockUsers(chat) || chatParticipant.inviter_id == getUserConfig().getClientUserId()));
             TLRPC.Chat chat2 = this.currentChat;
             zCanAddAdmins = chat2.creator;
-            zCanManageTags = ChatObject.canManageTags(chat2) || (z12 && ChatObject.canManageMyTag(this.currentChat));
-            z4 = z16;
-            z5 = z17;
-            z6 = z15;
-            channelParticipant = null;
+            z4 = (ChatObject.canManageTags(chat2) && (!z17 || ((!z18 && chatParticipant.inviter_id == getUserConfig().getClientUserId()) || z13))) || (z13 && ChatObject.canManageMyTag(this.currentChat));
+            z5 = this.currentChat.creator;
             str = str3;
-            z7 = this.currentChat.creator;
+            z6 = z18;
+            z7 = z16;
+            channelParticipant = null;
+            z8 = z17;
         }
-        if (z12) {
-            z11 = (ChatObject.canManageMyTag(this.currentChat) || (z4 && ChatObject.canManageTags(this.currentChat))) ? true : zCanManageTags;
+        if (z13) {
+            z12 = (ChatObject.canManageMyTag(this.currentChat) || (z8 && ChatObject.canManageTags(this.currentChat))) ? true : z4;
+            z11 = false;
             z10 = false;
             z9 = false;
-            z8 = false;
         } else {
-            z8 = z3;
-            z9 = z7;
-            boolean z18 = zCanManageTags;
-            z10 = zCanAddAdmins;
-            z11 = z18;
+            z9 = z3;
+            z10 = z5;
+            boolean z19 = z4;
+            z11 = zCanAddAdmins;
+            z12 = z19;
         }
-        boolean z19 = z10 || z11 || z9 || z8;
-        if (z2 || !z19) {
-            return z19;
+        boolean z20 = z11 || z12 || z10 || z9;
+        if (z2 || !z20) {
+            return z20;
         }
         final TLRPC.ChannelParticipant channelParticipant3 = channelParticipant;
-        boolean z20 = z11;
-        boolean z21 = z10;
-        final boolean z22 = z6;
+        boolean z21 = z12;
         final TLRPC.ChannelParticipant channelParticipant4 = channelParticipant;
-        boolean z23 = z9;
+        boolean z22 = z11;
+        final boolean z23 = z7;
+        boolean z24 = z10;
         final String str4 = str;
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$onMemberClick$56(channelParticipant3, user, chatParticipant, z22, str4, (Integer) obj);
+                this.f$0.lambda$onMemberClick$56(channelParticipant3, user, chatParticipant, z23, str4, (Integer) obj);
             }
         };
         final String str5 = str;
-        final boolean z24 = z4;
-        final boolean z25 = z5;
-        ItemOptions.makeOptions(this, view).setScrimViewBackground(view.getParent() instanceof RecyclerListView ? ((RecyclerListView) view.getParent()).getClipBackground(view) : null).addIf(!z12, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
+        final boolean z25 = z8;
+        final boolean z26 = z6;
+        ItemOptions.makeOptions(this, view).setScrimViewBackground(view.getParent() instanceof RecyclerListView ? ((RecyclerListView) view.getParent()).getClipBackground(view) : null).addIf(!z13, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMemberClick$57(user);
             }
-        }).addGapIf(!z12 && (z21 || z20 || z23 || z8)).addIf(z20, (z4 || !TextUtils.isEmpty(str)) ? R.drawable.menu_tag_edit : R.drawable.menu_tag_plus, LocaleController.getString(z4 ? R.string.EditAdminTag : TextUtils.isEmpty(str) ? R.string.AddMemberTag : R.string.EditMemberTag), new Runnable() {
+        }).addGapIf(!z13 && (z22 || z21 || z24 || z9)).addIf(z21, (z8 || !TextUtils.isEmpty(str)) ? R.drawable.menu_tag_edit : R.drawable.menu_tag_plus, LocaleController.getString(z8 ? R.string.EditAdminTag : TextUtils.isEmpty(str) ? R.string.AddMemberTag : R.string.EditMemberTag), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMemberClick$58(user, str5, z24, z25);
+                this.f$0.lambda$onMemberClick$58(user, str5, z25, z26);
             }
-        }).addIf(z21, R.drawable.msg_admins, LocaleController.getString(z6 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
+        }).addIf(z22, R.drawable.msg_admins, LocaleController.getString(z7 ? R.string.EditAdminRights : R.string.SetAsAdmin), new Runnable() {
             @Override
             public final void run() {
                 ProfileActivity.lambda$onMemberClick$59(callback);
             }
-        }).addIf(z23, R.drawable.msg_permissions, LocaleController.getString(R.string.ChangePermissions), new Runnable() {
+        }).addIf(z24, R.drawable.msg_permissions, LocaleController.getString(R.string.ChangePermissions), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMemberClick$61(channelParticipant4, chatParticipant, user, callback);
             }
-        }).addIf(z8, R.drawable.msg_remove, (CharSequence) LocaleController.getString(R.string.KickFromGroup), true, new Runnable() {
+        }).addIf(z9, R.drawable.msg_remove, (CharSequence) LocaleController.getString(R.string.KickFromGroup), true, new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMemberClick$62(chatParticipant);
@@ -9057,6 +9057,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     @Override
     public void didReceivedNotification(int i, int i2, final Object... objArr) {
+        TLRPC.ChatParticipant chatParticipant;
         ListAdapter listAdapter;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
@@ -9596,8 +9597,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return;
             }
             String str = (String) objArr[2];
-            TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) this.participantsMap.get(jLongValue5);
-            if (chatParticipant != null) {
+            LongSparseArray longSparseArray = this.participantsMap;
+            if (longSparseArray != null && (chatParticipant = (TLRPC.ChatParticipant) longSparseArray.get(jLongValue5)) != null) {
                 chatParticipant.setRank(jLongValue5, str);
             }
             TLRPC.ChannelParticipant channelParticipant = this.currentChannelParticipant;
@@ -11661,8 +11662,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             Browser.openUrl(ProfileActivity.this.getContext(), LocaleController.getString(z ? R.string.ProfileBotOpenAppInfoOwnerLink : R.string.ProfileBotOpenAppInfoLink));
         }
 
-        public void lambda$onBindViewHolder$5(TLRPC.User user, String str, boolean z, boolean z2, View view) {
-            TagEditCell.showInfoSheet(ProfileActivity.this.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, ProfileActivity.this.getDialogId(), user, str, z, z2, ((BaseFragment) ProfileActivity.this).resourceProvider);
+        public void lambda$onBindViewHolder$5(TLRPC.User user, String str, boolean z, boolean z2, boolean z3, View view) {
+            TagEditCell.showInfoSheet(ProfileActivity.this.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, ProfileActivity.this.getDialogId(), user, str, z, z2, z3, ((BaseFragment) ProfileActivity.this).resourceProvider);
         }
 
         public void lambda$onBindViewHolder$6(View view) {

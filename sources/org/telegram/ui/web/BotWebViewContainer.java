@@ -286,11 +286,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00461(this);
+                this.imageReceiver = new C00451(this);
             }
 
-            class C00461 extends ImageReceiver {
-                C00461(View view) {
+            class C00451 extends ImageReceiver {
+                C00451(View view) {
                     super(view);
                 }
 
@@ -1303,7 +1303,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             case "oauth_request":
                 d("oauth_request " + str2);
                 if (this.webView != null) {
-                    String originHost = getOriginHost();
+                    final String originHost = getOriginHost();
                     if (!TextUtils.isEmpty(originHost)) {
                         try {
                             final String strOptString = new JSONObject(str2).optString("url");
@@ -1317,7 +1317,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestUrlAuth, new RequestDelegate() {
                                     @Override
                                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                        this.f$0.lambda$onWebEventReceived$6(tL_messages_requestUrlAuth, strOptString, tLObject, tL_error);
+                                        this.f$0.lambda$onWebEventReceived$6(tL_messages_requestUrlAuth, strOptString, originHost, tLObject, tL_error);
                                     }
                                 }, 2);
                                 break;
@@ -1357,21 +1357,29 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onWebEventReceived$6(final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$onWebEventReceived$6(final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final String str, final String str2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onWebEventReceived$5(tLObject, tL_messages_requestUrlAuth, str, tL_error);
+                this.f$0.lambda$onWebEventReceived$5(tLObject, tL_messages_requestUrlAuth, str, tL_error, str2);
             }
         });
     }
 
-    public void lambda$onWebEventReceived$5(TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error) {
+    public void lambda$onWebEventReceived$5(TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error, String str2) {
         if (tLObject == null) {
             if (tL_error != null) {
-                BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+                if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    BulletinFactory.of(this, this.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str2), Theme.getColor(Theme.key_undo_cancelColor, this.resourcesProvider))).show();
+                    return;
+                } else {
+                    BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+                    return;
+                }
             }
-        } else if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
+            return;
+        }
+        if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
             OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, false, this);
         } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
             OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, false, this);

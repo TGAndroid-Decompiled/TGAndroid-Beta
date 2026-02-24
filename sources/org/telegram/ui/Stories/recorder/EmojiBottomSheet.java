@@ -221,6 +221,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
+                public boolean canSendSticker() {
+                    return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canSendSticker(this);
+                }
+
+                @Override
                 public Boolean canSetAsStatus(TLRPC.Document document) {
                     return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canSetAsStatus(this, document);
                 }
@@ -345,8 +350,8 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
-                public void sendSticker() {
-                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this);
+                public void sendSticker(String str) {
+                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, str);
                 }
 
                 @Override

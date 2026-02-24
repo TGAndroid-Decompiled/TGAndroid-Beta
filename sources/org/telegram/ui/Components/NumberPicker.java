@@ -26,6 +26,7 @@ public class NumberPicker extends LinearLayout {
     private int SELECTOR_WHEEL_ITEM_COUNT;
     private SeekBarAccessibilityDelegate accessibilityDelegate;
     private Integer allItemsCount;
+    private Utilities.CallbackReturn contentDescriptionCallback;
     private boolean drawDividers;
     private Scroller mAdjustScroller;
     private int mBottomSelectionDividerBottom;
@@ -103,13 +104,13 @@ public class NumberPicker extends LinearLayout {
         return 0.9f;
     }
 
-    static boolean access$280(NumberPicker numberPicker, int i) {
+    static boolean access$380(NumberPicker numberPicker, int i) {
         ?? r2 = (byte) (i ^ (numberPicker.mIncrementVirtualButtonPressed ? 1 : 0));
         numberPicker.mIncrementVirtualButtonPressed = r2;
         return r2;
     }
 
-    static boolean access$480(NumberPicker numberPicker, int i) {
+    static boolean access$580(NumberPicker numberPicker, int i) {
         ?? r2 = (byte) (i ^ (numberPicker.mDecrementVirtualButtonPressed ? 1 : 0));
         numberPicker.mDecrementVirtualButtonPressed = r2;
         return r2;
@@ -190,12 +191,19 @@ public class NumberPicker extends LinearLayout {
 
             @Override
             public CharSequence getContentDescription(View view) {
+                if (NumberPicker.this.contentDescriptionCallback != null) {
+                    return (CharSequence) NumberPicker.this.contentDescriptionCallback.run(Integer.valueOf(NumberPicker.this.mValue));
+                }
                 NumberPicker numberPicker = NumberPicker.this;
                 return numberPicker.getContentDescription(numberPicker.mValue);
             }
         };
         this.accessibilityDelegate = seekBarAccessibilityDelegate;
         setAccessibilityDelegate(seekBarAccessibilityDelegate);
+    }
+
+    public void setContentDescriptionCallback(Utilities.CallbackReturn<Integer, CharSequence> callbackReturn) {
+        this.contentDescriptionCallback = callbackReturn;
     }
 
     protected CharSequence getContentDescription(int i) {
@@ -1092,7 +1100,7 @@ public class NumberPicker extends LinearLayout {
                 if (!NumberPicker.this.mIncrementVirtualButtonPressed) {
                     NumberPicker.this.postDelayed(this, ViewConfiguration.getPressedStateDuration());
                 }
-                NumberPicker.access$280(NumberPicker.this, 1);
+                NumberPicker.access$380(NumberPicker.this, 1);
                 NumberPicker numberPicker3 = NumberPicker.this;
                 numberPicker3.invalidate(0, numberPicker3.mBottomSelectionDividerBottom, NumberPicker.this.getRight(), NumberPicker.this.getBottom());
                 return;
@@ -1103,7 +1111,7 @@ public class NumberPicker extends LinearLayout {
             if (!NumberPicker.this.mDecrementVirtualButtonPressed) {
                 NumberPicker.this.postDelayed(this, ViewConfiguration.getPressedStateDuration());
             }
-            NumberPicker.access$480(NumberPicker.this, 1);
+            NumberPicker.access$580(NumberPicker.this, 1);
             NumberPicker numberPicker4 = NumberPicker.this;
             numberPicker4.invalidate(0, 0, numberPicker4.getRight(), NumberPicker.this.mTopSelectionDividerTop);
         }

@@ -23,6 +23,7 @@ public class BoostCounterSpan extends ReplacementSpan {
     private final AnimatedTextView.AnimatedTextDrawable countText;
     private int currentCount;
     public boolean isRtl;
+    public boolean margin;
     private final TextPaint namePaint;
     private final View parent;
 
@@ -64,7 +65,7 @@ public class BoostCounterSpan extends ReplacementSpan {
     }
 
     public int getWidth() {
-        return (int) (AndroidUtilities.dp(16.0f) + this.countText.getWidth());
+        return (int) (AndroidUtilities.dp((this.margin ? 8 : 0) + 16) + this.countText.getWidth());
     }
 
     @Override
@@ -78,7 +79,7 @@ public class BoostCounterSpan extends ReplacementSpan {
             this.boostProfileBadge2.setColorFilter(new PorterDuffColorFilter(this.countText.getTextColor(), mode));
         }
         canvas.save();
-        canvas.translate(f, -AndroidUtilities.dp(0.2f));
+        canvas.translate(f + ((!this.margin || this.isRtl) ? 0 : AndroidUtilities.dp(8.0f)), -AndroidUtilities.dp(0.2f));
         if (this.currentCount == 1) {
             canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
             this.boostProfileBadge.draw(canvas);

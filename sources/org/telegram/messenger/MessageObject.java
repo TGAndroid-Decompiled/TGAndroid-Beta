@@ -2800,6 +2800,9 @@ public class MessageObject {
                     if (button.getIconRes() != 0) {
                         lineWidth += AndroidUtilities.dp(36.0f);
                     }
+                    if (button.getIconEmoji() != 0) {
+                        lineWidth += AndroidUtilities.dp(36.0f);
+                    }
                     iMax = Math.max(iMax, ((int) Math.ceil(lineWidth)) + AndroidUtilities.dp(4.0f));
                 }
             }

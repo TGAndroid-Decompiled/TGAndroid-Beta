@@ -256,6 +256,10 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         super.onPause();
         Bulletin.removeDelegate(this);
         Bulletin.removeDelegate(this.contentView);
+        HintView2 hintView2 = this.accountSwitchHint;
+        if (hintView2 != null) {
+            hintView2.hide();
+        }
     }
 
     @Override
@@ -920,6 +924,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         hintView2.setTranslationY((-this.navigationBarHeight) + AndroidUtilities.dp(4.0f));
         this.accountSwitchHint.setPadding(AndroidUtilities.dp(7.33f), 0, AndroidUtilities.dp(7.33f), 0);
         this.accountSwitchHint.setMultilineText(false);
+        this.accountSwitchHint.setCloseButton(true);
         this.accountSwitchHint.setText(LocaleController.getString(R.string.SwitchAccountHint));
         this.accountSwitchHint.setJoint(1.0f, (-width) + 7.33f);
         this.contentView.addView(this.accountSwitchHint, LayoutHelper.createFrame(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
@@ -929,6 +934,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 this.f$0.lambda$showAccountChangeHint$5();
             }
         });
+        this.accountSwitchHint.setDuration(8000L);
         this.accountSwitchHint.show();
     }
 

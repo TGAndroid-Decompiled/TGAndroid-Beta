@@ -2172,7 +2172,7 @@ public class NotificationsController extends BaseController {
 
     public static Person.Builder loadRoundAvatar(long j, File file, Person.Builder builder) {
         if (j == 489001) {
-            builder.setIcon(IconCompat.createWithResource(ApplicationLoader.applicationContext, R.drawable.logo_middle));
+            builder.setIcon(IconCompat.createWithResource(ApplicationLoader.applicationContext, R.drawable.ic_launcher_dr));
             return builder;
         }
         if (file != null && Build.VERSION.SDK_INT >= 28) {

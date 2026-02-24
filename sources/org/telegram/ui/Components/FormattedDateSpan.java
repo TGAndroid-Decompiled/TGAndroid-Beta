@@ -5,6 +5,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.TextStyleSpan;
@@ -57,6 +58,23 @@ public class FormattedDateSpan extends URLSpan {
 
     public static CharSequence restoreFormatedDateEntities(CharSequence charSequence) {
         return rebuildFormatedDateEntities(charSequence, false);
+    }
+
+    public static ArrayList getAllRelativeDates(CharSequence charSequence) {
+        ArrayList arrayList = null;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            FormattedDateSpan[] formattedDateSpanArr = (FormattedDateSpan[]) spanned.getSpans(0, spanned.length(), FormattedDateSpan.class);
+            for (FormattedDateSpan formattedDateSpan : formattedDateSpanArr) {
+                if (formattedDateSpan.entity.relative) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList(formattedDateSpanArr.length);
+                    }
+                    arrayList.add(Integer.valueOf(formattedDateSpan.entity.date));
+                }
+            }
+        }
+        return arrayList;
     }
 
     private static CharSequence rebuildFormatedDateEntities(CharSequence charSequence, boolean z) {

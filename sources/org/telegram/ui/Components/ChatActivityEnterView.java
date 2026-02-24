@@ -10701,6 +10701,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
 
                 @Override
+                public boolean isEditingSticker() {
+                    return PhotoViewer.PhotoViewerProvider.CC.$default$isEditingSticker(this);
+                }
+
+                @Override
                 public boolean isPhotoChecked(int i3) {
                     return false;
                 }

@@ -2642,7 +2642,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchCollapse() throws Resources.NotFoundException, NumberFormatException {
+        public void onSearchCollapse() throws Resources.NotFoundException {
             SharedMediaLayout.this.searching = false;
             SharedMediaLayout.this.searchingReaction = null;
             ActionBarMenuItem actionBarMenuItem = SharedMediaLayout.this.searchItemIcon;
@@ -2682,7 +2682,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onTextChanged(EditText editText) throws Resources.NotFoundException, NumberFormatException {
+        public void onTextChanged(EditText editText) throws Resources.NotFoundException {
             String string = editText.getText().toString();
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.setSearchQuery(string);
@@ -3742,7 +3742,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     boolean firstCreateView = true;
 
                     @Override
-                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException {
                         if (this.firstCreateView) {
                             if (this.searchItem != null) {
                                 lambda$openSearchWithText$343("");
@@ -9783,8 +9783,9 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             TLRPC.ChatParticipant chatParticipant;
             String string;
             String str;
-            boolean z;
+            final boolean z;
             boolean z2;
+            boolean z3;
             View view = viewHolder.itemView;
             if (view instanceof UserCell) {
                 UserCell userCell = (UserCell) view;
@@ -9802,20 +9803,23 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                 string = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
                             }
                             str = string;
-                            z = true;
+                            z = false;
                             z2 = true;
+                            z3 = true;
                         } else {
                             if (channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) {
                                 if (TextUtils.isEmpty(string)) {
                                     string = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
                                 }
+                                z = channelParticipant.can_edit;
                                 str = string;
-                                z = true;
-                                z2 = false;
+                                z2 = true;
+                                z3 = false;
                             }
                             str = string;
                             z = false;
                             z2 = false;
+                            z3 = false;
                         }
                     } else {
                         string = chatParticipant.rank;
@@ -9824,30 +9828,33 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                 string = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
                             }
                             str = string;
-                            z = true;
+                            z = false;
                             z2 = true;
+                            z3 = true;
                         } else {
                             if (chatParticipant instanceof TLRPC.TL_chatParticipantAdmin) {
                                 if (TextUtils.isEmpty(string)) {
                                     string = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
                                 }
                                 str = string;
-                                z = true;
-                                z2 = false;
+                                z = chatParticipant.inviter_id == SharedMediaLayout.this.profileActivity.getUserConfig().getClientUserId();
+                                z2 = true;
+                                z3 = false;
                             }
                             str = string;
                             z = false;
                             z2 = false;
+                            z3 = false;
                         }
                     }
                     final TLRPC.User user = SharedMediaLayout.this.profileActivity.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
                     final String str2 = str;
-                    final boolean z3 = z;
                     final boolean z4 = z2;
-                    userCell.setAdminRole(str, z, z2, UserObject.isUserSelf(user) && ChatObject.canManageMyTag(SharedMediaLayout.this.profileActivity.getMessagesController().getChat(Long.valueOf(-SharedMediaLayout.this.dialog_id))), new View.OnClickListener() {
+                    final boolean z5 = z3;
+                    userCell.setAdminRole(str, z2, z3, UserObject.isUserSelf(user) && ChatObject.canManageMyTag(SharedMediaLayout.this.profileActivity.getMessagesController().getChat(Long.valueOf(-SharedMediaLayout.this.dialog_id))), new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            this.f$0.lambda$onBindViewHolder$0(user, str2, z3, z4, view2);
+                            this.f$0.lambda$onBindViewHolder$0(user, str2, z4, z5, z, view2);
                         }
                     });
                     userCell.setData(user, null, null, 0, i != this.chatInfo.participants.participants.size() + (-1));
@@ -9855,8 +9862,8 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             }
         }
 
-        public void lambda$onBindViewHolder$0(TLRPC.User user, String str, boolean z, boolean z2, View view) {
-            TagEditCell.showInfoSheet(SharedMediaLayout.this.getContext(), SharedMediaLayout.this.profileActivity.getCurrentAccount(), SharedMediaLayout.this.dialog_id, user, str, z, z2, SharedMediaLayout.this.resourcesProvider);
+        public void lambda$onBindViewHolder$0(TLRPC.User user, String str, boolean z, boolean z2, boolean z3, View view) {
+            TagEditCell.showInfoSheet(SharedMediaLayout.this.getContext(), SharedMediaLayout.this.profileActivity.getCurrentAccount(), SharedMediaLayout.this.dialog_id, user, str, z, z2, z3, SharedMediaLayout.this.resourcesProvider);
         }
 
         @Override

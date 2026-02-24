@@ -24,7 +24,6 @@ public class BuildVars {
     public static String PLAYSTORE_APP_URL = null;
     public static String SAFETYNET_KEY = null;
     public static boolean SUPPORTS_PASSKEYS = false;
-    public static boolean SUPPORT_SEND_DATES = false;
     public static boolean USE_CLOUD_STRINGS = true;
     private static Boolean betaApp;
 
@@ -41,7 +40,6 @@ public class BuildVars {
         HUAWEI_APP_ID = "101184875";
         IS_BILLING_UNAVAILABLE = false;
         SUPPORTS_PASSKEYS = true;
-        SUPPORT_SEND_DATES = DEBUG_PRIVATE_VERSION;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
             boolean z2 = DEBUG_VERSION;

@@ -110,6 +110,9 @@ public class LinkManager {
                 if ("invoice".equalsIgnoreCase(str2)) {
                     return handleInvoiceSlug(str3);
                 }
+                if ("oauth".equalsIgnoreCase(str2)) {
+                    return handleOAuth(uri, uri.getQueryParameter("startapp"));
+                }
             }
         }
         return false;
@@ -635,10 +638,15 @@ public class LinkManager {
     public void lambda$handleOAuth$18(TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
         lambda$handleInvoiceSlug$13();
         if (tL_error != null) {
-            getBulletinFactory().showForError(tL_error);
-        } else {
-            OAuthSheet.handle(this.isExternalIntent, this.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
+            if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain)).show();
+                return;
+            } else {
+                getBulletinFactory().showForError(tL_error);
+                return;
+            }
         }
+        OAuthSheet.handle(this.isExternalIntent, this.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
     }
 
     private void setRequestId(int i) {

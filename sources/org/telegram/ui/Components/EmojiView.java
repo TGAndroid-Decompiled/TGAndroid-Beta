@@ -525,12 +525,12 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
         @Override
         public boolean canEditSticker() {
-            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canEditSticker(this);
+            return true;
         }
 
         @Override
-        public void editSticker(TLRPC.Document document) {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$editSticker(this, document);
+        public boolean canSendSticker() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$canSendSticker(this);
         }
 
         @Override
@@ -584,8 +584,8 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void sendSticker() {
-            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this);
+        public void sendSticker(String str) {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, str);
         }
 
         @Override
@@ -726,6 +726,25 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             }
             return false;
+        }
+
+        @Override
+        public void editSticker(TLRPC.Document document) {
+            TLRPC.InputStickerSet inputStickerSet;
+            int i = 0;
+            while (true) {
+                if (i >= document.attributes.size()) {
+                    inputStickerSet = null;
+                    break;
+                }
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeSticker) && (inputStickerSet = documentAttribute.stickerset) != null) {
+                    break;
+                } else {
+                    i++;
+                }
+            }
+            StickersAlert.editSticker(EmojiView.this.fragment, MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSet(inputStickerSet, true), document);
         }
 
         @Override
@@ -1596,7 +1615,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException {
             ChatActivityEnterView chatActivityEnterView;
             super.onTransitionAnimationEnd(z, z2);
             if (!z || (chatActivityEnterView = this.chatActivityEnterView) == null) {
