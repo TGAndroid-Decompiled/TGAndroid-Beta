@@ -1812,6 +1812,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.wasCountryHintIndex = -1;
             this.requestedPasskey = false;
             this.requestingPasskey = false;
+            final boolean z = true;
             setOrientation(1);
             setGravity(17);
             TextView textView = new TextView(context);
@@ -1864,8 +1865,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.countryOutlineView.setContentDescription(LocaleController.getString(i4));
             this.countryOutlineView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public final void onFocusChange(View view, boolean z) {
-                    this.f$0.lambda$new$3(view, z);
+                public final void onFocusChange(View view, boolean z2) {
+                    this.f$0.lambda$new$3(view, z2);
                 }
             });
             addView(this.countryOutlineView, LayoutHelper.createLinear(-1, 58, 16.0f, 24.0f, 16.0f, 14.0f));
@@ -1892,10 +1893,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             linearLayout2.addView(this.plusTextView, LayoutHelper.createLinear(-2, -2));
             AnimatedPhoneNumberEditText animatedPhoneNumberEditText = new AnimatedPhoneNumberEditText(context) {
                 @Override
-                protected void onFocusChanged(boolean z, int i6, Rect rect) {
-                    super.onFocusChanged(z, i6, rect);
-                    PhoneView.this.phoneOutlineView.animateSelection((z || PhoneView.this.phoneField.isFocused()) ? 1.0f : 0.0f);
-                    if (z) {
+                protected void onFocusChanged(boolean z2, int i6, Rect rect) {
+                    super.onFocusChanged(z2, i6, rect);
+                    PhoneView.this.phoneOutlineView.animateSelection((z2 || PhoneView.this.phoneField.isFocused()) ? 1.0f : 0.0f);
+                    if (z2) {
                         LoginActivity.this.keyboardView.setEditText(this);
                     }
                 }
@@ -1925,7 +1926,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 @Override
                 public void afterTextChanged(Editable editable) throws Resources.NotFoundException {
                     String str;
-                    boolean z;
+                    boolean z2;
                     CountrySelectActivity.Country country;
                     CountrySelectActivity.Country country2;
                     if (PhoneView.this.ignoreOnTextChange) {
@@ -1944,7 +1945,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             while (true) {
                                 if (i6 < 1) {
                                     str = null;
-                                    z = false;
+                                    z2 = false;
                                     break;
                                 }
                                 String strSubstring = strStripExceptNumbers.substring(0, i6);
@@ -1973,14 +1974,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                 if (country2 != null) {
                                     String str2 = strStripExceptNumbers.substring(i6) + PhoneView.this.phoneField.getText().toString();
                                     PhoneView.this.codeField.setText(strSubstring);
-                                    z = true;
+                                    z2 = true;
                                     str = str2;
                                     strStripExceptNumbers = strSubstring;
                                     break;
                                 }
                                 i6--;
                             }
-                            if (!z) {
+                            if (!z2) {
                                 str = strStripExceptNumbers.substring(1) + PhoneView.this.phoneField.getText().toString();
                                 AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = PhoneView.this.codeField;
                                 strStripExceptNumbers = strStripExceptNumbers.substring(0, 1);
@@ -1988,7 +1989,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             }
                         } else {
                             str = null;
-                            z = false;
+                            z2 = false;
                         }
                         Iterator it2 = PhoneView.this.countriesArray.iterator();
                         CountrySelectActivity.Country country4 = null;
@@ -2046,7 +2047,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             PhoneView.this.phoneField.setHintText((String) null);
                             PhoneView.this.countryState = 2;
                         }
-                        if (!z) {
+                        if (!z2) {
                             PhoneView.this.codeField.setSelection(PhoneView.this.codeField.getText().length());
                         }
                         if (str != null) {
@@ -2089,10 +2090,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }
 
                 @Override
-                protected void onFocusChanged(boolean z, int i6, Rect rect) throws Resources.NotFoundException {
-                    super.onFocusChanged(z, i6, rect);
-                    PhoneView.this.phoneOutlineView.animateSelection((z || PhoneView.this.codeField.isFocused()) ? 1.0f : 0.0f);
-                    if (z) {
+                protected void onFocusChanged(boolean z2, int i6, Rect rect) throws Resources.NotFoundException {
+                    super.onFocusChanged(z2, i6, rect);
+                    PhoneView.this.phoneOutlineView.animateSelection((z2 || PhoneView.this.codeField.isFocused()) ? 1.0f : 0.0f);
+                    if (z2) {
                         LoginActivity.this.keyboardView.setEditText(this);
                         LoginActivity.this.keyboardView.setDispatchBackWhenEmpty(true);
                         if (PhoneView.this.countryState == 2) {
@@ -2232,8 +2233,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             } else {
                 i = 72;
             }
-            final boolean z = BuildVars.DEBUG_VERSION || LoginActivity.this.getConnectionsManager().isTestBackend();
-            if (z && LoginActivity.this.activityMode == 0) {
+            boolean z2 = BuildVars.DEBUG_VERSION;
+            if (LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell3 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell3;
                 checkBoxCell3.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend = LoginActivity.this.getConnectionsManager().isTestBackend(), false);
@@ -2855,29 +2856,23 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }
                 i = 1;
             }
-            int i4 = this.countryState;
-            if (i4 == i) {
+            if (this.countryState == i) {
                 LoginActivity.this.needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString("ChooseCountry", R.string.ChooseCountry));
-                LoginActivity.this.needHideProgress(false);
-                return;
-            }
-            if (i4 == 2 && !BuildVars.DEBUG_VERSION) {
-                LoginActivity.this.needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.WrongCountry));
                 LoginActivity.this.needHideProgress(false);
                 return;
             }
             final String strStripExceptNumbers = PhoneFormat.stripExceptNumbers("" + ((Object) this.codeField.getText()) + ((Object) this.phoneField.getText()));
             if (LoginActivity.this.activityMode == 0 && (LoginActivity.this.getParentActivity() instanceof LaunchActivity)) {
-                for (final int i5 = 0; i5 < 4; i5++) {
-                    UserConfig userConfig = UserConfig.getInstance(i5);
-                    if (userConfig.isClientActivated() && PhoneNumberUtils.compare(strStripExceptNumbers, userConfig.getCurrentUser().phone) && ConnectionsManager.getInstance(i5).isTestBackend() == LoginActivity.this.testBackend) {
+                for (final int i4 = 0; i4 < 4; i4++) {
+                    UserConfig userConfig = UserConfig.getInstance(i4);
+                    if (userConfig.isClientActivated() && PhoneNumberUtils.compare(strStripExceptNumbers, userConfig.getCurrentUser().phone) && ConnectionsManager.getInstance(i4).isTestBackend() == LoginActivity.this.testBackend) {
                         AlertDialog.Builder builder2 = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
                         builder2.setTitle(LocaleController.getString(R.string.AppName));
                         builder2.setMessage(LocaleController.getString("AccountAlreadyLoggedIn", R.string.AccountAlreadyLoggedIn));
                         builder2.setPositiveButton(LocaleController.getString("AccountSwitch", R.string.AccountSwitch), new AlertDialog.OnButtonClickListener() {
                             @Override
-                            public final void onClick(AlertDialog alertDialog, int i6) {
-                                this.f$0.lambda$onNextPressed$18(i5, alertDialog, i6);
+                            public final void onClick(AlertDialog alertDialog, int i5) {
+                                this.f$0.lambda$onNextPressed$18(i4, alertDialog, i5);
                             }
                         });
                         builder2.setNegativeButton(LocaleController.getString("OK", R.string.OK), null);
@@ -2898,15 +2893,15 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             ArrayList<TLRPC.TL_auth_authorization> savedLogInTokens = AuthTokensHelper.getSavedLogInTokens();
             if (savedLogInTokens != null) {
-                for (int i6 = 0; i6 < savedLogInTokens.size(); i6++) {
-                    if (savedLogInTokens.get(i6).future_auth_token != null) {
+                for (int i5 = 0; i5 < savedLogInTokens.size(); i5++) {
+                    if (savedLogInTokens.get(i5).future_auth_token != null) {
                         if (tL_codeSettings.logout_tokens == null) {
                             tL_codeSettings.logout_tokens = new ArrayList<>();
                         }
                         if (BuildVars.DEBUG_VERSION) {
-                            FileLog.d("login token to check " + new String(savedLogInTokens.get(i6).future_auth_token, StandardCharsets.UTF_8));
+                            FileLog.d("login token to check " + new String(savedLogInTokens.get(i5).future_auth_token, StandardCharsets.UTF_8));
                         }
-                        tL_codeSettings.logout_tokens.add(savedLogInTokens.get(i6).future_auth_token);
+                        tL_codeSettings.logout_tokens.add(savedLogInTokens.get(i5).future_auth_token);
                         if (tL_codeSettings.logout_tokens.size() >= 20) {
                             break;
                         }
@@ -2915,11 +2910,11 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             ArrayList<TLRPC.TL_auth_loggedOut> savedLogOutTokens = AuthTokensHelper.getSavedLogOutTokens();
             if (savedLogOutTokens != null) {
-                for (int i7 = 0; i7 < savedLogOutTokens.size(); i7++) {
+                for (int i6 = 0; i6 < savedLogOutTokens.size(); i6++) {
                     if (tL_codeSettings.logout_tokens == null) {
                         tL_codeSettings.logout_tokens = new ArrayList<>();
                     }
-                    tL_codeSettings.logout_tokens.add(savedLogOutTokens.get(i7).future_auth_token);
+                    tL_codeSettings.logout_tokens.add(savedLogOutTokens.get(i6).future_auth_token);
                     if (tL_codeSettings.logout_tokens.size() >= 20) {
                         break;
                     }

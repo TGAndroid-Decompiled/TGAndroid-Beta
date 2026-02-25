@@ -13684,6 +13684,24 @@ public class TLRPC {
         }
     }
 
+    public static class TL_messages_checkUrlAuthMatchCode extends TLMethod<Bool> {
+        public static final int constructor = -911967477;
+        public String match_code;
+        public String url;
+
+        @Override
+        public Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Bool.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-911967477);
+            outputSerializedData.writeString(this.url);
+            outputSerializedData.writeString(this.match_code);
+        }
+    }
+
     public static class TL_urlAuthResultRequest extends UrlAuthResult {
         public static final int constructor = -117904610;
         public User bot;
@@ -13692,6 +13710,7 @@ public class TLRPC {
         public int flags;
         public String ip;
         public ArrayList<String> match_codes = new ArrayList<>();
+        public boolean match_codes_first;
         public String platform;
         public String region;
         public boolean request_phone_number;
@@ -13704,6 +13723,7 @@ public class TLRPC {
             this.flags = int32;
             this.request_write_access = TLObject.hasFlag(int32, 1);
             this.request_phone_number = TLObject.hasFlag(this.flags, 2);
+            this.match_codes_first = TLObject.hasFlag(this.flags, 32);
             this.bot = User.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.domain = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
@@ -13727,7 +13747,9 @@ public class TLRPC {
             this.flags = flag;
             int flag2 = TLObject.setFlag(flag, 2, this.request_phone_number);
             this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
+            int flag3 = TLObject.setFlag(flag2, 32, this.match_codes_first);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
             this.bot.serializeToStream(outputSerializedData);
             outputSerializedData.writeString(this.domain);
             if (TLObject.hasFlag(this.flags, 4)) {

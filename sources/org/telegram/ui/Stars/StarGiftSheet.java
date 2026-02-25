@@ -1048,7 +1048,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$openCrafting$7(TL_stars.TL_starGiftUnique tL_starGiftUnique, final Utilities.Callback callback) {
+    public void lambda$openCrafting$7(TL_stars.TL_starGiftUnique tL_starGiftUnique, final Utilities.Callback callback, Boolean bool) {
         if (this.giftsToCraft == null) {
             ResaleGiftsFragment.SelectGiftSheet.State state = new ResaleGiftsFragment.SelectGiftSheet.State(this.currentAccount, tL_starGiftUnique.gift_id);
             this.giftsToCraft = state;
@@ -1061,7 +1061,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 hashSet.add(Long.valueOf(selectGiftView.getGift().id));
             }
         }
-        new ResaleGiftsFragment.SelectGiftSheet(getContext(), tL_starGiftUnique.title, this.giftsToCraft).without(hashSet).setActionText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCraftSelect", 4 - hashSet.size(), new Object[0]))).setOnSelect(new Utilities.Callback() {
+        new ResaleGiftsFragment.SelectGiftSheet(getContext(), tL_starGiftUnique.title, this.giftsToCraft).without(hashSet).setWillBeFirst(bool.booleanValue()).setActionText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("GiftCraftSelect", 4 - hashSet.size(), new Object[0]))).setOnSelect(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 callback.run((TL_stars.StarGift) obj);
@@ -9009,7 +9009,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         private long giftId;
         private final SelectGiftView[] gifts;
         private final ImageView helpButton;
-        private Utilities.Callback onAddGift;
+        private Utilities.Callback2 onAddGift;
         private Runnable onClose;
         private Utilities.Callback3 onCraft;
         private Runnable openCraftedGift;
@@ -9476,18 +9476,33 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
 
         public void lambda$setupGiftButtons$8(View view) {
-            final SelectGiftView selectGiftView = (SelectGiftView) view;
-            if (selectGiftView.getGift() != null && !selectGiftView.isReplaceIcon) {
-                selectGiftView.setGift(null, true);
+            SelectGiftView selectGiftView;
+            final SelectGiftView selectGiftView2 = (SelectGiftView) view;
+            boolean z = true;
+            if (selectGiftView2.getGift() != null && !selectGiftView2.isReplaceIcon) {
+                selectGiftView2.setGift(null, true);
                 updateCounts();
-            } else {
-                this.onAddGift.run(new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        this.f$0.lambda$setupGiftButtons$7(selectGiftView, (TL_stars.StarGift) obj);
-                    }
-                });
+                return;
             }
+            int i = 0;
+            while (true) {
+                SelectGiftView[] selectGiftViewArr = this.gifts;
+                if (i < selectGiftViewArr.length && (selectGiftView = selectGiftViewArr[i]) != view) {
+                    if (selectGiftView != null && selectGiftView.getGift() != null) {
+                        z = false;
+                        break;
+                    }
+                    i++;
+                } else {
+                    break;
+                }
+            }
+            this.onAddGift.run(new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    this.f$0.lambda$setupGiftButtons$7(selectGiftView2, (TL_stars.StarGift) obj);
+                }
+            }, Boolean.valueOf(z));
         }
 
         public void lambda$setupGiftButtons$7(SelectGiftView selectGiftView, TL_stars.StarGift starGift) {
@@ -9534,8 +9549,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
         }
 
-        public void setOnAddGift(Utilities.Callback<Utilities.Callback<TL_stars.StarGift>> callback) {
-            this.onAddGift = callback;
+        public void setOnAddGift(Utilities.Callback2<Utilities.Callback<TL_stars.StarGift>, Boolean> callback2) {
+            this.onAddGift = callback2;
         }
 
         public void setOnCraft(Utilities.Callback3<ArrayList<TL_stars.StarGift>, Utilities.Callback2<TL_stars.StarGift, Runnable>, Runnable> callback3) {

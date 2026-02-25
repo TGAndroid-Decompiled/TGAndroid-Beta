@@ -1600,33 +1600,36 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$handleIntent$14(final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$handleIntent$14(final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final String str, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$handleIntent$13(tLObject, tL_messages_requestUrlAuth, str);
+                this.f$0.lambda$handleIntent$13(tLObject, tL_messages_requestUrlAuth, str, tL_error);
             }
         });
     }
 
-    public void lambda$handleIntent$13(TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str) {
+    public void lambda$handleIntent$13(TLObject tLObject, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_error tL_error) {
         BaseFragment safeLastFragment = getSafeLastFragment();
-        if (tLObject != null) {
-            if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
-                OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject);
-                return;
-            } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
-                OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject);
-                return;
-            } else {
-                if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
-                    AlertsCreator.showOpenUrlAlert(safeLastFragment, str, false, true);
+        if (tLObject == null) {
+            if (tL_error != null) {
+                if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    OAuthSheet.getBulletinFactory().createSimpleBulletin(R.raw.error, getString(R.string.BotAuthLoggedInFailTitle), getString(R.string.BotAuthLoggedInFailNoDomain)).show();
+                    return;
+                } else {
+                    OAuthSheet.getBulletinFactory().showForError(tL_error);
                     return;
                 }
-                return;
             }
+            return;
         }
-        AlertsCreator.showOpenUrlAlert(safeLastFragment, str, false, true);
+        if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
+            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject);
+        } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
+            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject);
+        } else if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
+            AlertsCreator.showOpenUrlAlert(safeLastFragment, str, false, true);
+        }
     }
 
     public void lambda$handleIntent$15(long j, long j2, ChatActivity chatActivity) {
@@ -1909,30 +1912,30 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runCommentRequest$31(final int i, final TLRPC.Chat chat, final Long l, final Integer num, final Integer num2, final Runnable runnable, final String str, final Integer num3, final int i2, final int i3, final TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$runCommentRequest$30(tLObject, i, chat, l, num, num2, runnable, str, num3, i2, i3, tL_messages_getDiscussionMessage, runnable2);
             }
         });
     }
 
-    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r17, int r18, org.telegram.tgnet.TLRPC.Chat r19, java.lang.Long r20, java.lang.Integer r21, java.lang.Integer r22, java.lang.Runnable r23, java.lang.String r24, java.lang.Integer r25, int r26, int r27, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r28, java.lang.Runnable r29) throws android.content.res.Resources.NotFoundException {
+    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r17, int r18, org.telegram.tgnet.TLRPC.Chat r19, java.lang.Long r20, java.lang.Integer r21, java.lang.Integer r22, java.lang.Runnable r23, java.lang.String r24, java.lang.Integer r25, int r26, int r27, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r28, java.lang.Runnable r29) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$30(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, java.lang.Integer, int, int, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
     }
 
-    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final int r25, final java.util.ArrayList r26, final int r27) throws android.content.res.Resources.NotFoundException {
+    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final int r25, final java.util.ArrayList r26, final int r27) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, java.lang.Integer, int, java.util.ArrayList, int):void");
     }
 
     public void lambda$openTopicRequest$33(final int i, final TLRPC.Chat chat, final int i2, final int i3, final Runnable runnable, final String str, final Integer num, final int i4, final ArrayList arrayList, final int i5, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$openTopicRequest$32(tL_error, tLObject, i, chat, i2, i3, runnable, str, num, i4, arrayList, i5);
             }
         });
     }
 
-    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException {
+    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, NumberFormatException {
         if (tL_error == null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
             LongSparseArray longSparseArray = new LongSparseArray();

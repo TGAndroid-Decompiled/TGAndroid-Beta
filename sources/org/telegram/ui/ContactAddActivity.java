@@ -935,7 +935,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         updateCustomPhotoInfo();
     }
 
-    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException {
+    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException, NumberFormatException {
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
             if (chatActivity.getDialogId() == this.user_id && chatActivity.getChatMode() == 0) {

@@ -1380,9 +1380,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             return;
         }
         if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
-            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, false, this);
+            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, this);
         } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
-            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, false, this);
+            OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, null, false, this);
         } else if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
             AlertsCreator.showOpenUrlAlert(getContext(), str, false, true, true, false, 0L, null, null);
         }
