@@ -3873,9 +3873,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.chatActivityEnterView.getEditField().makeSelectedUnderline();
                 return;
             }
-            if (i == 53) {
+            if (i == 74) {
                 ChatActivityEnterView chatActivityEnterView8 = ChatActivity.this.chatActivityEnterView;
                 if (chatActivityEnterView8 == null || chatActivityEnterView8.getEditField() == null) {
+                    return;
+                }
+                ChatActivity.this.chatActivityEnterView.getEditField().setSelectionOverride(ChatActivity.this.editTextStart, ChatActivity.this.editTextEnd);
+                ChatActivity.this.chatActivityEnterView.getEditField().makeSelectedDate();
+                return;
+            }
+            if (i == 53) {
+                ChatActivityEnterView chatActivityEnterView9 = ChatActivity.this.chatActivityEnterView;
+                if (chatActivityEnterView9 == null || chatActivityEnterView9.getEditField() == null) {
                     return;
                 }
                 ChatActivity.this.chatActivityEnterView.getEditField().setSelectionOverride(ChatActivity.this.editTextStart, ChatActivity.this.editTextEnd);
@@ -3883,8 +3892,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             if (i == 54) {
-                ChatActivityEnterView chatActivityEnterView9 = ChatActivity.this.chatActivityEnterView;
-                if (chatActivityEnterView9 == null || chatActivityEnterView9.getEditField() == null) {
+                ChatActivityEnterView chatActivityEnterView10 = ChatActivity.this.chatActivityEnterView;
+                if (chatActivityEnterView10 == null || chatActivityEnterView10.getEditField() == null) {
                     return;
                 }
                 ChatActivity.this.chatActivityEnterView.getEditField().setSelectionOverride(ChatActivity.this.editTextStart, ChatActivity.this.editTextEnd);
@@ -8633,6 +8642,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             actionBarMenuItemCreateView.addSubItem(56, spannableStringBuilder5);
         }
         actionBarMenuItemCreateView.addSubItem(53, LocaleController.getString(R.string.CreateLink));
+        actionBarMenuItemCreateView.addSubItem(74, LocaleController.getString(R.string.FormattedDate));
         actionBarMenuItemCreateView.addSubItem(54, LocaleController.getString(R.string.Regular));
         this.filledEditTextItemMenu = true;
     }

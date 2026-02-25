@@ -24,6 +24,7 @@ import android.os.Vibrator;
 import android.text.Editable;
 import android.text.Html;
 import android.text.InputFilter;
+import android.text.Layout;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -4591,6 +4592,10 @@ public abstract class AlertsCreator {
         numberPicker3.setValue(calendar.get(11));
         numberPicker.setValue(calendar.get(5));
         numberPicker2.setValue(calendar.get(2) + 120);
+        Text maxWidth = new Text(LocaleController.formatString(R.string.formatDateAtTime, "", "").trim(), 16.0f).setMaxWidth(AndroidUtilities.dp(100.0f));
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        maxWidth.align(alignment).multiline(1).setColor(scheduleDatePickerColors.textColor);
+        final Text color = new Text(":", 18.0f).setMaxWidth(AndroidUtilities.dp(100.0f)).align(alignment).multiline(1).setColor(scheduleDatePickerColors.textColor);
         FrameLayout frameLayout = new FrameLayout(context);
         LinearLayout linearLayout = new LinearLayout(context) {
             boolean ignoreLayout = false;
@@ -4636,7 +4641,13 @@ public abstract class AlertsCreator {
                 return AlertsCreator.lambda$createFormattedDatePickerDialog$142(view, motionEvent);
             }
         });
-        LinearLayout linearLayout2 = new LinearLayout(context);
+        LinearLayout linearLayout2 = new LinearLayout(context) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                color.draw(canvas, numberPicker4.getX() - AndroidUtilities.dp(50.0f), getHeight() / 2.0f);
+            }
+        };
         linearLayout2.setOrientation(0);
         linearLayout2.setWeightSum(1.0f);
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));

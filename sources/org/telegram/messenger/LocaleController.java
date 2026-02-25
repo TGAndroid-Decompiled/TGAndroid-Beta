@@ -4380,8 +4380,8 @@ public class LocaleController {
             return formatEntityFormattedDateRelative(j2, j, locale);
         }
         boolean z2 = (tL_messageEntityFormattedDate.flags == 0) | z;
-        String string2 = "";
-        String string3 = tL_messageEntityFormattedDate.day_of_week ? getInstance().getFormatterWeekLong().format(j2) : "";
+        String str = "";
+        String str2 = tL_messageEntityFormattedDate.day_of_week ? getInstance().getFormatterWeekLong().format(j2) : "";
         if (z2) {
             string = getInstance().getFormatterGiveawayCard().format(j2);
         } else if (tL_messageEntityFormattedDate.long_date) {
@@ -4393,25 +4393,27 @@ public class LocaleController {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(j2);
             if (calendar.get(13) != 0) {
-                string2 = getInstance().getFormatterDayWithSeconds().format(j2);
+                str = getInstance().getFormatterDayWithSeconds().format(j2);
             } else {
-                string2 = getInstance().getFormatterDay().format(j2);
+                str = getInstance().getFormatterDay().format(j2);
             }
         } else if (tL_messageEntityFormattedDate.long_time) {
-            string2 = getInstance().getFormatterDayWithSeconds().format(j2);
+            str = getInstance().getFormatterDayWithSeconds().format(j2);
         } else if (tL_messageEntityFormattedDate.short_time) {
-            string2 = getInstance().getFormatterDay().format(j2);
+            str = getInstance().getFormatterDay().format(j2);
         }
-        if (!TextUtils.isEmpty(string3)) {
-            string3 = formatString(R.string.RelativeDateFormatterWeek, string3);
+        boolean zIsEmpty = TextUtils.isEmpty(str2);
+        boolean zIsEmpty2 = TextUtils.isEmpty(string);
+        boolean zIsEmpty3 = TextUtils.isEmpty(str);
+        if (zIsEmpty2 && zIsEmpty3) {
+            return str2;
         }
-        if (!TextUtils.isEmpty(string)) {
-            string = formatString(R.string.RelativeDateFormatterDate, string);
+        if (!zIsEmpty2 && !zIsEmpty3) {
+            string = formatString(R.string.formatDateAtTime, string, str);
+        } else if (zIsEmpty2) {
+            string = str;
         }
-        if (!TextUtils.isEmpty(string2)) {
-            string2 = formatString(R.string.RelativeDateFormatterTime, string2);
-        }
-        return formatString(R.string.RelativeDateFormatter, string3, string, string2).trim();
+        return !zIsEmpty ? formatString(R.string.RelativeDateFormatterWeek2, str2, string) : string;
     }
 
     private static String formatEntityFormattedDateRelative(long j, long j2, Locale locale) {
