@@ -4868,7 +4868,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void drawChatForegroundElements(Canvas canvas, RectF rectF) throws Resources.NotFoundException, NumberFormatException {
+        protected void drawChatForegroundElements(Canvas canvas, RectF rectF) {
             int size = this.drawTimeAfter.size();
             boolean z = 1;
             boolean z2 = false;
@@ -5296,7 +5296,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass20.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
         }
 
@@ -13140,7 +13140,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return (Integer) arrayList.get(i4);
     }
 
-    public void updateMessagesVisiblePart(boolean r78) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void updateMessagesVisiblePart(boolean r78) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateMessagesVisiblePart(boolean):void");
     }
 
@@ -13707,7 +13707,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.checkSystemBarColors();
         }
 
-        public void drawList(Canvas canvas, RectF rectF) throws Resources.NotFoundException, NumberFormatException {
+        public void drawList(Canvas canvas, RectF rectF) {
             long jUptimeMillis = SystemClock.uptimeMillis();
             if (ChatActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();
@@ -13845,7 +13845,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected boolean drawChild(android.graphics.Canvas r9, android.view.View r10, long r11) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        protected boolean drawChild(android.graphics.Canvas r9, android.view.View r10, long r11) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
         }
 
@@ -13854,7 +13854,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return ((BaseFragment) ChatActivity.this).actionBar.getVisibility() == 0;
         }
 
-        private void drawChildElement(Canvas canvas, float f, ChatMessageCell chatMessageCell, int i) throws Resources.NotFoundException, NumberFormatException {
+        private void drawChildElement(Canvas canvas, float f, ChatMessageCell chatMessageCell, int i) {
             int iSave = canvas.save();
             float left = ChatActivity.this.chatListView.getLeft() + chatMessageCell.getX();
             float y = ChatActivity.this.chatListView.getY() + chatMessageCell.getY() + chatMessageCell.getPaddingTop();
@@ -15245,7 +15245,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageObject.forceUpdate = true;
     }
 
-    public void lambda$didReceivedNotification$177() throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$didReceivedNotification$177() {
         updateMessagesVisiblePart(false);
     }
 
@@ -15466,13 +15466,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.locationAlertShown = true;
         AlertsCreator.showSecretLocationAlert(getParentActivity(), this.currentAccount, new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() {
                 this.f$0.lambda$checkSecretMessageForLocation$191();
             }
         }, true, this.themeDelegate);
     }
 
-    public void lambda$checkSecretMessageForLocation$191() throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$checkSecretMessageForLocation$191() {
         int childCount = this.chatListView.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = this.chatListView.getChildAt(i);
@@ -16722,7 +16722,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+    public void onTransitionAnimationStart(boolean z, boolean z2) {
         int[] iArr;
         super.onTransitionAnimationStart(z, z2);
         this.startMs = System.currentTimeMillis();
@@ -16752,7 +16752,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onTransitionAnimationEnd(boolean r13, boolean r14) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void onTransitionAnimationEnd(boolean r13, boolean r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.onTransitionAnimationEnd(boolean, boolean):void");
     }
 
@@ -28419,7 +28419,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$setCurrentTheme$2() throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$setCurrentTheme$2() {
             this.animatingColors = new SparseIntArray();
             Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) ChatActivity.this.getThemedDrawable("drawableMsgOut");
             this.animatingMessageDrawable = messageDrawable;
@@ -30943,7 +30943,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Objects.requireNonNull(chatActivityFragmentView);
         if (downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(new IBlur3Capture() {
             @Override
-            public final void capture(Canvas canvas, RectF rectF) throws Resources.NotFoundException, NumberFormatException {
+            public final void capture(Canvas canvas, RectF rectF) {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
 

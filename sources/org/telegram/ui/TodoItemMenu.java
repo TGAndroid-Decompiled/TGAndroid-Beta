@@ -352,7 +352,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
+                protected void onDraw(Canvas canvas) {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -375,7 +375,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -800,7 +800,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);

@@ -4801,7 +4801,7 @@
     <public type="string" name="BadgeNumberShow" id="0x7f0f03f1" />
     <public type="string" name="BadgeNumberUnread" id="0x7f0f03f2" />
     <public type="string" name="Ban" id="0x7f0f03f3" />
-    <public type="string" name="BanFromTheGroup" id="0x7f0f03f4" />
+    <public type="string" name="BanFromTheGroupNoCaps" id="0x7f0f03f4" />
     <public type="string" name="BanUser" id="0x7f0f03f5" />
     <public type="string" name="BanUserMonoforum" id="0x7f0f03f6" />
     <public type="string" name="BannedPhoneNumber" id="0x7f0f03f7" />

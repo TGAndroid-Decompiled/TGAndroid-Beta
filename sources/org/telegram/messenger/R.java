@@ -4847,7 +4847,7 @@ public final class R {
         public static final int BadgeNumberShow = 0x7f0f03f1;
         public static final int BadgeNumberUnread = 0x7f0f03f2;
         public static final int Ban = 0x7f0f03f3;
-        public static final int BanFromTheGroup = 0x7f0f03f4;
+        public static final int BanFromTheGroupNoCaps = 0x7f0f03f4;
         public static final int BanUser = 0x7f0f03f5;
         public static final int BanUserMonoforum = 0x7f0f03f6;
         public static final int BannedPhoneNumber = 0x7f0f03f7;

@@ -3742,7 +3742,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     boolean firstCreateView = true;
 
                     @Override
-                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException {
                         if (this.firstCreateView) {
                             if (this.searchItem != null) {
                                 lambda$openSearchWithText$343("");

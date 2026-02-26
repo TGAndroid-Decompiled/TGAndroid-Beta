@@ -381,6 +381,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.contentView = new FrameLayout(context) {
             private final Paint backgroundPaint = new Paint(1);
             boolean iconInterceptedTouch;
+            boolean ignoreLayout;
             int lastSize;
             boolean listInterceptedTouch;
 
@@ -429,6 +430,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
                 PremiumPreviewFragment.this.backgroundView.measure(i3, View.MeasureSpec.makeMeasureSpec(0, 0));
                 PremiumPreviewFragment.this.particlesView.getLayoutParams().height = PremiumPreviewFragment.this.backgroundView.getMeasuredHeight();
+                if (PremiumPreviewFragment.this.buttonContainer != null) {
+                    this.ignoreLayout = true;
+                    ((FrameLayout.LayoutParams) PremiumPreviewFragment.this.buttonContainer.getLayoutParams()).height = AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight;
+                    PremiumPreviewFragment.this.buttonContainer.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
+                    this.ignoreLayout = false;
+                }
                 if (PremiumPreviewFragment.this.buttonContainer != null && PremiumPreviewFragment.this.buttonContainer.getVisibility() != 8) {
                     iDp = AndroidUtilities.dp(68.0f);
                 }
@@ -439,6 +446,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 if (this.lastSize != ((getMeasuredHeight() + getMeasuredWidth()) << 16)) {
                     PremiumPreviewFragment.this.updateBackgroundImage();
                 }
+            }
+
+            @Override
+            public void requestLayout() {
+                if (this.ignoreLayout) {
+                    return;
+                }
+                super.requestLayout();
             }
 
             @Override
