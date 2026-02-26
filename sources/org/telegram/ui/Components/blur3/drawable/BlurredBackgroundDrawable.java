@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -22,6 +23,7 @@ import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.blur3.Blur3HashImpl;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
@@ -29,6 +31,7 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
+import org.telegram.ui.Components.blur3.utils.NinePatchBuilder;
 
 public abstract class BlurredBackgroundDrawable extends Drawable {
     protected int alpha;
@@ -44,6 +47,10 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     private final RectF cmpRectF2;
     protected BlurredBackgroundColorProvider colorProvider;
     protected boolean inAppKeyboardOptimization;
+    private NinePatchDrawable ninePatchDrawable;
+    private long ninePatchDrawableHash;
+    private final Rect ninePatchDrawablePadding;
+    private final Blur3HashImpl ninePatchHashBuilder;
     private final Paint paintStrokeFill;
     protected float shadowAlpha;
     protected int shadowColor;
@@ -91,6 +98,8 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         paint.setFilterBitmap(true);
         this.cmpRectF1 = new RectF();
         this.cmpRectF2 = new RectF();
+        this.ninePatchHashBuilder = new Blur3HashImpl();
+        this.ninePatchDrawablePadding = new Rect();
         props.strokeWidthTop = AndroidUtilities.dpf2(1.0f);
         props.strokeWidthBottom = AndroidUtilities.dpf2(0.6666667f);
         this.shadowLayerRadius = AndroidUtilities.dpf2(1.0f);
@@ -466,6 +475,10 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         if (this.boundProps.boundsWithPadding.isEmpty()) {
             return;
         }
+        if (Color.alpha(this.backgroundColor) == 255) {
+            drawSourceColorImpl(canvas, 0);
+            return;
+        }
         if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
             drawSourceColor(canvas, (BlurredBackgroundSourceColor) blurredBackgroundSource);
             return;
@@ -530,7 +543,26 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     }
 
     private void drawSourceColor(Canvas canvas, BlurredBackgroundSourceColor blurredBackgroundSourceColor) {
-        int iMultAlpha = Theme.multAlpha(ColorUtils.compositeColors(this.backgroundColor, blurredBackgroundSourceColor.getColor()), this.alpha / 255.0f);
+        drawSourceColorImpl(canvas, blurredBackgroundSourceColor.getColor());
+    }
+
+    private void drawSourceColorImpl(Canvas canvas, int i) {
+        int iCompositeColors = ColorUtils.compositeColors(this.backgroundColor, i);
+        if (Color.alpha(iCompositeColors) == 0 && Color.alpha(this.shadowColor) == 0) {
+            return;
+        }
+        NinePatchDrawable ninePatchDrawableCheckNinePatchDrawable = checkNinePatchDrawable(iCompositeColors);
+        if (ninePatchDrawableCheckNinePatchDrawable != null) {
+            Rect rect = this.boundProps.boundsWithPadding;
+            int i2 = rect.left;
+            Rect rect2 = this.ninePatchDrawablePadding;
+            ninePatchDrawableCheckNinePatchDrawable.setBounds(i2 - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
+            ninePatchDrawableCheckNinePatchDrawable.setAlpha(this.alpha);
+            ninePatchDrawableCheckNinePatchDrawable.draw(canvas);
+            drawStrokeInternalIfNeeded(canvas);
+            return;
+        }
+        int iMultAlpha = Theme.multAlpha(iCompositeColors, this.alpha / 255.0f);
         if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
             float f = this.shadowAlpha;
             if (f > 0.0f) {
@@ -556,11 +588,21 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
                 this.backgroundBitmapPaint.setShader(null);
             }
         }
-        if (Color.alpha(this.shadowColor) > 0 && this.alpha == 255) {
-            float f = this.shadowAlpha;
-            if (f > 0.0f) {
-                this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, Theme.multAlpha(this.shadowColor, f));
-                this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
+        if (Color.alpha(this.shadowColor) > 0) {
+            NinePatchDrawable ninePatchDrawableCheckNinePatchDrawable = checkNinePatchDrawable(0);
+            if (ninePatchDrawableCheckNinePatchDrawable != null) {
+                Rect rect = this.boundProps.boundsWithPadding;
+                int i = rect.left;
+                Rect rect2 = this.ninePatchDrawablePadding;
+                ninePatchDrawableCheckNinePatchDrawable.setBounds(i - rect2.left, rect.top - rect2.top, rect.right + rect2.right, rect.bottom + rect2.bottom);
+                ninePatchDrawableCheckNinePatchDrawable.setAlpha(this.alpha);
+                ninePatchDrawableCheckNinePatchDrawable.draw(canvas);
+            } else if (this.alpha == 255) {
+                float f = this.shadowAlpha;
+                if (f > 0.0f) {
+                    this.shadowPaint.setShadowLayer(this.shadowLayerRadius, this.shadowLayerDx, this.shadowLayerDy, Theme.multAlpha(this.shadowColor, f));
+                    this.boundProps.drawShadows(canvas, this.shadowPaint, this.inAppKeyboardOptimization);
+                }
             }
         }
         if (this.bitmapShader != null && bitmap != null && !bitmap.isRecycled() && this.alpha > 0) {
@@ -610,5 +652,25 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     public void getPositionRelativeSource(RectF rectF) {
         rectF.set(this.boundProps.boundsWithPadding);
         rectF.offset(this.sourceOffsetX, this.sourceOffsetY);
+    }
+
+    private NinePatchDrawable checkNinePatchDrawable(int i) {
+        this.ninePatchHashBuilder.start();
+        this.ninePatchHashBuilder.add(i);
+        this.ninePatchHashBuilder.add(this.shadowColor);
+        this.ninePatchHashBuilder.add(this.boundProps.radii);
+        this.ninePatchHashBuilder.addF(this.shadowLayerRadius);
+        this.ninePatchHashBuilder.addF(this.shadowLayerDx);
+        this.ninePatchHashBuilder.addF(this.shadowLayerDy);
+        long j = this.ninePatchHashBuilder.get();
+        NinePatchDrawable ninePatchDrawable = this.ninePatchDrawable;
+        if (ninePatchDrawable == null || this.ninePatchDrawableHash != j) {
+            this.ninePatchDrawableHash = j;
+            if (ninePatchDrawable == null) {
+                this.ninePatchDrawable = NinePatchBuilder.createNinePatch(i, this.boundProps.radii, this.shadowLayerRadius, this.shadowColor, this.shadowLayerDx, this.shadowLayerDy);
+            }
+            this.ninePatchDrawable.getPadding(this.ninePatchDrawablePadding);
+        }
+        return this.ninePatchDrawable;
     }
 }

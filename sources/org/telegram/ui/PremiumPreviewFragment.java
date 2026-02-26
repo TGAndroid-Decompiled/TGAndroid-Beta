@@ -187,6 +187,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     }
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         return true;
     }
@@ -279,6 +284,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return "todo";
             case 40:
                 return "gifts";
+            case 41:
+                return "pm_noforwards";
             default:
                 return null;
         }
@@ -371,7 +378,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
         this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
-        FrameLayout frameLayout = new FrameLayout(context) {
+        this.contentView = new FrameLayout(context) {
             private final Paint backgroundPaint = new Paint(1);
             boolean iconInterceptedTouch;
             int lastSize;
@@ -552,13 +559,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return super.drawChild(canvas, view, j);
             }
         };
-        this.contentView = frameLayout;
-        frameLayout.setFitsSystemWindows(true);
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setSections(true);
         this.listView.setClipToPadding(false);
-        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, 0);
+        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, AndroidUtilities.navigationBarHeight);
         RecyclerListView recyclerListView2 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, (AndroidUtilities.dp(68.0f) + this.statusBarHeight) - AndroidUtilities.dp(16.0f), this.listView);
         this.layoutManager = fillLastLinearLayoutManager;
@@ -591,12 +596,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment.this.checkButtonDivider();
             }
         });
-        this.backgroundView = new BackgroundView(context) {
-            @Override
-            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                return true;
-            }
-        };
+        this.backgroundView = new BackgroundView(context);
         StarParticlesView starParticlesView = new StarParticlesView(context);
         this.particlesView = starParticlesView;
         starParticlesView.setClipWithGradient();
@@ -655,6 +655,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.actionBar.setBackground(null);
         this.actionBar.setCastShadows(false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAddToContainer(false);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i3) {
@@ -664,6 +665,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
         });
         this.actionBar.setForceSkipTouches(true);
+        this.contentView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2, 48));
         updateColors();
         updateRows();
         this.backgroundView.imageView.startEnterAnimation(-180, 200L);
@@ -1529,6 +1531,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         private RecyclerListView tierListView;
         private boolean tierListViewVisible;
         TextView titleView;
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            return true;
+        }
 
         public BackgroundView(final Context context) {
             super(context);

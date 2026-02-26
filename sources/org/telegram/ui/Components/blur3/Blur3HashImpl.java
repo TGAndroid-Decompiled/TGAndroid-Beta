@@ -11,7 +11,7 @@ public class Blur3HashImpl implements IBlur3Hash {
 
     @Override
     public void add(ColorMatrix colorMatrix) {
-        IBlur3Hash.CC.$default$add(this, colorMatrix);
+        add(colorMatrix.getArray());
     }
 
     @Override
@@ -22,6 +22,11 @@ public class Blur3HashImpl implements IBlur3Hash {
     @Override
     public void add(boolean z) {
         add(z ? 1L : 0L);
+    }
+
+    @Override
+    public void add(float[] fArr) {
+        IBlur3Hash.CC.$default$add(this, fArr);
     }
 
     @Override

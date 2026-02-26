@@ -13,6 +13,8 @@ public interface IBlur3Hash {
 
     void add(boolean z);
 
+    void add(float[] fArr);
+
     void addF(float f);
 
     void unsupported();
@@ -26,8 +28,8 @@ public interface IBlur3Hash {
             }
         }
 
-        public static void $default$add(IBlur3Hash iBlur3Hash, ColorMatrix colorMatrix) {
-            for (float f : colorMatrix.getArray()) {
+        public static void $default$add(IBlur3Hash iBlur3Hash, float[] fArr) {
+            for (float f : fArr) {
                 iBlur3Hash.addF(f);
             }
         }

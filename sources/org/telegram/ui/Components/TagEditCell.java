@@ -749,6 +749,7 @@ public class TagEditCell extends LinearLayout {
             return;
         }
         buttonWithCounterView.setLoading(true);
+        AndroidUtilities.hideKeyboard(tagEditCell.editTextCell);
         final TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank = new TLRPC.TL_messages_editChatParticipantRank();
         tL_messages_editChatParticipantRank.peer = messagesController.getInputPeer(j);
         tL_messages_editChatParticipantRank.participant = MessagesController.getInputPeer(user);

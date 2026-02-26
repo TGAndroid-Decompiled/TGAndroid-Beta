@@ -33,6 +33,7 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
     private final boolean isSubButton;
     public final RadialProgressView progressView;
     private final Theme.ResourcesProvider resourcesProvider;
+    private boolean setTranslationInternal;
 
     @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
@@ -174,7 +175,9 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
 
     private void setAdditionalTranslationY(float f) {
         if (this.additionalTranslationY != f) {
+            this.setTranslationInternal = true;
             super.setTranslationY(this.internalTranslationY + f);
+            this.setTranslationInternal = false;
             this.additionalTranslationY = f;
         }
     }
@@ -200,13 +203,18 @@ public class FragmentFloatingButton extends FrameLayout implements FactorAnimato
     @Override
     public void setTranslationY(float f) {
         if (this.internalTranslationY != f) {
+            this.setTranslationInternal = true;
             super.setTranslationY(this.additionalTranslationY + f);
+            this.setTranslationInternal = false;
             this.internalTranslationY = f;
         }
     }
 
     @Override
     public float getTranslationY() {
+        if (this.setTranslationInternal) {
+            return super.getTranslationY();
+        }
         return this.internalTranslationY;
     }
 
