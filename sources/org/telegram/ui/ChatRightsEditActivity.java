@@ -2219,6 +2219,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             String string;
             String string2;
             String string3;
+            String string4;
             switch (viewHolder.getItemViewType()) {
                 case 0:
                     ((UserCell2) viewHolder.itemView).setData(ChatRightsEditActivity.this.currentUser, null, ChatRightsEditActivity.this.currentType == 2 ? LocaleController.getString(R.string.Bot) : null, 0);
@@ -2232,7 +2233,12 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                             } else {
                                 string = LocaleController.getString(R.string.ChannelAdmin);
                             }
-                            textInfoPrivacyCell.setText(LocaleController.formatString(R.string.EditAdminRankInfo, string));
+                            if (ChatRightsEditActivity.this.currentType == 0) {
+                                string2 = LocaleController.formatString(R.string.EditAdminRankInfo, string);
+                            } else {
+                                string2 = LocaleController.formatString(R.string.EditMemberRankInfo, UserObject.getUserName(ChatRightsEditActivity.this.currentUser));
+                            }
+                            textInfoPrivacyCell.setText(string2);
                             break;
                         }
                     } else {
@@ -2452,26 +2458,26 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     TextDetailCell textDetailCell = (TextDetailCell) viewHolder.itemView;
                     if (i == ChatRightsEditActivity.this.untilDateRow) {
                         if (ChatRightsEditActivity.this.bannedRights.until_date != 0 && Math.abs(ChatRightsEditActivity.this.bannedRights.until_date - (System.currentTimeMillis() / 1000)) <= 315360000) {
-                            string2 = LocaleController.formatDateForBan(ChatRightsEditActivity.this.bannedRights.until_date);
+                            string3 = LocaleController.formatDateForBan(ChatRightsEditActivity.this.bannedRights.until_date);
                         } else {
-                            string2 = LocaleController.getString(R.string.UserRestrictionsUntilForever);
+                            string3 = LocaleController.getString(R.string.UserRestrictionsUntilForever);
                         }
-                        textDetailCell.setTextAndValue(LocaleController.getString(R.string.UserRestrictionsDuration), string2, false);
+                        textDetailCell.setTextAndValue(LocaleController.getString(R.string.UserRestrictionsDuration), string3, false);
                         break;
                     }
                     break;
                 case 7:
                     PollEditTextCell pollEditTextCell = (PollEditTextCell) viewHolder.itemView;
                     if (UserObject.isUserSelf(ChatRightsEditActivity.this.currentUser) && ChatRightsEditActivity.this.currentChat.creator) {
-                        string3 = LocaleController.getString(R.string.ChannelCreator);
+                        string4 = LocaleController.getString(R.string.ChannelCreator);
                     } else {
-                        string3 = LocaleController.getString(R.string.ChannelAdmin);
+                        string4 = LocaleController.getString(R.string.ChannelAdmin);
                     }
                     this.ignoreTextChange = true;
                     pollEditTextCell.getTextView().setEnabled(ChatRightsEditActivity.this.canEdit || ChatRightsEditActivity.this.currentChat.creator);
                     pollEditTextCell.getTextView().setSingleLine(true);
                     pollEditTextCell.getTextView().setImeOptions(6);
-                    pollEditTextCell.setTextAndHint(ChatRightsEditActivity.this.currentRank, string3, false);
+                    pollEditTextCell.setTextAndHint(ChatRightsEditActivity.this.currentRank, string4, false);
                     this.ignoreTextChange = false;
                     break;
                 case 10:

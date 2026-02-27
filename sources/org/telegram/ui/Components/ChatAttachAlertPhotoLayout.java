@@ -1381,7 +1381,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation = this.parentAlert.avatarWithBulletin != null;
         }
         if (this.parentAlert.isStickerMode) {
-            PhotoViewer.getInstance().enableStickerMode(null, false, this.parentAlert.customStickerHandler);
+            PhotoViewer.getInstance().enableStickerMode(null, null, false, this.parentAlert.customStickerHandler);
         }
         if (captionForAllMedia()) {
             PhotoViewer.getInstance().setCaption(this.parentAlert.getCommentView().getText());
@@ -2344,7 +2344,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new AnonymousClass15(z), chatActivity);
         PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
         if (this.parentAlert.isStickerMode) {
-            PhotoViewer.getInstance().enableStickerMode(null, false, this.parentAlert.customStickerHandler);
+            PhotoViewer.getInstance().enableStickerMode(null, null, false, this.parentAlert.customStickerHandler);
             PhotoViewer.getInstance().prepareSegmentImage();
         }
     }

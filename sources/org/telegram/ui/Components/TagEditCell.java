@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -169,7 +170,7 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
+            public void afterTextChanged(Editable editable) throws Resources.NotFoundException, NumberFormatException {
                 if (TagEditCell.this.ignoreEdit) {
                     return;
                 }
@@ -684,11 +685,10 @@ public class TagEditCell extends LinearLayout {
         linearLayout2.addView(imageView, LayoutHelper.createLinear(32, 32, 21, 0, 0, 10, 0));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 6.0f, 0.0f, 6.0f));
         final ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
-        boolean z3 = false;
-        boolean z4 = !TextUtils.isEmpty(str) || z;
-        round.setText(LocaleController.getString((TextUtils.isEmpty(str) && !z && z4) ? R.string.MemberTagButtonRemove : z4 ? R.string.MemberTagButtonEdit : R.string.MemberTagButtonAdd));
+        boolean z3 = !TextUtils.isEmpty(str) || z;
+        round.setText(LocaleController.getString((TextUtils.isEmpty(str) && !z && z3) ? R.string.MemberTagButtonRemove : z3 ? R.string.MemberTagButtonEdit : R.string.MemberTagButtonAdd));
         final String[] strArr = {str == null ? "" : str};
-        final boolean z5 = z4;
+        final boolean z4 = z3;
         final TagEditCell tagEditCell = new TagEditCell(context, i, j, resourcesProvider);
         tagEditCell.setClipToOutline(true);
         tagEditCell.setOutlineProvider(new ViewOutlineProvider() {
@@ -701,25 +701,22 @@ public class TagEditCell extends LinearLayout {
         tagEditCell.set(user, str, z, z2, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                TagEditCell.lambda$showSheet$1(strArr, round, z, z5, (String) obj);
+                TagEditCell.lambda$showSheet$1(strArr, round, z, z4, (String) obj);
             }
         });
         linearLayout.addView(tagEditCell, LayoutHelper.createLinear(-1, -2, 7, 12.0f, 12.0f, 12.0f, 1.66f));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 22, resourcesProvider);
-        textInfoPrivacyCell.setText(LocaleController.getString(R.string.MemberTagInfo));
+        textInfoPrivacyCell.setText(UserObject.isUserSelf(user) ? LocaleController.getString(R.string.MemberTagSelfInfo) : LocaleController.formatString(R.string.MemberTagTheirInfo, UserObject.getUserName(user)));
         linearLayout.addView(textInfoPrivacyCell, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 0));
         linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 7, 14, 19, 14, 12));
         final BottomSheet bottomSheetCreate = builder.create();
         bottomSheetCreate.smoothKeyboardAnimationEnabled = true;
         bottomSheetCreate.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
-        if (TextUtils.isEmpty(str) && !z && !z2) {
-            z3 = true;
-        }
-        final boolean z6 = z3;
+        final boolean z5 = (!TextUtils.isEmpty(str) || z || z2) ? false : true;
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                TagEditCell.lambda$showSheet$3(round, tagEditCell, messagesController, j, user, strArr, i, bottomSheetCreate, z6, resourcesProvider, view);
+                TagEditCell.lambda$showSheet$3(round, tagEditCell, messagesController, j, user, strArr, i, bottomSheetCreate, z5, resourcesProvider, view);
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -1363,7 +1360,7 @@ public class TagEditCell extends LinearLayout {
         }
         ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
         boolean z6 = (ChatObject.canManageTags(chat) && (!z || ((!z2 && z3) || UserObject.isUserSelf(user)))) || (ChatObject.canManageMyTag(chat) && UserObject.isUserSelf(user));
-        if (!z6 && !ChatObject.canManageTags(chat) && !chat.creator) {
+        if (!z6 && !ChatObject.canManageTags(chat) && !chat.creator && chat.admin_rights == null && !z2) {
             TextView textViewMakeTextView3 = TextHelper.makeTextView(context, 12.0f, Theme.key_windowBackgroundWhiteGrayText, false);
             textViewMakeTextView3.setGravity(1);
             textViewMakeTextView3.setText(LocaleController.getString(R.string.CantEditTagAdmins));

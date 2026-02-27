@@ -56,7 +56,7 @@ public class ReactionWidgetEntityView extends EntityView {
         return 0.5f;
     }
 
-    public ReactionWidgetEntityView(Context context, Point point, Size size) throws NumberFormatException {
+    public ReactionWidgetEntityView(Context context, Point point, Size size) {
         super(context, point);
         this.storyReactionWidgetBackground = new StoryReactionWidgetBackground(this);
         this.outBackground = new StoryReactionWidgetBackground(this);

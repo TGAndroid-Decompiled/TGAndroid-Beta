@@ -453,20 +453,21 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StickersAlert.lambda$editSticker$0(pathToAttach, arrayList, baseFragment, chatActivity, z, document, tL_messages_stickerSet);
+                    StickersAlert.lambda$editSticker$0(pathToAttach, arrayList, baseFragment, chatActivity, document, z, tL_messages_stickerSet);
                 }
             }, 300L);
             return;
         }
+        final boolean z2 = z;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StickersAlert.lambda$editSticker$1(baseFragment, tL_messages_stickerSet, document, chatActivity, z);
+                StickersAlert.lambda$editSticker$1(baseFragment, tL_messages_stickerSet, document, chatActivity, z2);
             }
         }, 300L);
     }
 
-    public static void lambda$editSticker$0(File file, ArrayList arrayList, BaseFragment baseFragment, ChatActivity chatActivity, boolean z, TLRPC.Document document, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static void lambda$editSticker$0(File file, ArrayList arrayList, BaseFragment baseFragment, ChatActivity chatActivity, TLRPC.Document document, boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L));
         PhotoViewer.getInstance().setParentActivity(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -480,12 +481,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return true;
             }
         }, chatActivity);
-        PhotoViewer.getInstance().enableStickerMode(z ? document : null, false, null);
+        PhotoViewer.getInstance().enableStickerMode(document, z ? document : null, false, null);
         ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(z ? tL_messages_stickerSet : null);
     }
 
     public static void lambda$editSticker$1(BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLRPC.Document document, ChatActivity chatActivity, boolean z) {
-        TLRPC.Document document2 = document;
         File fileMakeCacheFile = StoryEntry.makeCacheFile(baseFragment.getCurrentAccount(), "webp");
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         int i = devicePerformanceClass != 0 ? devicePerformanceClass != 2 ? 2560 : 3840 : 1280;
@@ -513,7 +513,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         VideoEditedInfo.MediaEntity mediaEntity = new VideoEditedInfo.MediaEntity();
         mediaEntity.type = (byte) 0;
         mediaEntity.parentObject = tL_messages_stickerSet;
-        mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document2, true).getAbsolutePath();
+        mediaEntity.text = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true).getAbsolutePath();
         mediaEntity.x = 0.5f - ((Math.min(512, 512) / f) / 2.0f);
         mediaEntity.y = 0.5f - ((Math.min(512, 512) / f) / 2.0f);
         mediaEntity.width = Math.min(512, 512) / f;
@@ -522,16 +522,16 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         mediaEntity.viewWidth = iFloor;
         mediaEntity.viewHeight = iFloor;
         mediaEntity.scale = 2.0f;
-        mediaEntity.document = document2;
-        if (MessageObject.isAnimatedStickerDocument(document2, true) || MessageObject.isVideoStickerDocument(document)) {
-            mediaEntity.subType = (byte) ((MessageObject.isAnimatedStickerDocument(document2, true) ? (byte) 1 : (byte) 4) | mediaEntity.subType);
+        mediaEntity.document = document;
+        if (MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isVideoStickerDocument(document)) {
+            mediaEntity.subType = (byte) ((MessageObject.isAnimatedStickerDocument(document, true) ? (byte) 1 : (byte) 4) | mediaEntity.subType);
         }
         ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = new ArrayList<>();
         photoEntry.mediaEntities = arrayList2;
         arrayList2.add(mediaEntity);
         photoEntry.averageDuration = 3000L;
-        if (MessageObject.isAnimatedStickerDocument(document2, true)) {
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document2, true);
+        if (MessageObject.isAnimatedStickerDocument(document, true)) {
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true);
             if (pathToAttach != null) {
                 try {
                     photoEntry.averageDuration = (long) (RLottieDrawable.getDuration(pathToAttach.getAbsolutePath(), null) * 1000.0d);
@@ -554,11 +554,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 return true;
             }
         }, chatActivity);
-        PhotoViewer photoViewer = PhotoViewer.getInstance();
-        if (!z) {
-            document2 = null;
-        }
-        photoViewer.enableStickerMode(document2, true, null);
+        PhotoViewer.getInstance().enableStickerMode(document, z ? document : null, true, null);
         ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(z ? tL_messages_stickerSet : null);
     }
 

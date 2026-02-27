@@ -3742,7 +3742,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     boolean firstCreateView = true;
 
                     @Override
-                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException {
+                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
                         if (this.firstCreateView) {
                             if (this.searchItem != null) {
                                 lambda$openSearchWithText$343("");
@@ -9779,87 +9779,8 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            TLRPC.ChatParticipant chatParticipant;
-            String string;
-            String str;
-            final boolean z;
-            boolean z2;
-            boolean z3;
-            View view = viewHolder.itemView;
-            if (view instanceof UserCell) {
-                UserCell userCell = (UserCell) view;
-                if (!this.sortedUsers.isEmpty()) {
-                    chatParticipant = this.chatInfo.participants.participants.get(((Integer) this.sortedUsers.get(i)).intValue());
-                } else {
-                    chatParticipant = this.chatInfo.participants.participants.get(i);
-                }
-                if (chatParticipant != null) {
-                    if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                        TLRPC.ChannelParticipant channelParticipant = ((TLRPC.TL_chatChannelParticipant) chatParticipant).channelParticipant;
-                        string = channelParticipant.rank;
-                        if (channelParticipant instanceof TLRPC.TL_channelParticipantCreator) {
-                            if (TextUtils.isEmpty(string)) {
-                                string = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
-                            }
-                            str = string;
-                            z = false;
-                            z2 = true;
-                            z3 = true;
-                        } else {
-                            if (channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) {
-                                if (TextUtils.isEmpty(string)) {
-                                    string = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
-                                }
-                                z = channelParticipant.can_edit;
-                                str = string;
-                                z2 = true;
-                                z3 = false;
-                            }
-                            str = string;
-                            z = false;
-                            z2 = false;
-                            z3 = false;
-                        }
-                    } else {
-                        string = chatParticipant.rank;
-                        if (chatParticipant instanceof TLRPC.TL_chatParticipantCreator) {
-                            if (TextUtils.isEmpty(string)) {
-                                string = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
-                            }
-                            str = string;
-                            z = false;
-                            z2 = true;
-                            z3 = true;
-                        } else {
-                            if (chatParticipant instanceof TLRPC.TL_chatParticipantAdmin) {
-                                if (TextUtils.isEmpty(string)) {
-                                    string = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
-                                }
-                                str = string;
-                                z = chatParticipant.inviter_id == SharedMediaLayout.this.profileActivity.getUserConfig().getClientUserId();
-                                z2 = true;
-                                z3 = false;
-                            }
-                            str = string;
-                            z = false;
-                            z2 = false;
-                            z3 = false;
-                        }
-                    }
-                    final TLRPC.User user = SharedMediaLayout.this.profileActivity.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                    final String str2 = str;
-                    final boolean z4 = z2;
-                    final boolean z5 = z3;
-                    userCell.setAdminRole(str, z2, z3, UserObject.isUserSelf(user) && ChatObject.canManageMyTag(SharedMediaLayout.this.profileActivity.getMessagesController().getChat(Long.valueOf(-SharedMediaLayout.this.dialog_id))), new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view2) {
-                            this.f$0.lambda$onBindViewHolder$0(user, str2, z4, z5, z, view2);
-                        }
-                    });
-                    userCell.setData(user, null, null, 0, i != this.chatInfo.participants.participants.size() + (-1));
-                }
-            }
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r20, int r21) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.ChatUsersAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
         public void lambda$onBindViewHolder$0(TLRPC.User user, String str, boolean z, boolean z2, boolean z3, View view) {

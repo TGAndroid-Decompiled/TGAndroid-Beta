@@ -4868,7 +4868,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void drawChatForegroundElements(Canvas canvas, RectF rectF) {
+        protected void drawChatForegroundElements(Canvas canvas, RectF rectF) throws Resources.NotFoundException, NumberFormatException {
             int size = this.drawTimeAfter.size();
             boolean z = 1;
             boolean z2 = false;
@@ -5296,7 +5296,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) {
+        public boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass20.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
         }
 
@@ -8093,7 +8093,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.contentView.removeView(reactionsContainerLayout);
     }
 
-    public void showTagSelector() {
+    public void showTagSelector() throws Resources.NotFoundException {
         if (getDialogId() == getUserConfig().getClientUserId() && getUserConfig().isPremium() && this.tagSelector == null) {
             AnonymousClass57 anonymousClass57 = new AnonymousClass57(3, this, getContext(), this.currentAccount, this.themeDelegate);
             this.tagSelector = anonymousClass57;
@@ -13140,7 +13140,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return (Integer) arrayList.get(i4);
     }
 
-    public void updateMessagesVisiblePart(boolean r78) {
+    public void updateMessagesVisiblePart(boolean r78) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateMessagesVisiblePart(boolean):void");
     }
 
@@ -13707,7 +13707,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.checkSystemBarColors();
         }
 
-        public void drawList(Canvas canvas, RectF rectF) {
+        public void drawList(Canvas canvas, RectF rectF) throws Resources.NotFoundException, NumberFormatException {
             long jUptimeMillis = SystemClock.uptimeMillis();
             if (ChatActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();
@@ -13845,7 +13845,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected boolean drawChild(android.graphics.Canvas r9, android.view.View r10, long r11) {
+        protected boolean drawChild(android.graphics.Canvas r9, android.view.View r10, long r11) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
         }
 
@@ -13854,7 +13854,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return ((BaseFragment) ChatActivity.this).actionBar.getVisibility() == 0;
         }
 
-        private void drawChildElement(Canvas canvas, float f, ChatMessageCell chatMessageCell, int i) {
+        private void drawChildElement(Canvas canvas, float f, ChatMessageCell chatMessageCell, int i) throws Resources.NotFoundException, NumberFormatException {
             int iSave = canvas.save();
             float left = ChatActivity.this.chatListView.getLeft() + chatMessageCell.getX();
             float y = ChatActivity.this.chatListView.getY() + chatMessageCell.getY() + chatMessageCell.getPaddingTop();
@@ -15245,7 +15245,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageObject.forceUpdate = true;
     }
 
-    public void lambda$didReceivedNotification$177() {
+    public void lambda$didReceivedNotification$177() throws Resources.NotFoundException, NumberFormatException {
         updateMessagesVisiblePart(false);
     }
 
@@ -15466,13 +15466,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.locationAlertShown = true;
         AlertsCreator.showSecretLocationAlert(getParentActivity(), this.currentAccount, new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$checkSecretMessageForLocation$191();
             }
         }, true, this.themeDelegate);
     }
 
-    public void lambda$checkSecretMessageForLocation$191() {
+    public void lambda$checkSecretMessageForLocation$191() throws Resources.NotFoundException, NumberFormatException {
         int childCount = this.chatListView.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = this.chatListView.getChildAt(i);
@@ -16722,7 +16722,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onTransitionAnimationStart(boolean z, boolean z2) {
+    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
         int[] iArr;
         super.onTransitionAnimationStart(z, z2);
         this.startMs = System.currentTimeMillis();
@@ -16752,7 +16752,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onTransitionAnimationEnd(boolean r13, boolean r14) {
+    public void onTransitionAnimationEnd(boolean r13, boolean r14) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.onTransitionAnimationEnd(boolean, boolean):void");
     }
 
@@ -26539,6 +26539,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             boolean z;
             String str;
             boolean z2;
+            String str2;
             boolean z3;
             TLRPC.User currentUser = chatMessageCell.getCurrentUser();
             ChatActivity.this.getUserConfig().getCurrentUser();
@@ -26547,53 +26548,75 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             boolean z4 = true;
             boolean z5 = false;
-            if ((tLObject instanceof TLRPC.ChannelParticipant) || (tLObject instanceof TLRPC.TL_chatChannelParticipant)) {
-                TLRPC.ChannelParticipant channelParticipant = tLObject instanceof TLRPC.TL_chatChannelParticipant ? ((TLRPC.TL_chatChannelParticipant) tLObject).channelParticipant : (TLRPC.ChannelParticipant) tLObject;
+            if (tLObject instanceof TLRPC.ChannelParticipant) {
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
                 if (channelParticipant instanceof TLRPC.TL_channelParticipantCreator) {
                     z = false;
                     z5 = true;
                 } else if (channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) {
-                    z = channelParticipant.inviter_id == ChatActivity.this.getUserConfig().getClientUserId();
+                    z = channelParticipant.promoted_by == ChatActivity.this.getUserConfig().getClientUserId();
                 } else {
                     z = false;
                     z4 = false;
                 }
                 str = channelParticipant.rank;
-                z2 = z;
-            } else if (tLObject instanceof TLRPC.ChatParticipant) {
-                if (tLObject instanceof TLRPC.TL_chatParticipantCreator) {
-                    z3 = false;
-                    z5 = true;
-                } else if (tLObject instanceof TLRPC.TL_chatParticipantAdmin) {
-                    z3 = ((TLRPC.TL_chatParticipantAdmin) tLObject).inviter_id == ChatActivity.this.getUserConfig().getClientUserId();
-                } else {
-                    z3 = false;
-                    z4 = false;
-                }
-                z2 = z3;
-                str = ((TLRPC.ChatParticipant) tLObject).rank;
             } else {
-                if (ChatObject.isChannel(ChatActivity.this.currentChat)) {
-                    TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
-                    ChatActivity.this.getMessagesController();
-                    tL_channels_getParticipant.channel = MessagesController.getInputChannel(ChatActivity.this.currentChat);
-                    tL_channels_getParticipant.participant = ChatActivity.this.getMessagesController().getInputPeer(currentUser.id);
-                    ChatActivity.this.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
-                        @Override
-                        public final void run(Object obj, Object obj2) {
-                            this.f$0.lambda$didPressAdmin$47(chatMessageCell, (TLRPC.TL_channels_channelParticipant) obj, (TLRPC.TL_error) obj2);
-                        }
-                    });
+                if (tLObject instanceof TLRPC.TL_chatChannelParticipant) {
+                    TLRPC.ChannelParticipant channelParticipant2 = ((TLRPC.TL_chatChannelParticipant) tLObject).channelParticipant;
+                    if (channelParticipant2 instanceof TLRPC.TL_channelParticipantCreator) {
+                        z2 = false;
+                        z5 = true;
+                    } else if (channelParticipant2 instanceof TLRPC.TL_channelParticipantAdmin) {
+                        z2 = channelParticipant2.promoted_by == ChatActivity.this.getUserConfig().getClientUserId();
+                    } else {
+                        z2 = false;
+                        z4 = false;
+                    }
+                    str2 = channelParticipant2.rank;
+                    z3 = z2;
+                    boolean z6 = z4;
+                    boolean z7 = z5;
+                    Context context = ChatActivity.this.getContext();
+                    int i = ((BaseFragment) ChatActivity.this).currentAccount;
+                    ChatActivity chatActivity = ChatActivity.this;
+                    TagEditCell.showInfoSheet(context, i, -chatActivity.currentChat.id, currentUser, str2, z6, z7, z3, ((BaseFragment) chatActivity).resourceProvider);
+                }
+                if (tLObject instanceof TLRPC.ChatParticipant) {
+                    if (tLObject instanceof TLRPC.TL_chatParticipantCreator) {
+                        z = false;
+                        z5 = true;
+                    } else if (tLObject instanceof TLRPC.TL_chatParticipantAdmin) {
+                        z = ((TLRPC.TL_chatParticipantAdmin) tLObject).inviter_id == ChatActivity.this.getUserConfig().getClientUserId();
+                    } else {
+                        z = false;
+                        z4 = false;
+                    }
+                    str = ((TLRPC.ChatParticipant) tLObject).rank;
+                } else {
+                    if (ChatObject.isChannel(ChatActivity.this.currentChat)) {
+                        TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
+                        ChatActivity.this.getMessagesController();
+                        tL_channels_getParticipant.channel = MessagesController.getInputChannel(ChatActivity.this.currentChat);
+                        tL_channels_getParticipant.participant = ChatActivity.this.getMessagesController().getInputPeer(currentUser.id);
+                        ChatActivity.this.getConnectionsManager().sendRequestTyped(tL_channels_getParticipant, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                            @Override
+                            public final void run(Object obj, Object obj2) {
+                                this.f$0.lambda$didPressAdmin$47(chatMessageCell, (TLRPC.TL_channels_channelParticipant) obj, (TLRPC.TL_error) obj2);
+                            }
+                        });
+                        return;
+                    }
                     return;
                 }
-                return;
             }
-            boolean z6 = z4;
-            boolean z7 = z5;
-            Context context = ChatActivity.this.getContext();
-            int i = ((BaseFragment) ChatActivity.this).currentAccount;
-            ChatActivity chatActivity = ChatActivity.this;
-            TagEditCell.showInfoSheet(context, i, -chatActivity.currentChat.id, currentUser, str, z6, z7, z2, ((BaseFragment) chatActivity).resourceProvider);
+            z3 = z;
+            str2 = str;
+            boolean z62 = z4;
+            boolean z72 = z5;
+            Context context2 = ChatActivity.this.getContext();
+            int i2 = ((BaseFragment) ChatActivity.this).currentAccount;
+            ChatActivity chatActivity2 = ChatActivity.this;
+            TagEditCell.showInfoSheet(context2, i2, -chatActivity2.currentChat.id, currentUser, str2, z62, z72, z3, ((BaseFragment) chatActivity2).resourceProvider);
         }
 
         public void lambda$didPressAdmin$47(ChatMessageCell chatMessageCell, TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant, TLRPC.TL_error tL_error) {
@@ -28419,7 +28442,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$setCurrentTheme$2() {
+        public void lambda$setCurrentTheme$2() throws Resources.NotFoundException, NumberFormatException {
             this.animatingColors = new SparseIntArray();
             Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) ChatActivity.this.getThemedDrawable("drawableMsgOut");
             this.animatingMessageDrawable = messageDrawable;
@@ -30943,7 +30966,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Objects.requireNonNull(chatActivityFragmentView);
         if (downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(new IBlur3Capture() {
             @Override
-            public final void capture(Canvas canvas, RectF rectF) {
+            public final void capture(Canvas canvas, RectF rectF) throws Resources.NotFoundException, NumberFormatException {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
 

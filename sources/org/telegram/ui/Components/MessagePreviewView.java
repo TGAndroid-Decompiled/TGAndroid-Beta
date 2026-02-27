@@ -1496,7 +1496,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException, NumberFormatException {
                 MessagePreviewParams.Messages messages = Page.this.messages;
                 if (messages == null) {
                     return;

@@ -988,7 +988,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException, NumberFormatException {
         MessageObject messageObject;
         if (i == NotificationCenter.startSpoilers) {
             setSpoilersSuppressed(false);
@@ -1221,7 +1221,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         messageObject.markReactionsAsRead();
     }
 
-    public void setVisibleOnScreen(boolean z, float f, float f2) {
+    public void setVisibleOnScreen(boolean z, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         if (this.visibleOnScreen != z) {
             this.visibleOnScreen = z;
             checkImageReceiversAttachState();
@@ -1865,7 +1865,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         };
         this.invalidateRunnable = new Runnable() {
             @Override
-            public void run() {
+            public void run() throws Resources.NotFoundException, NumberFormatException {
                 ChatMessageCell.this.checkLocationExpired();
                 if (ChatMessageCell.this.locationExpired) {
                     ChatMessageCell.this.invalidate();
@@ -4690,7 +4690,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    protected void onDetachedFromWindow() throws Resources.NotFoundException, NumberFormatException {
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.startSpoilers);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopSpoilers);
@@ -4939,7 +4939,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void checkImageReceiversAttachState() {
+    private void checkImageReceiversAttachState() throws Resources.NotFoundException, NumberFormatException {
         boolean z = this.attachedToWindow;
         boolean z2 = false;
         if (z != this.imageReceiversAttachState) {
@@ -5029,7 +5029,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void fileAttach(boolean z, MessageObject messageObject) {
+    private void fileAttach(boolean z, MessageObject messageObject) throws Resources.NotFoundException, NumberFormatException {
         ImageReceiver imageReceiver = this.photoImage;
         if (imageReceiver != null) {
             imageReceiver.setFileLoadingPriority(1);
@@ -5884,7 +5884,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return i % 60 == 0 ? Math.abs(currentTime - messageObject.messageOwner.date) > i : Math.abs(currentTime - messageObject.messageOwner.date) > i + (-5);
     }
 
-    public void checkLocationExpired() {
+    public void checkLocationExpired() throws Resources.NotFoundException, NumberFormatException {
         boolean zIsCurrentLocationTimeExpired;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject == null || (zIsCurrentLocationTimeExpired = isCurrentLocationTimeExpired(messageObject)) == this.locationExpired) {
@@ -5907,7 +5907,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.isUpdating = true;
     }
 
-    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3) {
+    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3) throws Resources.NotFoundException, NumberFormatException {
         setMessageObject(messageObject, groupedMessages, z, z2, z3, false);
     }
 
@@ -6204,7 +6204,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
+    protected void onMeasure(int i, int i2) throws Resources.NotFoundException, NumberFormatException {
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null && (messageObject.checkLayout() || this.lastHeight != AndroidUtilities.displaySize.y)) {
             this.inLayout = true;
@@ -6219,7 +6219,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         setMeasuredDimension(isWidthAdaptive() ? getBoundsRight() - getBoundsLeft() : View.MeasureSpec.getSize(i), Math.max(0, i3));
     }
 
-    public void forceResetMessageObject() {
+    public void forceResetMessageObject() throws Resources.NotFoundException, NumberFormatException {
         MessageObject messageObject = this.messageObjectToSet;
         if (messageObject == null) {
             messageObject = this.currentMessageObject;
@@ -7893,7 +7893,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return iDp2 - iDp3;
     }
 
-    public void updateButtonState(boolean r18, boolean r19, boolean r20) {
+    public void updateButtonState(boolean r18, boolean r19, boolean r20) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.updateButtonState(boolean, boolean, boolean):void");
     }
 
@@ -8180,18 +8180,18 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public void onFailedDownload(String str, boolean z) {
+    public void onFailedDownload(String str, boolean z) throws Resources.NotFoundException, NumberFormatException {
         int i = this.documentAttachType;
         updateButtonState(true, i == 3 || i == 5, false);
     }
 
     @Override
-    public void onSuccessDownload(java.lang.String r36) {
+    public void onSuccessDownload(java.lang.String r36) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.onSuccessDownload(java.lang.String):void");
     }
 
     @Override
-    public void didSetImage(org.telegram.messenger.ImageReceiver r5, boolean r6, boolean r7, boolean r8) {
+    public void didSetImage(org.telegram.messenger.ImageReceiver r5, boolean r6, boolean r7, boolean r8) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.didSetImage(org.telegram.messenger.ImageReceiver, boolean, boolean, boolean):void");
     }
 
@@ -8259,7 +8259,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public void onProgressDownload(String str, long j, long j2) {
+    public void onProgressDownload(String str, long j, long j2) throws Resources.NotFoundException, NumberFormatException {
         float fMin = j2 == 0 ? 0.0f : Math.min(1.0f, j / j2);
         this.currentMessageObject.loadedFileSize = j;
         createLoadingProgressLayout(j, j2);
@@ -8975,11 +8975,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
         drawInternal(canvas);
     }
 
-    public void drawInternal(android.graphics.Canvas r17) {
+    public void drawInternal(android.graphics.Canvas r17) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawInternal(android.graphics.Canvas):void");
     }
 
@@ -10246,7 +10246,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.shouldDrawTimeOnMedia():boolean");
     }
 
-    public void drawTime(android.graphics.Canvas r17, float r18, boolean r19) {
+    public void drawTime(android.graphics.Canvas r17, float r18, boolean r19) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawTime(android.graphics.Canvas, float, boolean):void");
     }
 
@@ -10537,7 +10537,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void drawOverlays(android.graphics.Canvas r61) {
+    public void drawOverlays(android.graphics.Canvas r61) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 

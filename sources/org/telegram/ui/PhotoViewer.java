@@ -595,6 +595,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private volatile int originalBitrate;
     private volatile int originalHeight;
     private long originalSize;
+    public TLRPC.Document originalSticker;
     private volatile int originalWidth;
     private BlurButton outlineBtn;
     private boolean padImageForHorizontalInsets;
@@ -7763,7 +7764,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                 PhotoViewer.this.stickerEmptySent = true;
                                 generateThumb();
                                 PhotoViewer photoViewer2 = PhotoViewer.this;
-                                photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, false, photoViewer2.parentChatActivity.getDialogId(), null, null, photoEntry.thumbPath, null, null);
+                                photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, false, photoViewer2.parentChatActivity.getDialogId(), null, null, PhotoViewer.this.getOriginalSticker(), photoEntry.thumbPath, null, null);
                                 return;
                             }
                             PhotoViewer.this.stickerEmptySent = true;
@@ -7811,7 +7812,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         public void addToFavoriteSelected(String str5) {
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
-                            PhotoViewer.this.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, true, 0L, null, null, photoEntry.thumbPath, null, null);
+                            PhotoViewer photoViewer2 = PhotoViewer.this;
+                            photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, true, 0L, null, null, photoViewer2.getOriginalSticker(), photoEntry.thumbPath, null, null);
                         }
 
                         @Override
@@ -7819,14 +7821,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
                             PhotoViewer photoViewer2 = PhotoViewer.this;
-                            photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, false, 0L, stickerSet, photoViewer2.replacedSticker, photoEntry.thumbPath, null, null);
+                            photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, false, 0L, stickerSet, photoViewer2.replacedSticker, photoViewer2.getOriginalSticker(), photoEntry.thumbPath, null, null);
                         }
 
                         @Override
                         public void newStickerPackSelected(CharSequence charSequence, String str5, Utilities.Callback callback) {
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
-                            PhotoViewer.this.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, charSequence, false, 0L, null, null, photoEntry.thumbPath, callback, null);
+                            PhotoViewer photoViewer2 = PhotoViewer.this;
+                            photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, charSequence, false, 0L, null, null, photoViewer2.getOriginalSticker(), photoEntry.thumbPath, callback, null);
                         }
 
                         @Override
@@ -7834,7 +7837,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             PhotoViewer.this.stickerEmptySent = true;
                             generateThumb();
                             PhotoViewer photoViewer2 = PhotoViewer.this;
-                            photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, false, 0L, null, null, photoEntry.thumbPath, null, photoViewer2.customStickerHandler);
+                            photoViewer2.stickerMakerView.uploadStickerFile(string2, videoEditedInfo2, str5, null, false, 0L, null, null, photoViewer2.getOriginalSticker(), photoEntry.thumbPath, null, PhotoViewer.this.customStickerHandler);
                         }
 
                         @Override
@@ -12173,8 +12176,24 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return spannableReplaceAnimatedEmoji;
     }
 
-    public void enableStickerMode(TLRPC.Document document, boolean z, Utilities.Callback2 callback2) {
-        this.replacedSticker = document;
+    public TLRPC.Document getOriginalSticker() {
+        int i;
+        if (this.translationX == 0.0f && this.translationY == 0.0f && (i = this.currentIndex) >= 0 && i < this.imagesArrLocals.size()) {
+            Object obj = this.imagesArrLocals.get(this.currentIndex);
+            if (!(obj instanceof MediaController.MediaEditState)) {
+                return null;
+            }
+            MediaController.MediaEditState mediaEditState = (MediaController.MediaEditState) obj;
+            if (!mediaEditState.isPainted && !mediaEditState.isCropped && !mediaEditState.isFiltered) {
+                return this.originalSticker;
+            }
+        }
+        return null;
+    }
+
+    public void enableStickerMode(TLRPC.Document document, TLRPC.Document document2, boolean z, Utilities.Callback2 callback2) {
+        this.originalSticker = document;
+        this.replacedSticker = document2;
         this.stickerEmpty = z;
         this.stickerEmptySent = false;
         this.customStickerHandler = callback2;
@@ -12191,14 +12210,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 arrayList.clear();
             }
         }
-        if (this.replacedSticker != null) {
+        if (this.originalSticker != null) {
             ArrayList arrayList2 = this.selectedEmojis;
             if (arrayList2 == null) {
                 this.selectedEmojis = new ArrayList();
             } else {
                 arrayList2.clear();
             }
-            ArrayList<String> arrayListFindStickerEmoticons = MessageObject.findStickerEmoticons(document, Integer.valueOf(this.currentAccount));
+            ArrayList<String> arrayListFindStickerEmoticons = MessageObject.findStickerEmoticons(this.originalSticker, Integer.valueOf(this.currentAccount));
             if (arrayListFindStickerEmoticons != null) {
                 this.selectedEmojis.addAll(arrayListFindStickerEmoticons);
             }

@@ -3203,7 +3203,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         BaseFragment baseFragment = this.baseFragment;
         photoViewer.openPhotoForSelect(arrayList, 0, 11, false, anonymousClass10, baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null);
         if (this.isStickerMode) {
-            PhotoViewer.getInstance().enableStickerMode(null, true, this.customStickerHandler);
+            PhotoViewer.getInstance().enableStickerMode(null, null, true, this.customStickerHandler);
         }
     }
 
