@@ -494,9 +494,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
             if (LocaleController.isRTL) {
                 this.textViewLayout.addView(this.arrowView, LayoutHelper.createLinear(16, 16, 0.0f, 16, 0, 0, 6, 0));
                 this.textViewLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 0, 0, 6, 0));
-                this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 16));
+                this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
             } else {
-                this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 16));
+                this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16));
                 this.textViewLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 6, 0, 0, 0));
                 this.textViewLayout.addView(this.arrowView, LayoutHelper.createLinear(16, 16, 0.0f, 16, 2, 0, 0, 0));
             }
