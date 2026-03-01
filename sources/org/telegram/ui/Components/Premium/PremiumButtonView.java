@@ -44,6 +44,7 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
     private ValueAnimator loadingAnimator;
     private CircularProgressDrawable loadingDrawable;
     private float loadingT;
+    private boolean nonClickable;
     ValueAnimator overlayAnimator;
     private float overlayProgress;
     public AnimatedTextView overlayTextView;
@@ -157,6 +158,13 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
             this.paintOverlayPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
             updateOverlayProgress();
         }
+    }
+
+    public void setNonClickable() {
+        this.nonClickable = true;
+        setClickable(false);
+        this.buttonLayout.setClickable(false);
+        setStateListAnimator(null);
     }
 
     public boolean isShowOverlay() {
@@ -396,6 +404,9 @@ public class PremiumButtonView extends FrameLayout implements Loadable {
             this.buttonTextView.cancelAnimation();
         }
         this.buttonTextView.setText(str, z);
+        if (this.nonClickable) {
+            return;
+        }
         this.buttonLayout.setOnClickListener(onClickListener);
     }
 

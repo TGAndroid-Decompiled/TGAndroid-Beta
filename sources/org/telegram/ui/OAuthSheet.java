@@ -139,9 +139,10 @@ public abstract class OAuthSheet {
             FrameLayout frameLayout = new FrameLayout(context);
             builder.setCustomView(frameLayout);
             final ArrayList arrayList = new ArrayList();
+            boolean zIsTestBackend = ConnectionsManager.getInstance(i).isTestBackend();
             arrayList.clear();
             for (int i2 = 0; i2 < 4; i2++) {
-                if (UserConfig.getInstance(i2).isClientActivated()) {
+                if (UserConfig.getInstance(i2).isClientActivated() && ConnectionsManager.getInstance(i2).isTestBackend() == zIsTestBackend) {
                     arrayList.add(Integer.valueOf(i2));
                 }
             }

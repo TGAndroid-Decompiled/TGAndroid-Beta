@@ -112,6 +112,19 @@ public abstract class BlurredBackgroundProviderImpl {
         return 0;
     }
 
+    public static BlurredBackgroundProvider premiumButton(Theme.ResourcesProvider resourcesProvider) {
+        return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
+            @Override
+            public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
+                return BlurredBackgroundProviderImpl.lambda$premiumButton$7(resourcesProvider2, z);
+            }
+        }).setStrokeColorTop(-1, 553648127).setStrokeColorBottom(0, 553648127).setShadowColor(805306368, 83886079).setShadowLayer(AndroidUtilities.dpf2(4.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f)).setStrokeWidth(AndroidUtilities.dpf2(0.67f), AndroidUtilities.dpf2(0.67f)).build();
+    }
+
+    public static int lambda$premiumButton$7(Theme.ResourcesProvider resourcesProvider, boolean z) {
+        return Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 0.78f);
+    }
+
     public static int solveSrcColor(int i, int i2, float f) {
         float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
         if (fClamp <= 0.0f) {

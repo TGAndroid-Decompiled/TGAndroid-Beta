@@ -864,7 +864,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
+            public boolean onSingleTapUp(MotionEvent motionEvent) throws Resources.NotFoundException {
                 PeriodDay dayAtCoord;
                 if (((BaseFragment) CalendarActivity.this).parentLayout == null) {
                     return false;
@@ -1056,7 +1056,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     if (baseFragment instanceof ChatActivity) {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws Resources.NotFoundException, NumberFormatException {
+                            public final void run() throws Resources.NotFoundException {
                                 this.f$0.lambda$onLongPress$0(baseFragment, periodDay);
                             }
                         }, 300L);
@@ -1065,7 +1065,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 CalendarActivity.this.finishPreviewFragment();
             }
 
-            public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) throws Resources.NotFoundException, NumberFormatException {
+            public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) throws Resources.NotFoundException {
                 CalendarActivity.this.finishFragment();
                 ((ChatActivity) baseFragment).jumpToDate(periodDay.date);
             }

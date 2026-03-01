@@ -86,6 +86,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     private boolean animateEmptyView;
     public boolean applyPaddingToSections;
     private Paint backgroundPaint;
+    private boolean canCaptureSectionsDecorator;
     private Runnable clickRunnable;
     private final Path clipPath;
     private int currentChildPosition;
@@ -2757,22 +2758,22 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             canvas.restore();
             return;
         }
+        int itemDecorationCount = getItemDecorationCount();
+        for (int i = 0; i < itemDecorationCount; i++) {
+            Object itemDecorationAt = getItemDecorationAt(i);
+            if ((itemDecorationAt instanceof IBlur3Capture) && (itemDecorationAt != this.sectionsItemDecoration || this.canCaptureSectionsDecorator)) {
+                ((IBlur3Capture) itemDecorationAt).capture(canvas, rectF);
+            }
+        }
         int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = getChildAt(i2);
             float x = childAt.getX();
             float y = childAt.getY();
             if (rectF.intersects(x, y, childAt.getWidth() + x, childAt.getHeight() + y)) {
                 this.ignoreClipChild = true;
                 drawChild(canvas, childAt, jUptimeMillis);
                 this.ignoreClipChild = false;
-            }
-        }
-        int itemDecorationCount = getItemDecorationCount();
-        for (int i2 = 0; i2 < itemDecorationCount; i2++) {
-            Object itemDecorationAt = getItemDecorationAt(i2);
-            if (itemDecorationAt instanceof IBlur3Capture) {
-                ((IBlur3Capture) itemDecorationAt).capture(canvas, rectF);
             }
         }
     }
@@ -2787,22 +2788,26 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             iBlur3Hash.unsupported();
             return;
         }
+        int itemDecorationCount = getItemDecorationCount();
+        for (int i = 0; i < itemDecorationCount; i++) {
+            Object itemDecorationAt = getItemDecorationAt(i);
+            if ((itemDecorationAt instanceof IBlur3Capture) && (itemDecorationAt != this.sectionsItemDecoration || this.canCaptureSectionsDecorator)) {
+                ((IBlur3Capture) itemDecorationAt).captureCalculateHash(iBlur3Hash, rectF);
+            }
+        }
         int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = getChildAt(i2);
             float x = childAt.getX();
             float y = childAt.getY();
             if (rectF.intersects(x, y, childAt.getWidth() + x, childAt.getHeight() + y)) {
                 iBlur3Hash.add(childAt);
             }
         }
-        int itemDecorationCount = getItemDecorationCount();
-        for (int i2 = 0; i2 < itemDecorationCount; i2++) {
-            Object itemDecorationAt = getItemDecorationAt(i2);
-            if (itemDecorationAt instanceof IBlur3Capture) {
-                ((IBlur3Capture) itemDecorationAt).captureCalculateHash(iBlur3Hash, rectF);
-            }
-        }
+    }
+
+    public void setCaptureSectionsDecoratorAllowed(boolean z) {
+        this.canCaptureSectionsDecorator = z;
     }
 
     public View findViewByPosition(int i) {
@@ -2914,7 +2919,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         if (itemDecoration != null) {
             removeItemDecoration(itemDecoration);
         }
-        ListSectionsDecoration listSectionsDecoration = new ListSectionsDecoration(callbackReturn, i, z);
+        ListSectionsDecoration listSectionsDecoration = new ListSectionsDecoration(this, callbackReturn, i, z);
         this.sectionsItemDecoration = listSectionsDecoration;
         addItemDecoration(listSectionsDecoration);
     }
@@ -2924,12 +2929,19 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         super.setItemAnimator(itemAnimator);
     }
 
-    public static class ListSectionsDecoration extends RecyclerView.ItemDecoration {
+    public static class ListSectionsDecoration extends RecyclerView.ItemDecoration implements IBlur3Capture {
         private boolean enableTopPadding;
         public final Utilities.CallbackReturn isSectionItem;
         private int padding;
+        public final RecyclerListView parent;
 
-        public ListSectionsDecoration(Utilities.CallbackReturn callbackReturn, int i, boolean z) {
+        @Override
+        public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
+            iBlur3Hash.unsupported();
+        }
+
+        public ListSectionsDecoration(RecyclerListView recyclerListView, Utilities.CallbackReturn callbackReturn, int i, boolean z) {
+            this.parent = recyclerListView;
             this.isSectionItem = callbackReturn;
             this.padding = i;
             this.enableTopPadding = z;
@@ -2963,6 +2975,14 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             if (recyclerView instanceof RecyclerListView) {
                 ((RecyclerListView) recyclerView).drawSectionsBackgrounds(canvas);
             }
+        }
+
+        @Override
+        public void capture(Canvas canvas, RectF rectF) {
+            canvas.save();
+            canvas.clipRect(rectF);
+            this.parent.drawSectionsBackgrounds(canvas);
+            canvas.restore();
         }
     }
 

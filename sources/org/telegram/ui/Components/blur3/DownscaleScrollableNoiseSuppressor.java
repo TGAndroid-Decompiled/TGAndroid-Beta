@@ -46,20 +46,20 @@ public class DownscaleScrollableNoiseSuppressor {
     }
 
     public DownscaleScrollableNoiseSuppressor() {
-        this(true);
+        this(true, false);
     }
 
-    public DownscaleScrollableNoiseSuppressor(boolean z) {
-        int i = 0;
-        this.allowNoiseSuppress = false;
+    public DownscaleScrollableNoiseSuppressor(boolean z, boolean z2) {
         this.tmpRectF = new RectF();
         this.builder = new Blur3HashImpl();
         this.rectRenderNodes = new ArrayList();
         boolean zIsEnabled = LiteMode.isEnabled(262144);
         this.isLiquidGlassEnabled = zIsEnabled;
         this.simpleMode = z;
-        this.k = zIsEnabled ? 1 : 8;
+        this.k = (zIsEnabled || z2) ? 1 : 8;
+        this.allowNoiseSuppress = z2;
         this.resultRenderNodes = new RenderNode[(zIsEnabled || !z) ? 2 : 1];
+        int i = 0;
         while (true) {
             RenderNode[] renderNodeArr = this.resultRenderNodes;
             if (i >= renderNodeArr.length) {
@@ -223,9 +223,18 @@ public class DownscaleScrollableNoiseSuppressor {
 
         public void onScrolled(float f, float f2) {
             int i = this.scaleX;
-            this.scrollX = i >= 2 ? (this.scrollX + f) % i : 0.0f;
+            float f3 = i >= 2 ? (this.scrollX + f) % i : 0.0f;
+            this.scrollX = f3;
             int i2 = this.scaleY;
             this.scrollY = i2 >= 2 ? (this.scrollY + f2) % i2 : 0.0f;
+            if (DownscaleScrollableNoiseSuppressor.this.allowNoiseSuppress) {
+                this.renderNodeOriginalWithOffset.setTranslationX(f3);
+                this.renderNodeOriginalWithOffset.setTranslationY(this.scrollY);
+                for (RenderNode renderNode : this.renderNodeRestored) {
+                    renderNode.setTranslationX(-this.scrollX);
+                    renderNode.setTranslationY(-this.scrollY);
+                }
+            }
         }
     }
 
@@ -338,7 +347,8 @@ public class DownscaleScrollableNoiseSuppressor {
                 if (DownscaleScrollableNoiseSuppressor.this.simpleMode) {
                     DownscaledRenderNode downscaledRenderNode = new DownscaledRenderNode(DownscaleScrollableNoiseSuppressor.this, "blur", 0);
                     this.renderNodesForBlur = downscaledRenderNode;
-                    downscaledRenderNode.setScale(8, 8);
+                    boolean z = DownscaleScrollableNoiseSuppressor.this.allowNoiseSuppress;
+                    downscaledRenderNode.setScale(z ? 16 : 8, z ? 16 : 8);
                     downscaledRenderNode.setPrimaryEffectBlur(AndroidUtilities.dpf2(40.0f), RenderNodeEffects.getSaturationX2RenderEffect());
                     this.renderNodesForGlass = null;
                     return;

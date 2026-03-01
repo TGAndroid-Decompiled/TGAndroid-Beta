@@ -286,16 +286,7 @@ public abstract class BotButtons extends FrameLayout {
     public void setSecondaryState(ButtonState buttonState, boolean z) {
         int totalHeight = getTotalHeight();
         this.state.secondary = buttonState;
-        this.buttons[1].textDrawable.cancelAnimation();
-        if (buttonState.emojiId != 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) "* ");
-            spannableStringBuilder.append((CharSequence) buttonState.text);
-            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, this.buttons[1].textDrawable.getPaint().getFontMetricsInt()), 0, 1, 33);
-            this.buttons[1].textDrawable.setText(spannableStringBuilder, z);
-        } else {
-            this.buttons[1].textDrawable.setText(buttonState.text, z);
-        }
+        setText(this.buttons[1].textDrawable, buttonState, z);
         invalidate();
         if (totalHeight == getTotalHeight() || this.whenResized == null) {
             return;
@@ -310,10 +301,8 @@ public abstract class BotButtons extends FrameLayout {
     public void setState(ButtonsState buttonsState, boolean z) {
         int totalHeight = getTotalHeight();
         this.state = buttonsState;
-        this.buttons[0].textDrawable.cancelAnimation();
-        this.buttons[0].textDrawable.setText(buttonsState.main.text, z);
-        this.buttons[1].textDrawable.cancelAnimation();
-        this.buttons[1].textDrawable.setText(buttonsState.secondary.text, z);
+        setText(this.buttons[0].textDrawable, buttonsState.main, z);
+        setText(this.buttons[1].textDrawable, buttonsState.secondary, z);
         invalidate();
         if (totalHeight != getTotalHeight() && this.whenResized != null) {
             if (totalHeight < getTotalHeight()) {
@@ -323,6 +312,19 @@ public abstract class BotButtons extends FrameLayout {
             }
         }
         setBackgroundColor(buttonsState.backgroundColor, z);
+    }
+
+    private static void setText(AnimatedTextView.AnimatedTextDrawable animatedTextDrawable, ButtonState buttonState, boolean z) {
+        animatedTextDrawable.cancelAnimation();
+        if (buttonState.emojiId != 0) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) "* ");
+            spannableStringBuilder.append((CharSequence) buttonState.text);
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, animatedTextDrawable.getPaint().getFontMetricsInt()), 0, 1, 33);
+            animatedTextDrawable.setText(spannableStringBuilder, z);
+            return;
+        }
+        animatedTextDrawable.setText(buttonState.text, z);
     }
 
     public void setBackgroundColor(int i, boolean z) {

@@ -2015,17 +2015,18 @@ public class MessageObject {
     }
 
     public boolean hasValidReplyMessageObject() {
-        MessageObject messageObject = this.replyMessageObject;
-        if (messageObject != null) {
-            TLRPC.Message message = messageObject.messageOwner;
-            if (!(message instanceof TLRPC.TL_messageEmpty)) {
-                TLRPC.MessageAction messageAction = message.action;
-                if (!(messageAction instanceof TLRPC.TL_messageActionHistoryClear) && !(messageAction instanceof TLRPC.TL_messageActionTopicCreate)) {
-                    return true;
-                }
-            }
+        MessageObject messageObject;
+        TLRPC.MessageReplyHeader messageReplyHeader;
+        TLRPC.Message message = this.messageOwner;
+        if ((message != null && (messageReplyHeader = message.reply_to) != null && messageReplyHeader.forum_topic && messageReplyHeader.reply_to_msg_id == messageReplyHeader.reply_to_top_id) || (messageObject = this.replyMessageObject) == null) {
+            return false;
         }
-        return false;
+        TLRPC.Message message2 = messageObject.messageOwner;
+        if (message2 instanceof TLRPC.TL_messageEmpty) {
+            return false;
+        }
+        TLRPC.MessageAction messageAction = message2.action;
+        return ((messageAction instanceof TLRPC.TL_messageActionHistoryClear) || (messageAction instanceof TLRPC.TL_messageActionTopicCreate)) ? false : true;
     }
 
     public void generatePaymentSentMessageText(TLRPC.User user, boolean z) {

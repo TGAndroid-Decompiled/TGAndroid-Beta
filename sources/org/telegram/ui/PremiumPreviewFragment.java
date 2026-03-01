@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -20,12 +21,14 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -100,7 +103,20 @@ import org.telegram.ui.Components.Premium.PremiumNotAvailableBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumTierCell;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SimpleThemeDescription;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
+import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
+import org.telegram.ui.Components.blur3.utils.Blur3Utils;
+import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
@@ -109,7 +125,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 public class PremiumPreviewFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     BackgroundView backgroundView;
     private FrameLayout buttonContainer;
-    private View buttonDivider;
+    private FrameLayout buttonContainerInternal;
     private FrameLayout contentView;
     SubscriptionTier currentSubscriptionTier;
     private int currentYOffset;
@@ -124,6 +140,13 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     final Bitmap gradientTextureBitmap;
     PremiumGradient.PremiumGradientTools gradientTools;
     int helpUsRow;
+    private IBlur3Capture iBlur3Capture;
+    private final BlurredBackgroundDrawableViewFactory iBlur3Factory;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryBg;
+    private final RectF iBlur3PositionMainTabs;
+    private final ArrayList iBlur3Positions;
+    private final BlurredBackgroundSource iBlur3Source;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
     boolean inc;
     private boolean isDialogVisible;
     boolean isLandscapeMode;
@@ -135,6 +158,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     int moreFeaturesStartRow;
     int moreHeaderRow;
     ArrayList morePremiumFeatures;
+    private BlurredBackgroundWithFadeDrawable navbarProtectionDrawable;
     int paddingRow;
     StarParticlesView particlesView;
     private PremiumButtonView premiumButtonView;
@@ -143,6 +167,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     float progress;
     float progressToFull;
     int rowCount;
+    private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
     int sectionRow;
     private SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialog;
     private boolean selectAnnualByDefault;
@@ -164,21 +189,26 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     float totalProgress;
     int totalTiersGradientHeight;
     private final int type;
-    private boolean whiteBackground;
+    private final boolean whiteBackground;
 
-    public static void lambda$sentPremiumButtonClick$19(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$sentPremiumButtonClick$21(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static void lambda$sentPremiumBuyCanceled$20(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$sentPremiumBuyCanceled$22(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static void lambda$sentShowFeaturePreview$21(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$sentShowFeaturePreview$23(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static void lambda$sentShowScreenStat$18(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$sentShowScreenStat$20(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
-    public static void lambda$updateButtonText$16(View view) {
+    public static void lambda$updateButtonText$18(View view) {
+    }
+
+    @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
     }
 
     @Override
@@ -322,12 +352,57 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         premiumGradientTools.y2 = 1.0f;
         premiumGradientTools.cx = 0.0f;
         premiumGradientTools.cy = 0.0f;
+        ArrayList arrayList = new ArrayList();
+        this.iBlur3Positions = arrayList;
+        RectF rectF = new RectF();
+        this.iBlur3PositionMainTabs = rectF;
+        arrayList.add(rectF);
         this.type = i;
         if (!Theme.isCurrentThemeDark() && i == 1) {
             z = true;
         }
         this.whiteBackground = z;
         this.source = str;
+        BlurredBackgroundSource blurredBackgroundSource = new BlurredBackgroundSource() {
+            private final Paint p = new Paint();
+
+            @Override
+            public void dispatchOnDrawablesRelativePositionChange() {
+                BlurredBackgroundSource.CC.$default$dispatchOnDrawablesRelativePositionChange(this);
+            }
+
+            @Override
+            public BlurredBackgroundDrawable createDrawable() {
+                return new BlurredBackgroundDrawableSource(this);
+            }
+
+            @Override
+            public void draw(Canvas canvas, float f, float f2, float f3, float f4) {
+                if (PremiumPreviewFragment.this.whiteBackground) {
+                    this.p.setColor(PremiumPreviewFragment.this.getThemedColor(Theme.key_windowBackgroundGray));
+                    canvas.drawRect(f, f2, f3, f4, this.p);
+                } else {
+                    PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
+                    premiumPreviewFragment.gradientTools.gradientMatrix(0, 0, premiumPreviewFragment.contentView.getMeasuredWidth(), PremiumPreviewFragment.this.contentView.getMeasuredHeight(), (-PremiumPreviewFragment.this.contentView.getMeasuredWidth()) * 0.1f * PremiumPreviewFragment.this.progress, 0.0f);
+                    canvas.drawRect(f, f2, f3, f4, PremiumPreviewFragment.this.gradientTools.paint);
+                }
+            }
+        };
+        this.iBlur3Source = blurredBackgroundSource;
+        if (Build.VERSION.SDK_INT >= 31) {
+            DownscaleScrollableNoiseSuppressor downscaleScrollableNoiseSuppressor = new DownscaleScrollableNoiseSuppressor(true, true);
+            this.scrollableViewNoiseSuppressor = downscaleScrollableNoiseSuppressor;
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceGlassFrosted = blurredBackgroundSourceRenderNode;
+            blurredBackgroundSourceRenderNode.setScrollableNoiseSuppressor(downscaleScrollableNoiseSuppressor, -3);
+            blurredBackgroundSourceRenderNode.setUnderSource(blurredBackgroundSource);
+            this.iBlur3Factory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceRenderNode);
+        } else {
+            this.scrollableViewNoiseSuppressor = null;
+            this.iBlur3SourceGlassFrosted = null;
+            this.iBlur3Factory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSource);
+        }
+        this.iBlur3FactoryBg = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSource);
     }
 
     public PremiumPreviewFragment setSelectAnnualByDefault() {
@@ -335,8 +410,24 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         return this;
     }
 
+    public void lambda$createView$0(Canvas canvas, RectF rectF) {
+        RecyclerListView recyclerListView = this.listView;
+        Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, this.contentView);
+    }
+
     @Override
     public View createView(Context context) {
+        this.iBlur3Capture = new IBlur3Capture() {
+            @Override
+            public final void capture(Canvas canvas, RectF rectF) {
+                this.f$0.lambda$createView$0(canvas, rectF);
+            }
+
+            @Override
+            public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF) {
+                iBlur3Hash.unsupported();
+            }
+        };
         this.hasOwnBackground = true;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, tileMode);
@@ -374,8 +465,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         Rect rect = new Rect();
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = drawableMutate;
-        int i2 = Theme.key_dialogBackground;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
         this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
         this.contentView = new FrameLayout(context) {
@@ -420,20 +510,19 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             @Override
-            protected void onMeasure(int i3, int i4) {
+            protected void onMeasure(int i2, int i3) {
                 int iDp = 0;
-                if (View.MeasureSpec.getSize(i3) > View.MeasureSpec.getSize(i4)) {
+                if (View.MeasureSpec.getSize(i2) > View.MeasureSpec.getSize(i3)) {
                     PremiumPreviewFragment.this.isLandscapeMode = true;
                 } else {
                     PremiumPreviewFragment.this.isLandscapeMode = false;
                 }
                 PremiumPreviewFragment.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
-                PremiumPreviewFragment.this.backgroundView.measure(i3, View.MeasureSpec.makeMeasureSpec(0, 0));
+                PremiumPreviewFragment.this.backgroundView.measure(i2, View.MeasureSpec.makeMeasureSpec(0, 0));
                 PremiumPreviewFragment.this.particlesView.getLayoutParams().height = PremiumPreviewFragment.this.backgroundView.getMeasuredHeight();
                 if (PremiumPreviewFragment.this.buttonContainer != null) {
                     this.ignoreLayout = true;
-                    ((FrameLayout.LayoutParams) PremiumPreviewFragment.this.buttonContainer.getLayoutParams()).height = AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight;
-                    PremiumPreviewFragment.this.buttonContainer.setPadding(0, 0, 0, AndroidUtilities.navigationBarHeight);
+                    PremiumPreviewFragment.this.buttonContainer.setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.navigationBarHeight);
                     this.ignoreLayout = false;
                 }
                 if (PremiumPreviewFragment.this.buttonContainer != null && PremiumPreviewFragment.this.buttonContainer.getVisibility() != 8) {
@@ -442,7 +531,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
                 premiumPreviewFragment.layoutManager.setAdditionalHeight((premiumPreviewFragment.statusBarHeight + iDp) - AndroidUtilities.dp(16.0f));
                 PremiumPreviewFragment.this.layoutManager.setMinimumLastViewHeight(iDp);
-                super.onMeasure(i3, i4);
+                super.onMeasure(i2, i3);
                 if (this.lastSize != ((getMeasuredHeight() + getMeasuredWidth()) << 16)) {
                     PremiumPreviewFragment.this.updateBackgroundImage();
                 }
@@ -457,8 +546,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             @Override
-            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
-                super.onLayout(z, i3, i4, i5, i6);
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientScaleX = PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredWidth() / getMeasuredWidth();
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientScaleY = PremiumPreviewFragment.this.backgroundView.imageView.getMeasuredHeight() / getMeasuredHeight();
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientStartX = (PremiumPreviewFragment.this.backgroundView.getX() + PremiumPreviewFragment.this.backgroundView.imageView.getX()) / getMeasuredWidth();
@@ -466,13 +555,16 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
 
             @Override
-            protected void onSizeChanged(int i3, int i4, int i5, int i6) {
-                super.onSizeChanged(i3, i4, i5, i6);
-                PremiumPreviewFragment.this.measureGradient(i3, i4);
+            protected void onSizeChanged(int i2, int i3, int i4, int i5) {
+                super.onSizeChanged(i2, i3, i4, i5);
+                PremiumPreviewFragment.this.measureGradient(i2, i3);
             }
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                if (Build.VERSION.SDK_INT >= 31 && PremiumPreviewFragment.this.scrollableViewNoiseSuppressor != null) {
+                    PremiumPreviewFragment.this.blur3_InvalidateBlur();
+                }
                 if (!PremiumPreviewFragment.this.isDialogVisible) {
                     PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
                     if (premiumPreviewFragment.inc) {
@@ -490,9 +582,9 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     }
                 }
                 View viewFindViewByPosition = PremiumPreviewFragment.this.listView.getLayoutManager() != null ? PremiumPreviewFragment.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                PremiumPreviewFragment.this.currentYOffset = viewFindViewByPosition != null ? viewFindViewByPosition.getBottom() : 0;
+                PremiumPreviewFragment.this.currentYOffset = viewFindViewByPosition == null ? 0 : viewFindViewByPosition.getBottom();
                 int bottom = ((BaseFragment) PremiumPreviewFragment.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
-                PremiumPreviewFragment.this.totalProgress = 1.0f - ((r4.currentYOffset - bottom) / (PremiumPreviewFragment.this.firstViewHeight - bottom));
+                PremiumPreviewFragment.this.totalProgress = 1.0f - ((r5.currentYOffset - bottom) / (PremiumPreviewFragment.this.firstViewHeight - bottom));
                 PremiumPreviewFragment premiumPreviewFragment2 = PremiumPreviewFragment.this;
                 premiumPreviewFragment2.totalProgress = Utilities.clamp(premiumPreviewFragment2.totalProgress, 1.0f, 0.0f);
                 int bottom2 = ((BaseFragment) PremiumPreviewFragment.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
@@ -513,7 +605,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 if (f3 != premiumPreviewFragment4.progressToFull) {
                     premiumPreviewFragment4.listView.invalidate();
                 }
-                float fMax = Math.max((((((((BaseFragment) PremiumPreviewFragment.this).actionBar.getMeasuredHeight() - PremiumPreviewFragment.this.statusBarHeight) - PremiumPreviewFragment.this.backgroundView.titleView.getMeasuredHeight()) / 2.0f) + PremiumPreviewFragment.this.statusBarHeight) - PremiumPreviewFragment.this.backgroundView.getTop()) - PremiumPreviewFragment.this.backgroundView.titleView.getTop(), (PremiumPreviewFragment.this.currentYOffset - ((((BaseFragment) PremiumPreviewFragment.this).actionBar.getMeasuredHeight() + PremiumPreviewFragment.this.backgroundView.getMeasuredHeight()) - PremiumPreviewFragment.this.statusBarHeight)) + AndroidUtilities.dp(PremiumPreviewFragment.this.backgroundView.tierListView.getVisibility() == 0 ? 24.0f : 16.0f));
+                float fMax = Math.max((((((((BaseFragment) PremiumPreviewFragment.this).actionBar.getMeasuredHeight() - PremiumPreviewFragment.this.statusBarHeight) - PremiumPreviewFragment.this.backgroundView.titleView.getMeasuredHeight()) / 2.0f) + PremiumPreviewFragment.this.statusBarHeight) - PremiumPreviewFragment.this.backgroundView.getTop()) - PremiumPreviewFragment.this.backgroundView.titleView.getTop(), (PremiumPreviewFragment.this.currentYOffset - ((((BaseFragment) PremiumPreviewFragment.this).actionBar.getMeasuredHeight() + PremiumPreviewFragment.this.backgroundView.getMeasuredHeight()) - PremiumPreviewFragment.this.statusBarHeight)) + AndroidUtilities.dp(PremiumPreviewFragment.this.backgroundView.tierListView.getVisibility() == 0 ? 24.0f : 16.0f) + AndroidUtilities.dp(24.0f));
                 float fDp = ((-fMax) / 4.0f) + AndroidUtilities.dp(16.0f);
                 PremiumPreviewFragment.this.backgroundView.setTranslationY(fMax);
                 PremiumPreviewFragment.this.backgroundView.imageView.setTranslationY(fDp + AndroidUtilities.dp(PremiumPreviewFragment.this.type == 1 ? 9.0f : 16.0f));
@@ -537,23 +629,30 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment.this.backgroundView.imageView.mRenderer.gradientStartY = (PremiumPreviewFragment.this.backgroundView.getY() + PremiumPreviewFragment.this.backgroundView.imageFrameLayout.getY()) / getMeasuredHeight();
                 if (!PremiumPreviewFragment.this.isDialogVisible) {
                     invalidate();
+                    PremiumPreviewFragment.this.buttonContainerInternal.invalidate();
+                    PremiumPreviewFragment.this.buttonContainer.invalidate();
                 }
                 PremiumPreviewFragment.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * PremiumPreviewFragment.this.progress, 0.0f);
                 if (PremiumPreviewFragment.this.whiteBackground) {
                     Paint paint = this.backgroundPaint;
                     PremiumPreviewFragment premiumPreviewFragment8 = PremiumPreviewFragment.this;
-                    int i3 = Theme.key_windowBackgroundGray;
-                    paint.setColor(premiumPreviewFragment8.getThemedColor(i3));
+                    int i2 = Theme.key_windowBackgroundGray;
+                    paint.setColor(premiumPreviewFragment8.getThemedColor(i2));
                     canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
                     PremiumPreviewFragment premiumPreviewFragment9 = PremiumPreviewFragment.this;
                     if (premiumPreviewFragment9.progressToFull > 0.0f && ((BaseFragment) premiumPreviewFragment9).actionBar != null) {
-                        this.backgroundPaint.setColor(ColorUtils.blendARGB(PremiumPreviewFragment.this.getThemedColor(i3), PremiumPreviewFragment.this.getThemedColor(Theme.key_windowBackgroundWhite), PremiumPreviewFragment.this.progressToFull));
+                        this.backgroundPaint.setColor(ColorUtils.blendARGB(PremiumPreviewFragment.this.getThemedColor(i2), PremiumPreviewFragment.this.getThemedColor(Theme.key_windowBackgroundWhite), PremiumPreviewFragment.this.progressToFull));
                         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), ((BaseFragment) PremiumPreviewFragment.this).actionBar.getHeight(), this.backgroundPaint);
                     }
                 } else {
                     canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), PremiumPreviewFragment.this.gradientTools.paint);
                 }
                 super.dispatchDraw(canvas);
+                if (PremiumPreviewFragment.this.buttonContainer.getVisibility() != 0) {
+                    PremiumPreviewFragment.this.navbarProtectionDrawable.setFadeHeight(AndroidUtilities.navigationBarHeight, false);
+                    PremiumPreviewFragment.this.navbarProtectionDrawable.setBounds(0, getHeight() - AndroidUtilities.navigationBarHeight, getWidth(), getHeight());
+                    PremiumPreviewFragment.this.navbarProtectionDrawable.draw(canvas);
+                }
                 if (((BaseFragment) PremiumPreviewFragment.this).parentLayout == null || !PremiumPreviewFragment.this.whiteBackground) {
                     return;
                 }
@@ -561,24 +660,28 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment premiumPreviewFragment10 = PremiumPreviewFragment.this;
                 iNavigationLayout.drawHeaderShadow(canvas, (int) (premiumPreviewFragment10.progressToFull * 255.0f), ((BaseFragment) premiumPreviewFragment10).actionBar.getBottom());
             }
-
-            @Override
-            protected boolean drawChild(Canvas canvas, View view, long j) {
-                if (view == PremiumPreviewFragment.this.listView) {
-                    canvas.save();
-                    canvas.clipRect(0, ((BaseFragment) PremiumPreviewFragment.this).actionBar.getBottom(), getMeasuredWidth(), getMeasuredHeight());
-                    super.drawChild(canvas, view, j);
-                    canvas.restore();
-                    return true;
-                }
-                return super.drawChild(canvas, view, j);
-            }
         };
+        this.iBlur3Factory.setSourceRootView(new ViewPositionWatcher(this.contentView), this.contentView);
+        this.iBlur3FactoryBg.setSourceRootView(new ViewPositionWatcher(this.contentView), this.contentView);
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setSections(true);
+        recyclerListView.setClipToOutline(true);
+        this.listView.setOutlineProvider(new ViewOutlineProvider() {
+            @Override
+            public void getOutline(View view, Outline outline) {
+                outline.setRoundRect(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + ((BaseFragment) PremiumPreviewFragment.this).actionBar.getBottom(), view.getWidth() - AndroidUtilities.dp(12.0f), view.getMeasuredHeight() + AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+            }
+        });
+        this.listView.addEdgeEffectListener(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$createView$1();
+            }
+        });
+        this.listView.setCaptureSectionsDecoratorAllowed(true);
+        this.listView.setSections(true);
         this.listView.setClipToPadding(false);
-        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, AndroidUtilities.navigationBarHeight);
+        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, AndroidUtilities.dp(48.0f) + AndroidUtilities.navigationBarHeight);
         RecyclerListView recyclerListView2 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, (AndroidUtilities.dp(68.0f) + this.statusBarHeight) - AndroidUtilities.dp(16.0f), this.listView);
         this.layoutManager = fillLastLinearLayoutManager;
@@ -587,28 +690,32 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.listView.setAdapter(new Adapter());
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
-                super.onScrollStateChanged(recyclerView, i3);
-                if (i3 == 0) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
+                super.onScrollStateChanged(recyclerView, i2);
+                if (i2 == 0) {
                     int bottom = ((BaseFragment) PremiumPreviewFragment.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
                     PremiumPreviewFragment premiumPreviewFragment = PremiumPreviewFragment.this;
                     if (premiumPreviewFragment.totalProgress > 0.5f) {
                         premiumPreviewFragment.listView.smoothScrollBy(0, premiumPreviewFragment.currentYOffset - bottom);
-                    } else {
-                        View viewFindViewByPosition = premiumPreviewFragment.listView.getLayoutManager() != null ? PremiumPreviewFragment.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                        if (viewFindViewByPosition != null && viewFindViewByPosition.getTop() < 0) {
-                            PremiumPreviewFragment.this.listView.smoothScrollBy(0, viewFindViewByPosition.getTop());
-                        }
+                        return;
                     }
+                    View viewFindViewByPosition = premiumPreviewFragment.listView.getLayoutManager() != null ? PremiumPreviewFragment.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                    if (viewFindViewByPosition == null || viewFindViewByPosition.getTop() >= 0) {
+                        return;
+                    }
+                    PremiumPreviewFragment.this.listView.smoothScrollBy(0, viewFindViewByPosition.getTop());
                 }
-                PremiumPreviewFragment.this.checkButtonDivider();
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
-                super.onScrolled(recyclerView, i3, i4);
+            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                super.onScrolled(recyclerView, i2, i3);
                 PremiumPreviewFragment.this.contentView.invalidate();
-                PremiumPreviewFragment.this.checkButtonDivider();
+                if (Build.VERSION.SDK_INT < 31 || PremiumPreviewFragment.this.scrollableViewNoiseSuppressor == null) {
+                    return;
+                }
+                PremiumPreviewFragment.this.scrollableViewNoiseSuppressor.onScrolled(i2, i3);
+                PremiumPreviewFragment.this.blur3_InvalidateBlur();
             }
         });
         this.backgroundView = new BackgroundView(context);
@@ -647,24 +754,29 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.contentView.addView(this.backgroundView, LayoutHelper.createFrame(-1, -2.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i3) {
-                this.f$0.lambda$createView$3(view, i3);
+            public final void onItemClick(View view, int i2) {
+                this.f$0.lambda$createView$5(view, i2);
             }
         });
-        this.contentView.addView(this.listView);
-        this.premiumButtonView = new PremiumButtonView(context, false, getResourceProvider());
+        this.contentView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, -48.0f));
+        this.buttonContainerInternal = new FrameLayout(context);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, false, getResourceProvider());
+        this.premiumButtonView = premiumButtonView;
+        premiumButtonView.setNonClickable();
         updateButtonText(false);
         this.buttonContainer = new FrameLayout(context);
-        View view = new View(context);
-        this.buttonDivider = view;
-        view.setBackgroundColor(Theme.getColor(Theme.key_divider));
-        this.buttonContainer.addView(this.buttonDivider, LayoutHelper.createFrame(-1, 1.0f));
-        this.buttonDivider.getLayoutParams().height = 1;
-        AndroidUtilities.updateViewVisibilityAnimated(this.buttonDivider, true, 1.0f, false);
-        this.buttonContainer.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        this.buttonContainer.setBackgroundColor(getThemedColor(i2));
+        this.buttonContainerInternal.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        this.buttonContainerInternal.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout frameLayout = this.buttonContainerInternal;
+        frameLayout.setBackground(this.iBlur3Factory.create(frameLayout).setColorProvider(BlurredBackgroundProviderImpl.premiumButton(this.resourceProvider)).setRadius(AndroidUtilities.dp(28.0f)).setPadding(AndroidUtilities.dp(8.0f)));
+        ScaleStateListAnimator.apply(this.buttonContainerInternal, 0.02f, 1.5f);
+        this.buttonContainer.addView(this.buttonContainerInternal, LayoutHelper.createFrame(-1, 72.0f, 80, 4.0f, 0.0f, 4.0f, 0.0f));
+        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable = new BlurredBackgroundWithFadeDrawable(this.iBlur3Factory.create(this.buttonContainer));
+        blurredBackgroundWithFadeDrawable.setFadeHeight(AndroidUtilities.dp(40.0f), false);
+        this.navbarProtectionDrawable = new BlurredBackgroundWithFadeDrawable(this.iBlur3Factory.create(this.contentView));
+        this.buttonContainer.setBackground(blurredBackgroundWithFadeDrawable);
         if (getUserConfig().isClientActivated()) {
-            this.contentView.addView(this.buttonContainer, LayoutHelper.createFrame(-1, 68, 80));
+            this.contentView.addView(this.buttonContainer, LayoutHelper.createFrame(-1, -2, 80));
         }
         this.fragmentView = this.contentView;
         this.actionBar.setBackground(null);
@@ -673,8 +785,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.actionBar.setAddToContainer(false);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i3) {
-                if (i3 == -1) {
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
                     PremiumPreviewFragment.this.finishFragment();
                 }
             }
@@ -688,7 +800,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$4();
+                    this.f$0.lambda$createView$6();
                 }
             }, 400L);
         }
@@ -697,7 +809,16 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public void lambda$createView$3(View view, int i) {
+    public void lambda$createView$1() {
+        this.listView.postOnAnimation(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.blur3_InvalidateBlur();
+            }
+        });
+    }
+
+    public void lambda$createView$5(View view, int i) {
         if (getUserConfig().isClientActivated()) {
             if (i == this.showAdsRow) {
                 TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
@@ -712,7 +833,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 getConnectionsManager().sendRequest(togglesponsoredmessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$createView$1(tLObject, tL_error);
+                        this.f$0.lambda$createView$3(tLObject, tL_error);
                     }
                 });
                 getMessagesStorage().updateUserInfo(userFull, false);
@@ -758,7 +879,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         showSelectStatusDialog(premiumFeatureCell, UserObject.getEmojiStatusDocumentId(getUserConfig().getCurrentUser()), new Utilities.Callback2() {
                             @Override
                             public final void run(Object obj, Object obj2) {
-                                this.f$0.lambda$createView$2(premiumFeatureCell, (Long) obj, (Integer) obj2);
+                                this.f$0.lambda$createView$4(premiumFeatureCell, (Long) obj, (Integer) obj2);
                             }
                         });
                         return;
@@ -787,16 +908,16 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public void lambda$createView$1(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$createView$3(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$0(tL_error, tLObject);
+                this.f$0.lambda$createView$2(tL_error, tLObject);
             }
         });
     }
 
-    public void lambda$createView$0(TLRPC.TL_error tL_error, TLObject tLObject) {
+    public void lambda$createView$2(TLRPC.TL_error tL_error, TLObject tLObject) {
         if (tL_error != null) {
             BulletinFactory.showError(tL_error);
         } else {
@@ -807,7 +928,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
     }
 
-    public void lambda$createView$2(PremiumFeatureCell premiumFeatureCell, Long l, Integer num) {
+    public void lambda$createView$4(PremiumFeatureCell premiumFeatureCell, Long l, Integer num) {
         TLRPC.EmojiStatus tL_emojiStatusEmpty;
         if (l == null) {
             tL_emojiStatusEmpty = new TLRPC.TL_emojiStatusEmpty();
@@ -824,7 +945,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         premiumFeatureCell.setEmoji(l == null ? 0L : l.longValue(), true);
     }
 
-    public void lambda$createView$4() {
+    public void lambda$createView$6() {
         getMediaDataController().loadPremiumPromo(false);
     }
 
@@ -859,7 +980,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         arrayList.add(new PremiumFeatureData(28, R.drawable.filled_premium_business, LocaleController.getString(R.string.TelegramBusiness), LocaleController.getString(R.string.PremiumPreviewBusinessDescription)));
         arrayList.add(new PremiumFeatureData(38, R.drawable.menu_premium_effects, LocaleController.getString(R.string.PremiumPreviewEffects), LocaleController.getString(R.string.PremiumPreviewEffectsDescription)));
         arrayList.add(new PremiumFeatureData(39, i3, LocaleController.getString(R.string.PremiumPreviewTodo), LocaleController.getString(R.string.PremiumPreviewTodoDescription)));
-        arrayList.add(new PremiumFeatureData(41, R.drawable.filled_sharing_off_24, LocaleController.getString(R.string.PremiumPreviewSharingDisable), LocaleController.getString(R.string.PremiumPreviewSharingDisableDescription)));
+        arrayList.add(new PremiumFeatureData(41, R.drawable.filled_sharing_off2_24, LocaleController.getString(R.string.PremiumPreviewSharingDisable), LocaleController.getString(R.string.PremiumPreviewSharingDisableDescription)));
         if (messagesController.premiumFeaturesTypesToPosition.size() > 0) {
             while (i2 < arrayList.size()) {
                 if (messagesController.premiumFeaturesTypesToPosition.get(((PremiumFeatureData) arrayList.get(i2)).type, -1) == -1 && !BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -872,12 +993,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return PremiumPreviewFragment.lambda$fillPremiumFeaturesList$5(messagesController, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
+                return PremiumPreviewFragment.lambda$fillPremiumFeaturesList$7(messagesController, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
             }
         });
     }
 
-    public static int lambda$fillPremiumFeaturesList$5(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
+    public static int lambda$fillPremiumFeaturesList$7(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
         return messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData.type, Integer.MAX_VALUE) - messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData2.type, Integer.MAX_VALUE);
     }
 
@@ -910,12 +1031,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return PremiumPreviewFragment.lambda$fillBusinessFeaturesList$6(messagesController, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
+                return PremiumPreviewFragment.lambda$fillBusinessFeaturesList$8(messagesController, (PremiumPreviewFragment.PremiumFeatureData) obj, (PremiumPreviewFragment.PremiumFeatureData) obj2);
             }
         });
     }
 
-    public static int lambda$fillBusinessFeaturesList$6(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
+    public static int lambda$fillBusinessFeaturesList$8(MessagesController messagesController, PremiumFeatureData premiumFeatureData, PremiumFeatureData premiumFeatureData2) {
         return messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData.type, Integer.MAX_VALUE) - messagesController.businessFeaturesTypesToPosition.get(premiumFeatureData2.type, Integer.MAX_VALUE);
     }
 
@@ -949,10 +1070,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             this.gradientCanvas.restore();
             this.backgroundView.imageView.setBackgroundBitmap(this.gradientTextureBitmap);
         }
-    }
-
-    public void checkButtonDivider() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.buttonDivider, this.listView.canScrollVertically(1), 1.0f, true);
     }
 
     public static void buyPremium(BaseFragment baseFragment, String str) throws Throwable {
@@ -1050,26 +1167,26 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         BillingController.getInstance().queryPurchases("subs", new PurchasesResponseListener() {
             @Override
             public final void onQueryPurchasesResponse(BillingResult billingResult, List list) {
-                PremiumPreviewFragment.lambda$buyPremium$14(baseFragment, z2, currentAccount, subscriptionUpdateParams, subscriptionTier2, billingResult, list);
+                PremiumPreviewFragment.lambda$buyPremium$16(baseFragment, z2, currentAccount, subscriptionUpdateParams, subscriptionTier2, billingResult, list);
             }
         });
     }
 
-    public static void lambda$buyPremium$14(final BaseFragment baseFragment, final boolean z, final int i, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier, final BillingResult billingResult, final List list) {
+    public static void lambda$buyPremium$16(final BaseFragment baseFragment, final boolean z, final int i, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier, final BillingResult billingResult, final List list) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PremiumPreviewFragment.lambda$buyPremium$13(billingResult, baseFragment, z, list, i, subscriptionUpdateParams, subscriptionTier);
+                PremiumPreviewFragment.lambda$buyPremium$15(billingResult, baseFragment, z, list, i, subscriptionUpdateParams, subscriptionTier);
             }
         });
     }
 
-    public static void lambda$buyPremium$13(BillingResult billingResult, final BaseFragment baseFragment, final boolean z, List list, final int i, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier) {
+    public static void lambda$buyPremium$15(BillingResult billingResult, final BaseFragment baseFragment, final boolean z, List list, final int i, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final SubscriptionTier subscriptionTier) {
         if (billingResult.getResponseCode() == 0) {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PremiumPreviewFragment.lambda$buyPremium$7(baseFragment, z);
+                    PremiumPreviewFragment.lambda$buyPremium$9(baseFragment, z);
                 }
             };
             if (list != null && !list.isEmpty() && !UserConfig.getInstance(i).isPremium()) {
@@ -1090,7 +1207,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         ConnectionsManager.getInstance(i).sendRequest(tL_payments_assignPlayMarketTransaction, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                PremiumPreviewFragment.lambda$buyPremium$9(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
+                                PremiumPreviewFragment.lambda$buyPremium$11(i, runnable, baseFragment, tL_payments_assignPlayMarketTransaction, tLObject, tL_error);
                             }
                         }, 66);
                         return;
@@ -1100,7 +1217,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             BillingController.getInstance().addResultListener("telegram_premium", new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    PremiumPreviewFragment.lambda$buyPremium$10(runnable, (BillingResult) obj);
+                    PremiumPreviewFragment.lambda$buyPremium$12(runnable, (BillingResult) obj);
                 }
             });
             final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
@@ -1112,13 +1229,13 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             ConnectionsManager.getInstance(i).sendRequest(tL_payments_canPurchaseStore, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    PremiumPreviewFragment.lambda$buyPremium$12(baseFragment, tL_inputStorePaymentPremiumSubscription2, subscriptionTier, subscriptionUpdateParams, i, tL_payments_canPurchaseStore, tLObject, tL_error);
+                    PremiumPreviewFragment.lambda$buyPremium$14(baseFragment, tL_inputStorePaymentPremiumSubscription2, subscriptionTier, subscriptionUpdateParams, i, tL_payments_canPurchaseStore, tLObject, tL_error);
                 }
             });
         }
     }
 
-    public static void lambda$buyPremium$7(BaseFragment baseFragment, boolean z) {
+    public static void lambda$buyPremium$9(BaseFragment baseFragment, boolean z) {
         if (baseFragment instanceof PremiumPreviewFragment) {
             PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) baseFragment;
             if (z) {
@@ -1150,7 +1267,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ((LaunchActivity) baseFragment.getParentActivity()).getFireworksOverlay().start();
     }
 
-    public static void lambda$buyPremium$9(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$buyPremium$11(final int i, Runnable runnable, final BaseFragment baseFragment, final TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TLObject tLObject, final TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.Updates) {
             MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(runnable);
@@ -1158,32 +1275,32 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PremiumPreviewFragment.lambda$buyPremium$8(i, tL_error, baseFragment, tL_payments_assignPlayMarketTransaction);
+                    PremiumPreviewFragment.lambda$buyPremium$10(i, tL_error, baseFragment, tL_payments_assignPlayMarketTransaction);
                 }
             });
         }
     }
 
-    public static void lambda$buyPremium$8(int i, TLRPC.TL_error tL_error, BaseFragment baseFragment, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
+    public static void lambda$buyPremium$10(int i, TLRPC.TL_error tL_error, BaseFragment baseFragment, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
         AlertsCreator.processError(i, tL_error, baseFragment, tL_payments_assignPlayMarketTransaction, new Object[0]);
     }
 
-    public static void lambda$buyPremium$10(Runnable runnable, BillingResult billingResult) {
+    public static void lambda$buyPremium$12(Runnable runnable, BillingResult billingResult) {
         if (billingResult.getResponseCode() == 0) {
             AndroidUtilities.runOnUIThread(runnable);
         }
     }
 
-    public static void lambda$buyPremium$12(final BaseFragment baseFragment, final TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, final SubscriptionTier subscriptionTier, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final int i, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public static void lambda$buyPremium$14(final BaseFragment baseFragment, final TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, final SubscriptionTier subscriptionTier, final BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, final int i, final TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PremiumPreviewFragment.lambda$buyPremium$11(tLObject, baseFragment, tL_inputStorePaymentPremiumSubscription, subscriptionTier, subscriptionUpdateParams, i, tL_error, tL_payments_canPurchaseStore);
+                PremiumPreviewFragment.lambda$buyPremium$13(tLObject, baseFragment, tL_inputStorePaymentPremiumSubscription, subscriptionTier, subscriptionUpdateParams, i, tL_error, tL_payments_canPurchaseStore);
             }
         });
     }
 
-    public static void lambda$buyPremium$11(TLObject tLObject, BaseFragment baseFragment, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, SubscriptionTier subscriptionTier, BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, int i, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+    public static void lambda$buyPremium$13(TLObject tLObject, BaseFragment baseFragment, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, SubscriptionTier subscriptionTier, BillingFlowParams.SubscriptionUpdateParams subscriptionUpdateParams, int i, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             BillingController.getInstance().launchBillingFlow(baseFragment != null ? baseFragment.getParentActivity() : AndroidUtilities.getActivity(), baseFragment.getAccountInstance(), tL_inputStorePaymentPremiumSubscription, Collections.singletonList(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(BillingController.PREMIUM_PRODUCT_DETAILS).setOfferToken(subscriptionTier.getOfferDetails().getOfferToken()).build()), subscriptionUpdateParams, false);
         } else {
@@ -1601,9 +1718,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     Paint paint = new Paint(1);
                     this.paint = paint;
                     paint.setColor(Theme.getColor(Theme.key_dialogBackground));
-                    if (PremiumPreviewFragment.this.whiteBackground) {
-                        this.paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), 805306368);
-                    }
                     this.path = new Path();
                 }
 
@@ -1612,7 +1726,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                     this.path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    this.path.addRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
+                    this.path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
                     canvas.drawPath(this.path, this.paint);
                     canvas.save();
                     canvas.clipPath(this.path);
@@ -1832,42 +1946,45 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 z = false;
             }
             if (BuildVars.IS_BILLING_UNAVAILABLE && this.selectedTierIndex < this.subscriptionTiers.size()) {
-                this.premiumButtonView.setButton(getPremiumButtonText(this.currentAccount, (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex)), new View.OnClickListener() {
+                this.premiumButtonView.setButton(getPremiumButtonText(this.currentAccount, (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex)), null, z);
+                this.buttonContainerInternal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) throws Throwable {
-                        this.f$0.lambda$updateButtonText$15(view);
+                        this.f$0.lambda$updateButtonText$17(view);
                     }
-                }, z);
+                });
                 return;
             }
             if (!BuildVars.useInvoiceBilling() && (!BillingController.getInstance().isReady() || this.subscriptionTiers.isEmpty() || this.selectedTierIndex >= this.subscriptionTiers.size() || ((SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex)).googlePlayProductDetails == null)) {
-                this.premiumButtonView.setButton(LocaleController.getString(R.string.Loading), new View.OnClickListener() {
+                this.premiumButtonView.setButton(LocaleController.getString(R.string.Loading), null, z);
+                this.buttonContainerInternal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PremiumPreviewFragment.lambda$updateButtonText$16(view);
+                        PremiumPreviewFragment.lambda$updateButtonText$18(view);
                     }
-                }, z);
+                });
                 this.premiumButtonView.setFlickerDisabled(true);
             } else {
                 if (this.subscriptionTiers.isEmpty() || this.selectedTierIndex >= this.subscriptionTiers.size()) {
                     return;
                 }
-                this.premiumButtonView.setButton(getPremiumButtonText(this.currentAccount, (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex)), new View.OnClickListener() {
+                this.premiumButtonView.setButton(getPremiumButtonText(this.currentAccount, (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex)), null, z);
+                this.buttonContainerInternal.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) throws Throwable {
-                        this.f$0.lambda$updateButtonText$17(view);
+                        this.f$0.lambda$updateButtonText$19(view);
                     }
-                }, z);
+                });
                 this.premiumButtonView.setFlickerDisabled(false);
             }
         }
     }
 
-    public void lambda$updateButtonText$15(View view) throws Throwable {
+    public void lambda$updateButtonText$17(View view) throws Throwable {
         buyPremium(this);
     }
 
-    public void lambda$updateButtonText$17(View view) throws Throwable {
+    public void lambda$updateButtonText$19(View view) throws Throwable {
         TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption;
         SubscriptionTier subscriptionTier = (SubscriptionTier) this.subscriptionTiers.get(this.selectedTierIndex);
         SubscriptionTier subscriptionTier2 = this.currentSubscriptionTier;
@@ -2026,7 +2143,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         connectionsManager.sendRequest(tL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PremiumPreviewFragment.lambda$sentShowScreenStat$18(tLObject, tL_error);
+                PremiumPreviewFragment.lambda$sentShowScreenStat$20(tLObject, tL_error);
             }
         });
     }
@@ -2041,7 +2158,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PremiumPreviewFragment.lambda$sentPremiumButtonClick$19(tLObject, tL_error);
+                PremiumPreviewFragment.lambda$sentPremiumButtonClick$21(tLObject, tL_error);
             }
         });
     }
@@ -2056,7 +2173,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PremiumPreviewFragment.lambda$sentPremiumBuyCanceled$20(tLObject, tL_error);
+                PremiumPreviewFragment.lambda$sentPremiumBuyCanceled$22(tLObject, tL_error);
             }
         });
     }
@@ -2083,7 +2200,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         ConnectionsManager.getInstance(i).sendRequest(tL_help_saveAppLog, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                PremiumPreviewFragment.lambda$sentShowFeaturePreview$21(tLObject, tL_error);
+                PremiumPreviewFragment.lambda$sentShowFeaturePreview$23(tLObject, tL_error);
             }
         });
     }
@@ -2235,5 +2352,14 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
     public void showSelectStatusDialog(org.telegram.ui.PremiumFeatureCell r24, java.lang.Long r25, final org.telegram.messenger.Utilities.Callback2 r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PremiumPreviewFragment.showSelectStatusDialog(org.telegram.ui.PremiumFeatureCell, java.lang.Long, org.telegram.messenger.Utilities$Callback2):void");
+    }
+
+    public void blur3_InvalidateBlur() {
+        if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
+            return;
+        }
+        this.iBlur3PositionMainTabs.set(0.0f, (this.fragmentView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(132.0f), this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight() + AndroidUtilities.dp(48.0f));
+        this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3Positions, 1);
+        this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight());
     }
 }

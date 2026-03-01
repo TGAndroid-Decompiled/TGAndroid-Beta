@@ -2642,7 +2642,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onSearchCollapse() throws Resources.NotFoundException, NumberFormatException {
+        public void onSearchCollapse() throws Resources.NotFoundException {
             SharedMediaLayout.this.searching = false;
             SharedMediaLayout.this.searchingReaction = null;
             ActionBarMenuItem actionBarMenuItem = SharedMediaLayout.this.searchItemIcon;
@@ -2682,7 +2682,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         @Override
-        public void onTextChanged(EditText editText) throws Resources.NotFoundException, NumberFormatException {
+        public void onTextChanged(EditText editText) throws Resources.NotFoundException {
             String string = editText.getText().toString();
             if (SharedMediaLayout.this.savedMessagesContainer != null) {
                 SharedMediaLayout.this.savedMessagesContainer.chatActivity.setSearchQuery(string);
@@ -3742,7 +3742,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                     boolean firstCreateView = true;
 
                     @Override
-                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+                    public void onTransitionAnimationStart(boolean z, boolean z2) throws Resources.NotFoundException {
                         if (this.firstCreateView) {
                             if (this.searchItem != null) {
                                 lambda$openSearchWithText$343("");

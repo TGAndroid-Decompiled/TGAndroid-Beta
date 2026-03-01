@@ -2929,7 +2929,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         NestedFrameLayout nestedFrameLayout = (NestedFrameLayout) this.fragmentView;
         this.contentView = nestedFrameLayout;
         nestedFrameLayout.needBlur = r8;
-        ClippedListView clippedListView = new ClippedListView(context2) {
+        ClippedListView clippedListView = new ClippedListView(context2, this.resourcesProvider) {
             private VelocityTracker velocityTracker;
 
             @Override
@@ -14758,8 +14758,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     private class ClippedListView extends RecyclerListView implements StoriesListPlaceProvider.ClippedView {
-        public ClippedListView(Context context) {
-            super(context);
+        public ClippedListView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
         }
 
         @Override

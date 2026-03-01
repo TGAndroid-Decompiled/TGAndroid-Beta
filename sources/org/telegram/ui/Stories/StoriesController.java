@@ -68,6 +68,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.LaunchActivity;
@@ -4620,6 +4621,14 @@ public class StoriesController {
                 BaseFragment lastFragment = LaunchActivity.getLastFragment();
                 if (z && lastFragment != null) {
                     new AlertDialog.Builder(lastFragment.getContext(), resourcesProvider).setTitle(LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle)).setMessage(LocaleController.getString(R.string.LiveStoryAlreadyStreaming)).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+                }
+                consumer.accept(Boolean.FALSE);
+                return;
+            }
+            if (tL_error.text.equalsIgnoreCase("PREMIUM_ACCOUNT_REQUIRED")) {
+                BaseFragment lastFragment2 = LaunchActivity.getLastFragment();
+                if (z && lastFragment2 != null) {
+                    lastFragment2.showDialog(new PremiumFeatureBottomSheet(lastFragment2, 14, true));
                 }
                 consumer.accept(Boolean.FALSE);
                 return;

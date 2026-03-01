@@ -51,7 +51,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         setClipChildren(false);
         chatActivity.getChatListView().addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) throws Resources.NotFoundException {
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 ChatSelectionReactionMenuOverlay.this.invalidatePosition();
             }
         });
@@ -149,20 +149,20 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, NumberFormatException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onReactionClicked$0();
                 }
             });
         }
 
-        public void lambda$onReactionClicked$0() throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$onReactionClicked$0() throws Resources.NotFoundException {
             if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
                 ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
             }
             hideMenu();
         }
 
-        public void hideMenu() throws Resources.NotFoundException, NumberFormatException {
+        public void hideMenu() throws Resources.NotFoundException {
             ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
         }
     }
@@ -171,11 +171,11 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         return this.isVisible && !this.hiddenByScroll;
     }
 
-    public void invalidatePosition() throws Resources.NotFoundException {
+    public void invalidatePosition() {
         invalidatePosition(true);
     }
 
-    public void invalidatePosition(boolean r12) throws android.content.res.Resources.NotFoundException {
+    public void invalidatePosition(boolean r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.invalidatePosition(boolean):void");
     }
 
@@ -238,7 +238,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             setVisibility(0);
             post(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$animateVisible$0();
                 }
             });
@@ -267,7 +267,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         duration.start();
     }
 
-    public void lambda$animateVisible$0() throws Resources.NotFoundException {
+    public void lambda$animateVisible$0() {
         this.currentPrimaryObject = findPrimaryObject();
         checkCreateReactionsLayout();
         invalidatePosition(false);

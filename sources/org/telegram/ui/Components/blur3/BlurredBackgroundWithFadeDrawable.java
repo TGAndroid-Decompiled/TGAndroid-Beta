@@ -21,7 +21,6 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
-import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 
 public class BlurredBackgroundWithFadeDrawable extends Drawable {
     private final Matrix bitmapMatrix;
@@ -69,6 +68,9 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
     }
 
     public void setFadeHeight(int i, boolean z) {
+        if (this.fadeHeight == i && this.opacity == z) {
+            return;
+        }
         this.fadeHeight = i;
         this.opacity = z;
         Paint paint = this.maskFadeGradientPaint;
@@ -153,9 +155,6 @@ public class BlurredBackgroundWithFadeDrawable extends Drawable {
             this.bitmapMatrix.postTranslate(-this.drawable.getSourceOffsetX(), -this.drawable.getSourceOffsetY());
             this.bitmapShader.setLocalMatrix(this.bitmapMatrix);
             canvas.drawRect(bounds, this.bitmapPaint);
-            return;
-        }
-        if (unwrappedSource instanceof BlurredBackgroundSourceRenderNode) {
             return;
         }
         int iSaveLayer = canvas.saveLayer(bounds.left, bounds.top, bounds.right, bounds.bottom, null);

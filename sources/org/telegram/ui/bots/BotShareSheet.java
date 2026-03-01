@@ -2,7 +2,6 @@ package org.telegram.ui.bots;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -161,7 +160,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         runnable.run();
     }
 
-    public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) throws Resources.NotFoundException, NumberFormatException {
+    public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) {
         super(context, null, false, false, false, resourcesProvider);
         this.openedDialogsActivity = false;
         this.sent = false;
