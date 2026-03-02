@@ -4512,7 +4512,7 @@ public abstract class AlertsCreator {
         if (context == null) {
             return null;
         }
-        ScheduleDatePickerColors scheduleDatePickerColors = new ScheduleDatePickerColors();
+        ScheduleDatePickerColors scheduleDatePickerColors = new ScheduleDatePickerColors(resourcesProvider);
         final BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
         builder.setApplyBottomPadding(false);
         long jCurrentTimeMillis = System.currentTimeMillis();
@@ -4701,32 +4701,7 @@ public abstract class AlertsCreator {
         calendar.set(2, 0);
         calendar.add(2, i2 - 120);
         if (calendar.get(1) == i) {
-            switch (i2 % 12) {
-                case 0:
-                    return LocaleController.getString(R.string.January);
-                case 1:
-                    return LocaleController.getString(R.string.February);
-                case 2:
-                    return LocaleController.getString(R.string.March);
-                case 3:
-                    return LocaleController.getString(R.string.April);
-                case 4:
-                    return LocaleController.getString(R.string.May);
-                case 5:
-                    return LocaleController.getString(R.string.June);
-                case 6:
-                    return LocaleController.getString(R.string.July);
-                case 7:
-                    return LocaleController.getString(R.string.August);
-                case 8:
-                    return LocaleController.getString(R.string.September);
-                case 9:
-                    return LocaleController.getString(R.string.October);
-                case 10:
-                    return LocaleController.getString(R.string.November);
-                default:
-                    return LocaleController.getString(R.string.December);
-            }
+            return LocaleController.getInstance().getFormatterMonthOnly().format(calendar.getTimeInMillis());
         }
         return LocaleController.getInstance().getFormatterMonthYear().format(calendar.getTimeInMillis());
     }
@@ -8322,13 +8297,13 @@ public abstract class AlertsCreator {
     public static void lambda$showCallsForbidden$234(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() {
                 AlertsCreator.lambda$showCallsForbidden$233(tLObject, i, buttonWithCounterView, bottomSheet, j, tL_error, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$showCallsForbidden$233(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException {
+    public static void lambda$showCallsForbidden$233(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(i).putUsers(updates.users, false);

@@ -10738,10 +10738,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
 
                 @Override
-                public void onOpen() {
-                }
-
-                @Override
                 public void onPreClose() {
                     PhotoViewer.PhotoViewerProvider.CC.$default$onPreClose(this);
                 }
@@ -10799,6 +10795,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 @Override
                 public String getDeleteMessageString() {
                     return "";
+                }
+
+                @Override
+                public void onOpen() {
+                    PhotoViewer.getInstance().openKeyboard();
                 }
 
                 @Override

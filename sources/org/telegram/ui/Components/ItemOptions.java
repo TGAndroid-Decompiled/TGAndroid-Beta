@@ -153,6 +153,10 @@ public class ItemOptions {
         return new ItemOptions(viewGroup, resourcesProvider, view, z, z2);
     }
 
+    public static ItemOptions makeOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z, boolean z2, boolean z3) {
+        return new ItemOptions(viewGroup, resourcesProvider, view, z, z2, z3);
+    }
+
     public ItemOptions setRoundRadius(int i, int i2) {
         this.scrimViewRoundRadius = i;
         this.scrimViewPadding = i2;
@@ -202,6 +206,10 @@ public class ItemOptions {
     }
 
     private ItemOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z, boolean z2) {
+        this(viewGroup, resourcesProvider, view, z, z2, false);
+    }
+
+    private ItemOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z, boolean z2, boolean z3) {
         this.gravity = 5;
         this.point = new float[2];
         this.drawScrim = true;
@@ -218,6 +226,7 @@ public class ItemOptions {
         this.dimAlpha = ((double) AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider))) > 0.705d ? 102 : 51;
         this.swipeback = z;
         this.shownFromBottom = z2;
+        this.useScrollView = z3;
         init();
     }
 

@@ -227,6 +227,7 @@ import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.Crop.CropTransform;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditCoverButton;
+import org.telegram.ui.Components.EditTextEmoji;
 import org.telegram.ui.Components.FilterGLThread;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.FloatSeekBarAccessibilityDelegate;
@@ -13990,6 +13991,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.disableShowCheck = false;
             placeProviderObject.imageReceiver.setVisible(false, true);
         }
+    }
+
+    public void openKeyboard() {
+        EditTextEmoji editTextEmoji;
+        CaptionContainerView captionView = getCaptionView();
+        if (captionView == null || (editTextEmoji = captionView.editText) == null) {
+            return;
+        }
+        editTextEmoji.openKeyboard();
     }
 
     public void initEmbedVideo(int i) {

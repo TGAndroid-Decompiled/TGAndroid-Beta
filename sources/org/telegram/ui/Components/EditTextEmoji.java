@@ -391,7 +391,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 ItemOptions itemOptions = this.formatOptions;
                 if (itemOptions == null) {
                     this.editText.hideActionMode();
-                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(sizeNotifierFrameLayout, resourcesProvider, this.emojiButton);
+                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(sizeNotifierFrameLayout, resourcesProvider, this.emojiButton, false, false, true);
                     itemOptionsMakeOptions.setMaxHeight(AndroidUtilities.dp(280.0f));
                     final EditTextCaption editTextCaption = this.editText;
                     Objects.requireNonNull(editTextCaption);

@@ -5,12 +5,18 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Outline;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Region;
+import android.graphics.Shader;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -59,6 +65,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.GradientProtectionDrawable;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -359,7 +366,7 @@ public final class FloatingToolbar {
                 } else {
                     imageButton.setBackground(Theme.createSelectorDrawable(553648127, 1));
                     frameLayout.setBackground(Theme.createSelectorDrawable(553648127, 2));
-                    view2.setBackgroundColor(-16777216);
+                    view2.setBackgroundColor(553648127);
                     themedColor = -328966;
                 }
             } else {
@@ -932,7 +939,7 @@ public final class FloatingToolbar {
                 boolean zHasNext = it.hasNext();
                 boolean z2 = !zHasNext;
                 if (menuItem == null || FloatingToolbar.this.premiumLockClickListener == null || !FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId()))) {
-                    View viewCreateMenuItemButton = FloatingToolbar.this.createMenuItemButton(this.mContext, menuItem, this.mIconTextSpacing, z, z2);
+                    View viewCreateMenuItemButton = FloatingToolbar.this.createMenuItemButton(this.mContext, menuItem, this.mIconTextSpacing, false, z, z2);
                     if (viewCreateMenuItemButton instanceof LinearLayout) {
                         ((LinearLayout) viewCreateMenuItemButton).setGravity(17);
                     }
@@ -1096,12 +1103,15 @@ public final class FloatingToolbar {
             overflowPanel.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
             overflowPanel.setDivider(null);
             overflowPanel.setDividerHeight(0);
-            overflowPanel.setAdapter((ListAdapter) new ArrayAdapter(this.mContext, 0) {
+            ArrayAdapter arrayAdapter = new ArrayAdapter(this.mContext, 0) {
                 @Override
                 public View getView(int i, View view, ViewGroup viewGroup) {
                     return FloatingToolbarPopup.this.mOverflowPanelViewHelper.getView((MenuItem) getItem(i), FloatingToolbarPopup.this.mOverflowPanelSize.getWidth(), view);
                 }
-            });
+            };
+            overflowPanel.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(2.0f));
+            overflowPanel.setClipToPadding(false);
+            overflowPanel.setAdapter((ListAdapter) arrayAdapter);
             overflowPanel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public final void onItemClick(AdapterView adapterView, View view, int i, long j) {
@@ -1196,10 +1206,34 @@ public final class FloatingToolbar {
         }
 
         final class OverflowPanel extends ListView {
+            private final int fadeH;
             private final FloatingToolbarPopup mPopup;
+            private final Matrix matrix;
+            private final Paint paintBottom;
+            private final Paint paintTop;
+            private final Shader shaderBottom;
+            private final Shader shaderTop;
 
             OverflowPanel(FloatingToolbarPopup floatingToolbarPopup) {
                 super(floatingToolbarPopup.mContext);
+                this.fadeH = 16;
+                float fDp = AndroidUtilities.dp(16.0f);
+                int[] iArrGenerateColors = generateColors(-16777216);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                LinearGradient linearGradient = new LinearGradient(0.0f, fDp, 0.0f, 0.0f, iArrGenerateColors, (float[]) null, tileMode);
+                this.shaderTop = linearGradient;
+                LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), generateColors(-16777216), (float[]) null, tileMode);
+                this.shaderBottom = linearGradient2;
+                Paint paint = new Paint(1);
+                this.paintTop = paint;
+                Paint paint2 = new Paint(1);
+                this.paintBottom = paint2;
+                this.matrix = new Matrix();
+                paint.setShader(linearGradient);
+                PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
+                paint.setXfermode(new PorterDuffXfermode(mode));
+                paint2.setShader(linearGradient2);
+                paint2.setXfermode(new PorterDuffXfermode(mode));
                 this.mPopup = floatingToolbarPopup;
                 setVerticalScrollBarEnabled(false);
                 setOutlineProvider(new ViewOutlineProvider() {
@@ -1214,6 +1248,40 @@ public final class FloatingToolbar {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.mPopup.mOverflowPanelSize.getHeight() - this.mPopup.mOverflowButtonSize.getHeight(), 1073741824));
+            }
+
+            private int[] generateColors(int i) {
+                int[] iArr = new int[8];
+                GradientProtectionDrawable.fillColors(GradientProtectionDrawable.DEFAULT_INTERPOLATOR, i, iArr);
+                return iArr;
+            }
+
+            @Override
+            protected void onSizeChanged(int i, int i2, int i3, int i4) {
+                this.matrix.reset();
+                this.matrix.postTranslate(0.0f, i2 - AndroidUtilities.dp(16.0f));
+                this.shaderBottom.setLocalMatrix(this.matrix);
+            }
+
+            @Override
+            public boolean drawChild(Canvas canvas, View view, long j) {
+                float y = view.getY();
+                float height = y + view.getHeight();
+                boolean z = y < ((float) AndroidUtilities.dp(16.0f));
+                boolean z2 = height > ((float) (getHeight() - AndroidUtilities.dp(16.0f)));
+                if (z || z2) {
+                    canvas.saveLayer(0.0f, y, getWidth(), height, null);
+                    boolean zDrawChild = super.drawChild(canvas, view, j);
+                    if (z) {
+                        canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(16.0f), this.paintTop);
+                    }
+                    if (z2) {
+                        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.dp(16.0f), getWidth(), getHeight(), this.paintBottom);
+                    }
+                    canvas.restore();
+                    return zDrawChild;
+                }
+                return super.drawChild(canvas, view, j);
             }
 
             @Override
@@ -1277,7 +1345,7 @@ public final class FloatingToolbar {
             }
 
             private View createMenuButton(MenuItem menuItem) {
-                View viewCreateMenuItemButton = FloatingToolbar.this.createMenuItemButton(this.mContext, menuItem, this.mIconTextSpacing, false, false);
+                View viewCreateMenuItemButton = FloatingToolbar.this.createMenuItemButton(this.mContext, menuItem, this.mIconTextSpacing, true, false, false);
                 int i = this.mSidePadding;
                 viewCreateMenuItemButton.setPadding(i, 0, i, 0);
                 return viewCreateMenuItemButton;
@@ -1285,15 +1353,15 @@ public final class FloatingToolbar {
         }
     }
 
-    public View createMenuItemButton(Context context, MenuItem menuItem, int i, boolean z, boolean z2) {
+    public View createMenuItemButton(Context context, MenuItem menuItem, int i, boolean z, boolean z2, boolean z3) {
         int themedColor;
         int i2;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-        boolean z3 = false;
+        boolean z4 = false;
         linearLayout.setOrientation(0);
         linearLayout.setMinimumWidth(AndroidUtilities.dp(48.0f));
-        linearLayout.setMinimumHeight(AndroidUtilities.dp(48.0f));
+        linearLayout.setMinimumHeight(AndroidUtilities.dp(z ? 42.0f : 48.0f));
         linearLayout.setPaddingRelative(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         TextView textView = new TextView(context);
         textView.setGravity(17);
@@ -1319,13 +1387,13 @@ public final class FloatingToolbar {
         } else {
             themedColor = getThemedColor(Theme.key_windowBackgroundWhiteBlackText);
         }
-        if (z || z2) {
-            linearLayout.setBackground(Theme.createRadSelectorDrawable(themedColor2, z ? 12 : 0, z2 ? 12 : 0, z2 ? 12 : 0, z ? 12 : 0));
+        if (z2 || z3) {
+            linearLayout.setBackground(Theme.createRadSelectorDrawable(themedColor2, z2 ? 12 : 0, z3 ? 12 : 0, z3 ? 12 : 0, z2 ? 12 : 0));
         } else {
             linearLayout.setBackground(Theme.getSelectorDrawable(themedColor2, false));
         }
         textView.setPaddingRelative(AndroidUtilities.dp(11.0f), 0, 0, 0);
-        linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, AndroidUtilities.dp(48.0f)));
+        linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, AndroidUtilities.dp(z ? 42.0f : 48.0f)));
         linearLayout.addView(new Space(context), new LinearLayout.LayoutParams(-1, 1, 1.0f));
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.msg_mini_lock3);
@@ -1336,11 +1404,11 @@ public final class FloatingToolbar {
         if (menuItem != null) {
             if (this.premiumLockClickListener != null) {
                 i2 = i;
-                z3 = true;
+                z4 = true;
             } else {
                 i2 = i;
             }
-            updateMenuItemButton(linearLayout, menuItem, i2, z3);
+            updateMenuItemButton(linearLayout, menuItem, i2, z4);
         }
         return linearLayout;
     }

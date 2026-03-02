@@ -1145,6 +1145,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 } else if (!((ChatActivity) baseFragment).isShouldHaveLightNavigationBarIcons()) {
                     c = 1;
                 }
+                if (getBottomSheetTabs() != null && getBottomSheetTabs().getHeight(false) > 0) {
+                    c = 0;
+                }
                 if (this.actionBarLayout.getSheetFragment(false) != null) {
                     EmptyBaseFragment sheetFragment = this.actionBarLayout.getSheetFragment(false);
                     if (sheetFragment.sheetsStack != null) {
