@@ -1615,7 +1615,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException {
+        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
             ChatActivityEnterView chatActivityEnterView;
             super.onTransitionAnimationEnd(z, z2);
             if (!z || (chatActivityEnterView = this.chatActivityEnterView) == null) {

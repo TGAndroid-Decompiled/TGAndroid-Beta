@@ -368,7 +368,7 @@ public abstract class MessageEntityView extends EntityView {
             private final ArrayList drawingGroups = new ArrayList(10);
 
             @Override
-            protected void dispatchDraw(Canvas canvas) throws Resources.NotFoundException {
+            protected void dispatchDraw(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
                 canvas.save();
                 this.selectorRect.setEmpty();
                 drawChatBackgroundElements(canvas);
@@ -377,7 +377,7 @@ public abstract class MessageEntityView extends EntityView {
                 canvas.restore();
             }
 
-            private void drawChatForegroundElements(android.graphics.Canvas r17) throws android.content.res.Resources.NotFoundException {
+            private void drawChatForegroundElements(android.graphics.Canvas r17) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChatForegroundElements(android.graphics.Canvas):void");
             }
 
@@ -452,7 +452,7 @@ public abstract class MessageEntityView extends EntityView {
                     }
 
                     @Override
-                    protected void onDraw(Canvas canvas) throws Resources.NotFoundException {
+                    protected void onDraw(Canvas canvas) throws Resources.NotFoundException, NumberFormatException {
                         AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
                         PreviewView.TextureViewHolder textureViewHolder2 = textureViewHolder;
                         if ((textureViewHolder2 != null && textureViewHolder2.active && textureViewHolder2.textureViewActive) || MessageEntityView.this.clipVideoMessageForBitmap) {
@@ -520,7 +520,7 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws Resources.NotFoundException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws Resources.NotFoundException, NumberFormatException {
                 MessageObject.GroupedMessagePosition position;
                 MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
                 View view = viewHolder.itemView;

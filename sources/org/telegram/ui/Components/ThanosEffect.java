@@ -877,7 +877,7 @@ public class ThanosEffect extends TextureView {
                 this.bitmap = bitmap;
             }
 
-            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r37, final java.util.ArrayList r38, java.lang.Runnable r39) throws android.content.res.Resources.NotFoundException {
+            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r37, final java.util.ArrayList r38, java.lang.Runnable r39) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, java.util.ArrayList, java.lang.Runnable):void");
             }
 
@@ -891,7 +891,7 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            private void drawChildElement(View view, ChatActivity chatActivity, Canvas canvas, float f, ChatMessageCell chatMessageCell, int i, float f2, float f3) throws Resources.NotFoundException {
+            private void drawChildElement(View view, ChatActivity chatActivity, Canvas canvas, float f, ChatMessageCell chatMessageCell, int i, float f2, float f3) throws Resources.NotFoundException, NumberFormatException {
                 canvas.save();
                 float alpha = chatMessageCell.shouldDrawAlphaLayer() ? chatMessageCell.getAlpha() : 1.0f;
                 canvas.translate(f2, f3);

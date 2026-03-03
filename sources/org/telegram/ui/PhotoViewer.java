@@ -5066,6 +5066,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         };
         this.captionEdit = captionPhotoViewer2;
         captionPhotoViewer2.setBlurredBackgroundDrawableForMentions(this.iBlur3FactoryFrostedLiquidGlass);
+        this.captionEdit.editText.getEditText().setBlurredBackgroundDrawableViewFactory(this.iBlur3FactoryFrostedLiquidGlass);
         this.captionEdit.setOnTimerChange(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {

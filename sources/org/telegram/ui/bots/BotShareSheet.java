@@ -161,7 +161,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         runnable.run();
     }
 
-    public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) throws Resources.NotFoundException {
+    public BotShareSheet(Context context, final int i, final long j, String str, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Utilities.Callback2 callback2) throws Resources.NotFoundException, NumberFormatException {
         super(context, null, false, false, false, resourcesProvider);
         this.openedDialogsActivity = false;
         this.sent = false;

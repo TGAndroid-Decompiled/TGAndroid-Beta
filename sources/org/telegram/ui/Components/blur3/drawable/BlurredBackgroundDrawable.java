@@ -394,6 +394,12 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this.viewOutlineProvider;
     }
 
+    @Override
+    public void getOutline(Outline outline) {
+        Props props = this.boundProps;
+        getOutline(outline, props.boundsWithPadding, props.radii);
+    }
+
     protected static void getOutline(Outline outline, Rect rect, float[] fArr) {
         if (radiiAreSame(fArr)) {
             outline.setRoundRect(rect, Math.min(fArr[0], Math.min(rect.width(), rect.height()) / 2.0f));

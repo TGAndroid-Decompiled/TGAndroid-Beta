@@ -13,6 +13,10 @@ import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
 
 public abstract class BlurredBackgroundProviderImpl {
+    public static int lambda$photoViewerMenu$7(Theme.ResourcesProvider resourcesProvider, boolean z) {
+        return 1073741824;
+    }
+
     public static int lambda$searchFloatingDate$3(Theme.ResourcesProvider resourcesProvider, boolean z) {
         return 855638016;
     }
@@ -112,16 +116,25 @@ public abstract class BlurredBackgroundProviderImpl {
         return 0;
     }
 
+    public static BlurredBackgroundProvider photoViewerMenu(Theme.ResourcesProvider resourcesProvider) {
+        return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
+            @Override
+            public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
+                return BlurredBackgroundProviderImpl.lambda$photoViewerMenu$7(resourcesProvider2, z);
+            }
+        }).setStrokeColorTop(687865855, 687865855).setStrokeColorBottom(352321535, 352321535).setStrokeWidth(AndroidUtilities.dpf2(0.6666667f), AndroidUtilities.dpf2(0.6666667f)).build();
+    }
+
     public static BlurredBackgroundProvider premiumButton(Theme.ResourcesProvider resourcesProvider) {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.lambda$premiumButton$7(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.lambda$premiumButton$8(resourcesProvider2, z);
             }
         }).setStrokeColorTop(-1, 553648127).setStrokeColorBottom(0, 553648127).setShadowColor(805306368, 83886079).setShadowLayer(AndroidUtilities.dpf2(4.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f)).setStrokeWidth(AndroidUtilities.dpf2(0.67f), AndroidUtilities.dpf2(0.67f)).build();
     }
 
-    public static int lambda$premiumButton$7(Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int lambda$premiumButton$8(Theme.ResourcesProvider resourcesProvider, boolean z) {
         return Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 0.78f);
     }
 

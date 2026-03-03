@@ -41,10 +41,18 @@ public class BlurredBackgroundDrawableViewFactory {
     }
 
     public BlurredBackgroundDrawable create(View view) {
-        return create(view, null);
+        return create(view, (BlurredBackgroundColorProvider) null);
     }
 
-    public BlurredBackgroundDrawable create(final View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+    public BlurredBackgroundDrawable create(View view, boolean z) {
+        return create(view, null, z);
+    }
+
+    public BlurredBackgroundDrawable create(View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+        return create(view, blurredBackgroundColorProvider, false);
+    }
+
+    public BlurredBackgroundDrawable create(final View view, BlurredBackgroundColorProvider blurredBackgroundColorProvider, boolean z) {
         ViewGroup viewGroup;
         final BlurredBackgroundDrawable blurredBackgroundDrawableCreateDrawable = this.source.createDrawable();
         if (this.isLiquidGlassEffectAllowed && Build.VERSION.SDK_INT >= 33 && (blurredBackgroundDrawableCreateDrawable instanceof BlurredBackgroundDrawableRenderNode)) {
@@ -62,7 +70,7 @@ public class BlurredBackgroundDrawableViewFactory {
                 public final void onPositionChanged(View view2, RectF rectF) {
                     BlurredBackgroundDrawableViewFactory.lambda$create$0(blurredBackgroundDrawableCreateDrawable, view, view2, rectF);
                 }
-            });
+            }, z);
         }
         return blurredBackgroundDrawableCreateDrawable;
     }
