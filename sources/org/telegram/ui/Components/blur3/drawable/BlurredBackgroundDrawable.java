@@ -134,6 +134,18 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this;
     }
 
+    public BlurredBackgroundDrawable setHasPadding(boolean z) {
+        this.boundProps.hasPadding = z;
+        return this;
+    }
+
+    @Override
+    public boolean getPadding(Rect rect) {
+        int i = this.boundProps.padding;
+        rect.set(i, i, i, i);
+        return this.boundProps.hasPadding;
+    }
+
     public BlurredBackgroundDrawable setRadius(float f) {
         Arrays.fill(this.boundProps.radii, f);
         Arrays.fill(this.boundProps.shaderRadii, f);
@@ -248,6 +260,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     }
 
     protected static class Props {
+        public boolean hasPadding;
         public int liquidThickness;
         public int padding;
         public float strokeWidthBottom;

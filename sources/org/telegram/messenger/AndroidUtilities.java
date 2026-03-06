@@ -24,9 +24,12 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
@@ -6366,6 +6369,15 @@ public class AndroidUtilities {
             return isContextSafe(((ContextWrapper) context).getBaseContext());
         }
         return true;
+    }
+
+    public static Bitmap applyColorMatrix(Bitmap bitmap, ColorMatrix colorMatrix) {
+        Paint paint = new Paint();
+        paint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        new Canvas(bitmapCreateBitmap).drawBitmap(bitmap, 0.0f, 0.0f, paint);
+        return bitmapCreateBitmap;
     }
 
     public static int applyColorMatrix(int i, ColorMatrix colorMatrix) {

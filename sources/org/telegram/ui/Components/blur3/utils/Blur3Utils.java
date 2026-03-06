@@ -1,15 +1,31 @@
 package org.telegram.ui.Components.blur3.utils;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
 public abstract class Blur3Utils {
+    private static final Matrix matrixTmp = new Matrix();
     private static final RectF captureTmpRectF = new RectF();
     private static final RectF captureTmpChildPos = new RectF();
+
+    public static boolean checkBitmapSourceMatrixScale(BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap, View view) {
+        Bitmap bitmap;
+        if (blurredBackgroundSourceBitmap == null || view == null || view.getWidth() == 0 || view.getHeight() == 0 || (bitmap = blurredBackgroundSourceBitmap.getBitmap()) == null || bitmap.isRecycled() || bitmap.getWidth() == 0 || bitmap.getHeight() == 0) {
+            return false;
+        }
+        Matrix matrix = matrixTmp;
+        matrix.reset();
+        matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
+        blurredBackgroundSourceBitmap.setMatrix(matrix);
+        return true;
+    }
 
     public static void captureRelativeParent(IBlur3Capture iBlur3Capture, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup) {
         captureRelativeParent(iBlur3Capture, canvas, rectF, view, viewGroup, 255);

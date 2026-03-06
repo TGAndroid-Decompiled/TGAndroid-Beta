@@ -4,10 +4,10 @@ import android.view.View;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.WindowInsetsCompat;
 
-public final class ActionBarLayout$$ExternalSyntheticLambda3 implements OnApplyWindowInsetsListener {
+public final class ActionBarLayout$$ExternalSyntheticLambda5 implements OnApplyWindowInsetsListener {
     public final BaseFragment f$0;
 
-    public ActionBarLayout$$ExternalSyntheticLambda3(BaseFragment baseFragment) {
+    public ActionBarLayout$$ExternalSyntheticLambda5(BaseFragment baseFragment) {
         this.f$0 = baseFragment;
     }
 

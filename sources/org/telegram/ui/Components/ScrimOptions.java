@@ -9,8 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Insets;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
@@ -21,9 +19,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
@@ -31,6 +31,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
+import org.telegram.ui.Components.blur3.utils.Blur3Utils;
+import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
 public class ScrimOptions extends Dialog {
     private Bitmap blurBitmap;
@@ -41,7 +46,8 @@ public class ScrimOptions extends Dialog {
     public final Context context;
     public final int currentAccount;
     private boolean dismissing;
-    private final android.graphics.Rect insets;
+    private final BlurredBackgroundDrawableViewFactory iBlur3Factory;
+    private final BlurredBackgroundSourceBitmap iBlur3SourceBitmap;
     private boolean isGroup;
     private ValueAnimator openAnimator;
     private float openProgress;
@@ -62,7 +68,6 @@ public class ScrimOptions extends Dialog {
     public ScrimOptions(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         this.currentAccount = UserConfig.selectedAccount;
-        this.insets = new android.graphics.Rect();
         this.scrimDrawableSw = 1.0f;
         this.scrimDrawableSh = 1.0f;
         this.dismissing = false;
@@ -105,6 +110,12 @@ public class ScrimOptions extends Dialog {
                 super.onLayout(z, i, i2, i3, i4);
                 ScrimOptions.this.layout();
             }
+
+            @Override
+            protected void onSizeChanged(int i, int i2, int i3, int i4) {
+                super.onSizeChanged(i, i2, i3, i4);
+                ScrimOptions.this.checkBitmapMatrix();
+            }
         };
         this.windowView = frameLayout;
         frameLayout.setOnClickListener(new View.OnClickListener() {
@@ -117,23 +128,18 @@ public class ScrimOptions extends Dialog {
         this.containerView = sizeNotifierFrameLayout;
         sizeNotifierFrameLayout.setClipToPadding(false);
         frameLayout.addView(sizeNotifierFrameLayout, LayoutHelper.createFrame(-1, -1, 119));
-        frameLayout.setFitsSystemWindows(true);
-        frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = new BlurredBackgroundSourceBitmap();
+        this.iBlur3SourceBitmap = blurredBackgroundSourceBitmap;
+        BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceBitmap);
+        this.iBlur3Factory = blurredBackgroundDrawableViewFactory;
+        blurredBackgroundDrawableViewFactory.setSourceRootView(new ViewPositionWatcher(frameLayout), frameLayout);
+        ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
             @Override
-            public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                int i = Build.VERSION.SDK_INT;
-                if (i < 30) {
-                    ScrimOptions.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
-                } else {
-                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    ScrimOptions.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
-                }
-                ScrimOptions.this.containerView.setPadding(ScrimOptions.this.insets.left, ScrimOptions.this.insets.top, ScrimOptions.this.insets.right, ScrimOptions.this.insets.bottom);
+            public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                ScrimOptions.this.containerView.setPadding(insets.left, insets.top, insets.right, insets.bottom);
                 ScrimOptions.this.windowView.requestLayout();
-                if (i >= 30) {
-                    return WindowInsets.CONSUMED;
-                }
-                return windowInsets.consumeSystemWindowInsets();
+                return WindowInsetsCompat.CONSUMED;
             }
         });
     }
@@ -143,7 +149,7 @@ public class ScrimOptions extends Dialog {
     }
 
     public void setItemOptions(ItemOptions itemOptions) {
-        this.options = itemOptions;
+        this.options = itemOptions.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f)).setBlurBackground(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
         this.optionsView = itemOptions.getLayout();
         FrameLayout frameLayout = new FrameLayout(this.context);
         this.optionsContainer = frameLayout;
@@ -280,10 +286,8 @@ public class ScrimOptions extends Dialog {
         attributes.dimAmount = 0.0f;
         int i = attributes.flags & (-3);
         attributes.softInputMode = 16;
-        attributes.flags = 131072 | i;
-        int i2 = Build.VERSION.SDK_INT;
         attributes.flags = i | (-1945959040);
-        if (i2 >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
@@ -295,31 +299,61 @@ public class ScrimOptions extends Dialog {
         if (view != null) {
             view.setVisibility(4);
         }
-        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+        makeGlobalBlurBitmaps(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$prepareBlur$6(view, (Bitmap) obj);
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$prepareBlur$6(view, (Bitmap) obj, (Bitmap) obj2);
             }
-        }, 14.0f);
+        });
     }
 
-    public void lambda$prepareBlur$6(View view, Bitmap bitmap) {
+    public void lambda$prepareBlur$6(View view, Bitmap bitmap, Bitmap bitmap2) {
         if (view != null) {
             view.setVisibility(0);
         }
         this.blurBitmap = bitmap;
         Paint paint = new Paint(1);
         this.blurBitmapPaint = paint;
-        Bitmap bitmap2 = this.blurBitmap;
+        Bitmap bitmap3 = this.blurBitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+        BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
         this.blurBitmapShader = bitmapShader;
         paint.setShader(bitmapShader);
-        ColorMatrix colorMatrix = new ColorMatrix();
-        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.08f : 0.25f);
-        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.07f);
-        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         this.blurMatrix = new Matrix();
+        this.iBlur3SourceBitmap.setBitmap(bitmap2);
+        checkBitmapMatrix();
+    }
+
+    public static void makeGlobalBlurBitmaps(final Utilities.Callback2 callback2) {
+        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ScrimOptions.lambda$makeGlobalBlurBitmaps$7(callback2, (Bitmap) obj);
+            }
+        }, 15.0f);
+    }
+
+    public static void lambda$makeGlobalBlurBitmaps$7(Utilities.Callback2 callback2, Bitmap bitmap) {
+        ColorMatrix colorMatrix = new ColorMatrix();
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.04f : 0.25f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.04f : -0.07f);
+        Bitmap bitmapApplyColorMatrix = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix);
+        bitmapApplyColorMatrix.setHasAlpha(false);
+        ColorMatrix colorMatrix2 = new ColorMatrix();
+        colorMatrix2.setSaturation(Theme.isCurrentThemeDark() ? 2.0f : 3.0f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, Theme.isCurrentThemeDark() ? -0.2f : -0.07f);
+        Bitmap bitmapApplyColorMatrix2 = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix2);
+        bitmapApplyColorMatrix2.setHasAlpha(false);
+        bitmap.recycle();
+        callback2.run(bitmapApplyColorMatrix, bitmapApplyColorMatrix2);
+    }
+
+    public void checkBitmapMatrix() {
+        Blur3Utils.checkBitmapSourceMatrixScale(this.iBlur3SourceBitmap, this.windowView);
+        View view = this.optionsView;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 
     public void layout() {

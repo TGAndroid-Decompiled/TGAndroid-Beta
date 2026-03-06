@@ -56,6 +56,10 @@ import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.MessagePreviewView;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
+import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Gifts.GiftSheet;
@@ -73,6 +77,7 @@ public class ItemOptions {
     private int animateToHeight;
     private int animateToWidth;
     private boolean blur;
+    private boolean blurForMenu;
     private ViewGroup container;
     private Context context;
     private int dimAlpha;
@@ -107,6 +112,7 @@ public class ItemOptions {
     private ViewTreeObserver.OnPreDrawListener preDrawListener;
     private Theme.ResourcesProvider resourcesProvider;
     private boolean scaleOut;
+    private BlurredBackgroundSourceBitmap scrimBlur3SourceBitmap;
     private View scrimView;
     private Drawable scrimViewBackground;
     private int scrimViewBackgroundShadowColor;
@@ -163,8 +169,15 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions setBlur(boolean z, boolean z2) {
+        this.blur = z;
+        this.blurForMenu = z2;
+        return this;
+    }
+
     public ItemOptions setBlur(boolean z) {
         this.blur = z;
+        this.blurForMenu = z;
         return this;
     }
 
@@ -1082,6 +1095,14 @@ public class ItemOptions {
         return this.layout;
     }
 
+    public ItemOptions setBlurBackground(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundProvider blurredBackgroundProvider, boolean z) {
+        ViewGroup viewGroup = this.layout;
+        if (viewGroup instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+            viewGroup.setBackground(blurredBackgroundDrawableViewFactory.create(viewGroup, z).setColorProvider(blurredBackgroundProvider).setPadding(AndroidUtilities.dp(8.0f)).setHasPadding(true).setRadius(AndroidUtilities.dp(12.0f)));
+        }
+        return this;
+    }
+
     public ItemOptions setBlurBackground(BlurringShader.BlurManager blurManager, float f, float f2) {
         Drawable drawableMutate = this.context.getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
         ViewGroup viewGroup = this.layout;
@@ -1428,18 +1449,34 @@ public class ItemOptions {
             if (ItemOptions.this.blur) {
                 this.blurPaint = new Paint(3);
                 ItemOptions.this.scrimView.setAlpha(0.0f);
-                AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+                ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
                     @Override
-                    public final void run(Object obj) {
-                        this.f$0.lambda$new$0((Bitmap) obj);
+                    public final void run(Object obj, Object obj2) {
+                        this.f$0.lambda$new$0((Bitmap) obj, (Bitmap) obj2);
                     }
-                }, 12.0f);
+                });
             }
         }
 
-        public void lambda$new$0(Bitmap bitmap) {
+        public void lambda$new$0(Bitmap bitmap, Bitmap bitmap2) {
             ItemOptions.this.scrimView.setAlpha(1.0f);
             this.blurBitmap = bitmap;
+            if (ItemOptions.this.scrimBlur3SourceBitmap != null) {
+                ItemOptions.this.scrimBlur3SourceBitmap.setBitmap(bitmap2);
+                Blur3Utils.checkBitmapSourceMatrixScale(ItemOptions.this.scrimBlur3SourceBitmap, this);
+                if (ItemOptions.this.layout != null) {
+                    ItemOptions.this.layout.invalidate();
+                }
+            }
+        }
+
+        @Override
+        protected void onSizeChanged(int i, int i2, int i3, int i4) {
+            super.onSizeChanged(i, i2, i3, i4);
+            Blur3Utils.checkBitmapSourceMatrixScale(ItemOptions.this.scrimBlur3SourceBitmap, this);
+            if (ItemOptions.this.layout != null) {
+                ItemOptions.this.layout.invalidate();
+            }
         }
 
         @Override

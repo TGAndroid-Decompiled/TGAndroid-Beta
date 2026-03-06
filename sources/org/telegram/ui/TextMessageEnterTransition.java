@@ -421,7 +421,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r51) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void onDraw(android.graphics.Canvas r51) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TextMessageEnterTransition.onDraw(android.graphics.Canvas):void");
     }
 

@@ -75,6 +75,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public GlassTabView[] tabs;
     private MainTabsLayout tabsView;
     private BlurredBackgroundDrawable tabsViewBackground;
+    private FrameLayout tabsViewWrapper;
     private IUpdateLayout updateLayout;
     private UpdateLayoutWrapper updateLayoutWrapper;
     private final BoolAnimator animatorTabsVisible = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380, true);
@@ -97,6 +98,9 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     private static int indexToPosition(int i) {
         return i > 2 ? i - 1 : i;
+    }
+
+    public static void lambda$createView$2(View view) {
     }
 
     @Override
@@ -324,7 +328,17 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         blurredBackgroundWithFadeDrawable.setFadeHeight(AndroidUtilities.dp(60.0f), true);
         this.fadeView.setBackground(blurredBackgroundWithFadeDrawable);
         this.contentView.addView(this.fadeView, LayoutHelper.createFrame(-1, 0, 80));
-        this.contentView.addView(this.tabsView, LayoutHelper.createFrame(344, 72, 81));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.tabsViewWrapper = frameLayout;
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                MainTabsActivity.lambda$createView$2(view);
+            }
+        });
+        this.tabsViewWrapper.addView(this.tabsView, LayoutHelper.createFrame(344, 72, 81));
+        this.tabsViewWrapper.setClipToPadding(false);
+        this.contentView.addView(this.tabsViewWrapper, LayoutHelper.createFrame(-1, -2, 80));
         UpdateLayoutWrapper updateLayoutWrapper = new UpdateLayoutWrapper(context);
         this.updateLayoutWrapper = updateLayoutWrapper;
         this.contentView.addView(updateLayoutWrapper, LayoutHelper.createFrame(-1, -2, 80));
@@ -381,7 +395,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return MainTabsActivity.lambda$openAccountSelector$2((Integer) obj, (Integer) obj2);
+                return MainTabsActivity.lambda$openAccountSelector$3((Integer) obj, (Integer) obj2);
             }
         });
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
@@ -389,7 +403,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             itemOptionsMakeOptions.add(R.drawable.msg_addbot, LocaleController.getString(R.string.AddAccount), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$openAccountSelector$3();
+                    this.f$0.lambda$openAccountSelector$4();
                 }
             });
         }
@@ -404,7 +418,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 linearLayoutAccountView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$openAccountSelector$4(iIntValue, itemOptionsMakeOptions, view2);
+                        this.f$0.lambda$openAccountSelector$5(iIntValue, itemOptionsMakeOptions, view2);
                     }
                 });
                 itemOptionsMakeOptions.addView(linearLayoutAccountView, LayoutHelper.createLinear(230, 48));
@@ -419,7 +433,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         MessagesController.getGlobalMainSettings().edit().putInt("accountswitchhint", 3).apply();
     }
 
-    public static int lambda$openAccountSelector$2(Integer num, Integer num2) {
+    public static int lambda$openAccountSelector$3(Integer num, Integer num2) {
         long j = UserConfig.getInstance(num.intValue()).loginTime;
         long j2 = UserConfig.getInstance(num2.intValue()).loginTime;
         if (j > j2) {
@@ -428,7 +442,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         return j < j2 ? -1 : 0;
     }
 
-    public void lambda$openAccountSelector$3() {
+    public void lambda$openAccountSelector$4() {
         int i = 0;
         Integer numValueOf = null;
         for (int i2 = 3; i2 >= 0; i2--) {
@@ -452,7 +466,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         }
     }
 
-    public void lambda$openAccountSelector$4(int i, ItemOptions itemOptions, View view) {
+    public void lambda$openAccountSelector$5(int i, ItemOptions itemOptions, View view) {
         if (this.currentAccount == i) {
             return;
         }
@@ -661,6 +675,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             marginLayoutParams2.bottomMargin = i;
             this.viewPager.setLayoutParams(marginLayoutParams2);
         }
+        this.tabsViewWrapper.setPadding(0, 0, 0, this.navigationBarHeight);
         if (zIsUpdateLayoutVisible) {
             windowInsetsCompat = windowInsetsCompat.inset(0, 0, 0, this.navigationBarHeight);
         }
@@ -805,10 +820,10 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     }
 
     public void checkUi_tabsPosition() {
-        int iDp = AndroidUtilities.dp(40.0f) + (-(this.navigationBarHeight + (this.updateLayoutWrapper.isUpdateLayoutVisible() ? AndroidUtilities.dp(44.0f) : 0)));
+        int iDp = AndroidUtilities.dp(40.0f) + (-(this.updateLayoutWrapper.isUpdateLayoutVisible() ? AndroidUtilities.dp(44.0f) : 0));
         float floatValue = this.animatorTabsVisible.getFloatValue();
         float fLerp = AndroidUtilities.lerp(0.85f, 1.0f, floatValue);
-        this.tabsView.setTranslationY(AndroidUtilities.lerp(iDp, r0, floatValue));
+        this.tabsViewWrapper.setTranslationY(AndroidUtilities.lerp(iDp, r0, floatValue));
         this.tabsView.setScaleX(fLerp);
         this.tabsView.setScaleY(fLerp);
         this.tabsView.setClickable(floatValue > 1.0f);
@@ -906,7 +921,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showAccountChangeHint$6();
+                    this.f$0.lambda$showAccountChangeHint$7();
                 }
             }, 1500L);
             MessagesController.getGlobalMainSettings().edit().putInt("accountswitchhint", MessagesController.getGlobalMainSettings().getInt("channelgifthint", 0) + 1).apply();
@@ -914,7 +929,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.accountSwitchHintShown = true;
     }
 
-    public void lambda$showAccountChangeHint$6() {
+    public void lambda$showAccountChangeHint$7() {
         GlassTabView[] glassTabViewArr;
         if (getContext() == null || (glassTabViewArr = this.tabs) == null) {
             return;
@@ -932,14 +947,14 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.accountSwitchHint.setOnHiddenListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showAccountChangeHint$5();
+                this.f$0.lambda$showAccountChangeHint$6();
             }
         });
         this.accountSwitchHint.setDuration(8000L);
         this.accountSwitchHint.show();
     }
 
-    public void lambda$showAccountChangeHint$5() {
+    public void lambda$showAccountChangeHint$6() {
         AndroidUtilities.removeFromParent(this.accountSwitchHint);
     }
 

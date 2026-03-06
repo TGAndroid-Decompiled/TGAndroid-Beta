@@ -4,6 +4,7 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
+import java.util.Iterator;
 import me.vkryl.core.reference.ReferenceList;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
@@ -34,6 +35,16 @@ public class BlurredBackgroundDrawableViewFactory {
 
     public void setLinkedViewsRef(ReferenceList referenceList) {
         this.linkedViews = referenceList;
+    }
+
+    public void invalidateAllLinkedViews() {
+        ReferenceList referenceList = this.linkedViews;
+        if (referenceList != null) {
+            Iterator it = referenceList.iterator();
+            while (it.hasNext()) {
+                ((View) it.next()).invalidate();
+            }
+        }
     }
 
     public void setLiquidGlassEffectAllowed(boolean z) {

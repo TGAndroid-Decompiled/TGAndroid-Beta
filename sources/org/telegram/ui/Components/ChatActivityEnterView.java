@@ -10565,6 +10565,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
         @Override
         public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) {
+            if (ChatActivityEnterView.this.parentFragment == null) {
+                return;
+            }
             PhotoViewer.getInstance().setParentActivity(ChatActivityEnterView.this.parentFragment, ChatActivityEnterView.this.parentFragment.themeDelegate);
             File pathToAttach = obj instanceof TLRPC.Document ? FileLoader.getInstance(ChatActivityEnterView.this.currentAccount).getPathToAttach((TLRPC.Document) obj) : null;
             if (pathToAttach == null) {

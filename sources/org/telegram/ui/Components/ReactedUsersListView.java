@@ -121,7 +121,7 @@ public class ReactedUsersListView extends FrameLayout {
                     }
                     reactedUserHolderView = new FrameLayout(context);
                     View view = new View(context);
-                    view.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
+                    view.setBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), 0.06f));
                     reactedUserHolderView.addView(view, LayoutHelper.createFrame(-1, 8.0f));
                     reactedUserHolderView.addView(ReactedUsersListView.this.messageContainsEmojiButton, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
                 }

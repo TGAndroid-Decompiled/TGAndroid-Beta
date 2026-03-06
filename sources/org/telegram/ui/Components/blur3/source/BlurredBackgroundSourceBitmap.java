@@ -50,6 +50,10 @@ public class BlurredBackgroundSourceBitmap implements BlurredBackgroundSource {
         }
     }
 
+    public void setMatrix(Matrix matrix) {
+        this.bitmapMatrix.set(matrix);
+    }
+
     public Matrix getMatrix() {
         return this.bitmapMatrix;
     }

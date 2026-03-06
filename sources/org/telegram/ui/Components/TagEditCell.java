@@ -170,7 +170,7 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) throws Resources.NotFoundException, NumberFormatException {
+            public void afterTextChanged(Editable editable) throws Resources.NotFoundException {
                 if (TagEditCell.this.ignoreEdit) {
                     return;
                 }

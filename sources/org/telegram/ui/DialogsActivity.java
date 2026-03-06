@@ -537,7 +537,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    public static void access$21700(DialogsActivity dialogsActivity) throws Resources.NotFoundException {
+    public static void access$21800(DialogsActivity dialogsActivity) throws Resources.NotFoundException {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -1416,17 +1416,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 currentActionBarHeight += AndroidUtilities.dp(48.0f);
             }
             this.additionalPadding = 0;
-            float alpha = (DialogsActivity.this.filterTabsView == null || DialogsActivity.this.filterTabsView.getVisibility() != 0) ? 0.0f : DialogsActivity.this.filterTabsView.getAlpha();
+            float filterTabsVisibilityFactor = DialogsActivity.this.getFilterTabsVisibilityFactor(false);
             float totalVisibility = DialogsActivity.this.topPanelLayout != null ? DialogsActivity.this.topPanelLayout.getMetadata().getTotalVisibility() : 0.0f;
-            int iDp = currentActionBarHeight + ((int) (AndroidUtilities.dp(50.0f) * alpha));
-            this.additionalPadding += (int) (AndroidUtilities.dp(50.0f) * alpha);
+            int iDp = currentActionBarHeight + ((int) (AndroidUtilities.dp(50.0f) * filterTabsVisibilityFactor));
+            this.additionalPadding += (int) (AndroidUtilities.dp(50.0f) * filterTabsVisibilityFactor);
             if (DialogsActivity.this.topPanelLayout != null) {
-                int animatedHeightWithPadding = (int) DialogsActivity.this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(7.0f), alpha));
+                int animatedHeightWithPadding = (int) DialogsActivity.this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(7.0f), filterTabsVisibilityFactor));
                 iDp += animatedHeightWithPadding;
                 this.additionalPadding += animatedHeightWithPadding;
             }
-            int iDp2 = iDp - AndroidUtilities.dp(Math.max(alpha, totalVisibility) * 5.0f);
-            this.additionalPadding -= AndroidUtilities.dp(Math.max(alpha, totalVisibility) * 5.0f);
+            int iDp2 = iDp - AndroidUtilities.dp(Math.max(filterTabsVisibilityFactor, totalVisibility) * 5.0f);
+            this.additionalPadding -= AndroidUtilities.dp(Math.max(filterTabsVisibilityFactor, totalVisibility) * 5.0f);
             int iCalculateListViewPaddingBottom = DialogsActivity.this.calculateListViewPaddingBottom();
             if (iDp2 != this.topPadding || iCalculateListViewPaddingBottom != getPaddingBottom()) {
                 setTopGlowOffset(iDp2);
@@ -3279,7 +3279,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$15(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createView$15(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -3629,7 +3629,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() throws Resources.NotFoundException {
-                    DialogsActivity.access$21700(dialogsActivity);
+                    DialogsActivity.access$21800(dialogsActivity);
                 }
             }, 100L);
         }
@@ -6310,7 +6310,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6370,7 +6370,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, NumberFormatException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -9829,7 +9829,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException {
                 this.f$0.lambda$createSearchViewPager$149(view, i2, f, f2);
             }
         });
@@ -10122,7 +10122,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$149(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$createSearchViewPager$149(View view, int i, float f, float f2) throws Resources.NotFoundException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -10907,17 +10907,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.searchViewPager.setPagesPadding(iDp + (dialogsActivityTopPanelLayout != null ? (int) dialogsActivityTopPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(7.0f)) : 0), i, z);
     }
 
+    public float getFilterTabsVisibilityFactor(boolean z) {
+        return (z ? 1.0f - this.animatorSearchVisible.getFloatValue() : 1.0f) * (1.0f - getRightSlidingProgress()) * this.animatorFilterTabsVisible.getFloatValue();
+    }
+
     public void checkUi_filterTabsVisible() {
         ViewPage viewPage;
-        float floatValue = (1.0f - this.animatorSearchVisible.getFloatValue()) * (1.0f - getRightSlidingProgress()) * this.animatorFilterTabsVisible.getFloatValue();
+        float filterTabsVisibilityFactor = getFilterTabsVisibilityFactor(true);
         FilterTabsView filterTabsView = this.filterTabsView;
         if (filterTabsView != null) {
-            boolean z = filterTabsView.getAlpha() != floatValue;
-            float fLerp = AndroidUtilities.lerp(0.98f, 1.0f, floatValue);
-            this.filterTabsView.setAlpha(floatValue);
+            boolean z = filterTabsView.getAlpha() != filterTabsVisibilityFactor;
+            float fLerp = AndroidUtilities.lerp(0.98f, 1.0f, filterTabsVisibilityFactor);
+            this.filterTabsView.setAlpha(filterTabsVisibilityFactor);
             this.filterTabsView.setScaleX(fLerp);
             this.filterTabsView.setScaleY(fLerp);
-            this.filterTabsView.setVisibility(floatValue > 0.0f ? 0 : 8);
+            this.filterTabsView.setVisibility(filterTabsVisibilityFactor > 0.0f ? 0 : 8);
             if (z && (viewPage = this.viewPages[0]) != null) {
                 viewPage.listView.requestLayout();
             }

@@ -115,7 +115,7 @@ public class WindowAnimatedInsetsProvider extends WindowInsetsAnimationCompat.Ca
     }
 
     public static WindowInsetsCompat calculateWindowInsets(WindowInsetsCompat windowInsetsCompat, View view, View view2) {
-        if (view == null || view2 == null) {
+        if (view == null || view2 == null || windowInsetsCompat == null) {
             return null;
         }
         RectF rectF = tmpRectF;
