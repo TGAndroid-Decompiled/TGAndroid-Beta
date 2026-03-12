@@ -12,29 +12,29 @@ public class ChatListViewPaddingsAnimator {
         this.recyclerView = recyclerView;
     }
 
-    public void setPaddings(int i, float f, int i2, boolean z) {
-        int i3 = this.currentAdditionalHeight;
-        if (i3 != 0 || i3 < 0) {
+    public void setPaddings(int i, float f, boolean z) {
+        int i2 = this.currentAdditionalHeight;
+        if (i2 != 0 || i2 < 0) {
             this.currentAdditionalHeight = 0;
             this.recyclerView.requestLayout();
         }
-        int i4 = (int) f;
+        int i3 = (int) f;
         int paddingTop = this.recyclerView.getPaddingTop();
         int paddingBottom = this.recyclerView.getPaddingBottom();
-        if (paddingTop == i && paddingBottom == i4) {
+        if (paddingTop == i && paddingBottom == i3) {
             return;
         }
-        final int i5 = paddingTop - i;
-        if (z && i5 != 0) {
+        final int i4 = paddingTop - i;
+        if (z && i4 != 0) {
             AndroidUtilities.doOnLayout(this.recyclerView, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setPaddings$0(i5);
+                    this.f$0.lambda$setPaddings$0(i4);
                 }
             });
         }
         RecyclerView recyclerView = this.recyclerView;
-        recyclerView.setPadding(recyclerView.getPaddingLeft(), i, this.recyclerView.getPaddingRight(), i4);
+        recyclerView.setPadding(recyclerView.getPaddingLeft(), i, this.recyclerView.getPaddingRight(), i3);
     }
 
     public void lambda$setPaddings$0(int i) {

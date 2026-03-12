@@ -5,13 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Insets;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
@@ -27,11 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import androidx.collection.LongSparseArray;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -72,8 +70,14 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScrimOptions;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
+import org.telegram.ui.Components.blur3.utils.Blur3Utils;
+import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -119,7 +123,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     private boolean focusable;
     private VisiblePart fromPart;
     private final LongSparseArray groupedMessagesMap;
-    private final Rect insets;
+    private final BlurredBackgroundDrawableViewFactory iBlur3Factory;
+    private final BlurredBackgroundSourceBitmap iBlur3SourceBitmap;
+    private Insets insets;
     private boolean keyboardVisible;
     private boolean layoutDone;
     private ChatMessageCell mainMessageCell;
@@ -158,7 +164,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         super(context, R.style.TransparentDialog);
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
-        this.insets = new Rect();
+        this.insets = Insets.NONE;
         this.messageObjects = new ArrayList();
         this.groupedMessagesMap = new LongSparseArray();
         this.editTextBackgroundPaint = new Paint(1);
@@ -198,6 +204,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     MessageSendPreview.this.layoutDone = true;
                 }
             }
+
+            @Override
+            protected void onSizeChanged(int i2, int i3, int i4, int i5) {
+                super.onSizeChanged(i2, i3, i4, i5);
+                MessageSendPreview.this.checkBitmapMatrix();
+            }
         };
         this.windowView = frameLayout;
         this.spoilerEffect2 = SpoilerEffect2.getInstance(1, frameLayout, frameLayout);
@@ -208,27 +220,22 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         });
         frameLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new AnonymousClass2());
+        BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = new BlurredBackgroundSourceBitmap();
+        this.iBlur3SourceBitmap = blurredBackgroundSourceBitmap;
+        BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceBitmap);
+        this.iBlur3Factory = blurredBackgroundDrawableViewFactory;
+        blurredBackgroundDrawableViewFactory.setSourceRootView(new ViewPositionWatcher(frameLayout), frameLayout);
         AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, resourcesProvider);
         this.containerView = anonymousClass3;
         anonymousClass3.setClipToPadding(false);
         frameLayout.addView(anonymousClass3, LayoutHelper.createFrame(-1, -1, 119));
-        frameLayout.setFitsSystemWindows(true);
-        frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
             @Override
-            public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                int i2 = Build.VERSION.SDK_INT;
-                if (i2 < 30) {
-                    MessageSendPreview.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
-                } else {
-                    Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                    MessageSendPreview.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
-                }
+            public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                MessageSendPreview.this.insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
                 MessageSendPreview.this.containerView.setPadding(MessageSendPreview.this.insets.left, MessageSendPreview.this.insets.top, MessageSendPreview.this.insets.right, MessageSendPreview.this.insets.bottom);
                 MessageSendPreview.this.windowView.requestLayout();
-                if (i2 >= 30) {
-                    return WindowInsets.CONSUMED;
-                }
-                return windowInsets.consumeSystemWindowInsets();
+                return WindowInsetsCompat.CONSUMED;
             }
         });
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
@@ -290,7 +297,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws Resources.NotFoundException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (MessageSendPreview.this.openInProgress && ((view == MessageSendPreview.this.mainMessageCell && MessageSendPreview.this.mainMessageCell != null && MessageSendPreview.this.mainMessageCell.getCurrentPosition() == null) || view == MessageSendPreview.this.sendButton)) {
                     return false;
                 }
@@ -972,7 +979,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) throws Resources.NotFoundException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
                 MessageObject messageObject = (MessageObject) MessageSendPreview.this.messageObjects.get((getItemCount() - 1) - i2);
                 ChatMessageCell chatMessageCell = (ChatMessageCell) viewHolder.itemView;
                 MessageObject.GroupedMessages validGroupedMessage = MessageSendPreview.this.getValidGroupedMessage(messageObject);
@@ -1111,7 +1118,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(final android.graphics.Canvas r30) throws android.content.res.Resources.NotFoundException {
+        protected void dispatchDraw(final android.graphics.Canvas r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass3.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1403,6 +1410,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     }
 
     public void setItemOptions(ItemOptions itemOptions) {
+        itemOptions.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
+        itemOptions.setBlurBackground(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
         ViewGroup layout = itemOptions.getLayout();
         this.optionsView = layout;
         this.containerView.addView(layout, LayoutHelper.createFrame(-2, -2.0f));
@@ -1493,7 +1502,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        public void onReactionClicked(android.view.View r18, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r19, boolean r20, boolean r21) throws android.content.res.Resources.NotFoundException {
+        public void onReactionClicked(android.view.View r18, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r19, boolean r20, boolean r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass16.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
         }
 
@@ -1933,15 +1942,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         if (sendButton != null) {
             sendButton.setAlpha(0.0f);
         }
-        AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+        ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj) {
-                this.f$0.lambda$prepareBlur$9(alpha, view, (Bitmap) obj);
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$prepareBlur$9(alpha, view, (Bitmap) obj, (Bitmap) obj2);
             }
-        }, 14.0f);
+        });
     }
 
-    public void lambda$prepareBlur$9(float f, View view, Bitmap bitmap) {
+    public void lambda$prepareBlur$9(float f, View view, Bitmap bitmap, Bitmap bitmap2) {
         ChatActivityEnterView.SendButton sendButton = this.anchorSendButton;
         if (sendButton != null) {
             sendButton.setAlpha(f);
@@ -1952,16 +1961,14 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.blurBitmap = bitmap;
         Paint paint = new Paint(1);
         this.blurBitmapPaint = paint;
-        Bitmap bitmap2 = this.blurBitmap;
+        Bitmap bitmap3 = this.blurBitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+        BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
         this.blurBitmapShader = bitmapShader;
         paint.setShader(bitmapShader);
-        ColorMatrix colorMatrix = new ColorMatrix();
-        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.08f : 0.25f);
-        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.02f : -0.07f);
-        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         this.blurMatrix = new Matrix();
+        this.iBlur3SourceBitmap.setBitmap(bitmap2);
+        checkBitmapMatrix();
     }
 
     @Override
@@ -2011,7 +2018,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         changeMessageInternal(messageObject);
     }
 
-    public void changeMessageInternal(MessageObject messageObject) throws Resources.NotFoundException {
+    public void changeMessageInternal(MessageObject messageObject) {
         ChatMessageCell chatMessageCell;
         if (this.chatListView == null) {
             return;
@@ -2099,5 +2106,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         canvas.drawRoundRect(rectF, f9, f9, this.buttonBgPaint);
         this.buttonText.draw(canvas, f8 + AndroidUtilities.dp(14.0f), f6, -1, 1.0f);
         canvas.restore();
+    }
+
+    public void checkBitmapMatrix() {
+        Blur3Utils.checkBitmapSourceMatrixScale(this.iBlur3SourceBitmap, this.windowView);
+        View view = this.optionsView;
+        if (view != null) {
+            view.invalidate();
+        }
     }
 }

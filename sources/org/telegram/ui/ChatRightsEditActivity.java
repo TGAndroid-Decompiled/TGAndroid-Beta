@@ -346,9 +346,6 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             if (!tL_chatBannedRights4.pin_messages) {
                 this.adminRights.pin_messages = z3;
             }
-            if (!tL_chatBannedRights4.edit_rank) {
-                this.adminRights.manage_ranks = z3;
-            }
         } else if (i == 1) {
             this.defaultBannedRights = tL_chatBannedRights;
             if (tL_chatBannedRights == null) {
@@ -2071,7 +2068,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     return ChatRightsEditActivity.this.myAdminRights.pin_messages && (ChatRightsEditActivity.this.defaultBannedRights == null || ChatRightsEditActivity.this.defaultBannedRights.pin_messages);
                 }
                 if (adapterPosition == ChatRightsEditActivity.this.editTagsRow) {
-                    return ChatRightsEditActivity.this.myAdminRights.manage_ranks && (ChatRightsEditActivity.this.defaultBannedRights == null || ChatRightsEditActivity.this.defaultBannedRights.edit_rank);
+                    return ChatRightsEditActivity.this.myAdminRights.manage_ranks;
                 }
                 if (adapterPosition == ChatRightsEditActivity.this.manageTopicsRow) {
                     return ChatRightsEditActivity.this.myAdminRights.manage_topics;
@@ -2428,7 +2425,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                         }
                     } else if (i == ChatRightsEditActivity.this.editTagsRow) {
                         if (ChatRightsEditActivity.this.currentType == 0 || ChatRightsEditActivity.this.currentType == 2) {
-                            textCheckCell2.setTextAndCheck(LocaleController.getString(R.string.EditAdminEditTags), (z && ChatRightsEditActivity.this.adminRights.manage_ranks) || !ChatRightsEditActivity.this.defaultBannedRights.edit_rank, true);
+                            textCheckCell2.setTextAndCheck(LocaleController.getString(R.string.EditAdminEditTags), z && ChatRightsEditActivity.this.adminRights.manage_ranks, true);
                             if (ChatRightsEditActivity.this.currentType == 2) {
                                 textCheckCell2.setIcon((ChatRightsEditActivity.this.myAdminRights.manage_ranks || z2) ? 0 : R.drawable.permission_locked);
                             }

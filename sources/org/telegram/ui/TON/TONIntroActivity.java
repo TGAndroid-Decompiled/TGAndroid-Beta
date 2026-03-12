@@ -176,7 +176,7 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.useFillLastLayoutManager = false;
         this.particlesViewHeight = AndroidUtilities.dp(238.0f);
         this.transactionsLayout = new StarsIntroActivity.StarsTransactionsLayout(context, this.currentAccount, true, 0L, getClassGuid(), getResourceProvider());
-        View view = new View(context) {
+        this.emptyLayout = new View(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 int iDp;
@@ -196,8 +196,6 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (iDp - (((GradientHeaderActivity) TONIntroActivity.this).yOffset * 2.5f)), 1073741824));
             }
         };
-        this.emptyLayout = view;
-        view.setBackgroundColor(Theme.getColor(this.allowTopUp ? Theme.key_dialogBackgroundGray : Theme.key_dialogBackground));
         super.createView(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.aboveTitleView = frameLayout;
@@ -225,8 +223,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view2, int i) {
-                this.f$0.lambda$createView$1(view2, i);
+            public final void onItemClick(View view, int i) {
+                this.f$0.lambda$createView$1(view, i);
             }
         });
         FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
@@ -276,8 +274,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             this.buyButton.setText(LocaleController.getString(R.string.TopUpViaFragment), false);
             this.buyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
-                    this.f$0.lambda$createView$2(view2);
+                public final void onClick(View view) {
+                    this.f$0.lambda$createView$2(view);
                 }
             });
             this.oneButtonsLayout.addView(this.buyButton, LayoutHelper.createFrame(-1, 48, 119));
@@ -300,8 +298,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.topUpButton.setText(spannableStringBuilder, false);
         this.topUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                this.f$0.lambda$createView$3(view2);
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$3(view);
             }
         });
         if (this.allowTopUp) {
@@ -314,8 +312,8 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
         this.withdrawButton.setText(spannableStringBuilder2, false);
         this.withdrawButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
-                this.f$0.lambda$createView$4(view2);
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$4(view);
             }
         });
         this.twoButtonsLayout.addView(this.withdrawButton, LayoutHelper.createLinear(-1, 48, 17.0f, 1, 0, 0, 0, 0));
@@ -701,10 +699,10 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             if (!this.allowTopUp) {
                 arrayList.add(UItem.asShadow(null));
             }
-            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(12.0f)));
+            arrayList.add(UItem.asFullscreenCustom(this.transactionsLayout, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(24.0f) + AndroidUtilities.navigationBarHeight));
             return;
         }
-        arrayList.add(UItem.asCustom(this.emptyLayout));
+        arrayList.add(UItem.asCustomShadow(this.emptyLayout));
     }
 
     public void onItemClick(UItem uItem, int i) {

@@ -740,7 +740,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         ChatMessageCell chatMessageCell;
         MessageObject messageObject;
         ChatMessageCell chatMessageCell2;

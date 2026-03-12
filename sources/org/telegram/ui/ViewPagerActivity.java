@@ -203,6 +203,10 @@ public abstract class ViewPagerActivity extends BaseFragment {
         for (int i = 0; i < size; i++) {
             FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
             if (fragmentState != null) {
+                if (fragmentState.isResumed) {
+                    fragmentState.fragment.onPause();
+                    fragmentState.isResumed = false;
+                }
                 fragmentState.fragment.clearViews();
             }
         }
@@ -368,9 +372,12 @@ public abstract class ViewPagerActivity extends BaseFragment {
             float f4 = f2 * f;
             this.lastVisibility = f4;
             boolean z3 = f4 > f3;
-            if (!this.isResumed && f > 0.0f) {
-                this.fragment.onResume();
-                this.isResumed = true;
+            if (!this.isResumed && f > 0.0f && z2) {
+                BaseFragment baseFragment = this.fragment;
+                if (baseFragment.fragmentView != null) {
+                    baseFragment.onResume();
+                    this.isResumed = true;
+                }
             }
             if (!this.isInAnimation && ((f3 == 0.0f || f3 == 1.0f) && f3 != f4 && Math.abs(f3 - f4) != 1.0f)) {
                 this.fragment.onTransitionAnimationStart(z3, false);

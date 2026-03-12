@@ -6,7 +6,9 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -61,6 +63,7 @@ public class StarRatingView extends View {
             return;
         }
         this.drawable.setBadgeLevel(tl_starsRating.level, true);
+        setContentDescription(LocaleController.getString(R.string.AccDescrProfileRatingLevel) + " " + tl_starsRating.level);
         invalidate();
     }
 

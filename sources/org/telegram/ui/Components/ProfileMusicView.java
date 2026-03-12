@@ -175,6 +175,7 @@ public class ProfileMusicView extends View {
     public void setText(CharSequence charSequence, CharSequence charSequence2) {
         this.author = new Text(charSequence, 11.0f, AndroidUtilities.bold());
         this.title = new Text(charSequence2, 11.0f);
+        setContentDescription(LocaleController.getString(R.string.AccDescrProfileMusic) + " " + ((Object) charSequence) + " — " + ((Object) charSequence2));
     }
 
     public void drawingBlur(boolean z) {

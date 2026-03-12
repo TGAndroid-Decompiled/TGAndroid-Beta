@@ -58,6 +58,8 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.PinchToZoomHelper;
 
 public abstract class MessagePreviewView extends FrameLayout {
@@ -67,6 +69,7 @@ public abstract class MessagePreviewView extends FrameLayout {
     TLRPC.Chat currentChat;
     TLRPC.User currentUser;
     private final ArrayList drawingGroups;
+    private final BlurredBackgroundDrawableViewFactory iBlur3Factory;
     boolean isLandscapeMode;
     final MessagePreviewParams messagePreviewParams;
     ValueAnimator offsetsAnimator;
@@ -280,7 +283,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
         }
 
-        public Page(android.content.Context r25, int r26) {
+        public Page(android.content.Context r26, int r27) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessagePreviewView.Page.<init>(org.telegram.ui.Components.MessagePreviewView, android.content.Context, int):void");
         }
 
@@ -1046,7 +1049,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException {
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, NumberFormatException {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
                         Page.this.updateLinkHighlight(this);
                     }
@@ -1496,7 +1499,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 MessagePreviewParams.Messages messages = Page.this.messages;
                 if (messages == null) {
                     return;
@@ -2016,7 +2019,7 @@ public abstract class MessagePreviewView extends FrameLayout {
         }
     }
 
-    public MessagePreviewView(final Context context, ChatActivity chatActivity, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i, ResourcesDelegate resourcesDelegate, int i2, final boolean z) {
+    public MessagePreviewView(final Context context, ChatActivity chatActivity, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i, ResourcesDelegate resourcesDelegate, int i2, final boolean z) {
         super(context);
         this.changeBoundsRunnable = new Runnable() {
             @Override
@@ -2032,6 +2035,7 @@ public abstract class MessagePreviewView extends FrameLayout {
         this.showOutdatedQuote = z;
         this.chatActivity = chatActivity;
         this.currentAccount = i;
+        this.iBlur3Factory = blurredBackgroundDrawableViewFactory;
         this.currentUser = user;
         this.currentChat = chat;
         this.messagePreviewParams = messagePreviewParams;
@@ -2067,7 +2071,9 @@ public abstract class MessagePreviewView extends FrameLayout {
                 return super.onTouchEvent(motionEvent);
             }
         };
-        this.tabsView = new TabsView(context, resourcesDelegate);
+        TabsView tabsView = new TabsView(context, resourcesDelegate);
+        this.tabsView = tabsView;
+        tabsView.setBackground(blurredBackgroundDrawableViewFactory.create(tabsView).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(resourcesDelegate)).setHasPadding(true).setPadding(AndroidUtilities.dp(8.0f)).setRadius(AndroidUtilities.dp(16.0f)));
         int size = 0;
         for (int i3 = 0; i3 < 3; i3++) {
             if (i3 == 0 && messagePreviewParams.replyMessage != null) {

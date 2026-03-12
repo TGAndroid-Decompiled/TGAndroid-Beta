@@ -1540,7 +1540,7 @@ public class ReactionsLayoutInBubble {
             return visibleReaction;
         }
 
-        public static VisibleReaction fromEmojicon(String str) {
+        public static VisibleReaction fromEmojicon(String str) throws NumberFormatException {
             if (str == null) {
                 str = "";
             }

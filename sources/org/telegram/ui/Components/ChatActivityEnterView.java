@@ -9901,8 +9901,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         setButtons(messageObject, true);
     }
 
-    public void setButtons(org.telegram.messenger.MessageObject r5, boolean r6) throws android.content.res.Resources.NotFoundException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setButtons(org.telegram.messenger.MessageObject, boolean):void");
+    public void setButtons(MessageObject messageObject, boolean z) throws Resources.NotFoundException {
+        setButtons(messageObject, true, z);
+    }
+
+    public void setButtons(org.telegram.messenger.MessageObject r5, boolean r6, boolean r7) throws android.content.res.Resources.NotFoundException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setButtons(org.telegram.messenger.MessageObject, boolean, boolean):void");
     }
 
     public void lambda$setButtons$71(TLRPC.KeyboardButton keyboardButton) throws Resources.NotFoundException {

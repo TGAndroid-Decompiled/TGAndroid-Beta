@@ -1,9 +1,9 @@
 package org.telegram.ui;
 
-public final class ChatActivity$$ExternalSyntheticLambda105 implements Runnable {
+public final class ChatActivity$$ExternalSyntheticLambda106 implements Runnable {
     public final ChatActivity f$0;
 
-    public ChatActivity$$ExternalSyntheticLambda105(ChatActivity chatActivity) {
+    public ChatActivity$$ExternalSyntheticLambda106(ChatActivity chatActivity) {
         this.f$0 = chatActivity;
     }
 

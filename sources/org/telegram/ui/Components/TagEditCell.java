@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -170,7 +169,7 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
-            public void afterTextChanged(Editable editable) throws Resources.NotFoundException {
+            public void afterTextChanged(Editable editable) {
                 if (TagEditCell.this.ignoreEdit) {
                     return;
                 }

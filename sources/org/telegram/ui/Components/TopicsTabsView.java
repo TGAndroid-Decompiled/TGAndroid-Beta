@@ -61,7 +61,7 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.TopicCreateFragment;
 
-public abstract class TopicsTabsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+public class TopicsTabsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private long animateFromSelectedTopicId;
     private ValueAnimator animator;
     private final BoolAnimator animatorCloseButtonVisibility;
@@ -82,6 +82,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     private Utilities.Callback2 onDialogSelected;
     private Runnable onTopicCreated;
     private Utilities.Callback2 onTopicSelected;
+    private Runnable onUpdateSideMenuPosition;
     private Boolean pendingSidemenu;
     private final Theme.ResourcesProvider resourcesProvider;
     private BlurredBackgroundDrawable sideMenuBackgroundDrawable;
@@ -97,6 +98,13 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     private BlurredBackgroundDrawable topMenuBackgroundDrawable;
     private final UniversalRecyclerView topTabs;
     private final FrameLayout topTabsContainer;
+    private boolean topicBottom;
+
+    public enum Position {
+        TOP,
+        LEFT,
+        BOTTOM
+    }
 
     public static void lambda$onTabLongClick$16() {
     }
@@ -152,7 +160,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             }
         }, resourcesProvider) {
             private final AnimatedFloat animateTab;
-            private final AnimatedFloat animatedClip;
+            private final AnimatedFloat animatedClipL;
+            private final AnimatedFloat animatedClipR;
             private final GradientClip clip = new GradientClip();
             private final Paint linePaint;
             private final RectF lineRect;
@@ -162,7 +171,8 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
             {
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                this.animatedClip = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
+                this.animatedClipL = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
+                this.animatedClipR = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
                 this.lineRect = new RectF();
                 this.linePaint = new Paint(1);
                 this.animateTab = new AnimatedFloat(this, 420L, cubicBezierInterpolator);
@@ -171,8 +181,10 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                float f = this.animatedClip.set(canScrollHorizontally(-1));
-                if (f > 0.0f) {
+                float f = this.animatedClipL.set(canScrollHorizontally(-1));
+                float f2 = this.animatedClipR.set(canScrollHorizontally(1));
+                boolean z = f > 0.0f || f2 > 0.0f;
+                if (z) {
                     canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
                 }
                 drawPinnedBackground(canvas);
@@ -210,11 +222,18 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                     this.linePaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 31));
                     canvas.drawRoundRect(this.lineRect, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.linePaint);
                 }
-                if (f > 0.0f) {
+                if (z) {
                     canvas.save();
-                    RectF rectF2 = AndroidUtilities.rectTmp;
-                    rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(12.0f), getHeight());
-                    this.clip.draw(canvas, rectF2, 0, f);
+                    if (f > 0.0f) {
+                        RectF rectF2 = AndroidUtilities.rectTmp;
+                        rectF2.set(0.0f, 0.0f, AndroidUtilities.dp(12.0f), getHeight());
+                        this.clip.draw(canvas, rectF2, 0, f);
+                    }
+                    if (f2 > 0.0f) {
+                        RectF rectF3 = AndroidUtilities.rectTmp;
+                        rectF3.set(getWidth() - AndroidUtilities.dp(12.0f), 0.0f, getWidth(), getHeight());
+                        this.clip.draw(canvas, rectF3, 2, f2);
+                    }
                     canvas.restore();
                     canvas.restore();
                 }
@@ -395,7 +414,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 }
             }
         });
-        int i2 = R.drawable.menu_sidebar;
+        int i2 = R.drawable.menu_sidebar_left;
         ImageView imageViewCreateButton = createButton(context, i2, new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -430,10 +449,14 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         frameLayout.addView(imageViewCreateButton3, LayoutHelper.createFrame(44, 36, 51));
         frameLayout2.addView(imageViewCreateButton4, LayoutHelper.createFrame(64, 48, 51));
         MessagesController.getInstance(i).getTopicsController().loadTopics(j2, false, 3);
-        if (MessagesController.getInstance(i).getMainSettings().getBoolean("topicssidetabs" + j, false)) {
+        SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
+        if (mainSettings.getBoolean("topicssidetabs" + j, false)) {
             this.sidemenuT = 1.0f;
             this.sidemenuEnabled = true;
         }
+        boolean z = mainSettings.getBoolean("topicssidetabsb" + j, false);
+        this.topicBottom = z;
+        imageViewCreateButton2.setImageResource(z ? R.drawable.menu_sidebar_top : R.drawable.menu_sidebar_bottom);
         checkUi_closeButtonVisibility();
         updateSidemenuPosition();
         updateTabs();
@@ -534,6 +557,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
 
     public void setSideMenuBackgroundMarginBottom(float f) {
         this.sideMenuBackgroundMarginBottom = f;
+        checkUi_topicsVerticalPosition();
         checkSideTabsPadding(true);
         invalidate();
     }
@@ -541,6 +565,7 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
     public void setSideMenuBackgroundMarginTop(float f) {
         this.sideMenuBackgroundMarginTop = f;
         this.sideTabsContainer.setTranslationY(f);
+        checkUi_topicsVerticalPosition();
         checkSideTabsPadding(true);
         invalidate();
     }
@@ -558,10 +583,16 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
     }
 
+    public void doOnUpdateSideMenuPosition(Runnable runnable) {
+        this.onUpdateSideMenuPosition = runnable;
+    }
+
     public void updateSidemenuPosition() {
-        this.topTabsContainer.setTranslationY((-AndroidUtilities.dp(43.0f)) * this.sidemenuT);
-        this.topTabsContainer.setAlpha(AndroidUtilities.lerp(1.0f, 0.85f, this.sidemenuT));
-        this.topTabsContainer.setVisibility(this.sidemenuT >= 1.0f ? 8 : 0);
+        Runnable runnable = this.onUpdateSideMenuPosition;
+        if (runnable != null) {
+            runnable.run();
+        }
+        checkUi_topicsVerticalPosition();
         this.sideTabsContainer.setTranslationX((-AndroidUtilities.dp(78.0f)) * (1.0f - this.sidemenuT));
         this.sideTabsContainer.setVisibility(this.sidemenuT <= 0.0f ? 8 : 0);
         ImageView imageView = this.toggleButtonTop;
@@ -577,6 +608,16 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         invalidate();
     }
 
+    private void checkUi_topicsVerticalPosition() {
+        this.topTabsContainer.setAlpha(AndroidUtilities.lerp(1.0f, 0.85f, this.sidemenuT));
+        this.topTabsContainer.setVisibility(this.sidemenuT >= 1.0f ? 8 : 0);
+        if (this.topicBottom) {
+            this.topTabsContainer.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.sideMenuBackgroundMarginBottom) + (AndroidUtilities.dp(43.0f) * this.sidemenuT));
+        } else {
+            this.topTabsContainer.setTranslationY((-AndroidUtilities.dp(43.0f)) * this.sidemenuT);
+        }
+    }
+
     public void animateSidemenuTo(boolean z) {
         if (this.sidemenuEnabled == z) {
             return;
@@ -588,6 +629,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 this.pendingSidemenu = Boolean.valueOf(z);
                 return;
             }
+        }
+        if (!z) {
+            this.topicBottom = !this.topicBottom;
         }
         this.sidemenuEnabled = z;
         this.sidemenuAnimating = true;
@@ -625,8 +669,9 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
                 topicsTabsView.updateSidemenuPosition();
                 TopicsTabsView topicsTabsView2 = TopicsTabsView.this;
                 topicsTabsView2.sidemenuAnimating = false;
-                topicsTabsView2.animator = null;
-                MessagesController.getInstance(TopicsTabsView.this.currentAccount).getMainSettings().edit().putBoolean("topicssidetabs" + TopicsTabsView.this.dialogId, TopicsTabsView.this.sidemenuEnabled).apply();
+                topicsTabsView2.toggleButtonSide.setImageResource(TopicsTabsView.this.topicBottom ? R.drawable.menu_sidebar_top : R.drawable.menu_sidebar_bottom);
+                TopicsTabsView.this.animator = null;
+                MessagesController.getInstance(TopicsTabsView.this.currentAccount).getMainSettings().edit().putBoolean("topicssidetabs" + TopicsTabsView.this.dialogId, TopicsTabsView.this.sidemenuEnabled).putBoolean("topicssidetabsb" + TopicsTabsView.this.dialogId, TopicsTabsView.this.topicBottom).apply();
                 if (TopicsTabsView.this.pendingSidemenu != null && this.val$side != TopicsTabsView.this.pendingSidemenu.booleanValue()) {
                     boolean zBooleanValue = TopicsTabsView.this.pendingSidemenu.booleanValue();
                     TopicsTabsView.this.pendingSidemenu = null;
@@ -2088,6 +2133,12 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
         }
     }
 
+    @Override
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        checkUi_topicsVerticalPosition();
+    }
+
     private void deleteTopics(final HashSet hashSet, final Runnable runnable) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(LocaleController.getPluralString("DeleteTopics", hashSet.size()));
@@ -2190,5 +2241,27 @@ public abstract class TopicsTabsView extends FrameLayout implements Notification
             this.paint.setAlpha(i);
             this.drawable.setAlpha(i);
         }
+    }
+
+    private static int getTabsSize(Position position) {
+        return AndroidUtilities.dp(position == Position.LEFT ? 64.0f : 36.0f);
+    }
+
+    private float getTabsVisibility(Position position) {
+        if (position == Position.LEFT) {
+            return this.sidemenuT;
+        }
+        if ((position != Position.TOP || this.topicBottom) && !(position == Position.BOTTOM && this.topicBottom)) {
+            return 0.0f;
+        }
+        return 1.0f - this.sidemenuT;
+    }
+
+    public Position getCurrentTabsPosition() {
+        return this.sidemenuEnabled ? Position.LEFT : this.topicBottom ? Position.BOTTOM : Position.TOP;
+    }
+
+    public float getTabsVisibleSpaceWithPadding(Position position, float f) {
+        return (getTabsSize(position) + f) * getTabsVisibility(position);
     }
 }
