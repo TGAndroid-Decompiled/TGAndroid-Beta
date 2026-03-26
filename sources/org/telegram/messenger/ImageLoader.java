@@ -62,6 +62,7 @@ import org.telegram.ui.web.WebInstantView;
 
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
+    public static final String AUTOPLAY_FILTER_NONLOOP = "gl";
     public static final int CACHE_TYPE_CACHE = 1;
     public static final int CACHE_TYPE_ENCRYPTED = 2;
     public static final int CACHE_TYPE_NONE = 0;
@@ -146,7 +147,7 @@ public class ImageLoader {
         }
         String[] strArrSplit = str.split("_");
         for (int i = 0; i < strArrSplit.length; i++) {
-            if ("g".equals(strArrSplit[i]) || "pframe".equals(strArrSplit[i])) {
+            if ("g".equals(strArrSplit[i]) || "gl".equals(strArrSplit[i]) || "pframe".equals(strArrSplit[i])) {
                 return true;
             }
         }

@@ -1361,14 +1361,14 @@ public class StoryEntry {
         for (int i = 0; i < strArr.length; i++) {
             String str = strArr[i];
             if (str != null) {
-                AnimatedFileDrawable.getVideoInfo(str, iArr[i]);
+                AnimatedFileDrawable.getVideoInfo(str, iArr[i], 0L);
             }
         }
         AndroidUtilities.runOnUIThread(runnable);
     }
 
     public static void lambda$getVideoEditedInfo$11(String str, int[][] iArr, Runnable runnable) {
-        AnimatedFileDrawable.getVideoInfo(str, iArr[0]);
+        AnimatedFileDrawable.getVideoInfo(str, iArr[0], 0L);
         AndroidUtilities.runOnUIThread(runnable);
     }
 

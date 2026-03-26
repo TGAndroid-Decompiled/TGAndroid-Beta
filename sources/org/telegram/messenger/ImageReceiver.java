@@ -103,6 +103,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private int fileLoadingPriority;
     private boolean forceCrossfade;
     private boolean forceLoding;
+    private boolean forceNotMedia;
     private boolean forcePreview;
     private Bitmap gradientBitmap;
     private BitmapShader gradientShader;
@@ -1812,6 +1813,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public void setForcePreview(boolean z) {
         this.forcePreview = z;
+    }
+
+    public void setForceNotMedia(boolean z) {
+        this.forceNotMedia = z;
     }
 
     public void setForceCrossfade(boolean z) {

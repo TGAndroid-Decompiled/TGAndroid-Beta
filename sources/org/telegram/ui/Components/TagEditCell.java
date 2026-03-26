@@ -227,6 +227,11 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
+            public boolean didLongPressPollOption(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressPollOption(this, chatMessageCell2, pollAnswer);
+            }
+
+            @Override
             public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell2, todoItem);
             }
@@ -239,6 +244,11 @@ public class TagEditCell extends LinearLayout {
             @Override
             public void didPressAboutRevenueSharingAds() {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+            }
+
+            @Override
+            public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAddPollOptionButton(this, chatMessageCell2);
             }
 
             @Override
@@ -357,6 +367,11 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
+            public void didPressPollMedia(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressPollMedia(this, chatMessageCell2, imageReceiver, pollAnswer, messageMedia, f, f2, i2);
+            }
+
+            @Override
             public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, reactionCount, z, f, f2);
             }
@@ -457,8 +472,18 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
+            public void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell2);
+            }
+
+            @Override
             public boolean doNotShowLoadingReply(MessageObject messageObject) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+            }
+
+            @Override
+            public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$drawPollMode(this, canvas, chatMessageCell2);
             }
 
             @Override
@@ -469,6 +494,11 @@ public class TagEditCell extends LinearLayout {
             @Override
             public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell2, z);
+            }
+
+            @Override
+            public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell2);
             }
 
             @Override
@@ -923,6 +953,11 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
+                public boolean didLongPressPollOption(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressPollOption(this, chatMessageCell2, pollAnswer);
+                }
+
+                @Override
                 public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell2, todoItem);
                 }
@@ -935,6 +970,11 @@ public class TagEditCell extends LinearLayout {
                 @Override
                 public void didPressAboutRevenueSharingAds() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
+                public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAddPollOptionButton(this, chatMessageCell2);
                 }
 
                 @Override
@@ -1053,6 +1093,11 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
+                public void didPressPollMedia(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i9) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressPollMedia(this, chatMessageCell2, imageReceiver, pollAnswer, messageMedia, f, f2, i9);
+                }
+
+                @Override
                 public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z6, float f, float f2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, reactionCount, z6, f, f2);
                 }
@@ -1153,8 +1198,18 @@ public class TagEditCell extends LinearLayout {
                 }
 
                 @Override
+                public void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell2);
+                }
+
+                @Override
                 public boolean doNotShowLoadingReply(MessageObject messageObject) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                }
+
+                @Override
+                public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$drawPollMode(this, canvas, chatMessageCell2);
                 }
 
                 @Override
@@ -1165,6 +1220,11 @@ public class TagEditCell extends LinearLayout {
                 @Override
                 public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z6) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell2, z6);
+                }
+
+                @Override
+                public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell2);
                 }
 
                 @Override

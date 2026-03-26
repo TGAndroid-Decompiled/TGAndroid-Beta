@@ -104,7 +104,9 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
         this.titleLayout = null;
         int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(AndroidUtilities.leftBaseline)) - AndroidUtilities.dp(48.0f);
         try {
-            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(this.currentMessageObject.getMusicTitle().replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(r0)), size), TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            CharSequence charSequenceEllipsize = TextUtils.ellipsize(this.currentMessageObject.getMusicTitle().replace('\n', ' '), Theme.chat_contextResult_titleTextPaint, Math.min((int) Math.ceil(Theme.chat_contextResult_titleTextPaint.measureText(r0)), size), TextUtils.TruncateAt.END);
+            CharSequence charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceEllipsize, this.currentMessageObject.highlightedWords, this.resourcesProvider);
+            StaticLayout staticLayout = new StaticLayout(charSequenceHighlightText == null ? charSequenceEllipsize : charSequenceHighlightText, Theme.chat_contextResult_titleTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;
             this.titleLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.titleLayoutEmojis, staticLayout);
         } catch (Exception e) {
@@ -115,7 +117,9 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
             if (this.viewType == 1) {
                 charSequenceReplace = new SpannableStringBuilder(charSequenceReplace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 2));
             }
-            StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(charSequenceReplace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END), Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            CharSequence charSequenceEllipsize2 = TextUtils.ellipsize(charSequenceReplace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END);
+            CharSequence charSequenceHighlightText2 = AndroidUtilities.highlightText(charSequenceEllipsize2, this.currentMessageObject.highlightedWords, this.resourcesProvider);
+            StaticLayout staticLayout2 = new StaticLayout(charSequenceHighlightText2 == null ? charSequenceEllipsize2 : charSequenceHighlightText2, Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.descriptionLayout = staticLayout2;
             this.descriptionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.descriptionLayoutEmojis, staticLayout2);
         } catch (Exception e2) {

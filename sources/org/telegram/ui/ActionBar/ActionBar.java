@@ -102,7 +102,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     protected boolean isSearchFieldVisible;
     protected int itemsActionModeBackgroundColor;
     protected int itemsActionModeColor;
-    protected int itemsBackgroundColor;
+    public int itemsBackgroundColor;
     protected int itemsColor;
     private CharSequence lastOverlayTitle;
     private Drawable lastRightDrawable;
@@ -110,6 +110,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     private CharSequence lastTitle;
     private boolean manualStart;
     public ActionBarMenu menu;
+    public boolean menuOccupyBack;
     protected boolean occupyStatusBar;
     private boolean onTop;
     private float onTopAnimated;

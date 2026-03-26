@@ -56,6 +56,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.util.ArrayList;
@@ -121,19 +122,28 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.MenuDrawable;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Cells.ActiveGiftAuctionsHintCell;
 import org.telegram.ui.Cells.AnimatedStatusView;
+import org.telegram.ui.Cells.ArchiveHintInnerCell;
 import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.DialogsEmptyCell;
 import org.telegram.ui.Cells.DialogsHintCell;
 import org.telegram.ui.Cells.GraySectionCell;
+import org.telegram.ui.Cells.HashtagSearchCell;
 import org.telegram.ui.Cells.HeaderCell;
+import org.telegram.ui.Cells.HintDialogCell;
+import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.RequestPeerRequirementsCell;
+import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.UnconfirmedAuthHintCell;
+import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -181,6 +191,7 @@ import org.telegram.ui.Components.RecyclerItemsEnterAnimator;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchViewPager;
 import org.telegram.ui.Components.SharedMediaLayout;
+import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.ViewPagerFixed;
@@ -2319,6 +2330,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getNotificationCenter().addObserver(this, NotificationCenter.folderBecomeEmpty);
             getNotificationCenter().addObserver(this, NotificationCenter.newSuggestionsAvailable);
             getNotificationCenter().addObserver(this, NotificationCenter.dialogsUnreadReactionsCounterChanged);
+            getNotificationCenter().addObserver(this, NotificationCenter.dialogsUnreadPollVotesCounterChanged);
             getNotificationCenter().addObserver(this, NotificationCenter.forceImportContactsStart);
             getNotificationCenter().addObserver(this, NotificationCenter.userEmojiStatusUpdated);
             getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
@@ -2521,6 +2533,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             getNotificationCenter().removeObserver(this, NotificationCenter.folderBecomeEmpty);
             getNotificationCenter().removeObserver(this, NotificationCenter.newSuggestionsAvailable);
             getNotificationCenter().removeObserver(this, NotificationCenter.dialogsUnreadReactionsCounterChanged);
+            getNotificationCenter().removeObserver(this, NotificationCenter.dialogsUnreadPollVotesCounterChanged);
             getNotificationCenter().removeObserver(this, NotificationCenter.forceImportContactsStart);
             getNotificationCenter().removeObserver(this, NotificationCenter.userEmojiStatusUpdated);
             getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
@@ -8161,6 +8174,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             filterTabsView3.notifyTabCounterChanged(filterTabsView3.getDefaultTabId());
             return;
         }
+        if (i == NotificationCenter.dialogsUnreadPollVotesCounterChanged) {
+            updateVisibleRows(0);
+            return;
+        }
         if (i == NotificationCenter.dialogsUnreadReactionsCounterChanged) {
             updateVisibleRows(0);
             return;
@@ -9212,8 +9229,627 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public java.util.ArrayList getThemeDescriptions() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.getThemeDescriptions():java.util.ArrayList");
+    public ArrayList getThemeDescriptions() {
+        Class<TextCell> cls;
+        String str;
+        RecyclerListView recyclerListView;
+        int i;
+        final DialogsActivity dialogsActivity = this;
+        String str2 = "imageView";
+        char c = 0;
+        int i2 = 1;
+        ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
+            @Override
+            public final void didSetColor() {
+                this.f$0.lambda$getThemeDescriptions$139();
+            }
+
+            @Override
+            public void onAnimationProgress(float f) {
+                ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
+            }
+        };
+        ArrayList arrayList = new ArrayList();
+        View view = dialogsActivity.fragmentView;
+        int i3 = ThemeDescription.FLAG_BACKGROUND;
+        int i4 = Theme.key_windowBackgroundWhite;
+        arrayList.add(new ThemeDescription(view, i3, null, null, null, null, i4));
+        if (dialogsActivity.movingView != null) {
+            arrayList.add(new ThemeDescription(dialogsActivity.movingView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i4));
+        }
+        if (dialogsActivity.doneItem != null) {
+            arrayList.add(new ThemeDescription(dialogsActivity.doneItem, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        }
+        if (dialogsActivity.folderId == 0) {
+            if (dialogsActivity.onlySelect) {
+                arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i4));
+            }
+            arrayList.add(new ThemeDescription(dialogsActivity.fragmentView, 0, null, dialogsActivity.actionBarDefaultPaint, null, null, i4));
+            if (dialogsActivity.searchViewPager != null) {
+                arrayList.add(new ThemeDescription(dialogsActivity.searchViewPager.searchListView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i4));
+            }
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultIcon));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, new Drawable[]{Theme.dialogs_holidayDrawable}, null, !dialogsActivity.hasMainTabs ? Theme.key_actionBarDefaultTitle : Theme.key_telegram_color_dialogsLogo));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, Theme.key_actionBarDefaultSearch));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, Theme.key_actionBarDefaultSearchPlaceholder));
+        } else {
+            arrayList.add(new ThemeDescription(dialogsActivity.fragmentView, 0, null, dialogsActivity.actionBarDefaultPaint, null, null, i4));
+            if (dialogsActivity.searchViewPager != null) {
+                arrayList.add(new ThemeDescription(dialogsActivity.searchViewPager.searchListView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i4));
+            }
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultArchivedIcon));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, new Drawable[]{Theme.dialogs_holidayDrawable}, null, !dialogsActivity.hasMainTabs ? Theme.key_actionBarDefaultArchivedTitle : Theme.key_telegram_color_dialogsLogo));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultArchivedSelector));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, Theme.key_actionBarDefaultArchivedSearch));
+            arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, Theme.key_actionBarDefaultArchivedSearchPlaceholder));
+        }
+        ActionBar actionBar = dialogsActivity.actionBar;
+        int i5 = ThemeDescription.FLAG_AB_AM_ITEMSCOLOR;
+        int i6 = Theme.key_actionBarActionModeDefaultIcon;
+        arrayList.add(new ThemeDescription(actionBar, i5, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_AM_TOPBACKGROUND, null, null, null, null, Theme.key_actionBarActionModeDefaultTop));
+        arrayList.add(new ThemeDescription(dialogsActivity.actionBar, ThemeDescription.FLAG_AB_AM_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarActionModeDefaultSelector));
+        arrayList.add(new ThemeDescription(dialogsActivity.selectedDialogsCountTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultSubmenuBackground));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultSubmenuItem));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultSubmenuItemIcon));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogButtonSelector));
+        if (dialogsActivity.filterTabsView != null) {
+            ActionBar actionBar2 = dialogsActivity.actionBar;
+            if (actionBar2 != null && actionBar2.isActionModeShowed()) {
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView, 0, new Class[]{FilterTabsView.class}, new String[]{"selectorDrawable"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_profile_tabSelectedLine));
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_profile_tabSelectedText));
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_profile_tabText));
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_profile_tabSelector));
+            } else {
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView, 0, new Class[]{FilterTabsView.class}, new String[]{"selectorDrawable"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_actionBarTabLine));
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_actionBarTabActiveText));
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_actionBarTabUnactiveText));
+                arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_actionBarTabSelector));
+            }
+            arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), 0, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_chats_tabUnreadActiveBackground));
+            arrayList.add(new ThemeDescription(dialogsActivity.filterTabsView.getTabsContainer(), 0, new Class[]{FilterTabsView.TabView.class}, null, null, null, Theme.key_chats_tabUnreadUnactiveBackground));
+        }
+        arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
+            @Override
+            public final void didSetColor() {
+                this.f$0.lambda$getThemeDescriptions$140();
+            }
+
+            @Override
+            public void onAnimationProgress(float f) {
+                ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
+            }
+        }, Theme.key_actionBarActionModeDefault, i6));
+        int i7 = 0;
+        while (true) {
+            cls = TextCell.class;
+            if (i7 >= 3) {
+                break;
+            }
+            if (i7 == 2) {
+                SearchViewPager searchViewPager = dialogsActivity.searchViewPager;
+                if (searchViewPager != null) {
+                    recyclerListView = searchViewPager.searchListView;
+                }
+                str = str2;
+                i = 1;
+                i7 += i;
+                i2 = 1;
+                dialogsActivity = this;
+                str2 = str;
+            } else {
+                ViewPage[] viewPageArr = dialogsActivity.viewPages;
+                if (viewPageArr != null) {
+                    recyclerListView = i7 < viewPageArr.length ? viewPageArr[i7].listView : null;
+                } else {
+                    str = str2;
+                    i = 1;
+                    i7 += i;
+                    i2 = 1;
+                    dialogsActivity = this;
+                    str2 = str;
+                }
+            }
+            if (recyclerListView != null) {
+                RecyclerListView recyclerListView2 = recyclerListView;
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
+                Class[] clsArr = new Class[i2];
+                clsArr[0] = View.class;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr, Theme.dividerPaint, null, null, Theme.key_divider));
+                Class[] clsArr2 = new Class[2];
+                clsArr2[0] = DialogCell.class;
+                clsArr2[i2] = ProfileSearchCell.class;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr2, null, Theme.avatarDrawables, null, Theme.key_avatar_text));
+                Class[] clsArr3 = new Class[i2];
+                clsArr3[0] = DialogCell.class;
+                Paint paint = Theme.dialogs_countPaint;
+                int i8 = Theme.key_chats_unreadCounter;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr3, paint, null, null, i8));
+                Class[] clsArr4 = new Class[i2];
+                clsArr4[0] = DialogCell.class;
+                Paint paint2 = Theme.dialogs_countGrayPaint;
+                int i9 = Theme.key_chats_unreadCounterMuted;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr4, paint2, null, null, i9));
+                Class[] clsArr5 = new Class[i2];
+                clsArr5[0] = DialogCell.class;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr5, Theme.dialogs_countTextPaint, null, null, Theme.key_chats_unreadCounterText));
+                Class[] clsArr6 = new Class[2];
+                clsArr6[0] = DialogCell.class;
+                clsArr6[i2] = ProfileSearchCell.class;
+                Drawable[] drawableArr = new Drawable[i2];
+                drawableArr[0] = Theme.dialogs_lockDrawable;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr6, null, drawableArr, null, Theme.key_chats_secretIcon));
+                Class[] clsArr7 = new Class[2];
+                clsArr7[0] = DialogCell.class;
+                clsArr7[i2] = ProfileSearchCell.class;
+                Drawable[] drawableArr2 = new Drawable[2];
+                drawableArr2[0] = Theme.dialogs_scamDrawable;
+                drawableArr2[i2] = Theme.dialogs_fakeDrawable;
+                int i10 = Theme.key_chats_draft;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr7, null, drawableArr2, null, i10));
+                Class[] clsArr8 = new Class[i2];
+                clsArr8[0] = DialogCell.class;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, clsArr8, null, new Drawable[]{Theme.dialogs_pinnedDrawable, Theme.dialogs_pinnedDrawable2, Theme.dialogs_reorderDrawable}, null, Theme.key_chats_pinnedIcon));
+                Drawable[] drawableArr3 = {Theme.dialogs_pinnedDrawable2Accent};
+                int i11 = Theme.key_telegram_color_text;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, drawableArr3, null, i11));
+                TextPaint[] textPaintArr = Theme.dialogs_namePaint;
+                str = str2;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class, ProfileSearchCell.class}, (String[]) null, new Paint[]{textPaintArr[0], textPaintArr[1], Theme.dialogs_searchNamePaint}, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_name));
+                TextPaint[] textPaintArr2 = Theme.dialogs_nameEncryptedPaint;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class, ProfileSearchCell.class}, (String[]) null, new Paint[]{textPaintArr2[0], textPaintArr2[1], Theme.dialogs_searchNameEncryptedPaint}, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_secretName));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_messagePaint[1], null, null, Theme.key_chats_message_threeLines));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_messagePaint[0], null, null, Theme.key_chats_message));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_messageNamePaint, null, null, Theme.key_chats_nameMessage_threeLines));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, null, null, i10));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, (String[]) null, Theme.dialogs_messagePrintingPaint, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_actionMessage));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_timePaint, null, null, Theme.key_chats_date));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_timePaintBold, null, null, Theme.key_chats_date_bold));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_timePaintBoldAccent, null, null, i11));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_pinnedPaint, null, null, Theme.key_chats_pinnedOverlay));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_tabletSeletedPaint, null, null, Theme.key_chats_tabletSelectedOverlay));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_checkDrawable}, null, Theme.key_chats_sentCheck));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_checkReadDrawable, Theme.dialogs_halfCheckDrawable}, null, Theme.key_chats_sentReadCheck));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_clockDrawable}, null, Theme.key_chats_sentClock));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, Theme.dialogs_errorPaint, null, null, Theme.key_chats_sentError));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_errorDrawable}, null, Theme.key_chats_sentErrorIcon));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class, ProfileSearchCell.class}, null, new Drawable[]{Theme.dialogs_verifiedCheckDrawable}, null, Theme.key_chats_verifiedCheck));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class, ProfileSearchCell.class}, null, new Drawable[]{Theme.dialogs_verifiedDrawable}, null, Theme.key_chats_verifiedBackground));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_muteDrawable}, null, Theme.key_chats_muteIcon));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_mentionDrawable}, null, i8));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_reactionsMentionDrawable}, null, Theme.key_dialogReactionMentionBackground));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_pollMentionDrawable}, null, Theme.key_color_purple));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, new Drawable[]{Theme.dialogs_mentionDrawableMuted, Theme.dialogs_reactionsMentionDrawableMuted, Theme.dialogs_pollMentionDrawableMuted}, null, i9));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, null, null, Theme.key_chats_archivePinBackground));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, null, null, Theme.key_chats_archiveBackground));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, null, null, Theme.key_chats_onlineCircle));
+                int i12 = Theme.key_windowBackgroundWhite;
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{DialogCell.class}, null, null, null, i12));
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_CHECKBOX, new Class[]{DialogCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i12));
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_CHECKBOXCHECK, new Class[]{DialogCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_checkboxCheck));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{LoadingCell.class}, new String[]{"progressBar"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_progressCircle));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{ProfileSearchCell.class}, Theme.dialogs_offlinePaint, null, null, Theme.key_windowBackgroundWhiteGrayText3));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{ProfileSearchCell.class}, Theme.dialogs_onlinePaint, null, null, Theme.key_windowBackgroundWhiteBlueText3));
+                GraySectionCell.createThemeDescriptions(arrayList, recyclerListView);
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{HashtagSearchCell.class}, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
+                int i13 = Theme.key_windowBackgroundGrayShadow;
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, i13));
+                int i14 = Theme.key_windowBackgroundGray;
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ShadowSectionCell.class}, null, null, null, i14));
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i13));
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextInfoPrivacyCell.class}, null, null, null, i14));
+                arrayList.add(new ThemeDescription(recyclerListView2, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
+                arrayList.add(new ThemeDescription(recyclerListView2, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{cls}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText2));
+                i = 1;
+                i7 += i;
+                i2 = 1;
+                dialogsActivity = this;
+                str2 = str;
+            }
+            str = str2;
+            i = 1;
+            i7 += i;
+            i2 = 1;
+            dialogsActivity = this;
+            str2 = str;
+        }
+        String str3 = str2;
+        int i15 = Theme.key_avatar_backgroundRed;
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i15));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundOrange));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundViolet));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundGreen));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundCyan));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundBlue));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundSaved));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i15));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Red));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Orange));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Violet));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Green));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Cyan));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Blue));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Pink));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_background2Saved));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundArchived));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundArchivedHidden));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_nameMessage));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_draft));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_attachMessage));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_nameArchived));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_nameMessageArchived));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_nameMessageArchived_threeLines));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_messageArchived));
+        if (this.viewPages != null) {
+            int i16 = 0;
+            while (i16 < this.viewPages.length) {
+                if (this.folderId == 0) {
+                    arrayList.add(new ThemeDescription(this.viewPages[i16].listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_windowBackgroundWhite));
+                } else {
+                    arrayList.add(new ThemeDescription(this.viewPages[i16].listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_windowBackgroundWhite));
+                }
+                DialogsRecyclerView dialogsRecyclerView = this.viewPages[i16].listView;
+                int i17 = ThemeDescription.FLAG_TEXTCOLOR;
+                Class[] clsArr9 = new Class[1];
+                clsArr9[c] = DialogsEmptyCell.class;
+                int i18 = Theme.key_chats_nameMessage_threeLines;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView, i17, clsArr9, new String[]{"emptyTextView1"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i18));
+                DialogsRecyclerView dialogsRecyclerView2 = this.viewPages[i16].listView;
+                int i19 = ThemeDescription.FLAG_TEXTCOLOR;
+                Class[] clsArr10 = new Class[1];
+                clsArr10[c] = DialogsEmptyCell.class;
+                int i20 = Theme.key_chats_message;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView2, i19, clsArr10, new String[]{"emptyTextView2"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i20));
+                if (SharedConfig.archiveHidden) {
+                    DialogsRecyclerView dialogsRecyclerView3 = this.viewPages[i16].listView;
+                    Class[] clsArr11 = new Class[1];
+                    clsArr11[c] = DialogCell.class;
+                    RLottieDrawable[] rLottieDrawableArr = new RLottieDrawable[1];
+                    rLottieDrawableArr[c] = Theme.dialogs_archiveAvatarDrawable;
+                    int i21 = Theme.key_avatar_backgroundArchivedHidden;
+                    arrayList.add(new ThemeDescription(dialogsRecyclerView3, 0, clsArr11, rLottieDrawableArr, "Arrow1", i21));
+                    DialogsRecyclerView dialogsRecyclerView4 = this.viewPages[i16].listView;
+                    Class[] clsArr12 = new Class[1];
+                    clsArr12[c] = DialogCell.class;
+                    RLottieDrawable[] rLottieDrawableArr2 = new RLottieDrawable[1];
+                    rLottieDrawableArr2[c] = Theme.dialogs_archiveAvatarDrawable;
+                    arrayList.add(new ThemeDescription(dialogsRecyclerView4, 0, clsArr12, rLottieDrawableArr2, "Arrow2", i21));
+                } else {
+                    DialogsRecyclerView dialogsRecyclerView5 = this.viewPages[i16].listView;
+                    Class[] clsArr13 = new Class[1];
+                    clsArr13[c] = DialogCell.class;
+                    RLottieDrawable[] rLottieDrawableArr3 = new RLottieDrawable[1];
+                    rLottieDrawableArr3[c] = Theme.dialogs_archiveAvatarDrawable;
+                    int i22 = Theme.key_avatar_backgroundArchived;
+                    arrayList.add(new ThemeDescription(dialogsRecyclerView5, 0, clsArr13, rLottieDrawableArr3, "Arrow1", i22));
+                    DialogsRecyclerView dialogsRecyclerView6 = this.viewPages[i16].listView;
+                    Class[] clsArr14 = new Class[1];
+                    clsArr14[c] = DialogCell.class;
+                    RLottieDrawable[] rLottieDrawableArr4 = new RLottieDrawable[1];
+                    rLottieDrawableArr4[c] = Theme.dialogs_archiveAvatarDrawable;
+                    arrayList.add(new ThemeDescription(dialogsRecyclerView6, 0, clsArr14, rLottieDrawableArr4, "Arrow2", i22));
+                }
+                DialogsRecyclerView dialogsRecyclerView7 = this.viewPages[i16].listView;
+                Class[] clsArr15 = new Class[1];
+                clsArr15[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr5 = new RLottieDrawable[1];
+                rLottieDrawableArr5[c] = Theme.dialogs_archiveAvatarDrawable;
+                int i23 = Theme.key_avatar_text;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView7, 0, clsArr15, rLottieDrawableArr5, "Box2", i23));
+                DialogsRecyclerView dialogsRecyclerView8 = this.viewPages[i16].listView;
+                Class[] clsArr16 = new Class[1];
+                clsArr16[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr6 = new RLottieDrawable[1];
+                rLottieDrawableArr6[c] = Theme.dialogs_archiveAvatarDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView8, 0, clsArr16, rLottieDrawableArr6, "Box1", i23));
+                DialogsRecyclerView dialogsRecyclerView9 = this.viewPages[i16].listView;
+                Class[] clsArr17 = new Class[1];
+                clsArr17[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr7 = new RLottieDrawable[1];
+                rLottieDrawableArr7[c] = Theme.dialogs_pinArchiveDrawable;
+                int i24 = Theme.key_chats_archiveIcon;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView9, 0, clsArr17, rLottieDrawableArr7, "Arrow", i24));
+                DialogsRecyclerView dialogsRecyclerView10 = this.viewPages[i16].listView;
+                Class[] clsArr18 = new Class[1];
+                clsArr18[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr8 = new RLottieDrawable[1];
+                rLottieDrawableArr8[c] = Theme.dialogs_pinArchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView10, 0, clsArr18, rLottieDrawableArr8, "Line", i24));
+                DialogsRecyclerView dialogsRecyclerView11 = this.viewPages[i16].listView;
+                Class[] clsArr19 = new Class[1];
+                clsArr19[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr9 = new RLottieDrawable[1];
+                rLottieDrawableArr9[c] = Theme.dialogs_unpinArchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView11, 0, clsArr19, rLottieDrawableArr9, "Arrow", i24));
+                DialogsRecyclerView dialogsRecyclerView12 = this.viewPages[i16].listView;
+                Class[] clsArr20 = new Class[1];
+                clsArr20[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr10 = new RLottieDrawable[1];
+                rLottieDrawableArr10[c] = Theme.dialogs_unpinArchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView12, 0, clsArr20, rLottieDrawableArr10, "Line", i24));
+                DialogsRecyclerView dialogsRecyclerView13 = this.viewPages[i16].listView;
+                Class[] clsArr21 = new Class[1];
+                clsArr21[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr11 = new RLottieDrawable[1];
+                rLottieDrawableArr11[c] = Theme.dialogs_archiveDrawable;
+                int i25 = Theme.key_chats_archiveBackground;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView13, 0, clsArr21, rLottieDrawableArr11, "Arrow", i25));
+                DialogsRecyclerView dialogsRecyclerView14 = this.viewPages[i16].listView;
+                Class[] clsArr22 = new Class[1];
+                clsArr22[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr12 = new RLottieDrawable[1];
+                rLottieDrawableArr12[c] = Theme.dialogs_archiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView14, 0, clsArr22, rLottieDrawableArr12, "Box2", i24));
+                DialogsRecyclerView dialogsRecyclerView15 = this.viewPages[i16].listView;
+                Class[] clsArr23 = new Class[1];
+                clsArr23[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr13 = new RLottieDrawable[1];
+                rLottieDrawableArr13[c] = Theme.dialogs_archiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView15, 0, clsArr23, rLottieDrawableArr13, "Box1", i24));
+                DialogsRecyclerView dialogsRecyclerView16 = this.viewPages[i16].listView;
+                Class[] clsArr24 = new Class[1];
+                clsArr24[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr14 = new RLottieDrawable[1];
+                rLottieDrawableArr14[c] = Theme.dialogs_hidePsaDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView16, 0, clsArr24, rLottieDrawableArr14, "Line 1", i25));
+                DialogsRecyclerView dialogsRecyclerView17 = this.viewPages[i16].listView;
+                Class[] clsArr25 = new Class[1];
+                clsArr25[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr15 = new RLottieDrawable[1];
+                rLottieDrawableArr15[c] = Theme.dialogs_hidePsaDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView17, 0, clsArr25, rLottieDrawableArr15, "Line 2", i25));
+                DialogsRecyclerView dialogsRecyclerView18 = this.viewPages[i16].listView;
+                Class[] clsArr26 = new Class[1];
+                clsArr26[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr16 = new RLottieDrawable[1];
+                rLottieDrawableArr16[c] = Theme.dialogs_hidePsaDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView18, 0, clsArr26, rLottieDrawableArr16, "Line 3", i25));
+                DialogsRecyclerView dialogsRecyclerView19 = this.viewPages[i16].listView;
+                Class[] clsArr27 = new Class[1];
+                clsArr27[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr17 = new RLottieDrawable[1];
+                rLottieDrawableArr17[c] = Theme.dialogs_hidePsaDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView19, 0, clsArr27, rLottieDrawableArr17, "Cup Red", i24));
+                DialogsRecyclerView dialogsRecyclerView20 = this.viewPages[i16].listView;
+                Class[] clsArr28 = new Class[1];
+                clsArr28[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr18 = new RLottieDrawable[1];
+                rLottieDrawableArr18[c] = Theme.dialogs_hidePsaDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView20, 0, clsArr28, rLottieDrawableArr18, "Box", i24));
+                DialogsRecyclerView dialogsRecyclerView21 = this.viewPages[i16].listView;
+                Class[] clsArr29 = new Class[1];
+                clsArr29[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr19 = new RLottieDrawable[1];
+                rLottieDrawableArr19[c] = Theme.dialogs_unarchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView21, 0, clsArr29, rLottieDrawableArr19, "Arrow1", i24));
+                DialogsRecyclerView dialogsRecyclerView22 = this.viewPages[i16].listView;
+                Class[] clsArr30 = new Class[1];
+                clsArr30[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr20 = new RLottieDrawable[1];
+                rLottieDrawableArr20[c] = Theme.dialogs_unarchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView22, 0, clsArr30, rLottieDrawableArr20, "Arrow2", Theme.key_chats_archivePinBackground));
+                DialogsRecyclerView dialogsRecyclerView23 = this.viewPages[i16].listView;
+                Class[] clsArr31 = new Class[1];
+                clsArr31[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr21 = new RLottieDrawable[1];
+                rLottieDrawableArr21[c] = Theme.dialogs_unarchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView23, 0, clsArr31, rLottieDrawableArr21, "Box2", i24));
+                DialogsRecyclerView dialogsRecyclerView24 = this.viewPages[i16].listView;
+                Class[] clsArr32 = new Class[1];
+                clsArr32[c] = DialogCell.class;
+                RLottieDrawable[] rLottieDrawableArr22 = new RLottieDrawable[1];
+                rLottieDrawableArr22[c] = Theme.dialogs_unarchiveDrawable;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView24, 0, clsArr32, rLottieDrawableArr22, "Box1", i24));
+                DialogsRecyclerView dialogsRecyclerView25 = this.viewPages[i16].listView;
+                Class[] clsArr33 = new Class[1];
+                clsArr33[c] = UserCell.class;
+                arrayList.add(new ThemeDescription(dialogsRecyclerView25, 0, clsArr33, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
+                DialogsRecyclerView dialogsRecyclerView26 = this.viewPages[i16].listView;
+                Class[] clsArr34 = new Class[1];
+                clsArr34[c] = UserCell.class;
+                ArrayList arrayList2 = arrayList;
+                arrayList2.add(new ThemeDescription(dialogsRecyclerView26, 0, clsArr34, new String[]{"statusColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteGrayText));
+                arrayList2.add(new ThemeDescription(this.viewPages[i16].listView, 0, new Class[]{UserCell.class}, new String[]{"statusOnlineColor"}, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_telegram_color_text));
+                int i26 = Theme.key_windowBackgroundWhiteBlueText4;
+                arrayList2.add(new ThemeDescription(this.viewPages[i16].listView, 0, new Class[]{cls}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i26));
+                arrayList2.add(new ThemeDescription(this.viewPages[i16].listView, 0, new Class[]{cls}, new String[]{str3}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i26));
+                arrayList2.add(new ThemeDescription(this.viewPages[i16].progressView, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, Theme.key_progressCircle));
+                ViewPager archiveHintCellPager = this.viewPages[i16].dialogsAdapter.getArchiveHintCellPager();
+                arrayList2.add(new ThemeDescription(archiveHintCellPager, 0, new Class[]{ArchiveHintInnerCell.class}, new String[]{str3}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i18));
+                arrayList2.add(new ThemeDescription(archiveHintCellPager, 0, new Class[]{ArchiveHintInnerCell.class}, new String[]{"imageView2"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chats_unreadCounter));
+                arrayList2.add(new ThemeDescription(archiveHintCellPager, 0, new Class[]{ArchiveHintInnerCell.class}, new String[]{"headerTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i18));
+                arrayList2.add(new ThemeDescription(archiveHintCellPager, 0, new Class[]{ArchiveHintInnerCell.class}, new String[]{"messageTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i20));
+                arrayList2.add(new ThemeDescription(archiveHintCellPager, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_windowBackgroundWhite));
+                i16++;
+                arrayList = arrayList2;
+                cls = cls;
+                c = 0;
+            }
+        }
+        ArrayList arrayList3 = arrayList;
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_archivePullDownBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chats_archivePullDownBackgroundActive));
+        if (this.searchViewPager != null) {
+            DialogsSearchAdapter dialogsSearchAdapter = this.searchViewPager.dialogsSearchAdapter;
+            arrayList3.add(new ThemeDescription(dialogsSearchAdapter != null ? dialogsSearchAdapter.getInnerListView() : null, 0, new Class[]{HintDialogCell.class}, Theme.dialogs_countPaint, null, null, Theme.key_chats_unreadCounter));
+            DialogsSearchAdapter dialogsSearchAdapter2 = this.searchViewPager.dialogsSearchAdapter;
+            arrayList3.add(new ThemeDescription(dialogsSearchAdapter2 != null ? dialogsSearchAdapter2.getInnerListView() : null, 0, new Class[]{HintDialogCell.class}, Theme.dialogs_countGrayPaint, null, null, Theme.key_chats_unreadCounterMuted));
+            DialogsSearchAdapter dialogsSearchAdapter3 = this.searchViewPager.dialogsSearchAdapter;
+            arrayList3.add(new ThemeDescription(dialogsSearchAdapter3 != null ? dialogsSearchAdapter3.getInnerListView() : null, 0, new Class[]{HintDialogCell.class}, Theme.dialogs_countTextPaint, null, null, Theme.key_chats_unreadCounterText));
+            DialogsSearchAdapter dialogsSearchAdapter4 = this.searchViewPager.dialogsSearchAdapter;
+            arrayList3.add(new ThemeDescription(dialogsSearchAdapter4 != null ? dialogsSearchAdapter4.getInnerListView() : null, 0, new Class[]{HintDialogCell.class}, Theme.dialogs_archiveTextPaint, null, null, Theme.key_chats_archiveText));
+            DialogsSearchAdapter dialogsSearchAdapter5 = this.searchViewPager.dialogsSearchAdapter;
+            arrayList3.add(new ThemeDescription(dialogsSearchAdapter5 != null ? dialogsSearchAdapter5.getInnerListView() : null, 0, new Class[]{HintDialogCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
+            DialogsSearchAdapter dialogsSearchAdapter6 = this.searchViewPager.dialogsSearchAdapter;
+            arrayList3.add(new ThemeDescription(dialogsSearchAdapter6 != null ? dialogsSearchAdapter6.getInnerListView() : null, 0, new Class[]{HintDialogCell.class}, null, null, null, Theme.key_chats_onlineCircle));
+        }
+        for (int i27 = 0; i27 < this.undoView.length; i27++) {
+            UndoView undoView = this.undoView[i27];
+            int i28 = ThemeDescription.FLAG_BACKGROUNDFILTER;
+            int i29 = Theme.key_undo_background;
+            arrayList3.add(new ThemeDescription(undoView, i28, null, null, null, null, i29));
+            int i30 = Theme.key_undo_cancelColor;
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"undoImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i30));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"undoTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i30));
+            int i31 = Theme.key_undo_infoColor;
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"infoTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"subinfoTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"textPaint"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"progressPaint"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "info1", i29));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "info2", i29));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc12", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc11", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc10", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc9", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc8", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc7", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc6", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc5", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc4", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc3", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc2", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "luc1", i31));
+            arrayList3.add(new ThemeDescription(this.undoView[i27], 0, new Class[]{UndoView.class}, new String[]{"leftImageView"}, "Oval", i31));
+        }
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogBackgroundGray));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextBlack));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextLink));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogLinkSelection));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextBlue));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextBlue2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextBlue4));
+        int i32 = Theme.key_text_RedBold;
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, i32));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextGray));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextGray2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextGray3));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextGray4));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogIcon));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_text_RedRegular));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogTextHint));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogInputField));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogInputFieldActivated));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogCheckboxSquareBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogCheckboxSquareCheck));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogCheckboxSquareUnchecked));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogCheckboxSquareDisabled));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogRadioBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogRadioBackgroundChecked));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogButton));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogButtonSelector));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogScrollGlow));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogRoundCheckBox));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogRoundCheckBoxCheck));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogLineProgress));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogLineProgressBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogGrayLine));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialog_inlineProgressBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialog_inlineProgress));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogSearchBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogSearchHint));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogSearchIcon));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogSearchText));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogFloatingButton));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogFloatingIcon));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_dialogShadowLine));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_sheet_scrollUp));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_sheet_other));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_actionBarSelector));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_actionBarTitle));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_actionBarSubtitle));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_actionBarItems));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_background));
+        int i33 = Theme.key_player_time;
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, i33));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_progressBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_progressCachedBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_progress));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_button));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_player_buttonActive));
+        if (this.commentView != null) {
+            arrayList3.add(new ThemeDescription(this.commentView, 0, null, Theme.chat_composeBackgroundPaint, null, null, Theme.key_chat_messagePanelBackground));
+            arrayList3.add(new ThemeDescription(this.commentView, 0, null, null, new Drawable[]{Theme.chat_composeShadowDrawable}, null, Theme.key_chat_messagePanelShadow));
+            arrayList3.add(new ThemeDescription(this.commentView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{ChatActivityEnterView.class}, new String[]{"messageEditText"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_messagePanelText));
+            arrayList3.add(new ThemeDescription(this.commentView, ThemeDescription.FLAG_CURSORCOLOR, new Class[]{ChatActivityEnterView.class}, new String[]{"messageEditText"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_messagePanelCursor));
+            arrayList3.add(new ThemeDescription(this.commentView, ThemeDescription.FLAG_HINTTEXTCOLOR, new Class[]{ChatActivityEnterView.class}, new String[]{"messageEditText"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_messagePanelHint));
+        }
+        int i34 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i34));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i33));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_chat_messagePanelCursor));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_actionBarIconBlue));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_groupcreate_spanBackground));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayGreen1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayGreen2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayBlue1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayBlue2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_topPanelGreen1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_topPanelGreen2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_topPanelBlue1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_topPanelBlue2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_topPanelGray));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayAlertGradientMuted));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayAlertGradientMuted2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayAlertGradientUnmuted));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayAlertGradientUnmuted2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_mutedByAdminGradient));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_mutedByAdminGradient2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_mutedByAdminGradient3));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayAlertMutedByAdmin));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, Theme.key_voipgroup_overlayAlertMutedByAdmin2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_stories_circle_dialog1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_stories_circle_dialog2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_stories_circle_closeFriends1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_stories_circle_closeFriends2));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_stories_circle1));
+        arrayList3.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_stories_circle2));
+        FiltersView filtersView = this.filtersView;
+        if (filtersView != null) {
+            arrayList3.addAll(filtersView.getThemeDescriptions());
+            this.filtersView.updateColors();
+        }
+        DownloadProgressIcon downloadProgressIcon = this.downloadProgressIcon;
+        if (downloadProgressIcon != null) {
+            downloadProgressIcon.updateColors();
+            this.downloadProgressIcon.invalidate();
+        }
+        SearchViewPager searchViewPager2 = this.searchViewPager;
+        if (searchViewPager2 != null) {
+            searchViewPager2.getThemeDescriptions(arrayList3);
+        }
+        final DialogsHintCell dialogsHintCell = this.dialogsHintCell;
+        if (dialogsHintCell != null) {
+            SimpleThemeDescription.add(arrayList3, new Runnable() {
+                @Override
+                public final void run() {
+                    dialogsHintCell.updateColors();
+                }
+            }, Theme.key_windowBackgroundWhite, i34, Theme.key_windowBackgroundWhiteGrayText);
+        }
+        final UnconfirmedAuthHintCell unconfirmedAuthHintCell = this.authHintCell;
+        if (unconfirmedAuthHintCell != null) {
+            SimpleThemeDescription.add(arrayList3, new Runnable() {
+                @Override
+                public final void run() {
+                    unconfirmedAuthHintCell.updateColors();
+                }
+            }, Theme.key_windowBackgroundWhite, i34, Theme.key_windowBackgroundWhiteGrayText, Theme.key_windowBackgroundWhiteValueText, i32);
+        }
+        final ActiveGiftAuctionsHintCell activeGiftAuctionsHintCell = this.activeGiftAuctionsHintCell;
+        if (activeGiftAuctionsHintCell != null) {
+            SimpleThemeDescription.add(arrayList3, new Runnable() {
+                @Override
+                public final void run() {
+                    activeGiftAuctionsHintCell.updateColors();
+                }
+            }, Theme.key_windowBackgroundWhite, i34, Theme.key_windowBackgroundWhiteGrayText, Theme.key_windowBackgroundWhiteValueText, i32);
+        }
+        return arrayList3;
     }
 
     public void lambda$getThemeDescriptions$139() {

@@ -183,25 +183,25 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -249,25 +249,25 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -308,25 +308,25 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -367,25 +367,25 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -423,28 +423,28 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.value_amount = inputSerializedData.readInt64(z);
                 this.value_currency = inputSerializedData.readString(z);
             }
@@ -478,28 +478,28 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.value_amount);
                 outputSerializedData.writeString(this.value_currency);
             }
@@ -530,28 +530,28 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.value_amount = inputSerializedData.readInt64(z);
                 this.value_currency = inputSerializedData.readString(z);
             }
@@ -582,28 +582,28 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.value_amount);
                 outputSerializedData.writeString(this.value_currency);
             }
@@ -631,28 +631,28 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.value_amount = inputSerializedData.readInt64(z);
                 this.value_currency = inputSerializedData.readString(z);
             }
@@ -680,28 +680,28 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.value_amount);
                 outputSerializedData.writeString(this.value_currency);
             }
@@ -725,28 +725,28 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.value_amount = inputSerializedData.readInt64(z);
                 this.value_currency = inputSerializedData.readString(z);
             }
@@ -769,28 +769,28 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.value_amount);
                 outputSerializedData.writeString(this.value_currency);
             }
@@ -810,25 +810,25 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_amount = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -849,25 +849,25 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.resell_amount);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
         }
@@ -885,19 +885,19 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
@@ -905,7 +905,7 @@ public class TL_stars {
                 this.resell_amount = arrayList;
                 arrayList.add(StarsAmount.ofStars(inputSerializedData.readInt64(z)));
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -920,25 +920,25 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(getResellStars());
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
         }
@@ -954,22 +954,22 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 ArrayList<StarsAmount> arrayList = new ArrayList<>();
                 this.resell_amount = arrayList;
                 arrayList.add(StarsAmount.ofStars(inputSerializedData.readInt64(z)));
@@ -984,22 +984,22 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(getResellStars());
             }
         }
@@ -1015,19 +1015,19 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
             this.availability_issued = inputSerializedData.readInt32(z);
             this.availability_total = inputSerializedData.readInt32(z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.gift_address = inputSerializedData.readString(z);
             }
         }
@@ -1040,19 +1040,19 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
             outputSerializedData.writeInt32(this.availability_issued);
             outputSerializedData.writeInt32(this.availability_total);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.gift_address);
             }
         }
@@ -1068,13 +1068,13 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.owner_address = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
@@ -1090,13 +1090,13 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.owner_id.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.owner_address);
             }
             Vector.serialize(outputSerializedData, this.attributes);
@@ -1115,12 +1115,12 @@ public class TL_stars {
             this.title = inputSerializedData.readString(z);
             this.slug = inputSerializedData.readString(z);
             this.num = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 this.owner_id = tL_peerUser;
                 tL_peerUser.user_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.owner_name = inputSerializedData.readString(z);
             }
             this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
@@ -1136,10 +1136,10 @@ public class TL_stars {
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeInt32(this.num);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.owner_id.user_id);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.owner_name);
             }
             Vector.serialize(outputSerializedData, this.attributes);
@@ -1183,50 +1183,50 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(825922887);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int flag = TLObject.setFlag(i4, 128, this.require_premium);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 256, this.limited_per_user);
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 1024, this.peer_color_available);
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 2048, this.auction);
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
             this.flags = flag4;
-            int flag5 = TLObject.setFlag(flag4, 8192, this.background != null);
+            int flag5 = TLObject.setFlag(flag4, 128, this.require_premium);
             this.flags = flag5;
-            outputSerializedData.writeInt32(flag5);
+            int flag6 = TLObject.setFlag(flag5, 256, this.limited_per_user);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 1024, this.peer_color_available);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 2048, this.auction);
+            this.flags = flag8;
+            int flag9 = TLObject.setFlag(flag8, 8192, this.background != null);
+            this.flags = flag9;
+            outputSerializedData.writeInt32(flag9);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.availability_resale);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.resell_min_stars);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1253,39 +1253,39 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(int32, 128);
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
+            this.require_premium = TLObject.hasFlag(this.flags, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.peer_color_available = TLObject.hasFlag(this.flags, 1024);
             this.auction = TLObject.hasFlag(this.flags, 2048);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.availability_resale = inputSerializedData.readInt64(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_min_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1315,48 +1315,48 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(463097215);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int flag = TLObject.setFlag(i4, 128, this.require_premium);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 256, this.limited_per_user);
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 1024, this.peer_color_available);
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
             this.flags = flag3;
-            int flag4 = TLObject.setFlag(flag3, 2048, this.auction);
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
             this.flags = flag4;
-            outputSerializedData.writeInt32(flag4);
+            int flag5 = TLObject.setFlag(flag4, 128, this.require_premium);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 256, this.limited_per_user);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 1024, this.peer_color_available);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 2048, this.auction);
+            this.flags = flag8;
+            outputSerializedData.writeInt32(flag8);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.availability_resale);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.resell_min_stars);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1376,39 +1376,39 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(int32, 128);
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
+            this.require_premium = TLObject.hasFlag(this.flags, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.peer_color_available = TLObject.hasFlag(this.flags, 1024);
             this.auction = TLObject.hasFlag(this.flags, 2048);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.availability_resale = inputSerializedData.readInt64(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_min_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1431,46 +1431,46 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2136190013);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int flag = TLObject.setFlag(i4, 128, this.require_premium);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 256, this.limited_per_user);
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 1024, this.peer_color_available);
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
             this.flags = flag3;
-            outputSerializedData.writeInt32(flag3);
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 128, this.require_premium);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 256, this.limited_per_user);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 1024, this.peer_color_available);
+            this.flags = flag7;
+            outputSerializedData.writeInt32(flag7);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.availability_resale);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.resell_min_stars);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1486,38 +1486,38 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(int32, 128);
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
+            this.require_premium = TLObject.hasFlag(this.flags, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.peer_color_available = TLObject.hasFlag(this.flags, 1024);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.availability_resale = inputSerializedData.readInt64(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_min_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1536,44 +1536,44 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(12386139);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int flag = TLObject.setFlag(i4, 128, this.require_premium);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 256, this.limited_per_user);
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
             this.flags = flag2;
-            outputSerializedData.writeInt32(flag2);
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 128, this.require_premium);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 256, this.limited_per_user);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.availability_resale);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.resell_min_stars);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1586,37 +1586,37 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
-            this.require_premium = TLObject.hasFlag(int32, 128);
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
+            this.require_premium = TLObject.hasFlag(this.flags, 128);
             this.limited_per_user = TLObject.hasFlag(this.flags, 256);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.availability_resale = inputSerializedData.readInt64(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_min_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 256)) {
@@ -1632,40 +1632,40 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2139438098);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.availability_resale);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.resell_min_stars);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by.serializeToStream(outputSerializedData);
             }
         }
@@ -1674,35 +1674,35 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.availability_resale = inputSerializedData.readInt64(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_min_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.released_by = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -1714,37 +1714,37 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-970274264);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.availability_resale);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.resell_min_stars);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeString(this.title);
             }
         }
@@ -1753,32 +1753,32 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.availability_resale = inputSerializedData.readInt64(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.resell_min_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.title = inputSerializedData.readString(z);
             }
         }
@@ -1790,28 +1790,28 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(46953416);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.can_upgrade);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
         }
@@ -1820,23 +1820,23 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
-            this.can_upgrade = (int32 & 8) != 0;
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 8);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
         }
@@ -1848,22 +1848,22 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1237678029);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sold_out ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.birthday ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.sold_out);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.birthday);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
             outputSerializedData.writeInt64(this.convert_stars);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.first_sale_date);
                 outputSerializedData.writeInt32(this.last_sale_date);
             }
@@ -1873,18 +1873,18 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
-            this.sold_out = (int32 & 2) != 0;
-            this.birthday = (int32 & 4) != 0;
+            this.limited = TLObject.hasFlag(int32, 1);
+            this.sold_out = TLObject.hasFlag(this.flags, 2);
+            this.birthday = TLObject.hasFlag(this.flags, 4);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
             this.convert_stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.first_sale_date = inputSerializedData.readInt32(z);
                 this.last_sale_date = inputSerializedData.readInt32(z);
             }
@@ -1897,13 +1897,13 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1365150482);
-            int i = this.limited ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.limited);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.id);
             this.sticker.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.availability_remains);
                 outputSerializedData.writeInt32(this.availability_total);
             }
@@ -1914,11 +1914,11 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.limited = (int32 & 1) != 0;
+            this.limited = TLObject.hasFlag(int32, 1);
             this.id = inputSerializedData.readInt64(z);
             this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.availability_remains = inputSerializedData.readInt32(z);
                 this.availability_total = inputSerializedData.readInt32(z);
             }
@@ -2017,23 +2017,23 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1558583959);
-            int i = this.exclude_unsaved ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.exclude_saved ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.exclude_unlimited ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.exclude_unique ? i3 | 16 : i3 & (-17);
-            this.flags = i4;
-            int i5 = this.sort_by_value ? i4 | 32 : i4 & (-33);
-            this.flags = i5;
-            int flag = TLObject.setFlag(i5, 128, this.exclude_upgradable);
+            int flag = TLObject.setFlag(this.flags, 1, this.exclude_unsaved);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 256, this.exclude_unupgradable);
+            int flag2 = TLObject.setFlag(flag, 2, this.exclude_saved);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 512, this.peer_color_available);
+            int flag3 = TLObject.setFlag(flag2, 4, this.exclude_unlimited);
             this.flags = flag3;
-            outputSerializedData.writeInt32(flag3);
+            int flag4 = TLObject.setFlag(flag3, 16, this.exclude_unique);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.sort_by_value);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 128, this.exclude_upgradable);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 256, this.exclude_unupgradable);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 512, this.peer_color_available);
+            this.flags = flag8;
+            outputSerializedData.writeInt32(flag8);
             this.peer.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt32(this.collection_id);
@@ -2073,9 +2073,9 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(707422588);
-            int i = this.unsave ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.unsave);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.stargift.serializeToStream(outputSerializedData);
         }
     }
@@ -2110,9 +2110,9 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1361648395);
-            int i = this.keep_original_details ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.keep_original_details);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.stargift.serializeToStream(outputSerializedData);
         }
     }
@@ -2229,9 +2229,9 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.extended = (int32 & 2) != 0;
+            this.extended = TLObject.hasFlag(int32, 2);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.store_product = inputSerializedData.readString(z);
             }
             this.currency = inputSerializedData.readString(z);
@@ -2241,11 +2241,11 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(198776256);
-            int i = this.extended ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 2, this.extended);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.store_product);
             }
             outputSerializedData.writeString(this.currency);
@@ -2272,9 +2272,9 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.extended = (int32 & 2) != 0;
+            this.extended = TLObject.hasFlag(int32, 2);
             this.stars = inputSerializedData.readInt64(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.store_product = inputSerializedData.readString(z);
             }
             this.currency = inputSerializedData.readString(z);
@@ -2284,11 +2284,11 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1577421297);
-            int i = this.extended ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 2, this.extended);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.stars);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.store_product);
             }
             outputSerializedData.writeString(this.currency);
@@ -2311,7 +2311,7 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.isDefault = (int32 & 1) != 0;
+            this.isDefault = TLObject.hasFlag(int32, 1);
             this.users = inputSerializedData.readInt32(z);
             this.per_user_stars = inputSerializedData.readInt64(z);
         }
@@ -2319,9 +2319,9 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1411605001);
-            int i = this.isDefault ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.isDefault);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt32(this.users);
             outputSerializedData.writeInt64(this.per_user_stars);
         }
@@ -2349,11 +2349,11 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.extended = (int32 & 1) != 0;
-            this.isDefault = (int32 & 2) != 0;
+            this.extended = TLObject.hasFlag(int32, 1);
+            this.isDefault = TLObject.hasFlag(this.flags, 2);
             this.stars = inputSerializedData.readInt64(z);
             this.yearly_boosts = inputSerializedData.readInt32(z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.store_product = inputSerializedData.readString(z);
             }
             this.currency = inputSerializedData.readString(z);
@@ -2369,14 +2369,14 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1798404822);
-            int i = this.extended ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.isDefault ? i | 2 : i & (-3);
-            this.flags = i2;
-            outputSerializedData.writeInt32(i2);
+            int flag = TLObject.setFlag(this.flags, 1, this.extended);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.isDefault);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeInt64(this.stars);
             outputSerializedData.writeInt32(this.yearly_boosts);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.store_product);
             }
             outputSerializedData.writeString(this.currency);
@@ -2616,18 +2616,18 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -2635,20 +2635,20 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-865044046);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
         }
@@ -2661,23 +2661,23 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
@@ -2686,27 +2686,27 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1442789224);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
@@ -2803,73 +2803,73 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
-            this.floodskip = (int32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & int32) != 0;
-            this.paid_message = (int32 & 524288) != 0;
-            this.premium_gift = (int32 & 1048576) != 0;
-            this.business_transfer = (2097152 & int32) != 0;
-            this.stargift_resale = (4194304 & int32) != 0;
-            this.posts_search = (16777216 & int32) != 0;
-            this.stargift_prepaid_upgrade = (33554432 & int32) != 0;
-            this.stargift_drop_original_details = (67108864 & int32) != 0;
-            this.phonegroup_message = TLObject.hasFlag(int32, 134217728);
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
+            this.floodskip = TLObject.hasFlag(this.flags, 32768);
+            this.stargift_upgrade = TLObject.hasFlag(this.flags, 262144);
+            this.paid_message = TLObject.hasFlag(this.flags, 524288);
+            this.premium_gift = TLObject.hasFlag(this.flags, 1048576);
+            this.business_transfer = TLObject.hasFlag(this.flags, 2097152);
+            this.stargift_resale = TLObject.hasFlag(this.flags, 4194304);
+            this.posts_search = TLObject.hasFlag(this.flags, 16777216);
+            this.stargift_prepaid_upgrade = TLObject.hasFlag(this.flags, 33554432);
+            this.stargift_drop_original_details = TLObject.hasFlag(this.flags, 67108864);
+            this.phonegroup_message = TLObject.hasFlag(this.flags, 134217728);
             this.stargift_auction_bid = TLObject.hasFlag(this.flags, 268435456);
             this.offer = TLObject.hasFlag(this.flags, 536870912);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.floodskip_number = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.starref_commission_permille = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
                 this.starref_amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 524288) != 0) {
+            if (TLObject.hasFlag(this.flags, 524288)) {
                 this.paid_messages = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 1048576) != 0) {
+            if (TLObject.hasFlag(this.flags, 1048576)) {
                 this.premium_gift_months = inputSerializedData.readInt32(z);
             }
             if (TLObject.hasFlag(this.flags, 8388608)) {
@@ -2881,92 +2881,92 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(325426864);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            int i7 = this.floodskip ? i6 | 32768 : i6 & (-32769);
-            this.flags = i7;
-            int i8 = this.stargift_upgrade ? i7 | 262144 : i7 & (-262145);
-            this.flags = i8;
-            int i9 = this.paid_message ? i8 | 524288 : i8 & (-524289);
-            this.flags = i9;
-            int i10 = this.premium_gift ? i9 | 1048576 : i9 & (-1048577);
-            this.flags = i10;
-            int i11 = this.business_transfer ? i10 | 2097152 : i10 & (-2097153);
-            this.flags = i11;
-            int i12 = this.stargift_resale ? i11 | 4194304 : i11 & (-4194305);
-            this.flags = i12;
-            int i13 = this.posts_search ? i12 | 16777216 : i12 & (-16777217);
-            this.flags = i13;
-            int i14 = this.stargift_prepaid_upgrade ? i13 | 33554432 : i13 & (-33554433);
-            this.flags = i14;
-            int i15 = this.stargift_drop_original_details ? i14 | 67108864 : i14 & (-67108865);
-            this.flags = i15;
-            int flag = TLObject.setFlag(i15, 134217728, this.phonegroup_message);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
             this.flags = flag;
-            int flag2 = TLObject.setFlag(flag, 268435456, this.stargift_auction_bid);
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
             this.flags = flag2;
-            int flag3 = TLObject.setFlag(flag2, 536870912, this.offer);
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
             this.flags = flag3;
-            outputSerializedData.writeInt32(flag3);
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 32768, this.floodskip);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 262144, this.stargift_upgrade);
+            this.flags = flag8;
+            int flag9 = TLObject.setFlag(flag8, 524288, this.paid_message);
+            this.flags = flag9;
+            int flag10 = TLObject.setFlag(flag9, 1048576, this.premium_gift);
+            this.flags = flag10;
+            int flag11 = TLObject.setFlag(flag10, 2097152, this.business_transfer);
+            this.flags = flag11;
+            int flag12 = TLObject.setFlag(flag11, 4194304, this.stargift_resale);
+            this.flags = flag12;
+            int flag13 = TLObject.setFlag(flag12, 16777216, this.posts_search);
+            this.flags = flag13;
+            int flag14 = TLObject.setFlag(flag13, 33554432, this.stargift_prepaid_upgrade);
+            this.flags = flag14;
+            int flag15 = TLObject.setFlag(flag14, 67108864, this.stargift_drop_original_details);
+            this.flags = flag15;
+            int flag16 = TLObject.setFlag(flag15, 134217728, this.phonegroup_message);
+            this.flags = flag16;
+            int flag17 = TLObject.setFlag(flag16, 268435456, this.stargift_auction_bid);
+            this.flags = flag17;
+            int flag18 = TLObject.setFlag(flag17, 536870912, this.offer);
+            this.flags = flag18;
+            outputSerializedData.writeInt32(flag18);
             outputSerializedData.writeString(this.id);
             this.amount.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 outputSerializedData.writeInt32(this.floodskip_number);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeInt32(this.starref_commission_permille);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer.serializeToStream(outputSerializedData);
                 this.starref_amount.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 524288) != 0) {
+            if (TLObject.hasFlag(this.flags, 524288)) {
                 outputSerializedData.writeInt32(this.paid_messages);
             }
-            if ((this.flags & 1048576) != 0) {
+            if (TLObject.hasFlag(this.flags, 1048576)) {
                 outputSerializedData.writeInt32(this.premium_gift_months);
             }
             if (TLObject.hasFlag(this.flags, 8388608)) {
@@ -2983,66 +2983,66 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
-            this.floodskip = (int32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & int32) != 0;
-            this.paid_message = (int32 & 524288) != 0;
-            this.premium_gift = (int32 & 1048576) != 0;
-            this.stargift_resale = (int32 & 4194304) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
+            this.floodskip = TLObject.hasFlag(this.flags, 32768);
+            this.stargift_upgrade = TLObject.hasFlag(this.flags, 262144);
+            this.paid_message = TLObject.hasFlag(this.flags, 524288);
+            this.premium_gift = TLObject.hasFlag(this.flags, 1048576);
+            this.stargift_resale = TLObject.hasFlag(this.flags, 4194304);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.floodskip_number = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.starref_commission_permille = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
                 this.starref_amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 524288) != 0) {
+            if (TLObject.hasFlag(this.flags, 524288)) {
                 this.paid_messages = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 1048576) != 0) {
+            if (TLObject.hasFlag(this.flags, 1048576)) {
                 this.premium_gift_months = inputSerializedData.readInt32(z);
             }
         }
@@ -3050,78 +3050,78 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1549805238);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            int i7 = this.floodskip ? i6 | 32768 : i6 & (-32769);
-            this.flags = i7;
-            int i8 = this.stargift_upgrade ? i7 | 262144 : i7 & (-262145);
-            this.flags = i8;
-            int i9 = this.paid_message ? i8 | 524288 : i8 & (-524289);
-            this.flags = i9;
-            int i10 = this.premium_gift ? i9 | 1048576 : i9 & (-1048577);
-            this.flags = i10;
-            int i11 = this.stargift_resale ? i10 | 4194304 : i10 & (-4194305);
-            this.flags = i11;
-            outputSerializedData.writeInt32(i11);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 32768, this.floodskip);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 262144, this.stargift_upgrade);
+            this.flags = flag8;
+            int flag9 = TLObject.setFlag(flag8, 524288, this.paid_message);
+            this.flags = flag9;
+            int flag10 = TLObject.setFlag(flag9, 1048576, this.premium_gift);
+            this.flags = flag10;
+            int flag11 = TLObject.setFlag(flag10, 4194304, this.stargift_resale);
+            this.flags = flag11;
+            outputSerializedData.writeInt32(flag11);
             outputSerializedData.writeString(this.id);
             this.amount.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 outputSerializedData.writeInt32(this.floodskip_number);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeInt32(this.starref_commission_permille);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer.serializeToStream(outputSerializedData);
                 this.starref_amount.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 524288) != 0) {
+            if (TLObject.hasFlag(this.flags, 524288)) {
                 outputSerializedData.writeInt32(this.paid_messages);
             }
-            if ((this.flags & 1048576) != 0) {
+            if (TLObject.hasFlag(this.flags, 1048576)) {
                 outputSerializedData.writeInt32(this.premium_gift_months);
             }
         }
@@ -3134,62 +3134,62 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
-            this.floodskip = (int32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & int32) != 0;
-            this.paid_message = (int32 & 524288) != 0;
-            this.premium_gift = (int32 & 1048576) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
+            this.floodskip = TLObject.hasFlag(this.flags, 32768);
+            this.stargift_upgrade = TLObject.hasFlag(this.flags, 262144);
+            this.paid_message = TLObject.hasFlag(this.flags, 524288);
+            this.premium_gift = TLObject.hasFlag(this.flags, 1048576);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.floodskip_number = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.starref_commission_permille = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
                 this.starref_amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 524288) != 0) {
+            if (TLObject.hasFlag(this.flags, 524288)) {
                 this.paid_messages = inputSerializedData.readInt32(z);
             }
         }
@@ -3197,73 +3197,73 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-321582812);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            int i7 = this.floodskip ? i6 | 32768 : i6 & (-32769);
-            this.flags = i7;
-            int i8 = this.stargift_upgrade ? i7 | 262144 : i7 & (-262145);
-            this.flags = i8;
-            int i9 = this.paid_message ? i8 | 524288 : i8 & (-524289);
-            this.flags = i9;
-            int i10 = this.premium_gift ? i9 | 1048576 : i9 & (-1048577);
-            this.flags = i10;
-            outputSerializedData.writeInt32(i10);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 32768, this.floodskip);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 262144, this.stargift_upgrade);
+            this.flags = flag8;
+            int flag9 = TLObject.setFlag(flag8, 524288, this.paid_message);
+            this.flags = flag9;
+            int flag10 = TLObject.setFlag(flag9, 1048576, this.premium_gift);
+            this.flags = flag10;
+            outputSerializedData.writeInt32(flag10);
             outputSerializedData.writeString(this.id);
             this.amount.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 outputSerializedData.writeInt32(this.floodskip_number);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeInt32(this.starref_commission_permille);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer.serializeToStream(outputSerializedData);
                 this.starref_amount.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 524288) != 0) {
+            if (TLObject.hasFlag(this.flags, 524288)) {
                 outputSerializedData.writeInt32(this.paid_messages);
             }
         }
@@ -3276,57 +3276,57 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
-            this.floodskip = (int32 & 32768) != 0;
-            this.stargift_upgrade = (262144 & int32) != 0;
-            this.paid_message = (int32 & 524288) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
+            this.floodskip = TLObject.hasFlag(this.flags, 32768);
+            this.stargift_upgrade = TLObject.hasFlag(this.flags, 262144);
+            this.paid_message = TLObject.hasFlag(this.flags, 524288);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.floodskip_number = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.starref_commission_permille = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
                 this.starref_amount = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
@@ -3335,67 +3335,67 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1692387622);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            int i7 = this.floodskip ? i6 | 32768 : i6 & (-32769);
-            this.flags = i7;
-            int i8 = this.stargift_upgrade ? i7 | 262144 : i7 & (-262145);
-            this.flags = i8;
-            int i9 = this.paid_message ? i8 | 524288 : i8 & (-524289);
-            this.flags = i9;
-            outputSerializedData.writeInt32(i9);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 32768, this.floodskip);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 262144, this.stargift_upgrade);
+            this.flags = flag8;
+            int flag9 = TLObject.setFlag(flag8, 524288, this.paid_message);
+            this.flags = flag9;
+            outputSerializedData.writeInt32(flag9);
             outputSerializedData.writeString(this.id);
             this.amount.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 outputSerializedData.writeInt32(this.floodskip_number);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeInt32(this.starref_commission_permille);
             }
-            if ((this.flags & 131072) != 0) {
+            if (TLObject.hasFlag(this.flags, 131072)) {
                 this.starref_peer.serializeToStream(outputSerializedData);
                 this.starref_amount.serializeToStream(outputSerializedData);
             }
@@ -3409,49 +3409,49 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
-            this.floodskip = (int32 & 32768) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
+            this.floodskip = TLObject.hasFlag(this.flags, 32768);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.floodskip_number = inputSerializedData.readInt32(z);
             }
         }
@@ -3459,57 +3459,57 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(903148150);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            int i7 = this.floodskip ? i6 | 32768 : i6 & (-32769);
-            this.flags = i7;
-            outputSerializedData.writeInt32(i7);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 32768, this.floodskip);
+            this.flags = flag7;
+            outputSerializedData.writeInt32(flag7);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 outputSerializedData.writeInt32(this.floodskip_number);
             }
         }
@@ -3522,45 +3522,45 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -3568,52 +3568,52 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(178185410);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.stargift.serializeToStream(outputSerializedData);
             }
         }
@@ -3626,42 +3626,42 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.giveaway_post_id = inputSerializedData.readInt32(z);
             }
         }
@@ -3669,49 +3669,49 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-294313259);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.giveaway_post_id);
             }
         }
@@ -3724,39 +3724,39 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
-            this.reaction = (int32 & 2048) != 0;
-            this.subscription = (int32 & 4096) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
+            this.reaction = TLObject.hasFlag(this.flags, 2048);
+            this.subscription = TLObject.hasFlag(this.flags, 4096);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 this.subscription_period = inputSerializedData.readInt32(z);
             }
         }
@@ -3764,46 +3764,46 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1127934763);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.reaction ? i4 | 2048 : i4 & (-2049);
-            this.flags = i5;
-            int i6 = this.subscription ? i5 | 4096 : i5 & (-4097);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 2048, this.reaction);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 4096, this.subscription);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
-            if ((this.flags & 4096) != 0) {
+            if (TLObject.hasFlag(this.flags, 4096)) {
                 outputSerializedData.writeInt32(this.subscription_period);
             }
         }
@@ -3816,34 +3816,34 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.refund = (int32 & 8) != 0;
-            this.pending = (int32 & 16) != 0;
-            this.failed = (int32 & 64) != 0;
-            this.gift = (int32 & 1024) != 0;
+            this.refund = TLObject.hasFlag(int32, 8);
+            this.pending = TLObject.hasFlag(this.flags, 16);
+            this.failed = TLObject.hasFlag(this.flags, 64);
+            this.gift = TLObject.hasFlag(this.flags, 1024);
             this.id = inputSerializedData.readString(z);
             this.amount = StarsAmount.ofStars(inputSerializedData.readInt64(z));
             this.date = inputSerializedData.readInt32(z);
             this.peer = StarsTransactionPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.transaction_date = inputSerializedData.readInt32(z);
                 this.transaction_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.bot_payload = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.extended_media = Vector.deserialize(inputSerializedData, new TL_stars$TL_starsTransaction$$ExternalSyntheticLambda0(), z);
             }
         }
@@ -3851,39 +3851,39 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(766853519);
-            int i = this.refund ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            int i2 = this.pending ? i | 16 : i & (-17);
-            this.flags = i2;
-            int i3 = this.failed ? i2 | 64 : i2 & (-65);
-            this.flags = i3;
-            int i4 = this.gift ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
+            int flag = TLObject.setFlag(this.flags, 8, this.refund);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 16, this.pending);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 64, this.failed);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.gift);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeString(this.id);
             outputSerializedData.writeInt64(this.amount.amount);
             outputSerializedData.writeInt32(this.date);
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.transaction_date);
                 outputSerializedData.writeString(this.transaction_url);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeByteArray(this.bot_payload);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 Vector.serialize(outputSerializedData, this.extended_media);
             }
         }
@@ -3918,19 +3918,19 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.balance = StarsAmount.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.subscriptions = Vector.deserialize(inputSerializedData, new TL_stars$TL_payments_starsStatus$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.subscriptions_next_offset = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.subscriptions_missing_balance = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.history = Vector.deserialize(inputSerializedData, new TL_stars$TL_payments_starsStatus$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
@@ -3942,19 +3942,19 @@ public class TL_stars {
             outputSerializedData.writeInt32(1822222573);
             outputSerializedData.writeInt32(this.flags);
             this.balance.serializeToStream(outputSerializedData);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 Vector.serialize(outputSerializedData, this.subscriptions);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.subscriptions_next_offset);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.subscriptions_missing_balance);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 Vector.serialize(outputSerializedData, this.history);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.next_offset);
             }
             Vector.serialize(outputSerializedData, this.chats);
@@ -3969,19 +3969,19 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.balance = StarsAmount.ofStars(inputSerializedData.readInt64(z));
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.subscriptions = Vector.deserialize(inputSerializedData, new TL_stars$TL_payments_starsStatus$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.subscriptions_next_offset = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.subscriptions_missing_balance = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.history = Vector.deserialize(inputSerializedData, new TL_stars$TL_payments_starsStatus$$ExternalSyntheticLambda1(), z);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
@@ -3993,19 +3993,19 @@ public class TL_stars {
             outputSerializedData.writeInt32(-1141231252);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.balance.amount);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 Vector.serialize(outputSerializedData, this.subscriptions);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.subscriptions_next_offset);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.subscriptions_missing_balance);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 Vector.serialize(outputSerializedData, this.history);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.next_offset);
             }
             Vector.serialize(outputSerializedData, this.chats);
@@ -4051,7 +4051,7 @@ public class TL_stars {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-741774392);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id.serializeToStream(outputSerializedData);
             }
         }
@@ -4187,24 +4187,24 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.canceled = (int32 & 1) != 0;
-            this.can_refulfill = (int32 & 2) != 0;
-            this.missing_balance = (int32 & 4) != 0;
-            this.bot_canceled = (int32 & 128) != 0;
+            this.canceled = TLObject.hasFlag(int32, 1);
+            this.can_refulfill = TLObject.hasFlag(this.flags, 2);
+            this.missing_balance = TLObject.hasFlag(this.flags, 4);
+            this.bot_canceled = TLObject.hasFlag(this.flags, 128);
             this.id = inputSerializedData.readString(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.until_date = inputSerializedData.readInt32(z);
             this.pricing = TL_starsSubscriptionPricing.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.chat_invite_hash = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.title = inputSerializedData.readString(z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.photo = TLRPC.WebDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.invoice_slug = inputSerializedData.readString(z);
             }
         }
@@ -4212,29 +4212,29 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(779004698);
-            int i = this.canceled ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.can_refulfill ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.missing_balance ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.bot_canceled ? i3 | 128 : i3 & (-129);
-            this.flags = i4;
-            outputSerializedData.writeInt32(i4);
+            int flag = TLObject.setFlag(this.flags, 1, this.canceled);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.can_refulfill);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.missing_balance);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 128, this.bot_canceled);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
             outputSerializedData.writeString(this.id);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.until_date);
             this.pricing.serializeToStream(outputSerializedData);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.chat_invite_hash);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeString(this.invoice_slug);
             }
         }
@@ -4247,14 +4247,14 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.canceled = (int32 & 1) != 0;
-            this.can_refulfill = (int32 & 2) != 0;
-            this.missing_balance = (int32 & 4) != 0;
+            this.canceled = TLObject.hasFlag(int32, 1);
+            this.can_refulfill = TLObject.hasFlag(this.flags, 2);
+            this.missing_balance = TLObject.hasFlag(this.flags, 4);
             this.id = inputSerializedData.readString(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.until_date = inputSerializedData.readInt32(z);
             this.pricing = TL_starsSubscriptionPricing.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.chat_invite_hash = inputSerializedData.readString(z);
             }
         }
@@ -4262,18 +4262,18 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1401868056);
-            int i = this.canceled ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.can_refulfill ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.missing_balance ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
+            int flag = TLObject.setFlag(this.flags, 1, this.canceled);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.can_refulfill);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.missing_balance);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeString(this.id);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.until_date);
             this.pricing.serializeToStream(outputSerializedData);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.chat_invite_hash);
             }
         }
@@ -4286,9 +4286,9 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.canceled = (int32 & 1) != 0;
-            this.can_refulfill = (int32 & 2) != 0;
-            this.missing_balance = (int32 & 4) != 0;
+            this.canceled = TLObject.hasFlag(int32, 1);
+            this.can_refulfill = TLObject.hasFlag(this.flags, 2);
+            this.missing_balance = TLObject.hasFlag(this.flags, 4);
             this.id = inputSerializedData.readString(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.until_date = inputSerializedData.readInt32(z);
@@ -4298,13 +4298,13 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-797707802);
-            int i = this.canceled ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.can_refulfill ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.missing_balance ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
+            int flag = TLObject.setFlag(this.flags, 1, this.canceled);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.can_refulfill);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.missing_balance);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
             outputSerializedData.writeString(this.id);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.until_date);
@@ -4350,9 +4350,9 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(52761285);
-            int i = this.missing_balance ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.missing_balance);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeString(this.offset);
         }
@@ -4373,12 +4373,12 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-948500360);
-            int i = this.canceled != null ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.canceled != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeString(this.subscription_id);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeBool(this.canceled.booleanValue());
             }
         }
@@ -4745,12 +4745,12 @@ public class TL_stars {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-524291476);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.sender_id.serializeToStream(outputSerializedData);
             }
             this.recipient_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.date);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.message.serializeToStream(outputSerializedData);
             }
         }
@@ -4759,12 +4759,12 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 this.sender_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.recipient_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.date = inputSerializedData.readInt32(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -4777,12 +4777,12 @@ public class TL_stars {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1070837941);
             outputSerializedData.writeInt32(((starGiftAttributeOriginalDetails) this).flags);
-            if ((((starGiftAttributeOriginalDetails) this).flags & 1) != 0) {
+            if (TLObject.hasFlag(((starGiftAttributeOriginalDetails) this).flags, 1)) {
                 outputSerializedData.writeInt64(this.sender_id.user_id);
             }
             outputSerializedData.writeInt64(this.recipient_id.user_id);
             outputSerializedData.writeInt32(this.date);
-            if ((((starGiftAttributeOriginalDetails) this).flags & 2) != 0) {
+            if (TLObject.hasFlag(((starGiftAttributeOriginalDetails) this).flags, 2)) {
                 this.message.serializeToStream(outputSerializedData);
             }
         }
@@ -4791,7 +4791,7 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             ((starGiftAttributeOriginalDetails) this).flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 this.sender_id = tL_peerUser;
                 tL_peerUser.user_id = inputSerializedData.readInt64(z);
@@ -4800,7 +4800,7 @@ public class TL_stars {
             this.recipient_id = tL_peerUser2;
             tL_peerUser2.user_id = inputSerializedData.readInt64(z);
             this.date = inputSerializedData.readInt32(z);
-            if ((((starGiftAttributeOriginalDetails) this).flags & 2) != 0) {
+            if (TLObject.hasFlag(((starGiftAttributeOriginalDetails) this).flags, 2)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -4916,51 +4916,51 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            this.upgrade_separate = (131072 & int32) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            this.upgrade_separate = TLObject.hasFlag(this.flags, 131072);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.collection_id = Vector.deserializeInt(inputSerializedData, z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.prepaid_upgrade_hash = inputSerializedData.readString(z);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 this.drop_original_details_stars = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
@@ -4974,58 +4974,58 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1105150972);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            int i6 = this.upgrade_separate ? i5 | 131072 : i5 & (-131073);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 131072, this.upgrade_separate);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 Vector.serializeInt(outputSerializedData, this.collection_id);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeString(this.prepaid_upgrade_hash);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 outputSerializedData.writeInt64(this.drop_original_details_stars);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
@@ -5044,51 +5044,51 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            this.upgrade_separate = (131072 & int32) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            this.upgrade_separate = TLObject.hasFlag(this.flags, 131072);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.collection_id = Vector.deserializeInt(inputSerializedData, z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.prepaid_upgrade_hash = inputSerializedData.readString(z);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 this.drop_original_details_stars = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
@@ -5103,58 +5103,58 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(949728281);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            int i6 = this.upgrade_separate ? i5 | 131072 : i5 & (-131073);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 131072, this.upgrade_separate);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 Vector.serializeInt(outputSerializedData, this.collection_id);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeString(this.prepaid_upgrade_hash);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 outputSerializedData.writeInt64(this.drop_original_details_stars);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
@@ -5174,51 +5174,51 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            this.upgrade_separate = (131072 & int32) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            this.upgrade_separate = TLObject.hasFlag(this.flags, 131072);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.collection_id = Vector.deserializeInt(inputSerializedData, z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.prepaid_upgrade_hash = inputSerializedData.readString(z);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 this.drop_original_details_stars = inputSerializedData.readInt64(z);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
@@ -5229,58 +5229,58 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-355041186);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            int i6 = this.upgrade_separate ? i5 | 131072 : i5 & (-131073);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 131072, this.upgrade_separate);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 Vector.serializeInt(outputSerializedData, this.collection_id);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeString(this.prepaid_upgrade_hash);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 outputSerializedData.writeInt64(this.drop_original_details_stars);
             }
             if (TLObject.hasFlag(this.flags, 524288)) {
@@ -5296,51 +5296,51 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            this.upgrade_separate = (131072 & int32) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            this.upgrade_separate = TLObject.hasFlag(this.flags, 131072);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.collection_id = Vector.deserializeInt(inputSerializedData, z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.prepaid_upgrade_hash = inputSerializedData.readString(z);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 this.drop_original_details_stars = inputSerializedData.readInt64(z);
             }
         }
@@ -5348,58 +5348,58 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1987861422);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            int i6 = this.upgrade_separate ? i5 | 131072 : i5 & (-131073);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 131072, this.upgrade_separate);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 Vector.serializeInt(outputSerializedData, this.collection_id);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeString(this.prepaid_upgrade_hash);
             }
-            if ((this.flags & 262144) != 0) {
+            if (TLObject.hasFlag(this.flags, 262144)) {
                 outputSerializedData.writeInt64(this.drop_original_details_stars);
             }
         }
@@ -5412,48 +5412,48 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            this.upgrade_separate = (131072 & int32) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            this.upgrade_separate = TLObject.hasFlag(this.flags, 131072);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.collection_id = Vector.deserializeInt(inputSerializedData, z);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 this.prepaid_upgrade_hash = inputSerializedData.readString(z);
             }
         }
@@ -5461,55 +5461,55 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(430552434);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            int i6 = this.upgrade_separate ? i5 | 131072 : i5 & (-131073);
-            this.flags = i6;
-            outputSerializedData.writeInt32(i6);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 131072, this.upgrade_separate);
+            this.flags = flag6;
+            outputSerializedData.writeInt32(flag6);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 Vector.serializeInt(outputSerializedData, this.collection_id);
             }
-            if ((this.flags & 65536) != 0) {
+            if (TLObject.hasFlag(this.flags, 65536)) {
                 outputSerializedData.writeString(this.prepaid_upgrade_hash);
             }
         }
@@ -5522,44 +5522,44 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 this.collection_id = Vector.deserializeInt(inputSerializedData, z);
             }
         }
@@ -5567,50 +5567,50 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(514213599);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
-            if ((this.flags & 32768) != 0) {
+            if (TLObject.hasFlag(this.flags, 32768)) {
                 Vector.serializeInt(outputSerializedData, this.collection_id);
             }
         }
@@ -5623,41 +5623,41 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 this.can_transfer_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 this.can_resell_at = inputSerializedData.readInt32(z);
             }
         }
@@ -5665,47 +5665,47 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-539360103);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
-            if ((this.flags & 8192) != 0) {
+            if (TLObject.hasFlag(this.flags, 8192)) {
                 outputSerializedData.writeInt32(this.can_transfer_at);
             }
-            if ((this.flags & 16384) != 0) {
+            if (TLObject.hasFlag(this.flags, 16384)) {
                 outputSerializedData.writeInt32(this.can_resell_at);
             }
         }
@@ -5718,35 +5718,35 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.name_hidden = (int32 & 1) != 0;
-            this.unsaved = (int32 & 32) != 0;
-            this.refunded = (int32 & 512) != 0;
-            this.can_upgrade = (int32 & 1024) != 0;
-            this.pinned_to_top = (int32 & 4096) != 0;
-            if ((int32 & 2) != 0) {
+            this.name_hidden = TLObject.hasFlag(int32, 1);
+            this.unsaved = TLObject.hasFlag(this.flags, 32);
+            this.refunded = TLObject.hasFlag(this.flags, 512);
+            this.can_upgrade = TLObject.hasFlag(this.flags, 1024);
+            this.pinned_to_top = TLObject.hasFlag(this.flags, 4096);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.date = inputSerializedData.readInt32(z);
             this.gift = StarGift.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.msg_id = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 this.saved_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.convert_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.upgrade_stars = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.can_export_at = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.transfer_stars = inputSerializedData.readInt64(z);
             }
         }
@@ -5754,41 +5754,41 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1616305061);
-            int i = this.name_hidden ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.unsaved ? i | 32 : i & (-33);
-            this.flags = i2;
-            int i3 = this.refunded ? i2 | 512 : i2 & (-513);
-            this.flags = i3;
-            int i4 = this.can_upgrade ? i3 | 1024 : i3 & (-1025);
-            this.flags = i4;
-            int i5 = this.pinned_to_top ? i4 | 4096 : i4 & (-4097);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.name_hidden);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 32, this.unsaved);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 512, this.refunded);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 1024, this.can_upgrade);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 4096, this.pinned_to_top);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.from_id.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.date);
             this.gift.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.message.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.msg_id);
             }
-            if ((this.flags & 2048) != 0) {
+            if (TLObject.hasFlag(this.flags, 2048)) {
                 outputSerializedData.writeInt64(this.saved_id);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt64(this.convert_stars);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeInt64(this.upgrade_stars);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeInt32(this.can_export_at);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 outputSerializedData.writeInt64(this.transfer_stars);
             }
         }
@@ -5812,7 +5812,7 @@ public class TL_stars {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.chat_notifications_enabled = inputSerializedData.readBool(z);
             }
             this.gifts = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
@@ -5821,7 +5821,7 @@ public class TL_stars {
                     return TL_stars.SavedStarGift.TLdeserialize(inputSerializedData2, i, z2);
                 }
             }, z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
@@ -5833,11 +5833,11 @@ public class TL_stars {
             outputSerializedData.writeInt32(-1779201615);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt32(this.count);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeBool(this.chat_notifications_enabled);
             }
             Vector.serialize(outputSerializedData, this.gifts);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.next_offset);
             }
             Vector.serialize(outputSerializedData, this.chats);
@@ -5924,9 +5924,9 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1626009505);
-            int i = this.enabled ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.enabled);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
         }
     }
@@ -6046,9 +6046,9 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1259483771);
-            int i = this.suggestions_allowed ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.suggestions_allowed);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.channel.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.send_paid_messages_stars);
         }
@@ -6111,15 +6111,15 @@ public class TL_stars {
             this.flags = inputSerializedData.readInt32(z);
             this.count = inputSerializedData.readInt32(z);
             this.gifts = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGifts$$ExternalSyntheticLambda0(), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.attributes = Vector.deserialize(inputSerializedData, new TL_stars$TL_starGiftUnique$$ExternalSyntheticLambda0(), z);
                 this.attributes_hash = inputSerializedData.readInt64(z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.counters = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                     @Override
                     public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
@@ -6136,15 +6136,15 @@ public class TL_stars {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt32(this.count);
             Vector.serialize(outputSerializedData, this.gifts);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.next_offset);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 Vector.serialize(outputSerializedData, this.attributes);
                 outputSerializedData.writeInt64(this.attributes_hash);
             }
             Vector.serialize(outputSerializedData, this.chats);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.counters);
             }
             Vector.serialize(outputSerializedData, this.users);
@@ -6162,6 +6162,7 @@ public class TL_stars {
         public String offset;
         public boolean sort_by_num;
         public boolean sort_by_price;
+        public boolean stars_only;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
@@ -6171,18 +6172,20 @@ public class TL_stars {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2053087798);
-            int i = this.sort_by_price ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.sort_by_num ? i | 4 : i & (-5);
-            this.flags = i2;
-            int i3 = this.for_craft ? i2 | 16 : i2 & (-17);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 2, this.sort_by_price);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 4, this.sort_by_num);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 16, this.for_craft);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 32, this.stars_only);
+            this.flags = flag4;
+            outputSerializedData.writeInt32(flag4);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.attributes_hash);
             }
             outputSerializedData.writeInt64(this.gift_id);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 Vector.serialize(outputSerializedData, this.attributes);
             }
             outputSerializedData.writeString(this.offset);
@@ -6244,7 +6247,7 @@ public class TL_stars {
             this.flags = inputSerializedData.readInt32(z);
             this.collection_id = inputSerializedData.readInt32(z);
             this.title = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.icon = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.gifts_count = inputSerializedData.readInt32(z);
@@ -6257,7 +6260,7 @@ public class TL_stars {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt32(this.collection_id);
             outputSerializedData.writeString(this.title);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.icon.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeInt32(this.gifts_count);
@@ -6349,16 +6352,16 @@ public class TL_stars {
             outputSerializedData.writeInt32(this.flags);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.collection_id);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 Vector.serialize(outputSerializedData, this.delete_stargift);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.add_stargift);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 Vector.serialize(outputSerializedData, this.order);
             }
         }

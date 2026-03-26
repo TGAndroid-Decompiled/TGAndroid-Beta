@@ -65,6 +65,7 @@ public class SharedConfig {
     public static int dayNightThemeSwitchHintCount = 0;
     public static int dayNightWallpaperSwitchHint = 0;
     public static boolean debugVideoQualities = false;
+    public static boolean debugViewMetrics = false;
     public static boolean debugWebView = false;
     private static int devicePerformanceClass = 0;
     public static boolean directShare = false;
@@ -125,6 +126,7 @@ public class SharedConfig {
     public static boolean payByInvoice;
     public static TLRPC.TL_help_appUpdate pendingAppUpdate;
     public static int pendingAppUpdateBuildVersion;
+    public static boolean photoHighQualityDefault;
     public static boolean photoViewerBlur;
     public static boolean playOrderReversed;
     public static ArrayList<ProxyInfo> proxyList;
@@ -174,7 +176,6 @@ public class SharedConfig {
     public static int suggestStickers;
     private static final Object sync;
     public static int textSelectionHintShows;
-    public static boolean translateChats;
     public static boolean updateStickersOrderOnSend;
     public static Boolean useCamera2Force;
     public static boolean useFaceLock;
@@ -339,7 +340,6 @@ public class SharedConfig {
         mediaColumnsCount = 3;
         storiesColumnsCount = 3;
         fastScrollHintCount = 3;
-        translateChats = true;
         LOW_SOC = new int[]{-1775228513, 802464304, 802464333, 802464302, 2067362118, 2067362060, 2067362084, 2067362241, 2067362117, 2067361998, -1853602818};
         loadConfig();
         proxyList = new ArrayList<>();

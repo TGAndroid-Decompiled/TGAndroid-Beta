@@ -844,6 +844,7 @@ public class AndroidUtilities {
                     @Override
                     public void updateDrawState(TextPaint textPaint) {
                         textPaint.setUnderlineText(false);
+                        textPaint.setTypeface(AndroidUtilities.bold());
                         textPaint.setColor(i);
                     }
                 }, iIndexOf, i2 + iIndexOf, 0);

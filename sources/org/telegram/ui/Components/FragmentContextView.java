@@ -904,11 +904,17 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 return;
             }
             if (playingMessageObject.isMusic()) {
-                if (getContext() instanceof LaunchActivity) {
-                    this.fragment.showDialog(new AudioPlayerAlert(getContext(), this.resourcesProvider));
+                Activity activityFindActivity = AndroidUtilities.findActivity(getContext());
+                if (activityFindActivity instanceof LaunchActivity) {
+                    new AudioPlayerAlert(activityFindActivity, this.resourcesProvider).show();
+                    return;
+                } else {
+                    if (AndroidUtilities.isContextSafe(LaunchActivity.instance)) {
+                        new AudioPlayerAlert(LaunchActivity.instance, this.resourcesProvider).show();
+                        return;
+                    }
                     return;
                 }
-                return;
             }
             ChatActivityInterface chatActivityInterface = this.chatActivity;
             if (playingMessageObject.getDialogId() == (chatActivityInterface != null ? chatActivityInterface.getDialogId() : 0L)) {

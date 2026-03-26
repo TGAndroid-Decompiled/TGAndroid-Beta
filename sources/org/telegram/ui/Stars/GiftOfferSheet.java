@@ -148,7 +148,7 @@ public class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.starsCountEditField = editTextBoldCursor;
         if (zCanUseTon) {
-            HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context);
+            HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context, resourcesProvider);
             this.currencyTabsView = horizontalRoundTabsLayout;
             ArrayList arrayList = new ArrayList();
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferStars));

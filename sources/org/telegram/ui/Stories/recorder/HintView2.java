@@ -346,22 +346,22 @@ public class HintView2 extends View {
         return this;
     }
 
-    public static float measureCorrectly(CharSequence charSequence, TextPaint textPaint) {
+    public static float measureCorrectly(CharSequence charSequence, Paint paint) {
         float fMeasureText = 0.0f;
         if (charSequence == null) {
             return 0.0f;
         }
         if (!(charSequence instanceof Spanned)) {
-            return textPaint.measureText(charSequence.toString());
+            return paint.measureText(charSequence.toString());
         }
         Spanned spanned = (Spanned) charSequence;
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spanned.getSpans(0, charSequence.length(), TypefaceSpan.class);
         int iMax = 0;
         for (ReplacementSpan replacementSpan : (ReplacementSpan[]) spanned.getSpans(0, charSequence.length(), ReplacementSpan.class)) {
-            iMax = (int) (iMax + Math.max(0.0f, replacementSpan.getSize(textPaint, charSequence, r14, r15, textPaint.getFontMetricsInt()) - textPaint.measureText(spanned, spanned.getSpanStart(replacementSpan), spanned.getSpanEnd(replacementSpan))));
+            iMax = (int) (iMax + Math.max(0.0f, replacementSpan.getSize(paint, charSequence, r14, r15, paint.getFontMetricsInt()) - paint.measureText(spanned, spanned.getSpanStart(replacementSpan), spanned.getSpanEnd(replacementSpan))));
         }
         if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
-            return textPaint.measureText(charSequence.toString()) + iMax;
+            return paint.measureText(charSequence.toString()) + iMax;
         }
         int iMax2 = 0;
         for (int i = 0; i < typefaceSpanArr.length; i++) {
@@ -369,19 +369,19 @@ public class HintView2 extends View {
             int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i]);
             int iMax3 = Math.max(iMax2, spanStart);
             if (iMax3 - iMax2 > 0) {
-                fMeasureText += textPaint.measureText(spanned, iMax2, iMax3);
+                fMeasureText += paint.measureText(spanned, iMax2, iMax3);
             }
             iMax2 = Math.max(iMax3, spanEnd);
             if (iMax2 - iMax3 > 0) {
-                Typeface typeface = textPaint.getTypeface();
-                textPaint.setTypeface(typefaceSpanArr[i].getTypeface());
-                fMeasureText += textPaint.measureText(spanned, iMax3, iMax2);
-                textPaint.setTypeface(typeface);
+                Typeface typeface = paint.getTypeface();
+                paint.setTypeface(typefaceSpanArr[i].getTypeface());
+                fMeasureText += paint.measureText(spanned, iMax3, iMax2);
+                paint.setTypeface(typeface);
             }
         }
         int iMax4 = Math.max(iMax2, charSequence.length());
         if (iMax4 - iMax2 > 0) {
-            fMeasureText += textPaint.measureText(spanned, iMax2, iMax4);
+            fMeasureText += paint.measureText(spanned, iMax2, iMax4);
         }
         return fMeasureText + iMax;
     }

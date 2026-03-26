@@ -151,6 +151,10 @@ public abstract class BlurredBackgroundProviderImpl {
         return Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 0.78f);
     }
 
+    public static BlurredBackgroundProvider shadow(Theme.ResourcesProvider resourcesProvider) {
+        return new BlurredBackgroundProviderBuilder(resourcesProvider).setStrokeColorTop(0, 687865855).setStrokeColorBottom(0, 352321535).setShadowColor(805306368, 83886079).setShadowLayer(AndroidUtilities.dpf2(4.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f)).setStrokeWidth(AndroidUtilities.dpf2(0.4f), AndroidUtilities.dpf2(0.4f)).build();
+    }
+
     public static int solveSrcColor(int i, int i2, float f) {
         float fClamp = MathUtils.clamp(f, 0.0f, 1.0f);
         if (fClamp <= 0.0f) {

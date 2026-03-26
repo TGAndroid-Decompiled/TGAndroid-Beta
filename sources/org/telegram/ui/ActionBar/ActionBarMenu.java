@@ -93,7 +93,7 @@ public class ActionBarMenu extends LinearLayout {
         return addItemAt(-1, i, i2, charSequence, i3, drawable, i4, charSequence2, resourcesProvider);
     }
 
-    protected ActionBarMenuItem addItemAt(int i, int i2, int i3, CharSequence charSequence, int i4, Drawable drawable, int i5, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
+    public ActionBarMenuItem addItemAt(int i, int i2, int i3, CharSequence charSequence, int i4, Drawable drawable, int i5, CharSequence charSequence2, Theme.ResourcesProvider resourcesProvider) {
         int i6 = i5;
         ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(getContext(), this, i4, this.isActionMode ? this.parentActionBar.itemsActionModeColor : this.parentActionBar.itemsColor, charSequence != null, resourcesProvider);
         actionBarMenuItem.setTag(Integer.valueOf(i2));

@@ -24,6 +24,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -69,6 +70,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     private boolean miniButtonPressed;
     private int miniButtonState;
     private boolean needDivider;
+    private Utilities.CallbackReturn needPlayMessageListener;
     private RadialProgress2 radialProgress;
     private final Theme.ResourcesProvider resourcesProvider;
     boolean showName;
@@ -82,10 +84,6 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     TextPaint titlePaint;
     private int titleY;
     private int viewType;
-
-    protected boolean needPlayMessage(MessageObject messageObject) {
-        return false;
-    }
 
     @Override
     public void onProgressUpload(String str, long j, long j2, boolean z) {
@@ -568,6 +566,15 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         return this.TAG;
     }
 
+    public void setNeedPlayMessageListener(Utilities.CallbackReturn<MessageObject, Boolean> callbackReturn) {
+        this.needPlayMessageListener = callbackReturn;
+    }
+
+    protected boolean needPlayMessage(MessageObject messageObject) {
+        Utilities.CallbackReturn callbackReturn = this.needPlayMessageListener;
+        return callbackReturn != null && ((Boolean) callbackReturn.run(messageObject)).booleanValue();
+    }
+
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -708,21 +715,50 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         @Override
         public SharedAudioCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             SharedAudioCell sharedAudioCell = new SharedAudioCell(context, resourcesProvider);
-            sharedAudioCell.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+            sharedAudioCell.setCheckForButtonPress(true);
             return sharedAudioCell;
         }
 
         @Override
         public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             SharedAudioCell sharedAudioCell = (SharedAudioCell) view;
-            sharedAudioCell.setMessageObject((MessageObject) uItem.object, z);
+            Object obj = uItem.object;
+            if (obj instanceof MessageObject) {
+                sharedAudioCell.setMessageObject((MessageObject) obj, z);
+            } else if (obj instanceof MediaController.AudioEntry) {
+                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) obj;
+                sharedAudioCell.setTag(audioEntry);
+                sharedAudioCell.setMessageObject(audioEntry.messageObject, z);
+            }
+            Object obj2 = uItem.object2;
+            if (obj2 instanceof Utilities.CallbackReturn) {
+                sharedAudioCell.setNeedPlayMessageListener((Utilities.CallbackReturn) obj2);
+            }
             sharedAudioCell.setChecked(uItem.checked, false);
         }
 
-        public static UItem as(MessageObject messageObject) {
+        public static UItem as(MessageObject messageObject, Utilities.CallbackReturn callbackReturn) {
             UItem uItemOfFactory = UItem.ofFactory(Factory.class);
             uItemOfFactory.object = messageObject;
+            uItemOfFactory.object2 = callbackReturn;
             return uItemOfFactory;
+        }
+
+        public static UItem as(MediaController.AudioEntry audioEntry, Utilities.CallbackReturn callbackReturn) {
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.object = audioEntry;
+            uItemOfFactory.object2 = callbackReturn;
+            return uItemOfFactory;
+        }
+
+        @Override
+        public boolean equals(UItem uItem, UItem uItem2) {
+            return uItem.id == uItem2.id && uItem.object == uItem2.object;
+        }
+
+        @Override
+        public boolean contentsEquals(UItem uItem, UItem uItem2) {
+            return uItem.id == uItem2.id && uItem.object == uItem2.object;
         }
     }
 }

@@ -73,6 +73,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     private boolean limitFps;
     private final Runnable loadFrameRunnable;
     private Runnable loadFrameTask;
+    private boolean loop;
     private final Runnable mStartTask;
     private final int[] metaData;
     public volatile long nativePtr;
@@ -133,7 +134,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
 
     public static native int getVideoFrame(long j, Bitmap bitmap, int[] iArr, int i, boolean z, float f, float f2, boolean z2);
 
-    public static native void getVideoInfo(int i, String str, int[] iArr);
+    public static native void getVideoInfo(int i, String str, int[] iArr, long j);
 
     public static native void prepareToSeek(long j);
 
@@ -311,12 +312,12 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     }
 
     public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions) {
-        this(file, z, j, i, document, imageLocation, obj, j2, i2, z2, i3, i4, cacheOptions, document != null ? 1 : 0);
+        this(file, z, j, i, document, imageLocation, obj, j2, i2, z2, i3, i4, cacheOptions, document != null ? 1 : 0, true);
     }
 
-    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions, int i5) {
+    public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions, int i5, boolean z3) {
         long j3;
-        boolean z3;
+        boolean z4;
         this.USE_BITMAP_SHADER = Build.VERSION.SDK_INT < 29;
         this.PRERENDER_FRAME = true;
         this.invalidateAfter = 50;
@@ -490,6 +491,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         this.currentAccount = i2;
         this.renderingHeight = i4;
         this.renderingWidth = i3;
+        this.loop = z3;
         this.precache = cacheOptions != null && i3 > 0 && i4 > 0;
         this.document = document;
         getPaint().setFlags(3);
@@ -504,19 +506,19 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             this.ptrFail = this.nativePtr == j3 && (!this.isWebmSticker || this.decoderTryCount > 15);
             if (this.nativePtr != j3) {
                 if (iArr[0] <= 3840) {
-                    z3 = true;
+                    z4 = true;
                     if (iArr[1] > 3840) {
                     }
                 } else {
-                    z3 = true;
+                    z4 = true;
                 }
                 destroyDecoder(this.nativePtr);
                 this.nativePtr = j3;
             } else {
-                z3 = true;
+                z4 = true;
             }
             updateScaleFactor();
-            this.decoderCreated = z3;
+            this.decoderCreated = z4;
         }
         if (this.precache) {
             this.nativePtr = createDecoder(file.getAbsolutePath(), iArr, this.currentAccount, this.streamFileSize, this.stream, z2);
@@ -1105,8 +1107,8 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         return animatedFileDrawable2;
     }
 
-    public static void getVideoInfo(String str, int[] iArr) {
-        getVideoInfo(Build.VERSION.SDK_INT, str, iArr);
+    public static void getVideoInfo(String str, int[] iArr, long j) {
+        getVideoInfo(Build.VERSION.SDK_INT, str, iArr, j);
     }
 
     public void setStartEndTime(long j, long j2) {
@@ -1193,7 +1195,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
         long j = this.cacheGenerateNativePtr;
         Bitmap bitmap2 = this.generatingCacheBitmap;
-        getVideoFrame(j, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, true);
+        getVideoFrame(j, bitmap2, this.metaData, bitmap2.getRowBytes(), false, this.startTime, this.endTime, this.loop);
         long j2 = this.cacheGenerateTimestamp;
         if (j2 != 0 && ((i = this.metaData[3]) == 0 || j2 > i)) {
             return 0;

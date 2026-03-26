@@ -253,7 +253,7 @@ public class TranslateController extends BaseController {
         return Objects.hash(Long.valueOf(messageObject.getDialogId()), Integer.valueOf(messageObject.getId()));
     }
 
-    private String currentLanguage() {
+    public static String currentLanguage() {
         String str = LocaleController.getInstance().getCurrentLocaleInfo().pluralLangCode;
         return str != null ? str.split("_")[0] : str;
     }

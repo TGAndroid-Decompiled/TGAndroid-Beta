@@ -36,7 +36,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.DialogObject;
@@ -243,14 +242,9 @@ public class TodoItemMenu extends Dialog {
         this.tabsView.addTab(1, LocaleController.getString(R.string.TodoMenuTabList));
         this.containerView.addView(this.tabsView, LayoutHelper.createFrame(-1, 66, 80));
         MessagePreviewView.TabsView tabsView2 = this.tabsView;
-        final ViewPagerFixed viewPagerFixed2 = this.viewPager;
+        ViewPagerFixed viewPagerFixed2 = this.viewPager;
         Objects.requireNonNull(viewPagerFixed2);
-        tabsView2.setOnTabClick(new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                viewPagerFixed2.scrollToPosition(((Integer) obj).intValue());
-            }
-        });
+        tabsView2.setOnTabClick(new PollItemMenu$$ExternalSyntheticLambda12(viewPagerFixed2));
         MessagePreviewView.TabsView tabsView3 = this.tabsView;
         tabsView3.setBackground(blurredBackgroundDrawableViewFactory.create(tabsView3).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(resourcesProvider)).setHasPadding(true).setPadding(AndroidUtilities.dp(8.0f)).setRadius(AndroidUtilities.dp(16.0f)));
         TextView textView = new TextView(context);
@@ -433,6 +427,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean didLongPressPollOption(ChatMessageCell chatMessageCell3, TLRPC.PollAnswer pollAnswer) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressPollOption(this, chatMessageCell3, pollAnswer);
+                }
+
+                @Override
                 public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell3, todoItem2);
                 }
@@ -445,6 +444,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressAboutRevenueSharingAds() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
+                public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAddPollOptionButton(this, chatMessageCell3);
                 }
 
                 @Override
@@ -563,6 +567,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didPressPollMedia(ChatMessageCell chatMessageCell3, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressPollMedia(this, chatMessageCell3, imageReceiver, pollAnswer, messageMedia, f, f2, i3);
+                }
+
+                @Override
                 public void didPressReaction(ChatMessageCell chatMessageCell3, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell3, reactionCount, z, f, f2);
                 }
@@ -658,8 +667,18 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didTogglePollPreview(ChatMessageCell chatMessageCell3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell3);
+                }
+
+                @Override
                 public boolean doNotShowLoadingReply(MessageObject messageObject2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject2);
+                }
+
+                @Override
+                public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$drawPollMode(this, canvas, chatMessageCell3);
                 }
 
                 @Override
@@ -670,6 +689,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell3, boolean z) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell3, z);
+                }
+
+                @Override
+                public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell3) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell3);
                 }
 
                 @Override
@@ -859,6 +883,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean didLongPressPollOption(ChatMessageCell chatMessageCell6, TLRPC.PollAnswer pollAnswer) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressPollOption(this, chatMessageCell6, pollAnswer);
+                }
+
+                @Override
                 public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell6, TLRPC.TodoItem todoItem2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell6, todoItem2);
                 }
@@ -871,6 +900,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressAboutRevenueSharingAds() {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
+                public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAddPollOptionButton(this, chatMessageCell6);
                 }
 
                 @Override
@@ -989,6 +1023,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didPressPollMedia(ChatMessageCell chatMessageCell6, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i3) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressPollMedia(this, chatMessageCell6, imageReceiver, pollAnswer, messageMedia, f, f2, i3);
+                }
+
+                @Override
                 public void didPressReaction(ChatMessageCell chatMessageCell6, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell6, reactionCount, z, f, f2);
                 }
@@ -1089,8 +1128,18 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didTogglePollPreview(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell6);
+                }
+
+                @Override
                 public boolean doNotShowLoadingReply(MessageObject messageObject3) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject3);
+                }
+
+                @Override
+                public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$drawPollMode(this, canvas, chatMessageCell6);
                 }
 
                 @Override
@@ -1101,6 +1150,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell6, boolean z) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell6, z);
+                }
+
+                @Override
+                public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell6);
                 }
 
                 @Override
@@ -1384,15 +1438,15 @@ public class TodoItemMenu extends Dialog {
         pollCreateActivity.setEditing(MessageObject.getMedia(this.messageObject), false, i);
         pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
             @Override
-            public final void sendPoll(TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i2) {
-                this.f$0.lambda$setCell$6(chatActivity, messageMedia, map, z, i2);
+            public final void sendPoll(TLRPC.MessageMedia messageMedia, ArrayList arrayList, boolean z, int i2) {
+                this.f$0.lambda$setCell$6(chatActivity, messageMedia, arrayList, z, i2);
             }
         });
         chatActivity.presentFragment(pollCreateActivity);
         dismiss(false);
     }
 
-    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, HashMap map, boolean z, int i) {
+    public void lambda$setCell$6(ChatActivity chatActivity, TLRPC.MessageMedia messageMedia, ArrayList arrayList, boolean z, int i) {
         if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
             TLRPC.MessageMedia messageMedia2 = this.messageObject.messageOwner.media;
             if (messageMedia2 instanceof TLRPC.TL_messageMediaToDo) {

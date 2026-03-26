@@ -91,8 +91,8 @@ public class MediaDataController extends BaseController {
     public static final int MEDIA_MUSIC = 4;
     public static final int MEDIA_PHOTOS_ONLY = 6;
     public static final int MEDIA_PHOTOVIDEO = 0;
-    public static final int MEDIA_STORIES = 8;
-    public static final int MEDIA_TYPES_COUNT = 8;
+    public static final int MEDIA_POLL = 8;
+    public static final int MEDIA_TYPES_COUNT = 9;
     public static final int MEDIA_URL = 3;
     public static final int MEDIA_VIDEOS_ONLY = 7;
     public static int SHORTCUT_TYPE_ATTACHED_BOT = 0;
@@ -4960,6 +4960,8 @@ public class MediaDataController extends BaseController {
             tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterMusic();
         } else if (i4 == 5) {
             tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterGif();
+        } else if (i4 == 8) {
+            tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterPoll();
         }
         if (!TextUtils.isEmpty(str)) {
             tL_messages_search.q = str;
@@ -4970,7 +4972,7 @@ public class MediaDataController extends BaseController {
         if (j2 != 0) {
             if (j == getUserConfig().getClientUserId()) {
                 tL_messages_search.saved_peer_id = getMessagesController().getInputPeer(j2);
-                tL_messages_search.flags = 4 | tL_messages_search.flags;
+                tL_messages_search.flags |= 4;
             } else {
                 tL_messages_search.top_msg_id = (int) j2;
                 tL_messages_search.flags |= 2;
@@ -5005,7 +5007,7 @@ public class MediaDataController extends BaseController {
         });
     }
 
-    public void lambda$getMediaCounts$131(final long r22, final long r24, int r26) {
+    public void lambda$getMediaCounts$131(final long r23, final long r25, int r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$getMediaCounts$131(long, long, int):void");
     }
 
@@ -5042,6 +5044,8 @@ public class MediaDataController extends BaseController {
                     i = 6;
                 } else if (messagesFilter instanceof TLRPC.TL_inputMessagesFilterVideo) {
                     i = 7;
+                } else if (messagesFilter instanceof TLRPC.TL_inputMessagesFilterPoll) {
+                    i = 8;
                 }
                 int i4 = tL_messages_searchCounter.count;
                 iArr[i] = i4;
@@ -5082,6 +5086,8 @@ public class MediaDataController extends BaseController {
             tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterMusic());
         } else if (i == 5) {
             tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterGif());
+        } else if (i == 8) {
+            tL_messages_getSearchCounters.filters.add(new TLRPC.TL_inputMessagesFilterPoll());
         }
         if (j2 != 0) {
             if (j == getUserConfig().getClientUserId()) {
@@ -5119,11 +5125,15 @@ public class MediaDataController extends BaseController {
         if (message == null) {
             return -1;
         }
-        if (MessageObject.getMedia(message) instanceof TLRPC.TL_messageMediaPhoto) {
+        TLRPC.MessageMedia media = MessageObject.getMedia(message);
+        if (media instanceof TLRPC.TL_messageMediaPoll) {
+            return 8;
+        }
+        if (media instanceof TLRPC.TL_messageMediaPhoto) {
             return 0;
         }
-        if (MessageObject.getMedia(message) instanceof TLRPC.TL_messageMediaDocument) {
-            TLRPC.Document document = MessageObject.getMedia(message).document;
+        if (media instanceof TLRPC.TL_messageMediaDocument) {
+            TLRPC.Document document = media.document;
             if (document == null) {
                 return -1;
             }

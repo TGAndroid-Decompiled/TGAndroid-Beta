@@ -304,7 +304,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         this.selectedContactsOrder = new ArrayList();
         this.sendPressed = false;
         this.searchAdapter = new ShareSearchAdapter(context);
-        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, resourcesProvider);
+        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, Theme.key_windowBackgroundWhite, resourcesProvider);
         this.fadeView = searchFadeView;
         searchFadeView.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);

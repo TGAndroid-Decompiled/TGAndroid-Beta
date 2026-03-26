@@ -519,6 +519,11 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return this;
     }
 
+    public UItem setId(int i) {
+        this.id = i;
+        return this;
+    }
+
     public UItem setChecked(boolean z) {
         this.checked = z;
         if (this.viewType == 11) {
@@ -645,6 +650,27 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public boolean itemContentEquals(UItem uItem) {
+        int i = this.viewType;
+        if (i == uItem.viewType) {
+            if (this.id != uItem.id) {
+                return false;
+            }
+            if (i != 0 && i != 1) {
+                if (i == 3) {
+                    return this.object == uItem.object && TextUtils.equals(this.text, uItem.text) && TextUtils.equals(this.textValue, uItem.textValue) && this.iconResId == uItem.iconResId && this.accent == uItem.accent && this.red == uItem.red;
+                }
+                if (i != 7) {
+                    if (i != 26) {
+                        if (i == 34) {
+                            return this.intValue == uItem.intValue;
+                        }
+                    }
+                } else if (this.text == null && uItem.text == null) {
+                    return true;
+                }
+            }
+            return TextUtils.equals(this.text, uItem.text);
+        }
         return super.contentsEquals(uItem);
     }
 

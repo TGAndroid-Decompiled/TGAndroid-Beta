@@ -89,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda93;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda90;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -135,6 +135,7 @@ import org.telegram.ui.ThemePreviewActivity;
 public abstract class Theme {
     public static Paint DEBUG_BLUE;
     public static Paint DEBUG_GREEN_40;
+    public static Paint DEBUG_GREEN_B0;
     public static Paint DEBUG_GREEN_STROKE;
     public static Paint DEBUG_RED;
     public static Paint DEBUG_RED_STROKE;
@@ -198,6 +199,7 @@ public abstract class Theme {
     public static Paint chat_docBackPaint;
     public static TextPaint chat_docNamePaint;
     public static TextPaint chat_durationPaint;
+    public static TextPaint chat_explanationTextPaint;
     public static Drawable chat_flameIcon;
     public static TextPaint chat_forwardNamePaint;
     public static TextPaint chat_gamePaint;
@@ -214,6 +216,7 @@ public abstract class Theme {
     public static TextPaint chat_instantViewPaint;
     public static Paint chat_instantViewRectPaint;
     public static TextPaint chat_livePaint;
+    public static Drawable chat_livePhoto;
     public static TextPaint chat_locationAddressPaint;
     public static TextPaint chat_locationTitlePaint;
     public static Drawable chat_lockIconDrawable;
@@ -353,6 +356,7 @@ public abstract class Theme {
     public static Drawable dialogs_lock2Drawable;
     public static Drawable dialogs_lockDrawable;
     public static Drawable dialogs_mentionDrawable;
+    public static Drawable dialogs_mentionDrawableMuted;
     public static TextPaint dialogs_messageNamePaint;
     public static TextPaint[] dialogs_messagePaint;
     public static TextPaint[] dialogs_messagePrintingPaint;
@@ -368,8 +372,10 @@ public abstract class Theme {
     public static Drawable dialogs_pinnedDrawable2Accent;
     public static Paint dialogs_pinnedPaint;
     public static Drawable dialogs_playDrawable;
-    public static Paint dialogs_reactionsCountPaint;
+    public static Drawable dialogs_pollMentionDrawable;
+    public static Drawable dialogs_pollMentionDrawableMuted;
     public static Drawable dialogs_reactionsMentionDrawable;
+    public static Drawable dialogs_reactionsMentionDrawableMuted;
     public static Drawable dialogs_reorderDrawable;
     public static ScamDrawable dialogs_scamDrawable;
     public static TextPaint dialogs_searchNameEncryptedPaint;
@@ -983,6 +989,7 @@ public abstract class Theme {
     public static final int key_player_progressBackground;
     public static final int key_player_progressCachedBackground;
     public static final int key_player_time;
+    public static final int key_pollCreateIcons;
     public static final int key_premiumCoinGradient1;
     public static final int key_premiumCoinGradient2;
     public static final int key_premiumGradient0;
@@ -4486,7 +4493,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda93(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4532,7 +4539,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda93(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4647,7 +4654,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda93(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda90(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -5841,7 +5848,6 @@ public abstract class Theme {
             dialogs_countTextPaint2 = textPaint2;
             textPaint2.setTypeface(AndroidUtilities.bold());
             dialogs_countPaint = new Paint(1);
-            dialogs_reactionsCountPaint = new Paint(1);
             dialogs_onlineCirclePaint = new Paint(1);
             dialogs_tagPaint = new Paint(1);
         }
@@ -5910,12 +5916,19 @@ public abstract class Theme {
             dialogs_scamDrawable = new ScamDrawable(11, 0);
             dialogs_fakeDrawable = new ScamDrawable(11, 1);
             dialogs_verifiedCheckDrawable = resources.getDrawable(R.drawable.verified_check).mutate();
-            dialogs_mentionDrawable = resources.getDrawable(R.drawable.mini_mention_filled_16);
-            dialogs_reactionsMentionDrawable = resources.getDrawable(R.drawable.mini_like_filled_16);
+            int i3 = R.drawable.filled_chatlist_mention;
+            dialogs_mentionDrawable = resources.getDrawable(i3).mutate();
+            int i4 = R.drawable.filled_chatlist_reaction;
+            dialogs_reactionsMentionDrawable = resources.getDrawable(i4).mutate();
+            int i5 = R.drawable.filled_chatlist_poll;
+            dialogs_pollMentionDrawable = resources.getDrawable(i5).mutate();
+            dialogs_mentionDrawableMuted = resources.getDrawable(i3).mutate();
+            dialogs_reactionsMentionDrawableMuted = resources.getDrawable(i4).mutate();
+            dialogs_pollMentionDrawableMuted = resources.getDrawable(i5).mutate();
             dialogs_pinnedDrawable = resources.getDrawable(R.drawable.list_pin);
-            int i3 = R.drawable.msg_pin_mini;
-            dialogs_pinnedDrawable2 = resources.getDrawable(i3).mutate();
-            dialogs_pinnedDrawable2Accent = resources.getDrawable(i3).mutate();
+            int i6 = R.drawable.msg_pin_mini;
+            dialogs_pinnedDrawable2 = resources.getDrawable(i6).mutate();
+            dialogs_pinnedDrawable2Accent = resources.getDrawable(i6).mutate();
             dialogs_forum_arrowDrawable = resources.getDrawable(R.drawable.msg_mini_forumarrow);
             moveUpDrawable = resources.getDrawable(R.drawable.preview_arrow);
             RectF rectF = new RectF();
@@ -5985,44 +5998,49 @@ public abstract class Theme {
         int i4 = key_chats_archiveText;
         textPaint5.setColor(getColor(i4));
         dialogs_archiveTextPaintSmall.setColor(getColor(i4));
-        dialogs_countPaint.setColor(getColor(key_chats_unreadCounter));
-        dialogs_reactionsCountPaint.setColor(getColor(key_dialogReactionMentionBackground));
-        dialogs_countGrayPaint.setColor(getColor(key_chats_unreadCounterMuted));
+        Paint paint = dialogs_countPaint;
+        int i5 = key_chats_unreadCounter;
+        paint.setColor(getColor(i5));
+        Paint paint2 = dialogs_countGrayPaint;
+        int i6 = key_chats_unreadCounterMuted;
+        paint2.setColor(getColor(i6));
         dialogs_actionMessagePaint.setColor(getColor(key_chats_actionMessage));
         dialogs_errorPaint.setColor(getColor(key_chats_sentError));
         dialogs_onlinePaint.setColor(getColor(key_windowBackgroundWhiteBlueText3));
         dialogs_offlinePaint.setColor(getColor(key_windowBackgroundWhiteGrayText3));
         setDrawableColorByKey(dialogs_lockDrawable, key_chats_secretIcon);
         Drawable drawable = dialogs_lock2Drawable;
-        int i5 = key_chats_pinnedIcon;
-        setDrawableColorByKey(drawable, i5);
+        int i7 = key_chats_pinnedIcon;
+        setDrawableColorByKey(drawable, i7);
         setDrawableColorByKey(dialogs_checkDrawable, key_chats_sentCheck);
         Drawable drawable2 = dialogs_checkReadDrawable;
-        int i6 = key_chats_sentReadCheck;
-        setDrawableColorByKey(drawable2, i6);
-        setDrawableColorByKey(dialogs_halfCheckDrawable, i6);
+        int i8 = key_chats_sentReadCheck;
+        setDrawableColorByKey(drawable2, i8);
+        setDrawableColorByKey(dialogs_halfCheckDrawable, i8);
         setDrawableColorByKey(dialogs_clockDrawable, key_chats_sentClock);
         setDrawableColorByKey(dialogs_errorDrawable, key_chats_sentErrorIcon);
-        setDrawableColorByKey(dialogs_pinnedDrawable, i5);
-        setDrawableColorByKey(dialogs_pinnedDrawable2, i5);
+        setDrawableColorByKey(dialogs_pinnedDrawable, i7);
+        setDrawableColorByKey(dialogs_pinnedDrawable2, i7);
         setDrawableColorByKey(dialogs_pinnedDrawable2Accent, i2);
-        setDrawableColorByKey(dialogs_reorderDrawable, i5);
+        setDrawableColorByKey(dialogs_reorderDrawable, i7);
         Drawable drawable3 = dialogs_muteDrawable;
-        int i7 = key_chats_muteIcon;
-        setDrawableColorByKey(drawable3, i7);
-        setDrawableColorByKey(dialogs_unmuteDrawable, i7);
-        Drawable drawable4 = dialogs_mentionDrawable;
-        int i8 = key_chats_mentionIcon;
-        setDrawableColorByKey(drawable4, i8);
+        int i9 = key_chats_muteIcon;
+        setDrawableColorByKey(drawable3, i9);
+        setDrawableColorByKey(dialogs_unmuteDrawable, i9);
+        setDrawableColorByKey(dialogs_mentionDrawable, i5);
+        setDrawableColorByKey(dialogs_reactionsMentionDrawable, key_dialogReactionMentionBackground);
+        setDrawableColorByKey(dialogs_pollMentionDrawable, key_color_purple);
+        setDrawableColorByKey(dialogs_mentionDrawableMuted, i6);
+        setDrawableColorByKey(dialogs_reactionsMentionDrawableMuted, i6);
+        setDrawableColorByKey(dialogs_pollMentionDrawableMuted, i6);
         setDrawableColorByKey(dialogs_forum_arrowDrawable, key_chats_message);
-        setDrawableColorByKey(dialogs_reactionsMentionDrawable, i8);
         setDrawableColorByKey(dialogs_verifiedDrawable, key_chats_verifiedBackground);
         setDrawableColorByKey(dialogs_verifiedCheckDrawable, key_chats_verifiedCheck);
         setDrawableColorByKey(dialogs_holidayDrawable, key_actionBarDefaultTitle);
         ScamDrawable scamDrawable = dialogs_scamDrawable;
-        int i9 = key_chats_draft;
-        setDrawableColorByKey(scamDrawable, i9);
-        setDrawableColorByKey(dialogs_fakeDrawable, i9);
+        int i10 = key_chats_draft;
+        setDrawableColorByKey(scamDrawable, i10);
+        setDrawableColorByKey(dialogs_fakeDrawable, i10);
     }
 
     public static void reloadAllResources(Context context) {
@@ -6063,6 +6081,7 @@ public abstract class Theme {
                     textPaint3.setTypeface(AndroidUtilities.bold());
                     chat_replyTextPaint = new TextPaint(1);
                     chat_quoteTextPaint = new TextPaint(1);
+                    chat_explanationTextPaint = new TextPaint(1);
                     chat_titleLabelTextPaint = new TextPaint(1);
                     TextPaint textPaint4 = new TextPaint(1);
                     chat_topicTextPaint = textPaint4;
@@ -6102,6 +6121,7 @@ public abstract class Theme {
                         chat_replyTextPaint.setTextSize(AndroidUtilities.dp(r0));
                         float f = (((SharedConfig.fontSize * 2) + 10) / 3.0f) - 1.0f;
                         chat_quoteTextPaint.setTextSize(AndroidUtilities.dp(f));
+                        chat_explanationTextPaint.setTextSize(AndroidUtilities.dp(r0));
                         chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f));
                         chat_titleLabelTextPaint.setTextSize(AndroidUtilities.dp(r0 - 2.0f));
                         chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(r0));
@@ -6259,6 +6279,7 @@ public abstract class Theme {
         if (!z && chat_msgInDrawable == null) {
             Resources resources = context.getResources();
             chat_msgNoSoundDrawable = resources.getDrawable(R.drawable.video_muted);
+            chat_livePhoto = resources.getDrawable(R.drawable.media_live_on).mutate();
             chat_msgInDrawable = new MessageDrawable(0, false, false);
             chat_msgInSelectedDrawable = new MessageDrawable(0, false, true);
             chat_msgOutDrawable = new MessageDrawable(0, true, false);

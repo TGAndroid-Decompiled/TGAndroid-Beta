@@ -1456,12 +1456,22 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 167").stepThis().dispose();
             i7 = 167;
         }
-        if (i7 != 167) {
+        if (i7 == 167) {
+            sQLiteDatabase.executeFast("CREATE TABLE gift_themes (slug TEXT PRIMARY KEY, data BLOB);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 168").stepThis().dispose();
+            i7 = 168;
+        }
+        if (i7 == 168) {
+            sQLiteDatabase.executeFast("ALTER TABLE dialogs ADD COLUMN unread_poll_votes INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 169").stepThis().dispose();
+            i7 = 169;
+        }
+        if (i7 != 169) {
             return i7;
         }
-        sQLiteDatabase.executeFast("CREATE TABLE gift_themes (slug TEXT PRIMARY KEY, data BLOB);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 168").stepThis().dispose();
-        return 168;
+        sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN unread_poll_votes INTEGER default 0").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 170").stepThis().dispose();
+        return 170;
     }
 
     public static boolean recoverDatabase(java.io.File r21, java.io.File r22, java.io.File r23, int r24) {

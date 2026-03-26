@@ -173,7 +173,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
         boolean isInScheduleMode();
 
-        void lambda$onStickerSelected$77(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2);
+        void lambda$onStickerSelected$83(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i, int i2);
     }
 
     public interface StickersAlertInstallDelegate {
@@ -233,6 +233,21 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         @Override
         public void copyEmoji(TLRPC.Document document) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$copyEmoji(this, document);
+        }
+
+        @Override
+        public ItemOptions getCustomItemOptions(ViewGroup viewGroup, View view) {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getCustomItemOptions(this, viewGroup, view);
+        }
+
+        @Override
+        public TLRPC.TL_messageMediaPoll getPoll() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPoll(this);
+        }
+
+        @Override
+        public TLRPC.PollAnswer getPollAnswer() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollAnswer(this);
         }
 
         @Override
@@ -305,6 +320,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         @Override
+        public void retractVote() {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$retractVote(this);
+        }
+
+        @Override
         public void sendEmoji(TLRPC.Document document) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendEmoji(this, document);
         }
@@ -317,6 +337,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         @Override
         public void sendSticker(String str) {
             ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, str);
+        }
+
+        @Override
+        public void sendVote() {
+            ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendVote(this);
         }
 
         @Override
@@ -349,7 +374,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             if (StickersAlert.this.delegate == null) {
                 return;
             }
-            StickersAlert.this.delegate.lambda$onStickerSelected$77(document, str, obj, null, StickersAlert.this.clearsInputField, z, i, 0);
+            StickersAlert.this.delegate.lambda$onStickerSelected$83(document, str, obj, null, StickersAlert.this.clearsInputField, z, i, 0);
             StickersAlert.this.lambda$new$0();
         }
 
@@ -1410,7 +1435,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             hidePreview();
             this.selectedStickerPath = null;
         } else {
-            this.delegate.lambda$onStickerSelected$77(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0, 0);
+            this.delegate.lambda$onStickerSelected$83(this.selectedSticker, null, this.stickerSet, null, this.clearsInputField, true, 0, 0);
             lambda$new$0();
         }
     }

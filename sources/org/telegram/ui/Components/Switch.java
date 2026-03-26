@@ -19,11 +19,14 @@ import android.os.Build;
 import android.util.StateSet;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.Interpolator;
+import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 
 public class Switch extends View {
+    private final BoolAnimator animatorIconVisibility;
     private boolean attachedToWindow;
     private boolean bitmapsCreated;
     private ObjectAnimator checkAnimator;
@@ -74,6 +77,7 @@ public class Switch extends View {
 
     public Switch(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.animatorIconVisibility = new BoolAnimator((View) this, (Interpolator) CubicBezierInterpolator.EASE_OUT_QUINT, 380L, true);
         this.iconProgress = 1.0f;
         this.trackColorKey = Theme.key_fill_RedNormal;
         this.trackCheckedColorKey = Theme.key_switch2TrackChecked;
@@ -265,6 +269,10 @@ public class Switch extends View {
             this.iconDrawable = null;
         }
         invalidate();
+    }
+
+    public void setIconVisible(boolean z, boolean z2) {
+        this.animatorIconVisibility.setValue(z, z2);
     }
 
     public void setDrawIconType(int i, boolean z) {

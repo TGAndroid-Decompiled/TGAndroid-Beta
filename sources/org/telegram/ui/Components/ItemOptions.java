@@ -40,6 +40,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
@@ -103,6 +104,7 @@ public class ItemOptions {
     private int maxHeight;
     private int minWidthDp;
     public boolean needsFocus;
+    private boolean offsetByContainer;
     private float offsetX;
     private float offsetY;
     public boolean onTopOfScrim;
@@ -346,6 +348,10 @@ public class ItemOptions {
         return add(i, charSequence, false, runnable);
     }
 
+    public ItemOptions add(Drawable drawable, CharSequence charSequence, Runnable runnable) {
+        return add(0, drawable, charSequence, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_actionBarDefaultSubmenuItem, runnable);
+    }
+
     public ItemOptions add(int i, CharSequence charSequence, boolean z, Runnable runnable) {
         return add(i, charSequence, z ? Theme.key_text_RedRegular : Theme.key_actionBarDefaultSubmenuItemIcon, z ? Theme.key_text_RedRegular : Theme.key_actionBarDefaultSubmenuItem, runnable);
     }
@@ -532,14 +538,12 @@ public class ItemOptions {
         CharSequence charSequence = charSequenceApplyNewSpan;
         TLRPC.TL_attachMenuBotIcon sideAttachMenuBotIcon = MediaDataController.getSideAttachMenuBotIcon(tL_attachMenuBot);
         if (sideAttachMenuBotIcon != null) {
-            Drawable svgThumb = DocumentObject.getSvgThumb(sideAttachMenuBotIcon.icon.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
-            if (svgThumb == null) {
-                svgThumb = getContext().getResources().getDrawable(R.drawable.msg_bot).mutate();
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(sideAttachMenuBotIcon.icon, Theme.key_emptyListPlaceholder, 1.0f);
+            if (svgThumb != null) {
+                Integer num = this.iconColor;
+                svgThumb.setColorFilter(new PorterDuffColorFilter(num != null ? num.intValue() : Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
             }
-            Drawable drawable = svgThumb;
-            Integer num = this.iconColor;
-            drawable.setColorFilter(new PorterDuffColorFilter(num != null ? num.intValue() : Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
-            actionBarMenuSubItem.setTextAndIcon(charSequence, ImageLocation.getForDocument(sideAttachMenuBotIcon.icon), "24_24", drawable, tL_attachMenuBot);
+            actionBarMenuSubItem.setTextAndIcon(charSequence, ImageLocation.getForDocument(sideAttachMenuBotIcon.icon), "24_24", svgThumb, tL_attachMenuBot);
             actionBarMenuSubItem.setImageSize(24, 24);
         } else {
             actionBarMenuSubItem.setTextAndIcon(charSequence, R.drawable.msg_bot);
@@ -838,21 +842,28 @@ public class ItemOptions {
     }
 
     public ItemOptions addSpaceGap() {
+        return addSpaceGap(true);
+    }
+
+    public ItemOptions addSpaceGap(boolean z) {
         if (!(this.layout instanceof LinearLayout)) {
             LinearLayout linearLayout = new LinearLayout(this.context);
             this.layout = linearLayout;
-            linearLayout.setOrientation(1);
-            this.layout.addView(this.lastLayout, LayoutHelper.createLinear(-1, -2));
+            linearLayout.setOrientation(z ? 1 : 0);
+            ViewGroup viewGroup = this.layout;
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.lastLayout;
+            int i = this.maxHeight;
+            viewGroup.addView(actionBarPopupWindowLayout, LayoutHelper.createLinear(-1.0f, i > 0 ? i / AndroidUtilities.density : -2.0f, 48));
         }
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, this.resourcesProvider);
-        this.lastLayout = actionBarPopupWindowLayout;
-        actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, R.drawable.popup_fixed_alert4, this.resourcesProvider, !z ? 4 : 0);
+        this.lastLayout = actionBarPopupWindowLayout2;
+        actionBarPopupWindowLayout2.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
                 this.f$0.lambda$addSpaceGap$10(keyEvent);
             }
         });
-        this.layout.addView(this.lastLayout, LayoutHelper.createLinear(-1, -2, 0.0f, -8.0f, 0.0f, 0.0f));
+        this.layout.addView(this.lastLayout, LayoutHelper.createLinear(-1, -2, 48, !z ? -8 : 0, z ? -8 : 0, 0, 0));
         return this;
     }
 
@@ -921,6 +932,39 @@ public class ItemOptions {
     }
 
     public void lambda$addProfile$12(Runnable runnable, View view) {
+        dismiss();
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public ItemOptions addProfileCustom(TLObject tLObject, CharSequence charSequence, final Runnable runnable) {
+        FrameLayout frameLayout = new FrameLayout(this.context);
+        frameLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 0, 12));
+        BackupImageView backupImageView = new BackupImageView(this.context);
+        backupImageView.setRoundRadius(AndroidUtilities.dp(17.0f));
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(tLObject);
+        backupImageView.setForUserOrChat(tLObject, avatarDrawable);
+        frameLayout.addView(backupImageView, LayoutHelper.createFrame(34, 34.0f, 51, 13.0f, 11.0f, 0.0f, 11.0f));
+        TextView textView = new TextView(this.context);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
+        textView.setTextSize(1, 14.0f);
+        textView.setText(charSequence);
+        textView.setMaxWidth(AndroidUtilities.dp(150.0f));
+        textView.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 55, 59.0f, 8.0f, 16.0f, 0.0f));
+        frameLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$addProfileCustom$13(runnable, view);
+            }
+        });
+        addView(frameLayout, LayoutHelper.createLinear(-1, -2));
+        return this;
+    }
+
+    public void lambda$addProfileCustom$13(Runnable runnable, View view) {
         dismiss();
         if (runnable != null) {
             runnable.run();
@@ -1104,7 +1148,7 @@ public class ItemOptions {
     }
 
     public ItemOptions setBlurBackground(BlurringShader.BlurManager blurManager, float f, float f2) {
-        Drawable drawableMutate = this.context.getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
+        Drawable drawableMutate = this.context.getResources().getDrawable(R.drawable.popup_fixed_alert4).mutate();
         ViewGroup viewGroup = this.layout;
         if (viewGroup instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
             viewGroup.setBackground(new BlurringShader.StoryBlurDrawer(blurManager, viewGroup, 5).makeDrawable(this.offsetX + f + this.layout.getX(), this.offsetY + f2 + this.layout.getY(), drawableMutate, AndroidUtilities.dp(12.0f)));
@@ -1195,16 +1239,21 @@ public class ItemOptions {
         }
     }
 
+    public ItemOptions offsetByContainer() {
+        this.offsetByContainer = true;
+        return this;
+    }
+
     public org.telegram.ui.Components.ItemOptions show() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ItemOptions.show():org.telegram.ui.Components.ItemOptions");
     }
 
-    public static boolean lambda$show$13(DimView dimView) {
+    public static boolean lambda$show$14(DimView dimView) {
         dimView.invalidate();
         return true;
     }
 
-    public void lambda$show$14(ValueAnimator valueAnimator) {
+    public void lambda$show$15(ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         DimView dimView = this.dimView;
         if (dimView != null) {
@@ -1310,7 +1359,7 @@ public class ItemOptions {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ItemOptions.lambda$dismissDim$15(dimView, valueAnimator2);
+                ItemOptions.lambda$dismissDim$16(dimView, valueAnimator2);
             }
         });
         this.dimAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1337,7 +1386,7 @@ public class ItemOptions {
         this.dimAnimator.start();
     }
 
-    public static void lambda$dismissDim$15(DimView dimView, ValueAnimator valueAnimator) {
+    public static void lambda$dismissDim$16(DimView dimView, ValueAnimator valueAnimator) {
         dimView.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -1679,7 +1728,7 @@ public class ItemOptions {
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ItemOptions.lambda$addAlbumsItemOptions$17(zContains, hashSet, i2, callback, storyAlbum, view);
+                    ItemOptions.lambda$addAlbumsItemOptions$18(zContains, hashSet, i2, callback, storyAlbum, view);
                 }
             });
             linearLayout.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
@@ -1687,7 +1736,7 @@ public class ItemOptions {
         }
     }
 
-    public static void lambda$addAlbumsItemOptions$17(boolean z, HashSet hashSet, int i, Utilities.Callback callback, StoriesController.StoryAlbum storyAlbum, View view) {
+    public static void lambda$addAlbumsItemOptions$18(boolean z, HashSet hashSet, int i, Utilities.Callback callback, StoriesController.StoryAlbum storyAlbum, View view) {
         if (z) {
             hashSet.remove(Integer.valueOf(i));
         } else {

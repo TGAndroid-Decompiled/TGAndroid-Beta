@@ -72,7 +72,7 @@ public class TL_chatlists {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.revoked = (int32 & 1) != 0;
+            this.revoked = TLObject.hasFlag(int32, 1);
             this.title = inputSerializedData.readString(z);
             this.url = inputSerializedData.readString(z);
             this.peers = Vector.deserialize(inputSerializedData, new TLRPC$TL_contacts_found$$ExternalSyntheticLambda0(), z);
@@ -177,7 +177,7 @@ public class TL_chatlists {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.title_noanimate = (int32 & 2) != 0;
+            this.title_noanimate = TLObject.hasFlag(int32, 2);
             this.title = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z);
@@ -315,15 +315,15 @@ public class TL_chatlists {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1698543165);
-            int i = this.revoked ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.revoked);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.chatlist.serializeToStream(outputSerializedData);
             outputSerializedData.writeString(this.slug);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.peers);
             }
         }

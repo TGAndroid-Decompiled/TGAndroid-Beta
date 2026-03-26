@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
+import java.util.HashSet;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -28,6 +29,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     private static final RectF tmpRect = new RectF();
     private int accentColor;
     private final BoolAnimator animatorCenterAccentBackground;
+    private final BoolAnimator animatorWrappingButton;
     private final Paint backgroundAccentPaint;
     private final BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory;
     private final ButtonHolder[] buttonHolders;
@@ -40,6 +42,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     private float totalVisibilityFactor;
     private float totalWidthLeft;
     private float totalWidthRight;
+    private final HashSet wrapContentButtons;
 
     public interface OnButtonFullyVisibleListener {
         void onButtonFullyVisible(View view, int i, boolean z);
@@ -54,7 +57,10 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
         this.buttonHolders = new ButtonHolder[4];
         this.onClickListeners = new View.OnClickListener[4];
         this.onButtonFullyVisible = new OnButtonFullyVisibleListener[4];
-        this.animatorCenterAccentBackground = new BoolAnimator(99, this, CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
+        this.wrapContentButtons = new HashSet();
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.animatorCenterAccentBackground = new BoolAnimator(99, this, cubicBezierInterpolator, 320L);
+        this.animatorWrappingButton = new BoolAnimator(100, this, cubicBezierInterpolator, 320L);
         this.backgroundAccentPaint = new Paint(1);
         this.accentColor = 0;
         this.blurredBackgroundDrawableViewFactory = blurredBackgroundDrawableViewFactory;
@@ -82,6 +88,10 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
 
     public FrameLayout getContainer() {
         return this.container;
+    }
+
+    public void makeViewWrapContent(View view) {
+        this.wrapContentButtons.add(view);
     }
 
     public void showButton(final int i, boolean z, boolean z2) {
@@ -168,6 +178,10 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
             invalidate();
             return;
         }
+        if (i == 100) {
+            checkButtonsPositionsAndVisibility();
+            invalidate();
+        }
         int i2 = i >> 16;
         int i3 = i & 65535;
         if (i2 >= 0) {
@@ -184,7 +198,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         ButtonHolder buttonHolder;
-        if (i == 99) {
+        if (i == 99 || i == 100) {
             invalidate();
         }
         int i2 = i >> 16;
@@ -229,6 +243,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     }
 
     private void checkButtonsPositionsAndVisibility() {
+        float fMax = 0.0f;
         this.totalWidthLeft = 0.0f;
         this.totalWidthRight = 0.0f;
         for (ButtonHolder buttonHolder : this.buttonHolders) {
@@ -276,10 +291,54 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
             this.totalWidthLeft = f * f2;
             this.totalWidthRight *= f2;
         }
+        float floatValue4 = this.animatorWrappingButton.getFloatValue();
+        if (floatValue4 > 0.0f && getMeasuredWidth() > 0) {
+            float measuredWidth = getMeasuredWidth();
+            for (int i5 = 0; i5 < getContainer().getChildCount(); i5++) {
+                if (this.wrapContentButtons.contains(getContainer().getChildAt(i5))) {
+                    measuredWidth = Math.min(measuredWidth, r4.getLeft());
+                    fMax = Math.max(fMax, r4.getRight());
+                }
+            }
+            if (measuredWidth > fMax) {
+                fMax = (measuredWidth + fMax) / 2.0f;
+                measuredWidth = fMax;
+            }
+            this.totalWidthLeft = AndroidUtilities.lerp(this.totalWidthLeft, measuredWidth - AndroidUtilities.dp(3.33f), floatValue4);
+            this.totalWidthRight = AndroidUtilities.lerp(this.totalWidthRight, (getMeasuredWidth() - fMax) - AndroidUtilities.dp(17.66f), floatValue4);
+        }
         OnButtonsTotalWidthChanged onButtonsTotalWidthChanged = this.onButtonsTotalWidthChanged;
         if (onButtonsTotalWidthChanged != null) {
             onButtonsTotalWidthChanged.onButtonsTotalWidthChanged(this.totalWidthLeft, this.totalWidthRight);
         }
+    }
+
+    public void updateWrappingVisible(boolean z) {
+        boolean z2 = false;
+        z2 = false;
+        if (getVisibility() == 0 && getContainer().getVisibility() == 0) {
+            boolean z3 = false;
+            for (int i = 0; i < getContainer().getChildCount(); i++) {
+                View childAt = getContainer().getChildAt(i);
+                if (this.wrapContentButtons.contains(childAt) && childAt.getVisibility() == 0) {
+                    z3 = true;
+                }
+            }
+            z2 = z3;
+        }
+        this.animatorWrappingButton.setValue(z2, z);
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        super.setVisibility(i);
+        updateWrappingVisible(false);
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        checkButtonsPositionsAndVisibility();
     }
 
     @Override

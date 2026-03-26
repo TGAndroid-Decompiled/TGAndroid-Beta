@@ -117,6 +117,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             public static void $default$didSelectPhotos(DocumentSelectActivityDelegate documentSelectActivityDelegate, ArrayList arrayList, boolean z, int i, int i2, long j) {
             }
 
+            public static void $default$startDocumentSelectActivity(DocumentSelectActivityDelegate documentSelectActivityDelegate) {
+            }
+
             public static void $default$startMusicSelectActivity(DocumentSelectActivityDelegate documentSelectActivityDelegate) {
             }
         }
@@ -872,6 +875,17 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                 this.selectedMessages.put(messageHashId, messageObject);
                 z2 = true;
             }
+        }
+        if (this.parentAlert.isPollAttach) {
+            if ((!this.selectedFiles.isEmpty() || !this.selectedMessages.isEmpty()) && this.delegate != null && !this.sendPressed) {
+                ArrayList arrayList = new ArrayList();
+                Iterator it = this.selectedMessages.keySet().iterator();
+                while (it.hasNext()) {
+                    arrayList.add((MessageObject) this.selectedMessages.get((FilteredSearchView.MessageHashId) it.next()));
+                }
+                this.delegate.didSelectFiles(new ArrayList(this.selectedFilesOrder), null, null, arrayList, false, 0, 0, 0L, false, 0L);
+            }
+            return true;
         }
         if (view instanceof SharedDocumentCell) {
             ((SharedDocumentCell) view).setChecked(z2, true);

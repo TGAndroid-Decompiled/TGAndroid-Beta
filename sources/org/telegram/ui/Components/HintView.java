@@ -18,11 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 
@@ -172,143 +169,8 @@ public class HintView extends FrameLayout {
         return showForMessageCell(chatMessageCell, null, 0, 0, z);
     }
 
-    public boolean showForMessageCell(ChatMessageCell chatMessageCell, Object obj, int i, int i2, boolean z) {
-        int iDp;
-        int forwardNameCenterX;
-        int i3 = this.currentType;
-        if ((i3 == 5 && i2 == this.shownY && this.messageCell == chatMessageCell) || (i3 != 5 && ((i3 == 0 && getTag() != null) || this.messageCell == chatMessageCell))) {
-            return false;
-        }
-        Runnable runnable = this.hideRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.hideRunnable = null;
-        }
-        int[] iArr = new int[2];
-        chatMessageCell.getLocationInWindow(iArr);
-        int i4 = iArr[1];
-        ((View) getParent()).getLocationInWindow(iArr);
-        int iDp2 = i4 - iArr[1];
-        View view = (View) chatMessageCell.getParent();
-        int i5 = this.currentType;
-        if (i5 == 0) {
-            ImageReceiver photoImage = chatMessageCell.getPhotoImage();
-            iDp2 = (int) (iDp2 + photoImage.getImageY());
-            int imageHeight = (int) photoImage.getImageHeight();
-            int i6 = iDp2 + imageHeight;
-            int measuredHeight = view.getMeasuredHeight();
-            if (iDp2 <= getMeasuredHeight() + AndroidUtilities.dp(10.0f) || i6 > measuredHeight + (imageHeight / 4)) {
-                return false;
-            }
-            forwardNameCenterX = chatMessageCell.getNoSoundIconCenterX();
-            measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-        } else if (i5 == 5) {
-            Integer num = (Integer) obj;
-            iDp2 += i2;
-            this.shownY = i2;
-            if (num.intValue() == -1) {
-                this.textView.setText(LocaleController.getString(R.string.PollSelectOption));
-            } else if (chatMessageCell.getMessageObject().isQuiz()) {
-                if (num.intValue() == 0) {
-                    this.textView.setText(LocaleController.getString(R.string.NoVotesQuiz));
-                } else {
-                    this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue(), new Object[0]));
-                }
-            } else if (num.intValue() == 0) {
-                this.textView.setText(LocaleController.getString(R.string.NoVotes));
-            } else {
-                this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue(), new Object[0]));
-            }
-            measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-            forwardNameCenterX = i;
-        } else {
-            MessageObject messageObject = chatMessageCell.getMessageObject();
-            String str = this.overrideText;
-            if (str == null) {
-                this.textView.setText(LocaleController.getString(R.string.HidAccount));
-            } else {
-                this.textView.setText(str);
-            }
-            measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-            TLRPC.User currentUser = chatMessageCell.getCurrentUser();
-            if (currentUser != null && currentUser.id == 0) {
-                iDp = (chatMessageCell.getMeasuredHeight() - Math.max(0, chatMessageCell.getBottom() - view.getMeasuredHeight())) - AndroidUtilities.dp(50.0f);
-            } else {
-                iDp2 += AndroidUtilities.dp(22.0f);
-                if (!messageObject.isOutOwner() && chatMessageCell.isDrawNameLayout()) {
-                    iDp = AndroidUtilities.dp(20.0f);
-                }
-                if (this.isTopArrow && iDp2 <= getMeasuredHeight() + AndroidUtilities.dp(10.0f)) {
-                    return false;
-                }
-                forwardNameCenterX = chatMessageCell.getForwardNameCenterX();
-            }
-            iDp2 += iDp;
-            if (this.isTopArrow) {
-            }
-            forwardNameCenterX = chatMessageCell.getForwardNameCenterX();
-        }
-        int measuredWidth = view.getMeasuredWidth();
-        if (this.isTopArrow) {
-            float f = this.extraTranslationY;
-            float fDp = AndroidUtilities.dp(44.0f);
-            this.translationY = fDp;
-            setTranslationY(f + fDp);
-        } else {
-            float f2 = this.extraTranslationY;
-            float measuredHeight2 = iDp2 - getMeasuredHeight();
-            this.translationY = measuredHeight2;
-            setTranslationY(f2 + measuredHeight2);
-        }
-        int left = chatMessageCell.getLeft() + forwardNameCenterX;
-        int iDp3 = AndroidUtilities.dp(19.0f);
-        if (this.currentType == 5) {
-            int iMax = Math.max(0, (forwardNameCenterX - (getMeasuredWidth() / 2)) - AndroidUtilities.dp(19.1f));
-            setTranslationX(iMax);
-            iDp3 += iMax;
-        } else if (left > view.getMeasuredWidth() / 2) {
-            int measuredWidth2 = (measuredWidth - getMeasuredWidth()) - AndroidUtilities.dp(38.0f);
-            setTranslationX(measuredWidth2);
-            iDp3 += measuredWidth2;
-        } else {
-            setTranslationX(0.0f);
-        }
-        float left2 = ((chatMessageCell.getLeft() + forwardNameCenterX) - iDp3) - (this.arrowImageView.getMeasuredWidth() / 2);
-        this.arrowImageView.setTranslationX(left2);
-        if (left > view.getMeasuredWidth() / 2) {
-            if (left2 < AndroidUtilities.dp(10.0f)) {
-                float fDp2 = left2 - AndroidUtilities.dp(10.0f);
-                setTranslationX(getTranslationX() + fDp2);
-                this.arrowImageView.setTranslationX(left2 - fDp2);
-            }
-        } else if (left2 > getMeasuredWidth() - AndroidUtilities.dp(24.0f)) {
-            float measuredWidth3 = (left2 - getMeasuredWidth()) + AndroidUtilities.dp(24.0f);
-            setTranslationX(measuredWidth3);
-            this.arrowImageView.setTranslationX(left2 - measuredWidth3);
-        } else if (left2 < AndroidUtilities.dp(10.0f)) {
-            float fDp3 = left2 - AndroidUtilities.dp(10.0f);
-            setTranslationX(getTranslationX() + fDp3);
-            this.arrowImageView.setTranslationX(left2 - fDp3);
-        }
-        this.messageCell = chatMessageCell;
-        AnimatorSet animatorSet = this.animatorSet;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.animatorSet = null;
-        }
-        setTag(1);
-        setVisibility(0);
-        if (z) {
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.animatorSet = animatorSet2;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HintView, Float>) View.ALPHA, 0.0f, 1.0f));
-            this.animatorSet.addListener(new AnonymousClass1());
-            this.animatorSet.setDuration(300L);
-            this.animatorSet.start();
-        } else {
-            setAlpha(1.0f);
-        }
-        return true;
+    public boolean showForMessageCell(org.telegram.ui.Cells.ChatMessageCell r18, java.lang.Object r19, int r20, int r21, boolean r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.HintView.showForMessageCell(org.telegram.ui.Cells.ChatMessageCell, java.lang.Object, int, int, boolean):boolean");
     }
 
     class AnonymousClass1 extends AnimatorListenerAdapter {

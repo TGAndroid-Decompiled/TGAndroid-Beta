@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.function.ToIntFunction;
+import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
@@ -112,6 +113,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStackName;
     private boolean animatingArchiveAvatar;
     private float animatingArchiveAvatarProgress;
+    private BoolAnimator animatorPollVotesMentionVisible;
     private boolean applyName;
     private float archiveBackgroundProgress;
     private GradientDrawable archiveFadeGradientDrawable;
@@ -195,6 +197,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean drawPinBackground;
     private boolean drawPinForced;
     private boolean[] drawPlay;
+    private boolean drawPollVotesMention;
     private boolean drawPremium;
     private boolean drawReactionMention;
     private boolean drawReorder;
@@ -298,6 +301,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private DialogsActivity parentFragment;
     private int pinLeft;
     private int pinTop;
+    private int pollVotesMentionCount;
+    private int pollVotesMentionLeft;
     private DialogsAdapter.DialogsPreloader preloader;
     private boolean premiumBlocked;
     private final AnimatedFloat premiumBlockedT;
@@ -643,6 +648,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.spoilersPool2 = new Stack();
         this.spoilers2 = new ArrayList();
         this.drawCount2 = true;
+        this.animatorPollVotesMentionVisible = new BoolAnimator(this, cubicBezierInterpolator, 320L);
         this.countChangeProgress = 1.0f;
         this.reactionsMentionsChangeProgress = 1.0f;
         this.rect = new RectF();
@@ -814,6 +820,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.messageId = messageObject != null ? messageObject.getId() : 0;
         this.mentionCount = 0;
         this.reactionMentionCount = 0;
+        this.pollVotesMentionCount = 0;
         this.lastUnreadState = messageObject != null && messageObject.isUnread();
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null) {
@@ -838,6 +845,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.messageId = messageObject != null ? messageObject.getId() : 0;
         this.mentionCount = 0;
         this.reactionMentionCount = 0;
+        this.pollVotesMentionCount = 0;
         this.lastUnreadState = messageObject != null && messageObject.isUnread();
         this.groupMessages = arrayList;
         MessageObject messageObject2 = this.message;
@@ -1422,7 +1430,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r60) {
+    protected void onDraw(android.graphics.Canvas r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1534,7 +1542,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     if (this.counterPath == null) {
                         this.counterPath = new Path();
                     }
-                    BubbleCounterPath.addBubbleRect(this.counterPath, this.counterPathRect, AndroidUtilities.dp(11.5f));
+                    BubbleCounterPath.addBubbleRect(this.counterPath, this.counterPathRect, AndroidUtilities.dp(10.33f));
                 }
                 canvas.drawPath(this.counterPath, paint);
                 if (z2) {
@@ -1584,7 +1592,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     if (this.counterPath == null) {
                         this.counterPath = new Path();
                     }
-                    BubbleCounterPath.addBubbleRect(this.counterPath, this.counterPathRect, AndroidUtilities.dp(11.5f));
+                    BubbleCounterPath.addBubbleRect(this.counterPath, this.counterPathRect, AndroidUtilities.dp(10.33f));
                 }
                 canvas.drawPath(this.counterPath, paint);
                 if (z2) {

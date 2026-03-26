@@ -52,7 +52,7 @@ public class MessagesStorage extends BaseController {
     public static final int FORUM_TYPE_CHAT = 1;
     public static final int FORUM_TYPE_CHAT_TABS = 2;
     public static final int FORUM_TYPE_DIRECT = 4;
-    public static final int LAST_DB_VERSION = 168;
+    public static final int LAST_DB_VERSION = 170;
     public static final int SENT_FILE_TYPE_AUDIO = 1;
     public static final int SENT_FILE_TYPE_AUDIO_ENCRYPTED = 4;
     public static final int SENT_FILE_TYPE_PHOTO = 0;
@@ -61,6 +61,7 @@ public class MessagesStorage extends BaseController {
     public static final int SENT_FILE_TYPE_PHOTO_HIGH_QUALITY_ENCRYPTED = 7;
     public static final int SENT_FILE_TYPE_VIDEO = 2;
     public static final int SENT_FILE_TYPE_VIDEO_ENCRYPTED = 5;
+    public static final int SENT_FILE_TYPE_VIDEO_HIGH_QUALITY = 8;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -124,7 +125,7 @@ public class MessagesStorage extends BaseController {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
-        DATABASE_TABLES = new String[]{"messages_holes", "media_holes_v2", "scheduled_messages_v2", "quick_replies", "messages_v2", "download_queue", "user_contacts_v7", "user_phones_v7", "dialogs", "dialog_filter", "dialog_filter_ep", "dialog_filter_pin_v2", "randoms_v2", "enc_tasks_v4", "messages_seq", "params", "media_v4", "bot_keyboard", "bot_keyboard_topics", "chat_settings_v2", "user_settings", "chat_pinned_v2", "chat_pinned_count", "chat_hints", "botcache", "users_data", "users", "chats", "enc_chats", "channel_users_v2", "channel_admins_v3", "contacts", "dialog_photos", "dialog_settings", "web_recent_v3", "stickers_v2", "stickers_featured", "stickers_dice", "stickersets", "hashtag_recent_v2", "webpage_pending_v2", "sent_files_v2", "search_recent", "media_counts_v2", "keyvalue", "bot_info_v2", "pending_tasks", "requested_holes", "sharing_locations", "shortcut_widget", "emoji_keywords_v2", "emoji_keywords_info_v2", "wallpapers2", "unread_push_messages", "polls_v2", "reactions", "reaction_mentions", "downloading_documents", "animated_emoji", "attach_menu_bots", "premium_promo", "emoji_statuses", "messages_holes_topics", "messages_topics", "saved_dialogs", "media_topics", "media_holes_topics", "topics", "media_counts_topics", "reaction_mentions_topics", "emoji_groups"};
+        DATABASE_TABLES = new String[]{"messages_holes", "media_holes_v2", "scheduled_messages_v2", "quick_replies", "messages_v2", "download_queue", "user_contacts_v7", "user_phones_v7", "dialogs", "dialog_filter", "dialog_filter_ep", "dialog_filter_pin_v2", "randoms_v2", "enc_tasks_v4", "messages_seq", "params", "media_v4", "bot_keyboard", "bot_keyboard_topics", "chat_settings_v2", "user_settings", "chat_pinned_v2", "chat_pinned_count", "chat_hints", "botcache", "users_data", "users", "chats", "enc_chats", "channel_users_v2", "channel_admins_v3", "contacts", "dialog_photos", "dialog_settings", "web_recent_v3", "stickers_v2", "stickers_featured", "stickers_dice", "stickersets", "hashtag_recent_v2", "webpage_pending_v2", "sent_files_v2", "search_recent", "media_counts_v2", "keyvalue", "bot_info_v2", "pending_tasks", "requested_holes", "sharing_locations", "shortcut_widget", "emoji_keywords_v2", "emoji_keywords_info_v2", "wallpapers2", "unread_push_messages", "polls_v2", "reactions", "reaction_mentions", "downloading_documents", "animated_emoji", "attach_menu_bots", "premium_promo", "emoji_statuses", "messages_holes_topics", "messages_topics", "saved_dialogs", "media_topics", "media_holes_topics", "topics", "media_counts_topics", "reaction_mentions_topics", "emoji_groups", "poll_votes_mentions", "poll_votes_mentions_topics"};
     }
 
     public static MessagesStorage getInstance(int i) {
@@ -400,7 +401,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (iIntValue < 168) {
+                if (iIntValue < 170) {
                     try {
                         updateDbToLastVersion(iIntValue);
                     } catch (Exception e4) {
@@ -528,7 +529,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE user_contacts_v7(key TEXT PRIMARY KEY, uid INTEGER, fname TEXT, sname TEXT, imported INTEGER)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE user_phones_v7(key TEXT, phone TEXT, sphone TEXT, deleted INTEGER, PRIMARY KEY (key, phone))").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS sphone_deleted_idx_user_phones ON user_phones_v7(sphone, deleted);").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE dialogs(did INTEGER PRIMARY KEY, date INTEGER, unread_count INTEGER, last_mid INTEGER, inbox_max INTEGER, outbox_max INTEGER, last_mid_i INTEGER, unread_count_i INTEGER, pts INTEGER, date_i INTEGER, pinned INTEGER, flags INTEGER, folder_id INTEGER, data BLOB, unread_reactions INTEGER, last_mid_group INTEGER, ttl_period INTEGER)").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE dialogs(did INTEGER PRIMARY KEY, date INTEGER, unread_count INTEGER, last_mid INTEGER, inbox_max INTEGER, outbox_max INTEGER, last_mid_i INTEGER, unread_count_i INTEGER, pts INTEGER, date_i INTEGER, pinned INTEGER, flags INTEGER, folder_id INTEGER, data BLOB, unread_reactions INTEGER, last_mid_group INTEGER, ttl_period INTEGER, unread_poll_votes INTEGER)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS date_idx_dialogs ON dialogs(date);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_dialogs ON dialogs(last_mid);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS unread_count_idx_dialogs ON dialogs(unread_count);").stepThis().dispose();
@@ -631,7 +632,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS uid_mid_type_date_idx_media_topics ON media_topics(uid, topic_id, mid, type, date);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE media_holes_topics(uid INTEGER, topic_id INTEGER, type INTEGER, start INTEGER, end INTEGER, PRIMARY KEY(uid, topic_id, type, start));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS uid_end_media_holes_topics ON media_holes_topics(uid, topic_id, type, end);").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE topics(did INTEGER, topic_id INTEGER, data BLOB, top_message INTEGER, topic_message BLOB, unread_count INTEGER, max_read_id INTEGER, unread_mentions INTEGER, unread_reactions INTEGER, read_outbox INTEGER, pinned INTEGER, total_messages_count INTEGER, hidden INTEGER, edit_date INTEGER, nopaid_messages_exception INTEGER, PRIMARY KEY(did, topic_id));").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE topics(did INTEGER, topic_id INTEGER, data BLOB, top_message INTEGER, topic_message BLOB, unread_count INTEGER, max_read_id INTEGER, unread_mentions INTEGER, unread_reactions INTEGER, read_outbox INTEGER, pinned INTEGER, total_messages_count INTEGER, hidden INTEGER, edit_date INTEGER, nopaid_messages_exception INTEGER, unread_poll_votes INTEGER, PRIMARY KEY(did, topic_id));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS did_top_message_topics ON topics(did, top_message);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS did_topics ON topics(did);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE media_counts_topics(uid INTEGER, topic_id INTEGER, type INTEGER, count INTEGER, old INTEGER, PRIMARY KEY(uid, topic_id, type))").stepThis().dispose();
@@ -664,7 +665,11 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT, pos INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE star_gifts2(id INTEGER PRIMARY KEY, data BLOB, hash INTEGER, time INTEGER, pos INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE gift_themes (slug TEXT PRIMARY KEY, data BLOB);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 168").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE poll_votes_mentions(message_id INTEGER, state INTEGER, dialog_id INTEGER, PRIMARY KEY(message_id, dialog_id))").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_did ON poll_votes_mentions(dialog_id);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE poll_votes_mentions_topics(message_id INTEGER, state INTEGER, dialog_id INTEGER, topic_id INTEGER, PRIMARY KEY(message_id, dialog_id, topic_id))").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_topics_did ON poll_votes_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 170").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -678,7 +683,7 @@ public class MessagesStorage extends BaseController {
                 this.f$0.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 168");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 170");
         int iMigrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -1037,7 +1042,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$32(long j, long j2, int i) {
-        getMessagesController().lambda$checkDeletingTask$83(j, j2, i);
+        getMessagesController().lambda$checkDeletingTask$82(j, j2, i);
     }
 
     public void saveChannelPts(final long j, final int i) {
@@ -1953,7 +1958,7 @@ public class MessagesStorage extends BaseController {
             sQLitePreparedStatementExecuteFast.bindInteger(4, dialogFilter.flags);
             sQLitePreparedStatementExecuteFast.bindString(5, dialogFilter.id == 0 ? "ALL_CHATS" : dialogFilter.name);
             sQLitePreparedStatementExecuteFast.bindInteger(6, dialogFilter.color);
-            Vector vector = new Vector(new MessagesStorage$$ExternalSyntheticLambda189());
+            Vector vector = new Vector(new MessagesStorage$$ExternalSyntheticLambda187());
             vector.objects.addAll(dialogFilter.entities);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(vector.getObjectSize());
             vector.serializeToStream(nativeByteBuffer);
@@ -2682,7 +2687,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$updateMessagePollResults$98(long r23, org.telegram.tgnet.TLRPC.Poll r25, org.telegram.tgnet.TLRPC.PollResults r26) throws java.lang.Throwable {
+    public void lambda$updateMessagePollResults$98(long r26, org.telegram.tgnet.TLRPC.Poll r28, org.telegram.tgnet.TLRPC.PollResults r29) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessagePollResults$98(long, org.telegram.tgnet.TLRPC$Poll, org.telegram.tgnet.TLRPC$PollResults):void");
     }
 
@@ -7436,12 +7441,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(223);
+                messageMedia.bytes = Utilities.intToBytes(224);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(223);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(224);
             message.flags |= 512;
         }
     }
@@ -7665,6 +7670,10 @@ public class MessagesStorage extends BaseController {
                 addLoadPeerInfo(tL_messageActionGeoProximityReached.from_id, arrayList, arrayList2);
                 addLoadPeerInfo(tL_messageActionGeoProximityReached.to_id, arrayList, arrayList2);
             }
+            TLRPC.MessageAction messageAction4 = message.action;
+            if (messageAction4 instanceof TLRPC.TL_messageActionManagedBotCreated) {
+                arrayList.add(Long.valueOf(((TLRPC.TL_messageActionManagedBotCreated) messageAction4).bot_id));
+            }
             if (!message.action.users.isEmpty()) {
                 for (int i = 0; i < message.action.users.size(); i++) {
                     Long l = message.action.users.get(i);
@@ -7686,13 +7695,13 @@ public class MessagesStorage extends BaseController {
                 }
             }
         }
-        TLRPC.MessageAction messageAction4 = message.action;
-        if (messageAction4 instanceof TLRPC.TL_messageActionStarGift) {
-            TL_stars.StarGift starGift2 = ((TLRPC.TL_messageActionStarGift) messageAction4).gift;
+        TLRPC.MessageAction messageAction5 = message.action;
+        if (messageAction5 instanceof TLRPC.TL_messageActionStarGift) {
+            TL_stars.StarGift starGift2 = ((TLRPC.TL_messageActionStarGift) messageAction5).gift;
             if (starGift2 != null && (peer7 = starGift2.released_by) != null) {
                 addLoadPeerInfo(peer7, arrayList, arrayList2);
             }
-        } else if ((messageAction4 instanceof TLRPC.TL_messageActionStarGiftUnique) && (starGift = ((TLRPC.TL_messageActionStarGiftUnique) messageAction4).gift) != null && (peer = starGift.released_by) != null) {
+        } else if ((messageAction5 instanceof TLRPC.TL_messageActionStarGiftUnique) && (starGift = ((TLRPC.TL_messageActionStarGiftUnique) messageAction5).gift) != null && (peer = starGift.released_by) != null) {
             addLoadPeerInfo(peer, arrayList, arrayList2);
         }
         TLRPC.MessageMedia messageMedia = message.media;
@@ -7724,9 +7733,30 @@ public class MessagesStorage extends BaseController {
             TLRPC.MessageMedia messageMedia4 = message.media;
             if (messageMedia4 instanceof TLRPC.TL_messageMediaPoll) {
                 TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia4;
+                if (!tL_messageMediaPoll.poll.answers.isEmpty()) {
+                    for (int i3 = 0; i3 < tL_messageMediaPoll.poll.answers.size(); i3++) {
+                        TLRPC.Peer peer8 = tL_messageMediaPoll.poll.answers.get(i3).added_by;
+                        if (peer8 != null) {
+                            addLoadPeerInfo(peer8, arrayList, arrayList2);
+                        }
+                    }
+                }
                 if (!tL_messageMediaPoll.results.recent_voters.isEmpty()) {
-                    for (int i3 = 0; i3 < tL_messageMediaPoll.results.recent_voters.size(); i3++) {
-                        addLoadPeerInfo(tL_messageMediaPoll.results.recent_voters.get(i3), arrayList, arrayList2);
+                    for (int i4 = 0; i4 < tL_messageMediaPoll.results.recent_voters.size(); i4++) {
+                        addLoadPeerInfo(tL_messageMediaPoll.results.recent_voters.get(i4), arrayList, arrayList2);
+                    }
+                }
+                if (!tL_messageMediaPoll.results.results.isEmpty()) {
+                    Iterator<TLRPC.PollAnswerVoters> it3 = tL_messageMediaPoll.results.results.iterator();
+                    while (it3.hasNext()) {
+                        TLRPC.PollAnswerVoters next3 = it3.next();
+                        ArrayList<TLRPC.Peer> arrayList4 = next3.recent_voters;
+                        if (arrayList4 != null && !arrayList4.isEmpty()) {
+                            Iterator<TLRPC.Peer> it4 = next3.recent_voters.iterator();
+                            while (it4.hasNext()) {
+                                addLoadPeerInfo(it4.next(), arrayList, arrayList2);
+                            }
+                        }
                     }
                 }
             }
@@ -7738,9 +7768,9 @@ public class MessagesStorage extends BaseController {
                 }
                 TL_stories.StoryItem storyItem2 = message.media.storyItem;
                 if (storyItem2 != null && storyItem2.media_areas != null) {
-                    for (int i4 = 0; i4 < message.media.storyItem.media_areas.size(); i4++) {
-                        if (message.media.storyItem.media_areas.get(i4) instanceof TL_stories.TL_mediaAreaChannelPost) {
-                            long j7 = ((TL_stories.TL_mediaAreaChannelPost) message.media.storyItem.media_areas.get(i4)).channel_id;
+                    for (int i5 = 0; i5 < message.media.storyItem.media_areas.size(); i5++) {
+                        if (message.media.storyItem.media_areas.get(i5) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                            long j7 = ((TL_stories.TL_mediaAreaChannelPost) message.media.storyItem.media_areas.get(i5)).channel_id;
                             if (!arrayList2.contains(Long.valueOf(j7))) {
                                 arrayList2.add(Long.valueOf(j7));
                             }
@@ -7754,18 +7784,18 @@ public class MessagesStorage extends BaseController {
             }
             TLRPC.MessageMedia messageMedia6 = message.media;
             if ((messageMedia6 instanceof TLRPC.TL_messageMediaWebPage) && (webPage = messageMedia6.webpage) != null && webPage.attributes != null) {
-                for (int i5 = 0; i5 < message.media.webpage.attributes.size(); i5++) {
-                    if (message.media.webpage.attributes.get(i5) instanceof TLRPC.TL_webPageAttributeStory) {
-                        TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) message.media.webpage.attributes.get(i5);
+                for (int i6 = 0; i6 < message.media.webpage.attributes.size(); i6++) {
+                    if (message.media.webpage.attributes.get(i6) instanceof TLRPC.TL_webPageAttributeStory) {
+                        TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) message.media.webpage.attributes.get(i6);
                         TL_stories.StoryItem storyItem4 = tL_webPageAttributeStory.storyItem;
                         if (storyItem4 != null && (storyFwdHeader = storyItem4.fwd_from) != null) {
                             addLoadPeerInfo(storyFwdHeader.from, arrayList, arrayList2);
                         }
                         TL_stories.StoryItem storyItem5 = tL_webPageAttributeStory.storyItem;
                         if (storyItem5 != null && storyItem5.media_areas != null) {
-                            for (int i6 = 0; i6 < tL_webPageAttributeStory.storyItem.media_areas.size(); i6++) {
-                                if (tL_webPageAttributeStory.storyItem.media_areas.get(i6) instanceof TL_stories.TL_mediaAreaChannelPost) {
-                                    long j8 = ((TL_stories.TL_mediaAreaChannelPost) tL_webPageAttributeStory.storyItem.media_areas.get(i6)).channel_id;
+                            for (int i7 = 0; i7 < tL_webPageAttributeStory.storyItem.media_areas.size(); i7++) {
+                                if (tL_webPageAttributeStory.storyItem.media_areas.get(i7) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                                    long j8 = ((TL_stories.TL_mediaAreaChannelPost) tL_webPageAttributeStory.storyItem.media_areas.get(i7)).channel_id;
                                     if (!arrayList2.contains(Long.valueOf(j8))) {
                                         arrayList2.add(Long.valueOf(j8));
                                     }
@@ -7779,16 +7809,16 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             }
-            TLRPC.Peer peer8 = message.media.peer;
-            if (peer8 != null) {
-                addLoadPeerInfo(peer8, arrayList, arrayList2);
+            TLRPC.Peer peer9 = message.media.peer;
+            if (peer9 != null) {
+                addLoadPeerInfo(peer9, arrayList, arrayList2);
             }
         }
         TLRPC.MessageReplies messageReplies = message.replies;
         if (messageReplies != null) {
             int size = messageReplies.recent_repliers.size();
-            for (int i7 = 0; i7 < size; i7++) {
-                addLoadPeerInfo(message.replies.recent_repliers.get(i7), arrayList, arrayList2);
+            for (int i8 = 0; i8 < size; i8++) {
+                addLoadPeerInfo(message.replies.recent_repliers.get(i8), arrayList, arrayList2);
             }
         }
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
@@ -7818,8 +7848,8 @@ public class MessagesStorage extends BaseController {
         if (tL_messageReactions == null || tL_messageReactions.top_reactors == null) {
             return;
         }
-        for (int i8 = 0; i8 < message.reactions.top_reactors.size(); i8++) {
-            TLRPC.MessageReactor messageReactor = message.reactions.top_reactors.get(i8);
+        for (int i9 = 0; i9 < message.reactions.top_reactors.size(); i9++) {
+            TLRPC.MessageReactor messageReactor = message.reactions.top_reactors.get(i9);
             if (messageReactor != null && (peer2 = messageReactor.peer_id) != null) {
                 addLoadPeerInfo(peer2, arrayList, arrayList2);
             }
@@ -7898,7 +7928,7 @@ public class MessagesStorage extends BaseController {
         sQLitePreparedStatement.bindInteger(i2, i == 1 ? 1 : 0);
         sQLitePreparedStatement.bindInteger(i4, i);
         sQLitePreparedStatement.step();
-        for (int i5 = 0; i5 < 8; i5++) {
+        for (int i5 = 0; i5 < 9; i5++) {
             sQLitePreparedStatement2.requery();
             sQLitePreparedStatement2.bindLong(1, j);
             if (j2 != 0) {
@@ -8652,47 +8682,90 @@ public class MessagesStorage extends BaseController {
         updateUnreadReactionsCount(j, j2, i, false);
     }
 
-    public void updateUnreadReactionsCount(final long j, final long j2, final int i, final boolean z) {
+    public void updateUnreadReactionsCount(long j, long j2, int i, boolean z) {
+        updateUnreadReactionsCountInternal("reaction_mentions", "reaction_mentions_topics", "unread_reactions", "unread_reactions", j, j2, i, z);
+    }
+
+    public void updateUnreadPollVotesCount(long j, long j2, int i) {
+        updateUnreadPollVotesCount(j, j2, i, false);
+    }
+
+    public void updateUnreadPollVotesCount(long j, long j2, int i, boolean z) {
+        updateUnreadReactionsCountInternal("poll_votes_mentions", "poll_votes_mentions_topics", "unread_poll_votes", "unread_poll_votes", j, j2, i, z);
+    }
+
+    private void updateUnreadReactionsCountInternal(final String str, final String str2, final String str3, final String str4, final long j, final long j2, final int i, final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                this.f$0.lambda$updateUnreadReactionsCount$247(j2, z, j, i);
+                this.f$0.lambda$updateUnreadReactionsCountInternal$247(j2, z, str4, j, i, str2, str3, str);
             }
         });
     }
 
-    public void lambda$updateUnreadReactionsCount$247(long r10, boolean r12, long r13, int r15) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCount$247(long, boolean, long, int):void");
+    public void lambda$updateUnreadReactionsCountInternal$247(long r17, boolean r19, java.lang.String r20, long r21, int r23, java.lang.String r24, java.lang.String r25, java.lang.String r26) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCountInternal$247(long, boolean, java.lang.String, long, int, java.lang.String, java.lang.String, java.lang.String):void");
     }
 
-    public void markMessageReactionsAsRead(final long j, final long j2, final int i, boolean z) {
-        if (z) {
-            getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() throws Throwable {
-                    this.f$0.lambda$markMessageReactionsAsRead$248(j, j2, i);
-                }
-            });
+    public void lambda$markMessageReactionsAsRead$248(long j, long j2, int i) throws Throwable {
+        markMessageReactionsAsReadInternal("reaction_mentions", "reaction_mentions_topics", j, j2, i, true);
+    }
+
+    public void markMessageReactionsAsRead(final long j, final long j2, final int i) {
+        executeInStorageQueue(new Runnable() {
+            @Override
+            public final void run() throws Throwable {
+                this.f$0.lambda$markMessageReactionsAsRead$248(j, j2, i);
+            }
+        });
+    }
+
+    public void lambda$markMessagePollVotesAsRead$249(long j, long j2, int i) throws Throwable {
+        markMessageReactionsAsReadInternal("poll_votes_mentions", "poll_votes_mentions_topics", j, j2, i, false);
+    }
+
+    public void markMessagePollVotesAsRead(final long j, final long j2, final int i) {
+        executeInStorageQueue(new Runnable() {
+            @Override
+            public final void run() throws Throwable {
+                this.f$0.lambda$markMessagePollVotesAsRead$249(j, j2, i);
+            }
+        });
+    }
+
+    private void markMessageReactionsAsReadInternal(java.lang.String r18, java.lang.String r19, long r20, long r22, int r24, boolean r25) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.markMessageReactionsAsReadInternal(java.lang.String, java.lang.String, long, long, int, boolean):void");
+    }
+
+    public void updateDialogUnreadReactions(long j, long j2, int i, boolean z) {
+        updateDialogUnreadReactionsInternal(j, j2, i, z, true);
+    }
+
+    public void updateDialogUnreadPollVotes(long j, long j2, int i, boolean z) {
+        updateDialogUnreadReactionsInternal(j, j2, i, z, false);
+    }
+
+    private void updateDialogUnreadReactionsInternal(final long j, final long j2, final int i, final boolean z, boolean z2) {
+        final String str;
+        MessagesStorage messagesStorage;
+        final String str2 = z2 ? "unread_reactions" : "unread_poll_votes";
+        if (z2) {
+            messagesStorage = this;
+            str = "unread_reactions";
         } else {
-            lambda$markMessageReactionsAsRead$248(j, j2, i);
+            str = "unread_poll_votes";
+            messagesStorage = this;
         }
-    }
-
-    public void lambda$markMessageReactionsAsRead$248(long r19, long r21, int r23) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessageReactionsAsRead$248(long, long, int):void");
-    }
-
-    public void updateDialogUnreadReactions(final long j, final long j2, final int i, final boolean z) {
-        this.storageQueue.postRunnable(new Runnable() {
+        messagesStorage.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                this.f$0.lambda$updateDialogUnreadReactions$249(z, j, i, j2);
+                this.f$0.lambda$updateDialogUnreadReactionsInternal$250(z, str2, j, i, j2, str);
             }
         });
     }
 
-    public void lambda$updateDialogUnreadReactions$249(boolean r17, long r18, int r20, long r21) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogUnreadReactions$249(boolean, long, int, long):void");
+    public void lambda$updateDialogUnreadReactionsInternal$250(boolean r18, java.lang.String r19, long r20, int r22, long r23, java.lang.String r25) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogUnreadReactionsInternal$250(boolean, java.lang.String, long, int, long, java.lang.String):void");
     }
 
     public void putGiftChatTheme(TLRPC.ChatTheme chatTheme) {
@@ -8703,12 +8776,12 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$putGiftChatThemes$250(list);
+                this.f$0.lambda$putGiftChatThemes$251(list);
             }
         });
     }
 
-    public void lambda$putGiftChatThemes$250(List list) {
+    public void lambda$putGiftChatThemes$251(List list) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
@@ -8754,13 +8827,13 @@ public class MessagesStorage extends BaseController {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                this.f$0.lambda$loadGiftChatTheme$253(callback);
+                this.f$0.lambda$loadGiftChatTheme$254(callback);
             }
         });
     }
 
-    public void lambda$loadGiftChatTheme$253(final org.telegram.messenger.Utilities.Callback r7) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadGiftChatTheme$253(org.telegram.messenger.Utilities$Callback):void");
+    public void lambda$loadGiftChatTheme$254(final org.telegram.messenger.Utilities.Callback r7) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadGiftChatTheme$254(org.telegram.messenger.Utilities$Callback):void");
     }
 
     private void executeInStorageQueue(Runnable runnable) {
@@ -8775,12 +8848,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$saveStoryAlbumsCache$254(j, list);
+                this.f$0.lambda$saveStoryAlbumsCache$255(j, list);
             }
         });
     }
 
-    public void lambda$saveStoryAlbumsCache$254(long j, List<StoriesController.StoryAlbum> list) {
+    public void lambda$saveStoryAlbumsCache$255(long j, List<StoriesController.StoryAlbum> list) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         try {
             try {
@@ -8822,12 +8895,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadStoryAlbumsCache$255(j, consumer);
+                this.f$0.lambda$loadStoryAlbumsCache$256(j, consumer);
             }
         });
     }
 
-    public void lambda$loadStoryAlbumsCache$255(long j, Consumer consumer) {
+    public void lambda$loadStoryAlbumsCache$256(long j, Consumer consumer) {
         ArrayList arrayList = new ArrayList();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
@@ -8883,6 +8956,10 @@ public class MessagesStorage extends BaseController {
             this.dialogIsForumTyped.put(j, i);
         }
         return i;
+    }
+
+    private static boolean isMessageActionTypeWithReply(TLRPC.MessageAction messageAction) {
+        return (messageAction instanceof TLRPC.TL_messageActionPinMessage) || (messageAction instanceof TLRPC.TL_messageActionPaymentSent) || (messageAction instanceof TLRPC.TL_messageActionGameScore) || (messageAction instanceof TLRPC.TL_messageActionSuggestedPostApproval) || (messageAction instanceof TLRPC.TL_messageActionPollAppendAnswer);
     }
 
     public boolean isForum(long j, int i) {

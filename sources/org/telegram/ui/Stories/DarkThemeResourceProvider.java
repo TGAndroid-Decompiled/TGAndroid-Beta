@@ -205,6 +205,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_player_progress, -11292689);
         this.sparseIntArray.put(Theme.key_player_progressBackground, -12829636);
         this.sparseIntArray.put(Theme.key_player_progressCachedBackground, -11184811);
+        this.sparseIntArray.put(Theme.key_glass_targetMainTopPanel, -15198183);
         appendColors();
         this.dividerPaint.setColor(getColor(i4));
     }

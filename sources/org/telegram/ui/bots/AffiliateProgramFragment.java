@@ -133,14 +133,14 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
         View view2 = new View(context);
         view2.setBackgroundColor(getThemedColor(Theme.key_divider));
         this.buttonLayout.addView(view2, LayoutHelper.createLinear(-1.0f, 1.0f / AndroidUtilities.density));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourceProvider) {
+        ButtonWithCounterView round = new ButtonWithCounterView(context, this.resourceProvider) {
             @Override
             protected boolean subTextSplitToWords() {
                 return false;
             }
-        };
-        this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.AffiliateProgramStart), false);
+        }.setRound();
+        this.button = round;
+        round.setText(LocaleController.getString(R.string.AffiliateProgramStart), false);
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -891,5 +891,6 @@ public class AffiliateProgramFragment extends GradientHeaderActivity implements 
     public void onInsets(int i, int i2, int i3, int i4) {
         this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i4);
         this.listView.setClipToPadding(false);
+        this.buttonLayout.setPadding(0, 0, 0, i4);
     }
 }

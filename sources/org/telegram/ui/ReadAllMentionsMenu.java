@@ -17,11 +17,19 @@ import org.telegram.ui.Components.chat.ViewPositionWatcher;
 
 public abstract class ReadAllMentionsMenu {
     public static ActionBarPopupWindow show(int i, Activity activity, INavigationLayout iNavigationLayout, FrameLayout frameLayout, View view, Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
+        String string;
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(activity);
         actionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem((Context) activity, true, true, resourcesProvider);
         actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(200.0f));
-        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(i == 0 ? R.string.ReadAllReactions : R.string.ReadAllMentions), R.drawable.msg_seen);
+        if (i == 0) {
+            string = LocaleController.getString(R.string.ReadAllReactions);
+        } else if (i == 1) {
+            string = LocaleController.getString(R.string.ReadAllMentions);
+        } else {
+            string = LocaleController.getString(R.string.ReadAllPollVotes);
+        }
+        actionBarMenuSubItem.setTextAndIcon(string, R.drawable.msg_seen);
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {

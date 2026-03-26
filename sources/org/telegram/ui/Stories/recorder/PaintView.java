@@ -2443,7 +2443,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     private void showAudioAlert(Utilities.Callback callback) {
-        SelectAudioAlert selectAudioAlert = new SelectAudioAlert(getContext(), callback);
+        SelectAudioAlert selectAudioAlert = new SelectAudioAlert(getContext(), callback, new DarkThemeResourceProvider());
         selectAudioAlert.setOnDismissListener(new Runnable() {
             @Override
             public final void run() {

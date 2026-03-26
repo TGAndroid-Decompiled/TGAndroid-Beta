@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
@@ -194,17 +195,17 @@ public class TL_bots {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(282013987);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.bot.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeString(this.lang_code);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.name);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.about);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
         }
@@ -225,7 +226,7 @@ public class TL_bots {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-589753091);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.bot.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeString(this.lang_code);
@@ -399,32 +400,32 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.has_preview_medias = (int32 & 64) != 0;
-            if ((int32 & 1) != 0) {
+            this.has_preview_medias = TLObject.hasFlag(int32, 64);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.commands = Vector.deserialize(inputSerializedData, new TLRPC$TL_updateBotCommands$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.privacy_policy_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.app_settings = botAppSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.verifier_settings = botVerifierSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -432,34 +433,34 @@ public class TL_bots {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1300890265);
-            int i = this.has_preview_medias ? this.flags | 64 : this.flags & (-65);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 64, this.has_preview_medias);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.commands);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeString(this.privacy_policy_url);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.app_settings.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 512) != 0) {
+            if (TLObject.hasFlag(this.flags, 512)) {
                 this.verifier_settings.serializeToStream(outputSerializedData);
             }
         }
@@ -472,29 +473,29 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.has_preview_medias = (int32 & 64) != 0;
-            if ((int32 & 1) != 0) {
+            this.has_preview_medias = TLObject.hasFlag(int32, 64);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.commands = Vector.deserialize(inputSerializedData, new TLRPC$TL_updateBotCommands$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.privacy_policy_url = inputSerializedData.readString(z);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.app_settings = botAppSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -502,31 +503,31 @@ public class TL_bots {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(912290611);
-            int i = this.has_preview_medias ? this.flags | 64 : this.flags & (-65);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 64, this.has_preview_medias);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.commands);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeString(this.privacy_policy_url);
             }
-            if ((this.flags & 256) != 0) {
+            if (TLObject.hasFlag(this.flags, 256)) {
                 this.app_settings.serializeToStream(outputSerializedData);
             }
         }
@@ -539,26 +540,26 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.has_preview_medias = (int32 & 64) != 0;
-            if ((int32 & 1) != 0) {
+            this.has_preview_medias = TLObject.hasFlag(int32, 64);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.commands = Vector.deserialize(inputSerializedData, new TLRPC$TL_updateBotCommands$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 this.privacy_policy_url = inputSerializedData.readString(z);
             }
         }
@@ -566,28 +567,28 @@ public class TL_bots {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2109505932);
-            int i = this.has_preview_medias ? this.flags | 64 : this.flags & (-65);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 64, this.has_preview_medias);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.commands);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 128) != 0) {
+            if (TLObject.hasFlag(this.flags, 128)) {
                 outputSerializedData.writeString(this.privacy_policy_url);
             }
         }
@@ -600,23 +601,23 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.has_preview_medias = (int32 & 64) != 0;
-            if ((int32 & 1) != 0) {
+            this.has_preview_medias = TLObject.hasFlag(int32, 64);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.user_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.description = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo = TLRPC.Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.commands = Vector.deserialize(inputSerializedData, new TLRPC$TL_updateBotCommands$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -624,25 +625,25 @@ public class TL_bots {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1892676777);
-            int i = this.has_preview_medias ? this.flags | 64 : this.flags & (-65);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 64, this.has_preview_medias);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.user_id);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.description);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.description_photo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.description_document.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 Vector.serialize(outputSerializedData, this.commands);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button.serializeToStream(outputSerializedData);
             }
         }
@@ -857,7 +858,7 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 this.next_offset = inputSerializedData.readString(z);
             }
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
@@ -867,7 +868,7 @@ public class TL_bots {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(428978491);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.next_offset);
             }
             Vector.serialize(outputSerializedData, this.users);
@@ -892,21 +893,21 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 byte[] byteArray = inputSerializedData.readByteArray(z);
                 this.placeholder_path = byteArray;
                 this.placeholder_svg_path = SvgHelper.doPath(SvgHelper.decompress(byteArray));
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.background_color = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.background_dark_color = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.header_color = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.header_dark_color = inputSerializedData.readInt32(z);
             }
         }
@@ -915,19 +916,19 @@ public class TL_bots {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-912582320);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeByteArray(this.placeholder_path);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeInt32(this.background_color);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeInt32(this.background_dark_color);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeInt32(this.header_color);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeInt32(this.header_dark_color);
             }
         }
@@ -989,7 +990,7 @@ public class TL_bots {
             outputSerializedData.writeInt32(this.flags);
             this.bot.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.commission_permille);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.duration_months);
             }
         }
@@ -1025,10 +1026,10 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.can_modify_custom_description = (int32 & 2) != 0;
+            this.can_modify_custom_description = TLObject.hasFlag(int32, 2);
             this.icon = inputSerializedData.readInt64(z);
             this.company = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.custom_description = inputSerializedData.readString(z);
             }
         }
@@ -1036,12 +1037,12 @@ public class TL_bots {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1328716265);
-            int i = this.can_modify_custom_description ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 2, this.can_modify_custom_description);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.icon);
             outputSerializedData.writeString(this.company);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.custom_description);
             }
         }
@@ -1089,14 +1090,14 @@ public class TL_bots {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1953898563);
-            int i = this.enabled ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 2, this.enabled);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.bot.serializeToStream(outputSerializedData);
             }
             this.peer.serializeToStream(outputSerializedData);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.custom_description);
             }
         }
@@ -1115,6 +1116,123 @@ public class TL_bots {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1581840363);
             this.bot.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class exportedBotToken extends TLObject {
+        public static final int constructor = 1012971041;
+        public String token;
+
+        public static exportedBotToken TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (exportedBotToken) TLObject.TLdeserialize(exportedBotToken.class, 1012971041 != i ? null : new exportedBotToken(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.token = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1012971041);
+            outputSerializedData.writeString(this.token);
+        }
+    }
+
+    public static class checkUsername extends TLMethod<TLRPC.Bool> {
+        public static final int constructor = -2014174821;
+        public String username;
+
+        @Override
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2014174821);
+            outputSerializedData.writeString(this.username);
+        }
+    }
+
+    public static class requestedButton extends TLObject {
+        public static final int constructor = -247743273;
+        public String webapp_req_id;
+
+        public static requestedButton TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (requestedButton) TLObject.TLdeserialize(requestedButton.class, -247743273 != i ? null : new requestedButton(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.webapp_req_id = inputSerializedData.readString(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-247743273);
+            outputSerializedData.writeString(this.webapp_req_id);
+        }
+    }
+
+    public static class createBot extends TLMethod<TLRPC.User> {
+        public static final int constructor = -441352405;
+        public int flags;
+        public TLRPC.InputUser manager_id;
+        public String name;
+        public String username;
+        public boolean via_deeplink;
+
+        @Override
+        public TLRPC.User deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.User.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-441352405);
+            int flag = TLObject.setFlag(this.flags, 1, this.via_deeplink);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            outputSerializedData.writeString(this.name);
+            outputSerializedData.writeString(this.username);
+            this.manager_id.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class exportBotToken extends TLMethod<exportedBotToken> {
+        public static final int constructor = 6533257;
+        public long bot_id;
+        public boolean revoke;
+
+        @Override
+        public exportedBotToken deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return exportedBotToken.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(6533257);
+            outputSerializedData.writeInt64(this.bot_id);
+            outputSerializedData.writeBool(this.revoke);
+        }
+    }
+
+    public static class getRequestedWebViewButton extends TLMethod<TLRPC.KeyboardButton> {
+        public static final int constructor = -1088047117;
+        public TLRPC.InputUser bot;
+        public String webapp_req_id;
+
+        @Override
+        public TLRPC.KeyboardButton deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.KeyboardButton.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1088047117);
+            this.bot.serializeToStream(outputSerializedData);
+            outputSerializedData.writeString(this.webapp_req_id);
         }
     }
 }

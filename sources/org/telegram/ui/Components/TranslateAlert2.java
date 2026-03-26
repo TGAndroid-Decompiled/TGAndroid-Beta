@@ -29,6 +29,7 @@ import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -1365,7 +1366,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         if (i == NotificationCenter.emojiLoaded) {
             this.loadingTextView.invalidate();
             this.textView.invalidate();

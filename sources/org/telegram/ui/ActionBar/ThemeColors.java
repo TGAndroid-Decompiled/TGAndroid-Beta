@@ -101,7 +101,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_windowBackgroundWhiteBlueHeader] = -14054705;
         iArr[Theme.key_windowBackgroundWhiteInputField] = -2368549;
         iArr[Theme.key_windowBackgroundWhiteInputFieldActivated] = -14509328;
-        iArr[Theme.key_switchTrack] = -5196358;
+        iArr[Theme.key_switchTrack] = -5853773;
         iArr[Theme.key_switchTrackChecked] = -14509328;
         iArr[Theme.key_switchTrackBlue] = -8879478;
         iArr[Theme.key_switchTrackBlueChecked] = -15697468;
@@ -136,6 +136,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_fastScrollActive] = -14509328;
         iArr[Theme.key_fastScrollInactive] = -3551791;
         iArr[Theme.key_fastScrollText] = -1;
+        iArr[Theme.key_pollCreateIcons] = -8881024;
         iArr[Theme.key_avatar_text] = -1;
         iArr[Theme.key_avatar_backgroundSaved] = -9847303;
         iArr[Theme.key_avatar_background2Saved] = -12541983;
@@ -402,7 +403,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_outFileProgress] = -2427453;
         iArr[Theme.key_chat_inFileProgressSelected] = -3413258;
         iArr[Theme.key_chat_outFileProgressSelected] = -3806041;
-        iArr[Theme.key_chat_inFileNameText] = -11625772;
+        iArr[Theme.key_chat_inFileNameText] = -14054705;
         iArr[Theme.key_chat_outFileNameText] = -11162801;
         iArr[Theme.key_chat_inFileInfoText] = -6182221;
         iArr[Theme.key_chat_outFileInfoText] = -10112933;
@@ -831,6 +832,7 @@ public abstract class ThemeColors {
         sparseArray.put(Theme.key_listSelector, "listSelectorSDK21");
         sparseArray.put(Theme.key_windowBackgroundWhiteInputField, "windowBackgroundWhiteInputField");
         sparseArray.put(Theme.key_windowBackgroundWhiteInputFieldActivated, "windowBackgroundWhiteInputFieldActivated");
+        sparseArray.put(Theme.key_pollCreateIcons, "pollCreateIcons");
         sparseArray.put(Theme.key_windowBackgroundWhiteGrayIcon, "windowBackgroundWhiteGrayIcon");
         sparseArray.put(Theme.key_windowBackgroundWhiteBlueText, "windowBackgroundWhiteBlueText");
         sparseArray.put(Theme.key_windowBackgroundWhiteBlueText2, "windowBackgroundWhiteBlueText2");

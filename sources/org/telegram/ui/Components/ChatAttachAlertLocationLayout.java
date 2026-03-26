@@ -338,7 +338,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         }
     }
 
-    public ChatAttachAlertLocationLayout(ChatAttachAlert chatAttachAlert, Context context, final Theme.ResourcesProvider resourcesProvider) {
+    public ChatAttachAlertLocationLayout(ChatAttachAlert chatAttachAlert, Context context, final Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(chatAttachAlert, context, resourcesProvider);
         this.checkGpsEnabled = true;
         this.askedForLocation = false;
@@ -362,7 +362,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             this.locationType = 7;
         } else if (chatAttachAlert2.isBizLocationPicker) {
             this.locationType = 8;
-        } else if (chatActivity.getCurrentEncryptedChat() == null && !chatActivity.isInScheduleMode() && !UserObject.isUserSelf(chatActivity.getCurrentUser())) {
+        } else if (z && chatActivity.getCurrentEncryptedChat() == null && !chatActivity.isInScheduleMode() && !UserObject.isUserSelf(chatActivity.getCurrentUser())) {
             this.locationType = 1;
         } else {
             this.locationType = 0;
@@ -613,8 +613,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.emptyView.addView(this.emptySubtitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
-            protected void onLayout(boolean z, int i7, int i8, int i9, int i10) {
-                super.onLayout(z, i7, i8, i9, i10);
+            protected void onLayout(boolean z2, int i7, int i8, int i9, int i10) {
+                super.onLayout(z2, i7, i8, i9, i10);
                 ChatAttachAlertLocationLayout.this.updateClipView();
             }
         };

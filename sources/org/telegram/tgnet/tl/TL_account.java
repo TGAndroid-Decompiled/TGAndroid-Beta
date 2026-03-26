@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda189;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda187;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -32,18 +32,18 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.sensitive_enabled = (int32 & 1) != 0;
-            this.sensitive_can_change = (int32 & 2) != 0;
+            this.sensitive_enabled = TLObject.hasFlag(int32, 1);
+            this.sensitive_can_change = TLObject.hasFlag(this.flags, 2);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1474462241);
-            int i = this.sensitive_enabled ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.sensitive_can_change ? i | 2 : i & (-3);
-            this.flags = i2;
-            outputSerializedData.writeInt32(i2);
+            int flag = TLObject.setFlag(this.flags, 1, this.sensitive_enabled);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.sensitive_can_change);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
         }
     }
 
@@ -60,9 +60,9 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1250643605);
-            int i = this.sensitive_enabled ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.sensitive_enabled);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
         }
     }
 
@@ -141,10 +141,10 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 this.email = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.secure_settings = TLRPC.TL_secureSecretSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -153,10 +153,10 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1705233435);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.email);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.secure_settings.serializeToStream(outputSerializedData);
             }
         }
@@ -353,32 +353,31 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.has_recovery = (int32 & 1) != 0;
-            this.has_secure_values = (int32 & 2) != 0;
-            int i = int32 & 4;
-            this.has_password = i != 0;
-            if (i != 0) {
+            this.has_recovery = TLObject.hasFlag(int32, 1);
+            this.has_secure_values = TLObject.hasFlag(this.flags, 2);
+            this.has_password = TLObject.hasFlag(this.flags, 4);
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.current_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.srp_B = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.srp_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.hint = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.email_unconfirmed_pattern = inputSerializedData.readString(z);
             }
             this.new_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.new_secure_algo = TLRPC.SecurePasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.secure_random = inputSerializedData.readByteArray(z);
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.pending_reset_date = inputSerializedData.readInt32(z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.login_email_pattern = inputSerializedData.readString(z);
             }
         }
@@ -386,35 +385,35 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1787080453);
-            int i = this.has_recovery ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.has_secure_values ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.has_password ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
-            if ((this.flags & 4) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.has_recovery);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.has_secure_values);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.has_password);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.current_algo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeByteArray(this.srp_B);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeInt64(this.srp_id);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.hint);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeString(this.email_unconfirmed_pattern);
             }
             this.new_algo.serializeToStream(outputSerializedData);
             this.new_secure_algo.serializeToStream(outputSerializedData);
             outputSerializedData.writeByteArray(this.secure_random);
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.pending_reset_date);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 outputSerializedData.writeString(this.login_email_pattern);
             }
         }
@@ -427,29 +426,28 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.has_recovery = (int32 & 1) != 0;
-            this.has_secure_values = (int32 & 2) != 0;
-            int i = int32 & 4;
-            this.has_password = i != 0;
-            if (i != 0) {
+            this.has_recovery = TLObject.hasFlag(int32, 1);
+            this.has_secure_values = TLObject.hasFlag(this.flags, 2);
+            this.has_password = TLObject.hasFlag(this.flags, 4);
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.current_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.srp_B = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.srp_id = inputSerializedData.readInt64(z);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.hint = inputSerializedData.readString(z);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.email_unconfirmed_pattern = inputSerializedData.readString(z);
             }
             this.new_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.new_secure_algo = TLRPC.SecurePasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.secure_random = inputSerializedData.readByteArray(z);
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 this.pending_reset_date = inputSerializedData.readInt32(z);
             }
         }
@@ -457,32 +455,32 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(408623183);
-            int i = this.has_recovery ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.has_secure_values ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.has_password ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
-            if ((this.flags & 4) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.has_recovery);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.has_secure_values);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.has_password);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.current_algo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeByteArray(this.srp_B);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeInt64(this.srp_id);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 outputSerializedData.writeString(this.hint);
             }
-            if ((this.flags & 16) != 0) {
+            if (TLObject.hasFlag(this.flags, 16)) {
                 outputSerializedData.writeString(this.email_unconfirmed_pattern);
             }
             this.new_algo.serializeToStream(outputSerializedData);
             this.new_secure_algo.serializeToStream(outputSerializedData);
             outputSerializedData.writeByteArray(this.secure_random);
-            if ((this.flags & 32) != 0) {
+            if (TLObject.hasFlag(this.flags, 32)) {
                 outputSerializedData.writeInt32(this.pending_reset_date);
             }
         }
@@ -536,7 +534,7 @@ public class TL_account {
                 }
             }, z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.privacy_policy_url = inputSerializedData.readString(z);
             }
         }
@@ -549,7 +547,7 @@ public class TL_account {
             Vector.serialize(outputSerializedData, this.values);
             Vector.serialize(outputSerializedData, this.errors);
             Vector.serialize(outputSerializedData, this.users);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.privacy_policy_url);
             }
         }
@@ -649,19 +647,19 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 this.new_algo = TLRPC.PasswordKdfAlgo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.new_password_hash = inputSerializedData.readByteArray(z);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.hint = inputSerializedData.readString(z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.email = inputSerializedData.readString(z);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.new_secure_settings = TLRPC.TL_secureSecretSettings.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -670,19 +668,19 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1036572727);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.new_algo.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeByteArray(this.new_password_hash);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.hint);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.email);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.new_secure_settings.serializeToStream(outputSerializedData);
             }
         }
@@ -789,9 +787,9 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-326762118);
-            int i = this.no_muted ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.no_muted);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt32(this.token_type);
             outputSerializedData.writeString(this.token);
             outputSerializedData.writeBool(this.app_sandbox);
@@ -884,13 +882,13 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2018596725);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.first_name);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.last_name);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 outputSerializedData.writeString(this.about);
             }
         }
@@ -1024,14 +1022,14 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1089766498);
-            int i = this.confirmed ? this.flags | 8 : this.flags & (-9);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 8, this.confirmed);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt64(this.hash);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeBool(this.encrypted_requests_disabled);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeBool(this.call_requests_disabled);
             }
         }
@@ -1569,10 +1567,10 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1398240377);
-            int i = this.compare_sound ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 2, this.compare_sound);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.peer.serializeToStream(outputSerializedData);
             }
         }
@@ -1695,11 +1693,11 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1995661875);
-            int i = this.low ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.high ? i | 2 : i & (-3);
-            this.flags = i2;
-            outputSerializedData.writeInt32(i2);
+            int flag = TLObject.setFlag(this.flags, 1, this.low);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.high);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
             this.settings.serializeToStream(outputSerializedData);
         }
     }
@@ -1722,7 +1720,7 @@ public class TL_account {
             outputSerializedData.writeInt32(473805619);
             outputSerializedData.writeInt32(this.flags);
             this.file.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.thumb.serializeToStream(outputSerializedData);
             }
             outputSerializedData.writeString(this.file_name);
@@ -1749,10 +1747,10 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeString(this.title);
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.document.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.settings.serializeToStream(outputSerializedData);
             }
         }
@@ -1779,16 +1777,16 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.format);
             this.theme.serializeToStream(outputSerializedData);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.slug);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.title);
             }
-            if ((this.flags & 4) != 0) {
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.document.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 this.settings.serializeToStream(outputSerializedData);
             }
         }
@@ -1827,13 +1825,13 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(2061776695);
-            int i = this.dark ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.dark);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.format);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.theme.serializeToStream(outputSerializedData);
             }
         }
@@ -2029,7 +2027,7 @@ public class TL_account {
             outputSerializedData.writeInt32(1460498287);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.message);
-            if ((this.flags & 8) != 0) {
+            if (TLObject.hasFlag(this.flags, 8)) {
                 Vector.serialize(outputSerializedData, this.entities);
             }
         }
@@ -2394,10 +2392,10 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1749885262);
-            int i = this.for_profile ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 4) != 0) {
+            int flag = TLObject.setFlag(this.flags, 2, this.for_profile);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 4)) {
                 this.color.serializeToStream(outputSerializedData);
             }
         }
@@ -2441,7 +2439,7 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.open_now = (int32 & 1) != 0;
+            this.open_now = TLObject.hasFlag(int32, 1);
             this.timezone_id = inputSerializedData.readString(z);
             this.weekly_open = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
                 @Override
@@ -2454,9 +2452,9 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1936543592);
-            int i = this.open_now ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.open_now);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeString(this.timezone_id);
             Vector.serialize(outputSerializedData, this.weekly_open);
         }
@@ -2476,7 +2474,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1258348646);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.business_work_hours.serializeToStream(outputSerializedData);
             }
         }
@@ -2497,10 +2495,10 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1637149926);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.geo_point.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.address);
             }
         }
@@ -2617,7 +2615,7 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.offline_only = (int32 & 1) != 0;
+            this.offline_only = TLObject.hasFlag(int32, 1);
             this.shortcut_id = inputSerializedData.readInt32(z);
             this.schedule = BusinessAwayMessageSchedule.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.recipients = TL_inputBusinessRecipients.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2651,7 +2649,7 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.offline_only = (int32 & 1) != 0;
+            this.offline_only = TLObject.hasFlag(int32, 1);
             this.shortcut_id = inputSerializedData.readInt32(z);
             this.schedule = BusinessAwayMessageSchedule.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.recipients = TL_businessRecipients.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2660,9 +2658,9 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-283809188);
-            int i = this.offline_only ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
+            int flag = TLObject.setFlag(this.flags, 1, this.offline_only);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             outputSerializedData.writeInt32(this.shortcut_id);
             this.schedule.serializeToStream(outputSerializedData);
             this.recipients.serializeToStream(outputSerializedData);
@@ -2683,7 +2681,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1570078811);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.message.serializeToStream(outputSerializedData);
             }
         }
@@ -2703,7 +2701,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1724755908);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.message.serializeToStream(outputSerializedData);
             }
         }
@@ -2728,15 +2726,15 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.existing_chats = (int32 & 1) != 0;
-            this.new_chats = (int32 & 2) != 0;
-            this.contacts = (int32 & 4) != 0;
-            this.non_contacts = (int32 & 8) != 0;
-            this.exclude_selected = (int32 & 32) != 0;
-            if ((int32 & 16) != 0) {
+            this.existing_chats = TLObject.hasFlag(int32, 1);
+            this.new_chats = TLObject.hasFlag(this.flags, 2);
+            this.contacts = TLObject.hasFlag(this.flags, 4);
+            this.non_contacts = TLObject.hasFlag(this.flags, 8);
+            this.exclude_selected = TLObject.hasFlag(this.flags, 32);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0(), z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.exclude_users = Vector.deserialize(inputSerializedData, new TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0(), z);
             }
         }
@@ -2744,21 +2742,21 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-991587810);
-            int i = this.existing_chats ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.new_chats ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.contacts ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.non_contacts ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int i5 = this.exclude_selected ? i4 | 32 : i4 & (-33);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 16) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.existing_chats);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.new_chats);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.contacts);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.non_contacts);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.exclude_selected);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.users);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 Vector.serialize(outputSerializedData, this.exclude_users);
             }
         }
@@ -2783,15 +2781,15 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.existing_chats = (int32 & 1) != 0;
-            this.new_chats = (int32 & 2) != 0;
-            this.contacts = (int32 & 4) != 0;
-            this.non_contacts = (int32 & 8) != 0;
-            this.exclude_selected = (int32 & 32) != 0;
-            if ((int32 & 16) != 0) {
+            this.existing_chats = TLObject.hasFlag(int32, 1);
+            this.new_chats = TLObject.hasFlag(this.flags, 2);
+            this.contacts = TLObject.hasFlag(this.flags, 4);
+            this.non_contacts = TLObject.hasFlag(this.flags, 8);
+            this.exclude_selected = TLObject.hasFlag(this.flags, 32);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.users = Vector.deserializeLong(inputSerializedData, z);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 this.exclude_users = Vector.deserializeLong(inputSerializedData, z);
             }
         }
@@ -2799,21 +2797,21 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1198722189);
-            int i = this.existing_chats ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.new_chats ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.contacts ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.non_contacts ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int i5 = this.exclude_selected ? i4 | 32 : i4 & (-33);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 16) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.existing_chats);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.new_chats);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.contacts);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.non_contacts);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.exclude_selected);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serializeLong(outputSerializedData, this.users);
             }
-            if ((this.flags & 64) != 0) {
+            if (TLObject.hasFlag(this.flags, 64)) {
                 Vector.serializeLong(outputSerializedData, this.exclude_users);
             }
         }
@@ -2837,12 +2835,12 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.existing_chats = (int32 & 1) != 0;
-            this.new_chats = (int32 & 2) != 0;
-            this.contacts = (int32 & 4) != 0;
-            this.non_contacts = (int32 & 8) != 0;
-            this.exclude_selected = (int32 & 32) != 0;
-            if ((int32 & 16) != 0) {
+            this.existing_chats = TLObject.hasFlag(int32, 1);
+            this.new_chats = TLObject.hasFlag(this.flags, 2);
+            this.contacts = TLObject.hasFlag(this.flags, 4);
+            this.non_contacts = TLObject.hasFlag(this.flags, 8);
+            this.exclude_selected = TLObject.hasFlag(this.flags, 32);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0(), z);
             }
         }
@@ -2850,18 +2848,18 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1871393450);
-            int i = this.existing_chats ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.new_chats ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.contacts ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.non_contacts ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int i5 = this.exclude_selected ? i4 | 32 : i4 & (-33);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 16) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.existing_chats);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.new_chats);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.contacts);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.non_contacts);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.exclude_selected);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serialize(outputSerializedData, this.users);
             }
         }
@@ -2885,12 +2883,12 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.existing_chats = (int32 & 1) != 0;
-            this.new_chats = (int32 & 2) != 0;
-            this.contacts = (int32 & 4) != 0;
-            this.non_contacts = (int32 & 8) != 0;
-            this.exclude_selected = (int32 & 32) != 0;
-            if ((int32 & 16) != 0) {
+            this.existing_chats = TLObject.hasFlag(int32, 1);
+            this.new_chats = TLObject.hasFlag(this.flags, 2);
+            this.contacts = TLObject.hasFlag(this.flags, 4);
+            this.non_contacts = TLObject.hasFlag(this.flags, 8);
+            this.exclude_selected = TLObject.hasFlag(this.flags, 32);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 this.users = Vector.deserializeLong(inputSerializedData, z);
             }
         }
@@ -2898,18 +2896,18 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(554733559);
-            int i = this.existing_chats ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.new_chats ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.contacts ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.non_contacts ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int i5 = this.exclude_selected ? i4 | 32 : i4 & (-33);
-            this.flags = i5;
-            outputSerializedData.writeInt32(i5);
-            if ((this.flags & 16) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.existing_chats);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.new_chats);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.contacts);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.non_contacts);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 32, this.exclude_selected);
+            this.flags = flag5;
+            outputSerializedData.writeInt32(flag5);
+            if (TLObject.hasFlag(this.flags, 16)) {
                 Vector.serializeLong(outputSerializedData, this.users);
             }
         }
@@ -2941,54 +2939,54 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            this.reply = (int32 & 1) != 0;
-            this.read_messages = (int32 & 2) != 0;
-            this.delete_sent_messages = (int32 & 4) != 0;
-            this.delete_received_messages = (int32 & 8) != 0;
-            this.edit_name = (int32 & 16) != 0;
-            this.edit_bio = (int32 & 32) != 0;
-            this.edit_profile_photo = (int32 & 64) != 0;
-            this.edit_username = (int32 & 128) != 0;
-            this.view_gifts = (int32 & 256) != 0;
-            this.sell_gifts = (int32 & 512) != 0;
-            this.change_gift_settings = (int32 & 1024) != 0;
-            this.transfer_and_upgrade_gifts = (int32 & 2048) != 0;
-            this.transfer_stars = (int32 & 4096) != 0;
-            this.manage_stories = (int32 & 8192) != 0;
+            this.reply = TLObject.hasFlag(int32, 1);
+            this.read_messages = TLObject.hasFlag(this.flags, 2);
+            this.delete_sent_messages = TLObject.hasFlag(this.flags, 4);
+            this.delete_received_messages = TLObject.hasFlag(this.flags, 8);
+            this.edit_name = TLObject.hasFlag(this.flags, 16);
+            this.edit_bio = TLObject.hasFlag(this.flags, 32);
+            this.edit_profile_photo = TLObject.hasFlag(this.flags, 64);
+            this.edit_username = TLObject.hasFlag(this.flags, 128);
+            this.view_gifts = TLObject.hasFlag(this.flags, 256);
+            this.sell_gifts = TLObject.hasFlag(this.flags, 512);
+            this.change_gift_settings = TLObject.hasFlag(this.flags, 1024);
+            this.transfer_and_upgrade_gifts = TLObject.hasFlag(this.flags, 2048);
+            this.transfer_stars = TLObject.hasFlag(this.flags, 4096);
+            this.manage_stories = TLObject.hasFlag(this.flags, 8192);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1604170505);
-            int i = this.reply ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.read_messages ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.delete_sent_messages ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            int i4 = this.delete_received_messages ? i3 | 8 : i3 & (-9);
-            this.flags = i4;
-            int i5 = this.edit_name ? i4 | 16 : i4 & (-17);
-            this.flags = i5;
-            int i6 = this.edit_bio ? i5 | 32 : i5 & (-33);
-            this.flags = i6;
-            int i7 = this.edit_profile_photo ? i6 | 64 : i6 & (-65);
-            this.flags = i7;
-            int i8 = this.edit_username ? i7 | 128 : i7 & (-129);
-            this.flags = i8;
-            int i9 = this.view_gifts ? i8 | 256 : i8 & (-257);
-            this.flags = i9;
-            int i10 = this.sell_gifts ? i9 | 512 : i9 & (-513);
-            this.flags = i10;
-            int i11 = this.change_gift_settings ? i10 | 1024 : i10 & (-1025);
-            this.flags = i11;
-            int i12 = this.transfer_and_upgrade_gifts ? i11 | 2048 : i11 & (-2049);
-            this.flags = i12;
-            int i13 = this.transfer_stars ? i12 | 4096 : i12 & (-4097);
-            this.flags = i13;
-            int i14 = this.manage_stories ? i13 | 8192 : i13 & (-8193);
-            this.flags = i14;
-            outputSerializedData.writeInt32(i14);
+            int flag = TLObject.setFlag(this.flags, 1, this.reply);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.read_messages);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.delete_sent_messages);
+            this.flags = flag3;
+            int flag4 = TLObject.setFlag(flag3, 8, this.delete_received_messages);
+            this.flags = flag4;
+            int flag5 = TLObject.setFlag(flag4, 16, this.edit_name);
+            this.flags = flag5;
+            int flag6 = TLObject.setFlag(flag5, 32, this.edit_bio);
+            this.flags = flag6;
+            int flag7 = TLObject.setFlag(flag6, 64, this.edit_profile_photo);
+            this.flags = flag7;
+            int flag8 = TLObject.setFlag(flag7, 128, this.edit_username);
+            this.flags = flag8;
+            int flag9 = TLObject.setFlag(flag8, 256, this.view_gifts);
+            this.flags = flag9;
+            int flag10 = TLObject.setFlag(flag9, 512, this.sell_gifts);
+            this.flags = flag10;
+            int flag11 = TLObject.setFlag(flag10, 1024, this.change_gift_settings);
+            this.flags = flag11;
+            int flag12 = TLObject.setFlag(flag11, 2048, this.transfer_and_upgrade_gifts);
+            this.flags = flag12;
+            int flag13 = TLObject.setFlag(flag12, 4096, this.transfer_stars);
+            this.flags = flag13;
+            int flag14 = TLObject.setFlag(flag13, 8192, this.manage_stories);
+            this.flags = flag14;
+            outputSerializedData.writeInt32(flag14);
         }
 
         public static TL_businessBotRights all() {
@@ -3130,12 +3128,12 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1721797758);
-            int i = this.deleted ? this.flags | 2 : this.flags & (-3);
-            this.flags = i;
-            int i2 = this.rights != null ? i | 1 : i & (-2);
-            this.flags = i2;
-            outputSerializedData.writeInt32(i2);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 2, this.deleted);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 1, this.rights != null);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.rights.serializeToStream(outputSerializedData);
             }
             this.bot.serializeToStream(outputSerializedData);
@@ -3207,7 +3205,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.day = inputSerializedData.readInt32(z);
             this.month = inputSerializedData.readInt32(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.year = inputSerializedData.readInt32(z);
             }
         }
@@ -3218,7 +3216,7 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt32(this.day);
             outputSerializedData.writeInt32(this.month);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt32(this.year);
             }
         }
@@ -3289,7 +3287,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-865203183);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.birthday.serializeToStream(outputSerializedData);
             }
         }
@@ -3326,10 +3324,10 @@ public class TL_account {
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.flags = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda189(), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.title = inputSerializedData.readString(z);
             }
         }
@@ -3339,10 +3337,10 @@ public class TL_account {
             outputSerializedData.writeInt32(292003751);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.message);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 Vector.serialize(outputSerializedData, this.entities);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.title);
             }
         }
@@ -3366,10 +3364,10 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.link = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda189(), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.title = inputSerializedData.readString(z);
             }
             this.views = inputSerializedData.readInt32(z);
@@ -3381,10 +3379,10 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.link);
             outputSerializedData.writeString(this.message);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 Vector.serialize(outputSerializedData, this.entities);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.title);
             }
             outputSerializedData.writeInt32(this.views);
@@ -3440,8 +3438,8 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.message = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda189(), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
             }
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
@@ -3453,7 +3451,7 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeString(this.message);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 Vector.serialize(outputSerializedData, this.entities);
             }
             Vector.serialize(outputSerializedData, this.chats);
@@ -3573,7 +3571,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.title = inputSerializedData.readString(z);
             this.description = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.sticker = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -3584,7 +3582,7 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.description);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.sticker.serializeToStream(outputSerializedData);
             }
         }
@@ -3606,7 +3604,7 @@ public class TL_account {
             this.flags = inputSerializedData.readInt32(z);
             this.title = inputSerializedData.readString(z);
             this.description = inputSerializedData.readString(z);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.sticker = TLRPC.InputDocument.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
         }
@@ -3617,7 +3615,7 @@ public class TL_account {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.description);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.sticker.serializeToStream(outputSerializedData);
             }
         }
@@ -3637,7 +3635,7 @@ public class TL_account {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1508585420);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.intro.serializeToStream(outputSerializedData);
             }
         }
@@ -3698,26 +3696,30 @@ public class TL_account {
     }
 
     public static class TL_reactionsNotifySettings extends TLObject {
-        public static final int constructor = 1457736048;
+        public static final int constructor = 1910827608;
         public int flags;
         public ReactionNotificationsFrom messages_notify_from;
+        public ReactionNotificationsFrom poll_votes_notify_from;
         public boolean show_previews;
         public TLRPC.NotificationSound sound;
         public ReactionNotificationsFrom stories_notify_from;
 
         public static TL_reactionsNotifySettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_reactionsNotifySettings) TLObject.TLdeserialize(TL_reactionsNotifySettings.class, 1457736048 != i ? null : new TL_reactionsNotifySettings(), inputSerializedData, i, z);
+            return (TL_reactionsNotifySettings) TLObject.TLdeserialize(TL_reactionsNotifySettings.class, 1910827608 != i ? null : new TL_reactionsNotifySettings(), inputSerializedData, i, z);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             int int32 = inputSerializedData.readInt32(z);
             this.flags = int32;
-            if ((int32 & 1) != 0) {
+            if (TLObject.hasFlag(int32, 1)) {
                 this.messages_notify_from = ReactionNotificationsFrom.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.stories_notify_from = ReactionNotificationsFrom.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.poll_votes_notify_from = ReactionNotificationsFrom.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             this.sound = TLRPC.NotificationSound.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.show_previews = inputSerializedData.readBool(z);
@@ -3725,13 +3727,16 @@ public class TL_account {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(1457736048);
+            outputSerializedData.writeInt32(1910827608);
             outputSerializedData.writeInt32(this.flags);
-            if ((this.flags & 1) != 0) {
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.messages_notify_from.serializeToStream(outputSerializedData);
             }
-            if ((this.flags & 2) != 0) {
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.stories_notify_from.serializeToStream(outputSerializedData);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.poll_votes_notify_from.serializeToStream(outputSerializedData);
             }
             this.sound.serializeToStream(outputSerializedData);
             outputSerializedData.writeBool(this.show_previews);
@@ -3804,14 +3809,14 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-30483850);
-            int i = this.refund_charged ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            int i2 = this.parent_peer != null ? i | 2 : i & (-3);
-            this.flags = i2;
-            int i3 = this.require_payment ? i2 | 4 : i2 & (-5);
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
-            if ((this.flags & 2) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.refund_charged);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.parent_peer != null);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.require_payment);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
+            if (TLObject.hasFlag(this.flags, 2)) {
                 this.parent_peer.serializeToStream(outputSerializedData);
             }
             this.user_id.serializeToStream(outputSerializedData);
@@ -3832,10 +3837,10 @@ public class TL_account {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(431639143);
-            int i = this.parent_peer != null ? this.flags | 1 : this.flags & (-2);
-            this.flags = i;
-            outputSerializedData.writeInt32(i);
-            if ((this.flags & 1) != 0) {
+            int flag = TLObject.setFlag(this.flags, 1, this.parent_peer != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
                 this.parent_peer.serializeToStream(outputSerializedData);
             }
             this.user_id.serializeToStream(outputSerializedData);

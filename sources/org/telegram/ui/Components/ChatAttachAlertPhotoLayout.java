@@ -593,7 +593,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         @Override
         public boolean allowCaption() {
-            return !ChatAttachAlertPhotoLayout.this.parentAlert.isPhotoPicker;
+            ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
+            return (chatAttachAlert.isPhotoPicker || chatAttachAlert.isPollAttach) ? false : true;
         }
 
         @Override
@@ -688,7 +689,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     MediaController.PhotoEntry photoEntryAtPosition = getPhotoEntryAtPosition(childAdapterPosition);
                     photoAttachPhotoCell.setHasSpoiler(photoEntryAtPosition != null && photoEntryAtPosition.hasSpoiler);
-                    photoAttachPhotoCell.setHighQuality(photoEntryAtPosition != null && photoEntryAtPosition.highQuality);
+                    photoAttachPhotoCell.setHighQuality(photoEntryAtPosition != null && photoEntryAtPosition.isHighQuality());
                     ChatAttachAlert chatAttachAlert = this.parentAlert;
                     if ((chatAttachAlert.baseFragment instanceof ChatActivity) && chatAttachAlert.allowOrder) {
                         photoAttachPhotoCell.setChecked(photoEntryAtPosition != null ? selectedPhotosOrder.indexOf(Integer.valueOf(photoEntryAtPosition.imageId)) : -1, photoEntryAtPosition != null && selectedPhotos.containsKey(Integer.valueOf(photoEntryAtPosition.imageId)), true);
@@ -712,7 +713,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     MediaController.PhotoEntry photoEntryAtPosition2 = getPhotoEntryAtPosition(childAdapterPosition2);
                     photoAttachPhotoCell2.setHasSpoiler(photoEntryAtPosition2 != null && photoEntryAtPosition2.hasSpoiler);
-                    photoAttachPhotoCell2.setHighQuality(photoEntryAtPosition2 != null && photoEntryAtPosition2.highQuality);
+                    photoAttachPhotoCell2.setHighQuality(photoEntryAtPosition2 != null && photoEntryAtPosition2.isHighQuality());
                     ChatAttachAlert chatAttachAlert2 = this.parentAlert;
                     if ((chatAttachAlert2.baseFragment instanceof ChatActivity) && chatAttachAlert2.allowOrder) {
                         photoAttachPhotoCell2.setChecked(photoEntryAtPosition2 != null ? selectedPhotosOrder.indexOf(Integer.valueOf(photoEntryAtPosition2.imageId)) : -1, photoEntryAtPosition2 != null && selectedPhotos.containsKey(Integer.valueOf(photoEntryAtPosition2.imageId)), true);
@@ -1362,16 +1363,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     public void lambda$new$2(int i, BaseFragment baseFragment, ArrayList arrayList, int i2, ChatActivity chatActivity) {
-        int i3;
         ChatAttachAlert chatAttachAlert = this.parentAlert;
-        if (!chatAttachAlert.isPhotoPicker || chatAttachAlert.isStickerMode) {
-            i3 = i;
-        } else {
+        if (chatAttachAlert.isPhotoPicker && !chatAttachAlert.isStickerMode) {
             PhotoViewer.getInstance().setParentActivity(baseFragment);
             PhotoViewer.getInstance().setMaxSelectedPhotos(0, false);
-            i3 = 3;
+            i = 3;
         }
-        PhotoViewer.getInstance().openPhotoForSelect(arrayList, i2, i3, false, this.photoViewerProvider, chatActivity);
+        PhotoViewer.getInstance().openPhotoForSelect(arrayList, i2, this.parentAlert.isPollAttach ? 13 : i, false, this.photoViewerProvider, this.parentAlert.isPollAttach ? null : chatActivity);
         PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
         ChatAttachAlert chatAttachAlert2 = this.parentAlert;
         if (chatAttachAlert2.isPhotoPicker && !chatAttachAlert2.isStickerMode) {
@@ -2054,7 +2052,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (view instanceof PhotoAttachPhotoCell) {
             PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) view;
             photoAttachPhotoCell.setHasSpoiler(photoAttachPhotoCell.getPhotoEntry() != null && photoAttachPhotoCell.getPhotoEntry().hasSpoiler, Float.valueOf(250.0f));
-            photoAttachPhotoCell.setHighQuality(photoAttachPhotoCell.getPhotoEntry() != null && photoAttachPhotoCell.getPhotoEntry().highQuality);
+            photoAttachPhotoCell.setHighQuality(photoAttachPhotoCell.getPhotoEntry() != null && photoAttachPhotoCell.getPhotoEntry().isHighQuality());
             photoAttachPhotoCell.setStarsPrice(photoAttachPhotoCell.getPhotoEntry() != null ? photoAttachPhotoCell.getPhotoEntry().starsAmount : 0L, selectedPhotos.size() > 1);
         }
     }
@@ -2273,8 +2271,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     protected void openPhotoViewer(MediaController.PhotoEntry photoEntry, boolean z, boolean z2) {
-        ChatActivity chatActivity;
         int i;
+        ChatActivity chatActivity;
+        ChatActivity chatActivity2;
+        int i2;
         ArrayList<Object> allPhotosArray;
         int size;
         if (photoEntry != null) {
@@ -2325,11 +2325,19 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 chatActivity = (ChatActivity) baseFragment;
                 i = 2;
             } else {
-                chatActivity = null;
                 i = 5;
+                chatActivity = null;
             }
         }
-        if (chatAttachAlert2.avatarPicker != 0) {
+        boolean z3 = chatAttachAlert2.isPollAttach;
+        if (z3) {
+            chatActivity2 = null;
+            i2 = 13;
+        } else {
+            chatActivity2 = chatActivity;
+            i2 = i;
+        }
+        if (chatAttachAlert2.avatarPicker != 0 || z3) {
             ArrayList<Object> arrayList = new ArrayList<>();
             arrayList.add(photoEntry);
             allPhotosArray = arrayList;
@@ -2341,7 +2349,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (this.parentAlert.getAvatarFor() != null && photoEntry != null) {
             this.parentAlert.getAvatarFor().isVideo = photoEntry.isVideo;
         }
-        PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i, false, new AnonymousClass15(z), chatActivity);
+        PhotoViewer.getInstance().openPhotoForSelect(allPhotosArray, size, i2, false, new AnonymousClass15(z), chatActivity2);
         PhotoViewer.getInstance().setAvatarFor(this.parentAlert.getAvatarFor());
         if (this.parentAlert.isStickerMode) {
             PhotoViewer.getInstance().enableStickerMode(null, null, false, this.parentAlert.customStickerHandler);
@@ -2532,7 +2540,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         @Override
         public boolean allowCaption() {
-            return !ChatAttachAlertPhotoLayout.this.parentAlert.isPhotoPicker;
+            ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
+            return (chatAttachAlert.isPhotoPicker || chatAttachAlert.isPollAttach) ? false : true;
         }
     }
 
@@ -2596,7 +2605,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     protected void updatePhotosCounter(boolean z) {
         if (this.counterTextView != null) {
             ChatAttachAlert chatAttachAlert = this.parentAlert;
-            if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.storyMediaPicker) {
+            if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.storyMediaPicker || chatAttachAlert.isPollAttach) {
                 return;
             }
             Iterator it = selectedPhotos.entrySet().iterator();
@@ -3394,14 +3403,15 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         childAdapterPosition--;
                     }
                     PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) childAt;
-                    if (this.parentAlert.avatarPicker != 0) {
+                    ChatAttachAlert chatAttachAlert = this.parentAlert;
+                    if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.isPollAttach) {
                         photoAttachPhotoCell.getCheckBox().setVisibility(8);
                     }
                     MediaController.PhotoEntry photoEntryAtPosition = getPhotoEntryAtPosition(childAdapterPosition);
                     if (photoEntryAtPosition != null) {
                         photoAttachPhotoCell.setPhotoEntry(photoEntryAtPosition, selectedPhotos.size() > 1, this.adapter.needCamera && this.selectedAlbumEntry == this.galleryAlbumEntry, childAdapterPosition == this.adapter.getItemCount() - 1);
-                        ChatAttachAlert chatAttachAlert = this.parentAlert;
-                        if ((chatAttachAlert.baseFragment instanceof ChatActivity) && chatAttachAlert.allowOrder) {
+                        ChatAttachAlert chatAttachAlert2 = this.parentAlert;
+                        if ((chatAttachAlert2.baseFragment instanceof ChatActivity) && chatAttachAlert2.allowOrder) {
                             photoAttachPhotoCell.setChecked(selectedPhotosOrder.indexOf(Integer.valueOf(photoEntryAtPosition.imageId)), selectedPhotos.containsKey(Integer.valueOf(photoEntryAtPosition.imageId)), false);
                         } else {
                             photoAttachPhotoCell.setChecked(-1, selectedPhotos.containsKey(Integer.valueOf(photoEntryAtPosition.imageId)), false);
@@ -3555,7 +3565,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             Iterator it2 = selectedPhotos.entrySet().iterator();
             while (true) {
                 if (it2.hasNext()) {
-                    if (((MediaController.PhotoEntry) ((Map.Entry) it2.next()).getValue()).highQuality) {
+                    if (((MediaController.PhotoEntry) ((Map.Entry) it2.next()).getValue()).isHighQuality()) {
                         z = true;
                         break;
                     }
@@ -3575,7 +3585,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             for (Map.Entry entry2 : selectedPhotos.entrySet()) {
                 if (entry2.getValue() instanceof MediaController.PhotoEntry) {
                     MediaController.PhotoEntry photoEntry2 = (MediaController.PhotoEntry) entry2.getValue();
-                    photoEntry2.highQuality = z4;
+                    photoEntry2.highQuality = Boolean.valueOf(z4);
                     photoEntry2.isChatPreviewSpoilerRevealed = false;
                     photoEntry2.isAttachSpoilerRevealed = false;
                     arrayList2.add(Integer.valueOf(photoEntry2.imageId));
@@ -3761,7 +3771,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         for (Object obj : selectedPhotos.values()) {
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                if (photoEntry.highQuality && !photoEntry.isVideo && photoEntry.editedInfo == null) {
+                if (photoEntry.isHighQuality() && !photoEntry.isVideo && photoEntry.editedInfo == null) {
                     i++;
                 }
             }
@@ -4483,7 +4493,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         public void lambda$createHolder$0(PhotoAttachPhotoCell photoAttachPhotoCell, PhotoAttachPhotoCell photoAttachPhotoCell2) {
             TLRPC.Chat currentChat;
-            if (ChatAttachAlertPhotoLayout.this.mediaEnabled && ChatAttachAlertPhotoLayout.this.parentAlert.avatarPicker == 0) {
+            if (ChatAttachAlertPhotoLayout.this.mediaEnabled) {
+                ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
+                if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.isPollAttach) {
+                    return;
+                }
                 int iIntValue = ((Integer) photoAttachPhotoCell2.getTag()).intValue();
                 MediaController.PhotoEntry photoEntry = photoAttachPhotoCell2.getPhotoEntry();
                 if (ChatAttachAlertPhotoLayout.this.checkSendMediaEnabled(photoEntry)) {
@@ -4498,10 +4512,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 boolean z = !zContainsKey;
                 if (!zContainsKey && ChatAttachAlertPhotoLayout.this.parentAlert.maxSelectedPhotos >= 0) {
                     int size = ChatAttachAlertPhotoLayout.selectedPhotos.size();
-                    ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
-                    if (size >= chatAttachAlert.maxSelectedPhotos) {
-                        if (chatAttachAlert.allowOrder) {
-                            BaseFragment baseFragment = chatAttachAlert.baseFragment;
+                    ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayout.this.parentAlert;
+                    if (size >= chatAttachAlert2.maxSelectedPhotos) {
+                        if (chatAttachAlert2.allowOrder) {
+                            BaseFragment baseFragment = chatAttachAlert2.baseFragment;
                             if (!(baseFragment instanceof ChatActivity) || (currentChat = ((ChatActivity) baseFragment).getCurrentChat()) == null || ChatObject.hasAdminRights(currentChat) || !currentChat.slowmode_enabled || ChatAttachAlertPhotoLayout.this.alertOnlyOnce == 2) {
                                 return;
                             }
@@ -4516,8 +4530,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                 }
                 int size2 = !zContainsKey ? ChatAttachAlertPhotoLayout.selectedPhotosOrder.size() : -1;
-                ChatAttachAlert chatAttachAlert2 = ChatAttachAlertPhotoLayout.this.parentAlert;
-                if ((chatAttachAlert2.baseFragment instanceof ChatActivity) && chatAttachAlert2.allowOrder) {
+                ChatAttachAlert chatAttachAlert3 = ChatAttachAlertPhotoLayout.this.parentAlert;
+                if ((chatAttachAlert3.baseFragment instanceof ChatActivity) && chatAttachAlert3.allowOrder) {
                     photoAttachPhotoCell2.setChecked(size2, z, true);
                 } else {
                     photoAttachPhotoCell2.setChecked(-1, z, true);
@@ -4536,7 +4550,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 }
                 ChatAttachAlertPhotoLayout.this.parentAlert.updateCountButton(zContainsKey ? 2 : 1);
                 photoAttachPhotoCell.setHasSpoiler(photoEntry.hasSpoiler);
-                photoAttachPhotoCell.setHighQuality(photoEntry.highQuality);
+                photoAttachPhotoCell.setHighQuality(photoEntry.isHighQuality());
                 photoAttachPhotoCell.setStarsPrice(photoEntry.starsAmount, ChatAttachAlertPhotoLayout.selectedPhotos.size() > 1);
             }
         }
@@ -4588,7 +4602,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 photoAttachPhotoCell.setIsVertical(ChatAttachAlertPhotoLayout.this.cameraPhotoLayoutManager.getOrientation() == 1);
             }
             ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
-            if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.storyMediaPicker) {
+            if (chatAttachAlert.avatarPicker != 0 || chatAttachAlert.storyMediaPicker || chatAttachAlert.isPollAttach) {
                 photoAttachPhotoCell.getCheckBox().setVisibility(8);
             } else {
                 photoAttachPhotoCell.getCheckBox().setVisibility(0);

@@ -84,7 +84,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         this.animatorFadeVisible = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
         this.selectedReplies = new HashSet();
         this.searchAdapter = new ShareSearchAdapter(context);
-        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, resourcesProvider);
+        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, Theme.key_windowBackgroundWhite, resourcesProvider);
         this.fadeView = searchFadeView;
         searchFadeView.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);

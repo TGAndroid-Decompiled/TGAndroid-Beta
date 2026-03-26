@@ -143,6 +143,10 @@ public final class ListAnimator implements Iterable {
             return this.measuredPositionRect.toRectF();
         }
 
+        public float getSpacingStart() {
+            return this.measuredSpacingStart.get();
+        }
+
         public void finishAnimation(boolean z) {
             this.position.finishAnimation(z);
             this.visibility.finishAnimation(z);
@@ -204,6 +208,10 @@ public final class ListAnimator implements Iterable {
                 this.size.set(i);
                 this.totalVisibility.set(i > 0 ? 1.0f : 0.0f);
             }
+        }
+
+        public float getTotalWidth() {
+            return this.totalWidth.get();
         }
 
         public float getTotalHeight() {

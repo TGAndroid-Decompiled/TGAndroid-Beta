@@ -616,6 +616,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public boolean didLongPressPollOption(ChatMessageCell chatMessageCell, TLRPC.PollAnswer pollAnswer) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressPollOption(this, chatMessageCell, pollAnswer);
+                    }
+
+                    @Override
                     public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell, todoItem);
                     }
@@ -628,6 +633,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void didPressAboutRevenueSharingAds() {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                    }
+
+                    @Override
+                    public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAddPollOptionButton(this, chatMessageCell);
                     }
 
                     @Override
@@ -746,6 +756,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public void didPressPollMedia(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressPollMedia(this, chatMessageCell, imageReceiver, pollAnswer, messageMedia, f, f2, i3);
+                    }
+
+                    @Override
                     public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, reactionCount, z, f, f2);
                     }
@@ -846,8 +861,18 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public void didTogglePollPreview(ChatMessageCell chatMessageCell) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell);
+                    }
+
+                    @Override
                     public boolean doNotShowLoadingReply(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                    }
+
+                    @Override
+                    public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$drawPollMode(this, canvas, chatMessageCell);
                     }
 
                     @Override
@@ -858,6 +883,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell, boolean z) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell, z);
+                    }
+
+                    @Override
+                    public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell);
                     }
 
                     @Override

@@ -52,13 +52,20 @@ public class TextStyleSpan extends MetricAffectingSpan {
             } else {
                 textPaint.setFlags(textPaint.getFlags() & (-9));
             }
-            if ((this.flags & 8) != 0) {
+            int i = this.flags;
+            if ((i & 8) != 0 || (i & 8192) != 0) {
                 textPaint.setFlags(textPaint.getFlags() | 16);
             } else {
                 textPaint.setFlags(textPaint.getFlags() & (-17));
             }
             if ((this.flags & 512) != 0) {
                 textPaint.bgColor = Theme.getColor(Theme.key_chats_archivePullDownBackground);
+            }
+            int i2 = this.flags;
+            if ((i2 & 8192) != 0) {
+                textPaint.setColor(Theme.getColor(Theme.key_text_RedBold));
+            } else if ((i2 & 4096) != 0) {
+                textPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
             }
         }
 

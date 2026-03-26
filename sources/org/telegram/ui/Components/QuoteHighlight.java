@@ -24,6 +24,8 @@ public class QuoteHighlight extends Path {
     private float minX;
     public final Paint paint;
     private final CornerPath path;
+    public final boolean poll;
+    public byte[] pollOptionId;
     public final ArrayList quotesToExpand;
     private final ArrayList rectangles;
     public final int start;
@@ -62,12 +64,46 @@ public class QuoteHighlight extends Path {
         this.start = i3;
         this.end = i3;
         this.todo = true;
+        this.poll = false;
         int iDp = AndroidUtilities.dp(4.0f);
         this.cornerPathEffectSize = iDp;
         paint.setPathEffect(new CornerPathEffect(iDp));
     }
 
     public static void lambda$new$0(ChatMessageCell chatMessageCell) {
+        if (chatMessageCell != null) {
+            chatMessageCell.invalidate();
+        }
+        if (chatMessageCell.getParent() instanceof View) {
+            ((View) chatMessageCell.getParent()).invalidate();
+        }
+    }
+
+    public QuoteHighlight(final ChatMessageCell chatMessageCell, int i, byte[] bArr) {
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        this.path = new CornerPath();
+        this.rectangles = new ArrayList();
+        this.quotesToExpand = new ArrayList();
+        this.cell = chatMessageCell;
+        this.t = new AnimatedFloat(0.0f, new Runnable() {
+            @Override
+            public final void run() {
+                QuoteHighlight.lambda$new$1(chatMessageCell);
+            }
+        }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.id = i;
+        this.pollOptionId = bArr;
+        this.start = 0;
+        this.end = 0;
+        this.todo = false;
+        this.poll = true;
+        int iDp = AndroidUtilities.dp(4.0f);
+        this.cornerPathEffectSize = iDp;
+        paint.setPathEffect(new CornerPathEffect(iDp));
+    }
+
+    public static void lambda$new$1(ChatMessageCell chatMessageCell) {
         if (chatMessageCell != null) {
             chatMessageCell.invalidate();
         }
@@ -87,13 +123,14 @@ public class QuoteHighlight extends Path {
         this.t = new AnimatedFloat(0.0f, new Runnable() {
             @Override
             public final void run() {
-                QuoteHighlight.lambda$new$1(view, viewParent);
+                QuoteHighlight.lambda$new$2(view, viewParent);
             }
         }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.id = i;
         this.start = i2;
         this.end = i3;
         this.todo = false;
+        this.poll = false;
         if (arrayList == null) {
             return;
         }
@@ -136,7 +173,7 @@ public class QuoteHighlight extends Path {
         }
     }
 
-    public static void lambda$new$1(View view, ViewParent viewParent) {
+    public static void lambda$new$2(View view, ViewParent viewParent) {
         if (view != null) {
             view.invalidate();
         }
@@ -183,7 +220,7 @@ public class QuoteHighlight extends Path {
     public void draw(Canvas canvas, float f, float f2, android.graphics.Rect rect, float f3) {
         float f4 = this.t.set(1.0f);
         canvas.save();
-        if (this.todo) {
+        if (this.poll) {
             int iLerp = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, f4);
             if (this.cornerPathEffectSize != iLerp) {
                 Paint paint = this.paint;
@@ -191,11 +228,25 @@ public class QuoteHighlight extends Path {
                 paint.setPathEffect(new CornerPathEffect(iLerp));
             }
             this.path.rewind();
-            int todoIndex = this.cell.getTodoIndex(-this.start);
+            int pollIndex = this.cell.getPollIndex(this.pollOptionId);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.cell.getBackgroundDrawableLeft(), this.cell.getPollButtonTop(todoIndex), this.cell.getBackgroundDrawableRight(), this.cell.getPollButtonBottom(todoIndex));
+            rectF.set(this.cell.getBackgroundDrawableLeft(), this.cell.getPollButtonTop(pollIndex), this.cell.getBackgroundDrawableRight(), this.cell.getPollButtonBottom(pollIndex));
             AndroidUtilities.lerp(rect, rectF, f4, rectF);
             this.path.addRect(rectF, Path.Direction.CW);
+            this.path.closeRects();
+        } else if (this.todo) {
+            int iLerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(4.0f), 0, f4);
+            if (this.cornerPathEffectSize != iLerp2) {
+                Paint paint2 = this.paint;
+                this.cornerPathEffectSize = iLerp2;
+                paint2.setPathEffect(new CornerPathEffect(iLerp2));
+            }
+            this.path.rewind();
+            int todoIndex = this.cell.getTodoIndex(-this.start);
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(this.cell.getBackgroundDrawableLeft(), this.cell.getPollButtonTop(todoIndex), this.cell.getBackgroundDrawableRight(), this.cell.getPollButtonBottom(todoIndex));
+            AndroidUtilities.lerp(rect, rectF2, f4, rectF2);
+            this.path.addRect(rectF2, Path.Direction.CW);
             this.path.closeRects();
         } else {
             canvas.translate(f, f2);

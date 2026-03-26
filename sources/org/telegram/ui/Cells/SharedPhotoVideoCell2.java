@@ -101,6 +101,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     private Text sensitiveTextShort2;
     private Shaker shaker;
     SharedResources sharedResources;
+    boolean showLivePhoto;
     boolean showVideoLayout;
     private float spoilerMaxRadius;
     private float spoilerRevealProgress;
@@ -310,6 +311,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.videoText = str;
         boolean z2 = str != null;
         this.showVideoLayout = z2;
+        this.showLivePhoto = false;
         if (z2 && (staticLayout = this.videoInfoLayot) != null && !staticLayout.getText().toString().equals(str)) {
             this.videoInfoLayot = null;
         }
@@ -344,7 +346,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         drawImpl(canvas, false, 1.0f, 1.0f, 1.0f);
     }
 
-    private void drawImpl(android.graphics.Canvas r25, boolean r26, float r27, float r28, float r29) {
+    private void drawImpl(android.graphics.Canvas r27, boolean r28, float r29, float r30, float r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.drawImpl(android.graphics.Canvas, boolean, float, float, float):void");
     }
 

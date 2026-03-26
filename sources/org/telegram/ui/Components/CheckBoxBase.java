@@ -15,7 +15,6 @@ import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 
 public class CheckBoxBase {
-    private static Paint eraser;
     private static Paint forbidPaint;
     private static Paint paint;
     public long animationDuration;
@@ -29,6 +28,8 @@ public class CheckBoxBase {
     private Paint checkPaint;
     private String checkedText;
     private GenericProvider circlePaintProvider;
+    private float customRadius;
+    private float customRadiusFactor;
     private boolean cutCheck;
     private boolean drawUnchecked;
     private boolean forbidden;
@@ -79,6 +80,8 @@ public class CheckBoxBase {
         this.background2ColorKey = i2;
         this.strokeBackgroundKey = Theme.key_dialogBackground;
         this.strokeBackgroundWidth = -1;
+        this.customRadius = 0.0f;
+        this.customRadiusFactor = 1.0f;
         this.drawUnchecked = true;
         this.circlePaintProvider = new GenericProvider() {
             @Override
@@ -92,23 +95,23 @@ public class CheckBoxBase {
         this.size = i;
         if (paint == null) {
             paint = new Paint(1);
-            Paint paint2 = new Paint(1);
-            eraser = paint2;
-            paint2.setColor(0);
-            eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         }
-        Paint paint3 = new Paint(1);
-        this.checkPaint = paint3;
-        paint3.setStrokeCap(Paint.Cap.ROUND);
-        Paint paint4 = this.checkPaint;
+        Paint paint2 = new Paint(1);
+        this.checkPaint = paint2;
+        paint2.setStrokeCap(Paint.Cap.ROUND);
+        Paint paint3 = this.checkPaint;
         Paint.Style style = Paint.Style.STROKE;
-        paint4.setStyle(style);
+        paint3.setStyle(style);
         this.checkPaint.setStrokeJoin(Paint.Join.ROUND);
         this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
-        Paint paint5 = new Paint(1);
-        this.backgroundPaint = paint5;
-        paint5.setStyle(style);
+        Paint paint4 = new Paint(1);
+        this.backgroundPaint = paint4;
+        paint4.setStyle(style);
         this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.2f));
+    }
+
+    public void setSize(float f) {
+        this.size = f;
     }
 
     public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
@@ -129,6 +132,14 @@ public class CheckBoxBase {
         rect.top = i2;
         rect.right = i + i3;
         rect.bottom = i2 + i4;
+    }
+
+    public void setCustomRadius(float f) {
+        this.customRadius = f;
+    }
+
+    public void setCustomRadiusFactor(float f) {
+        this.customRadiusFactor = f;
     }
 
     public void setDrawUnchecked(boolean z) {
@@ -290,7 +301,7 @@ public class CheckBoxBase {
         }
     }
 
-    public void draw(android.graphics.Canvas r29) {
+    public void draw(android.graphics.Canvas r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
     }
 

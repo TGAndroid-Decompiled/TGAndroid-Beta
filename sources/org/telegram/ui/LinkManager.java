@@ -2,9 +2,11 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,6 +19,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
@@ -30,6 +33,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.CreateBotAlert;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.PaymentFormActivity;
@@ -113,6 +117,12 @@ public class LinkManager {
                 if ("oauth".equalsIgnoreCase(str2)) {
                     return handleOAuth(uri, uri.getQueryParameter("startapp"));
                 }
+                if ("newbot".equalsIgnoreCase(str2)) {
+                    if (pathSegments.size() < 3) {
+                        return true;
+                    }
+                    return handleNewBot(str3, pathSegments.get(2), uri.getQueryParameter("name"));
+                }
             }
         }
         return false;
@@ -143,6 +153,9 @@ public class LinkManager {
         }
         String str = (String) arrayList.get(0);
         String str2 = arrayList.size() > 1 ? (String) arrayList.get(1) : null;
+        if ("newbot".equalsIgnoreCase(str)) {
+            return handleNewBot(uriNormalizeTgUri.getQueryParameter("manager"), uriNormalizeTgUri.getQueryParameter("username"), uriNormalizeTgUri.getQueryParameter("name"));
+        }
         if ("resolve".equalsIgnoreCase(str)) {
             return handleTgResolve(uriNormalizeTgUri);
         }
@@ -649,6 +662,110 @@ public class LinkManager {
         OAuthSheet.handle(this.isExternalIntent, this.currentAccount, tL_messages_requestUrlAuth, urlAuthResult);
     }
 
+    private boolean handleNewBot(String str, String str2, String str3) {
+        final TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot = new TLRPC.TL_requestPeerTypeCreateBot();
+        tL_requestPeerTypeCreateBot.bot_managed = true;
+        if (!TextUtils.isEmpty(str3)) {
+            tL_requestPeerTypeCreateBot.flags |= 2;
+            tL_requestPeerTypeCreateBot.suggested_name = str3;
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            tL_requestPeerTypeCreateBot.flags |= 4;
+            tL_requestPeerTypeCreateBot.suggested_username = str2;
+        }
+        final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null && safeLastFragment.getContext() != null) {
+            init();
+            final TLRPC.User[] userArr = {MessagesController.getInstance(this.currentAccount).getUser(str)};
+            final Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$handleNewBot$20(safeLastFragment, userArr, tL_requestPeerTypeCreateBot);
+                }
+            };
+            if (userArr[0] == null) {
+                MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str, new Consumer() {
+                    @Override
+                    public final void accept(Object obj) {
+                        this.f$0.lambda$handleNewBot$21(userArr, runnable, (Long) obj);
+                    }
+                });
+            } else {
+                runnable.run();
+            }
+        }
+        return true;
+    }
+
+    public void lambda$handleNewBot$20(BaseFragment baseFragment, final TLRPC.User[] userArr, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot) {
+        CreateBotAlert.show(baseFragment.getContext(), this.currentAccount, userArr[0], tL_requestPeerTypeCreateBot, true, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                this.f$0.lambda$handleNewBot$19(userArr, (TLRPC.User) obj);
+            }
+        }, baseFragment.getResourceProvider());
+    }
+
+    public void lambda$handleNewBot$19(TLRPC.User[] userArr, TLRPC.User user) {
+        lambda$handleInvoiceSlug$13();
+        if (user == null) {
+            return;
+        }
+        long j = userArr[0].id;
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", user.id);
+        presentFragment(new AnonymousClass3(bundle, user, userArr, j));
+    }
+
+    class AnonymousClass3 extends ChatActivity {
+        private boolean shownToast;
+        final TLRPC.User[] val$manager;
+        final long val$managerId;
+        final TLRPC.User val$newBot;
+
+        AnonymousClass3(Bundle bundle, TLRPC.User user, TLRPC.User[] userArr, long j) {
+            super(bundle);
+            this.val$newBot = user;
+            this.val$manager = userArr;
+            this.val$managerId = j;
+        }
+
+        @Override
+        public void onBecomeFullyVisible() throws Resources.NotFoundException {
+            super.onBecomeFullyVisible();
+            if (this.shownToast) {
+                return;
+            }
+            this.shownToast = true;
+            BulletinFactory bulletinFactoryOf = BulletinFactory.of(this);
+            int i = R.raw.contact_check;
+            String string = LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.val$newBot));
+            String string2 = LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.val$manager[0]));
+            final long j = this.val$managerId;
+            bulletinFactoryOf.createSimpleBulletin(i, string, AndroidUtilities.replaceSingleTag(string2, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onBecomeFullyVisible$0(j);
+                }
+            })).show();
+        }
+
+        public void lambda$onBecomeFullyVisible$0(long j) {
+            presentFragment(ChatActivity.of(j));
+        }
+    }
+
+    public void lambda$handleNewBot$21(TLRPC.User[] userArr, Runnable runnable, Long l) {
+        TLRPC.User user = l == null ? null : MessagesController.getInstance(this.currentAccount).getUser(l);
+        userArr[0] = user;
+        if (user == null) {
+            lambda$handleInvoiceSlug$13();
+            getBulletinFactory().createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
+        } else {
+            runnable.run();
+        }
+    }
+
     private void setRequestId(int i) {
         this.currentRequestId = i;
     }
@@ -705,7 +822,7 @@ public class LinkManager {
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.lambda$init$19(dialogInterface);
+                    this.f$0.lambda$init$22(dialogInterface);
                 }
             });
             this.progressDialog.showDelayed(300L);
@@ -721,7 +838,7 @@ public class LinkManager {
         this.inited = true;
     }
 
-    public void lambda$init$19(DialogInterface dialogInterface) {
+    public void lambda$init$22(DialogInterface dialogInterface) {
         cancel();
     }
 

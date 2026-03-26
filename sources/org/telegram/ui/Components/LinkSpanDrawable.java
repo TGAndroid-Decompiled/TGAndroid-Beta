@@ -22,8 +22,12 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -511,10 +515,14 @@ public class LinkSpanDrawable {
     }
 
     public static class LinksTextView extends TextView {
+        private static Class editorClass;
+        private static Field mEditor;
+        private static Method mEditorInvalidateDisplayList;
         private CharacterStyle currentLinkLoading;
         private boolean disablePaddingsOffset;
         private boolean disablePaddingsOffsetX;
         private boolean disablePaddingsOffsetY;
+        private Object editor;
         private ColorFilter emojiColorFilter;
         private int emojiColorFilterColor;
         private boolean emojiColorIsLink;
@@ -527,6 +535,7 @@ public class LinkSpanDrawable {
         private LinkSpanDrawable pressedLink;
         private Theme.ResourcesProvider resourcesProvider;
         AnimatedEmojiSpan.EmojiGroupedSpans stack;
+        private boolean triedGetInvalidate;
 
         public interface OnLinkPress {
             void run(ClickableSpan clickableSpan);
@@ -631,6 +640,45 @@ public class LinkSpanDrawable {
         }
 
         @Override
+        public void invalidate() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+            if (!this.triedGetInvalidate) {
+                this.triedGetInvalidate = true;
+                try {
+                    if (editorClass == null) {
+                        Field declaredField = TextView.class.getDeclaredField("mEditor");
+                        mEditor = declaredField;
+                        declaredField.setAccessible(true);
+                        Class<?> cls = Class.forName("android.widget.Editor");
+                        editorClass = cls;
+                        try {
+                            Method declaredMethod = cls.getDeclaredMethod("invalidateTextDisplayList", null);
+                            mEditorInvalidateDisplayList = declaredMethod;
+                            declaredMethod.setAccessible(true);
+                        } catch (Exception unused) {
+                        }
+                    }
+                } catch (Throwable th) {
+                    FileLog.e(th);
+                }
+            }
+            super.invalidate();
+            if (isHardwareAccelerated()) {
+                try {
+                    if (mEditorInvalidateDisplayList != null) {
+                        if (this.editor == null) {
+                            this.editor = mEditor.get(this);
+                        }
+                        Object obj = this.editor;
+                        if (obj != null) {
+                            mEditorInvalidateDisplayList.invoke(obj, null);
+                        }
+                    }
+                } catch (Exception unused2) {
+                }
+            }
+        }
+
+        @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
             if (this.links != null) {
                 Layout layout = getLayout();
@@ -688,7 +736,7 @@ public class LinkSpanDrawable {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r16) {
+        protected void onDraw(android.graphics.Canvas r16) throws java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
         }
 

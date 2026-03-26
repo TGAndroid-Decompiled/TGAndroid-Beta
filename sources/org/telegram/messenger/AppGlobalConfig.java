@@ -14,9 +14,16 @@ public class AppGlobalConfig {
     public final ConfigInt groupCallMessageLengthLimit;
     public final ConfigTime groupCallMessageTtl;
     public final ConfigTime messageTypingDraftTtl;
+    public final ConfigString musicSearchUsername;
     public final ConfigBoolean needAgeVideoVerification;
     public final ConfigTime noForwardsRequestExpirePeriod;
     public final ConfigInt passkeysAccountPasskeysMax;
+    public final ConfigTime pollAnswerDeletePeriod;
+    public final ConfigInt pollAnswerLengthMax;
+    public final ConfigInt pollAnswersMax;
+    public final ConfigTime pollClosePeriodMax;
+    public final ConfigInt pollQuestionLengthMax;
+    public final ConfigInt pollSolutionLengthMax;
     public final ConfigBoolean settingsDisplayPasskeys;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
@@ -75,6 +82,13 @@ public class AppGlobalConfig {
         this.disableBlurInLightTheme = ofBoolean("android_disable_blur_in_light_theme", false);
         this.disableBlurInDarkTheme = ofBoolean("android_disable_blur_in_dark_theme", false);
         this.noForwardsRequestExpirePeriod = ofTime("no_forwards_request_expire_period", 86400L, timeUnit);
+        this.pollClosePeriodMax = ofTime("poll_close_period_max", 2592000L, timeUnit);
+        this.musicSearchUsername = ofString("music_search_username", null);
+        this.pollAnswersMax = ofInt("poll_answers_max", 12);
+        this.pollAnswerLengthMax = ofInt("poll_answer_length_max", 100);
+        this.pollQuestionLengthMax = ofInt("poll_question_length_max", 255);
+        this.pollSolutionLengthMax = ofInt("poll_solution_length_max", 200);
+        this.pollAnswerDeletePeriod = ofTime("poll_answer_delete_period", 300L, timeUnit);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

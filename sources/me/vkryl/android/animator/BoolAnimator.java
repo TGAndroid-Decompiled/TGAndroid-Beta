@@ -28,6 +28,20 @@ public class BoolAnimator implements FactorAnimator.Target {
         }, interpolator, j, false);
     }
 
+    public BoolAnimator(final View view, Interpolator interpolator, long j, boolean z) {
+        this(0, new FactorAnimator.Target() {
+            @Override
+            public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+                FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+            }
+
+            @Override
+            public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+                view.invalidate();
+            }
+        }, interpolator, j, z);
+    }
+
     public BoolAnimator(int i, FactorAnimator.Target target, Interpolator interpolator, long j) {
         this(i, target, interpolator, j, false);
     }

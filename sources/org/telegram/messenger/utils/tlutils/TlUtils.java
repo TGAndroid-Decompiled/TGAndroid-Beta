@@ -1,9 +1,14 @@
 package org.telegram.messenger.utils.tlutils;
 
 import android.text.TextUtils;
+import j$.util.List;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.zip.CRC32;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -210,5 +215,79 @@ public abstract class TlUtils {
             }
         }
         return groupCall2;
+    }
+
+    public static TLRPC.InputMedia toInputMediaGeo(TLRPC.MessageMedia messageMedia) {
+        TLRPC.InputMedia tL_inputMediaGeoPoint;
+        if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaVenue();
+            tL_inputMediaGeoPoint.address = messageMedia.address;
+            tL_inputMediaGeoPoint.title = messageMedia.title;
+            tL_inputMediaGeoPoint.provider = messageMedia.provider;
+            tL_inputMediaGeoPoint.venue_id = messageMedia.venue_id;
+            tL_inputMediaGeoPoint.venue_type = "";
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaGeoLive) {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoLive();
+            tL_inputMediaGeoPoint.period = messageMedia.period;
+            int i = tL_inputMediaGeoPoint.flags;
+            tL_inputMediaGeoPoint.flags = i | 2;
+            int i2 = messageMedia.heading;
+            if (i2 != 0) {
+                tL_inputMediaGeoPoint.heading = i2;
+                tL_inputMediaGeoPoint.flags = i | 6;
+            }
+            int i3 = messageMedia.proximity_notification_radius;
+            if (i3 != 0) {
+                tL_inputMediaGeoPoint.proximity_notification_radius = i3;
+                tL_inputMediaGeoPoint.flags |= 8;
+            }
+        } else {
+            tL_inputMediaGeoPoint = new TLRPC.TL_inputMediaGeoPoint();
+        }
+        TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
+        tL_inputMediaGeoPoint.geo_point = tL_inputGeoPoint;
+        TLRPC.GeoPoint geoPoint = messageMedia.geo;
+        tL_inputGeoPoint.lat = geoPoint.lat;
+        tL_inputGeoPoint._long = geoPoint._long;
+        return tL_inputMediaGeoPoint;
+    }
+
+    public static void calculateAnswerShuffleHash(TLRPC.Poll poll, long j) {
+        if (poll == null) {
+            return;
+        }
+        int size = poll.answers.size();
+        for (int i = 0; i < size; i++) {
+            poll.answers.get(i).unshuffled_index = i;
+        }
+        if (poll.creator || !poll.shuffle_answers) {
+            return;
+        }
+        CRC32 crc32 = new CRC32();
+        int size2 = poll.answers.size();
+        for (int i2 = 0; i2 < size2; i2++) {
+            TLRPC.PollAnswer pollAnswer = poll.answers.get(i2);
+            if (pollAnswer.option != null) {
+                crc32.reset();
+                String string = Long.toString(j);
+                Charset charset = StandardCharsets.UTF_8;
+                crc32.update(string.getBytes(charset));
+                crc32.update(pollAnswer.option);
+                crc32.update(Long.toString(poll.id).getBytes(charset));
+                pollAnswer.shuffle_hash = crc32.getValue();
+            }
+        }
+        ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(poll.answers);
+        poll.shuffled_answers = arrayList;
+        List.EL.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                return TlUtils.lambda$calculateAnswerShuffleHash$0((TLRPC.PollAnswer) obj, (TLRPC.PollAnswer) obj2);
+            }
+        });
+    }
+
+    public static int lambda$calculateAnswerShuffleHash$0(TLRPC.PollAnswer pollAnswer, TLRPC.PollAnswer pollAnswer2) {
+        return Long.compare(pollAnswer.shuffle_hash ^ Long.MIN_VALUE, pollAnswer2.shuffle_hash ^ Long.MIN_VALUE);
     }
 }

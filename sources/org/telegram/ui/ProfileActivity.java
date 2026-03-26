@@ -8151,12 +8151,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$processOnClickOrPress$79(String[] strArr, String str, String str2) {
-        TranslateAlert2.showAlert(this.fragmentView.getContext(), this, this.currentAccount, strArr[0], str, str2, null, false, new Utilities.CallbackReturn() {
-            @Override
-            public final Object run(Object obj) {
-                return this.f$0.lambda$processOnClickOrPress$78((URLSpan) obj);
-            }
-        }, null);
+        if (AndroidUtilities.isContextSafe(getContext())) {
+            TranslateAlert2.showAlert(getContext(), this, this.currentAccount, strArr[0], str, str2, null, false, new Utilities.CallbackReturn() {
+                @Override
+                public final Object run(Object obj) {
+                    return this.f$0.lambda$processOnClickOrPress$78((URLSpan) obj);
+                }
+            }, null);
+        }
     }
 
     public Boolean lambda$processOnClickOrPress$78(URLSpan uRLSpan) {
@@ -8696,12 +8698,23 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (closestTab == 10) {
             MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(getDialogId());
             this.mediaCounterTextView.setText(LocaleController.formatPluralString(this.isBot ? "Bots" : "Channels", channelRecommendations == null ? 0 : channelRecommendations.chats.size() + channelRecommendations.more, new Object[0]));
-        } else if (closestTab == 12) {
+            return;
+        }
+        if (closestTab == 12) {
             this.mediaCounterTextView.setText(LocaleController.formatPluralString("SavedMessagesCount", Math.max(1, getMessagesController().getSavedMessagesController().getMessagesCount(getDialogId())), new Object[0]));
-        } else if (closestTab == 14) {
+            return;
+        }
+        if (closestTab == 14) {
             AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = this.mediaCounterTextView;
             ProfileGiftsContainer profileGiftsContainer = this.sharedMediaLayout.giftsContainer;
             clippingTextViewSwitcher.setText(LocaleController.formatPluralStringComma("ProfileGiftsCount", profileGiftsContainer != null ? profileGiftsContainer.getGiftsCount() : 0));
+        } else if (closestTab == 15) {
+            int i8 = lastMediaCount[8];
+            if (i8 <= 0) {
+                this.mediaCounterTextView.setText(LocaleController.getString(R.string.SharedPollTab));
+            } else {
+                this.mediaCounterTextView.setText(LocaleController.formatPluralStringComma("ProfilePollsCount", i8));
+            }
         }
     }
 
@@ -11685,11 +11698,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             Browser.openUrl(ProfileActivity.this.getContext(), LocaleController.getString(z ? R.string.ProfileBotOpenAppInfoOwnerLink : R.string.ProfileBotOpenAppInfoLink));
         }
 
-        public void lambda$onBindViewHolder$5(TLRPC.User user, String str, boolean z, boolean z2, boolean z3, View view) {
+        public void lambda$onBindViewHolder$5(Long l) {
+            ProfileActivity.this.presentFragment(ProfileActivity.of(l.longValue()));
+        }
+
+        public void lambda$onBindViewHolder$6(TLRPC.User user, String str, boolean z, boolean z2, boolean z3, View view) {
             TagEditCell.showInfoSheet(ProfileActivity.this.getContext(), ((BaseFragment) ProfileActivity.this).currentAccount, ProfileActivity.this.getDialogId(), user, str, z, z2, z3, ((BaseFragment) ProfileActivity.this).resourceProvider);
         }
 
-        public void lambda$onBindViewHolder$6(View view) {
+        public void lambda$onBindViewHolder$7(View view) {
             ProfileActivity.this.hoursShownMine = !r0.hoursShownMine;
             if (!ProfileActivity.this.hoursExpanded) {
                 ProfileActivity.this.hoursExpanded = true;

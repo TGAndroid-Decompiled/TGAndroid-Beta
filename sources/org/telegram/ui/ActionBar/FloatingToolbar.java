@@ -231,7 +231,7 @@ public final class FloatingToolbar {
                 SubMenu subMenu = item.getSubMenu();
                 if (subMenu != null) {
                     arrayList.addAll(getVisibleAndEnabledMenuItems(subMenu));
-                } else if ((item.getItemId() != R.id.menu_quote || (callback0Return = this.quoteShowCallback) == null || ((Boolean) callback0Return.run()).booleanValue()) && item.getItemId() != 16908353 && (item.getItemId() != R.id.menu_regular || this.premiumLockClickListener == null)) {
+                } else if ((item.getItemId() != R.id.menu_quote || (callback0Return = this.quoteShowCallback) == null || ((Boolean) callback0Return.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.premiumLockClickListener == null)) {
                     arrayList.add(item);
                 }
             }

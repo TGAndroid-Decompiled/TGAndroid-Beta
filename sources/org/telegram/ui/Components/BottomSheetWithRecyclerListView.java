@@ -79,6 +79,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         return true;
     }
 
+    protected void onActionBarAlpha(float f) {
+    }
+
     protected void onPreDraw(Canvas canvas, int i, float f) {
     }
 
@@ -410,6 +413,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     private class PaddingView extends View {
         public PaddingView(Context context) {
             super(context);
+            setTag(-33024);
         }
 
         @Override
@@ -601,7 +605,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
             View childAt = this.recyclerListView.getChildAt(i2);
             int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
-            if (childAdapterPosition > 0 && childAt.getTop() < top) {
+            if (childAdapterPosition >= 0 && childAt.getTop() < top) {
                 top = childAt.getTop();
                 view = childAt;
                 i = childAdapterPosition;
@@ -624,10 +628,6 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             return;
         }
         int top = (this.savedScrollOffset - this.containerView.getTop()) - this.recyclerListView.getPaddingTop();
-        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
-        if (z && viewHolderFindViewHolderForAdapterPosition != null) {
-            top -= Math.max(viewHolderFindViewHolderForAdapterPosition.itemView.getBottom() - this.recyclerListView.getPaddingTop(), 0);
-        }
         if (this.recyclerListView.getLayoutManager() instanceof LinearLayoutManager) {
             ((LinearLayoutManager) this.recyclerListView.getLayoutManager()).scrollToPositionWithOffset(this.savedScrollPosition, top);
         }

@@ -377,27 +377,25 @@ public abstract class NanoHTTPD {
                 try {
                     try {
                         try {
-                            try {
-                                bArr = new byte[8192];
-                                z = false;
-                                this.splitbyte = 0;
-                                this.rlen = 0;
-                                this.inputStream.mark(8192);
-                            } catch (ResponseException e) {
-                                NanoHTTPD.newFixedLengthResponse(e.getStatus(), "text/plain", e.getMessage()).send(this.outputStream);
-                                NanoHTTPD.safeClose(this.outputStream);
-                            }
-                        } catch (IOException e2) {
-                            NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e2.getMessage()).send(this.outputStream);
+                            bArr = new byte[8192];
+                            z = false;
+                            this.splitbyte = 0;
+                            this.rlen = 0;
+                            this.inputStream.mark(8192);
+                        } catch (ResponseException e) {
+                            NanoHTTPD.newFixedLengthResponse(e.getStatus(), "text/plain", e.getMessage()).send(this.outputStream);
                             NanoHTTPD.safeClose(this.outputStream);
                         }
+                    } catch (SocketException e2) {
+                        throw e2;
                     } catch (SocketTimeoutException e3) {
                         throw e3;
                     }
-                } catch (SocketException e4) {
-                    throw e4;
-                } catch (SSLException e5) {
-                    NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SSL PROTOCOL FAILURE: " + e5.getMessage()).send(this.outputStream);
+                } catch (SSLException e4) {
+                    NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SSL PROTOCOL FAILURE: " + e4.getMessage()).send(this.outputStream);
+                    NanoHTTPD.safeClose(this.outputStream);
+                } catch (IOException e5) {
+                    NanoHTTPD.newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e5.getMessage()).send(this.outputStream);
                     NanoHTTPD.safeClose(this.outputStream);
                 }
                 try {

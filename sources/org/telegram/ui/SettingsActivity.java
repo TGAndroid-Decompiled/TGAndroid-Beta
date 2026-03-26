@@ -105,6 +105,7 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugController;
 import org.telegram.ui.Components.FragmentFloatingButton;
+import org.telegram.ui.Components.IconBackgroundColors;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.InstantCameraView;
 import org.telegram.ui.Components.ItemOptions;
@@ -760,15 +761,24 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             arrayList.add(UItem.asShadow(null));
         }
-        arrayList.add(SettingCell.Factory.of(1, -14899731, -15431455, R.drawable.settings_account, LocaleController.getString(R.string.SettingsAccount), LocaleController.getString(R.string.SettingsAccountInfo)));
-        arrayList.add(SettingCell.Factory.of(2, -1007845, -1996271, R.drawable.settings_chat, LocaleController.getString(R.string.SettingsChat), LocaleController.getString(R.string.SettingsChatInfo)));
-        arrayList.add(SettingCell.Factory.of(3, -11154873, -14175180, R.drawable.settings_privacy, LocaleController.getString(R.string.SettingsPrivacySecurity), LocaleController.getString(R.string.SettingsPrivacySecurityInfo)));
-        arrayList.add(SettingCell.Factory.of(5, -765355, -2148011, R.drawable.settings_sounds, LocaleController.getString(R.string.SettingsNotifications), LocaleController.getString(R.string.SettingsNotificationsInfo)));
-        arrayList.add(SettingCell.Factory.of(6, -11565578, -13276952, R.drawable.settings_data, LocaleController.getString(R.string.SettingsData), LocaleController.getString(R.string.SettingsDataInfo)));
-        arrayList.add(SettingCell.Factory.of(7, -14899731, -15497247, R.drawable.settings_folders, LocaleController.getString(R.string.SettingsFolders), LocaleController.getString(R.string.SettingsFoldersInfo)));
-        arrayList.add(SettingCell.Factory.of(8, -13451058, -14836538, R.drawable.settings_devices, LocaleController.getString(R.string.SettingsDevices), LocaleController.getString(R.string.SettingsDevicesInfo)));
-        arrayList.add(SettingCell.Factory.of(9, -881871, -1940716, R.drawable.settings_power, LocaleController.getString(R.string.SettingsPowerSaving), LocaleController.getString(R.string.SettingsPowerSavingInfo)));
-        arrayList.add(SettingCell.Factory.of(10, -3903756, -6335009, R.drawable.settings_language, LocaleController.getString(R.string.SettingsLanguage), LocaleController.getCurrentLanguageName()));
+        IconBackgroundColors iconBackgroundColors = IconBackgroundColors.BLUE;
+        arrayList.add(SettingCell.Factory.of(1, iconBackgroundColors.top, iconBackgroundColors.bottom, R.drawable.settings_account, LocaleController.getString(R.string.SettingsAccount), LocaleController.getString(R.string.SettingsAccountInfo)));
+        IconBackgroundColors iconBackgroundColors2 = IconBackgroundColors.ORANGE;
+        arrayList.add(SettingCell.Factory.of(2, iconBackgroundColors2.top, iconBackgroundColors2.bottom, R.drawable.settings_chat, LocaleController.getString(R.string.SettingsChat), LocaleController.getString(R.string.SettingsChatInfo)));
+        IconBackgroundColors iconBackgroundColors3 = IconBackgroundColors.GREEN;
+        arrayList.add(SettingCell.Factory.of(3, iconBackgroundColors3.top, iconBackgroundColors3.bottom, R.drawable.settings_privacy, LocaleController.getString(R.string.SettingsPrivacySecurity), LocaleController.getString(R.string.SettingsPrivacySecurityInfo)));
+        IconBackgroundColors iconBackgroundColors4 = IconBackgroundColors.RED;
+        arrayList.add(SettingCell.Factory.of(5, iconBackgroundColors4.top, iconBackgroundColors4.bottom, R.drawable.settings_sounds, LocaleController.getString(R.string.SettingsNotifications), LocaleController.getString(R.string.SettingsNotificationsInfo)));
+        IconBackgroundColors iconBackgroundColors5 = IconBackgroundColors.BLUE_DEEP;
+        arrayList.add(SettingCell.Factory.of(6, iconBackgroundColors5.top, iconBackgroundColors5.bottom, R.drawable.settings_data, LocaleController.getString(R.string.SettingsData), LocaleController.getString(R.string.SettingsDataInfo)));
+        IconBackgroundColors iconBackgroundColors6 = IconBackgroundColors.BLUE_ALT;
+        arrayList.add(SettingCell.Factory.of(7, iconBackgroundColors6.top, iconBackgroundColors6.bottom, R.drawable.settings_folders, LocaleController.getString(R.string.SettingsFolders), LocaleController.getString(R.string.SettingsFoldersInfo)));
+        IconBackgroundColors iconBackgroundColors7 = IconBackgroundColors.CYAN;
+        arrayList.add(SettingCell.Factory.of(8, iconBackgroundColors7.top, iconBackgroundColors7.bottom, R.drawable.settings_devices, LocaleController.getString(R.string.SettingsDevices), LocaleController.getString(R.string.SettingsDevicesInfo)));
+        IconBackgroundColors iconBackgroundColors8 = IconBackgroundColors.ORANGE_DEEP;
+        arrayList.add(SettingCell.Factory.of(9, iconBackgroundColors8.top, iconBackgroundColors8.bottom, R.drawable.settings_power, LocaleController.getString(R.string.SettingsPowerSaving), LocaleController.getString(R.string.SettingsPowerSavingInfo)));
+        IconBackgroundColors iconBackgroundColors9 = IconBackgroundColors.PURPLE;
+        arrayList.add(SettingCell.Factory.of(10, iconBackgroundColors9.top, iconBackgroundColors9.bottom, R.drawable.settings_language, LocaleController.getString(R.string.SettingsLanguage), LocaleController.getCurrentLanguageName()));
         arrayList.add(UItem.asShadow(null));
         if (!getMessagesController().premiumFeaturesBlocked()) {
             arrayList.add(SettingCell.Factory.of(11, -4826625, -10388225, R.drawable.settings_premium, LocaleController.getString(R.string.TelegramPremium)));
@@ -811,10 +821,14 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             arrayList.add(UItem.asShadow(null));
         }
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.SettingsHelp)));
-        arrayList.add(SettingCell.Factory.of(17, -1007845, -1996271, R.drawable.settings_ask, LocaleController.getString(R.string.AskAQuestion)));
-        arrayList.add(SettingCell.Factory.of(18, -14965523, -15431455, R.drawable.settings_faq, LocaleController.getString(R.string.TelegramFAQ)));
-        arrayList.add(SettingCell.Factory.of(23, -3903756, -6335009, R.drawable.settings_features, LocaleController.getString(R.string.TelegramFeatures)));
-        arrayList.add(SettingCell.Factory.of(19, -11154873, -14175180, R.drawable.settings_policy, LocaleController.getString(R.string.PrivacyPolicy)));
+        IconBackgroundColors iconBackgroundColors10 = IconBackgroundColors.ORANGE;
+        arrayList.add(SettingCell.Factory.of(17, iconBackgroundColors10.top, iconBackgroundColors10.bottom, R.drawable.settings_ask, LocaleController.getString(R.string.AskAQuestion)));
+        IconBackgroundColors iconBackgroundColors11 = IconBackgroundColors.BLUE_LIGHT;
+        arrayList.add(SettingCell.Factory.of(18, iconBackgroundColors11.top, iconBackgroundColors11.bottom, R.drawable.settings_faq, LocaleController.getString(R.string.TelegramFAQ)));
+        IconBackgroundColors iconBackgroundColors12 = IconBackgroundColors.PURPLE;
+        arrayList.add(SettingCell.Factory.of(23, iconBackgroundColors12.top, iconBackgroundColors12.bottom, R.drawable.settings_features, LocaleController.getString(R.string.TelegramFeatures)));
+        IconBackgroundColors iconBackgroundColors13 = IconBackgroundColors.GREEN;
+        arrayList.add(SettingCell.Factory.of(19, iconBackgroundColors13.top, iconBackgroundColors13.bottom, R.drawable.settings_policy, LocaleController.getString(R.string.PrivacyPolicy)));
         if (BuildVars.LOGS_ENABLED || BuildVars.DEBUG_PRIVATE_VERSION) {
             arrayList.add(UItem.asShadow(null));
             arrayList.add(UItem.asHeader(LocaleController.getString(R.string.SettingsDebug)));
@@ -1537,7 +1551,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         } else {
             string3 = null;
         }
-        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings" : null}, new DialogInterface.OnClickListener() {
+        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.debugViewMetrics ? "disable debug view metrics" : "enable debug view metrics" : null}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 this.f$0.lambda$openDebugMenu$21(dialogInterface, i3);
@@ -1592,7 +1606,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         if (i == 6) {
             getMessagesStorage().clearSentMedia();
             SharedConfig.setNoSoundHintShowed(false);
-            MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").remove("taptostoryhighlighthint").remove("proxycheckstatusip").remove("callmiconstart").remove("showchattagsinfo").apply();
+            MessagesController.getGlobalMainSettings().edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("searchpostsnew").remove("speedhint").remove("gifhint").remove("reminderhint").remove("soundHint").remove("themehint").remove("bganimationhint").remove("filterhint").remove("n_0").remove("storyprvhint").remove("storyhint").remove("storyhint2").remove("storydualhint").remove("storysvddualhint").remove("stories_camera").remove("dualcam").remove("dualmatrix").remove("dual_available").remove("archivehint").remove("askNotificationsAfter").remove("askNotificationsDuration").remove("viewoncehint").remove("voicepausehint").remove("taptostorysoundhint").remove("nothanos").remove("voiceoncehint").remove("savedhint").remove("savedsearchhint").remove("savedsearchtaghint").remove("groupEmojiPackHintShown").remove("newppsms").remove("monetizationadshint").remove("seekSpeedHintShowed").remove("unsupport_video/av01").remove("channelgifthint").remove("statusgiftpage").remove("multistorieshint").remove("channelsuggesthint").remove("trimvoicehint").remove("taptostoryhighlighthint").remove("proxycheckstatusip").remove("callmiconstart").remove("showchattagsinfo").remove("language_showed2").remove("aihintshown").apply();
             MessagesController.getEmojiSettings(this.currentAccount).edit().remove("featured_hidden").remove("emoji_featured_hidden").commit();
             MessagesController.getGlobalNotificationsSettings().edit().remove("disable_sharing_learn").apply();
             SharedConfig.textSelectionHintShows = 0;
@@ -1831,6 +1845,13 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     boolean z = !SharedConfig.shadowsInSections;
                     SharedConfig.shadowsInSections = z;
                     editorEdit3.putBoolean("shadowsInSections", z).apply();
+                    return;
+                }
+                if (i == 41) {
+                    SharedPreferences.Editor editorEdit4 = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
+                    boolean z2 = !SharedConfig.debugViewMetrics;
+                    SharedConfig.debugViewMetrics = z2;
+                    editorEdit4.putBoolean("debugViewMetrics", z2).apply();
                     return;
                 }
                 return;

@@ -95,6 +95,7 @@ import org.telegram.ui.Components.DrawingInBackgroundThreadDrawable;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EmojiTabsStrip;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
 import org.telegram.ui.Components.PermissionRequest;
@@ -246,8 +247,23 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
+                public ItemOptions getCustomItemOptions(ViewGroup viewGroup, View view) {
+                    return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getCustomItemOptions(this, viewGroup, view);
+                }
+
+                @Override
                 public long getDialogId() {
                     return 0L;
+                }
+
+                @Override
+                public TLRPC.TL_messageMediaPoll getPoll() {
+                    return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPoll(this);
+                }
+
+                @Override
+                public TLRPC.PollAnswer getPollAnswer() {
+                    return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollAnswer(this);
                 }
 
                 @Override
@@ -340,6 +356,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
+                public void retractVote() {
+                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$retractVote(this);
+                }
+
+                @Override
                 public void sendEmoji(TLRPC.Document document) {
                     ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendEmoji(this, document);
                 }
@@ -357,6 +378,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 @Override
                 public void sendSticker(TLRPC.Document document, String str, Object obj, boolean z, int i, int i2) {
                     ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendSticker(this, document, str, obj, z, i, i2);
+                }
+
+                @Override
+                public void sendVote() {
+                    ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$sendVote(this);
                 }
 
                 @Override

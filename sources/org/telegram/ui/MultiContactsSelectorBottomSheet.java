@@ -77,13 +77,19 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         void onUserSelected(List list);
     }
 
-    public static void open(Boolean bool, Boolean bool2, int i, SelectorListener selectorListener) {
+    public static MultiContactsSelectorBottomSheet open(Boolean bool, Boolean bool2, int i, SelectorListener selectorListener) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment != null && instance == null) {
-            MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = new MultiContactsSelectorBottomSheet(lastFragment, true, i, bool, bool2, selectorListener);
-            multiContactsSelectorBottomSheet.show();
-            instance = multiContactsSelectorBottomSheet;
+        if (lastFragment == null) {
+            return null;
         }
+        MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = instance;
+        if (multiContactsSelectorBottomSheet != null) {
+            return multiContactsSelectorBottomSheet;
+        }
+        MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet2 = new MultiContactsSelectorBottomSheet(lastFragment, true, i, bool, bool2, selectorListener);
+        multiContactsSelectorBottomSheet2.show();
+        instance = multiContactsSelectorBottomSheet2;
+        return multiContactsSelectorBottomSheet2;
     }
 
     private boolean filter(TLRPC.User user) {

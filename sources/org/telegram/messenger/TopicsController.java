@@ -901,12 +901,41 @@ public class TopicsController extends BaseController {
         return i3;
     }
 
+    public int updatePollVotesUnread(long j, long j2, int i, boolean z) {
+        long j3 = -j;
+        TLRPC.TL_forumTopic tL_forumTopicFindTopic = findTopic(j3, j2);
+        if (tL_forumTopicFindTopic == null) {
+            return -1;
+        }
+        if (z) {
+            int i2 = tL_forumTopicFindTopic.unread_poll_votes_count + i;
+            tL_forumTopicFindTopic.unread_poll_votes_count = i2;
+            if (i2 < 0) {
+                tL_forumTopicFindTopic.unread_poll_votes_count = 0;
+            }
+        } else {
+            tL_forumTopicFindTopic.unread_poll_votes_count = i;
+        }
+        int i3 = tL_forumTopicFindTopic.unread_poll_votes_count;
+        sortTopics(j3, true);
+        return i3;
+    }
+
     public void markAllReactionsAsRead(long j, long j2) {
         TLRPC.TL_forumTopic tL_forumTopicFindTopic = findTopic(j, j2);
         if (tL_forumTopicFindTopic == null || tL_forumTopicFindTopic.unread_reactions_count <= 0) {
             return;
         }
         tL_forumTopicFindTopic.unread_reactions_count = 0;
+        sortTopics(j);
+    }
+
+    public void markAllPollVotesAsRead(long j, long j2) {
+        TLRPC.TL_forumTopic tL_forumTopicFindTopic = findTopic(j, j2);
+        if (tL_forumTopicFindTopic == null || tL_forumTopicFindTopic.unread_poll_votes_count <= 0) {
+            return;
+        }
+        tL_forumTopicFindTopic.unread_poll_votes_count = 0;
         sortTopics(j);
     }
 
@@ -917,6 +946,19 @@ public class TopicsController extends BaseController {
                 TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
                 if (tL_forumTopic != null) {
                     tL_forumTopic.unread_reactions_count = 0;
+                }
+            }
+            sortTopics(j);
+        }
+    }
+
+    public void markAllPollVotesAsRead(long j) {
+        ArrayList<TLRPC.TL_forumTopic> topics = getTopics(j);
+        if (topics != null) {
+            for (int i = 0; i < topics.size(); i++) {
+                TLRPC.TL_forumTopic tL_forumTopic = topics.get(i);
+                if (tL_forumTopic != null) {
+                    tL_forumTopic.unread_poll_votes_count = 0;
                 }
             }
             sortTopics(j);

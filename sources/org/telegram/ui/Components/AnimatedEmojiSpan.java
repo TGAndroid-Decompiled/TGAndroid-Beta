@@ -1001,7 +1001,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         AnimatedEmojiSpan animatedEmojiSpan2;
         TLRPC.Document document = animatedEmojiSpan.document;
         if (document != null) {
-            animatedEmojiSpan2 = new AnimatedEmojiSpan(document, fontMetricsInt != null ? fontMetricsInt : animatedEmojiSpan.fontMetrics);
+            animatedEmojiSpan2 = new AnimatedEmojiSpan(document, animatedEmojiSpan.scale, fontMetricsInt != null ? fontMetricsInt : animatedEmojiSpan.fontMetrics);
         } else {
             animatedEmojiSpan2 = new AnimatedEmojiSpan(animatedEmojiSpan.documentId, animatedEmojiSpan.scale, fontMetricsInt != null ? fontMetricsInt : animatedEmojiSpan.fontMetrics);
         }

@@ -79,6 +79,7 @@ public class VideoEditedInfo {
     public long startTime;
     public Bitmap thumb;
     public boolean videoConvertFirstWrite;
+    public long videoOffset;
     public long avatarStartTime = -1;
     public int framerate = 24;
     public float volume = 1.0f;
@@ -572,7 +573,7 @@ public class VideoEditedInfo {
         } else {
             strBytesToHex = "";
         }
-        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), strBytesToHex, this.originalPath);
+        return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), Long.valueOf(this.videoOffset), strBytesToHex, this.originalPath);
     }
 
     public boolean parseString(String str) {
@@ -582,8 +583,8 @@ public class VideoEditedInfo {
         }
         try {
             String[] strArrSplit = str.split("_");
-            int i = 11;
-            if (strArrSplit.length >= 11) {
+            int i = 12;
+            if (strArrSplit.length >= 12) {
                 this.startTime = Long.parseLong(strArrSplit[1]);
                 this.endTime = Long.parseLong(strArrSplit[2]);
                 this.rotationValue = Integer.parseInt(strArrSplit[3]);
@@ -594,9 +595,10 @@ public class VideoEditedInfo {
                 this.resultHeight = Integer.parseInt(strArrSplit[8]);
                 this.originalDuration = Long.parseLong(strArrSplit[9]);
                 this.framerate = Integer.parseInt(strArrSplit[10]);
+                this.videoOffset = Long.parseLong(strArrSplit[11]);
                 this.muted = this.bitrate == -1;
-                if (strArrSplit[11].startsWith("-")) {
-                    String strSubstring = strArrSplit[11].substring(1);
+                if (strArrSplit[12].startsWith("-")) {
+                    String strSubstring = strArrSplit[12].substring(1);
                     if (strSubstring.length() > 0) {
                         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(strSubstring));
                         int int32 = serializedData.readInt32(false);
@@ -700,7 +702,7 @@ public class VideoEditedInfo {
                         }
                         serializedData.cleanup();
                     }
-                    i = 12;
+                    i = 13;
                 }
                 while (i < strArrSplit.length) {
                     if (this.originalPath == null) {

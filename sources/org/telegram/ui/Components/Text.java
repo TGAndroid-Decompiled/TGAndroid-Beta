@@ -196,6 +196,11 @@ public class Text {
         return this;
     }
 
+    public Text setAlpha(int i) {
+        this.paint.setAlpha(i);
+        return this;
+    }
+
     public Text ellipsize(float f) {
         this.ellipsizeWidth = f;
         return this;

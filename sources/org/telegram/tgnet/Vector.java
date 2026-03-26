@@ -173,6 +173,11 @@ public class Vector<T extends TLObject> extends TLObject {
         }, arrayList);
     }
 
+    public static void serializeByteArray(OutputSerializedData outputSerializedData, ArrayList<byte[]> arrayList) {
+        Objects.requireNonNull(outputSerializedData);
+        serialize(outputSerializedData, new TLRPC$TL_updateGroupCallChainBlocks$$ExternalSyntheticLambda0(outputSerializedData), arrayList);
+    }
+
     public static <T> ArrayList<T> deserialize(InputSerializedData inputSerializedData, Utilities.CallbackReturn<Boolean, T> callbackReturn, boolean z) {
         int int32 = inputSerializedData.readInt32(z);
         if (int32 != 481674261) {

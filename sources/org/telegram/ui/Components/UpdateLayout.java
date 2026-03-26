@@ -34,7 +34,7 @@ public class UpdateLayout extends IUpdateLayout {
         }
         float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
         this.updateLayoutIcon.setProgress(downloadingUpdateProgress, true);
-        this.updateTextView.setText(LocaleController.formatString(2131690107, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
+        this.updateTextView.setText(LocaleController.formatString(2131690127, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
         this.updateLayout.invalidate();
     }
 
@@ -71,7 +71,7 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateTextView.setTextColor(-1);
         this.updateTextView.setGravity(17);
         this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrameMatchParent());
-        this.updateTextView.setText(LocaleController.getString(2131690104), false);
+        this.updateTextView.setText(LocaleController.getString(2131690124), false);
         RadialProgress2 radialProgress2 = new RadialProgress2(this.updateTextView);
         this.updateLayoutIcon = radialProgress2;
         int i2 = Theme.key_featuredStickers_addButton;
@@ -106,14 +106,14 @@ public class UpdateLayout extends IUpdateLayout {
             File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
             if (downloadedUpdateFile != null && downloadedUpdateFile.exists()) {
                 this.updateLayoutIcon.setIcon(15, true, z);
-                setUpdateText(LocaleController.getString(2131690108), z);
+                setUpdateText(LocaleController.getString(2131690128), z);
             } else if (ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
                 this.updateLayoutIcon.setIcon(3, true, z);
                 this.updateLayoutIcon.setProgress(ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress(), true);
-                setUpdateText(LocaleController.formatString(2131690107, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z);
+                setUpdateText(LocaleController.formatString(2131690127, Integer.valueOf((int) (ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress() * 100.0f))), z);
             } else {
                 this.updateLayoutIcon.setIcon(2, true, z);
-                setUpdateText(LocaleController.getString(2131690104), z);
+                setUpdateText(LocaleController.getString(2131690124), z);
             }
             if (this.updateLayout.getTag() != null) {
                 return;

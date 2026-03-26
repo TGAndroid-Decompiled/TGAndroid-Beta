@@ -16,22 +16,25 @@ import org.telegram.ui.ActionBar.Theme;
 
 public class HorizontalRoundTabsLayout extends HorizontalScrollView {
     private static final RectF tmpRect = new RectF();
+    private boolean accent;
     private final Paint bgPaint;
     private final Path clipPath;
     private final Path clipPath2;
     public final LinearLayout linearLayout;
+    private final Theme.ResourcesProvider resourcesProvider;
     private int selectedIndex;
     private final AnimatedFloat selectorEndX;
     private final AnimatedFloat selectorStartX;
     private final TextPaint textPaint;
 
-    public HorizontalRoundTabsLayout(Context context) {
+    public HorizontalRoundTabsLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.bgPaint = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         this.clipPath = new Path();
         this.clipPath2 = new Path();
+        this.resourcesProvider = resourcesProvider;
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setLayerType(0, null);
@@ -75,6 +78,10 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         }
     }
 
+    public void setAccent(boolean z) {
+        this.accent = z;
+    }
+
     public void setTabs(ArrayList arrayList, final MessagesStorage.IntCallback intCallback) {
         this.linearLayout.removeAllViews();
         for (final int i = 0; i < arrayList.size(); i++) {
@@ -101,6 +108,7 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         this.selectorStartX.set(view.getLeft(), false);
         this.selectorEndX.set(view.getRight(), false);
         intCallback.run(i);
+        invalidate();
     }
 
     public void setSelectedIndex(int i, boolean z) {
@@ -118,6 +126,8 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        int color;
+        int color2;
         RectF rectF = tmpRect;
         rectF.set(this.selectorStartX.getValue(), 0.0f, this.selectorEndX.getValue(), getMeasuredHeight());
         this.clipPath.rewind();
@@ -132,19 +142,29 @@ public class HorizontalRoundTabsLayout extends HorizontalScrollView {
         this.clipPath2.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CCW);
         this.clipPath2.close();
         Paint paint = this.bgPaint;
-        int i = Theme.key_windowBackgroundWhiteGrayText;
-        paint.setColor(Theme.getColor(i) & 520093695);
+        if (this.accent) {
+            color = Theme.multAlpha(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 0.1f);
+        } else {
+            color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider) & 520093695;
+        }
+        paint.setColor(color);
         canvas.drawPath(this.clipPath, this.bgPaint);
-        this.textPaint.setColor(Theme.getColor(i));
+        this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
         canvas.save();
         canvas.clipPath(this.clipPath2);
         super.dispatchDraw(canvas);
         canvas.restore();
-        this.textPaint.setColor(Theme.getColor(Theme.key_chats_nameArchived));
+        TextPaint textPaint = this.textPaint;
+        if (this.accent) {
+            color2 = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+        } else {
+            color2 = Theme.getColor(Theme.key_chats_nameArchived, this.resourcesProvider);
+        }
+        textPaint.setColor(color2);
         canvas.save();
         canvas.clipPath(this.clipPath);
-        for (int i2 = 0; i2 < this.linearLayout.getChildCount(); i2++) {
-            View childAt = this.linearLayout.getChildAt(i2);
+        for (int i = 0; i < this.linearLayout.getChildCount(); i++) {
+            View childAt = this.linearLayout.getChildAt(i);
             RectF rectF2 = tmpRect;
             if (rectF2.right >= childAt.getLeft() && rectF2.left <= childAt.getRight()) {
                 canvas.save();

@@ -1001,6 +1001,24 @@ public class LocaleController {
         localeInfo8.builtIn = true;
         this.languages.add(localeInfo8);
         this.languagesDict.put(localeInfo8.shortName, localeInfo8);
+        LocaleInfo localeInfo9 = new LocaleInfo();
+        localeInfo9.name = "Українська";
+        localeInfo9.nameEnglish = "Ukrainian";
+        localeInfo9.pluralLangCode = "uk";
+        localeInfo9.shortName = "uk";
+        localeInfo9.pathToFile = null;
+        localeInfo9.builtIn = true;
+        this.languages.add(localeInfo9);
+        this.languagesDict.put(localeInfo9.shortName, localeInfo9);
+        LocaleInfo localeInfo10 = new LocaleInfo();
+        localeInfo10.name = "Русский";
+        localeInfo10.nameEnglish = "Russian";
+        localeInfo10.pluralLangCode = "ru";
+        localeInfo10.shortName = "ru";
+        localeInfo10.pathToFile = null;
+        localeInfo10.builtIn = true;
+        this.languages.add(localeInfo10);
+        this.languagesDict.put(localeInfo10.shortName, localeInfo10);
         loadOtherLanguages();
         if (this.remoteLanguages.isEmpty()) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1011,35 +1029,35 @@ public class LocaleController {
             });
         }
         for (int i = 0; i < this.otherLanguages.size(); i++) {
-            LocaleInfo localeInfo9 = this.otherLanguages.get(i);
-            this.languages.add(localeInfo9);
-            this.languagesDict.put(localeInfo9.getKey(), localeInfo9);
+            LocaleInfo localeInfo11 = this.otherLanguages.get(i);
+            this.languages.add(localeInfo11);
+            this.languagesDict.put(localeInfo11.getKey(), localeInfo11);
         }
         for (int i2 = 0; i2 < this.remoteLanguages.size(); i2++) {
-            LocaleInfo localeInfo10 = this.remoteLanguages.get(i2);
-            LocaleInfo languageFromDict2 = getLanguageFromDict(localeInfo10.getKey());
+            LocaleInfo localeInfo12 = this.remoteLanguages.get(i2);
+            LocaleInfo languageFromDict2 = getLanguageFromDict(localeInfo12.getKey());
             if (languageFromDict2 != null) {
-                languageFromDict2.pathToFile = localeInfo10.pathToFile;
-                languageFromDict2.version = localeInfo10.version;
-                languageFromDict2.baseVersion = localeInfo10.baseVersion;
-                languageFromDict2.serverIndex = localeInfo10.serverIndex;
+                languageFromDict2.pathToFile = localeInfo12.pathToFile;
+                languageFromDict2.version = localeInfo12.version;
+                languageFromDict2.baseVersion = localeInfo12.baseVersion;
+                languageFromDict2.serverIndex = localeInfo12.serverIndex;
                 this.remoteLanguages.set(i2, languageFromDict2);
             } else {
-                this.languages.add(localeInfo10);
-                this.languagesDict.put(localeInfo10.getKey(), localeInfo10);
+                this.languages.add(localeInfo12);
+                this.languagesDict.put(localeInfo12.getKey(), localeInfo12);
             }
         }
         for (int i3 = 0; i3 < this.unofficialLanguages.size(); i3++) {
-            LocaleInfo localeInfo11 = this.unofficialLanguages.get(i3);
-            LocaleInfo languageFromDict3 = getLanguageFromDict(localeInfo11.getKey());
+            LocaleInfo localeInfo13 = this.unofficialLanguages.get(i3);
+            LocaleInfo languageFromDict3 = getLanguageFromDict(localeInfo13.getKey());
             if (languageFromDict3 != null) {
-                languageFromDict3.pathToFile = localeInfo11.pathToFile;
-                languageFromDict3.version = localeInfo11.version;
-                languageFromDict3.baseVersion = localeInfo11.baseVersion;
-                languageFromDict3.serverIndex = localeInfo11.serverIndex;
+                languageFromDict3.pathToFile = localeInfo13.pathToFile;
+                languageFromDict3.version = localeInfo13.version;
+                languageFromDict3.baseVersion = localeInfo13.baseVersion;
+                languageFromDict3.serverIndex = localeInfo13.serverIndex;
                 this.unofficialLanguages.set(i3, languageFromDict3);
             } else {
-                this.languagesDict.put(localeInfo11.getKey(), localeInfo11);
+                this.languagesDict.put(localeInfo13.getKey(), localeInfo13);
             }
         }
         this.systemDefaultLocale = Locale.getDefault();
@@ -2330,18 +2348,18 @@ public class LocaleController {
             if (sb.length() > 0) {
                 sb.append(":");
             }
-            sb.append(i2 > 10 ? "" : "0");
+            sb.append(i2 >= 10 ? "" : "0");
             sb.append(i2);
         }
         if (sb.length() > 0) {
             sb.append(":");
         }
-        sb.append(i3 > 10 ? "" : "0");
+        sb.append(i3 >= 10 ? "" : "0");
         sb.append(i3);
         if (sb.length() > 0) {
             sb.append(":");
         }
-        sb.append(i4 > 10 ? "" : "0");
+        sb.append(i4 >= 10 ? "" : "0");
         sb.append(i4);
         return sb.toString();
     }
@@ -2555,6 +2573,16 @@ public class LocaleController {
             FileLog.e(e);
             return "LOC_ERR";
         }
+    }
+
+    public static String formatPollEndTime(int i) {
+        String pluralString;
+        if (i < 86400) {
+            pluralString = formatShortDuration(i);
+        } else {
+            pluralString = formatPluralString("Days", i / 86400, new Object[0]);
+        }
+        return formatString(R.string.PollEndsIn, pluralString);
     }
 
     public static String formatShortDuration2(int i) {

@@ -35,13 +35,13 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     static {
         int i = R.drawable.msg_input_attach2;
         int i2 = R.drawable.pagedown;
-        buttonIcons = new int[]{i, i2, R.drawable.mentionbutton, R.drawable.reactionbutton, i2, i2};
+        buttonIcons = new int[]{i, i2, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i2, i2};
     }
 
     public ChatActivitySideControlsButtonsLayout(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundColorProvider blurredBackgroundColorProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
         super(context);
-        this.buttonDescriptions = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
-        this.buttonHolders = new ButtonHolder[6];
+        this.buttonDescriptions = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.buttonHolders = new ButtonHolder[7];
         this.gravity = 83;
         this.blurredBackgroundDrawableViewFactory = blurredBackgroundDrawableViewFactory;
         this.colorProvider = blurredBackgroundColorProvider;
@@ -84,7 +84,9 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     }
 
     public void setButtonCount(int i, int i2, boolean z) {
-        getOrCreateButtonHolder(i).button.setCount(i2, z);
+        ButtonHolder orCreateButtonHolder = getOrCreateButtonHolder(i);
+        orCreateButtonHolder.button.setCount(i2, z);
+        orCreateButtonHolder.counterVisibilityAnimator.setValue(i2 > 0, z);
     }
 
     public void setButtonLoading(int i, boolean z, boolean z2) {
@@ -106,10 +108,12 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
         int i3 = i & 65535;
         if (i2 >= 0) {
             ButtonHolder[] buttonHolderArr = this.buttonHolders;
-            if (i2 >= buttonHolderArr.length || buttonHolderArr[i2] == null || i3 != 1) {
+            if (i2 >= buttonHolderArr.length || buttonHolderArr[i2] == null) {
                 return;
             }
-            checkButtonsPositionsAndVisibility();
+            if (i3 == 1 || i3 == 2) {
+                checkButtonsPositionsAndVisibility();
+            }
         }
     }
 
@@ -124,14 +128,15 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
             ButtonHolder buttonHolder = buttonHolderArr[i];
             if (buttonHolder != null) {
                 float floatValue = buttonHolder.visibilityAnimator.getFloatValue();
+                float floatValue2 = buttonHolder.counterVisibilityAnimator.getFloatValue();
                 buttonHolder.button.setVisibility(floatValue > 0.0f ? 0 : 8);
                 buttonHolder.button.setAlpha(floatValue);
                 buttonHolder.button.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 buttonHolder.button.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, floatValue));
                 if (i != 0) {
-                    buttonHolder.button.setTranslationY((AndroidUtilities.dp(100.0f) * (1.0f - floatValue)) - fDp);
+                    buttonHolder.button.setTranslationY((AndroidUtilities.dp(80.0f) * (1.0f - floatValue)) - fDp);
                 }
-                fDp += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((i == 5 || i == 4) ? 10.0f : 16.0f)) * floatValue;
+                fDp += (AndroidUtilities.dp(44.0f) + AndroidUtilities.dp((floatValue2 * 10.0f) + 10.0f)) * floatValue;
             }
             i++;
         }
@@ -152,7 +157,9 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
         int i2;
         int i3;
         if (this.buttonHolders[i] == null) {
-            BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, i == 0 ? CubicBezierInterpolator.EASE_OUT_QUINT : AnimatorUtils.DECELERATE_INTERPOLATOR, i == 0 ? 300L : 280L);
+            int i4 = i << 16;
+            BoolAnimator boolAnimator = new BoolAnimator(i4 | 1, this, i == 0 ? CubicBezierInterpolator.EASE_OUT_QUINT : AnimatorUtils.DECELERATE_INTERPOLATOR, i == 0 ? 300L : 280L);
+            BoolAnimator boolAnimator2 = new BoolAnimator(i4 | 2, this, i == 0 ? CubicBezierInterpolator.EASE_OUT_QUINT : AnimatorUtils.DECELERATE_INTERPOLATOR, i == 0 ? 300L : 280L);
             if (i == 0) {
                 i2 = 50;
                 i3 = 32;
@@ -178,14 +185,14 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
                     return this.f$0.lambda$getOrCreateButtonHolder$1(i, view);
                 }
             });
-            if (i == 5) {
+            if (i == 6) {
                 chatActivityBlurredRoundPageDownButtonCreate.reverseIconByY();
             }
             if (i == 1) {
                 chatActivityBlurredRoundPageDownButtonCreate.reverseCounter();
             }
             addView(chatActivityBlurredRoundPageDownButtonCreate, LayoutHelper.createFrame(i2, i2 + 8, this.gravity));
-            this.buttonHolders[i] = new ButtonHolder(chatActivityBlurredRoundPageDownButtonCreate, boolAnimator);
+            this.buttonHolders[i] = new ButtonHolder(chatActivityBlurredRoundPageDownButtonCreate, boolAnimator, boolAnimator2);
             checkButtonsPositionsAndVisibility();
         }
         return this.buttonHolders[i];
@@ -208,11 +215,13 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
 
     private static class ButtonHolder {
         public final ChatActivityBlurredRoundPageDownButton button;
+        public final BoolAnimator counterVisibilityAnimator;
         public final BoolAnimator visibilityAnimator;
 
-        private ButtonHolder(ChatActivityBlurredRoundPageDownButton chatActivityBlurredRoundPageDownButton, BoolAnimator boolAnimator) {
+        private ButtonHolder(ChatActivityBlurredRoundPageDownButton chatActivityBlurredRoundPageDownButton, BoolAnimator boolAnimator, BoolAnimator boolAnimator2) {
             this.button = chatActivityBlurredRoundPageDownButton;
             this.visibilityAnimator = boolAnimator;
+            this.counterVisibilityAnimator = boolAnimator2;
         }
     }
 }

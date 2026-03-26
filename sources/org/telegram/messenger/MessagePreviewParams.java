@@ -61,7 +61,7 @@ public class MessagePreviewParams {
         public boolean hasText;
         public ArrayList<MessageObject> messages;
         private Boolean out;
-        public ArrayList<TLRPC.TL_pollAnswerVoters> pollChosenAnswers;
+        public ArrayList<TLRPC.PollAnswerVoters> pollChosenAnswers;
         public ArrayList<MessageObject> previewMessages;
         public SparseBooleanArray selectedIds;
         private int type;
@@ -131,18 +131,18 @@ public class MessagePreviewParams {
                     if (messageObject.canUnvote()) {
                         int size = tL_messageMediaPoll.results.results.size();
                         for (int i5 = 0; i5 < size; i5++) {
-                            TLRPC.TL_pollAnswerVoters tL_pollAnswerVoters = tL_messageMediaPoll.results.results.get(i5);
-                            if (tL_pollAnswerVoters.chosen) {
-                                TLRPC.TL_pollAnswerVoters tL_pollAnswerVoters2 = new TLRPC.TL_pollAnswerVoters();
-                                tL_pollAnswerVoters2.chosen = tL_pollAnswerVoters.chosen;
-                                tL_pollAnswerVoters2.correct = tL_pollAnswerVoters.correct;
-                                tL_pollAnswerVoters2.flags = tL_pollAnswerVoters.flags;
-                                tL_pollAnswerVoters2.option = tL_pollAnswerVoters.option;
-                                tL_pollAnswerVoters2.voters = tL_pollAnswerVoters.voters;
-                                this.pollChosenAnswers.add(tL_pollAnswerVoters2);
-                                previewMediaPoll.results.results.add(tL_pollAnswerVoters2);
+                            TLRPC.PollAnswerVoters pollAnswerVoters = tL_messageMediaPoll.results.results.get(i5);
+                            if (pollAnswerVoters.chosen) {
+                                TLRPC.PollAnswerVoters pollAnswerVoters2 = new TLRPC.PollAnswerVoters();
+                                pollAnswerVoters2.chosen = pollAnswerVoters.chosen;
+                                pollAnswerVoters2.correct = pollAnswerVoters.correct;
+                                pollAnswerVoters2.flags = pollAnswerVoters.flags;
+                                pollAnswerVoters2.option = pollAnswerVoters.option;
+                                pollAnswerVoters2.voters = pollAnswerVoters.voters;
+                                this.pollChosenAnswers.add(pollAnswerVoters2);
+                                previewMediaPoll.results.results.add(pollAnswerVoters2);
                             } else {
-                                previewMediaPoll.results.results.add(tL_pollAnswerVoters);
+                                previewMediaPoll.results.results.add(pollAnswerVoters);
                             }
                         }
                     }

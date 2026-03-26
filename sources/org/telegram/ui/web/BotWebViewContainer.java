@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -25,6 +26,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Message;
 import android.text.TextUtils;
@@ -67,6 +69,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -77,6 +80,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
@@ -87,6 +91,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -100,6 +105,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
@@ -112,19 +118,24 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.CameraScanActivity;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.ui.Components.CreateBotAlert;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.MultiContactsSelectorBottomSheet;
 import org.telegram.ui.OAuthSheet;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
+import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.bots.BotBiometry;
 import org.telegram.ui.bots.BotDownloads;
 import org.telegram.ui.bots.BotLocation;
@@ -268,7 +279,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.notifyLocationChecked = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$51();
+                this.f$0.lambda$new$59();
             }
         };
         this.lastDialogType = -1;
@@ -286,11 +297,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00451(this);
+                this.imageReceiver = new C00461(this);
             }
 
-            class C00451 extends ImageReceiver {
-                C00451(View view) {
+            class C00461 extends ImageReceiver {
+                C00461(View view) {
                     super(view);
                 }
 
@@ -1411,7 +1422,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return null;
     }
 
-    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r41, java.lang.String r42, java.lang.String r43) throws org.json.JSONException, java.lang.NumberFormatException {
+    public void onEventReceived(final org.telegram.ui.web.BotWebViewContainer.BotWebViewProxy r40, java.lang.String r41, java.lang.String r42) throws org.json.JSONException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onEventReceived(org.telegram.ui.web.BotWebViewContainer$BotWebViewProxy, java.lang.String, java.lang.String):void");
     }
 
@@ -1798,7 +1809,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public static void lambda$onEventReceived$34(File file, int[] iArr, Runnable runnable) {
-        AnimatedFileDrawable.getVideoInfo(file.getAbsolutePath(), iArr);
+        AnimatedFileDrawable.getVideoInfo(file.getAbsolutePath(), iArr, 0L);
         AndroidUtilities.runOnUIThread(runnable);
     }
 
@@ -1921,6 +1932,268 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onVerifiedAge.run(Boolean.valueOf(z), Double.valueOf(d), str, Double.valueOf(d2));
     }
 
+    public void lambda$onEventReceived$57(final String str, TLRPC.KeyboardButton keyboardButton, TLRPC.TL_error tL_error) {
+        int i;
+        if (!(keyboardButton instanceof TLRPC.TL_keyboardButtonRequestPeer)) {
+            if (tL_error != null) {
+                BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+                notifyEvent("requested_chat_failed", obj("req_id", str));
+                return;
+            } else {
+                BulletinFactory.of(this, this.resourcesProvider).showForError("UNKNOWN_BUTTON");
+                notifyEvent("requested_chat_failed", obj("req_id", str));
+                return;
+            }
+        }
+        final TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer = (TLRPC.TL_keyboardButtonRequestPeer) keyboardButton;
+        TLRPC.RequestPeerType requestPeerType = tL_keyboardButtonRequestPeer.peer_type;
+        if (requestPeerType instanceof TLRPC.TL_requestPeerTypeCreateBot) {
+            CreateBotAlert.show(getContext(), this.currentAccount, this.botUser, (TLRPC.TL_requestPeerTypeCreateBot) requestPeerType, false, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    this.f$0.lambda$onEventReceived$51(str, tL_keyboardButtonRequestPeer, (TLRPC.User) obj);
+                }
+            }, this.resourcesProvider);
+            return;
+        }
+        if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i = tL_keyboardButtonRequestPeer.max_quantity) > 1) {
+            TLRPC.TL_requestPeerTypeUser tL_requestPeerTypeUser = (TLRPC.TL_requestPeerTypeUser) requestPeerType;
+            final boolean[] zArr = new boolean[1];
+            MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheetOpen = MultiContactsSelectorBottomSheet.open(tL_requestPeerTypeUser.bot, tL_requestPeerTypeUser.premium, i, new MultiContactsSelectorBottomSheet.SelectorListener() {
+                @Override
+                public final void onUserSelected(List list) {
+                    this.f$0.lambda$onEventReceived$53(zArr, str, tL_keyboardButtonRequestPeer, list);
+                }
+            });
+            if (multiContactsSelectorBottomSheetOpen != null) {
+                multiContactsSelectorBottomSheetOpen.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        this.f$0.lambda$onEventReceived$54(zArr, str, dialogInterface);
+                    }
+                });
+                return;
+            }
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("onlySelect", true);
+        bundle.putInt("dialogsType", 15);
+        bundle.putLong("requestPeerBotId", this.botUser.id);
+        try {
+            SerializedData serializedData = new SerializedData(tL_keyboardButtonRequestPeer.peer_type.getObjectSize());
+            tL_keyboardButtonRequestPeer.peer_type.serializeToStream(serializedData);
+            bundle.putByteArray("requestPeerType", serializedData.toByteArray());
+            serializedData.cleanup();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        final boolean[] zArr2 = new boolean[1];
+        DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
+            @Override
+            public void onFragmentDestroy() {
+                super.onFragmentDestroy();
+                boolean[] zArr3 = zArr2;
+                if (zArr3[0]) {
+                    return;
+                }
+                zArr3[0] = true;
+                BotWebViewContainer.this.notifyEvent("requested_chat_failed", BotWebViewContainer.obj());
+            }
+        };
+        dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+            @Override
+            public boolean canSelectStories() {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+            }
+
+            @Override
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
+                return this.f$0.lambda$onEventReceived$56(zArr2, str, tL_keyboardButtonRequestPeer, dialogsActivity2, arrayList, charSequence, z, z2, i2, i3, topicsFragment);
+            }
+
+            @Override
+            public boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
+            }
+        });
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null) {
+            return;
+        }
+        BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+        bottomSheetParams.transitionFromLeft = true;
+        bottomSheetParams.allowNestedScroll = false;
+        safeLastFragment.showAsSheet(dialogsActivity, bottomSheetParams);
+    }
+
+    public void lambda$onEventReceived$51(final String str, TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer, final TLRPC.User user) {
+        if (user == null) {
+            notifyEvent("requested_chat_failed", obj("req_id", str));
+            return;
+        }
+        TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+        tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(this.botUser);
+        tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+        tL_messages_sendBotRequestedPeer.button_id = tL_keyboardButtonRequestPeer.button_id;
+        tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInputPeer(user));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$onEventReceived$50(str, user, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+            }
+        });
+        notifyEvent("requested_chat_sent", obj("req_id", str));
+    }
+
+    public void lambda$onEventReceived$50(String str, TLRPC.User user, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+        if (updates == null) {
+            if (tL_error != null) {
+                BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+                notifyEvent("requested_chat_failed", obj("req_id", str));
+                return;
+            } else {
+                BulletinFactory.of(this, this.resourcesProvider).showForError("UNKNOWN_BUTTON");
+                notifyEvent("requested_chat_failed", obj("req_id", str));
+                return;
+            }
+        }
+        MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
+        notifyEvent("requested_chat_sent", obj("req_id", str));
+        long j = this.botUser.id;
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", user.id);
+        AnonymousClass6 anonymousClass6 = new AnonymousClass6(bundle, user, j);
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            safeLastFragment.presentFragment(anonymousClass6);
+        }
+        Delegate delegate = this.delegate;
+        if (delegate != null) {
+            delegate.onCloseToTabs();
+        }
+    }
+
+    class AnonymousClass6 extends ChatActivity {
+        private boolean shownToast;
+        final long val$managerId;
+        final TLRPC.User val$newBot;
+
+        AnonymousClass6(Bundle bundle, TLRPC.User user, long j) {
+            super(bundle);
+            this.val$newBot = user;
+            this.val$managerId = j;
+        }
+
+        @Override
+        public void onBecomeFullyVisible() throws Resources.NotFoundException {
+            super.onBecomeFullyVisible();
+            if (this.shownToast) {
+                return;
+            }
+            this.shownToast = true;
+            BulletinFactory bulletinFactoryOf = BulletinFactory.of(this);
+            int i = R.raw.contact_check;
+            String string = LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.val$newBot));
+            String string2 = LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(BotWebViewContainer.this.botUser));
+            final long j = this.val$managerId;
+            bulletinFactoryOf.createSimpleBulletin(i, string, AndroidUtilities.replaceSingleTag(string2, new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onBecomeFullyVisible$0(j);
+                }
+            })).show();
+        }
+
+        public void lambda$onBecomeFullyVisible$0(long j) {
+            presentFragment(ChatActivity.of(j));
+        }
+    }
+
+    public void lambda$onEventReceived$53(boolean[] zArr, final String str, TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer, List list) {
+        if (list == null || list.isEmpty()) {
+            return;
+        }
+        zArr[0] = true;
+        TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+        MessagesController.getInstance(this.currentAccount);
+        tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(this.botUser);
+        tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+        tL_messages_sendBotRequestedPeer.button_id = tL_keyboardButtonRequestPeer.button_id;
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(this.currentAccount).getInputPeer(((Long) it.next()).longValue()));
+        }
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$onEventReceived$52(str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+            }
+        });
+    }
+
+    public void lambda$onEventReceived$52(String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+        if (updates != null) {
+            MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
+            notifyEvent("requested_chat_sent", obj("req_id", str));
+        } else if (tL_error != null) {
+            BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+            notifyEvent("requested_chat_failed", obj("req_id", str));
+        } else {
+            BulletinFactory.of(this, this.resourcesProvider).showForError("UNKNOWN_BUTTON");
+            notifyEvent("requested_chat_failed", obj("req_id", str));
+        }
+    }
+
+    public void lambda$onEventReceived$54(boolean[] zArr, String str, DialogInterface dialogInterface) {
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        notifyEvent("requested_chat_failed", obj("req_id", str));
+    }
+
+    public boolean lambda$onEventReceived$56(boolean[] zArr, final String str, TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        if (arrayList != null && !arrayList.isEmpty()) {
+            zArr[0] = true;
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            MessagesController.getInstance(this.currentAccount);
+            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(this.botUser);
+            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
+            tL_messages_sendBotRequestedPeer.button_id = tL_keyboardButtonRequestPeer.button_id;
+            HashSet hashSet = new HashSet();
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                hashSet.add(Long.valueOf(((MessagesStorage.TopicKey) it.next()).dialogId));
+            }
+            Iterator it2 = hashSet.iterator();
+            while (it2.hasNext()) {
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(this.currentAccount).getInputPeer(((Long) it2.next()).longValue()));
+            }
+            ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$onEventReceived$55(str, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                }
+            });
+        }
+        dialogsActivity.finishFragment();
+        return true;
+    }
+
+    public void lambda$onEventReceived$55(String str, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
+        if (updates != null) {
+            MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
+            notifyEvent("requested_chat_sent", obj("req_id", str));
+        } else if (tL_error != null) {
+            BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
+            notifyEvent("requested_chat_failed", obj("req_id", str));
+        } else {
+            BulletinFactory.of(this, this.resourcesProvider).showForError("UNKNOWN_BUTTON");
+            notifyEvent("requested_chat_failed", obj("req_id", str));
+        }
+    }
+
     private void setStorageKey(BotStorage botStorage, String str, String str2, String str3) throws JSONException {
         if (botStorage == null || this.botUser == null) {
             return;
@@ -2013,7 +2286,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                         botStorage.showChooseStorage(getContext(), storagesWithKey, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj) {
-                                this.f$0.lambda$restoreStorageKey$50(str3, string, botStorage, strOptString, str2, (String) obj);
+                                this.f$0.lambda$restoreStorageKey$58(str3, string, botStorage, strOptString, str2, (String) obj);
                             }
                         });
                     }
@@ -2032,7 +2305,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$restoreStorageKey$50(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
+    public void lambda$restoreStorageKey$58(String str, String str2, BotStorage botStorage, String str3, String str4, String str5) {
         if (str5 == null) {
             notifyEvent(str, obj("req_id", str2, "error", "RESTORE_CANCELLED"));
             return;
@@ -2140,7 +2413,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         BulletinFactory.of(this, this.resourcesProvider).createSimpleBulletin(R.raw.error, str).show();
     }
 
-    public void lambda$new$51() {
+    public void lambda$new$59() {
         notifyEvent("location_checked", this.location.checkObject());
     }
 
@@ -2166,7 +2439,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$showDialog$52(runnable, dialogInterface);
+                this.f$0.lambda$showDialog$60(runnable, dialogInterface);
             }
         });
         this.currentDialog = alertDialog;
@@ -2181,7 +2454,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         return true;
     }
 
-    public void lambda$showDialog$52(Runnable runnable, DialogInterface dialogInterface) {
+    public void lambda$showDialog$60(Runnable runnable, DialogInterface dialogInterface) {
         if (runnable != null) {
             runnable.run();
         }

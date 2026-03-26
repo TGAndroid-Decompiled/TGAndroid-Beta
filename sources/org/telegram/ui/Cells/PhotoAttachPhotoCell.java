@@ -129,9 +129,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context) {
             private Paint crossfadePaint = new Paint(1);
             private long lastUpdate;
+            private Drawable livePhotoIcon;
+            private Drawable livePhotoIconOff;
 
             @Override
             protected void onDraw(Canvas canvas) {
+                Drawable drawable;
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
                 ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
                 if (imageReceiver == null) {
@@ -172,26 +175,41 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     }
                 }
                 if (PhotoAttachPhotoCell.this.imageViewCrossfadeProgress == 1.0f || PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot == null) {
-                    if (PhotoAttachPhotoCell.this.imageViewCrossfadeProgress != 1.0f || PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot == null) {
-                        return;
+                    if (PhotoAttachPhotoCell.this.imageViewCrossfadeProgress == 1.0f && PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot != null) {
+                        PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot.recycle();
+                        PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot = null;
+                        PhotoAttachPhotoCell.this.crossfadeDuration = null;
+                        invalidate();
                     }
-                    PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot.recycle();
-                    PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot = null;
-                    PhotoAttachPhotoCell.this.crossfadeDuration = null;
+                } else {
+                    this.crossfadePaint.setAlpha((int) (CubicBezierInterpolator.DEFAULT.getInterpolation(1.0f - PhotoAttachPhotoCell.this.imageViewCrossfadeProgress) * 255.0f));
+                    canvas.drawBitmap(PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot, 0.0f, 0.0f, this.crossfadePaint);
+                    long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
+                    float fFloatValue = PhotoAttachPhotoCell.this.crossfadeDuration == null ? 250.0f : PhotoAttachPhotoCell.this.crossfadeDuration.floatValue();
+                    PhotoAttachPhotoCell photoAttachPhotoCell = PhotoAttachPhotoCell.this;
+                    photoAttachPhotoCell.imageViewCrossfadeProgress = Math.min(1.0f, photoAttachPhotoCell.imageViewCrossfadeProgress + (jMin / fFloatValue));
+                    this.lastUpdate = System.currentTimeMillis();
                     invalidate();
+                    if (PhotoAttachPhotoCell.this.spoilerEffect2 != null) {
+                        PhotoAttachPhotoCell.this.container.invalidate();
+                    }
+                }
+                if (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isLivePhoto) {
                     return;
                 }
-                this.crossfadePaint.setAlpha((int) (CubicBezierInterpolator.DEFAULT.getInterpolation(1.0f - PhotoAttachPhotoCell.this.imageViewCrossfadeProgress) * 255.0f));
-                canvas.drawBitmap(PhotoAttachPhotoCell.this.imageViewCrossfadeSnapshot, 0.0f, 0.0f, this.crossfadePaint);
-                long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
-                float fFloatValue = PhotoAttachPhotoCell.this.crossfadeDuration == null ? 250.0f : PhotoAttachPhotoCell.this.crossfadeDuration.floatValue();
-                PhotoAttachPhotoCell photoAttachPhotoCell = PhotoAttachPhotoCell.this;
-                photoAttachPhotoCell.imageViewCrossfadeProgress = Math.min(1.0f, photoAttachPhotoCell.imageViewCrossfadeProgress + (jMin / fFloatValue));
-                this.lastUpdate = System.currentTimeMillis();
-                invalidate();
-                if (PhotoAttachPhotoCell.this.spoilerEffect2 != null) {
-                    PhotoAttachPhotoCell.this.container.invalidate();
+                if (PhotoAttachPhotoCell.this.photoEntry.discardLivePhoto) {
+                    if (this.livePhotoIconOff == null) {
+                        this.livePhotoIconOff = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
+                    }
+                    drawable = this.livePhotoIconOff;
+                } else {
+                    if (this.livePhotoIcon == null) {
+                        this.livePhotoIcon = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
+                    }
+                    drawable = this.livePhotoIcon;
                 }
+                drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
+                drawable.draw(canvas);
             }
 
             @Override
@@ -242,11 +260,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     public void setHighQuality(boolean z) {
-        if (this.highQuality != z) {
-            this.highQuality = z;
+        boolean z2 = z && isChecked();
+        if (this.highQuality != z2) {
+            this.highQuality = z2;
             MediaController.PhotoEntry photoEntry = this.photoEntry;
             if (photoEntry != null) {
-                if (photoEntry.isVideo) {
+                if (photoEntry.isVideo && !photoEntry.isLivePhoto) {
                     this.imageView.setOrientation(0, true);
                     this.videoInfoContainer.setVisibility(0);
                     this.videoPlayImageView.setVisibility(0);
@@ -254,7 +273,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     this.videoTextView.setText(AndroidUtilities.formatShortDuration(this.photoEntry.duration));
                     return;
                 }
-                if (photoEntry.highQuality) {
+                if (photoEntry.isHighQuality()) {
                     this.videoInfoContainer.setVisibility(0);
                     this.videoPlayImageView.setVisibility(8);
                     ((FrameLayout.LayoutParams) this.videoTextView.getLayoutParams()).leftMargin = AndroidUtilities.dp(0.0f);
@@ -441,13 +460,13 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.pressed = false;
         this.photoEntry = photoEntry;
         this.isLast = z3;
-        if (photoEntry.isVideo) {
+        if (photoEntry.isVideo && !photoEntry.isLivePhoto) {
             this.imageView.setOrientation(0, true);
             this.videoInfoContainer.setVisibility(0);
             this.videoPlayImageView.setVisibility(0);
             ((FrameLayout.LayoutParams) this.videoTextView.getLayoutParams()).leftMargin = AndroidUtilities.dp(13.0f);
             this.videoTextView.setText(AndroidUtilities.formatShortDuration(this.photoEntry.duration));
-        } else if (photoEntry.highQuality) {
+        } else if (photoEntry.isHighQuality() && isChecked()) {
             this.videoInfoContainer.setVisibility(0);
             this.videoPlayImageView.setVisibility(8);
             ((FrameLayout.LayoutParams) this.videoTextView.getLayoutParams()).leftMargin = AndroidUtilities.dp(0.0f);
@@ -465,7 +484,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             if (str2 != null) {
                 this.imageView.setImage(str2, null, Theme.chat_attachEmptyDrawable);
             } else if (photoEntry2.path != null) {
-                if (photoEntry2.isVideo) {
+                if (photoEntry2.isVideo && !photoEntry2.isLivePhoto) {
                     this.imageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
                 } else {
                     this.imageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
@@ -475,15 +494,16 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
             }
         }
-        if (z2 && PhotoViewer.isShowingImage(this.photoEntry.path)) {
-            z4 = true;
-        }
-        this.imageView.getImageReceiver().setVisible(!z4, true);
-        this.checkBox.setAlpha(z4 ? 0.0f : 1.0f);
-        this.videoInfoContainer.setAlpha(z4 ? 0.0f : 1.0f);
+        boolean z5 = z2 && PhotoViewer.isShowingImage(this.photoEntry.path);
+        this.imageView.getImageReceiver().setVisible(!z5, true);
+        this.checkBox.setAlpha(z5 ? 0.0f : 1.0f);
+        this.videoInfoContainer.setAlpha(z5 ? 0.0f : 1.0f);
         requestLayout();
         setHasSpoiler(photoEntry.hasSpoiler);
-        setHighQuality(photoEntry.highQuality);
+        if (photoEntry.isHighQuality() && isChecked()) {
+            z4 = true;
+        }
+        setHighQuality(z4);
         setStarsPrice(photoEntry.starsAmount, z);
     }
 
@@ -540,6 +560,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     public void setChecked(int i, final boolean z, boolean z2) {
+        boolean z3 = false;
         this.checkBox.setChecked(i, z, z2);
         if (this.itemSizeChanged) {
             AnimatorSet animatorSet = this.animator;
@@ -574,11 +595,16 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     }
                 });
                 this.animator.start();
-                return;
+            } else {
+                this.container.setScaleX(z ? 0.787f : 1.0f);
+                this.container.setScaleY(z ? 0.787f : 1.0f);
             }
-            this.container.setScaleX(z ? 0.787f : 1.0f);
-            this.container.setScaleY(z ? 0.787f : 1.0f);
         }
+        MediaController.PhotoEntry photoEntry = this.photoEntry;
+        if (photoEntry != null && photoEntry.isHighQuality() && isChecked()) {
+            z3 = true;
+        }
+        setHighQuality(z3);
     }
 
     public void setNum(int i) {
@@ -665,7 +691,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         accessibilityNodeInfo.setEnabled(true);
         StringBuilder sb = new StringBuilder();
         MediaController.PhotoEntry photoEntry = this.photoEntry;
-        if (photoEntry != null && photoEntry.isVideo) {
+        if (photoEntry != null && photoEntry.isLivePhoto) {
+            sb.append(LocaleController.getString(R.string.AttachLivePhoto));
+        } else if (photoEntry != null && photoEntry.isVideo) {
             sb.append(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(this.photoEntry.duration));
         } else {
             sb.append(LocaleController.getString(R.string.AttachPhoto));

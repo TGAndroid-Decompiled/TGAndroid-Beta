@@ -8234,7 +8234,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             };
             frameLayout.addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f));
             if (!z2) {
-                HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context);
+                HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context, resourcesProvider);
                 this.currencyTabsView = horizontalRoundTabsLayout;
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(LocaleController.getString(R.string.Gift2BuyInStars));

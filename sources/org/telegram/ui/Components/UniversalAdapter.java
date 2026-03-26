@@ -50,6 +50,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     private final boolean dialog;
     protected Utilities.Callback2 fillItems;
     private final ArrayList items;
+    public int itemsOffset;
     protected final RecyclerListView listView;
     private final ArrayList oldItems;
     private Utilities.Callback2 onReordered;
@@ -67,6 +68,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         this.applyBackground = true;
         this.oldItems = new ArrayList();
         this.items = new ArrayList();
+        this.itemsOffset = 0;
         this.whiteSections = new ArrayList();
         this.reorderSections = new ArrayList();
         this.listView = recyclerListView;
@@ -98,7 +100,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public void whiteSectionStart() {
         Section section = new Section();
         this.currentWhiteSection = section;
-        section.start = this.items.size();
+        section.start = this.itemsOffset + this.items.size();
         Section section2 = this.currentWhiteSection;
         section2.end = -1;
         this.whiteSections.add(section2);
@@ -107,7 +109,8 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public void whiteSectionEnd() {
         Section section = this.currentWhiteSection;
         if (section != null) {
-            section.end = Math.max(0, this.items.size() - 1);
+            section.end = Math.max(0, (this.itemsOffset + this.items.size()) - 1);
+            this.currentWhiteSection = null;
         }
     }
 
@@ -226,6 +229,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
+        this.currentWhiteSection = null;
         this.whiteSections.clear();
         this.reorderSections.clear();
         Utilities.Callback2 callback2 = this.fillItems;
@@ -349,12 +353,18 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             switch (i) {
                 case -4:
                 case -1:
-                    fullscreenCustomFrameLayout = new FrameLayout(this.context) {
+                    View view = new FrameLayout(this.context) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
                         }
                     };
+                    fullscreenCustomFrameLayout = view;
+                    if (i == -4) {
+                        view.setTag(-33024);
+                        fullscreenCustomFrameLayout = view;
+                        break;
+                    }
                     break;
                 case -3:
                     fullscreenCustomFrameLayout = new FullscreenCustomFrameLayout(this.context);
@@ -464,7 +474,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     fullscreenCustomFrameLayout = userCell2;
                     break;
                 case 28:
-                    fullscreenCustomFrameLayout = new View(this.context);
+                    fullscreenCustomFrameLayout = new SpaceView(this.context);
                     break;
                 case 29:
                     fullscreenCustomFrameLayout = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
@@ -703,6 +713,28 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
 
         public void setMinusPadding(boolean z) {
             this.minusPadding = z;
+        }
+    }
+
+    public static class SpaceView extends View {
+        private int height;
+
+        public SpaceView(Context context) {
+            super(context);
+            setTag(-33024);
+        }
+
+        public void setHeight(int i) {
+            if (this.height == i) {
+                return;
+            }
+            this.height = i;
+            requestLayout();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.height, 1073741824));
         }
     }
 }

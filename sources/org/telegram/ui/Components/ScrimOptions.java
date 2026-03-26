@@ -15,6 +15,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.style.CharacterStyle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -395,7 +396,11 @@ public class ScrimOptions extends Dialog {
         }
     }
 
-    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r31, android.text.style.CharacterStyle r32, java.lang.CharSequence r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrimOptions.setScrim(org.telegram.ui.Cells.ChatMessageCell, android.text.style.CharacterStyle, java.lang.CharSequence):void");
+    public void setScrim(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, CharSequence charSequence) {
+        setScrim(chatMessageCell, characterStyle, charSequence, false);
+    }
+
+    public void setScrim(final org.telegram.ui.Cells.ChatMessageCell r31, android.text.style.CharacterStyle r32, java.lang.CharSequence r33, boolean r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ScrimOptions.setScrim(org.telegram.ui.Cells.ChatMessageCell, android.text.style.CharacterStyle, java.lang.CharSequence, boolean):void");
     }
 }

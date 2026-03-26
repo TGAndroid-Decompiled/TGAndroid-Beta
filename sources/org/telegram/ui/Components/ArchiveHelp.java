@@ -57,15 +57,15 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         linearLayout.addView(makeHint(R.drawable.msg_archive_hide, LocaleController.getString("ArchiveHintSection2"), LocaleController.getString("ArchiveHintSection2Info"), resourcesProvider), LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 16));
         linearLayout.addView(makeHint(R.drawable.msg_archive_stories, LocaleController.getString("ArchiveHintSection3"), LocaleController.getString("ArchiveHintSection3Info"), resourcesProvider), LayoutHelper.createLinear(-1, -2, 7, 32, 0, 32, 16));
         if (runnable2 != null) {
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-            buttonWithCounterView.setText(LocaleController.getString("GotIt"), false);
-            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+            round.setText(LocaleController.getString("GotIt"), false);
+            round.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     runnable2.run();
                 }
             });
-            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 18.0f, 14.0f, 0.0f));
+            linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 14.0f, 18.0f, 14.0f, 0.0f));
         }
     }
 

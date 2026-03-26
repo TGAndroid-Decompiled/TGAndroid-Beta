@@ -256,11 +256,7 @@ public class SliderView extends View {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        if (this.currentType == 3) {
-            this.r = AndroidUtilities.dpf2(8.0f);
-        } else {
-            this.r = AndroidUtilities.dpf2(6.33f);
-        }
+        this.r = AndroidUtilities.dp(12.0f);
         this.textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         this.text.setTextSize(AndroidUtilities.dp(15.0f));
         int i3 = this.fixWidth;

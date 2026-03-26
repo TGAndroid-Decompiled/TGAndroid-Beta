@@ -3035,7 +3035,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
 
     public void lambda$drawSectionsBackgrounds$5(Canvas canvas, Float f, Float f2, Float f3, Float f4, Float f5) {
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(this.sectionsItemDecoration.padding, f.floatValue(), getWidth() - this.sectionsItemDecoration.padding, f2.floatValue());
+        rectF.set(getPaddingLeft() + this.sectionsItemDecoration.padding, f.floatValue(), (getWidth() - this.sectionsItemDecoration.padding) - getPaddingRight(), f2.floatValue());
         this.drawSectionBackground.run(canvas, rectF, f3, f4, f5);
     }
 

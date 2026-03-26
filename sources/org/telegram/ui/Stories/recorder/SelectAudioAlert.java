@@ -2,66 +2,122 @@ package org.telegram.ui.Stories.recorder;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.RectFMergeBounding;
+import org.telegram.messenger.utils.TextWatcherImpl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EditTextCaption;
+import org.telegram.ui.Components.FragmentSearchField;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.Stories.DarkThemeResourceProvider;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
+import org.telegram.ui.Components.blur3.RenderNodeWithHash;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
+import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 
-public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
+public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, FactorAnimator.Target {
     private UniversalAdapter adapter;
+    private final BoolAnimator animatorFadeVisible;
     private MessageObject downloadingMessageObject;
+    private final View fadeView;
+    private boolean failedToResolveGlobalAudioBot;
+    private final FrameLayout frameLayout;
+    private final ArrayList globalAudio;
+    private TLRPC.User globalAudioBot;
+    private boolean globalAudioHasMore;
+    private int globalAudioId;
+    private String globalAudioOffset;
+    private final IBlur3Capture iBlur3Capture;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryFade;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryFrostedLiquidGlass;
+    private final BlurredBackgroundDrawableViewFactory iBlur3FactoryLiquidGlass;
+    private final RectF iBlur3PositionActionBar;
+    private final ArrayList iBlur3Positions;
+    private final ArrayList iBlur3PositionsMerged;
+    private final BlurredBackgroundSourceColor iBlur3SourceColor;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlass;
+    private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
+    private String lastLoadingGlobalAudioQuery;
+    private String lastLoadingSharedAudioQuery;
+    private Runnable loadGlobalAudioRunnable;
     private Runnable loadSharedAudioRunnable;
+    private boolean loadingGlobalAudio;
+    private int loadingGlobalAudioRequestId;
     private boolean loadingLocalAudio;
     private boolean loadingSharedAudio;
-    private final boolean local;
+    private int loadingSharedAudioRequestId;
+    private boolean local;
     private final ArrayList localAudio;
     private int nextSearchRate;
     private final Utilities.Callback onAudioSelected;
     private final SelectAudioAlert parentAlert;
+    private MessageObject playingAudio;
     private String query;
+    private boolean resolvingGlobalAudioBot;
     private final MessagesController.SavedMusicList savedMusicList;
-    private final FrameLayout searchField;
-    private final FrameLayout searchFieldContainer;
-    private final EditTextCaption searchFieldEditText;
+    private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
+    private final FragmentSearchField searchField;
     private final ArrayList sharedAudio;
     private boolean sharedAudioHasMore;
     private final int tag;
+    private boolean willLoadGlobalAudio;
+    private boolean willLoadSharedAudio;
+    private boolean withoutSavedMusic;
+
+    @Override
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+    }
 
     @Override
     public void onFailedDownload(String str, boolean z) {
@@ -75,108 +131,232 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
     public void onProgressUpload(String str, long j, long j2, boolean z) {
     }
 
-    public SelectAudioAlert(Context context, Utilities.Callback callback) {
-        this(context, false, null, callback);
+    public SelectAudioAlert(Context context, Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+        this(context, false, null, callback, resourcesProvider);
     }
 
-    public SelectAudioAlert(Context context, final boolean z, SelectAudioAlert selectAudioAlert, final Utilities.Callback callback) {
-        super(context, null, true, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, new DarkThemeResourceProvider());
+    public SelectAudioAlert(Context context, boolean z, SelectAudioAlert selectAudioAlert, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+        super(context, null, true, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.animatorFadeVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 380L);
         this.localAudio = new ArrayList();
         this.sharedAudio = new ArrayList();
+        this.globalAudio = new ArrayList();
+        this.loadingSharedAudioRequestId = -1;
         this.loadSharedAudioRunnable = new Runnable() {
             @Override
             public final void run() {
                 this.f$0.loadSharedAudio();
             }
         };
+        this.loadingGlobalAudioRequestId = -1;
+        this.globalAudioId = -2000000000;
+        this.loadGlobalAudioRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.loadGlobalAudio();
+            }
+        };
+        ArrayList arrayList = new ArrayList();
+        this.iBlur3Positions = arrayList;
+        RectF rectF = new RectF();
+        this.iBlur3PositionActionBar = rectF;
+        arrayList.add(rectF);
+        this.iBlur3PositionsMerged = new ArrayList();
         this.topPadding = 0.35f;
         fixNavigationBar();
         setSlidingActionBar();
         this.headerPaddingTop = AndroidUtilities.dp(4.0f);
-        this.headerPaddingBottom = AndroidUtilities.dp(-10.0f);
+        this.headerPaddingBottom = AndroidUtilities.dp(-20.0f);
         this.local = z;
         this.tag = DownloadController.getInstance(this.currentAccount).generateObserverTag();
         this.parentAlert = selectAudioAlert;
         this.onAudioSelected = callback;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.searchFieldContainer = frameLayout;
-        int i = this.backgroundPaddingLeft;
-        frameLayout.setPadding(i, 0, i, 0);
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        this.searchField = frameLayout2;
-        frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(36.0f), getThemedColor(Theme.key_graySection)));
-        frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -2.0f, 119, 8.0f, 6.0f, 8.0f, 6.0f));
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(R.drawable.menu_browser_search);
-        int i2 = Theme.key_graySectionText;
-        imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.SRC_IN));
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        frameLayout2.addView(imageView, LayoutHelper.createFrame(36, 36.0f, 19, 4.0f, 0.0f, 0.0f, 0.0f));
-        EditTextCaption editTextCaption = new EditTextCaption(context, this.resourcesProvider);
-        this.searchFieldEditText = editTextCaption;
-        editTextCaption.setTextSize(1, 15.0f);
-        editTextCaption.setTextColor(-1);
-        editTextCaption.setHintTextColor(getThemedColor(i2));
-        editTextCaption.setHint(LocaleController.getString(R.string.Search));
-        editTextCaption.setBackground(null);
-        editTextCaption.setLines(1);
-        editTextCaption.setMaxLines(1);
-        editTextCaption.setSingleLine();
-        editTextCaption.setGravity(19);
-        editTextCaption.setPadding(0, AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f));
-        frameLayout2.addView(editTextCaption, LayoutHelper.createFrame(-1, 36.0f, 16, 40.0f, 0.0f, 10.0f, 0.0f));
-        editTextCaption.addTextChangedListener(new TextWatcher() {
+        BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
+        this.iBlur3SourceColor = blurredBackgroundSourceColor;
+        blurredBackgroundSourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.scrollableViewNoiseSuppressor = new DownscaleScrollableNoiseSuppressor();
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceGlass = blurredBackgroundSourceRenderNode;
+            blurredBackgroundSourceRenderNode.setupRenderer(new RenderNodeWithHash.Renderer() {
+                @Override
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(SelectAudioAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
+                }
+
+                @Override
+                public void renderNodeUpdateDisplayList(Canvas canvas) {
+                    canvas.drawColor(SelectAudioAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    if (SharedConfig.chatBlurEnabled()) {
+                        SelectAudioAlert.this.scrollableViewNoiseSuppressor.draw(canvas, -2);
+                    }
+                }
+            });
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode2 = new BlurredBackgroundSourceRenderNode(null);
+            this.iBlur3SourceGlassFrosted = blurredBackgroundSourceRenderNode2;
+            blurredBackgroundSourceRenderNode2.setupRenderer(new RenderNodeWithHash.Renderer() {
+                @Override
+                public void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    iBlur3Hash.add(SelectAudioAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    iBlur3Hash.add(SharedConfig.chatBlurEnabled());
+                }
+
+                @Override
+                public void renderNodeUpdateDisplayList(Canvas canvas) {
+                    canvas.drawColor(SelectAudioAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    if (SharedConfig.chatBlurEnabled()) {
+                        SelectAudioAlert.this.scrollableViewNoiseSuppressor.draw(canvas, -3);
+                    }
+                }
+            });
+            BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceRenderNode);
+            this.iBlur3FactoryLiquidGlass = blurredBackgroundDrawableViewFactory;
+            blurredBackgroundDrawableViewFactory.setLiquidGlassEffectAllowed(LiteMode.isEnabled(262144));
+            BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory2 = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceRenderNode2);
+            this.iBlur3FactoryFrostedLiquidGlass = blurredBackgroundDrawableViewFactory2;
+            blurredBackgroundDrawableViewFactory2.setLiquidGlassEffectAllowed(LiteMode.isEnabled(262144));
+        } else {
+            this.scrollableViewNoiseSuppressor = null;
+            this.iBlur3SourceGlassFrosted = null;
+            this.iBlur3SourceGlass = null;
+            this.iBlur3FactoryLiquidGlass = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
+            this.iBlur3FactoryFrostedLiquidGlass = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
+        }
+        this.iBlur3FactoryFade = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
+        this.iBlur3Capture = new IBlur3Capture() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            public final void capture(Canvas canvas, RectF rectF2) {
+                this.f$0.lambda$new$0(canvas, rectF2);
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            public void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF2) {
+                iBlur3Hash.unsupported();
+            }
+        };
+        int i = Theme.key_windowBackgroundGray;
+        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, i, resourcesProvider);
+        this.fadeView = searchFadeView;
+        searchFadeView.setVisibility(4);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.frameLayout = frameLayout;
+        FragmentSearchField fragmentSearchField = new FragmentSearchField(context, resourcesProvider);
+        this.searchField = fragmentSearchField;
+        fragmentSearchField.editText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() != 0) {
+                    return false;
+                }
+                SelectAudioAlert.this.scrollToSearchTop();
+                return false;
+            }
+        });
+        fragmentSearchField.editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean z2) {
+                if (z2) {
+                    SelectAudioAlert.this.scrollToSearchTop();
+                }
+            }
+        });
+        fragmentSearchField.setSectionBackground();
+        fragmentSearchField.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        fragmentSearchField.editText.addTextChangedListener(new TextWatcherImpl() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                TextWatcherImpl.CC.$default$beforeTextChanged(this, charSequence, i2, i3, i4);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                TextWatcherImpl.CC.$default$onTextChanged(this, charSequence, i2, i3, i4);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 String str = SelectAudioAlert.this.query;
                 SelectAudioAlert.this.query = editable.toString();
-                if (!z) {
-                    SelectAudioAlert.this.sharedAudio.clear();
+                if (!SelectAudioAlert.this.local) {
+                    boolean z2 = false;
+                    if (!TextUtils.equals(SelectAudioAlert.this.lastLoadingSharedAudioQuery, SelectAudioAlert.this.query == null ? "" : SelectAudioAlert.this.query)) {
+                        SelectAudioAlert.this.cancelLoadingSharedAudio();
+                        SelectAudioAlert selectAudioAlert2 = SelectAudioAlert.this;
+                        selectAudioAlert2.willLoadSharedAudio = selectAudioAlert2.query != null && SelectAudioAlert.this.query.length() > 3;
+                    }
+                    if (!TextUtils.equals(SelectAudioAlert.this.lastLoadingGlobalAudioQuery, SelectAudioAlert.this.query != null ? SelectAudioAlert.this.query : "")) {
+                        SelectAudioAlert.this.cancelLoadingGlobalAudio();
+                        SelectAudioAlert selectAudioAlert3 = SelectAudioAlert.this;
+                        if (selectAudioAlert3.query != null && SelectAudioAlert.this.query.length() > 3 && !TextUtils.isEmpty(MessagesController.getInstance(((BottomSheet) SelectAudioAlert.this).currentAccount).config.musicSearchUsername.get())) {
+                            z2 = true;
+                        }
+                        selectAudioAlert3.willLoadGlobalAudio = z2;
+                    }
                     if (TextUtils.isEmpty(str) || !TextUtils.isEmpty(SelectAudioAlert.this.query)) {
                         SelectAudioAlert.this.loadSharedAudioDelayed();
+                        SelectAudioAlert.this.loadGlobalAudioDelayed();
                     } else {
                         SelectAudioAlert.this.loadSharedAudio();
+                        SelectAudioAlert.this.loadGlobalAudio();
                     }
                 }
                 SelectAudioAlert.this.adapter.update(true);
             }
         });
+        fragmentSearchField.editText.setHint(LocaleController.getString(R.string.Search));
+        frameLayout.addView(searchFadeView, LayoutHelper.createFrameMatchParent());
+        frameLayout.addView(fragmentSearchField, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
+        fragmentSearchField.setupBlurredBackground(this.iBlur3FactoryLiquidGlass.create(fragmentSearchField, BlurredBackgroundProviderImpl.topPanel(resourcesProvider)));
+        frameLayout.setPadding(this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0, this.backgroundPaddingLeft + AndroidUtilities.dp(8.0f), 0);
+        this.containerView.addView(frameLayout, LayoutHelper.createFrame(-1, -2, 55));
+        setBackgroundColor(getThemedColor(i));
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i3 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i3, 0, i3, 0);
+        int i2 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i2, 0, i2, 0);
+        this.recyclerListView.setSections();
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setSupportsChangeAnimations(false);
         defaultItemAnimator.setDelayAnimations(false);
-        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setInterpolator(cubicBezierInterpolator);
         defaultItemAnimator.setDurations(350L);
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
         if (!z) {
-            int i4 = this.currentAccount;
-            MessagesController.SavedMusicList savedMusicList = new MessagesController.SavedMusicList(i4, UserConfig.getInstance(i4).getClientUserId());
+            int i3 = this.currentAccount;
+            MessagesController.SavedMusicList savedMusicList = new MessagesController.SavedMusicList(i3, UserConfig.getInstance(i3).getClientUserId());
             this.savedMusicList = savedMusicList;
             savedMusicList.load();
             loadSharedAudio();
+            loadGlobalAudio();
         } else {
             this.savedMusicList = null;
             loadLocalAudio();
         }
+        this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+                SelectAudioAlert.this.updateSearchY();
+                SelectAudioAlert.this.blur3_InvalidateBlur();
+                if (((BottomSheetWithRecyclerListView) SelectAudioAlert.this).recyclerListView.scrollingByUser) {
+                    AndroidUtilities.hideKeyboard(((BottomSheet) SelectAudioAlert.this).containerView);
+                }
+            }
+        });
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i5) {
-                this.f$0.lambda$new$0(callback, view, i5);
+            public final void onItemClick(View view, int i4) {
+                this.f$0.lambda$new$1(callback, resourcesProvider, view, i4);
             }
         });
     }
 
-    public void lambda$new$0(Utilities.Callback callback, View view, int i) {
+    public void lambda$new$0(Canvas canvas, RectF rectF) {
+        RecyclerListView recyclerListView = this.recyclerListView;
+        Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, getContainerView(), 255);
+    }
+
+    public void lambda$new$1(Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, View view, int i) {
         if (view instanceof SharedAudioCell) {
             MessageObject message = ((SharedAudioCell) view).getMessage();
             if (message == null) {
@@ -202,16 +382,67 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         }
         UItem item = this.adapter.getItem(i - 1);
         if (item != null && item.id == 1) {
-            new SelectAudioAlert(getContext(), true, this, callback).show();
+            new SelectAudioAlert(getContext(), true, this, callback, resourcesProvider).show();
             return;
         }
         if (item != null && item.id == 2) {
             this.savedMusicList.load();
+            return;
+        }
+        if (item != null && item.id == 3) {
+            loadSharedAudio();
         } else {
-            if (item == null || item.id != 3) {
+            if (item == null || item.id != 4) {
                 return;
             }
-            loadSharedAudio();
+            loadGlobalAudio();
+        }
+    }
+
+    @Override
+    public void preDrawInternal(Canvas canvas, View view) {
+        if (Build.VERSION.SDK_INT >= 31 && this.scrollableViewNoiseSuppressor != null) {
+            blur3_InvalidateBlur();
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = this.iBlur3SourceGlassFrosted;
+            if (blurredBackgroundSourceRenderNode != null) {
+                blurredBackgroundSourceRenderNode.setSize(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                this.iBlur3SourceGlassFrosted.updateDisplayListIfNeeded();
+            }
+            BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode2 = this.iBlur3SourceGlass;
+            if (blurredBackgroundSourceRenderNode2 != null) {
+                blurredBackgroundSourceRenderNode2.setSize(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
+                this.iBlur3SourceGlass.updateDisplayListIfNeeded();
+            }
+        }
+        updateSearchY();
+        super.preDrawInternal(canvas, view);
+    }
+
+    public void scrollToSearchTop() {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) this.recyclerListView.getLayoutManager();
+        LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2);
+        linearSmoothScrollerCustom.setTargetPosition(1);
+        linearSmoothScrollerCustom.setOffset((AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(1.0f));
+        linearLayoutManager.startSmoothScroll(linearSmoothScrollerCustom);
+    }
+
+    public void updateSearchY() {
+        float y = AndroidUtilities.displaySize.y;
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            View childAt = this.recyclerListView.getChildAt(i);
+            if (this.recyclerListView.getChildAdapterPosition(childAt) >= 1 && childAt.getY() < y) {
+                y = childAt.getY();
+            }
+        }
+        this.frameLayout.setTranslationY(Math.max(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), y));
+        this.animatorFadeVisible.setValue(y <= ((float) (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight())), true);
+    }
+
+    @Override
+    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        if (i == 0) {
+            this.fadeView.setAlpha(f);
+            this.fadeView.setVisibility(f > 0.0f ? 0 : 4);
         }
     }
 
@@ -224,9 +455,25 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         lambda$new$0();
     }
 
+    public SelectAudioAlert withoutSavedMusic() {
+        this.withoutSavedMusic = true;
+        this.local = false;
+        this.adapter.update(true);
+        return this;
+    }
+
+    @Override
+    public void lambda$new$0() {
+        super.lambda$new$0();
+        if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
+            MediaController.getInstance().cleanupPlayer(true, true);
+        }
+        this.playingAudio = null;
+    }
+
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.StoryMusicTitle);
+        return LocaleController.getString(R.string.StoryMusicTitle2);
     }
 
     @Override
@@ -249,72 +496,93 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         return this.adapter;
     }
 
-    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asCustom(this.searchFieldContainer));
-        if (!this.local) {
-            arrayList.add(UItem.asButton(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles)).accent());
-        }
-        if (!this.local) {
-            if (this.savedMusicList != null) {
-                addSection(arrayList, LocaleController.getString(R.string.StoryMusicProfileMusic), this.savedMusicList.list);
-                MessagesController.SavedMusicList savedMusicList = this.savedMusicList;
-                if (!savedMusicList.endReached) {
-                    arrayList.add(UItem.asButton(2, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
-                } else if (savedMusicList.list.isEmpty()) {
-                    arrayList.add(UItem.asShadow(null));
-                }
-            }
-            addSection(arrayList, LocaleController.getString(R.string.StoryMusicSearchMusic), this.sharedAudio);
-            ArrayList arrayList2 = this.sharedAudio;
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                if (this.sharedAudioHasMore) {
-                    arrayList.add(UItem.asButton(3, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
-                } else {
-                    arrayList.add(UItem.asShadow(null));
-                }
-            }
-        } else {
-            addSection(arrayList, LocaleController.getString(R.string.StoryMusicLocalMusic), this.localAudio);
-            arrayList.add(UItem.asShadow(null));
-        }
-        if (TextUtils.isEmpty(this.query)) {
-            return;
-        }
-        arrayList.add(UItem.asShadow(null));
-        arrayList.add(UItem.asSpace(AndroidUtilities.dp(500.0f)));
+    public boolean needPlayMessage(MessageObject messageObject) {
+        this.playingAudio = messageObject;
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
+        arrayList.add(messageObject);
+        return MediaController.getInstance().setPlaylist(arrayList, messageObject, 0L);
     }
 
-    private void addSection(ArrayList arrayList, String str, ArrayList arrayList2) {
-        if (arrayList2 == null || arrayList2.isEmpty()) {
-            return;
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        universalAdapter.itemsOffset = 1;
+        int iDp = AndroidUtilities.dp(64.0f);
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(64.0f)));
+        if (this.local || this.withoutSavedMusic) {
+            iDp += addSection(true, arrayList, LocaleController.getString(R.string.StoryMusicLocalMusic), this.localAudio, false, false, -1);
         }
-        ArrayList arrayList3 = new ArrayList();
-        String str2 = this.query;
-        String lowerCase = str2 == null ? null : str2.toLowerCase();
-        String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-        Iterator it = arrayList2.iterator();
-        while (it.hasNext()) {
-            MessageObject messageObject = (MessageObject) it.next();
-            if (TextUtils.isEmpty(lowerCase) || arrayList2 == this.sharedAudio) {
-                messageObject.setQuery(null);
-                arrayList3.add(messageObject);
-            } else {
-                String musicTitle = messageObject.getMusicTitle();
-                String musicAuthor = messageObject.getMusicAuthor();
-                if (matches(lowerCase, strTranslitSafe, musicTitle) || matches(lowerCase, strTranslitSafe, musicAuthor)) {
+        if (!this.local) {
+            if (TextUtils.isEmpty(this.query) && !this.withoutSavedMusic) {
+                arrayList.add(UItem.asButton(1, R.drawable.msg2_folder, LocaleController.getString(R.string.StoryMusicSelectFromFiles)).accent());
+                iDp += AndroidUtilities.dp(50.0f);
+            }
+            if (!this.withoutSavedMusic && this.savedMusicList != null) {
+                String string = LocaleController.getString(R.string.StoryMusicProfileMusic);
+                MessagesController.SavedMusicList savedMusicList = this.savedMusicList;
+                iDp += addSection(true, arrayList, string, savedMusicList.list, savedMusicList.loading, !savedMusicList.endReached, 2);
+            }
+            iDp = iDp + addSection(false, arrayList, LocaleController.getString(R.string.StoryMusicSearchMusic), this.sharedAudio, this.willLoadSharedAudio || this.loadingSharedAudio, this.sharedAudioHasMore, 3) + addSection(false, arrayList, LocaleController.getString(R.string.StoryMusicGlobalMusic), this.globalAudio, this.willLoadGlobalAudio || this.loadingGlobalAudio, this.globalAudioHasMore, 4);
+        }
+        arrayList.add(UItem.asShadow(null));
+        arrayList.add(UItem.asSpace(Math.max(0, (((AndroidUtilities.displaySize.y - (iDp + AndroidUtilities.dp(12.0f))) - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) + AndroidUtilities.dp(24.0f))));
+    }
+
+    private int addSection(boolean z, ArrayList arrayList, String str, ArrayList arrayList2, boolean z2, boolean z3, int i) {
+        int iDp = 0;
+        if (arrayList2 != null && (!arrayList2.isEmpty() || z2)) {
+            ArrayList arrayList3 = new ArrayList();
+            String str2 = this.query;
+            String lowerCase = str2 == null ? null : str2.toLowerCase();
+            String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
+            Iterator it = arrayList2.iterator();
+            while (it.hasNext()) {
+                MessageObject messageObject = (MessageObject) it.next();
+                if (!z) {
                     messageObject.setQuery(this.query);
                     arrayList3.add(messageObject);
+                } else if (TextUtils.isEmpty(lowerCase) || arrayList2 == this.sharedAudio) {
+                    messageObject.setQuery(null);
+                    arrayList3.add(messageObject);
+                } else {
+                    String musicTitle = messageObject.getMusicTitle();
+                    String musicAuthor = messageObject.getMusicAuthor();
+                    if (matches(lowerCase, strTranslitSafe, musicTitle) || matches(lowerCase, strTranslitSafe, musicAuthor)) {
+                        messageObject.setQuery(this.query);
+                        arrayList3.add(messageObject);
+                    }
                 }
             }
+            if (arrayList3.isEmpty() && !z2) {
+                return 0;
+            }
+            if (!arrayList.isEmpty() && arrayList.size() > 1) {
+                arrayList.add(UItem.asShadow(null));
+                iDp = AndroidUtilities.dp(12.0f);
+            }
+            this.adapter.whiteSectionStart();
+            arrayList.add(UItem.asHeader(str));
+            Iterator it2 = arrayList3.iterator();
+            while (it2.hasNext()) {
+                arrayList.add(SharedAudioCell.Factory.as((MessageObject) it2.next(), new Utilities.CallbackReturn() {
+                    @Override
+                    public final Object run(Object obj) {
+                        return Boolean.valueOf(this.f$0.needPlayMessage((MessageObject) obj));
+                    }
+                }));
+                iDp += AndroidUtilities.dp(56.0f);
+            }
+            if (z2) {
+                arrayList.add(UItem.asFlicker(4));
+                arrayList.add(UItem.asFlicker(4));
+                arrayList.add(UItem.asFlicker(4));
+                iDp += AndroidUtilities.dp(56.0f) * 3;
+            }
+            if (z3) {
+                arrayList.add(UItem.asButton(i, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
+                iDp += AndroidUtilities.dp(50.0f);
+            }
+            this.adapter.whiteSectionEnd();
         }
-        if (arrayList3.isEmpty()) {
-            return;
-        }
-        arrayList.add(UItem.asGraySection(str));
-        Iterator it2 = arrayList3.iterator();
-        while (it2.hasNext()) {
-            arrayList.add(SharedAudioCell.Factory.as((MessageObject) it2.next()));
-        }
+        return iDp;
     }
 
     private boolean matches(String str, String str2, String str3) {
@@ -335,24 +603,45 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         return true;
     }
 
+    public void cancelLoadingSharedAudio() {
+        if (this.loadingSharedAudioRequestId >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.loadingSharedAudioRequestId, true);
+        }
+        this.loadingSharedAudioRequestId = -1;
+        this.nextSearchRate = 0;
+        this.sharedAudio.clear();
+        this.loadingSharedAudio = false;
+        this.willLoadSharedAudio = false;
+    }
+
     public void loadSharedAudioDelayed() {
         AndroidUtilities.cancelRunOnUIThread(this.loadSharedAudioRunnable);
         AndroidUtilities.runOnUIThread(this.loadSharedAudioRunnable, 400L);
     }
 
     public void loadSharedAudio() {
-        if (this.local || this.loadingSharedAudio) {
+        if (this.local) {
+            return;
+        }
+        String str = this.lastLoadingSharedAudioQuery;
+        String str2 = this.query;
+        if (str2 == null) {
+            str2 = "";
+        }
+        if (!TextUtils.equals(str, str2)) {
+            cancelLoadingSharedAudio();
+        }
+        if (this.loadingSharedAudio) {
             return;
         }
         if (this.sharedAudio.isEmpty() || this.sharedAudioHasMore) {
             this.loadingSharedAudio = true;
             TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
             tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterMusic();
-            String str = this.query;
-            if (str == null) {
-                str = "";
-            }
-            tL_messages_searchGlobal.q = str;
+            String str3 = this.query;
+            String str4 = str3 != null ? str3 : "";
+            this.lastLoadingSharedAudioQuery = str4;
+            tL_messages_searchGlobal.q = str4;
             tL_messages_searchGlobal.limit = 20;
             ArrayList arrayList = this.sharedAudio;
             if (arrayList != null && arrayList.size() > 0) {
@@ -366,25 +655,29 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
                 tL_messages_searchGlobal.offset_id = 0;
                 tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
+            this.loadingSharedAudioRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$loadSharedAudio$2(tLObject, tL_error);
+                    this.f$0.lambda$loadSharedAudio$3(tLObject, tL_error);
                 }
             });
+            this.adapter.update(true);
         }
     }
 
-    public void lambda$loadSharedAudio$2(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$loadSharedAudio$3(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadSharedAudio$1(tLObject);
+                this.f$0.lambda$loadSharedAudio$2(tLObject);
             }
         });
     }
 
-    public void lambda$loadSharedAudio$1(TLObject tLObject) {
+    public void lambda$loadSharedAudio$2(TLObject tLObject) {
+        boolean z = false;
+        this.willLoadSharedAudio = false;
+        this.loadingSharedAudio = false;
         if (tLObject instanceof TLRPC.messages_Messages) {
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(messages_messages.users, false);
@@ -393,11 +686,146 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             while (it.hasNext()) {
                 this.sharedAudio.add(new MessageObject(this.currentAccount, it.next(), false, true));
             }
-            this.sharedAudioHasMore = (messages_messages instanceof TLRPC.TL_messages_messagesSlice) && this.sharedAudio.size() < messages_messages.count;
+            if ((messages_messages instanceof TLRPC.TL_messages_messagesSlice) && this.sharedAudio.size() < messages_messages.count) {
+                z = true;
+            }
+            this.sharedAudioHasMore = z;
             this.nextSearchRate = messages_messages.next_rate;
-            this.loadingSharedAudio = false;
+        } else {
+            this.sharedAudioHasMore = false;
+            this.nextSearchRate = 0;
+        }
+        this.adapter.update(true);
+    }
+
+    public void cancelLoadingGlobalAudio() {
+        if (this.loadingGlobalAudioRequestId >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.loadingGlobalAudioRequestId, true);
+        }
+        this.loadingGlobalAudioRequestId = -1;
+        this.globalAudioOffset = "";
+        this.globalAudioHasMore = false;
+        this.globalAudio.clear();
+        this.loadingGlobalAudio = false;
+        this.willLoadGlobalAudio = false;
+    }
+
+    public void loadGlobalAudioDelayed() {
+        AndroidUtilities.cancelRunOnUIThread(this.loadGlobalAudioRunnable);
+        AndroidUtilities.runOnUIThread(this.loadGlobalAudioRunnable, 400L);
+    }
+
+    public void loadGlobalAudio() {
+        String str;
+        String str2 = MessagesController.getInstance(this.currentAccount).config.musicSearchUsername.get();
+        if (TextUtils.isEmpty(str2)) {
+            return;
+        }
+        String str3 = this.lastLoadingGlobalAudioQuery;
+        String str4 = this.query;
+        if (str4 == null) {
+            str4 = "";
+        }
+        if (!TextUtils.equals(str3, str4)) {
+            cancelLoadingGlobalAudio();
+        }
+        if (this.loadingGlobalAudio || TextUtils.isEmpty(this.query) || this.query.length() < 3) {
+            return;
+        }
+        if (this.globalAudio.isEmpty() || this.globalAudioHasMore) {
+            if (this.globalAudioBot == null) {
+                this.globalAudioBot = MessagesController.getInstance(this.currentAccount).getUser(str2);
+            }
+            if (this.globalAudioBot == null) {
+                if (this.resolvingGlobalAudioBot || this.failedToResolveGlobalAudioBot) {
+                    return;
+                }
+                this.resolvingGlobalAudioBot = true;
+                MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str2, new Consumer() {
+                    @Override
+                    public final void accept(Object obj) {
+                        this.f$0.lambda$loadGlobalAudio$4((Long) obj);
+                    }
+                });
+                return;
+            }
+            this.loadingGlobalAudio = true;
+            TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+            tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.globalAudioBot);
+            tL_messages_getInlineBotResults.peer = MessagesController.getInputPeer(currentUser);
+            if (this.globalAudio.isEmpty() || (str = this.globalAudioOffset) == null) {
+                str = "";
+            }
+            tL_messages_getInlineBotResults.offset = str;
+            String str5 = this.query;
+            String str6 = str5 != null ? str5 : "";
+            this.lastLoadingGlobalAudioQuery = str6;
+            tL_messages_getInlineBotResults.query = str6;
+            this.loadingGlobalAudioRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getInlineBotResults, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$loadGlobalAudio$5((TLRPC.messages_BotResults) obj, (TLRPC.TL_error) obj2);
+                }
+            });
             this.adapter.update(true);
         }
+    }
+
+    public void lambda$loadGlobalAudio$4(Long l) {
+        this.resolvingGlobalAudioBot = false;
+        TLRPC.User user = l == null ? null : MessagesController.getInstance(this.currentAccount).getUser(l);
+        this.globalAudioBot = user;
+        this.failedToResolveGlobalAudioBot = user == null;
+        if (user != null) {
+            loadGlobalAudio();
+        }
+    }
+
+    public void lambda$loadGlobalAudio$5(TLRPC.messages_BotResults messages_botresults, TLRPC.TL_error tL_error) {
+        boolean z = false;
+        this.loadingGlobalAudio = false;
+        this.willLoadGlobalAudio = false;
+        if (messages_botresults != null) {
+            MessagesController.getInstance(this.currentAccount).putUsers(messages_botresults.users, false);
+            Iterator<TLRPC.BotInlineResult> it = messages_botresults.results.iterator();
+            while (it.hasNext()) {
+                TLRPC.BotInlineResult next = it.next();
+                if (next instanceof TLRPC.TL_botInlineMediaResult) {
+                    TLRPC.TL_botInlineMediaResult tL_botInlineMediaResult = (TLRPC.TL_botInlineMediaResult) next;
+                    if (tL_botInlineMediaResult.document != null) {
+                        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                        tL_message.out = true;
+                        int i = this.globalAudioId;
+                        this.globalAudioId = i - 1;
+                        tL_message.id = i;
+                        tL_message.peer_id = new TLRPC.TL_peerUser();
+                        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                        tL_message.from_id = tL_peerUser;
+                        TLRPC.Peer peer = tL_message.peer_id;
+                        long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+                        tL_peerUser.user_id = clientUserId;
+                        peer.user_id = clientUserId;
+                        tL_message.date = (int) (System.currentTimeMillis() / 1000);
+                        tL_message.message = "";
+                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                        tL_message.media = tL_messageMediaDocument;
+                        tL_messageMediaDocument.flags |= 3;
+                        tL_messageMediaDocument.document = tL_botInlineMediaResult.document;
+                        tL_message.flags |= 768;
+                        this.globalAudio.add(new MessageObject(this.currentAccount, tL_message, false, true));
+                    }
+                }
+            }
+            this.globalAudioOffset = messages_botresults.next_offset;
+            if (!this.globalAudio.isEmpty() && !TextUtils.isEmpty(this.globalAudioOffset)) {
+                z = true;
+            }
+            this.globalAudioHasMore = z;
+            this.adapter.update(true);
+            return;
+        }
+        this.adapter.update(true);
     }
 
     private void loadLocalAudio() {
@@ -406,13 +834,13 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$loadLocalAudio$4();
+                    this.f$0.lambda$loadLocalAudio$7();
                 }
             });
         }
     }
 
-    public void lambda$loadLocalAudio$4() {
+    public void lambda$loadLocalAudio$7() {
         String[] strArr = {"_id", "artist", "title", "_data", "duration", "album"};
         final ArrayList arrayList = new ArrayList();
         try {
@@ -484,12 +912,12 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadLocalAudio$3(arrayList);
+                this.f$0.lambda$loadLocalAudio$6(arrayList);
             }
         });
     }
 
-    public void lambda$loadLocalAudio$3(ArrayList arrayList) {
+    public void lambda$loadLocalAudio$6(ArrayList arrayList) {
         this.loadingLocalAudio = false;
         this.localAudio.addAll(arrayList);
         this.adapter.update(true);
@@ -519,5 +947,14 @@ public class SelectAudioAlert extends BottomSheetWithRecyclerListView implements
     @Override
     public int getObserverTag() {
         return this.tag;
+    }
+
+    public void blur3_InvalidateBlur() {
+        if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
+            return;
+        }
+        this.iBlur3PositionActionBar.set(0.0f, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, this.containerView.getMeasuredWidth(), ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(64.0f));
+        this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3PositionsMerged, RectFMergeBounding.mergeOverlapping(this.iBlur3Positions, 1, this.iBlur3PositionsMerged));
+        this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
     }
 }

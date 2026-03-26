@@ -32,16 +32,19 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.CopyUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialogDecor;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper$$ExternalSyntheticApiModelOutline6;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.LaunchActivity;
 
 public class EditTextCaption extends EditTextBoldCursor {
     private static final int ACCESSIBILITY_ACTION_SHARE = 268435456;
@@ -56,6 +59,7 @@ public class EditTextCaption extends EditTextBoldCursor {
     private boolean isInitLineCount;
     private int lineCount;
     private final Theme.ResourcesProvider resourcesProvider;
+    private Text rightText;
     private int selectionEnd;
     private int selectionStart;
     private int triesCount;
@@ -240,6 +244,32 @@ public class EditTextCaption extends EditTextBoldCursor {
         }
     }
 
+    public void translateSelected() {
+        final int selectionEnd;
+        final int selectionStart = this.selectionStart;
+        if (selectionStart >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
+            this.selectionEnd = -1;
+            this.selectionStart = -1;
+        } else {
+            selectionStart = getSelectionStart();
+            selectionEnd = getSelectionEnd();
+        }
+        CharSequence charSequenceSubSequence = getText().subSequence(selectionStart, selectionEnd);
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        new TranslateAlert3(getContext(), safeLastFragment != null ? safeLastFragment.getResourceProvider() : null).setText(charSequenceSubSequence).setOnUse(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                this.f$0.lambda$translateSelected$2(selectionStart, selectionEnd, (CharSequence) obj);
+            }
+        }).show();
+        setSelection(selectionStart, selectionEnd);
+    }
+
+    public void lambda$translateSelected$2(int i, int i2, CharSequence charSequence) {
+        getText().replace(i, i2, charSequence);
+        setSelection(i, charSequence.length() + i);
+    }
+
     public void makeSelectedUrl() {
         Object builder;
         final int selectionEnd;
@@ -288,13 +318,13 @@ public class EditTextCaption extends EditTextBoldCursor {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$makeSelectedUrl$2(editTextBoldCursor, textView);
+                this.f$0.lambda$makeSelectedUrl$3(editTextBoldCursor, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$makeSelectedUrl$3(editTextBoldCursor, runnable, view);
+                this.f$0.lambda$makeSelectedUrl$4(editTextBoldCursor, runnable, view);
             }
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -337,7 +367,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         r2.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$makeSelectedUrl$4(selectionStart, selectionEnd, editTextBoldCursor, alertDialog, i);
+                this.f$0.lambda$makeSelectedUrl$5(selectionStart, selectionEnd, editTextBoldCursor, alertDialog, i);
             }
         });
         r2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -347,13 +377,13 @@ public class EditTextCaption extends EditTextBoldCursor {
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$makeSelectedUrl$5(dialogInterface);
+                    this.f$0.lambda$makeSelectedUrl$6(dialogInterface);
                 }
             });
             this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$6(editTextBoldCursor, dialogInterface);
+                    EditTextCaption.lambda$makeSelectedUrl$7(editTextBoldCursor, dialogInterface);
                 }
             });
             this.creationLinkDialog.showDelayed(250L);
@@ -361,7 +391,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             r2.show().setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$7(editTextBoldCursor, dialogInterface);
+                    EditTextCaption.lambda$makeSelectedUrl$8(editTextBoldCursor, dialogInterface);
                 }
             });
         }
@@ -379,13 +409,13 @@ public class EditTextCaption extends EditTextBoldCursor {
         editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
     }
 
-    public void lambda$makeSelectedUrl$2(EditTextBoldCursor editTextBoldCursor, TextView textView) {
+    public void lambda$makeSelectedUrl$3(EditTextBoldCursor editTextBoldCursor, TextView textView) {
         ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
         boolean z = (TextUtils.isEmpty(editTextBoldCursor.getText()) || TextUtils.equals(editTextBoldCursor.getText().toString(), "http://")) && clipboardManager != null && clipboardManager.hasPrimaryClip();
         textView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
     }
 
-    public void lambda$makeSelectedUrl$3(EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
+    public void lambda$makeSelectedUrl$4(EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
         CharSequence charSequenceCoerceToText;
         try {
             charSequenceCoerceToText = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
@@ -400,7 +430,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         runnable.run();
     }
 
-    public void lambda$makeSelectedUrl$4(int i, int i2, EditTextBoldCursor editTextBoldCursor, AlertDialog alertDialog, int i3) {
+    public void lambda$makeSelectedUrl$5(int i, int i2, EditTextBoldCursor editTextBoldCursor, AlertDialog alertDialog, int i3) {
         Editable text = getText();
         CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i, i2, CharacterStyle.class);
         if (characterStyleArr != null && characterStyleArr.length > 0) {
@@ -428,17 +458,17 @@ public class EditTextCaption extends EditTextBoldCursor {
         }
     }
 
-    public void lambda$makeSelectedUrl$5(DialogInterface dialogInterface) {
+    public void lambda$makeSelectedUrl$6(DialogInterface dialogInterface) {
         this.creationLinkDialog = null;
         requestFocus();
     }
 
-    public static void lambda$makeSelectedUrl$6(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$makeSelectedUrl$7(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void lambda$makeSelectedUrl$7(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$makeSelectedUrl$8(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
@@ -614,10 +644,14 @@ public class EditTextCaption extends EditTextBoldCursor {
             makeSelectedQuote();
             return true;
         }
-        if (i != R.id.menu_date) {
+        if (i == R.id.menu_date) {
+            makeSelectedDate();
+            return true;
+        }
+        if (i != R.id.menu_translate) {
             return false;
         }
-        makeSelectedDate();
+        translateSelected();
         return true;
     }
 
@@ -695,6 +729,7 @@ public class EditTextCaption extends EditTextBoldCursor {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        Layout layout;
         canvas.save();
         canvas.translate(0.0f, this.offsetY);
         super.onDraw(canvas);
@@ -712,7 +747,14 @@ public class EditTextCaption extends EditTextBoldCursor {
         } catch (Exception e) {
             FileLog.e(e);
         }
+        if (this.rightText != null && length() != 0 && (layout = getLayout()) != null && layout.getLineCount() > 0) {
+            this.rightText.draw(canvas, layout.getLineRight(0), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), this.hintColor, 1.0f);
+        }
         canvas.restore();
+    }
+
+    public void setRightText(CharSequence charSequence) {
+        this.rightText = new Text(charSequence, 16.0f, getTypeface());
     }
 
     @Override

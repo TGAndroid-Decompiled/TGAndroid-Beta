@@ -2,8 +2,11 @@ package org.telegram.ui.Components.blur3.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
@@ -59,5 +62,43 @@ public abstract class Blur3Utils {
                 canvas.restore();
             }
         }
+    }
+
+    public static Drawable wrapCenteredDrawable(final Drawable drawable, final int i, final int i2) {
+        return new Drawable() {
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+
+            @Override
+            protected void onBoundsChange(Rect rect) {
+                super.onBoundsChange(rect);
+                int iWidth = (rect.width() - i) / 2;
+                int iHeight = rect.height();
+                int i3 = i2;
+                int i4 = (iHeight - i3) / 2;
+                drawable.setBounds(iWidth, i4, i + iWidth, i3 + i4);
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                drawable.draw(canvas);
+            }
+
+            @Override
+            public int getAlpha() {
+                return drawable.getAlpha();
+            }
+
+            @Override
+            public void setAlpha(int i3) {
+                drawable.setAlpha(i3);
+            }
+
+            @Override
+            public int getOpacity() {
+                return drawable.getOpacity();
+            }
+        };
     }
 }

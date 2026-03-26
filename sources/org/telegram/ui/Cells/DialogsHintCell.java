@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -70,7 +71,7 @@ public class DialogsHintCell extends FrameLayout {
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 48));
         NotificationCenter.getGlobalInstance().listenGlobal(this, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) {
+            public final void run(Object obj) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$new$0((Object[]) obj);
             }
         });
@@ -104,7 +105,7 @@ public class DialogsHintCell extends FrameLayout {
         updateColors();
     }
 
-    public void lambda$new$0(Object[] objArr) {
+    public void lambda$new$0(Object[] objArr) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.titleView;
         if (textViewEmojis != null) {
             textViewEmojis.invalidate();
