@@ -2,24 +2,25 @@ package org.telegram.ui.Components.poll;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.ViewGroup;
-import java.util.Locale;
 import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.WebFile;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.ClipRoundedDrawable;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.SeekBar;
 import org.telegram.ui.Components.Text;
@@ -28,6 +29,7 @@ public class PollContentDrawable extends Drawable implements DownloadController.
     private final int TAG;
     private final BoolAnimator animatorIsPlaying;
     private String attachFileName;
+    private String attachPath;
     private CharSequence authorInfo;
     private Text authorInfoText;
     private final int currentAccount;
@@ -39,20 +41,27 @@ public class PollContentDrawable extends Drawable implements DownloadController.
     public final ImageReceiver imageReceiver;
     private final boolean isExplanation;
     private boolean isFile;
+    private boolean isLocation;
     private boolean isMusic;
     private boolean isVideo;
     private int lastIcon;
     int lastTime;
+    private ClipRoundedDrawable locationLoadingThumb;
+    private SvgHelper.SvgDrawable locationSvgThumb;
     private TLRPC.MessageMedia media;
     private int mediaHeight;
     private int mediaWidth;
     private MessageObject messageObject;
     private double musicDuration;
     private final ViewGroup parent;
-    private RadialProgress2 radialProgress;
+    private final RadialProgress2 radialProgress;
+    private Drawable redLocationIcon;
     private final SeekBar seekBar;
     private float seekBarX;
     private float seekBarY;
+    private int videoDuration;
+    private Text videoDurationText;
+    private final Paint durationBackgroundPaint = new Paint(1);
     private int lastFileNameWidth = 0;
     private int alpha = 255;
 
@@ -118,12 +127,17 @@ public class PollContentDrawable extends Drawable implements DownloadController.
 
     public void setMedia(MessageObject messageObject, TLRPC.MessageMedia messageMedia, Object obj, int i, String str, boolean z) {
         String str2 = this.attachFileName;
+        this.mediaWidth = 0;
+        this.mediaHeight = 0;
         this.messageObject = messageObject;
         this.media = messageMedia;
         this.isFile = false;
         this.isMusic = false;
         this.isVideo = false;
+        this.isLocation = false;
         this.musicDuration = 0.0d;
+        this.videoDuration = 0;
+        this.attachPath = str;
         this.attachFileName = null;
         boolean mediaImpl = setMediaImpl(messageMedia, obj, i, str);
         this.hasMedia = mediaImpl;
@@ -138,6 +152,9 @@ public class PollContentDrawable extends Drawable implements DownloadController.
                 DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.attachFileName, this);
             }
         }
+        if (!this.isMusic) {
+            this.radialProgress.setImageOverlay(null, null, null);
+        }
         updatePlayingMessageProgress(z);
     }
 
@@ -149,96 +166,8 @@ public class PollContentDrawable extends Drawable implements DownloadController.
         return this.hasMedia;
     }
 
-    private boolean setMediaImpl(TLRPC.MessageMedia messageMedia, Object obj, int i, String str) {
-        TLRPC.Document document;
-        double d;
-        if (messageMedia != null && !(messageMedia instanceof TLRPC.TL_messageMediaEmpty)) {
-            if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
-                TLRPC.Photo photo = ((TLRPC.TL_messageMediaPhoto) messageMedia).photo;
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 40);
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, i, false, closestPhotoSizeWithSize, true);
-                if (closestPhotoSizeWithSize2 == null) {
-                    return false;
-                }
-                int i2 = closestPhotoSizeWithSize2.w;
-                this.mediaWidth = i2;
-                int i3 = closestPhotoSizeWithSize2.h;
-                this.mediaHeight = i3;
-                String str2 = String.format(Locale.US, "%d_%d", Integer.valueOf((int) (i2 / AndroidUtilities.density)), Integer.valueOf((int) (i3 / AndroidUtilities.density)));
-                String str3 = str2 + "_b";
-                this.attachFileName = !TextUtils.isEmpty(str) ? str : MessageObject.getFileName(messageMedia);
-                this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, photo), str2, ImageLocation.getForObject(closestPhotoSizeWithSize, photo), str3, null, closestPhotoSizeWithSize2.size, null, obj, 1);
-                return true;
-            }
-            if ((messageMedia instanceof TLRPC.TL_messageMediaGeo) || (messageMedia instanceof TLRPC.TL_messageMediaVenue)) {
-                TLRPC.GeoPoint geoPoint = messageMedia.geo;
-                if (geoPoint != null) {
-                    this.mediaWidth = i;
-                    int i4 = (i * 9) / 16;
-                    this.mediaHeight = i4;
-                    float f = AndroidUtilities.density;
-                    this.imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint, (int) (i / f), (int) (i4 / f), 15, Math.min(2, (int) Math.ceil(f)))), (String) null, (ImageLocation) null, (String) null, (Drawable) null, obj, 0);
-                    return true;
-                }
-            } else {
-                if (!(messageMedia instanceof TLRPC.TL_messageMediaDocument) || (document = ((TLRPC.TL_messageMediaDocument) messageMedia).document) == null) {
-                    return false;
-                }
-                this.attachFileName = !TextUtils.isEmpty(str) ? str : MessageObject.getFileName(messageMedia);
-                if (MessageObject.isMusicDocument(document)) {
-                    this.isMusic = true;
-                    this.fileName = MessageObject.getMusicTitle(document, true);
-                    this.authorInfo = MessageObject.getMusicAuthor(document, true);
-                    int i5 = 0;
-                    while (true) {
-                        if (i5 >= document.attributes.size()) {
-                            d = 0.0d;
-                            break;
-                        }
-                        TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i5);
-                        if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                            d = documentAttribute.duration;
-                            break;
-                        }
-                        i5++;
-                    }
-                    if (MessageObject.isDocumentHasThumb(document)) {
-                        TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
-                        this.radialProgress.setImageOverlay(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(44.0f), true, closestPhotoSizeWithSize3, true), closestPhotoSizeWithSize3, document, this.messageObject);
-                    } else {
-                        String artworkUrl = MessageObject.getArtworkUrl(document, true);
-                        if (!TextUtils.isEmpty(artworkUrl)) {
-                            this.radialProgress.setImageOverlay(artworkUrl);
-                        } else {
-                            this.radialProgress.setImageOverlay(null, null, null);
-                        }
-                    }
-                    this.musicDuration = d;
-                    this.fileInfo = AndroidUtilities.formatShortDuration(getCurrentPlayingProgress(), (int) this.musicDuration);
-                    checkFileTexts(true);
-                } else if (MessageObject.isVideoDocument(document)) {
-                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
-                    TLRPC.PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, i, false, closestPhotoSizeWithSize4, true);
-                    if (closestPhotoSizeWithSize5 != null) {
-                        int i6 = closestPhotoSizeWithSize5.w;
-                        this.mediaWidth = i6;
-                        int i7 = closestPhotoSizeWithSize5.h;
-                        this.mediaHeight = i7;
-                        String str4 = String.format(Locale.US, "%d_%d", Integer.valueOf((int) (i6 / AndroidUtilities.density)), Integer.valueOf((int) (i7 / AndroidUtilities.density)));
-                        this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize5, document), str4, ImageLocation.getForObject(closestPhotoSizeWithSize4, document), str4 + "_b", null, closestPhotoSizeWithSize5.size, null, obj, 1);
-                    }
-                } else {
-                    this.isFile = true;
-                    this.fileName = FileLoader.getDocumentFileName(document);
-                    String str5 = AndroidUtilities.formatFileSize(document.size) + " " + FileLoader.getDocumentExtension(document);
-                    this.fileInfo = str5;
-                    this.authorInfo = str5;
-                    checkFileTexts(true);
-                }
-                return true;
-            }
-        }
-        return false;
+    private boolean setMediaImpl(org.telegram.tgnet.TLRPC.MessageMedia r23, java.lang.Object r24, int r25, java.lang.String r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.poll.PollContentDrawable.setMediaImpl(org.telegram.tgnet.TLRPC$MessageMedia, java.lang.Object, int, java.lang.String):boolean");
     }
 
     public int getHeightForWidth(int i) {
@@ -251,13 +180,26 @@ public class PollContentDrawable extends Drawable implements DownloadController.
         if (this.mediaWidth == 0) {
             return AndroidUtilities.dp(100.0f);
         }
-        return Math.min(Math.round(this.mediaHeight * (i / r0)), (i * 4) / 3);
+        return Math.min(Math.round(this.mediaHeight * (i / r0)), this.isExplanation ? (i * 4) / 5 : (i * 5) / 4);
     }
 
     public void checkColors(boolean z) {
         Text text = this.fileNameText;
         if (text != null) {
             text.setColor(Theme.getColor(z ? Theme.key_chat_outFileNameText : Theme.key_chat_inFileNameText));
+        }
+        this.durationBackgroundPaint.setColor(1711276032);
+        Text text2 = this.videoDurationText;
+        if (text2 != null) {
+            text2.setColor(-1);
+        }
+        SvgHelper.SvgDrawable svgDrawable = this.locationSvgThumb;
+        if (svgDrawable != null) {
+            svgDrawable.setColorKey(z ? Theme.key_chat_outLocationIcon : Theme.key_chat_inLocationIcon);
+        }
+        if (!this.isMusic && !this.isFile) {
+            this.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
+            return;
         }
         if (z) {
             SeekBar seekBar = this.seekBar;
@@ -291,39 +233,48 @@ public class PollContentDrawable extends Drawable implements DownloadController.
         int iWidth = getBounds().width() - AndroidUtilities.dp(this.isExplanation ? 64.0f : 72.0f);
         if (this.lastFileNameWidth != iWidth || z) {
             this.lastFileNameWidth = iWidth;
-            if (this.fileNameText == null) {
-                this.fileNameText = new Text(this.fileName, 15.0f, AndroidUtilities.bold());
+            CharSequence charSequence = this.fileName;
+            if (charSequence != null) {
+                if (this.fileNameText == null) {
+                    this.fileNameText = new Text(charSequence, 15.0f, AndroidUtilities.bold());
+                }
+                Text text = this.fileNameText;
+                text.setText(TextUtils.ellipsize(this.fileName, text.paint, iWidth, TextUtils.TruncateAt.MIDDLE));
             }
-            if (this.authorInfoText == null) {
-                this.authorInfoText = new Text(this.authorInfo, 14.0f);
+            CharSequence charSequence2 = this.authorInfo;
+            if (charSequence2 != null) {
+                if (this.authorInfoText == null) {
+                    this.authorInfoText = new Text(charSequence2, 14.0f);
+                }
+                Text text2 = this.authorInfoText;
+                text2.setText(TextUtils.ellipsize(this.authorInfo, text2.paint, iWidth, TextUtils.TruncateAt.END));
             }
-            if (this.fileInfoText == null) {
-                this.fileInfoText = new Text(this.fileInfo, 12.0f);
+            CharSequence charSequence3 = this.fileInfo;
+            if (charSequence3 != null) {
+                if (this.fileInfoText == null) {
+                    this.fileInfoText = new Text(charSequence3, 12.0f);
+                }
+                Text text3 = this.fileInfoText;
+                text3.setText(TextUtils.ellipsize(this.fileInfo, text3.paint, iWidth, TextUtils.TruncateAt.END));
             }
-            Text text = this.fileNameText;
-            float f = iWidth;
-            text.setText(TextUtils.ellipsize(this.fileName, text.paint, f, TextUtils.TruncateAt.MIDDLE));
-            Text text2 = this.authorInfoText;
-            CharSequence charSequence = this.authorInfo;
-            TextPaint textPaint = text2.paint;
-            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            text2.setText(TextUtils.ellipsize(charSequence, textPaint, f, truncateAt));
-            Text text3 = this.fileInfoText;
-            text3.setText(TextUtils.ellipsize(this.fileInfo, text3.paint, f, truncateAt));
+            if (this.isVideo && this.videoDurationText == null) {
+                this.videoDurationText = new Text(AndroidUtilities.formatLongDuration(this.videoDuration), 12.0f);
+            }
         }
     }
 
     @Override
     public void draw(Canvas canvas) {
+        Drawable drawable;
         Rect bounds = getBounds();
         if (this.alpha == 0 || bounds.isEmpty()) {
             return;
         }
+        checkFileTexts(false);
         if (this.isFile || this.isMusic) {
             int iDp = bounds.left + (this.isExplanation ? 0 : AndroidUtilities.dp(8.0f));
             int iDp2 = bounds.top + (this.isExplanation ? 0 : AndroidUtilities.dp(3.0f));
-            int iDp3 = !this.isMusic ? AndroidUtilities.dp(3.0f) : 0;
-            checkFileTexts(false);
+            int iDp3 = this.isMusic ? 0 : AndroidUtilities.dp(3.0f);
             Text text = this.fileNameText;
             if (text != null) {
                 text.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, iDp2 + iDp3 + AndroidUtilities.dp(15.0f));
@@ -334,7 +285,7 @@ public class PollContentDrawable extends Drawable implements DownloadController.
                     canvas.save();
                     float f = 1.0f - floatValue;
                     int i = iDp2 + iDp3;
-                    canvas.scale(f, f, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp(35.0f) + i);
+                    canvas.scale(f, f, AndroidUtilities.dp(56.0f) + iDp, i + AndroidUtilities.dp(35.0f));
                     this.authorInfoText.setAlpha((int) (f * 255.0f));
                     this.authorInfoText.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, i + AndroidUtilities.dp(35.0f));
                     canvas.restore();
@@ -361,9 +312,31 @@ public class PollContentDrawable extends Drawable implements DownloadController.
             this.imageReceiver.setAlpha(this.alpha / 255.0f);
             this.imageReceiver.setImageCoords(bounds);
             this.imageReceiver.draw(canvas);
+            if (this.isLocation && (drawable = this.redLocationIcon) != null) {
+                int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
+                int intrinsicHeight = (int) (this.redLocationIcon.getIntrinsicHeight() * 0.8f);
+                int imageX = (int) (this.imageReceiver.getImageX() + ((this.imageReceiver.getImageWidth() - intrinsicWidth) / 2.0f));
+                int imageY = (int) ((this.imageReceiver.getImageY() + ((this.imageReceiver.getImageHeight() / 2.0f) - intrinsicHeight)) - (AndroidUtilities.dp(16.0f) * (1.0f - CubicBezierInterpolator.EASE_OUT_BACK.getInterpolation(this.imageReceiver.getCurrentAlpha()))));
+                this.redLocationIcon.setAlpha((int) (Math.min(1.0f, this.imageReceiver.getCurrentAlpha() * 5.0f) * 255.0f * this.imageReceiver.getAlpha()));
+                this.redLocationIcon.setBounds(imageX, imageY, intrinsicWidth + imageX, intrinsicHeight + imageY);
+                this.redLocationIcon.draw(canvas);
+            }
             this.radialProgress.setProgressRect(bounds.centerX() - AndroidUtilities.dp(22.0f), bounds.centerY() - AndroidUtilities.dp(22.0f), bounds.centerX() + AndroidUtilities.dp(22.0f), bounds.centerY() + AndroidUtilities.dp(22.0f));
+            if (this.isVideo && this.videoDurationText != null) {
+                canvas.drawRoundRect(bounds.left + AndroidUtilities.dp(6.0f), bounds.top + AndroidUtilities.dp(6.0f), bounds.left + this.videoDurationText.getCurrentWidth() + AndroidUtilities.dp(18.0f), bounds.top + AndroidUtilities.dp(23.0f), AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), this.durationBackgroundPaint);
+                this.videoDurationText.draw(canvas, bounds.left + AndroidUtilities.dp(12.0f), bounds.top + AndroidUtilities.dp(15.0f));
+            }
         }
-        if (!TextUtils.isEmpty(this.attachFileName) && FileLoader.getInstance(this.currentAccount).isLoadingFile(this.attachFileName)) {
+        if (this.isLocation) {
+            return;
+        }
+        MessageObject messageObject = this.messageObject;
+        if (messageObject != null && messageObject.isSending()) {
+            if (ImageLoader.getInstance().getFileProgressSizes(this.attachPath) == null) {
+                this.radialProgress.setProgress(1.0f, true);
+                setIcon(6);
+            }
+        } else if (!TextUtils.isEmpty(this.attachFileName) && FileLoader.getInstance(this.currentAccount).isLoadingFile(this.attachFileName)) {
             setIcon(3);
         } else {
             setIcon(getDefaultIcon());

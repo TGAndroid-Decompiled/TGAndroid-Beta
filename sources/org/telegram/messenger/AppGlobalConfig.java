@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 
 public class AppGlobalConfig {
+    public final ConfigInt botsCreateLimitDefault;
+    public final ConfigInt botsCreateLimitPremium;
     public final ConfigInt contactNoteLengthLimit;
     public final ConfigBoolean disableBlurInDarkTheme;
     public final ConfigBoolean disableBlurInLightTheme;
@@ -89,6 +91,8 @@ public class AppGlobalConfig {
         this.pollQuestionLengthMax = ofInt("poll_question_length_max", 255);
         this.pollSolutionLengthMax = ofInt("poll_solution_length_max", 200);
         this.pollAnswerDeletePeriod = ofTime("poll_answer_delete_period", 300L, timeUnit);
+        this.botsCreateLimitDefault = ofInt("bots_create_limit_default", 20);
+        this.botsCreateLimitPremium = ofInt("bots_create_limit_premium", 40);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

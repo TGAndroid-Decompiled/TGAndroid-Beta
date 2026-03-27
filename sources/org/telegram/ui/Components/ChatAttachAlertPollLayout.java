@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -62,9 +63,11 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda277;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
+import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
 import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
 import org.telegram.ui.Components.ChatAttachAlertPollLayout;
@@ -77,6 +80,7 @@ import org.telegram.ui.Components.poll.PollAttachedMediaPack;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaFile;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaGallery;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaLocation;
+import org.telegram.ui.Components.poll.attached.PollAttachedMediaMusic;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaSticker;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.PhotoViewer;
@@ -101,6 +105,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     private int answersCount;
     private final PollAttachedMediaPack attachedMedia;
     private final Paint checkboxPaint;
+    private ChatAttachAlert currentAttachAlert;
+    private int currentAttachAlertIndex;
     private PollEditTextCell currentCell;
     private PollCreateActivityDelegate delegate;
     private int descriptionRow;
@@ -171,7 +177,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public static int getAllowedLayoutsForIndex(int i) {
-        return (i == -2 || i == -3) ? 82 : 8258;
+        return (i == -2 || i == -3) ? 90 : 8258;
     }
 
     public static void lambda$new$2() {
@@ -258,6 +264,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         super(chatAttachAlert, context, resourcesProvider);
         this.answersCount = 1;
         this.allowRevoting = true;
+        this.shuffleOptions = true;
+        this.allowAddingOptions = true;
         this.multipleChoise = true;
         this.allowAdding = true;
         this.allowMarking = true;
@@ -852,6 +860,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             tL_poll.open_answers = this.allowAddingOptions;
             tL_poll.revoting_disabled = !this.allowRevoting;
             tL_poll.shuffle_answers = this.shuffleOptions;
+            tL_poll.creator = true;
             int i8 = this.pollLimitDuration;
             if (i8 != 0) {
                 tL_poll.hide_results_until_close = this.hideResults;
@@ -1195,6 +1204,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 int i11 = this.rowCount;
                 this.rowCount = i11 + 1;
                 this.poll2vAllowAddingRow = i11;
+            } else {
+                this.allowAddingOptions = false;
             }
             int i12 = this.rowCount;
             this.poll2vAllowRevotingRow = i12;
@@ -2772,14 +2783,14 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
                 @Override
                 public void onPollAttachDelete() {
-                    ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$14(i, null);
+                    ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$19(i, null);
                 }
 
                 @Override
                 public void onClose() {
                     super.onClose();
                     if (this.openReplace) {
-                        ChatAttachAlertPollLayout.this.openAttachMenuForOptions(i);
+                        ChatAttachAlertPollLayout.this.lambda$showOptionsForDrawable$15(i);
                     }
                 }
             }, null);
@@ -2794,7 +2805,42 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             contentPreviewViewer.open(document, null, "", null, null, MessageObject.isAnimatedEmoji(document) ? 2 : 0, false, pollAttachedMediaSticker.parent, this.resourcesProvider, 200);
             return;
         }
-        openAttachMenuForOptions(i);
+        if (pollAttachedMedia instanceof PollAttachedMediaFile) {
+            PollAttachedMediaFile pollAttachedMediaFile = (PollAttachedMediaFile) pollAttachedMedia;
+            final String str = pollAttachedMediaFile.name;
+            final String str2 = AndroidUtilities.formatFileSize(pollAttachedMediaFile.size, true, true) + " " + pollAttachedMediaFile.ext;
+            showOptionsForDrawable(i, new Utilities.CallbackReturn() {
+                @Override
+                public final Object run(Object obj) {
+                    return ChatAttachAlertPollLayout.lambda$openEditOrReplaceMenu$13(str, str2, (View) obj);
+                }
+            }, AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
+            return;
+        }
+        if (pollAttachedMedia instanceof PollAttachedMediaMusic) {
+            final PollAttachedMediaMusic pollAttachedMediaMusic = (PollAttachedMediaMusic) pollAttachedMedia;
+            TLRPC.Document document2 = pollAttachedMediaMusic.messageObject.getDocument();
+            final String musicTitle = MessageObject.getMusicTitle(document2, true);
+            final String str3 = MessageObject.getMusicAuthor(document2, true) + " - " + LocaleController.formatShortDuration((int) MessageObject.getDocumentDuration(document2));
+            showOptionsForDrawable(i, new Utilities.CallbackReturn() {
+                @Override
+                public final Object run(Object obj) {
+                    return ChatAttachAlertPollLayout.lambda$openEditOrReplaceMenu$14(musicTitle, str3, pollAttachedMediaMusic, (View) obj);
+                }
+            }, AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
+            return;
+        }
+        if (pollAttachedMedia instanceof PollAttachedMediaLocation) {
+            final PollAttachedMediaLocation pollAttachedMediaLocation = (PollAttachedMediaLocation) pollAttachedMedia;
+            showOptionsForDrawable(i, new Utilities.CallbackReturn() {
+                @Override
+                public final Object run(Object obj) {
+                    return pollAttachedMediaLocation.createMessagePreviewDrawable((View) obj);
+                }
+            }, AndroidUtilities.dp(300.0f), (AndroidUtilities.dp(300.0f) * 9) / 16);
+        } else {
+            lambda$showOptionsForDrawable$15(i);
+        }
     }
 
     class AnonymousClass12 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
@@ -3038,28 +3084,70 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         public void lambda$getCustomItemOptions$0(int i) {
-            ChatAttachAlertPollLayout.this.openAttachMenuForOptions(i);
+            ChatAttachAlertPollLayout.this.lambda$showOptionsForDrawable$15(i);
         }
 
         public void lambda$getCustomItemOptions$1(int i) {
-            ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$14(i, null);
+            ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$19(i, null);
         }
+    }
+
+    public static Drawable lambda$openEditOrReplaceMenu$13(String str, String str2, View view) {
+        return PollAttachedMediaFile.createMessagePreviewDrawable(view, str, str2, null, null);
+    }
+
+    public static Drawable lambda$openEditOrReplaceMenu$14(String str, String str2, PollAttachedMediaMusic pollAttachedMediaMusic, View view) {
+        return PollAttachedMediaFile.createMessagePreviewDrawable(view, str, str2, pollAttachedMediaMusic.messageObject.getDocument(), pollAttachedMediaMusic.messageObject);
+    }
+
+    private void showOptionsForDrawable(final int i, Utilities.CallbackReturn callbackReturn, int i2, int i3) {
+        ItemOptions itemOptionsAdd = ItemOptions.makeOptions(this, new View(getContext())).setDimAlpha(0).setDrawScrim(false).add(R.drawable.msg_replace, LocaleController.getString(R.string.Replace), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showOptionsForDrawable$15(i);
+            }
+        }).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showOptionsForDrawable$16(i);
+            }
+        });
+        ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.resourcesProvider);
+        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda277(scrimOptions));
+        itemOptionsAdd.setMinWidth(AndroidUtilities.dp(185.0f));
+        itemOptionsAdd.setupSelectors();
+        scrimOptions.setItemOptions(itemOptionsAdd);
+        scrimOptions.setScrimDrawable((Drawable) callbackReturn.run(scrimOptions.getWindowView()), i2, i3);
+        scrimOptions.setOptionsAtCenter();
+        scrimOptions.show();
+    }
+
+    public void lambda$showOptionsForDrawable$16(int i) {
+        lambda$openAttachMenuForOptions$19(i, null);
     }
 
     public void openAttachOrReplaceMenuForOptions(int i) {
         if (this.attachedMedia.get(i) != null) {
             openEditOrReplaceMenu(i);
         } else {
-            openAttachMenuForOptions(i);
+            lambda$showOptionsForDrawable$15(i);
         }
     }
 
-    public static ChatAttachAlert openPollAttachMenu(final BaseFragment baseFragment, int i, int i2, final Utilities.Callback callback) {
+    public static ChatAttachAlert openPollAttachMenu(final BaseFragment baseFragment, int i, int i2, final Utilities.Callback callback, final Runnable runnable) {
         if (baseFragment == null) {
             return null;
         }
         boolean z = false;
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(baseFragment.getContext(), baseFragment, z, false, true, baseFragment.getResourceProvider()) {
+            @Override
+            public void dismissInternal() {
+                super.dismissInternal();
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
         };
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
@@ -3152,8 +3240,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
 
             @Override
-            public void doOnIdle(Runnable runnable) {
-                NotificationCenter.getInstance(baseFragment.getCurrentAccount()).doOnIdle(runnable);
+            public void doOnIdle(Runnable runnable2) {
+                NotificationCenter.getInstance(baseFragment.getCurrentAccount()).doOnIdle(runnable2);
             }
         });
         chatAttachAlert.setEmojiViewDelegate(new EmojiView.EmojiViewDelegate() {
@@ -3300,15 +3388,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z2, int i4, long j) {
-                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$13(callback, messageMedia, i3, z2, i4, j);
+                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$17(callback, messageMedia, i3, z2, i4, j);
             }
         });
         chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
-            @Override
-            public void startDocumentSelectActivity() {
-                ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startDocumentSelectActivity(this);
-            }
-
             @Override
             public void startMusicSelectActivity() {
                 ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startMusicSelectActivity(this);
@@ -3324,7 +3407,27 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
             @Override
             public void didSelectPhotos(ArrayList arrayList, boolean z2, int i3, int i4, long j) {
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    callback.run(new PollAttachedMediaGallery((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+                }
                 chatAttachAlert.dismiss(true);
+            }
+
+            @Override
+            public void startDocumentSelectActivity() {
+                try {
+                    Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                    intent.setType("*/*");
+                    baseFragment.getParentActivity().startActivityForResult(intent, 28);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        });
+        chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
+            @Override
+            public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i3, int i4, long j, boolean z3, long j2) {
+                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$18(callback, chatAttachAlert, arrayList, charSequence, z2, i3, i4, j, z3, j2);
             }
         });
         chatAttachAlert.init();
@@ -3333,20 +3436,45 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return chatAttachAlert;
     }
 
-    public static void lambda$openPollAttachMenu$13(Utilities.Callback callback, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void lambda$openPollAttachMenu$17(Utilities.Callback callback, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         callback.run(new PollAttachedMediaLocation(messageMedia));
     }
 
-    public void openAttachMenuForOptions(final int i) {
-        openPollAttachMenu(this.parentAlert.baseFragment, getStartLayoutForMedia(this.attachedMedia.get(i)), getAllowedLayoutsForIndex(i), new Utilities.Callback() {
+    public static void lambda$openPollAttachMenu$18(Utilities.Callback callback, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        if (arrayList != null && !arrayList.isEmpty()) {
+            callback.run(new PollAttachedMediaMusic((MessageObject) arrayList.get(0)));
+        }
+        chatAttachAlert.dismiss(true);
+    }
+
+    public void lambda$showOptionsForDrawable$15(final int i) {
+        this.currentAttachAlertIndex = i;
+        this.currentAttachAlert = openPollAttachMenu(this.parentAlert.baseFragment, getStartLayoutForMedia(this.attachedMedia.get(i)), getAllowedLayoutsForIndex(i), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$openAttachMenuForOptions$14(i, (PollAttachedMedia) obj);
+                this.f$0.lambda$openAttachMenuForOptions$19(i, (PollAttachedMedia) obj);
+            }
+        }, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$openAttachMenuForOptions$20();
             }
         });
     }
 
+    public void lambda$openAttachMenuForOptions$20() {
+        this.currentAttachAlertIndex = -1;
+        this.currentAttachAlert = null;
+    }
+
+    public void onPollAttachFilePicker(android.content.Intent r3) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.onPollAttachFilePicker(android.content.Intent):void");
+    }
+
     public static int getStartLayoutForMedia(PollAttachedMedia pollAttachedMedia) {
+        if (pollAttachedMedia instanceof PollAttachedMediaMusic) {
+            return 3;
+        }
         if (pollAttachedMedia instanceof PollAttachedMediaFile) {
             return 4;
         }
@@ -3367,7 +3495,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return i2 + i;
     }
 
-    public void lambda$openAttachMenuForOptions$14(int i, PollAttachedMedia pollAttachedMedia) {
+    public void lambda$openAttachMenuForOptions$19(int i, PollAttachedMedia pollAttachedMedia) {
         this.attachedMedia.set(i, pollAttachedMedia);
         int iMediaIndexToAdapterPosition = mediaIndexToAdapterPosition(i);
         if (iMediaIndexToAdapterPosition >= 0) {

@@ -198,7 +198,7 @@ public class PollAddOptionFieldLayout extends FrameLayout implements ViewTreeObs
             public final void run(Object obj) {
                 this.f$0.lambda$new$1((PollAttachedMedia) obj);
             }
-        });
+        }, null);
     }
 
     public void lambda$new$1(PollAttachedMedia pollAttachedMedia) {

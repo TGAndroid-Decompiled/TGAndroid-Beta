@@ -26,10 +26,14 @@ public class UserNameResolver {
         return resolve(str, null, consumer);
     }
 
-    public Runnable resolve(final String str, String str2, Consumer consumer) {
+    public Runnable resolve(String str, String str2, Consumer consumer) {
+        return resolve(str, str2, false, consumer);
+    }
+
+    public Runnable resolve(final String str, String str2, boolean z, Consumer consumer) {
         TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername;
         CachedPeer cachedPeer;
-        if (TextUtils.isEmpty(str2) && (cachedPeer = this.resolvedCache.get(str)) != null) {
+        if (TextUtils.isEmpty(str2) && !z && (cachedPeer = this.resolvedCache.get(str)) != null) {
             if (System.currentTimeMillis() - cachedPeer.time < 3600000) {
                 consumer.accept(Long.valueOf(cachedPeer.peerId));
                 FileLog.d("resolve username from cache " + str + " " + cachedPeer.peerId);

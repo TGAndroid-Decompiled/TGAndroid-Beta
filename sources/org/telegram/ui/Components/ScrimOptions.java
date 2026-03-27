@@ -33,6 +33,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
@@ -53,11 +54,13 @@ public class ScrimOptions extends Dialog {
     private ValueAnimator openAnimator;
     private float openProgress;
     private ItemOptions options;
+    private boolean optionsAtCenter;
     private FrameLayout optionsContainer;
     private View optionsView;
     public final Theme.ResourcesProvider resourcesProvider;
     private ChatMessageCell scrimCell;
     private Drawable scrimDrawable;
+    private Drawable scrimDrawableBackground;
     private float scrimDrawableSh;
     private float scrimDrawableSw;
     private float scrimDrawableTx1;
@@ -92,6 +95,10 @@ public class ScrimOptions extends Dialog {
                     canvas.translate(ScrimOptions.this.scrimDrawableTx2 + (ScrimOptions.this.scrimDrawableTx1 * ScrimOptions.this.openProgress), ScrimOptions.this.scrimDrawableTy2 + (ScrimOptions.this.scrimDrawableTy1 * ScrimOptions.this.openProgress));
                     float fLerp = AndroidUtilities.lerp(AndroidUtilities.lerp(Math.min(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), Math.max(ScrimOptions.this.scrimDrawableSw, ScrimOptions.this.scrimDrawableSh), 0.75f), 1.0f, ScrimOptions.this.openProgress);
                     canvas.scale(fLerp, fLerp, (-ScrimOptions.this.scrimDrawableTx2) + ScrimOptions.this.scrimDrawable.getBounds().left + ((ScrimOptions.this.scrimDrawable.getBounds().width() / 2.0f) * ScrimOptions.this.scrimDrawableSw), (-ScrimOptions.this.scrimDrawableTy2) + ScrimOptions.this.scrimDrawable.getBounds().top + ((ScrimOptions.this.scrimDrawable.getBounds().height() / 2.0f) * ScrimOptions.this.scrimDrawableSh));
+                    if (ScrimOptions.this.scrimDrawableBackground != null) {
+                        ScrimOptions.this.scrimDrawableBackground.setAlpha((int) (ScrimOptions.this.openProgress * 255.0f));
+                        ScrimOptions.this.scrimDrawableBackground.draw(canvas);
+                    }
                     ScrimOptions.this.scrimDrawable.draw(canvas);
                     canvas.restore();
                 }
@@ -156,6 +163,15 @@ public class ScrimOptions extends Dialog {
         this.optionsContainer = frameLayout;
         frameLayout.addView(this.optionsView, LayoutHelper.createFrame(-2, -2.0f));
         this.containerView.addView(this.optionsContainer, LayoutHelper.createFrame(-2, -2.0f));
+    }
+
+    public void setOptionsAtCenter() {
+        ((FrameLayout.LayoutParams) this.optionsContainer.getLayoutParams()).gravity = 1;
+        this.optionsAtCenter = true;
+    }
+
+    public FrameLayout getWindowView() {
+        return this.windowView;
     }
 
     @Override
@@ -372,28 +388,46 @@ public class ScrimOptions extends Dialog {
                 float f7 = f5 + f6;
                 float f8 = bounds.bottom + f6;
                 boolean z2 = true;
-                if (f4 - r1.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
-                    this.optionsView.setPivotX(AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), f3 - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
+                if (this.optionsAtCenter) {
                     z = false;
                 } else {
-                    this.optionsView.setPivotX(r1.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(4.0f) + f4) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
-                    z = true;
+                    if (f4 - r1.getMeasuredWidth() < AndroidUtilities.dp(8.0f)) {
+                        this.optionsView.setPivotX(AndroidUtilities.dp(6.0f));
+                        this.optionsContainer.setX(Math.min(this.containerView.getWidth() - this.optionsContainer.getWidth(), f3 - AndroidUtilities.dp(10.0f)) - this.containerView.getX());
+                        z = false;
+                    } else {
+                        this.optionsView.setPivotX(r1.getMeasuredWidth() - AndroidUtilities.dp(6.0f));
+                        this.optionsContainer.setX(Math.max(AndroidUtilities.dp(8.0f), (AndroidUtilities.dp(4.0f) + f4) - this.optionsContainer.getMeasuredWidth()) - this.containerView.getX());
+                        z = true;
+                    }
+                    this.scrimDrawableTx1 = z ? ((this.optionsContainer.getX() + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f)) - f4 : (this.optionsContainer.getX() + AndroidUtilities.dp(10.0f)) - f3;
+                    this.scrimDrawableTy1 = 0.0f;
                 }
-                this.scrimDrawableTx1 = z ? ((this.optionsContainer.getX() + this.optionsContainer.getWidth()) - AndroidUtilities.dp(6.0f)) - f4 : (this.optionsContainer.getX() + AndroidUtilities.dp(10.0f)) - f3;
-                this.scrimDrawableTy1 = 0.0f;
-                if (this.optionsContainer.getMeasuredHeight() + f8 > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
+                float fDp = f8 + (this.scrimDrawableBackground != null ? AndroidUtilities.dp(21.0f) : 0);
+                if (this.optionsContainer.getMeasuredHeight() + fDp > this.windowView.getMeasuredHeight() - AndroidUtilities.dp(16.0f)) {
                     this.optionsView.setPivotY(r0.getMeasuredHeight() - AndroidUtilities.dp(6.0f));
                     this.optionsContainer.setY(((f7 - AndroidUtilities.dp(4.0f)) - this.optionsContainer.getMeasuredHeight()) - this.containerView.getY());
                 } else {
                     this.optionsView.setPivotY(AndroidUtilities.dp(6.0f));
-                    this.optionsContainer.setY(Math.min((this.windowView.getHeight() - this.optionsContainer.getMeasuredHeight()) - AndroidUtilities.dp(16.0f), f8) - this.containerView.getY());
+                    this.optionsContainer.setY(Math.min((this.windowView.getHeight() - this.optionsContainer.getMeasuredHeight()) - AndroidUtilities.dp(16.0f), fDp) - this.containerView.getY());
                     z2 = false;
                 }
                 this.options.setSwipebackGravity(z, z2);
             }
         }
+    }
+
+    public void setScrimDrawable(Drawable drawable, int i, int i2) {
+        BlurredBackgroundDrawable radius = this.iBlur3Factory.create().setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider)).setPadding(AndroidUtilities.dp(8.0f)).setHasPadding(true).setRadius(AndroidUtilities.dp(16.0f));
+        this.scrimDrawableBackground = radius;
+        this.scrimDrawable = drawable;
+        android.graphics.Point point = AndroidUtilities.displaySize;
+        int i3 = (point.x - i) / 2;
+        int i4 = (point.y - i2) / 2;
+        int i5 = i + i3;
+        int i6 = i2 + i4;
+        radius.setBounds(i3 - AndroidUtilities.dp(8.0f), i4 - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f) + i5, AndroidUtilities.dp(8.0f) + i6);
+        this.scrimDrawable.setBounds(i3, i4, i5, i6);
     }
 
     public void setScrim(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, CharSequence charSequence) {

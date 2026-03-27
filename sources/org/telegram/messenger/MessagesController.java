@@ -869,6 +869,11 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
+    public boolean aiEditorAvailable() {
+        Set<String> set = this.aiComposeStyles;
+        return (set == null || set.isEmpty()) ? false : true;
+    }
+
     public boolean starsPurchaseAvailable() {
         return !this.starsLocked;
     }
@@ -2085,7 +2090,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.starsPaidPostAmountMax = this.mainPreferences.getLong("starsPaidPostAmountMax", 10000L);
         this.botPreviewMediasMax = this.mainPreferences.getInt("botPreviewMediasMax", 10);
         this.webAppAllowedProtocols = this.mainPreferences.getStringSet("webAppAllowedProtocols", new HashSet(Arrays.asList("http", "https")));
-        this.aiComposeStyles = this.mainPreferences.getStringSet("aiComposeStyles", new HashSet(Arrays.asList("🤝|formal", "🎯|short", "🍖|savage", "🕯|biblical", "🍷|posh")));
+        this.aiComposeStyles = this.mainPreferences.getStringSet("aiComposeStyles2", new HashSet());
         this.ignoreRestrictionReasons = this.mainPreferences.getStringSet("ignoreRestrictionReasons", new HashSet(Arrays.asList(new String[0])));
         this.tonProxyAddress = this.mainPreferences.getString("tonProxyAddress", "magic.org");
         this.weatherSearchUsername = this.mainPreferences.getString("weatherSearchUsername", "izweatherbot");

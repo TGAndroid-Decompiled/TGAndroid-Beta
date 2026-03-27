@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.poll.attached;
 
 import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
@@ -11,17 +12,14 @@ public class PollAttachedMediaGallery extends PollAttachedMedia {
     public final MediaController.PhotoEntry photoEntry;
     public final SendMessagesHelper.SendingMediaInfo sendingMediaInfo;
 
-    @Override
-    protected void drawOverlay(Canvas canvas, int i, int i2) {
-    }
-
     public PollAttachedMediaGallery(SendMessagesHelper.SendingMediaInfo sendingMediaInfo) {
         this.sendingMediaInfo = sendingMediaInfo;
         this.photoEntry = sendingMediaInfo.originalPhotoEntry;
+        this.imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
+        setupImageReceiver(this.imageReceiver);
     }
 
-    @Override
-    protected void setupImageReceiver(ImageReceiver imageReceiver) {
+    private void setupImageReceiver(ImageReceiver imageReceiver) {
         ImageLocation forPath;
         imageReceiver.setOrientation(0, true);
         MediaController.PhotoEntry photoEntry = this.photoEntry;
@@ -51,5 +49,11 @@ public class PollAttachedMediaGallery extends PollAttachedMedia {
         } else {
             imageReceiver.clearImage();
         }
+    }
+
+    @Override
+    protected void draw(Canvas canvas, int i, int i2) {
+        this.imageReceiver.setImageCoords(0.0f, 0.0f, i, i2);
+        this.imageReceiver.draw(canvas);
     }
 }

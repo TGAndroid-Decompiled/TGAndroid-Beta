@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -314,7 +315,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    public PaintView(final Context context, boolean z, File file, boolean z2, boolean z3, final StoryRecorder.WindowView windowView, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, final Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, final Runnable runnable, BlurringShader.BlurManager blurManager, final Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder, PreviewView previewView) {
+    public PaintView(final Context context, boolean z, File file, boolean z2, boolean z3, final StoryRecorder.WindowView windowView, Activity activity, final int i, Bitmap bitmap, Bitmap bitmap2, final Bitmap bitmap3, int i2, ArrayList arrayList, StoryEntry storyEntry, int i3, int i4, MediaController.CropState cropState, final Runnable runnable, BlurringShader.BlurManager blurManager, final Theme.ResourcesProvider resourcesProvider, PreviewView.TextureViewHolder textureViewHolder, PreviewView previewView) throws Resources.NotFoundException {
         Bitmap bitmap4;
         BlurringShader.BlurManager blurManager2;
         int i5;
@@ -632,7 +633,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             }
 
             @Override
-            protected void onMeasure(int i6, int i7) {
+            protected void onMeasure(int i6, int i7) throws Resources.NotFoundException {
                 super.onMeasure(i6, i7);
                 if (PaintView.this.w <= 0) {
                     PaintView paintView = PaintView.this;
@@ -1253,7 +1254,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.bottomLayout.invalidate();
     }
 
-    private LocationView createLocationSticker(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, boolean z) {
+    private LocationView createLocationSticker(TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, boolean z) throws Resources.NotFoundException {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1288,7 +1289,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return locationView;
     }
 
-    private WeatherView createWeatherView(Weather.State state, boolean z) {
+    private WeatherView createWeatherView(Weather.State state, boolean z) throws Resources.NotFoundException {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1323,7 +1324,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return weatherView;
     }
 
-    private LinkView createLinkSticker(LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea, boolean z) {
+    private LinkView createLinkSticker(LinkPreview.WebPagePreview webPagePreview, TL_stories.MediaArea mediaArea, boolean z) throws Resources.NotFoundException {
         int i;
         onTextAdd();
         this.forceChanges = true;
@@ -1358,7 +1359,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return linkView;
     }
 
-    private TextPaintView createText(boolean z) {
+    private TextPaintView createText(boolean z) throws Resources.NotFoundException {
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point pointStartPositionRelativeToEntity = startPositionRelativeToEntity(null);
@@ -1449,7 +1450,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return selectEntity(entityView, true);
     }
 
-    private boolean selectEntity(EntityView entityView, boolean z) {
+    private boolean selectEntity(EntityView entityView, boolean z) throws Resources.NotFoundException {
         boolean z2;
         int i;
         boolean z3 = entityView instanceof TextPaintView;
@@ -1596,7 +1597,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return z4;
     }
 
-    private void showReactionsLayoutForView(ReactionWidgetEntityView reactionWidgetEntityView) {
+    private void showReactionsLayoutForView(ReactionWidgetEntityView reactionWidgetEntityView) throws Resources.NotFoundException {
         final ReactionsContainerLayout reactionsContainerLayout;
         ReactionWidgetEntityView reactionWidgetEntityView2 = this.reactionForEntity;
         if (reactionWidgetEntityView2 != null && reactionWidgetEntityView2 != reactionWidgetEntityView && (reactionsContainerLayout = this.reactionLayout) != null) {
@@ -1877,7 +1878,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.textTab.setSingleLine();
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$setupTabsLayout$19(view);
             }
         });
@@ -1896,7 +1897,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         openStickersView();
     }
 
-    public void lambda$setupTabsLayout$19(View view) {
+    public void lambda$setupTabsLayout$19(View view) throws Resources.NotFoundException {
         switchTab(2);
         if (this.currentEntityView instanceof TextPaintView) {
             return;
@@ -2531,7 +2532,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.renderInputView.setVisibility(0);
     }
 
-    public void setupEntities() {
+    public void setupEntities() throws Resources.NotFoundException {
         Emoji.EmojiSpan[] emojiSpanArr;
         RoundView roundView;
         ArrayList arrayList = this.initialEntities;
@@ -3470,7 +3471,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     }
 
     @Override
-    public void onNewTextSelected() {
+    public void onNewTextSelected() throws Resources.NotFoundException {
         if (this.keyboardVisible || this.emojiViewVisible) {
             onEmojiButtonClick();
         } else {

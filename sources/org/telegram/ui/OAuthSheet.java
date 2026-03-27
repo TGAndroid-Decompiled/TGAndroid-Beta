@@ -67,9 +67,14 @@ public abstract class OAuthSheet {
 
     public static void handle(final boolean z, final int i, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, TLRPC.UrlAuthResult urlAuthResult, final String str, final TLRPC.UrlAuthResult urlAuthResult2, String str2, final boolean z2, final BotWebViewContainer botWebViewContainer) {
         final Context context;
+        String string;
+        int i2;
         boolean z3;
+        ArrayList arrayList;
+        boolean z4;
         TextCheckCell textCheckCell;
         BaseFragment safeLastFragment;
+        String string2;
         BaseFragment safeLastFragment2;
         final Context context2;
         if (urlAuthResult instanceof TLRPC.TL_urlAuthResultAccepted) {
@@ -87,10 +92,19 @@ public abstract class OAuthSheet {
                     Browser.openUrlInSystemBrowser(safeLastFragment3.getContext(), tL_urlAuthResultAccepted.url);
                     return;
                 }
-                boolean z4 = urlAuthResult2 instanceof TLRPC.TL_urlAuthResultRequest;
-                String str3 = z4 ? ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).domain : null;
-                if (!TextUtils.isEmpty(str3)) {
-                    getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.BotAuthLoggedInSuccessTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(z4 && ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).request_phone_number && !z2 ? R.string.BotAuthLoggedInSuccessWithoutPhoneNumber : R.string.BotAuthLoggedInSuccess, str3), Theme.getColor(Theme.key_undo_cancelColor))).show();
+                boolean z5 = urlAuthResult2 instanceof TLRPC.TL_urlAuthResultRequest;
+                if (z5) {
+                    TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) urlAuthResult2;
+                    if (tL_urlAuthResultRequest.is_app) {
+                        string2 = !TextUtils.isEmpty(tL_urlAuthResultRequest.verified_app_name) ? tL_urlAuthResultRequest.verified_app_name : LocaleController.getString(R.string.UnverifiedApp);
+                    } else {
+                        string2 = tL_urlAuthResultRequest.domain;
+                    }
+                } else {
+                    string2 = null;
+                }
+                if (!TextUtils.isEmpty(string2)) {
+                    getBulletinFactory().createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.BotAuthLoggedInSuccessTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(z5 && ((TLRPC.TL_urlAuthResultRequest) urlAuthResult2).request_phone_number && !z2 ? R.string.BotAuthLoggedInSuccessWithoutPhoneNumber : R.string.BotAuthLoggedInSuccess, string2), Theme.getColor(Theme.key_undo_cancelColor))).show();
                 }
                 if (botWebViewContainer != null) {
                     botWebViewContainer.notifyEvent("oauth_result_confirmed", BotWebViewContainer.obj("result_url", null));
@@ -129,7 +143,7 @@ public abstract class OAuthSheet {
             return;
         }
         if (urlAuthResult instanceof TLRPC.TL_urlAuthResultRequest) {
-            final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) urlAuthResult;
+            final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest2 = (TLRPC.TL_urlAuthResultRequest) urlAuthResult;
             final BaseFragment safeLastFragment5 = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment5 == null || (context = safeLastFragment5.getContext()) == null) {
                 return;
@@ -138,21 +152,22 @@ public abstract class OAuthSheet {
             BottomSheet.Builder builder = new BottomSheet.Builder(context, false, safeLastFragment5.getResourceProvider());
             FrameLayout frameLayout = new FrameLayout(context);
             builder.setCustomView(frameLayout);
-            final ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
             boolean zIsTestBackend = ConnectionsManager.getInstance(i).isTestBackend();
-            arrayList.clear();
-            for (int i2 = 0; i2 < 4; i2++) {
-                if (UserConfig.getInstance(i2).isClientActivated() && ConnectionsManager.getInstance(i2).isTestBackend() == zIsTestBackend) {
-                    arrayList.add(Integer.valueOf(i2));
+            arrayList2.clear();
+            for (int i3 = 0; i3 < 4; i3++) {
+                if (UserConfig.getInstance(i3).isClientActivated() && ConnectionsManager.getInstance(i3).isTestBackend() == zIsTestBackend) {
+                    arrayList2.add(Integer.valueOf(i3));
                 }
             }
-            Collections.sort(arrayList, new Comparator() {
+            Collections.sort(arrayList2, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
                     return OAuthSheet.lambda$handle$1((Integer) obj, (Integer) obj2);
                 }
             });
-            final boolean z5 = tL_messages_requestUrlAuth.peer != null;
+            boolean z6 = tL_messages_requestUrlAuth.peer != null;
+            boolean z7 = tL_urlAuthResultRequest2.is_app;
             FrameLayout frameLayout2 = new FrameLayout(context);
             final FrameLayout frameLayout3 = new FrameLayout(context);
             frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(14.0f), safeLastFragment5.getThemedColor(Theme.key_dialogBackgroundGray)));
@@ -176,7 +191,7 @@ public abstract class OAuthSheet {
             frameLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), 0);
             frameLayout.addView(frameLayout2, LayoutHelper.createLinear(-2, -2, 0.0f, 51, 6, 4, 6, 0));
             ScaleStateListAnimator.apply(frameLayout2);
-            if (arrayList.size() <= 1 || tL_messages_requestUrlAuth.peer != null) {
+            if (arrayList2.size() <= 1 || tL_messages_requestUrlAuth.peer != null) {
                 frameLayout2.setVisibility(8);
             }
             LinearLayout linearLayout = new LinearLayout(context);
@@ -185,76 +200,95 @@ public abstract class OAuthSheet {
             BackupImageView backupImageView2 = new BackupImageView(context);
             backupImageView2.setRoundRadius(AndroidUtilities.dp(40.0f));
             AvatarDrawable avatarDrawable2 = new AvatarDrawable();
-            avatarDrawable2.setInfo(tL_urlAuthResultRequest.bot);
-            backupImageView2.setForUserOrChat(tL_urlAuthResultRequest.bot, avatarDrawable2);
+            avatarDrawable2.setInfo(tL_urlAuthResultRequest2.bot);
+            backupImageView2.setForUserOrChat(tL_urlAuthResultRequest2.bot, avatarDrawable2);
             linearLayout.addView(backupImageView2, LayoutHelper.createLinear(80, 80, 49, 0, 21, 0, 16));
-            int i3 = Theme.key_dialogTextBlack;
-            TextView textViewMakeTextView = TextHelper.makeTextView(context, 20.0f, i3, true);
+            if (tL_urlAuthResultRequest2.is_app) {
+                string = !TextUtils.isEmpty(tL_urlAuthResultRequest2.verified_app_name) ? tL_urlAuthResultRequest2.verified_app_name : LocaleController.getString(R.string.UnverifiedApp);
+            } else {
+                string = tL_urlAuthResultRequest2.domain;
+            }
+            final String str3 = string;
+            int i4 = Theme.key_dialogTextBlack;
+            TextView textViewMakeTextView = TextHelper.makeTextView(context, 20.0f, i4, true);
             textViewMakeTextView.setGravity(17);
-            textViewMakeTextView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(R.string.BotAuthTitle, tL_urlAuthResultRequest.domain), safeLastFragment5.getThemedColor(Theme.key_featuredStickers_addButton)));
+            textViewMakeTextView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(R.string.BotAuthTitle, str3), safeLastFragment5.getThemedColor(Theme.key_featuredStickers_addButton)));
             linearLayout.addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 49, 32.0f, 0.0f, 32.0f, 9.66f));
-            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, i3, false);
+            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, i4, false);
             textViewMakeTextView2.setGravity(17);
-            textViewMakeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(z5 ? R.string.BotAuthBotSubtitle : R.string.BotAuthSiteSubtitle)));
+            if (z7) {
+                i2 = R.string.BotAuthAppSubtitle;
+            } else {
+                i2 = z6 ? R.string.BotAuthBotSubtitle : R.string.BotAuthSiteSubtitle;
+            }
+            textViewMakeTextView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(i2)));
             linearLayout.addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 49, 32, 0, 32, 24));
-            if (!TextUtils.isEmpty(tL_urlAuthResultRequest.platform) || !TextUtils.isEmpty(tL_urlAuthResultRequest.browser) || !TextUtils.isEmpty(tL_urlAuthResultRequest.region) || !TextUtils.isEmpty(tL_urlAuthResultRequest.ip)) {
+            if (TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) && TextUtils.isEmpty(tL_urlAuthResultRequest2.browser) && TextUtils.isEmpty(tL_urlAuthResultRequest2.region) && TextUtils.isEmpty(tL_urlAuthResultRequest2.ip)) {
+                z3 = z7;
+                arrayList = arrayList2;
+            } else {
                 LinearLayout linearLayout2 = new LinearLayout(context);
                 linearLayout2.setClipToPadding(false);
                 linearLayout2.setClipChildren(false);
                 linearLayout2.setOrientation(1);
                 linearLayout2.setBackground(Theme.createRoundRectDrawableShadowed(AndroidUtilities.dp(16.0f), safeLastFragment5.getThemedColor(Theme.key_windowBackgroundWhite)));
                 linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 55, 9, -3, 9, -3));
-                if (!TextUtils.isEmpty(tL_urlAuthResultRequest.platform) || !TextUtils.isEmpty(tL_urlAuthResultRequest.browser)) {
+                if (TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) && TextUtils.isEmpty(tL_urlAuthResultRequest2.browser)) {
+                    z3 = z7;
+                    arrayList = arrayList2;
+                } else {
                     LinearLayout linearLayout3 = new LinearLayout(context);
                     linearLayout3.setOrientation(0);
                     ImageView imageView2 = new ImageView(context);
                     imageView2.setImageResource(R.drawable.msg2_devices);
-                    imageView2.setColorFilter(new PorterDuffColorFilter(safeLastFragment5.getThemedColor(i3), mode));
+                    z3 = z7;
+                    imageView2.setColorFilter(new PorterDuffColorFilter(safeLastFragment5.getThemedColor(i4), mode));
                     linearLayout3.addView(imageView2, LayoutHelper.createLinear(24, 24, 19, 17, 0, 20, 0));
                     LinearLayout linearLayout4 = new LinearLayout(context);
                     linearLayout4.setOrientation(1);
                     linearLayout3.addView(linearLayout4, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 10.66f, 20.0f, 11.0f));
-                    TextView textViewMakeTextView3 = TextHelper.makeTextView(context, 16.0f, i3, false);
-                    textViewMakeTextView3.setText(TextUtils.isEmpty(tL_urlAuthResultRequest.platform) ? "—" : tL_urlAuthResultRequest.platform);
+                    arrayList = arrayList2;
+                    TextView textViewMakeTextView3 = TextHelper.makeTextView(context, 16.0f, i4, false);
+                    textViewMakeTextView3.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.platform) ? "—" : tL_urlAuthResultRequest2.platform);
                     linearLayout4.addView(textViewMakeTextView3, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 0.0f, 0.0f, 4.33f));
                     TextView textViewMakeTextView4 = TextHelper.makeTextView(context, 13.0f, Theme.key_windowBackgroundWhiteGrayText, false);
-                    textViewMakeTextView4.setText(TextUtils.isEmpty(tL_urlAuthResultRequest.browser) ? "—" : tL_urlAuthResultRequest.browser);
+                    textViewMakeTextView4.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.browser) ? "—" : tL_urlAuthResultRequest2.browser);
                     linearLayout4.addView(textViewMakeTextView4, LayoutHelper.createLinear(-1, -2, 55));
                     linearLayout2.addView(linearLayout3, LayoutHelper.createLinear(-1, -2));
                 }
-                if (TextUtils.isEmpty(tL_urlAuthResultRequest.region) && TextUtils.isEmpty(tL_urlAuthResultRequest.ip)) {
-                    z3 = false;
+                if (TextUtils.isEmpty(tL_urlAuthResultRequest2.region) && TextUtils.isEmpty(tL_urlAuthResultRequest2.ip)) {
+                    z4 = false;
                 } else {
                     LinearLayout linearLayout5 = new LinearLayout(context);
                     linearLayout5.setOrientation(0);
                     ImageView imageView3 = new ImageView(context);
                     imageView3.setImageResource(R.drawable.msg2_language);
-                    imageView3.setColorFilter(new PorterDuffColorFilter(safeLastFragment5.getThemedColor(i3), mode));
+                    imageView3.setColorFilter(new PorterDuffColorFilter(safeLastFragment5.getThemedColor(i4), mode));
                     linearLayout5.addView(imageView3, LayoutHelper.createLinear(24, 24, 19, 17, 0, 20, 0));
                     LinearLayout linearLayout6 = new LinearLayout(context);
                     linearLayout6.setOrientation(1);
                     linearLayout5.addView(linearLayout6, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 10.66f, 20.0f, 11.0f));
-                    TextView textViewMakeTextView5 = TextHelper.makeTextView(context, 16.0f, i3, false);
-                    textViewMakeTextView5.setText(TextUtils.isEmpty(tL_urlAuthResultRequest.region) ? "—" : tL_urlAuthResultRequest.region);
+                    TextView textViewMakeTextView5 = TextHelper.makeTextView(context, 16.0f, i4, false);
+                    textViewMakeTextView5.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.region) ? "—" : tL_urlAuthResultRequest2.region);
                     linearLayout6.addView(textViewMakeTextView5, LayoutHelper.createLinear(-1, -2, 55, 0.0f, 0.0f, 0.0f, 4.33f));
-                    z3 = false;
+                    z4 = false;
                     TextView textViewMakeTextView6 = TextHelper.makeTextView(context, 13.0f, Theme.key_windowBackgroundWhiteGrayText, false);
-                    textViewMakeTextView6.setText(TextUtils.isEmpty(tL_urlAuthResultRequest.ip) ? "—" : LocaleController.formatString(R.string.BotAuthBasedOnIP, tL_urlAuthResultRequest.ip));
+                    textViewMakeTextView6.setText(TextUtils.isEmpty(tL_urlAuthResultRequest2.ip) ? "—" : LocaleController.formatString(R.string.BotAuthBasedOnIP, tL_urlAuthResultRequest2.ip));
                     linearLayout6.addView(textViewMakeTextView6, LayoutHelper.createLinear(-1, -2, 55));
                     linearLayout2.addView(linearLayout5, LayoutHelper.createLinear(-1, -2));
                 }
-                TextView textViewMakeTextView7 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, z3);
+                TextView textViewMakeTextView7 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, z4);
                 textViewMakeTextView7.setText(LocaleController.getString(R.string.BotAuthInfo));
                 linearLayout.addView(textViewMakeTextView7, LayoutHelper.createLinear(-1, -2, 55, 22, 5, 22, 20));
             }
-            if (tL_urlAuthResultRequest.request_write_access) {
+            if (tL_urlAuthResultRequest2.request_write_access) {
                 FrameLayout frameLayout4 = new FrameLayout(context);
                 int iDp = AndroidUtilities.dp(16.0f);
-                int i4 = Theme.key_windowBackgroundWhite;
-                frameLayout4.setBackground(Theme.createRoundRectDrawableShadowed(iDp, safeLastFragment5.getThemedColor(i4)));
+                int i5 = Theme.key_windowBackgroundWhite;
+                frameLayout4.setBackground(Theme.createRoundRectDrawableShadowed(iDp, safeLastFragment5.getThemedColor(i5)));
                 final TextCheckCell textCheckCell2 = new TextCheckCell(context, safeLastFragment5.getResourceProvider());
                 textCheckCell2.setTextAndCheck(LocaleController.getString(R.string.BotAuthAllowMessages), true, false);
-                textCheckCell2.setBackground(Theme.createRadSelectorDrawable(safeLastFragment5.getThemedColor(i4), safeLastFragment5.getThemedColor(Theme.key_listSelector), 16, 16));
+                textCheckCell2.setBackground(Theme.createRadSelectorDrawable(safeLastFragment5.getThemedColor(i5), safeLastFragment5.getThemedColor(Theme.key_listSelector), 16, 16));
                 textCheckCell2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -264,7 +298,7 @@ public abstract class OAuthSheet {
                 frameLayout4.addView(textCheckCell2, LayoutHelper.createFrame(-1, -1, 119));
                 linearLayout.addView(frameLayout4, LayoutHelper.createLinear(-1, -2, 7, 9, -3, 9, -3));
                 TextView textViewMakeTextView8 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false);
-                textViewMakeTextView8.setText(LocaleController.formatString(R.string.BotAuthAllowMessagesInfo, UserObject.getUserName(tL_urlAuthResultRequest.bot)));
+                textViewMakeTextView8.setText(LocaleController.formatString(R.string.BotAuthAllowMessagesInfo, UserObject.getUserName(tL_urlAuthResultRequest2.bot)));
                 linearLayout.addView(textViewMakeTextView8, LayoutHelper.createLinear(-1, -2, 55, 22, 6, 22, 20));
                 textCheckCell = textCheckCell2;
             } else {
@@ -283,21 +317,23 @@ public abstract class OAuthSheet {
             final BottomSheet bottomSheetCreate = builder.create();
             bottomSheetCreate.setBackgroundColor(safeLastFragment5.getThemedColor(Theme.key_windowBackgroundGray));
             final String[] strArr = {str2};
+            final boolean z8 = z3;
+            final ArrayList arrayList3 = arrayList;
             final TextCheckCell textCheckCell3 = textCheckCell;
             final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    OAuthSheet.lambda$handle$4(iArr, tL_messages_requestUrlAuth, bottomSheetCreate, z, str, urlAuthResult2, strArr, z2, botWebViewContainer, tL_urlAuthResultRequest, resourceProvider, (Integer) obj);
+                    OAuthSheet.lambda$handle$4(iArr, tL_messages_requestUrlAuth, bottomSheetCreate, z, str, urlAuthResult2, strArr, z2, botWebViewContainer, str3, resourceProvider, (Integer) obj);
                 }
             };
-            if (tL_urlAuthResultRequest.user_id_hint != 0 && UserConfig.getInstance(i).getClientUserId() != tL_urlAuthResultRequest.user_id_hint) {
-                Iterator it = arrayList.iterator();
+            if (tL_urlAuthResultRequest2.user_id_hint != 0 && UserConfig.getInstance(i).getClientUserId() != tL_urlAuthResultRequest2.user_id_hint) {
+                Iterator it = arrayList3.iterator();
                 while (true) {
                     if (!it.hasNext()) {
                         break;
                     }
                     Integer num = (Integer) it.next();
-                    if (UserConfig.getInstance(num.intValue()).getClientUserId() == tL_urlAuthResultRequest.user_id_hint) {
+                    if (UserConfig.getInstance(num.intValue()).getClientUserId() == tL_urlAuthResultRequest2.user_id_hint) {
                         callback.run(num);
                         break;
                     }
@@ -306,7 +342,7 @@ public abstract class OAuthSheet {
             frameLayout2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OAuthSheet.lambda$handle$6(bottomSheetCreate, frameLayout3, arrayList, iArr, callback, view);
+                    OAuthSheet.lambda$handle$6(bottomSheetCreate, frameLayout3, arrayList3, iArr, callback, view);
                 }
             });
             final boolean[] zArr = new boolean[1];
@@ -321,19 +357,20 @@ public abstract class OAuthSheet {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    OAuthSheet.lambda$handle$10(round2, round, tL_messages_requestUrlAuth, strArr, textCheckCell3, zArr2, iArr, zArr, bottomSheetCreate, tL_urlAuthResultRequest, resourceProvider, z, str, botWebViewContainer);
+                    OAuthSheet.lambda$handle$10(round2, round, tL_messages_requestUrlAuth, strArr, textCheckCell3, zArr2, iArr, zArr, bottomSheetCreate, str3, resourceProvider, z, str, tL_urlAuthResultRequest2, botWebViewContainer);
                 }
             };
             final Runnable runnable2 = new Runnable() {
                 @Override
                 public final void run() {
-                    OAuthSheet.lambda$handle$13(tL_urlAuthResultRequest, strArr, context, i, runnable, safeLastFragment5);
+                    OAuthSheet.lambda$handle$13(tL_urlAuthResultRequest2, strArr, context, i, runnable, safeLastFragment5);
                 }
             };
+            final boolean z9 = z6;
             round2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    OAuthSheet.lambda$handle$16(round2, round, tL_urlAuthResultRequest, iArr, context, safeLastFragment5, z5, zArr2, runnable2, view);
+                    OAuthSheet.lambda$handle$16(round2, round, tL_urlAuthResultRequest2, iArr, context, safeLastFragment5, z9, z8, str3, zArr2, runnable2, view);
                 }
             });
             bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -347,14 +384,14 @@ public abstract class OAuthSheet {
                 bottomSheet.lambda$new$0();
                 showing = null;
             }
-            if (!tL_urlAuthResultRequest.match_codes_first || tL_urlAuthResultRequest.match_codes.isEmpty() || !TextUtils.isEmpty(strArr[0])) {
+            if (!tL_urlAuthResultRequest2.match_codes_first || tL_urlAuthResultRequest2.match_codes.isEmpty() || !TextUtils.isEmpty(strArr[0])) {
                 showing = bottomSheetCreate;
                 bottomSheetCreate.show();
             } else {
-                showing = showMatchCodeSheet(context, i, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new Utilities.Callback() {
+                showing = showMatchCodeSheet(context, i, tL_urlAuthResultRequest2.match_codes, str3, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        OAuthSheet.lambda$handle$19(context, strArr, tL_messages_requestUrlAuth, i, bottomSheetCreate, tL_urlAuthResultRequest, resourceProvider, (String) obj);
+                        OAuthSheet.lambda$handle$19(context, strArr, tL_messages_requestUrlAuth, i, bottomSheetCreate, str3, resourceProvider, (String) obj);
                     }
                 }, false, new Runnable() {
                     @Override
@@ -390,7 +427,7 @@ public abstract class OAuthSheet {
         textCheckCell.setChecked(!textCheckCell.isChecked());
     }
 
-    public static void lambda$handle$4(int[] iArr, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final BottomSheet bottomSheet, final boolean z, final String str, final TLRPC.UrlAuthResult urlAuthResult, final String[] strArr, final boolean z2, final BotWebViewContainer botWebViewContainer, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final Theme.ResourcesProvider resourcesProvider, final Integer num) {
+    public static void lambda$handle$4(int[] iArr, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, final BottomSheet bottomSheet, final boolean z, final String str, final TLRPC.UrlAuthResult urlAuthResult, final String[] strArr, final boolean z2, final BotWebViewContainer botWebViewContainer, final String str2, final Theme.ResourcesProvider resourcesProvider, final Integer num) {
         if (iArr[0] == num.intValue()) {
             return;
         }
@@ -399,12 +436,12 @@ public abstract class OAuthSheet {
         ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OAuthSheet.lambda$handle$3(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, strArr, z2, botWebViewContainer, tL_urlAuthResultRequest, resourcesProvider, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                OAuthSheet.lambda$handle$3(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, strArr, z2, botWebViewContainer, str2, resourcesProvider, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$handle$3(AlertDialog alertDialog, BottomSheet bottomSheet, boolean z, Integer num, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z2, BotWebViewContainer botWebViewContainer, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, Theme.ResourcesProvider resourcesProvider, TLRPC.UrlAuthResult urlAuthResult2, TLRPC.TL_error tL_error) {
+    public static void lambda$handle$3(AlertDialog alertDialog, BottomSheet bottomSheet, boolean z, Integer num, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.UrlAuthResult urlAuthResult, String[] strArr, boolean z2, BotWebViewContainer botWebViewContainer, String str2, Theme.ResourcesProvider resourcesProvider, TLRPC.UrlAuthResult urlAuthResult2, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (urlAuthResult2 != null) {
             bottomSheet.lambda$new$0();
@@ -412,7 +449,7 @@ public abstract class OAuthSheet {
         } else if (tL_error != null) {
             if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
                 bottomSheet.lambda$new$0();
-                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(tL_urlAuthResultRequest.domain) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, tL_urlAuthResultRequest.domain), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(str2) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str2), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
             } else {
                 BulletinFactory.of(bottomSheet.topBulletinContainer, bottomSheet.getResourcesProvider()).showForError(tL_error);
             }
@@ -472,7 +509,7 @@ public abstract class OAuthSheet {
         bottomSheet.lambda$new$0();
     }
 
-    public static void lambda$handle$10(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, TextCheckCell textCheckCell, boolean[] zArr, final int[] iArr, final boolean[] zArr2, final BottomSheet bottomSheet, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final Theme.ResourcesProvider resourcesProvider, final boolean z, final String str, final BotWebViewContainer botWebViewContainer) {
+    public static void lambda$handle$10(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String[] strArr, TextCheckCell textCheckCell, boolean[] zArr, final int[] iArr, final boolean[] zArr2, final BottomSheet bottomSheet, final String str, final Theme.ResourcesProvider resourcesProvider, final boolean z, final String str2, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final BotWebViewContainer botWebViewContainer) {
         if (buttonWithCounterView.isLoading() || buttonWithCounterView2.isLoading()) {
             return;
         }
@@ -488,33 +525,33 @@ public abstract class OAuthSheet {
             tL_messages_acceptUrlAuth.flags |= 4;
             tL_messages_acceptUrlAuth.url = tL_messages_requestUrlAuth.url;
         }
-        String str2 = strArr[0];
-        if (str2 != null) {
-            tL_messages_acceptUrlAuth.match_code = str2;
+        String str3 = strArr[0];
+        if (str3 != null) {
+            tL_messages_acceptUrlAuth.match_code = str3;
         }
         tL_messages_acceptUrlAuth.write_allowed = textCheckCell != null && textCheckCell.isChecked();
         tL_messages_acceptUrlAuth.share_phone_number = zArr[0];
         ConnectionsManager.getInstance(iArr[0]).sendRequestTyped(tL_messages_acceptUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OAuthSheet.lambda$handle$9(zArr2, bottomSheet, tL_urlAuthResultRequest, resourcesProvider, z, iArr, tL_messages_requestUrlAuth, str, tL_messages_acceptUrlAuth, botWebViewContainer, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
+                OAuthSheet.lambda$handle$9(zArr2, bottomSheet, str, resourcesProvider, z, iArr, tL_messages_requestUrlAuth, str2, tL_urlAuthResultRequest, tL_messages_acceptUrlAuth, botWebViewContainer, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$handle$9(boolean[] zArr, BottomSheet bottomSheet, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str, TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth, BotWebViewContainer botWebViewContainer, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
+    public static void lambda$handle$9(boolean[] zArr, BottomSheet bottomSheet, String str, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, String str2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, TLRPC.TL_messages_acceptUrlAuth tL_messages_acceptUrlAuth, BotWebViewContainer botWebViewContainer, TLRPC.UrlAuthResult urlAuthResult, TLRPC.TL_error tL_error) {
         zArr[0] = true;
         bottomSheet.lambda$new$0();
         if (tL_error != null) {
             if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(tL_urlAuthResultRequest.domain) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, tL_urlAuthResultRequest.domain), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+                getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(str) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
                 return;
             } else {
                 getBulletinFactory().showForError(tL_error);
                 return;
             }
         }
-        handle(z, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str, tL_urlAuthResultRequest, null, tL_messages_acceptUrlAuth.share_phone_number, botWebViewContainer);
+        handle(z, iArr[0], tL_messages_requestUrlAuth, urlAuthResult, str2, tL_urlAuthResultRequest, null, tL_messages_acceptUrlAuth.share_phone_number, botWebViewContainer);
     }
 
     public static void lambda$handle$13(TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final String[] strArr, Context context, int i, final Runnable runnable, BaseFragment baseFragment) {
@@ -540,7 +577,7 @@ public abstract class OAuthSheet {
         runnable.run();
     }
 
-    public static void lambda$handle$16(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, int[] iArr, Context context, BaseFragment baseFragment, boolean z, final boolean[] zArr, final Runnable runnable, View view) {
+    public static void lambda$handle$16(ButtonWithCounterView buttonWithCounterView, ButtonWithCounterView buttonWithCounterView2, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, int[] iArr, Context context, BaseFragment baseFragment, boolean z, boolean z2, String str, final boolean[] zArr, final Runnable runnable, View view) {
         if (buttonWithCounterView.isLoading() || buttonWithCounterView2.isLoading()) {
             return;
         }
@@ -548,8 +585,10 @@ public abstract class OAuthSheet {
             TLRPC.User currentUser = UserConfig.getInstance(iArr[0]).getCurrentUser();
             AlertDialog.Builder title = new AlertDialog.Builder(context, baseFragment.getResourceProvider()).setTitle(LocaleController.getString(R.string.BotAuthPhoneNumber));
             int i = R.string.BotAuthPhoneNumberText;
-            String userName = z ? UserObject.getUserName(tL_urlAuthResultRequest.bot) : tL_urlAuthResultRequest.domain;
-            title.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, userName, PhoneFormat.getInstance().format("+" + currentUser.phone).replaceAll(" ", " ")))).setNegativeButton(LocaleController.getString(R.string.BotAuthPhoneNumberDeny), new AlertDialog.OnButtonClickListener() {
+            if (z && !z2) {
+                str = UserObject.getUserName(tL_urlAuthResultRequest.bot);
+            }
+            title.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, str, PhoneFormat.getInstance().format("+" + currentUser.phone).replaceAll(" ", " ")))).setNegativeButton(LocaleController.getString(R.string.BotAuthPhoneNumberDeny), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
                     OAuthSheet.lambda$handle$14(zArr, runnable, alertDialog, i2);
@@ -584,22 +623,22 @@ public abstract class OAuthSheet {
         }
     }
 
-    public static void lambda$handle$19(Context context, String[] strArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, int i, final BottomSheet bottomSheet, final TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, final Theme.ResourcesProvider resourcesProvider, String str) {
+    public static void lambda$handle$19(Context context, String[] strArr, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, int i, final BottomSheet bottomSheet, final String str, final Theme.ResourcesProvider resourcesProvider, String str2) {
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         alertDialog.showDelayed(200L);
         TLRPC.TL_messages_checkUrlAuthMatchCode tL_messages_checkUrlAuthMatchCode = new TLRPC.TL_messages_checkUrlAuthMatchCode();
-        strArr[0] = str;
-        tL_messages_checkUrlAuthMatchCode.match_code = str;
+        strArr[0] = str2;
+        tL_messages_checkUrlAuthMatchCode.match_code = str2;
         tL_messages_checkUrlAuthMatchCode.url = tL_messages_requestUrlAuth.url;
         ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_checkUrlAuthMatchCode, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                OAuthSheet.lambda$handle$18(alertDialog, bottomSheet, tL_urlAuthResultRequest, resourcesProvider, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                OAuthSheet.lambda$handle$18(alertDialog, bottomSheet, str, resourcesProvider, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$handle$18(AlertDialog alertDialog, BottomSheet bottomSheet, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest, Theme.ResourcesProvider resourcesProvider, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public static void lambda$handle$18(AlertDialog alertDialog, BottomSheet bottomSheet, String str, Theme.ResourcesProvider resourcesProvider, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (bool instanceof TLRPC.TL_boolTrue) {
             showing = bottomSheet;
@@ -611,7 +650,7 @@ public abstract class OAuthSheet {
             bottomSheet2.lambda$new$0();
             showing = null;
         }
-        getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(tL_urlAuthResultRequest.domain) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, tL_urlAuthResultRequest.domain), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+        getBulletinFactory().createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.BotAuthLoggedInFailTitle), TextUtils.isEmpty(str) ? LocaleController.getString(R.string.BotAuthLoggedInFailNoDomain) : AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
     }
 
     public static void lambda$handle$20(boolean[] zArr, BotWebViewContainer botWebViewContainer, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, int i) {

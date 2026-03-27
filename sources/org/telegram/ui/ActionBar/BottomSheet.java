@@ -1533,6 +1533,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     protected boolean isTouchOutside(float f, float f2) {
+        FrameLayout frameLayout = this.topBulletinContainer;
+        if (frameLayout != null && frameLayout.getChildCount() > 0) {
+            View childAt = this.topBulletinContainer.getChildAt(0);
+            if (f2 >= this.topBulletinContainer.getY() + childAt.getY() && f2 <= this.topBulletinContainer.getY() + childAt.getY() + childAt.getHeight() && f >= this.topBulletinContainer.getX() + childAt.getX() && f <= this.topBulletinContainer.getX() + childAt.getX() + childAt.getWidth()) {
+                return false;
+            }
+        }
         return f2 < ((float) this.containerView.getTop()) || f < ((float) this.containerView.getLeft()) || f > ((float) this.containerView.getRight());
     }
 

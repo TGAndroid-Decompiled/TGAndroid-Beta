@@ -5090,4 +5090,54 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             Bulletin.removeDelegate(ChatAttachAlertPhotoLayout.this.cameraView);
         }
     }
+
+    public boolean hasLivePhotos() {
+        if (selectedPhotos.isEmpty()) {
+            return false;
+        }
+        for (Map.Entry entry : selectedPhotos.entrySet()) {
+            if ((entry.getValue() instanceof MediaController.PhotoEntry) && ((MediaController.PhotoEntry) entry.getValue()).isLivePhoto) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean areLivePhotosEnabled() {
+        if (selectedPhotos.isEmpty()) {
+            return false;
+        }
+        for (Map.Entry entry : selectedPhotos.entrySet()) {
+            if (entry.getValue() instanceof MediaController.PhotoEntry) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) entry.getValue();
+                if (photoEntry.isLivePhoto && photoEntry.discardLivePhoto) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public void toggleLivePhotos(boolean z) {
+        if (selectedPhotos.isEmpty()) {
+            return;
+        }
+        for (Map.Entry entry : selectedPhotos.entrySet()) {
+            if (entry.getValue() instanceof MediaController.PhotoEntry) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) entry.getValue();
+                if (photoEntry.isLivePhoto) {
+                    photoEntry.discardLivePhoto = !z;
+                    for (int i = 0; i < this.gridView.getChildCount(); i++) {
+                        View childAt = this.gridView.getChildAt(i);
+                        if (childAt instanceof PhotoAttachPhotoCell) {
+                            PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) childAt;
+                            if (photoAttachPhotoCell.getPhotoEntry() == photoEntry) {
+                                photoAttachPhotoCell.getImageView().invalidate();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

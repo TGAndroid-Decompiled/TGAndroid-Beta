@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -17,7 +16,6 @@ public class PollAttachButton extends View {
     private final BoolAnimator animatorHasMedia;
     public final Drawable attachDrawable;
     private PollAttachedMedia attachedMedia;
-    private final ImageReceiver imageReceiver;
     private final Theme.ResourcesProvider resourcesProvider;
     private final int size;
 
@@ -30,9 +28,6 @@ public class PollAttachButton extends View {
         this.animatorHasMedia = new BoolAnimator(this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
         this.resourcesProvider = resourcesProvider;
         this.size = i;
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.imageReceiver = imageReceiver;
-        imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
         this.attachDrawable = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(Theme.getColor(Theme.key_pollCreateIcons), 0.8f), PorterDuff.Mode.SRC_IN));
@@ -45,31 +40,38 @@ public class PollAttachButton extends View {
         int i5 = (i - iDp) / 2;
         int i6 = (i2 - iDp) / 2;
         this.attachDrawable.setBounds(i5, i6, i5 + iDp, iDp + i6);
-        int iDp2 = AndroidUtilities.dp(this.size);
-        float f = (i - iDp2) / 2;
-        float f2 = (i2 - iDp2) / 2;
-        float f3 = iDp2;
-        this.imageReceiver.setImageCoords(f, f2, f3, f3);
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.imageReceiver.onAttachedToWindow();
+        PollAttachedMedia pollAttachedMedia = this.attachedMedia;
+        if (pollAttachedMedia != null) {
+            pollAttachedMedia.attach(this);
+        }
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.imageReceiver.onDetachedFromWindow();
+        PollAttachedMedia pollAttachedMedia = this.attachedMedia;
+        if (pollAttachedMedia != null) {
+            pollAttachedMedia.detach();
+        }
     }
 
     public void setAttachedMedia(PollAttachedMedia pollAttachedMedia, boolean z) {
+        PollAttachedMedia pollAttachedMedia2;
+        PollAttachedMedia pollAttachedMedia3;
         this.animatorHasMedia.setValue(pollAttachedMedia != null, z);
-        this.attachedMedia = pollAttachedMedia;
-        if (pollAttachedMedia != null) {
-            pollAttachedMedia.setupImageReceiver(this.imageReceiver);
+        if (isAttachedToWindow() && (pollAttachedMedia3 = this.attachedMedia) != null) {
+            pollAttachedMedia3.detach();
         }
+        this.attachedMedia = pollAttachedMedia;
+        if (!isAttachedToWindow() || (pollAttachedMedia2 = this.attachedMedia) == null) {
+            return;
+        }
+        pollAttachedMedia2.attach(this);
     }
 
     @Override
@@ -86,16 +88,15 @@ public class PollAttachButton extends View {
             canvas.restore();
         }
         if (floatValue > 0.0f) {
+            int iDp = AndroidUtilities.dp(this.size);
+            int width2 = (getWidth() - iDp) / 2;
+            int height2 = (getHeight() - iDp) / 2;
             canvas.save();
-            canvas.scale(floatValue, floatValue, width, height);
-            this.imageReceiver.draw(canvas);
-            canvas.restore();
-            canvas.save();
-            canvas.translate(this.imageReceiver.getImageX(), this.imageReceiver.getImageY());
+            canvas.translate(width2, height2);
             canvas.scale(floatValue, floatValue, AndroidUtilities.dp(this.size) / 2.0f, AndroidUtilities.dp(this.size) / 2.0f);
             PollAttachedMedia pollAttachedMedia = this.attachedMedia;
             if (pollAttachedMedia != null) {
-                pollAttachedMedia.drawOverlay(canvas, AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size));
+                pollAttachedMedia.draw(canvas, AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size));
             }
             canvas.restore();
         }

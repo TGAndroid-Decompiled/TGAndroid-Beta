@@ -76,6 +76,7 @@ import org.telegram.ui.Components.poll.PollSendParams;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaFile;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaGallery;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaLocation;
+import org.telegram.ui.Components.poll.attached.PollAttachedMediaMusic;
 import org.telegram.ui.Components.poll.attached.PollAttachedMediaSticker;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.OAuthSheet;
@@ -4151,20 +4152,24 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         prepareSendingDocuments(accountInstance, arrayList2, arrayList3, arrayList, str3, str4, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, inputContentInfoCompat, str5, i2, 0L, z2, 0L);
     }
 
-    public static void prepareSendingAudioDocuments(final AccountInstance accountInstance, final ArrayList<MessageObject> arrayList, final CharSequence charSequence, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final boolean z, final int i, final int i2, final MessageObject messageObject3, final String str, final int i3, final long j2, final boolean z2, final long j3) {
+    public static void prepareSendingAudioDocuments(AccountInstance accountInstance, ArrayList<MessageObject> arrayList, CharSequence charSequence, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, boolean z, int i, int i2, MessageObject messageObject3, String str, int i3, long j2, boolean z2, long j3) {
+        prepareSendingAudioDocuments(accountInstance, arrayList, charSequence, j, messageObject, messageObject2, storyItem, z, i, i2, messageObject3, str, i3, j2, z2, j3, null, null, false, null);
+    }
+
+    public static void prepareSendingAudioDocuments(final AccountInstance accountInstance, final ArrayList<MessageObject> arrayList, final CharSequence charSequence, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final boolean z, final int i, final int i2, final MessageObject messageObject3, final String str, final int i3, final long j2, final boolean z2, final long j3, final PollSendParams pollSendParams, final ArrayList<Integer> arrayList2, final boolean z3, final Runnable runnable) {
         new Thread(new Runnable() {
             @Override
             public final void run() throws InterruptedException {
-                SendMessagesHelper.lambda$prepareSendingAudioDocuments$101(arrayList, j, accountInstance, charSequence, messageObject3, messageObject, messageObject2, z, i, i2, storyItem, str, i3, j2, z2, j3);
+                SendMessagesHelper.lambda$prepareSendingAudioDocuments$101(pollSendParams, arrayList, j, accountInstance, charSequence, z3, arrayList2, messageObject3, messageObject, messageObject2, z, i, i2, storyItem, str, i3, j2, z2, j3, runnable);
             }
         }).start();
     }
 
-    public static void lambda$prepareSendingAudioDocuments$101(java.util.ArrayList r34, final long r35, final org.telegram.messenger.AccountInstance r37, java.lang.CharSequence r38, final org.telegram.messenger.MessageObject r39, final org.telegram.messenger.MessageObject r40, final org.telegram.messenger.MessageObject r41, final boolean r42, final int r43, final int r44, final org.telegram.tgnet.tl.TL_stories.StoryItem r45, final java.lang.String r46, final int r47, final long r48, final boolean r50, final long r51) throws java.lang.InterruptedException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingAudioDocuments$101(java.util.ArrayList, long, org.telegram.messenger.AccountInstance, java.lang.CharSequence, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, int, org.telegram.tgnet.tl.TL_stories$StoryItem, java.lang.String, int, long, boolean, long):void");
+    public static void lambda$prepareSendingAudioDocuments$101(final org.telegram.ui.Components.poll.PollSendParams r36, java.util.ArrayList r37, final long r38, final org.telegram.messenger.AccountInstance r40, java.lang.CharSequence r41, boolean r42, java.util.ArrayList r43, final org.telegram.messenger.MessageObject r44, final org.telegram.messenger.MessageObject r45, final org.telegram.messenger.MessageObject r46, final boolean r47, final int r48, final int r49, final org.telegram.tgnet.tl.TL_stories.StoryItem r50, final java.lang.String r51, final int r52, final long r53, final boolean r55, final long r56, java.lang.Runnable r58) throws java.lang.InterruptedException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingAudioDocuments$101(org.telegram.ui.Components.poll.PollSendParams, java.util.ArrayList, long, org.telegram.messenger.AccountInstance, java.lang.CharSequence, boolean, java.util.ArrayList, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, int, org.telegram.tgnet.tl.TL_stories$StoryItem, java.lang.String, int, long, boolean, long, java.lang.Runnable):void");
     }
 
-    public static void lambda$prepareSendingAudioDocuments$100(MessageObject messageObject, AccountInstance accountInstance, TLRPC.TL_document tL_document, MessageObject messageObject2, HashMap map, String str, long j, MessageObject messageObject3, MessageObject messageObject4, String str2, ArrayList arrayList, boolean z, int i, int i2, TL_stories.StoryItem storyItem, String str3, int i3, long j2, boolean z2, long j3) {
+    public static void lambda$prepareSendingAudioDocuments$100(MessageObject messageObject, AccountInstance accountInstance, TLRPC.TL_document tL_document, MessageObject messageObject2, HashMap map, String str, long j, MessageObject messageObject3, MessageObject messageObject4, String str2, ArrayList arrayList, boolean z, int i, int i2, TL_stories.StoryItem storyItem, String str3, int i3, long j2, boolean z2, long j3, PollSendParams pollSendParams, int i4) {
         if (messageObject != null) {
             accountInstance.getSendMessagesHelper().editMessage(messageObject, null, null, tL_document, messageObject2.messageOwner.attachPath, null, map, false, false, str);
             return;
@@ -4176,6 +4181,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         sendMessageParamsOf.effect_id = j2;
         sendMessageParamsOf.invert_media = z2;
         sendMessageParamsOf.payStars = j3;
+        sendMessageParamsOf.pollSendParams = pollSendParams;
+        sendMessageParamsOf.pollIndex = i4;
         accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf);
     }
 
@@ -4212,10 +4219,10 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public static void prepareSendingDocuments(AccountInstance accountInstance, ArrayList<String> arrayList, ArrayList<String> arrayList2, ArrayList<Uri> arrayList3, String str, ArrayList<TLRPC.MessageEntity> arrayList4, String str2, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject3, boolean z, int i, int i2, InputContentInfoCompat inputContentInfoCompat, String str3, int i3, long j2, boolean z2, long j3, long j4, MessageSuggestionParams messageSuggestionParams) {
-        prepareSendingDocuments(accountInstance, arrayList, arrayList2, arrayList3, str, arrayList4, str2, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, i2, inputContentInfoCompat, str3, i3, j2, z2, j3, j4, messageSuggestionParams, null, null, false);
+        prepareSendingDocuments(accountInstance, arrayList, arrayList2, arrayList3, str, arrayList4, str2, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, i2, inputContentInfoCompat, str3, i3, j2, z2, j3, j4, messageSuggestionParams, null, null, null, false);
     }
 
-    public static void prepareSendingDocuments(final AccountInstance accountInstance, final ArrayList<String> arrayList, final ArrayList<String> arrayList2, final ArrayList<Uri> arrayList3, final String str, final ArrayList<TLRPC.MessageEntity> arrayList4, final String str2, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final ChatActivity.ReplyQuote replyQuote, final MessageObject messageObject3, final boolean z, final int i, final int i2, final InputContentInfoCompat inputContentInfoCompat, final String str3, final int i3, final long j2, final boolean z2, final long j3, final long j4, final MessageSuggestionParams messageSuggestionParams, final PollSendParams pollSendParams, final ArrayList<Integer> arrayList5, final boolean z3) {
+    public static void prepareSendingDocuments(final AccountInstance accountInstance, final ArrayList<String> arrayList, final ArrayList<String> arrayList2, final ArrayList<Uri> arrayList3, final String str, final ArrayList<TLRPC.MessageEntity> arrayList4, final String str2, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final ChatActivity.ReplyQuote replyQuote, final MessageObject messageObject3, final boolean z, final int i, final int i2, final InputContentInfoCompat inputContentInfoCompat, final String str3, final int i3, final long j2, final boolean z2, final long j3, final long j4, final MessageSuggestionParams messageSuggestionParams, final PollSendParams pollSendParams, final ArrayList<Integer> arrayList5, final ArrayList<Integer> arrayList6, final boolean z3) {
         if (arrayList == null && arrayList2 == null && arrayList3 == null) {
             return;
         }
@@ -4223,22 +4230,23 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() throws Throwable {
-                    SendMessagesHelper.lambda$prepareSendingDocuments$103(j, arrayList, str, pollSendParams, accountInstance, i, arrayList2, str2, messageObject, messageObject2, storyItem, replyQuote, arrayList4, messageObject3, z3, z, i2, inputContentInfoCompat, str3, i3, j2, z2, j3, j4, messageSuggestionParams, arrayList5, arrayList3);
+                    SendMessagesHelper.lambda$prepareSendingDocuments$103(j, arrayList, str, pollSendParams, accountInstance, i, arrayList2, str2, messageObject, messageObject2, storyItem, replyQuote, arrayList4, messageObject3, z3, z, i2, inputContentInfoCompat, str3, i3, j2, z2, j3, j4, messageSuggestionParams, arrayList5, arrayList3, arrayList6);
                 }
             });
         }
     }
 
-    public static void lambda$prepareSendingDocuments$103(long j, ArrayList arrayList, String str, PollSendParams pollSendParams, AccountInstance accountInstance, int i, ArrayList arrayList2, String str2, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, ArrayList arrayList3, MessageObject messageObject3, boolean z, boolean z2, int i2, InputContentInfoCompat inputContentInfoCompat, String str3, int i3, long j2, boolean z3, long j3, long j4, MessageSuggestionParams messageSuggestionParams, ArrayList arrayList4, ArrayList arrayList5) throws Throwable {
+    public static void lambda$prepareSendingDocuments$103(long j, ArrayList arrayList, String str, PollSendParams pollSendParams, AccountInstance accountInstance, int i, ArrayList arrayList2, String str2, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, ArrayList arrayList3, MessageObject messageObject3, boolean z, boolean z2, int i2, InputContentInfoCompat inputContentInfoCompat, String str3, int i3, long j2, boolean z3, long j3, long j4, MessageSuggestionParams messageSuggestionParams, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6) throws Throwable {
         Integer[] numArr;
         long[] jArr;
-        ArrayList arrayList6;
+        ArrayList arrayList7;
         int iPrepareSendingDocumentInternal;
         boolean z4;
-        AccountInstance accountInstance2;
-        AccountInstance accountInstance3 = accountInstance;
+        ArrayList arrayList8;
+        long j5;
+        AccountInstance accountInstance2 = accountInstance;
         int i4 = i;
-        ArrayList arrayList7 = arrayList4;
+        ArrayList arrayList9 = arrayList4;
         int i5 = 1;
         long[] jArr2 = new long[1];
         Integer[] numArr2 = new Integer[1];
@@ -4253,27 +4261,27 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             while (i8 < size) {
                 String str4 = i8 == 0 ? str : null;
                 if (!zIsEncryptedDialog && size > i5 && i7 % 10 == 0 && pollSendParams == null) {
-                    long j5 = jArr2[0];
-                    if (j5 != 0) {
-                        finishGroup(accountInstance3, j5, i4);
+                    long j6 = jArr2[0];
+                    if (j6 != 0) {
+                        finishGroup(accountInstance2, j6, i4);
                     }
                     jArr2[0] = Utilities.random.nextLong();
                     i7 = 0;
                 }
-                int i9 = i7 + 1;
-                long j6 = jArr2[0];
-                int i10 = size;
-                int i11 = i8;
+                int i9 = i7 + i5;
+                long j7 = jArr2[0];
+                int i10 = i8;
+                int i11 = size;
                 Integer[] numArr3 = numArr2;
                 long[] jArr3 = jArr2;
-                iPrepareSendingDocumentInternal = prepareSendingDocumentInternal(accountInstance, (String) arrayList.get(i8), (String) arrayList2.get(i8), null, str2, j, messageObject, messageObject2, storyItem, replyQuote, i8 == 0 ? arrayList3 : null, messageObject3, jArr3, !z && ((pollSendParams == null && i9 == i6) || i8 == size + (-1)), str4, z2, i, i2, numArr3, inputContentInfoCompat == null, str3, i3, z5 ? j2 : 0L, z3, j3, j4, messageSuggestionParams, pollSendParams, arrayList7 != null ? ((Integer) arrayList7.get(i8)).intValue() : -1);
-                long j7 = jArr3[0];
-                i7 = (j6 != j7 || j7 == -1) ? 1 : i9;
-                i8 = i11 + 1;
-                accountInstance3 = accountInstance;
+                iPrepareSendingDocumentInternal = prepareSendingDocumentInternal(accountInstance, (String) arrayList.get(i8), (String) arrayList2.get(i8), null, str2, j, messageObject, messageObject2, storyItem, replyQuote, i8 == 0 ? arrayList3 : null, messageObject3, jArr3, !z && ((pollSendParams == null && i9 == i6) || i8 == size + (-1)), str4, z2, i, i2, numArr3, inputContentInfoCompat == null, str3, i3, z5 ? j2 : 0L, z3, j3, j4, messageSuggestionParams, pollSendParams, arrayList9 != null ? ((Integer) arrayList9.get(i8)).intValue() : -1);
+                long j8 = jArr3[0];
+                i7 = (j7 != j8 || j8 == -1) ? 1 : i9;
+                i8 = i10 + 1;
+                accountInstance2 = accountInstance;
                 i4 = i;
-                arrayList7 = arrayList4;
-                size = i10;
+                arrayList9 = arrayList4;
+                size = i11;
                 numArr2 = numArr3;
                 jArr2 = jArr3;
                 z5 = false;
@@ -4282,43 +4290,50 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             numArr = numArr2;
             jArr = jArr2;
-            arrayList6 = arrayList5;
+            arrayList7 = arrayList5;
             z4 = z5;
         } else {
             numArr = numArr2;
             jArr = jArr2;
-            arrayList6 = arrayList5;
+            arrayList7 = arrayList5;
             iPrepareSendingDocumentInternal = 0;
             z4 = true;
         }
-        if (arrayList6 != null) {
+        if (arrayList7 != null) {
             jArr[0] = 0;
             int size2 = arrayList5.size();
             int i12 = 0;
             int i13 = 0;
             while (i13 < arrayList5.size()) {
                 String str5 = (i13 == 0 && (arrayList == null || arrayList.size() == 0)) ? str : null;
-                ArrayList arrayList8 = (i13 == 0 && (arrayList == null || arrayList.size() == 0)) ? arrayList3 : null;
-                if (zIsEncryptedDialog || size2 <= 1 || i12 % 10 != 0 || pollSendParams != null) {
-                    accountInstance2 = accountInstance;
-                } else {
-                    long j8 = jArr[0];
-                    accountInstance2 = accountInstance;
-                    if (j8 != 0) {
-                        finishGroup(accountInstance2, j8, i);
+                ArrayList arrayList10 = (i13 == 0 && (arrayList == null || arrayList.size() == 0)) ? arrayList3 : null;
+                if (!zIsEncryptedDialog && size2 > 1 && i12 % 10 == 0 && pollSendParams == null) {
+                    long j9 = jArr[0];
+                    if (j9 != 0) {
+                        finishGroup(accountInstance, j9, i);
                     }
                     jArr[0] = Utilities.random.nextLong();
                     i12 = 0;
                 }
                 int i14 = i12 + 1;
-                long j9 = jArr[0];
+                long j10 = jArr[0];
+                Uri uri = (Uri) arrayList7.get(i13);
+                boolean z6 = !z && ((pollSendParams == null && i14 == 10) || i13 == size2 + (-1));
+                boolean z7 = inputContentInfoCompat == null;
+                if (z4) {
+                    j5 = j2;
+                    arrayList8 = arrayList6;
+                } else {
+                    arrayList8 = arrayList6;
+                    j5 = 0;
+                }
                 int i15 = i13;
                 int i16 = size2;
-                iPrepareSendingDocumentInternal = prepareSendingDocumentInternal(accountInstance, null, null, (Uri) arrayList6.get(i13), str2, j, messageObject, messageObject2, storyItem, replyQuote, arrayList8, messageObject3, jArr, !z && ((pollSendParams == null && i14 == 10) || i13 == size2 + (-1)), str5, z2, i, i2, numArr, inputContentInfoCompat == null, str3, i3, z4 ? j2 : 0L, z3, j3, j4, messageSuggestionParams, pollSendParams, -1);
-                long j10 = jArr[0];
-                i12 = (j9 != j10 || j10 == -1) ? 1 : i14;
+                iPrepareSendingDocumentInternal = prepareSendingDocumentInternal(accountInstance, null, null, uri, str2, j, messageObject, messageObject2, storyItem, replyQuote, arrayList10, messageObject3, jArr, z6, str5, z2, i, i2, numArr, z7, str3, i3, j5, z3, j3, j4, messageSuggestionParams, pollSendParams, arrayList8 != null ? ((Integer) arrayList8.get(i13)).intValue() : -1);
+                long j11 = jArr[0];
+                i12 = (j10 != j11 || j11 == -1) ? 1 : i14;
                 i13 = i15 + 1;
-                arrayList6 = arrayList5;
+                arrayList7 = arrayList5;
                 size2 = i16;
                 z4 = false;
             }
@@ -4889,55 +4904,80 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     }
 
     public static void prepareSendingPoll(final AccountInstance accountInstance, final PollSendParams pollSendParams, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final ChatActivity.ReplyQuote replyQuote, final boolean z, final int i, final String str, final int i2, final long j2, final long j3, final MessageSuggestionParams messageSuggestionParams) {
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        ArrayList arrayList3;
         boolean z2;
+        boolean z3;
         if (pollSendParams.mediaPack != null) {
-            ArrayList arrayList4 = new ArrayList();
-            ArrayList arrayList5 = new ArrayList();
-            ArrayList arrayList6 = new ArrayList();
+            final ArrayList arrayList = new ArrayList();
+            final ArrayList arrayList2 = new ArrayList();
+            final ArrayList arrayList3 = new ArrayList();
+            final ArrayList arrayList4 = new ArrayList();
+            final ArrayList arrayList5 = new ArrayList();
+            final ArrayList arrayList6 = new ArrayList();
             ArrayList arrayList7 = new ArrayList();
+            ArrayList arrayList8 = new ArrayList();
+            final int[] iArr = new int[1];
             int size = pollSendParams.mediaPack.medias.size();
             for (int i3 = 0; i3 < size; i3++) {
                 PollAttachedMedia pollAttachedMedia = (PollAttachedMedia) pollSendParams.mediaPack.medias.valueAt(i3);
                 int iKeyAt = pollSendParams.mediaPack.medias.keyAt(i3);
-                if (pollAttachedMedia instanceof PollAttachedMediaGallery) {
+                if (pollAttachedMedia instanceof PollAttachedMediaMusic) {
+                    arrayList7.add(((PollAttachedMediaMusic) pollAttachedMedia).messageObject);
+                    arrayList8.add(Integer.valueOf(iKeyAt));
+                } else if (pollAttachedMedia instanceof PollAttachedMediaGallery) {
                     SendingMediaInfo sendingMediaInfo = ((PollAttachedMediaGallery) pollAttachedMedia).sendingMediaInfo;
                     sendingMediaInfo.pollIndex = iKeyAt;
-                    arrayList4.add(sendingMediaInfo);
+                    arrayList.add(sendingMediaInfo);
                 } else if (pollAttachedMedia instanceof PollAttachedMediaFile) {
                     PollAttachedMediaFile pollAttachedMediaFile = (PollAttachedMediaFile) pollAttachedMedia;
-                    arrayList5.add(pollAttachedMediaFile.path);
-                    arrayList6.add(pollAttachedMediaFile.path);
-                    arrayList7.add(Integer.valueOf(iKeyAt));
+                    if (!TextUtils.isEmpty(pollAttachedMediaFile.path)) {
+                        arrayList2.add(pollAttachedMediaFile.path);
+                        arrayList3.add(pollAttachedMediaFile.path);
+                        arrayList4.add(Integer.valueOf(iKeyAt));
+                    } else {
+                        Uri uri = pollAttachedMediaFile.uri;
+                        if (uri != null) {
+                            arrayList5.add(uri);
+                            arrayList6.add(Integer.valueOf(iKeyAt));
+                        }
+                    }
                 }
             }
-            if (arrayList4.isEmpty()) {
-                arrayList = arrayList7;
-                arrayList2 = arrayList6;
-                arrayList3 = arrayList5;
+            if (arrayList.isEmpty()) {
                 z2 = false;
             } else {
-                arrayList = arrayList7;
-                arrayList2 = arrayList6;
-                arrayList3 = arrayList5;
-                prepareSendingMedia(accountInstance, arrayList4, j, messageObject, messageObject2, storyItem, replyQuote, false, true, null, null, z, i, 0, 0, false, null, str, i2, 0L, false, j2, j3, messageSuggestionParams, pollSendParams, !arrayList5.isEmpty());
+                iArr[0] = iArr[0] + 1;
                 z2 = true;
             }
-            if (!arrayList3.isEmpty()) {
-                final ArrayList arrayList8 = arrayList3;
-                final ArrayList arrayList9 = arrayList2;
-                final ArrayList arrayList10 = arrayList;
-                mediaSendQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        SendMessagesHelper.lambda$prepareSendingPoll$119(accountInstance, arrayList8, arrayList9, j, messageObject, messageObject2, storyItem, replyQuote, z, i, str, i2, j2, j3, messageSuggestionParams, pollSendParams, arrayList10);
-                    }
-                });
+            if (!arrayList2.isEmpty() || !arrayList5.isEmpty()) {
+                iArr[0] = iArr[0] + 1;
                 z2 = true;
             }
-            if (z2) {
+            if (arrayList7.isEmpty()) {
+                z3 = z2;
+            } else {
+                iArr[0] = iArr[0] + 1;
+                z3 = true;
+            }
+            final Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    SendMessagesHelper.lambda$prepareSendingPoll$118(arrayList2, arrayList5, accountInstance, arrayList3, j, messageObject, messageObject2, storyItem, replyQuote, z, i, str, i2, j2, j3, messageSuggestionParams, pollSendParams, arrayList4, arrayList6);
+                }
+            };
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    SendMessagesHelper.lambda$prepareSendingPoll$120(arrayList, iArr, accountInstance, j, messageObject, messageObject2, storyItem, replyQuote, z, i, str, i2, j2, j3, messageSuggestionParams, pollSendParams, runnable);
+                }
+            };
+            if (!arrayList7.isEmpty()) {
+                int i4 = iArr[0] - 1;
+                iArr[0] = i4;
+                prepareSendingAudioDocuments(accountInstance, arrayList7, "", j, messageObject, messageObject2, storyItem, z, i, 0, null, str, i2, 0L, false, j2, pollSendParams, arrayList8, i4 > 0, runnable2);
+            } else {
+                runnable2.run();
+            }
+            if (z3) {
                 return;
             }
         }
@@ -4954,13 +4994,27 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf);
     }
 
-    public static void lambda$prepareSendingPoll$119(final AccountInstance accountInstance, final ArrayList arrayList, final ArrayList arrayList2, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final ChatActivity.ReplyQuote replyQuote, final boolean z, final int i, final String str, final int i2, final long j2, final long j3, final MessageSuggestionParams messageSuggestionParams, final PollSendParams pollSendParams, final ArrayList arrayList3) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SendMessagesHelper.prepareSendingDocuments(accountInstance, arrayList, arrayList2, null, null, null, null, j, messageObject, messageObject2, storyItem, replyQuote, null, z, i, 0, null, str, i2, 0L, false, j2, j3, messageSuggestionParams, pollSendParams, arrayList3, false);
-            }
-        });
+    public static void lambda$prepareSendingPoll$118(ArrayList arrayList, ArrayList arrayList2, AccountInstance accountInstance, ArrayList arrayList3, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, boolean z, int i, String str, int i2, long j2, long j3, MessageSuggestionParams messageSuggestionParams, PollSendParams pollSendParams, ArrayList arrayList4, ArrayList arrayList5) {
+        if (arrayList.isEmpty() && arrayList2.isEmpty()) {
+            return;
+        }
+        prepareSendingDocuments(accountInstance, arrayList, arrayList3, arrayList2, null, null, null, j, messageObject, messageObject2, storyItem, replyQuote, null, z, i, 0, null, str, i2, 0L, false, j2, j3, messageSuggestionParams, pollSendParams, arrayList4, arrayList5, false);
+    }
+
+    public static void lambda$prepareSendingPoll$120(ArrayList arrayList, int[] iArr, AccountInstance accountInstance, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, boolean z, int i, String str, int i2, long j2, long j3, MessageSuggestionParams messageSuggestionParams, PollSendParams pollSendParams, final Runnable runnable) {
+        if (!arrayList.isEmpty()) {
+            int i3 = iArr[0] - 1;
+            iArr[0] = i3;
+            prepareSendingMedia(accountInstance, arrayList, j, messageObject, messageObject2, storyItem, replyQuote, false, true, null, null, z, i, 0, 0, false, null, str, i2, 0L, false, j2, j3, messageSuggestionParams, pollSendParams, i3 > 0);
+            mediaSendQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    AndroidUtilities.runOnUIThread(runnable);
+                }
+            });
+            return;
+        }
+        runnable.run();
     }
 
     public static void fillVideoAttribute(java.lang.String r6, org.telegram.tgnet.TLRPC.TL_documentAttributeVideo r7, org.telegram.messenger.VideoEditedInfo r8) {
@@ -5117,16 +5171,16 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         new Thread(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                SendMessagesHelper.lambda$prepareSendingVideo$121(videoEditedInfo, str, j, i, accountInstance, str2, photo, charSequence, messageObject3, z3, messageObject, messageObject2, arrayList, z, i2, i3, storyItem, replyQuote, i4, str3, j2, j3, j4, messageSuggestionParams, z4, z2);
+                SendMessagesHelper.lambda$prepareSendingVideo$122(videoEditedInfo, str, j, i, accountInstance, str2, photo, charSequence, messageObject3, z3, messageObject, messageObject2, arrayList, z, i2, i3, storyItem, replyQuote, i4, str3, j2, j3, j4, messageSuggestionParams, z4, z2);
             }
         }).start();
     }
 
-    public static void lambda$prepareSendingVideo$121(org.telegram.messenger.VideoEditedInfo r36, java.lang.String r37, final long r38, final int r40, final org.telegram.messenger.AccountInstance r41, java.lang.String r42, org.telegram.tgnet.TLRPC.Photo r43, java.lang.CharSequence r44, final org.telegram.messenger.MessageObject r45, final boolean r46, final org.telegram.messenger.MessageObject r47, final org.telegram.messenger.MessageObject r48, final java.util.ArrayList r49, final boolean r50, final int r51, final int r52, final org.telegram.tgnet.tl.TL_stories.StoryItem r53, final org.telegram.ui.ChatActivity.ReplyQuote r54, final int r55, final java.lang.String r56, final long r57, final long r59, final long r61, final org.telegram.messenger.MessageSuggestionParams r63, final boolean r64, boolean r65) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingVideo$121(org.telegram.messenger.VideoEditedInfo, java.lang.String, long, int, org.telegram.messenger.AccountInstance, java.lang.String, org.telegram.tgnet.TLRPC$Photo, java.lang.CharSequence, org.telegram.messenger.MessageObject, boolean, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, boolean, int, int, org.telegram.tgnet.tl.TL_stories$StoryItem, org.telegram.ui.ChatActivity$ReplyQuote, int, java.lang.String, long, long, long, org.telegram.messenger.MessageSuggestionParams, boolean, boolean):void");
+    public static void lambda$prepareSendingVideo$122(org.telegram.messenger.VideoEditedInfo r36, java.lang.String r37, final long r38, final int r40, final org.telegram.messenger.AccountInstance r41, java.lang.String r42, org.telegram.tgnet.TLRPC.Photo r43, java.lang.CharSequence r44, final org.telegram.messenger.MessageObject r45, final boolean r46, final org.telegram.messenger.MessageObject r47, final org.telegram.messenger.MessageObject r48, final java.util.ArrayList r49, final boolean r50, final int r51, final int r52, final org.telegram.tgnet.tl.TL_stories.StoryItem r53, final org.telegram.ui.ChatActivity.ReplyQuote r54, final int r55, final java.lang.String r56, final long r57, final long r59, final long r61, final org.telegram.messenger.MessageSuggestionParams r63, final boolean r64, boolean r65) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingVideo$122(org.telegram.messenger.VideoEditedInfo, java.lang.String, long, int, org.telegram.messenger.AccountInstance, java.lang.String, org.telegram.tgnet.TLRPC$Photo, java.lang.CharSequence, org.telegram.messenger.MessageObject, boolean, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, boolean, int, int, org.telegram.tgnet.tl.TL_stories$StoryItem, org.telegram.ui.ChatActivity$ReplyQuote, int, java.lang.String, long, long, long, org.telegram.messenger.MessageSuggestionParams, boolean, boolean):void");
     }
 
-    public static void lambda$prepareSendingVideo$120(Bitmap bitmap, String str, MessageObject messageObject, AccountInstance accountInstance, VideoEditedInfo videoEditedInfo, TLRPC.TL_document tL_document, String str2, TLRPC.PhotoSize photoSize, HashMap map, boolean z, String str3, long j, MessageObject messageObject2, MessageObject messageObject3, String str4, ArrayList arrayList, boolean z2, int i, int i2, int i3, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, int i4, String str5, long j2, long j3, long j4, MessageSuggestionParams messageSuggestionParams, boolean z3) {
+    public static void lambda$prepareSendingVideo$121(Bitmap bitmap, String str, MessageObject messageObject, AccountInstance accountInstance, VideoEditedInfo videoEditedInfo, TLRPC.TL_document tL_document, String str2, TLRPC.PhotoSize photoSize, HashMap map, boolean z, String str3, long j, MessageObject messageObject2, MessageObject messageObject3, String str4, ArrayList arrayList, boolean z2, int i, int i2, int i3, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, int i4, String str5, long j2, long j3, long j4, MessageSuggestionParams messageSuggestionParams, boolean z3) {
         if (bitmap != null && str != null) {
             ImageLoader.getInstance().putImageToCache(new BitmapDrawable(bitmap), str, false);
         }

@@ -7618,7 +7618,6 @@ public class MessagesStorage extends BaseController {
     }
 
     public static void addUsersAndChatsFromMessage(TLRPC.Message message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
-        TL_stars.StarGift starGift;
         TLRPC.Peer peer;
         TLRPC.Peer peer2;
         String str;
@@ -7697,12 +7696,20 @@ public class MessagesStorage extends BaseController {
         }
         TLRPC.MessageAction messageAction5 = message.action;
         if (messageAction5 instanceof TLRPC.TL_messageActionStarGift) {
-            TL_stars.StarGift starGift2 = ((TLRPC.TL_messageActionStarGift) messageAction5).gift;
-            if (starGift2 != null && (peer7 = starGift2.released_by) != null) {
+            TL_stars.StarGift starGift = ((TLRPC.TL_messageActionStarGift) messageAction5).gift;
+            if (starGift != null && (peer7 = starGift.released_by) != null) {
                 addLoadPeerInfo(peer7, arrayList, arrayList2);
             }
-        } else if ((messageAction5 instanceof TLRPC.TL_messageActionStarGiftUnique) && (starGift = ((TLRPC.TL_messageActionStarGiftUnique) messageAction5).gift) != null && (peer = starGift.released_by) != null) {
-            addLoadPeerInfo(peer, arrayList, arrayList2);
+        } else if (messageAction5 instanceof TLRPC.TL_messageActionStarGiftUnique) {
+            TL_stars.StarGift starGift2 = ((TLRPC.TL_messageActionStarGiftUnique) messageAction5).gift;
+            if (starGift2 != null && (peer = starGift2.released_by) != null) {
+                addLoadPeerInfo(peer, arrayList, arrayList2);
+            }
+        } else if (messageAction5 instanceof TLRPC.TL_messageActionRequestedPeer) {
+            TLRPC.TL_messageActionRequestedPeer tL_messageActionRequestedPeer = (TLRPC.TL_messageActionRequestedPeer) messageAction5;
+            for (int i3 = 0; i3 < tL_messageActionRequestedPeer.peers.size(); i3++) {
+                addLoadPeerInfo(tL_messageActionRequestedPeer.peers.get(i3), arrayList, arrayList2);
+            }
         }
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia != null) {
@@ -7734,27 +7741,31 @@ public class MessagesStorage extends BaseController {
             if (messageMedia4 instanceof TLRPC.TL_messageMediaPoll) {
                 TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia4;
                 if (!tL_messageMediaPoll.poll.answers.isEmpty()) {
-                    for (int i3 = 0; i3 < tL_messageMediaPoll.poll.answers.size(); i3++) {
-                        TLRPC.Peer peer8 = tL_messageMediaPoll.poll.answers.get(i3).added_by;
+                    for (int i4 = 0; i4 < tL_messageMediaPoll.poll.answers.size(); i4++) {
+                        TLRPC.Peer peer8 = tL_messageMediaPoll.poll.answers.get(i4).added_by;
                         if (peer8 != null) {
                             addLoadPeerInfo(peer8, arrayList, arrayList2);
                         }
                     }
                 }
-                if (!tL_messageMediaPoll.results.recent_voters.isEmpty()) {
-                    for (int i4 = 0; i4 < tL_messageMediaPoll.results.recent_voters.size(); i4++) {
-                        addLoadPeerInfo(tL_messageMediaPoll.results.recent_voters.get(i4), arrayList, arrayList2);
+                TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
+                if (pollResults != null) {
+                    ArrayList<TLRPC.Peer> arrayList4 = pollResults.recent_voters;
+                    if (arrayList4 != null && !arrayList4.isEmpty()) {
+                        for (int i5 = 0; i5 < tL_messageMediaPoll.results.recent_voters.size(); i5++) {
+                            addLoadPeerInfo(tL_messageMediaPoll.results.recent_voters.get(i5), arrayList, arrayList2);
+                        }
                     }
-                }
-                if (!tL_messageMediaPoll.results.results.isEmpty()) {
-                    Iterator<TLRPC.PollAnswerVoters> it3 = tL_messageMediaPoll.results.results.iterator();
-                    while (it3.hasNext()) {
-                        TLRPC.PollAnswerVoters next3 = it3.next();
-                        ArrayList<TLRPC.Peer> arrayList4 = next3.recent_voters;
-                        if (arrayList4 != null && !arrayList4.isEmpty()) {
-                            Iterator<TLRPC.Peer> it4 = next3.recent_voters.iterator();
-                            while (it4.hasNext()) {
-                                addLoadPeerInfo(it4.next(), arrayList, arrayList2);
+                    if (!tL_messageMediaPoll.results.results.isEmpty()) {
+                        Iterator<TLRPC.PollAnswerVoters> it3 = tL_messageMediaPoll.results.results.iterator();
+                        while (it3.hasNext()) {
+                            TLRPC.PollAnswerVoters next3 = it3.next();
+                            ArrayList<TLRPC.Peer> arrayList5 = next3.recent_voters;
+                            if (arrayList5 != null && !arrayList5.isEmpty()) {
+                                Iterator<TLRPC.Peer> it4 = next3.recent_voters.iterator();
+                                while (it4.hasNext()) {
+                                    addLoadPeerInfo(it4.next(), arrayList, arrayList2);
+                                }
                             }
                         }
                     }
@@ -7768,9 +7779,9 @@ public class MessagesStorage extends BaseController {
                 }
                 TL_stories.StoryItem storyItem2 = message.media.storyItem;
                 if (storyItem2 != null && storyItem2.media_areas != null) {
-                    for (int i5 = 0; i5 < message.media.storyItem.media_areas.size(); i5++) {
-                        if (message.media.storyItem.media_areas.get(i5) instanceof TL_stories.TL_mediaAreaChannelPost) {
-                            long j7 = ((TL_stories.TL_mediaAreaChannelPost) message.media.storyItem.media_areas.get(i5)).channel_id;
+                    for (int i6 = 0; i6 < message.media.storyItem.media_areas.size(); i6++) {
+                        if (message.media.storyItem.media_areas.get(i6) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                            long j7 = ((TL_stories.TL_mediaAreaChannelPost) message.media.storyItem.media_areas.get(i6)).channel_id;
                             if (!arrayList2.contains(Long.valueOf(j7))) {
                                 arrayList2.add(Long.valueOf(j7));
                             }
@@ -7784,18 +7795,18 @@ public class MessagesStorage extends BaseController {
             }
             TLRPC.MessageMedia messageMedia6 = message.media;
             if ((messageMedia6 instanceof TLRPC.TL_messageMediaWebPage) && (webPage = messageMedia6.webpage) != null && webPage.attributes != null) {
-                for (int i6 = 0; i6 < message.media.webpage.attributes.size(); i6++) {
-                    if (message.media.webpage.attributes.get(i6) instanceof TLRPC.TL_webPageAttributeStory) {
-                        TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) message.media.webpage.attributes.get(i6);
+                for (int i7 = 0; i7 < message.media.webpage.attributes.size(); i7++) {
+                    if (message.media.webpage.attributes.get(i7) instanceof TLRPC.TL_webPageAttributeStory) {
+                        TLRPC.TL_webPageAttributeStory tL_webPageAttributeStory = (TLRPC.TL_webPageAttributeStory) message.media.webpage.attributes.get(i7);
                         TL_stories.StoryItem storyItem4 = tL_webPageAttributeStory.storyItem;
                         if (storyItem4 != null && (storyFwdHeader = storyItem4.fwd_from) != null) {
                             addLoadPeerInfo(storyFwdHeader.from, arrayList, arrayList2);
                         }
                         TL_stories.StoryItem storyItem5 = tL_webPageAttributeStory.storyItem;
                         if (storyItem5 != null && storyItem5.media_areas != null) {
-                            for (int i7 = 0; i7 < tL_webPageAttributeStory.storyItem.media_areas.size(); i7++) {
-                                if (tL_webPageAttributeStory.storyItem.media_areas.get(i7) instanceof TL_stories.TL_mediaAreaChannelPost) {
-                                    long j8 = ((TL_stories.TL_mediaAreaChannelPost) tL_webPageAttributeStory.storyItem.media_areas.get(i7)).channel_id;
+                            for (int i8 = 0; i8 < tL_webPageAttributeStory.storyItem.media_areas.size(); i8++) {
+                                if (tL_webPageAttributeStory.storyItem.media_areas.get(i8) instanceof TL_stories.TL_mediaAreaChannelPost) {
+                                    long j8 = ((TL_stories.TL_mediaAreaChannelPost) tL_webPageAttributeStory.storyItem.media_areas.get(i8)).channel_id;
                                     if (!arrayList2.contains(Long.valueOf(j8))) {
                                         arrayList2.add(Long.valueOf(j8));
                                     }
@@ -7817,8 +7828,8 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageReplies messageReplies = message.replies;
         if (messageReplies != null) {
             int size = messageReplies.recent_repliers.size();
-            for (int i8 = 0; i8 < size; i8++) {
-                addLoadPeerInfo(message.replies.recent_repliers.get(i8), arrayList, arrayList2);
+            for (int i9 = 0; i9 < size; i9++) {
+                addLoadPeerInfo(message.replies.recent_repliers.get(i9), arrayList, arrayList2);
             }
         }
         TLRPC.MessageReplyHeader messageReplyHeader = message.reply_to;
@@ -7848,8 +7859,8 @@ public class MessagesStorage extends BaseController {
         if (tL_messageReactions == null || tL_messageReactions.top_reactors == null) {
             return;
         }
-        for (int i9 = 0; i9 < message.reactions.top_reactors.size(); i9++) {
-            TLRPC.MessageReactor messageReactor = message.reactions.top_reactors.get(i9);
+        for (int i10 = 0; i10 < message.reactions.top_reactors.size(); i10++) {
+            TLRPC.MessageReactor messageReactor = message.reactions.top_reactors.get(i10);
             if (messageReactor != null && (peer2 = messageReactor.peer_id) != null) {
                 addLoadPeerInfo(peer2, arrayList, arrayList2);
             }
@@ -8959,7 +8970,7 @@ public class MessagesStorage extends BaseController {
     }
 
     private static boolean isMessageActionTypeWithReply(TLRPC.MessageAction messageAction) {
-        return (messageAction instanceof TLRPC.TL_messageActionPinMessage) || (messageAction instanceof TLRPC.TL_messageActionPaymentSent) || (messageAction instanceof TLRPC.TL_messageActionGameScore) || (messageAction instanceof TLRPC.TL_messageActionSuggestedPostApproval) || (messageAction instanceof TLRPC.TL_messageActionPollAppendAnswer);
+        return (messageAction instanceof TLRPC.TL_messageActionPinMessage) || (messageAction instanceof TLRPC.TL_messageActionPaymentSent) || (messageAction instanceof TLRPC.TL_messageActionGameScore) || (messageAction instanceof TLRPC.TL_messageActionSuggestedPostApproval) || (messageAction instanceof TLRPC.TL_messageActionPollAppendAnswer) || (messageAction instanceof TLRPC.TL_messageActionPollDeleteAnswer);
     }
 
     public boolean isForum(long j, int i) {

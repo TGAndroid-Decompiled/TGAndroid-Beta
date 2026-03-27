@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -33,6 +34,7 @@ import java.util.Iterator;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
+import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -65,6 +67,7 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class AIEditorAlert extends BottomSheetWithRecyclerListView {
+    private boolean[] accusative;
     private UniversalAdapter adapter;
     private ButtonWithCounterView allButton;
     private FrameLayout bulletinContainer;
@@ -80,6 +83,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
     private boolean fixedTextLoading;
     private CharSequence fixedTextToCopy;
     private String from_lang;
+    private boolean[] genitive;
     private TLRPC.TL_messages_composeMessageWithAI[] lastRequest;
     private boolean loading;
     private Utilities.Callback4 onSendListener;
@@ -97,34 +101,35 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
     private RLottieDrawable titleLoadingDrawable;
     private String to_lang;
     private final Long[] toneDocumentId;
-    private final String[] toneEmojis;
+    private final String[] toneTitles;
     private final String[] tones;
     private String translateTone;
+    private String translateToneTitle;
     private CharSequence translatedText;
     private boolean translatedTextLoading;
 
     public AIEditorAlert(final Context context, final Theme.ResourcesProvider resourcesProvider) {
         super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+        this.accusative = new boolean[1];
+        this.genitive = new boolean[1];
         this.collapsed = true;
         this.requestId = -1;
         this.lastRequest = new TLRPC.TL_messages_composeMessageWithAI[3];
         Set<String> set = MessagesController.getInstance(this.currentAccount).aiComposeStyles;
         this.tones = new String[set.size()];
-        this.toneEmojis = new String[set.size()];
+        this.toneTitles = new String[set.size()];
         this.toneDocumentId = new Long[set.size()];
         Iterator<String> it = set.iterator();
         int i = 0;
         while (it.hasNext()) {
             String[] strArrSplit = it.next().split("\\|");
-            this.toneEmojis[i] = strArrSplit[0];
-            this.tones[i] = strArrSplit[1];
-            if (strArrSplit.length > 2) {
-                try {
-                    this.toneDocumentId[i] = Long.valueOf(Long.parseLong(strArrSplit[2]));
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+            this.tones[i] = strArrSplit[0];
+            try {
+                this.toneDocumentId[i] = Long.valueOf(Long.parseLong(strArrSplit[1]));
+            } catch (Exception e) {
+                FileLog.e(e);
             }
+            this.toneTitles[i] = strArrSplit[2];
             i++;
         }
         ImageView imageView = new ImageView(context);
@@ -175,19 +180,13 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
         tabs2.setDivider(true);
         this.styleTabs.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         this.styleTabs.setRoundRadius(12);
-        int i3 = 0;
-        while (true) {
-            String[] strArr = this.tones;
-            if (i3 >= strArr.length) {
-                break;
-            }
-            this.styleTabs.addTab(this.toneEmojis[i3], styleName(strArr[i3]), this.toneDocumentId[i3], new Utilities.Callback() {
+        for (int i3 = 0; i3 < this.tones.length; i3++) {
+            this.styleTabs.addTab(null, this.toneTitles[i3], this.toneDocumentId[i3], new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     this.f$0.selectStyle(((Integer) obj).intValue());
                 }
             });
-            i3++;
         }
         this.styleTabs.selectTab(-1);
         String toLanguage = TranslateAlert2.getToLanguage();
@@ -492,8 +491,23 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
         this.closeView.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, f2));
     }
 
+    public static CharSequence copy(CharSequence charSequence) {
+        if (!(charSequence instanceof Spanned)) {
+            return charSequence.toString();
+        }
+        Spanned spanned = (Spanned) charSequence;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence.toString());
+        Class[] clsArr = {TextStyleSpan.class, CodeHighlighting.Span.class, SquigglyLinesSpan.class, URLSpanUserMention.class, URLSpanReplacement.class, URLSpanMono.class, URLSpanNoUnderline.class, FormattedDateSpan.class, URLSpanBrowser.class, URLSpanBotCommand.class, AnimatedEmojiSpan.class};
+        for (int i = 0; i < 11; i++) {
+            for (Object obj : spanned.getSpans(0, spanned.length(), clsArr[i])) {
+                spannableStringBuilder.setSpan(obj, spanned.getSpanStart(obj), spanned.getSpanEnd(obj), 33);
+            }
+        }
+        return spannableStringBuilder;
+    }
+
     public AIEditorAlert setText(CharSequence charSequence) {
-        this.text = charSequence;
+        this.text = copy(charSequence);
         if (LanguageDetector.hasSupport()) {
             LanguageDetector.detectLanguage(charSequence.toString(), new LanguageDetector.StringCallback() {
                 @Override
@@ -602,8 +616,10 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        String string;
+        String strSubstring;
         String str;
+        String strSubstring2;
+        String strSubstring3;
         arrayList.add(UItem.asShadow(null));
         arrayList.add(UItem.asCustomShadow(this.tabsContainer));
         arrayList.add(UItem.asShadow(null));
@@ -612,29 +628,55 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
         Tabs tabs = this.tabs;
         int selectedTab = tabs != null ? tabs.getSelectedTab() : 0;
         if (selectedTab == 0) {
-            if (this.from_lang != null) {
-                string = LocaleController.getString(R.string.AIEditorFrom) + " ";
-            } else {
-                string = LocaleController.getString(R.string.AIEditorOriginalText);
-            }
             String str2 = this.from_lang;
-            arrayList.add(TranslateAlert3.Header.Factory.of(3, string, str2 != null ? TranslateAlert2.capitalFirst(TranslateAlert2.languageName(str2)) : null, null));
+            String str3 = "";
+            if (str2 != null && !str2.equalsIgnoreCase("und")) {
+                String strLanguageName = TranslateAlert2.languageName(this.from_lang, null, this.genitive);
+                boolean[] zArr = this.genitive;
+                String string = LocaleController.getString((zArr == null || !zArr[0]) ? R.string.AIEditorFromOther : R.string.AIEditorFrom);
+                int iIndexOf = string.indexOf("%s");
+                if (iIndexOf < 0) {
+                    strSubstring3 = "";
+                    strSubstring2 = strSubstring3;
+                } else {
+                    strSubstring2 = string.substring(0, iIndexOf);
+                    strSubstring3 = string.substring(iIndexOf + 2);
+                }
+                if (TextUtils.isEmpty(strSubstring2)) {
+                    strLanguageName = TranslateAlert2.capitalFirst(strLanguageName);
+                }
+                arrayList.add(TranslateAlert3.Header.Factory.of(3, strSubstring2, strLanguageName, strSubstring3, null));
+            } else {
+                arrayList.add(TranslateAlert3.Header.Factory.of(3, LocaleController.getString(R.string.AIEditorOriginalText), null, null, null));
+            }
             arrayList.add(TranslateAlert3.Text.Factory.of(4, this.text, this.collapsed, false, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     this.f$0.collapse(view);
                 }
             }, null, null));
-            String str3 = LocaleController.getString(R.string.AIEditorTo) + " ";
-            StringBuilder sb = new StringBuilder();
-            sb.append(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(this.to_lang)));
-            if (this.translateTone != null) {
-                str = " (" + TranslateAlert2.capitalFirst(this.translateTone) + ")";
-            } else {
+            String strLanguageName2 = TranslateAlert2.languageName(this.to_lang, this.accusative);
+            boolean[] zArr2 = this.accusative;
+            String string2 = LocaleController.getString((zArr2 == null || !zArr2[0]) ? R.string.AIEditorToOther : R.string.AIEditorTo);
+            int iIndexOf2 = string2.indexOf("%s");
+            if (iIndexOf2 < 0) {
                 str = "";
+                strSubstring = str;
+            } else {
+                String strSubstring4 = string2.substring(0, iIndexOf2);
+                strSubstring = string2.substring(iIndexOf2 + 2);
+                str = strSubstring4;
             }
-            sb.append(str);
-            arrayList.add(TranslateAlert3.Header.Factory.of(5, str3, sb.toString(), new View.OnClickListener() {
+            if (TextUtils.isEmpty(str)) {
+                strLanguageName2 = TranslateAlert2.capitalFirst(strLanguageName2);
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append(strLanguageName2);
+            if (this.translateToneTitle != null) {
+                str3 = " (" + this.translateToneTitle + ")";
+            }
+            sb.append(str3);
+            arrayList.add(TranslateAlert3.Header.Factory.of(5, str, sb.toString(), strSubstring, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     this.f$0.onToLangMenu(view);
@@ -656,7 +698,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
             arrayList.add(UItem.asCustom(this.styleTabs));
             Tabs tabs2 = this.styleTabs;
             if (tabs2 != null && tabs2.getSelectedTab() < 0 && !this.emojify) {
-                arrayList.add(TranslateAlert3.Header.Factory.of(5, LocaleController.getString(R.string.AIEditorOriginal), null, null, this.emojify, new View.OnClickListener() {
+                arrayList.add(TranslateAlert3.Header.Factory.of(5, LocaleController.getString(R.string.AIEditorOriginal), null, null, null, this.emojify, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         this.f$0.toggleEmojify(view);
@@ -664,7 +706,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                 }));
                 arrayList.add(TranslateAlert3.Text.Factory.of(this.styledTextLoading ? 7 : 6, this.text, false, false, null, null, null));
             } else {
-                arrayList.add(TranslateAlert3.Header.Factory.of(5, LocaleController.getString(R.string.AIEditorResult), null, null, this.emojify, new View.OnClickListener() {
+                arrayList.add(TranslateAlert3.Header.Factory.of(5, LocaleController.getString(R.string.AIEditorResult), null, null, null, this.emojify, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         this.f$0.toggleEmojify(view);
@@ -679,14 +721,14 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                 } : null));
             }
         } else if (selectedTab == 2) {
-            arrayList.add(TranslateAlert3.Header.Factory.of(3, LocaleController.getString(R.string.AIEditorOriginal), null, null));
+            arrayList.add(TranslateAlert3.Header.Factory.of(3, LocaleController.getString(R.string.AIEditorOriginal), null, null, null));
             arrayList.add(TranslateAlert3.Text.Factory.of(4, this.text, this.collapsed, false, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     this.f$0.collapse(view);
                 }
             }, null, null));
-            arrayList.add(TranslateAlert3.Header.Factory.of(5, LocaleController.getString(R.string.AIEditorResult), null, null));
+            arrayList.add(TranslateAlert3.Header.Factory.of(5, LocaleController.getString(R.string.AIEditorResult), null, null, null));
             boolean z3 = this.fixedTextLoading;
             arrayList.add(TranslateAlert3.Text.Factory.of(z3 ? 7 : 6, this.fixedText, false, false, null, null, !z3 ? new View.OnClickListener() {
                 @Override
@@ -785,7 +827,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
             if (i >= strArr.length) {
                 break;
             }
-            tabs.addTab(this.toneEmojis[i], styleName(strArr[i]), this.toneDocumentId[i], callback);
+            tabs.addTab(null, this.toneTitles[i], this.toneDocumentId[i], callback);
             i++;
         }
         String str = this.translateTone;
@@ -816,13 +858,9 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
             hintView2.hide();
         }
         this.translateTone = num.intValue() == 0 ? null : this.tones[num.intValue() - 1];
+        this.translateToneTitle = num.intValue() != 0 ? this.toneTitles[num.intValue() - 1] : null;
         request();
         itemOptions.dismiss();
-    }
-
-    public static String styleName(String str) {
-        String string = LocaleController.getString("AIEditorTone" + TranslateAlert2.capitalFirst(str));
-        return (string == null || string.contains("LOC_ERR")) ? TranslateAlert2.capitalFirst(str) : string;
     }
 
     private int indexOf(String[] strArr, String str) {
@@ -1291,7 +1329,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                     }
                 }
                 if (l != null) {
-                    this.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(9, i, l.longValue()));
+                    this.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(9, this.currentAccount, l.longValue()));
                 } else {
                     if (TextUtils.isEmpty(str)) {
                         return;

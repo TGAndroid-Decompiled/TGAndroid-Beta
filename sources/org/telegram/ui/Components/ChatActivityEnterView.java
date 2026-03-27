@@ -4879,7 +4879,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (ChatActivityEnterView.this.isInitLineCount) {
                 ChatActivityEnterView.this.lineCount = getLineCount();
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                chatActivityEnterView.showAiButton(chatActivityEnterView.lineCount > 2);
+                chatActivityEnterView.showAiButton(MessagesController.getInstance(chatActivityEnterView.currentAccount).aiEditorAvailable() && ChatActivityEnterView.this.lineCount > 2 && !TextUtils.isEmpty(getText().toString().trim()));
             }
             ChatActivityEnterView.this.isInitLineCount = false;
         }
@@ -5262,7 +5262,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
                 chatActivityEnterView2.lineCount = chatActivityEnterView2.messageEditText.getLineCount();
                 ChatActivityEnterView chatActivityEnterView3 = ChatActivityEnterView.this;
-                chatActivityEnterView3.showAiButton(chatActivityEnterView3.lineCount > 2);
+                chatActivityEnterView3.showAiButton(MessagesController.getInstance(chatActivityEnterView3.currentAccount).aiEditorAvailable() && ChatActivityEnterView.this.lineCount > 2 && charSequence != null && !TextUtils.isEmpty(charSequence.toString().trim()));
             } else {
                 this.heightShouldBeChanged = false;
             }
@@ -5298,7 +5298,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void afterTextChanged(android.text.Editable r10) {
+        public void afterTextChanged(android.text.Editable r11) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass52.afterTextChanged(android.text.Editable):void");
         }
 
@@ -5321,14 +5321,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }).start();
         if (z) {
             ImageView imageView = this.aiButton;
-            final AiButtonDrawable aiButtonDrawable = this.aiButtonIcon;
+            AiButtonDrawable aiButtonDrawable = this.aiButtonIcon;
             Objects.requireNonNull(aiButtonDrawable);
-            imageView.postDelayed(new Runnable() {
-                @Override
-                public final void run() {
-                    aiButtonDrawable.animate();
-                }
-            }, 220L);
+            imageView.postDelayed(new ChatActivityEnterView$$ExternalSyntheticLambda73(aiButtonDrawable), 220L);
             HintView2 hintView2 = this.aiHint;
             if (hintView2 != null) {
                 hintView2.hide();
@@ -10284,7 +10279,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                                 public final void run(Object obj) {
                                     this.f$0.lambda$didPressedBotButton$80(messageObject2, tL_keyboardButtonRequestPeer, user4, (TLRPC.User) obj);
                                 }
-                            }, this.resourcesProvider);
+                            }, this.resourcesProvider, null, false);
                             return false;
                         }
                         if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i = tL_keyboardButtonRequestPeer.max_quantity) > 1) {

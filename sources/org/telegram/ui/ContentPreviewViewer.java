@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -513,7 +514,7 @@ public class ContentPreviewViewer {
         }
 
         @Override
-        public void run() {
+        public void run() throws Resources.NotFoundException {
             boolean zHasRecentGif;
             int stableInsetTop;
             int stableInsetBottom;
@@ -1290,7 +1291,7 @@ public class ContentPreviewViewer {
         this.stickerSetForCustomSticker = tL_messages_stickerSet;
     }
 
-    public void showEmojiSelectorForStickers() {
+    public void showEmojiSelectorForStickers() throws Resources.NotFoundException {
         if (this.reactionsLayout == null) {
             ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(4, null, this.containerView.getContext(), UserConfig.selectedAccount, this.resourcesProvider) {
                 @Override
@@ -1341,7 +1342,7 @@ public class ContentPreviewViewer {
             }
 
             @Override
-            public final void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+            public final void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) throws Resources.NotFoundException {
                 this.f$0.lambda$showEmojiSelectorForStickers$3(view, visibleReaction, z, z2);
             }
         });
@@ -1357,7 +1358,7 @@ public class ContentPreviewViewer {
         }, 10L);
     }
 
-    public void lambda$showEmojiSelectorForStickers$3(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+    public void lambda$showEmojiSelectorForStickers$3(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) throws Resources.NotFoundException {
         if (visibleReaction == null) {
             return;
         }

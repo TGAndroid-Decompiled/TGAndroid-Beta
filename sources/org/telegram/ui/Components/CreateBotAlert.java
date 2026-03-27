@@ -3,8 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,19 +19,52 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class CreateBotAlert {
-    public static void show(Context context, final int i, final TLRPC.User user, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot, final boolean z, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+    public static void show(final Context context, final int i, final TLRPC.User user, TLRPC.TL_requestPeerTypeCreateBot tL_requestPeerTypeCreateBot, final boolean z, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider, BulletinFactory bulletinFactory, boolean z2) {
+        BulletinFactory bulletinFactoryOf;
+        String userName;
+        if (!user.bot_can_manage_bots) {
+            if (bulletinFactory == null) {
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment == null) {
+                    if (callback != null) {
+                        callback.run(null);
+                        return;
+                    }
+                    return;
+                }
+                bulletinFactoryOf = BulletinFactory.of(safeLastFragment);
+            } else {
+                bulletinFactoryOf = bulletinFactory;
+            }
+            if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
+                userName = "@" + UserObject.getPublicUsername(user);
+            } else {
+                userName = UserObject.getUserName(user);
+            }
+            bulletinFactoryOf.createSimpleBulletin(R.raw.error, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+            if (callback != null) {
+                callback.run(null);
+                return;
+            }
+            return;
+        }
         BottomSheet.Builder builder = new BottomSheet.Builder(context, true, resourcesProvider);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClipChildren(false);
@@ -131,7 +167,7 @@ public abstract class CreateBotAlert {
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                CreateBotAlert.lambda$show$4(strArr, runnable, round, z, editTextCell, i, user, zArr, callback, bottomSheetCreate, resourcesProvider);
+                CreateBotAlert.lambda$show$6(strArr, runnable, editTextCell, iArr2, round, z, i, user, zArr, callback, bottomSheetCreate, resourcesProvider, context);
             }
         };
         editTextCell2.editText.addTextChangedListener(new TextWatcher() {
@@ -154,7 +190,7 @@ public abstract class CreateBotAlert {
         editTextCell2.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView4, int i4, KeyEvent keyEvent) {
-                return CreateBotAlert.lambda$show$5(runnable2, textView4, i4, keyEvent);
+                return CreateBotAlert.lambda$show$7(runnable2, textView4, i4, keyEvent);
             }
         });
         neutral.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +209,7 @@ public abstract class CreateBotAlert {
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                CreateBotAlert.lambda$show$8(zArr, callback, dialogInterface);
+                CreateBotAlert.lambda$show$10(zArr, callback, dialogInterface);
             }
         });
         bottomSheetCreate.show();
@@ -260,45 +296,99 @@ public abstract class CreateBotAlert {
         AndroidUtilities.shakeViewSpring(textInfoPrivacyCell, i);
     }
 
-    public static void lambda$show$4(String[] strArr, Runnable runnable, ButtonWithCounterView buttonWithCounterView, boolean z, EditTextCell editTextCell, final int i, TLRPC.User user, final boolean[] zArr, final Utilities.Callback callback, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider) {
+    public static void lambda$show$6(String[] strArr, Runnable runnable, EditTextCell editTextCell, int[] iArr, final ButtonWithCounterView buttonWithCounterView, boolean z, final int i, final TLRPC.User user, final boolean[] zArr, final Utilities.Callback callback, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, final Context context) {
         if (strArr[0] == null) {
             runnable.run();
+            return;
+        }
+        String strTrim = editTextCell.editText.getText().toString().trim();
+        if (TextUtils.isEmpty(strTrim)) {
+            int i2 = -iArr[0];
+            iArr[0] = i2;
+            AndroidUtilities.shakeViewSpring(editTextCell, i2);
             return;
         }
         buttonWithCounterView.setLoading(true);
         TL_bots.createBot createbot = new TL_bots.createBot();
         createbot.via_deeplink = z;
         createbot.username = strArr[0];
-        createbot.name = editTextCell.editText.getText().toString();
+        createbot.name = strTrim;
         createbot.manager_id = MessagesController.getInstance(i).getInputUser(user);
         ConnectionsManager.getInstance(i).sendRequestTyped(createbot, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CreateBotAlert.lambda$show$3(zArr, i, callback, bottomSheet, resourcesProvider, (TLRPC.User) obj, (TLRPC.TL_error) obj2);
+                CreateBotAlert.lambda$show$5(buttonWithCounterView, zArr, i, callback, bottomSheet, resourcesProvider, context, user, (TLRPC.User) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public static void lambda$show$3(boolean[] zArr, int i, Utilities.Callback callback, BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, TLRPC.User user, TLRPC.TL_error tL_error) {
-        if (user == null) {
-            if (tL_error != null) {
-                BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);
-                return;
+    public static void lambda$show$5(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, int i, Utilities.Callback callback, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, final Context context, TLRPC.User user, TLRPC.User user2, TLRPC.TL_error tL_error) {
+        String userName;
+        String string;
+        buttonWithCounterView.setLoading(false);
+        if (user2 != null) {
+            zArr[0] = true;
+            MessagesController.getInstance(i).putUser(user2, false);
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(user2);
+            MessagesStorage.getInstance(i).putUsersAndChats(arrayList, null, false, false);
+            if (callback != null) {
+                callback.run(user2);
             }
+            bottomSheet.lambda$new$0();
             return;
         }
-        zArr[0] = true;
-        MessagesController.getInstance(i).putUser(user, false);
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(user);
-        MessagesStorage.getInstance(i).putUsersAndChats(arrayList, null, false, false);
-        if (callback != null) {
-            callback.run(user);
+        if (tL_error != null) {
+            if ("BOT_CREATE_LIMIT_EXCEEDED".equalsIgnoreCase(tL_error.text)) {
+                MessagesController messagesController = MessagesController.getInstance(i);
+                boolean zIsPremium = UserConfig.getInstance(i).isPremium();
+                BulletinFactory bulletinFactoryOf = BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider);
+                int i2 = R.raw.error;
+                String string2 = LocaleController.getString(R.string.CreateManagedBotLimitTitle);
+                if (zIsPremium) {
+                    string = LocaleController.formatString(R.string.CreateManagedBotLimitText, Integer.valueOf(messagesController.config.botsCreateLimitPremium.get()));
+                } else {
+                    string = LocaleController.formatString(R.string.CreateManagedBotLimitTextPremium, Integer.valueOf(messagesController.config.botsCreateLimitPremium.get()), Integer.valueOf(messagesController.config.botsCreateLimitDefault.get()));
+                }
+                bulletinFactoryOf.createSimpleBulletin(i2, string2, highlightBotFather(context, AndroidUtilities.replaceSingleLink(string, Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider), new Runnable() {
+                    @Override
+                    public final void run() {
+                        CreateBotAlert.lambda$show$3(bottomSheet);
+                    }
+                }), new Runnable() {
+                    @Override
+                    public final void run() {
+                        CreateBotAlert.lambda$show$4(bottomSheet, context);
+                    }
+                }, resourcesProvider)).setDuration(8000).show();
+            } else if ("MANAGER_PERMISSION_MISSING".equalsIgnoreCase(tL_error.text)) {
+                if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
+                    userName = "@" + UserObject.getPublicUsername(user);
+                } else {
+                    userName = UserObject.getUserName(user);
+                }
+                BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+            } else {
+                BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);
+            }
+            AndroidUtilities.hideKeyboard(bottomSheet.getCurrentFocus());
         }
-        bottomSheet.lambda$new$0();
     }
 
-    public static boolean lambda$show$5(Runnable runnable, TextView textView, int i, KeyEvent keyEvent) {
+    public static void lambda$show$3(BottomSheet bottomSheet) {
+        bottomSheet.lambda$new$0();
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null) {
+            safeLastFragment.presentFragment(new PremiumPreviewFragment("create_bot"));
+        }
+    }
+
+    public static void lambda$show$4(BottomSheet bottomSheet, Context context) {
+        bottomSheet.lambda$new$0();
+        Browser.openUrl(context, "https://t.me/BotFather?start=deletebot");
+    }
+
+    public static boolean lambda$show$7(Runnable runnable, TextView textView, int i, KeyEvent keyEvent) {
         if (i != 6) {
             return false;
         }
@@ -306,7 +396,7 @@ public abstract class CreateBotAlert {
         return true;
     }
 
-    public static void lambda$show$8(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void lambda$show$10(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         if (zArr[0]) {
             return;
         }
@@ -314,5 +404,31 @@ public abstract class CreateBotAlert {
         if (callback != null) {
             callback.run(null);
         }
+    }
+
+    private static SpannableStringBuilder highlightBotFather(Context context, CharSequence charSequence, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (!(charSequence instanceof SpannableStringBuilder)) {
+            spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        } else {
+            spannableStringBuilder = (SpannableStringBuilder) charSequence;
+        }
+        int iCharSequenceIndexOf = AndroidUtilities.charSequenceIndexOf(spannableStringBuilder, "@BotFather");
+        if (iCharSequenceIndexOf >= 0) {
+            spannableStringBuilder.setSpan(new ClickableSpan() {
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    super.updateDrawState(textPaint);
+                    textPaint.setUnderlineText(false);
+                    textPaint.setColor(Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider));
+                }
+
+                @Override
+                public void onClick(View view) {
+                    runnable.run();
+                }
+            }, iCharSequenceIndexOf, iCharSequenceIndexOf + 10, 33);
+        }
+        return spannableStringBuilder;
     }
 }

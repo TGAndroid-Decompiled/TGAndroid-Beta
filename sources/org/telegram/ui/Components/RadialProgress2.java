@@ -13,7 +13,6 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.MediaActionDrawable;
 
 public class RadialProgress2 {
     private int backgroundStroke;
@@ -57,7 +56,7 @@ public class RadialProgress2 {
         this(view, null);
     }
 
-    public RadialProgress2(final View view, Theme.ResourcesProvider resourcesProvider) {
+    public RadialProgress2(View view, Theme.ResourcesProvider resourcesProvider) {
         this.progressRect = new RectF();
         this.progressColor = -1;
         this.overlayPaint = new Paint(1);
@@ -81,29 +80,28 @@ public class RadialProgress2 {
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.overlayImageView = imageReceiver;
         imageReceiver.setInvalidateAll(true);
+        this.mediaActionDrawable = new MediaActionDrawable();
         MediaActionDrawable mediaActionDrawable = new MediaActionDrawable();
-        this.mediaActionDrawable = mediaActionDrawable;
-        Objects.requireNonNull(view);
-        mediaActionDrawable.setDelegate(new MediaActionDrawable.MediaActionDrawableDelegate() {
-            @Override
-            public final void invalidate() {
-                view.invalidate();
-            }
-        });
-        MediaActionDrawable mediaActionDrawable2 = new MediaActionDrawable();
-        this.miniMediaActionDrawable = mediaActionDrawable2;
-        mediaActionDrawable2.setDelegate(new MediaActionDrawable.MediaActionDrawableDelegate() {
-            @Override
-            public final void invalidate() {
-                view.invalidate();
-            }
-        });
-        this.miniMediaActionDrawable.setMini(true);
+        this.miniMediaActionDrawable = mediaActionDrawable;
+        mediaActionDrawable.setMini(true);
         this.miniMediaActionDrawable.setIcon(4, false);
         int iDp = AndroidUtilities.dp(22.0f);
         this.circleRadius = iDp;
         this.overlayImageView.setRoundRadius(iDp);
         this.overlayPaint.setColor(1677721600);
+        if (view != null) {
+            this.mediaActionDrawable.setDelegate(new RadialProgress2$$ExternalSyntheticLambda0(view));
+            this.miniMediaActionDrawable.setDelegate(new RadialProgress2$$ExternalSyntheticLambda0(view));
+        }
+    }
+
+    public void setParent(View view) {
+        this.parent = view;
+        this.overlayImageView.setParentView(view);
+        MediaActionDrawable mediaActionDrawable = this.mediaActionDrawable;
+        Objects.requireNonNull(view);
+        mediaActionDrawable.setDelegate(new RadialProgress2$$ExternalSyntheticLambda0(view));
+        this.miniMediaActionDrawable.setDelegate(new RadialProgress2$$ExternalSyntheticLambda0(view));
     }
 
     public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {

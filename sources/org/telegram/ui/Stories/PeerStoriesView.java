@@ -1429,7 +1429,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         likeStory(null);
     }
 
-    public boolean lambda$new$5(StoryViewer storyViewer, View view) {
+    public boolean lambda$new$5(StoryViewer storyViewer, View view) throws Resources.NotFoundException {
         Runnable runnable = this.reactionsTooltipRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -5986,7 +5986,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return false;
     }
 
-    public void setAccount(int i) {
+    public void setAccount(int i) throws Resources.NotFoundException {
         this.currentAccount = i;
         this.storiesController = MessagesController.getInstance(i).storiesController;
         this.emojiAnimationsOverlay.setAccount(i);
@@ -7240,7 +7240,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    void checkReactionsLayout() {
+    void checkReactionsLayout() throws Resources.NotFoundException {
         if (this.reactionsContainerLayout == null) {
             ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(1, LaunchActivity.getLastFragment(), getContext(), this.currentAccount, new WrappedResourceProvider(this.resourcesProvider) {
                 @Override
@@ -7389,7 +7389,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    void checkReactionsLayoutForLike() {
+    void checkReactionsLayoutForLike() throws Resources.NotFoundException {
         ReactionsContainerLayout reactionsContainerLayout = this.likesReactionLayout;
         if (reactionsContainerLayout == null) {
             ReactionsContainerLayout reactionsContainerLayout2 = new ReactionsContainerLayout(2, LaunchActivity.getLastFragment(), getContext(), this.currentAccount, new WrappedResourceProvider(this.resourcesProvider) {

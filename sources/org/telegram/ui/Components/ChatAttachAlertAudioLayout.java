@@ -377,7 +377,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public void onItemClick(org.telegram.ui.Components.UItem r19, android.view.View r20, int r21, float r22, float r23) {
+    public void onItemClick(org.telegram.ui.Components.UItem r18, android.view.View r19, int r20, float r21, float r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
     }
 

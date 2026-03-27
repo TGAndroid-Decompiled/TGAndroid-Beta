@@ -5460,7 +5460,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 z2 = false;
             }
             boolean z3 = this.pollVoted;
-            boolean z4 = !z3 && !this.pollClosed && this.pollHasResults && this.pollHideResults;
+            boolean z4 = !z3 && !this.pollClosed && this.pollHasResults && tL_messageMediaPoll.poll.creator;
             boolean z5 = (z3 || this.pollClosed) ? false : true;
             TLRPC.Poll poll = tL_messageMediaPoll.poll;
             boolean z6 = poll.public_voters;
@@ -5472,7 +5472,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 if (poll.multiple_choice && z5) {
                     string = LocaleController.getString(R.string.PollSubmitVotesNoCaps);
                     i = 83;
-                } else if ((this.isBot || !z6 || !z3 || (this.pollHideResults && !this.pollHasResults)) && (!this.pollClosed || pollResults.total_voters == 0)) {
+                } else if (this.isBot || !z6 || ((!z3 || (this.pollHideResults && !this.pollHasResults)) && (!this.pollClosed || pollResults.total_voters == 0))) {
                     string = null;
                 } else {
                     string2 = LocaleController.formatString(R.string.PollViewVotesX, Integer.valueOf(pollResults.total_voters));

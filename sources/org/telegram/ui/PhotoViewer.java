@@ -13608,6 +13608,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public boolean openPhotoForSelect(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, ArrayList arrayList, int i, int i2, boolean z, PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity) throws Resources.NotFoundException, NumberFormatException {
+        AnimatedTextView animatedTextView;
         this.isDocumentsPicker = z;
         ChatActivityEnterView.SendButton sendButton = this.pickerViewSendButton;
         if (sendButton != null) {
@@ -13712,6 +13713,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.animatorPollAttachButtonsVisibility.setValue(z3, false);
         if (this.sendPhotoType == 11) {
             this.navigationBar.setBackgroundColor(-16777216);
+        }
+        PhotoViewerActionBarContainer photoViewerActionBarContainer = this.actionBarContainer;
+        if (photoViewerActionBarContainer != null && (animatedTextView = photoViewerActionBarContainer.subtitleTextView) != null) {
+            animatedTextView.setVisibility(this.sendPhotoTypeIsPollMedia ? 8 : 0);
         }
         return openPhoto(null, fileLocation, imageLocation, null, null, null, arrayList, i, photoViewerProvider, chatActivity, 0L, 0L, 0L, true, null, null);
     }
@@ -14846,7 +14851,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     }
                                 }
                                 if (chatActivity2 != null) {
-                                    chatActivity2.lambda$openDiscussionMessageChat$363(PhotoViewer.this.animationEndRunnable);
+                                    chatActivity2.lambda$openDiscussionMessageChat$364(PhotoViewer.this.animationEndRunnable);
                                 } else {
                                     PhotoViewer.this.animationEndRunnable.run();
                                     PhotoViewer.this.animationEndRunnable = null;

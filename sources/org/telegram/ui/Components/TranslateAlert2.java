@@ -1260,10 +1260,14 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public static String languageName(String str) {
-        return languageName(str, null);
+        return languageName(str, null, null);
     }
 
     public static String languageName(String str, boolean[] zArr) {
+        return languageName(str, zArr, null);
+    }
+
+    public static String languageName(String str, boolean[] zArr, boolean[] zArr2) {
         if (str == null || str.equals("und") || str.equals("auto")) {
             return null;
         }
@@ -1277,6 +1281,14 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             zArr[0] = z;
             if (z) {
                 return string;
+            }
+        }
+        if (zArr2 != null) {
+            String string2 = LocaleController.getString("TranslateLanguageGenitive" + str2.toUpperCase());
+            boolean z2 = (string2 == null || string2.startsWith("LOC_ERR")) ? false : true;
+            zArr2[0] = z2;
+            if (z2) {
+                return string2;
             }
         }
         String strSystemLanguageName = systemLanguageName(str);
