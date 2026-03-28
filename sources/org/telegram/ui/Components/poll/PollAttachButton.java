@@ -30,7 +30,7 @@ public class PollAttachButton extends View {
         this.size = i;
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
         this.attachDrawable = drawableMutate;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(Theme.getColor(Theme.key_pollCreateIcons), 0.8f), PorterDuff.Mode.SRC_IN));
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_pollCreateIcons), PorterDuff.Mode.SRC_IN));
     }
 
     @Override

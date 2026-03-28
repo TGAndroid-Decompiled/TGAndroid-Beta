@@ -358,8 +358,9 @@ public class MessageSeenView extends FrameLayout {
         return this.listView;
     }
 
-    private static class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-        private static MessageSeenCheckDrawable seenDrawable = new MessageSeenCheckDrawable(R.drawable.msg_mini_checks, Theme.key_windowBackgroundWhiteGrayText);
+    public static class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+        private static MessageSeenCheckDrawable seenDrawable;
+        private static MessageSeenCheckDrawable votedDrawable;
         AvatarDrawable avatarDrawable;
         BackupImageView avatarImageView;
         private int currentAccount;
@@ -367,6 +368,13 @@ public class MessageSeenView extends FrameLayout {
         TLObject object;
         TextView readView;
         StatusBadgeComponent statusBadgeComponent;
+
+        static {
+            int i = R.drawable.msg_mini_checks;
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            seenDrawable = new MessageSeenCheckDrawable(i, i2);
+            votedDrawable = new MessageSeenCheckDrawable(R.drawable.msg_check_s, i2);
+        }
 
         public UserCell(Context context) {
             super(context);
@@ -394,18 +402,18 @@ public class MessageSeenView extends FrameLayout {
             this.readView.setGravity(LocaleController.isRTL ? 5 : 3);
             if (LocaleController.isRTL) {
                 addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
-                addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 53, 8.0f, 6.33f, 55.0f, 0.0f));
-                addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 53, 13.0f, 20.0f, 55.0f, 0.0f));
+                addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 53, 8.0f, 5.33f, 55.0f, 0.0f));
+                addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 53, 13.0f, 19.0f, 55.0f, 0.0f));
             } else {
                 addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
-                addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 6.33f, 8.0f, 0.0f));
-                addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 20.0f, 13.0f, 0.0f));
+                addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 5.33f, 8.0f, 0.0f));
+                addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 19.0f, 13.0f, 0.0f));
             }
         }
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
 
         public void setUser(TLObject tLObject, int i) {

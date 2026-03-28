@@ -63,6 +63,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
@@ -264,6 +265,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 @Override
                 public TLRPC.PollAnswer getPollAnswer() {
                     return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollAnswer(this);
+                }
+
+                @Override
+                public MessageObject getPollMessageObject() {
+                    return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollMessageObject(this);
                 }
 
                 @Override

@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -1567,7 +1566,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.effectSelector.setSelectedReactionAnimated(ReactionsLayoutInBubble.VisibleReaction.fromTL(effect));
     }
 
-    public void showEffectSelector() throws Resources.NotFoundException {
+    public void showEffectSelector() {
         if (this.effectSelectorShown) {
             return;
         }
@@ -2003,7 +2002,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.availableEffectsUpdate && MessagesController.getInstance(this.currentAccount).hasAvailableEffects()) {
             showEffectSelector();
         }

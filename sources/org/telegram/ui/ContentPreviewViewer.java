@@ -3,7 +3,6 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -16,6 +15,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.text.Layout;
@@ -65,6 +65,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ContextLinkCell;
@@ -92,7 +93,6 @@ import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundPro
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
-import org.telegram.ui.Components.poll.RecentVotersCell;
 import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
@@ -213,6 +213,10 @@ public class ContentPreviewViewer {
             }
 
             public static TLRPC.PollAnswer $default$getPollAnswer(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+                return null;
+            }
+
+            public static MessageObject $default$getPollMessageObject(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
                 return null;
             }
 
@@ -342,6 +346,8 @@ public class ContentPreviewViewer {
 
         TLRPC.PollAnswer getPollAnswer();
 
+        MessageObject getPollMessageObject();
+
         String getQuery(boolean z);
 
         void gifAddedOrDeleted();
@@ -397,9 +403,6 @@ public class ContentPreviewViewer {
         void stickerSetSelected(TLRPC.StickerSet stickerSet, String str);
     }
 
-    public static void lambda$addVoteOptions$0(View view) {
-    }
-
     public ContentPreviewViewer() {
         BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = new BlurredBackgroundSourceBitmap();
         this.scrimBlur3SourceBitmap = blurredBackgroundSourceBitmap;
@@ -433,8 +436,7 @@ public class ContentPreviewViewer {
         }
     }
 
-    public boolean addVoteOptions(ViewGroup viewGroup) {
-        ArrayList<TLRPC.Peer> arrayList;
+    public boolean canShowFullVotersList() {
         ContentPreviewViewerDelegate contentPreviewViewerDelegate = this.delegate;
         if (contentPreviewViewerDelegate == null) {
             return false;
@@ -445,55 +447,37 @@ public class ContentPreviewViewer {
             return false;
         }
         TLRPC.PollAnswerVoters pollResult = MessageObject.getPollResult(poll, pollAnswer.option);
-        boolean z = (!poll.poll.public_voters || pollResult == null || (arrayList = pollResult.recent_voters) == null || arrayList.isEmpty()) ? false : true;
-        boolean z2 = (MessageObject.isVoted(poll) || poll.poll.closed || this.delegate.isInScheduleMode()) ? false : true;
-        boolean z3 = !z2 && MessageObject.canUnvote(poll);
-        if (z) {
-            RecentVotersCell recentVotersCell = new RecentVotersCell(viewGroup.getContext(), this.currentAccount, this.resourcesProvider);
-            recentVotersCell.setText(LocaleController.formatPluralString("PollVotesCount", pollResult.voters, new Object[0]));
-            recentVotersCell.setRecentVoters(pollResult.recent_voters, false);
-            recentVotersCell.setLayoutParams(LayoutHelper.createLinear(-1, 48));
-            recentVotersCell.setBackground(Theme.createRadSelectorDrawable(getThemedColor(Theme.key_dialogButtonSelector), 12, 0));
-            recentVotersCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ContentPreviewViewer.lambda$addVoteOptions$0(view);
-                }
-            });
-            viewGroup.addView(recentVotersCell);
-            ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(viewGroup.getContext(), this.resourcesProvider);
-            gapView.setTag(R.id.fit_width_tag, 1);
-            gapView.setColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
-            gapView.setLayoutParams(LayoutHelper.createLinear(-1, 8));
-            viewGroup.addView(gapView);
+        if (pollResult == null || pollResult.voters <= 0) {
+            return true;
         }
-        if (z2) {
-            ActionBarMenuItem.addItem(viewGroup, R.drawable.msg_select, LocaleController.getString(R.string.PollSubmitVotesNoCaps), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    this.f$0.lambda$addVoteOptions$1(view);
-                }
-            });
-        }
-        if (z3) {
-            ActionBarMenuItem.addItem(viewGroup, R.drawable.msg_unvote, LocaleController.getString(R.string.Unvote), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    this.f$0.lambda$addVoteOptions$2(view);
-                }
-            });
-        }
-        if (!z && (z2 || z3)) {
-            ActionBarPopupWindow.GapView gapView2 = new ActionBarPopupWindow.GapView(viewGroup.getContext(), this.resourcesProvider);
-            gapView2.setTag(R.id.fit_width_tag, 1);
-            gapView2.setColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
-            gapView2.setLayoutParams(LayoutHelper.createLinear(-1, 8));
-            viewGroup.addView(gapView2);
-        }
-        return z || z2 || z3;
+        MessageObject.canShowVotersList(poll);
+        return true;
     }
 
-    public void lambda$addVoteOptions$1(View view) {
+    public boolean addVoteOptions(final org.telegram.ui.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContentPreviewViewer.addVoteOptions(org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout):boolean");
+    }
+
+    public static void lambda$addVoteOptions$0(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+        actionBarPopupWindowLayout.getSwipeBack().closeForeground();
+    }
+
+    public void lambda$addVoteOptions$1(BaseFragment baseFragment, Long l) {
+        Bundle bundle = new Bundle();
+        if (l.longValue() >= 0) {
+            bundle.putLong("user_id", l.longValue());
+        } else {
+            bundle.putLong("chat_id", -l.longValue());
+        }
+        baseFragment.presentFragment(new ProfileActivity(bundle));
+        dismissPopupWindow();
+    }
+
+    public static void lambda$addVoteOptions$2(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, View view) {
+        actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
+    }
+
+    public void lambda$addVoteOptions$3(View view) {
         ContentPreviewViewerDelegate contentPreviewViewerDelegate = this.delegate;
         if (contentPreviewViewerDelegate != null) {
             contentPreviewViewerDelegate.sendVote();
@@ -501,7 +485,7 @@ public class ContentPreviewViewer {
         dismissPopupWindow();
     }
 
-    public void lambda$addVoteOptions$2(View view) {
+    public void lambda$addVoteOptions$4(View view) {
         ContentPreviewViewerDelegate contentPreviewViewerDelegate = this.delegate;
         if (contentPreviewViewerDelegate != null) {
             contentPreviewViewerDelegate.retractVote();
@@ -514,7 +498,7 @@ public class ContentPreviewViewer {
         }
 
         @Override
-        public void run() throws Resources.NotFoundException {
+        public void run() {
             boolean zHasRecentGif;
             int stableInsetTop;
             int stableInsetBottom;
@@ -600,7 +584,7 @@ public class ContentPreviewViewer {
                 ContentPreviewViewer.this.menuVisible = true;
                 return;
             }
-            final ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert4, ContentPreviewViewer.this.resourcesProvider, ContentPreviewViewer.this.currentContentType == 3 ? 1 : 0);
+            final ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert4, ContentPreviewViewer.this.resourcesProvider, (ContentPreviewViewer.this.currentContentType == 3 || ContentPreviewViewer.this.canShowFullVotersList()) ? 1 : 0);
             actionBarPopupWindowLayout.setBackground(ContentPreviewViewer.this.scrimBlur3Factory.create((View) actionBarPopupWindowLayout, true).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(ContentPreviewViewer.this.resourcesProvider)).setRadius(AndroidUtilities.dp(12.0f)).setPadding(AndroidUtilities.dp(8.0f)).setHasPadding(true));
             if (ContentPreviewViewer.this.currentContentType != 3) {
                 if (ContentPreviewViewer.this.currentContentType == 0) {
@@ -1291,7 +1275,7 @@ public class ContentPreviewViewer {
         this.stickerSetForCustomSticker = tL_messages_stickerSet;
     }
 
-    public void showEmojiSelectorForStickers() throws Resources.NotFoundException {
+    public void showEmojiSelectorForStickers() {
         if (this.reactionsLayout == null) {
             ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(4, null, this.containerView.getContext(), UserConfig.selectedAccount, this.resourcesProvider) {
                 @Override
@@ -1342,8 +1326,8 @@ public class ContentPreviewViewer {
             }
 
             @Override
-            public final void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) throws Resources.NotFoundException {
-                this.f$0.lambda$showEmojiSelectorForStickers$3(view, visibleReaction, z, z2);
+            public final void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+                this.f$0.lambda$showEmojiSelectorForStickers$5(view, visibleReaction, z, z2);
             }
         });
         this.reactionsLayout.setMessage(null, null, false);
@@ -1353,12 +1337,12 @@ public class ContentPreviewViewer {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showEmojiSelectorForStickers$4();
+                this.f$0.lambda$showEmojiSelectorForStickers$6();
             }
         }, 10L);
     }
 
-    public void lambda$showEmojiSelectorForStickers$3(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) throws Resources.NotFoundException {
+    public void lambda$showEmojiSelectorForStickers$5(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
         if (visibleReaction == null) {
             return;
         }
@@ -1386,7 +1370,7 @@ public class ContentPreviewViewer {
         }
     }
 
-    public void lambda$showEmojiSelectorForStickers$4() {
+    public void lambda$showEmojiSelectorForStickers$6() {
         this.reactionsLayoutContainer.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
     }
 
@@ -1398,13 +1382,13 @@ public class ContentPreviewViewer {
             this.unlockPremiumView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showUnlockPremiumView$5(view);
+                    this.f$0.lambda$showUnlockPremiumView$7(view);
                 }
             });
             this.unlockPremiumView.premiumButtonView.buttonLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showUnlockPremiumView$6(view);
+                    this.f$0.lambda$showUnlockPremiumView$8(view);
                 }
             });
         }
@@ -1413,13 +1397,13 @@ public class ContentPreviewViewer {
         this.unlockPremiumView.setTranslationY(0.0f);
     }
 
-    public void lambda$showUnlockPremiumView$5(View view) {
+    public void lambda$showUnlockPremiumView$7(View view) {
         this.menuVisible = false;
         this.containerView.invalidate();
         close();
     }
 
-    public void lambda$showUnlockPremiumView$6(View view) {
+    public void lambda$showUnlockPremiumView$8(View view) {
         Activity activity = this.parentActivity;
         if (activity instanceof LaunchActivity) {
             LaunchActivity launchActivity = (LaunchActivity) activity;
@@ -1477,7 +1461,7 @@ public class ContentPreviewViewer {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContentPreviewViewer.onTouch(android.view.MotionEvent, org.telegram.ui.Components.RecyclerListView, int, java.lang.Object, org.telegram.ui.ContentPreviewViewer$ContentPreviewViewerDelegate, org.telegram.ui.ActionBar.Theme$ResourcesProvider):boolean");
     }
 
-    public static void lambda$onTouch$7(RecyclerListView recyclerListView, Object obj) {
+    public static void lambda$onTouch$9(RecyclerListView recyclerListView, Object obj) {
         if (recyclerListView instanceof RecyclerListView) {
             recyclerListView.setOnItemClickListener((RecyclerListView.OnItemClickListener) obj);
         }
@@ -1498,7 +1482,7 @@ public class ContentPreviewViewer {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContentPreviewViewer.onInterceptTouchEvent(android.view.MotionEvent, org.telegram.ui.Components.RecyclerListView, int, org.telegram.ui.ContentPreviewViewer$ContentPreviewViewerDelegate, org.telegram.ui.ActionBar.Theme$ResourcesProvider):boolean");
     }
 
-    public void lambda$onInterceptTouchEvent$8(RecyclerListView recyclerListView, int i, Theme.ResourcesProvider resourcesProvider) {
+    public void lambda$onInterceptTouchEvent$10(RecyclerListView recyclerListView, int i, Theme.ResourcesProvider resourcesProvider) {
         TLRPC.Document documentFindDocument;
         if (this.openPreviewRunnable == null) {
             return;
@@ -1625,7 +1609,7 @@ public class ContentPreviewViewer {
         ViewCompat.setOnApplyWindowInsetsListener(this.windowView, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return this.f$0.lambda$setParentActivity$9(view, windowInsetsCompat);
+                return this.f$0.lambda$setParentActivity$11(view, windowInsetsCompat);
             }
         });
         FrameLayoutDrawer frameLayoutDrawer = new FrameLayoutDrawer(activity) {
@@ -1649,7 +1633,7 @@ public class ContentPreviewViewer {
         this.containerView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                return this.f$0.lambda$setParentActivity$10(view, motionEvent);
+                return this.f$0.lambda$setParentActivity$12(view, motionEvent);
             }
         });
         MessagesController.getInstance(this.currentAccount);
@@ -1674,12 +1658,12 @@ public class ContentPreviewViewer {
         this.effectImage.setParentView(this.containerView);
     }
 
-    public WindowInsetsCompat lambda$setParentActivity$9(View view, WindowInsetsCompat windowInsetsCompat) {
+    public WindowInsetsCompat lambda$setParentActivity$11(View view, WindowInsetsCompat windowInsetsCompat) {
         this.lastInsets = windowInsetsCompat;
         return windowInsetsCompat;
     }
 
-    public boolean lambda$setParentActivity$10(View view, MotionEvent motionEvent) {
+    public boolean lambda$setParentActivity$12(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 6 || motionEvent.getAction() == 3) {
             if (this.isStickerEditor) {
                 closeWithMenu();
@@ -1902,7 +1886,7 @@ public class ContentPreviewViewer {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$close$11();
+                this.f$0.lambda$close$13();
             }
         }, 200L);
         UnlockPremiumView unlockPremiumView = this.unlockPremiumView;
@@ -1916,7 +1900,7 @@ public class ContentPreviewViewer {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 8);
     }
 
-    public void lambda$close$11() {
+    public void lambda$close$13() {
         this.resourcesProvider = null;
     }
 
@@ -1967,7 +1951,7 @@ public class ContentPreviewViewer {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContentPreviewViewer.onDraw(android.graphics.Canvas):void");
     }
 
-    public void lambda$onDraw$12() {
+    public void lambda$onDraw$14() {
         this.centerImage.setImageBitmap((Bitmap) null);
         PaintingOverlay paintingOverlay = this.paintingOverlay;
         if (paintingOverlay != null) {
@@ -1990,12 +1974,12 @@ public class ContentPreviewViewer {
         ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$prepareBlurBitmap$13((Bitmap) obj, (Bitmap) obj2);
+                this.f$0.lambda$prepareBlurBitmap$15((Bitmap) obj, (Bitmap) obj2);
             }
         });
     }
 
-    public void lambda$prepareBlurBitmap$13(Bitmap bitmap, Bitmap bitmap2) {
+    public void lambda$prepareBlurBitmap$15(Bitmap bitmap, Bitmap bitmap2) {
         this.centerImage.setVisible(true, false);
         this.blurrBitmap = bitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -2068,21 +2052,21 @@ public class ContentPreviewViewer {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMyStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$getMyStickersRemote$15(list, tL_messages_getMyStickers, tLObject, tL_error);
+                this.f$0.lambda$getMyStickersRemote$17(list, tL_messages_getMyStickers, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$getMyStickersRemote$15(final List list, final TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$getMyStickersRemote$17(final List list, final TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$getMyStickersRemote$14(tL_error, tLObject, list, tL_messages_getMyStickers);
+                this.f$0.lambda$getMyStickersRemote$16(tL_error, tLObject, list, tL_messages_getMyStickers);
             }
         });
     }
 
-    public void lambda$getMyStickersRemote$14(TLRPC.TL_error tL_error, TLObject tLObject, List list, TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers) {
+    public void lambda$getMyStickersRemote$16(TLRPC.TL_error tL_error, TLObject tLObject, List list, TLRPC.TL_messages_getMyStickers tL_messages_getMyStickers) {
         if (tL_error == null && (tLObject instanceof TLRPC.TL_messages_myStickers)) {
             TLRPC.TL_messages_myStickers tL_messages_myStickers = (TLRPC.TL_messages_myStickers) tLObject;
             Iterator<TLRPC.StickerSetCovered> it = tL_messages_myStickers.sets.iterator();

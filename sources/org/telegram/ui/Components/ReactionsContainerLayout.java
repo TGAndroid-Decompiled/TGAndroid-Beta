@@ -6,7 +6,6 @@ import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -650,7 +649,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         invalidate();
     }
 
-    private void setVisibleReactionsList(List list, boolean z) throws Resources.NotFoundException {
+    private void setVisibleReactionsList(List list, boolean z) {
         this.visibleReactionsList.clear();
         if (showCustomEmojiReaction()) {
             int iDp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) / AndroidUtilities.dp(34.0f);
@@ -873,7 +872,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         invalidate();
     }
 
-    public void setMessage(MessageObject messageObject, TLRPC.ChatFull chatFull, boolean z) throws Resources.NotFoundException {
+    public void setMessage(MessageObject messageObject, TLRPC.ChatFull chatFull, boolean z) {
         int i;
         TLRPC.TL_messageReactions tL_messageReactions;
         TLRPC.Message message;
@@ -1859,7 +1858,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         }
 
-        public void setReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction, int i) throws Resources.NotFoundException {
+        public void setReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction, int i) {
             updateSelected(visibleReaction, false);
             ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
             if (visibleReaction2 == null || !visibleReaction2.equals(visibleReaction)) {
@@ -1945,7 +1944,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             updateImage(visibleReaction);
         }
 
-        private void updateImage(ReactionsLayoutInBubble.VisibleReaction visibleReaction) throws Resources.NotFoundException {
+        private void updateImage(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
             if (visibleReaction == null || !visibleReaction.isStar) {
                 if (ReactionsContainerLayout.this.type == 4 && visibleReaction != null && visibleReaction.emojicon != null) {
                     this.enterImageView.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(visibleReaction.emojicon));
@@ -2233,7 +2232,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             if (chatFull.id != this.waitingLoadingChatId || getVisibility() == 0 || (chatFull.available_reactions instanceof TLRPC.TL_chatReactionsNone)) {
@@ -2457,7 +2456,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) throws Resources.NotFoundException {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0 || viewHolder.getItemViewType() == 3) {
                 ReactionHolderView reactionHolderView = (ReactionHolderView) viewHolder.itemView;
                 reactionHolderView.setScaleX(1.0f);

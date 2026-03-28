@@ -23,6 +23,7 @@ public class AppGlobalConfig {
     public final ConfigTime pollAnswerDeletePeriod;
     public final ConfigInt pollAnswerLengthMax;
     public final ConfigInt pollAnswersMax;
+    public final ConfigInt pollCaptionLengthMax;
     public final ConfigTime pollClosePeriodMax;
     public final ConfigInt pollQuestionLengthMax;
     public final ConfigInt pollSolutionLengthMax;
@@ -90,6 +91,7 @@ public class AppGlobalConfig {
         this.pollAnswerLengthMax = ofInt("poll_answer_length_max", 100);
         this.pollQuestionLengthMax = ofInt("poll_question_length_max", 255);
         this.pollSolutionLengthMax = ofInt("poll_solution_length_max", 200);
+        this.pollCaptionLengthMax = ofInt("poll_caption_length_max", 300);
         this.pollAnswerDeletePeriod = ofTime("poll_answer_delete_period", 300L, timeUnit);
         this.botsCreateLimitDefault = ofInt("bots_create_limit_default", 20);
         this.botsCreateLimitPremium = ofInt("bots_create_limit_premium", 40);

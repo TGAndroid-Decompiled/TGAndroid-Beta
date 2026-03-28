@@ -2959,7 +2959,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo1302getWindowView() {
+    public WindowView mo1301getWindowView() {
         return this.windowView;
     }
 

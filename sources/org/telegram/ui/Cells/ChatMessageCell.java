@@ -405,6 +405,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean drawName;
     private boolean drawNameAvatar;
     private boolean drawNameLayout;
+    public byte[] drawOnlyPollId;
     public boolean drawPhotoImage;
     public boolean drawPinnedBottom;
     public boolean drawPinnedTop;
@@ -5424,7 +5425,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContentIfPoll(org.telegram.messenger.MessageObject r61, boolean r62) throws android.content.res.Resources.NotFoundException {
+    public void checkPollFileState() {
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null || !messageObject.isPoll()) {
+            return;
+        }
+        PollContentDrawable pollContentDrawable = this.pollExplanationDrawable;
+        if (pollContentDrawable != null) {
+            pollContentDrawable.checkFileState();
+        }
+        PollContentDrawable pollContentDrawable2 = this.pollContentDrawable;
+        if (pollContentDrawable2 != null) {
+            pollContentDrawable2.checkFileState();
+        }
+    }
+
+    private void setMessageContentIfPoll(org.telegram.messenger.MessageObject r60, boolean r61) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContentIfPoll(org.telegram.messenger.MessageObject, boolean):void");
     }
 

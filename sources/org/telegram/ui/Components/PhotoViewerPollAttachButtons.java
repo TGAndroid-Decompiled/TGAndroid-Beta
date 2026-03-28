@@ -19,7 +19,7 @@ public class PhotoViewerPollAttachButtons extends LinearLayout {
         setOrientation(0);
         setGravity(17);
         setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        View viewCreateButton = createButton(R.drawable.msg_replace, LocaleController.getString(R.string.Replace));
+        View viewCreateButton = createButton(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
         this.replaceButton = viewCreateButton;
         addView(viewCreateButton, LayoutHelper.createLinear(-2, -1));
         View viewCreateButton2 = createButton(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));

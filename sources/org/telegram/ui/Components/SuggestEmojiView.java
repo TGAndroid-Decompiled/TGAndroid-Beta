@@ -182,6 +182,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
+        public MessageObject getPollMessageObject() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollMessageObject(this);
+        }
+
+        @Override
         public String getQuery(boolean z) {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getQuery(this, z);
         }

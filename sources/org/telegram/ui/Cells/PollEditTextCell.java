@@ -214,7 +214,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             ImageView imageView2 = this.moveImageView;
             ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
             imageView2.setScaleType(scaleType);
-            this.moveImageView.setImageResource(R.drawable.poll_reorder);
+            this.moveImageView.setImageResource(R.drawable.menu_poll_order_24);
             ImageView imageView3 = this.moveImageView;
             int i3 = Theme.key_windowBackgroundWhiteGrayIcon;
             int color = Theme.getColor(i3, resourcesProvider);
@@ -264,8 +264,7 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         if (i == 1) {
             ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context);
             this.emojiButton = chatActivityEnterViewAnimatedIconView;
-            chatActivityEnterViewAnimatedIconView.setAlpha(0.8f);
-            this.emojiButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
             this.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
             int iDp = AndroidUtilities.dp(9.5f);
             this.emojiButton.setPadding(iDp, iDp, iDp, iDp);
@@ -609,11 +608,15 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         float f3 = 0.85f * floatValue;
         this.emojiButton.setScaleX(f3);
         this.emojiButton.setScaleY(f3);
-        this.emojiButton.setAlpha(0.8f * floatValue);
+        this.emojiButton.setAlpha(floatValue);
         this.emojiButton.setVisibility(floatValue > 0.0f ? 0 : 8);
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView != null && this.deleteImageView == null && simpleTextView.getVisibility() == 0) {
-            this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * floatValue);
+            if (this.attachView != null) {
+                this.textView2.setTranslationY(AndroidUtilities.dp(36.0f));
+            } else {
+                this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * floatValue);
+            }
         }
     }
 }

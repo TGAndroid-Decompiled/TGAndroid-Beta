@@ -3,16 +3,36 @@ package org.telegram.ui.Components.poll;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.core.math.MathUtils;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarsListDrawable;
+import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.MessageSeenView;
 
 public class RecentVotersCell extends FrameLayout {
     public final AvatarsListDrawable avatarsListDrawable;
+    private UniversalRecyclerView listView;
     public final TextView textView;
 
     public RecentVotersCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -55,5 +75,204 @@ public class RecentVotersCell extends FrameLayout {
         super.dispatchDraw(canvas);
         this.avatarsListDrawable.setBounds((getWidth() - AndroidUtilities.dp(11.0f)) - ((int) this.avatarsListDrawable.getAnimatedWidth()), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(24.0f));
         this.avatarsListDrawable.draw(canvas);
+    }
+
+    public RecyclerListView createListView(BaseFragment baseFragment, long j, int i, byte[] bArr, final int i2, Utilities.Callback callback) {
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            return universalRecyclerView;
+        }
+        final VotesList votesList = new VotesList(baseFragment.getCurrentAccount(), baseFragment.getMessagesController().getInputPeer(j), i, bArr, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$createListView$0();
+            }
+        }, callback);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                votesList.load();
+            }
+        }, 1000L);
+        UniversalRecyclerView universalRecyclerView2 = new UniversalRecyclerView(baseFragment, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                votesList.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, null, null) {
+            @Override
+            protected void onMeasure(int i3, int i4) {
+                int iMin = Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i3));
+                View.MeasureSpec.getSize(i4);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(MathUtils.clamp(i2, 1, 5) * 48), 1073741824));
+            }
+        };
+        this.listView = universalRecyclerView2;
+        universalRecyclerView2.adapter.setApplyBackground(false);
+        this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                if (votesList.completed || votesList.loading) {
+                    return;
+                }
+                if ((RecentVotersCell.this.listView.adapter.getItemCount() - 1) - RecentVotersCell.this.listView.layoutManager.findLastCompletelyVisibleItemPosition() < 5) {
+                    votesList.load();
+                }
+            }
+        });
+        return this.listView;
+    }
+
+    public void lambda$createListView$0() {
+        this.listView.adapter.update(true);
+    }
+
+    static class VotesList {
+        private boolean completed;
+        private int count;
+        public final int currentAccount;
+        private boolean loading;
+        public final int msgId;
+        private String nextOffset;
+        private final Utilities.Callback onClick;
+        private final Runnable onUpdate;
+        public final byte[] option;
+        public final TLRPC.InputPeer peer;
+        private ArrayList votes;
+
+        private VotesList(int i, TLRPC.InputPeer inputPeer, int i2, byte[] bArr, Runnable runnable, Utilities.Callback callback) {
+            this.count = -1;
+            this.votes = new ArrayList();
+            this.currentAccount = i;
+            this.peer = inputPeer;
+            this.msgId = i2;
+            this.option = bArr;
+            this.onUpdate = runnable;
+            this.onClick = callback;
+        }
+
+        public void load() {
+            if (this.completed || this.loading) {
+                return;
+            }
+            this.loading = true;
+            TLRPC.TL_messages_getPollVotes tL_messages_getPollVotes = new TLRPC.TL_messages_getPollVotes();
+            String str = this.nextOffset;
+            tL_messages_getPollVotes.limit = str != null ? 10 : 15;
+            tL_messages_getPollVotes.peer = this.peer;
+            tL_messages_getPollVotes.id = this.msgId;
+            tL_messages_getPollVotes.option = this.option;
+            tL_messages_getPollVotes.offset = str;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_getPollVotes, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$load$0((TLRPC.TL_messages_votesList) obj, (TLRPC.TL_error) obj2);
+                }
+            });
+        }
+
+        public void lambda$load$0(TLRPC.TL_messages_votesList tL_messages_votesList, TLRPC.TL_error tL_error) {
+            this.loading = false;
+            if (tL_messages_votesList != null) {
+                MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_votesList.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(tL_messages_votesList.chats, false);
+                String str = tL_messages_votesList.next_offset;
+                this.nextOffset = str;
+                this.completed = str == null;
+                this.count = tL_messages_votesList.count;
+                this.votes.addAll(tL_messages_votesList.votes);
+                Runnable runnable = this.onUpdate;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            }
+            this.nextOffset = null;
+            this.completed = true;
+        }
+
+        public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+            arrayList.clear();
+            Iterator it = this.votes.iterator();
+            while (it.hasNext()) {
+                TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) it.next();
+                final long peerDialogId = DialogObject.getPeerDialogId(messagePeerVote.peer);
+                arrayList.add(Factory.of(MessagesController.getInstance(this.currentAccount).getUserOrChat(peerDialogId), peerDialogId, messagePeerVote.date, new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$fillItems$1(peerDialogId, view);
+                    }
+                }));
+            }
+            if (this.completed || this.votes.isEmpty()) {
+                return;
+            }
+            arrayList.add(FlickerFactory.of());
+        }
+
+        public void lambda$fillItems$1(long j, View view) {
+            Utilities.Callback callback = this.onClick;
+            if (callback != null) {
+                callback.run(Long.valueOf(j));
+            }
+        }
+    }
+
+    public static class FlickerFactory extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new FlickerFactory());
+        }
+
+        @Override
+        public FlickerLoadingView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
+            flickerLoadingView.setViewType(16);
+            flickerLoadingView.setMinimumHeight(AndroidUtilities.dp(48.0f));
+            return flickerLoadingView;
+        }
+
+        public static UItem of() {
+            return UItem.ofFactory(FlickerFactory.class);
+        }
+    }
+
+    public static class Factory extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        @Override
+        public MessageSeenView.UserCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            MessageSeenView.UserCell userCell = new MessageSeenView.UserCell(context);
+            userCell.setBackground(Theme.getSelectorDrawable(false));
+            return userCell;
+        }
+
+        @Override
+        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            MessageSeenView.UserCell userCell = (MessageSeenView.UserCell) view;
+            userCell.setUser((TLObject) uItem.object, uItem.intValue);
+            userCell.setOnClickListener(uItem.clickCallback);
+        }
+
+        public static UItem of(TLObject tLObject, long j, int i, View.OnClickListener onClickListener) {
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.object = tLObject;
+            uItemOfFactory.longValue = j;
+            uItemOfFactory.intValue = i;
+            uItemOfFactory.clickCallback = onClickListener;
+            return uItemOfFactory;
+        }
+
+        @Override
+        public boolean equals(UItem uItem, UItem uItem2) {
+            return uItem.longValue == uItem2.longValue;
+        }
+
+        @Override
+        public boolean contentsEquals(UItem uItem, UItem uItem2) {
+            return uItem.longValue == uItem2.longValue;
+        }
     }
 }

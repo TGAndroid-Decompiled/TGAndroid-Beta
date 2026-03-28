@@ -7,7 +7,6 @@ import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -1798,7 +1797,7 @@ public class Bulletin {
         private SparseLongArray newMessagesByIds;
         private ReactionsContainerLayout reactionsContainerLayout;
 
-        public LottieLayoutWithReactions(BaseFragment baseFragment, int i) throws Resources.NotFoundException {
+        public LottieLayoutWithReactions(BaseFragment baseFragment, int i) {
             super(baseFragment.getContext(), baseFragment.getResourceProvider());
             this.fragment = baseFragment;
             this.messagesCount = i;
@@ -1809,7 +1808,7 @@ public class Bulletin {
             this.bulletin = bulletin;
         }
 
-        public void init() throws Resources.NotFoundException {
+        public void init() {
             this.textView.setLayoutParams(LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
             this.imageView.setLayoutParams(LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388659));
             AnonymousClass1 anonymousClass1 = new AnonymousClass1(3, this.fragment, getContext(), this.fragment.getCurrentAccount(), this.fragment.getResourceProvider());

@@ -78127,7 +78127,7 @@ public class TLRPC {
         }
     }
 
-    public static class TL_messages_getPollVotes extends TLObject {
+    public static class TL_messages_getPollVotes extends TLMethod<TL_messages_votesList> {
         public static final int constructor = -1200736242;
         public int flags;
         public int id;
@@ -78137,14 +78137,18 @@ public class TLRPC {
         public InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public TL_messages_votesList deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return TL_messages_votesList.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1200736242);
-            outputSerializedData.writeInt32(this.flags);
+            int flag = TLObject.setFlag(this.flags, 1, this.option != null);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.offset != null);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.id);
             if (TLObject.hasFlag(this.flags, 1)) {

@@ -9914,7 +9914,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         visibleBulletin.getLayout().setTop(fMin > 0.5f);
     }
 
-    private ReactionsContainerLayout createReactionsLayout() throws Resources.NotFoundException {
+    private ReactionsContainerLayout createReactionsLayout() {
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
         if (reactionsContainerLayout != null) {
             return reactionsContainerLayout;

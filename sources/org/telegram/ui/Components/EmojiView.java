@@ -566,6 +566,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
+        public MessageObject getPollMessageObject() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollMessageObject(this);
+        }
+
+        @Override
         public boolean isPhotoEditor() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
         }

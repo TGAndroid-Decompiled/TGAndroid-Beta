@@ -136,7 +136,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_fastScrollActive] = -14509328;
         iArr[Theme.key_fastScrollInactive] = -3551791;
         iArr[Theme.key_fastScrollText] = -1;
-        iArr[Theme.key_pollCreateIcons] = -8881024;
+        iArr[Theme.key_pollCreateIcons] = -7301735;
         iArr[Theme.key_avatar_text] = -1;
         iArr[Theme.key_avatar_backgroundSaved] = -9847303;
         iArr[Theme.key_avatar_background2Saved] = -12541983;

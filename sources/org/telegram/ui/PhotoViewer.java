@@ -7860,6 +7860,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         }
 
                         @Override
+                        public MessageObject getPollMessageObject() {
+                            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollMessageObject(this);
+                        }
+
+                        @Override
                         public String getQuery(boolean z6) {
                             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getQuery(this, z6);
                         }

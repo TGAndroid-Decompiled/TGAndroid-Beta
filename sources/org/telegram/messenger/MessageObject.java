@@ -171,6 +171,7 @@ public class MessageObject {
     public int dateKeyInt;
     public boolean deleted;
     public boolean deletedByThanos;
+    public TLRPC.Document documentToPollAddOption;
     public boolean drawServiceWithDefaultTypeface;
     public CharSequence editingMessage;
     public ArrayList<TLRPC.MessageEntity> editingMessageEntities;
@@ -2406,6 +2407,10 @@ public class MessageObject {
             pollResults7.solution_entities = pollResults.solution_entities;
             pollResults7.flags |= 16;
         }
+        if (pollResults.min) {
+            return;
+        }
+        tL_messageMediaPoll.results.has_unread_votes = pollResults.has_unread_votes;
     }
 
     public void loadAnimatedEmojiDocument() {
@@ -2538,6 +2543,18 @@ public class MessageObject {
             }
         }
         return null;
+    }
+
+    public static boolean canShowVotersList(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {
+        TLRPC.PollResults pollResults;
+        if (tL_messageMediaPoll == null || (pollResults = tL_messageMediaPoll.results) == null || pollResults.results.isEmpty()) {
+            return false;
+        }
+        TLRPC.Poll poll = tL_messageMediaPoll.poll;
+        if (poll.public_voters) {
+            return poll.closed || poll.creator || (isVoted(tL_messageMediaPoll) && !tL_messageMediaPoll.poll.hide_results_until_close);
+        }
+        return false;
     }
 
     public static boolean isVoted(TLRPC.TL_messageMediaPoll tL_messageMediaPoll) {

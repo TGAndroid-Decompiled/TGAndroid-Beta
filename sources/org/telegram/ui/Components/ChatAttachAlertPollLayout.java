@@ -52,7 +52,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.HeaderCell;
@@ -87,6 +86,7 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
 public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout implements SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, NotificationCenter.NotificationCenterDelegate {
+    private final int MAX_CAPTION_LENGTH;
     private final int[] POLL_DURATION_OPTIONS;
     private int addAnswerRow;
     private boolean allowAdding;
@@ -434,6 +434,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.hintView.setAlpha(0.0f);
         this.hintView.setVisibility(4);
         addView(this.hintView, LayoutHelper.createFrame(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
+        this.MAX_CAPTION_LENGTH = MessagesController.getInstance(this.parentAlert.currentAccount).config.pollCaptionLengthMax.get();
         if (zIsPremium) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
             SuggestEmojiView suggestEmojiView = new SuggestEmojiView(context, this.parentAlert.currentAccount, null, resourcesProvider) {
@@ -1089,7 +1090,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         } else {
             i = 0;
         }
-        boolean z = (TextUtils.isEmpty(getFixedString(this.solutionString)) || this.solutionString.length() <= 200) && !TextUtils.isEmpty(getFixedString(this.questionString)) && this.questionString.length() <= 255;
+        boolean z = (TextUtils.isEmpty(getFixedString(this.descriptionString)) || this.descriptionString.length() <= this.MAX_CAPTION_LENGTH) && (TextUtils.isEmpty(getFixedString(this.solutionString)) || this.solutionString.length() <= 200) && !TextUtils.isEmpty(getFixedString(this.questionString)) && this.questionString.length() <= 255;
         int i3 = 0;
         int i4 = 0;
         boolean z2 = false;
@@ -1327,42 +1328,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         this.delegate = pollCreateActivityDelegate;
     }
 
-    public void setTextLeft(View view, int i) {
-        int length;
-        int i2;
-        if (view instanceof PollEditTextCell) {
-            PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
-            if (i == this.questionRow) {
-                i2 = this.todo ? getMessagesController().todoTitleLengthMax : 255;
-                CharSequence charSequence = this.questionString;
-                length = i2 - (charSequence != null ? charSequence.length() : 0);
-            } else if (i == this.solutionRow) {
-                CharSequence charSequence2 = this.solutionString;
-                length = 200 - (charSequence2 != null ? charSequence2.length() : 0);
-                i2 = 200;
-            } else {
-                int i3 = this.answerStartRow;
-                if (i < i3 || i >= this.answersCount + i3) {
-                    return;
-                }
-                int i4 = i - i3;
-                int i5 = this.todo ? getMessagesController().todoItemLengthMax : 100;
-                CharSequence charSequence3 = this.answers[i4];
-                int i6 = i5;
-                length = i5 - (charSequence3 != null ? charSequence3.length() : 0);
-                i2 = i6;
-            }
-            float f = i2;
-            if (length <= f - (0.7f * f)) {
-                pollEditTextCell.setText2(String.format("%d", Integer.valueOf(length)));
-                SimpleTextView textView2 = pollEditTextCell.getTextView2();
-                int i7 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
-                textView2.setTextColor(getThemedColor(i7));
-                textView2.setTag(Integer.valueOf(i7));
-                return;
-            }
-            pollEditTextCell.setText2("");
-        }
+    public void setTextLeft(android.view.View r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.setTextLeft(android.view.View, int):void");
     }
 
     public void addNewField() {
@@ -2291,7 +2258,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             if (pollEditTextCell.getTag() != null) {
                                 return;
                             }
-                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(ChatAttachAlertPollLayout.this.questionRow);
+                            int i2 = i == 11 ? ChatAttachAlertPollLayout.this.descriptionRow : ChatAttachAlertPollLayout.this.questionRow;
+                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(i2);
                             if (viewHolderFindViewHolderForAdapterPosition != null && ChatAttachAlertPollLayout.this.suggestEmojiPanel != null) {
                                 for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                                     editable.removeSpan(imageSpan);
@@ -2308,8 +2276,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                 ChatAttachAlertPollLayout.this.questionString = editable;
                             }
                             if (viewHolderFindViewHolderForAdapterPosition != null) {
-                                ChatAttachAlertPollLayout chatAttachAlertPollLayout = ChatAttachAlertPollLayout.this;
-                                chatAttachAlertPollLayout.setTextLeft(viewHolderFindViewHolderForAdapterPosition.itemView, chatAttachAlertPollLayout.questionRow);
+                                ChatAttachAlertPollLayout.this.setTextLeft(viewHolderFindViewHolderForAdapterPosition.itemView, i2);
                             }
                             ChatAttachAlertPollLayout.this.checkDoneButton();
                         }
@@ -2922,6 +2889,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
+        public MessageObject getPollMessageObject() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getPollMessageObject(this);
+        }
+
+        @Override
         public String getQuery(boolean z) {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$getQuery(this, z);
         }
@@ -3064,7 +3036,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         public ItemOptions getCustomItemOptions(ViewGroup viewGroup, View view) {
             ItemOptions drawScrim = ItemOptions.makeOptions(viewGroup, new View(ChatAttachAlertPollLayout.this.getContext())).setDimAlpha(0).setDrawScrim(false);
             int i = R.drawable.msg_replace;
-            String string = LocaleController.getString(R.string.Replace);
+            String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
             final int i2 = this.val$index;
             ItemOptions itemOptionsAdd = drawScrim.add(i, string, new Runnable() {
                 @Override
@@ -3101,7 +3073,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void showOptionsForDrawable(final int i, Utilities.CallbackReturn callbackReturn, int i2, int i3) {
-        ItemOptions itemOptionsAdd = ItemOptions.makeOptions(this, new View(getContext())).setDimAlpha(0).setDrawScrim(false).add(R.drawable.msg_replace, LocaleController.getString(R.string.Replace), new Runnable() {
+        ItemOptions itemOptionsAdd = ItemOptions.makeOptions(this, new View(getContext())).setDimAlpha(0).setDrawScrim(false).add(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$showOptionsForDrawable$15(i);

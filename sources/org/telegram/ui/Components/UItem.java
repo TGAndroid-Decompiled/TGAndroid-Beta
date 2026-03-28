@@ -681,7 +681,8 @@ public class UItem extends AdapterWithDiffUtils.Item {
         public void attachedView(RecyclerListView recyclerListView, View view, UItem uItem) {
         }
 
-        public abstract void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView);
+        public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+        }
 
         public abstract View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider);
 

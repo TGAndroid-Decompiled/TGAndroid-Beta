@@ -1139,6 +1139,14 @@ public class ItemOptions {
         return this.layout;
     }
 
+    public ItemOptions setBlurBackgroundForSwipeback(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundProvider blurredBackgroundProvider, boolean z) {
+        LinearLayout linearLayout = this.linearLayout;
+        if (linearLayout != null) {
+            linearLayout.setBackground(blurredBackgroundDrawableViewFactory.create(linearLayout, z).setColorProvider(blurredBackgroundProvider));
+        }
+        return this;
+    }
+
     public ItemOptions setBlurBackground(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundProvider blurredBackgroundProvider, boolean z) {
         ViewGroup viewGroup = this.layout;
         if (viewGroup instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
@@ -1282,21 +1290,23 @@ public class ItemOptions {
 
     public ItemOptions setGapBackgroundColor(int i) {
         this.gapBackgroundColor = Integer.valueOf(i);
-        int i2 = 0;
-        while (i2 < this.layout.getChildCount()) {
-            View childAt = i2 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i2);
-            if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
-                ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
-                for (int i3 = 0; i3 < actionBarPopupWindowLayout.getItemsCount(); i3++) {
-                    View itemAt = actionBarPopupWindowLayout.getItemAt(i3);
-                    if (itemAt instanceof ActionBarPopupWindow.GapView) {
-                        ((ActionBarPopupWindow.GapView) itemAt).setColor(i);
+        if (this.layout != null) {
+            int i2 = 0;
+            while (i2 < this.layout.getChildCount()) {
+                View childAt = i2 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i2);
+                if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                    ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) childAt;
+                    for (int i3 = 0; i3 < actionBarPopupWindowLayout.getItemsCount(); i3++) {
+                        View itemAt = actionBarPopupWindowLayout.getItemAt(i3);
+                        if (itemAt instanceof ActionBarPopupWindow.GapView) {
+                            ((ActionBarPopupWindow.GapView) itemAt).setColor(i);
+                        }
                     }
+                } else if (childAt instanceof ActionBarPopupWindow.GapView) {
+                    ((ActionBarPopupWindow.GapView) childAt).setColor(i);
                 }
-            } else if (childAt instanceof ActionBarPopupWindow.GapView) {
-                ((ActionBarPopupWindow.GapView) childAt).setColor(i);
+                i2++;
             }
-            i2++;
         }
         return this;
     }

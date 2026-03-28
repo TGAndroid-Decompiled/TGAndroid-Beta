@@ -8789,6 +8789,11 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                             }
 
                             @Override
+                            public MessageObject getPollMessageObject() {
+                                return chatMessageCell.getMessageObject();
+                            }
+
+                            @Override
                             public void retractVote() {
                                 SendMessagesHelper.getInstance(i).sendVote(chatMessageCell.getMessageObject(), null, null);
                             }

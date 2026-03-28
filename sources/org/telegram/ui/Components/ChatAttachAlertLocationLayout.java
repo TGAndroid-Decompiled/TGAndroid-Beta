@@ -630,6 +630,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i7, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, false, chatAttachAlert3.isBizLocationPicker);
         this.adapter = locationActivityAdapter2;
         recyclerListView2.setAdapter(locationActivityAdapter2);
+        LocationActivityAdapter locationActivityAdapter3 = this.adapter;
+        ChatAttachAlert chatAttachAlert4 = this.parentAlert;
+        locationActivityAdapter3.isPollAttach = chatAttachAlert4 != null && chatAttachAlert4.isPollAttach;
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
         defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -740,8 +743,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.searchListView.setClipToPadding(false);
         this.searchListView.setVisibility(8);
         this.searchListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-        ChatAttachAlert chatAttachAlert4 = this.parentAlert;
-        LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert4.isStoryLocationPicker, chatAttachAlert4.isBizLocationPicker) {
+        ChatAttachAlert chatAttachAlert5 = this.parentAlert;
+        LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert5.isStoryLocationPicker, chatAttachAlert5.isBizLocationPicker) {
             @Override
             public void notifyDataSetChanged() {
                 if (ChatAttachAlertLocationLayout.this.searchItem != null) {

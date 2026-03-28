@@ -244,7 +244,7 @@ public class TodoItemMenu extends Dialog {
         MessagePreviewView.TabsView tabsView2 = this.tabsView;
         ViewPagerFixed viewPagerFixed2 = this.viewPager;
         Objects.requireNonNull(viewPagerFixed2);
-        tabsView2.setOnTabClick(new PollItemMenu$$ExternalSyntheticLambda12(viewPagerFixed2));
+        tabsView2.setOnTabClick(new PollItemMenu$$ExternalSyntheticLambda14(viewPagerFixed2));
         MessagePreviewView.TabsView tabsView3 = this.tabsView;
         tabsView3.setBackground(blurredBackgroundDrawableViewFactory.create(tabsView3).setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(resourcesProvider)).setHasPadding(true).setPadding(AndroidUtilities.dp(8.0f)).setRadius(AndroidUtilities.dp(16.0f)));
         TextView textView = new TextView(context);
