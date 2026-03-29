@@ -118,7 +118,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private float hideEnterViewProgress;
     boolean inSeekingMode;
     boolean inSwipeToDissmissMode;
-    Paint inputBackgroundPaint;
     private boolean invalidateOutRect;
     private boolean isBulletinVisible;
     private boolean isCaption;
@@ -136,7 +135,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     boolean isSingleStory;
     private boolean isSwiping;
     private boolean isWaiting;
-    int j;
     boolean keyboardVisible;
     long lastDialogId;
     int lastPosition;
@@ -189,7 +187,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     public static float currentSpeed = 1.0f;
     private static boolean checkSilentMode = true;
     private static final LongSparseArray replyDrafts = new LongSparseArray();
-    static int J = 0;
     public boolean USE_SURFACE_VIEW = SharedConfig.useSurfaceInStories;
     public boolean ATTACH_TO_FRAGMENT = true;
     public boolean ATTACHED_FRAGMENT_IS_EDGE_TO_EDGE = false;
@@ -212,6 +209,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     };
     public LongSparseIntArray savedPositions = new LongSparseIntArray();
+    Paint inputBackgroundPaint = new Paint(1);
 
     public interface HolderClip {
         void clip(Canvas canvas, RectF rectF, float f, boolean z);
@@ -305,10 +303,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public StoryViewer(BaseFragment baseFragment) {
-        int i = J;
-        J = i + 1;
-        this.j = i;
-        this.inputBackgroundPaint = new Paint(1);
         this.fragment = baseFragment;
     }
 
@@ -1430,8 +1424,14 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         marginLayoutParams.bottomMargin = systemWindowInsetBottom;
         marginLayoutParams.leftMargin = windowInsetsCompat.getSystemWindowInsetLeft();
         marginLayoutParams.rightMargin = windowInsetsCompat.getSystemWindowInsetRight();
-        this.windowView.requestLayout();
-        this.containerView.requestLayout();
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = this.windowView;
+        if (sizeNotifierFrameLayout != null) {
+            sizeNotifierFrameLayout.requestLayout();
+        }
+        HwFrameLayout hwFrameLayout = this.containerView;
+        if (hwFrameLayout != null) {
+            hwFrameLayout.requestLayout();
+        }
         return WindowInsetsCompat.CONSUMED;
     }
 

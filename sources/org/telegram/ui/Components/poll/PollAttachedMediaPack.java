@@ -19,6 +19,10 @@ public class PollAttachedMediaPack {
         this.medias.put(i, pollAttachedMedia);
     }
 
+    public void remove(int i) {
+        this.medias.remove(i);
+    }
+
     public void removeAnswerAndShift(int i) {
         if (hasKeyBiggerThan(i)) {
             removeAndShiftKeys(i);
@@ -256,15 +260,15 @@ public class PollAttachedMediaPack {
         if (message == null) {
             return;
         }
-        if (message.pollMediaAttachPatchs == null) {
-            message.pollMediaAttachPatchs = new SparseArray<>();
+        if (message.pollMediaAttachPaths == null) {
+            message.pollMediaAttachPaths = new SparseArray<>();
         }
-        message.pollMediaAttachPatchs.put(i, str);
+        message.pollMediaAttachPaths.put(i, str);
     }
 
     public static String getAttachPath(TLRPC.Message message, int i) {
         SparseArray<String> sparseArray;
-        if (message == null || (sparseArray = message.pollMediaAttachPatchs) == null) {
+        if (message == null || (sparseArray = message.pollMediaAttachPaths) == null) {
             return null;
         }
         return sparseArray.get(i);

@@ -752,6 +752,9 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             this.searchGlobalRequestId = -1;
         }
         String str2 = messagesController.config.musicSearchUsername.get();
+        if (TextUtils.isEmpty(str2)) {
+            return;
+        }
         if (this.globalAudioBot == null) {
             this.globalAudioBot = messagesController.getUser(str2);
         }

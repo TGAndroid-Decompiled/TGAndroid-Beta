@@ -110,6 +110,7 @@ public class PollItemMenu extends Dialog {
     private ValueAnimator openAnimator;
     private float openProgress;
     private float openProgress2;
+    private boolean pollVoted;
     private ReactionsContainerLayout reactionsView;
     public final Theme.ResourcesProvider resourcesProvider;
     private boolean setCellInvisible;
@@ -377,8 +378,14 @@ public class PollItemMenu extends Dialog {
                     float pollButtonBottom = getPollButtonBottom(pollIndex);
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(getPollButtonsLeft(), pollButtonTop, getPollButtonsRight(), pollButtonBottom);
-                    rectF.top += AndroidUtilities.dp(3.0f) * (1.0f - PollItemMenu.this.openProgress);
-                    rectF.bottom += AndroidUtilities.dp(3.0f) * (1.0f - PollItemMenu.this.openProgress);
+                    rectF.top += AndroidUtilities.lerp(AndroidUtilities.dp(3.0f), PollItemMenu.this.pollVoted ? -AndroidUtilities.dp(3.0f) : 0.0f, PollItemMenu.this.openProgress);
+                    float f = rectF.bottom;
+                    boolean z3 = PollItemMenu.this.pollVoted;
+                    float fDp = AndroidUtilities.dp(3.0f);
+                    if (!z3) {
+                        fDp = AndroidUtilities.lerp(fDp, 0.0f, PollItemMenu.this.openProgress);
+                    }
+                    rectF.bottom = f + fDp;
                     this.clipPath.rewind();
                     this.clipPath.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
                     this.shadowPaint.setColor(0);
@@ -1301,6 +1308,7 @@ public class PollItemMenu extends Dialog {
         this.viewPager.onTabAnimationUpdate(false);
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) this.containerView, this.resourcesProvider, new View(this.context), true);
         TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) MessageObject.getMedia(this.messageObject);
+        this.pollVoted = MessageObject.isVoted(tL_messageMediaPoll);
         int i = 0;
         while (true) {
             if (i >= tL_messageMediaPoll.poll.answers.size()) {

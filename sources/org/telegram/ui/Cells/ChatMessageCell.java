@@ -3101,21 +3101,35 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         int eventX = (int) getEventX(motionEvent);
         int eventY = (int) getEventY(motionEvent);
         PollContentDrawable pollContentDrawable3 = this.pollContentDrawable;
-        if (pollContentDrawable3 != null && pollContentDrawable3.isMusic() && this.pollContentDrawable.isPlaying() && this.pollContentDrawable.seekBarOnTouch(action, eventX, eventY)) {
-            if (action == 0) {
-                getParent().requestDisallowInterceptTouchEvent(true);
+        if (pollContentDrawable3 != null) {
+            if (pollContentDrawable3.isMusic() && this.pollContentDrawable.isPlaying() && this.pollContentDrawable.seekBarOnTouch(action, eventX, eventY)) {
+                if (action == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                this.disallowLongPress = true;
+                invalidate();
+                return true;
             }
-            this.disallowLongPress = true;
-            invalidate();
-            return true;
+            if ((this.pollContentDrawable.isMusic() || this.pollContentDrawable.isFile()) && this.pollContentDrawable.miniButtonOnTouch(action, eventX, eventY)) {
+                this.disallowLongPress = true;
+                invalidate();
+                return true;
+            }
         }
-        if (this.currentMessageObject.expandedExplanation && (pollContentDrawable2 = this.pollExplanationDrawable) != null && pollContentDrawable2.isMusic() && this.pollExplanationDrawable.isPlaying() && this.pollExplanationDrawable.seekBarOnTouch(action, eventX, eventY)) {
-            if (action == 0) {
-                getParent().requestDisallowInterceptTouchEvent(true);
+        if (this.currentMessageObject.expandedExplanation && (pollContentDrawable2 = this.pollExplanationDrawable) != null) {
+            if (pollContentDrawable2.isMusic() && this.pollExplanationDrawable.isPlaying() && this.pollExplanationDrawable.seekBarOnTouch(action, eventX, eventY)) {
+                if (action == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                this.disallowLongPress = true;
+                invalidate();
+                return true;
             }
-            this.disallowLongPress = true;
-            invalidate();
-            return true;
+            if ((this.pollExplanationDrawable.isMusic() || this.pollExplanationDrawable.isFile()) && this.pollExplanationDrawable.miniButtonOnTouch(action, eventX, eventY)) {
+                this.disallowLongPress = true;
+                invalidate();
+                return true;
+            }
         }
         if (action == 0) {
             this.pollMediaPressedIndex = -1;
@@ -11024,7 +11038,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void drawOverlays(android.graphics.Canvas r76) {
+    public void drawOverlays(android.graphics.Canvas r80) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 

@@ -1180,7 +1180,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         if (i4 < (this.todo ? 1 : 2) || (this.quizPoll && i < 1)) {
             z = false;
         }
-        if (!TextUtils.isEmpty(this.solutionString) || !TextUtils.isEmpty(this.questionString) || z2) {
+        if (!TextUtils.isEmpty(this.solutionString) || !TextUtils.isEmpty(this.questionString) || !TextUtils.isEmpty(this.descriptionString) || z2 || this.attachedMedia.medias.size() > 0) {
             this.allowNesterScroll = false;
         } else {
             this.allowNesterScroll = true;
@@ -1365,7 +1365,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private boolean checkDiscard() {
-        boolean zIsEmpty = TextUtils.isEmpty(getFixedString(this.questionString));
+        boolean zIsEmpty = TextUtils.isEmpty(getFixedString(this.questionString)) && TextUtils.isEmpty(getFixedString(this.descriptionString)) && TextUtils.isEmpty(getFixedString(this.solutionString)) && this.attachedMedia.medias.size() == 0;
         if (zIsEmpty) {
             for (int i = 0; i < this.answersCount && (zIsEmpty = TextUtils.isEmpty(getFixedString(this.answers[i]))); i++) {
             }
@@ -3564,19 +3564,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return i2 + i;
     }
 
-    public void lambda$openAttachMenuForOptions$21(int i, PollAttachedMedia pollAttachedMedia) {
-        this.attachedMedia.set(i, pollAttachedMedia);
-        int iMediaIndexToAdapterPosition = mediaIndexToAdapterPosition(i);
-        if (iMediaIndexToAdapterPosition >= 0) {
-            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(iMediaIndexToAdapterPosition);
-            if (viewHolderFindViewHolderForAdapterPosition != null) {
-                View view = viewHolderFindViewHolderForAdapterPosition.itemView;
-                if (view instanceof PollEditTextCell) {
-                    ((PollEditTextCell) view).attachView.setAttachedMedia(pollAttachedMedia, true);
-                    return;
-                }
-            }
-            this.listAdapter.notifyItemChanged(iMediaIndexToAdapterPosition);
-        }
+    public void lambda$openAttachMenuForOptions$21(int r3, org.telegram.ui.Components.poll.PollAttachedMedia r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.lambda$openAttachMenuForOptions$21(int, org.telegram.ui.Components.poll.PollAttachedMedia):void");
     }
 }

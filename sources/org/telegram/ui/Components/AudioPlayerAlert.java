@@ -2570,13 +2570,15 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
         @Override
         public int getItemCount() {
-            if (!AudioPlayerAlert.this.searchWas) {
-                if (AudioPlayerAlert.this.playlist.size() > 1) {
-                    return AudioPlayerAlert.this.playlist.size();
-                }
+            if (AudioPlayerAlert.this.searchWas) {
+                boolean z = AudioPlayerAlert.this.padWithItem;
+                return (z ? 1 : 0) + this.searchResult.size();
+            }
+            if (AudioPlayerAlert.this.playlist.size() <= 1) {
                 return 0;
             }
-            return this.searchResult.size();
+            boolean z2 = AudioPlayerAlert.this.padWithItem;
+            return (z2 ? 1 : 0) + AudioPlayerAlert.this.playlist.size();
         }
 
         @Override
