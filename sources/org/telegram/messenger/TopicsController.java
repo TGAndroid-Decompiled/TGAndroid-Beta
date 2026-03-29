@@ -37,7 +37,7 @@ public class TopicsController extends BaseController {
     public static final int TOPIC_FLAG_PIN = 4;
     public static final int TOPIC_FLAG_TITLE = 1;
     public static final int TOPIC_FLAG_TOTAL_MESSAGES_COUNT = 16;
-    private static final int[] countsTmp = new int[4];
+    private static final int[] countsTmp = new int[5];
     LongSparseIntArray currentOpenTopicsCounter;
     LongSparseIntArray endIsReached;
     LongSparseArray offsets;
@@ -612,6 +612,7 @@ public class TopicsController extends BaseController {
                 if (!getMessagesController().isDialogMuted(-j, tL_forumTopic.id)) {
                     iArr[3] = iArr[3] + tL_forumTopic.unread_count;
                 }
+                iArr[4] = iArr[4] + tL_forumTopic.unread_poll_votes_count;
             }
         }
         return countsTmp;

@@ -742,7 +742,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     int width = Text.this.moreView.getWidth() + AndroidUtilities.dp(8.0f);
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth() - width, getHeight(), 255, 31);
+                    canvas.saveLayerAlpha(getScrollX(), 0.0f, (getScrollX() + getWidth()) - width, getHeight(), 255, 31);
                     super.onDraw(canvas);
                     canvas.save();
                     canvas.translate(getPaddingLeft(), getPaddingTop());

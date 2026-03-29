@@ -1124,27 +1124,26 @@ public final class BulletinFactory {
 
     public boolean showForwardedBulletinWithTag(long j, int i) {
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag;
-        if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-            return false;
+        if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() && this.fragment != null) {
+            Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
+            if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+                if (i <= 1) {
+                    spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+                } else {
+                    spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
+                }
+                lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
+                lottieLayoutWithReactions.textView.setText(spannableStringBuilderReplaceSingleTag);
+                lottieLayoutWithReactions.textView.setSingleLine(false);
+                lottieLayoutWithReactions.textView.setMaxLines(2);
+                Bulletin bulletinCreate = create(lottieLayoutWithReactions, 3500);
+                lottieLayoutWithReactions.setBulletin(bulletinCreate);
+                bulletinCreate.hideAfterBottomSheet(false);
+                bulletinCreate.show(true);
+                return true;
+            }
         }
-        Bulletin.LottieLayoutWithReactions lottieLayoutWithReactions = new Bulletin.LottieLayoutWithReactions(this.fragment, i);
-        if (j != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
-            return false;
-        }
-        if (i <= 1) {
-            spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
-        } else {
-            spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
-        }
-        lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
-        lottieLayoutWithReactions.textView.setText(spannableStringBuilderReplaceSingleTag);
-        lottieLayoutWithReactions.textView.setSingleLine(false);
-        lottieLayoutWithReactions.textView.setMaxLines(2);
-        Bulletin bulletinCreate = create(lottieLayoutWithReactions, 3500);
-        lottieLayoutWithReactions.setBulletin(bulletinCreate);
-        bulletinCreate.hideAfterBottomSheet(false);
-        bulletinCreate.show(true);
-        return true;
+        return false;
     }
 
     public static Bulletin createForwardedBulletin(Context context, BaseFragment baseFragment, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4, int i5) {

@@ -309,12 +309,13 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
         if (this.editing || this.onSendListener == null || getResultText() == null) {
             return false;
         }
-        ItemOptions.makeOptions(this.container, resourcesProvider, this.sendButton).add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
+        boolean z = this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
+        ItemOptions.makeOptions(this.container, resourcesProvider, this.sendButton).addIf(!z, R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$new$2();
             }
-        }).add(R.drawable.msg_calendar2, LocaleController.getString(R.string.ScheduleMessage), new Runnable() {
+        }).add(R.drawable.msg_calendar2, LocaleController.getString(z ? R.string.SetReminder : R.string.ScheduleMessage), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$new$3(context, resourcesProvider);
@@ -1119,15 +1120,21 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                 protected void onMeasure(int i3, int i4) {
                     boolean z2 = getOrientation() == 0;
                     int size = z2 ? View.MeasureSpec.getSize(i3) : View.MeasureSpec.getSize(i4);
-                    int measuredWidth = 0;
-                    for (int i5 = 0; i5 < getChildCount(); i5++) {
-                        View childAt = getChildAt(i5);
-                        childAt.measure(z2 ? View.MeasureSpec.makeMeasureSpec(0, 0) : i3, !z2 ? View.MeasureSpec.makeMeasureSpec(0, 0) : i4);
-                        measuredWidth += z2 ? childAt.getMeasuredWidth() : childAt.getMeasuredHeight();
-                    }
-                    boolean z3 = measuredWidth <= size;
+                    int i5 = 0;
+                    int iMax = 0;
                     for (int i6 = 0; i6 < getChildCount(); i6++) {
-                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i6).getLayoutParams();
+                        View childAt = getChildAt(i6);
+                        childAt.setPadding(0, 0, 0, 0);
+                        childAt.measure(z2 ? View.MeasureSpec.makeMeasureSpec(0, 0) : i3, !z2 ? View.MeasureSpec.makeMeasureSpec(0, 0) : i4);
+                        int measuredWidth = z2 ? childAt.getMeasuredWidth() : childAt.getMeasuredHeight();
+                        iMax = Math.max(iMax, measuredWidth);
+                        i5 += measuredWidth;
+                    }
+                    boolean z3 = i5 <= size && ((float) iMax) < ((float) size) / ((float) getChildCount());
+                    for (int i7 = 0; i7 < getChildCount(); i7++) {
+                        View childAt2 = getChildAt(i7);
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                        childAt2.setPadding(AndroidUtilities.dp(!z3 ? 8.0f : 0.0f), 0, AndroidUtilities.dp(z3 ? 0.0f : 8.0f), 0);
                         if (z3) {
                             if (z2) {
                                 layoutParams.width = 0;
@@ -1290,7 +1297,6 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                 textView.setTextSize(1, 12.0f);
                 textView.setGravity(17);
                 textView.setSingleLine();
-                textView.setEllipsize(TextUtils.TruncateAt.END);
                 linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 0, 2, 0, 0));
                 ScaleStateListAnimator.apply(this, 0.05f, 1.5f);
                 updateSelected(0.0f, true);

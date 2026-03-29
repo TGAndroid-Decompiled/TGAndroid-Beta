@@ -19,6 +19,43 @@ public class PollAttachedMediaPack {
         this.medias.put(i, pollAttachedMedia);
     }
 
+    public void removeAnswerAndShift(int i) {
+        if (hasKeyBiggerThan(i)) {
+            removeAndShiftKeys(i);
+        } else {
+            this.medias.remove(i);
+        }
+    }
+
+    private boolean hasKeyBiggerThan(int i) {
+        int size = this.medias.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            if (this.medias.keyAt(i2) > i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void removeAndShiftKeys(int i) {
+        if (i < 0) {
+            return;
+        }
+        SparseArray sparseArrayClone = this.medias.clone();
+        this.medias.clear();
+        int size = sparseArrayClone.size();
+        for (int i2 = 0; i2 < size; i2++) {
+            int iKeyAt = sparseArrayClone.keyAt(i2);
+            PollAttachedMedia pollAttachedMedia = (PollAttachedMedia) sparseArrayClone.valueAt(i2);
+            if (iKeyAt < i) {
+                this.medias.put(iKeyAt, pollAttachedMedia);
+            }
+            if (iKeyAt > i) {
+                this.medias.put(iKeyAt - 1, pollAttachedMedia);
+            }
+        }
+    }
+
     public static int findInputMedia(TLRPC.TL_inputMediaPoll tL_inputMediaPoll, TLRPC.InputMedia inputMedia) {
         if (tL_inputMediaPoll.attached_media == inputMedia) {
             return -2;

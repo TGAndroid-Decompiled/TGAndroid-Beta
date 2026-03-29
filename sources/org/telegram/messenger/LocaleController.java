@@ -2575,14 +2575,14 @@ public class LocaleController {
         }
     }
 
-    public static String formatPollEndTime(int i) {
+    public static String formatPollEndTime(int i, boolean z) {
         String pluralString;
         if (i < 86400) {
             pluralString = formatShortDuration(i);
         } else {
             pluralString = formatPluralString("Days", i / 86400, new Object[0]);
         }
-        return formatString(R.string.PollEndsIn, pluralString);
+        return formatString(z ? R.string.PollResultsIn : R.string.PollEndsIn, pluralString);
     }
 
     public static String formatShortDuration2(int i) {

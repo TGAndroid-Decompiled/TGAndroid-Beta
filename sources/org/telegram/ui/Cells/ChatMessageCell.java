@@ -3628,155 +3628,204 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public boolean checkSpoilersMotionEvent(MotionEvent motionEvent, int i) {
         int i2;
         MessageObject.GroupedMessages groupedMessages;
-        if (i <= 15 && getParent() != null) {
-            if (this.currentMessageObject.hasValidGroupId() && (groupedMessages = this.currentMessagesGroup) != null && !groupedMessages.isDocuments) {
-                ViewGroup viewGroup = (ViewGroup) getParent();
-                for (int i3 = 0; i3 < viewGroup.getChildCount(); i3++) {
-                    View childAt = viewGroup.getChildAt(i3);
-                    if (childAt instanceof ChatMessageCell) {
-                        ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
-                        MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
-                        MessageObject.GroupedMessagePosition currentPosition = chatMessageCell.getCurrentPosition();
-                        if (currentMessagesGroup != null && currentMessagesGroup.groupId == this.currentMessagesGroup.groupId) {
-                            int i4 = currentPosition.flags;
-                            if ((i4 & 8) != 0 && (i4 & 1) != 0 && chatMessageCell != this) {
-                                motionEvent.offsetLocation(getLeft() - chatMessageCell.getLeft(), getTop() - chatMessageCell.getTop());
-                                boolean zCheckSpoilersMotionEvent = chatMessageCell.checkSpoilersMotionEvent(motionEvent, i + 1);
-                                motionEvent.offsetLocation(-(getLeft() - chatMessageCell.getLeft()), -(getTop() - chatMessageCell.getTop()));
-                                return zCheckSpoilersMotionEvent;
+        if (i > 15 || getParent() == null) {
+            return false;
+        }
+        if (this.currentMessageObject.hasValidGroupId() && (groupedMessages = this.currentMessagesGroup) != null && !groupedMessages.isDocuments) {
+            ViewGroup viewGroup = (ViewGroup) getParent();
+            for (int i3 = 0; i3 < viewGroup.getChildCount(); i3++) {
+                View childAt = viewGroup.getChildAt(i3);
+                if (childAt instanceof ChatMessageCell) {
+                    ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
+                    MessageObject.GroupedMessages currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup();
+                    MessageObject.GroupedMessagePosition currentPosition = chatMessageCell.getCurrentPosition();
+                    if (currentMessagesGroup != null && currentMessagesGroup.groupId == this.currentMessagesGroup.groupId) {
+                        int i4 = currentPosition.flags;
+                        if ((i4 & 8) != 0 && (i4 & 1) != 0 && chatMessageCell != this) {
+                            motionEvent.offsetLocation(getLeft() - chatMessageCell.getLeft(), getTop() - chatMessageCell.getTop());
+                            boolean zCheckSpoilersMotionEvent = chatMessageCell.checkSpoilersMotionEvent(motionEvent, i + 1);
+                            motionEvent.offsetLocation(-(getLeft() - chatMessageCell.getLeft()), -(getTop() - chatMessageCell.getTop()));
+                            return zCheckSpoilersMotionEvent;
+                        }
+                    }
+                }
+            }
+        }
+        if (this.isSpoilerRevealing) {
+            return false;
+        }
+        int eventX = (int) getEventX(motionEvent);
+        int eventY = (int) getEventY(motionEvent);
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            int i5 = this.textX;
+            if (eventX >= i5 && eventY >= (i2 = this.textY)) {
+                MessageObject messageObject = this.currentMessageObject;
+                if (eventX <= i5 + messageObject.textWidth && eventY <= i2 + messageObject.textHeight(this.transitionParams)) {
+                    ArrayList<MessageObject.TextLayoutBlock> arrayList = this.currentMessageObject.textLayoutBlocks;
+                    for (int i6 = 0; i6 < arrayList.size() && arrayList.get(i6).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) <= eventY; i6++) {
+                        MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i6);
+                        int i7 = textLayoutBlock.isRtl() ? (int) this.currentMessageObject.textXOffset : 0;
+                        for (SpoilerEffect spoilerEffect : textLayoutBlock.spoilers) {
+                            if (spoilerEffect.getBounds().contains((eventX - this.textX) + i7, (int) ((eventY - this.textY) - textLayoutBlock.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams)))) {
+                                this.spoilerPressed = spoilerEffect;
+                                return true;
                             }
                         }
                     }
                 }
             }
-            if (this.isSpoilerRevealing) {
-                return false;
-            }
-            int eventX = (int) getEventX(motionEvent);
-            int eventY = (int) getEventY(motionEvent);
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked == 0) {
-                int i5 = this.textX;
-                if (eventX >= i5 && eventY >= (i2 = this.textY)) {
-                    MessageObject messageObject = this.currentMessageObject;
-                    if (eventX <= i5 + messageObject.textWidth && eventY <= i2 + messageObject.textHeight(this.transitionParams)) {
-                        ArrayList<MessageObject.TextLayoutBlock> arrayList = this.currentMessageObject.textLayoutBlocks;
-                        for (int i6 = 0; i6 < arrayList.size() && arrayList.get(i6).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) <= eventY; i6++) {
-                            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i6);
-                            int i7 = textLayoutBlock.isRtl() ? (int) this.currentMessageObject.textXOffset : 0;
-                            for (SpoilerEffect spoilerEffect : textLayoutBlock.spoilers) {
-                                if (spoilerEffect.getBounds().contains((eventX - this.textX) + i7, (int) ((eventY - this.textY) - textLayoutBlock.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams)))) {
-                                    this.spoilerPressed = spoilerEffect;
+            if (this.captionLayout != null) {
+                float f = eventX;
+                float f2 = this.captionX;
+                if (f >= f2) {
+                    float f3 = eventY;
+                    float f4 = this.captionY;
+                    if (f3 >= f4 && f <= f2 + r1.textWidth && f3 <= f4 + r1.textHeight(this.transitionParams)) {
+                        ArrayList<MessageObject.TextLayoutBlock> arrayList2 = this.captionLayout.textLayoutBlocks;
+                        for (int i8 = 0; i8 < arrayList2.size() && arrayList2.get(i8).textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams) <= f3; i8++) {
+                            MessageObject.TextLayoutBlock textLayoutBlock2 = arrayList2.get(i8);
+                            int i9 = textLayoutBlock2.isRtl() ? (int) this.captionLayout.textXOffset : 0;
+                            for (SpoilerEffect spoilerEffect2 : textLayoutBlock2.spoilers) {
+                                if (spoilerEffect2.getBounds().contains((int) ((f - this.captionX) + i9), (int) ((f3 - this.captionY) - textLayoutBlock2.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams)))) {
+                                    this.spoilerPressed = spoilerEffect2;
                                     return true;
                                 }
                             }
                         }
                     }
                 }
-                if (this.captionLayout != null) {
-                    float f = eventX;
-                    float f2 = this.captionX;
-                    if (f >= f2) {
-                        float f3 = eventY;
-                        float f4 = this.captionY;
-                        if (f3 >= f4 && f <= f2 + r14.textWidth && f3 <= f4 + r14.textHeight(this.transitionParams)) {
-                            ArrayList<MessageObject.TextLayoutBlock> arrayList2 = this.captionLayout.textLayoutBlocks;
-                            for (int i8 = 0; i8 < arrayList2.size() && arrayList2.get(i8).textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams) <= f3; i8++) {
-                                MessageObject.TextLayoutBlock textLayoutBlock2 = arrayList2.get(i8);
-                                int i9 = textLayoutBlock2.isRtl() ? (int) this.captionLayout.textXOffset : 0;
-                                for (SpoilerEffect spoilerEffect2 : textLayoutBlock2.spoilers) {
-                                    if (spoilerEffect2.getBounds().contains((int) ((f - this.captionX) + i9), (int) ((f3 - this.captionY) - textLayoutBlock2.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams)))) {
-                                        this.spoilerPressed = spoilerEffect2;
-                                        return true;
-                                    }
+            }
+            if (this.explanationLayout != null) {
+                float f5 = eventX;
+                float f6 = this.lastDrawExplanationX;
+                if (f5 >= f6) {
+                    float f7 = eventY;
+                    float f8 = this.lastDrawExplanationY;
+                    if (f7 > f8 && f5 <= f6 + r1.textWidth && f7 <= f8 + r1.textHeight(this.transitionParams)) {
+                        ArrayList<MessageObject.TextLayoutBlock> arrayList3 = this.explanationLayout.textLayoutBlocks;
+                        for (int i10 = 0; i10 < arrayList3.size() && arrayList3.get(i10).textYOffset(this.explanationLayout.textLayoutBlocks, this.transitionParams) <= f7; i10++) {
+                            MessageObject.TextLayoutBlock textLayoutBlock3 = arrayList3.get(i10);
+                            int i11 = textLayoutBlock3.isRtl() ? (int) this.explanationLayout.textXOffset : 0;
+                            for (SpoilerEffect spoilerEffect3 : textLayoutBlock3.spoilers) {
+                                if (spoilerEffect3.getBounds().contains((int) ((f5 - this.lastDrawExplanationX) + i11), (int) ((f7 - this.lastDrawExplanationY) - textLayoutBlock3.textYOffset(this.explanationLayout.textLayoutBlocks, this.transitionParams)))) {
+                                    this.spoilerPressed = spoilerEffect3;
+                                    return true;
                                 }
                             }
                         }
                     }
                 }
-            } else if (actionMasked == 1 && this.spoilerPressed != null) {
-                playSoundEffect(0);
-                this.sPath.rewind();
-                MessageObject.TextLayoutBlocks textLayoutBlocks = this.captionLayout;
-                if (textLayoutBlocks != null) {
-                    Iterator<MessageObject.TextLayoutBlock> it = textLayoutBlocks.textLayoutBlocks.iterator();
-                    while (it.hasNext()) {
-                        MessageObject.TextLayoutBlock next = it.next();
-                        Iterator<SpoilerEffect> it2 = next.spoilers.iterator();
-                        while (it2.hasNext()) {
-                            Rect bounds = it2.next().getBounds();
-                            this.sPath.addRect(bounds.left, bounds.top + next.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams), bounds.right, next.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams) + bounds.bottom, Path.Direction.CW);
-                        }
-                    }
-                } else {
-                    Iterator<MessageObject.TextLayoutBlock> it3 = this.currentMessageObject.textLayoutBlocks.iterator();
-                    while (it3.hasNext()) {
-                        MessageObject.TextLayoutBlock next2 = it3.next();
-                        Iterator<SpoilerEffect> it4 = next2.spoilers.iterator();
-                        while (it4.hasNext()) {
-                            Rect bounds2 = it4.next().getBounds();
-                            this.sPath.addRect(bounds2.left, bounds2.top + next2.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams), bounds2.right, next2.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) + bounds2.bottom, Path.Direction.CW);
-                        }
+            }
+        } else if (actionMasked == 1 && this.spoilerPressed != null) {
+            playSoundEffect(0);
+            this.sPath.rewind();
+            MessageObject.TextLayoutBlocks textLayoutBlocks = this.explanationLayout;
+            if (textLayoutBlocks != null) {
+                Iterator<MessageObject.TextLayoutBlock> it = textLayoutBlocks.textLayoutBlocks.iterator();
+                while (it.hasNext()) {
+                    MessageObject.TextLayoutBlock next = it.next();
+                    Iterator<SpoilerEffect> it2 = next.spoilers.iterator();
+                    while (it2.hasNext()) {
+                        Rect bounds = it2.next().getBounds();
+                        this.sPath.addRect(bounds.left, bounds.top + next.textYOffset(this.explanationLayout.textLayoutBlocks, this.transitionParams), bounds.right, next.textYOffset(this.explanationLayout.textLayoutBlocks, this.transitionParams) + bounds.bottom, Path.Direction.CW);
                     }
                 }
-                this.sPath.computeBounds(this.rect, false);
-                float fSqrt = (float) Math.sqrt(Math.pow(this.rect.width(), 2.0d) + Math.pow(this.rect.height(), 2.0d));
-                this.isSpoilerRevealing = true;
-                this.spoilerPressed.setOnRippleEndCallback(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$checkSpoilersMotionEvent$1();
+            }
+            MessageObject.TextLayoutBlocks textLayoutBlocks2 = this.captionLayout;
+            if (textLayoutBlocks2 != null) {
+                Iterator<MessageObject.TextLayoutBlock> it3 = textLayoutBlocks2.textLayoutBlocks.iterator();
+                while (it3.hasNext()) {
+                    MessageObject.TextLayoutBlock next2 = it3.next();
+                    Iterator<SpoilerEffect> it4 = next2.spoilers.iterator();
+                    while (it4.hasNext()) {
+                        Rect bounds2 = it4.next().getBounds();
+                        this.sPath.addRect(bounds2.left, bounds2.top + next2.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams), bounds2.right, next2.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams) + bounds2.bottom, Path.Direction.CW);
                     }
-                });
-                MessageObject.TextLayoutBlocks textLayoutBlocks2 = this.captionLayout;
-                if (textLayoutBlocks2 != null) {
-                    Iterator<MessageObject.TextLayoutBlock> it5 = textLayoutBlocks2.textLayoutBlocks.iterator();
+                }
+            } else {
+                ArrayList<MessageObject.TextLayoutBlock> arrayList4 = this.currentMessageObject.textLayoutBlocks;
+                if (arrayList4 != null) {
+                    Iterator<MessageObject.TextLayoutBlock> it5 = arrayList4.iterator();
                     while (it5.hasNext()) {
                         MessageObject.TextLayoutBlock next3 = it5.next();
-                        int i10 = next3.isRtl() ? (int) this.captionLayout.textXOffset : 0;
                         Iterator<SpoilerEffect> it6 = next3.spoilers.iterator();
                         while (it6.hasNext()) {
-                            it6.next().startRipple((eventX - this.captionX) + i10, (eventY - next3.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams)) - this.captionY, fSqrt);
-                        }
-                    }
-                } else {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = this.currentMessageObject.textLayoutBlocks;
-                    if (arrayList3 != null) {
-                        Iterator<MessageObject.TextLayoutBlock> it7 = arrayList3.iterator();
-                        while (it7.hasNext()) {
-                            MessageObject.TextLayoutBlock next4 = it7.next();
-                            int i11 = next4.isRtl() ? (int) this.currentMessageObject.textXOffset : 0;
-                            Iterator<SpoilerEffect> it8 = next4.spoilers.iterator();
-                            while (it8.hasNext()) {
-                                it8.next().startRipple((eventX - this.textX) + i11, (eventY - next4.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams)) - this.textY, fSqrt);
-                            }
+                            Rect bounds3 = it6.next().getBounds();
+                            this.sPath.addRect(bounds3.left, bounds3.top + next3.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams), bounds3.right, next3.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) + bounds3.bottom, Path.Direction.CW);
                         }
                     }
                 }
-                if (getParent() instanceof RecyclerListView) {
-                    ViewGroup viewGroup2 = (ViewGroup) getParent();
-                    for (int i12 = 0; i12 < viewGroup2.getChildCount(); i12++) {
-                        View childAt2 = viewGroup2.getChildAt(i12);
-                        if (childAt2 instanceof ChatMessageCell) {
-                            final ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt2;
-                            if (chatMessageCell2.getMessageObject() != null && chatMessageCell2.getMessageObject().getReplyMsgId() == getMessageObject().getId() && !chatMessageCell2.replySpoilers.isEmpty()) {
-                                ((SpoilerEffect) chatMessageCell2.replySpoilers.get(0)).setOnRippleEndCallback(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        this.f$0.lambda$checkSpoilersMotionEvent$3(chatMessageCell2);
-                                    }
-                                });
-                                Iterator it9 = chatMessageCell2.replySpoilers.iterator();
-                                while (it9.hasNext()) {
-                                    ((SpoilerEffect) it9.next()).startRipple(r4.getBounds().centerX(), r4.getBounds().centerY(), fSqrt);
-                                }
-                            }
-                        }
-                    }
-                }
-                this.spoilerPressed = null;
-                return true;
             }
+            this.sPath.computeBounds(this.rect, false);
+            float fSqrt = (float) Math.sqrt(Math.pow(this.rect.width(), 2.0d) + Math.pow(this.rect.height(), 2.0d));
+            this.isSpoilerRevealing = true;
+            this.spoilerPressed.setOnRippleEndCallback(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$checkSpoilersMotionEvent$1();
+                }
+            });
+            MessageObject.TextLayoutBlocks textLayoutBlocks3 = this.explanationLayout;
+            if (textLayoutBlocks3 != null) {
+                Iterator<MessageObject.TextLayoutBlock> it7 = textLayoutBlocks3.textLayoutBlocks.iterator();
+                while (it7.hasNext()) {
+                    MessageObject.TextLayoutBlock next4 = it7.next();
+                    int i12 = next4.isRtl() ? (int) this.explanationLayout.textXOffset : 0;
+                    Iterator<SpoilerEffect> it8 = next4.spoilers.iterator();
+                    while (it8.hasNext()) {
+                        it8.next().startRipple((eventX - this.lastDrawExplanationX) + i12, (eventY - next4.textYOffset(this.explanationLayout.textLayoutBlocks, this.transitionParams)) - this.lastDrawExplanationY, fSqrt);
+                    }
+                }
+            }
+            MessageObject.TextLayoutBlocks textLayoutBlocks4 = this.captionLayout;
+            if (textLayoutBlocks4 != null) {
+                Iterator<MessageObject.TextLayoutBlock> it9 = textLayoutBlocks4.textLayoutBlocks.iterator();
+                while (it9.hasNext()) {
+                    MessageObject.TextLayoutBlock next5 = it9.next();
+                    int i13 = next5.isRtl() ? (int) this.captionLayout.textXOffset : 0;
+                    Iterator<SpoilerEffect> it10 = next5.spoilers.iterator();
+                    while (it10.hasNext()) {
+                        it10.next().startRipple((eventX - this.captionX) + i13, (eventY - next5.textYOffset(this.captionLayout.textLayoutBlocks, this.transitionParams)) - this.captionY, fSqrt);
+                    }
+                }
+            } else {
+                ArrayList<MessageObject.TextLayoutBlock> arrayList5 = this.currentMessageObject.textLayoutBlocks;
+                if (arrayList5 != null) {
+                    Iterator<MessageObject.TextLayoutBlock> it11 = arrayList5.iterator();
+                    while (it11.hasNext()) {
+                        MessageObject.TextLayoutBlock next6 = it11.next();
+                        int i14 = next6.isRtl() ? (int) this.currentMessageObject.textXOffset : 0;
+                        Iterator<SpoilerEffect> it12 = next6.spoilers.iterator();
+                        while (it12.hasNext()) {
+                            it12.next().startRipple((eventX - this.textX) + i14, (eventY - next6.textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams)) - this.textY, fSqrt);
+                        }
+                    }
+                }
+            }
+            if (getParent() instanceof RecyclerListView) {
+                ViewGroup viewGroup2 = (ViewGroup) getParent();
+                for (int i15 = 0; i15 < viewGroup2.getChildCount(); i15++) {
+                    View childAt2 = viewGroup2.getChildAt(i15);
+                    if (childAt2 instanceof ChatMessageCell) {
+                        final ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt2;
+                        if (chatMessageCell2.getMessageObject() != null && chatMessageCell2.getMessageObject().getReplyMsgId() == getMessageObject().getId() && !chatMessageCell2.replySpoilers.isEmpty()) {
+                            ((SpoilerEffect) chatMessageCell2.replySpoilers.get(0)).setOnRippleEndCallback(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    this.f$0.lambda$checkSpoilersMotionEvent$3(chatMessageCell2);
+                                }
+                            });
+                            Iterator it13 = chatMessageCell2.replySpoilers.iterator();
+                            while (it13.hasNext()) {
+                                ((SpoilerEffect) it13.next()).startRipple(r5.getBounds().centerX(), r5.getBounds().centerY(), fSqrt);
+                            }
+                        }
+                    }
+                }
+            }
+            this.spoilerPressed = null;
+            return true;
         }
         return false;
     }
@@ -3793,18 +3842,25 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public void lambda$checkSpoilersMotionEvent$0() {
         this.isSpoilerRevealing = false;
         getMessageObject().isSpoilersRevealed = true;
-        MessageObject.TextLayoutBlocks textLayoutBlocks = this.captionLayout;
+        MessageObject.TextLayoutBlocks textLayoutBlocks = this.explanationLayout;
         if (textLayoutBlocks != null) {
             Iterator<MessageObject.TextLayoutBlock> it = textLayoutBlocks.textLayoutBlocks.iterator();
             while (it.hasNext()) {
                 it.next().spoilers.clear();
             }
+        }
+        MessageObject.TextLayoutBlocks textLayoutBlocks2 = this.captionLayout;
+        if (textLayoutBlocks2 != null) {
+            Iterator<MessageObject.TextLayoutBlock> it2 = textLayoutBlocks2.textLayoutBlocks.iterator();
+            while (it2.hasNext()) {
+                it2.next().spoilers.clear();
+            }
         } else {
             ArrayList<MessageObject.TextLayoutBlock> arrayList = this.currentMessageObject.textLayoutBlocks;
             if (arrayList != null) {
-                Iterator<MessageObject.TextLayoutBlock> it2 = arrayList.iterator();
-                while (it2.hasNext()) {
-                    it2.next().spoilers.clear();
+                Iterator<MessageObject.TextLayoutBlock> it3 = arrayList.iterator();
+                while (it3.hasNext()) {
+                    it3.next().spoilers.clear();
                 }
             }
         }
@@ -5444,10 +5500,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContentIfPoll(org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$setMessageContentIfPoll$10(long j) {
+    public void lambda$setMessageContentIfPoll$10(boolean z, long j) {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.animatedInfoLayout2;
         if (animatedTextDrawable != null) {
-            animatedTextDrawable.setText(LocaleController.formatPollEndTime((int) j), true);
+            animatedTextDrawable.setText(LocaleController.formatPollEndTime((int) j, z), true);
         }
     }
 
@@ -13214,9 +13270,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 return ChatMessageCell.lambda$normalizePollPercents$16((ChatMessageCell.PollButton) obj, (ChatMessageCell.PollButton) obj2);
             }
         });
-        int iMin = Math.min(i, arrayList.size());
-        for (int i2 = 0; i2 < iMin; i2++) {
-            PollButton.access$2312((PollButton) arrayList.get(i2), 1);
+        int size = arrayList.size();
+        for (int i2 = 0; i2 < size && i > 0; i2++) {
+            PollButton pollButton = (PollButton) arrayList.get(i2);
+            if (pollButton.percent > 0) {
+                PollButton.access$2312(pollButton, 1);
+                i--;
+            }
         }
     }
 

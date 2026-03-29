@@ -160,7 +160,7 @@ public class VideoPlayerHolderBase {
         ensurePlayerCreated(z);
         this.videoPlayer.setPlaybackSpeed(f);
         FileLog.d("videoplayerholderbase.preparePlayer(): preparePlayer new player as preload uri=" + uri);
-        this.videoPlayer.preparePlayer(uri, "other", 0);
+        this.videoPlayer.preparePlayer(uri, "other", 0, 0L);
         this.videoPlayer.setPlayWhenReady(false);
         this.videoPlayer.setWorkerQueue(this.dispatchQueue);
     }

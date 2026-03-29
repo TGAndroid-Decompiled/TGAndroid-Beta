@@ -378,6 +378,7 @@ public abstract class PreviewView extends FrameLayout {
             storyEntry.editedMedia = true;
             if (messageObject == null || messageObject.messageOwner == null) {
                 storyEntry.audioPath = null;
+                storyEntry.audioDocument = null;
                 storyEntry.audioAuthor = null;
                 storyEntry.audioTitle = null;
                 storyEntry.audioOffset = 0L;
@@ -386,6 +387,13 @@ public abstract class PreviewView extends FrameLayout {
                 storyEntry.audioRight = 1.0f;
             } else {
                 TLRPC.Document document = messageObject.getDocument();
+                if (document != null && document.id != 0) {
+                    this.entry.audioDocument = new TLRPC.TL_inputDocument();
+                    TLRPC.InputDocument inputDocument = this.entry.audioDocument;
+                    inputDocument.id = document.id;
+                    inputDocument.file_reference = document.file_reference;
+                    inputDocument.access_hash = document.access_hash;
+                }
                 if (!TextUtils.isEmpty(messageObject.messageOwner.attachPath)) {
                     this.entry.audioPath = messageObject.messageOwner.attachPath;
                 } else {
@@ -395,6 +403,7 @@ public abstract class PreviewView extends FrameLayout {
                         if (pathToAttach == null || !pathToAttach.exists()) {
                             StoryEntry storyEntry2 = this.entry;
                             storyEntry2.audioPath = null;
+                            storyEntry2.audioDocument = null;
                             storyEntry2.audioAuthor = null;
                             storyEntry2.audioTitle = null;
                             storyEntry2.audioOffset = 0L;

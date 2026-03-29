@@ -747,13 +747,10 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
         if (albumEntry == null) {
             return new ArrayList();
         }
-        if (!this.onlyPhotos) {
-            return albumEntry.photos;
-        }
         ArrayList arrayList = new ArrayList();
         for (int i = 0; i < albumEntry.photos.size(); i++) {
             MediaController.PhotoEntry photoEntry = albumEntry.photos.get(i);
-            if (!photoEntry.isVideo) {
+            if ((!this.onlyPhotos || !photoEntry.isVideo) && !photoEntry.isLivePhoto) {
                 arrayList.add(photoEntry);
             }
         }

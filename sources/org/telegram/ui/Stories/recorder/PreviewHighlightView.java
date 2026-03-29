@@ -122,7 +122,7 @@ public class PreviewHighlightView extends FrameLayout {
     }
 
     public void updateCaption(CharSequence charSequence) {
-        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(new SpannableString(charSequence)), null, false, false);
+        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     public void show(boolean z, boolean z2, View view) {

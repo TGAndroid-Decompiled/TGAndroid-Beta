@@ -621,7 +621,7 @@ public class ContentPreviewViewer {
                             arrayList2.add(2);
                         }
                         if (ContentPreviewViewer.this.delegate != null && ContentPreviewViewer.this.currentStickerSet != null && !(ContentPreviewViewer.this.currentStickerSet instanceof TLRPC.TL_inputStickerSetEmpty) && ContentPreviewViewer.this.delegate.needOpen()) {
-                            arrayList.add(LocaleController.formatString("ViewPackPreview", R.string.ViewPackPreview, new Object[0]));
+                            arrayList.add(LocaleController.formatString(R.string.ViewPackPreview, new Object[0]));
                             arrayList3.add(Integer.valueOf(R.drawable.msg_media));
                             arrayList2.add(1);
                         }

@@ -66786,6 +66786,7 @@ public class TLRPC {
         public ChatTheme theme;
         public boolean translations_disabled;
         public int ttl_period;
+        public boolean unofficial_security_risk;
         public User user;
         public boolean video_calls_available;
         public boolean voice_messages_forbidden;
@@ -66891,6 +66892,7 @@ public class TLRPC {
             this.display_gifts_button = TLObject.hasFlag(this.flags2, 65536);
             this.noforwards_my_enabled = TLObject.hasFlag(this.flags2, 8388608);
             this.noforwards_peer_enabled = TLObject.hasFlag(this.flags2, 16777216);
+            this.unofficial_security_risk = TLObject.hasFlag(this.flags2, 67108864);
             this.id = inputSerializedData.readInt64(z);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.about = inputSerializedData.readString(z);
@@ -67045,7 +67047,9 @@ public class TLRPC {
             this.flags2 = flag22;
             int flag23 = TLObject.setFlag(flag22, 16777216, this.noforwards_peer_enabled);
             this.flags2 = flag23;
-            outputSerializedData.writeInt32(flag23);
+            int flag24 = TLObject.setFlag(flag23, 67108864, this.unofficial_security_risk);
+            this.flags2 = flag24;
+            outputSerializedData.writeInt32(flag24);
             outputSerializedData.writeInt64(this.id);
             if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeString(this.about);

@@ -41,7 +41,9 @@ public class MotionPhotoDrawable extends Drawable {
         }, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
+        paint.setColor(-1);
         paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dpf2(2.0f)));
+        paint2.setColor(-1);
         paint3.setStyle(style);
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         path.moveTo(-AndroidUtilities.dpf2(3.75f), -AndroidUtilities.dpf2(5.4166f));

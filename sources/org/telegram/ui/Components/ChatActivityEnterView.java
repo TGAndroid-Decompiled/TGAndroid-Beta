@@ -5114,6 +5114,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     setWindowView(ChatActivityEnterView.this.parentFragment.getParentLayout().getWindow().getDecorView());
                 }
             }
+
+            @Override
+            protected void onMeasure(int i, int i2) {
+                super.onMeasure(i, i2);
+                if (ChatActivityEnterView.this.lineCount != ChatActivityEnterView.this.messageEditText.getLineCount()) {
+                    ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+                    chatActivityEnterView.showAiButton(MessagesController.getInstance(chatActivityEnterView.currentAccount).aiEditorAvailable() && ChatActivityEnterView.this.messageEditText.getLineCount() > 2 && ChatActivityEnterView.this.messageEditText.getText() != null && !TextUtils.isEmpty(ChatActivityEnterView.this.messageEditText.getText().toString().trim()));
+                }
+            }
         };
         this.messageEditText = chatActivityEditTextCaption;
         int i = Build.VERSION.SDK_INT;

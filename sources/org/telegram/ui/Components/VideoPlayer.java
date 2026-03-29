@@ -60,7 +60,10 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelectionOverride;
 import com.google.android.exoplayer2.trackselection.TrackSelectionParameters;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
+import com.google.android.exoplayer2.upstream.TransferListener;
 import com.google.android.exoplayer2.video.ColorInfo;
 import com.google.android.exoplayer2.video.SurfaceNotValidException;
 import com.google.android.exoplayer2.video.VideoListener;
@@ -76,6 +79,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueue;
@@ -956,7 +960,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 uri3 = uri2;
                 str3 = str2;
             }
-            LoopingMediaSource loopingMediaSource3 = new LoopingMediaSource(mediaSourceFromUri(uri3, str3));
+            LoopingMediaSource loopingMediaSource3 = new LoopingMediaSource(mediaSourceFromUri(uri3, 0L, str3));
             if (i == 0) {
                 loopingMediaSource = loopingMediaSource3;
             } else {
@@ -970,9 +974,20 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         activePlayers.add(Integer.valueOf(this.playerId));
     }
 
-    private MediaSource mediaSourceFromUri(Uri uri, String str) {
-        MediaItem mediaItemBuild;
-        mediaItemBuild = new MediaItem.Builder().setUri(uri).build();
+    private MediaSource mediaSourceFromUri(VideoUri videoUri, String str) {
+        return mediaSourceFromUri(videoUri.uri, videoUri.fileVideoOffset, str);
+    }
+
+    private MediaSource mediaSourceFromUri(Uri uri, final long j, String str) {
+        MediaItem mediaItemBuild = new MediaItem.Builder().setUri(uri).build();
+        if (j != 0) {
+            return new ProgressiveMediaSource.Factory(new DataSource.Factory() {
+                @Override
+                public final DataSource createDataSource() {
+                    return this.f$0.lambda$mediaSourceFromUri$0(j);
+                }
+            }).createMediaSource(mediaItemBuild);
+        }
         str.hashCode();
         switch (str) {
             case "ss":
@@ -998,11 +1013,15 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
     }
 
-    public void preparePlayer(Uri uri, String str) {
-        preparePlayer(uri, str, 3);
+    public DataSource lambda$mediaSourceFromUri$0(long j) {
+        return new OffsetDataSource(this.mediaDataSourceFactory.createDataSource(), j);
     }
 
-    public void preparePlayer(Uri uri, String str, int i) {
+    public void preparePlayer(Uri uri, String str) {
+        preparePlayer(uri, str, 3, 0L);
+    }
+
+    public void preparePlayer(Uri uri, String str, int i, long j) {
         this.videoQualities = null;
         this.videoQualityToSelect = null;
         this.videoUri = uri;
@@ -1022,7 +1041,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         }
         this.isStreaming = z;
         ensurePlayerCreated();
-        this.player.setMediaSource(mediaSourceFromUri(uri, str), true);
+        this.player.setMediaSource(mediaSourceFromUri(uri, j, str), true);
         this.player.prepare();
     }
 
@@ -1294,7 +1313,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 this.currentStreamIsHls = false;
                 this.autoIsOriginal = true;
                 this.videoQualityToSelect = originalQuality;
-                this.player.setMediaSource(mediaSourceFromUri(originalQuality.getDownloadUri().uri, "other"), false);
+                this.player.setMediaSource(mediaSourceFromUri(originalQuality.getDownloadUri(), "other"), false);
             } else if (uriMakeManifest != null) {
                 this.autoIsOriginal = false;
                 MappingTrackSelector mappingTrackSelector = this.trackSelector;
@@ -1303,7 +1322,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     z2 = false;
                 } else {
                     this.currentStreamIsHls = true;
-                    this.player.setMediaSource(mediaSourceFromUri(uriMakeManifest, "hls"), false);
+                    this.player.setMediaSource(mediaSourceFromUri(uriMakeManifest, 0L, "hls"), false);
                 }
             } else {
                 Quality highestQuality = getHighestQuality(Boolean.TRUE);
@@ -1316,7 +1335,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                 this.currentStreamIsHls = false;
                 this.videoQualityToSelect = highestQuality;
                 this.autoIsOriginal = highestQuality.original;
-                this.player.setMediaSource(mediaSourceFromUri(highestQuality.getDownloadUri().uri, "other"), false);
+                this.player.setMediaSource(mediaSourceFromUri(highestQuality.getDownloadUri(), "other"), false);
             }
         } else {
             this.autoIsOriginal = false;
@@ -1326,13 +1345,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             Uri uriMakeManifest2 = quality.uris.size() > 1 ? makeManifest(this.videoQualities) : null;
             if (uriMakeManifest2 == null || quality.uris.size() == 1 || this.trackSelector.getCurrentMappedTrackInfo() == null) {
                 this.currentStreamIsHls = false;
-                this.player.setMediaSource(mediaSourceFromUri(quality.getDownloadUri().uri, "other"), false);
+                this.player.setMediaSource(mediaSourceFromUri(quality.getDownloadUri(), "other"), false);
             } else {
                 if (this.currentStreamIsHls) {
                     z2 = false;
                 } else {
                     this.currentStreamIsHls = true;
-                    this.player.setMediaSource(mediaSourceFromUri(uriMakeManifest2, "hls"), false);
+                    this.player.setMediaSource(mediaSourceFromUri(uriMakeManifest2, 0L, "hls"), false);
                 }
                 TrackSelectionParameters.Builder builderClearOverrides = this.trackSelector.getParameters().buildUpon().clearOverrides();
                 Iterator it = quality.uris.iterator();
@@ -1792,6 +1811,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         public long docId;
         public TLRPC.Document document;
         public double duration;
+        public long fileVideoOffset;
         public int height;
         public Uri m3u8uri;
         public long manifestDocId;
@@ -2269,12 +2289,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws NumberFormatException {
-                this.f$0.lambda$onPlayerError$1(playbackException);
+                this.f$0.lambda$onPlayerError$2(playbackException);
             }
         });
     }
 
-    public void lambda$onPlayerError$1(PlaybackException playbackException) throws NumberFormatException {
+    public void lambda$onPlayerError$2(PlaybackException playbackException) throws NumberFormatException {
         Throwable cause = playbackException.getCause();
         if ((cause instanceof MediaCodecDecoderException) && (cause.toString().contains("av1") || cause.toString().contains("av01"))) {
             FileLog.e(playbackException);
@@ -2307,7 +2327,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     dispatchQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() throws NumberFormatException {
-                            this.f$0.lambda$onPlayerError$0();
+                            this.f$0.lambda$onPlayerError$1();
                         }
                     });
                     return;
@@ -2330,7 +2350,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         this.delegate.onError(this, playbackException);
     }
 
-    public void lambda$onPlayerError$0() throws NumberFormatException {
+    public void lambda$onPlayerError$1() throws NumberFormatException {
         ExoPlayer exoPlayer = this.player;
         if (exoPlayer != null) {
             exoPlayer.clearVideoTextureView(this.textureView);
@@ -2602,5 +2622,45 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             }
         }
         return builder.build();
+    }
+
+    public static class OffsetDataSource implements DataSource {
+        private final long byteOffset;
+        private final DataSource upstream;
+
+        public OffsetDataSource(DataSource dataSource, long j) {
+            this.upstream = dataSource;
+            this.byteOffset = j;
+        }
+
+        @Override
+        public void addTransferListener(TransferListener transferListener) {
+            this.upstream.addTransferListener(transferListener);
+        }
+
+        @Override
+        public long open(DataSpec dataSpec) {
+            return this.upstream.open(dataSpec.buildUpon().setPosition(dataSpec.position + this.byteOffset).build());
+        }
+
+        @Override
+        public int read(byte[] bArr, int i, int i2) {
+            return this.upstream.read(bArr, i, i2);
+        }
+
+        @Override
+        public Uri getUri() {
+            return this.upstream.getUri();
+        }
+
+        @Override
+        public void close() {
+            this.upstream.close();
+        }
+
+        @Override
+        public Map getResponseHeaders() {
+            return this.upstream.getResponseHeaders();
+        }
     }
 }

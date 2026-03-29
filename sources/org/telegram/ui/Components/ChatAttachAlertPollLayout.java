@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -161,7 +162,9 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
     private int rowCount;
     private int settingsHeaderRow;
     private int settingsSectionRow;
+    private int showMediaHintIndexAfterSmoothScroll;
     private boolean shuffleOptions;
+    private boolean smoothScrollToOption;
     private int solutionInfoRow;
     private int solutionRow;
     private int solutionRowHeader;
@@ -188,15 +191,9 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return 1;
     }
 
-    static int access$2308(ChatAttachAlertPollLayout chatAttachAlertPollLayout) {
+    static int access$2608(ChatAttachAlertPollLayout chatAttachAlertPollLayout) {
         int i = chatAttachAlertPollLayout.answersCount;
         chatAttachAlertPollLayout.answersCount = i + 1;
-        return i;
-    }
-
-    static int access$2310(ChatAttachAlertPollLayout chatAttachAlertPollLayout) {
-        int i = chatAttachAlertPollLayout.answersCount;
-        chatAttachAlertPollLayout.answersCount = i - 1;
         return i;
     }
 
@@ -286,6 +283,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 }
             }
         };
+        this.smoothScrollToOption = false;
+        this.showMediaHintIndexAfterSmoothScroll = -1;
         this.isEmojiSearchOpened = false;
         this.wasEmojiSearchOpened = false;
         Paint paint = new Paint(1);
@@ -345,7 +344,23 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
                     @Override
                     public int calculateDyToMakeVisible(View view, int i2) {
-                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertPollLayout.this.topPadding - AndroidUtilities.dp(7.0f));
+                        if (ChatAttachAlertPollLayout.this.smoothScrollToOption) {
+                            i2 = -1;
+                        }
+                        int iCalculateDyToMakeVisible = super.calculateDyToMakeVisible(view, i2);
+                        if (ChatAttachAlertPollLayout.this.smoothScrollToOption) {
+                            iCalculateDyToMakeVisible += AndroidUtilities.dp(160.0f);
+                        }
+                        if (!ChatAttachAlertPollLayout.this.smoothScrollToOption) {
+                            iCalculateDyToMakeVisible -= ChatAttachAlertPollLayout.this.topPadding - AndroidUtilities.dp(7.0f);
+                        }
+                        if (ChatAttachAlertPollLayout.this.smoothScrollToOption && iCalculateDyToMakeVisible == 0 && ChatAttachAlertPollLayout.this.showMediaHintIndexAfterSmoothScroll >= 0) {
+                            ChatAttachAlertPollLayout chatAttachAlertPollLayout = ChatAttachAlertPollLayout.this;
+                            chatAttachAlertPollLayout.showMediaHint(chatAttachAlertPollLayout.showMediaHintIndexAfterSmoothScroll);
+                            ChatAttachAlertPollLayout.this.showMediaHintIndexAfterSmoothScroll = -1;
+                        }
+                        ChatAttachAlertPollLayout.this.smoothScrollToOption = false;
+                        return iCalculateDyToMakeVisible;
                     }
 
                     @Override
@@ -421,17 +436,20 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 if (i == 0) {
                     int iDp = AndroidUtilities.dp(13.0f);
                     int backgroundPaddingTop = ChatAttachAlertPollLayout.this.parentAlert.getBackgroundPaddingTop();
-                    if (((ChatAttachAlertPollLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - iDp) + backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(1)) == null || holder.itemView.getTop() <= AndroidUtilities.dp(65.0f)) {
-                        return;
+                    if (((ChatAttachAlertPollLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - iDp) + backgroundPaddingTop < ActionBar.getCurrentActionBarHeight() && (holder = (RecyclerListView.Holder) ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(1)) != null && holder.itemView.getTop() > AndroidUtilities.dp(65.0f)) {
+                        ChatAttachAlertPollLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.dp(65.0f));
                     }
-                    ChatAttachAlertPollLayout.this.listView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.dp(65.0f));
+                    if (ChatAttachAlertPollLayout.this.showMediaHintIndexAfterSmoothScroll >= 0) {
+                        ChatAttachAlertPollLayout chatAttachAlertPollLayout = ChatAttachAlertPollLayout.this;
+                        chatAttachAlertPollLayout.showMediaHint(chatAttachAlertPollLayout.showMediaHintIndexAfterSmoothScroll);
+                        ChatAttachAlertPollLayout.this.showMediaHintIndexAfterSmoothScroll = -1;
+                    }
                 }
             }
         });
         HintView hintView = new HintView(context, 4);
         this.hintView = hintView;
-        hintView.setText(LocaleController.getString(R.string.PollTapToSelect));
-        this.hintView.setAlpha(0.0f);
+        hintView.setAlpha(0.0f);
         this.hintView.setVisibility(4);
         addView(this.hintView, LayoutHelper.createFrame(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
         this.MAX_CAPTION_LENGTH = MessagesController.getInstance(this.parentAlert.currentAccount).config.pollCaptionLengthMax.get();
@@ -661,6 +679,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             pollEditTextCell.setShowCheckBox(this.quizPoll, true);
                             pollEditTextCell.setChecked(this.answersChecks[i14 - this.answerStartRow], z3);
                             if (pollEditTextCell.getTop() > AndroidUtilities.dp(40.0f) && i == this.poll2vQuizRow && !this.hintShowed) {
+                                this.hintView.setText(LocaleController.getString(R.string.PollTapToSelect));
                                 this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
                                 this.hintShowed = true;
                             }
@@ -763,183 +782,83 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public void onMenuItemClick(int i) {
-        if (i != 40) {
-            return;
-        }
-        if (this.todo) {
-            CharSequence[] charSequenceArr = {getFixedString(this.questionString)};
-            ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr, true);
-            CharSequence charSequence = charSequenceArr[0];
-            if (entities != null) {
-                int size = entities.size();
-                for (int i2 = 0; i2 < size; i2++) {
-                    TLRPC.MessageEntity messageEntity = entities.get(i2);
-                    if (messageEntity.offset + messageEntity.length > charSequence.length()) {
-                        messageEntity.length = charSequence.length() - messageEntity.offset;
-                    }
-                }
-            }
-            final TLRPC.TL_messageMediaToDo tL_messageMediaToDo = new TLRPC.TL_messageMediaToDo();
-            TLRPC.TodoList todoList = new TLRPC.TodoList();
-            tL_messageMediaToDo.todo = todoList;
-            boolean z = this.allowMarking;
-            todoList.others_can_append = z && this.allowAdding;
-            todoList.others_can_complete = z;
-            todoList.title = new TLRPC.TL_textWithEntities();
-            tL_messageMediaToDo.todo.title.text = charSequence.toString();
-            tL_messageMediaToDo.todo.title.entities = entities;
-            int i3 = 0;
-            while (true) {
-                CharSequence[] charSequenceArr2 = this.answers;
-                if (i3 < charSequenceArr2.length) {
-                    if (!TextUtils.isEmpty(getFixedString(charSequenceArr2[i3]))) {
-                        CharSequence[] charSequenceArr3 = {getFixedString(this.answers[i3])};
-                        ArrayList<TLRPC.MessageEntity> entities2 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr3, true);
-                        CharSequence charSequence2 = charSequenceArr3[0];
-                        if (entities2 != null) {
-                            int size2 = entities2.size();
-                            for (int i4 = 0; i4 < size2; i4++) {
-                                TLRPC.MessageEntity messageEntity2 = entities2.get(i4);
-                                if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
-                                    messageEntity2.length = charSequence2.length() - messageEntity2.offset;
-                                }
-                            }
-                        }
-                        TLRPC.TodoItem todoItem = new TLRPC.TodoItem();
-                        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-                        todoItem.title = tL_textWithEntities;
-                        tL_textWithEntities.text = charSequence2.toString();
-                        todoItem.title.entities = entities2;
-                        todoItem.id = tL_messageMediaToDo.todo.list.size() + 1;
-                        tL_messageMediaToDo.todo.list.add(todoItem);
-                    }
-                    i3++;
-                } else {
-                    ChatAttachAlert chatAttachAlert = this.parentAlert;
-                    final ChatActivity chatActivity = (ChatActivity) chatAttachAlert.baseFragment;
-                    AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
-                        @Override
-                        public final void run(Object obj) {
-                            this.f$0.lambda$onMenuItemClick$6(chatActivity, tL_messageMediaToDo, (Long) obj);
-                        }
-                    });
-                    return;
-                }
-            }
-        } else {
-            if (this.quizPoll && !this.doneItemEnabled) {
-                int i5 = 0;
-                for (int i6 = 0; i6 < this.answersChecks.length; i6++) {
-                    if (!TextUtils.isEmpty(getFixedString(this.answers[i6])) && this.answersChecks[i6]) {
-                        i5++;
-                    }
-                }
-                if (i5 <= 0) {
-                    showQuizHint();
-                    return;
-                }
-                return;
-            }
-            CharSequence[] charSequenceArr4 = {getFixedString(this.questionString)};
-            ArrayList<TLRPC.MessageEntity> entities3 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr4, true);
-            CharSequence charSequence3 = charSequenceArr4[0];
-            if (entities3 != null) {
-                int size3 = entities3.size();
-                for (int i7 = 0; i7 < size3; i7++) {
-                    TLRPC.MessageEntity messageEntity3 = entities3.get(i7);
-                    if (messageEntity3.offset + messageEntity3.length > charSequence3.length()) {
-                        messageEntity3.length = charSequence3.length() - messageEntity3.offset;
-                    }
-                }
-            }
-            final TLRPC.TL_messageMediaPoll tL_messageMediaPoll = new TLRPC.TL_messageMediaPoll();
-            TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-            tL_messageMediaPoll.poll = tL_poll;
-            tL_poll.multiple_choice = this.multipleChoise;
-            tL_poll.quiz = this.quizPoll;
-            tL_poll.public_voters = !this.anonymousPoll;
-            tL_poll.open_answers = this.allowAddingOptions;
-            tL_poll.revoting_disabled = !this.allowRevoting;
-            tL_poll.shuffle_answers = this.shuffleOptions;
-            tL_poll.creator = true;
-            int i8 = this.pollLimitDuration;
-            if (i8 != 0) {
-                tL_poll.hide_results_until_close = this.hideResults;
-                tL_poll.close_period = i8;
-                tL_poll.flags |= 16;
+        if (i == 40) {
+            if (this.todo) {
+                onTodoDoneButtonClick();
             } else {
-                int i9 = this.pollLimitDeadline;
-                if (i9 != 0) {
-                    tL_poll.hide_results_until_close = this.hideResults;
-                    tL_poll.close_date = i9;
-                    tL_poll.flags |= 32;
-                }
+                onPollDoneButtonClick();
             }
-            tL_poll.question = new TLRPC.TL_textWithEntities();
-            tL_messageMediaPoll.poll.question.text = charSequence3.toString();
-            tL_messageMediaPoll.poll.question.entities = entities3;
-            final ArrayList arrayList = new ArrayList(this.maxAnswersCount);
-            int i10 = 0;
-            while (true) {
-                CharSequence[] charSequenceArr5 = this.answers;
-                if (i10 >= charSequenceArr5.length) {
-                    break;
-                }
-                if (!TextUtils.isEmpty(getFixedString(charSequenceArr5[i10]))) {
-                    CharSequence[] charSequenceArr6 = {getFixedString(this.answers[i10])};
-                    ArrayList<TLRPC.MessageEntity> entities4 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr6, true);
-                    CharSequence charSequence4 = charSequenceArr6[0];
-                    if (entities4 != null) {
-                        int size4 = entities4.size();
-                        for (int i11 = 0; i11 < size4; i11++) {
-                            TLRPC.MessageEntity messageEntity4 = entities4.get(i11);
-                            if (messageEntity4.offset + messageEntity4.length > charSequence4.length()) {
-                                messageEntity4.length = charSequence4.length() - messageEntity4.offset;
-                            }
-                        }
-                    }
-                    TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
-                    TLRPC.TL_textWithEntities tL_textWithEntities2 = new TLRPC.TL_textWithEntities();
-                    tL_pollAnswer.text = tL_textWithEntities2;
-                    tL_textWithEntities2.text = charSequence4.toString();
-                    tL_pollAnswer.text.entities = entities4;
-                    tL_pollAnswer.option = new byte[]{(byte) (tL_messageMediaPoll.poll.answers.size() + 48)};
-                    if ((this.multipleChoise || this.quizPoll) && this.answersChecks[i10]) {
-                        arrayList.add(Integer.valueOf(tL_messageMediaPoll.poll.answers.size()));
-                    }
-                    tL_messageMediaPoll.poll.answers.add(tL_pollAnswer);
-                }
-                i10++;
-            }
-            tL_messageMediaPoll.results = new TLRPC.TL_pollResults();
-            CharSequence fixedString = getFixedString(this.solutionString);
-            if (fixedString != null) {
-                tL_messageMediaPoll.results.solution = fixedString.toString();
-                ArrayList<TLRPC.MessageEntity> entities5 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(new CharSequence[]{fixedString}, true);
-                if (entities5 != null && !entities5.isEmpty()) {
-                    tL_messageMediaPoll.results.solution_entities = entities5;
-                }
-                if (!TextUtils.isEmpty(tL_messageMediaPoll.results.solution)) {
-                    tL_messageMediaPoll.results.flags |= 16;
-                }
-            }
-            ChatAttachAlert chatAttachAlert2 = this.parentAlert;
-            final ChatActivity chatActivity2 = (ChatActivity) chatAttachAlert2.baseFragment;
-            AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert2.currentAccount, chatAttachAlert2.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    this.f$0.lambda$onMenuItemClick$8(chatActivity2, tL_messageMediaPoll, arrayList, (Long) obj);
-                }
-            });
         }
     }
 
-    public void lambda$onMenuItemClick$6(ChatActivity chatActivity, final TLRPC.TL_messageMediaToDo tL_messageMediaToDo, final Long l) {
+    private void onTodoDoneButtonClick() {
+        CharSequence[] charSequenceArr = {getFixedString(this.questionString)};
+        ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr, true);
+        CharSequence charSequence = charSequenceArr[0];
+        if (entities != null) {
+            int size = entities.size();
+            for (int i = 0; i < size; i++) {
+                TLRPC.MessageEntity messageEntity = entities.get(i);
+                if (messageEntity.offset + messageEntity.length > charSequence.length()) {
+                    messageEntity.length = charSequence.length() - messageEntity.offset;
+                }
+            }
+        }
+        final TLRPC.TL_messageMediaToDo tL_messageMediaToDo = new TLRPC.TL_messageMediaToDo();
+        TLRPC.TodoList todoList = new TLRPC.TodoList();
+        tL_messageMediaToDo.todo = todoList;
+        boolean z = this.allowMarking;
+        todoList.others_can_append = z && this.allowAdding;
+        todoList.others_can_complete = z;
+        todoList.title = new TLRPC.TL_textWithEntities();
+        tL_messageMediaToDo.todo.title.text = charSequence.toString();
+        tL_messageMediaToDo.todo.title.entities = entities;
+        int i2 = 0;
+        while (true) {
+            CharSequence[] charSequenceArr2 = this.answers;
+            if (i2 < charSequenceArr2.length) {
+                if (!TextUtils.isEmpty(getFixedString(charSequenceArr2[i2]))) {
+                    CharSequence[] charSequenceArr3 = {getFixedString(this.answers[i2])};
+                    ArrayList<TLRPC.MessageEntity> entities2 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr3, true);
+                    CharSequence charSequence2 = charSequenceArr3[0];
+                    if (entities2 != null) {
+                        int size2 = entities2.size();
+                        for (int i3 = 0; i3 < size2; i3++) {
+                            TLRPC.MessageEntity messageEntity2 = entities2.get(i3);
+                            if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
+                                messageEntity2.length = charSequence2.length() - messageEntity2.offset;
+                            }
+                        }
+                    }
+                    TLRPC.TodoItem todoItem = new TLRPC.TodoItem();
+                    TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+                    todoItem.title = tL_textWithEntities;
+                    tL_textWithEntities.text = charSequence2.toString();
+                    todoItem.title.entities = entities2;
+                    todoItem.id = tL_messageMediaToDo.todo.list.size() + 1;
+                    tL_messageMediaToDo.todo.list.add(todoItem);
+                }
+                i2++;
+            } else {
+                ChatAttachAlert chatAttachAlert = this.parentAlert;
+                final ChatActivity chatActivity = (ChatActivity) chatAttachAlert.baseFragment;
+                AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        this.f$0.lambda$onTodoDoneButtonClick$6(chatActivity, tL_messageMediaToDo, (Long) obj);
+                    }
+                });
+                return;
+            }
+        }
+    }
+
+    public void lambda$onTodoDoneButtonClick$6(ChatActivity chatActivity, final TLRPC.TL_messageMediaToDo tL_messageMediaToDo, final Long l) {
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    this.f$0.lambda$onMenuItemClick$5(tL_messageMediaToDo, l, z, i, i2);
+                    this.f$0.lambda$onTodoDoneButtonClick$5(tL_messageMediaToDo, l, z, i, i2);
                 }
             });
         } else {
@@ -948,17 +867,141 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onMenuItemClick$5(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, Long l, boolean z, int i, int i2) {
+    public void lambda$onTodoDoneButtonClick$5(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, Long l, boolean z, int i, int i2) {
         this.delegate.sendPoll(tL_messageMediaToDo, null, null, null, z, i, l.longValue());
         this.parentAlert.dismiss(true);
     }
 
-    public void lambda$onMenuItemClick$8(ChatActivity chatActivity, final TLRPC.TL_messageMediaPoll tL_messageMediaPoll, final ArrayList arrayList, final Long l) {
+    private void onPollDoneButtonClick() {
+        if (this.quizPoll && !this.doneItemEnabled) {
+            int i = 0;
+            for (int i2 = 0; i2 < this.answersChecks.length; i2++) {
+                if (!TextUtils.isEmpty(getFixedString(this.answers[i2])) && this.answersChecks[i2]) {
+                    i++;
+                }
+            }
+            if (i <= 0) {
+                showQuizHint();
+                return;
+            }
+            return;
+        }
+        int i3 = 0;
+        while (true) {
+            CharSequence[] charSequenceArr = this.answers;
+            if (i3 < charSequenceArr.length) {
+                if (TextUtils.isEmpty(getFixedString(charSequenceArr[i3])) && this.attachedMedia.get(i3) != null) {
+                    this.smoothScrollToOption = true;
+                    this.showMediaHintIndexAfterSmoothScroll = i3;
+                    this.listView.smoothScrollToPosition(this.answerStartRow + i3);
+                    return;
+                }
+                i3++;
+            } else {
+                CharSequence[] charSequenceArr2 = {getFixedString(this.questionString)};
+                ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr2, true);
+                CharSequence charSequence = charSequenceArr2[0];
+                if (entities != null) {
+                    int size = entities.size();
+                    for (int i4 = 0; i4 < size; i4++) {
+                        TLRPC.MessageEntity messageEntity = entities.get(i4);
+                        if (messageEntity.offset + messageEntity.length > charSequence.length()) {
+                            messageEntity.length = charSequence.length() - messageEntity.offset;
+                        }
+                    }
+                }
+                final TLRPC.TL_messageMediaPoll tL_messageMediaPoll = new TLRPC.TL_messageMediaPoll();
+                TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+                tL_messageMediaPoll.poll = tL_poll;
+                tL_poll.multiple_choice = this.multipleChoise;
+                tL_poll.quiz = this.quizPoll;
+                tL_poll.public_voters = !this.anonymousPoll;
+                tL_poll.open_answers = this.allowAddingOptions;
+                tL_poll.revoting_disabled = !this.allowRevoting;
+                tL_poll.shuffle_answers = this.shuffleOptions;
+                tL_poll.creator = true;
+                int i5 = this.pollLimitDuration;
+                if (i5 != 0) {
+                    tL_poll.hide_results_until_close = this.hideResults;
+                    tL_poll.close_period = i5;
+                    tL_poll.flags |= 16;
+                } else {
+                    int i6 = this.pollLimitDeadline;
+                    if (i6 != 0) {
+                        tL_poll.hide_results_until_close = this.hideResults;
+                        tL_poll.close_date = i6;
+                        tL_poll.flags |= 32;
+                    }
+                }
+                tL_poll.question = new TLRPC.TL_textWithEntities();
+                tL_messageMediaPoll.poll.question.text = charSequence.toString();
+                tL_messageMediaPoll.poll.question.entities = entities;
+                final ArrayList arrayList = new ArrayList(this.maxAnswersCount);
+                int i7 = 0;
+                while (true) {
+                    CharSequence[] charSequenceArr3 = this.answers;
+                    if (i7 >= charSequenceArr3.length) {
+                        break;
+                    }
+                    if (TextUtils.isEmpty(getFixedString(charSequenceArr3[i7]))) {
+                        this.attachedMedia.removeAnswerAndShift(tL_messageMediaPoll.poll.answers.size());
+                    } else {
+                        CharSequence[] charSequenceArr4 = {getFixedString(this.answers[i7])};
+                        ArrayList<TLRPC.MessageEntity> entities2 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(charSequenceArr4, true);
+                        CharSequence charSequence2 = charSequenceArr4[0];
+                        if (entities2 != null) {
+                            int size2 = entities2.size();
+                            for (int i8 = 0; i8 < size2; i8++) {
+                                TLRPC.MessageEntity messageEntity2 = entities2.get(i8);
+                                if (messageEntity2.offset + messageEntity2.length > charSequence2.length()) {
+                                    messageEntity2.length = charSequence2.length() - messageEntity2.offset;
+                                }
+                            }
+                        }
+                        TLRPC.TL_pollAnswer tL_pollAnswer = new TLRPC.TL_pollAnswer();
+                        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
+                        tL_pollAnswer.text = tL_textWithEntities;
+                        tL_textWithEntities.text = charSequence2.toString();
+                        tL_pollAnswer.text.entities = entities2;
+                        tL_pollAnswer.option = new byte[]{(byte) (tL_messageMediaPoll.poll.answers.size() + 48)};
+                        if ((this.multipleChoise || this.quizPoll) && this.answersChecks[i7]) {
+                            arrayList.add(Integer.valueOf(tL_messageMediaPoll.poll.answers.size()));
+                        }
+                        tL_messageMediaPoll.poll.answers.add(tL_pollAnswer);
+                    }
+                    i7++;
+                }
+                tL_messageMediaPoll.results = new TLRPC.TL_pollResults();
+                CharSequence fixedString = getFixedString(this.solutionString);
+                if (fixedString != null) {
+                    tL_messageMediaPoll.results.solution = fixedString.toString();
+                    ArrayList<TLRPC.MessageEntity> entities3 = MediaDataController.getInstance(this.parentAlert.currentAccount).getEntities(new CharSequence[]{fixedString}, true);
+                    if (entities3 != null && !entities3.isEmpty()) {
+                        tL_messageMediaPoll.results.solution_entities = entities3;
+                    }
+                    if (!TextUtils.isEmpty(tL_messageMediaPoll.results.solution)) {
+                        tL_messageMediaPoll.results.flags |= 16;
+                    }
+                }
+                ChatAttachAlert chatAttachAlert = this.parentAlert;
+                final ChatActivity chatActivity = (ChatActivity) chatAttachAlert.baseFragment;
+                AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), this.parentAlert.getAdditionalMessagesCount() + 1, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        this.f$0.lambda$onPollDoneButtonClick$8(chatActivity, tL_messageMediaPoll, arrayList, (Long) obj);
+                    }
+                });
+                return;
+            }
+        }
+    }
+
+    public void lambda$onPollDoneButtonClick$8(ChatActivity chatActivity, final TLRPC.TL_messageMediaPoll tL_messageMediaPoll, final ArrayList arrayList, final Long l) {
         if (chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(chatActivity.getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
-                    this.f$0.lambda$onMenuItemClick$7(tL_messageMediaPoll, arrayList, l, z, i, i2);
+                    this.f$0.lambda$onPollDoneButtonClick$7(tL_messageMediaPoll, arrayList, l, z, i, i2);
                 }
             });
         } else {
@@ -967,7 +1010,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$onMenuItemClick$7(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, Long l, boolean z, int i, int i2) {
+    public void lambda$onPollDoneButtonClick$7(TLRPC.TL_messageMediaPoll tL_messageMediaPoll, ArrayList arrayList, Long l, boolean z, int i, int i2) {
         this.delegate.sendPoll(tL_messageMediaPoll, this.descriptionString, this.attachedMedia, arrayList, z, i, l.longValue());
         this.parentAlert.dismiss(true);
     }
@@ -1056,6 +1099,28 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return trimmedString;
     }
 
+    public void showMediaHint(int i) {
+        RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(this.answerStartRow + i);
+        if (viewHolderFindViewHolderForAdapterPosition != null) {
+            View view = viewHolderFindViewHolderForAdapterPosition.itemView;
+            if (view instanceof PollEditTextCell) {
+                PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
+                if (pollEditTextCell.getTop() > AndroidUtilities.dp(40.0f)) {
+                    SuggestEmojiView suggestEmojiView = this.suggestEmojiPanel;
+                    if (suggestEmojiView != null) {
+                        suggestEmojiView.forceClose();
+                    }
+                    this.hintView.setText(LocaleController.getString(R.string.PollAddTextOrRemoveMedia));
+                    this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
+                    ImageView imageView = this.hintView.arrowImageView;
+                    imageView.setTranslationX(imageView.getTranslationX() + AndroidUtilities.dp(48.0f));
+                    HintView hintView = this.hintView;
+                    hintView.setTranslationY(hintView.getTranslationY() + AndroidUtilities.dp(10.0f));
+                }
+            }
+        }
+    }
+
     private void showQuizHint() {
         for (int i = this.answerStartRow; i < this.answerStartRow + this.answersCount; i++) {
             RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.listView.findViewHolderForAdapterPosition(i);
@@ -1068,6 +1133,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         if (suggestEmojiView != null) {
                             suggestEmojiView.forceClose();
                         }
+                        this.hintView.setText(LocaleController.getString(R.string.PollTapToSelect));
                         this.hintView.showForView(pollEditTextCell.getCheckBox(), true);
                         return;
                     }
@@ -1392,12 +1458,13 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 if (this.isEmojiSearchOpened) {
                     iDp += AndroidUtilities.dp(120.0f);
                 }
+                int i2 = iDp + AndroidUtilities.navigationBarHeight;
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.emojiView.getLayoutParams();
-                int i2 = layoutParams.width;
-                int i3 = AndroidUtilities.displaySize.x;
-                if (i2 != i3 || layoutParams.height != iDp || this.wasEmojiSearchOpened != this.isEmojiSearchOpened) {
-                    layoutParams.width = i3;
-                    layoutParams.height = iDp + AndroidUtilities.navigationBarHeight;
+                int i3 = layoutParams.width;
+                int i4 = AndroidUtilities.displaySize.x;
+                if (i3 != i4 || layoutParams.height != i2 || this.wasEmojiSearchOpened != this.isEmojiSearchOpened) {
+                    layoutParams.width = i4;
+                    layoutParams.height = i2;
                     this.emojiView.setLayoutParams(layoutParams);
                     this.emojiPadding = layoutParams.height;
                     this.keyboardNotifier.fire();
@@ -1929,6 +1996,15 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
+    public void deletePollAnswerView(final android.view.View r8, final org.telegram.ui.Cells.PollEditTextCell r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.deletePollAnswerView(android.view.View, org.telegram.ui.Cells.PollEditTextCell, boolean):void");
+    }
+
+    public void lambda$deletePollAnswerView$13(View view, PollEditTextCell pollEditTextCell, AlertDialog alertDialog, int i) {
+        view.setTag(null);
+        deletePollAnswerView(view, pollEditTextCell, false);
+    }
+
     class ListAdapter extends RecyclerListView.SelectionAdapter {
         private final Context mContext;
 
@@ -2206,6 +2282,22 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         }
 
                         @Override
+                        protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+                            if (!ChatAttachAlertPollLayout.this.todo && i == 11) {
+                                if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                                    Menu menu = actionMode.getMenu();
+                                    if (menu.findItem(16908321) == null) {
+                                        return;
+                                    }
+                                    ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), false, true);
+                                    return;
+                                }
+                                return;
+                            }
+                            super.onActionModeStart(editTextBoldCursor, actionMode);
+                        }
+
+                        @Override
                         public void lambda$new$1(PollEditTextCell pollEditTextCell2) {
                             ChatAttachAlertPollLayout.this.onEmojiClicked(pollEditTextCell2);
                         }
@@ -2222,7 +2314,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                     ChatAttachAlertPollLayout.this.answers[length] = ChatAttachAlertPollLayout.this.answers[length - 1];
                                 }
                                 ChatAttachAlertPollLayout.this.answers[i2] = (CharSequence) arrayList.remove(0);
-                                ChatAttachAlertPollLayout.access$2308(ChatAttachAlertPollLayout.this);
+                                ChatAttachAlertPollLayout.access$2608(ChatAttachAlertPollLayout.this);
                                 i2++;
                             }
                             ChatAttachAlertPollLayout.this.updateRows();
@@ -2295,13 +2387,18 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                     }, ChatAttachAlertPollLayout.this.resourcesProvider) {
                         @Override
                         protected void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
-                            if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
-                                Menu menu = actionMode.getMenu();
-                                if (menu.findItem(16908321) == null) {
+                            if (ChatAttachAlertPollLayout.this.todo) {
+                                if (editTextBoldCursor.isFocused() && editTextBoldCursor.hasSelection()) {
+                                    Menu menu = actionMode.getMenu();
+                                    if (menu.findItem(16908321) == null) {
+                                        return;
+                                    }
+                                    ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), false, true);
                                     return;
                                 }
-                                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), true, true);
+                                return;
                             }
+                            super.onActionModeStart(editTextBoldCursor, actionMode);
                         }
 
                         @Override
@@ -2383,7 +2480,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                     ChatAttachAlertPollLayout.this.answers[length] = ChatAttachAlertPollLayout.this.answers[length - 1];
                                 }
                                 ChatAttachAlertPollLayout.this.answers[i2] = (CharSequence) arrayList.remove(0);
-                                ChatAttachAlertPollLayout.access$2308(ChatAttachAlertPollLayout.this);
+                                ChatAttachAlertPollLayout.access$2608(ChatAttachAlertPollLayout.this);
                                 i2++;
                             }
                             ChatAttachAlertPollLayout.this.updateRows();
@@ -2484,7 +2581,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                                 if (menu.findItem(16908321) == null) {
                                     return;
                                 }
-                                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), true, true);
+                                ChatActivity.fillActionModeMenu(menu, ((ChatActivity) ChatAttachAlertPollLayout.this.parentAlert.baseFragment).getCurrentEncryptedChat(), false, true);
                             }
                         }
 
@@ -2564,8 +2661,8 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return new RecyclerListView.Holder(headerCell);
         }
 
-        public void lambda$onCreateViewHolder$2(android.view.View r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.ListAdapter.lambda$onCreateViewHolder$2(android.view.View):void");
+        public void lambda$onCreateViewHolder$2(View view) {
+            ChatAttachAlertPollLayout.this.deletePollAnswerView(view, (PollEditTextCell) view.getParent(), true);
         }
 
         public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) {
@@ -2750,14 +2847,14 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
                 @Override
                 public void onPollAttachDelete() {
-                    ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$19(i, null);
+                    ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$21(i, null);
                 }
 
                 @Override
                 public void onClose() {
                     super.onClose();
                     if (this.openReplace) {
-                        ChatAttachAlertPollLayout.this.lambda$showOptionsForDrawable$15(i);
+                        ChatAttachAlertPollLayout.this.lambda$showOptionsForDrawable$17(i);
                     }
                 }
             }, null);
@@ -2779,7 +2876,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             showOptionsForDrawable(i, new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
-                    return ChatAttachAlertPollLayout.lambda$openEditOrReplaceMenu$13(str, str2, (View) obj);
+                    return ChatAttachAlertPollLayout.lambda$openEditOrReplaceMenu$15(str, str2, (View) obj);
                 }
             }, AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
             return;
@@ -2792,7 +2889,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             showOptionsForDrawable(i, new Utilities.CallbackReturn() {
                 @Override
                 public final Object run(Object obj) {
-                    return ChatAttachAlertPollLayout.lambda$openEditOrReplaceMenu$14(musicTitle, str3, pollAttachedMediaMusic, (View) obj);
+                    return ChatAttachAlertPollLayout.lambda$openEditOrReplaceMenu$16(musicTitle, str3, pollAttachedMediaMusic, (View) obj);
                 }
             }, AndroidUtilities.dp(240.0f), AndroidUtilities.dp(60.0f));
             return;
@@ -2806,7 +2903,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                 }
             }, AndroidUtilities.dp(300.0f), (AndroidUtilities.dp(300.0f) * 9) / 16);
         } else {
-            lambda$showOptionsForDrawable$15(i);
+            lambda$showOptionsForDrawable$17(i);
         }
     }
 
@@ -3056,19 +3153,19 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         public void lambda$getCustomItemOptions$0(int i) {
-            ChatAttachAlertPollLayout.this.lambda$showOptionsForDrawable$15(i);
+            ChatAttachAlertPollLayout.this.lambda$showOptionsForDrawable$17(i);
         }
 
         public void lambda$getCustomItemOptions$1(int i) {
-            ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$19(i, null);
+            ChatAttachAlertPollLayout.this.lambda$openAttachMenuForOptions$21(i, null);
         }
     }
 
-    public static Drawable lambda$openEditOrReplaceMenu$13(String str, String str2, View view) {
+    public static Drawable lambda$openEditOrReplaceMenu$15(String str, String str2, View view) {
         return PollAttachedMediaFile.createMessagePreviewDrawable(view, str, str2, null, null);
     }
 
-    public static Drawable lambda$openEditOrReplaceMenu$14(String str, String str2, PollAttachedMediaMusic pollAttachedMediaMusic, View view) {
+    public static Drawable lambda$openEditOrReplaceMenu$16(String str, String str2, PollAttachedMediaMusic pollAttachedMediaMusic, View view) {
         return PollAttachedMediaFile.createMessagePreviewDrawable(view, str, str2, pollAttachedMediaMusic.messageObject.getDocument(), pollAttachedMediaMusic.messageObject);
     }
 
@@ -3076,12 +3173,12 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         ItemOptions itemOptionsAdd = ItemOptions.makeOptions(this, new View(getContext())).setDimAlpha(0).setDrawScrim(false).add(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showOptionsForDrawable$15(i);
+                this.f$0.lambda$showOptionsForDrawable$17(i);
             }
         }).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showOptionsForDrawable$16(i);
+                this.f$0.lambda$showOptionsForDrawable$18(i);
             }
         });
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.resourcesProvider);
@@ -3094,15 +3191,15 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         scrimOptions.show();
     }
 
-    public void lambda$showOptionsForDrawable$16(int i) {
-        lambda$openAttachMenuForOptions$19(i, null);
+    public void lambda$showOptionsForDrawable$18(int i) {
+        lambda$openAttachMenuForOptions$21(i, null);
     }
 
     public void openAttachOrReplaceMenuForOptions(int i) {
         if (this.attachedMedia.get(i) != null) {
             openEditOrReplaceMenu(i);
         } else {
-            lambda$showOptionsForDrawable$15(i);
+            lambda$showOptionsForDrawable$17(i);
         }
     }
 
@@ -3157,7 +3254,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
             @Override
             public void didPressedButton(int i3, boolean z2, boolean z3, int i4, int i5, long j, boolean z4, boolean z5, long j2) {
-                if (i3 == 7) {
+                if (i3 == 7 || i3 == 8) {
                     HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
                     ArrayList<Object> selectedPhotosOrder = chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
                     if (selectedPhotosOrder.size() > 0) {
@@ -3360,7 +3457,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z2, int i4, long j) {
-                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$17(callback, messageMedia, i3, z2, i4, j);
+                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$19(callback, messageMedia, i3, z2, i4, j);
             }
         });
         chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
@@ -3399,7 +3496,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
             @Override
             public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i3, int i4, long j, boolean z3, long j2) {
-                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$18(callback, chatAttachAlert, arrayList, charSequence, z2, i3, i4, j, z3, j2);
+                ChatAttachAlertPollLayout.lambda$openPollAttachMenu$20(callback, chatAttachAlert, arrayList, charSequence, z2, i3, i4, j, z3, j2);
             }
         });
         chatAttachAlert.init();
@@ -3408,33 +3505,33 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return chatAttachAlert;
     }
 
-    public static void lambda$openPollAttachMenu$17(Utilities.Callback callback, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public static void lambda$openPollAttachMenu$19(Utilities.Callback callback, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         callback.run(new PollAttachedMediaLocation(messageMedia));
     }
 
-    public static void lambda$openPollAttachMenu$18(Utilities.Callback callback, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public static void lambda$openPollAttachMenu$20(Utilities.Callback callback, ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         if (arrayList != null && !arrayList.isEmpty()) {
             callback.run(new PollAttachedMediaMusic((MessageObject) arrayList.get(0)));
         }
         chatAttachAlert.dismiss(true);
     }
 
-    public void lambda$showOptionsForDrawable$15(final int i) {
+    public void lambda$showOptionsForDrawable$17(final int i) {
         this.currentAttachAlertIndex = i;
         this.currentAttachAlert = openPollAttachMenu(this.parentAlert.baseFragment, getStartLayoutForMedia(this.attachedMedia.get(i)), getAllowedLayoutsForIndex(i), new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$openAttachMenuForOptions$19(i, (PollAttachedMedia) obj);
+                this.f$0.lambda$openAttachMenuForOptions$21(i, (PollAttachedMedia) obj);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openAttachMenuForOptions$20();
+                this.f$0.lambda$openAttachMenuForOptions$22();
             }
         });
     }
 
-    public void lambda$openAttachMenuForOptions$20() {
+    public void lambda$openAttachMenuForOptions$22() {
         this.currentAttachAlertIndex = -1;
         this.currentAttachAlert = null;
     }
@@ -3467,7 +3564,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return i2 + i;
     }
 
-    public void lambda$openAttachMenuForOptions$19(int i, PollAttachedMedia pollAttachedMedia) {
+    public void lambda$openAttachMenuForOptions$21(int i, PollAttachedMedia pollAttachedMedia) {
         this.attachedMedia.set(i, pollAttachedMedia);
         int iMediaIndexToAdapterPosition = mediaIndexToAdapterPosition(i);
         if (iMediaIndexToAdapterPosition >= 0) {

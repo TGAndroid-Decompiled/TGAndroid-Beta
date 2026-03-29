@@ -25,7 +25,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 
 public class HintView extends FrameLayout {
     private AnimatorSet animatorSet;
-    private ImageView arrowImageView;
+    public ImageView arrowImageView;
     private int backgroundColor;
     Paint backgroundPaint;
     private int bottomOffset;

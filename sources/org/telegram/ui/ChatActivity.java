@@ -16581,7 +16581,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.hintMessageObject = null;
     }
 
-    public void showPollSolution(MessageObject messageObject, TLRPC.PollResults pollResults) {
+    private void showPollSolution(MessageObject messageObject, TLRPC.PollResults pollResults) {
         CharSequence charSequenceReplaceEmoji;
         TLRPC.Message message;
         TranslateController.PollText pollText;
@@ -17266,7 +17266,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             menu.add(i3, R.id.menu_link, i4, LocaleController.getString(R.string.CreateLink));
             i4++;
         }
-        if (encryptedChat == null) {
+        if (z && encryptedChat == null) {
             menu.add(i3, R.id.menu_date, i4, LocaleController.getString(R.string.FormattedDate));
             i4++;
         }
@@ -24433,9 +24433,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void didPressHint(ChatMessageCell chatMessageCell, int i) {
-            if (i == 0) {
-                ChatActivity.this.showPollSolution(chatMessageCell.getMessageObject(), ((TLRPC.TL_messageMediaPoll) chatMessageCell.getMessageObject().messageOwner.media).results);
-            } else if (i == 1) {
+            if (i == 1) {
                 MessageObject messageObject = chatMessageCell.getMessageObject();
                 TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
                 if (messageFwdHeader == null || TextUtils.isEmpty(messageFwdHeader.psa_type)) {
@@ -25109,10 +25107,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell) {
-            if (ChatActivity.this.isInPollAddOptionMode() && ChatActivity.this.pollAddOptionFieldLayout != null && ChatActivity.this.pollAddOptionFieldLayout.cellToWatch == chatMessageCell) {
-                return ChatActivity.this.pollAddOptionFieldLayout.textView.getHeight();
+            if (!ChatActivity.this.isInPollAddOptionMode() || ChatActivity.this.pollAddOptionFieldLayout == null || ChatActivity.this.pollAddOptionFieldLayout.cellToWatch != chatMessageCell || ChatActivity.this.pollAddOptionFieldLayout.textView.getWidth() <= 0) {
+                return 0;
             }
-            return 0;
+            return ChatActivity.this.pollAddOptionFieldLayout.textView.getHeight();
         }
 
         @Override

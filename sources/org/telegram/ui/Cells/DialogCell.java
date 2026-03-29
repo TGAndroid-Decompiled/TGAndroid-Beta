@@ -1366,7 +1366,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return update(i, true);
     }
 
-    public boolean update(int r44, boolean r45) {
+    public boolean update(int r45, boolean r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.update(int, boolean):boolean");
     }
 

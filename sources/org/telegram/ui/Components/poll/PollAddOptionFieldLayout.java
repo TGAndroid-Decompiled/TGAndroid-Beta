@@ -154,8 +154,6 @@ public class PollAddOptionFieldLayout extends FrameLayout implements ViewTreeObs
     }
 
     class AnonymousClass1 extends EditTextCaption {
-        private int lastHeight;
-
         @Override
         protected int emojiCacheType() {
             return 3;
@@ -166,21 +164,17 @@ public class PollAddOptionFieldLayout extends FrameLayout implements ViewTreeObs
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            int height = getHeight();
-            if (this.lastHeight != height) {
-                postOnAnimation(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$onLayout$0();
-                    }
-                });
-                this.lastHeight = height;
-            }
+        protected void onSizeChanged(int i, int i2, int i3, int i4) {
+            super.onSizeChanged(i, i2, i3, i4);
+            postOnAnimation(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onSizeChanged$0();
+                }
+            });
         }
 
-        public void lambda$onLayout$0() {
+        public void lambda$onSizeChanged$0() {
             PollAddOptionFieldLayout.this.updateCell();
         }
 

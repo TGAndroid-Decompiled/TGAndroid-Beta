@@ -53,7 +53,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
-        Drawable drawableMutate = context.getResources().getDrawable(2131232545).mutate();
+        Drawable drawableMutate = context.getResources().getDrawable(2131232546).mutate();
         this.shadowDrawable = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -145,7 +145,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView.setTextColor(Theme.getColor(i2));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setText(LocaleController.getString(2131690127));
+        textView.setText(LocaleController.getString(2131690126));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
@@ -154,7 +154,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         int i3 = Theme.key_dialogTextLink;
         textView2.setLinkTextColor(Theme.getColor(i3));
         BetaUpdate betaUpdate2 = this.appUpdate;
-        textView2.setText(LocaleController.formatString(2131690112, betaUpdate2.version, Integer.valueOf(betaUpdate2.versionCode)));
+        textView2.setText(LocaleController.formatString(2131690111, betaUpdate2.version, Integer.valueOf(betaUpdate2.versionCode)));
         textView2.setGravity(49);
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         if (!TextUtils.isEmpty(this.appUpdate.changelog)) {
@@ -179,7 +179,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null);
         final File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
         if (downloadedUpdateFile != null) {
-            buttonWithCounterView.setText(LocaleController.formatString(2131690131, new Object[0]), false);
+            buttonWithCounterView.setText(LocaleController.formatString(2131690130, new Object[0]), false);
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -187,7 +187,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
                 }
             });
         } else {
-            buttonWithCounterView.setText(LocaleController.formatString(2131690129, new Object[0]), false);
+            buttonWithCounterView.setText(LocaleController.formatString(2131690128, new Object[0]), false);
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -197,7 +197,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         }
         frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 87, 20.0f, 0.0f, 20.0f, 60.0f));
         ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, null);
-        buttonWithCounterView2.setText(LocaleController.getString(2131690132), false);
+        buttonWithCounterView2.setText(LocaleController.getString(2131690131), false);
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {

@@ -9814,10 +9814,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private void preparePlayer(ArrayList arrayList, Uri uri, boolean z, boolean z2, boolean z3) throws NumberFormatException {
-        preparePlayer(arrayList, uri, z, z2, null, z3);
+        preparePlayer(arrayList, uri, z, z2, null, z3, 0L);
     }
 
-    private void preparePlayer(ArrayList arrayList, Uri uri, boolean z, boolean z2, MediaController.SavedFilterState savedFilterState, boolean z3) throws NumberFormatException {
+    private void preparePlayer(ArrayList arrayList, Uri uri, boolean z, boolean z2, MediaController.SavedFilterState savedFilterState, boolean z3, long j) throws NumberFormatException {
         boolean z4;
         PageBlocksAdapter pageBlocksAdapter;
         VideoSize videoSize;
@@ -9943,15 +9943,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
 
                     @Override
-                    public void seekTo(long j) {
-                        super.seekTo(j);
+                    public void seekTo(long j2) {
+                        super.seekTo(j2);
                         if (PhotoViewer.this.isCurrentVideo) {
-                            PhotoViewer.this.seekAnimatedStickersTo(j);
+                            PhotoViewer.this.seekAnimatedStickersTo(j2);
                         }
                         if (PhotoViewer.this.ignorePlayerUpdate) {
                             return;
                         }
-                        CastSync.syncPosition(j);
+                        CastSync.syncPosition(j2);
                     }
 
                     @Override
@@ -10069,7 +10069,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (arrayList != null) {
                 this.videoPlayer.preparePlayer(arrayList, VideoPlayer.getSavedQuality(arrayList, this.currentMessageObject));
             } else {
-                this.videoPlayer.preparePlayer(uri, "other");
+                this.videoPlayer.preparePlayer(uri, "other", 3, j);
             }
             ExoPlayer exoPlayer = this.videoPlayer.player;
             if (exoPlayer != null) {
@@ -12827,7 +12827,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         setImageIndex(i, z, z2, false);
     }
 
-    private void setImageIndex(int r35, boolean r36, boolean r37, boolean r38) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void setImageIndex(int r38, boolean r39, boolean r40, boolean r41) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setImageIndex(int, boolean, boolean, boolean):void");
     }
 
@@ -15795,7 +15795,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 PhotoProgressView photoProgressView = this.photoProgressViews[0];
                 if (photoProgressView != null && this.containerView != null) {
                     int i = photoProgressView.backgroundState;
-                    if (x >= (getContainerViewWidth() - AndroidUtilities.dp(100.0f)) / 2.0f && x <= (getContainerViewWidth() + AndroidUtilities.dp(100.0f)) / 2.0f && y >= (getContainerViewHeight() - AndroidUtilities.dp(100.0f)) / 2.0f && y <= (getContainerViewHeight() + AndroidUtilities.dp(100.0f)) / 2.0f) {
+                    if ((x >= (getContainerViewWidth() - AndroidUtilities.dp(100.0f)) / 2.0f && x <= (getContainerViewWidth() + AndroidUtilities.dp(100.0f)) / 2.0f && y >= (getContainerViewHeight() - AndroidUtilities.dp(100.0f)) / 2.0f && y <= (getContainerViewHeight() + AndroidUtilities.dp(100.0f)) / 2.0f) || this.centerImageIsLivePhoto) {
                         if (z) {
                             if ((i == 3 || i == 4) && this.photoProgressViews[0].isVisible()) {
                                 this.manuallyPaused = true;
@@ -16104,7 +16104,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 photoProgressView.setProgress(0.0f, photoProgressView.backgroundState == 0 || this.photoProgressViews[0].previousBackgroundState == 0);
                 this.photoProgressViews[0].setBackgroundState(3, false, true);
                 if (!z) {
-                    preparePlayer(this.currentPlayingVideoQualityFiles, this.currentPlayingVideoFile, false, false, this.editState.savedFilterState, false);
+                    preparePlayer(this.currentPlayingVideoQualityFiles, this.currentPlayingVideoFile, false, false, this.editState.savedFilterState, false, 0L);
                     this.videoPlayer.seekTo((long) (this.videoTimelineView.getLeftProgress() * this.videoDuration));
                 } else {
                     this.loadInitialVideo = true;
@@ -16167,7 +16167,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.tryStartRequestPreviewOnFinish = false;
             this.photoProgressViews[0].setBackgroundState(3, false, true);
             if (i == 2) {
-                preparePlayer(this.currentPlayingVideoQualityFiles, this.currentPlayingVideoFile, false, false, this.editState.savedFilterState, false);
+                preparePlayer(this.currentPlayingVideoQualityFiles, this.currentPlayingVideoFile, false, false, this.editState.savedFilterState, false, 0L);
                 this.videoPlayer.seekTo((long) (this.videoTimelineView.getLeftProgress() * this.videoDuration));
             }
         }

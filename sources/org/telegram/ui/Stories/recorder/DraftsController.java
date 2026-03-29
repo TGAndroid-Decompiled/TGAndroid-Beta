@@ -538,6 +538,7 @@ public class DraftsController {
 
     public static class StoryDraft {
         public String audioAuthor;
+        public TLRPC.InputDocument audioDocument;
         public long audioDuration;
         public float audioLeft;
         public long audioOffset;
@@ -655,6 +656,7 @@ public class DraftsController {
             this.isError = storyEntry.isError;
             this.error = storyEntry.error;
             this.audioPath = storyEntry.audioPath;
+            this.audioDocument = storyEntry.audioDocument;
             this.audioAuthor = storyEntry.audioAuthor;
             this.audioTitle = storyEntry.audioTitle;
             this.audioDuration = storyEntry.audioDuration;
@@ -752,6 +754,7 @@ public class DraftsController {
             storyEntry.isError = this.isError;
             storyEntry.error = this.error;
             storyEntry.audioPath = this.audioPath;
+            storyEntry.audioDocument = this.audioDocument;
             storyEntry.audioAuthor = this.audioAuthor;
             storyEntry.audioTitle = this.audioTitle;
             storyEntry.audioDuration = this.audioDuration;
@@ -939,6 +942,12 @@ public class DraftsController {
             } else {
                 cropState.serializeToStream(abstractSerializedData);
             }
+            TLRPC.InputDocument inputDocument = this.audioDocument;
+            if (inputDocument == null) {
+                abstractSerializedData.writeInt32(1450380236);
+            } else {
+                inputDocument.serializeToStream(abstractSerializedData);
+            }
         }
 
         public int getObjectSize() {
@@ -948,6 +957,7 @@ public class DraftsController {
         }
 
         public StoryDraft(AbstractSerializedData abstractSerializedData, boolean z) {
+            int int32;
             this.matrixValues = new float[9];
             this.privacyRules = new ArrayList();
             this.audioRight = 1.0f;
@@ -1005,8 +1015,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int int32 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < int32; i2++) {
+            int int322 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < int322; i2++) {
                 if (this.captionEntities == null) {
                     this.captionEntities = new ArrayList();
                 }
@@ -1018,9 +1028,9 @@ public class DraftsController {
                 }
                 return;
             }
-            int int322 = abstractSerializedData.readInt32(z);
+            int int323 = abstractSerializedData.readInt32(z);
             this.privacyRules.clear();
-            for (int i3 = 0; i3 < int322; i3++) {
+            for (int i3 = 0; i3 < int323; i3++) {
                 this.privacyRules.add(TLRPC.InputPrivacyRule.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
             }
             abstractSerializedData.readBool(z);
@@ -1036,8 +1046,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int int323 = abstractSerializedData.readInt32(z);
-            for (int i4 = 0; i4 < int323; i4++) {
+            int int324 = abstractSerializedData.readInt32(z);
+            for (int i4 = 0; i4 < int324; i4++) {
                 if (this.mediaEntities == null) {
                     this.mediaEntities = new ArrayList();
                 }
@@ -1049,8 +1059,8 @@ public class DraftsController {
                 }
                 return;
             }
-            int int324 = abstractSerializedData.readInt32(z);
-            for (int i5 = 0; i5 < int324; i5++) {
+            int int325 = abstractSerializedData.readInt32(z);
+            for (int i5 = 0; i5 < int325; i5++) {
                 if (this.stickers == null) {
                     this.stickers = new ArrayList();
                 }
@@ -1061,10 +1071,10 @@ public class DraftsController {
             if (string5 != null && string5.length() == 0) {
                 this.filterFilePath = null;
             }
-            int int325 = abstractSerializedData.readInt32(z);
-            if (int325 == 1450380236) {
+            int int326 = abstractSerializedData.readInt32(z);
+            if (int326 == 1450380236) {
                 this.filterState = null;
-            } else if (int325 == -1318387530) {
+            } else if (int326 == -1318387530) {
                 MediaController.SavedFilterState savedFilterState = new MediaController.SavedFilterState();
                 this.filterState = savedFilterState;
                 savedFilterState.readParams(abstractSerializedData, z);
@@ -1098,11 +1108,11 @@ public class DraftsController {
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.isError = abstractSerializedData.readBool(z);
-                int int326 = abstractSerializedData.readInt32(z);
-                if (int326 == 1450380236) {
+                int int327 = abstractSerializedData.readInt32(z);
+                if (int327 == 1450380236) {
                     this.error = null;
                 } else {
-                    this.error = TLRPC.TL_error.TLdeserialize(abstractSerializedData, int326, z);
+                    this.error = TLRPC.TL_error.TLdeserialize(abstractSerializedData, int327, z);
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }
@@ -1137,9 +1147,9 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.botId = abstractSerializedData.readInt64(z);
                 this.botLang = abstractSerializedData.readString(z);
-                int int327 = abstractSerializedData.readInt32(z);
-                if (int327 != 1450380236) {
-                    this.botEdit = TLRPC.InputMedia.TLdeserialize(abstractSerializedData, int327, z);
+                int int328 = abstractSerializedData.readInt32(z);
+                if (int328 != 1450380236) {
+                    this.botEdit = TLRPC.InputMedia.TLdeserialize(abstractSerializedData, int328, z);
                 }
             }
             if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == -559038737) {
@@ -1152,12 +1162,15 @@ public class DraftsController {
                     this.collageParts.add(part);
                 }
             }
-            if (abstractSerializedData.remaining() <= 0 || abstractSerializedData.readInt32(z) != 1151577037) {
+            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == 1151577037) {
+                MediaController.CropState cropState = new MediaController.CropState();
+                this.crop = cropState;
+                cropState.readParams(abstractSerializedData, z);
+            }
+            if (abstractSerializedData.remaining() <= 0 || (int32 = abstractSerializedData.readInt32(z)) != 448771445) {
                 return;
             }
-            MediaController.CropState cropState = new MediaController.CropState();
-            this.crop = cropState;
-            cropState.readParams(abstractSerializedData, z);
+            this.audioDocument = TLRPC.InputDocument.TLdeserialize(abstractSerializedData, int32, z);
         }
     }
 }

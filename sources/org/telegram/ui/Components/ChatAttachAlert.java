@@ -5441,9 +5441,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         actionBarMenuItem.setPopupItemsColor(getThemedColor(i2), false);
         this.selectedMenuItem.setPopupItemsColor(getThemedColor(i2), true);
         this.selectedMenuItem.redrawPopup(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
-        ActionBarMenuItem actionBarMenuItem2 = this.searchItem;
+        ActionBarMenuItem actionBarMenuItem2 = this.motionItem;
         if (actionBarMenuItem2 != null) {
             actionBarMenuItem2.setIconColor(getThemedColor(this.forceDarkTheme ? Theme.key_voipgroup_actionBarItems : Theme.key_dialogTextBlack));
+        }
+        ActionBarMenuItem actionBarMenuItem3 = this.searchItem;
+        if (actionBarMenuItem3 != null) {
+            actionBarMenuItem3.setIconColor(getThemedColor(this.forceDarkTheme ? Theme.key_voipgroup_actionBarItems : Theme.key_dialogTextBlack));
             Theme.setDrawableColor(this.searchItem.getBackground(), getThemedColor(this.forceDarkTheme ? Theme.key_voipgroup_actionBarItemsSelector : Theme.key_dialogButtonSelector));
         }
         this.commentTextView.updateColors();
