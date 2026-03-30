@@ -2630,7 +2630,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.useTranscribeButton && (!this.isPlayingRound || getVideoTranscriptionProgress() > 0.0f || this.wasTranscriptionOpen) && (transcribeButton = this.transcribeButton) != null && transcribeButton.onTouch(motionEvent.getAction(), getEventX(motionEvent), getEventY(motionEvent));
     }
 
-    private boolean checkLinkPreviewMotionEvent(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
+    private boolean checkLinkPreviewMotionEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
         int i;
         MessageObject messageObject;
         TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent;
@@ -3631,7 +3631,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.checkRoundSeekbar(android.view.MotionEvent):boolean");
     }
 
-    private boolean checkPhotoImageMotionEvent(android.view.MotionEvent r9) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private boolean checkPhotoImageMotionEvent(android.view.MotionEvent r9) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.checkPhotoImageMotionEvent(android.view.MotionEvent):boolean");
     }
 
@@ -4104,7 +4104,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r20) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public boolean onTouchEvent(android.view.MotionEvent r20) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
@@ -4723,7 +4723,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void didClickedImage() throws Resources.NotFoundException, NumberFormatException {
+    private void didClickedImage() throws Resources.NotFoundException {
         MessageObject messageObject;
         ChatMessageCellDelegate chatMessageCellDelegate;
         TLRPC.WebPage webPage;
@@ -5134,7 +5134,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    protected void onAttachedToWindow() throws Resources.NotFoundException, NumberFormatException {
+    protected void onAttachedToWindow() throws Resources.NotFoundException {
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startSpoilers);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopSpoilers);
@@ -5465,7 +5465,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContent(org.telegram.messenger.MessageObject r90, org.telegram.messenger.MessageObject.GroupedMessages r91, boolean r92, boolean r93, boolean r94, boolean r95) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void setMessageContent(org.telegram.messenger.MessageObject r90, org.telegram.messenger.MessageObject.GroupedMessages r91, boolean r92, boolean r93, boolean r94, boolean r95) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContent(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean, boolean, boolean):void");
     }
 
@@ -5510,7 +5510,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContentIfPoll(org.telegram.messenger.MessageObject r60, boolean r61) throws android.content.res.Resources.NotFoundException {
+    private void setMessageContentIfPoll(org.telegram.messenger.MessageObject r60, boolean r61) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContentIfPoll(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -5545,12 +5545,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             } else {
                 z2 = false;
             }
+            TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
             boolean z3 = this.pollVoted;
-            boolean z4 = !z3 && !this.pollClosed && this.pollHasResults && tL_messageMediaPoll.poll.creator;
+            boolean z4 = (z3 || this.pollClosed || !this.pollHasResults || pollResults == null || pollResults.total_voters == 0 || !tL_messageMediaPoll.poll.creator) ? false : true;
             boolean z5 = (z3 || this.pollClosed) ? false : true;
             TLRPC.Poll poll = tL_messageMediaPoll.poll;
             boolean z6 = poll.public_voters;
-            TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
             if (this.pollInInputNewOption) {
                 string = LocaleController.getString(R.string.PollButtonSave);
                 i = 84;
@@ -5580,7 +5580,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
             if (i != 0) {
                 if (this.pollInstantButtonDrawable == null) {
-                    PollInstantButtonDrawable pollInstantButtonDrawable = new PollInstantButtonDrawable(this.resourcesProvider);
+                    PollInstantButtonDrawable pollInstantButtonDrawable = new PollInstantButtonDrawable(this, this.resourcesProvider);
                     this.pollInstantButtonDrawable = pollInstantButtonDrawable;
                     pollInstantButtonDrawable.setupCallbacks(this);
                 }
@@ -5590,7 +5590,23 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 this.drawInstantViewType = i;
                 createInstantViewButton();
             }
+            checkPollVoteSendingStatus(z);
         }
+    }
+
+    public void checkPollVoteSendingStatus(boolean z) {
+        MessageObject messageObject;
+        if (this.pollInstantButtonDrawable == null || (messageObject = this.currentMessageObject) == null || !messageObject.isPoll()) {
+            return;
+        }
+        TLRPC.MessageMedia media = MessageObject.getMedia(this.currentMessageObject);
+        boolean z2 = false;
+        boolean z3 = media instanceof TLRPC.TL_messageMediaPoll ? ((TLRPC.TL_messageMediaPoll) media).poll.multiple_choice : false;
+        PollInstantButtonDrawable pollInstantButtonDrawable = this.pollInstantButtonDrawable;
+        if (z3 && SendMessagesHelper.getInstance(this.currentAccount).isSendingVote(this.currentMessageObject) != null) {
+            z2 = true;
+        }
+        pollInstantButtonDrawable.setLoading(z2, z);
     }
 
     private boolean loopStickers() {
@@ -6384,7 +6400,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         setMessageObject(messageObject, groupedMessages, z, z2, z3, false);
     }
 
-    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, NumberFormatException {
+    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
         if (this.attachedToWindow && !this.frozen) {
             setMessageContent(messageObject, groupedMessages, z, z2, z3, z4);
             return;
@@ -7236,17 +7252,17 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void startRevealMedia() throws Resources.NotFoundException, NumberFormatException {
+    public void startRevealMedia() throws Resources.NotFoundException {
         startRevealMedia(this.photoImage.getImageX() + (this.photoImage.getImageWidth() / 2.0f), this.photoImage.getImageY() + (this.photoImage.getImageHeight() / 2.0f));
     }
 
-    public void startRevealMedia(float f, float f2) throws Resources.NotFoundException, NumberFormatException {
+    public void startRevealMedia(float f, float f2) throws Resources.NotFoundException {
         float fSqrt = (float) Math.sqrt(Math.pow(this.photoImage.getImageWidth(), 2.0d) + Math.pow(this.photoImage.getImageHeight(), 2.0d));
         this.mediaSpoilerRevealMaxRadius = fSqrt;
         startRevealMedia(f, f2, fSqrt);
     }
 
-    private void startRevealMedia(float f, float f2, float f3) throws Resources.NotFoundException, NumberFormatException {
+    private void startRevealMedia(float f, float f2, float f3) throws Resources.NotFoundException {
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject.isMediaSpoilersRevealed || this.mediaSpoilerRevealProgress != 0.0f) {
             return;
@@ -9003,7 +9019,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r63) throws android.content.res.Resources.NotFoundException {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r63) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 
@@ -11243,7 +11259,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public boolean performAccessibilityAction(int i, Bundle bundle) throws Resources.NotFoundException, NumberFormatException {
+    public boolean performAccessibilityAction(int i, Bundle bundle) throws Resources.NotFoundException {
         ChatMessageCellDelegate chatMessageCellDelegate;
         ChatMessageCellDelegate chatMessageCellDelegate2 = this.delegate;
         if (chatMessageCellDelegate2 != null && chatMessageCellDelegate2.onAccessibilityAction(i, bundle)) {
@@ -11388,7 +11404,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         invalidate();
     }
 
-    public int computeHeight(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public int computeHeight(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z) {
         this.photoImage.setIgnoreImageSet(true);
         this.avatarImage.setIgnoreImageSet(true);
         this.replyImageReceiver.setIgnoreImageSet(true);
@@ -11423,7 +11439,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.totalHeight + this.keyboardHeight;
     }
 
-    public int computeWidth(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages) throws Resources.NotFoundException, NumberFormatException {
+    public int computeWidth(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages) throws Resources.NotFoundException {
         this.photoImage.setIgnoreImageSet(true);
         this.avatarImage.setIgnoreImageSet(true);
         this.replyImageReceiver.setIgnoreImageSet(true);
@@ -12375,7 +12391,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
 
         @Override
-        public boolean performAction(int r10, int r11, android.os.Bundle r12) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public boolean performAction(int r10, int r11, android.os.Bundle r12) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.MessageAccessibilityNodeProvider.performAction(int, int, android.os.Bundle):boolean");
         }
 

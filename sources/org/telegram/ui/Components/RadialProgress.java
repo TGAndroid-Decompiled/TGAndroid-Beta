@@ -49,6 +49,7 @@ public class RadialProgress {
     private boolean alphaForMiniPrevious = true;
     private float overrideAlpha = 1.0f;
     private Paint overridePaint = null;
+    private float rotationSpeed = 3000.0f;
     private final Path roundProgressRectPath = new Path();
     private final Matrix roundProgressRectMatrix = new Matrix();
     private final PathMeasure roundProgressRectPathMeasure = new PathMeasure();
@@ -87,8 +88,16 @@ public class RadialProgress {
         this.parent = view;
     }
 
+    public void setStrokeWidth(int i) {
+        this.progressPaint.setStrokeWidth(i);
+    }
+
     public void setProgressRect(int i, int i2, int i3, int i4) {
         this.progressRect.set(i, i2, i3, i4);
+    }
+
+    public void setRotationTime(float f) {
+        this.rotationSpeed = f;
     }
 
     private void updateAnimation(boolean z) {
@@ -104,7 +113,7 @@ public class RadialProgress {
         }
         if (z) {
             if (this.animatedProgressValue != 1.0f) {
-                this.radOffset += (360 * j) / 3000.0f;
+                this.radOffset += (360 * j) / this.rotationSpeed;
                 float f = this.currentProgress;
                 float f2 = this.animationProgressStart;
                 float f3 = f - f2;

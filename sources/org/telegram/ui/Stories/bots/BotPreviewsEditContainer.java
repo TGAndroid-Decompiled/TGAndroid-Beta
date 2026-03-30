@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -26,7 +27,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -767,7 +767,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             }
 
             @Override
-            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws IOException {
+            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws Resources.NotFoundException {
                 if (chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty()) {
                     return;
                 }
