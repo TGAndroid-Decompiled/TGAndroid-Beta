@@ -184,7 +184,7 @@ public class Bulletin {
         } else {
             layout.setWideScreenParams(-2, 1);
         }
-        return new Bulletin(baseFragment, baseFragment.getLayoutContainer(), layout, i);
+        return new Bulletin(baseFragment, baseFragment.getBulletinLayoutContainer(), layout, i);
     }
 
     public static Bulletin find(FrameLayout frameLayout) {
@@ -923,6 +923,7 @@ public class Bulletin {
         private Matrix clipMatrix;
         private Paint clipPaint;
         Delegate delegate;
+        private boolean hasCustomBackground;
         public float inOutOffset;
         public View.OnClickListener onClickListener;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -1014,7 +1015,15 @@ public class Bulletin {
         }
 
         public void setBackground(int i, int i2) {
+            if (this.hasCustomBackground) {
+                return;
+            }
             this.background = Theme.createRoundRectDrawable(AndroidUtilities.dp(i2), i);
+        }
+
+        public void setCustomBackground(Drawable drawable) {
+            this.background = drawable;
+            this.hasCustomBackground = true;
         }
 
         static {

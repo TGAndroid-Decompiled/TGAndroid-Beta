@@ -252,7 +252,7 @@ public class RecentVotersCell extends FrameLayout {
         @Override
         public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             MessageSeenView.UserCell userCell = (MessageSeenView.UserCell) view;
-            userCell.setUser((TLObject) uItem.object, uItem.intValue);
+            userCell.setUser((TLObject) uItem.object, uItem.intValue, true);
             userCell.setOnClickListener(uItem.clickCallback);
         }
 

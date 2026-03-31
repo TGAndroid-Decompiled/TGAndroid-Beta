@@ -742,6 +742,10 @@ public abstract class BaseFragment {
         return null;
     }
 
+    public FrameLayout getBulletinLayoutContainer() {
+        return getLayoutContainer();
+    }
+
     public boolean presentFragmentAsPreview(BaseFragment baseFragment) {
         INavigationLayout iNavigationLayout;
         return allowPresentFragment() && (iNavigationLayout = this.parentLayout) != null && iNavigationLayout.presentFragmentAsPreview(baseFragment);

@@ -2668,13 +2668,16 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 float top;
                 float left3;
                 float top2;
+                Shader.TileMode tileMode;
                 if (!GroupCallActivity.this.isInDrawRenderNodeBlur && !GroupCallActivity.this.drawingForBlur && Build.VERSION.SDK_INT >= 31 && canvas.isHardwareAccelerated() && !AndroidUtilities.makingGlobalBlurBitmap) {
                     if (GroupCallActivity.this.renderNodeBlur == null) {
                         GroupCallActivity.this.renderNodeBlur = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("CallActivity.Blur");
                         GroupCallActivity.this.renderNodeBlurScale = SizeNotifierFrameLayout.getRenderNodeScale();
                         ColorMatrix colorMatrix = new ColorMatrix(new float[]{0.5f, 0.0f, 0.0f, 0.0f, 8.5f, 0.0f, 0.5f, 0.0f, 0.0f, 8.5f, 0.0f, 0.0f, 0.5f, 0.0f, 8.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
                         float blurRadius = SizeNotifierFrameLayout.getBlurRadius();
-                        GroupCallActivity.this.renderNodeBlur.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(blurRadius, blurRadius, Shader.TileMode.DECAL), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
+                        RenderNode renderNode = GroupCallActivity.this.renderNodeBlur;
+                        tileMode = Shader.TileMode.DECAL;
+                        renderNode.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(blurRadius, blurRadius, tileMode), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
                         GroupCallActivity.this.groupCallMessagesListView.setBlurRoot(this);
                         GroupCallActivity.this.groupCallMessagesListView.setRenderNode(GroupCallActivity.this.renderNodeBlur, GroupCallActivity.this.renderNodeBlurScale);
                     }

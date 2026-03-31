@@ -1050,6 +1050,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
 
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z, int i) {
         float f2;
+        Shader.TileMode tileMode;
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);
             return;
@@ -1075,7 +1076,11 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
                     renderNodeArr[i2] = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("blurNode" + i2);
                     ColorMatrix colorMatrix = new ColorMatrix();
                     colorMatrix.setSaturation(2.0f);
-                    this.blurNodes[i2].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(getBlurRadiusInternal(), getBlurRadiusInternal(), Shader.TileMode.DECAL), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
+                    RenderNode renderNode = this.blurNodes[i2];
+                    float blurRadiusInternal = getBlurRadiusInternal();
+                    float blurRadiusInternal2 = getBlurRadiusInternal();
+                    tileMode = Shader.TileMode.DECAL;
+                    renderNode.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(blurRadiusInternal, blurRadiusInternal2, tileMode), RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix))));
                 }
                 int measuredWidth = getMeasuredWidth();
                 int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(100.0f);
@@ -1106,9 +1111,9 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
             canvas.save();
             canvas.drawRect(rect, paint);
             canvas.clipRect(rect);
-            RenderNode renderNode = this.blurNodes[i2];
-            if (renderNode != null && i < 255) {
-                renderNode.setAlpha(1.0f - (i / 255.0f));
+            RenderNode renderNode2 = this.blurNodes[i2];
+            if (renderNode2 != null && i < 255) {
+                renderNode2.setAlpha(1.0f - (i / 255.0f));
                 if (z) {
                     f2 = 0.0f;
                     canvas.translate(0.0f, (-f) - getTranslationY());

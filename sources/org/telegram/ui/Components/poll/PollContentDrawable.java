@@ -212,10 +212,11 @@ public class PollContentDrawable extends Drawable implements DownloadController.
         if (this.isFile) {
             return AndroidUtilities.dp(56.0f);
         }
-        if (this.mediaWidth == 0) {
+        int i2 = this.mediaWidth;
+        if (i2 == 0) {
             return AndroidUtilities.dp(100.0f);
         }
-        return Math.min(Math.round(this.mediaHeight * (i / r0)), this.isExplanation ? (i * 4) / 5 : (i * 5) / 4);
+        return Math.min(Math.round(this.mediaHeight * (i / i2)), this.isExplanation ? (i * 4) / 5 : (i * 5) / 4);
     }
 
     public void checkColors(boolean z) {

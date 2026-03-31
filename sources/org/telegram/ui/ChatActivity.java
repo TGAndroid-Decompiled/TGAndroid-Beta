@@ -18030,11 +18030,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void onShow(Bulletin bulletin) {
-                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-            }
-
-            @Override
             public int getBottomOffset(int i) {
                 if (i == 1) {
                     return 0;
@@ -18045,6 +18040,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             @Override
             public int getTopOffset(int i) {
                 return Math.max(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), ((BaseFragment) ChatActivity.this).actionBar != null ? ((BaseFragment) ChatActivity.this).actionBar.getMeasuredHeight() + ((BaseFragment) ChatActivity.this).actionBar.getTop() : 0) + ((int) Math.max(0.0f, ChatActivity.this.paddingTopHeight));
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                bulletin.getLayout().setCustomBackground(ChatActivity.this.glassBackgroundDrawableFactory.create((View) bulletin.getLayout(), true).setColorProvider(BlurredBackgroundProviderImpl.bulletin(ChatActivity.this.themeDelegate)).setRadius(AndroidUtilities.dp(16.0f)));
             }
         };
         this.bulletinDelegate = delegate;

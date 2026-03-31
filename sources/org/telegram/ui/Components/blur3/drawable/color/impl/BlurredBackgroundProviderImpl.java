@@ -13,7 +13,7 @@ import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
 
 public abstract class BlurredBackgroundProviderImpl {
-    public static int lambda$photoViewerMenu$8(Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int lambda$photoViewerMenu$9(Theme.ResourcesProvider resourcesProvider, boolean z) {
         return 1073741824;
     }
 
@@ -98,6 +98,19 @@ public abstract class BlurredBackgroundProviderImpl {
         return Theme.multAlpha(Theme.getColor(Theme.key_chat_topPanelBackground, resourcesProvider2), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
+    public static BlurredBackgroundProvider bulletin(Theme.ResourcesProvider resourcesProvider) {
+        return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
+            @Override
+            public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
+                return BlurredBackgroundProviderImpl.lambda$bulletin$6(resourcesProvider2, z);
+            }
+        }).setStrokeWidth(AndroidUtilities.dpf2(0.5f), AndroidUtilities.dpf2(0.5f)).build();
+    }
+
+    public static int lambda$bulletin$6(Theme.ResourcesProvider resourcesProvider, boolean z) {
+        return Theme.multAlpha(Theme.getColor(Theme.key_undo_background, resourcesProvider), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
+    }
+
     public static BlurredBackgroundProvider inputFieldDialogActivity(Theme.ResourcesProvider resourcesProvider) {
         return topPanel(resourcesProvider);
     }
@@ -106,12 +119,12 @@ public abstract class BlurredBackgroundProviderImpl {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.lambda$inputFieldShareAlert$6(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.lambda$inputFieldShareAlert$7(resourcesProvider2, z);
             }
         }).setStrokeColorTop(385875968, 402653183).setStrokeColorBottom(385875968, 402653183).setShadowColor(637534208, 83886079).setShadowLayer(AndroidUtilities.dpf2(3.3333333f), 0.0f, AndroidUtilities.dpf2(0.6666667f)).setStrokeWidth(AndroidUtilities.dpf2(0.4f), AndroidUtilities.dpf2(0.4f)).build();
     }
 
-    public static int lambda$inputFieldShareAlert$6(Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int lambda$inputFieldShareAlert$7(Theme.ResourcesProvider resourcesProvider, boolean z) {
         return solveSrcColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider), Theme.getColor(Theme.key_chat_messagePanelBackground, resourcesProvider), LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
@@ -119,12 +132,12 @@ public abstract class BlurredBackgroundProviderImpl {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.lambda$photoViewer$7(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.lambda$photoViewer$8(resourcesProvider2, z);
             }
         }).setStrokeColorTop(687865855, 687865855).setStrokeColorBottom(352321535, 352321535).setStrokeWidth(AndroidUtilities.dpf2(0.6666667f), AndroidUtilities.dpf2(0.6666667f)).build();
     }
 
-    public static int lambda$photoViewer$7(Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int lambda$photoViewer$8(Theme.ResourcesProvider resourcesProvider, boolean z) {
         LiteMode.isEnabled(262144);
         return 0;
     }
@@ -133,7 +146,7 @@ public abstract class BlurredBackgroundProviderImpl {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.lambda$photoViewerMenu$8(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.lambda$photoViewerMenu$9(resourcesProvider2, z);
             }
         }).setStrokeColorTop(687865855, 687865855).setStrokeColorBottom(352321535, 352321535).setStrokeWidth(AndroidUtilities.dpf2(0.6666667f), AndroidUtilities.dpf2(0.6666667f)).build();
     }
@@ -142,12 +155,12 @@ public abstract class BlurredBackgroundProviderImpl {
         return new BlurredBackgroundProviderBuilder(resourcesProvider).setBackgroundColor(new BlurredBackgroundProviderBuilder.ColorProvider() {
             @Override
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
-                return BlurredBackgroundProviderImpl.lambda$premiumButton$9(resourcesProvider2, z);
+                return BlurredBackgroundProviderImpl.lambda$premiumButton$10(resourcesProvider2, z);
             }
         }).setStrokeColorTop(-1, 553648127).setStrokeColorBottom(0, 553648127).setShadowColor(805306368, 83886079).setShadowLayer(AndroidUtilities.dpf2(4.0f), 0.0f, AndroidUtilities.dpf2(0.33333334f)).setStrokeWidth(AndroidUtilities.dpf2(0.67f), AndroidUtilities.dpf2(0.67f)).build();
     }
 
-    public static int lambda$premiumButton$9(Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public static int lambda$premiumButton$10(Theme.ResourcesProvider resourcesProvider, boolean z) {
         return Theme.multAlpha(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 0.78f);
     }
 
