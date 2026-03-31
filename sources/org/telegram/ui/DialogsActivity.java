@@ -3374,7 +3374,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$18(View view) {
+    public void lambda$createView$18(View view) throws Resources.NotFoundException {
         openStoriesRecorder();
     }
 
@@ -11057,7 +11057,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() {
+    private void openStoriesRecorder() throws Resources.NotFoundException {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {

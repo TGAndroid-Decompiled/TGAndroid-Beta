@@ -313,16 +313,11 @@ public class ProfileGooeyView extends FrameLayout {
 
         @Override
         public void setBlurIntensity(float f) {
-            Shader.TileMode tileMode;
-            if (f == 0.0f) {
+            if (f != 0.0f) {
+                this.blurNode.setRenderEffect(RenderEffect.createBlurEffect((ProfileGooeyView.this.intensity * f) / this.factorMult, (f * ProfileGooeyView.this.intensity) / this.factorMult, Shader.TileMode.DECAL));
+            } else {
                 this.blurNode.setRenderEffect(null);
-                return;
             }
-            RenderNode renderNode = this.blurNode;
-            float f2 = (ProfileGooeyView.this.intensity * f) / this.factorMult;
-            float f3 = (f * ProfileGooeyView.this.intensity) / this.factorMult;
-            tileMode = Shader.TileMode.DECAL;
-            renderNode.setRenderEffect(RenderEffect.createBlurEffect(f2, f3, tileMode));
         }
 
         @Override
