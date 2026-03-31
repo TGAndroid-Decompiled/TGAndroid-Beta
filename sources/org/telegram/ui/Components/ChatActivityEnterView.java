@@ -10827,6 +10827,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
 
                 @Override
+                public boolean allowLivePhotos() {
+                    return PhotoViewer.PhotoViewerProvider.CC.$default$allowLivePhotos(this);
+                }
+
+                @Override
                 public boolean allowSendingSubmenu() {
                     return true;
                 }

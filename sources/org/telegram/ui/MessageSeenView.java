@@ -373,7 +373,7 @@ public class MessageSeenView extends FrameLayout {
             int i = R.drawable.msg_mini_checks;
             int i2 = Theme.key_windowBackgroundWhiteGrayText;
             seenDrawable = new MessageSeenCheckDrawable(i, i2);
-            votedDrawable = new MessageSeenCheckDrawable(i, i2);
+            votedDrawable = new MessageSeenCheckDrawable(R.drawable.mini_checklist_done_outline, i2);
         }
 
         public UserCell(Context context) {

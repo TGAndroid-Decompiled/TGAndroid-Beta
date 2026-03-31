@@ -840,6 +840,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public boolean allowLivePhotos() {
+            return PhotoViewerProvider.CC.$default$allowLivePhotos(this);
+        }
+
+        @Override
         public boolean allowSendingSubmenu() {
             return true;
         }
@@ -1098,6 +1103,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public interface PhotoViewerProvider {
 
         public abstract class CC {
+            public static boolean $default$allowLivePhotos(PhotoViewerProvider photoViewerProvider) {
+                return false;
+            }
+
             public static boolean $default$canLoadMoreAvatars(PhotoViewerProvider photoViewerProvider) {
                 return true;
             }
@@ -1157,6 +1166,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         boolean allowCaption();
+
+        boolean allowLivePhotos();
 
         boolean allowSendingSubmenu();
 
@@ -1317,6 +1328,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private boolean isUnalivePhoto() {
+        PhotoViewerProvider photoViewerProvider = this.placeProvider;
+        if (photoViewerProvider != null && !photoViewerProvider.allowLivePhotos()) {
+            return true;
+        }
         int i = this.currentIndex;
         if (i >= 0 && i < this.imagesArrLocals.size()) {
             Object obj = this.imagesArrLocals.get(this.currentIndex);
@@ -6105,7 +6120,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -11165,7 +11180,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 arrayList.add(ObjectAnimator.ofFloat(PhotoViewer.this.muteButton, (Property<ImageView, Float>) property2, 1.0f));
             }
             if (PhotoViewer.this.livePhotoButton.getTag() != null) {
-                PhotoViewer.this.livePhotoButton.setVisibility((PhotoViewer.this.sendPhotoTypeIsGif || !PhotoViewer.this.centerImageIsLivePhoto) ? 8 : 0);
+                PhotoViewer.this.livePhotoButton.setVisibility((!PhotoViewer.this.sendPhotoTypeIsGif && PhotoViewer.this.centerImageIsLivePhoto && (PhotoViewer.this.placeProvider == null || PhotoViewer.this.placeProvider.allowLivePhotos())) ? 0 : 8);
                 arrayList.add(ObjectAnimator.ofFloat(PhotoViewer.this.muteButton, (Property<ImageView, Float>) property2, 1.0f));
             }
             if (PhotoViewer.this.editCoverButton.getTag() != null) {

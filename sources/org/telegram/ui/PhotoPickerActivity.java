@@ -192,7 +192,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 }
                 if (photoEntry.path != null) {
                     imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-                    if (photoEntry.isVideo) {
+                    if (photoEntry.isVideo && !photoEntry.isLivePhoto) {
                         imageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
                         return;
                     }
@@ -1887,7 +1887,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 imageView.setOrientation(0, true);
                 if (PhotoPickerActivity.this.selectedAlbum != null) {
                     MediaController.PhotoEntry photoEntry = PhotoPickerActivity.this.selectedAlbum.photos.get(i);
-                    photoAttachPhotoCell.setPhotoEntry(photoEntry, PhotoPickerActivity.this.selectedPhotosOrder.size() > 1, true, false);
+                    photoAttachPhotoCell.setPhotoEntry(photoEntry, PhotoPickerActivity.this.selectedPhotosOrder.size() > 1, true, false, false);
                     photoAttachPhotoCell.setChecked(PhotoPickerActivity.this.allowIndices ? PhotoPickerActivity.this.selectedPhotosOrder.indexOf(Integer.valueOf(photoEntry.imageId)) : -1, PhotoPickerActivity.this.selectedPhotos.containsKey(Integer.valueOf(photoEntry.imageId)), false);
                     zIsShowingImage = PhotoViewer.isShowingImage(photoEntry.path);
                 } else {

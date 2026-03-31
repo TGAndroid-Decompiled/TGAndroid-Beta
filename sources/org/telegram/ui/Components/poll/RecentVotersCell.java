@@ -205,7 +205,15 @@ public class RecentVotersCell extends FrameLayout {
                     }
                 }));
             }
-            if (this.completed || this.votes.isEmpty()) {
+            if (this.completed) {
+                return;
+            }
+            if (this.votes.isEmpty()) {
+                arrayList.add(FlickerFactory2.of());
+                arrayList.add(FlickerFactory2.of());
+                arrayList.add(FlickerFactory2.of());
+                arrayList.add(FlickerFactory2.of());
+                arrayList.add(FlickerFactory2.of());
                 return;
             }
             arrayList.add(FlickerFactory.of());
@@ -234,6 +242,24 @@ public class RecentVotersCell extends FrameLayout {
 
         public static UItem of() {
             return UItem.ofFactory(FlickerFactory.class);
+        }
+    }
+
+    public static class FlickerFactory2 extends UItem.UItemFactory {
+        static {
+            UItem.UItemFactory.setup(new FlickerFactory2());
+        }
+
+        @Override
+        public FlickerLoadingView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
+            flickerLoadingView.setViewType(16);
+            flickerLoadingView.setMinimumHeight(AndroidUtilities.dp(48.0f));
+            return flickerLoadingView;
+        }
+
+        public static UItem of() {
+            return UItem.ofFactory(FlickerFactory2.class);
         }
     }
 

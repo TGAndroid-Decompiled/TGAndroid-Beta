@@ -50,6 +50,7 @@ import org.telegram.ui.PhotoViewer;
 
 public class PhotoAttachPhotoCell extends FrameLayout {
     private static Rect rect = new Rect();
+    private boolean allowLivePhotos;
     private AnimatorSet animator;
     private AnimatorSet animatorSet;
     private Paint backgroundPaint;
@@ -194,22 +195,21 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                         PhotoAttachPhotoCell.this.container.invalidate();
                     }
                 }
-                if (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isLivePhoto) {
-                    return;
-                }
-                if (PhotoAttachPhotoCell.this.photoEntry.discardLivePhoto) {
-                    if (this.livePhotoIconOff == null) {
-                        this.livePhotoIconOff = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
+                if (PhotoAttachPhotoCell.this.photoEntry != null && PhotoAttachPhotoCell.this.photoEntry.isLivePhoto && PhotoAttachPhotoCell.this.allowLivePhotos) {
+                    if (PhotoAttachPhotoCell.this.photoEntry.discardLivePhoto) {
+                        if (this.livePhotoIconOff == null) {
+                            this.livePhotoIconOff = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
+                        }
+                        drawable = this.livePhotoIconOff;
+                    } else {
+                        if (this.livePhotoIcon == null) {
+                            this.livePhotoIcon = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
+                        }
+                        drawable = this.livePhotoIcon;
                     }
-                    drawable = this.livePhotoIconOff;
-                } else {
-                    if (this.livePhotoIcon == null) {
-                        this.livePhotoIcon = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
-                    }
-                    drawable = this.livePhotoIcon;
+                    drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
+                    drawable.draw(canvas);
                 }
-                drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
-                drawable.draw(canvas);
             }
 
             @Override
@@ -455,11 +455,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         return this.videoInfoContainer;
     }
 
-    public void setPhotoEntry(MediaController.PhotoEntry photoEntry, boolean z, boolean z2, boolean z3) {
-        boolean z4 = false;
+    public void setPhotoEntry(MediaController.PhotoEntry photoEntry, boolean z, boolean z2, boolean z3, boolean z4) {
+        boolean z5 = false;
         this.pressed = false;
         this.photoEntry = photoEntry;
         this.isLast = z3;
+        this.allowLivePhotos = z4;
         if (photoEntry.isVideo && !photoEntry.isLivePhoto) {
             this.imageView.setOrientation(0, true);
             this.videoInfoContainer.setVisibility(0);
@@ -494,16 +495,16 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
             }
         }
-        boolean z5 = z2 && PhotoViewer.isShowingImage(this.photoEntry.path);
-        this.imageView.getImageReceiver().setVisible(!z5, true);
-        this.checkBox.setAlpha(z5 ? 0.0f : 1.0f);
-        this.videoInfoContainer.setAlpha(z5 ? 0.0f : 1.0f);
+        boolean z6 = z2 && PhotoViewer.isShowingImage(this.photoEntry.path);
+        this.imageView.getImageReceiver().setVisible(!z6, true);
+        this.checkBox.setAlpha(z6 ? 0.0f : 1.0f);
+        this.videoInfoContainer.setAlpha(z6 ? 0.0f : 1.0f);
         requestLayout();
         setHasSpoiler(photoEntry.hasSpoiler);
         if (photoEntry.isHighQuality() && isChecked()) {
-            z4 = true;
+            z5 = true;
         }
-        setHighQuality(z4);
+        setHighQuality(z5);
         setStarsPrice(photoEntry.starsAmount, z);
     }
 

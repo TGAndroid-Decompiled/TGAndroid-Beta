@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -864,7 +863,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) throws Resources.NotFoundException {
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
                 PeriodDay dayAtCoord;
                 if (((BaseFragment) CalendarActivity.this).parentLayout == null) {
                     return false;
@@ -1056,7 +1055,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     if (baseFragment instanceof ChatActivity) {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws Resources.NotFoundException {
+                            public final void run() {
                                 this.f$0.lambda$onLongPress$0(baseFragment, periodDay);
                             }
                         }, 300L);
@@ -1065,7 +1064,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 CalendarActivity.this.finishPreviewFragment();
             }
 
-            public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) throws Resources.NotFoundException {
+            public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) {
                 CalendarActivity.this.finishFragment();
                 ((ChatActivity) baseFragment).jumpToDate(periodDay.date);
             }

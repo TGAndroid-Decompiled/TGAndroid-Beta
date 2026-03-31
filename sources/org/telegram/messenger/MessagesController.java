@@ -156,7 +156,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int aboutLengthLimitDefault;
     public int aboutLengthLimitPremium;
     private final HashMap<Long, TLRPC.Chat> activeVoiceChatsMap;
-    public Set<String> aiComposeStyles;
+    public String aiComposeStyles;
     protected final ArrayList<TLRPC.Dialog> allDialogs;
     public boolean androidDisableRoundCamera2;
     public float animatedEmojisZoom;
@@ -870,8 +870,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean aiEditorAvailable() {
-        Set<String> set = this.aiComposeStyles;
-        return (set == null || set.isEmpty()) ? false : true;
+        String str = this.aiComposeStyles;
+        return (str == null || str.isEmpty()) ? false : true;
     }
 
     public boolean starsPurchaseAvailable() {
@@ -1782,7 +1782,6 @@ public class MessagesController extends BaseController implements NotificationCe
         this.emojiInteractions = new HashMap<>();
         this.showAnnualPerMonth = false;
         this.starrefStartParamPrefixes = new HashSet();
-        this.aiComposeStyles = new HashSet();
         this.directPaymentsCurrency = new ArrayList();
         this.emojiStatusUntilValues = new ConcurrentHashMap<>();
         AppGlobalConfig appGlobalConfig = new AppGlobalConfig();
@@ -2090,7 +2089,12 @@ public class MessagesController extends BaseController implements NotificationCe
         this.starsPaidPostAmountMax = this.mainPreferences.getLong("starsPaidPostAmountMax", 10000L);
         this.botPreviewMediasMax = this.mainPreferences.getInt("botPreviewMediasMax", 10);
         this.webAppAllowedProtocols = this.mainPreferences.getStringSet("webAppAllowedProtocols", new HashSet(Arrays.asList("http", "https")));
-        this.aiComposeStyles = this.mainPreferences.getStringSet("aiComposeStyles2", new HashSet());
+        Set<String> stringSet = this.mainPreferences.getStringSet("aiComposeStyles2", new HashSet());
+        String string = this.mainPreferences.getString("aiComposeStyles3", stringSet != null ? TextUtils.join(";;;", stringSet) : null);
+        this.aiComposeStyles = string;
+        if (string != null && string.length() <= 0) {
+            this.aiComposeStyles = null;
+        }
         this.ignoreRestrictionReasons = this.mainPreferences.getStringSet("ignoreRestrictionReasons", new HashSet(Arrays.asList(new String[0])));
         this.tonProxyAddress = this.mainPreferences.getString("tonProxyAddress", "magic.org");
         this.weatherSearchUsername = this.mainPreferences.getString("weatherSearchUsername", "izweatherbot");
@@ -2158,10 +2162,10 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             this.webFileDatacenterId = z ? 2 : 4;
         }
-        Set<String> stringSet = this.mainPreferences.getStringSet("directPaymentsCurrency", null);
-        if (stringSet != null) {
+        Set<String> stringSet2 = this.mainPreferences.getStringSet("directPaymentsCurrency", null);
+        if (stringSet2 != null) {
             this.directPaymentsCurrency.clear();
-            this.directPaymentsCurrency.addAll(stringSet);
+            this.directPaymentsCurrency.addAll(stringSet2);
         }
         loadPremiumFeaturesPreviewOrder(this.premiumFeaturesTypesToPosition, this.mainPreferences.getString("premiumFeaturesTypesToPosition", null));
         loadPremiumFeaturesPreviewOrder(this.businessFeaturesTypesToPosition, this.mainPreferences.getString("businessFeaturesTypesToPosition", null));
@@ -2175,9 +2179,9 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             this.dismissedSuggestions = new HashSet();
         }
-        Set<String> stringSet2 = this.mainPreferences.getStringSet("exportUri2", null);
-        this.exportUri = stringSet2;
-        if (stringSet2 != null) {
+        Set<String> stringSet3 = this.mainPreferences.getStringSet("exportUri2", null);
+        this.exportUri = stringSet3;
+        if (stringSet3 != null) {
             this.exportUri = new HashSet(this.exportUri);
         } else {
             HashSet hashSet = new HashSet();
@@ -2188,54 +2192,54 @@ public class MessagesController extends BaseController implements NotificationCe
             this.exportUri.add(".*WhatsApp.*\\.txt$");
             this.exportUri.add(".*WhatsApp.*\\.zip$");
         }
-        Set<String> stringSet3 = this.mainPreferences.getStringSet("exportGroupUri", null);
-        this.exportGroupUri = stringSet3;
-        if (stringSet3 != null) {
+        Set<String> stringSet4 = this.mainPreferences.getStringSet("exportGroupUri", null);
+        this.exportGroupUri = stringSet4;
+        if (stringSet4 != null) {
             this.exportGroupUri = new HashSet(this.exportGroupUri);
         } else {
             HashSet hashSet2 = new HashSet();
             this.exportGroupUri = hashSet2;
             hashSet2.add("@g.us/");
         }
-        Set<String> stringSet4 = this.mainPreferences.getStringSet("exportPrivateUri", null);
-        this.exportPrivateUri = stringSet4;
-        if (stringSet4 != null) {
+        Set<String> stringSet5 = this.mainPreferences.getStringSet("exportPrivateUri", null);
+        this.exportPrivateUri = stringSet5;
+        if (stringSet5 != null) {
             this.exportPrivateUri = new HashSet(this.exportPrivateUri);
         } else {
             HashSet hashSet3 = new HashSet();
             this.exportPrivateUri = hashSet3;
             hashSet3.add("@s.whatsapp.net/");
         }
-        Set<String> stringSet5 = this.mainPreferences.getStringSet("autologinDomains", null);
-        this.autologinDomains = stringSet5;
-        if (stringSet5 != null) {
+        Set<String> stringSet6 = this.mainPreferences.getStringSet("autologinDomains", null);
+        this.autologinDomains = stringSet6;
+        if (stringSet6 != null) {
             this.autologinDomains = new HashSet(this.autologinDomains);
         } else {
             this.autologinDomains = new HashSet();
         }
-        Set<String> stringSet6 = this.mainPreferences.getStringSet("authDomains", null);
-        this.authDomains = stringSet6;
-        if (stringSet6 != null) {
+        Set<String> stringSet7 = this.mainPreferences.getStringSet("authDomains", null);
+        this.authDomains = stringSet7;
+        if (stringSet7 != null) {
             this.authDomains = new HashSet(this.authDomains);
         } else {
             this.authDomains = new HashSet();
         }
         this.autologinToken = this.mainPreferences.getString("autologinToken", null);
-        Set<String> stringSet7 = this.mainPreferences.getStringSet("diceEmojies", null);
-        if (stringSet7 == null) {
+        Set<String> stringSet8 = this.mainPreferences.getStringSet("diceEmojies", null);
+        if (stringSet8 == null) {
             HashSet<String> hashSet4 = new HashSet<>();
             this.diceEmojies = hashSet4;
             hashSet4.add("🎲");
             this.diceEmojies.add("🎯");
         } else {
-            this.diceEmojies = new HashSet<>(stringSet7);
+            this.diceEmojies = new HashSet<>(stringSet8);
         }
-        String string = this.mainPreferences.getString("diceSuccess", null);
-        if (string == null) {
+        String string2 = this.mainPreferences.getString("diceSuccess", null);
+        if (string2 == null) {
             this.diceSuccess.put("🎯", new DiceFrameSuccess(62, 6));
         } else {
             try {
-                byte[] bArrDecode = Base64.decode(string, 0);
+                byte[] bArrDecode = Base64.decode(string2, 0);
                 if (bArrDecode != null) {
                     SerializedData serializedData = new SerializedData(bArrDecode);
                     int int32 = serializedData.readInt32(true);
@@ -2248,10 +2252,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 FileLog.e(e);
             }
         }
-        String string2 = this.mainPreferences.getString("emojiSounds", null);
-        if (string2 != null) {
+        String string3 = this.mainPreferences.getString("emojiSounds", null);
+        if (string3 != null) {
             try {
-                byte[] bArrDecode2 = Base64.decode(string2, 0);
+                byte[] bArrDecode2 = Base64.decode(string3, 0);
                 if (bArrDecode2 != null) {
                     SerializedData serializedData2 = new SerializedData(bArrDecode2);
                     int int322 = serializedData2.readInt32(true);
@@ -2264,8 +2268,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 FileLog.e(e2);
             }
         }
-        String string3 = this.mainPreferences.getString("gifSearchEmojies", null);
-        if (string3 == null) {
+        String string4 = this.mainPreferences.getString("gifSearchEmojies", null);
+        if (string4 == null) {
             this.gifSearchEmojies.add("👍");
             this.gifSearchEmojies.add("👎");
             this.gifSearchEmojies.add("😍");
@@ -2278,7 +2282,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.gifSearchEmojies.add("😎");
         } else {
             try {
-                byte[] bArrDecode3 = Base64.decode(string3, 0);
+                byte[] bArrDecode3 = Base64.decode(string4, 0);
                 if (bArrDecode3 != null) {
                     SerializedData serializedData3 = new SerializedData(bArrDecode3);
                     int int323 = serializedData3.readInt32(true);
@@ -3496,6 +3500,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.freezeAppealUrl = "t.me/spambot";
         this.verifyAgeBotUsername = null;
         this.verifyAgeCountry = "GB";
+        this.aiComposeStyles = null;
         this.ignoreRestrictionReasons = new HashSet();
         this.mainPreferences.edit().remove("starsLocked").remove("getfileExperimentalParams").remove("smsjobsStickyNotificationEnabled").remove("channelRevenueWithdrawalEnabled").remove("showAnnualPerMonth").remove("canEditFactcheck").remove("factcheckLengthLimit").remove("videoIgnoreAltDocuments").remove("freezeSinceDate").remove("freezeUntilDate").remove("freezeAppealUrl").remove("verifyAgeBotUsername").remove("verifyAgeCountry").remove("ignoreRestrictionReasons").apply();
     }
