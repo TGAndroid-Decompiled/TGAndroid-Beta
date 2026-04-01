@@ -17,6 +17,10 @@ public class Vector<T extends TLObject> extends TLObject {
         T deserialize(InputSerializedData inputSerializedData, int i, boolean z);
     }
 
+    public static boolean validateSize(int i, int i2, int i3) {
+        return i >= 0 && i2 > 0 && ((long) i) * ((long) i2) <= ((long) i3);
+    }
+
     public Vector(TLDeserializer<T> tLDeserializer) {
         this.itemDeserializer = tLDeserializer;
     }
@@ -185,7 +189,11 @@ public class Vector<T extends TLObject> extends TLObject {
             return new ArrayList<>();
         }
         int int322 = inputSerializedData.readInt32(z);
-        ArrayList<T> arrayList = new ArrayList<>(Math.min(int322, 16384));
+        if (!validateSize(int322, 1, inputSerializedData.remaining())) {
+            TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", int32, z);
+            return new ArrayList<>();
+        }
+        ArrayList<T> arrayList = new ArrayList<>(int322);
         for (int i = 0; i < int322; i++) {
             arrayList.add(callbackReturn.run(Boolean.valueOf(z)));
         }
@@ -239,34 +247,17 @@ public class Vector<T extends TLObject> extends TLObject {
             return new ArrayList<>();
         }
         int int322 = inputSerializedData.readInt32(z);
-        if (int322 < 0) {
+        if (!validateSize(int322, 4, inputSerializedData.remaining())) {
             TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongSize", int32, z);
             return new ArrayList<>();
         }
-        int i = 0;
-        if (int322 > 16384) {
-            TableLayout.Assoc assoc = (ArrayList<T>) new ArrayList(128);
-            while (i < int322) {
-                int int323 = inputSerializedData.readInt32(z);
-                TLObject tLObjectDeserialize = tLDeserializer.deserialize(inputSerializedData, int323, z);
-                if (tLObjectDeserialize != null) {
-                    assoc.add(tLObjectDeserialize);
-                    i++;
-                } else {
-                    TLParseException.doThrowOrLog(inputSerializedData, "VectorWrongContent", int323, z);
-                    return new ArrayList<>();
-                }
+        TableLayout.Assoc assoc = (ArrayList<T>) new ArrayList(int322);
+        for (int i = 0; i < int322; i++) {
+            TLObject tLObjectDeserialize = tLDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (tLObjectDeserialize != null) {
+                assoc.add(tLObjectDeserialize);
             }
-            return assoc;
         }
-        TableLayout.Assoc assoc2 = (ArrayList<T>) new ArrayList(int322);
-        while (i < int322) {
-            TLObject tLObjectDeserialize2 = tLDeserializer.deserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            if (tLObjectDeserialize2 != null) {
-                assoc2.add(tLObjectDeserialize2);
-            }
-            i++;
-        }
-        return assoc2;
+        return assoc;
     }
 }
