@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
@@ -886,10 +887,15 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             super.onDraw(canvas);
             if (this.needDivider) {
                 SpoilersTextView spoilersTextView = this.collapsed ? this.shortTextView : this.textView;
+                Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+                if (themePaint == null) {
+                    themePaint = Theme.dividerPaint;
+                }
+                Paint paint = themePaint;
                 if (LocaleController.isRTL) {
-                    canvas.drawRect(0.0f, getMeasuredHeight() - 1, spoilersTextView.getRight(), getMeasuredHeight(), Theme.dividerPaint);
+                    canvas.drawRect(0.0f, getMeasuredHeight() - 1, spoilersTextView.getRight(), getMeasuredHeight(), paint);
                 } else {
-                    canvas.drawRect(spoilersTextView.getLeft(), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+                    canvas.drawRect(spoilersTextView.getLeft(), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), paint);
                 }
             }
         }

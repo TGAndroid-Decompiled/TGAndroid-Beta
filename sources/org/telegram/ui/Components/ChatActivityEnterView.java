@@ -2653,15 +2653,17 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             return;
         }
         MessagesController.getGlobalMainSettings().edit().putInt("aihintshown", 3).apply();
+        ChatActivity chatActivity = this.parentFragment;
+        final long dialogId = chatActivity != null ? chatActivity.getDialogId() : this.dialog_id;
         new AIEditorAlert(getContext(), resourcesProvider).setText(this.messageEditText.getText()).setOnUse(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 this.f$0.lambda$new$3((CharSequence) obj);
             }
-        }).setOnSend(this.parentFragment.getDialogId(), this.editingMessageObject != null, new Utilities.Callback4() {
+        }).setOnSend(dialogId, this.editingMessageObject != null, new Utilities.Callback4() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3, Object obj4) throws Resources.NotFoundException {
-                this.f$0.lambda$new$4(resourcesProvider, (CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
+                this.f$0.lambda$new$4(dialogId, resourcesProvider, (CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
             }
         }).show();
     }
@@ -2671,12 +2673,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditText.setSelection(charSequence.length(), charSequence.length());
     }
 
-    public void lambda$new$4(Theme.ResourcesProvider resourcesProvider, CharSequence charSequence, Integer num, Integer num2, Boolean bool) throws Resources.NotFoundException {
+    public void lambda$new$4(long j, Theme.ResourcesProvider resourcesProvider, CharSequence charSequence, Integer num, Integer num2, Boolean bool) throws Resources.NotFoundException {
         this.messageEditText.setText(charSequence);
         if (this.editingMessageObject != null) {
             doneEditingMessage();
         } else if (isInScheduleMode() && num.intValue() == 0) {
-            AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+            AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, j, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public void didSelectDate(boolean z, int i, int i2) {
                     boolean zSendMessageInternal = ChatActivityEnterView.this.sendMessageInternal(z, i, i2, 0L, true);

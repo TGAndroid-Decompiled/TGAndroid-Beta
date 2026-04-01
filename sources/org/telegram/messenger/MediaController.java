@@ -133,6 +133,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private static final ConcurrentHashMap<String, Integer> cachedEncoderBitrates;
     public static boolean forceBroadcastNewPhotos;
     private static final String[] projectionPhotos;
+    private static final String[] projectionPhotos2;
     private static final String[] projectionVideo;
     private static Runnable refreshGalleryRunnable;
     private static long volumeBarLastTimeShown;
@@ -387,6 +388,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     static {
         int i = Build.VERSION.SDK_INT;
         projectionPhotos = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "orientation", "width", "height", "_size", "xmp"};
+        projectionPhotos2 = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "orientation", "width", "height", "_size"};
         projectionVideo = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "duration", "width", "height", "_size"};
         cachedEncoderBitrates = new ConcurrentHashMap<>();
         allMediaAlbums = new ArrayList<>();

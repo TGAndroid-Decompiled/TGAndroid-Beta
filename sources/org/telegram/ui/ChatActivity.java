@@ -1523,7 +1523,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 boolean limitReached;
 
                 @Override
-                public void onSelectionChanged(int i5, boolean z2, float f, float f2) {
+                public void onSelectionChanged(int i5, boolean z2, float f, float f2) throws Resources.NotFoundException {
                     int i6 = i5 - ChatActivity.this.chatAdapter.messagesStartRow;
                     if (z) {
                         z2 = !z2;
@@ -1608,7 +1608,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onItemClick(View view, int i, float f, float f2) {
+        public void onItemClick(View view, int i, float f, float f2) throws Resources.NotFoundException {
             ChatMessageCell chatMessageCell;
             MessageObject messageObject;
             boolean z = false;
@@ -1647,7 +1647,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     final int replyMsgId = chatActionCell3.getMessageObject().getReplyMsgId();
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws Resources.NotFoundException {
                             this.f$0.lambda$onItemClick$0(replyMsgId);
                         }
                     }, 16L);
@@ -1679,7 +1679,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$onItemClick$0(int i) {
+        public void lambda$onItemClick$0(int i) throws Resources.NotFoundException {
             ChatActivity.this.scrollToMessageId(i, 0, true, 0, true, 0);
         }
 
@@ -2345,7 +2345,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void scrollToSendingMessage() {
+        public void scrollToSendingMessage() throws Resources.NotFoundException {
             int sendingMessageId = ChatActivity.this.getSendMessagesHelper().getSendingMessageId(ChatActivity.this.dialog_id);
             if (sendingMessageId != 0) {
                 ChatActivity.this.scrollToMessageId(sendingMessageId, 0, true, 0, true, 0);
@@ -2381,7 +2381,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void bottomPanelTranslationYChanged(float f) {
+        public void bottomPanelTranslationYChanged(float f) throws Resources.NotFoundException {
             if (f != 0.0f) {
                 ChatActivity.this.wasManualScroll = true;
             }
@@ -2735,7 +2735,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public boolean onItemClick(android.view.View r12, int r13, float r14, float r15) {
+            public boolean onItemClick(android.view.View r12, int r13, float r14, float r15) throws android.content.res.Resources.NotFoundException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass10.onItemClick(android.view.View, int, float, float):boolean");
             }
         };
@@ -3443,7 +3443,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onQuoteClick(MessageObject messageObject, int i, int i2, CharSequence charSequence) {
+        protected void onQuoteClick(MessageObject messageObject, int i, int i2, CharSequence charSequence) throws Resources.NotFoundException {
             ChatActivity chatActivity;
             MessageObject.GroupedMessages group;
             if (messageObject == null || (chatActivity = this.chatActivity) == null) {
@@ -4213,7 +4213,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         checkUi_topFade();
     }
 
-    public void lambda$createView$21(int i, View view) {
+    public void lambda$createView$21(int i, View view) throws Resources.NotFoundException {
         jumpToDate(i);
     }
 
@@ -4735,7 +4735,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
+        public void onDraw(Canvas canvas) throws Resources.NotFoundException {
             float measuredHeight;
             super.onDraw(canvas);
             if (ChatActivity.this.slidingView != null) {
@@ -5584,7 +5584,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+        public void onScrollStateChanged(RecyclerView recyclerView, int i) throws Resources.NotFoundException {
             if (i == 0) {
                 if (ChatActivity.this.pollHintCell != null) {
                     ChatActivity.this.pollHintView.showForMessageCell(ChatActivity.this.pollHintCell, -1, ChatActivity.this.pollHintX, ChatActivity.this.pollHintY, true);
@@ -5637,7 +5637,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+        public void onScrolled(RecyclerView recyclerView, int i, int i2) throws Resources.NotFoundException {
             boolean z;
             ChatActivity.this.chatListView.invalidate();
             ChatActivityFragmentView chatActivityFragmentView = ChatActivity.this.contentView;
@@ -5804,7 +5804,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$31(View view) {
+    public void lambda$createView$31(View view) throws Resources.NotFoundException {
         if (this.floatingDateView.getAlpha() == 0.0f || this.actionBar.isActionModeShowed() || isReport()) {
             return;
         }
@@ -6152,7 +6152,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             updateSearchButtons(getMediaDataController().getMask(), getMediaDataController().getSearchPosition(), getMediaDataController().getSearchCount());
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$createView$46(messageObject);
                 }
             });
@@ -6162,7 +6162,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showMessagesSearchListView(false);
     }
 
-    public void lambda$createView$46(MessageObject messageObject) {
+    public void lambda$createView$46(MessageObject messageObject) throws Resources.NotFoundException {
         scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0, null, new Runnable() {
             @Override
             public final void run() {
@@ -6387,7 +6387,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openForward(false);
     }
 
-    public void lambda$createView$50(View view) {
+    public void lambda$createView$50(View view) throws Resources.NotFoundException {
         int i;
         MessageObject messageObject = null;
         for (int i2 = 1; i2 >= 0; i2--) {
@@ -6485,7 +6485,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openAttachMenu();
     }
 
-    public boolean lambda$createView$53(View view) {
+    public boolean lambda$createView$53(View view) throws Resources.NotFoundException {
         MessageObject messageObject;
         MessageObject messageObject2;
         int i = this.fieldPanelShown;
@@ -6540,7 +6540,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showFieldPanel(false, null, null, null, null, true, 0, null, true, 0L, true);
     }
 
-    public void lambda$createView$55(View view) {
+    public void lambda$createView$55(View view) throws Resources.NotFoundException {
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject != null) {
             scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0);
@@ -8201,7 +8201,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onReactionClicked(android.view.View r25, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r26, boolean r27, boolean r28) {
+                public void onReactionClicked(android.view.View r25, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r26, boolean r27, boolean r28) throws android.content.res.Resources.NotFoundException {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass58.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
                 }
             });
@@ -8433,13 +8433,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         showDialog(AlertsCreator.createCalendarPickerDialog(getParentActivity(), 1375315200000L, new MessagesStorage.IntCallback() {
             @Override
-            public void run(int i) {
+            public void run(int i) throws Resources.NotFoundException {
                 ChatActivity.this.jumpToDate(i);
             }
         }, this.themeDelegate).create());
     }
 
-    public void onPageDownClicked() {
+    public void onPageDownClicked() throws Resources.NotFoundException {
         this.wasManualScroll = true;
         this.textSelectionHelper.cancelTextSelectionRunnable();
         Runnable runnable = new Runnable() {
@@ -9284,7 +9284,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.topPanelLayout.setDebugName(this.pinnedMessageView, "pinned message view");
             this.pinnedMessageView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws Resources.NotFoundException {
                     this.f$0.lambda$createPinnedMessageView$110(view);
                 }
             });
@@ -9498,7 +9498,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createPinnedMessageView$110(View view) {
+    public void lambda$createPinnedMessageView$110(View view) throws Resources.NotFoundException {
         int iIntValue;
         this.wasManualScroll = true;
         if (isThreadChat() && !this.isTopic) {
@@ -9666,7 +9666,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void openReplyMessage(int i) {
+        public void openReplyMessage(int i) throws Resources.NotFoundException {
             ChatActivity.this.scrollToMessageId(i, 0, true, 0, true, 0);
         }
 
@@ -10154,7 +10154,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return false;
     }
 
-    public void share() {
+    public void share() throws Resources.NotFoundException {
         MessageObject messageObject = null;
         for (int i = 1; i >= 0; i--) {
             if (messageObject == null && this.selectedMessagesIds[i].size() != 0) {
@@ -10423,7 +10423,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return null;
     }
 
-    public void jumpToDate(int i) {
+    public void jumpToDate(int i) throws Resources.NotFoundException {
         int i2;
         TLRPC.Message message;
         if (this.messages.isEmpty()) {
@@ -11013,7 +11013,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void openReplyMessage(int i2) {
+            public void openReplyMessage(int i2) throws Resources.NotFoundException {
                 ChatActivity.this.scrollToMessageId(i2, 0, true, 0, true, 0);
             }
 
@@ -13034,11 +13034,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivityAdapter2.notifyDataSetChanged(false);
     }
 
-    public void scrollToLastMessage(boolean z, boolean z2) {
+    public void scrollToLastMessage(boolean z, boolean z2) throws Resources.NotFoundException {
         scrollToLastMessage(z, z2, null);
     }
 
-    public void scrollToLastMessage(boolean z, final boolean z2, Runnable runnable) {
+    public void scrollToLastMessage(boolean z, final boolean z2, Runnable runnable) throws Resources.NotFoundException {
         ArrayList arrayList;
         int i;
         if (this.chatListView.isFastScrollAnimationRunning()) {
@@ -13133,7 +13133,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messagesController.loadMessages(j, j2, false, 30, 0, 0, true, 0, i, 0, 0, i2, j3, i3, i4, this.isTopic);
     }
 
-    public void updateTextureViewPosition(boolean z, boolean z2) {
+    public void updateTextureViewPosition(boolean z, boolean z2) throws Resources.NotFoundException {
         boolean z3;
         MessageObject playingMessageObject;
         if (this.fragmentView == null || this.paused) {
@@ -13462,7 +13462,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$startMessageUnselect$156();
             }
         };
@@ -13470,7 +13470,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(runnable2, this.highlightMessageQuote != null ? 2500L : 1000L);
     }
 
-    public void lambda$startMessageUnselect$156() {
+    public void lambda$startMessageUnselect$156() throws Resources.NotFoundException {
         this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuoteFirstTime = 0L;
@@ -13509,19 +13509,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4) {
+    public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4) throws Resources.NotFoundException {
         scrollToMessageId(i, i2, z, i3, z2, i4, null, null);
     }
 
-    public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4, Integer num, Runnable runnable) {
+    public void scrollToMessageId(int i, int i2, boolean z, int i3, boolean z2, int i4, Integer num, Runnable runnable) throws Resources.NotFoundException {
         scrollToMessageId(i, i2, z, i3, z2, i4, num, null, runnable);
     }
 
-    public void scrollToMessageId(int r27, int r28, boolean r29, int r30, boolean r31, int r32, java.lang.Integer r33, byte[] r34, java.lang.Runnable r35) {
+    public void scrollToMessageId(int r27, int r28, boolean r29, int r30, boolean r31, int r32, java.lang.Integer r33, byte[] r34, java.lang.Runnable r35) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.scrollToMessageId(int, int, boolean, int, boolean, int, java.lang.Integer, byte[], java.lang.Runnable):void");
     }
 
-    public void lambda$scrollToMessageId$157() {
+    public void lambda$scrollToMessageId$157() throws Resources.NotFoundException {
         int i = this.nextScrollToMessageId;
         if (i != 0) {
             scrollToMessageId(i, this.nextScrollFromMessageId, this.nextScrollSelect, this.nextScrollLoadIndex, this.nextScrollForce, this.nextScrollForcePinnedMessageId);
@@ -14047,7 +14047,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(android.graphics.Canvas r38) {
+        protected void dispatchDraw(android.graphics.Canvas r38) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -14077,7 +14077,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+        protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -14454,7 +14454,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void processRowSelect(View view, boolean z, float f, float f2) {
+    public void processRowSelect(View view, boolean z, float f, float f2) throws Resources.NotFoundException {
         MessageObject messageObject;
         int i;
         if (view instanceof ChatMessageCell) {
@@ -15299,7 +15299,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageObject.messageOwner.replies.read_max_id = i;
     }
 
-    public void lambda$didReceivedNotification$171(int i) {
+    public void lambda$didReceivedNotification$171(int i) throws Resources.NotFoundException {
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout == null) {
             return;
@@ -16152,7 +16152,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processNewMessages(java.util.ArrayList, boolean):void");
     }
 
-    public void lambda$processNewMessages$199(int i) {
+    public void lambda$processNewMessages$199(int i) throws Resources.NotFoundException {
         scrollToMessageId(i, 0, false, 0, true, 0);
     }
 
@@ -18834,19 +18834,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return createMenu(view, z, z2, f, f2, z3, z4, false);
     }
 
-    public boolean createMenu(final android.view.View r88, boolean r89, boolean r90, float r91, float r92, boolean r93, boolean r94, boolean r95) {
+    public boolean createMenu(final android.view.View r88, boolean r89, boolean r90, float r91, float r92, boolean r93, boolean r94, boolean r95) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean, boolean, boolean):boolean");
     }
 
-    public void lambda$createMenu$246(MessageObject messageObject) {
+    public void lambda$createMenu$246(MessageObject messageObject) throws Resources.NotFoundException {
         scrollToMessageId(messageObject.getReplyMsgId(), messageObject.messageOwner.id, true, messageObject.getDialogId() == this.mergeDialogId ? 1 : 0, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject.messageOwner.action).answer.option, null);
     }
 
-    public void lambda$createMenu$247(MessageObject messageObject) {
+    public void lambda$createMenu$247(MessageObject messageObject) throws Resources.NotFoundException {
         scrollToMessageId(messageObject.getReplyMsgId(), messageObject.messageOwner.id, true, messageObject.getDialogId() == this.mergeDialogId ? 1 : 0, false, 0, null, null, null);
     }
 
-    public void lambda$createMenu$248(MessageObject messageObject) {
+    public void lambda$createMenu$248(MessageObject messageObject) throws Resources.NotFoundException {
         scrollToMessageId(messageObject.getReplyMsgId(), messageObject.messageOwner.id, true, messageObject.getDialogId() == this.mergeDialogId ? 1 : 0, false, 0);
     }
 
@@ -20092,7 +20092,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processSelectedOption(int):void");
     }
 
-    public void lambda$processSelectedOption$306(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, Long l) {
+    public void lambda$processSelectedOption$306(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, Long l) throws Resources.NotFoundException {
         if (groupedMessages != null) {
             boolean z = true;
             for (int i = 0; i < groupedMessages.messages.size(); i++) {
@@ -20591,7 +20591,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (!dialogsActivity.isQuote && (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == getUserConfig().getClientUserId() || charSequence != null || i != 0 || !z2)) {
             return !AlertsCreator.ensurePaidMessagesMultiConfirmationTopicKeys(this.currentAccount, arrayList, arrayList2.size() + (!TextUtils.isEmpty(charSequence) ? 1 : 0), new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$didSelectDialogs$345(dialogsActivity, arrayList, charSequence, z2, i, i2, arrayList2, (HashMap) obj);
                 }
             });
@@ -20716,7 +20716,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void lambda$didSelectDialogs$345(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, ArrayList arrayList2, HashMap map) {
+    public void lambda$didSelectDialogs$345(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, ArrayList arrayList2, HashMap map) throws Resources.NotFoundException {
         long j;
         if (dialogsActivity.resetDelegate) {
             dialogsActivity.setDelegate(null);
@@ -20974,11 +20974,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void clearSelectionMode() {
+    public void clearSelectionMode() throws Resources.NotFoundException {
         clearSelectionMode(false);
     }
 
-    public void clearSelectionMode(boolean z) {
+    public void clearSelectionMode(boolean z) throws Resources.NotFoundException {
         for (int i = 1; i >= 0; i--) {
             this.selectedMessagesIds[i].clear();
             this.selectedMessagesCanCopyIds[i].clear();
@@ -21079,11 +21079,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return this.threadMessageObject != null && this.isComments;
     }
 
-    public void updateVisibleRows() {
+    public void updateVisibleRows() throws Resources.NotFoundException {
         updateVisibleRows(false);
     }
 
-    private void updateVisibleRows(boolean r22) {
+    private void updateVisibleRows(boolean r22) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateVisibleRows(boolean):void");
     }
 
@@ -22257,7 +22257,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void openOriginalReplyChat(MessageObject messageObject) {
+    public void openOriginalReplyChat(MessageObject messageObject) throws Resources.NotFoundException {
         if (UserObject.isUserSelf(this.currentUser)) {
             TLRPC.MessageFwdHeader messageFwdHeader = messageObject.messageOwner.fwd_from;
             if (messageFwdHeader.saved_from_peer.user_id == this.currentUser.id) {
@@ -23485,7 +23485,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             public void didPressReplyMessage(final ChatActionCell chatActionCell, final int i) {
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$didPressReplyMessage$1(chatActionCell, i);
                     }
                 };
@@ -23497,7 +23497,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             }
 
-            public void lambda$didPressReplyMessage$1(ChatActionCell chatActionCell, int i) {
+            public void lambda$didPressReplyMessage$1(ChatActionCell chatActionCell, int i) throws Resources.NotFoundException {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0);
             }
@@ -23506,7 +23506,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             public void didPressTaskLink(final ChatActionCell chatActionCell, final int i, final int i2) {
                 Runnable runnable = new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$didPressTaskLink$2(chatActionCell, i, i2);
                     }
                 };
@@ -23518,7 +23518,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
             }
 
-            public void lambda$didPressTaskLink$2(ChatActionCell chatActionCell, int i, int i2) {
+            public void lambda$didPressTaskLink$2(ChatActionCell chatActionCell, int i, int i2) throws Resources.NotFoundException {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, Integer.valueOf(i2), null);
             }
@@ -24709,7 +24709,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressSideButton(ChatMessageCell chatMessageCell) {
+        public void didPressSideButton(ChatMessageCell chatMessageCell) throws Resources.NotFoundException {
             MessageObject messageObject;
             int i;
             TLRPC.MessageFwdHeader messageFwdHeader;
@@ -24918,7 +24918,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2, boolean z) {
+        public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2, boolean z) throws Resources.NotFoundException {
             MessageObject messageObject;
             if (chat == null) {
                 return;
@@ -25327,7 +25327,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didLongPressChannelAvatar$15(ChatMessageCell chatMessageCell, TLRPC.Chat chat) {
+        public void lambda$didLongPressChannelAvatar$15(ChatMessageCell chatMessageCell, TLRPC.Chat chat) throws Resources.NotFoundException {
             openChat(chatMessageCell, chat, 0, false);
         }
 
@@ -25384,7 +25384,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        private void openChat(ChatMessageCell chatMessageCell, final TLRPC.Chat chat, final int i, boolean z) {
+        private void openChat(ChatMessageCell chatMessageCell, final TLRPC.Chat chat, final int i, boolean z) throws Resources.NotFoundException {
             ChatActivity chatActivity = ChatActivity.this;
             TLRPC.Chat chat2 = chatActivity.currentChat;
             if (chat2 != null && chat.id == chat2.id) {
@@ -25457,7 +25457,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+        public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) throws Resources.NotFoundException {
             final TLRPC.Message message;
             final MessageObject messageObject = chatMessageCell.getMessageObject();
             if (messageObject == null || (message = messageObject.messageOwner) == null) {
@@ -26109,7 +26109,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r21, final int r22, float r23, float r24, boolean r25) {
+        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r21, final int r22, float r23, float r24, boolean r25) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell, int, float, float, boolean):void");
         }
 
@@ -26145,7 +26145,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$didPressReplyMessage$42(int i, final MessageObject messageObject, Integer num, byte[] bArr) {
+        public void lambda$didPressReplyMessage$42(int i, final MessageObject messageObject, Integer num, byte[] bArr) throws Resources.NotFoundException {
             ChatActivity.this.scrollToMessageId(i, messageObject.getId(), true, messageObject.getDialogId() == ChatActivity.this.mergeDialogId ? 1 : 0, true, 0, num, bArr, new Runnable() {
                 @Override
                 public final void run() {
@@ -27632,7 +27632,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return openLinkInternally(str, chatMessageCell, characterStyle, i, 1);
     }
 
-    public boolean openLinkInternally(String str, final ChatMessageCell chatMessageCell, final CharacterStyle characterStyle, final int i, final int i2) throws NumberFormatException {
+    public boolean openLinkInternally(String str, final ChatMessageCell chatMessageCell, final CharacterStyle characterStyle, final int i, final int i2) throws Resources.NotFoundException, NumberFormatException {
         int i3;
         int i4;
         TLRPC.TL_forumTopic tL_forumTopicFindTopic;
@@ -27832,7 +27832,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onEndAnimation() {
+        public void onEndAnimation() throws Resources.NotFoundException {
             if (this.scrollTo != null) {
                 ChatActivity.this.chatAdapter.updateRowsSafe();
                 int iIndexOf = ChatActivity.this.chatAdapter.messagesStartRow + ChatActivity.this.messages.indexOf(this.scrollTo);
@@ -31447,7 +31447,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void onSideControlButtonOnClick(int i, View view) {
+    public void onSideControlButtonOnClick(int i, View view) throws Resources.NotFoundException {
         if (i == 1) {
             onPageDownClicked();
             return;
@@ -31460,7 +31460,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.wasManualScroll = true;
             getMessagesController().getNextReactionMention(this.dialog_id, getTopicId(), this.reactionsMentionCount, new androidx.core.util.Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void accept(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$onSideControlButtonOnClick$444((Integer) obj);
                 }
             });
@@ -31470,7 +31470,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.wasManualScroll = true;
             getMessagesController().getNextPollVotesMention(this.dialog_id, getTopicId(), this.pollVotesMentionCount, new androidx.core.util.Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void accept(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$onSideControlButtonOnClick$445((Integer) obj);
                 }
             });
@@ -31491,7 +31491,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onSideControlButtonOnClick$444(Integer num) {
+    public void lambda$onSideControlButtonOnClick$444(Integer num) throws Resources.NotFoundException {
         if (num.intValue() == 0) {
             this.reactionsMentionCount = 0;
             updateReactionsMentionButton(true);
@@ -31502,7 +31502,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onSideControlButtonOnClick$445(Integer num) {
+    public void lambda$onSideControlButtonOnClick$445(Integer num) throws Resources.NotFoundException {
         if (num.intValue() == 0) {
             this.pollVotesMentionCount = 0;
             updatePollVotesMentionButton(true);
@@ -31537,7 +31537,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.hasAllMentionsLocal) {
             getMessagesStorage().getUnreadMention(this.dialog_id, getTopicId(), new MessagesStorage.IntCallback() {
                 @Override
-                public final void run(int i) {
+                public final void run(int i) throws Resources.NotFoundException {
                     this.f$0.lambda$loadLastUnreadMention$446(i);
                 }
             });
@@ -31560,7 +31560,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
     }
 
-    public void lambda$loadLastUnreadMention$446(int i) {
+    public void lambda$loadLastUnreadMention$446(int i) throws Resources.NotFoundException {
         if (i == 0) {
             this.hasAllMentionsLocal = false;
             loadLastUnreadMention();
@@ -31572,13 +31572,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void lambda$loadLastUnreadMention$448(final MessagesStorage messagesStorage, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$loadLastUnreadMention$447(tLObject, tL_error, messagesStorage);
             }
         });
     }
 
-    public void lambda$loadLastUnreadMention$447(TLObject tLObject, TLRPC.TL_error tL_error, MessagesStorage messagesStorage) {
+    public void lambda$loadLastUnreadMention$447(TLObject tLObject, TLRPC.TL_error tL_error, MessagesStorage messagesStorage) throws Resources.NotFoundException {
         TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
         if (tL_error != null || messages_messages.messages.isEmpty()) {
             if (messages_messages != null) {

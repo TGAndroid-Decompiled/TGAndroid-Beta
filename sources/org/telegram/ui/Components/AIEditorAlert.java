@@ -1262,7 +1262,11 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
             if (this.divider) {
-                canvas.drawRect(AndroidUtilities.dp(10.0f), getHeight() - 1, getWidth() - AndroidUtilities.dp(10.0f), getHeight(), Theme.dividerPaint);
+                Paint themePaint = Theme.getThemePaint("paintDivider", this.resourcesProvider);
+                if (themePaint == null) {
+                    themePaint = Theme.dividerPaint;
+                }
+                canvas.drawRect(AndroidUtilities.dp(10.0f), getHeight() - 1, getWidth() - AndroidUtilities.dp(10.0f), getHeight(), themePaint);
             }
         }
 
