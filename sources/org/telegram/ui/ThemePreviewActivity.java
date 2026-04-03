@@ -4102,6 +4102,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 });
                 chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
+                    public boolean allowAddPollOptions() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                    }
+
+                    @Override
                     public boolean canDrawOutboundsContent() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
                     }

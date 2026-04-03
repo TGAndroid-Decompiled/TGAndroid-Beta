@@ -51,6 +51,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ReportBottomSheet;
 
 public class VideoAds {
+    public static final int BULLETIN_TAG_VIDEO_AD = 999;
     private static HashMap<VideoAdsLocation, VideoAds> cached = new HashMap<>();
     private int between_delay;
     private Bulletin bulletin;
@@ -147,6 +148,10 @@ public class VideoAds {
         PremiumFeatureBottomSheet premiumFeatureBottomSheet;
         ItemOptions itemOptions = this.currentMenu;
         return (itemOptions != null && itemOptions.isShown()) || ((premiumFeatureBottomSheet = this.premiumSheet) != null && premiumFeatureBottomSheet.isShown());
+    }
+
+    public boolean isBulletinShown() {
+        return this.bulletin != null;
     }
 
     private void init(BulletinFactory bulletinFactory) {
@@ -295,8 +300,10 @@ public class VideoAds {
         });
         final Bulletin bulletinCreate = this.bulletinFactory.create(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = bulletinCreate;
-        bulletinCreate.setCanHideOnShow = false;
-        bulletinCreate.setCanHide(false);
+        bulletinCreate.setTag(999);
+        Bulletin bulletin2 = this.bulletin;
+        bulletin2.setCanHideOnShow = false;
+        bulletin2.setCanHide(false);
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
@@ -314,9 +321,9 @@ public class VideoAds {
         };
         AndroidUtilities.runOnUIThread(runnable, tL_sponsoredMessage.min_display_duration * 1000);
         final boolean[] zArr2 = new boolean[1];
-        Bulletin bulletin2 = this.bulletin;
-        bulletin2.hideAfterBottomSheet = false;
-        bulletin2.setOnHideListener(new Runnable() {
+        Bulletin bulletin3 = this.bulletin;
+        bulletin3.hideAfterBottomSheet = false;
+        bulletin3.setOnHideListener(new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$show$5(bulletinCreate, zArr2);

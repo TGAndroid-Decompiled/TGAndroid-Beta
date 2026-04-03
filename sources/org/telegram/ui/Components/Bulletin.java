@@ -698,19 +698,37 @@ public class Bulletin {
     }
 
     public void updatePosition() {
-        Layout layout = this.layout;
-        if (layout != null) {
-            layout.updatePosition();
+        if (this.layout != null) {
+            syncBottomOffsetWithDelegate();
+            this.layout.updatePosition();
         }
     }
 
     public static void updateCurrentPosition() {
-        Layout layout;
         Bulletin bulletin = visibleBulletin;
-        if (bulletin == null || (layout = bulletin.layout) == null) {
+        if (bulletin == null || bulletin.layout == null) {
             return;
         }
-        layout.updatePosition();
+        bulletin.syncBottomOffsetWithDelegate();
+        visibleBulletin.layout.updatePosition();
+    }
+
+    private void syncBottomOffsetWithDelegate() {
+        Delegate delegate;
+        Layout layout = this.layout;
+        if (layout == null || layout.top || (delegate = this.currentDelegate) == null || !delegate.bottomOffsetAnimated()) {
+            return;
+        }
+        int bottomOffset = this.currentDelegate.getBottomOffset(this.tag);
+        SpringAnimation springAnimation = this.bottomOffsetSpring;
+        if (springAnimation != null && springAnimation.isRunning()) {
+            if (this.bottomOffsetSpring.getSpring() != null) {
+                this.bottomOffsetSpring.getSpring().setFinalPosition(bottomOffset);
+                return;
+            }
+            return;
+        }
+        this.lastBottomOffset = bottomOffset;
     }
 
     public static abstract class ParentLayout extends FrameLayout {

@@ -52,7 +52,7 @@ public class MessagesStorage extends BaseController {
     public static final int FORUM_TYPE_CHAT = 1;
     public static final int FORUM_TYPE_CHAT_TABS = 2;
     public static final int FORUM_TYPE_DIRECT = 4;
-    public static final int LAST_DB_VERSION = 170;
+    public static final int LAST_DB_VERSION = 172;
     public static final int SENT_FILE_TYPE_AUDIO = 1;
     public static final int SENT_FILE_TYPE_AUDIO_ENCRYPTED = 4;
     public static final int SENT_FILE_TYPE_PHOTO = 0;
@@ -401,7 +401,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (iIntValue < 170) {
+                if (iIntValue < 172) {
                     try {
                         updateDbToLastVersion(iIntValue);
                     } catch (Exception e4) {
@@ -669,7 +669,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_did ON poll_votes_mentions(dialog_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE poll_votes_mentions_topics(message_id INTEGER, state INTEGER, dialog_id INTEGER, topic_id INTEGER, PRIMARY KEY(message_id, dialog_id, topic_id))").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_topics_did ON poll_votes_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 170").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 172").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -683,7 +683,7 @@ public class MessagesStorage extends BaseController {
                 this.f$0.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 170");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 172");
         int iMigrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -705,14 +705,6 @@ public class MessagesStorage extends BaseController {
     public void lambda$updateDbToLastVersion$4() {
         this.databaseMigrationInProgress = false;
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDatabaseMigration, Boolean.FALSE);
-    }
-
-    void executeNoException(String str) {
-        try {
-            this.database.executeFast(str).stepThis().dispose();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
     }
 
     private void cleanupInternal(boolean z) {

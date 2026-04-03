@@ -854,11 +854,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        View view = this.fragmentView;
-        int i = ThemeDescription.FLAG_BACKGROUND;
-        int i2 = Theme.key_windowBackgroundWhite;
-        themeDescriptions.add(new ThemeDescription(view, i, null, null, null, null, i2));
-        themeDescriptions.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i2));
+        themeDescriptions.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhite));
         themeDescriptions.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogBackground));
         return themeDescriptions;
     }

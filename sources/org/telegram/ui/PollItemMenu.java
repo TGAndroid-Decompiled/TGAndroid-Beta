@@ -342,7 +342,6 @@ public class PollItemMenu extends Dialog {
         TLRPC.PollAnswerVoters pollAnswerVoters;
         ArrayList arrayList;
         boolean z2;
-        ?? r5;
         ArrayList<TLRPC.PollAnswerVoters> arrayList2;
         this.cell = chatMessageCell;
         this.taskId = bArr;
@@ -413,6 +412,11 @@ public class PollItemMenu extends Dialog {
             this.cell.copyParamsTo(chatMessageCell2);
             this.myTaskCell.copySpoilerEffect2AttachIndexFrom(this.cell);
             this.myTaskCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                @Override
+                public boolean allowAddPollOptions() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                }
+
                 @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -868,6 +872,11 @@ public class PollItemMenu extends Dialog {
             this.cell.copyParamsTo(this.myCell);
             this.myCell.copySpoilerEffect2AttachIndexFrom(this.cell);
             this.myCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                @Override
+                public boolean allowAddPollOptions() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                }
+
                 @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
@@ -1365,7 +1374,7 @@ public class PollItemMenu extends Dialog {
                 final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                 itemOptionsMakeSwipeback.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
                 itemOptionsMakeSwipeback.setBlurBackgroundForSwipeback(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
-                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda318(itemOptionsMakeOptions));
+                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda307(itemOptionsMakeOptions));
                 itemOptionsMakeSwipeback.addGap();
                 arrayList = arrayList3;
                 z2 = z4;
@@ -1413,7 +1422,7 @@ public class PollItemMenu extends Dialog {
                 }
             }
             final ChatActivity chatActivity3 = chatActivity;
-            if (chatActivity3 != null) {
+            if (chatActivity3 != null && chatActivity3.canSendMessage()) {
                 itemOptionsMakeOptions.add(R.drawable.menu_reply, LocaleController.getString(R.string.PollItemQuote), new Runnable() {
                     @Override
                     public final void run() {
@@ -1456,26 +1465,17 @@ public class PollItemMenu extends Dialog {
                 long clientUserId = UserConfig.getInstance(this.messageObject.currentAccount).getClientUserId();
                 long currentTime = ConnectionsManager.getInstance(this.messageObject.currentAccount).getCurrentTime();
                 long j = pollAnswer.date + MessagesController.getInstance(this.messageObject.currentAccount).config.pollAnswerDeletePeriod.get(TimeUnit.SECONDS);
-                if (tL_messageMediaPoll.poll.creator || (peerDialogId == clientUserId && currentTime < j)) {
-                    r5 = 1;
+                if (!this.messageObject.isForwarded() && (tL_messageMediaPoll.poll.creator || (peerDialogId == clientUserId && currentTime < j))) {
                     itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
                         @Override
                         public final void run() {
                             this.f$0.lambda$setCell$8(bArr);
                         }
                     });
-                } else {
-                    r5 = 1;
                 }
                 itemOptionsMakeOptions.addGap();
                 TLObject userOrChat = MessagesController.getInstance(this.messageObject.currentAccount).getUserOrChat(peerDialogId);
-                int i2 = R.string.PollAddedByAtTime;
-                String shortName = DialogObject.getShortName(userOrChat);
-                String dateTime = LocaleController.formatDateTime(pollAnswer.date, r5);
-                Object[] objArr = new Object[2];
-                objArr[0] = shortName;
-                objArr[r5] = dateTime;
-                itemOptionsMakeOptions.addProfileCustom(userOrChat, AndroidUtilities.replaceTags(LocaleController.formatSpannable(i2, objArr)), new Runnable() {
+                itemOptionsMakeOptions.addProfileCustom(userOrChat, AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.PollAddedByAtTime, DialogObject.getShortName(userOrChat), LocaleController.formatDateTime(pollAnswer.date, true))), new Runnable() {
                     @Override
                     public final void run() {
                         this.f$0.lambda$setCell$9(peerDialogId, baseFragment);

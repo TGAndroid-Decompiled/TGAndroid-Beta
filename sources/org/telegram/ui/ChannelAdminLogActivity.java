@@ -2309,6 +2309,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
 
         class AnonymousClass1 implements ChatMessageCell.ChatMessageCellDelegate {
             @Override
+            public boolean allowAddPollOptions() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+            }
+
+            @Override
             public boolean canDrawOutboundsContent() {
                 return true;
             }

@@ -581,6 +581,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 MessageCell messageCell = messageSendPreview.new MessageCell(context, messageSendPreview.currentAccount, true, null, resourcesProvider);
                 messageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
+                    public boolean allowAddPollOptions() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                    }
+
+                    @Override
                     public boolean canDrawOutboundsContent() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
                     }

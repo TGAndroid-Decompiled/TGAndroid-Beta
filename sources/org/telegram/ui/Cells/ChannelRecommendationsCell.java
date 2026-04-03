@@ -111,7 +111,7 @@ public class ChannelRecommendationsCell {
             ((ChannelBlock) this.channels.get(i4)).detach();
         }
         this.channels.clear();
-        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
+        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(this.dialogId);
         ArrayList arrayList = (channelRecommendations == null || channelRecommendations.chats == null) ? new ArrayList() : new ArrayList(channelRecommendations.chats);
         int i5 = 0;
         while (i5 < arrayList.size()) {

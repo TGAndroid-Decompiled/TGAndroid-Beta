@@ -59,7 +59,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -1378,6 +1377,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.DialogsRecyclerView.dispatchDraw(android.graphics.Canvas):void");
         }
 
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            if (motionEvent.getAction() != 0 || motionEvent.getY() >= getPaddingTop() + DialogsActivity.this.scrollYOffset) {
+                return super.dispatchTouchEvent(motionEvent);
+            }
+            return false;
+        }
+
         private boolean drawMovingViewsOverlayed() {
             return getItemAnimator() != null && getItemAnimator().isRunning();
         }
@@ -1443,6 +1450,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (iDp2 != this.topPadding || iCalculateListViewPaddingBottom != getPaddingBottom()) {
                 setTopGlowOffset(iDp2);
                 setPadding(0, iDp2, 0, iCalculateListViewPaddingBottom);
+                RecyclerListView recyclerListView = this.animationSupportListView;
+                if (recyclerListView != null && (recyclerListView.getPaddingTop() != iDp2 || this.animationSupportListView.getPaddingBottom() != iCalculateListViewPaddingBottom)) {
+                    this.animationSupportListView.setPadding(getPaddingLeft(), iDp2, getPaddingLeft(), iCalculateListViewPaddingBottom);
+                    this.animationSupportListView.requestLayout();
+                }
                 if (DialogsActivity.this.hasStories) {
                     this.parentPage.progressView.setPaddingTop(iDp2 - AndroidUtilities.dp(81.0f));
                 } else {
@@ -3375,7 +3387,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$18(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$18(View view) {
         openStoriesRecorder();
     }
 
@@ -11058,7 +11070,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {

@@ -571,6 +571,13 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         return ((Item) this.adapter.objects.get(getCurrentItem())).imageView;
     }
 
+    public ImageLocation getCurrentImageLocation() {
+        if (getCurrentItemView() == null || getCurrentItemView().getImageReceiver() == null) {
+            return null;
+        }
+        return getCurrentItemView().getImageReceiver().getImageLocation();
+    }
+
     public View getItemViewAt(int i) {
         ViewPagerAdapter viewPagerAdapter = this.adapter;
         if (viewPagerAdapter == null || viewPagerAdapter.objects.size() <= i || i < 0) {
@@ -661,6 +668,32 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
 
     public int getRealPosition() {
         return this.adapter.getRealPosition(getCurrentItem());
+    }
+
+    public int getAdapterPositionForPhotoIndex(int i) {
+        ViewPagerAdapter viewPagerAdapter = this.adapter;
+        return (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0) + (this.hasActiveVideo ? 1 : 0) + i;
+    }
+
+    public int findPhotoIndexByLocation(ImageLocation imageLocation) {
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
+        if (imageLocation == null) {
+            return -1;
+        }
+        for (int i = 0; i < this.imagesLocations.size(); i++) {
+            ImageLocation imageLocation2 = (ImageLocation) this.imagesLocations.get(i);
+            if (imageLocation2 != null) {
+                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = imageLocation2.location;
+                if (tL_fileLocationToBeDeprecated2 != null && (tL_fileLocationToBeDeprecated = imageLocation.location) != null && tL_fileLocationToBeDeprecated2.local_id == tL_fileLocationToBeDeprecated.local_id && tL_fileLocationToBeDeprecated2.volume_id == tL_fileLocationToBeDeprecated.volume_id) {
+                    return i;
+                }
+                long j = imageLocation2.photoId;
+                if (j != 0 && j == imageLocation.photoId) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 
     public TLRPC.Photo getPhoto(int i) {

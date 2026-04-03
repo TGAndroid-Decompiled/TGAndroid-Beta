@@ -392,6 +392,11 @@ public class TodoItemMenu extends Dialog {
             this.myTaskCell.copySpoilerEffect2AttachIndexFrom(this.cell);
             this.myTaskCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                 @Override
+                public boolean allowAddPollOptions() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                }
+
+                @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
                 }
@@ -847,6 +852,11 @@ public class TodoItemMenu extends Dialog {
             this.cell.copyParamsTo(this.myCell);
             this.myCell.copySpoilerEffect2AttachIndexFrom(this.cell);
             this.myCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                @Override
+                public boolean allowAddPollOptions() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                }
+
                 @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);

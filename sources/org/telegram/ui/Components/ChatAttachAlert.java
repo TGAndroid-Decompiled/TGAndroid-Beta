@@ -66,7 +66,6 @@ import androidx.dynamicanimation.animation.SpringForce;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -5987,37 +5986,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return i >= 33 ? ContextCompat.checkSelfPermission(context, "android.permission.READ_MEDIA_IMAGES") == 0 && ContextCompat.checkSelfPermission(context, "android.permission.READ_MEDIA_VIDEO") == 0 : i < 23 || ContextCompat.checkSelfPermission(context, "android.permission.READ_EXTERNAL_STORAGE") == 0;
     }
 
-    public void showAiButton(final boolean z) {
-        if (this.shownAiButton == z) {
-            return;
-        }
-        this.shownAiButton = z;
-        this.aiButton.setVisibility(0);
-        this.topAiButton.setVisibility(0);
-        ViewPropertyAnimator viewPropertyAnimatorScaleY = this.aiButton.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        viewPropertyAnimatorScaleY.setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showAiButton$61(z);
-            }
-        }).start();
-        this.topAiButton.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.6f).scaleY(z ? 1.0f : 0.6f).setInterpolator(cubicBezierInterpolator).setDuration(420L).withEndAction(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showAiButton$62(z);
-            }
-        }).start();
-        if (z) {
-            ImageView imageView = this.aiButton;
-            AiButtonDrawable aiButtonDrawable = this.aiButtonIcon;
-            Objects.requireNonNull(aiButtonDrawable);
-            imageView.postDelayed(new ChatActivityEnterView$$ExternalSyntheticLambda73(aiButtonDrawable), 220L);
-            ImageView imageView2 = this.topAiButton;
-            AiButtonDrawable aiButtonDrawable2 = this.topAiButtonIcon;
-            Objects.requireNonNull(aiButtonDrawable2);
-            imageView2.postDelayed(new ChatActivityEnterView$$ExternalSyntheticLambda73(aiButtonDrawable2), 220L);
-        }
+    public void showAiButton(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.showAiButton(boolean):void");
     }
 
     public void lambda$showAiButton$61(boolean z) {

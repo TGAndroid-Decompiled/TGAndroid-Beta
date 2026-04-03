@@ -102,7 +102,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         this.inputAmountMinStars = AmountUtils$Amount.fromDecimal(j3, amountUtils$Currency2);
         this.inputAmountMaxStars = AmountUtils$Amount.fromDecimal(appGlobalConfig.starsSuggestedPostAmountMax.get(), amountUtils$Currency2);
         if (!zCanManageMonoForum) {
-            BalanceCloud balanceCloud = new BalanceCloud(context, i, resourcesProvider);
+            BalanceCloud balanceCloud = new BalanceCloud(context, i, MessagesController.getInstance(i).getChat(Long.valueOf(j)).linked_monoforum_id, resourcesProvider);
             this.balanceCloud = balanceCloud;
             balanceCloud.setScaleX(0.6f);
             balanceCloud.setScaleY(0.6f);

@@ -1064,6 +1064,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                 chatMessageCell.setClipToPadding(false);
                 chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
+                    public boolean allowAddPollOptions() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                    }
+
+                    @Override
                     public boolean canDrawOutboundsContent() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
                     }
@@ -1547,6 +1552,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                 chatMessageCell.setMessageObject(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true, false);
                 if (Page.this.currentTab == 1) {
                     chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                        @Override
+                        public boolean allowAddPollOptions() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                        }
+
                         @Override
                         public boolean canDrawOutboundsContent() {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);

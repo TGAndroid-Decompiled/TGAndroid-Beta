@@ -1134,6 +1134,16 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             }
 
             @Override
+            public void onItemRangeChanged(int i, int i2) {
+                RecyclerListView.this.checkIfEmpty(true);
+            }
+
+            @Override
+            public void onItemRangeChanged(int i, int i2, Object obj) {
+                RecyclerListView.this.checkIfEmpty(true);
+            }
+
+            @Override
             public void onItemRangeRemoved(int i, int i2) {
                 RecyclerListView.this.checkIfEmpty(true);
             }

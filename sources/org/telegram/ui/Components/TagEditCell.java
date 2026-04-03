@@ -192,6 +192,11 @@ public class TagEditCell extends LinearLayout {
         addView(pollEditTextCell, LayoutHelper.createLinear(-1, -2, 7));
         chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
             @Override
+            public boolean allowAddPollOptions() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+            }
+
+            @Override
             public boolean canDrawOutboundsContent() {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
             }
@@ -917,6 +922,11 @@ public class TagEditCell extends LinearLayout {
             };
             final boolean z5 = i8 == 1;
             chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                @Override
+                public boolean allowAddPollOptions() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                }
+
                 @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);

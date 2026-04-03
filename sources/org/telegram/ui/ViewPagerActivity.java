@@ -1,6 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ViewPagerFixed;
 
@@ -60,6 +62,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
 
     @Override
     public View createView(final Context context) {
+        this.hasOwnBackground = true;
         this.contentView = createContentView(context);
         this.viewPager = new ViewPagerFixed(context) {
             @Override
@@ -142,8 +145,12 @@ public abstract class ViewPagerActivity extends BaseFragment {
                 }
                 FrameLayout frameLayout = (FrameLayout) view;
                 frameLayout.removeAllViews();
-                AndroidUtilities.removeFromParent(baseFragment.getFragmentView());
-                frameLayout.addView(baseFragment.getFragmentView(), LayoutHelper.createFrame(-1, -1.0f));
+                View fragmentView = baseFragment.getFragmentView();
+                AndroidUtilities.removeFromParent(fragmentView);
+                if (!baseFragment.hasOwnBackground() && fragmentView.getBackground() == null) {
+                    fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                }
+                frameLayout.addView(fragmentView, LayoutHelper.createFrame(-1, -1.0f));
                 if (baseFragment.getActionBar() != null && baseFragment.getActionBar().shouldAddToContainer()) {
                     AndroidUtilities.removeFromParent(baseFragment.getActionBar());
                     frameLayout.addView(baseFragment.getActionBar());
@@ -282,6 +289,18 @@ public abstract class ViewPagerActivity extends BaseFragment {
         this.isResumed = true;
         checkSystemBarColors();
         checkFragmentsVisibility();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        int size = this.fragmentsArr.size();
+        for (int i = 0; i < size; i++) {
+            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
+            if (fragmentState != null) {
+                fragmentState.fragment.onConfigurationChanged(configuration);
+            }
+        }
     }
 
     @Override

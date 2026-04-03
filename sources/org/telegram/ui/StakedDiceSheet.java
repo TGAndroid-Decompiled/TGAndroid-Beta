@@ -76,7 +76,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
         this.topPadding = 0.2f;
         this.smoothKeyboardAnimationEnabled = true;
         this.smoothKeyboardByBottom = true;
-        BalanceCloud balanceCloud = new BalanceCloud(context, i, AmountUtils$Currency.TON, resourcesProvider);
+        BalanceCloud balanceCloud = new BalanceCloud(context, i, -1L, AmountUtils$Currency.TON, resourcesProvider);
         this.balanceCloud = balanceCloud;
         balanceCloud.setScaleX(0.6f);
         balanceCloud.setScaleY(0.6f);

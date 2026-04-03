@@ -75,6 +75,7 @@ public abstract class CreateBotAlert {
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setInfo(user);
         backupImageView.setForUserOrChat(user, avatarDrawable);
+        backupImageView.setRoundRadius(AndroidUtilities.dp(40.0f));
         linearLayout.addView(backupImageView, LayoutHelper.createLinear(80, 80, 49, 0, 22, 0, 16));
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
@@ -155,19 +156,20 @@ public abstract class CreateBotAlert {
         bottomSheetCreate.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         final String[] strArr = new String[1];
-        final String[] strArr2 = new String[1];
         final int[] iArr = {-1};
-        final int[] iArr2 = {4};
+        final String[] strArr2 = new String[1];
+        final int[] iArr2 = {-1};
+        final int[] iArr3 = {4};
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                CreateBotAlert.lambda$show$2(editTextCell2, iArr, i, strArr, strArr2, round, textInfoPrivacyCell2, resourcesProvider, iArr2);
+                CreateBotAlert.lambda$show$2(editTextCell2, iArr2, i, strArr, strArr2, round, textInfoPrivacyCell2, resourcesProvider, iArr3);
             }
         };
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                CreateBotAlert.lambda$show$6(strArr, runnable, editTextCell, iArr2, round, z, i, user, zArr, callback, bottomSheetCreate, resourcesProvider, context);
+                CreateBotAlert.lambda$show$6(strArr, runnable, editTextCell, iArr3, round, z, i, user, iArr, zArr, callback, bottomSheetCreate, resourcesProvider, context);
             }
         };
         editTextCell2.editText.addTextChangedListener(new TextWatcher() {
@@ -209,7 +211,7 @@ public abstract class CreateBotAlert {
         bottomSheetCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                CreateBotAlert.lambda$show$10(zArr, callback, dialogInterface);
+                CreateBotAlert.lambda$show$10(zArr, callback, iArr, i, dialogInterface);
             }
         });
         bottomSheetCreate.show();
@@ -296,7 +298,7 @@ public abstract class CreateBotAlert {
         AndroidUtilities.shakeViewSpring(textInfoPrivacyCell, i);
     }
 
-    public static void lambda$show$6(String[] strArr, Runnable runnable, EditTextCell editTextCell, int[] iArr, final ButtonWithCounterView buttonWithCounterView, boolean z, final int i, final TLRPC.User user, final boolean[] zArr, final Utilities.Callback callback, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, final Context context) {
+    public static void lambda$show$6(String[] strArr, Runnable runnable, EditTextCell editTextCell, int[] iArr, final ButtonWithCounterView buttonWithCounterView, boolean z, final int i, final TLRPC.User user, final int[] iArr2, final boolean[] zArr, final Utilities.Callback callback, final BottomSheet bottomSheet, final Theme.ResourcesProvider resourcesProvider, final Context context) {
         if (strArr[0] == null) {
             runnable.run();
             return;
@@ -314,17 +316,18 @@ public abstract class CreateBotAlert {
         createbot.username = strArr[0];
         createbot.name = strTrim;
         createbot.manager_id = MessagesController.getInstance(i).getInputUser(user);
-        ConnectionsManager.getInstance(i).sendRequestTyped(createbot, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        iArr2[0] = ConnectionsManager.getInstance(i).sendRequestTyped(createbot, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) {
-                CreateBotAlert.lambda$show$5(buttonWithCounterView, zArr, i, callback, bottomSheet, resourcesProvider, context, user, (TLRPC.User) obj, (TLRPC.TL_error) obj2);
+            public final void run(Object obj, Object obj2) throws NumberFormatException {
+                CreateBotAlert.lambda$show$5(iArr2, buttonWithCounterView, zArr, i, callback, bottomSheet, resourcesProvider, context, user, (TLRPC.User) obj, (TLRPC.TL_error) obj2);
             }
-        });
+        }, 1024);
     }
 
-    public static void lambda$show$5(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, int i, Utilities.Callback callback, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, final Context context, TLRPC.User user, TLRPC.User user2, TLRPC.TL_error tL_error) {
+    public static void lambda$show$5(int[] iArr, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, int i, Utilities.Callback callback, final BottomSheet bottomSheet, Theme.ResourcesProvider resourcesProvider, final Context context, TLRPC.User user, TLRPC.User user2, TLRPC.TL_error tL_error) throws NumberFormatException {
         String userName;
         String string;
+        iArr[0] = -1;
         buttonWithCounterView.setLoading(false);
         if (user2 != null) {
             zArr[0] = true;
@@ -361,15 +364,20 @@ public abstract class CreateBotAlert {
                         CreateBotAlert.lambda$show$4(bottomSheet, context);
                     }
                 }, resourcesProvider)).setDuration(8000).show();
-            } else if ("MANAGER_PERMISSION_MISSING".equalsIgnoreCase(tL_error.text)) {
-                if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
-                    userName = "@" + UserObject.getPublicUsername(user);
-                } else {
-                    userName = UserObject.getUserName(user);
-                }
-                BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
             } else {
-                BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);
+                String str = tL_error.text;
+                if (str != null && str.startsWith("FLOOD_WAIT_")) {
+                    BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.CreateManagedBotLimitTitle), LocaleController.formatString(R.string.CreateManagedBotLimitTextTime, LocaleController.formatDuration(Integer.parseInt(tL_error.text.substring(11))))).show();
+                } else if ("MANAGER_PERMISSION_MISSING".equalsIgnoreCase(tL_error.text)) {
+                    if (!TextUtils.isEmpty(UserObject.getPublicUsername(user))) {
+                        userName = "@" + UserObject.getPublicUsername(user);
+                    } else {
+                        userName = UserObject.getUserName(user);
+                    }
+                    BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.CreateManagedBotUnsupported, userName), Theme.getColor(Theme.key_undo_cancelColor, resourcesProvider))).show();
+                } else {
+                    BulletinFactory.of(bottomSheet.topBulletinContainer, resourcesProvider).showForError(tL_error);
+                }
             }
             AndroidUtilities.hideKeyboard(bottomSheet.getCurrentFocus());
         }
@@ -396,13 +404,16 @@ public abstract class CreateBotAlert {
         return true;
     }
 
-    public static void lambda$show$10(boolean[] zArr, Utilities.Callback callback, DialogInterface dialogInterface) {
-        if (zArr[0]) {
-            return;
+    public static void lambda$show$10(boolean[] zArr, Utilities.Callback callback, int[] iArr, int i, DialogInterface dialogInterface) {
+        if (!zArr[0]) {
+            zArr[0] = true;
+            if (callback != null) {
+                callback.run(null);
+            }
         }
-        zArr[0] = true;
-        if (callback != null) {
-            callback.run(null);
+        if (iArr[0] >= 0) {
+            ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
+            iArr[0] = -1;
         }
     }
 

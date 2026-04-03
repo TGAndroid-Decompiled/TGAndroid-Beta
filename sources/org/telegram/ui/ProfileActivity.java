@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -94,7 +93,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -744,7 +742,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return i2;
     }
 
-    public static void access$39700(ProfileActivity profileActivity, View view) {
+    public static void access$39800(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -1952,30 +1950,39 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.provider = new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
             public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-                TLRPC.Chat chat;
-                TLRPC.ChatPhoto chatPhoto;
                 TLRPC.FileLocation fileLocation2;
-                TLRPC.User user;
-                TLRPC.UserProfilePhoto userProfilePhoto;
+                ImageLocation currentImageLocation;
+                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
                 if (fileLocation == null) {
                     return null;
                 }
-                if (ProfileActivity.this.avatarContainer.getScaleX() > 0.96f && z2) {
+                if (ProfileActivity.this.avatarContainer.getScaleX() > 0.96f && (z2 || !z)) {
                     return null;
                 }
-                if (ProfileActivity.this.userId == 0 ? ProfileActivity.this.chatId == 0 || (chat = ProfileActivity.this.getMessagesController().getChat(Long.valueOf(ProfileActivity.this.chatId))) == null || (chatPhoto = chat.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null : (user = ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId))) == null || (userProfilePhoto = user.photo) == null || (fileLocation2 = userProfilePhoto.photo_big) == null) {
-                    fileLocation2 = null;
+                BackupImageView currentItemView = (ProfileActivity.this.avatarsViewPager != null && ProfileActivity.this.avatarsViewPager.hasImages() && (currentImageLocation = ProfileActivity.this.avatarsViewPager.getCurrentImageLocation()) != null && (tL_fileLocationToBeDeprecated = currentImageLocation.location) != null && tL_fileLocationToBeDeprecated.local_id == fileLocation.local_id && tL_fileLocationToBeDeprecated.volume_id == fileLocation.volume_id && currentImageLocation.dc_id == fileLocation.dc_id) ? ProfileActivity.this.avatarsViewPager.getCurrentItemView() : null;
+                if (currentItemView == null) {
+                    if (ProfileActivity.this.userId != 0) {
+                        fileLocation2 = null;
+                        if (fileLocation2 != null && fileLocation2.local_id == fileLocation.local_id && fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.dc_id == fileLocation.dc_id) {
+                            currentItemView = ProfileActivity.this.avatarImage;
+                        }
+                    } else {
+                        fileLocation2 = null;
+                        if (fileLocation2 != null) {
+                            currentItemView = ProfileActivity.this.avatarImage;
+                        }
+                    }
                 }
-                if (fileLocation2 == null || fileLocation2.local_id != fileLocation.local_id || fileLocation2.volume_id != fileLocation.volume_id || fileLocation2.dc_id != fileLocation.dc_id) {
+                if (currentItemView == null) {
                     return null;
                 }
                 int[] iArr = new int[2];
-                ProfileActivity.this.avatarImage.getLocationInWindow(iArr);
+                ProfileActivity.this.avatarContainer.getLocationInWindow(iArr);
                 PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
                 placeProviderObject.viewX = iArr[0];
                 placeProviderObject.viewY = iArr[1];
-                placeProviderObject.parentView = ProfileActivity.this.avatarImage;
-                placeProviderObject.imageReceiver = ProfileActivity.this.avatarImage.getImageReceiver();
+                placeProviderObject.parentView = ProfileActivity.this.avatarContainer;
+                placeProviderObject.imageReceiver = currentItemView.getImageReceiver();
                 if (ProfileActivity.this.userId != 0) {
                     placeProviderObject.dialogId = ProfileActivity.this.userId;
                 } else if (ProfileActivity.this.chatId != 0) {
@@ -1987,15 +1994,37 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     return null;
                 }
                 placeProviderObject.size = -1L;
-                placeProviderObject.radius = ProfileActivity.this.avatarImage.getImageReceiver().getRoundRadius(true);
-                placeProviderObject.scale = ProfileActivity.this.avatarContainer.getScaleX();
+                placeProviderObject.radius = currentItemView.getImageReceiver().getRoundRadius(true);
+                placeProviderObject.scale = currentItemView.getScaleX();
                 placeProviderObject.canEdit = ProfileActivity.this.userId == ProfileActivity.this.getUserConfig().clientUserId;
                 placeProviderObject.fadeIn = ProfileActivity.this.avatarContainer.getScaleX() > 0.96f;
                 return placeProviderObject;
             }
 
             @Override
+            public void onPhotoIndexChanged(int i, ImageLocation imageLocation) {
+                int iFindPhotoIndexByLocation;
+                if (ProfileActivity.this.avatarsViewPager == null || imageLocation == null || (iFindPhotoIndexByLocation = ProfileActivity.this.avatarsViewPager.findPhotoIndexByLocation(imageLocation)) < 0) {
+                    return;
+                }
+                ProfileActivity.this.avatarsViewPager.setCurrentItem(ProfileActivity.this.avatarsViewPager.getAdapterPositionForPhotoIndex(iFindPhotoIndexByLocation), false);
+            }
+
+            @Override
+            public void onPreClose() {
+                BackupImageView currentItemView;
+                if (ProfileActivity.this.avatarsViewPager == null || (currentItemView = ProfileActivity.this.avatarsViewPager.getCurrentItemView()) == null) {
+                    return;
+                }
+                currentItemView.getImageReceiver().setVisible(true, true);
+            }
+
+            @Override
             public void willHidePhotoViewer() {
+                BackupImageView currentItemView;
+                if (ProfileActivity.this.avatarsViewPager != null && (currentItemView = ProfileActivity.this.avatarsViewPager.getCurrentItemView()) != null) {
+                    currentItemView.getImageReceiver().setVisible(true, true);
+                }
                 ProfileActivity.this.avatarImage.getImageReceiver().setVisible(true, true);
             }
 
@@ -2762,7 +2791,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                    public final void onClick(View view) {
                         this.f$0.lambda$createView$11(i8, view);
                     }
                 });
@@ -2988,8 +3017,66 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public boolean onTouchEvent(android.view.MotionEvent r9) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.AnonymousClass12.onTouchEvent(android.view.MotionEvent):boolean");
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                VelocityTracker velocityTracker;
+                View viewFindViewByPosition2;
+                int action = motionEvent.getAction();
+                if (action == 0) {
+                    VelocityTracker velocityTracker2 = this.velocityTracker;
+                    if (velocityTracker2 == null) {
+                        this.velocityTracker = VelocityTracker.obtain();
+                    } else {
+                        velocityTracker2.clear();
+                    }
+                    this.velocityTracker.addMovement(motionEvent);
+                } else if (action == 2) {
+                    VelocityTracker velocityTracker3 = this.velocityTracker;
+                    if (velocityTracker3 != null) {
+                        velocityTracker3.addMovement(motionEvent);
+                        this.velocityTracker.computeCurrentVelocity(1000);
+                        ProfileActivity.this.listViewVelocityY = this.velocityTracker.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
+                    }
+                } else if ((action == 1 || action == 3) && (velocityTracker = this.velocityTracker) != null) {
+                    if (action == 1) {
+                        velocityTracker.addMovement(motionEvent);
+                        this.velocityTracker.computeCurrentVelocity(1000);
+                        ProfileActivity.this.listViewVelocityY = this.velocityTracker.getYVelocity(motionEvent.getPointerId(motionEvent.getActionIndex()));
+                    }
+                    this.velocityTracker.recycle();
+                    this.velocityTracker = null;
+                }
+                boolean zOnTouchEvent = super.onTouchEvent(motionEvent);
+                if (action == 2) {
+                    if (ProfileActivity.this.extraHeight >= (ProfileActivity.this.shouldUseCompactProfileListPadding() ? ProfileActivity.this.getHeaderExtraHeight() + (ActionBar.getCurrentActionBarHeight() + (((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0)) : ProfileActivity.this.listView.getMeasuredWidth() + ProfileActivity.this.getActionsExtraHeight()) - 1.0f) {
+                        ProfileActivity.this.openAvatar(true);
+                        zOnTouchEvent = false;
+                    }
+                }
+                if ((action == 1 || action == 3) && (viewFindViewByPosition2 = ProfileActivity.this.layoutManager.findViewByPosition(0)) != null) {
+                    if (ProfileActivity.this.justFullyExpanded) {
+                        ProfileActivity.this.justFullyExpanded = false;
+                        ProfileActivity.this.listView.canStopFlinger = true;
+                    }
+                    if (ProfileActivity.this.allowPullingDown) {
+                        if (ProfileActivity.this.isPulledDown) {
+                            ProfileActivity.this.listView.smoothScrollBy(0, ((viewFindViewByPosition2.getTop() - ProfileActivity.this.listView.getMeasuredWidth()) - ProfileActivity.this.getActionsExtraHeight()) + ActionBar.getCurrentActionBarHeight() + (((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0), CubicBezierInterpolator.EASE_OUT_QUINT);
+                        } else {
+                            ProfileActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition2.getTop() - ProfileActivity.this.getHeaderExtraHeight(), CubicBezierInterpolator.EASE_OUT_QUINT);
+                        }
+                    } else {
+                        boolean z2 = ProfileActivity.this.getActionsExtraHeight() > 0;
+                        if (z2 && ProfileActivity.this.extraHeight > 0.0f && ((ProfileActivity.this.extraHeight < ProfileActivity.this.getHeaderExtraHeight() * 0.6f || ProfileActivity.this.listViewVelocityY < -1000.0f) && ProfileActivity.this.extraHeight > ProfileActivity.this.getActionsExtraHeight() * 0.6f)) {
+                            ProfileActivity.this.listView.smoothScrollBy(0, (int) (ProfileActivity.this.extraHeight - ProfileActivity.this.getActionsExtraHeight()), CubicBezierInterpolator.EASE_OUT_QUINT);
+                        } else if (z2 && ProfileActivity.this.extraHeight > 0.0f && ProfileActivity.this.extraHeight < ProfileActivity.this.getActionsExtraHeight() * 0.6f) {
+                            ProfileActivity.this.listView.smoothScrollBy(0, (int) (ProfileActivity.this.getActionsExtraHeight() - ProfileActivity.this.extraHeight), CubicBezierInterpolator.EASE_OUT_QUINT);
+                        } else if (!z2 && ProfileActivity.this.extraHeight > 0.0f && ProfileActivity.this.listViewVelocityY < -1000.0f) {
+                            ProfileActivity.this.listView.smoothScrollBy(0, (int) ProfileActivity.this.extraHeight, CubicBezierInterpolator.EASE_OUT_QUINT);
+                        } else if (ProfileActivity.this.extraHeight > 0.0f) {
+                            ProfileActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition2.getTop() - ProfileActivity.this.getHeaderExtraHeight(), CubicBezierInterpolator.EASE_OUT_QUINT);
+                        }
+                    }
+                }
+                return zOnTouchEvent;
             }
 
             @Override
@@ -4737,7 +4824,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$11(int i, View view) {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5107,7 +5194,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new AudioPlayerAlert(getContext(), getResourceProvider()));
     }
 
-    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(getParentActivity(), getCurrentAccount()).selectedPeerId(getDialogId()).open(null);
@@ -5187,7 +5274,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 alertDialog.showDelayed(200L);
                 MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(getDialogId(), new com.google.android.exoplayer2.util.Consumer() {
                     @Override
-                    public final void accept(Object obj) throws Resources.NotFoundException, IOException {
+                    public final void accept(Object obj) {
                         this.f$0.lambda$createView$13(alertDialog, (Boolean) obj);
                     }
                 }, true, this.resourcesProvider);
@@ -6767,6 +6854,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return AndroidUtilities.dp(74 + i);
     }
 
+    public boolean shouldUseCompactProfileListPadding() {
+        return (this.isInLandscapeMode || AndroidUtilities.isTablet()) && (!this.hasMainTabs || this.isInLandscapeMode);
+    }
+
     public int getHeaderExtraHeight() {
         return getHeaderOnlyExtraHeight() + getActionsExtraHeight();
     }
@@ -7464,7 +7555,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         openAvatar(false);
     }
 
-    public void openAvatar(boolean r5) {
+    public void openAvatar(boolean r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.openAvatar(boolean):void");
     }
 

@@ -392,6 +392,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             this.cell = chatMessageCell;
             chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                 @Override
+                public boolean allowAddPollOptions() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                }
+
+                @Override
                 public boolean canDrawOutboundsContent() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
                 }
