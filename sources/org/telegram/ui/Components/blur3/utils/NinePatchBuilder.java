@@ -58,10 +58,10 @@ public abstract class NinePatchBuilder {
         int iClamp = MathUtils.clamp(((int) Math.ceil(fMax11)) + iCeil2, 1, i3 - 2);
         int iClamp2 = MathUtils.clamp((i3 - iCeil3) - ((int) Math.ceil(fMax12)), iClamp + 1, i3 - 1);
         int iClamp3 = MathUtils.clamp(((int) Math.ceil(fMax13)) + iCeil4, 1, i4 - 2);
-        return new NinePatchDrawable(bitmapCreateBitmap, createNinePatchChunk(iClamp, iClamp2, iClamp3, MathUtils.clamp((i4 - iCeil5) - ((int) Math.ceil(fMax14)), iClamp3 + 1, i4 - 1), iCeil2, iCeil4, iCeil3, iCeil5).array(), new Rect(iCeil2, iCeil4, iCeil3, iCeil5), null);
+        return new NinePatchDrawable(bitmapCreateBitmap, createNinePatchChunk(iClamp, iClamp2, iClamp3, MathUtils.clamp((i4 - iCeil5) - ((int) Math.ceil(fMax14)), iClamp3 + 1, i4 - 1), iCeil2, iCeil4, iCeil3, iCeil5, 1).array(), new Rect(iCeil2, iCeil4, iCeil3, iCeil5), null);
     }
 
-    public static ByteBuffer createNinePatchChunk(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+    public static ByteBuffer createNinePatchChunk(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {
         ByteBuffer byteBufferOrder = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
         byteBufferOrder.put((byte) 1);
         byteBufferOrder.put((byte) 2);
@@ -78,9 +78,15 @@ public abstract class NinePatchBuilder {
         byteBufferOrder.putInt(i2);
         byteBufferOrder.putInt(i3);
         byteBufferOrder.putInt(i4);
-        for (int i9 = 0; i9 < 9; i9++) {
-            byteBufferOrder.putInt(1);
-        }
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(i9);
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(1);
+        byteBufferOrder.putInt(1);
         return byteBufferOrder;
     }
 }

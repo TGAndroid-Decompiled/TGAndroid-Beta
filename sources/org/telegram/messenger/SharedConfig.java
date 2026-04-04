@@ -178,7 +178,6 @@ public class SharedConfig {
     public static int textSelectionHintShows;
     public static boolean updateStickersOrderOnSend;
     public static Boolean useCamera2Force;
-    public static boolean useEightPatch;
     public static boolean useFaceLock;
     public static boolean useFingerprintLock;
     public static boolean useNewBlur;

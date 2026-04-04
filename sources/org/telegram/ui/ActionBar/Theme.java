@@ -63,7 +63,6 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -112,7 +111,6 @@ import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChoosingStickerStatusDrawable;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.EightPatchDrawable;
 import org.telegram.ui.Components.FragmentContextViewWavesDrawable;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
@@ -128,6 +126,7 @@ import org.telegram.ui.Components.SendingFileDrawable;
 import org.telegram.ui.Components.StatusDrawable;
 import org.telegram.ui.Components.ThemeEditorView;
 import org.telegram.ui.Components.TypingDotsDrawable;
+import org.telegram.ui.Components.blur3.utils.NinePatchBuilder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.RoundVideoProgressShadow;
 import org.telegram.ui.ThemeActivity;
@@ -1507,7 +1506,7 @@ public abstract class Theme {
                 paint.setColor(-1);
                 setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
                 draw(canvas, paint);
-                this.transitionDrawable = new NinePatchDrawable(bitmapCreateBitmap, getByteBuffer((bitmapCreateBitmap.getWidth() / 2) - 1, (bitmapCreateBitmap.getWidth() / 2) + 1, (bitmapCreateBitmap.getHeight() / 2) - 1, (bitmapCreateBitmap.getHeight() / 2) + 1).array(), new Rect(), null);
+                this.transitionDrawable = new NinePatchDrawable(bitmapCreateBitmap, getByteBuffer((bitmapCreateBitmap.getWidth() / 2) - 1, (bitmapCreateBitmap.getWidth() / 2) + 1, (bitmapCreateBitmap.getHeight() / 2) - 1, (bitmapCreateBitmap.getHeight() / 2) + 1, -1).array(), new Rect(), null);
                 setBounds(this.backupRect);
             }
             if (this.transitionDrawableColor != i) {
@@ -1526,7 +1525,7 @@ public abstract class Theme {
 
         public Drawable getShadowDrawable() {
             char c;
-            Drawable ninePatchDrawable;
+            int i;
             if (this.isCrossfadeBackground) {
                 return null;
             }
@@ -1568,15 +1567,12 @@ public abstract class Theme {
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                         setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
                         draw(canvas, paint);
+                        i = 0;
+                    } else {
+                        i = 1;
                     }
                     this.shadowDrawableBitmap[c] = bitmapCreateBitmap;
-                    Drawable[] drawableArr = this.shadowDrawable;
-                    if (SharedConfig.useEightPatch) {
-                        ninePatchDrawable = new EightPatchDrawable(bitmapCreateBitmap, getByteBuffer((bitmapCreateBitmap.getWidth() / 2) - 1, (bitmapCreateBitmap.getWidth() / 2) + 1, (bitmapCreateBitmap.getHeight() / 2) - 1, (bitmapCreateBitmap.getHeight() / 2) + 1).array(), new Rect(), null);
-                    } else {
-                        ninePatchDrawable = new NinePatchDrawable(bitmapCreateBitmap, getByteBuffer((bitmapCreateBitmap.getWidth() / 2) - 1, (bitmapCreateBitmap.getWidth() / 2) + 1, (bitmapCreateBitmap.getHeight() / 2) - 1, (bitmapCreateBitmap.getHeight() / 2) + 1).array(), new Rect(), null);
-                    }
-                    drawableArr[c] = ninePatchDrawable;
+                    this.shadowDrawable[c] = new NinePatchDrawable(bitmapCreateBitmap, getByteBuffer((bitmapCreateBitmap.getWidth() / 2) - 1, (bitmapCreateBitmap.getWidth() / 2) + 1, (bitmapCreateBitmap.getHeight() / 2) - 1, (bitmapCreateBitmap.getHeight() / 2) + 1, i).array(), new Rect(), null);
                     z2 = true;
                 } catch (Throwable unused) {
                 }
@@ -1602,33 +1598,8 @@ public abstract class Theme {
             Arrays.fill(this.currentShadowDrawableRadius, -1);
         }
 
-        private static ByteBuffer getByteBuffer(int i, int i2, int i3, int i4) {
-            ByteBuffer byteBufferOrder = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
-            byteBufferOrder.put((byte) 1);
-            byteBufferOrder.put((byte) 2);
-            byteBufferOrder.put((byte) 2);
-            byteBufferOrder.put((byte) 9);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(0);
-            byteBufferOrder.putInt(i);
-            byteBufferOrder.putInt(i2);
-            byteBufferOrder.putInt(i3);
-            byteBufferOrder.putInt(i4);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            byteBufferOrder.putInt(1);
-            return byteBufferOrder;
+        private static ByteBuffer getByteBuffer(int i, int i2, int i3, int i4, int i5) {
+            return NinePatchBuilder.createNinePatchChunk(i, i2, i3, i4, 0, 0, 0, 0, i5);
         }
 
         public void drawCached(Canvas canvas, PathDrawParams pathDrawParams, Paint paint) {
@@ -3389,7 +3360,7 @@ public abstract class Theme {
         }
     }
 
-    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) throws Resources.NotFoundException {
+    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) {
         Resources resources = context.getResources();
         Drawable drawableMutate = resources.getDrawable(i).mutate();
         if (i2 != 0) {

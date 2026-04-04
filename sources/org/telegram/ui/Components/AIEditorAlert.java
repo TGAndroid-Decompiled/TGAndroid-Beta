@@ -1122,7 +1122,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                     int iMax = 0;
                     for (int i6 = 0; i6 < getChildCount(); i6++) {
                         View childAt = getChildAt(i6);
-                        childAt.setPadding(0, 0, 0, 0);
+                        childAt.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
                         childAt.measure(z2 ? View.MeasureSpec.makeMeasureSpec(0, 0) : i3, !z2 ? View.MeasureSpec.makeMeasureSpec(0, 0) : i4);
                         int measuredWidth = z2 ? childAt.getMeasuredWidth() : childAt.getMeasuredHeight();
                         iMax = Math.max(iMax, measuredWidth);
@@ -1132,7 +1132,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
                     for (int i7 = 0; i7 < getChildCount(); i7++) {
                         View childAt2 = getChildAt(i7);
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
-                        childAt2.setPadding(AndroidUtilities.dp(!z3 ? 8.0f : 0.0f), 0, AndroidUtilities.dp(z3 ? 0.0f : 8.0f), 0);
+                        childAt2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
                         if (z3) {
                             if (z2) {
                                 layoutParams.width = 0;

@@ -1551,7 +1551,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         } else {
             string3 = null;
         }
-        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.debugViewMetrics ? "disable debug view metrics" : "enable debug view metrics" : null, BuildVars.DEBUG_VERSION ? SharedConfig.useEightPatch ? "use nine patch" : "use eight patch" : null}, new DialogInterface.OnClickListener() {
+        builder.setItems(new CharSequence[]{string4, string5, string6, string7, string, string8, string9, string10, null, string11, string12, str3, str4, str5, string13, string14, string15, str6, string2, str7, str8, str9, str10, string16, str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, string3, "Reload app config", !SharedConfig.forceForumTabs ? "Force Forum Tabs" : "Do Not Force Forum Tabs", "Make Memory Dump", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.fastWallpaperDisabled ? "enable wallpaper shader" : "disable wallpaper shader" : null, SharedConfig.frameMetricsEnabled ? "hide frame metrics" : "show frame metrics", BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.shadowsInSections ? "disable shadows in settings" : "enable shadows in settings" : null, BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.debugViewMetrics ? "disable debug view metrics" : "enable debug view metrics" : null}, new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 this.f$0.lambda$openDebugMenu$21(dialogInterface, i3);
@@ -1852,13 +1852,6 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     boolean z2 = !SharedConfig.debugViewMetrics;
                     SharedConfig.debugViewMetrics = z2;
                     editorEdit4.putBoolean("debugViewMetrics", z2).apply();
-                    return;
-                }
-                if (i == 42) {
-                    SharedPreferences.Editor editorEdit5 = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
-                    boolean z3 = !SharedConfig.useEightPatch;
-                    SharedConfig.useEightPatch = z3;
-                    editorEdit5.putBoolean("useEightPatch", z3).apply();
                     return;
                 }
                 return;
