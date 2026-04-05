@@ -2104,7 +2104,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     if (childAt == ((BottomSheetWithRecyclerListView) StarGiftSheet.this).recyclerListView) {
                         childAt.measure(i, View.MeasureSpec.makeMeasureSpec(size - bottomInset, 1073741824));
                     } else {
-                        childAt.measure(i, View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
+                        childAt.measure(i, View.MeasureSpec.makeMeasureSpec((childAt.getLayoutParams() == null || childAt.getLayoutParams().height != -1) ? 9999 : size, Integer.MIN_VALUE));
                     }
                 } else {
                     childAt.measure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), 1073741824));
@@ -2453,7 +2453,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 if (i3 >= backupImageViewArr.length) {
                     break;
                 }
-                backupImageViewArr[i3] = new BackupImageView(context);
+                backupImageViewArr[i3] = new BackupImageView(context) {
+                    @Override
+                    public void setAlpha(float f2) {
+                        super.setAlpha(f2);
+                        setVisibility(f2 > 0.0f ? 0 : 4);
+                    }
+                };
                 this.imageView[i3].setLayerNum(6660);
                 if (i3 > 0) {
                     this.imageView[i3].getImageReceiver().setCrossfadeDuration(1);
@@ -2737,11 +2743,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.currentPage = pageTransition;
             int i = 0;
             while (true) {
-                LinearLayout[] linearLayoutArr = this.layout;
-                if (i >= linearLayoutArr.length) {
+                int i2 = 4;
+                if (i >= this.layout.length) {
                     break;
                 }
-                linearLayoutArr[i].setAlpha(pageTransition.at(i));
+                float fAt2 = pageTransition.at(i);
+                this.layout[i].setAlpha(fAt2);
+                LinearLayout linearLayout = this.layout[i];
+                if (fAt2 > 0.0f) {
+                    i2 = 0;
+                }
+                linearLayout.setVisibility(i2);
                 i++;
             }
             this.closeView.setAlpha(Math.max(this.backdrop[0] != null ? pageTransition.at(2) : 0.0f, this.backdrop[1] != null ? pageTransition.at(1) : 0.0f));
@@ -2757,44 +2769,44 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                 this.resellPriceView.setVisibility((this.hasResellPrice && pageTransition.to == 0) ? 0 : 4);
             }
             int color = Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider);
-            int i2 = 0;
-            while (i2 < 2) {
-                this.titleView[i2].setTextColor(this.backdrop[Math.min(1, i2)] == null ? color : -1);
-                LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView[i2];
-                if (i2 == 0 || i2 == 2) {
-                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.backdrop[i2];
+            int i3 = 0;
+            while (i3 < 2) {
+                this.titleView[i3].setTextColor(this.backdrop[Math.min(1, i3)] == null ? color : -1);
+                LinkSpanDrawable.LinksTextView linksTextView = this.subtitleView[i3];
+                if (i3 == 0 || i3 == 2) {
+                    TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.backdrop[i3];
                     iBlendARGB = stargiftattributebackdrop == null ? color : (-16777216) | stargiftattributebackdrop.text_color;
                 } else {
                     TL_stars.starGiftAttributeBackdrop[] stargiftattributebackdropArr2 = this.backdrop;
                     TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2 = stargiftattributebackdropArr2[1];
-                    int i3 = stargiftattributebackdrop2 == null ? color : stargiftattributebackdrop2.text_color | (-16777216);
+                    int i4 = stargiftattributebackdrop2 == null ? color : stargiftattributebackdrop2.text_color | (-16777216);
                     TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop3 = stargiftattributebackdropArr2[2];
-                    iBlendARGB = ColorUtils.blendARGB(i3, stargiftattributebackdrop3 == null ? color : (-16777216) | stargiftattributebackdrop3.text_color, this.toggleBackdrop);
+                    iBlendARGB = ColorUtils.blendARGB(i4, stargiftattributebackdrop3 == null ? color : (-16777216) | stargiftattributebackdrop3.text_color, this.toggleBackdrop);
                 }
                 linksTextView.setTextColor(iBlendARGB);
-                if (this.backdrop[i2] != null) {
-                    z = (AndroidUtilities.dp(184.0f) == this.layoutLayoutParams[i2].topMargin && this.layout[i2].getPaddingBottom() == AndroidUtilities.dp(18.0f)) ? false : true;
+                if (this.backdrop[i3] != null) {
+                    z = (AndroidUtilities.dp(184.0f) == this.layoutLayoutParams[i3].topMargin && this.layout[i3].getPaddingBottom() == AndroidUtilities.dp(18.0f)) ? false : true;
                     if (z) {
-                        this.layout[i2].setPadding(0, 0, 0, AndroidUtilities.dp(18.0f));
-                        this.layoutLayoutParams[i2].topMargin = AndroidUtilities.dp(184.0f);
+                        this.layout[i3].setPadding(0, 0, 0, AndroidUtilities.dp(18.0f));
+                        this.layoutLayoutParams[i3].topMargin = AndroidUtilities.dp(184.0f);
                     }
                 } else {
-                    z = (AndroidUtilities.dp(170.0f) == this.layoutLayoutParams[i2].topMargin && this.layout[i2].getPaddingBottom() == AndroidUtilities.dp(3.0f)) ? false : true;
+                    z = (AndroidUtilities.dp(170.0f) == this.layoutLayoutParams[i3].topMargin && this.layout[i3].getPaddingBottom() == AndroidUtilities.dp(3.0f)) ? false : true;
                     if (z) {
-                        this.layout[i2].setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
-                        this.layoutLayoutParams[i2].topMargin = AndroidUtilities.dp(170.0f);
+                        this.layout[i3].setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
+                        this.layoutLayoutParams[i3].topMargin = AndroidUtilities.dp(170.0f);
                     }
                 }
-                this.subtitleViewLayoutParams[i2].topMargin = AndroidUtilities.dp(i2 == 1 ? 7.33f : this.backdrop[0] == null ? 9.0f : 5.66f);
+                this.subtitleViewLayoutParams[i3].topMargin = AndroidUtilities.dp(i3 == 1 ? 7.33f : this.backdrop[0] == null ? 9.0f : 5.66f);
                 if (z) {
-                    this.layout[i2].setLayoutParams(this.layoutLayoutParams[i2]);
-                    if (i2 == 0) {
-                        this.subtitleContainer.setLayoutParams(this.subtitleViewLayoutParams[i2]);
+                    this.layout[i3].setLayoutParams(this.layoutLayoutParams[i3]);
+                    if (i3 == 0) {
+                        this.subtitleContainer.setLayoutParams(this.subtitleViewLayoutParams[i3]);
                     } else {
-                        this.subtitleView[i2].setLayoutParams(this.subtitleViewLayoutParams[i2]);
+                        this.subtitleView[i3].setLayoutParams(this.subtitleViewLayoutParams[i3]);
                     }
                 }
-                i2++;
+                i3++;
             }
             TextView textView = this.collectionReleasedView;
             int iDp = AndroidUtilities.dp(24.0f);
@@ -2813,17 +2825,17 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             this.imageLayout.setScaleY(AndroidUtilities.lerp(1.0f, this.wearImageScale, pageTransition.at(2)));
             this.imageLayout.setTranslationX(this.wearImageTx * pageTransition.at(2));
             this.imageLayout.setTranslationY((AndroidUtilities.dp(16.0f) * pageTransition.at(1)) + (this.wearImageTy * pageTransition.at(2)));
-            LinearLayout linearLayout = this.layout[2];
-            int i4 = pageTransition.from;
-            if (i4 == 2 && pageTransition.to == 2) {
+            LinearLayout linearLayout2 = this.layout[2];
+            int i5 = pageTransition.from;
+            if (i5 == 2 && pageTransition.to == 2) {
                 fAt = 0.0f;
             } else {
-                if (i4 == 2) {
-                    i4 = pageTransition.to;
+                if (i5 == 2) {
+                    i5 = pageTransition.to;
                 }
-                fAt = (-(r1[i4].getMeasuredHeight() - this.layout[2].getMeasuredHeight())) * (1.0f - pageTransition.at(2));
+                fAt = (-(r1[i5].getMeasuredHeight() - this.layout[2].getMeasuredHeight())) * (1.0f - pageTransition.at(2));
             }
-            linearLayout.setTranslationY(fAt);
+            linearLayout2.setTranslationY(fAt);
             this.ribbon.setVisibility((this.hasRibbon && this.currentPage.contains(0)) ? 0 : 8);
             this.ribbon.setAlpha(this.currentPage.at(0));
             this.craftTopView.setVisibility(pageTransition.at(4) <= 0.0f ? 8 : 0);

@@ -372,7 +372,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private Paint bottomFancyShadowPaint;
     private FrameLayout bottomLayout;
     private LinearLayout btnLayout;
-    private float bulletinCaptionOffset;
     private boolean canDragDown;
     private boolean canEditAvatar;
     private boolean canZoom;
@@ -1011,11 +1010,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onPhotoIndexChanged(int i, ImageLocation imageLocation) {
-            PhotoViewerProvider.CC.$default$onPhotoIndexChanged(this, i, imageLocation);
-        }
-
-        @Override
         public void onPollAttachDelete() {
             PhotoViewerProvider.CC.$default$onPollAttachDelete(this);
         }
@@ -1155,9 +1149,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             public static void $default$onEditModeChanged(PhotoViewerProvider photoViewerProvider, boolean z) {
             }
 
-            public static void $default$onPhotoIndexChanged(PhotoViewerProvider photoViewerProvider, int i, ImageLocation imageLocation) {
-            }
-
             public static void $default$onPollAttachDelete(PhotoViewerProvider photoViewerProvider) {
             }
 
@@ -1246,8 +1237,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         void onOpen();
 
-        void onPhotoIndexChanged(int i, ImageLocation imageLocation);
-
         void onPollAttachDelete();
 
         void onPollAttachReplace();
@@ -1334,7 +1323,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void onShowPress(MotionEvent motionEvent) {
     }
 
-    public static void access$18500(PhotoViewer photoViewer) {
+    public static void access$18300(PhotoViewer photoViewer) {
         photoViewer.updateCaptionTranslated();
     }
 
@@ -3186,30 +3175,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
                 @Override
                 public int getBottomOffset(int i) {
-                    int iMax;
-                    int iRound;
-                    int iRound2;
-                    int keyboardHeight = 0;
+                    int height = 0;
                     if (PhotoViewer.this.editing) {
                         if (PhotoViewer.this.captionEdit != null) {
-                            keyboardHeight = PhotoViewer.this.captionEdit.keyboardNotifier.getKeyboardHeight();
+                            height = PhotoViewer.this.captionEdit.keyboardNotifier.getKeyboardHeight();
                             if (PhotoViewer.this.captionEdit.getVisibility() == 0 && (PhotoViewer.this.placeProvider == null || !PhotoViewer.this.placeProvider.isCaptionAbove())) {
-                                keyboardHeight += PhotoViewer.this.captionEdit.getEditTextHeight() + AndroidUtilities.dp(12.0f);
+                                height += PhotoViewer.this.captionEdit.getEditTextHeight() + AndroidUtilities.dp(12.0f);
                             }
                         }
-                        return (PhotoViewer.this.pickerView == null || PhotoViewer.this.pickerView.getVisibility() != 0) ? keyboardHeight : (PhotoViewer.this.captionEdit == null || !PhotoViewer.this.captionEdit.keyboardNotifier.keyboardVisible()) ? keyboardHeight + PhotoViewer.this.pickerView.getHeight() : keyboardHeight;
+                        return (PhotoViewer.this.pickerView == null || PhotoViewer.this.pickerView.getVisibility() != 0) ? height : (PhotoViewer.this.captionEdit == null || !PhotoViewer.this.captionEdit.keyboardNotifier.keyboardVisible()) ? height + PhotoViewer.this.pickerView.getHeight() : height;
                     }
-                    int height = (PhotoViewer.this.bottomLayout == null || PhotoViewer.this.bottomLayout.getVisibility() != 0) ? 0 : (int) (0 + (PhotoViewer.this.bottomLayout.getHeight() * PhotoViewer.this.bottomLayout.getAlpha()));
-                    if (PhotoViewer.this.groupedPhotosListView != null && PhotoViewer.this.groupedPhotosListView.hasPhotos() && (AndroidUtilities.isTablet() || PhotoViewer.this.containerView.getMeasuredHeight() > PhotoViewer.this.containerView.getMeasuredWidth())) {
-                        height = (int) (height + (PhotoViewer.this.groupedPhotosListView.getHeight() * PhotoViewer.this.groupedPhotosListView.getAlpha()));
+                    if (PhotoViewer.this.bottomLayout != null && PhotoViewer.this.bottomLayout.getVisibility() == 0) {
+                        height = (int) (0 + (PhotoViewer.this.bottomLayout.getHeight() * PhotoViewer.this.bottomLayout.getAlpha()));
                     }
-                    if (i == 999 && PhotoViewer.this.captionScrollView != null && PhotoViewer.this.captionContainer != null && PhotoViewer.this.captionTextViewSwitcher != null && (iRound = Math.round((((PhotoViewer.this.captionScrollView.getTop() + PhotoViewer.this.captionScrollView.getTranslationY()) + PhotoViewer.this.captionContainer.getTop()) - PhotoViewer.this.captionScrollView.getScrollY()) + PhotoViewer.this.captionTextViewSwitcher.getTranslationY())) < PhotoViewer.this.containerView.getHeight() && (iRound2 = Math.round((PhotoViewer.this.containerView.getHeight() - iRound) * PhotoViewer.this.bulletinCaptionOffset)) > height) {
-                        height = iRound2;
-                    }
-                    int iMax2 = (PhotoViewer.this.actionBar == null || PhotoViewer.this.actionBar.getVisibility() != 0 || PhotoViewer.this.actionBar.getAlpha() <= 0.0f) ? 0 : Math.max(0, Math.round(PhotoViewer.this.actionBar.getY() + PhotoViewer.this.actionBar.getHeight()));
-                    Bulletin bulletinFind = Bulletin.find(PhotoViewer.this.containerView);
-                    Bulletin.Layout layout = bulletinFind != null ? bulletinFind.getLayout() : null;
-                    return (i != 999 || iMax2 <= 0 || height <= (iMax = Math.max(0, (PhotoViewer.this.containerView.getHeight() - iMax2) - ((layout == null || layout.getHeight() <= 0) ? AndroidUtilities.dp(56.0f) : layout.getHeight())))) ? height : iMax;
+                    return (PhotoViewer.this.groupedPhotosListView == null || !PhotoViewer.this.groupedPhotosListView.hasPhotos()) ? height : (AndroidUtilities.isTablet() || PhotoViewer.this.containerView.getMeasuredHeight() > PhotoViewer.this.containerView.getMeasuredWidth()) ? (int) (height + (PhotoViewer.this.groupedPhotosListView.getHeight() * PhotoViewer.this.groupedPhotosListView.getAlpha())) : height;
                 }
 
                 @Override
@@ -3480,7 +3459,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         protected void onScrollStart() {
         }
 
-        protected abstract void onScrollUpdate();
+        protected void onScrollUpdate() {
+        }
 
         public CaptionScrollView(Context context, CaptionTextViewSwitcher captionTextViewSwitcher, FrameLayout frameLayout) throws NoSuchFieldException, NoSuchMethodException, SecurityException {
             super(context);
@@ -3812,7 +3792,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
         };
         this.isActionBarVisible = true;
-        this.bulletinCaptionOffset = 1.0f;
         this.closePhotoAfterSelect = true;
         this.closePhotoAfterSelectWithAnimation = false;
         this.iBlur3BlurredDrawables = new ReferenceList();
@@ -6141,7 +6120,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
+        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -11915,11 +11894,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.toggleActionBar(boolean, boolean, org.telegram.ui.PhotoViewer$ActionBarToggleParams):void");
     }
 
-    public void lambda$toggleActionBar$120(ValueAnimator valueAnimator) {
-        this.bulletinCaptionOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        Bulletin.updateCurrentPosition();
-    }
-
     public void lambda$toggleActionBar$121(ValueAnimator valueAnimator) {
         this.photoProgressViews[0].setIndexedAlpha(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
     }
@@ -12930,13 +12904,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             }
 
                             @Override
-                            protected void onScrollUpdate() {
-                                if (PhotoViewer.this.isActionBarVisible) {
-                                    Bulletin.updateCurrentPosition();
-                                }
-                            }
-
-                            @Override
                             public void invalidate() {
                                 super.invalidate();
                                 if (PhotoViewer.this.isActionBarVisible) {
@@ -12947,10 +12914,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     if (!z4) {
                                         int y = PhotoViewer.this.photoProgressViews[0].getY() + PhotoViewer.this.photoProgressViews[0].size;
                                         int top = (((PhotoViewer.this.captionContainer.getTop() + ((int) translationY)) - scrollY) + ((isStatusBarVisible() ? AndroidUtilities.statusBarHeight : 0) + ActionBar.getCurrentActionBarHeight())) - AndroidUtilities.dp(12.0f);
-                                        int y2 = (int) PhotoViewer.this.fullscreenButton[0].getY();
-                                        int iDp = (PhotoViewer.this.ads == null || !PhotoViewer.this.ads.isBulletinShown()) ? 0 : AndroidUtilities.dp(56.0f);
-                                        z5 = top > y2 + AndroidUtilities.dp(32.0f);
-                                        z4 = top > y + iDp;
+                                        z5 = top > ((int) PhotoViewer.this.fullscreenButton[0].getY()) + AndroidUtilities.dp(32.0f);
+                                        z4 = top > y;
                                     }
                                     if (PhotoViewer.this.allowShowFullscreenButton) {
                                         if (PhotoViewer.this.fullscreenButton[0].getTag() == null || ((Integer) PhotoViewer.this.fullscreenButton[0].getTag()).intValue() != 3 || !z5) {
@@ -13635,19 +13600,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public boolean openPhoto(TLRPC.FileLocation fileLocation, PhotoViewerProvider photoViewerProvider) {
-        return openPhoto(fileLocation, photoViewerProvider, false);
-    }
-
-    public boolean openPhoto(TLRPC.FileLocation fileLocation, PhotoViewerProvider photoViewerProvider, boolean z) {
-        return openPhoto(null, fileLocation, null, null, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null, z);
+        return openPhoto(null, fileLocation, null, null, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
     }
 
     public boolean openPhotoWithVideo(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
         return openPhoto(null, fileLocation, null, imageLocation, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
-    }
-
-    public boolean openPhotoWithVideo(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider, boolean z) {
-        return openPhoto(null, fileLocation, null, imageLocation, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null, z);
     }
 
     public boolean openPhoto(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
@@ -14039,12 +13996,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.padImageForHorizontalInsets = true;
     }
 
-    public boolean openPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, ImageLocation imageLocation, ImageLocation imageLocation2, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, int i, PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity, long j, long j2, long j3, boolean z, PageBlocksAdapter pageBlocksAdapter, Integer num) {
-        return openPhoto(messageObject, fileLocation, imageLocation, imageLocation2, arrayList, arrayList2, arrayList3, i, photoViewerProvider, chatActivity, j, j2, j3, z, pageBlocksAdapter, num, false);
-    }
-
-    public boolean openPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, org.telegram.messenger.ImageLocation r19, org.telegram.messenger.ImageLocation r20, java.util.ArrayList r21, java.util.ArrayList r22, java.util.ArrayList r23, int r24, final org.telegram.ui.PhotoViewer.PhotoViewerProvider r25, org.telegram.ui.ChatActivity r26, long r27, long r29, long r31, boolean r33, org.telegram.ui.PhotoViewer.PageBlocksAdapter r34, final java.lang.Integer r35, boolean r36) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.openPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int, org.telegram.ui.PhotoViewer$PhotoViewerProvider, org.telegram.ui.ChatActivity, long, long, long, boolean, org.telegram.ui.PhotoViewer$PageBlocksAdapter, java.lang.Integer, boolean):boolean");
+    public boolean openPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, org.telegram.messenger.ImageLocation r19, org.telegram.messenger.ImageLocation r20, java.util.ArrayList r21, java.util.ArrayList r22, java.util.ArrayList r23, int r24, final org.telegram.ui.PhotoViewer.PhotoViewerProvider r25, org.telegram.ui.ChatActivity r26, long r27, long r29, long r31, boolean r33, org.telegram.ui.PhotoViewer.PageBlocksAdapter r34, final java.lang.Integer r35) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.openPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int, org.telegram.ui.PhotoViewer$PhotoViewerProvider, org.telegram.ui.ChatActivity, long, long, long, boolean, org.telegram.ui.PhotoViewer$PageBlocksAdapter, java.lang.Integer):boolean");
     }
 
     public void lambda$openPhoto$136() throws NumberFormatException {
@@ -14064,10 +14017,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         final PlaceProviderObject val$object;
         final ArrayList val$photos;
         final PhotoViewerProvider val$provider;
-        final boolean val$shouldHaptic;
         final float val$top;
 
-        AnonymousClass79(ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f, PlaceProviderObject placeProviderObject, float f2, PhotoViewerProvider photoViewerProvider, ArrayList arrayList, Integer num, boolean z) {
+        AnonymousClass79(ClippingImageView[] clippingImageViewArr, ViewGroup.LayoutParams layoutParams, float f, PlaceProviderObject placeProviderObject, float f2, PhotoViewerProvider photoViewerProvider, ArrayList arrayList, Integer num) {
             this.val$animatingImageViews = clippingImageViewArr;
             this.val$layoutParams = layoutParams;
             this.val$left = f;
@@ -14076,7 +14028,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.val$provider = photoViewerProvider;
             this.val$photos = arrayList;
             this.val$embedSeekTime = num;
-            this.val$shouldHaptic = z;
         }
 
         @Override
@@ -14328,17 +14279,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public void onAnimationStart(Animator animator) {
-                AnonymousClass79 anonymousClass79 = AnonymousClass79.this;
-                if (anonymousClass79.val$shouldHaptic) {
-                    try {
-                        PhotoViewer.this.containerView.performHapticFeedback(0, 2);
-                    } catch (Exception unused) {
-                    }
-                }
-            }
-
-            @Override
             public void onAnimationEnd(Animator animator) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -14365,9 +14305,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public void lambda$onPreDraw$3(PlaceProviderObject placeProviderObject) {
             PhotoViewer.this.disableShowCheck = false;
-            if (placeProviderObject.fadeIn) {
-                return;
-            }
             placeProviderObject.imageReceiver.setVisible(false, true);
         }
     }
@@ -14934,7 +14871,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     }
                                 }
                                 if (chatActivity2 != null) {
-                                    chatActivity2.lambda$openDiscussionMessageChat$366(PhotoViewer.this.animationEndRunnable);
+                                    chatActivity2.lambda$openDiscussionMessageChat$365(PhotoViewer.this.animationEndRunnable);
                                 } else {
                                     PhotoViewer.this.animationEndRunnable.run();
                                     PhotoViewer.this.animationEndRunnable = null;

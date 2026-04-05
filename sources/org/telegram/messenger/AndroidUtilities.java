@@ -321,6 +321,9 @@ public class AndroidUtilities {
         return j > j2 ? 1 : -1;
     }
 
+    public static void dumpCanvas(View view) {
+    }
+
     public static double fixLocationCoord(double d) {
         return ((long) (d * 1000000.0d)) / 1000000.0d;
     }

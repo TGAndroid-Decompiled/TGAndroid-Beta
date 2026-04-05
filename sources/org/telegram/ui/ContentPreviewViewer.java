@@ -815,7 +815,7 @@ public class ContentPreviewViewer {
                             stableInsetBottom = 0;
                         }
                         int iMin2 = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom) - AndroidUtilities.dp(40.0f)) / 2;
-                        int iMax3 = ((int) (((int) (ContentPreviewViewer.this.moveY + Math.max(stableInsetTop + iMin2 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin2)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY))) + ContentPreviewViewer.this.getGifPreviewOffsetY();
+                        int iMax3 = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(stableInsetTop + iMin2 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin2)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
                         ContentPreviewViewer contentPreviewViewer4 = ContentPreviewViewer.this;
                         contentPreviewViewer4.popupWindow.showAtLocation(contentPreviewViewer4.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) / 2.0f), iMax3);
                         try {
@@ -1687,13 +1687,6 @@ public class ContentPreviewViewer {
         } catch (Exception e) {
             FileLog.e(e);
         }
-    }
-
-    public int getGifPreviewOffsetY() {
-        if (this.currentContentType != 1 || this.isPhotoEditor || this.slideUpDrawable == null) {
-            return 0;
-        }
-        return AndroidUtilities.dp(56.0f);
     }
 
     public void open(TLRPC.Document document, SendMessagesHelper.ImportingSticker importingSticker, String str, String str2, TLRPC.BotInlineResult botInlineResult, int i, boolean z, Object obj, Theme.ResourcesProvider resourcesProvider) {

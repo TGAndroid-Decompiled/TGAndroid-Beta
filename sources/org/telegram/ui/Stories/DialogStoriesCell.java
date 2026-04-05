@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -905,7 +906,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
             alertDialog.showDelayed(500L);
             MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(j, new Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void accept(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$openStoryRecorder$14(alertDialog, j, storyCell, (Boolean) obj);
                 }
             }, true, resourceProvider);
@@ -914,7 +915,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
     }
 
-    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) {
+    public void lambda$openStoryRecorder$14(AlertDialog alertDialog, long j, StoryCell storyCell, Boolean bool) throws Resources.NotFoundException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(this.fragment.getParentActivity(), this.currentAccount).selectedPeerId(j).canChangePeer(false).open(StoryRecorder.SourceView.fromStoryCell(storyCell));
@@ -1513,7 +1514,9 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                     float f16 = avatarStoryParams5.progressToSate;
                     this.textAlpha = avatarStoryParams5.globalState == 2 ? 0.7f : 1.0f;
                 }
-                this.textViewContainer.setAlpha(this.textAlphaTransition * this.textAlpha);
+                float f17 = this.textAlphaTransition * this.textAlpha;
+                this.textViewContainer.setAlpha(f17);
+                this.textViewContainer.setVisibility(f17 > 0.0f ? 0 : 4);
             }
             super.dispatchDraw(canvas);
         }
@@ -1667,6 +1670,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         }
 
         public void setProgressToCollapsed(float f, float f2, float f3, boolean z) {
+            float fClamp;
             if (this.progressToCollapsed != f || this.progressToCollapsed2 != f2 || this.overscrollProgress != f3 || this.selectedForOverscroll != z) {
                 this.selectedForOverscroll = z;
                 this.progressToCollapsed = f;
@@ -1674,13 +1678,16 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
                 invalidate();
                 DialogStoriesCell.this.recyclerListView.invalidate();
             }
-            float fClamp = 0.0f;
-            if (!this.mini) {
+            if (this.mini) {
+                fClamp = 0.0f;
+            } else {
                 DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
                 fClamp = 1.0f - Utilities.clamp(dialogStoriesCell.collapsedProgress / dialogStoriesCell.K, 1.0f, 0.0f);
             }
             this.textAlphaTransition = fClamp;
-            this.textViewContainer.setAlpha(fClamp * this.textAlpha);
+            float f4 = fClamp * this.textAlpha;
+            this.textViewContainer.setAlpha(f4);
+            this.textViewContainer.setVisibility(f4 > 0.0f ? 0 : 4);
         }
 
         public void setCrossfadeTo(long j) {

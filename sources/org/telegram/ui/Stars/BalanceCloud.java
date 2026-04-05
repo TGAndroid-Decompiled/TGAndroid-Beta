@@ -5,8 +5,6 @@ import android.view.MotionEvent;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import java.math.BigDecimal;
-import java.math.MathContext;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.LocaleController;
@@ -14,7 +12,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
-import org.telegram.messenger.utils.tlutils.AmountUtils$Amount$$ExternalSyntheticBackportWithForwarding0;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -23,7 +20,6 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class BalanceCloud extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    private long chatId;
     private final ColoredImageSpan[] coloredImageSpansTon;
     private AmountUtils$Currency currency;
     private final int currentAccount;
@@ -32,18 +28,13 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
     private final LinkSpanDrawable.LinksTextView textView2;
 
     public BalanceCloud(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        this(context, i, -1L, AmountUtils$Currency.STARS, resourcesProvider);
+        this(context, i, AmountUtils$Currency.STARS, resourcesProvider);
     }
 
-    public BalanceCloud(Context context, int i, long j, Theme.ResourcesProvider resourcesProvider) {
-        this(context, i, j, AmountUtils$Currency.STARS, resourcesProvider);
-    }
-
-    public BalanceCloud(final Context context, int i, long j, AmountUtils$Currency amountUtils$Currency, final Theme.ResourcesProvider resourcesProvider) {
+    public BalanceCloud(final Context context, int i, AmountUtils$Currency amountUtils$Currency, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.coloredImageSpansTon = new ColoredImageSpan[1];
         this.currentAccount = i;
-        this.chatId = j;
         this.resourcesProvider = resourcesProvider;
         this.currency = amountUtils$Currency;
         setOrientation(1);
@@ -80,19 +71,11 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
         }
     }
 
-    public void setChatId(long j) {
-        this.chatId = j;
-        updateBalance(true);
-    }
-
     private void updateBalance(boolean z) {
-        String string;
         AmountUtils$Amount balanceAmount = StarsController.getInstance(this.currentAccount, this.currency).getBalanceAmount();
         AmountUtils$Currency amountUtils$Currency = this.currency;
         if (amountUtils$Currency == AmountUtils$Currency.STARS) {
-            TextView textView = this.textView1;
-            long j = this.chatId;
-            textView.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(j == -1 ? R.string.Gift2MessageStarsInfo : R.string.Gift2MessageChannelStarsInfo, LocaleController.formatNumber(j == -1 ? balanceAmount.asDecimal() : (int) BotStarsController.getInstance(this.currentAccount).getBotStarsBalance(-this.chatId).amount, ',')), 0.6f));
+            this.textView1.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(R.string.Gift2MessageStarsInfo, LocaleController.formatNumber(balanceAmount.asDecimal(), ',')), 0.6f));
             LinkSpanDrawable.LinksTextView linksTextView = this.textView2;
             int i = Theme.key_undo_cancelColor;
             linksTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
@@ -103,21 +86,14 @@ public class BalanceCloud extends LinearLayout implements NotificationCenter.Not
                     this.f$0.lambda$updateBalance$1();
                 }
             }), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
-            this.textView2.setVisibility(this.chatId != -1 ? 8 : 0);
             return;
         }
         if (amountUtils$Currency == AmountUtils$Currency.TON) {
-            TextView textView2 = this.textView1;
-            if (this.chatId == -1) {
-                string = LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, balanceAmount.asDecimalString());
-            } else {
-                string = LocaleController.formatString(R.string.Gift2MessageChannelStarsInfoTON, AmountUtils$Amount$$ExternalSyntheticBackportWithForwarding0.m(new BigDecimal(BotStarsController.getInstance(this.currentAccount).getBotStarsBalance(-this.chatId).amount).divide(BigDecimal.valueOf(1000000000L), MathContext.UNLIMITED)).toPlainString());
-            }
-            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(true, (CharSequence) AndroidUtilities.replaceTags(string), 0.6f, this.coloredImageSpansTon));
+            this.textView1.setText(StarsIntroActivity.replaceStarsWithPlain(true, (CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2MessageStarsInfoTON, balanceAmount.asDecimalString())), 0.6f, this.coloredImageSpansTon));
             this.coloredImageSpansTon[0].setColorKey(Theme.key_undo_cancelColor);
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
-            sb.append(BillingController.getInstance().formatCurrency((long) ((this.chatId == -1 ? balanceAmount.asDouble() : BotStarsController.getInstance(this.currentAccount).getBotStarsBalance(-this.chatId).amount) * MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get() * 100.0d), "USD", 2));
+            sb.append(BillingController.getInstance().formatCurrency((long) (balanceAmount.asDouble() * MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get() * 100.0d), "USD", 2));
             LinkSpanDrawable.LinksTextView linksTextView2 = this.textView2;
             int i2 = Theme.key_undo_infoColor;
             int color = Theme.getColor(i2, this.resourcesProvider);

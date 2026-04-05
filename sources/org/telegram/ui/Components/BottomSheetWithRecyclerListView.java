@@ -528,9 +528,22 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomSheetWithRecyclerListView.preDrawInternal(android.graphics.Canvas, android.view.View):void");
     }
 
+    private void checkBackDrawableInsets() {
+        if (this.backDrawable == null || this.containerView == null || this.shadowDrawable == null || !shouldDrawBackground() || this.hasFixedSize) {
+            return;
+        }
+        android.graphics.Rect bounds = this.shadowDrawable.getBounds();
+        if (this.containerView.getMeasuredWidth() >= this.container.getMeasuredWidth()) {
+            this.backDrawable.setBackgroundInsets(0, 0, 0, ((this.containerView.getMeasuredHeight() - bounds.top) - AndroidUtilities.dp(30.0f)) - ((int) this.containerView.getTranslationY()));
+        } else {
+            this.backDrawable.setBackgroundInsets(0, 0, 0, 0);
+        }
+    }
+
     @Override
     protected void onContainerViewTranslation() {
         onSheetTop(this.lastTop);
+        checkBackDrawableInsets();
     }
 
     @Override

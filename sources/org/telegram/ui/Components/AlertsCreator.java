@@ -122,7 +122,7 @@ import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.RadioColorCell;
 import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda247;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda244;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -1948,11 +1948,7 @@ public abstract class AlertsCreator {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void showAlertWithCheckbox(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
-        showAlertWithCheckbox(context, -1L, charSequence, charSequence2, charSequence3, charSequence4, callback, resourcesProvider);
-    }
-
-    public static void showAlertWithCheckbox(Context context, long j, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+    public static void showAlertWithCheckbox(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
         if (context == null) {
             callback.run(Boolean.FALSE);
             return;
@@ -2023,9 +2019,6 @@ public abstract class AlertsCreator {
         AlertDialog alertDialogCreate = builder.create();
         alertDialogCreate.setShowStarsBalance(true);
         alertDialogCreate.show();
-        if (alertDialogCreate.getStarsBalanceCloud() != null) {
-            alertDialogCreate.getStarsBalanceCloud().setChatId(j);
-        }
     }
 
     public static void lambda$showAlertWithCheckbox$51(boolean[] zArr, View view) {
@@ -7317,7 +7310,7 @@ public abstract class AlertsCreator {
                     public final boolean test(Object obj) {
                         return AlertsCreator.lambda$createDeleteMessagesAlert$208(clientUserId, (TLObject) obj);
                     }
-                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda247()));
+                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda244()));
                 if (!arrayList2.isEmpty()) {
                     if (channelParticipantArr == null) {
                         AlertDialog[] alertDialogArr = {new AlertDialog(parentActivity, 3)};

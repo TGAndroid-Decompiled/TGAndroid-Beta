@@ -19,7 +19,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
-import android.text.style.URLSpan;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import java.io.BufferedReader;
@@ -48,7 +47,6 @@ import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
@@ -472,7 +470,7 @@ public class MessageObject {
     }
 
     @Deprecated
-    public static long getTopicId(int i, TLRPC.Message message, boolean z, boolean z2) {
+    private static long getTopicId(int i, TLRPC.Message message, boolean z, boolean z2) {
         int i2;
         long clientUserId = UserConfig.getInstance(i).getClientUserId();
         if (z2) {
@@ -3681,7 +3679,6 @@ public class MessageObject {
         if (this.linkDescription != null) {
             return;
         }
-        boolean zShouldBlockIncomingLinks = shouldBlockIncomingLinks();
         TLRPC.WebPage webPage = this.storyMentionWebpage;
         if (webPage == null) {
             webPage = getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaWebPage ? ((TLRPC.TL_messageMediaWebPage) getMedia(this.messageOwner)).webpage : null;
@@ -3730,15 +3727,12 @@ public class MessageObject {
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            if (zShouldBlockIncomingLinks) {
-                removeDisallowedParsedLinks(this.linkDescription);
-            }
         }
         CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(this.linkDescription, Theme.chat_msgTextPaint.getFontMetricsInt(), false);
         this.linkDescription = charSequenceReplaceEmoji;
         ArrayList<TLRPC.MessageEntity> arrayList = this.webPageDescriptionEntities;
         if (arrayList != null) {
-            addEntitiesToText(charSequenceReplaceEmoji, arrayList, isOut(), z, false, !z, 0, zShouldBlockIncomingLinks);
+            addEntitiesToText(charSequenceReplaceEmoji, arrayList, isOut(), z, false, !z);
             replaceAnimatedEmoji(this.linkDescription, this.webPageDescriptionEntities, Theme.chat_msgTextPaint.getFontMetricsInt());
         }
         if (i != 0) {
@@ -3746,9 +3740,6 @@ public class MessageObject {
                 this.linkDescription = new SpannableStringBuilder(this.linkDescription);
             }
             addUrlsByPattern(isOutOwner(), this.linkDescription, false, i, 0, false);
-            if (zShouldBlockIncomingLinks) {
-                removeDisallowedParsedLinks(this.linkDescription);
-            }
         }
     }
 
@@ -3930,14 +3921,10 @@ public class MessageObject {
     }
 
     private boolean addEntitiesToText(CharSequence charSequence, boolean z) {
-        return addEntitiesToText(charSequence, false, z, false);
+        return addEntitiesToText(charSequence, false, z);
     }
 
     public boolean addEntitiesToText(CharSequence charSequence, boolean z, boolean z2) {
-        return addEntitiesToText(charSequence, z, z2, false);
-    }
-
-    public boolean addEntitiesToText(CharSequence charSequence, boolean z, boolean z2, boolean z3) {
         if (charSequence == null) {
             return false;
         }
@@ -3947,9 +3934,9 @@ public class MessageObject {
             tL_messageEntityItalic.offset = 0;
             tL_messageEntityItalic.length = charSequence.length();
             arrayList.add(tL_messageEntityItalic);
-            return addEntitiesToText(charSequence, arrayList, isOutOwner(), true, z, z2, 0, z3);
+            return addEntitiesToText(charSequence, arrayList, isOutOwner(), true, z, z2);
         }
-        return addEntitiesToText(charSequence, getEntities(), isOutOwner(), true, z, z2, 0, z3);
+        return addEntitiesToText(charSequence, getEntities(), isOutOwner(), true, z, z2);
     }
 
     public void replaceEmojiToLottieFrame(CharSequence charSequence, int[] iArr) {
@@ -4038,12 +4025,8 @@ public class MessageObject {
         return addEntitiesToText(charSequence, arrayList, z, z2, z3, z4, 0);
     }
 
-    public static boolean addEntitiesToText(CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, boolean z, boolean z2, boolean z3, boolean z4, int i) {
-        return addEntitiesToText(charSequence, arrayList, z, z2, z3, z4, i, false);
-    }
-
-    public static boolean addEntitiesToText(java.lang.CharSequence r18, java.util.ArrayList<org.telegram.tgnet.TLRPC.MessageEntity> r19, boolean r20, boolean r21, boolean r22, boolean r23, int r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.addEntitiesToText(java.lang.CharSequence, java.util.ArrayList, boolean, boolean, boolean, boolean, int, boolean):boolean");
+    public static boolean addEntitiesToText(java.lang.CharSequence r18, java.util.ArrayList<org.telegram.tgnet.TLRPC.MessageEntity> r19, boolean r20, boolean r21, boolean r22, boolean r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.addEntitiesToText(java.lang.CharSequence, java.util.ArrayList, boolean, boolean, boolean, boolean, int):boolean");
     }
 
     public static int lambda$addEntitiesToText$2(TLRPC.MessageEntity messageEntity, TLRPC.MessageEntity messageEntity2) {
@@ -4195,88 +4178,6 @@ public class MessageObject {
 
     private boolean applyEntities() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
-    }
-
-    private boolean shouldBlockIncomingLinks() {
-        if (isOutOwner()) {
-            return false;
-        }
-        long dialogId = getDialogId();
-        if (dialogId == 0) {
-            return false;
-        }
-        return MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("dialog_bar_block" + dialogId, false);
-    }
-
-    public boolean isIncomingLinksBlocked() {
-        return shouldBlockIncomingLinks();
-    }
-
-    public static boolean isInternalTelegramWebpageType(String str) {
-        if (str == null) {
-            return false;
-        }
-        switch (str) {
-        }
-        return false;
-    }
-
-    private static boolean isInternalTelegramLinkEntity(TLRPC.MessageEntity messageEntity, CharSequence charSequence) {
-        String strSubstring;
-        int i;
-        if ((messageEntity instanceof TLRPC.TL_messageEntityMention) || (messageEntity instanceof TLRPC.TL_messageEntityHashtag) || (messageEntity instanceof TLRPC.TL_messageEntityBotCommand) || (messageEntity instanceof TLRPC.TL_messageEntityMentionName) || (messageEntity instanceof TLRPC.TL_inputMessageEntityMentionName)) {
-            return true;
-        }
-        if (messageEntity instanceof TLRPC.TL_messageEntityTextUrl) {
-            strSubstring = messageEntity.url;
-        } else {
-            int i2 = messageEntity.offset;
-            if (i2 < 0 || (i = messageEntity.length) <= 0 || i2 + i > charSequence.length()) {
-                strSubstring = null;
-            } else {
-                int i3 = messageEntity.offset;
-                strSubstring = TextUtils.substring(charSequence, i3, messageEntity.length + i3);
-            }
-        }
-        return isInternalTelegramUrl(strSubstring);
-    }
-
-    private static boolean isLinkableEntity(TLRPC.MessageEntity messageEntity) {
-        return (messageEntity instanceof TLRPC.TL_messageEntityUrl) || (messageEntity instanceof TLRPC.TL_messageEntityTextUrl) || (messageEntity instanceof TLRPC.TL_messageEntityEmail) || (messageEntity instanceof TLRPC.TL_messageEntityPhone) || (messageEntity instanceof TLRPC.TL_messageEntityMention) || (messageEntity instanceof TLRPC.TL_messageEntityHashtag) || (messageEntity instanceof TLRPC.TL_messageEntityBotCommand) || (messageEntity instanceof TLRPC.TL_messageEntityCashtag) || (messageEntity instanceof TLRPC.TL_messageEntityMentionName) || (messageEntity instanceof TLRPC.TL_inputMessageEntityMentionName) || (messageEntity instanceof TLRPC.TL_messageEntityBankCard);
-    }
-
-    private static void removeDisallowedParsedLinks(CharSequence charSequence) {
-        if (charSequence instanceof Spannable) {
-            Spannable spannable = (Spannable) charSequence;
-            for (URLSpan uRLSpan : (URLSpan[]) spannable.getSpans(0, spannable.length(), URLSpan.class)) {
-                if (uRLSpan != null && !isInternalTelegramUrl(uRLSpan.getURL())) {
-                    spannable.removeSpan(uRLSpan);
-                }
-            }
-        }
-    }
-
-    private static boolean isInternalTelegramUrl(String str) {
-        if (TextUtils.isEmpty(str)) {
-            return false;
-        }
-        String strNormalizePotentialInternalUrl = normalizePotentialInternalUrl(str);
-        if (strNormalizePotentialInternalUrl.contains("telegram_") || strNormalizePotentialInternalUrl.startsWith("tg:") || strNormalizePotentialInternalUrl.startsWith("tg://") || strNormalizePotentialInternalUrl.startsWith("https://t.me/") || strNormalizePotentialInternalUrl.startsWith("http://t.me/") || strNormalizePotentialInternalUrl.startsWith("t.me/") || strNormalizePotentialInternalUrl.startsWith("https://telegram.me/") || strNormalizePotentialInternalUrl.startsWith("http://telegram.me/") || strNormalizePotentialInternalUrl.startsWith("telegram.me/")) {
-            return true;
-        }
-        try {
-            return Browser.isInternalUrl(strNormalizePotentialInternalUrl, null);
-        } catch (Exception unused) {
-            return false;
-        }
-    }
-
-    private static String normalizePotentialInternalUrl(String str) {
-        String lowerCase = str.trim().toLowerCase();
-        if (!lowerCase.startsWith("@")) {
-            return lowerCase;
-        }
-        return "https://t.me/" + lowerCase.substring(1);
     }
 
     public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z) {

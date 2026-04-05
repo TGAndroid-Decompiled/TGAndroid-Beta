@@ -178,11 +178,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             this.val$baseFragment = baseFragment;
             this.val$avatarClickable = z;
             this.val$resourcesProvider = resourcesProvider;
-            this.params = new C00261(true);
+            this.params = new C00271(true);
         }
 
-        class C00261 extends StoriesUtilities.AvatarStoryParams {
-            C00261(boolean z) {
+        class C00271 extends StoriesUtilities.AvatarStoryParams {
+            C00271(boolean z) {
                 super(z);
             }
 
@@ -703,23 +703,53 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void setStars(boolean z, boolean z2) {
+    public void setStars(final boolean z, boolean z2) {
         ImageView imageView = this.starBgItem;
         if (imageView == null || this.starFgItem == null) {
             return;
         }
         this.stars = z;
-        if (z2) {
-            imageView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.1f : 0.0f).scaleY(z ? 1.1f : 0.0f).start();
-            this.starFgItem.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.0f).scaleY(z ? 1.0f : 0.0f).start();
+        if (!z2) {
+            imageView.setVisibility(z ? 0 : 4);
+            this.starBgItem.setAlpha(z ? 1.0f : 0.0f);
+            this.starBgItem.setScaleX(z ? 1.1f : 0.0f);
+            this.starBgItem.setScaleY(z ? 1.1f : 0.0f);
+            this.starFgItem.setVisibility(z ? 0 : 4);
+            this.starFgItem.setAlpha(z ? 1.0f : 0.0f);
+            this.starFgItem.setScaleX(z ? 1.0f : 0.0f);
+            this.starFgItem.setScaleY(z ? 1.0f : 0.0f);
             return;
         }
-        imageView.setAlpha(z ? 1.0f : 0.0f);
-        this.starBgItem.setScaleX(z ? 1.1f : 0.0f);
-        this.starBgItem.setScaleY(z ? 1.1f : 0.0f);
-        this.starFgItem.setAlpha(z ? 1.0f : 0.0f);
-        this.starFgItem.setScaleX(z ? 1.0f : 0.0f);
-        this.starFgItem.setScaleY(z ? 1.0f : 0.0f);
+        if (z) {
+            imageView.setVisibility(0);
+            this.starFgItem.setVisibility(0);
+        }
+        this.starBgItem.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.1f : 0.0f).scaleY(z ? 1.1f : 0.0f).withEndAction(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$setStars$8(z);
+            }
+        }).start();
+        this.starFgItem.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.0f).scaleY(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$setStars$9(z);
+            }
+        }).start();
+    }
+
+    public void lambda$setStars$8(boolean z) {
+        if (z) {
+            return;
+        }
+        this.starBgItem.setVisibility(4);
+    }
+
+    public void lambda$setStars$9(boolean z) {
+        if (z) {
+            return;
+        }
+        this.starFgItem.setVisibility(4);
     }
 
     public void setTitleIcons(Drawable drawable, Drawable drawable2) {

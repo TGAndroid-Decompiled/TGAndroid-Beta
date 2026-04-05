@@ -418,7 +418,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 linearLayoutAccountView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view2) {
-                        this.f$0.lambda$openAccountSelector$5(iIntValue, itemOptionsMakeOptions, view2);
+                        this.f$0.lambda$openAccountSelector$7(iIntValue, itemOptionsMakeOptions, view2);
                     }
                 });
                 itemOptionsMakeOptions.addView(linearLayoutAccountView, LayoutHelper.createLinear(230, 48));
@@ -466,7 +466,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         }
     }
 
-    public void lambda$openAccountSelector$5(int i, ItemOptions itemOptions, View view) {
+    public void lambda$openAccountSelector$7(int i, ItemOptions itemOptions, View view) {
         if (this.currentAccount == i) {
             return;
         }
@@ -917,7 +917,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showAccountChangeHint$7();
+                    this.f$0.lambda$showAccountChangeHint$9();
                 }
             }, 1500L);
             MessagesController.getGlobalMainSettings().edit().putInt("accountswitchhint", MessagesController.getGlobalMainSettings().getInt("channelgifthint", 0) + 1).apply();
@@ -925,7 +925,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.accountSwitchHintShown = true;
     }
 
-    public void lambda$showAccountChangeHint$7() {
+    public void lambda$showAccountChangeHint$9() {
         GlassTabView[] glassTabViewArr;
         if (getContext() == null || (glassTabViewArr = this.tabs) == null) {
             return;
@@ -943,14 +943,14 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.accountSwitchHint.setOnHiddenListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showAccountChangeHint$6();
+                this.f$0.lambda$showAccountChangeHint$8();
             }
         });
         this.accountSwitchHint.setDuration(8000L);
         this.accountSwitchHint.show();
     }
 
-    public void lambda$showAccountChangeHint$6() {
+    public void lambda$showAccountChangeHint$8() {
         AndroidUtilities.removeFromParent(this.accountSwitchHint);
     }
 

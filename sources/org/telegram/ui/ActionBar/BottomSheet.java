@@ -10,12 +10,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Insets;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private boolean applyBottomPadding;
     private boolean applyTopPadding;
     public BaseFragment attachedFragment;
-    protected ColorDrawable backDrawable;
+    protected SheetBackDrawable backDrawable;
     protected int backgroundPaddingLeft;
     protected int backgroundPaddingTop;
     protected int behindKeyboardColor;
@@ -288,6 +289,70 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         int i = bottomSheet.layoutCount;
         bottomSheet.layoutCount = i - 1;
         return i;
+    }
+
+    public static class SheetBackDrawable extends Drawable {
+        private final Paint bgPaint;
+        public final Rect boundsWithInsets;
+        public final Rect insets;
+
+        @Override
+        public int getOpacity() {
+            return 0;
+        }
+
+        public SheetBackDrawable() {
+            Paint paint = new Paint(1);
+            this.bgPaint = paint;
+            this.insets = new Rect();
+            this.boundsWithInsets = new Rect();
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+            paint.setColor(-16777216);
+        }
+
+        public void setBackgroundInsets(int i, int i2, int i3, int i4) {
+            Rect rect = this.insets;
+            if (rect.left == i && rect.top == i2 && rect.right == i3 && rect.bottom == i4) {
+                return;
+            }
+            rect.set(i, i2, i3, i4);
+            onBoundsChange(getBounds());
+            invalidateSelf();
+        }
+
+        @Override
+        protected void onBoundsChange(Rect rect) {
+            super.onBoundsChange(rect);
+            this.boundsWithInsets.set(rect);
+            this.boundsWithInsets.left += Math.max(0, this.insets.left);
+            this.boundsWithInsets.top += Math.max(0, this.insets.top);
+            this.boundsWithInsets.right -= Math.max(0, this.insets.right);
+            this.boundsWithInsets.bottom -= Math.max(0, this.insets.bottom);
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            if (this.boundsWithInsets.isEmpty() || getAlpha() == 0) {
+                return;
+            }
+            canvas.drawRect(this.boundsWithInsets, this.bgPaint);
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.bgPaint.setAlpha(i);
+            invalidateSelf();
+        }
+
+        @Override
+        public int getAlpha() {
+            return this.bgPaint.getAlpha();
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+            this.bgPaint.setColorFilter(colorFilter);
+        }
     }
 
     public void setDisableScroll(boolean z) {
@@ -997,13 +1062,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.currentAccount = UserConfig.selectedAccount;
         this.allowDrawContent = true;
         this.useHardwareLayer = true;
-        this.backDrawable = new ColorDrawable(-16777216) {
-            @Override
-            public void setAlpha(int i) {
-                super.setAlpha(i);
-                BottomSheet.this.container.invalidate();
-            }
-        };
+        this.backDrawable = new SheetBackDrawable();
         this.useLightStatusBar = true;
         int i = Theme.key_dialogBackground;
         this.behindKeyboardColorKey = i;
@@ -1478,7 +1537,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
-    public ColorDrawable getBackDrawable() {
+    public Drawable getBackDrawable() {
         return this.backDrawable;
     }
 
@@ -1489,7 +1548,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     public void setAllowDrawContent(boolean z) {
         if (this.allowDrawContent != z) {
             this.allowDrawContent = z;
-            this.container.setBackgroundDrawable(z ? this.backDrawable : null);
+            this.container.setBackground(z ? this.backDrawable : null);
             this.container.invalidate();
         }
     }
@@ -1615,7 +1674,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             }
         });
         arrayList.add(objectAnimatorOfFloat);
-        arrayList.add(ObjectAnimator.ofInt(this.backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0));
+        arrayList.add(ObjectAnimator.ofInt(this.backDrawable, (Property<SheetBackDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0));
         arrayList.add(this.navigationBarAnimation);
         appendOpenAnimator(true, arrayList);
         this.currentSheetAnimation.playTogether(arrayList);
@@ -1766,10 +1825,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 this.f$0.lambda$dismissWithButtonClick$7(valueAnimator);
             }
         });
-        this.currentSheetAnimation.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofInt(this.backDrawable, (Property<ColorDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
+        this.currentSheetAnimation.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofInt(this.backDrawable, (Property<SheetBackDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
         this.currentSheetAnimation.setDuration(this.cellType == Builder.CELL_TYPE_CALL ? 330L : 180L);
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.currentSheetAnimation.addListener(new AnonymousClass7(i));
+        this.currentSheetAnimation.addListener(new AnonymousClass6(i));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
         this.currentSheetAnimation.start();
         if (this.cellType != Builder.CELL_TYPE_CALL || this.selectedPos == null) {
@@ -1804,10 +1863,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         onContainerViewTranslation();
     }
 
-    class AnonymousClass7 extends AnimatorListenerAdapter {
+    class AnonymousClass6 extends AnimatorListenerAdapter {
         final int val$item;
 
-        AnonymousClass7(int i) {
+        AnonymousClass6(int i) {
             this.val$item = i;
         }
 
@@ -1923,8 +1982,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         onContainerViewTranslation();
     }
 
-    class AnonymousClass8 extends AnimatorListenerAdapter {
-        AnonymousClass8() {
+    class AnonymousClass7 extends AnimatorListenerAdapter {
+        AnonymousClass7() {
         }
 
         @Override

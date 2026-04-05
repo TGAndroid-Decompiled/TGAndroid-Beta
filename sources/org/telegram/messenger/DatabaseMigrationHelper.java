@@ -1294,9 +1294,9 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase2.executeFast("DROP TABLE IF EXISTS tag_message_id;").stepThis().dispose();
             sQLiteDatabase2.executeFast("CREATE TABLE tag_message_id(mid INTEGER, topic_id INTEGER, tag INTEGER, text TEXT);").stepThis().dispose();
             sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS tag_idx_tag_message_id ON tag_message_id(tag);").stepThis().dispose();
-            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS tag_text_idx_tag_message_id ON tag_message_id(tag, text);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS tag_text_idx_tag_message_id ON tag_message_id(tag, text COLLATE NOCASE);").stepThis().dispose();
             sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS tag_topic_idx_tag_message_id ON tag_message_id(topic_id, tag);").stepThis().dispose();
-            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS tag_topic_text_idx_tag_message_id ON tag_message_id(topic_id, tag, text);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS tag_topic_text_idx_tag_message_id ON tag_message_id(topic_id, tag, text COLLATE NOCASE);").stepThis().dispose();
             sQLiteDatabase2.executeFast("PRAGMA user_version = 142").stepThis().dispose();
             i5 = 142;
         }
@@ -1464,13 +1464,31 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase2.executeFast("PRAGMA user_version = 171").stepThis().dispose();
             i5 = 171;
         }
-        if (i5 != 171) {
+        if (i5 == 171) {
+            sQLiteDatabase2.executeFast("DROP TABLE story_pushes").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE TABLE story_pushes (uid INTEGER, sid INTEGER, date INTEGER, localName TEXT, flags INTEGER, expire_date INTEGER, live INTEGER, PRIMARY KEY(uid, sid));").stepThis().dispose();
+            sQLiteDatabase2.executeFast("PRAGMA user_version = 172").stepThis().dispose();
+            i5 = 172;
+        }
+        if (i5 != 172) {
             return i5;
         }
-        sQLiteDatabase2.executeFast("DROP TABLE story_pushes").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE TABLE story_pushes (uid INTEGER, sid INTEGER, date INTEGER, localName TEXT, flags INTEGER, expire_date INTEGER, live INTEGER, PRIMARY KEY(uid, sid));").stepThis().dispose();
-        sQLiteDatabase2.executeFast("PRAGMA user_version = 172").stepThis().dispose();
-        return 172;
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes_4_dialogs ON messages_holes(uid, end);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes_4_topics ON messages_holes_topics(uid, topic_id, end);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_4_saved_dialogs ON saved_dialogs(date);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_4_dialogs ON dialogs(date);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_4_saved_dialogs ON saved_dialogs(last_mid);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_4_dialogs ON dialogs(last_mid);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_4_saved_dialogs ON saved_dialogs(folder_id);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_4_dialogs ON dialogs(folder_id);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_4_saved_dialogs ON saved_dialogs(flags);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_4_dialogs ON dialogs(flags);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS uid_end_messages_holes;").stepThis().dispose();
+        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS date_idx_dialogs;").stepThis().dispose();
+        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS last_mid_idx_dialogs;").stepThis().dispose();
+        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS folder_id_idx_dialogs;").stepThis().dispose();
+        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS flags_idx_dialogs;").stepThis().dispose();
+        return 173;
     }
 
     private static void executeNoException(SQLiteDatabase sQLiteDatabase, String str) {

@@ -110,7 +110,6 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
@@ -4173,7 +4172,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public void showRestrictedHint() {
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = this.delegate;
         if ((chatActivityEnterViewDelegate == null || !chatActivityEnterViewDelegate.checkCanRemoveRestrictionsByBoosts()) && DialogObject.isChatDialog(this.dialog_id)) {
-            BulletinFactory.of(this.parentFragment).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.formatString("SendPlainTextRestrictionHint", R.string.SendPlainTextRestrictionHint, ChatObject.getAllowedSendString(this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id)))), 4).show();
+            BulletinFactory.of(this.parentFragment).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.formatString("SendPlainTextRestrictionHint", R.string.SendPlainTextRestrictionHint, ChatObject.getAllowedSendString(this.accountInstance.getMessagesController().getChat(Long.valueOf(-this.dialog_id)))), 3).show();
         }
     }
 
@@ -10981,11 +10980,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 @Override
                 public void onEditModeChanged(boolean z2) {
                     PhotoViewer.PhotoViewerProvider.CC.$default$onEditModeChanged(this, z2);
-                }
-
-                @Override
-                public void onPhotoIndexChanged(int i3, ImageLocation imageLocation) {
-                    PhotoViewer.PhotoViewerProvider.CC.$default$onPhotoIndexChanged(this, i3, imageLocation);
                 }
 
                 @Override

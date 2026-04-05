@@ -1439,4 +1439,8 @@ public abstract class BaseFragment {
     public int getBottomInset() {
         return this.bottomInset;
     }
+
+    public void dumpCanvas() {
+        AndroidUtilities.dumpCanvas(this.fragmentView);
+    }
 }

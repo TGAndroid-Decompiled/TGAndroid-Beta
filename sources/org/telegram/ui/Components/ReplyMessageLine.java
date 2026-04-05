@@ -363,10 +363,12 @@ public class ReplyMessageLine {
             this.color2Paint.setAlpha((int) (alpha2 * f6));
             canvas.drawPath(this.color2Path, this.color2Paint);
             this.color2Paint.setAlpha(alpha2);
-            int alpha3 = this.color3Paint.getAlpha();
-            this.color3Paint.setAlpha((int) (alpha3 * f7));
-            canvas.drawPath(this.color3Path, this.color3Paint);
-            this.color3Paint.setAlpha(alpha3);
+            if (f7 > 0.0f) {
+                int alpha3 = this.color3Paint.getAlpha();
+                this.color3Paint.setAlpha((int) (alpha3 * f7));
+                canvas.drawPath(this.color3Path, this.color3Paint);
+                this.color3Paint.setAlpha(alpha3);
+            }
             canvas.restore();
         }
         if (z) {
