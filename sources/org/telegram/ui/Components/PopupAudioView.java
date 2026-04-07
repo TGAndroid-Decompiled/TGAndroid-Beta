@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -140,7 +141,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
             requestLayout();
             return;
         }
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         int i2 = point.y;
         int i3 = point.x;
         if (getParent() instanceof View) {

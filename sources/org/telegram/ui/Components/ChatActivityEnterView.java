@@ -22,9 +22,11 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -234,7 +236,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private ChatActivityEnterViewAnimatedIconView audioVideoSendButton;
     Paint backgroundPaint;
     public HintView2 birthdayHint;
-    private android.graphics.Rect blurBounds;
+    private Rect blurBounds;
     private ImageView botButton;
     private ReplaceableIconDrawable botButtonDrawable;
     private MessageObject botButtonsMessageObject;
@@ -400,7 +402,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public FrameLayout recordedAudioPanel;
     private boolean recordingAudioVideo;
     public int recordingGuid;
-    private android.graphics.Rect rect;
+    private Rect rect;
     private Paint redDotPaint;
     private boolean removeEmojiViewAfterAnimation;
     private MessageObject replyingMessageObject;
@@ -431,7 +433,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public boolean sendPlainEnabled;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout sendPopupLayout;
     private ActionBarPopupWindow sendPopupWindow;
-    private android.graphics.Rect sendRect;
+    private Rect sendRect;
     private boolean sendRoundEnabled;
     private HintView2 sendSuggestHintView;
     private boolean sendVoiceEnabled;
@@ -1393,7 +1395,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     accessibilityNodeInfoCompat.setBoundsInParent(ChatActivityEnterView.this.rect);
                     accessibilityNodeInfoCompat.setText(LocaleController.getString(ChatActivityEnterView.this.transformToSeekbar > 0.5f ? R.string.AccActionResume : R.string.AccActionPause));
                 } else if (i == 4) {
-                    android.graphics.Rect rect = ChatActivityEnterView.this.rect;
+                    Rect rect = ChatActivityEnterView.this.rect;
                     RectF rectF = ControlsView.this.onceRect;
                     rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                     accessibilityNodeInfoCompat.setBoundsInParent(ChatActivityEnterView.this.rect);
@@ -1826,7 +1828,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     return;
                 }
                 if (ChatActivityEnterView.this.slideText != null && ChatActivityEnterView.this.slideText.cancelRect != null) {
-                    android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                    Rect rect = AndroidUtilities.rectTmp2;
                     rect.set(ChatActivityEnterView.this.slideText.cancelRect);
                     ChatActivityEnterView.this.slideText.getLocationOnScreen(this.coords);
                     int[] iArr = this.coords;
@@ -2063,8 +2065,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.paint = new Paint(1);
         this.pauseRect = new RectF();
-        this.sendRect = new android.graphics.Rect();
-        this.rect = new android.graphics.Rect();
+        this.sendRect = new Rect();
+        this.rect = new Rect();
         this.runEmojiPanelAnimation = new Runnable() {
             @Override
             public void run() {
@@ -2138,7 +2140,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.shouldDrawBackground = true;
         this.backgroundPaint = new Paint();
         this.composeShadowAlpha = 1.0f;
-        this.blurBounds = new android.graphics.Rect();
+        this.blurBounds = new Rect();
         this.dismissSendPreview = new Runnable() {
             @Override
             public final void run() {
@@ -2413,7 +2415,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.cameraOutline = drawableMutate2;
         drawableMutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode2));
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView4 = new ChatActivityEnterViewAnimatedIconView(activity, 24) {
-            private final android.graphics.Rect tmpRectF = new android.graphics.Rect();
+            private final Rect tmpRectF = new Rect();
 
             @Override
             public void draw(Canvas canvas) {
@@ -4869,7 +4871,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean requestRectangleOnScreen(android.graphics.Rect rect) {
+        public boolean requestRectangleOnScreen(Rect rect) {
             rect.bottom += AndroidUtilities.dp(1000.0f);
             return super.requestRectangleOnScreen(rect);
         }
@@ -5023,7 +5025,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean requestFocus(int i, android.graphics.Rect rect) {
+        public boolean requestFocus(int i, Rect rect) {
             ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
             if (!chatActivityEnterView.sendPlainEnabled && !chatActivityEnterView.isEditingMessage()) {
                 return false;
@@ -10577,7 +10579,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
                         int i = chatActivityEnterView2.stickersExpandedHeight;
                         int iDp = AndroidUtilities.dp(120.0f);
-                        android.graphics.Point point = AndroidUtilities.displaySize;
+                        Point point = AndroidUtilities.displaySize;
                         chatActivityEnterView2.stickersExpandedHeight = Math.min(i, iDp + (point.x > point.y ? ChatActivityEnterView.this.keyboardHeightLand : ChatActivityEnterView.this.keyboardHeight));
                     }
                     if (ChatActivityEnterView.this.windowInsetsInAppController == null) {
@@ -10619,7 +10621,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             @Override
             public void onDrag(int i) {
                 if (allowDragging()) {
-                    android.graphics.Point point = AndroidUtilities.displaySize;
+                    Point point = AndroidUtilities.displaySize;
                     int iMax = Math.max(Math.min(i + this.initialOffset, 0), -(ChatActivityEnterView.this.stickersExpandedHeight - (point.x > point.y ? ChatActivityEnterView.this.keyboardHeightLand : ChatActivityEnterView.this.keyboardHeight)));
                     if (ChatActivityEnterView.this.windowInsetsInAppController == null) {
                         float f = iMax;
@@ -11539,7 +11541,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (this.keyboardHeightLand <= 0) {
                 this.keyboardHeightLand = MessagesController.getGlobalEmojiSettings().getInt("kbd_height_land3", AndroidUtilities.dp(200.0f));
             }
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             int iMin = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
             ChatActivity chatActivity = this.parentFragment;
             if (chatActivity != null && chatActivity.getParentLayout() != null) {
@@ -12539,7 +12541,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (this.emojiView == null) {
             return;
         }
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         int i = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
         int currentActionBarHeight = (((this.originalViewHeight - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) - getHeight()) + Theme.chat_composeShadowDrawable.getIntrinsicHeight();
         if (this.searchingType == 2) {
@@ -12667,7 +12669,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (chatActivityEnterViewDelegate != null) {
                 chatActivityEnterViewDelegate.onStickersExpandedChange();
             }
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             final int i = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
             Animator animator = this.stickersExpansionAnim;
             if (animator != null) {
@@ -12925,7 +12927,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         float cancelAlpha;
         int cancelCharOffset;
         StaticLayout cancelLayout;
-        public android.graphics.Rect cancelRect;
+        public Rect cancelRect;
         String cancelString;
         float cancelToProgress;
         float cancelWidth;
@@ -13008,7 +13010,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.arrowPaint = new Paint(1);
             this.xOffset = 0.0f;
             this.arrowPath = new Path();
-            this.cancelRect = new android.graphics.Rect();
+            this.cancelRect = new Rect();
             this.smallSize = AndroidUtilities.displaySize.x <= AndroidUtilities.dp(320.0f);
             TextPaint textPaint = new TextPaint(1);
             this.grayPaint = textPaint;
@@ -14023,7 +14025,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 rectF3.set(f13 - fLerp5, f16, f13, f17);
                 this.path.addRoundRect(rectF3, fMin, fMin, Path.Direction.CW);
                 if (this.blurredBackgroundDrawable != null) {
-                    android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                    Rect rect = AndroidUtilities.rectTmp2;
                     rectF3.round(rect);
                     rect.inset(-AndroidUtilities.dp(7.0f), -AndroidUtilities.dp(7.0f));
                     this.blurredBackgroundDrawable.setBounds(rect);

@@ -7,6 +7,7 @@ import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
@@ -258,7 +259,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         if (!z) {
             iMax = iDp;
         }
-        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+        Rect rect = AndroidUtilities.rectTmp2;
         rect.set(i, 0, this.editText.getMeasuredWidth() - iMax, this.editText.getMeasuredHeight());
         this.editText.setClipBounds(rect);
         this.editText.setPadding(i, 0, iMax, 0);

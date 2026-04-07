@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.SpannableString;
@@ -86,7 +87,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         Drawable drawableMutate = ContextCompat.getDrawable(context, R.drawable.popup_fixed_alert4).mutate();
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.scrimPopupContainerLayout.setBackground(drawableMutate);
-        android.graphics.Rect rect = new android.graphics.Rect();
+        Rect rect = new Rect();
         drawableMutate.getPadding(rect);
         this.scrimPopupContainerLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         final int iDp = AndroidUtilities.dp(450.0f);

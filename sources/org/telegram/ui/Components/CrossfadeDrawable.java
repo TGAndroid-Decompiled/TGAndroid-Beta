@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
 public class CrossfadeDrawable extends Drawable {
@@ -71,7 +72,7 @@ public class CrossfadeDrawable extends Drawable {
     }
 
     @Override
-    protected void onBoundsChange(android.graphics.Rect rect) {
+    protected void onBoundsChange(Rect rect) {
         this.topDrawable.setBounds(rect);
         this.bottomDrawable.setBounds(rect);
     }

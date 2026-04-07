@@ -11,8 +11,10 @@ import android.graphics.Color;
 import android.graphics.ComposeShader;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -284,7 +286,7 @@ public class ColorPicker extends FrameLayout {
                     }
 
                     @Override
-                    public boolean getGlobalVisibleRect(android.graphics.Rect rect, android.graphics.Point point) {
+                    public boolean getGlobalVisibleRect(Rect rect, Point point) {
                         boolean globalVisibleRect = super.getGlobalVisibleRect(rect, point);
                         rect.bottom += AndroidUtilities.dp(40.0f);
                         return globalVisibleRect;

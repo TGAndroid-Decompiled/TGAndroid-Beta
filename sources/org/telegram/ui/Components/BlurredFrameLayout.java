@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.SharedConfig;
@@ -12,7 +13,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
     public int backgroundPaddingBottom;
     public int backgroundPaddingTop;
     protected Paint backgroundPaint;
-    private android.graphics.Rect blurBounds;
+    private Rect blurBounds;
     public boolean drawBlur;
     public boolean isTopView;
     protected final SizeNotifierFrameLayout sizeNotifierFrameLayout;
@@ -22,7 +23,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
         this.backgroundColor = 0;
         this.isTopView = true;
         this.drawBlur = true;
-        this.blurBounds = new android.graphics.Rect();
+        this.blurBounds = new Rect();
         this.sizeNotifierFrameLayout = sizeNotifierFrameLayout;
     }
 

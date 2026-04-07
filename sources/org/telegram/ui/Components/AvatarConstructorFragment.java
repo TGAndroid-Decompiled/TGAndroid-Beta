@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -324,7 +325,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 if (!AvatarConstructorFragment.this.isLandscapeMode) {
                     if (motionEvent.getAction() == 0) {
                         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = AvatarConstructorFragment.this.selectAnimatedEmojiDialog;
-                        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                        Rect rect = AndroidUtilities.rectTmp2;
                         selectAnimatedEmojiDialog.getHitRect(rect);
                         rect.offset(0, (int) AvatarConstructorFragment.this.linearLayout.getY());
                         if (AvatarConstructorFragment.this.keyboardVisibleProgress == 0.0f && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
@@ -820,7 +821,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 }
 
                 @Override
-                public void invalidate(android.graphics.Rect rect) {
+                public void invalidate(Rect rect) {
                     super.invalidate(rect);
                     PreviewView.this.invalidate();
                 }

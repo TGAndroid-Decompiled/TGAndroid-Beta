@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.graphics.PointF;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,8 +24,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Point;
-import org.telegram.ui.Components.Rect;
+import org.telegram.ui.Components.RectOld;
 
 public abstract class EntityView extends FrameLayout {
     private static final List STICKY_ANGLES = Arrays.asList(-90, 0, 90, 180);
@@ -49,7 +49,7 @@ public abstract class EntityView extends FrameLayout {
     private boolean lastIsMultitouch;
     private ViewGroup lastSelectionContainer;
     private final Runnable longPressRunnable;
-    private Point position;
+    private PointF position;
     private float previousLocationCX;
     private float previousLocationCY;
     private float previousLocationX;
@@ -196,7 +196,7 @@ public abstract class EntityView extends FrameLayout {
         }
     }
 
-    public EntityView(Context context, Point point) {
+    public EntityView(Context context, PointF pointF) {
         super(context);
         this.bounce = new ButtonBounce(this);
         this.hasPanned = false;
@@ -237,19 +237,19 @@ public abstract class EntityView extends FrameLayout {
         this.selecting = false;
         this.trashScale = 1.0f;
         this.uuid = UUID.randomUUID();
-        this.position = point;
+        this.position = pointF;
     }
 
     public UUID getUUID() {
         return this.uuid;
     }
 
-    public Point getPosition() {
+    public PointF getPosition() {
         return this.position;
     }
 
-    public void setPosition(Point point) {
-        this.position = point;
+    public void setPosition(PointF pointF) {
+        this.position = pointF;
         updatePosition();
     }
 
@@ -818,8 +818,8 @@ public abstract class EntityView extends FrameLayout {
         updateSelectionView();
     }
 
-    public Rect getSelectionBounds() {
-        return new Rect(0.0f, 0.0f, 0.0f, 0.0f);
+    public RectOld getSelectionBounds() {
+        return new RectOld(0.0f, 0.0f, 0.0f, 0.0f);
     }
 
     @Override
@@ -943,7 +943,7 @@ public abstract class EntityView extends FrameLayout {
         }
 
         public void updatePosition() {
-            Rect selectionBounds = EntityView.this.getSelectionBounds();
+            RectOld selectionBounds = EntityView.this.getSelectionBounds();
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
             layoutParams.leftMargin = (int) selectionBounds.x;
             layoutParams.topMargin = (int) selectionBounds.y;

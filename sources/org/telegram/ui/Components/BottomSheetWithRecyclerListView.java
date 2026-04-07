@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -532,7 +533,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         if (this.backDrawable == null || this.containerView == null || this.shadowDrawable == null || !shouldDrawBackground() || this.hasFixedSize) {
             return;
         }
-        android.graphics.Rect bounds = this.shadowDrawable.getBounds();
+        Rect bounds = this.shadowDrawable.getBounds();
         if (this.containerView.getMeasuredWidth() >= this.container.getMeasuredWidth()) {
             this.backDrawable.setBackgroundInsets(0, 0, 0, ((this.containerView.getMeasuredHeight() - bounds.top) - AndroidUtilities.dp(30.0f)) - ((int) this.containerView.getTranslationY()));
         } else {

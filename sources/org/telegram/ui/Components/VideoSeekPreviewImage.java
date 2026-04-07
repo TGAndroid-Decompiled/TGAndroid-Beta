@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -269,7 +270,7 @@ public abstract class VideoSeekPreviewImage extends View implements Notification
                 Bitmap bitmapCreateBitmap = Bitmaps.createBitmap(iMax, i, Bitmap.Config.ARGB_8888);
                 this.dstR.set(0.0f, 0.0f, iMax, i);
                 Canvas canvas = new Canvas(bitmapCreateBitmap);
-                canvas.drawBitmap(frameAtTime, (android.graphics.Rect) null, this.dstR, this.paint);
+                canvas.drawBitmap(frameAtTime, (Rect) null, this.dstR, this.paint);
                 canvas.setBitmap(null);
                 frameAtTime = bitmapCreateBitmap;
             } catch (Throwable unused) {

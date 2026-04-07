@@ -8,6 +8,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -97,7 +100,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     public float getPreviewScale() {
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         return point.y > point.x ? 0.8f : 0.45f;
     }
 
@@ -115,7 +118,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.draggingCellGroupY = 0.0f;
         this.shown = false;
         this.ignoreLayout = false;
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         this.isPortrait = point.y > point.x;
         this.themeDelegate = resourcesProvider;
         this.occupyNavigationBar = true;
@@ -535,7 +538,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             if (AndroidUtilities.isTablet()) {
                 i = 16;
             } else {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 i = point.x > point.y ? 6 : 12;
             }
             if (currentItemTop < ActionBar.getCurrentActionBarHeight()) {
@@ -557,7 +560,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalArgumentException {
         super.onLayout(z, i, i2, i3, i4);
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         boolean z2 = point.y > point.x;
         if (this.isPortrait != z2) {
             this.isPortrait = z2;
@@ -603,7 +606,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         PreviewGroupCell tapGroupCell;
         PreviewGroupCell.MediaCell tapMediaCell;
         long tapTime;
-        private final Point tmpPoint;
+        private final PointF tmpPoint;
         private int undoViewId;
         float viewBottom;
         float viewTop;
@@ -625,7 +628,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             this.tapGroupCell = null;
             this.tapMediaCell = null;
             this.draggingT = 0.0f;
-            this.tmpPoint = new Point();
+            this.tmpPoint = new PointF();
             this.scrollerStarted = false;
             this.scroller = new Runnable() {
                 @Override
@@ -877,7 +880,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onDraw(android.graphics.Canvas):void");
         }
 
-        Point dragTranslate() {
+        PointF dragTranslate() {
             if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
                 if (!ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding) {
                     RectF rectFRect = ChatAttachAlertPhotoLayoutPreview.this.draggingCell.rect();
@@ -892,20 +895,20 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
                 return this.tmpPoint;
             }
-            Point point = this.tmpPoint;
-            point.x = 0.0f;
-            point.y = 0.0f;
-            return point;
+            PointF pointF = this.tmpPoint;
+            pointF.x = 0.0f;
+            pointF.y = 0.0f;
+            return pointF;
         }
 
         void stopDragging() {
             if (ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator != null) {
                 ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.cancel();
             }
-            Point pointDragTranslate = dragTranslate();
+            PointF pointFDragTranslate = dragTranslate();
             this.savedDraggingT = this.draggingT;
-            this.savedDragFromX = pointDragTranslate.x;
-            this.savedDragFromY = pointDragTranslate.y;
+            this.savedDragFromX = pointFDragTranslate.x;
+            this.savedDragFromY = pointFDragTranslate.y;
             ChatAttachAlertPhotoLayoutPreview.this.draggingCellHiding = true;
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator = ValueAnimator.ofFloat(this.savedDraggingT, 0.0f);
             ChatAttachAlertPhotoLayoutPreview.this.draggingAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -1278,8 +1281,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             class MediaCell {
                 private Paint bitmapPaint;
                 public ImageReceiver blurredImage;
-                private android.graphics.Rect durationIn;
-                private android.graphics.Rect durationOut;
+                private Rect durationIn;
+                private Rect durationOut;
                 private RectF fromRect;
                 public RectF fromRoundRadiuses;
                 public float fromScale;
@@ -1287,8 +1290,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 public ImageReceiver image;
                 private Bitmap indexBitmap;
                 private String indexBitmapText;
-                private android.graphics.Rect indexIn;
-                private android.graphics.Rect indexOut;
+                private Rect indexIn;
+                private Rect indexOut;
                 private long lastUpdate;
                 private long lastVisibleTUpdate;
                 private Paint paint;
@@ -1342,10 +1345,10 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.indexBitmapText = null;
                     this.videoDurationBitmap = null;
                     this.videoDurationBitmapText = null;
-                    this.indexIn = new android.graphics.Rect();
-                    this.indexOut = new android.graphics.Rect();
-                    this.durationIn = new android.graphics.Rect();
-                    this.durationOut = new android.graphics.Rect();
+                    this.indexIn = new Rect();
+                    this.indexOut = new Rect();
+                    this.durationIn = new Rect();
+                    this.durationOut = new Rect();
                     this.visibleT = 1.0f;
                     this.lastVisibleTUpdate = 0L;
                 }
@@ -1798,7 +1801,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
 
             public float measure() {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 return AndroidUtilities.lerp(this.previousGroupHeight, this.groupHeight, getT()) * Math.max(point.x, point.y) * 0.5f * ChatAttachAlertPhotoLayoutPreview.this.getPreviewScale();
             }
 
@@ -1806,7 +1809,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 float f = 1.0f;
                 float interpolation = this.interpolator.getInterpolation(Math.min(1.0f, (SystemClock.elapsedRealtime() - this.lastMediaUpdate) / 200.0f));
                 boolean z = interpolation < 1.0f;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 float fLerp = AndroidUtilities.lerp(this.previousGroupWidth, this.groupWidth, interpolation) * PreviewGroupsView.this.getWidth() * ChatAttachAlertPhotoLayoutPreview.this.getPreviewScale();
                 float fLerp2 = AndroidUtilities.lerp(this.previousGroupHeight, this.groupHeight, interpolation) * Math.max(point.x, point.y) * 0.5f * ChatAttachAlertPhotoLayoutPreview.this.getPreviewScale();
                 if (this.messageBackground != null) {

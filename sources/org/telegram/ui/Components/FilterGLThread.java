@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
@@ -397,7 +398,7 @@ public class FilterGLThread extends DispatchQueue {
             if (devicePerformanceClass != 2) {
                 iMin = 720;
             } else {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 iMin = Math.min(1920, Math.max(point.x, point.y));
             }
         }

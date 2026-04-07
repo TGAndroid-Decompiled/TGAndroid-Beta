@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -220,7 +221,7 @@ public abstract class CaptionPhotoViewer extends CaptionContainerView {
                     this.backgroundForCaptionButton = blurredBackgroundDrawableViewFactory.create(this).setColorProvider(BlurredBackgroundProviderImpl.photoViewer(this.resourcesProvider)).setPadding(AndroidUtilities.dp(5.0f)).setRadius(AndroidUtilities.dp(16.0f));
                 }
                 RectF rectF = this.moveButtonBounds;
-                android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                Rect rect = AndroidUtilities.rectTmp2;
                 rectF.round(rect);
                 rect.inset(-AndroidUtilities.dp(5.0f), -AndroidUtilities.dp(5.0f));
                 this.backgroundForCaptionButton.setBounds(rect);

@@ -18,6 +18,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RecordingCanvas;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -271,7 +272,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
     private ArrayList recentGifs;
     private ArrayList recentStickers;
     private int recentTabNum;
-    android.graphics.Rect rect;
+    Rect rect;
     private LongSparseArray removingStickerSets;
     private final Theme.ResourcesProvider resourcesProvider;
     private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
@@ -1792,7 +1793,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, false);
     }
 
-    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
+    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) throws Resources.NotFoundException {
         final boolean z8;
         Theme.ResourcesProvider resourcesProvider2;
         final Theme.ResourcesProvider resourcesProvider3;
@@ -1856,7 +1857,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this.animateExpandStartTime = -1L;
         this.emojiPackAlertOpened = false;
         this.fixBottomTabContainerTranslation = true;
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         RectF rectF = new RectF();
         this.blurredRectF = rectF;
         ArrayList arrayList = new ArrayList(1);
@@ -2220,7 +2221,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 recyclerListView2.setLayoutManager(gifLayoutManager);
                 this.gifGridView.addItemDecoration(new RecyclerView.ItemDecoration() {
                     @Override
-                    public void getItemOffsets(android.graphics.Rect rect, View view3, RecyclerView recyclerView, RecyclerView.State state) {
+                    public void getItemOffsets(Rect rect, View view3, RecyclerView recyclerView, RecyclerView.State state) {
                         int childAdapterPosition = recyclerView.getChildAdapterPosition(view3);
                         if (EmojiView.this.gifGridView.getAdapter() == EmojiView.this.gifAdapter && childAdapterPosition == EmojiView.this.gifAdapter.trendingSectionItem) {
                             rect.set(0, 0, 0, 0);
@@ -3779,7 +3780,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         imageViewEmoji.backgroundThreadDrawHolder[this.threadIndex].overrideAlpha = 1.0f;
                         animatedEmojiDrawable.setAlpha(255);
                         int height = (int) (imageViewEmoji.getHeight() * 0.03f);
-                        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                        Rect rect = AndroidUtilities.rectTmp2;
                         rect.set((imageViewEmoji.getLeft() + imageViewEmoji.getPaddingLeft()) - this.startOffset, height, (imageViewEmoji.getRight() - imageViewEmoji.getPaddingRight()) - this.startOffset, ((imageViewEmoji.getMeasuredHeight() + height) - imageViewEmoji.getPaddingTop()) - imageViewEmoji.getPaddingBottom());
                         imageViewEmoji.backgroundThreadDrawHolder[this.threadIndex].setBounds(rect);
                         imageViewEmoji.drawable = animatedEmojiDrawable;
@@ -4573,7 +4574,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+        public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
             if (view instanceof StickerSetNameCell) {
                 rect.left = AndroidUtilities.dp(5.0f);
                 rect.right = AndroidUtilities.dp(5.0f);
@@ -6960,7 +6961,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     trendingListView.setClipToPadding(false);
                     trendingListView.addItemDecoration(new RecyclerView.ItemDecoration() {
                         @Override
-                        public void getItemOffsets(android.graphics.Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
+                        public void getItemOffsets(Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
                             rect.right = AndroidUtilities.dp(2.0f);
                         }
                     });
@@ -7296,7 +7297,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     trendingListView.setClipToPadding(false);
                     trendingListView.addItemDecoration(new RecyclerView.ItemDecoration() {
                         @Override
-                        public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                        public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                             rect.right = AndroidUtilities.dp(2.0f);
                         }
                     });

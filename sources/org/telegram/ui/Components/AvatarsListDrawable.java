@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -226,7 +227,7 @@ public class AvatarsListDrawable extends Drawable {
     }
 
     public void draw(Canvas canvas, Paint paint) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         if (bounds.isEmpty() || this.alpha == 0) {
             return;
         }

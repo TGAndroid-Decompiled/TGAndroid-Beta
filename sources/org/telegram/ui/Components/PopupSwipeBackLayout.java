@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.SparseIntArray;
 import android.view.GestureDetector;
@@ -30,7 +31,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
     private ValueAnimator foregroundAnimator;
     private int foregroundColor;
     private Paint foregroundPaint;
-    private android.graphics.Rect hitRect;
+    private Rect hitRect;
     private boolean isAnimationInProgress;
     private boolean isProcessingSwipe;
     private boolean isSwipeBackDisallowed;
@@ -73,7 +74,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
         this.currentForegroundIndex = -1;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.lastHeightReported = -1;
-        this.hitRect = new android.graphics.Rect();
+        this.hitRect = new Rect();
         this.resourcesProvider = resourcesProvider;
         final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.detector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {

@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -1080,7 +1081,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 float currentWidth = this.text.getCurrentWidth();
                 float f2 = this.countAlphaAnimated.set(this.countAlpha);
                 float fDp = ((AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth()) * f2) + currentWidth;
-                android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                Rect rect = AndroidUtilities.rectTmp2;
                 rect.set((int) (((getMeasuredWidth() - fDp) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - fDp) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
                 this.text.setAlpha((int) ((1.0f - this.loadingT) * 255.0f * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
                 this.text.setBounds(rect);
@@ -1441,7 +1442,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                     f2 = 0.0f;
                 }
                 if (!isCountEmpty()) {
-                    android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                    Rect rect = AndroidUtilities.rectTmp2;
                     rect.set((int) (this.middleFolder.getCurrentWidth() + f + AndroidUtilities.dp(4.66f)), (int) (measuredHeight - AndroidUtilities.dp(9.0f)), (int) (this.middleFolder.getCurrentWidth() + f + AndroidUtilities.dp(15.32f) + this.countText.getCurrentWidth()), (int) (AndroidUtilities.dp(9.0f) + measuredHeight));
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(rect);

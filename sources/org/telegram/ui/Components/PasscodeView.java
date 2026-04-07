@@ -10,6 +10,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -96,7 +98,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     private ValueAnimator pinAnimator;
     private boolean pinShown;
     private int[] pos;
-    private android.graphics.Rect rect;
+    private Rect rect;
     int resumeCount;
     private TextView retryTextView;
     private int shiftDp;
@@ -486,7 +488,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.BUTTON_Y_MARGIN = 16;
         this.BUTTON_SIZE = 60;
         this.keyboardHeight = 0;
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.backgroundSpringQueue = new LinkedList();
         this.backgroundSpringNextQueue = new LinkedList();
         this.innerAnimators = new ArrayList();
@@ -1531,7 +1533,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             }, 350L);
             AnimatorSet animatorSet = new AnimatorSet();
             ArrayList arrayList = new ArrayList();
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             int i2 = point.x;
             int i3 = point.y + AndroidUtilities.statusBarHeight;
             int i4 = i2 - this.val$x;
@@ -1803,7 +1805,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         View rootView = getRootView();
         int height = (rootView.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.getViewInset(rootView);
         getWindowVisibleDisplayFrame(this.rect);
-        android.graphics.Rect rect = this.rect;
+        Rect rect = this.rect;
         this.keyboardHeight = height - (rect.bottom - rect.top);
         if (SharedConfig.passcodeType == 1 && (AndroidUtilities.isTablet() || getContext().getResources().getConfiguration().orientation != 2)) {
             int iIntValue = this.passwordFrameLayout.getTag() != null ? ((Integer) this.passwordFrameLayout.getTag()).intValue() : 0;

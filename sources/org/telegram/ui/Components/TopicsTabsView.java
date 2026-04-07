@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
@@ -2228,7 +2229,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         }
 
         @Override
-        protected void onBoundsChange(android.graphics.Rect rect) {
+        protected void onBoundsChange(Rect rect) {
             super.onBoundsChange(rect);
             this.rectF.set(rect);
             int iCenterX = rect.centerX() - AndroidUtilities.dp(12.0f);

@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
@@ -70,7 +71,7 @@ public class MessageBackgroundDrawable extends Drawable {
     }
 
     private void calcRadius() {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         float fCenterX = bounds.centerX();
         float f = bounds.left - fCenterX;
         float fCenterY = bounds.top - bounds.centerY();
@@ -111,7 +112,7 @@ public class MessageBackgroundDrawable extends Drawable {
     }
 
     @Override
-    public void setBounds(android.graphics.Rect rect) {
+    public void setBounds(Rect rect) {
         super.setBounds(rect);
         calcRadius();
     }

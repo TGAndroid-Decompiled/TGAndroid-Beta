@@ -13,6 +13,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RecordingCanvas;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
@@ -673,9 +674,9 @@ public class BlurringShader {
             int i5 = this.padding * 2;
             final Bitmap bitmapCreateBitmap = Bitmap.createBitmap(i5 + i3, i5 + i4, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(bitmapCreateBitmap);
-            android.graphics.Rect rect = new android.graphics.Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+            Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
             int i6 = this.padding;
-            android.graphics.Rect rect2 = new android.graphics.Rect(i6, i6, i6 + iRound, i6 + iRound2);
+            Rect rect2 = new Rect(i6, i6, i6 + iRound, i6 + iRound2);
             float f = this.padding;
             canvas.translate((i3 / 2.0f) + f, f + (i4 / 2.0f));
             if (i2 == 1) {
@@ -1117,7 +1118,7 @@ public class BlurringShader {
             return new Drawable() {
                 float alpha = 1.0f;
                 private final Paint dimPaint = new Paint(1);
-                private final android.graphics.Rect rect = new android.graphics.Rect();
+                private final Rect rect = new Rect();
                 private final Path clipPath = new Path();
 
                 @Override
@@ -1155,7 +1156,7 @@ public class BlurringShader {
                 @Override
                 public void draw(Canvas canvas) {
                     Paint paint = getPaint();
-                    android.graphics.Rect bounds = getBounds();
+                    Rect bounds = getBounds();
                     if (paint != null || (StoryBlurDrawer.this.manager != null && StoryBlurDrawer.this.manager.hasRenderNode())) {
                         if (drawable != null) {
                             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
@@ -1166,7 +1167,7 @@ public class BlurringShader {
                                 getPadding(this.rect);
                                 RectF rectF = AndroidUtilities.rectTmp;
                                 int i = bounds.left;
-                                android.graphics.Rect rect = this.rect;
+                                Rect rect = this.rect;
                                 rectF.set(i + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
                                 this.clipPath.rewind();
                                 Path path = this.clipPath;
@@ -1182,7 +1183,7 @@ public class BlurringShader {
                             getPadding(this.rect);
                             RectF rectF2 = AndroidUtilities.rectTmp;
                             int i2 = bounds.left;
-                            android.graphics.Rect rect2 = this.rect;
+                            Rect rect2 = this.rect;
                             rectF2.set(i2 + rect2.left, bounds.top + rect2.top, bounds.right - rect2.right, bounds.bottom - rect2.bottom);
                             this.dimPaint.setColor(1711276032);
                             float f5 = f3;
@@ -1249,7 +1250,7 @@ public class BlurringShader {
                 }
 
                 @Override
-                public boolean getPadding(android.graphics.Rect rect) {
+                public boolean getPadding(Rect rect) {
                     Drawable drawable2 = drawable;
                     if (drawable2 != null) {
                         return drawable2.getPadding(rect);

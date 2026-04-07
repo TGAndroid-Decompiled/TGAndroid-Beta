@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,7 +26,6 @@ import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.PhotoFilterView;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Stories.recorder.CollageLayout;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -485,9 +485,9 @@ public class VideoEditedInfo {
                 serializedData.writeInt32(this.filterState.blurType);
                 serializedData.writeFloat(this.filterState.sharpenValue);
                 serializedData.writeFloat(this.filterState.blurExcludeSize);
-                Point point = this.filterState.blurExcludePoint;
-                if (point != null) {
-                    serializedData.writeFloat(point.x);
+                PointF pointF = this.filterState.blurExcludePoint;
+                if (pointF != null) {
+                    serializedData.writeFloat(pointF.x);
                     serializedData.writeFloat(this.filterState.blurExcludePoint.y);
                 } else {
                     serializedData.writeFloat(0.0f);
@@ -627,7 +627,7 @@ public class VideoEditedInfo {
                             this.filterState.blurType = serializedData.readInt32(false);
                             this.filterState.sharpenValue = serializedData.readFloat(false);
                             this.filterState.blurExcludeSize = serializedData.readFloat(false);
-                            this.filterState.blurExcludePoint = new Point(serializedData.readFloat(false), serializedData.readFloat(false));
+                            this.filterState.blurExcludePoint = new PointF(serializedData.readFloat(false), serializedData.readFloat(false));
                             this.filterState.blurExcludeBlurSize = serializedData.readFloat(false);
                             this.filterState.blurAngle = serializedData.readFloat(false);
                             for (int i2 = 0; i2 < 4; i2++) {

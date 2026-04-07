@@ -11,8 +11,10 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -1153,7 +1155,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.gridView.setVerticalScrollBarEnabled(false);
         this.gridView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
-            public void getItemOffsets(android.graphics.Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
+            public void getItemOffsets(Rect rect, View view2, RecyclerView recyclerView, RecyclerView.State state) {
                 rect.left = 0;
                 rect.right = 0;
                 rect.bottom = 0;
@@ -1554,7 +1556,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
 
     private void updateSendButton() {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         int iMin = (int) ((Math.min(point.x, point.y) / 2) / AndroidUtilities.density);
         if (this.importingStickers != null) {
             this.previewSendButton.setText(LocaleController.getString(R.string.ImportStickersRemove));

@@ -6,6 +6,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
@@ -35,7 +36,7 @@ public class LoadingDrawable extends Drawable {
     private int gradientStrokeColor2;
     private int gradientWidth;
     private float gradientWidthScale;
-    private android.graphics.Rect lastBounds;
+    private Rect lastBounds;
     private Matrix matrix;
     public Paint paint;
     private Path path;

@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -59,7 +60,7 @@ public abstract class CustomPopupMenu {
         if (motionEvent.getActionMasked() != 1 || (actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing()) {
             return false;
         }
-        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+        Rect rect = AndroidUtilities.rectTmp2;
         view.getHitRect(rect);
         if (rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
             return false;

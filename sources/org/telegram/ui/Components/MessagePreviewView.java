@@ -12,6 +12,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -152,7 +153,7 @@ public abstract class MessagePreviewView extends FrameLayout {
         ActionBarMenuSubItem quoteAnotherChatButton;
         ActionBarMenuSubItem quoteButton;
         private AnimatorSet quoteSwitcher;
-        android.graphics.Rect rect;
+        Rect rect;
         ActionBarMenuSubItem replyAnotherChatButton;
         int scrollToOffset;
         ChatMessageSharedResources sharedResources;
@@ -821,7 +822,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             this.menu.measure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 0));
             int i3 = this.buttonsHeight;
             int measuredHeight = this.menu.getMeasuredHeight();
-            android.graphics.Rect rect = this.rect;
+            Rect rect = this.rect;
             this.buttonsHeight = Math.max(i3, measuredHeight + rect.top + rect.bottom);
             ((ViewGroup.MarginLayoutParams) this.chatListView.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.ActionBar.getCurrentActionBarHeight();
             if (MessagePreviewView.this.isLandscapeMode) {
@@ -2361,7 +2362,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
             Drawable drawable = this.bgDrawable;
             if (drawable != null) {
-                android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                Rect rect = AndroidUtilities.rectTmp2;
                 drawable.getPadding(rect);
                 int i5 = measuredHeight / 2;
                 this.bgDrawable.setBounds((((int) f2) - AndroidUtilities.dp(3.0f)) - rect.left, (i5 - AndroidUtilities.dp(16.0f)) - rect.top, ((int) ((f + width) / 2.0f)) + AndroidUtilities.dp(3.0f) + rect.right, i5 + AndroidUtilities.dp(16.0f) + rect.bottom);
@@ -2725,7 +2726,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             if (this.detached) {
                 return;
             }
-            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+            Rect rect = AndroidUtilities.rectTmp2;
             rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), getBounds().centerX() + AndroidUtilities.dp(12.0f), getBounds().centerY() + AndroidUtilities.dp(12.0f));
             if (this.currentState.isLastFrame()) {
                 RLottieDrawable rLottieDrawable = this.currentState;

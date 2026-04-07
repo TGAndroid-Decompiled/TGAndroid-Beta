@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -12,7 +13,7 @@ public class OutlineEditText extends OutlineTextContainerView {
         super(context);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
-            protected void onFocusChanged(boolean z, int i, android.graphics.Rect rect) {
+            protected void onFocusChanged(boolean z, int i, Rect rect) {
                 super.onFocusChanged(z, i, rect);
                 OutlineEditText.this.animateSelection((z || isFocused()) ? 1.0f : 0.0f);
             }

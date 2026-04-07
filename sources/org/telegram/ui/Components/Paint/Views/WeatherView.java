@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -11,8 +12,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Point;
-import org.telegram.ui.Components.Rect;
+import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Stories.recorder.Weather;
 
 public class WeatherView extends EntityView {
@@ -47,8 +47,8 @@ public class WeatherView extends EntityView {
         return this.marker.pady;
     }
 
-    public WeatherView(Context context, Point point, int i, Weather.State state, float f, int i2) {
-        super(context, point);
+    public WeatherView(Context context, PointF pointF, int i, Weather.State state, float f, int i2) {
+        super(context, pointF);
         LocationMarker locationMarker = new LocationMarker(context, 1, f, 0);
         this.marker = locationMarker;
         locationMarker.setMaxWidth(i2);
@@ -118,16 +118,16 @@ public class WeatherView extends EntityView {
     }
 
     @Override
-    public Rect getSelectionBounds() {
+    public RectOld getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
-            return new Rect();
+            return new RectOld();
         }
         float scaleX = viewGroup.getScaleX();
         float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
         float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
         float positionX = (getPositionX() - (measuredWidth / 2.0f)) * scaleX;
-        return new Rect(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, measuredHeight * scaleX);
+        return new RectOld(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, measuredHeight * scaleX);
     }
 
     @Override

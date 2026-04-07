@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
@@ -193,7 +194,7 @@ public abstract class BottomPagerTabs extends View {
             int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6, this.resourcesProvider);
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
             tab.setColor(ColorUtils.blendARGB(color, Theme.getColor(i2, this.resourcesProvider), fMin));
-            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+            Rect rect = AndroidUtilities.rectTmp2;
             float f8 = iMin / f3;
             rect.set((int) (tab.clickRect.centerX() - f8), AndroidUtilities.dp(f2), (int) (tab.clickRect.centerX() + f8), AndroidUtilities.dp(41.0f));
             float f9 = tab.nonscrollingT.set(fMin > 0.6f);

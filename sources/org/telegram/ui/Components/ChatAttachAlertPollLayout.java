@@ -9,8 +9,10 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
@@ -311,7 +313,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
 
             @Override
-            public boolean requestChildRectangleOnScreen(View view, android.graphics.Rect rect, boolean z2) {
+            public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z2) {
                 rect.bottom += AndroidUtilities.dp(60.0f);
                 return super.requestChildRectangleOnScreen(view, rect, z2);
             }
@@ -373,7 +375,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
 
             @Override
-            protected int[] getChildRectangleOnScreenScrollAmount(View view, android.graphics.Rect rect) {
+            protected int[] getChildRectangleOnScreenScrollAmount(View view, Rect rect) {
                 int height = getHeight() - getPaddingBottom();
                 int top = (view.getTop() + rect.top) - view.getScrollY();
                 int iHeight = rect.height() + top;
@@ -1177,7 +1179,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
             i3++;
         }
-        if (i4 < (this.todo ? 1 : 2) || (this.quizPoll && i < 1)) {
+        if (i4 < 1 || (this.quizPoll && i < 1)) {
             z = false;
         }
         if (!TextUtils.isEmpty(this.solutionString) || !TextUtils.isEmpty(this.questionString) || !TextUtils.isEmpty(this.descriptionString) || z2 || this.attachedMedia.medias.size() > 0) {
@@ -1572,7 +1574,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         this.keyboardHeightLand = MessagesController.getGlobalEmojiSettings().getInt("kbd_height_land3", AndroidUtilities.dp(200.0f));
                     }
                 }
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i2 = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) emojiView2.getLayoutParams();
                 layoutParams.height = AndroidUtilities.navigationBarHeight + i2;
@@ -2615,7 +2617,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             if (pollEditTextCell3.getTag() != null) {
                                 return;
                             }
-                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(ChatAttachAlertPollLayout.this.questionRow);
+                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = ChatAttachAlertPollLayout.this.listView.findViewHolderForAdapterPosition(ChatAttachAlertPollLayout.this.solutionRow);
                             if (viewHolderFindViewHolderForAdapterPosition != null && ChatAttachAlertPollLayout.this.suggestEmojiPanel != null) {
                                 for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                                     editable.removeSpan(imageSpan);

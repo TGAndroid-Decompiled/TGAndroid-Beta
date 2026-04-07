@@ -9,6 +9,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -126,11 +127,11 @@ public class EditTextBoldCursor extends EditTextEffects {
     public boolean lineYFix;
     private ViewTreeObserver.OnPreDrawListener listenerFixer;
     private Drawable mCursorDrawable;
-    private android.graphics.Rect mTempRect;
+    private Rect mTempRect;
     private boolean nextSetTextAnimated;
     private Runnable onPremiumMenuLockClickListener;
-    private android.graphics.Rect padding;
-    private android.graphics.Rect rect;
+    private Rect padding;
+    private Rect rect;
     private List<TextWatcher> registeredTextWatchers;
     float rightHintOffset;
     private int scrollY;
@@ -200,7 +201,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         }
 
         @Override
-        public void onGetContentRect(ActionMode actionMode, View view, android.graphics.Rect rect) {
+        public void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
             ActionMode.Callback callback = this.mWrapped;
             if (EditTextBoldCursor$ActionModeCallback2Wrapper$$ExternalSyntheticApiModelOutline0.m(callback)) {
                 TextSelectionHelper$$ExternalSyntheticApiModelOutline6.m(callback).onGetContentRect(actionMode, view, rect);
@@ -221,7 +222,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                 }
             }
         };
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.hintVisible = true;
         this.hintAlpha = 1.0f;
         this.allowDrawCursor = true;
@@ -235,7 +236,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         this.lastOffset = -1;
         this.registeredTextWatchers = new ArrayList();
         this.isTextWatchersSuppressed = false;
-        this.padding = new android.graphics.Rect();
+        this.padding = new Rect();
         this.lastTouchX = -1;
         if (Build.VERSION.SDK_INT >= 26) {
             setImportantForAutofill(2);
@@ -517,7 +518,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     public void setLineColors(int i, int i2, int i3) {
         this.lineVisible = true;
         getContext().getResources().getDrawable(R.drawable.search_dark).getPadding(this.padding);
-        android.graphics.Rect rect = this.padding;
+        Rect rect = this.padding;
         setPadding(rect.left, rect.top, rect.right, rect.bottom);
         this.lineColor = i;
         this.activeLineColor = i2;
@@ -692,7 +693,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    protected void onFocusChanged(boolean z, int i, android.graphics.Rect rect) {
+    protected void onFocusChanged(boolean z, int i, Rect rect) {
         try {
             super.onFocusChanged(z, i, rect);
         } catch (Exception e) {
@@ -925,7 +926,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         int intrinsicWidth;
         float fMax = Math.max(0.5f, f - 0.5f);
         if (this.mTempRect == null) {
-            this.mTempRect = new android.graphics.Rect();
+            this.mTempRect = new Rect();
         }
         if (drawable != null) {
             drawable.getPadding(this.mTempRect);
@@ -951,7 +952,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         int iClampHorizontalPosition = clampHorizontalPosition(this.gradientDrawable, f);
         int iDp = AndroidUtilities.dp(this.cursorWidth);
         GradientDrawable gradientDrawable = this.gradientDrawable;
-        android.graphics.Rect rect = this.mTempRect;
+        Rect rect = this.mTempRect;
         gradientDrawable.setBounds(iClampHorizontalPosition, i - rect.top, iDp + iClampHorizontalPosition, i2 + rect.bottom);
     }
 

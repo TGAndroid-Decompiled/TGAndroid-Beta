@@ -16,6 +16,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -153,7 +154,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private int gridExtraSpace;
     public RecyclerListView gridView;
     private ViewPropertyAnimator headerAnimator;
-    private android.graphics.Rect hitRect;
+    private Rect hitRect;
     private boolean ignoreLayout;
     private DecelerateInterpolator interpolator;
     private Boolean isCameraFrontfaceBeforeEnteringEditMode;
@@ -771,7 +772,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.animateCameraValues = new int[5];
         this.interpolator = new DecelerateInterpolator(1.5f);
         this.isCameraFrontfaceBeforeEnteringEditMode = null;
-        this.hitRect = new android.graphics.Rect();
+        this.hitRect = new Rect();
         int iDp = AndroidUtilities.dp(80.0f);
         this.itemSize = iDp;
         this.lastItemSize = iDp;

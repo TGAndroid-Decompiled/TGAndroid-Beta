@@ -95,7 +95,7 @@ import org.telegram.ui.Components.SlideChooseView;
 import org.telegram.ui.Components.StorageDiagramView;
 import org.telegram.ui.Components.StorageUsageView;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.DilogCacheBottomSheet;
+import org.telegram.ui.DialogCacheBottomSheet;
 import org.telegram.ui.KeepMediaPopupView;
 import org.telegram.ui.Storage.CacheModel;
 
@@ -1126,7 +1126,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (this.totalSize <= 0 || getParentActivity() == null) {
             return;
         }
-        DilogCacheBottomSheet dilogCacheBottomSheet = new DilogCacheBottomSheet(this, dialogFileEntities, dialogFileEntities.createCacheModel(), new DilogCacheBottomSheet.Delegate() {
+        DialogCacheBottomSheet dialogCacheBottomSheet = new DialogCacheBottomSheet(this, dialogFileEntities, dialogFileEntities.createCacheModel(), new DialogCacheBottomSheet.Delegate() {
             @Override
             public void onAvatarClick() {
                 CacheControlActivity.this.bottomSheet.dismiss();
@@ -1145,8 +1145,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 CacheControlActivity.this.cleanupDialogFiles(dialogFileEntities2, clearViewDataArr, cacheModel);
             }
         });
-        this.bottomSheet = dilogCacheBottomSheet;
-        showDialog(dilogCacheBottomSheet);
+        this.bottomSheet = dialogCacheBottomSheet;
+        showDialog(dialogCacheBottomSheet);
     }
 
     public void cleanupDialogFiles(DialogFileEntities dialogFileEntities, StorageDiagramView.ClearViewData[] clearViewDataArr, CacheModel cacheModel) {
@@ -2250,7 +2250,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                             }
                         });
                         CacheControlActivity.this.cachedMediaLayout.setCacheModel(CacheControlActivity.this.cacheModel);
-                        CacheControlActivity.this.nestedSizeNotifierLayout.setChildLayout(CacheControlActivity.this.cachedMediaLayout);
+                        CacheControlActivity.this.nestedSizeNotifierLayout.setChildLayout(CacheControlActivity.this.cachedMediaLayout, AndroidUtilities.dp(40.0f));
                         view.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
                         textSettingsCell = view;
                         break;

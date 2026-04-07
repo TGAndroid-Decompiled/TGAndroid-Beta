@@ -8,6 +8,8 @@ import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -38,7 +40,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Point;
+import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.PreviewView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -75,10 +77,10 @@ public abstract class MessageEntityView extends EntityView {
         return 0.02f;
     }
 
-    public MessageEntityView(final Context context, Point point, float f, float f2, ArrayList arrayList, final BlurringShader.BlurManager blurManager, final boolean z, final PreviewView.TextureViewHolder textureViewHolder) {
+    public MessageEntityView(final Context context, PointF pointF, float f, float f2, ArrayList arrayList, final BlurringShader.BlurManager blurManager, final boolean z, final PreviewView.TextureViewHolder textureViewHolder) {
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        super(context, point);
+        super(context, pointF);
         this.messageObjects = new ArrayList();
         this.videoWidth = 1;
         this.videoHeight = 1;
@@ -604,8 +606,8 @@ public abstract class MessageEntityView extends EntityView {
                 if (!(view instanceof ChatMessageCell) || (currentMessagesGroup = (chatMessageCell = (ChatMessageCell) view).getCurrentMessagesGroup()) == null || (currentPosition = chatMessageCell.getCurrentPosition()) == null || currentPosition.siblingHeights == null) {
                     return;
                 }
-                android.graphics.Point point2 = AndroidUtilities.displaySize;
-                float fMax = Math.max(point2.x, point2.y) * 0.5f;
+                Point point = AndroidUtilities.displaySize;
+                float fMax = Math.max(point.x, point.y) * 0.5f;
                 int extraInsetHeight = chatMessageCell.getExtraInsetHeight();
                 int i5 = 0;
                 while (true) {
@@ -770,13 +772,13 @@ public abstract class MessageEntityView extends EntityView {
     }
 
     @Override
-    public org.telegram.ui.Components.Rect getSelectionBounds() {
+    public RectOld getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
-            return new org.telegram.ui.Components.Rect();
+            return new RectOld();
         }
         float scaleX = viewGroup.getScaleX();
-        return new org.telegram.ui.Components.Rect(((getPositionX() * scaleX) - (((getMeasuredWidth() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getMeasuredHeight() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getMeasuredWidth() * getScale() * scaleX) + AndroidUtilities.dp(71.0f), (getMeasuredHeight() * getScale() * scaleX) + AndroidUtilities.dp(71.0f));
+        return new RectOld(((getPositionX() * scaleX) - (((getMeasuredWidth() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), ((getPositionY() * scaleX) - (((getMeasuredHeight() * getScale()) / 2.0f) * scaleX)) - AndroidUtilities.dp(35.5f), (getMeasuredWidth() * getScale() * scaleX) + AndroidUtilities.dp(71.0f), (getMeasuredHeight() * getScale() * scaleX) + AndroidUtilities.dp(71.0f));
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.graphics.BlendMode;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
@@ -32,7 +33,6 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Stories.recorder.FlashViews;
 
 public class RecordControl extends View implements FlashViews.Invertable {
@@ -41,9 +41,9 @@ public class RecordControl extends View implements FlashViews.Invertable {
     public final AnimatedFloat animatedAmplitude;
     private final Paint buttonPaint;
     private final Paint buttonPaintWhite;
-    private final Point check1;
-    private final Point check2;
-    private final Point check3;
+    private final PointF check1;
+    private final PointF check2;
+    private final PointF check3;
     private final AnimatedFloat checkAnimated;
     private final Paint checkPaint;
     private final Path checkPath;
@@ -64,10 +64,10 @@ public class RecordControl extends View implements FlashViews.Invertable {
     private final AnimatedFloat flipDrawableRotateT;
     private final Drawable flipDrawableWhite;
     private final ImageReceiver galleryImage;
-    private final Point h1;
-    private final Point h2;
-    private final Point h3;
-    private final Point h4;
+    private final PointF h1;
+    private final PointF h2;
+    private final PointF h3;
+    private final PointF h4;
     private final Paint hintLinePaintBlack;
     private final Paint hintLinePaintWhite;
     private long lastDuration;
@@ -85,10 +85,10 @@ public class RecordControl extends View implements FlashViews.Invertable {
     private final Paint outlineFilledPaint;
     private final Paint outlinePaint;
     private float overrideStartModeIsVideoT;
-    private final Point p1;
-    private final Point p2;
-    private final Point p3;
-    private final Point p4;
+    private final PointF p1;
+    private final PointF p2;
+    private final PointF p3;
+    private final PointF p4;
     private final Drawable pauseDrawable;
     private final ButtonBounce recordButton;
     private final AnimatedFloat recordCx;
@@ -202,9 +202,9 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.flipDrawableRotateT = new AnimatedFloat(this, 0L, 310L, cubicBezierInterpolator);
         this.dualT = new AnimatedFloat(this, 0L, 330L, cubicBezierInterpolator);
         this.checkPath = new Path();
-        this.check1 = new Point(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
-        this.check2 = new Point(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
-        this.check3 = new Point(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
+        this.check1 = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
+        this.check2 = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
+        this.check3 = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
         this.animatedAmplitude = new AnimatedFloat(this, 0L, 200L, CubicBezierInterpolator.DEFAULT);
         this.startModeIsVideoT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.overrideStartModeIsVideoT = -1.0f;
@@ -237,14 +237,14 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.metaballsPath = new Path();
         this.circlePath = new Path();
         this.HALF_PI = 1.5707964f;
-        this.p1 = new Point();
-        this.p2 = new Point();
-        this.p3 = new Point();
-        this.p4 = new Point();
-        this.h1 = new Point();
-        this.h2 = new Point();
-        this.h3 = new Point();
-        this.h4 = new Point();
+        this.p1 = new PointF();
+        this.p2 = new PointF();
+        this.p3 = new PointF();
+        this.p4 = new PointF();
+        this.h1 = new PointF();
+        this.h2 = new PointF();
+        this.h3 = new PointF();
+        this.h4 = new PointF();
         setWillNotDraw(false);
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), new int[]{-577231, -577231, -1}, new float[]{0.0f, 0.64f, 1.0f}, Shader.TileMode.CLAMP);
         this.redGradient = radialGradient;
@@ -473,14 +473,14 @@ public class RecordControl extends View implements FlashViews.Invertable {
         return this.collageProgress >= 1.0f;
     }
 
-    private void getVector(float f, float f2, double d, float f3, Point point) {
+    private void getVector(float f, float f2, double d, float f3, PointF pointF) {
         double d2 = f3;
-        point.x = (float) (f + (Math.cos(d) * d2));
-        point.y = (float) (f2 + (Math.sin(d) * d2));
+        pointF.x = (float) (f + (Math.cos(d) * d2));
+        pointF.y = (float) (f2 + (Math.sin(d) * d2));
     }
 
-    private float dist(Point point, Point point2) {
-        return MathUtils.distance(point.x, point.y, point2.x, point2.y);
+    private float dist(PointF pointF, PointF pointF2) {
+        return MathUtils.distance(pointF.x, pointF.y, pointF2.x, pointF2.y);
     }
 
     public void rotateFlip(float f) {

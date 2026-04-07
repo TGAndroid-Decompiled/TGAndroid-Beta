@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Point;
 import android.view.View;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -62,7 +63,7 @@ public final class VerticalPositionAutoAnimator {
         }
 
         private void checkOrientation() {
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             boolean z = point.x > point.y;
             Boolean bool = this.orientation;
             if (bool == null || bool.booleanValue() != z) {

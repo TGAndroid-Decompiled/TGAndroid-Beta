@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -70,7 +71,7 @@ public abstract class TranscribeButton {
     private int outIconDrawableAlpha;
     private ChatMessageCell parent;
     private boolean premium;
-    private android.graphics.Rect pressBounds;
+    private Rect pressBounds;
     private Path progressClipPath;
     private int radius;
     private int rippleColor;
@@ -84,9 +85,9 @@ public abstract class TranscribeButton {
     private long pressId = 0;
     private final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
     private long start = SystemClock.elapsedRealtime();
-    private android.graphics.Rect bounds = new android.graphics.Rect(0, 0, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
+    private Rect bounds = new Rect(0, 0, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
 
-    public abstract void drawGradientBackground(Canvas canvas, android.graphics.Rect rect, float f);
+    public abstract void drawGradientBackground(Canvas canvas, Rect rect, float f);
 
     protected abstract void onOpen();
 
@@ -94,7 +95,7 @@ public abstract class TranscribeButton {
         boolean z = false;
         this.parent = chatMessageCell;
         this.seekBar = seekBarWaveform;
-        android.graphics.Rect rect = new android.graphics.Rect(this.bounds);
+        Rect rect = new Rect(this.bounds);
         this.pressBounds = rect;
         rect.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.transcribe_out, "transcribe_out", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
@@ -404,14 +405,14 @@ public abstract class TranscribeButton {
             float f10 = f8;
             Path path4 = this.progressClipPath;
             int iCenterX = this.bounds.centerX();
-            android.graphics.Rect rect = this.bounds;
+            Rect rect = this.bounds;
             int i = rect.top;
             addLine(path4, iCenterX, i, rect.right - this.radius, i, f9, f10, 0.0f, this.a);
             Path path5 = this.progressClipPath;
-            android.graphics.Rect rect2 = this.bounds;
+            Rect rect2 = this.bounds;
             addCorner(path5, rect2.right, rect2.top, this.diameter, 1, f9, f10, this.a, this.b);
             Path path6 = this.progressClipPath;
-            android.graphics.Rect rect3 = this.bounds;
+            Rect rect3 = this.bounds;
             int i2 = rect3.right;
             int i3 = rect3.top;
             int i4 = this.radius;
@@ -419,10 +420,10 @@ public abstract class TranscribeButton {
             float f11 = this.b;
             addLine(path6, i2, i3 + i4, i2, i5, f9, f10, f11, 180.0f - f11);
             Path path7 = this.progressClipPath;
-            android.graphics.Rect rect4 = this.bounds;
+            Rect rect4 = this.bounds;
             addCorner(path7, rect4.right, rect4.bottom, this.diameter, 2, f9, f10, 180.0f - this.b, 180.0f - this.a);
             Path path8 = this.progressClipPath;
-            android.graphics.Rect rect5 = this.bounds;
+            Rect rect5 = this.bounds;
             int i6 = rect5.right;
             int i7 = this.radius;
             int i8 = rect5.bottom;
@@ -430,10 +431,10 @@ public abstract class TranscribeButton {
             float f12 = this.a;
             addLine(path8, i6 - i7, i8, i9, i8, f9, f10, 180.0f - f12, f12 + 180.0f);
             Path path9 = this.progressClipPath;
-            android.graphics.Rect rect6 = this.bounds;
+            Rect rect6 = this.bounds;
             addCorner(path9, rect6.left, rect6.bottom, this.diameter, 3, f9, f10, this.a + 180.0f, this.b + 180.0f);
             Path path10 = this.progressClipPath;
-            android.graphics.Rect rect7 = this.bounds;
+            Rect rect7 = this.bounds;
             int i10 = rect7.left;
             int i11 = rect7.bottom;
             int i12 = this.radius;
@@ -441,10 +442,10 @@ public abstract class TranscribeButton {
             float f13 = this.b;
             addLine(path10, i10, i11 - i12, i10, i13, f9, f10, f13 + 180.0f, 360.0f - f13);
             Path path11 = this.progressClipPath;
-            android.graphics.Rect rect8 = this.bounds;
+            Rect rect8 = this.bounds;
             addCorner(path11, rect8.left, rect8.top, this.diameter, 4, f9, f10, 360.0f - this.b, 360.0f - this.a);
             Path path12 = this.progressClipPath;
-            android.graphics.Rect rect9 = this.bounds;
+            Rect rect9 = this.bounds;
             addLine(path12, rect9.left + this.radius, rect9.top, rect9.centerX(), this.bounds.top, f9, f10, 360.0f - this.a, 360.0f);
             this.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
             int alpha2 = this.strokePaint.getAlpha();

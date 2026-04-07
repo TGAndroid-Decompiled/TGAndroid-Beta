@@ -8,6 +8,8 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
@@ -38,7 +40,7 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Point;
+import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
@@ -90,8 +92,8 @@ public class PhotoView extends EntityView {
         this.segmentingLoading = false;
     }
 
-    public PhotoView(Context context, Point point, float f, float f2, Size size, final String str, int i, int i2) {
-        super(context, point);
+    public PhotoView(Context context, PointF pointF, float f, float f2, Size size, final String str, int i, int i2) {
+        super(context, pointF);
         this.anchor = -1;
         this.mirrored = false;
         this.overridenSegmented = false;
@@ -128,8 +130,8 @@ public class PhotoView extends EntityView {
         updatePosition();
     }
 
-    public PhotoView(Context context, Point point, float f, float f2, Size size, TLObject tLObject) {
-        super(context, point);
+    public PhotoView(Context context, PointF pointF, float f, float f2, Size size, TLObject tLObject) {
+        super(context, pointF);
         this.anchor = -1;
         this.mirrored = false;
         this.overridenSegmented = false;
@@ -155,7 +157,7 @@ public class PhotoView extends EntityView {
     }
 
     private String getImageFilter() {
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         int iRound = Math.round((Math.min(point.x, point.y) * 0.8f) / AndroidUtilities.density);
         return iRound + "_" + iRound;
     }
@@ -505,10 +507,10 @@ public class PhotoView extends EntityView {
     }
 
     @Override
-    public org.telegram.ui.Components.Rect getSelectionBounds() {
+    public RectOld getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
-            return new org.telegram.ui.Components.Rect();
+            return new RectOld();
         }
         float scaleX = viewGroup.getScaleX();
         float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
@@ -518,7 +520,7 @@ public class PhotoView extends EntityView {
         getScale();
         AndroidUtilities.dp(64.0f);
         float positionX = (getPositionX() - (measuredWidth / 2.0f)) * scaleX;
-        return new org.telegram.ui.Components.Rect(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth2 * scaleX) + positionX) - positionX, measuredHeight * scaleX);
+        return new RectOld(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth2 * scaleX) + positionX) - positionX, measuredHeight * scaleX);
     }
 
     @Override

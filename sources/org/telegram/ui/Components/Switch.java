@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -166,7 +167,7 @@ public class Switch extends View {
 
                 @Override
                 public void draw(Canvas canvas) {
-                    android.graphics.Rect bounds = getBounds();
+                    Rect bounds = getBounds();
                     canvas.drawCircle(bounds.centerX(), bounds.centerY(), AndroidUtilities.dp(18.0f), Switch.this.ripplePaint);
                 }
             });

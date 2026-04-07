@@ -6,6 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.Region;
 import android.os.Build;
 import android.os.Looper;
@@ -50,7 +51,7 @@ public abstract class EditTextEffects extends EditText {
     public int quoteColor;
     private boolean[] quoteUpdateLayout;
     private int quoteUpdatesTries;
-    private android.graphics.Rect rect;
+    private Rect rect;
     private int selEnd;
     private int selStart;
     private boolean shouldRevealSpoilersByTouch;
@@ -109,7 +110,7 @@ public abstract class EditTextEffects extends EditText {
                 this.f$0.lambda$new$2();
             }
         };
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.wrapCanvasToFixClipping = allowHackingTextCanvas();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
             this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new SpoilersClickDetector.OnSpoilerClickedListener() {
@@ -336,7 +337,7 @@ public abstract class EditTextEffects extends EditText {
         this.path.rewind();
         Iterator<SpoilerEffect> it = this.spoilers.iterator();
         while (it.hasNext()) {
-            android.graphics.Rect bounds = it.next().getBounds();
+            Rect bounds = it.next().getBounds();
             this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
         }
         canvas.clipPath(this.path, Region.Op.DIFFERENCE);
@@ -385,8 +386,8 @@ public abstract class EditTextEffects extends EditText {
         canvas.save();
         canvas.clipRect(this.rect);
         for (SpoilerEffect spoilerEffect : this.spoilers) {
-            android.graphics.Rect bounds2 = spoilerEffect.getBounds();
-            android.graphics.Rect rect = this.rect;
+            Rect bounds2 = spoilerEffect.getBounds();
+            Rect rect = this.rect;
             int i2 = rect.top;
             int i3 = bounds2.bottom;
             if ((i2 <= i3 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i3 >= i2)) {

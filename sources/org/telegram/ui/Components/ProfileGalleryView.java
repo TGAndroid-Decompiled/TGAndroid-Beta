@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.SparseArray;
@@ -1124,7 +1125,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         }
 
         @Override
-        public void invalidate(android.graphics.Rect rect) {
+        public void invalidate(Rect rect) {
             super.invalidate(rect);
             Runnable runnable = this.invalidateCallback;
             if (runnable != null) {

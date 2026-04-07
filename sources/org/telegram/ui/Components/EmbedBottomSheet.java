@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Build;
@@ -174,7 +175,7 @@ public class EmbedBottomSheet extends BottomSheet {
         this.width = i;
         this.height = i2;
         if (i == 0 || i2 == 0) {
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             this.width = point.x;
             this.height = point.y / 2;
         }
@@ -401,7 +402,7 @@ public class EmbedBottomSheet extends BottomSheet {
                         TextureView textureView = EmbedBottomSheet.this.videoView.getTextureView();
                         View controlsView = EmbedBottomSheet.this.videoView.getControlsView();
                         ImageView textureImageView = EmbedBottomSheet.this.videoView.getTextureImageView();
-                        Rect pipRect = PipVideoOverlay.getPipRect(true, f);
+                        RectOld pipRect = PipVideoOverlay.getPipRect(true, f);
                         float width = pipRect.width / textureView.getWidth();
                         AnimatorSet animatorSet = new AnimatorSet();
                         Property property = View.SCALE_X;
@@ -454,7 +455,7 @@ public class EmbedBottomSheet extends BottomSheet {
                 if (z2) {
                     EmbedBottomSheet embedBottomSheet = EmbedBottomSheet.this;
                     embedBottomSheet.setOnShowListener(embedBottomSheet.onShowListener);
-                    Rect pipRect2 = PipVideoOverlay.getPipRect(false, f);
+                    RectOld pipRect2 = PipVideoOverlay.getPipRect(false, f);
                     TextureView textureView2 = EmbedBottomSheet.this.videoView.getTextureView();
                     ImageView textureImageView2 = EmbedBottomSheet.this.videoView.getTextureImageView();
                     float f2 = pipRect2.width / textureView2.getLayoutParams().width;

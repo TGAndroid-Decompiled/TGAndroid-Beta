@@ -1353,7 +1353,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 ArrayList arrayList9 = this.searchResultCommandsUsers;
                 if (arrayList9 != null && (this.botsCount != 1 || (this.info instanceof TLRPC.TL_channelFull))) {
                     if (arrayList9.get(i) != null) {
-                        return String.format("%s@%s", this.searchResultCommands.get(i), this.searchResultCommandsUsers.get(i) != null ? ((TLRPC.User) this.searchResultCommandsUsers.get(i)).username : "");
+                        return String.format("%s@%s", this.searchResultCommands.get(i), this.searchResultCommandsUsers.get(i) != null ? UserObject.getPublicUsername((TLRPC.User) this.searchResultCommandsUsers.get(i)) : "");
                     }
                     return String.format("%s", this.searchResultCommands.get(i));
                 }

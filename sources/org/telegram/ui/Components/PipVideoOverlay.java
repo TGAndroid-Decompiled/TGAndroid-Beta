@@ -16,6 +16,7 @@ import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
@@ -320,7 +321,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
 
     public PipConfig getPipConfig() {
         if (this.pipConfig == null) {
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             this.pipConfig = new PipConfig(point.x, point.y);
         }
         return this.pipConfig;
@@ -338,11 +339,11 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         float fMin;
         float f2;
         if (f >= 1.0f) {
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             fMin = Math.min(point.x, point.y);
             f2 = 0.35f;
         } else {
-            android.graphics.Point point2 = AndroidUtilities.displaySize;
+            Point point2 = AndroidUtilities.displaySize;
             fMin = Math.min(point2.x, point2.y);
             f2 = 0.6f;
         }
@@ -360,7 +361,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
     private float getRatio() {
         if (this.aspectRatio == null) {
             this.aspectRatio = Float.valueOf(this.mVideoHeight / this.mVideoWidth);
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             this.maxScaleFactor = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / getSuggestedWidth();
             this.videoForwardDrawable.setPlayScaleFactor(this.aspectRatio.floatValue() < 1.0f ? 0.6f : 0.45f);
         }
@@ -592,37 +593,37 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         instance.updatePlayButtonInternal();
     }
 
-    public static Rect getPipRect(boolean z, float f) {
-        Rect rect = new Rect();
+    public static RectOld getPipRect(boolean z, float f) {
+        RectOld rectOld = new RectOld();
         float f2 = 1.0f / f;
         PipVideoOverlay pipVideoOverlay = instance;
         if (pipVideoOverlay.isVisible && !z) {
-            rect.x = pipVideoOverlay.pipX;
-            rect.y = pipVideoOverlay.pipY + AndroidUtilities.statusBarHeight;
+            rectOld.x = pipVideoOverlay.pipX;
+            rectOld.y = pipVideoOverlay.pipY + AndroidUtilities.statusBarHeight;
             PipVideoOverlay pipVideoOverlay2 = instance;
-            rect.width = pipVideoOverlay2.pipWidth;
-            rect.height = pipVideoOverlay2.pipHeight;
-            return rect;
+            rectOld.width = pipVideoOverlay2.pipWidth;
+            rectOld.height = pipVideoOverlay2.pipHeight;
+            return rectOld;
         }
         float pipX = pipVideoOverlay.getPipConfig().getPipX();
         float pipY = instance.getPipConfig().getPipY();
         float scaleFactor = instance.getPipConfig().getScaleFactor();
-        rect.width = getSuggestedWidth(f2) * scaleFactor;
-        rect.height = getSuggestedHeight(f2) * scaleFactor;
+        rectOld.width = getSuggestedWidth(f2) * scaleFactor;
+        rectOld.height = getSuggestedHeight(f2) * scaleFactor;
         if (pipX != -1.0f) {
-            float f3 = rect.width;
+            float f3 = rectOld.width;
             float f4 = pipX + (f3 / 2.0f);
             float f5 = AndroidUtilities.displaySize.x;
-            rect.x = f4 >= f5 / 2.0f ? (f5 - f3) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            rectOld.x = f4 >= f5 / 2.0f ? (f5 - f3) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
         } else {
-            rect.x = (AndroidUtilities.displaySize.x - rect.width) - AndroidUtilities.dp(16.0f);
+            rectOld.x = (AndroidUtilities.displaySize.x - rectOld.width) - AndroidUtilities.dp(16.0f);
         }
         if (pipY != -1.0f) {
-            rect.y = MathUtils.clamp(pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - rect.height) + AndroidUtilities.statusBarHeight;
+            rectOld.y = MathUtils.clamp(pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - rectOld.height) + AndroidUtilities.statusBarHeight;
         } else {
-            rect.y = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
+            rectOld.y = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
         }
-        return rect;
+        return rectOld;
     }
 
     public static boolean show(boolean z, Activity activity, View view, int i, int i2) {

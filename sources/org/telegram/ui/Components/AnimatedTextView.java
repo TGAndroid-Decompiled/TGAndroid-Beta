@@ -11,8 +11,10 @@ import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -51,7 +53,7 @@ public class AnimatedTextView extends View {
         private TimeInterpolator animateInterpolator;
         private float animateWave;
         private ValueAnimator animator;
-        private final android.graphics.Rect bounds;
+        private final Rect bounds;
         public boolean centerY;
         private ValueAnimator colorAnimator;
         private float currentHeight;
@@ -190,7 +192,7 @@ public class AnimatedTextView extends View {
             this.moveAmplitude = 0.3f;
             this.scaleAmplitude = 0.0f;
             this.alpha = 255;
-            this.bounds = new android.graphics.Rect();
+            this.bounds = new Rect();
             this.includeFontPadding = true;
             this.centerY = true;
             this.shadowed = false;
@@ -483,7 +485,7 @@ public class AnimatedTextView extends View {
 
         private StaticLayout makeLayout(CharSequence charSequence, int i) {
             if (i <= 0) {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 i = Math.min(point.x, point.y);
             }
             int i2 = i;
@@ -921,7 +923,7 @@ public class AnimatedTextView extends View {
         }
 
         @Override
-        public void setBounds(android.graphics.Rect rect) {
+        public void setBounds(Rect rect) {
             super.setBounds(rect);
             this.bounds.set(rect);
         }
@@ -946,7 +948,7 @@ public class AnimatedTextView extends View {
         }
 
         @Override
-        public android.graphics.Rect getDirtyBounds() {
+        public Rect getDirtyBounds() {
             return this.bounds;
         }
 

@@ -5,6 +5,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -596,7 +597,7 @@ public class EditTextCaption extends EditTextBoldCursor {
             }
 
             @Override
-            public void onGetContentRect(ActionMode actionMode, View view, android.graphics.Rect rect) {
+            public void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
                 ActionMode.Callback callback3 = callback;
                 if (EditTextBoldCursor$ActionModeCallback2Wrapper$$ExternalSyntheticApiModelOutline0.m(callback3)) {
                     TextSelectionHelper$$ExternalSyntheticApiModelOutline6.m(callback3).onGetContentRect(actionMode, view, rect);

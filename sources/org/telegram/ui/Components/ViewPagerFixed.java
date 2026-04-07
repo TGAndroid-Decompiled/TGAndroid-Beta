@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -71,7 +72,7 @@ public class ViewPagerFixed extends FrameLayout {
     private boolean maybeStartTracking;
     protected int nextPosition;
     AnimationNotificationsLocker notificationsLocker;
-    private android.graphics.Rect rect;
+    private Rect rect;
     private Theme.ResourcesProvider resourcesProvider;
     private boolean startedTracking;
     private int startedTrackingPointerId;
@@ -214,7 +215,7 @@ public class ViewPagerFixed extends FrameLayout {
                 ViewPagerFixed.this.onTabAnimationUpdate(false);
             }
         };
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.allowDisallowInterceptTouch = true;
         this.resourcesProvider = resourcesProvider;
         this.touchSlop = AndroidUtilities.getPixelsInCM(0.3f, true);
@@ -2093,7 +2094,7 @@ public class ViewPagerFixed extends FrameLayout {
                         return childAt;
                     }
                     if (childAt instanceof ViewGroup) {
-                        android.graphics.Rect rect = this.rect;
+                        Rect rect = this.rect;
                         View viewFindScrollingChild = findScrollingChild((ViewGroup) childAt, f - rect.left, f2 - rect.top);
                         if (viewFindScrollingChild != null) {
                             return viewFindScrollingChild;

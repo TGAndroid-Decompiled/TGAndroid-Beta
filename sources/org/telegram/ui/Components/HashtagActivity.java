@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.SparseArray;
@@ -235,7 +236,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void drawBackgroundWithBlur(Canvas canvas, float f, android.graphics.Rect rect, Paint paint) {
+            protected void drawBackgroundWithBlur(Canvas canvas, float f, Rect rect, Paint paint) {
             }
 
             @Override

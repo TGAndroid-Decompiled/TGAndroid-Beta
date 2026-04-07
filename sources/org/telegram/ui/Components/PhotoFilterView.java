@@ -7,8 +7,10 @@ import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
@@ -50,7 +52,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private float blurAngle;
     private PhotoFilterBlurControl blurControl;
     private float blurExcludeBlurSize;
-    private Point blurExcludePoint;
+    private PointF blurExcludePoint;
     private float blurExcludeSize;
     private ImageView blurItem;
     private FrameLayout blurLayout;
@@ -86,7 +88,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private MediaController.SavedFilterState lastState;
     private final Matrix maskMatrix;
     private final Paint maskPaint;
-    private final android.graphics.Rect maskRect;
+    private final Rect maskRect;
     private int orientation;
     private boolean ownLayout;
     private boolean ownsTextureView;
@@ -358,9 +360,9 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
     }
 
-    public void lambda$new$1(Point point, float f, float f2, float f3) {
+    public void lambda$new$1(PointF pointF, float f, float f2, float f3) {
         this.blurExcludeSize = f2;
-        this.blurExcludePoint = point;
+        this.blurExcludePoint = pointF;
         this.blurExcludeBlurSize = f;
         this.blurAngle = f3;
         FilterGLThread filterGLThread = this.eglThread;
@@ -772,7 +774,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                     this.maskMatrix.postScale(this.maskRect.width() / this.bitmapMask.getHeight(), this.maskRect.height() / this.bitmapMask.getWidth());
                     canvas.drawBitmap(this.bitmapMask, this.maskMatrix, this.maskPaint);
                 } else {
-                    canvas.drawBitmap(this.bitmapMask, (android.graphics.Rect) null, this.maskRect, this.maskPaint);
+                    canvas.drawBitmap(this.bitmapMask, (Rect) null, this.maskRect, this.maskPaint);
                 }
             }
             float measuredWidth = this.textureView.getMeasuredWidth() / this.paintingOverlay.getMeasuredWidth();
@@ -894,7 +896,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     }
 
     @Override
-    public Point getBlurExcludePoint() {
+    public PointF getBlurExcludePoint() {
         return this.blurExcludePoint;
     }
 

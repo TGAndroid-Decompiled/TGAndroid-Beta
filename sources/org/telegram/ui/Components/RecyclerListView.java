@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
@@ -165,7 +166,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     protected Drawable selectorDrawable;
     protected int selectorPosition;
     private int selectorRadius;
-    protected android.graphics.Rect selectorRect;
+    protected Rect selectorRect;
     protected Consumer selectorTransformer;
     private int selectorType;
     protected View selectorView;
@@ -1094,7 +1095,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         this.skipDrawSection = false;
         this.hideIfEmpty = true;
         this.selectorType = 2;
-        this.selectorRect = new android.graphics.Rect();
+        this.selectorRect = new Rect();
         this.translateSelector = -1;
         this.scrollEnabled = true;
         this.lastX = Float.MAX_VALUE;
@@ -2270,7 +2271,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         ensurePinnedHeaderLayout(view, true);
     }
 
-    public android.graphics.Rect getSelectorRect() {
+    public Rect getSelectorRect() {
         return this.selectorRect;
     }
 
@@ -2948,7 +2949,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
 
         @Override
-        public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+        public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
             int adapterPosition;
             if (((Boolean) this.isSectionItem.run(view)).booleanValue()) {
                 int i = this.padding;

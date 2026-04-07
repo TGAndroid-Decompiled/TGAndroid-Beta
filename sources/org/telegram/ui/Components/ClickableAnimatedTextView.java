@@ -2,18 +2,19 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.StateSet;
 import android.view.MotionEvent;
 
 public class ClickableAnimatedTextView extends AnimatedTextView {
     private Drawable backgroundDrawable;
-    private final android.graphics.Rect bounds;
+    private final Rect bounds;
     private boolean pressed;
 
     public ClickableAnimatedTextView(Context context) {
         super(context);
-        this.bounds = new android.graphics.Rect();
+        this.bounds = new Rect();
     }
 
     @Override
@@ -22,13 +23,13 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
             this.bounds.set(getDrawable().getBounds());
             int iCeil = (int) Math.ceil(getDrawable().getCurrentWidth());
             if (getDrawable().getGravity() == 3) {
-                android.graphics.Rect rect = this.bounds;
+                Rect rect = this.bounds;
                 rect.right = rect.left + iCeil;
             } else if (getDrawable().getGravity() == 5) {
-                android.graphics.Rect rect2 = this.bounds;
+                Rect rect2 = this.bounds;
                 rect2.left = rect2.right - iCeil;
             } else if (getDrawable().getGravity() == 17) {
-                android.graphics.Rect rect3 = this.bounds;
+                Rect rect3 = this.bounds;
                 int i = (rect3.left + rect3.right) / 2;
                 int i2 = iCeil / 2;
                 rect3.left = i - i2;
@@ -44,7 +45,7 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
         super.onDraw(canvas);
     }
 
-    public android.graphics.Rect getClickBounds() {
+    public Rect getClickBounds() {
         return this.bounds;
     }
 

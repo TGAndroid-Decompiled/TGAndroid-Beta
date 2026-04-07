@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
@@ -18,9 +19,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
 import org.telegram.ui.Stories.StoryReactionWidgetBackground;
 
@@ -56,8 +57,8 @@ public class ReactionWidgetEntityView extends EntityView {
         return 0.5f;
     }
 
-    public ReactionWidgetEntityView(Context context, Point point, Size size) throws NumberFormatException {
-        super(context, point);
+    public ReactionWidgetEntityView(Context context, PointF pointF, Size size) throws NumberFormatException {
+        super(context, pointF);
         this.storyReactionWidgetBackground = new StoryReactionWidgetBackground(this);
         this.outBackground = new StoryReactionWidgetBackground(this);
         this.reactionHolder = new ReactionImageHolder(this);
@@ -154,16 +155,16 @@ public class ReactionWidgetEntityView extends EntityView {
     }
 
     @Override
-    public org.telegram.ui.Components.Rect getSelectionBounds() {
+    public RectOld getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
-            return new org.telegram.ui.Components.Rect();
+            return new RectOld();
         }
         float scaleX = viewGroup.getScaleX();
         float measuredWidth = getMeasuredWidth() * (getScale() + 0.4f);
         float f = measuredWidth / 2.0f;
         float f2 = measuredWidth * scaleX;
-        return new org.telegram.ui.Components.Rect((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
+        return new RectOld((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
     }
 
     @Override

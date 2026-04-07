@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
@@ -23,14 +24,14 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 public class EditCoverButton extends View {
     private final Drawable arrowDrawable;
     private BlurredBackgroundDrawable blurredBackgroundDrawable;
-    private final android.graphics.Rect bounds;
+    private final Rect bounds;
     private final RectF imageBounds;
     private final ImageReceiver imageReceiver;
     private final Text text;
 
     public EditCoverButton(Context context, CharSequence charSequence, boolean z) {
         super(context);
-        this.bounds = new android.graphics.Rect();
+        this.bounds = new Rect();
         this.imageBounds = new RectF();
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;

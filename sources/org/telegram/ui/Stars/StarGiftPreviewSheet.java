@@ -789,7 +789,8 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.lastDocument = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f);
-            String str = i + "_" + i;
+            int i2 = i >= 90 ? (i * 2) / 3 : i;
+            String str = i2 + "_" + i2;
             this.imageView.setLayoutParams(LayoutHelper.createFrame(i, i, 49, 0.0f, r3 + 12, 0.0f, (90 - i) / 2));
             this.imageView.setImage(ImageLocation.getForDocument(document), str, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), str, svgThumb, obj);
         }

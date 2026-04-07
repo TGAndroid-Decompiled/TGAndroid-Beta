@@ -8,6 +8,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
@@ -47,8 +48,8 @@ public class VideoTimelineView extends View {
     private boolean pressedRight;
     private float progressLeft;
     private float progressRight;
-    private android.graphics.Rect rect1;
-    private android.graphics.Rect rect2;
+    private Rect rect1;
+    private Rect rect2;
     private Bitmap roundCornerBitmap;
     private int roundCornersSize;
     Paint thumbPaint;
@@ -124,8 +125,8 @@ public class VideoTimelineView extends View {
     public void setRoundFrames(boolean z) {
         this.isRoundFrames = z;
         if (z) {
-            this.rect1 = new android.graphics.Rect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-            this.rect2 = new android.graphics.Rect();
+            this.rect1 = new Rect(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+            this.rect2 = new Rect();
         }
     }
 
@@ -339,7 +340,7 @@ public class VideoTimelineView extends View {
                     float fMax = Math.max(VideoTimelineView.this.frameWidth / frameAtTime.getWidth(), VideoTimelineView.this.frameHeight / frameAtTime.getHeight());
                     int width = (int) (frameAtTime.getWidth() * fMax);
                     int height = (int) (frameAtTime.getHeight() * fMax);
-                    canvas.drawBitmap(frameAtTime, new android.graphics.Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new android.graphics.Rect((VideoTimelineView.this.frameWidth - width) / 2, (VideoTimelineView.this.frameHeight - height) / 2, width, height), (Paint) null);
+                    canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((VideoTimelineView.this.frameWidth - width) / 2, (VideoTimelineView.this.frameHeight - height) / 2, width, height), (Paint) null);
                     frameAtTime.recycle();
                     return bitmapCreateBitmap;
                 } catch (Exception e2) {

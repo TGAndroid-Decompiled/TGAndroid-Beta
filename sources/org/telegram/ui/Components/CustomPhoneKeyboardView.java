@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextPaint;
@@ -326,7 +327,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         private final String mNumber;
         private final String mSymbols;
         private final TextPaint numberTextPaint;
-        private final android.graphics.Rect rect;
+        private final Rect rect;
         private final TextPaint symbolsTextPaint;
 
         public NumberButtonView(Context context, String str, String str2) {
@@ -335,7 +336,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
             this.numberTextPaint = textPaint;
             TextPaint textPaint2 = new TextPaint(1);
             this.symbolsTextPaint = textPaint2;
-            this.rect = new android.graphics.Rect();
+            this.rect = new Rect();
             this.mNumber = str;
             this.mSymbols = str2;
             textPaint.setTextSize(AndroidUtilities.dp(24.0f));

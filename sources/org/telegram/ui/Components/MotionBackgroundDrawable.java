@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -88,7 +89,7 @@ public class MotionBackgroundDrawable extends Drawable {
     private WeakReference parentView;
     private float patternAlpha;
     private Bitmap patternBitmap;
-    private android.graphics.Rect patternBounds;
+    private Rect patternBounds;
     private int patternColor;
     private ColorFilter patternColorFilter;
     private Bitmap patternGiftBitmap;
@@ -146,7 +147,7 @@ public class MotionBackgroundDrawable extends Drawable {
                 this.f$0.lambda$new$0();
             }
         };
-        this.patternBounds = new android.graphics.Rect();
+        this.patternBounds = new Rect();
         this.patternAlpha = 1.0f;
         this.backgroundAlpha = 1.0f;
         this.alpha = 255;
@@ -188,7 +189,7 @@ public class MotionBackgroundDrawable extends Drawable {
                 this.f$0.lambda$new$0();
             }
         };
-        this.patternBounds = new android.graphics.Rect();
+        this.patternBounds = new Rect();
         this.patternAlpha = 1.0f;
         this.backgroundAlpha = 1.0f;
         this.alpha = 255;
@@ -274,7 +275,7 @@ public class MotionBackgroundDrawable extends Drawable {
     }
 
     @Override
-    public void setBounds(android.graphics.Rect rect) {
+    public void setBounds(Rect rect) {
         super.setBounds(rect);
         this.patternBounds.set(rect);
     }
@@ -679,7 +680,7 @@ public class MotionBackgroundDrawable extends Drawable {
     }
 
     public void drawBackground(Canvas canvas) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         canvas.save();
         float f = this.patternBitmap != null ? bounds.top : this.translationY;
         int width = this.currentBitmap.getWidth();
@@ -734,7 +735,7 @@ public class MotionBackgroundDrawable extends Drawable {
                 }
                 int alpha2 = paint.getAlpha();
                 paint.setAlpha((int) (alpha2 * this.backgroundAlpha));
-                canvas.drawBitmap(this.currentBitmap, (android.graphics.Rect) null, this.rect, paint);
+                canvas.drawBitmap(this.currentBitmap, (Rect) null, this.rect, paint);
                 paint.setAlpha(alpha2);
             }
         }
@@ -976,7 +977,7 @@ public class MotionBackgroundDrawable extends Drawable {
                 imageReceiver.setImageCoords(wallpaperGiftPatternPosition.rect);
                 this.giftImageReceiver.draw(canvas);
             } else {
-                canvas.drawBitmap(this.patternGiftBitmap, (android.graphics.Rect) null, wallpaperGiftPatternPosition.rect, paint);
+                canvas.drawBitmap(this.patternGiftBitmap, (Rect) null, wallpaperGiftPatternPosition.rect, paint);
             }
             canvas.restore();
         }

@@ -6,6 +6,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
@@ -56,7 +57,7 @@ public class MuteDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
         this.baseDrawable.setBounds(bounds);
         this.baseDrawable.draw(canvas);

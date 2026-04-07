@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -112,7 +113,7 @@ public class LetterDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         if (bounds == null) {
             return;
         }

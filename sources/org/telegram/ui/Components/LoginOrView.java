@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -14,14 +15,14 @@ public class LoginOrView extends View {
     private Paint linePaint;
     private View measureAfter;
     private String string;
-    private android.graphics.Rect textBounds;
+    private Rect textBounds;
     private TextPaint textPaint;
 
     public LoginOrView(Context context) {
         super(context);
         this.textPaint = new TextPaint(1);
         this.linePaint = new Paint(1);
-        this.textBounds = new android.graphics.Rect();
+        this.textBounds = new Rect();
         this.string = LocaleController.getString(R.string.LoginOrSingInWithGoogle);
         this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         updateColors();

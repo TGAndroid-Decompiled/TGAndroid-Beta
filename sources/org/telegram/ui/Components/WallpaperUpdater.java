@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import androidx.core.content.FileProvider;
@@ -161,7 +162,7 @@ public class WallpaperUpdater {
             SendMessagesHelper.SendingMediaInfo sendingMediaInfo = (SendMessagesHelper.SendingMediaInfo) arrayList.get(0);
             if (sendingMediaInfo.path != null) {
                 this.currentWallpaperPath = new File(FileLoader.getDirectory(4), Utilities.random.nextInt() + ".jpg");
-                android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                Point realScreenSize = AndroidUtilities.getRealScreenSize();
                 Bitmap bitmapLoadBitmap = ImageLoader.loadBitmap(sendingMediaInfo.path, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                 bitmapLoadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(this.currentWallpaperPath));
                 this.delegate.didSelectWallpaper(this.currentWallpaperPath, bitmapLoadBitmap, true);

@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.TextPaint;
 import android.view.View;
@@ -44,7 +45,7 @@ public class CheckBoxBase {
     private int strokeBackgroundWidth;
     private TextPaint textPaint;
     private boolean useDefaultCheck;
-    public android.graphics.Rect bounds = new android.graphics.Rect();
+    public Rect bounds = new Rect();
     private RectF rect = new RectF();
     public float checkScale = 1.0f;
     private float alpha = 1.0f;
@@ -127,7 +128,7 @@ public class CheckBoxBase {
     }
 
     public void setBounds(int i, int i2, int i3, int i4) {
-        android.graphics.Rect rect = this.bounds;
+        Rect rect = this.bounds;
         rect.left = i;
         rect.top = i2;
         rect.right = i + i3;

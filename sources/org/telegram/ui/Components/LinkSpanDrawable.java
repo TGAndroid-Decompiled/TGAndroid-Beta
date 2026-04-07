@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.text.Layout;
@@ -40,7 +41,7 @@ public class LinkSpanDrawable {
     private int color;
     private int cornerRadius;
     private final boolean isLite;
-    private android.graphics.Rect mBounds;
+    private Rect mBounds;
     private final long mDuration;
     private final long mLongPressDuration;
     private float mMaxRadius;
@@ -163,18 +164,18 @@ public class LinkSpanDrawable {
             LinkPath linkPath = (LinkPath) this.mPathes.get(0);
             RectF rectF = AndroidUtilities.rectTmp;
             linkPath.computeBounds(rectF, false);
-            this.mBounds = new android.graphics.Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            this.mBounds = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             for (int i = 1; i < this.mPathesCount; i++) {
                 LinkPath linkPath2 = (LinkPath) this.mPathes.get(i);
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 linkPath2.computeBounds(rectF2, false);
-                android.graphics.Rect rect = this.mBounds;
+                Rect rect = this.mBounds;
                 rect.left = Math.min(rect.left, (int) rectF2.left);
-                android.graphics.Rect rect2 = this.mBounds;
+                Rect rect2 = this.mBounds;
                 rect2.top = Math.min(rect2.top, (int) rectF2.top);
-                android.graphics.Rect rect3 = this.mBounds;
+                Rect rect3 = this.mBounds;
                 rect3.right = Math.max(rect3.right, (int) rectF2.right);
-                android.graphics.Rect rect4 = this.mBounds;
+                Rect rect4 = this.mBounds;
                 rect4.bottom = Math.max(rect4.bottom, (int) rectF2.bottom);
             }
             this.mMaxRadius = (float) Math.sqrt(Math.max(Math.max(Math.pow(this.mBounds.left - this.mTouchX, 2.0d) + Math.pow(this.mBounds.top - this.mTouchY, 2.0d), Math.pow(this.mBounds.right - this.mTouchX, 2.0d) + Math.pow(this.mBounds.top - this.mTouchY, 2.0d)), Math.max(Math.pow(this.mBounds.left - this.mTouchX, 2.0d) + Math.pow(this.mBounds.bottom - this.mTouchY, 2.0d), Math.pow(this.mBounds.right - this.mTouchX, 2.0d) + Math.pow(this.mBounds.bottom - this.mTouchY, 2.0d))));

@@ -11,9 +11,11 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Typeface;
@@ -721,7 +723,7 @@ public class Bulletin {
         private boolean needRightAlphaAnimation;
         private boolean pressed;
         private long pressedTime;
-        private final android.graphics.Rect rect;
+        private final Rect rect;
         private boolean scrolling;
         private float translationX;
         private float tx;
@@ -752,7 +754,7 @@ public class Bulletin {
 
         public ParentLayout(Layout layout) {
             super(layout.getContext());
-            this.rect = new android.graphics.Rect();
+            this.rect = new Rect();
             this.layout = layout;
             GestureDetector gestureDetector = new GestureDetector(layout.getContext(), new AnonymousClass1(layout));
             this.gestureDetector = gestureDetector;
@@ -1078,7 +1080,7 @@ public class Bulletin {
 
         private boolean isWideScreen() {
             if (!AndroidUtilities.isTablet()) {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 if (point.x < point.y) {
                     return false;
                 }
@@ -1685,7 +1687,6 @@ public class Bulletin {
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
             this.titleTextView = linksTextView;
             linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-            linksTextView.setSingleLine();
             linksTextView.setTextColor(themedColor);
             linksTextView.setTextSize(1, 14.0f);
             linksTextView.setTypeface(AndroidUtilities.bold());

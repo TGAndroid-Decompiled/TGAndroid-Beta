@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
 public class CombinedDrawable extends Drawable implements Drawable.Callback {
@@ -119,7 +120,7 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         canvas.save();
         canvas.translate(this.translateX, this.translateY);
         if (this.center) {
-            android.graphics.Rect bounds = getBounds();
+            Rect bounds = getBounds();
             setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), bounds.centerX() + (getIntrinsicWidth() / 2), bounds.centerY() + (getIntrinsicHeight() / 2));
         }
         Drawable drawable = this.background;
@@ -129,7 +130,7 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         }
         if (this.icon != null) {
             if (this.fullSize) {
-                android.graphics.Rect bounds2 = getBounds();
+                Rect bounds2 = getBounds();
                 int i = this.left;
                 if (i != 0) {
                     Drawable drawable2 = this.icon;

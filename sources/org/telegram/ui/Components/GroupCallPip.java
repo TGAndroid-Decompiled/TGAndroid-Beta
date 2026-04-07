@@ -8,6 +8,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.SystemClock;
 import android.util.Property;
@@ -186,7 +187,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             @Override
             protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                 super.onLayout(z, i3, i4, i5, i6);
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i7 = point.x + point.y;
                 int i8 = this.lastSize;
                 if (i8 > 0 && i8 != i7) {
@@ -269,7 +270,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             int i3 = point.x;
             GroupCallPip groupCallPip = GroupCallPip.this;
             if (i3 == groupCallPip.lastScreenX && groupCallPip.lastScreenY == point.y) {
@@ -842,7 +843,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
     }
 
     public void getRelativePosition(float f, float f2, float[] fArr) {
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         float f3 = point.x;
         float f4 = point.y;
         float f5 = -AndroidUtilities.dp(36.0f);

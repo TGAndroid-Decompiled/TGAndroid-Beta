@@ -14,6 +14,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Sensor;
@@ -104,7 +106,6 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.EmbedBottomSheet;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.LaunchActivity;
@@ -418,7 +419,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static class SavedFilterState {
         public float blurAngle;
         public float blurExcludeBlurSize;
-        public Point blurExcludePoint;
+        public PointF blurExcludePoint;
         public float blurExcludeSize;
         public int blurType;
         public float contrastValue;
@@ -488,7 +489,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 this.blurExcludePoint = null;
             } else {
                 if (this.blurExcludePoint == null) {
-                    this.blurExcludePoint = new Point();
+                    this.blurExcludePoint = new PointF();
                 }
                 this.blurExcludePoint.x = inputSerializedData.readFloat(z);
                 this.blurExcludePoint.y = inputSerializedData.readFloat(z);
@@ -1690,7 +1691,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Cursor cursorQuery = null;
         try {
             try {
-                android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                Point realScreenSize = AndroidUtilities.getRealScreenSize();
                 cursorQuery = ApplicationLoader.applicationContext.getContentResolver().query(uri, this.mediaProjections, null, null, "date_added DESC LIMIT 1");
                 final ArrayList arrayList = new ArrayList();
                 if (cursorQuery != null) {

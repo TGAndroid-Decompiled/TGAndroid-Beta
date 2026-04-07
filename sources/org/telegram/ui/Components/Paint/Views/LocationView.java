@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
@@ -13,8 +14,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Point;
-import org.telegram.ui.Components.Rect;
+import org.telegram.ui.Components.RectOld;
 
 public class LocationView extends EntityView {
     private int currentColor;
@@ -80,8 +80,8 @@ public class LocationView extends EntityView {
         return sb.toString();
     }
 
-    public LocationView(Context context, Point point, int i, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f, int i2) {
-        super(context, point);
+    public LocationView(Context context, PointF pointF, int i, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f, int i2) {
+        super(context, pointF);
         LocationMarker locationMarker = new LocationMarker(context, 0, f, 0);
         this.marker = locationMarker;
         locationMarker.setMaxWidth(i2);
@@ -157,16 +157,16 @@ public class LocationView extends EntityView {
     }
 
     @Override
-    public Rect getSelectionBounds() {
+    public RectOld getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
-            return new Rect();
+            return new RectOld();
         }
         float scaleX = viewGroup.getScaleX();
         float measuredWidth = (getMeasuredWidth() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
         float measuredHeight = (getMeasuredHeight() * getScale()) + (AndroidUtilities.dp(64.0f) / scaleX);
         float positionX = (getPositionX() - (measuredWidth / 2.0f)) * scaleX;
-        return new Rect(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, measuredHeight * scaleX);
+        return new RectOld(positionX, (getPositionY() - (measuredHeight / 2.0f)) * scaleX, ((measuredWidth * scaleX) + positionX) - positionX, measuredHeight * scaleX);
     }
 
     @Override

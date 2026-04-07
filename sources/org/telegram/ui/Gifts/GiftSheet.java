@@ -1474,7 +1474,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 this.lastDocument = document;
                 this.lastDocumentId = document.id;
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-                this.imageView.setImage(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f), obj);
+                this.imageView.setImage(ImageLocation.getForDocument(document), "80_80_nolimit", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "80_80_nolimit", DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f), obj);
             }
         }
 

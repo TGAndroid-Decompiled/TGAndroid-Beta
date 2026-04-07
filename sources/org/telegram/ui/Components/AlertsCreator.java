@@ -11,6 +11,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Region;
@@ -3005,7 +3006,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i4, int i5) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i6 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i6);
                 numberPicker2.setItemCount(i6);
@@ -3545,7 +3546,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i4, int i5) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i6 = point.x > point.y ? 3 : 5;
                 numberPicker4.setItemCount(i6);
                 numberPicker5.setItemCount(i6);
@@ -3997,7 +3998,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i, int i2) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i3 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i3);
                 numberPicker2.setItemCount(i3);
@@ -4180,7 +4181,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i4 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i4);
                 numberPicker2.setItemCount(i4);
@@ -4607,7 +4608,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i4 = point.x > point.y ? 3 : 5;
                 numberPicker2.setItemCount(i4);
                 numberPicker.setItemCount(i4);
@@ -4802,7 +4803,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i4 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i4);
                 numberPicker2.setItemCount(i4);
@@ -5024,7 +5025,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i, int i2) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i3 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i3);
                 numberPicker2.setItemCount(i3);
@@ -5234,7 +5235,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i4 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i4);
                 numberPicker.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i4;
@@ -5396,7 +5397,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i3, int i4) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i5 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i5);
                 numberPicker.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i5;
@@ -5539,7 +5540,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i, int i2) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i3 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i3);
                 numberPicker.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i3;
@@ -5687,7 +5688,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i, int i2) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i3 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i3);
                 numberPicker2.setItemCount(i3);
@@ -8272,7 +8273,7 @@ public abstract class AlertsCreator {
             @Override
             protected void onMeasure(int i2, int i3) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i4 = point.x > point.y ? 3 : 5;
                 numberPicker.setItemCount(i4);
                 numberPicker2.setItemCount(i4);

@@ -6,8 +6,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Property;
@@ -51,7 +53,7 @@ public class ProximitySheet extends FrameLayout {
     private onRadiusPickerChange onRadiusChange;
     private Interpolator openInterpolator;
     private boolean radiusSet;
-    private android.graphics.Rect rect;
+    private Rect rect;
     private boolean startedTracking;
     private int startedTrackingPointerId;
     private int startedTrackingX;
@@ -83,14 +85,14 @@ public class ProximitySheet extends FrameLayout {
         this.maybeStartTracking = false;
         this.startedTracking = false;
         this.currentAnimation = null;
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.backgroundPaint = new Paint();
         this.useHardwareLayer = true;
         this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         setWillNotDraw(false);
         this.onDismissCallback = runnable;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        android.graphics.Rect rect = new android.graphics.Rect();
+        Rect rect = new Rect();
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         drawableMutate.getPadding(rect);
@@ -123,7 +125,7 @@ public class ProximitySheet extends FrameLayout {
             @Override
             protected void onMeasure(int i, int i2) {
                 this.ignoreLayout = true;
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i3 = point.x > point.y ? 3 : 5;
                 ProximitySheet.this.kmPicker.setItemCount(i3);
                 ProximitySheet.this.mPicker.setItemCount(i3);

@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RadialGradient;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
@@ -877,7 +878,7 @@ public abstract class ProfileActionsView extends View {
         final RectF rect = new RectF();
         private final RectF to = new RectF();
         private final RectF from = new RectF();
-        private final android.graphics.Rect bounds = new android.graphics.Rect();
+        private final Rect bounds = new Rect();
         private float textScale = 1.0f;
         boolean isOpening = false;
         boolean isDeleting = false;
@@ -1146,7 +1147,7 @@ public abstract class ProfileActionsView extends View {
                     accessibilityNodeInfoObtain2.setClassName(Button.class.getName());
                     accessibilityNodeInfoObtain2.setText(action.text.getText());
                     RectF rectF = action.rect;
-                    android.graphics.Rect rect = new android.graphics.Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                    Rect rect = new Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                     accessibilityNodeInfoObtain2.setBoundsInParent(rect);
                     rect.offset(iArr[0], iArr[1]);
                     accessibilityNodeInfoObtain2.setBoundsInScreen(rect);

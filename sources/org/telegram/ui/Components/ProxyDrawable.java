@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
@@ -106,7 +107,7 @@ public class ProxyDrawable extends Drawable {
     }
 
     private void setBounds(Drawable drawable) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         drawable.setBounds(bounds.centerX() - (drawable.getIntrinsicWidth() / 2), bounds.centerY() - (drawable.getIntrinsicHeight() / 2), bounds.centerX() + (drawable.getIntrinsicWidth() / 2), bounds.centerY() + (drawable.getIntrinsicHeight() / 2));
     }
 

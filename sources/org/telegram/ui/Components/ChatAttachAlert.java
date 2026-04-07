@@ -18,9 +18,11 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
@@ -261,7 +263,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private EmojiView.EmojiViewDelegate emojiViewDelegate;
     private boolean enterCommentEventSent;
     private ArrayList exclusionRects;
-    private android.graphics.Rect exclustionRect;
+    private Rect exclustionRect;
     public boolean forUser;
     private final boolean forceDarkTheme;
     private FrameLayout frameLayout2;
@@ -1404,7 +1406,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.attachButtonPaint = new Paint(1);
         this.captionLimitBulletinShown = false;
         this.exclusionRects = new ArrayList();
-        this.exclustionRect = new android.graphics.Rect();
+        this.exclustionRect = new Rect();
         this.ATTACH_ALERT_PROGRESS = new AnimationProperties.FloatProperty("openProgress") {
             private float openProgress;
 
@@ -2779,7 +2781,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if (AndroidUtilities.isTablet()) {
                 ChatAttachAlert.this.selectedMenuItem.setAdditionalYOffset(-AndroidUtilities.dp(3.0f));
             } else {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     ChatAttachAlert.this.selectedMenuItem.setAdditionalYOffset(0);
                 } else {
@@ -3161,7 +3163,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
+        public void drawBlurRect(Canvas canvas, float f, Rect rect, Paint paint, boolean z) {
             if (ChatAttachAlert.this.currentAttachLayout != ChatAttachAlert.this.photoLayout || Build.VERSION.SDK_INT < 29 || !SharedConfig.chatBlurEnabled() || ChatAttachAlert.this.iBlur3SourceGlassFrosted == null || !BlurredBackgroundProviderImpl.checkBlurEnabled(ChatAttachAlert.this.currentAccount, this.val$resourcesProvider)) {
                 canvas.drawRect(rect, paint);
                 return;
@@ -3357,7 +3359,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             AndroidUtilities.hideKeyboard(getContainer().findFocus());
         }
         File fileMakeCacheFile = StoryEntry.makeCacheFile(this.currentAccount, "webp");
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         int i = point.x;
         int i2 = point.y;
         if (i > 1080 || i2 > 1080) {
@@ -3936,7 +3938,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         onWriteButtonPressed();
     }
 
-    public boolean lambda$new$38(final android.content.Context r34, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r35, final org.telegram.ui.ActionBar.BaseFragment r36, android.view.View r37) throws java.lang.Throwable {
+    public boolean lambda$new$38(final android.content.Context r42, final org.telegram.ui.ActionBar.Theme.ResourcesProvider r43, final org.telegram.ui.ActionBar.BaseFragment r44, android.view.View r45) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.lambda$new$38(android.content.Context, org.telegram.ui.ActionBar.Theme$ResourcesProvider, org.telegram.ui.ActionBar.BaseFragment, android.view.View):boolean");
     }
 

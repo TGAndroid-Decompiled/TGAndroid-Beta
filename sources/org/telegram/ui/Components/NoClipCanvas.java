@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Picture;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.RenderNode;
@@ -37,12 +38,12 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public boolean clipRect(android.graphics.Rect rect) {
+    public boolean clipRect(Rect rect) {
         return false;
     }
 
     @Override
-    public boolean clipRect(android.graphics.Rect rect, Region.Op op) {
+    public boolean clipRect(Rect rect, Region.Op op) {
         return false;
     }
 
@@ -132,7 +133,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public void drawRect(android.graphics.Rect rect, Paint paint) {
+    public void drawRect(Rect rect, Paint paint) {
         this.canvas.drawRect(rect, paint);
     }
 
@@ -187,7 +188,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public void drawBitmap(Bitmap bitmap, android.graphics.Rect rect, android.graphics.Rect rect2, Paint paint) {
+    public void drawBitmap(Bitmap bitmap, Rect rect, Rect rect2, Paint paint) {
         this.canvas.drawBitmap(bitmap, rect, rect2, paint);
     }
 
@@ -217,7 +218,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public void drawBitmap(Bitmap bitmap, android.graphics.Rect rect, RectF rectF, Paint paint) {
+    public void drawBitmap(Bitmap bitmap, Rect rect, RectF rectF, Paint paint) {
         this.canvas.drawBitmap(bitmap, rect, rectF, paint);
     }
 
@@ -257,7 +258,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public boolean getClipBounds(android.graphics.Rect rect) {
+    public boolean getClipBounds(Rect rect) {
         return this.canvas.getClipBounds(rect);
     }
 
@@ -340,7 +341,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public void drawPatch(NinePatch ninePatch, android.graphics.Rect rect, Paint paint) {
+    public void drawPatch(NinePatch ninePatch, Rect rect, Paint paint) {
         if (Build.VERSION.SDK_INT >= 31) {
             this.canvas.drawPatch(ninePatch, rect, paint);
         }
@@ -391,7 +392,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public void drawPicture(Picture picture, android.graphics.Rect rect) {
+    public void drawPicture(Picture picture, Rect rect) {
         this.canvas.drawPicture(picture, rect);
     }
 
@@ -510,7 +511,7 @@ public class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public boolean clipOutRect(android.graphics.Rect rect) {
+    public boolean clipOutRect(Rect rect) {
         if (Build.VERSION.SDK_INT >= 26) {
             return this.canvas.clipOutRect(rect);
         }

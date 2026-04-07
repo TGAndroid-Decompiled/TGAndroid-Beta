@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.animation.Interpolator;
@@ -13,7 +14,7 @@ public class ReorderingHintDrawable extends Drawable {
     private float scaleX;
     private float scaleY;
     private final RectDrawable secondaryRectDrawable;
-    private final android.graphics.Rect tempRect = new android.graphics.Rect();
+    private final Rect tempRect = new Rect();
     private final Interpolator interpolator = Easings.easeInOutSine;
     private final int intrinsicWidth = AndroidUtilities.dp(24.0f);
     private final int intrinsicHeight = AndroidUtilities.dp(24.0f);
@@ -48,7 +49,7 @@ public class ReorderingHintDrawable extends Drawable {
     }
 
     @Override
-    protected void onBoundsChange(android.graphics.Rect rect) {
+    protected void onBoundsChange(Rect rect) {
         this.scaleX = rect.width() / this.intrinsicWidth;
         this.scaleY = rect.height() / this.intrinsicHeight;
     }
@@ -89,20 +90,20 @@ public class ReorderingHintDrawable extends Drawable {
     }
 
     private void drawStage1(Canvas canvas, float f) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         float interpolation = this.interpolator.getInterpolation(f);
         this.tempRect.left = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
         this.tempRect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
-        android.graphics.Rect rect = this.tempRect;
+        Rect rect = this.tempRect;
         rect.right = bounds.right - rect.left;
         rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
         this.secondaryRectDrawable.setBounds(this.tempRect);
         this.secondaryRectDrawable.draw(canvas);
-        android.graphics.Rect rect2 = this.tempRect;
+        Rect rect2 = this.tempRect;
         int iDp = AndroidUtilities.dp(12.0f);
         rect2.right = iDp;
         rect2.left = iDp;
-        android.graphics.Rect rect3 = this.tempRect;
+        Rect rect3 = this.tempRect;
         int iDp2 = AndroidUtilities.dp(8.0f);
         rect3.bottom = iDp2;
         rect3.top = iDp2;
@@ -113,11 +114,11 @@ public class ReorderingHintDrawable extends Drawable {
     }
 
     private void drawStage2(Canvas canvas, float f) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         float interpolation = this.interpolator.getInterpolation(f);
         this.tempRect.left = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
         this.tempRect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
-        android.graphics.Rect rect = this.tempRect;
+        Rect rect = this.tempRect;
         rect.right = bounds.right - rect.left;
         rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
         this.tempRect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
@@ -125,7 +126,7 @@ public class ReorderingHintDrawable extends Drawable {
         this.secondaryRectDrawable.draw(canvas);
         this.tempRect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.scaleX);
         this.tempRect.top = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.scaleY);
-        android.graphics.Rect rect2 = this.tempRect;
+        Rect rect2 = this.tempRect;
         rect2.right = bounds.right - rect2.left;
         rect2.bottom = rect2.top + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.scaleY));
         this.tempRect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
@@ -135,11 +136,11 @@ public class ReorderingHintDrawable extends Drawable {
     }
 
     private void drawStage3(Canvas canvas, float f) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         float interpolation = this.interpolator.getInterpolation(f);
         this.tempRect.left = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
         this.tempRect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
-        android.graphics.Rect rect = this.tempRect;
+        Rect rect = this.tempRect;
         rect.right = bounds.right - rect.left;
         rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
         this.tempRect.offset(0, AndroidUtilities.dp(-8.0f));
@@ -147,7 +148,7 @@ public class ReorderingHintDrawable extends Drawable {
         this.secondaryRectDrawable.draw(canvas);
         this.tempRect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.scaleX);
         this.tempRect.top = (int) (AndroidUtilities.dpf2(6.0f) * this.scaleY);
-        android.graphics.Rect rect2 = this.tempRect;
+        Rect rect2 = this.tempRect;
         rect2.right = bounds.right - rect2.left;
         rect2.bottom = rect2.top + ((int) (AndroidUtilities.dpf2(4.0f) * this.scaleY));
         this.tempRect.offset(0, AndroidUtilities.dp(8.0f));

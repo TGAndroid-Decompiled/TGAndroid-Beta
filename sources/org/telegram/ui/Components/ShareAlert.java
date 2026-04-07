@@ -12,6 +12,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -1125,7 +1126,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             actionBarPopupWindowLayout.setAnimationEnabled(false);
             actionBarPopupWindowLayout.setOnTouchListener(new View.OnTouchListener() {
-                private android.graphics.Rect popupRect = new android.graphics.Rect();
+                private Rect popupRect = new Rect();
 
                 @Override
                 public boolean onTouch(View view2, MotionEvent motionEvent) {
@@ -1183,7 +1184,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
         actionBarPopupWindowLayout2.setAnimationEnabled(false);
         actionBarPopupWindowLayout2.setOnTouchListener(new View.OnTouchListener() {
-            private android.graphics.Rect popupRect = new android.graphics.Rect();
+            private Rect popupRect = new Rect();
 
             @Override
             public boolean onTouch(View view2, MotionEvent motionEvent) {

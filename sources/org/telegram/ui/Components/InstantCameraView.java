@@ -978,10 +978,10 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.cameraContainer.setTranslationY(this.animationTranslationY + this.panTranslationY);
     }
 
-    public Rect getCameraRect() {
+    public RectOld getCameraRect() {
         this.cameraContainer.getLocationOnScreen(this.position);
         int[] iArr = this.position;
-        return new Rect(iArr[0], iArr[1], this.cameraContainer.getWidth(), this.cameraContainer.getHeight());
+        return new RectOld(iArr[0], iArr[1], this.cameraContainer.getWidth(), this.cameraContainer.getHeight());
     }
 
     public void changeVideoPreviewState(int i, float f) {

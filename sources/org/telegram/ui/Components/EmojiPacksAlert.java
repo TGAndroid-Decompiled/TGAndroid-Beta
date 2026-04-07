@@ -9,8 +9,10 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
@@ -442,7 +444,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         this.paddingView = new View(context) {
             @Override
             protected void onMeasure(int i2, int i3) {
-                android.graphics.Point point = AndroidUtilities.displaySize;
+                Point point = AndroidUtilities.displaySize;
                 int i4 = point.x;
                 int i5 = point.y;
                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec((int) (i5 * (i4 < i5 ? 0.56f : 0.3f)), 1073741824));
@@ -536,7 +538,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         recyclerListView2.setLayoutManager(gridLayoutManager);
         this.listView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
-            public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+            public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 if (view instanceof SeparatorView) {
                     rect.left = -EmojiPacksAlert.this.listView.getPaddingLeft();
                     rect.right = -EmojiPacksAlert.this.listView.getPaddingRight();
@@ -1085,7 +1087,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                         backgroundThreadDrawHolderArr[i2] = imageReceiver.setDrawInBackgroundThread(backgroundThreadDrawHolderArr2[i3], i3);
                         emojiImageView.backgroundThreadDrawHolder[this.threadIndex].time = j;
                         animatedEmojiDrawable.setAlpha(255);
-                        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                        Rect rect = AndroidUtilities.rectTmp2;
                         rect.set(emojiImageView.getLeft() + emojiImageView.getPaddingLeft(), emojiImageView.getPaddingTop(), emojiImageView.getRight() - emojiImageView.getPaddingRight(), emojiImageView.getMeasuredHeight() - emojiImageView.getPaddingBottom());
                         emojiImageView.backgroundThreadDrawHolder[this.threadIndex].setBounds(rect);
                         EmojiPacksAlert emojiPacksAlert = EmojiPacksAlert.this;

@@ -2,6 +2,7 @@ package org.telegram.ui.Components.Paint.Views;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -16,9 +17,8 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Components.Rect;
+import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
 
 public class StickerView extends EntityView {
@@ -46,8 +46,8 @@ public class StickerView extends EntityView {
         }
     }
 
-    public StickerView(Context context, Point point, float f, float f2, Size size, TLRPC.Document document, Object obj) {
-        super(context, point);
+    public StickerView(Context context, PointF pointF, float f, float f2, Size size, TLRPC.Document document, Object obj) {
+        super(context, pointF);
         this.anchor = -1;
         int i = 0;
         this.mirrored = false;
@@ -106,8 +106,8 @@ public class StickerView extends EntityView {
         didSetAnimatedSticker(lottieAnimation);
     }
 
-    public StickerView(Context context, StickerView stickerView, Point point) {
-        this(context, point, stickerView.getRotation(), stickerView.getScale(), stickerView.baseSize, stickerView.sticker, stickerView.parentObject);
+    public StickerView(Context context, StickerView stickerView, PointF pointF) {
+        this(context, pointF, stickerView.getRotation(), stickerView.getScale(), stickerView.baseSize, stickerView.sticker, stickerView.parentObject);
         if (stickerView.mirrored) {
             mirror();
         }
@@ -188,16 +188,16 @@ public class StickerView extends EntityView {
     }
 
     @Override
-    public Rect getSelectionBounds() {
+    public RectOld getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
-            return new Rect();
+            return new RectOld();
         }
         float scaleX = viewGroup.getScaleX();
         float measuredWidth = getMeasuredWidth() * (getScale() + 0.5f);
         float f = measuredWidth / 2.0f;
         float f2 = measuredWidth * scaleX;
-        return new Rect((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
+        return new RectOld((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -38,7 +39,7 @@ public class MsgClockDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         canvas.drawCircle(bounds.centerX(), bounds.centerY(), (Math.min(bounds.width(), bounds.height()) >> 1) - AndroidUtilities.dp(0.5f), this.paint);
         long jCurrentTimeMillis = System.currentTimeMillis();
         canvas.save();

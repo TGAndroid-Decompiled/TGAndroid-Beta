@@ -4,6 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import com.google.zxing.common.detector.MathUtils;
@@ -158,7 +159,7 @@ public class SearchStateDrawable extends Drawable {
         float f6;
         int i;
         float f7;
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         this.mn = Math.min(bounds.width(), bounds.height());
         this.cx = bounds.centerX();
         this.cy = bounds.centerY();

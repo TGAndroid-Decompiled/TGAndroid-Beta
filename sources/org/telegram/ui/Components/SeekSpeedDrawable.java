@@ -5,6 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import java.util.Locale;
@@ -126,7 +127,7 @@ public class SeekSpeedDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         float currentWidth = this.speedText.getCurrentWidth() + AndroidUtilities.dp(46.0f);
         float f = this.animatedShown.set(this.shown);
         float f2 = this.animatedDirection.set(this.direction);

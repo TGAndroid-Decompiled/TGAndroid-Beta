@@ -20,7 +20,7 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
     private BlurringShader.BlurManager uiBlurManager;
     private int videoHeight;
     private int videoWidth;
-    private Rect viewRect;
+    private RectOld viewRect;
 
     public interface VideoEditTextureViewDelegate {
         void onEGLThreadAvailable(FilterGLThread filterGLThread);
@@ -40,7 +40,7 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
 
     public VideoEditTextureView(Context context, VideoPlayer videoPlayer) {
         super(context);
-        this.viewRect = new Rect();
+        this.viewRect = new RectOld();
         this.currentVideoPlayer = videoPlayer;
         setSurfaceTextureListener(this);
     }
@@ -150,19 +150,19 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
     }
 
     public void setViewRect(float f, float f2, float f3, float f4) {
-        Rect rect = this.viewRect;
-        rect.x = f;
-        rect.y = f2;
-        rect.width = f3;
-        rect.height = f4;
+        RectOld rectOld = this.viewRect;
+        rectOld.x = f;
+        rectOld.y = f2;
+        rectOld.width = f3;
+        rectOld.height = f4;
     }
 
     public boolean containsPoint(float f, float f2) {
-        Rect rect = this.viewRect;
-        float f3 = rect.x;
-        if (f >= f3 && f <= f3 + rect.width) {
-            float f4 = rect.y;
-            if (f2 >= f4 && f2 <= f4 + rect.height) {
+        RectOld rectOld = this.viewRect;
+        float f3 = rectOld.x;
+        if (f >= f3 && f <= f3 + rectOld.width) {
+            float f4 = rectOld.y;
+            if (f2 >= f4 && f2 <= f4 + rectOld.height) {
                 return true;
             }
         }

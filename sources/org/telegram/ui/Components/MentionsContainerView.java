@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.SpannableString;
 import android.view.MotionEvent;
@@ -67,7 +68,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
     private RecyclerListView.OnItemClickListener mentionsOnItemClickListener;
     private PaddedListAdapter paddedAdapter;
     private Paint paint;
-    private android.graphics.Rect rect;
+    private Rect rect;
     private final Theme.ResourcesProvider resourcesProvider;
     private int scrollRangeUpdateTries;
     private boolean scrollToFirst;
@@ -132,7 +133,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
     public MentionsContainerView(Context context, long j, long j2, final BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.shouldLiftMentions = false;
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.ignoreLayout = false;
         this.scrollToFirst = false;
         this.shown = false;
@@ -408,7 +409,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         float f = this.containerTop;
         if (zIsReversed) {
             float fMin2 = Math.min(Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getTop() : getHeight()) + this.listView.getTranslationY()) + this.containerPadding, (1.0f - this.hideT) * getHeight());
-            android.graphics.Rect rect = this.rect;
+            Rect rect = this.rect;
             this.containerTop = 0.0f;
             int measuredWidth = getMeasuredWidth();
             this.containerBottom = fMin2;
@@ -426,7 +427,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             float fMax = Math.max(0.0f, (this.paddedAdapter.paddingViewAttached ? r0.paddingView.getBottom() : 0) + this.listView.getTranslationY()) - this.containerPadding;
             this.containerTop = fMax;
             float fMax2 = Math.max(fMax, this.hideT * getHeight());
-            android.graphics.Rect rect2 = this.rect;
+            Rect rect2 = this.rect;
             this.containerTop = fMax2;
             int measuredWidth2 = getMeasuredWidth();
             float measuredHeight = getMeasuredHeight();
@@ -455,7 +456,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         canvas.restore();
     }
 
-    public void drawRoundRect(Canvas canvas, android.graphics.Rect rect, float f) {
+    public void drawRoundRect(Canvas canvas, Rect rect, float f) {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         canvas.drawRoundRect(rectF, f, f, this.paint);
@@ -789,7 +790,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
             });
             addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
-                public void getItemOffsets(android.graphics.Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     int childAdapterPosition;
                     rect.left = 0;
                     rect.right = 0;

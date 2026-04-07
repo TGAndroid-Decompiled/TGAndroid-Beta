@@ -6,6 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -232,7 +233,7 @@ public class MediaActionDrawable extends Drawable {
         if (messageDrawable == null || !messageDrawable.hasGradient() || this.hasOverlayImage) {
             return;
         }
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         Shader gradientShader = this.messageDrawable.getGradientShader();
         Matrix matrix = this.messageDrawable.getMatrix();
         matrix.reset();

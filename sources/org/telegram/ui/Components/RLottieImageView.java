@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import java.util.HashMap;
@@ -190,7 +191,7 @@ public class RLottieImageView extends ImageView {
 
             @Override
             public void draw(Canvas canvas) {
-                android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(getBounds().centerX() - (AndroidUtilities.dp(i) / 2), getBounds().centerY() - (AndroidUtilities.dp(i2) / 2), getBounds().centerX() + (AndroidUtilities.dp(i) / 2), getBounds().centerY() + (AndroidUtilities.dp(i2) / 2));
                 RLottieImageView.this.imageReceiver.setImageCoords(rect);
                 RLottieImageView.this.imageReceiver.draw(canvas);

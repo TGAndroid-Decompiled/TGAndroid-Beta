@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -151,7 +152,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.textViewContainer.addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
-            protected boolean onRequestFocusInDescendants(int i3, android.graphics.Rect rect) {
+            protected boolean onRequestFocusInDescendants(int i3, Rect rect) {
                 return true;
             }
 

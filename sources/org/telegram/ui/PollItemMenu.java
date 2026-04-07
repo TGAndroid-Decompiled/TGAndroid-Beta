@@ -1465,13 +1465,16 @@ public class PollItemMenu extends Dialog {
                 long clientUserId = UserConfig.getInstance(this.messageObject.currentAccount).getClientUserId();
                 long currentTime = ConnectionsManager.getInstance(this.messageObject.currentAccount).getCurrentTime();
                 long j = pollAnswer.date + MessagesController.getInstance(this.messageObject.currentAccount).config.pollAnswerDeletePeriod.get(TimeUnit.SECONDS);
-                if (!this.messageObject.isForwarded() && (tL_messageMediaPoll.poll.creator || (peerDialogId == clientUserId && currentTime < j))) {
-                    itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$setCell$8(bArr);
-                        }
-                    });
+                if (!this.messageObject.isForwarded()) {
+                    TLRPC.Poll poll2 = tL_messageMediaPoll.poll;
+                    if (!poll2.closed && (poll2.creator || (peerDialogId == clientUserId && currentTime < j))) {
+                        itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$setCell$8(bArr);
+                            }
+                        });
+                    }
                 }
                 itemOptionsMakeOptions.addGap();
                 TLObject userOrChat = MessagesController.getInstance(this.messageObject.currentAccount).getUserOrChat(peerDialogId);

@@ -13,7 +13,9 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.RecordingCanvas;
+import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
@@ -95,7 +97,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     private INavigationLayout parentLayout;
     private boolean paused;
     BlurBitmap prevBitmap;
-    private android.graphics.Rect rect;
+    private Rect rect;
     private Paint selectedBlurPaint;
     private Paint selectedBlurPaint2;
     private boolean skipBackgroundDrawing;
@@ -198,7 +200,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
 
     public SizeNotifierFrameLayout(Context context, INavigationLayout iNavigationLayout) {
         super(context);
-        this.rect = new android.graphics.Rect();
+        this.rect = new Rect();
         this.delegates = new ArrayList();
         this.occupyStatusBar = true;
         this.parallaxScale = 1.0f;
@@ -541,12 +543,12 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     public int measureKeyboardHeight() {
         View rootView = getRootView();
         getWindowVisibleDisplayFrame(this.rect);
-        android.graphics.Rect rect = this.rect;
+        Rect rect = this.rect;
         if (rect.bottom == 0 && rect.top == 0) {
             return 0;
         }
         int height = (rootView.getHeight() - (this.rect.top != 0 ? AndroidUtilities.statusBarHeight : 0)) - AndroidUtilities.getViewInset(rootView);
-        android.graphics.Rect rect2 = this.rect;
+        Rect rect2 = this.rect;
         int iMax = Math.max(0, height - (rect2.bottom - rect2.top));
         this.keyboardHeight = iMax;
         return iMax;
@@ -565,7 +567,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
             return;
         }
         this.keyboardHeight = measureKeyboardHeight();
-        android.graphics.Point point = AndroidUtilities.displaySize;
+        Point point = AndroidUtilities.displaySize;
         final boolean z = point.x > point.y;
         post(new Runnable() {
             @Override
@@ -1040,15 +1042,15 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         return getBlurRadius();
     }
 
-    public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
+    public void drawBlurRect(Canvas canvas, float f, Rect rect, Paint paint, boolean z) {
         drawBlurRect(canvas, f, rect, paint, z, Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow, getResourceProvider())));
     }
 
-    public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z, float f2) {
+    public void drawBlurRect(Canvas canvas, float f, Rect rect, Paint paint, boolean z, float f2) {
         drawBlurRect(canvas, f, rect, paint, z, AndroidUtilities.lerp(255, Color.alpha(Theme.getColor((DRAW_USING_RENDERNODE() && SharedConfig.getDevicePerformanceClass() == 2) ? Theme.key_chat_BlurAlpha : Theme.key_chat_BlurAlphaSlow, getResourceProvider())), f2));
     }
 
-    public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z, int i) {
+    public void drawBlurRect(Canvas canvas, float f, Rect rect, Paint paint, boolean z, int i) {
         float f2;
         if (!SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);

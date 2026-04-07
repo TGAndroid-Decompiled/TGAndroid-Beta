@@ -20,6 +20,7 @@ import android.graphics.CornerPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
@@ -137,7 +138,6 @@ import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.MessageBackgroundDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.MsgClockDrawable;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.PostRunnableHolder;
 import org.telegram.ui.Components.Premium.boosts.BoostCounterSpan;
 import org.telegram.ui.Components.Premium.boosts.cells.msg.GiveawayMessageCell;
@@ -11379,12 +11379,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public static Point getMessageSize(int i, int i2) {
+    public static PointF getMessageSize(int i, int i2) {
         return getMessageSize(i, i2, 0, 0);
     }
 
-    private static org.telegram.ui.Components.Point getMessageSize(int r3, int r4, int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.getMessageSize(int, int, int, int):org.telegram.ui.Components.Point");
+    private static android.graphics.PointF getMessageSize(int r3, int r4, int r5, int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.getMessageSize(int, int, int, int):android.graphics.PointF");
     }
 
     public StaticLayout getDescriptionlayout() {

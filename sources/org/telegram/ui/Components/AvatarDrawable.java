@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -524,7 +525,7 @@ public class AvatarDrawable extends Drawable {
         Drawable drawable;
         Drawable drawable2;
         GradientTools gradientTools;
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         if (bounds == null) {
             return;
         }

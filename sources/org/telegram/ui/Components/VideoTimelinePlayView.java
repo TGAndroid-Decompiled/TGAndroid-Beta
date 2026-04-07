@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.media.MediaMetadataRetriever;
 import android.os.AsyncTask;
@@ -33,7 +34,7 @@ public abstract class VideoTimelinePlayView extends View {
     private VideoTimelineViewDelegate delegate;
     private final Paint dimPaint;
     private ArrayList exclusionRects;
-    private android.graphics.Rect exclustionRect;
+    private Rect exclustionRect;
     private ParcelFileDescriptor fd;
     private int frameHeight;
     private long frameTimeOffset;
@@ -91,7 +92,7 @@ public abstract class VideoTimelinePlayView extends View {
         this.currentMode = 0;
         this.bitmapPaint = new Paint(3);
         this.exclusionRects = new ArrayList();
-        this.exclustionRect = new android.graphics.Rect();
+        this.exclustionRect = new Rect();
         Paint paint = new Paint(1);
         this.whitePaint = paint;
         Paint paint2 = new Paint(1);
@@ -472,7 +473,7 @@ public abstract class VideoTimelinePlayView extends View {
                 float fMax = Math.max(VideoTimelinePlayView.this.frameWidth / frameAtTime.getWidth(), VideoTimelinePlayView.this.frameHeight / frameAtTime.getHeight());
                 int width = (int) (frameAtTime.getWidth() * fMax);
                 int height = (int) (frameAtTime.getHeight() * fMax);
-                canvas.drawBitmap(frameAtTime, new android.graphics.Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new android.graphics.Rect((VideoTimelinePlayView.this.frameWidth - width) / 2, (VideoTimelinePlayView.this.frameHeight - height) / 2, (VideoTimelinePlayView.this.frameWidth + width) / 2, (VideoTimelinePlayView.this.frameHeight + height) / 2), this.paint);
+                canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((VideoTimelinePlayView.this.frameWidth - width) / 2, (VideoTimelinePlayView.this.frameHeight - height) / 2, (VideoTimelinePlayView.this.frameWidth + width) / 2, (VideoTimelinePlayView.this.frameHeight + height) / 2), this.paint);
                 frameAtTime.recycle();
                 return bitmapCreateBitmap;
             }

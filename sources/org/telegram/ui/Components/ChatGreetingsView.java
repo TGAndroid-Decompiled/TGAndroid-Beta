@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
@@ -433,7 +434,7 @@ public abstract class ChatGreetingsView extends LinearLayout {
             fMin = AndroidUtilities.getMinTabletSide();
             f = 0.4f;
         } else {
-            android.graphics.Point point = AndroidUtilities.displaySize;
+            Point point = AndroidUtilities.displaySize;
             fMin = Math.min(point.x, point.y);
             f = 0.5f;
         }

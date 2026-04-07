@@ -13,6 +13,7 @@ import java.util.HashSet;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -105,6 +106,15 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
                 if (buttonHolder == null) {
                     BoolAnimator boolAnimator = new BoolAnimator((i << 16) | 1, this, CubicBezierInterpolator.EASE_OUT_QUINT, 300L);
                     ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(getContext(), this.blurredBackgroundDrawableViewFactory, this.colorProvider, this.resourcesProvider, buttonIcons[i], 48);
+                    if (i == 1) {
+                        chatActivityBlurredRoundButtonCreate.setContentDescription(LocaleController.getString(R.string.ProfileActionsGift));
+                    } else if (i == 2) {
+                        chatActivityBlurredRoundButtonCreate.setContentDescription(LocaleController.getString(R.string.ChannelOpenDirect));
+                    } else if (i == 0) {
+                        chatActivityBlurredRoundButtonCreate.setContentDescription(LocaleController.getString(R.string.Search));
+                    } else if (i == 3) {
+                        chatActivityBlurredRoundButtonCreate.setContentDescription(LocaleController.getString(R.string.BroadcastGroupInfo));
+                    }
                     ScaleStateListAnimator.apply(chatActivityBlurredRoundButtonCreate, 0.13f, 2.0f);
                     chatActivityBlurredRoundButtonCreate.setVisibility(8);
                     chatActivityBlurredRoundButtonCreate.setOnClickListener(new View.OnClickListener() {

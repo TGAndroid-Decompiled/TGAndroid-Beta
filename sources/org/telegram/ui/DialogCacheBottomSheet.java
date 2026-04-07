@@ -26,7 +26,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StorageDiagramView;
 import org.telegram.ui.Storage.CacheModel;
 
-public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
+public class DialogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     private CacheControlActivity.ClearCacheButton button;
     private final Delegate cacheDelegate;
     private final CacheModel cacheModel;
@@ -75,12 +75,12 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View view;
                 if (i == 0) {
-                    view = DilogCacheBottomSheet.this.linearLayout;
+                    view = DialogCacheBottomSheet.this.linearLayout;
                 } else if (i == 2) {
-                    view = DilogCacheBottomSheet.this.cachedMediaLayout;
+                    view = DialogCacheBottomSheet.this.cachedMediaLayout;
                     RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -2);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = ((BottomSheet) DilogCacheBottomSheet.this).backgroundPaddingLeft;
-                    ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = ((BottomSheet) DilogCacheBottomSheet.this).backgroundPaddingLeft;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = ((BottomSheet) DialogCacheBottomSheet.this).backgroundPaddingLeft;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = ((BottomSheet) DialogCacheBottomSheet.this).backgroundPaddingLeft;
                     view.setLayoutParams(layoutParams);
                 } else {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(viewGroup.getContext());
@@ -95,12 +95,12 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public int getItemCount() {
-                return DilogCacheBottomSheet.this.cacheModel.isEmpty() ? 1 : 3;
+                return DialogCacheBottomSheet.this.cacheModel.isEmpty() ? 1 : 3;
             }
         };
     }
 
-    public DilogCacheBottomSheet(CacheControlActivity cacheControlActivity, CacheControlActivity.DialogFileEntities dialogFileEntities, final CacheModel cacheModel, final Delegate delegate) {
+    public DialogCacheBottomSheet(CacheControlActivity cacheControlActivity, CacheControlActivity.DialogFileEntities dialogFileEntities, final CacheModel cacheModel, final Delegate delegate) {
         String string;
         int i;
         super(cacheControlActivity, false, false, !cacheModel.isEmpty(), null);
@@ -192,7 +192,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         CachedMediaLayout cachedMediaLayout = new CachedMediaLayout(getContext(), cacheControlActivity) {
             @Override
             protected void onMeasure(int i5, int i6) {
-                super.onMeasure(i5, View.MeasureSpec.makeMeasureSpec((((BottomSheetWithRecyclerListView) DilogCacheBottomSheet.this).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+                super.onMeasure(i5, View.MeasureSpec.makeMeasureSpec((((BottomSheetWithRecyclerListView) DialogCacheBottomSheet.this).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
             }
         };
         this.cachedMediaLayout = cachedMediaLayout;
@@ -211,16 +211,16 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             public void onItemSelected(CacheControlActivity.DialogFileEntities dialogFileEntities2, CacheModel.FileInfo fileInfo, boolean z) {
                 if (fileInfo != null) {
                     cacheModel.toggleSelect(fileInfo);
-                    DilogCacheBottomSheet.this.cachedMediaLayout.updateVisibleRows();
-                    DilogCacheBottomSheet.this.syncCheckBoxes();
-                    DilogCacheBottomSheet.this.button.setSize(true, DilogCacheBottomSheet.this.circleDiagramView.updateDescription());
-                    DilogCacheBottomSheet.this.circleDiagramView.update(true);
+                    DialogCacheBottomSheet.this.cachedMediaLayout.updateVisibleRows();
+                    DialogCacheBottomSheet.this.syncCheckBoxes();
+                    DialogCacheBottomSheet.this.button.setSize(true, DialogCacheBottomSheet.this.circleDiagramView.updateDescription());
+                    DialogCacheBottomSheet.this.circleDiagramView.update(true);
                 }
             }
 
             @Override
             public void dismiss() {
-                DilogCacheBottomSheet.this.lambda$new$0();
+                DialogCacheBottomSheet.this.lambda$new$0();
             }
         });
         NestedSizeNotifierLayout nestedSizeNotifierLayout = this.nestedSizeNotifierLayout;
@@ -301,9 +301,9 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 super.onScrolled(recyclerView, i, i2);
-                DilogCacheBottomSheet dilogCacheBottomSheet = DilogCacheBottomSheet.this;
-                if (dilogCacheBottomSheet.nestedSizeNotifierLayout != null) {
-                    dilogCacheBottomSheet.setShowShadow(!r2.isPinnedToTop());
+                DialogCacheBottomSheet dialogCacheBottomSheet = DialogCacheBottomSheet.this;
+                if (dialogCacheBottomSheet.nestedSizeNotifierLayout != null) {
+                    dialogCacheBottomSheet.setShowShadow(!r2.isPinnedToTop());
                 }
             }
         });

@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -138,7 +139,7 @@ public class BlurBehindDrawable {
                     this.behindView.draw(this.blurCanvas[i]);
                 }
                 if (i == 1) {
-                    android.graphics.Rect bounds = background.getBounds();
+                    Rect bounds = background.getBounds();
                     background.setBounds(0, 0, this.behindView.getMeasuredWidth(), this.behindView.getMeasuredHeight());
                     background.draw(this.blurCanvas[i]);
                     background.setBounds(bounds);

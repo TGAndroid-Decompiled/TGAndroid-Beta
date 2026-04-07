@@ -7,6 +7,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
@@ -917,7 +918,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     }
 
     @Override
-    protected void onBoundsChange(android.graphics.Rect rect) {
+    protected void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         this.applyTransformation = true;
     }

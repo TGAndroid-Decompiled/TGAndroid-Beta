@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.StaticLayout;
@@ -17,7 +18,7 @@ public class ForwardBackground {
     private int rippleDrawableColor;
     private final View view;
     public final Path path = new Path();
-    public final android.graphics.Rect bounds = new android.graphics.Rect();
+    public final Rect bounds = new Rect();
     private final RectF r = new RectF();
 
     public ForwardBackground(View view) {

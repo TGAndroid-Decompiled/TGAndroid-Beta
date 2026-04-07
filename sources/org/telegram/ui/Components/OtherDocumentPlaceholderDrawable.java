@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -126,7 +127,7 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
         String string;
         int iDp;
         TextPaint textPaint;
-        android.graphics.Rect bounds = getBounds();
+        Rect bounds = getBounds();
         int iWidth = bounds.width();
         int iHeight = bounds.height();
         canvas.save();
