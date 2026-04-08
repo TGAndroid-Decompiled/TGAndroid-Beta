@@ -2688,9 +2688,4 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         invalidate();
     }
-
-    @Override
-    protected boolean allowCaching() {
-        return this.rightFragmentOpenedProgress <= 0.0f;
-    }
 }

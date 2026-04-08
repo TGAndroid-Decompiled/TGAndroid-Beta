@@ -891,10 +891,6 @@ public class ReactionsLayoutInBubble {
             StarsReactionsSheet.Particles particles = this.particles;
             particles.setBounds(particles.bounds);
             boolean zProcess = this.particles.process();
-            View view = this.parentView;
-            if (view != null) {
-                view.invalidate();
-            }
             this.particles.draw(canvas, ColorUtils.blendARGB(ColorUtils.setAlphaComponent(this.backgroundColor, 255), ColorUtils.blendARGB(this.serviceTextColor, ColorUtils.setAlphaComponent(this.backgroundColor, 255), 0.4f), getDrawServiceShaderBackground()));
             if (this.isSelected) {
                 this.tagPath.rewind();

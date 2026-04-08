@@ -3,33 +3,20 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
-import android.graphics.RenderNode;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline9;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLayout.IViewWithInvalidateCallback {
-    private boolean cachingBottom;
-    private boolean cachingTop;
     private boolean checkingForLongPress;
-    private boolean forceNotCacheNextFrame;
     protected Runnable invalidateCallback;
     private CheckForLongPress pendingCheckForLongPress;
     private CheckForTap pendingCheckForTap;
     private int pressCount;
-    private RenderNode renderNode;
-    protected boolean updatedContent;
-
-    protected boolean allowCaching() {
-        return true;
-    }
 
     public int getBoundsLeft() {
         return 0;
@@ -173,49 +160,9 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         super.invalidate();
     }
 
-    public void forceNotCacheNextFrame() {
-        this.forceNotCacheNextFrame = true;
-    }
-
-    @Override
-    public void draw(Canvas canvas) {
-        boolean z = (this.cachingTop || this.cachingBottom || SharedConfig.useNewBlur) && allowCaching();
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 29) {
-            if (z != (this.renderNode != null)) {
-                if (z) {
-                    RenderNode renderNodeM = BotFullscreenButtons$$ExternalSyntheticApiModelOutline9.m("basecell");
-                    this.renderNode = renderNodeM;
-                    renderNodeM.setClipToBounds(false);
-                    this.updatedContent = true;
-                } else {
-                    this.renderNode = null;
-                }
-            }
-        }
-        if (i >= 29 && this.renderNode != null && !this.forceNotCacheNextFrame && canvas.isHardwareAccelerated()) {
-            this.renderNode.setPosition(0, 0, getWidth(), getHeight());
-            super.draw(this.renderNode.beginRecording());
-            this.renderNode.endRecording();
-            canvas.drawRenderNode(this.renderNode);
-        } else {
-            super.draw(canvas);
-        }
-        this.forceNotCacheNextFrame = false;
-        this.updatedContent = false;
-    }
-
     public static class RippleDrawableSafe extends RippleDrawable {
         public RippleDrawableSafe(ColorStateList colorStateList, Drawable drawable, Drawable drawable2) {
             super(colorStateList, drawable, drawable2);
-        }
-
-        @Override
-        public boolean setState(int[] iArr) {
-            if (getCallback() instanceof BaseCell) {
-                ((BaseCell) getCallback()).forceNotCacheNextFrame();
-            }
-            return super.setState(iArr);
         }
 
         @Override

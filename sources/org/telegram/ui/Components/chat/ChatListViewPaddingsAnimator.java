@@ -26,12 +26,16 @@ public class ChatListViewPaddingsAnimator {
         }
         final int i4 = paddingTop - i;
         if (z && i4 != 0) {
-            AndroidUtilities.doOnLayout(this.recyclerView, new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$setPaddings$0(i4);
-                }
-            });
+            boolean zCanScrollVertically = this.recyclerView.canScrollVertically(1);
+            boolean zCanScrollVertically2 = this.recyclerView.canScrollVertically(-1);
+            if ((i4 >= 0 || zCanScrollVertically) && (i4 <= 0 || zCanScrollVertically2)) {
+                AndroidUtilities.doOnLayout(this.recyclerView, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$setPaddings$0(i4);
+                    }
+                });
+            }
         }
         RecyclerView recyclerView = this.recyclerView;
         recyclerView.setPadding(recyclerView.getPaddingLeft(), i, this.recyclerView.getPaddingRight(), i3);

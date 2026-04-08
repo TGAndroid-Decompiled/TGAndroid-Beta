@@ -1493,8 +1493,78 @@ public abstract class Theme {
             return this.shadowDrawable;
         }
 
-        public android.graphics.drawable.Drawable getBackgroundDrawable() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.getBackgroundDrawable():android.graphics.drawable.Drawable");
+        public Drawable getBackgroundDrawable() {
+            char c;
+            int color;
+            int i;
+            int iDp = this.overrideRoundRadius;
+            if (iDp == 0) {
+                iDp = this.overrideRounding > 0.0f ? 0 : dp(SharedConfig.bubbleRadius);
+            }
+            boolean z = this.isTopNear;
+            char c2 = 3;
+            if (z && this.isBottomNear) {
+                c = 3;
+            } else if (z) {
+                c = 2;
+            } else {
+                c = this.isBottomNear ? (char) 1 : (char) 0;
+            }
+            boolean z2 = this.isSelected;
+            if (!z2 || !this.botButtonsBottom) {
+                if (z2) {
+                    c2 = 1;
+                } else {
+                    c2 = this.botButtonsBottom ? (char) 2 : (char) 0;
+                }
+            }
+            if (z2) {
+                color = getColor(this.isOut ? Theme.key_chat_outBubbleSelected : Theme.key_chat_inBubbleSelected);
+            } else {
+                color = getColor(this.isOut ? Theme.key_chat_outBubble : Theme.key_chat_inBubble);
+            }
+            boolean z3 = (this.gradientShader != null || this.isSelected || this.isCrossfadeBackground) ? false : true;
+            int color2 = getColor(this.isOut ? Theme.key_chat_outBubbleShadow : Theme.key_chat_inBubbleShadow);
+            if (this.lastDrawWithShadow != z3 || this.currentBackgroundDrawableRadius[c2][c] != iDp || ((z3 && this.shadowDrawableColor[c] != color2) || this.backgroundDrawableColor[c2][c] != color)) {
+                this.currentBackgroundDrawableRadius[c2][c] = iDp;
+                try {
+                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(dp(50.0f), dp(40.0f), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(bitmapCreateBitmap);
+                    this.backupRect.set(getBounds());
+                    if (z3) {
+                        this.shadowDrawableColor[c] = color2;
+                        Paint paint = new Paint(1);
+                        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, dp(40.0f), new int[]{358573417, 694117737}, (float[]) null, Shader.TileMode.CLAMP));
+                        paint.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
+                        paint.setShadowLayer(2.0f, 0.0f, 1.0f, -1);
+                        if (AndroidUtilities.density > 1.0f) {
+                            setBounds(-1, -1, bitmapCreateBitmap.getWidth() + 1, bitmapCreateBitmap.getHeight() + 1);
+                            i = 0;
+                        } else {
+                            i = 0;
+                            setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
+                        }
+                        draw(canvas, paint);
+                        if (AndroidUtilities.density > 1.0f) {
+                            paint.setColor(i);
+                            paint.setShadowLayer(0.0f, 0.0f, 0.0f, i);
+                            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                            setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
+                            draw(canvas, paint);
+                        }
+                    }
+                    Paint paint2 = new Paint(1);
+                    paint2.setColor(color);
+                    setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
+                    draw(canvas, paint2);
+                    this.backgroundDrawable[c2][c] = new NinePatchDrawable(bitmapCreateBitmap, getByteBuffer((bitmapCreateBitmap.getWidth() / 2) - 1, (bitmapCreateBitmap.getWidth() / 2) + 1, (bitmapCreateBitmap.getHeight() / 2) - 1, (bitmapCreateBitmap.getHeight() / 2) + 1, color).array(), new Rect(), null);
+                    setBounds(this.backupRect);
+                } catch (Throwable unused) {
+                }
+            }
+            this.lastDrawWithShadow = z3;
+            this.backgroundDrawableColor[c2][c] = color;
+            return this.backgroundDrawable[c2][c];
         }
 
         public Drawable getTransitionDrawable(int i) {

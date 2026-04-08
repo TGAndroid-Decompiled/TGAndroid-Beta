@@ -40,7 +40,7 @@ public abstract class BlurredBackgroundProviderImpl {
             public final int getColor(Theme.ResourcesProvider resourcesProvider2, boolean z) {
                 return BlurredBackgroundProviderImpl.lambda$topPanel$1(resourcesProvider2, z);
             }
-        }).setStrokeColorTop(385875968, 402653183).setStrokeColorBottom(385875968, 402653183).setShadowColor(637534208, 83886079).setShadowLayer(AndroidUtilities.dpf2(3.3333333f), 0.0f, AndroidUtilities.dpf2(0.6666667f)).setStrokeWidth(AndroidUtilities.dpf2(0.4f), AndroidUtilities.dpf2(0.4f)).build();
+        }).setStrokeColorTop(285212672, 117440511).setStrokeColorBottom(536870912, 301989887).setShadowColor(536870912, 83886079).setShadowLayer(AndroidUtilities.dpf2(2.667f), 0.0f, AndroidUtilities.dpf2(0.85f)).setStrokeWidth(AndroidUtilities.dpf2(0.4f), AndroidUtilities.dpf2(0.4f)).build();
     }
 
     public static int lambda$topPanel$1(Theme.ResourcesProvider resourcesProvider, boolean z) {

@@ -44,6 +44,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.HintsController;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
@@ -430,7 +431,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         shapeDrawableCreateRoundRectDrawable.getPaint().setShadowLayer(AndroidUtilities.dp(6.0f), 0.0f, AndroidUtilities.dp(1.0f), Theme.multAlpha(-16777216, 0.15f));
         itemOptionsMakeOptions.setScrimViewBackground(shapeDrawableCreateRoundRectDrawable);
         itemOptionsMakeOptions.show();
-        MessagesController.getGlobalMainSettings().edit().putInt("accountswitchhint", 3).apply();
+        HintsController.Hint.AccountSwitchHint.doNotShowAgain();
     }
 
     public static int lambda$openAccountSelector$3(Integer num, Integer num2) {
@@ -913,14 +914,13 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         if (this.accountSwitchHintShown) {
             return;
         }
-        if (this.accountSwitchHint == null && MessagesController.getGlobalMainSettings().getInt("accountswitchhint", 0) < 2) {
+        if (this.accountSwitchHint == null && HintsController.Hint.AccountSwitchHint.show()) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$showAccountChangeHint$9();
                 }
             }, 1500L);
-            MessagesController.getGlobalMainSettings().edit().putInt("accountswitchhint", MessagesController.getGlobalMainSettings().getInt("channelgifthint", 0) + 1).apply();
         }
         this.accountSwitchHintShown = true;
     }
@@ -948,6 +948,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         });
         this.accountSwitchHint.setDuration(8000L);
         this.accountSwitchHint.show();
+        HintsController.Hint.AccountSwitchHint.increment();
     }
 
     public void lambda$showAccountChangeHint$8() {
