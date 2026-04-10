@@ -44,6 +44,9 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         action.hashCode();
         switch (action) {
+            case "org.telegram.android.musicplayer.repeat":
+                SharedConfig.setRepeatMode((SharedConfig.repeatMode + 1) % 3);
+                break;
             case "org.telegram.android.musicplayer.close":
                 MediaController.getInstance().cleanupPlayer(true, true);
                 break;
@@ -60,6 +63,14 @@ public class MusicPlayerReceiver extends BroadcastReceiver {
             case "org.telegram.android.musicplayer.previous":
                 MediaController.getInstance().playPreviousMessage();
                 break;
+            case "org.telegram.android.musicplayer.shuffle":
+                if (SharedConfig.shuffleMusic) {
+                    MediaController.getInstance().setPlaybackOrderType(0);
+                    break;
+                } else {
+                    MediaController.getInstance().setPlaybackOrderType(2);
+                    break;
+                }
         }
     }
 }

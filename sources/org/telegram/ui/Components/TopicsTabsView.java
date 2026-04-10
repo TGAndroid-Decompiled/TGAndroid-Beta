@@ -1749,18 +1749,20 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
                     float fIsNotEmpty = HorizontalTabView.this.counterText.isNotEmpty();
-                    float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, fIsNotEmpty);
-                    float fMax = Math.max(AndroidUtilities.dp(16.66f), HorizontalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, fMax, getHeight());
-                    canvas.save();
-                    canvas.scale(fLerp, fLerp, rectF.centerX(), rectF.centerY());
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.33f), AndroidUtilities.dp(8.33f), this.backgroundPaint.setByKey(HorizontalTabView.this.counterBackgroundColorKey).blendTo(HorizontalTabView.this.getTextColor(), HorizontalTabView.this.selectT).multAlpha(fIsNotEmpty));
-                    HorizontalTabView.this.counterText.setBounds(rectF);
-                    HorizontalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
-                    HorizontalTabView.this.counterText.setTextColor(Theme.getColor(Theme.key_chats_unreadCounterText, this.val$resourcesProvider));
-                    HorizontalTabView.this.counterText.draw(canvas);
-                    canvas.restore();
+                    if (fIsNotEmpty > 0.0f) {
+                        float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, fIsNotEmpty);
+                        float fMax = Math.max(AndroidUtilities.dp(16.66f), HorizontalTabView.this.counterText.getCurrentWidth() + AndroidUtilities.dp(10.0f));
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        rectF.set(0.0f, 0.0f, fMax, getHeight());
+                        canvas.save();
+                        canvas.scale(fLerp, fLerp, rectF.centerX(), rectF.centerY());
+                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.33f), AndroidUtilities.dp(8.33f), this.backgroundPaint.setByKey(HorizontalTabView.this.counterBackgroundColorKey).blendTo(HorizontalTabView.this.getTextColor(), HorizontalTabView.this.selectT).multAlpha(fIsNotEmpty));
+                        HorizontalTabView.this.counterText.setBounds(rectF);
+                        HorizontalTabView.this.counterText.setAlpha((int) (fIsNotEmpty * 255.0f));
+                        HorizontalTabView.this.counterText.setTextColor(Theme.getColor(Theme.key_chats_unreadCounterText, this.val$resourcesProvider));
+                        HorizontalTabView.this.counterText.draw(canvas);
+                        canvas.restore();
+                    }
                     super.dispatchDraw(canvas);
                 }
 
@@ -2144,6 +2146,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(LocaleController.getPluralString("DeleteTopics", hashSet.size()));
         final ArrayList arrayList = new ArrayList(hashSet);
+        final long j = this.currentTopicId;
         if (hashSet.size() == 1) {
             builder.setMessage(LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-this.dialogId, ((Integer) arrayList.get(0)).intValue()).title));
         } else {
@@ -2152,7 +2155,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$deleteTopics$20(hashSet, arrayList, runnable, alertDialog, i);
+                this.f$0.lambda$deleteTopics$20(arrayList, j, hashSet, runnable, alertDialog, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
@@ -2169,13 +2172,19 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         }
     }
 
-    public void lambda$deleteTopics$20(final HashSet hashSet, final ArrayList arrayList, final Runnable runnable, AlertDialog alertDialog, int i) {
+    public void lambda$deleteTopics$20(final ArrayList arrayList, final long j, final HashSet hashSet, final Runnable runnable, AlertDialog alertDialog, int i) {
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            if (j == ((Integer) it.next()).intValue()) {
+                selectTopic(0L, false);
+            }
+        }
         this.excludeTopics.addAll(hashSet);
         updateTabs();
         BulletinFactory.of(this.fragment).createUndoBulletin(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteTopics$18(hashSet);
+                this.f$0.lambda$deleteTopics$18(hashSet, arrayList, j);
             }
         }, new Runnable() {
             @Override
@@ -2186,9 +2195,17 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         alertDialog.dismiss();
     }
 
-    public void lambda$deleteTopics$18(HashSet hashSet) {
+    public void lambda$deleteTopics$18(HashSet hashSet, ArrayList arrayList, long j) {
         this.excludeTopics.removeAll(hashSet);
         updateTabs();
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            long jIntValue = ((Integer) it.next()).intValue();
+            if (j == jIntValue) {
+                selectTopic(jIntValue, false);
+                return;
+            }
+        }
     }
 
     public void lambda$deleteTopics$19(ArrayList arrayList, Runnable runnable) {

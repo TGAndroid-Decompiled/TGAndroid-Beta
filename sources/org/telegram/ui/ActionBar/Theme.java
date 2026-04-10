@@ -3430,7 +3430,7 @@ public abstract class Theme {
         }
     }
 
-    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) throws Resources.NotFoundException {
+    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) {
         Resources resources = context.getResources();
         Drawable drawableMutate = resources.getDrawable(i).mutate();
         if (i2 != 0) {

@@ -88,6 +88,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     private boolean rightDrawableIsScamOrVerified;
     private boolean secretChatTimer;
     private SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
+    private boolean showingSavedMessagesHint;
     private ImageView starBgItem;
     private ImageView starFgItem;
     public boolean stars;
@@ -948,7 +949,8 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     public void updateSubtitle(boolean z) {
         int i;
         String string;
-        boolean z2 = true;
+        boolean z2 = false;
+        boolean z3 = true;
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null) {
             return;
@@ -959,12 +961,22 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         TLRPC.User currentUser = this.parentFragment.getCurrentUser();
         TLRPC.Chat currentChat = this.parentFragment.getCurrentChat();
-        if ((UserObject.isUserSelf(currentUser) || UserObject.isReplyUser(currentUser) || ((currentUser != null && currentUser.id == 489000) || (this.parentFragment.getChatMode() != 0 && this.parentFragment.getChatMode() != 8))) && this.parentFragment.getChatMode() != 3) {
+        boolean z4 = UserObject.isUserSelf(currentUser) && this.parentFragment.getChatMode() == 0 && this.parentFragment.getMessagesController().getSavedMessagesController().getAllCount() >= 3 && (this.showingSavedMessagesHint || MessagesController.getGlobalMainSettings().getInt("savedmsgschatshint", 0) < 3);
+        if (((UserObject.isUserSelf(currentUser) && !z4) || UserObject.isReplyUser(currentUser) || ((currentUser != null && currentUser.id == 489000) || (this.parentFragment.getChatMode() != 0 && this.parentFragment.getChatMode() != 8))) && this.parentFragment.getChatMode() != 3) {
             if (getSubtitleTextView().getVisibility() != 8) {
                 getSubtitleTextView().setVisibility(8);
                 return;
             }
             return;
+        }
+        if (z4) {
+            if (getSubtitleTextView().getVisibility() != 0) {
+                getSubtitleTextView().setVisibility(0);
+            }
+            if (!this.showingSavedMessagesHint) {
+                MessagesController.getGlobalMainSettings().edit().putInt("savedmsgschatshint", MessagesController.getGlobalMainSettings().getInt("savedmsgschatshint", 0) + 1).apply();
+                this.showingSavedMessagesHint = true;
+            }
         }
         this.subtitleIsThinkingBot = false;
         CharSequence printingString = MessagesController.getInstance(this.currentAccount).getPrintingString(this.parentFragment.getDialogId(), this.parentFragment.getThreadId(), false);
@@ -1049,34 +1061,35 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     if (!UserObject.isReplyUser(currentUser)) {
                         long j = currentUser.id;
                         if (j != 489000) {
-                            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                                string2 = LocaleController.getString(R.string.ChatYourSelf);
-                            } else {
+                            if (j != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                                 long j2 = currentUser.id;
                                 if (j2 == 333000 || j2 == 777000 || j2 == 42777) {
                                     string2 = LocaleController.getString(R.string.ServiceNotifications);
                                 } else if (MessagesController.isSupportUser(currentUser)) {
                                     string2 = LocaleController.getString(R.string.SupportStatus);
                                 } else {
-                                    boolean z3 = currentUser.bot;
-                                    if (z3 && (i = currentUser.bot_active_users) != 0) {
+                                    boolean z5 = currentUser.bot;
+                                    if (z5 && (i = currentUser.bot_active_users) != 0) {
                                         string2 = LocaleController.formatPluralStringComma("BotUsers", i, ',');
-                                    } else if (z3) {
+                                    } else if (z5) {
                                         string2 = LocaleController.getString(R.string.Bot);
                                     } else {
                                         boolean[] zArr = this.isOnline;
                                         zArr[0] = false;
                                         string2 = LocaleController.formatUserStatus(this.currentAccount, currentUser, zArr, this.allowShorterStatus ? this.statusMadeShorter : null);
                                         z2 = this.isOnline[0];
-                                        printingString = string2;
                                     }
                                 }
+                            } else if (z4) {
+                                string2 = AndroidUtilities.replaceArrows(LocaleController.getString(R.string.SavedMessagesViewAsChatsHint), false);
+                            } else {
+                                string2 = LocaleController.getString(R.string.ChatYourSelf);
                             }
                         }
                     }
                 }
             }
-            z2 = false;
+            z3 = z2;
             printingString = string2;
         } else {
             if (this.parentFragment.isThreadChat() && this.titleTextView.getTag() != null) {
@@ -1110,7 +1123,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             }
             setTypingAnimation(true);
         }
-        this.lastSubtitleColorKey = z2 ? Theme.key_chat_status : Theme.key_actionBarDefaultSubtitle;
+        this.lastSubtitleColorKey = z3 ? Theme.key_chat_status : Theme.key_actionBarDefaultSubtitle;
         if (this.lastSubtitle == null) {
             SimpleTextView simpleTextView = this.subtitleTextView;
             if (simpleTextView != null) {

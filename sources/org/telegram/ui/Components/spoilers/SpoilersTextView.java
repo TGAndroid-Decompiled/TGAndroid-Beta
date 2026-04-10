@@ -3,11 +3,9 @@ package org.telegram.ui.Components.spoilers;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.text.Layout;
@@ -64,7 +62,6 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     private Stack spoilersPool;
     private boolean triedGetInvalidate;
     private boolean useAlphaForEmoji;
-    private Paint xRefPaint;
 
     public SpoilersTextView(Context context) {
         this(context, (Theme.ResourcesProvider) null);
@@ -281,27 +278,31 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
             invalidate();
         }
         canvas.restore();
-        canvas.save();
-        this.path.rewind();
-        Iterator it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            Rect bounds = ((SpoilerEffect) it.next()).getBounds();
-            this.path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
+        if (this.spoilers.isEmpty()) {
+            super.onDraw(canvas);
+        } else {
+            canvas.save();
+            this.path.rewind();
+            Iterator it = this.spoilers.iterator();
+            while (it.hasNext()) {
+                Rect bounds = ((SpoilerEffect) it.next()).getBounds();
+                this.path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
+            }
+            canvas.clipPath(this.path, Region.Op.DIFFERENCE);
+            Emoji.emojiDrawingUseAlpha = this.useAlphaForEmoji;
+            super.onDraw(canvas);
+            Emoji.emojiDrawingUseAlpha = true;
+            canvas.restore();
+            if (((SpoilerEffect) this.spoilers.get(0)).hasRipplePath()) {
+                canvas.save();
+                canvas.clipPath(this.path);
+                this.path.rewind();
+                ((SpoilerEffect) this.spoilers.get(0)).getRipplePath(this.path);
+                canvas.clipPath(this.path);
+                super.onDraw(canvas);
+                canvas.restore();
+            }
         }
-        canvas.clipPath(this.path, Region.Op.DIFFERENCE);
-        Emoji.emojiDrawingUseAlpha = this.useAlphaForEmoji;
-        super.onDraw(canvas);
-        Emoji.emojiDrawingUseAlpha = true;
-        canvas.restore();
-        canvas.save();
-        canvas.clipPath(this.path);
-        this.path.rewind();
-        if (!this.spoilers.isEmpty()) {
-            ((SpoilerEffect) this.spoilers.get(0)).getRipplePath(this.path);
-        }
-        canvas.clipPath(this.path);
-        super.onDraw(canvas);
-        canvas.restore();
         updateAnimatedEmoji(false);
         if (this.animatedEmoji != null) {
             canvas.save();
@@ -326,13 +327,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         if (z) {
             this.path.rewind();
             ((SpoilerEffect) this.spoilers.get(0)).getRipplePath(this.path);
-            if (this.xRefPaint == null) {
-                Paint paint = new Paint(1);
-                this.xRefPaint = paint;
-                paint.setColor(-16777216);
-                this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            }
-            canvas.drawPath(this.path, this.xRefPaint);
+            canvas.drawPath(this.path, Theme.PAINT_CLEAR);
         }
         canvas.restore();
     }

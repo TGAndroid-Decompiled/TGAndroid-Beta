@@ -4194,7 +4194,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             arrayList2.add(str);
             arrayList3.add(str2);
         }
-        prepareSendingDocuments(accountInstance, arrayList2, arrayList3, arrayList, str3, str4, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, inputContentInfoCompat, str5, i2, 0L, z2, 0L);
+        prepareSendingDocuments(accountInstance, (ArrayList<String>) arrayList2, (ArrayList<String>) arrayList3, (ArrayList<Uri>) arrayList, str3, str4, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, inputContentInfoCompat, str5, i2, 0L, z2, 0L);
     }
 
     public static void prepareSendingAudioDocuments(AccountInstance accountInstance, ArrayList<MessageObject> arrayList, CharSequence charSequence, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, boolean z, int i, int i2, MessageObject messageObject3, String str, int i3, long j2, boolean z2, long j3) {
@@ -4261,6 +4261,21 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     public static void prepareSendingDocuments(AccountInstance accountInstance, ArrayList<String> arrayList, ArrayList<String> arrayList2, ArrayList<Uri> arrayList3, String str, String str2, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject3, boolean z, int i, InputContentInfoCompat inputContentInfoCompat, String str3, int i2, long j2, boolean z2, long j3) {
         prepareSendingDocuments(accountInstance, arrayList, arrayList2, arrayList3, str, null, str2, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, 0, inputContentInfoCompat, str3, i2, j2, z2, j3, 0L, null);
+    }
+
+    public static void prepareSendingDocuments(AccountInstance accountInstance, ArrayList<String> arrayList, ArrayList<String> arrayList2, ArrayList<Uri> arrayList3, CharSequence charSequence, String str, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject3, boolean z, int i, InputContentInfoCompat inputContentInfoCompat, String str2, int i2, long j2, boolean z2, long j3) {
+        CharSequence charSequence2;
+        ArrayList<TLRPC.MessageEntity> arrayList4;
+        if (charSequence != null) {
+            CharSequence[] charSequenceArr = {charSequence};
+            ArrayList<TLRPC.MessageEntity> entities = accountInstance.getMediaDataController().getEntities(charSequenceArr, true);
+            charSequence2 = charSequenceArr[0];
+            arrayList4 = entities;
+        } else {
+            charSequence2 = charSequence;
+            arrayList4 = null;
+        }
+        prepareSendingDocuments(accountInstance, arrayList, arrayList2, arrayList3, charSequence2 != null ? charSequence2.toString() : null, arrayList4, str, j, messageObject, messageObject2, storyItem, replyQuote, messageObject3, z, i, 0, inputContentInfoCompat, str2, i2, j2, z2, j3, 0L, null);
     }
 
     public static void prepareSendingDocuments(AccountInstance accountInstance, ArrayList<String> arrayList, ArrayList<String> arrayList2, ArrayList<Uri> arrayList3, String str, ArrayList<TLRPC.MessageEntity> arrayList4, String str2, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject3, boolean z, int i, int i2, InputContentInfoCompat inputContentInfoCompat, String str3, int i3, long j2, boolean z2, long j3, long j4, MessageSuggestionParams messageSuggestionParams) {
@@ -4646,59 +4661,80 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return str;
     }
 
-    public static void prepareSendingText(AccountInstance accountInstance, String str, long j, boolean z, int i, int i2, long j2) {
-        prepareSendingText(accountInstance, str, j, 0L, z, i, i2, j2);
+    public static CharSequence getTrimmedString(CharSequence charSequence) {
+        if (charSequence == null) {
+            return null;
+        }
+        CharSequence trimmedString = AndroidUtilities.getTrimmedString(charSequence);
+        if (trimmedString.length() == 0) {
+            return trimmedString;
+        }
+        while (charSequence.length() > 0 && charSequence.charAt(0) == '\n') {
+            charSequence = charSequence.subSequence(1, charSequence.length());
+        }
+        while (charSequence.length() > 0 && charSequence.charAt(charSequence.length() - 1) == '\n') {
+            charSequence = charSequence.subSequence(0, charSequence.length() - 1);
+        }
+        return charSequence;
     }
 
-    public static void lambda$prepareSendingText$113(final String str, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i, final int i2, final long j3) {
+    public static void prepareSendingText(AccountInstance accountInstance, CharSequence charSequence, long j, boolean z, int i, int i2, long j2) {
+        prepareSendingText(accountInstance, charSequence, j, 0L, z, i, i2, j2);
+    }
+
+    public static void lambda$prepareSendingText$113(final CharSequence charSequence, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i, final int i2, final long j3) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$112(str, j, accountInstance, j2, z, i, i2, j3);
+                SendMessagesHelper.lambda$prepareSendingText$112(charSequence, j, accountInstance, j2, z, i, i2, j3);
             }
         });
     }
 
-    public static void lambda$prepareSendingText$114(final String str, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i, final int i2, final long j3) {
+    public static void lambda$prepareSendingText$114(final CharSequence charSequence, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i, final int i2, final long j3) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$113(str, j, accountInstance, j2, z, i, i2, j3);
+                SendMessagesHelper.lambda$prepareSendingText$113(charSequence, j, accountInstance, j2, z, i, i2, j3);
             }
         });
     }
 
-    public static void prepareSendingText(final AccountInstance accountInstance, final String str, final long j, final long j2, final boolean z, final int i, final int i2, final long j3) {
+    public static void prepareSendingText(final AccountInstance accountInstance, final CharSequence charSequence, final long j, final long j2, final boolean z, final int i, final int i2, final long j3) {
         accountInstance.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$114(str, j2, accountInstance, j, z, i, i2, j3);
+                SendMessagesHelper.lambda$prepareSendingText$114(charSequence, j2, accountInstance, j, z, i, i2, j3);
             }
         });
     }
 
-    public static void lambda$prepareSendingText$112(String str, long j, AccountInstance accountInstance, long j2, boolean z, int i, int i2, long j3) {
+    public static void lambda$prepareSendingText$112(CharSequence charSequence, long j, AccountInstance accountInstance, long j2, boolean z, int i, int i2, long j3) {
         MessageObject messageObject;
         TLRPC.TL_forumTopic tL_forumTopicFindTopic;
-        String trimmedString = getTrimmedString(str);
-        if (trimmedString.length() != 0) {
-            int iCeil = (int) Math.ceil(trimmedString.length() / 4096.0f);
-            int i3 = 0;
-            if (j == 0 || (tL_forumTopicFindTopic = accountInstance.getMessagesController().getTopicsController().findTopic(-j2, j)) == null || tL_forumTopicFindTopic.topicStartMessage == null) {
-                messageObject = null;
-            } else {
-                messageObject = new MessageObject(accountInstance.getCurrentAccount(), tL_forumTopicFindTopic.topicStartMessage, false, false);
-                messageObject.isTopicMainMessage = true;
+        CharSequence trimmedString = getTrimmedString(charSequence);
+        if (trimmedString == null || trimmedString.length() == 0) {
+            return;
+        }
+        int iCeil = (int) Math.ceil(trimmedString.length() / 4096.0f);
+        if (j == 0 || (tL_forumTopicFindTopic = accountInstance.getMessagesController().getTopicsController().findTopic(-j2, j)) == null || tL_forumTopicFindTopic.topicStartMessage == null) {
+            messageObject = null;
+        } else {
+            messageObject = new MessageObject(accountInstance.getCurrentAccount(), tL_forumTopicFindTopic.topicStartMessage, false, false);
+            messageObject.isTopicMainMessage = true;
+        }
+        int i3 = 0;
+        while (i3 < iCeil) {
+            int i4 = i3 + 1;
+            CharSequence[] charSequenceArr = {trimmedString.subSequence(i3 * 4096, Math.min(i4 * 4096, trimmedString.length()))};
+            ArrayList<TLRPC.MessageEntity> entities = accountInstance.getMediaDataController().getEntities(charSequenceArr, true);
+            SendMessageParams sendMessageParamsOf = SendMessageParams.of(charSequenceArr[0].toString(), j2, messageObject, messageObject, null, true, null, null, null, z, i, i2, null, false);
+            sendMessageParamsOf.entities = entities;
+            if (i3 == 0) {
+                sendMessageParamsOf.effect_id = j3;
             }
-            while (i3 < iCeil) {
-                int i4 = i3 + 1;
-                SendMessageParams sendMessageParamsOf = SendMessageParams.of(trimmedString.substring(i3 * 4096, Math.min(i4 * 4096, trimmedString.length())), j2, messageObject, messageObject, null, true, null, null, null, z, i, i2, null, false);
-                if (i3 == 0) {
-                    sendMessageParamsOf.effect_id = j3;
-                }
-                accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf);
-                i3 = i4;
-            }
+            accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf);
+            i3 = i4;
         }
     }
 

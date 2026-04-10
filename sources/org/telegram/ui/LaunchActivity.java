@@ -251,7 +251,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private View rippleAbove;
     private WindowAnimatedInsetsProvider rootAnimatedInsetsListener;
     private SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialog;
-    private String sendingText;
+    private CharSequence sendingText;
     private FrameLayout shadowTablet;
     private FrameLayout shadowTabletSide;
     public ArrayList sheetFragmentsStack = new ArrayList();
@@ -4168,7 +4168,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             sendMessageParamsOf.invert_media = z3;
             SendMessagesHelper.getInstance(i3).sendMessage(sendMessageParamsOf);
             if (!TextUtils.isEmpty(charSequence)) {
-                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j3, z, i4 != 0 ? i4 : i, i2, j);
+                SendMessagesHelper.prepareSendingText(accountInstance, charSequence, j3, z, i4 != 0 ? i4 : i, i2, j);
             }
         }
     }

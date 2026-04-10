@@ -85,11 +85,13 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
             ListAnimator.Entry entry = getEntry(i);
             float paddingTop = getPaddingTop() + entry.getRectF().top;
             float visibility = entry.getVisibility() * Math.min(1.0f, entry.getPosition());
-            int alpha = Theme.dividerPaint.getAlpha();
-            Theme.dividerPaint.setAlpha((int) (alpha * visibility));
-            float f = 1.0f - visibility;
-            canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop, Theme.dividerPaint);
-            Theme.dividerPaint.setAlpha(alpha);
+            if (visibility > 0.0f) {
+                int alpha = Theme.dividerPaint.getAlpha();
+                Theme.dividerPaint.setAlpha((int) (alpha * visibility));
+                float f = 1.0f - visibility;
+                canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop, Theme.dividerPaint);
+                Theme.dividerPaint.setAlpha(alpha);
+            }
         }
         super.dispatchDraw(canvas);
         canvas.restore();

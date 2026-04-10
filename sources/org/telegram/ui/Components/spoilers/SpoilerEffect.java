@@ -221,6 +221,10 @@ public class SpoilerEffect extends Drawable {
         path.addCircle(this.rippleX, this.rippleY, this.rippleMaxRadius * MathUtils.clamp(this.rippleProgress, 0.0f, 1.0f), Path.Direction.CW);
     }
 
+    public boolean hasRipplePath() {
+        return this.rippleMaxRadius > 0.0f && this.rippleProgress > 0.0f;
+    }
+
     public float getRippleProgress() {
         return this.rippleProgress;
     }
@@ -460,6 +464,9 @@ public class SpoilerEffect extends Drawable {
     }
 
     public static void clipOutCanvas(Canvas canvas, List list) {
+        if (list.isEmpty()) {
+            return;
+        }
         tempPath.rewind();
         for (int i = 0; i < list.size(); i++) {
             Rect bounds = ((SpoilerEffect) list.get(i)).getBounds();

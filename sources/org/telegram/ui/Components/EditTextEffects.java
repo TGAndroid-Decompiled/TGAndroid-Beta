@@ -334,13 +334,15 @@ public abstract class EditTextEffects extends EditText {
         if (this.clipToPadding && getScrollY() != 0) {
             canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY);
         }
-        this.path.rewind();
-        Iterator<SpoilerEffect> it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            Rect bounds = it.next().getBounds();
-            this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+        if (!this.spoilers.isEmpty()) {
+            this.path.rewind();
+            Iterator<SpoilerEffect> it = this.spoilers.iterator();
+            while (it.hasNext()) {
+                Rect bounds = it.next().getBounds();
+                this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+            }
+            canvas.clipPath(this.path, Region.Op.DIFFERENCE);
         }
-        canvas.clipPath(this.path, Region.Op.DIFFERENCE);
         invalidateQuotes(false);
         for (int i = 0; i < this.quoteBlocks.size(); i++) {
             this.quoteBlocks.get(i).draw(canvas, 0.0f, getWidth(), this.quoteColor, 1.0f, getPaint());
@@ -363,25 +365,28 @@ public abstract class EditTextEffects extends EditText {
             canvas.restore();
         }
         canvas.restore();
-        canvas.save();
-        canvas.clipPath(this.path);
-        this.path.rewind();
-        if (!this.spoilers.isEmpty()) {
+        if (this.spoilers.isEmpty()) {
+            return;
+        }
+        if (this.spoilers.get(0).hasRipplePath()) {
+            canvas.save();
+            canvas.clipPath(this.path);
+            this.path.rewind();
             this.spoilers.get(0).getRipplePath(this.path);
-        }
-        canvas.clipPath(this.path);
-        canvas.translate(0.0f, -getPaddingTop());
-        if (this.wrapCanvasToFixClipping) {
-            if (this.wrappedCanvas == null) {
-                this.wrappedCanvas = new NoClipCanvas();
+            canvas.clipPath(this.path);
+            canvas.translate(0.0f, -getPaddingTop());
+            if (this.wrapCanvasToFixClipping) {
+                if (this.wrappedCanvas == null) {
+                    this.wrappedCanvas = new NoClipCanvas();
+                }
+                NoClipCanvas noClipCanvas2 = this.wrappedCanvas;
+                noClipCanvas2.canvas = canvas;
+                super.onDraw(noClipCanvas2);
+            } else {
+                super.onDraw(canvas);
             }
-            NoClipCanvas noClipCanvas2 = this.wrappedCanvas;
-            noClipCanvas2.canvas = canvas;
-            super.onDraw(noClipCanvas2);
-        } else {
-            super.onDraw(canvas);
+            canvas.restore();
         }
-        canvas.restore();
         this.rect.set(0, (int) ((getScrollY() - super.getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY));
         canvas.save();
         canvas.clipRect(this.rect);

@@ -7,6 +7,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -110,6 +112,9 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     int currentState;
     private CharSequence currentTitle;
     boolean drawCircleForce;
+    private LinearGradient ellipsizeGradient;
+    private Matrix ellipsizeGradientMatrix;
+    private Paint ellipsizePaint;
     EllipsizeSpanAnimator ellipsizeSpanAnimator;
     ImageView emojiStatusView;
     private ValueAnimator expandOvershootAnimator;
@@ -289,7 +294,6 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
         this.titleView = animatedTextView;
         animatedTextView.setGravity(3);
         this.titleView.setTextColor(getTextLogoColor());
-        this.titleView.setEllipsizeByGradient(true);
         this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         this.titleView.setTextSize(AndroidUtilities.dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20.0f : 18.0f));
@@ -595,7 +599,7 @@ public abstract class DialogStoriesCell extends FrameLayout implements Notificat
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r25) {
+    protected void dispatchDraw(android.graphics.Canvas r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.dispatchDraw(android.graphics.Canvas):void");
     }
 

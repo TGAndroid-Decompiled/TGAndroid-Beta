@@ -180,6 +180,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private View invalidateWithParent;
     private boolean invalidatesParent;
     public boolean isAllChats;
+    public boolean isBotForum;
     public boolean isForum;
     public boolean isMonoForum;
     public boolean isSideMenuEnabled;
@@ -1838,7 +1839,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (messageObject == null || !messageObject.isRepostPreview) {
             canvas2 = canvas;
             canvas2.drawPath(this.backgroundPath, paint4);
-            if (hasGradientService()) {
+            if (hasGradientService() && paint3.getAlpha() > 0) {
                 canvas2.drawPath(this.backgroundPath, paint3);
             }
             fDp = 0.0f;
@@ -2200,6 +2201,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public void drawReactionsLayout(Canvas canvas, boolean z, Integer num) {
         float alpha = z ? getAlpha() : 1.0f;
+        if (alpha <= 0.0f) {
+            return;
+        }
         Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
         if (resourcesProvider != null) {
             resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, this.viewTranslationX, this.viewTop + AndroidUtilities.dp(4.0f));

@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -109,6 +110,7 @@ import org.telegram.ui.Stories.recorder.SelectAudioAlert;
 import org.telegram.ui.TopicsFragment;
 
 public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
+    public static AudioPlayerAlert instance;
     private static final float[] speeds = {0.5f, 1.0f, 1.2f, 1.5f, 1.7f, 2.0f};
     private int TAG;
     private ActionBar actionBar;
@@ -778,7 +780,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         });
         this.repeatSongItem = this.repeatButton.addSubItem(3, R.drawable.player_new_repeatone, LocaleController.getString(R.string.RepeatSong));
         this.repeatListItem = this.repeatButton.addSubItem(4, R.drawable.player_new_repeatall, LocaleController.getString(R.string.RepeatList));
+        this.repeatButton.addColoredGap().getLayoutParams().height = AndroidUtilities.dp(4.0f);
         this.shuffleListItem = this.repeatButton.addSubItem(2, R.drawable.player_new_shuffle, LocaleController.getString(R.string.ShuffleList));
+        this.repeatButton.addColoredGap().getLayoutParams().height = AndroidUtilities.dp(4.0f);
         this.reverseOrderItem = this.repeatButton.addSubItem(1, R.drawable.player_new_order, LocaleController.getString(R.string.ReverseOrder));
         this.repeatButton.setShowedFromBottom(true);
         this.repeatButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
@@ -2216,6 +2220,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.musicIdsLoaded);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.messagePlayingSpeedChanged);
         DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+        if (instance == this) {
+            instance = null;
+        }
     }
 
     @Override
@@ -2240,7 +2247,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return this.TAG;
     }
 
-    private void updateRepeatButton() {
+    public void updateRepeatButton() {
         int i = SharedConfig.repeatMode;
         if (i != 0 && i != 1) {
             if (i == 2) {
@@ -3321,6 +3328,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AudioPlayerAlert.share(org.telegram.messenger.MessageObject):void");
     }
 
+    @Override
+    public void show() {
+        super.show();
+        instance = this;
+    }
+
     private void forward(MessageObject messageObject, long j) {
         ArrayList<MessageObject> arrayList;
         TLRPC.TL_document tL_document;
@@ -3406,7 +3419,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         lambda$new$0();
     }
 
-    public boolean lambda$forward$47(ArrayList arrayList, TLRPC.TL_document tL_document, MessageObject messageObject, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public boolean lambda$forward$47(ArrayList arrayList, TLRPC.TL_document tL_document, MessageObject messageObject, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
         String pluralStringComma;
         int i3;
         if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || charSequence != null || arrayList == null) {
