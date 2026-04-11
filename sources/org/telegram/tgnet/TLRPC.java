@@ -19,7 +19,7 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda187;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda190;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.TranslateController$PollText$$ExternalSyntheticLambda0;
@@ -3295,7 +3295,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -3364,7 +3364,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -3405,7 +3405,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -3452,7 +3452,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -3507,7 +3507,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -6897,7 +6897,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7022,7 +7022,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7161,7 +7161,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7300,7 +7300,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7433,7 +7433,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7568,7 +7568,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7711,7 +7711,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -7861,7 +7861,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -8014,7 +8014,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -8400,7 +8400,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -8485,7 +8485,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -8550,7 +8550,7 @@ public class TLRPC {
             if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
                 this.message = this.media.captionLegacy;
             }
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             if (TLObject.hasFlag(this.flags, 2048)) {
                 this.via_bot_name = inputSerializedData.readString(z);
             }
@@ -8621,7 +8621,7 @@ public class TLRPC {
             if (messageMediaTLdeserialize != null && !TextUtils.isEmpty(messageMediaTLdeserialize.captionLegacy)) {
                 this.message = this.media.captionLegacy;
             }
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             if (TLObject.hasFlag(this.flags, 2048)) {
                 this.via_bot_name = inputSerializedData.readString(z);
             }
@@ -13482,7 +13482,7 @@ public class TLRPC {
             }
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
                 this.media = InputMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -13540,7 +13540,7 @@ public class TLRPC {
             }
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
                 this.media = InputMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -13590,7 +13590,7 @@ public class TLRPC {
             }
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
                 this.media = InputMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -13636,7 +13636,7 @@ public class TLRPC {
             }
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 8)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             this.date = inputSerializedData.readInt32(z);
         }
@@ -13877,7 +13877,7 @@ public class TLRPC {
             this.popup = TLObject.hasFlag(int32, 1);
             this.id = TL_dataJSON.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.text = inputSerializedData.readString(z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.min_age_confirm = inputSerializedData.readInt32(z);
             }
@@ -17599,7 +17599,7 @@ public class TLRPC {
             this.update_app = TLObject.hasFlag(int32, 1);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -17845,7 +17845,7 @@ public class TLRPC {
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.solution = inputSerializedData.readString(z);
-                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -17893,7 +17893,7 @@ public class TLRPC {
                 this.solution = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 32)) {
                 this.solution_media = MessageMedia.TLdeserialize(inputSerializedData, z);
@@ -17952,7 +17952,7 @@ public class TLRPC {
                 this.solution = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -17999,7 +17999,7 @@ public class TLRPC {
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.solution = inputSerializedData.readString(z);
-                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -19210,7 +19210,7 @@ public class TLRPC {
             this.id = inputSerializedData.readInt32(z);
             this.version = inputSerializedData.readString(z);
             this.text = inputSerializedData.readString(z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.document = Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
@@ -23477,7 +23477,7 @@ public class TLRPC {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.status_text = inputSerializedData.readString(z);
-            this.status_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.status_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             this.video_sections = Vector.deserializeString(inputSerializedData, z);
             this.videos = Vector.deserialize(inputSerializedData, new TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0(), z);
             this.currency = inputSerializedData.readString(z);
@@ -23504,7 +23504,7 @@ public class TLRPC {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.status_text = inputSerializedData.readString(z);
-            this.status_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.status_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             this.video_sections = Vector.deserializeString(inputSerializedData, z);
             this.videos = Vector.deserialize(inputSerializedData, new TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0(), z);
             this.currency = inputSerializedData.readString(z);
@@ -23560,7 +23560,7 @@ public class TLRPC {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.status_text = inputSerializedData.readString(z);
-            this.status_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.status_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             this.video_sections = Vector.deserializeString(inputSerializedData, z);
             this.videos = Vector.deserialize(inputSerializedData, new TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0(), z);
             this.period_options = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
@@ -23615,7 +23615,7 @@ public class TLRPC {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.message = inputSerializedData.readString(z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             this.author = inputSerializedData.readString(z);
             this.date = inputSerializedData.readInt32(z);
         }
@@ -34484,7 +34484,7 @@ public class TLRPC {
             this.flags = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -34594,7 +34594,7 @@ public class TLRPC {
             this.no_webpage = TLObject.hasFlag(int32, 1);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -34697,7 +34697,7 @@ public class TLRPC {
             this.safe = TLObject.hasFlag(this.flags, 256);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             this.url = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
@@ -42952,7 +42952,7 @@ public class TLRPC {
                 this.media = DecryptedMessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z || BuildVars.DEBUG_PRIVATE_VERSION);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 2048)) {
                 this.via_bot_name = inputSerializedData.readString(z);
@@ -43005,7 +43005,7 @@ public class TLRPC {
                 this.media = DecryptedMessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 2048)) {
                 this.via_bot_name = inputSerializedData.readString(z);
@@ -44330,7 +44330,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -44417,7 +44417,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -44496,7 +44496,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.quote_offset = inputSerializedData.readInt32(z);
@@ -44569,7 +44569,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -44632,7 +44632,7 @@ public class TLRPC {
                 this.quote_text = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.quote_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -47018,7 +47018,7 @@ public class TLRPC {
             }
             if (TLObject.hasFlag(this.flags, 2)) {
                 this.solution = inputSerializedData.readString(z);
-                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.solution_media = InputMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -47083,7 +47083,7 @@ public class TLRPC {
                 this.solution = inputSerializedData.readString(z);
             }
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.solution_entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -50138,7 +50138,7 @@ public class TLRPC {
             this.type = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             this.media = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
         }
 
         @Override
@@ -55331,7 +55331,7 @@ public class TLRPC {
             this.title = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 2)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 64)) {
                 this.photo = Photo.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -55707,7 +55707,7 @@ public class TLRPC {
             this.random_id = inputSerializedData.readInt64(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 1)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
         }
 
@@ -66196,7 +66196,7 @@ public class TLRPC {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.text = inputSerializedData.readString(z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
         }
 
         @Override
@@ -71007,7 +71007,7 @@ public class TLRPC {
                 this.reply_to = MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -71058,7 +71058,7 @@ public class TLRPC {
                 this.media = MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -71130,7 +71130,7 @@ public class TLRPC {
                 this.reply_to = MessageReplyHeader.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 33554432)) {
                 this.ttl_period = inputSerializedData.readInt32(z);
@@ -81448,7 +81448,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -81565,7 +81565,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -81684,7 +81684,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -81792,7 +81792,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -81967,7 +81967,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -82216,7 +82216,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -82460,7 +82460,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -82698,7 +82698,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -82928,7 +82928,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -83146,7 +83146,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -83358,7 +83358,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -83563,7 +83563,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -83760,7 +83760,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -83945,7 +83945,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -84124,7 +84124,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);
@@ -84378,7 +84378,7 @@ public class TLRPC {
                 this.reply_markup = ReplyMarkup.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             }
             if (TLObject.hasFlag(this.flags, 128)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda187(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda190(), z);
             }
             if (TLObject.hasFlag(this.flags, 1024)) {
                 this.views = inputSerializedData.readInt32(z);

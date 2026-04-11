@@ -101,6 +101,8 @@ public class Utilities {
 
     private static native void aesIgeEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, boolean z, int i, int i2);
 
+    public static native boolean applySoftLight(Bitmap bitmap, Bitmap bitmap2, int i);
+
     public static native void blurBitmap(Object obj, int i, int i2, int i3, int i4, int i5);
 
     public static native void calcCDT(ByteBuffer byteBuffer, int i, int i2, ByteBuffer byteBuffer2, ByteBuffer byteBuffer3);

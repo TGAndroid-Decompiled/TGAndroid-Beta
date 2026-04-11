@@ -3827,14 +3827,16 @@
     <public type="raw" name="wallet_congrats" id="0x7f0e0199" />
     <public type="raw" name="wallet_perfect" id="0x7f0e019a" />
     <public type="raw" name="wallet_science" id="0x7f0e019b" />
-    <public type="raw" name="webview_app_ext" id="0x7f0e019c" />
-    <public type="raw" name="webview_ext" id="0x7f0e019d" />
-    <public type="raw" name="webview_share" id="0x7f0e019e" />
-    <public type="raw" name="windows_30" id="0x7f0e019f" />
-    <public type="raw" name="write_contacts_fab_icon" id="0x7f0e01a0" />
-    <public type="raw" name="write_contacts_fab_icon_camera" id="0x7f0e01a1" />
-    <public type="raw" name="write_contacts_fab_icon_reverse" id="0x7f0e01a2" />
-    <public type="raw" name="write_contacts_fab_icon_reverse_camera" id="0x7f0e01a3" />
+    <public type="raw" name="wallpaper_neg_intensity" id="0x7f0e019c" />
+    <public type="raw" name="wallpaper_pos_intensity" id="0x7f0e019d" />
+    <public type="raw" name="webview_app_ext" id="0x7f0e019e" />
+    <public type="raw" name="webview_ext" id="0x7f0e019f" />
+    <public type="raw" name="webview_share" id="0x7f0e01a0" />
+    <public type="raw" name="windows_30" id="0x7f0e01a1" />
+    <public type="raw" name="write_contacts_fab_icon" id="0x7f0e01a2" />
+    <public type="raw" name="write_contacts_fab_icon_camera" id="0x7f0e01a3" />
+    <public type="raw" name="write_contacts_fab_icon_reverse" id="0x7f0e01a4" />
+    <public type="raw" name="write_contacts_fab_icon_reverse_camera" id="0x7f0e01a5" />
     <public type="string" name="AIEditor" id="0x7f0f0000" />
     <public type="string" name="AIEditorApply" id="0x7f0f0001" />
     <public type="string" name="AIEditorChooseStyle" id="0x7f0f0002" />

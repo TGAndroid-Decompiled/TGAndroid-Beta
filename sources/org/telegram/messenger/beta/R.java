@@ -3869,14 +3869,16 @@ public final class R {
         public static final int wallet_congrats = 0x7f0e0199;
         public static final int wallet_perfect = 0x7f0e019a;
         public static final int wallet_science = 0x7f0e019b;
-        public static final int webview_app_ext = 0x7f0e019c;
-        public static final int webview_ext = 0x7f0e019d;
-        public static final int webview_share = 0x7f0e019e;
-        public static final int windows_30 = 0x7f0e019f;
-        public static final int write_contacts_fab_icon = 0x7f0e01a0;
-        public static final int write_contacts_fab_icon_camera = 0x7f0e01a1;
-        public static final int write_contacts_fab_icon_reverse = 0x7f0e01a2;
-        public static final int write_contacts_fab_icon_reverse_camera = 0x7f0e01a3;
+        public static final int wallpaper_neg_intensity = 0x7f0e019c;
+        public static final int wallpaper_pos_intensity = 0x7f0e019d;
+        public static final int webview_app_ext = 0x7f0e019e;
+        public static final int webview_ext = 0x7f0e019f;
+        public static final int webview_share = 0x7f0e01a0;
+        public static final int windows_30 = 0x7f0e01a1;
+        public static final int write_contacts_fab_icon = 0x7f0e01a2;
+        public static final int write_contacts_fab_icon_camera = 0x7f0e01a3;
+        public static final int write_contacts_fab_icon_reverse = 0x7f0e01a4;
+        public static final int write_contacts_fab_icon_reverse_camera = 0x7f0e01a5;
     }
 
     public static final class string {

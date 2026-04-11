@@ -748,7 +748,7 @@ public class MotionBackgroundDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r21) {
+    public void draw(android.graphics.Canvas r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MotionBackgroundDrawable.draw(android.graphics.Canvas):void");
     }
 

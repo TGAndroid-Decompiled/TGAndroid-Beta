@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.blur3.LiquidGlassEffect$$ExternalSyntheticApiModelOutline0;
+import org.telegram.ui.Components.MotionBackgroundPaint$RuntimeShaderState$$ExternalSyntheticApiModelOutline0;
 
 public class SuperRipple extends ISuperRipple {
     public final int MAX_COUNT;
@@ -50,7 +50,7 @@ public class SuperRipple extends ISuperRipple {
         this.centerX = new float[7];
         this.centerY = new float[7];
         this.intensity = new float[7];
-        RuntimeShader runtimeShaderM = LiquidGlassEffect$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.readRes(R.raw.superripple_effect));
+        RuntimeShader runtimeShaderM = MotionBackgroundPaint$RuntimeShaderState$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.readRes(R.raw.superripple_effect));
         this.shader = runtimeShaderM;
         setupSizeUniforms(true);
         this.effect = RenderEffect.createRuntimeShaderEffect(runtimeShaderM, "img");
