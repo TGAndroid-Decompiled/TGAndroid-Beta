@@ -124,7 +124,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private boolean needUsernames = true;
     private boolean needBotContext = true;
     private boolean inlineMediaEnabled = true;
-    private boolean searchInDailogs = false;
+    private boolean searchInDialogs = false;
     private ArrayList stickersToLoad = new ArrayList();
     private SendMessagesHelper.LocationProvider locationProvider = new SendMessagesHelper.LocationProvider(new SendMessagesHelper.LocationProvider.LocationProviderDelegate() {
         @Override
@@ -1594,7 +1594,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     }
 
     public void setDialogId(long j) {
-        this.dialog_id = j;
+        if (this.dialog_id != j) {
+            this.dialog_id = j;
+        }
     }
 
     public void setUserOrChat(TLRPC.User user, TLRPC.Chat chat) {
@@ -1602,8 +1604,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.chat = chat;
     }
 
-    public void setSearchInDailogs(boolean z) {
-        this.searchInDailogs = z;
+    public void setSearchInDialogs(boolean z) {
+        this.searchInDialogs = z;
     }
 
     public void setAllowStickers(boolean z) {

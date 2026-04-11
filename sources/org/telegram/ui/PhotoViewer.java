@@ -5124,11 +5124,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.mentionContainer.getAdapter().setAllowStickers(false);
                 this.mentionContainer.getAdapter().setAllowBots(false);
                 this.mentionContainer.getAdapter().setAllowChats(false);
-                this.mentionContainer.getAdapter().setSearchInDailogs(true);
                 if (PhotoViewer.this.parentChatActivity != null) {
+                    this.mentionContainer.getAdapter().setSearchInDialogs(false);
                     this.mentionContainer.getAdapter().setChatInfo(PhotoViewer.this.parentChatActivity.chatInfo);
                     this.mentionContainer.getAdapter().setNeedUsernames(PhotoViewer.this.parentChatActivity.currentChat != null);
                 } else {
+                    this.mentionContainer.getAdapter().setSearchInDialogs(true);
                     this.mentionContainer.getAdapter().setChatInfo(null);
                     this.mentionContainer.getAdapter().setNeedUsernames(false);
                 }
@@ -5273,11 +5274,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.mentionContainer.getAdapter().setAllowStickers(false);
                 this.mentionContainer.getAdapter().setAllowBots(false);
                 this.mentionContainer.getAdapter().setAllowChats(false);
-                this.mentionContainer.getAdapter().setSearchInDailogs(true);
                 if (PhotoViewer.this.parentChatActivity != null) {
+                    this.mentionContainer.getAdapter().setSearchInDialogs(false);
                     this.mentionContainer.getAdapter().setChatInfo(PhotoViewer.this.parentChatActivity.chatInfo);
                     this.mentionContainer.getAdapter().setNeedUsernames(PhotoViewer.this.parentChatActivity.currentChat != null);
                 } else {
+                    this.mentionContainer.getAdapter().setSearchInDialogs(true);
                     this.mentionContainer.getAdapter().setChatInfo(null);
                     this.mentionContainer.getAdapter().setNeedUsernames(false);
                 }

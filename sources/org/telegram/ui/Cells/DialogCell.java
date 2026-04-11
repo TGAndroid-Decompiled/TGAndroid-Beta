@@ -281,6 +281,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int nameLockLeft;
     private int nameLockTop;
     private int nameMuteLeft;
+    private int nameMutedIconLeft;
     public int namePaddingEnd;
     public int nameWidth;
     private boolean needEmoji;

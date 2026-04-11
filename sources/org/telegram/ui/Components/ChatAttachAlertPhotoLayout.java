@@ -1977,6 +1977,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (selectedPhotos.containsKey(numValueOf)) {
             photoEntry.starsAmount = 0L;
             photoEntry.hasSpoiler = false;
+            photoEntry.discardLivePhoto = false;
+            photoEntry.highQuality = null;
             selectedPhotos.remove(numValueOf);
             int iIndexOf = selectedPhotosOrder.indexOf(numValueOf);
             if (iIndexOf >= 0) {
@@ -1994,6 +1996,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         photoEntry.hasSpoiler = getStarsPrice() > 0;
         photoEntry.isChatPreviewSpoilerRevealed = false;
         photoEntry.isAttachSpoilerRevealed = false;
+        if (hasLivePhotos()) {
+            photoEntry.discardLivePhoto = !areLivePhotosEnabled();
+        }
+        photoEntry.highQuality = Boolean.valueOf(photoEntry.isHighQuality());
         boolean zCheckSelectedCount = checkSelectedCount(true);
         selectedPhotos.put(numValueOf, photoEntry);
         selectedPhotosOrder.add(numValueOf);

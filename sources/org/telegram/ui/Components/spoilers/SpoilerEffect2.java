@@ -444,7 +444,7 @@ public class SpoilerEffect2 {
                 this.running = false;
                 return;
             }
-            GLES20.glShaderSource(iGlCreateShader, AndroidUtilities.readRes(R.raw.spoiler_vertex) + "\n// " + Math.random());
+            GLES20.glShaderSource(iGlCreateShader, AndroidUtilities.readRes(R.raw.spoiler_vertex));
             GLES20.glCompileShader(iGlCreateShader);
             int[] iArr = new int[1];
             GLES20.glGetShaderiv(iGlCreateShader, 35713, iArr, 0);
@@ -454,7 +454,7 @@ public class SpoilerEffect2 {
                 this.running = false;
                 return;
             }
-            GLES20.glShaderSource(iGlCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment) + "\n// " + Math.random());
+            GLES20.glShaderSource(iGlCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment));
             GLES20.glCompileShader(iGlCreateShader2);
             GLES20.glGetShaderiv(iGlCreateShader2, 35713, iArr, 0);
             if (iArr[0] == 0) {

@@ -23,7 +23,7 @@ class NativeCapturerObserver implements CapturerObserver {
     @Override
     public void onFrameCaptured(VideoFrame videoFrame) {
         VideoProcessor.FrameAdaptationParameters frameAdaptationParametersAdaptFrame = this.nativeAndroidVideoTrackSource.adaptFrame(videoFrame);
-        if (frameAdaptationParametersAdaptFrame == null) {
+        if (frameAdaptationParametersAdaptFrame == null || frameAdaptationParametersAdaptFrame.drop) {
             return;
         }
         VideoFrame.Buffer bufferCropAndScale = videoFrame.getBuffer().cropAndScale(frameAdaptationParametersAdaptFrame.cropX, frameAdaptationParametersAdaptFrame.cropY, frameAdaptationParametersAdaptFrame.cropWidth, frameAdaptationParametersAdaptFrame.cropHeight, frameAdaptationParametersAdaptFrame.scaleWidth, frameAdaptationParametersAdaptFrame.scaleHeight);

@@ -96,50 +96,55 @@ public class VideoCapturerDevice {
     }
 
     private static Point getScreenCaptureSize() {
-        int i;
+        return getScreenCaptureSize(16);
+    }
+
+    private static Point getScreenCaptureSize(int i) {
         int i2;
+        int i3;
         Display defaultDisplay = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay();
         Point point = new Point();
         defaultDisplay.getRealSize(point);
-        int i3 = point.x;
-        int i4 = point.y;
-        float f = i3 > i4 ? i4 / i3 : i3 / i4;
-        int i5 = 1;
+        int i4 = point.x;
+        int i5 = point.y;
+        float f = i4 > i5 ? i5 / i4 : i4 / i5;
+        int i6 = 1;
         while (true) {
-            if (i5 > 100) {
-                i5 = -1;
-                i = -1;
+            if (i6 > 100) {
+                i6 = -1;
+                i2 = -1;
                 break;
             }
-            float f2 = i5 * f;
-            i = (int) f2;
-            if (f2 != i) {
-                i5++;
+            float f2 = i6 * f;
+            i2 = (int) f2;
+            if (f2 != i2) {
+                i6++;
             } else if (point.x <= point.y) {
-                i = i5;
-                i5 = i;
+                i2 = i6;
+                i6 = i2;
             }
         }
-        if (i5 != -1 && f != 1.0f) {
+        if (i6 != -1 && f != 1.0f) {
             while (true) {
-                int i6 = point.x;
-                if (i6 <= 1000 && (i2 = point.y) <= 1000 && i6 % 4 == 0 && i2 % 4 == 0) {
+                int i7 = point.x;
+                if (i7 <= 1000 && (i3 = point.y) <= 1000 && i7 % i == 0 && i3 % i == 0) {
                     break;
                 }
-                int i7 = i6 - i5;
-                point.x = i7;
-                int i8 = point.y - i;
-                point.y = i8;
-                if (i7 < 800 && i8 < 800) {
-                    i5 = -1;
+                int i8 = i7 - i6;
+                point.x = i8;
+                int i9 = point.y - i2;
+                point.y = i9;
+                if (i8 < 800 && i9 < 800) {
+                    i6 = -1;
                     break;
                 }
             }
         }
-        if (i5 == -1 || f == 1.0f) {
+        if (i6 == -1 || f == 1.0f) {
             float fMax = Math.max(point.x / 970.0f, point.y / 970.0f);
-            point.x = ((int) Math.ceil((point.x / fMax) / 4.0f)) * 4;
-            point.y = ((int) Math.ceil((point.y / fMax) / 4.0f)) * 4;
+            float f3 = i;
+            point.x = ((int) Math.ceil((point.x / fMax) / f3)) * i;
+            point.y = ((int) Math.ceil((point.y / fMax) / f3)) * i;
         }
         return point;
     }

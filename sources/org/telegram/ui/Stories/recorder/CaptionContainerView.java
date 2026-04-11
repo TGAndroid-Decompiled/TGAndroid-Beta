@@ -609,6 +609,10 @@ public abstract class CaptionContainerView extends FrameLayout {
 
     public void setDialogId(long j) {
         this.dialogId = j;
+        MentionsContainerView mentionsContainerView = this.mentionContainer;
+        if (mentionsContainerView != null) {
+            mentionsContainerView.setDialogId(j);
+        }
     }
 
     public void invalidateBlur() {
@@ -697,7 +701,7 @@ public abstract class CaptionContainerView extends FrameLayout {
     }
 
     public void createMentionsContainer() {
-        MentionsContainerView mentionsContainerView = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0L, LaunchActivity.getLastFragment(), new DarkThemeResourceProvider()) {
+        MentionsContainerView mentionsContainerView = new MentionsContainerView(getContext(), this.dialogId, 0L, LaunchActivity.getLastFragment(), new DarkThemeResourceProvider()) {
             @Override
             protected boolean isStories() {
                 return true;
@@ -764,7 +768,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         this.mentionContainer.getAdapter().setAllowStickers(false);
         this.mentionContainer.getAdapter().setAllowBots(false);
         this.mentionContainer.getAdapter().setAllowChats(false);
-        this.mentionContainer.getAdapter().setSearchInDailogs(true);
+        this.mentionContainer.getAdapter().setSearchInDialogs(this instanceof CaptionStory);
     }
 
     public void replaceWithText(int i, int i2, CharSequence charSequence, boolean z) {

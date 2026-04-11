@@ -1391,7 +1391,7 @@ public class TodoItemMenu extends Dialog {
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() throws InterruptedException, Resources.NotFoundException {
                         this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
@@ -1467,7 +1467,7 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws InterruptedException, Resources.NotFoundException {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {

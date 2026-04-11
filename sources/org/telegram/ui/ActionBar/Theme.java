@@ -5222,14 +5222,15 @@ public abstract class Theme {
     }
 
     public static void applyDayNightThemeMaybe(boolean z) {
+        ThemeInfo themeInfo;
         if (previousTheme != null) {
             return;
         }
         if (z) {
-            ThemeInfo themeInfo = currentTheme;
-            ThemeInfo themeInfo2 = currentNightTheme;
-            if (themeInfo != themeInfo2) {
-                if (themeInfo == null || !(themeInfo2 == null || themeInfo.isDark() == currentNightTheme.isDark())) {
+            ThemeInfo themeInfo2 = currentTheme;
+            ThemeInfo themeInfo3 = currentNightTheme;
+            if (themeInfo2 != themeInfo3) {
+                if (themeInfo2 == null || !(themeInfo3 == null || themeInfo2.isDark() == currentNightTheme.isDark())) {
                     isInNigthMode = true;
                     lastThemeSwitchTime = SystemClock.elapsedRealtime();
                     switchingNightTheme = true;
@@ -5241,14 +5242,17 @@ public abstract class Theme {
             }
             return;
         }
-        ThemeInfo themeInfo3 = currentTheme;
         ThemeInfo themeInfo4 = currentDayTheme;
-        if (themeInfo3 != themeInfo4) {
-            if (themeInfo3 == null || !(themeInfo4 == null || themeInfo3.isLight() == currentDayTheme.isLight())) {
+        if (themeInfo4 != null && themeInfo4.isDark() && selectedAutoNightType != 0 && (themeInfo = defaultTheme) != null) {
+            themeInfo4 = themeInfo;
+        }
+        ThemeInfo themeInfo5 = currentTheme;
+        if (themeInfo5 != themeInfo4) {
+            if (themeInfo5 == null || !(themeInfo4 == null || themeInfo5.isDark() == themeInfo4.isDark())) {
                 isInNigthMode = false;
                 lastThemeSwitchTime = SystemClock.elapsedRealtime();
                 switchingNightTheme = true;
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, currentDayTheme, Boolean.TRUE, null, -1);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo4, Boolean.TRUE, null, -1);
                 switchingNightTheme = false;
             }
         }

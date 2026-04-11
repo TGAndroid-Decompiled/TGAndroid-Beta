@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -93,6 +94,7 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -2761,7 +2763,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
+                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
                         this.f$0.lambda$createView$11(i8, view);
                     }
                 });
@@ -3308,6 +3310,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.starFgItem.setScaleY(0.0f);
         this.starFgItem.setScaleX(0.0f);
         frameLayout.addView(this.starFgItem, LayoutHelper.createFrame(20, 20, 51));
+        updateStar();
         showAvatarProgress(r10, r10);
         ProfileGalleryView profileGalleryView = this.avatarsViewPager;
         if (profileGalleryView != null) {
@@ -4736,7 +4739,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) {
+    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5106,7 +5109,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new AudioPlayerAlert(getContext(), getResourceProvider()));
     }
 
-    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) {
+    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws Resources.NotFoundException, IOException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(getParentActivity(), getCurrentAccount()).selectedPeerId(getDialogId()).open(null);
@@ -5186,7 +5189,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 alertDialog.showDelayed(200L);
                 MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(getDialogId(), new com.google.android.exoplayer2.util.Consumer() {
                     @Override
-                    public final void accept(Object obj) {
+                    public final void accept(Object obj) throws Resources.NotFoundException, IOException {
                         this.f$0.lambda$createView$13(alertDialog, (Boolean) obj);
                     }
                 }, true, this.resourcesProvider);
@@ -7449,6 +7452,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     @Override
     public TLRPC.Chat getCurrentChat() {
         return this.currentChat;
+    }
+
+    public TLRPC.ChatFull getChatInfo() {
+        return this.chatInfo;
     }
 
     public TLRPC.UserFull getUserInfo() {
@@ -9914,6 +9921,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         this.needTimerImage = i != 0;
         this.needStarImage = i != 0;
+        updateStar();
         if (globalMainSettings.getBoolean("view_animations", true)) {
             this.playProfileAnimation = i;
         } else if (i == 2) {

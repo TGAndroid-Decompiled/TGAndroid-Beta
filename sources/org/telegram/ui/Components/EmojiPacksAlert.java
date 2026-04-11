@@ -615,10 +615,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         TextView textView = new TextView(context);
         this.addButtonView = textView;
         textView.setVisibility(8);
-        this.addButtonView.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor(i), 6.0f));
+        this.addButtonView.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor(i), 24.0f));
         this.addButtonView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         this.addButtonView.setTypeface(AndroidUtilities.bold());
         this.addButtonView.setGravity(17);
+        ScaleStateListAnimator.apply(this.addButtonView, 0.02f, 1.2f);
         this.buttonsView.addView(this.addButtonView, LayoutHelper.createFrame(-1, 48.0f, 80, 12.0f, 10.0f, 12.0f, 10.0f));
         TextView textView2 = new TextView(context);
         this.removeButtonView = textView2;
@@ -1990,7 +1991,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.addButtonView.setTextColor(EmojiPacksAlert.this.getThemedColor(Theme.key_featuredStickers_buttonText));
                 TextView textView2 = this.addButtonView;
                 int i = Theme.key_featuredStickers_addButton;
-                textView2.setBackground(Theme.AdaptiveRipple.filledRect(EmojiPacksAlert.this.getThemedColor(i), 4.0f));
+                textView2.setBackground(Theme.AdaptiveRipple.filledRect(EmojiPacksAlert.this.getThemedColor(i), 14.0f));
                 this.addButtonView.setText(LocaleController.getString(R.string.Add));
                 this.addButtonView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
                 this.addButtonView.setGravity(17);

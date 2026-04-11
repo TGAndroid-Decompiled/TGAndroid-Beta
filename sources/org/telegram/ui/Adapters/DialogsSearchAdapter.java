@@ -1454,33 +1454,34 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         int size2 = this.searchResult.size();
         int size3 = this.searchAdapterHelper.getLocalServerSearch().size();
         int i2 = size + size2 + size3;
-        int size4 = this.searchAdapterHelper.getGlobalSearch().size() + this.sponsoredPeers.size();
+        int size4 = this.searchAdapterHelper.getGlobalSearch().size();
         if (size4 > 3 && this.globalSearchCollapsed) {
             size4 = 3;
         }
-        int size5 = this.searchAdapterHelper.getPhoneSearch().size();
-        if (size5 > 3 && this.phoneCollapsed) {
-            size5 = 3;
+        int size5 = size4 + this.sponsoredPeers.size();
+        int size6 = this.searchAdapterHelper.getPhoneSearch().size();
+        if (size6 > 3 && this.phoneCollapsed) {
+            size6 = 3;
         }
         if (size2 + size3 > 0 && (getRecentItemsCount() > 0 || !this.searchTopics.isEmpty() || !this.publicPosts.isEmpty())) {
             i2++;
         }
-        if (size4 != 0) {
-            i2 += size4 + 1;
-        }
         if (size5 != 0) {
-            i2 += size5;
+            i2 += size5 + 1;
         }
-        int size6 = this.searchForumResultMessages.size();
         if (size6 != 0) {
-            i2 += size6 + 1 + (!this.localMessagesSearchEndReached ? 1 : 0);
+            i2 += size6;
+        }
+        int size7 = this.searchForumResultMessages.size();
+        if (size7 != 0) {
+            i2 += size7 + 1 + (!this.localMessagesSearchEndReached ? 1 : 0);
         }
         if (!this.localMessagesSearchEndReached) {
             this.localMessagesLoadingRow = i2;
         }
-        int size7 = this.searchResultMessages.size();
+        int size8 = this.searchResultMessages.size();
         if ((this.currentMessagesFilter == Filter.All && !this.forceLoadingMessages) || !this.searchResultMessages.isEmpty()) {
-            i = size7;
+            i = size8;
         } else if (!this.forceLoadingMessages) {
             i = 1;
         }
@@ -1556,11 +1557,9 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         if (size4 > 3 && this.phoneCollapsed) {
             size4 = 3;
         }
+        int size5 = globalSearch.size();
         int i4 = 0;
-        int size5 = (globalSearch.isEmpty() && this.sponsoredPeers.isEmpty()) ? 0 : globalSearch.size() + this.sponsoredPeers.size() + 1;
-        if (size5 > 4 && this.globalSearchCollapsed) {
-            size5 = 4;
-        }
+        int size6 = (globalSearch.isEmpty() && this.sponsoredPeers.isEmpty()) ? 0 : ((size5 <= 3 || !this.globalSearchCollapsed) ? size5 : 3) + this.sponsoredPeers.size() + 1;
         if (i >= 0 && i < size2) {
             return this.searchResult.get(i);
         }
@@ -1573,8 +1572,8 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
             return phoneSearch.get(i6);
         }
         int i7 = i6 - size4;
-        if (i7 <= 0 || i7 >= size5) {
-            size = i7 - size5;
+        if (i7 <= 0 || i7 >= size6) {
+            size = i7 - size6;
         } else {
             int i8 = i7 - 1;
             if (i8 >= 0 && i8 < this.sponsoredPeers.size()) {
@@ -1585,14 +1584,14 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
                 return globalSearch.get(size);
             }
         }
-        int size6 = this.searchForumResultMessages.isEmpty() ? 0 : this.searchForumResultMessages.size() + 1;
+        int size7 = this.searchForumResultMessages.isEmpty() ? 0 : this.searchForumResultMessages.size() + 1;
         if (size > 0 && size <= this.searchForumResultMessages.size()) {
             return this.searchForumResultMessages.get(size - 1);
         }
         if (!this.localMessagesSearchEndReached && !this.searchForumResultMessages.isEmpty()) {
             i4 = 1;
         }
-        int i9 = size - (size6 + i4);
+        int i9 = size - (size7 + i4);
         if (!this.searchResultMessages.isEmpty()) {
             this.searchResultMessages.size();
         }
@@ -1625,16 +1624,14 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         if (size3 > 3 && this.phoneCollapsed) {
             size3 = 3;
         }
-        int size4 = (globalSearch.isEmpty() && this.sponsoredPeers.isEmpty()) ? 0 : globalSearch.size() + this.sponsoredPeers.size() + 1;
-        if (size4 > 4 && this.globalSearchCollapsed) {
-            size4 = 4;
-        }
-        int size5 = this.searchContacts.size();
-        if (size5 > 0) {
-            if (i >= 0 && i < size5) {
+        int size4 = globalSearch.size();
+        int size5 = (globalSearch.isEmpty() && this.sponsoredPeers.isEmpty()) ? 0 : ((size4 <= 3 || !this.globalSearchCollapsed) ? size4 : 3) + this.sponsoredPeers.size() + 1;
+        int size6 = this.searchContacts.size();
+        if (size6 > 0) {
+            if (i >= 0 && i < size6) {
                 return false;
             }
-            i -= size5 + 1;
+            i -= size6 + 1;
         }
         if (size + size2 > 0 && (getRecentItemsCount() > 0 || !this.searchTopics.isEmpty() || !this.publicPosts.isEmpty())) {
             if (i == 0) {
@@ -1654,12 +1651,12 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
             return false;
         }
         int i4 = i3 - size3;
-        if (i4 > 0 && i4 < size4) {
+        if (i4 > 0 && i4 < size5) {
             return true;
         }
-        int i5 = i4 - size4;
-        int size6 = this.searchForumResultMessages.isEmpty() ? 0 : this.searchForumResultMessages.size() + 1;
-        if (i5 > 0 && i5 < size6) {
+        int i5 = i4 - size5;
+        int size7 = this.searchForumResultMessages.isEmpty() ? 0 : this.searchForumResultMessages.size() + 1;
+        if (i5 > 0 && i5 < size7) {
             return false;
         }
         if (!this.searchResultMessages.isEmpty()) {
@@ -1856,14 +1853,17 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         notifyDataSetChanged();
     }
 
-    public void lambda$onBindViewHolder$33(ArrayList arrayList, final int i, GraySectionCell graySectionCell) {
+    public void lambda$onBindViewHolder$33(ArrayList arrayList, int i, GraySectionCell graySectionCell) {
         long jElapsedRealtime = SystemClock.elapsedRealtime();
         if (jElapsedRealtime - this.lastShowMoreUpdate < 300) {
             return;
         }
         this.lastShowMoreUpdate = jElapsedRealtime;
-        int size = (arrayList.isEmpty() && this.sponsoredPeers.isEmpty()) ? 0 : arrayList.size() + this.sponsoredPeers.size();
-        boolean z = getItemCount() > (Math.min(size, this.globalSearchCollapsed ? 4 : Integer.MAX_VALUE) + i) + 1;
+        int size = this.sponsoredPeers.size();
+        int size2 = arrayList.size();
+        int i2 = (arrayList.isEmpty() && this.sponsoredPeers.isEmpty()) ? 0 : size2 + size;
+        int iMin = size + Math.min(3, size2);
+        boolean z = getItemCount() > ((this.globalSearchCollapsed ? iMin : i2) + i) + 1;
         DefaultItemAnimator defaultItemAnimator = this.itemAnimator;
         if (defaultItemAnimator != null) {
             defaultItemAnimator.setAddDuration(z ? 45L : 200L);
@@ -1877,34 +1877,37 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         final View view = (View) graySectionCell.getParent();
         if (view instanceof RecyclerView) {
             RecyclerView recyclerView = (RecyclerView) view;
-            int i2 = !this.globalSearchCollapsed ? i + 4 : i + size + 1;
-            int i3 = 0;
+            int i3 = (!this.globalSearchCollapsed ? i + iMin : i2 + i) + 1;
+            int i4 = 0;
             while (true) {
-                if (i3 >= recyclerView.getChildCount()) {
+                if (i4 >= recyclerView.getChildCount()) {
                     break;
                 }
-                View childAt = recyclerView.getChildAt(i3);
-                if (recyclerView.getChildAdapterPosition(childAt) == i2) {
+                View childAt = recyclerView.getChildAt(i4);
+                if (recyclerView.getChildAdapterPosition(childAt) == i3) {
                     this.showMoreHeader = childAt;
                     break;
                 }
-                i3++;
+                i4++;
             }
         }
+        final int i5 = i + iMin;
+        int i6 = i5 + 1;
+        int iMax = Math.max(0, size2 - 3);
         if (!this.globalSearchCollapsed) {
-            notifyItemChanged(i + 3);
-            notifyItemRangeInserted(i + 4, size - 3);
+            notifyItemChanged(i5);
+            notifyItemRangeInserted(i6, iMax);
         } else {
-            notifyItemRangeRemoved(i + 4, size - 3);
+            notifyItemRangeRemoved(i6, iMax);
             if (z) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onBindViewHolder$31(i);
+                        this.f$0.lambda$onBindViewHolder$31(i5);
                     }
                 }, 350L);
             } else {
-                notifyItemChanged(i + 3);
+                notifyItemChanged(i5);
             }
         }
         Runnable runnable = this.cancelShowMoreAnimation;
@@ -1927,7 +1930,7 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
     }
 
     public void lambda$onBindViewHolder$31(int i) {
-        notifyItemChanged(i + 3);
+        notifyItemChanged(i);
     }
 
     public void lambda$onBindViewHolder$32(View view) {
@@ -2130,21 +2133,15 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
         int iIndexOf;
         int iGlobalSearchPosition;
         if (!this.sponsoredPeers.isEmpty() && (iIndexOf = this.sponsoredPeers.indexOf(tL_sponsoredPeer)) >= 0 && (iGlobalSearchPosition = globalSearchPosition()) < getItemCount()) {
-            int size = this.searchAdapterHelper.getGlobalSearch().size() + this.sponsoredPeers.size();
             this.sponsoredPeers.remove(iIndexOf);
             notifyItemRemoved(iGlobalSearchPosition + 1 + iIndexOf);
-            int size2 = this.searchAdapterHelper.getGlobalSearch().size() + this.sponsoredPeers.size();
-            int i = (size2 <= 3 || !this.globalSearchCollapsed) ? size2 : 3;
-            if (i > 0) {
-                if ((size > 3) != (size2 > 3)) {
-                    notifyItemChanged(iGlobalSearchPosition);
-                }
+            int size = this.searchAdapterHelper.getGlobalSearch().size();
+            int size2 = this.sponsoredPeers.size();
+            if (this.globalSearchCollapsed) {
+                size = Math.min(3, size);
             }
-            if (i <= 0) {
+            if (size2 + size <= 0) {
                 notifyItemRemoved(iGlobalSearchPosition);
-            } else if (this.globalSearchCollapsed) {
-                notifyItemChanged(iGlobalSearchPosition + 2);
-                notifyItemRangeInserted(iGlobalSearchPosition + 3, Math.min(Math.max(0, size - 3), 1));
             }
         }
     }
@@ -2152,27 +2149,15 @@ public abstract class DialogsSearchAdapter extends RecyclerListView.SelectionAda
     public void removeAllAds() {
         int iGlobalSearchPosition;
         if (!this.sponsoredPeers.isEmpty() && (iGlobalSearchPosition = globalSearchPosition()) < getItemCount()) {
-            int size = this.searchAdapterHelper.getGlobalSearch().size() + this.sponsoredPeers.size();
-            int size2 = this.sponsoredPeers.size();
+            int size = this.sponsoredPeers.size();
+            this.sponsoredPeers.clear();
+            notifyItemRangeRemoved(iGlobalSearchPosition + 1, size);
+            int size2 = this.searchAdapterHelper.getGlobalSearch().size();
             if (this.globalSearchCollapsed) {
                 size2 = Math.min(3, size2);
             }
-            this.sponsoredPeers.clear();
-            int i = iGlobalSearchPosition + 1;
-            notifyItemRangeRemoved(i, size2);
-            int size3 = this.searchAdapterHelper.getGlobalSearch().size() + this.sponsoredPeers.size();
-            int i2 = (size3 <= 3 || !this.globalSearchCollapsed) ? size3 : 3;
-            if (i2 > 0) {
-                if ((size > 3) != (size3 > 3)) {
-                    notifyItemChanged(iGlobalSearchPosition);
-                }
-            }
-            if (i2 <= 0) {
+            if (size2 <= 0) {
                 notifyItemRemoved(iGlobalSearchPosition);
-            } else if (this.globalSearchCollapsed) {
-                int i3 = 3 - size2;
-                notifyItemChanged(iGlobalSearchPosition + i3);
-                notifyItemRangeInserted(i + i3, Math.min(Math.max(0, size - 3), size2));
             }
         }
     }

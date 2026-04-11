@@ -826,6 +826,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             photoEntry.emojiMarkup = this.emojiMarkup;
             photoEntry.gradientTopColor = this.gradientTopColor;
             photoEntry.gradientBottomColor = this.gradientBottomColor;
+            photoEntry.discardLivePhoto = this.discardLivePhoto;
+            photoEntry.livePhotoTimestampUs = this.livePhotoTimestampUs;
             photoEntry.copyFrom(this);
             return photoEntry;
         }
@@ -5827,7 +5829,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         thread.start();
     }
 
-    public static void lambda$loadGalleryPhotosAlbums$52(int r58) {
+    public static void lambda$loadGalleryPhotosAlbums$52(int r57) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$loadGalleryPhotosAlbums$52(int):void");
     }
 
