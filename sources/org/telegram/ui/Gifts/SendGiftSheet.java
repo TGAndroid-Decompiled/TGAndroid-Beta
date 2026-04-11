@@ -109,7 +109,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         this(context, i, null, giftPremiumBottomSheet$GiftTier, j, runnable, false, false);
     }
 
-    private SendGiftSheet(final android.content.Context r31, final int r32, final org.telegram.tgnet.tl.TL_stars.StarGift r33, final org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier r34, final long r35, final java.lang.Runnable r37, final boolean r38, final boolean r39) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+    private SendGiftSheet(final android.content.Context r31, final int r32, final org.telegram.tgnet.tl.TL_stars.StarGift r33, final org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier r34, final long r35, final java.lang.Runnable r37, final boolean r38, final boolean r39) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.SendGiftSheet.<init>(android.content.Context, int, org.telegram.tgnet.tl.TL_stars$StarGift, org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier, long, java.lang.Runnable, boolean, boolean):void");
     }
 
@@ -147,7 +147,7 @@ public class SendGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
     }
 
-    public void lambda$new$1(boolean z, boolean z2, TL_stars.StarGift starGift, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, View view, int i) throws InterruptedException, Resources.NotFoundException {
+    public void lambda$new$1(boolean z, boolean z2, TL_stars.StarGift starGift, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, View view, int i) throws Resources.NotFoundException {
         UniversalAdapter universalAdapter = this.adapter;
         if (!this.reverseLayout) {
             i--;
