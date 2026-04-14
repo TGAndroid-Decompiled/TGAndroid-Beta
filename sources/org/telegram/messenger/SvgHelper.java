@@ -45,6 +45,11 @@ public class SvgHelper {
     private static final Pattern SPLIT_BOUNDARY;
     private static final double[] pow10 = new double[128];
 
+    public enum ScaleMode {
+        Default,
+        ByWidth
+    }
+
     public interface SvgResult {
         Bitmap getBitmap();
 
@@ -451,12 +456,16 @@ public class SvgHelper {
         return getBitmap(i, i2, i3, i4, 1.0f);
     }
 
-    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f) throws Resources.NotFoundException, IOException {
+    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f) {
+        return getBitmap(i, i2, i3, i4, f, ScaleMode.Default);
+    }
+
+    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f, ScaleMode scaleMode) throws Resources.NotFoundException, IOException {
         try {
             InputStream inputStreamOpenRawResource = ApplicationLoader.applicationContext.getResources().openRawResource(i);
             try {
                 XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i2, i3, Integer.valueOf(i4), false, f);
+                SVGHandler sVGHandler = new SVGHandler(i2, i3, Integer.valueOf(i4), false, f, scaleMode);
                 xMLReader.setContentHandler(sVGHandler);
                 xMLReader.parse(new InputSource(inputStreamOpenRawResource));
                 Bitmap bitmap = sVGHandler.getBitmap();
@@ -486,11 +495,15 @@ public class SvgHelper {
     }
 
     public static Bitmap getBitmap(File file, int i, int i2, boolean z) {
+        return getBitmap(file, i, i2, z, ScaleMode.Default);
+    }
+
+    public static Bitmap getBitmap(File file, int i, int i2, boolean z, ScaleMode scaleMode) throws IOException {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             try {
                 XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-                SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
+                SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f, scaleMode);
                 if (!z) {
                     sVGHandler.alphaOnly = true;
                 }
@@ -544,7 +557,7 @@ public class SvgHelper {
     public static SvgDrawable getDrawable(String str) throws SAXException, IOException {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            SVGHandler sVGHandler = new SVGHandler(0, 0, null, true, 1.0f);
+            SVGHandler sVGHandler = new SVGHandler(0, 0, (Integer) null, true, 1.0f);
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getDrawable();
@@ -1368,6 +1381,7 @@ public class SvgHelper {
         private RectF rect;
         private RectF rectTmp;
         private float scale;
+        private ScaleMode scaleMode;
         private StringBuilder styles;
 
         @Override
@@ -1379,6 +1393,10 @@ public class SvgHelper {
         }
 
         private SVGHandler(int i, int i2, Integer num, boolean z, float f) {
+            this(i, i2, num, z, f, ScaleMode.Default);
+        }
+
+        private SVGHandler(int i, int i2, Integer num, boolean z, float f, ScaleMode scaleMode) {
             this.scale = 1.0f;
             this.paint = new Paint(1);
             this.rect = new RectF();
@@ -1392,6 +1410,7 @@ public class SvgHelper {
             this.desiredWidth = i;
             this.desiredHeight = i2;
             this.paintColor = num;
+            this.scaleMode = scaleMode;
             if (z) {
                 this.drawable = new SvgDrawable();
             }
@@ -1644,12 +1663,14 @@ public class SvgHelper {
                         } else {
                             int i3 = this.desiredWidth;
                             if (i3 != 0 && (i = this.desiredHeight) != 0) {
-                                float f = iCeil;
-                                float f2 = iCeil2;
-                                float fMin = Math.min(i3 / f, i / f2);
-                                this.scale = fMin;
-                                iCeil = (int) (f * fMin);
-                                iCeil2 = (int) (f2 * fMin);
+                                if (this.scaleMode == ScaleMode.ByWidth) {
+                                    this.scale = i3 / iCeil;
+                                } else {
+                                    this.scale = Math.min(i3 / iCeil, i / iCeil2);
+                                }
+                                float f = this.scale;
+                                iCeil = (int) (iCeil * f);
+                                iCeil2 = (int) (iCeil2 * f);
                             }
                         }
                         SvgDrawable svgDrawable7 = this.drawable;
@@ -1659,10 +1680,10 @@ public class SvgHelper {
                             bitmapCreateBitmap.eraseColor(0);
                             Canvas canvas = new Canvas(this.bitmap);
                             this.canvas = canvas;
-                            float f3 = this.scale;
-                            if (f3 != 0.0f) {
-                                float f4 = this.globalScale * f3;
-                                canvas.scale(f4, f4);
+                            float f2 = this.scale;
+                            if (f2 != 0.0f) {
+                                float f3 = this.globalScale * f2;
+                                canvas.scale(f3, f3);
                                 break;
                             }
                         } else {

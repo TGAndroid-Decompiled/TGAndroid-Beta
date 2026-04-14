@@ -610,11 +610,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     public int getBackgroundTranslationY() {
         Drawable drawable = this.backgroundDrawable;
         if (drawable instanceof MotionBackgroundDrawable) {
-            if (this.animationInProgress) {
-                return (int) this.emojiOffset;
-            }
-            int i = this.emojiHeight;
-            return i != 0 ? i : this.backgroundTranslationY;
+            return this.backgroundTranslationY;
         }
         if (drawable instanceof ChatBackgroundDrawable) {
             return this.backgroundTranslationY;
@@ -635,8 +631,6 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
                         i = this.backgroundTranslationY;
                     }
                 }
-            } else if (this.backgroundTranslationY == 0) {
-                i = -this.keyboardHeight;
             }
         } else if (drawable instanceof ChatBackgroundDrawable) {
             i = this.backgroundTranslationY;

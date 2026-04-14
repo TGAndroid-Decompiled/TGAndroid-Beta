@@ -3430,7 +3430,7 @@ public abstract class Theme {
         }
     }
 
-    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) {
+    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) throws Resources.NotFoundException {
         Resources resources = context.getResources();
         Drawable drawableMutate = resources.getDrawable(i).mutate();
         if (i2 != 0) {
@@ -7525,7 +7525,7 @@ public abstract class Theme {
             Point point2 = AndroidUtilities.displaySize;
             i2 = Math.max(point2.x, point2.y);
         }
-        motionBackgroundDrawable.setPatternBitmap(34, SvgHelper.getBitmap(R.raw.default_pattern, i, i2, -16777216));
+        motionBackgroundDrawable.setPatternBitmap(34, SvgHelper.getBitmap(R.raw.default_pattern, i, i2, -16777216, 1.0f, SvgHelper.ScaleMode.ByWidth));
         motionBackgroundDrawable.setPatternColorFilter(motionBackgroundDrawable.getPatternColor());
         return motionBackgroundDrawable;
     }

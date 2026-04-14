@@ -753,7 +753,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             backupImageView.getImageReceiver().setAutoRepeat(0);
-            addView(backupImageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 12.0f, 0.0f, 0.0f));
+            addView(backupImageView, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 17.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTypeface(AndroidUtilities.bold());
@@ -777,7 +777,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.isSelected.setValue(z, z2);
         }
 
-        public void setSticker(TLRPC.Document document, int i, Object obj) {
+        public void setSticker(TLRPC.Document document, int i, Object obj, boolean z) {
             if (document == null) {
                 this.imageView.clearImage();
                 this.lastDocument = null;
@@ -789,10 +789,14 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             this.lastDocument = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 0.3f);
-            int i2 = i >= 90 ? (i * 2) / 3 : i;
-            String str = i2 + "_" + i2;
-            this.imageView.setLayoutParams(LayoutHelper.createFrame(i, i, 49, 0.0f, r3 + 12, 0.0f, (90 - i) / 2));
-            this.imageView.setImage(ImageLocation.getForDocument(document), str, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), str, svgThumb, obj);
+            StringBuilder sb = new StringBuilder();
+            sb.append(i);
+            sb.append("_");
+            sb.append(i);
+            sb.append(z ? "_nolimit_pcache" : "");
+            String string = sb.toString();
+            this.imageView.setLayoutParams(LayoutHelper.createFrame(i, i, 49, 0.0f, r3 + 17, 0.0f, (80 - i) / 2));
+            this.imageView.setImage(ImageLocation.getForDocument(document), string, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), string, svgThumb, obj);
         }
 
         @Override
@@ -850,7 +854,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                     giftAttributeCell.cardBackground.setBackdrop(null);
                     giftAttributeCell.cardBackground.setPattern(null);
                     giftAttributeCell.textView.setText(attributes.model.name);
-                    giftAttributeCell.setSticker(attributes.model.document, 90, uItem.object);
+                    giftAttributeCell.setSticker(attributes.model.document, 80, uItem.object, true);
                     giftAttributeCell.imageView.setColorFilter(null);
                     giftAttributeCell.cardBackground.selectedColorKey = Theme.key_featuredStickers_addButton;
                     rarityName = StarGiftSheet.getRarityName(attributes.model.rarity, numArr);
@@ -859,7 +863,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                     giftAttributeCell.cardBackground.setPattern(attributes.pattern);
                     giftAttributeCell.cardBackground.selectedColorKey = Theme.key_windowBackgroundWhite;
                     giftAttributeCell.textView.setText(attributes.backdrop.name);
-                    giftAttributeCell.setSticker(attributes.pattern.document, 48, uItem.object);
+                    giftAttributeCell.setSticker(attributes.pattern.document, 48, uItem.object, false);
                     giftAttributeCell.imageView.setColorFilter(new PorterDuffColorFilter(ColorUtils.setAlphaComponent(attributes.backdrop.pattern_color, 64), PorterDuff.Mode.SRC_IN));
                     rarityName = StarGiftSheet.getRarityName(attributes.backdrop.rarity, numArr);
                 } else if (i == 2) {
@@ -867,7 +871,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
                     giftAttributeCell.cardBackground.setPattern(attributes.pattern);
                     giftAttributeCell.cardBackground.selectedColorKey = Theme.key_windowBackgroundWhite;
                     giftAttributeCell.textView.setText(attributes.pattern.name);
-                    giftAttributeCell.setSticker(attributes.pattern.document, 64, uItem.object);
+                    giftAttributeCell.setSticker(attributes.pattern.document, 64, uItem.object, false);
                     giftAttributeCell.imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                     rarityName = StarGiftSheet.getRarityName(attributes.pattern.rarity, numArr);
                 } else {

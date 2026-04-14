@@ -38,6 +38,57 @@ public abstract class CustomHtml {
         }
     }
 
+    private static void textStyleSpanBegin(TextStyleSpan.TextStyleRun textStyleRun, StringBuilder sb) {
+        if (textStyleRun == null) {
+            return;
+        }
+        if ((textStyleRun.flags & 768) > 0) {
+            sb.append("<spoiler>");
+        }
+        if ((textStyleRun.flags & 1) > 0) {
+            sb.append("<b>");
+        }
+        if ((textStyleRun.flags & 2) > 0) {
+            sb.append("<i>");
+        }
+        if ((textStyleRun.flags & 16) > 0) {
+            sb.append("<u>");
+        }
+        if ((textStyleRun.flags & 8) > 0) {
+            sb.append("<s>");
+        }
+        if ((textStyleRun.flags & 128) <= 0 || textStyleRun.urlEntity == null) {
+            return;
+        }
+        sb.append("<a href=\"");
+        sb.append(textStyleRun.urlEntity.url);
+        sb.append("\">");
+    }
+
+    private static void textStyleSpanEnd(TextStyleSpan.TextStyleRun textStyleRun, StringBuilder sb) {
+        if (textStyleRun == null) {
+            return;
+        }
+        if ((textStyleRun.flags & 128) > 0 && textStyleRun.urlEntity != null) {
+            sb.append("</a>");
+        }
+        if ((textStyleRun.flags & 8) > 0) {
+            sb.append("</s>");
+        }
+        if ((textStyleRun.flags & 16) > 0) {
+            sb.append("</u>");
+        }
+        if ((textStyleRun.flags & 2) > 0) {
+            sb.append("</i>");
+        }
+        if ((textStyleRun.flags & 1) > 0) {
+            sb.append("</b>");
+        }
+        if ((textStyleRun.flags & 768) > 0) {
+            sb.append("</spoiler>");
+        }
+    }
+
     private static void toHTML_1_wrapTextStyle(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
             int iNextSpanTransition = spanned.nextSpanTransition(i, i2, TextStyleSpan.class);
@@ -48,27 +99,7 @@ public abstract class CustomHtml {
             if (textStyleSpanArr != null) {
                 for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
                     if (textStyleSpan != null) {
-                        int styleFlags = textStyleSpan.getStyleFlags();
-                        if ((styleFlags & 768) > 0) {
-                            sb.append("<spoiler>");
-                        }
-                        if ((styleFlags & 1) > 0) {
-                            sb.append("<b>");
-                        }
-                        if ((styleFlags & 2) > 0) {
-                            sb.append("<i>");
-                        }
-                        if ((styleFlags & 16) > 0) {
-                            sb.append("<u>");
-                        }
-                        if ((styleFlags & 8) > 0) {
-                            sb.append("<s>");
-                        }
-                        if ((styleFlags & 128) > 0 && textStyleSpan.getTextStyleRun() != null && textStyleSpan.getTextStyleRun().urlEntity != null) {
-                            sb.append("<a href=\"");
-                            sb.append(textStyleSpan.getTextStyleRun().urlEntity.url);
-                            sb.append("\">");
-                        }
+                        textStyleSpanBegin(textStyleSpan.getTextStyleRun(), sb);
                     }
                 }
             }
@@ -76,25 +107,7 @@ public abstract class CustomHtml {
             if (textStyleSpanArr != null) {
                 for (TextStyleSpan textStyleSpan2 : textStyleSpanArr) {
                     if (textStyleSpan2 != null) {
-                        int styleFlags2 = textStyleSpan2.getStyleFlags();
-                        if ((styleFlags2 & 128) > 0 && textStyleSpan2.getTextStyleRun() != null && textStyleSpan2.getTextStyleRun().urlEntity != null) {
-                            sb.append("</a>");
-                        }
-                        if ((styleFlags2 & 8) > 0) {
-                            sb.append("</s>");
-                        }
-                        if ((styleFlags2 & 16) > 0) {
-                            sb.append("</u>");
-                        }
-                        if ((styleFlags2 & 2) > 0) {
-                            sb.append("</i>");
-                        }
-                        if ((styleFlags2 & 1) > 0) {
-                            sb.append("</b>");
-                        }
-                        if ((styleFlags2 & 768) > 0) {
-                            sb.append("</spoiler>");
-                        }
+                        textStyleSpanEnd(textStyleSpan2.getTextStyleRun(), sb);
                     }
                 }
             }
@@ -111,6 +124,7 @@ public abstract class CustomHtml {
             URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(i, iNextSpanTransition, URLSpanReplacement.class);
             if (uRLSpanReplacementArr != null) {
                 for (URLSpanReplacement uRLSpanReplacement : uRLSpanReplacementArr) {
+                    textStyleSpanBegin(uRLSpanReplacement.getTextStyleRun(), sb);
                     sb.append("<a href=\"");
                     sb.append(uRLSpanReplacement.getURL());
                     sb.append("\">");
@@ -118,7 +132,8 @@ public abstract class CustomHtml {
             }
             toHTML_3_wrapMonoscape(sb, spanned, i, iNextSpanTransition);
             if (uRLSpanReplacementArr != null) {
-                for (int i3 = 0; i3 < uRLSpanReplacementArr.length; i3++) {
+                for (URLSpanReplacement uRLSpanReplacement2 : uRLSpanReplacementArr) {
+                    textStyleSpanEnd(uRLSpanReplacement2.getTextStyleRun(), sb);
                     sb.append("</a>");
                 }
             }

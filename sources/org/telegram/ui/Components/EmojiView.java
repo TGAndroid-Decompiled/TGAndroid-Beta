@@ -1793,7 +1793,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         this(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, false);
     }
 
-    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
+    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, final boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) throws Resources.NotFoundException {
         final boolean z8;
         Theme.ResourcesProvider resourcesProvider2;
         final Theme.ResourcesProvider resourcesProvider3;

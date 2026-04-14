@@ -143,8 +143,11 @@ public class MotionBackgroundPaint {
             bitmapShader.setLocalMatrix(this.tmpMatrix);
         }
         if (Build.VERSION.SDK_INT >= 33) {
-            this.runtimeShaderPositive.setMatrixGradient(this.tmpMatrix);
-            this.runtimeShaderNegative.setMatrixGradient(this.tmpMatrix);
+            Matrix matrix = this.tmpMatrix;
+            float[] fArr = tmpOut;
+            matrixToScaleTranslate(matrix, fArr);
+            this.runtimeShaderPositive.setMiniMatrixGradient(fArr);
+            this.runtimeShaderNegative.setMiniMatrixGradient(fArr);
         }
     }
 
@@ -157,11 +160,23 @@ public class MotionBackgroundPaint {
     }
 
     public void applyPatternMatrix(Matrix matrix) {
+        float[] fArr = tmpOut;
+        matrixToScaleTranslate(matrix, fArr);
         this.patternShader.shader.setLocalMatrix(matrix);
-        if (Build.VERSION.SDK_INT >= 33) {
-            this.runtimeShaderPositive.setMatrixPattern(matrix);
-            this.runtimeShaderNegative.setMatrixPattern(matrix);
+        BitmapShaderState bitmapShaderState = this.patternShader;
+        boolean z = false;
+        if (isOne(fArr[0]) && isOne(fArr[1])) {
+            z = true;
         }
+        bitmapShaderState.setUseNearestInterpolation(z);
+        if (Build.VERSION.SDK_INT >= 33) {
+            this.runtimeShaderPositive.setMiniMatrixPattern(fArr);
+            this.runtimeShaderNegative.setMiniMatrixPattern(fArr);
+        }
+    }
+
+    private static boolean isOne(float f) {
+        return Math.abs(f - 1.0f) <= 1.0E-4f;
     }
 
     private static class RuntimeShaderState {
@@ -174,21 +189,19 @@ public class MotionBackgroundPaint {
             this.shader = MotionBackgroundPaint$RuntimeShaderState$$ExternalSyntheticApiModelOutline0.m(AndroidUtilities.readRes(i));
         }
 
-        public void setMatrixGradient(Matrix matrix) {
-            MotionBackgroundPaint.matrixToScaleTranslate(matrix, MotionBackgroundPaint.tmpOut);
-            if (Arrays.equals(MotionBackgroundPaint.tmpOut, this.transformGradient)) {
+        public void setMiniMatrixGradient(float[] fArr) {
+            if (Arrays.equals(fArr, this.transformGradient)) {
                 return;
             }
-            System.arraycopy(MotionBackgroundPaint.tmpOut, 0, this.transformGradient, 0, 4);
+            System.arraycopy(fArr, 0, this.transformGradient, 0, 4);
             this.shader.setFloatUniform("transformGradient", this.transformGradient);
         }
 
-        public void setMatrixPattern(Matrix matrix) {
-            MotionBackgroundPaint.matrixToScaleTranslate(matrix, MotionBackgroundPaint.tmpOut);
-            if (Arrays.equals(MotionBackgroundPaint.tmpOut, this.transformPattern)) {
+        public void setMiniMatrixPattern(float[] fArr) {
+            if (Arrays.equals(fArr, this.transformPattern)) {
                 return;
             }
-            System.arraycopy(MotionBackgroundPaint.tmpOut, 0, this.transformPattern, 0, 4);
+            System.arraycopy(fArr, 0, this.transformPattern, 0, 4);
             this.shader.setFloatUniform("transformPattern", this.transformPattern);
         }
     }
@@ -215,6 +228,7 @@ public class MotionBackgroundPaint {
         int height;
         BitmapShader shader;
         final Shader.TileMode tileMode;
+        boolean useNearestInterpolation;
         int width;
 
         public BitmapShaderState(Shader.TileMode tileMode) {
@@ -232,11 +246,21 @@ public class MotionBackgroundPaint {
             Shader.TileMode tileMode = this.tileMode;
             BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
             this.shader = bitmapShader;
-            if (Build.VERSION.SDK_INT < 33) {
-                return true;
+            if (Build.VERSION.SDK_INT >= 33) {
+                bitmapShader.setFilterMode(this.useNearestInterpolation ? 1 : 2);
             }
-            bitmapShader.setFilterMode(2);
             return true;
+        }
+
+        public void setUseNearestInterpolation(boolean z) {
+            BitmapShader bitmapShader;
+            if (this.useNearestInterpolation != z) {
+                this.useNearestInterpolation = z;
+                if (Build.VERSION.SDK_INT < 33 || (bitmapShader = this.shader) == null) {
+                    return;
+                }
+                bitmapShader.setFilterMode(z ? 1 : 2);
+            }
         }
     }
 
@@ -272,7 +296,7 @@ public class MotionBackgroundPaint {
         return bitmap.getConfig() == Bitmap.Config.ALPHA_8 ? bitmap : bitmap.extractAlpha();
     }
 
-    public static void matrixToScaleTranslate(Matrix matrix, float[] fArr) {
+    private static void matrixToScaleTranslate(Matrix matrix, float[] fArr) {
         Matrix matrix2 = tmpInverse;
         matrix.invert(matrix2);
         float[] fArr2 = tmpPts;

@@ -12056,6 +12056,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
         boolean z2;
         View view;
+        int i2;
+        int i3;
+        WindowInsetsInAppController windowInsetsInAppController;
         if (this.searchingType != 0) {
             this.lastSizeChangeValue1 = i;
             this.lastSizeChangeValue2 = z;
@@ -12084,62 +12087,58 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (this.currentPopupContentType == 1 && !this.botKeyboardView.isFullSize()) {
                 iMin = Math.min(this.botKeyboardView.getKeyboardHeight(), iMin);
             }
-            int i2 = this.currentPopupContentType;
-            if (i2 == 0) {
+            int i4 = this.currentPopupContentType;
+            if (i4 == 0) {
                 view = this.emojiView;
             } else {
-                view = i2 == 1 ? this.botKeyboardView : null;
+                view = i4 == 1 ? this.botKeyboardView : null;
             }
             BotKeyboardView botKeyboardView = this.botKeyboardView;
             if (botKeyboardView != null) {
                 botKeyboardView.setPanelHeight(iMin);
-                WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
-                if (windowInsetsInAppController != null && iMin > 0) {
-                    windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(iMin);
+                WindowInsetsInAppController windowInsetsInAppController2 = this.windowInsetsInAppController;
+                if (windowInsetsInAppController2 != null && iMin > 0 && this.currentPopupContentType == 1) {
+                    windowInsetsInAppController2.requestInAppKeyboardHeightIncludeNavbar(iMin);
                 }
             }
             if (view != null) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-                if (!this.closeAnimationInProgress) {
-                    int i3 = layoutParams.width;
-                    int i4 = AndroidUtilities.displaySize.x;
-                    if ((i3 != i4 || layoutParams.height != iMin) && !this.stickersExpanded) {
-                        if (this.windowInsetsInAppController == null) {
-                            layoutParams.width = i4;
-                            layoutParams.height = iMin;
-                            view.setLayoutParams(layoutParams);
-                        }
-                        SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierLayout;
-                        if (sizeNotifierFrameLayout != null) {
-                            int i5 = this.emojiPadding;
-                            this.emojiPadding = layoutParams.height;
-                            sizeNotifierFrameLayout.requestLayout();
-                            onWindowSizeChanged();
-                            if (this.smoothKeyboard && !this.keyboardVisible && i5 != this.emojiPadding && pannelAnimationEnabled()) {
-                                AnimatorSet animatorSet = new AnimatorSet();
-                                this.panelAnimation = animatorSet;
-                                if (this.windowInsetsInAppController != null) {
-                                    animatorSet.playTogether(ValueAnimator.ofFloat(this.emojiPadding - i5, 0.0f));
-                                } else {
-                                    animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.TRANSLATION_Y, this.emojiPadding - i5, 0.0f));
-                                }
-                                this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
-                                this.panelAnimation.setDuration(250L);
-                                this.panelAnimation.addListener(new AnimatorListenerAdapter() {
-                                    @Override
-                                    public void onAnimationEnd(Animator animator) {
-                                        ChatActivityEnterView.this.panelAnimation = null;
-                                        if (ChatActivityEnterView.this.delegate != null) {
-                                            ChatActivityEnterView.this.delegate.bottomPanelTranslationYChanged(0.0f);
-                                        }
-                                        ChatActivityEnterView.this.requestLayout();
-                                        ChatActivityEnterView.this.notificationsLocker.unlock();
-                                    }
-                                });
-                                AndroidUtilities.runOnUIThread(this.runEmojiPanelAnimation, 50L);
-                                this.notificationsLocker.lock();
-                                requestLayout();
+                if (!this.closeAnimationInProgress && !this.stickersExpanded && (((i2 = layoutParams.width) != (i3 = AndroidUtilities.displaySize.x) || layoutParams.height != iMin) && ((windowInsetsInAppController = this.windowInsetsInAppController) == null || i2 != -1 || layoutParams.height != -1))) {
+                    if (windowInsetsInAppController == null) {
+                        layoutParams.width = i3;
+                        layoutParams.height = iMin;
+                        view.setLayoutParams(layoutParams);
+                    }
+                    SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierLayout;
+                    if (sizeNotifierFrameLayout != null) {
+                        int i5 = this.emojiPadding;
+                        this.emojiPadding = layoutParams.height;
+                        sizeNotifierFrameLayout.requestLayout();
+                        onWindowSizeChanged();
+                        if (this.smoothKeyboard && !this.keyboardVisible && i5 != this.emojiPadding && pannelAnimationEnabled()) {
+                            AnimatorSet animatorSet = new AnimatorSet();
+                            this.panelAnimation = animatorSet;
+                            if (this.windowInsetsInAppController != null) {
+                                animatorSet.playTogether(ValueAnimator.ofFloat(this.emojiPadding - i5, 0.0f));
+                            } else {
+                                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.TRANSLATION_Y, this.emojiPadding - i5, 0.0f));
                             }
+                            this.panelAnimation.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+                            this.panelAnimation.setDuration(250L);
+                            this.panelAnimation.addListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animator) {
+                                    ChatActivityEnterView.this.panelAnimation = null;
+                                    if (ChatActivityEnterView.this.delegate != null) {
+                                        ChatActivityEnterView.this.delegate.bottomPanelTranslationYChanged(0.0f);
+                                    }
+                                    ChatActivityEnterView.this.requestLayout();
+                                    ChatActivityEnterView.this.notificationsLocker.unlock();
+                                }
+                            });
+                            AndroidUtilities.runOnUIThread(this.runEmojiPanelAnimation, 50L);
+                            this.notificationsLocker.lock();
+                            requestLayout();
                         }
                     }
                 }

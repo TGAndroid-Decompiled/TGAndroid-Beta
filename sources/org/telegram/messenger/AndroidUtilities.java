@@ -4367,7 +4367,7 @@ public class AndroidUtilities {
             tableView.addRow(LocaleController.getString(R.string.UseProxyUsername), str3);
         }
         if (!TextUtils.isEmpty(str4)) {
-            tableView.addRow(LocaleController.getString(R.string.UseProxyPassword), str3);
+            tableView.addRow(LocaleController.getString(R.string.UseProxyPassword), str4);
         }
         final ButtonSpan.TextViewButtons[] textViewButtonsArr = new ButtonSpan.TextViewButtons[1];
         tableView.addRow(LocaleController.getString(R.string.ProxyStatus), "", textViewButtonsArr);

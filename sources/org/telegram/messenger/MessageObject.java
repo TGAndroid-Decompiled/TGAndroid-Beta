@@ -4152,27 +4152,32 @@ public class MessageObject {
     }
 
     public void applyTimestampsHighlightForReplyMsg() {
+        applyTimestampsHighlightForReplyMsg(this.messageText);
+    }
+
+    public void applyTimestampsHighlightForReplyMsg(CharSequence charSequence) {
+        TLRPC.Message message;
         MessageObject messageObject = this.replyMessageObject;
         if (messageObject == null) {
             return;
         }
         if (messageObject.isYouTubeVideo()) {
-            addUrlsByPattern(isOutOwner(), this.messageText, false, 3, Integer.MAX_VALUE, false);
+            addUrlsByPattern(isOutOwner(), charSequence, false, 3, Integer.MAX_VALUE, false);
             return;
         }
         if (messageObject.isVideo()) {
-            addUrlsByPattern(isOutOwner(), this.messageText, false, 3, (int) messageObject.getDuration(), false);
+            addUrlsByPattern(isOutOwner(), charSequence, false, 3, (int) messageObject.getDuration(), false);
             return;
         }
         if (messageObject.isMusic() || messageObject.isVoice()) {
-            addUrlsByPattern(isOutOwner(), this.messageText, false, 4, (int) messageObject.getDuration(), false);
+            addUrlsByPattern(isOutOwner(), charSequence, false, 4, (int) messageObject.getDuration(), false);
         }
-        TLRPC.Message message = this.messageOwner;
-        if (message != null) {
-            TLRPC.MessageAction messageAction = message.action;
-            if ((messageAction instanceof TLRPC.TL_messageActionTodoCompletions) || (messageAction instanceof TLRPC.TL_messageActionTodoAppendTasks)) {
-                updateMessageText();
-            }
+        if (charSequence != this.messageText || (message = this.messageOwner) == null) {
+            return;
+        }
+        TLRPC.MessageAction messageAction = message.action;
+        if ((messageAction instanceof TLRPC.TL_messageActionTodoCompletions) || (messageAction instanceof TLRPC.TL_messageActionTodoAppendTasks)) {
+            updateMessageText();
         }
     }
 

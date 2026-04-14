@@ -4049,7 +4049,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public void showDownloadAlert() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this.parentActivity, this.resourcesProvider);
-        builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
+        builder.setTitle(LocaleController.getString(R.string.AppName));
         builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null && messageObject.isVideo() && FileLoader.getInstance(this.currentMessageObject.currentAccount).isLoadingFile(this.currentFileNames[0])) {

@@ -224,11 +224,14 @@ public class TopicSeparator {
     }
 
     public static class Cell extends View {
+        private int backgroundHeight;
         private Utilities.Callback onClickListener;
+        private Theme.ResourcesProvider resourceProvider;
         public final TopicSeparator separator;
 
         public Cell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.resourceProvider = resourcesProvider;
             TopicSeparator topicSeparator = new TopicSeparator(i, this, resourcesProvider, false);
             this.separator = topicSeparator;
             topicSeparator.setOnClickListener(new Runnable() {
@@ -279,9 +282,19 @@ public class TopicSeparator {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
         }
 
+        public void setBackgroundHeight(int i) {
+            this.backgroundHeight = i;
+        }
+
         @Override
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
+            Theme.ResourcesProvider resourcesProvider = this.resourceProvider;
+            if (resourcesProvider != null) {
+                resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, 0.0f, 0.0f);
+            } else {
+                Theme.applyServiceShaderMatrix(getMeasuredWidth(), this.backgroundHeight, 0.0f, 0.0f);
+            }
             this.separator.draw(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
         }
     }

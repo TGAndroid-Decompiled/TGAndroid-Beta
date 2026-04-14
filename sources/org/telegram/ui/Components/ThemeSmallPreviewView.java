@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
@@ -353,7 +352,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                     }
                     ChatThemeController.chatThemeQueue.postRunnable(new Runnable() {
                         @Override
-                        public final void run() throws Resources.NotFoundException, IOException {
+                        public final void run() {
                             this.f$0.lambda$setItem$3(chatThemeItem, i4);
                         }
                     });
@@ -407,7 +406,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void lambda$setItem$3(final ChatThemeBottomSheet.ChatThemeItem chatThemeItem, final int i) throws Resources.NotFoundException, IOException {
+    public void lambda$setItem$3(final ChatThemeBottomSheet.ChatThemeItem chatThemeItem, final int i) {
         final Bitmap bitmap = SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override

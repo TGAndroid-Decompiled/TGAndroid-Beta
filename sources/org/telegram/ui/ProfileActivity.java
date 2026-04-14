@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -93,7 +94,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -2762,7 +2762,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws IOException {
+                    public final void onClick(View view) throws Resources.NotFoundException {
                         this.f$0.lambda$createView$11(i8, view);
                     }
                 });
@@ -4738,7 +4738,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws IOException {
+    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5108,7 +5108,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new AudioPlayerAlert(getContext(), getResourceProvider()));
     }
 
-    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws IOException {
+    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws Resources.NotFoundException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(getParentActivity(), getCurrentAccount()).selectedPeerId(getDialogId()).open(null);
@@ -5188,7 +5188,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 alertDialog.showDelayed(200L);
                 MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(getDialogId(), new com.google.android.exoplayer2.util.Consumer() {
                     @Override
-                    public final void accept(Object obj) throws IOException {
+                    public final void accept(Object obj) throws Resources.NotFoundException {
                         this.f$0.lambda$createView$13(alertDialog, (Boolean) obj);
                     }
                 }, true, this.resourcesProvider);

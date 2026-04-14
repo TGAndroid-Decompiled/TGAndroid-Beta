@@ -56,7 +56,6 @@ import com.google.android.exoplayer2.util.Consumer;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -1833,7 +1832,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1843,7 +1842,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1955,7 +1954,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1965,7 +1964,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -4395,7 +4394,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4405,7 +4404,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws IOException {
+    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
