@@ -61,15 +61,20 @@ public abstract class BaseFragment {
     protected ActionBar actionBar;
     protected Bundle arguments;
     private int bottomInset;
+    protected int classGuid;
+    protected int currentAccount;
     protected boolean finishing;
     protected boolean fragmentBeginToShow;
     public View fragmentView;
     private Runnable fullyVisibleListener;
+    protected boolean hasOwnBackground;
     protected boolean inBubbleMode;
     protected boolean inMenuMode;
     protected boolean inPreviewMode;
+    protected boolean inTransitionAnimation;
     public boolean isFinished;
     private boolean isFullyVisible;
+    protected boolean isPaused;
     protected Dialog parentDialog;
     protected INavigationLayout parentLayout;
     private PreviewDelegate previewDelegate;
@@ -77,11 +82,6 @@ public abstract class BaseFragment {
     protected Theme.ResourcesProvider resourceProvider;
     public ArrayList<AttachedSheet> sheetsStack;
     public Dialog visibleDialog;
-    protected int currentAccount = UserConfig.selectedAccount;
-    protected boolean hasOwnBackground = false;
-    protected boolean isPaused = true;
-    protected boolean inTransitionAnimation = false;
-    protected int classGuid = ConnectionsManager.generateClassGuid();
 
     public interface AttachedSheetWindow {
     }
@@ -241,7 +241,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1290getWindowView();
+        View mo1288getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -360,10 +360,16 @@ public abstract class BaseFragment {
     }
 
     public BaseFragment() {
+        this(null);
     }
 
     public BaseFragment(Bundle bundle) {
+        this.currentAccount = UserConfig.selectedAccount;
+        this.hasOwnBackground = false;
+        this.isPaused = true;
+        this.inTransitionAnimation = false;
         this.arguments = bundle;
+        this.classGuid = ConnectionsManager.generateClassGuid();
     }
 
     public void setCurrentAccount(int i) {
@@ -1291,8 +1297,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1290getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1290getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1288getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1288getWindowView());
                 }
             }
         }
@@ -1303,7 +1309,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1290getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1288getWindowView());
                 }
             }
         }
@@ -1313,7 +1319,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1290getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1288getWindowView()) {
                     return true;
                 }
             }

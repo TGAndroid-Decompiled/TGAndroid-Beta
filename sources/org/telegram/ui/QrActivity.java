@@ -178,7 +178,7 @@ public class QrActivity extends BaseFragment {
     }
 
     @Override
-    public android.view.View createView(android.content.Context r25) {
+    public android.view.View createView(android.content.Context r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.QrActivity.createView(android.content.Context):android.view.View");
     }
 

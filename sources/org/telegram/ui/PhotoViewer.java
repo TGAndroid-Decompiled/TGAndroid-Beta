@@ -1277,6 +1277,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         public boolean fadeIn;
         public ImageReceiver imageReceiver;
         public boolean isEvent;
+        public boolean keepImageReceiverVisible;
         public View parentView;
         public int[] radius;
         public long size;
@@ -6123,7 +6124,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -9015,7 +9016,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 ((WindowManager) this.parentActivity.getSystemService("window")).addView(this.windowView, this.windowLayoutParams);
                 onShowView();
                 PlaceProviderObject placeProviderObject = this.currentPlaceObject;
-                if (placeProviderObject != null) {
+                if (placeProviderObject != null && !placeProviderObject.keepImageReceiverVisible) {
                     placeProviderObject.imageReceiver.setVisible(false, false);
                 }
             } catch (Exception e) {
@@ -13585,9 +13586,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         PhotoViewerProvider photoViewerProvider = this.placeProvider;
         PlaceProviderObject placeForPhoto = photoViewerProvider == null ? null : photoViewerProvider.getPlaceForPhoto(this.currentMessageObject, getFileLocation(this.currentFileLocation), this.currentIndex, false, false);
         this.currentPlaceObject = placeForPhoto;
-        if (placeForPhoto != null) {
-            placeForPhoto.imageReceiver.setVisible(false, true);
+        if (placeForPhoto == null || placeForPhoto.keepImageReceiverVisible) {
+            return;
         }
+        placeForPhoto.imageReceiver.setVisible(false, true);
     }
 
     public boolean openPhoto(MessageObject messageObject, ChatActivity chatActivity, long j, long j2, long j3, PhotoViewerProvider photoViewerProvider) {
@@ -13608,6 +13610,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public boolean openPhotoWithVideo(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
         return openPhoto(null, fileLocation, null, imageLocation, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
+    }
+
+    public boolean openPhotoWithVideo(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, ImageLocation imageLocation2, PhotoViewerProvider photoViewerProvider) {
+        return openPhoto(null, fileLocation, imageLocation, imageLocation2, null, null, null, 0, photoViewerProvider, null, 0L, 0L, 0L, true, null, null);
     }
 
     public boolean openPhoto(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, PhotoViewerProvider photoViewerProvider) {
@@ -14252,7 +14258,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (PhotoViewer.this.showAfterAnimation != null) {
                     PhotoViewer.this.showAfterAnimation.imageReceiver.setVisible(true, true);
                 }
-                if (PhotoViewer.this.hideAfterAnimation != null) {
+                if (PhotoViewer.this.hideAfterAnimation != null && !PhotoViewer.this.hideAfterAnimation.keepImageReceiverVisible) {
                     PhotoViewer.this.hideAfterAnimation.imageReceiver.setVisible(false, true);
                 }
                 if (arrayList != null && PhotoViewer.this.sendPhotoType != 3 && PhotoViewer.this.sendPhotoType != 1 && (PhotoViewer.this.placeProvider == null || !PhotoViewer.this.placeProvider.closeKeyboard())) {
@@ -14308,6 +14314,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         public void lambda$onPreDraw$3(PlaceProviderObject placeProviderObject) {
             PhotoViewer.this.disableShowCheck = false;
+            if (placeProviderObject.keepImageReceiverVisible) {
+                return;
+            }
             placeProviderObject.imageReceiver.setVisible(false, true);
         }
     }
@@ -14990,7 +14999,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$closePhoto$142(PlaceProviderObject placeProviderObject, AnimatorSet animatorSet) {
-        if (placeProviderObject != null) {
+        if (placeProviderObject != null && !placeProviderObject.keepImageReceiverVisible) {
             placeProviderObject.imageReceiver.setVisible(false, true);
         }
         if (!this.doneButtonPressed) {

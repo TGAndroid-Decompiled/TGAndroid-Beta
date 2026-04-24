@@ -346,6 +346,20 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        int size = this.fragmentsArr.size();
+        for (int i = 0; i < size; i++) {
+            FragmentState fragmentState = (FragmentState) this.fragmentsArr.valueAt(i);
+            if (fragmentState.onCreateCalled) {
+                fragmentState.fragment.onFragmentDestroy();
+                fragmentState.fragment.setParentLayout(null);
+            }
+        }
+        this.fragmentsArr.clear();
+    }
+
+    @Override
     public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {
         setTitleOverlayText(str, i, runnable);
     }

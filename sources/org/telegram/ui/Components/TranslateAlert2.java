@@ -291,7 +291,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             tL_messages_summarizeText.flags = 1 | tL_messages_summarizeText.flags;
             tL_messages_summarizeText.peer = this.reqPeer;
             tL_messages_summarizeText.id = this.reqMessageId;
-            tL_messages_summarizeText.to_lang = str;
+            tL_messages_summarizeText.to_lang = TranslateController.normalizeLanguage(str);
             this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
@@ -310,7 +310,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             tL_messages_translateText.flags |= 2;
             tL_messages_translateText.text.add(tL_textWithEntities);
         }
-        tL_messages_translateText.to_lang = str;
+        tL_messages_translateText.to_lang = TranslateController.normalizeLanguage(str);
         this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {

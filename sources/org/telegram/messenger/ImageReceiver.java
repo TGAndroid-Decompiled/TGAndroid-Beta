@@ -464,7 +464,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public static File getAvatarLocalFile(int i, TLObject tLObject) {
         try {
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(tLObject, 1);
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(i, tLObject, 1);
             File localFile = FileLoader.getInstance(i).getLocalFile(forUserOrChat);
             if (localFile != null) {
                 return localFile;

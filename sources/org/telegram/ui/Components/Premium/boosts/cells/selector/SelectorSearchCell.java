@@ -120,7 +120,8 @@ public abstract class SelectorSearchCell extends ScrollView {
         editTextBoldCursor2.setCursorColor(Theme.getColor(i, resourcesProvider));
         this.editText.setHandlesColor(Theme.getColor(i, resourcesProvider));
         this.editText.setCursorWidth(1.5f);
-        this.editText.setInputType(655536);
+        EditTextBoldCursor editTextBoldCursor3 = this.editText;
+        editTextBoldCursor3.setInputType(editTextBoldCursor3.getInputType() | 176);
         this.editText.setSingleLine(true);
         this.editText.setBackgroundDrawable(null);
         this.editText.setVerticalScrollBarEnabled(false);
@@ -130,9 +131,9 @@ public abstract class SelectorSearchCell extends ScrollView {
         this.editText.setImeOptions(268435462);
         this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.spansContainer.addView(this.editText);
-        EditTextBoldCursor editTextBoldCursor3 = this.editText;
+        EditTextBoldCursor editTextBoldCursor4 = this.editText;
         int i2 = R.string.Search;
-        editTextBoldCursor3.setHintText(LocaleController.getString(i2));
+        editTextBoldCursor4.setHintText(LocaleController.getString(i2));
         this.hintTextWidth = (int) this.editText.getPaint().measureText(LocaleController.getString(i2));
         this.editText.addTextChangedListener(new TextWatcher() {
             @Override

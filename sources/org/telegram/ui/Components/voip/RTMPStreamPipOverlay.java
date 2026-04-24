@@ -751,16 +751,17 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
                 } else {
                     VoIPService.getSharedInstance().addRemoteSink(groupCallParticipant3, this.boundPresentation, voIPTextureView.renderer, null);
                 }
-                MessagesController messagesController = VoIPService.getSharedInstance().groupCall.currentAccount.getMessagesController();
+                AccountInstance accountInstance = VoIPService.getSharedInstance().groupCall.currentAccount;
+                MessagesController messagesController = accountInstance.getMessagesController();
                 long peerId = MessageObject.getPeerId(groupCallParticipant3.peer);
                 if (peerId > 0) {
                     TLRPC.User user = messagesController.getUser(Long.valueOf(peerId));
-                    ImageLocation forUser = ImageLocation.getForUser(user, 1);
+                    ImageLocation forUser = ImageLocation.getForUser(accountInstance.getCurrentAccount(), user, 1);
                     int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                     this.avatarImageView.getImageReceiver().setImage(forUser, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)}), null, user, 0);
                 } else {
                     TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-peerId));
-                    ImageLocation forChat = ImageLocation.getForChat(chat, 1);
+                    ImageLocation forChat = ImageLocation.getForChat(accountInstance.getCurrentAccount(), chat, 1);
                     int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                     this.avatarImageView.getImageReceiver().setImage(forChat, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)}), null, chat, 0);
                 }

@@ -547,7 +547,8 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         this.editText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.editText.setCursorColor(Theme.getColor(Theme.key_groupcreate_cursor));
         this.editText.setCursorWidth(1.5f);
-        this.editText.setInputType(655536);
+        EditTextBoldCursor editTextBoldCursor2 = this.editText;
+        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 176);
         this.editText.setSingleLine(true);
         this.editText.setBackgroundDrawable(null);
         this.editText.setVerticalScrollBarEnabled(false);

@@ -2011,14 +2011,14 @@ public class TL_account {
         }
     }
 
-    public static class getWebPagePreview extends TLObject {
+    public static class getWebPagePreview extends TLMethod<webPagePreview> {
         public static final int constructor = 1460498287;
         public ArrayList<TLRPC.MessageEntity> entities = new ArrayList<>();
         public int flags;
         public String message;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public webPagePreview deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return webPagePreview.TLdeserialize(inputSerializedData, i, z);
         }
 

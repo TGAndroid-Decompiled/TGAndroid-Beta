@@ -6202,7 +6202,7 @@ public abstract class AlertsCreator {
                 break;
         }
         builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
-        baseFragment.showDialog(builder.create(), true, null);
+        builder.show();
     }
 
     public static void lambda$showAddUserAlert$183(BaseFragment baseFragment, AlertDialog alertDialog, int i) {

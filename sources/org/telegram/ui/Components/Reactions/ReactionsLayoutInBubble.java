@@ -766,6 +766,7 @@ public class ReactionsLayoutInBubble {
             if (this.textDrawable == null) {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
                 this.textDrawable = animatedTextDrawable;
+                animatedTextDrawable.ignoreRTL = true;
                 animatedTextDrawable.setAnimationProperties(0.4f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.textDrawable.setTextSize(AndroidUtilities.dp(13.0f));
                 this.textDrawable.setCallback(callback);

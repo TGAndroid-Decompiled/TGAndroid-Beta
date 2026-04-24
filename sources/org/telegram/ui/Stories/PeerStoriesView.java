@@ -56,6 +56,7 @@ import com.google.android.exoplayer2.util.Consumer;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -177,6 +178,8 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
+import org.telegram.ui.Components.chat.layouts.ButtonOnClickListener;
+import org.telegram.ui.Components.chat.layouts.ChatActivitySideControlsButtonsLayout;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.EmojiAnimationsOverlay;
@@ -370,6 +373,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     private int shiftDp;
     private final Runnable showTapToSoundHint;
     boolean showViewsProgress;
+    ChatActivitySideControlsButtonsLayout sideControlsButtonsLayout;
     private HintView2 soundTooltip;
     private ActionBarMenuSubItem speedItem;
     private ChooseSpeedLayout speedLayout;
@@ -1832,7 +1836,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() throws IOException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1842,7 +1846,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1954,7 +1958,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() throws IOException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1964,7 +1968,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -3384,6 +3388,17 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (isBotsPreview()) {
             this.chatActivityEnterView.setVisibility(8);
         }
+        ChatActivitySideControlsButtonsLayout chatActivitySideControlsButtonsLayout = new ChatActivitySideControlsButtonsLayout(getContext(), this.resourcesProvider, this.blurredBackgroundColorProvider, this.blurredBackgroundDrawableFactory);
+        this.sideControlsButtonsLayout = chatActivitySideControlsButtonsLayout;
+        chatActivitySideControlsButtonsLayout.setOnClickListener(new ButtonOnClickListener() {
+            @Override
+            public final void onClick(int i, View view) {
+                this.f$0.onSideControlButtonOnClick(i, view);
+            }
+        });
+        addView(this.sideControlsButtonsLayout, LayoutHelper.createFrame(57, 300, 85));
+        this.sideControlsButtonsLayout.setVisibility(8);
+        this.chatActivityEnterView.setSideButtonsForAttach(this.sideControlsButtonsLayout);
         this.reactionsContainerIndex = getChildCount();
     }
 
@@ -3938,6 +3953,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
+    public void onSideControlButtonOnClick(int i, View view) {
+        if (i == 0) {
+            openAttachMenu();
+        }
+    }
+
     public void createMentionsContainer() {
         MentionsContainerView mentionsContainerView = new MentionsContainerView(getContext(), this.dialogId, 0L, this.storyViewer.fragment, this.resourcesProvider) {
             @Override
@@ -4394,7 +4415,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() throws IOException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4404,7 +4425,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException {
+    public void lambda$openRepostStory$38(Activity activity) throws IOException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;

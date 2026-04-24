@@ -68,7 +68,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         return false;
     }
 
-    protected boolean canHighlightChildAt(View view, float f, float f2) {
+    public boolean canHighlightChildAt(View view, float f, float f2) {
         return true;
     }
 

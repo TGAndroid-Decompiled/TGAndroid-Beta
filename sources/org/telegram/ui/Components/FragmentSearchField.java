@@ -104,14 +104,14 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         this.editText = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 15.0f);
         editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setInputType(655536);
+        editTextBoldCursor.setInputType(editTextBoldCursor.getInputType() | 176);
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setBackground(null);
         editTextBoldCursor.setVerticalScrollBarEnabled(false);
         editTextBoldCursor.setHorizontalScrollBarEnabled(false);
         editTextBoldCursor.setPadding(AndroidUtilities.dp(48.0f), 0, AndroidUtilities.dp(48.0f), 0);
         editTextBoldCursor.setClipToPadding(true);
-        editTextBoldCursor.setImeOptions(268435462);
+        editTextBoldCursor.setImeOptions(268435459);
         editTextBoldCursor.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override

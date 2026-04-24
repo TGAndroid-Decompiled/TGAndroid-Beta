@@ -4204,13 +4204,13 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
     public static void prepareSendingAudioDocuments(final AccountInstance accountInstance, final ArrayList<MessageObject> arrayList, final CharSequence charSequence, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories.StoryItem storyItem, final boolean z, final int i, final int i2, final MessageObject messageObject3, final String str, final int i3, final long j2, final boolean z2, final long j3, final PollSendParams pollSendParams, final ArrayList<Integer> arrayList2, final boolean z3, final Runnable runnable) {
         new Thread(new Runnable() {
             @Override
-            public final void run() throws InterruptedException {
+            public final void run() throws InterruptedException, IOException {
                 SendMessagesHelper.lambda$prepareSendingAudioDocuments$104(pollSendParams, arrayList, j, accountInstance, charSequence, z3, arrayList2, messageObject3, messageObject, messageObject2, z, i, i2, storyItem, str, i3, j2, z2, j3, runnable);
             }
         }).start();
     }
 
-    public static void lambda$prepareSendingAudioDocuments$104(final org.telegram.ui.Components.poll.PollSendParams r36, java.util.ArrayList r37, final long r38, final org.telegram.messenger.AccountInstance r40, java.lang.CharSequence r41, boolean r42, java.util.ArrayList r43, final org.telegram.messenger.MessageObject r44, final org.telegram.messenger.MessageObject r45, final org.telegram.messenger.MessageObject r46, final boolean r47, final int r48, final int r49, final org.telegram.tgnet.tl.TL_stories.StoryItem r50, final java.lang.String r51, final int r52, final long r53, final boolean r55, final long r56, java.lang.Runnable r58) throws java.lang.InterruptedException {
+    public static void lambda$prepareSendingAudioDocuments$104(final org.telegram.ui.Components.poll.PollSendParams r37, java.util.ArrayList r38, final long r39, final org.telegram.messenger.AccountInstance r41, java.lang.CharSequence r42, boolean r43, java.util.ArrayList r44, final org.telegram.messenger.MessageObject r45, final org.telegram.messenger.MessageObject r46, final org.telegram.messenger.MessageObject r47, final boolean r48, final int r49, final int r50, final org.telegram.tgnet.tl.TL_stories.StoryItem r51, final java.lang.String r52, final int r53, final long r54, final boolean r56, final long r57, java.lang.Runnable r59) throws java.lang.InterruptedException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.lambda$prepareSendingAudioDocuments$104(org.telegram.ui.Components.poll.PollSendParams, java.util.ArrayList, long, org.telegram.messenger.AccountInstance, java.lang.CharSequence, boolean, java.util.ArrayList, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, boolean, int, int, org.telegram.tgnet.tl.TL_stories$StoryItem, java.lang.String, int, long, boolean, long, java.lang.Runnable):void");
     }
 

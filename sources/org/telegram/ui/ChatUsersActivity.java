@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -457,15 +456,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         } else if (i == 1 && ChatObject.isChannelAndNotMegaGroup(this.currentChat) && ChatObject.hasAdminRights(this.currentChat)) {
             this.doneItem = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
         }
-        FrameLayout frameLayout = new FrameLayout(context) {
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                canvas.drawColor(Theme.getColor(ChatUsersActivity.this.listView.getAdapter() == ChatUsersActivity.this.searchListViewAdapter ? Theme.key_windowBackgroundWhite : Theme.key_windowBackgroundGray));
-                super.dispatchDraw(canvas);
-            }
-        };
+        FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = new FrameLayout(context);
+        frameLayout.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
+        FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
+        FrameLayout frameLayout3 = new FrameLayout(context);
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
         flickerLoadingView.setViewType(6);
@@ -475,21 +470,21 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         int i4 = Theme.key_actionBarDefaultSubmenuBackground;
         int i5 = Theme.key_listSelector;
         flickerLoadingView2.setColors(i4, i5, i5);
-        frameLayout2.addView(this.flickerLoadingView);
+        frameLayout3.addView(this.flickerLoadingView);
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressBar = radialProgressView;
-        frameLayout2.addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));
+        frameLayout3.addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));
         this.flickerLoadingView.setVisibility(8);
         this.progressBar.setVisibility(8);
-        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, frameLayout2, 1);
+        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, frameLayout3, 1);
         this.emptyView = stickerEmptyView;
         stickerEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
         this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
         this.emptyView.setVisibility(8);
         this.emptyView.setAnimateLayoutChange(true);
         this.emptyView.showProgress(true, false);
-        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-        this.emptyView.addView(frameLayout2, 0);
+        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
+        this.emptyView.addView(frameLayout3, 0);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void invalidate() {
@@ -558,7 +553,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.listViewAdapter = listAdapter;
         recyclerListView3.setAdapter(listAdapter);
         this.listView.setVerticalScrollbarPosition(LocaleController.isRTL ? 1 : 2);
-        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.actionBar.setAdaptiveBackground(this.listView);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
@@ -598,7 +593,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
         UndoView undoView = new UndoView(context);
         this.undoView = undoView;
-        frameLayout.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
+        frameLayout2.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
         updateRows();
         this.listView.setEmptyView(this.emptyView);
         this.listView.setAnimateEmptyView(false, 0);
@@ -612,13 +607,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.lambda$createView$6(android.view.View, int, float, float):void");
     }
 
-    class AnonymousClass8 implements ChatUsersActivityDelegate {
+    class AnonymousClass7 implements ChatUsersActivityDelegate {
         @Override
         public void didKickParticipant(long j) {
             ChatUsersActivityDelegate.CC.$default$didKickParticipant(this, j);
         }
 
-        AnonymousClass8() {
+        AnonymousClass7() {
         }
 
         @Override
@@ -671,13 +666,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    class AnonymousClass9 implements GroupCreateActivity.ContactsAddActivityDelegate {
+    class AnonymousClass8 implements GroupCreateActivity.ContactsAddActivityDelegate {
         final GroupCreateActivity val$fragment;
 
         public static void lambda$didSelectUsers$1(TLRPC.User user) {
         }
 
-        AnonymousClass9(GroupCreateActivity groupCreateActivity) {
+        AnonymousClass8(GroupCreateActivity groupCreateActivity) {
             this.val$fragment = groupCreateActivity;
         }
 
@@ -694,7 +689,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatUsersActivity.AnonymousClass9.lambda$didSelectUsers$1((TLRPC.User) obj);
+                    ChatUsersActivity.AnonymousClass8.lambda$didSelectUsers$1((TLRPC.User) obj);
                 }
             }, null);
         }
@@ -796,12 +791,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    class AnonymousClass10 extends GigagroupConvertAlert {
+    class AnonymousClass9 extends GigagroupConvertAlert {
         @Override
         protected void onCancel() {
         }
 
-        AnonymousClass10(Context context, BaseFragment baseFragment) {
+        AnonymousClass9(Context context, BaseFragment baseFragment) {
             super(context, baseFragment);
         }
 

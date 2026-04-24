@@ -4249,7 +4249,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = stickerSet.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda7(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda8(delayedAction));
             Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i2), Boolean.TRUE);
@@ -4349,7 +4349,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = arrayList.get(i8).set.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda7(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda8(delayedAction));
         }
         Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
     }
@@ -9795,7 +9795,7 @@ public class MediaDataController extends BaseController {
             getInstance(this.currentAccount).getEmojiSuggestions(new String[]{str}, str2, true, new KeywordResultCallback() {
                 @Override
                 public final void run(ArrayList arrayList, String str3) {
-                    this.f$0.lambda$searchStickers$251(searchStickersKey, searchStickersResult, callback, arrayList, str3);
+                    this.f$0.lambda$searchStickers$250(searchStickersKey, searchStickersResult, callback, arrayList, str3);
                 }
             }, false);
         } else if (searchStickersResult != null) {
@@ -9806,7 +9806,7 @@ public class MediaDataController extends BaseController {
         return searchStickersKey;
     }
 
-    public void lambda$searchStickers$251(final SearchStickersKey searchStickersKey, final SearchStickersResult searchStickersResult, final Utilities.Callback callback, ArrayList arrayList, String str) {
+    public void lambda$searchStickers$250(final SearchStickersKey searchStickersKey, final SearchStickersResult searchStickersResult, final Utilities.Callback callback, ArrayList arrayList, String str) {
         if (this.loadingSearchStickersKeys.containsKey(searchStickersKey)) {
             StringBuilder sb = new StringBuilder();
             Iterator it = arrayList.iterator();
@@ -9823,33 +9823,24 @@ public class MediaDataController extends BaseController {
             }
             tL_messages_searchStickers.emoticon = sb.toString();
             tL_messages_searchStickers.q = searchStickersKey.q;
-            tL_messages_searchStickers.limit = 50;
+            tL_messages_searchStickers.limit = 100;
             tL_messages_searchStickers.offset = searchStickersResult == null ? 0 : searchStickersResult.next_offset.intValue();
-            this.loadingSearchStickersKeys.put(searchStickersKey, Integer.valueOf(getConnectionsManager().sendRequest(tL_messages_searchStickers, new RequestDelegate() {
+            this.loadingSearchStickersKeys.put(searchStickersKey, Integer.valueOf(getConnectionsManager().sendRequestTyped(tL_messages_searchStickers, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
                 @Override
-                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    this.f$0.lambda$searchStickers$250(searchStickersKey, searchStickersResult, callback, tLObject, tL_error);
+                public final void run(Object obj, Object obj2) {
+                    this.f$0.lambda$searchStickers$249(searchStickersKey, searchStickersResult, callback, (TLRPC.messages_FoundStickers) obj, (TLRPC.TL_error) obj2);
                 }
             })));
         }
     }
 
-    public void lambda$searchStickers$250(final SearchStickersKey searchStickersKey, final SearchStickersResult searchStickersResult, final Utilities.Callback callback, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$searchStickers$249(searchStickersKey, searchStickersResult, tLObject, callback);
-            }
-        });
-    }
-
-    public void lambda$searchStickers$249(SearchStickersKey searchStickersKey, SearchStickersResult searchStickersResult, TLObject tLObject, Utilities.Callback callback) {
+    public void lambda$searchStickers$249(SearchStickersKey searchStickersKey, SearchStickersResult searchStickersResult, Utilities.Callback callback, TLRPC.messages_FoundStickers messages_foundstickers, TLRPC.TL_error tL_error) {
         this.loadingSearchStickersKeys.remove(searchStickersKey);
         if (searchStickersResult == null) {
             searchStickersResult = new SearchStickersResult(null);
         }
-        if (tLObject instanceof TLRPC.TL_messages_foundStickers) {
-            searchStickersResult.apply((TLRPC.TL_messages_foundStickers) tLObject);
+        if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
+            searchStickersResult.apply((TLRPC.TL_messages_foundStickers) messages_foundstickers);
         }
         this.searchStickerResults.put(searchStickersKey, searchStickersResult);
         callback.run(searchStickersResult.documents);

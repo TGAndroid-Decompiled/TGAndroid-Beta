@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -1951,47 +1950,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         };
         this.provider = new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
-            public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i, boolean z, boolean z2) {
-                TLRPC.Chat chat;
-                TLRPC.ChatPhoto chatPhoto;
-                TLRPC.FileLocation fileLocation2;
-                TLRPC.User user;
-                TLRPC.UserProfilePhoto userProfilePhoto;
-                if (fileLocation == null) {
-                    return null;
-                }
-                if (ProfileActivity.this.avatarContainer.getScaleX() > 0.96f && z2) {
-                    return null;
-                }
-                if (ProfileActivity.this.userId == 0 ? ProfileActivity.this.chatId == 0 || (chat = ProfileActivity.this.getMessagesController().getChat(Long.valueOf(ProfileActivity.this.chatId))) == null || (chatPhoto = chat.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null : (user = ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId))) == null || (userProfilePhoto = user.photo) == null || (fileLocation2 = userProfilePhoto.photo_big) == null) {
-                    fileLocation2 = null;
-                }
-                if (fileLocation2 == null || fileLocation2.local_id != fileLocation.local_id || fileLocation2.volume_id != fileLocation.volume_id || fileLocation2.dc_id != fileLocation.dc_id) {
-                    return null;
-                }
-                int[] iArr = new int[2];
-                ProfileActivity.this.avatarImage.getLocationInWindow(iArr);
-                PhotoViewer.PlaceProviderObject placeProviderObject = new PhotoViewer.PlaceProviderObject();
-                placeProviderObject.viewX = iArr[0];
-                placeProviderObject.viewY = iArr[1];
-                placeProviderObject.parentView = ProfileActivity.this.avatarImage;
-                placeProviderObject.imageReceiver = ProfileActivity.this.avatarImage.getImageReceiver();
-                if (ProfileActivity.this.userId != 0) {
-                    placeProviderObject.dialogId = ProfileActivity.this.userId;
-                } else if (ProfileActivity.this.chatId != 0) {
-                    placeProviderObject.dialogId = -ProfileActivity.this.chatId;
-                }
-                ImageReceiver.BitmapHolder bitmapSafe = placeProviderObject.imageReceiver.getBitmapSafe();
-                placeProviderObject.thumb = bitmapSafe;
-                if (bitmapSafe == null) {
-                    return null;
-                }
-                placeProviderObject.size = -1L;
-                placeProviderObject.radius = ProfileActivity.this.avatarImage.getImageReceiver().getRoundRadius(true);
-                placeProviderObject.scale = ProfileActivity.this.avatarContainer.getScaleX();
-                placeProviderObject.canEdit = ProfileActivity.this.userId == ProfileActivity.this.getUserConfig().clientUserId;
-                placeProviderObject.fadeIn = ProfileActivity.this.avatarContainer.getScaleX() > 0.96f;
-                return placeProviderObject;
+            public org.telegram.ui.PhotoViewer.PlaceProviderObject getPlaceForPhoto(org.telegram.messenger.MessageObject r18, org.telegram.tgnet.TLRPC.FileLocation r19, int r20, boolean r21, boolean r22) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.AnonymousClass3.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
             }
 
             @Override
@@ -2541,6 +2501,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.applyBulletin = null;
             AndroidUtilities.runOnUIThread(runnable);
         }
+        Bulletin.removeDelegate(this);
     }
 
     @Override
@@ -2762,7 +2723,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException {
+                    public final void onClick(View view) {
                         this.f$0.lambda$createView$11(i8, view);
                     }
                 });
@@ -4738,7 +4699,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException {
+    public void lambda$createView$11(int i, View view) {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5108,7 +5069,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new AudioPlayerAlert(getContext(), getResourceProvider()));
     }
 
-    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws Resources.NotFoundException {
+    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(getParentActivity(), getCurrentAccount()).selectedPeerId(getDialogId()).open(null);
@@ -5188,7 +5149,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 alertDialog.showDelayed(200L);
                 MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(getDialogId(), new com.google.android.exoplayer2.util.Consumer() {
                     @Override
-                    public final void accept(Object obj) throws Resources.NotFoundException {
+                    public final void accept(Object obj) {
                         this.f$0.lambda$createView$13(alertDialog, (Boolean) obj);
                     }
                 }, true, this.resourcesProvider);
@@ -7057,6 +7018,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     private int getSmallAvatarRoundRadius() {
+        if (this.isTopic) {
+            return 0;
+        }
         if (this.chatId == 0 || !ChatObject.isForum(getMessagesController().getChat(Long.valueOf(this.chatId)))) {
             return AndroidUtilities.dp(50.0f);
         }
@@ -7470,7 +7434,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         openAvatar(false);
     }
 
-    public void openAvatar(boolean r5) {
+    public void openAvatar(boolean r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.openAvatar(boolean):void");
     }
 
@@ -10519,7 +10483,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void updateProfileData(boolean r29) {
+    public void updateProfileData(boolean r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateProfileData(boolean):void");
     }
 
@@ -11181,7 +11145,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
             if (closestPhotoSizeWithSize != null && this.avatar != null) {
                 FileLoader.getInstance(this.currentAccount).getPathToAttach(this.avatar, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(this.avatar.volume_id + "_" + this.avatar.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUserOrChat(user, 1), false);
+                ImageLoader.getInstance().replaceImageInCache(this.avatar.volume_id + "_" + this.avatar.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUserOrChat(this.currentAccount, user, 1), false);
             }
             if (closestVideoSizeWithSize != null && str != null) {
                 new File(str).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestVideoSizeWithSize, "mp4", true));

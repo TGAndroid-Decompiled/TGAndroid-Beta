@@ -150,7 +150,7 @@ public abstract class PhotoUtilities {
             TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tL_photos_photo.photo.sizes, 1000);
             if (closestPhotoSizeWithSize != null && photoSize != null && photoSize.location != null) {
                 FileLoader.getInstance(i).getPathToAttach(photoSize.location, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(photoSize.location.volume_id + "_" + photoSize.location.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(user, 1), false);
+                ImageLoader.getInstance().replaceImageInCache(photoSize.location.volume_id + "_" + photoSize.location.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(i, user, 1), false);
             }
             if (closestPhotoSizeWithSize2 != null && photoSize2 != null && photoSize2.location != null) {
                 FileLoader.getInstance(i).getPathToAttach(photoSize2.location, true).renameTo(FileLoader.getInstance(i).getPathToAttach(closestPhotoSizeWithSize2, true));
@@ -285,7 +285,7 @@ public abstract class PhotoUtilities {
             }
             if (closestPhotoSizeWithSize != null && fileLocationArr[0] != null) {
                 FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(fileLocationArr[0], true).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize, true));
-                ImageLoader.getInstance().replaceImageInCache(fileLocationArr[0].volume_id + "_" + fileLocationArr[0].local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUserOrChat(user, 1), false);
+                ImageLoader.getInstance().replaceImageInCache(fileLocationArr[0].volume_id + "_" + fileLocationArr[0].local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUserOrChat(chatActivity.getCurrentAccount(), user, 1), false);
             }
             if (closestVideoSizeWithSize != null && str != null) {
                 new File(str).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestVideoSizeWithSize, "mp4", true));

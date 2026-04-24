@@ -1063,8 +1063,8 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             this.importer = tL_chatInviteImporter;
             this.imageView = backupImageView;
             TLRPC.User user = MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUser(Long.valueOf(tL_chatInviteImporter.user_id));
-            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(user, 0);
-            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(user, 1);
+            ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(MemberRequestsDelegate.this.currentAccount, user, 0);
+            ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(MemberRequestsDelegate.this.currentAccount, user, 1);
             if (MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).getUserFull(tL_chatInviteImporter.user_id) == null) {
                 MessagesController.getInstance(MemberRequestsDelegate.this.currentAccount).loadUserInfo(user, false, 0);
             }

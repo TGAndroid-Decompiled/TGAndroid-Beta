@@ -651,6 +651,14 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         setCurrentItem(this.adapter.getExtraCount(), false);
     }
 
+    public void setCurrentRealPosition(int i, boolean z) {
+        ViewPagerAdapter viewPagerAdapter = this.adapter;
+        if (viewPagerAdapter == null) {
+            return;
+        }
+        setCurrentItem(i + viewPagerAdapter.getExtraCount(), z);
+    }
+
     public int getRealCount() {
         int size = this.photos.size();
         return this.hasActiveVideo ? size + 1 : size;

@@ -10061,7 +10061,7 @@ public class TLRPC {
         }
     }
 
-    public static class TL_messages_searchStickers extends TLObject {
+    public static class TL_messages_searchStickers extends TLMethod<messages_FoundStickers> {
         public static final int constructor = 699516522;
         public boolean emojis;
         public String emoticon;
@@ -10073,7 +10073,7 @@ public class TLRPC {
         public String q;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public messages_FoundStickers deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return messages_FoundStickers.TLdeserialize(inputSerializedData, i, z);
         }
 
@@ -37087,6 +37087,8 @@ public class TLRPC {
         public String first_name;
         public int flags;
         public int flags2;
+        public long fromMessageDialogId;
+        public int fromMessageId;
         public long id;
         public boolean inactive;
         public String lang_code;
@@ -59913,6 +59915,8 @@ public class TLRPC {
         public int flags2;
         public boolean forum;
         public boolean forum_tabs;
+        public long fromMessageDialogId;
+        public int fromMessageId;
         public boolean gigagroup;
         public boolean has_geo;
         public boolean has_link;

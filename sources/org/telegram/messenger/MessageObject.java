@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -141,6 +142,7 @@ public class MessageObject {
     public int animatedEmojiCount;
     public boolean attachPathExists;
     public double attributeDuration;
+    public Bitmap audioCover;
     public int audioPlayerDuration;
     public float audioProgress;
     public int audioProgressMs;

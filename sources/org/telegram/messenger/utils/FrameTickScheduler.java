@@ -32,7 +32,7 @@ public abstract class FrameTickScheduler {
         if (map.containsKey(runnable)) {
             return;
         }
-        map.put(runnable, new Sub(runnable, normN(i), normI(i2, i)));
+        map.put(runnable, new Sub(normN(i), normI(i2, i)));
         ensureRunning();
     }
 
@@ -43,11 +43,14 @@ public abstract class FrameTickScheduler {
 
     public static void doFrame(long j) {
         frameCounter++;
-        for (Sub sub : subs.values()) {
-            if (frameCounter % sub.n == sub.i) {
-                sub.action.run();
+        for (Map.Entry entry : subs.entrySet()) {
+            Runnable runnable = (Runnable) entry.getKey();
+            Sub sub = (Sub) entry.getValue();
+            if (runnable != null && frameCounter % sub.n == sub.i) {
+                runnable.run();
             }
         }
+        checkStop();
         if (running) {
             Choreographer.getInstance().postFrameCallback(callback);
         }
@@ -77,12 +80,10 @@ public abstract class FrameTickScheduler {
     }
 
     private static class Sub {
-        final Runnable action;
         final int i;
         final int n;
 
-        Sub(Runnable runnable, int i, int i2) {
-            this.action = runnable;
+        Sub(int i, int i2) {
             this.n = i;
             this.i = i2;
         }

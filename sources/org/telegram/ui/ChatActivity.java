@@ -425,6 +425,7 @@ import org.telegram.ui.bots.WebViewRequestProps;
 public class ChatActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, LocationActivity.LocationActivityDelegate, ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate, ChatActivityInterface, FloatingDebugProvider, InstantCameraView.Delegate, FactorAnimator.Target {
     private static int SKELETON_LIGHT_OVERLAY_ALPHA = 22;
     private static float SKELETON_SATURATION = 1.4f;
+    public static int lastStableId = 10;
     public static Pattern privateMsgUrlPattern;
     public static Pattern publicMsgUrlPattern;
     public static boolean scrolling;
@@ -678,6 +679,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private final ArrayList glassDrawablesPositionsMerged;
     private boolean glassSourcesInvalidated;
     private boolean globalIgnoreLayout;
+    private NotificationCenter.ObserversGroup globalObserversGroup;
     private ChatActionCell greetingsInfo;
     private ChatGreetingsView greetingsViewContainer;
     private ChatObject.Call groupCall;
@@ -803,6 +805,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private int nextScrollToMessageId;
     private HintView noSoundHintView;
     private ArrayList notPushedSponsoredMessages;
+    private NotificationCenter.ObserversGroup observersGroup;
     private Runnable onChatMessagesLoaded;
     private Runnable onHideFieldPanelRunnable;
     RecyclerListView.OnItemClickListenerExtended onItemClickListener;
@@ -1138,8 +1141,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean wasPaused;
     TextView webBotTitle;
     private final WindowInsetsStateHolder windowInsetsStateHolder;
-    private static final LongSparseArray chatMessageCellsCache = new LongSparseArray();
-    public static int lastStableId = 10;
     private static final int[] allowedNotificationsDuringChatListAnimations = {NotificationCenter.messagesRead, NotificationCenter.threadMessagesRead, NotificationCenter.monoForumMessagesRead, NotificationCenter.commentsRead, NotificationCenter.messagesReadEncrypted, NotificationCenter.messagesReadContent, NotificationCenter.didLoadPinnedMessages, NotificationCenter.newDraftReceived, NotificationCenter.updateMentionsCount, NotificationCenter.didUpdateConnectionState, NotificationCenter.updateDefaultSendAsPeer, NotificationCenter.closeChats, NotificationCenter.chatInfoCantLoad, NotificationCenter.userInfoDidLoad, NotificationCenter.pinnedInfoDidLoad, NotificationCenter.didSetNewWallpapper, NotificationCenter.savedMessagesDialogsUpdate, NotificationCenter.didApplyNewTheme, NotificationCenter.messageReceivedByServer2};
     private static boolean replacingChatActivity = false;
     private static final Rect clipBoundsRect = new Rect();
@@ -1249,7 +1250,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$58310(ChatActivity chatActivity) {
+    static int access$58110(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -2174,7 +2175,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (ChatActivity.this.editingMessageObject != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() {
                         this.f$0.lambda$onMessageEditEnd$2();
                     }
                 }, 30L);
@@ -2195,7 +2196,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.updateVisibleRows();
         }
 
-        public void lambda$onMessageEditEnd$2() throws Resources.NotFoundException {
+        public void lambda$onMessageEditEnd$2() {
             ChatActivity.this.hideFieldPanel(true);
         }
 
@@ -2713,7 +2714,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) throws Resources.NotFoundException {
+            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) {
                 if (i < 0 || i >= ChatActivity.this.botContextResults.size()) {
                     return;
                 }
@@ -3182,125 +3183,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         getNotificationCenter().removePostponeNotificationsCallback(this.postponeNotificationsWhileLoadingCallback);
         getMessagesController().setLastCreatedDialogId(this.dialog_id, this.chatMode == 1, false);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagesDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.loadingMessagesFailed);
-        getNotificationCenter().removeObserver(this, NotificationCenter.premiumFloodWaitReceived);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updatedChatRanks);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.invalidateMotionBackground);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateConnectionState);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateDefaultSendAsPeer);
-        getNotificationCenter().removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didReceiveNewMessages);
+        NotificationCenter.ObserversGroup observersGroup = this.observersGroup;
+        if (observersGroup != null) {
+            observersGroup.removeAllObservers();
+            this.observersGroup = null;
+        }
+        NotificationCenter.ObserversGroup observersGroup2 = this.globalObserversGroup;
+        if (observersGroup2 != null) {
+            observersGroup2.removeAllObservers();
+            this.globalObserversGroup = null;
+        }
         getNotificationCenter().removeObserver(this, NotificationCenter.closeChats);
-        getNotificationCenter().removeObserver(this, NotificationCenter.closeChatActivity);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagesRead);
-        getNotificationCenter().removeObserver(this, NotificationCenter.threadMessagesRead);
-        getNotificationCenter().removeObserver(this, NotificationCenter.monoForumMessagesRead);
-        getNotificationCenter().removeObserver(this, NotificationCenter.commentsRead);
-        getNotificationCenter().removeObserver(this, NotificationCenter.changeRepliesCounter);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagesDeleted);
-        getNotificationCenter().removeObserver(this, NotificationCenter.historyCleared);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messageReceivedByServer);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messageReceivedByAck);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messageSendError);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatInfoDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.groupRestrictionsUnlockedByBoosts);
-        getNotificationCenter().removeObserver(this, NotificationCenter.customStickerCreated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didLoadChatInviter);
-        getNotificationCenter().removeObserver(this, NotificationCenter.groupCallUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.encryptedChatUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagesReadEncrypted);
-        getNotificationCenter().removeObserver(this, NotificationCenter.removeAllMessagesFromDialog);
-        getNotificationCenter().removeObserver(this, NotificationCenter.contactsDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingDidReset);
-        getNotificationCenter().removeObserver(this, NotificationCenter.screenshotTook);
-        getNotificationCenter().removeObserver(this, NotificationCenter.blockedUsersDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didCreatedNewDeleteTask);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingDidStart);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingGoingToStop);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateMessageMedia);
-        getNotificationCenter().removeObserver(this, NotificationCenter.voiceTranscriptionUpdate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.animatedEmojiDocumentLoaded);
-        getNotificationCenter().removeObserver(this, NotificationCenter.replaceMessagesObjects);
-        getNotificationCenter().removeObserver(this, NotificationCenter.notificationsSettingsUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.replyMessagesDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didReceivedWebpages);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didReceivedWebpagesInUpdates);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagesReadContent);
-        getNotificationCenter().removeObserver(this, NotificationCenter.botInfoDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.botKeyboardDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatSearchResultsAvailable);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatSearchResultsLoading);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateMessagesViews);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatInfoCantLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didLoadPinnedMessages);
-        getNotificationCenter().removeObserver(this, NotificationCenter.peerSettingsDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.newDraftReceived);
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.pinnedInfoDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.topicsDidLoaded);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatWasBoostedByUser);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didApplyNewTheme);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.goingToPreviewTheme);
-        getNotificationCenter().removeObserver(this, NotificationCenter.channelRightsUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateMentionsCount);
-        getNotificationCenter().removeObserver(this, NotificationCenter.audioRecordTooShort);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didUpdatePollResults);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateReactions);
-        getNotificationCenter().removeObserver(this, NotificationCenter.savedReactionTagsUpdate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateAllMessages);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didUpdateExtendedMedia);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatOnlineCountDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.videoLoadingStateChanged);
-        getNotificationCenter().removeObserver(this, NotificationCenter.scheduledMessagesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.diceStickersDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
-        getNotificationCenter().removeObserver(this, NotificationCenter.chatAvailableReactionsUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didLoadSponsoredMessages);
-        getNotificationCenter().removeObserver(this, NotificationCenter.didLoadSendAsPeers);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogsUnreadReactionsCounterChanged);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogsUnreadPollVotesCounterChanged);
-        getNotificationCenter().removeObserver(this, NotificationCenter.groupStickersDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogTranslate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogIsTranslatable);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messageTranslated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messageTranslating);
-        getNotificationCenter().removeObserver(this, NotificationCenter.onReceivedChannelDifference);
-        getNotificationCenter().removeObserver(this, NotificationCenter.storiesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateTranscriptionLock);
-        getNotificationCenter().removeObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesDeleted);
-        getNotificationCenter().removeObserver(this, NotificationCenter.quickRepliesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.availableEffectsUpdate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.starReactionAnonymousUpdate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.factCheckLoaded);
-        getNotificationCenter().removeObserver(this, NotificationCenter.messagesFeeUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.starBalanceUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.botForumTopicDidCreate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.botForumDraftUpdate);
-        getNotificationCenter().removeObserver(this, NotificationCenter.botForumDraftDelete);
-        getNotificationCenter().removeObserver(this, NotificationCenter.joinedGroup);
-        if (this.chatMode == 6) {
-            getNotificationCenter().removeObserver(this, NotificationCenter.businessLinksUpdated);
-        }
-        if (this.chatMode == 7) {
-            getNotificationCenter().removeObserver(this, NotificationCenter.hashtagSearchUpdated);
-        }
         SearchTagsList searchTagsList = this.actionBarSearchTags;
         if (searchTagsList != null) {
             searchTagsList.detach();
         }
-        if (this.currentEncryptedChat != null) {
-            getNotificationCenter().removeObserver(this, NotificationCenter.didVerifyMessagesStickers);
-        }
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.needSetDayNightTheme);
         if (this.chatMode == 0 && AndroidUtilities.isTablet()) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openedChatChanged, Long.valueOf(this.dialog_id), Long.valueOf(getTopicId()), Boolean.TRUE);
         }
@@ -3490,7 +3387,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r64) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+    public android.view.View createView(final android.content.Context r55) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -5897,7 +5794,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(tL_document);
             AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws Resources.NotFoundException {
+                public final void run(Object obj) {
                     this.f$0.lambda$createView$36(tL_document, strFindAnimatedEmojiEmoticon, itemParent, sendAnimationData, (Long) obj);
                 }
             });
@@ -5936,7 +5833,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (this.chatMode == 1) {
                     AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z, int i3, int i4) throws Resources.NotFoundException {
+                        public final void didSelectDate(boolean z, int i3, int i4) {
                             this.f$0.lambda$createView$37(item, z, i3, i4);
                         }
                     }, this.themeDelegate);
@@ -5947,7 +5844,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, this.dialog_id, 1, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) throws Resources.NotFoundException {
+                        public final void run(Object obj) {
                             this.f$0.lambda$createView$38(item, (Long) obj);
                         }
                     });
@@ -5989,7 +5886,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) throws Resources.NotFoundException {
+                        public final void run(Object obj) {
                             this.f$0.lambda$createView$40(botInlineResult, (Long) obj);
                         }
                     });
@@ -6048,7 +5945,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$36(final TLRPC.TL_document tL_document, final String str, final Object obj, MessageObject.SendAnimationData sendAnimationData, Long l) throws Resources.NotFoundException {
+    public void lambda$createView$36(final TLRPC.TL_document tL_document, final String str, final Object obj, MessageObject.SendAnimationData sendAnimationData, Long l) {
         if (this.chatMode == 1) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
@@ -6068,13 +5965,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         SendMessagesHelper.getInstance(this.currentAccount).sendSticker(tL_document, str, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, this.replyingQuote, null, z, i, 0, false, obj, this.quickReplyShortcut, getQuickReplyId(), 0L, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
     }
 
-    public void lambda$createView$37(Object obj, boolean z, int i, int i2) throws Resources.NotFoundException {
+    public void lambda$createView$37(Object obj, boolean z, int i, int i2) {
         getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of((String) obj, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, false, null, null, null, z, i, 0, null, false));
         this.chatActivityEnterView.setFieldText("");
         hideFieldPanel(false);
     }
 
-    public void lambda$createView$38(Object obj, Long l) throws Resources.NotFoundException {
+    public void lambda$createView$38(Object obj, Long l) {
         SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of((String) obj, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, false, null, null, null, true, 0, 0, null, false);
         sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
         sendMessageParamsOf.quick_reply_shortcut_id = getQuickReplyId();
@@ -6086,11 +5983,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         hideFieldPanel(false);
     }
 
-    public void lambda$createView$40(final TLRPC.BotInlineResult botInlineResult, final Long l) throws Resources.NotFoundException {
+    public void lambda$createView$40(final TLRPC.BotInlineResult botInlineResult, final Long l) {
         if (this.chatMode == 1) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
+                public final void didSelectDate(boolean z, int i, int i2) {
                     this.f$0.lambda$createView$39(botInlineResult, l, z, i, i2);
                 }
             }, this.themeDelegate);
@@ -6099,7 +5996,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$39(TLRPC.BotInlineResult botInlineResult, Long l, boolean z, int i, int i2) throws Resources.NotFoundException {
+    public void lambda$createView$39(TLRPC.BotInlineResult botInlineResult, Long l, boolean z, int i, int i2) {
         sendBotInlineResult(botInlineResult, z, i, l.longValue());
     }
 
@@ -7899,9 +7796,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (num.intValue() == getTopicId()) {
             return;
         }
-        if (num.intValue() == 0) {
-            this.hasSendingMessagesInBotForum = false;
-        }
+        this.hasSendingMessagesInBotForum = false;
         TLRPC.TL_forumTopic topic = this.topicsTabs.getTopic(num.intValue());
         TLRPC.Message message = topic == null ? null : topic.topicStartMessage;
         if (message == null && topic != null && (tL_forumTopicFindTopic = getMessagesController().getTopicsController().findTopic(-getDialogId(), topic.id)) != null) {
@@ -7948,7 +7843,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             ChatActivityAdapter chatActivityAdapter = this.chatAdapter;
             if (chatActivityAdapter != null) {
-                chatActivityAdapter.updateRowsSafe();
+                if (chatActivityAdapter.botForumStartThreadRow >= 0 && !this.chatAdapter.needBotForumInfoRow()) {
+                    ChatActivityAdapter chatActivityAdapter2 = this.chatAdapter;
+                    chatActivityAdapter2.notifyItemRemoved(chatActivityAdapter2.botForumStartThreadRow);
+                } else if (this.chatAdapter.botForumStartThreadRow < 0 && this.chatAdapter.needBotForumInfoRow()) {
+                    this.chatAdapter.notifyItemInserted(0);
+                }
+                this.chatAdapter.updateRowsSafe();
             }
             firstLoadMessages();
             updateTitle(true);
@@ -10179,6 +10080,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.contentView.removeView(this.videoPlayerContainer);
     }
 
+    public boolean hasSelectedMessages() {
+        return this.selectedMessagesIds[0].size() > 0 || this.selectedMessagesIds[1].size() > 0;
+    }
+
     private boolean hasSelectedNoforwardsMessage() {
         TLRPC.Message message;
         for (int i = 0; i < this.selectedMessagesIds.length; i++) {
@@ -10406,7 +10311,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i, long j) throws Resources.NotFoundException {
+    public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i, long j) {
         MentionsContainerView mentionsContainerView = this.mentionContainer;
         if (mentionsContainerView == null) {
             return;
@@ -11086,7 +10991,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         builder.setPositiveButton(LocaleController.getString(R.string.ShareContact), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i3) throws Resources.NotFoundException {
+            public final void onClick(AlertDialog alertDialog, int i3) {
                 this.f$0.lambda$shareMyContact$125(i, messageObject, alertDialog, i3);
             }
         });
@@ -11094,7 +10999,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(builder.create());
     }
 
-    public void lambda$shareMyContact$125(int i, MessageObject messageObject, AlertDialog alertDialog, int i2) throws Resources.NotFoundException {
+    public void lambda$shareMyContact$125(int i, MessageObject messageObject, AlertDialog alertDialog, int i2) {
         if (i == 1) {
             TLRPC.TL_contacts_acceptContact tL_contacts_acceptContact = new TLRPC.TL_contacts_acceptContact();
             tL_contacts_acceptContact.id = getMessagesController().getInputUser(this.currentUser);
@@ -12588,14 +12493,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (iSendMessage != 0) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() {
                     this.f$0.lambda$forwardMessages$144();
                 }
             });
         }
     }
 
-    public void lambda$forwardMessages$144() throws Resources.NotFoundException {
+    public void lambda$forwardMessages$144() {
         this.waitingForSendingMessageLoad = false;
         hideFieldPanel(true);
     }
@@ -12888,7 +12793,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void hideFieldPanel(boolean z) throws Resources.NotFoundException {
+    public void hideFieldPanel(boolean z) {
         showFieldPanel(false, null, null, null, null, true, 0, null, false, 0L, z);
     }
 
@@ -12900,7 +12805,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showFieldPanel(z, null, null, null, webPage, true, 0, null, z2, 0L, true);
     }
 
-    public void showFieldPanelForForward(boolean z, ArrayList arrayList) {
+    public void showFieldPanelForForward(boolean z, ArrayList arrayList) throws Resources.NotFoundException {
         showFieldPanel(z, null, null, arrayList, null, true, 0, null, false, 0L, true);
     }
 
@@ -15066,11 +14971,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void sendUriAsDocument(Uri uri) throws Resources.NotFoundException {
+    private void sendUriAsDocument(Uri uri) {
         sendUriAsDocument(uri, true, 0);
     }
 
-    private void sendUriAsDocument(android.net.Uri r29, boolean r30, int r31) throws android.content.res.Resources.NotFoundException {
+    private void sendUriAsDocument(android.net.Uri r29, boolean r30, int r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.sendUriAsDocument(android.net.Uri, boolean, int):void");
     }
 
@@ -15531,7 +15436,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+            public final void onClick(AlertDialog alertDialog, int i) {
                 this.f$0.lambda$showQuoteMessageUpdate$192(alertDialog, i);
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -15550,7 +15455,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openForwardingPreview(0);
     }
 
-    public void lambda$showQuoteMessageUpdate$192(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+    public void lambda$showQuoteMessageUpdate$192(AlertDialog alertDialog, int i) {
         hideFieldPanel(true);
     }
 
@@ -17661,10 +17566,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$updatePinnedMessageView$222(String str, View view) {
-        String str2 = Uri.parse(str).getPathSegments().get(r4.getPathSegments().size() - 1);
-        TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
-        tL_inputGroupCallSlug.slug = str2;
-        VoIPHelper.joinConference(getParentActivity(), this.currentAccount, tL_inputGroupCallSlug, false, null);
+        GroupCallSheet.show(getContext(), this.currentAccount, 0L, Uri.parse(str).getPathSegments().get(r7.getPathSegments().size() - 1), (Browser.Progress) null);
     }
 
     private class TrackingWidthSimpleTextView extends SimpleTextView {
@@ -23000,21 +22902,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public void checkRemoveBotForumRowsStartThreadRow(boolean z) {
-            boolean z2 = false;
             if (UserObject.isBotForum(ChatActivity.this.currentUser)) {
-                ChatActivity.this.hasSendingMessagesInBotForum = z;
-                int i = this.botInfoRow;
-                if (i >= 0) {
-                    super.notifyItemRemoved(i);
-                    z2 = true;
+                if (z) {
+                    ChatActivity.this.hasSendingMessagesInBotForum = true;
                 }
-                int i2 = this.botForumStartThreadRow;
-                if (i2 >= 0) {
-                    super.notifyItemRemoved(i2);
-                    z2 = true;
+                if (this.botForumStartThreadRow < 0 || needBotForumInfoRow()) {
+                    return;
                 }
-            }
-            if (z2) {
+                super.notifyItemRemoved(this.botForumStartThreadRow);
                 updateRowsInternal();
             }
         }
@@ -23036,6 +22931,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             notifyDataSetChanged(false);
+        }
+
+        public boolean needBotForumInfoRow() {
+            return UserObject.isBotForumWithEditableTopics(ChatActivity.this.currentUser) && ChatActivity.this.getTopicId() == 0 && !ChatActivity.this.hasSendingMessagesInBotForum && ChatActivity.this.chatMode == 0;
         }
 
         public void updateRowsInternal() {
@@ -23099,29 +22998,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View chatMessageCell;
             boolean z = true;
             View chatActionCell = null;
             boolean z2 = false;
             if (i == 0) {
-                ArrayList arrayList = (ArrayList) ChatActivity.chatMessageCellsCache.get(((BaseFragment) ChatActivity.this).currentAccount);
-                if (arrayList == null || arrayList.isEmpty()) {
-                    Context context = this.mContext;
-                    int i2 = ((BaseFragment) ChatActivity.this).currentAccount;
-                    ChatActivity chatActivity = ChatActivity.this;
-                    chatMessageCell = new ChatMessageCell(context, i2, true, chatActivity.sharedResources, chatActivity.themeDelegate);
-                } else {
-                    View view = (View) arrayList.get(0);
-                    arrayList.remove(0);
-                    chatMessageCell = view;
-                }
-                ChatMessageCell chatMessageCell2 = (ChatMessageCell) chatMessageCell;
-                chatMessageCell2.setResourcesProvider(ChatActivity.this.themeDelegate);
-                chatMessageCell2.shouldCheckVisibleOnScreen = false;
-                chatMessageCell2.setDelegate(new ChatMessageCellDelegate());
-                chatMessageCell2.draftAnimationsPool = ChatActivity.this.botDraftAnimationsPool;
+                Context context = this.mContext;
+                int i2 = ((BaseFragment) ChatActivity.this).currentAccount;
+                ChatActivity chatActivity = ChatActivity.this;
+                ChatMessageCell chatMessageCell = new ChatMessageCell(context, i2, true, chatActivity.sharedResources, chatActivity.themeDelegate);
+                chatMessageCell.setResourcesProvider(ChatActivity.this.themeDelegate);
+                chatMessageCell.shouldCheckVisibleOnScreen = false;
+                chatMessageCell.setDelegate(new ChatMessageCellDelegate());
+                chatMessageCell.draftAnimationsPool = ChatActivity.this.botDraftAnimationsPool;
                 if (ChatActivity.this.currentEncryptedChat == null) {
-                    chatMessageCell2.setAllowAssistant(true);
+                    chatMessageCell.setAllowAssistant(true);
                 }
                 chatActionCell = chatMessageCell;
             } else if (i == 1) {
@@ -23146,7 +23036,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 };
                 botHelpCell.setDelegate(new BotHelpCell.BotHelpCellDelegate() {
                     @Override
-                    public final void didPressUrl(String str) throws Resources.NotFoundException {
+                    public final void didPressUrl(String str) {
                         this.f$0.lambda$onCreateViewHolder$0(str);
                     }
                 });
@@ -23578,7 +23468,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$onCreateViewHolder$0(String str) throws Resources.NotFoundException {
+        public void lambda$onCreateViewHolder$0(String str) {
             if (str.startsWith("@")) {
                 ChatActivity.this.getMessagesController().openByUserName(str.substring(1), ChatActivity.this, 0);
                 return;
@@ -27920,17 +27810,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public void recycleView(View view) {
             if (view instanceof ChatMessageCell) {
-                ChatMessageCell chatMessageCell = (ChatMessageCell) view;
-                chatMessageCell.setDelegate(null);
-                ArrayList arrayList = (ArrayList) ChatActivity.chatMessageCellsCache.get(((BaseFragment) ChatActivity.this).currentAccount);
-                if (arrayList == null) {
-                    LongSparseArray longSparseArray = ChatActivity.chatMessageCellsCache;
-                    long j = ((BaseFragment) ChatActivity.this).currentAccount;
-                    ArrayList arrayList2 = new ArrayList();
-                    longSparseArray.put(j, arrayList2);
-                    arrayList = arrayList2;
-                }
-                arrayList.add(chatMessageCell);
+                ((ChatMessageCell) view).setDelegate(null);
             }
         }
     }

@@ -231,6 +231,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     private long mergeDialogId;
     SparseArray messageAlphaEnter;
     AnimationNotificationsLocker notificationsLocker;
+    private final NotificationCenter.ObserversGroup observersGroup;
     private float optionsAlpha;
     private RLottieImageView optionsSearchImageView;
     private int pagesPaddingBottom;
@@ -893,6 +894,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         public boolean hasSavedMessages;
         private boolean mediaWasLoaded;
         private long mergeDialogId;
+        private final NotificationCenter.ObserversGroup observersGroup;
         private BaseFragment parentFragment;
         private SharedMediaData[] sharedMediaData;
         private long topicId;
@@ -987,20 +989,10 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             loadMediaCounts();
             BaseFragment baseFragment2 = this.parentFragment;
             if (baseFragment2 == null) {
-                return;
+                this.observersGroup = null;
+            } else {
+                this.observersGroup = baseFragment2.getNotificationCenter().createObserversGroup(this).add(NotificationCenter.mediaCountsDidLoad).add(NotificationCenter.mediaCountDidLoad).add(NotificationCenter.didReceiveNewMessages).add(NotificationCenter.messageReceivedByServer).add(NotificationCenter.mediaDidLoad).add(NotificationCenter.messagesDeleted).add(NotificationCenter.replaceMessagesObjects).add(NotificationCenter.chatInfoDidLoad).add(NotificationCenter.fileLoaded).add(NotificationCenter.storiesListUpdated).add(NotificationCenter.savedMessagesDialogsUpdate);
             }
-            NotificationCenter notificationCenter = baseFragment2.getNotificationCenter();
-            notificationCenter.addObserver(this, NotificationCenter.mediaCountsDidLoad);
-            notificationCenter.addObserver(this, NotificationCenter.mediaCountDidLoad);
-            notificationCenter.addObserver(this, NotificationCenter.didReceiveNewMessages);
-            notificationCenter.addObserver(this, NotificationCenter.messageReceivedByServer);
-            notificationCenter.addObserver(this, NotificationCenter.mediaDidLoad);
-            notificationCenter.addObserver(this, NotificationCenter.messagesDeleted);
-            notificationCenter.addObserver(this, NotificationCenter.replaceMessagesObjects);
-            notificationCenter.addObserver(this, NotificationCenter.chatInfoDidLoad);
-            notificationCenter.addObserver(this, NotificationCenter.fileLoaded);
-            notificationCenter.addObserver(this, NotificationCenter.storiesListUpdated);
-            notificationCenter.addObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
         }
 
         public void lambda$new$0(Boolean bool) {
@@ -1040,22 +1032,10 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 return;
             }
             this.delegates.clear();
-            BaseFragment baseFragment2 = this.parentFragment;
-            if (baseFragment2 == null) {
-                return;
+            NotificationCenter.ObserversGroup observersGroup = this.observersGroup;
+            if (observersGroup != null) {
+                observersGroup.removeAllObservers();
             }
-            NotificationCenter notificationCenter = baseFragment2.getNotificationCenter();
-            notificationCenter.removeObserver(this, NotificationCenter.mediaCountsDidLoad);
-            notificationCenter.removeObserver(this, NotificationCenter.mediaCountDidLoad);
-            notificationCenter.removeObserver(this, NotificationCenter.didReceiveNewMessages);
-            notificationCenter.removeObserver(this, NotificationCenter.messageReceivedByServer);
-            notificationCenter.removeObserver(this, NotificationCenter.mediaDidLoad);
-            notificationCenter.removeObserver(this, NotificationCenter.messagesDeleted);
-            notificationCenter.removeObserver(this, NotificationCenter.replaceMessagesObjects);
-            notificationCenter.removeObserver(this, NotificationCenter.chatInfoDidLoad);
-            notificationCenter.removeObserver(this, NotificationCenter.fileLoaded);
-            notificationCenter.removeObserver(this, NotificationCenter.storiesListUpdated);
-            notificationCenter.removeObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
         }
 
         public int[] getLastMediaCount() {
@@ -1538,7 +1518,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             if (closestTab == 13 && user != null && user.bot && user.bot_has_main_app && user.bot_can_edit && SharedMediaLayout.this.botPreviewsContainer != null) {
                 ItemOptions.makeOptions(SharedMediaLayout.this.profileActivity, SharedMediaLayout.this.photoVideoOptionsItem).addIf(SharedMediaLayout.this.botPreviewsContainer.getItemsCount() < SharedMediaLayout.this.profileActivity.getMessagesController().botPreviewMediasMax, R.drawable.msg_addbot, LocaleController.getString(R.string.ProfileBotAddPreview), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() {
                         this.f$0.lambda$onClick$4();
                     }
                 }).addIf(SharedMediaLayout.this.botPreviewsContainer.getItemsCount() > 1 && !SharedMediaLayout.this.botPreviewsContainer.isSelectedAll(), R.drawable.tabs_reorder, LocaleController.getString(R.string.ProfileBotReorder), new Runnable() {
@@ -1718,7 +1698,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             giftsList.invalidate(true);
         }
 
-        public void lambda$onClick$4() throws Resources.NotFoundException {
+        public void lambda$onClick$4() {
             StoryRecorder.getInstance(SharedMediaLayout.this.profileActivity.getParentActivity(), SharedMediaLayout.this.profileActivity.getCurrentAccount()).openBot(SharedMediaLayout.this.dialog_id, SharedMediaLayout.this.botPreviewsContainer.getCurrentLang(), null);
         }
 
@@ -3864,21 +3844,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
     }
 
     public void onDestroy() {
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.mediaDidLoad);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.didReceiveNewMessages);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagesDeleted);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messageReceivedByServer);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingDidReset);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingDidStart);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesListUpdated);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesUpdated);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.channelRecommendationsLoaded);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.savedMessagesDialogsUpdate);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.dialogsNeedReload);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.updatedChatRanks);
-        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.didUpdatePollResults);
+        this.observersGroup.removeAllObservers();
         SearchTagsList searchTagsList = this.searchTagsList;
         if (searchTagsList != null) {
             searchTagsList.detach();
@@ -4385,7 +4351,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.cantDeleteMessagesCount = 0;
     }
 
-    public boolean lambda$onActionBarItemClick$47(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public boolean lambda$onActionBarItemClick$47(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i3 = 1;
         while (true) {
@@ -5506,7 +5472,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.switchToCurrentSelectedMode(boolean):void");
     }
 
-    public void lambda$switchToCurrentSelectedMode$50(boolean z, int i, View view) throws Resources.NotFoundException {
+    public void lambda$switchToCurrentSelectedMode$50(boolean z, int i, View view) {
         if (z) {
             openAddStoriesToAlbumSheet(this.profileActivity, this.dialog_id, i);
         } else {
@@ -5515,7 +5481,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$switchToCurrentSelectedMode$51(View view) throws Resources.NotFoundException {
+    public void lambda$switchToCurrentSelectedMode$51(View view) {
         this.profileActivity.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
         StoryRecorder.getInstance(this.profileActivity.getParentActivity(), this.profileActivity.getCurrentAccount()).open(null);
     }

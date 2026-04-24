@@ -2258,7 +2258,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             hwFrameLayout.enableHwAcceleration();
         }
         this.openCloseAnimator.addListener(new AnonymousClass10());
-        this.openCloseAnimator.setDuration(400L);
+        this.openCloseAnimator.setDuration(320L);
         this.openCloseAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.openCloseAnimator.start();
     }
@@ -2300,6 +2300,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = StoryViewer.this.currentPlayerScope;
             if (videoPlayerSharedScope != null) {
                 videoPlayerSharedScope.invalidate();
+            }
+            if (StoryViewer.this.surfaceView != null) {
+                StoryViewer.this.surfaceView.setVisibility(4);
             }
             StoryViewer.this.release();
             try {
@@ -2391,7 +2394,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1290getWindowView() {
+    public View mo1288getWindowView() {
         return this.windowView;
     }
 

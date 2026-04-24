@@ -4788,6 +4788,22 @@ public class StoriesController {
         return UserConfig.getInstance(this.currentAccount).getClientUserId() == j || canEditStories(j);
     }
 
+    public boolean canPostStories(TLRPC.Chat chat) {
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        if (chat == null || !ChatObject.isBoostSupported(chat)) {
+            return false;
+        }
+        return chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.post_stories);
+    }
+
+    public boolean canEditStories(TLRPC.Chat chat) {
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        if (chat == null || !ChatObject.isBoostSupported(chat)) {
+            return false;
+        }
+        return chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && tL_chatAdminRights.edit_stories);
+    }
+
     public boolean canPostStories(long j) {
         TLRPC.User user;
         if (j >= 0) {

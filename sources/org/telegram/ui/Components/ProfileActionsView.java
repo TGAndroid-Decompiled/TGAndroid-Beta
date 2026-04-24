@@ -700,6 +700,7 @@ public abstract class ProfileActionsView extends View {
             } else {
                 insertIfAvailable(arrayList, 10);
                 insertIfNotAvailable(arrayList, 11, 10);
+                insertIfAvailable(arrayList, 12);
                 insertIfAvailable(arrayList, 9);
             }
         } else if (i == 5) {

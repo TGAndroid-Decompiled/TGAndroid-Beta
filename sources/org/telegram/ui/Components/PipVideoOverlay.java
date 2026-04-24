@@ -13,12 +13,9 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
-import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.os.Build;
 import android.util.Property;
@@ -28,7 +25,6 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -48,6 +44,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
 import org.telegram.messenger.pip.utils.PipUtils;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
@@ -124,21 +121,21 @@ public class PipVideoOverlay implements IPipSourceDelegate {
     private float minScaleFactor = 0.75f;
     private float maxScaleFactor = 1.4f;
     private float scaleFactor = 1.0f;
-    private VideoForwardDrawable videoForwardDrawable = new VideoForwardDrawable(false);
-    private Runnable progressRunnable = new Runnable() {
+    private final VideoForwardDrawable videoForwardDrawable = new VideoForwardDrawable(false);
+    private final Runnable progressRunnable = new Runnable() {
         @Override
         public final void run() {
             this.f$0.lambda$new$4();
         }
     };
     private float[] longClickStartPoint = new float[2];
-    private Runnable longClickCallback = new Runnable() {
+    private final Runnable longClickCallback = new Runnable() {
         @Override
         public final void run() {
             this.f$0.onLongClick();
         }
     };
-    private Runnable dismissControlsCallback = new Runnable() {
+    private final Runnable dismissControlsCallback = new Runnable() {
         @Override
         public final void run() {
             this.f$0.lambda$new$5();
@@ -565,10 +562,12 @@ public class PipVideoOverlay implements IPipSourceDelegate {
 
     public static void setBufferedProgress(float f) {
         PipVideoOverlay pipVideoOverlay = instance;
-        pipVideoOverlay.bufferProgress = f;
-        VideoProgressView videoProgressView = pipVideoOverlay.videoProgressView;
-        if (videoProgressView != null) {
-            videoProgressView.invalidate();
+        if (f > pipVideoOverlay.bufferProgress) {
+            pipVideoOverlay.bufferProgress = f;
+            VideoProgressView videoProgressView = pipVideoOverlay.videoProgressView;
+            if (videoProgressView != null) {
+                videoProgressView.invalidate();
+            }
         }
     }
 
@@ -676,15 +675,12 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new AnonymousClass3());
         this.scaleGestureDetector = scaleGestureDetector;
-        int i3 = Build.VERSION.SDK_INT;
         scaleGestureDetector.setQuickScaleEnabled(false);
-        if (i3 >= 23) {
+        if (Build.VERSION.SDK_INT >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
         this.gestureDetector = new GestureDetectorFixDoubleTap(context, new AnonymousClass4(scaledTouchSlop));
         this.contentFrameLayout = new FrameLayout(context) {
-            private Path path = new Path();
-
             @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 int actionMasked = motionEvent.getActionMasked();
@@ -762,30 +758,16 @@ public class PipVideoOverlay implements IPipSourceDelegate {
                 ((SpringAnimation) PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY)).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.dp(16.0f)));
                 PipVideoOverlay.this.pipYSpring.start();
             }
-
-            @Override
-            public void draw(Canvas canvas) {
-                super.draw(canvas);
-            }
-
-            @Override
-            protected void onSizeChanged(int i4, int i5, int i6, int i7) {
-                super.onSizeChanged(i4, i5, i6, i7);
-                this.path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, i4, i5);
-                this.path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
-            }
         };
         PipVideoViewGroup pipVideoViewGroup = new PipVideoViewGroup(context) {
             @Override
-            protected void onLayout(boolean z4, int i4, int i5, int i6, int i7) {
+            protected void onLayout(boolean z4, int i3, int i4, int i5, int i6) {
                 PipVideoOverlay.this.contentFrameLayout.layout(0, 0, PipVideoOverlay.this.pipWidth, PipVideoOverlay.this.pipHeight);
             }
 
             @Override
-            protected void onMeasure(int i4, int i5) {
-                setMeasuredDimension(View.MeasureSpec.getSize(i4), View.MeasureSpec.getSize(i5));
+            protected void onMeasure(int i3, int i4) {
+                setMeasuredDimension(View.MeasureSpec.getSize(i3), View.MeasureSpec.getSize(i4));
                 PipVideoOverlay.this.contentFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(PipVideoOverlay.this.pipWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(PipVideoOverlay.this.pipHeight, 1073741824));
             }
 
@@ -802,12 +784,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         };
         this.contentView = pipVideoViewGroup;
         pipVideoViewGroup.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
-        this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view2, Outline outline) {
-                outline.setRoundRect(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
-            }
-        });
+        this.contentFrameLayout.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(10.0f)));
         this.contentFrameLayout.setClipToOutline(true);
         this.contentFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_actionBar));
         this.innerView = view;
@@ -870,12 +847,12 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         int iDp = AndroidUtilities.dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
-        int i4 = Theme.key_voipgroup_actionBarItems;
-        int color = Theme.getColor(i4);
+        int i3 = Theme.key_voipgroup_actionBarItems;
+        int color = Theme.getColor(i3);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(color, mode);
-        int i5 = Theme.key_listSelector;
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i5)));
+        int i4 = Theme.key_listSelector;
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
         imageView.setPadding(iDp, iDp, iDp, iDp);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -888,8 +865,8 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.pip_video_expand);
-        imageView2.setColorFilter(Theme.getColor(i4), mode);
-        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i5)));
+        imageView2.setColorFilter(Theme.getColor(i3), mode);
+        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
         imageView2.setPadding(iDp, iDp, iDp, iDp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -900,8 +877,8 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.playPauseButton = imageView3;
-        imageView3.setColorFilter(Theme.getColor(i4), mode);
-        this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(i5)));
+        imageView3.setColorFilter(Theme.getColor(i3), mode);
+        this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(i4)));
         this.playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view4) {
@@ -920,15 +897,15 @@ public class PipVideoOverlay implements IPipSourceDelegate {
         this.windowManager = (WindowManager) (z3 ? activity : ApplicationLoader.applicationContext).getSystemService("window");
         WindowManager.LayoutParams layoutParamsCreateWindowLayoutParams = PipUtils.createWindowLayoutParams(context, z3);
         this.windowLayoutParams = layoutParamsCreateWindowLayoutParams;
-        int i6 = this.pipWidth;
-        layoutParamsCreateWindowLayoutParams.width = i6;
+        int i5 = this.pipWidth;
+        layoutParamsCreateWindowLayoutParams.width = i5;
         layoutParamsCreateWindowLayoutParams.height = this.pipHeight;
         if (pipX != -1.0f) {
-            float fDp = pipX + (i6 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - i6) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            float fDp = pipX + (i5 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (r6 - i5) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
             this.pipX = fDp;
             layoutParamsCreateWindowLayoutParams.x = (int) fDp;
         } else {
-            float fDp2 = (AndroidUtilities.displaySize.x - i6) - AndroidUtilities.dp(16.0f);
+            float fDp2 = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.dp(16.0f);
             this.pipX = fDp2;
             layoutParamsCreateWindowLayoutParams.x = (int) fDp2;
         }
@@ -1224,7 +1201,6 @@ public class PipVideoOverlay implements IPipSourceDelegate {
             z2 = false;
         }
         if (!z && (!z2 || !LaunchActivity.isResumed)) {
-            Objects.requireNonNull(view);
             LaunchActivity.onResumeStaticCallback = new EmbedBottomSheet$$ExternalSyntheticLambda6(view);
             Context context = ApplicationLoader.applicationContext;
             Intent intent = new Intent(context, (Class<?>) LaunchActivity.class);
@@ -1270,26 +1246,26 @@ public class PipVideoOverlay implements IPipSourceDelegate {
     }
 
     private final class VideoProgressView extends View {
-        private Paint bufferPaint;
-        private Paint progressPaint;
+        private final Paint bufferPaint;
+        private final Paint progressPaint;
 
         public VideoProgressView(Context context) {
             super(context);
-            this.progressPaint = new Paint();
-            this.bufferPaint = new Paint();
-            this.progressPaint.setColor(-1);
-            Paint paint = this.progressPaint;
+            Paint paint = new Paint();
+            this.progressPaint = paint;
+            Paint paint2 = new Paint();
+            this.bufferPaint = paint2;
+            paint.setColor(-1);
             Paint.Style style = Paint.Style.STROKE;
             paint.setStyle(style);
-            Paint paint2 = this.progressPaint;
             Paint.Cap cap = Paint.Cap.ROUND;
+            paint.setStrokeCap(cap);
+            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            paint2.setColor(paint.getColor());
+            paint2.setAlpha((int) (paint.getAlpha() * 0.3f));
+            paint2.setStyle(style);
             paint2.setStrokeCap(cap);
-            this.progressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            this.bufferPaint.setColor(this.progressPaint.getColor());
-            this.bufferPaint.setAlpha((int) (this.progressPaint.getAlpha() * 0.3f));
-            this.bufferPaint.setStyle(style);
-            this.bufferPaint.setStrokeCap(cap);
-            this.bufferPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         }
 
         @Override
@@ -1311,7 +1287,7 @@ public class PipVideoOverlay implements IPipSourceDelegate {
     }
 
     private static final class PipConfig {
-        private SharedPreferences mPrefs;
+        private final SharedPreferences mPrefs;
 
         private PipConfig(int i, int i2) {
             this.mPrefs = ApplicationLoader.applicationContext.getSharedPreferences("pip_layout_" + i + "_" + i2, 0);

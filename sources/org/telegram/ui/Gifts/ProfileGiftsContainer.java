@@ -386,18 +386,12 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
 
         public void bind(boolean z, StarsController.GiftsList giftsList) {
-            if (this.list != null) {
-                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-            }
             this.isCollection = z;
             this.list = giftsList;
             if (giftsList != null) {
                 giftsList.load();
             }
             update(false);
-            if (this.list != null) {
-                NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-            }
             LinearLayout linearLayout = this.emptyView2Layout;
             if (linearLayout != null) {
                 linearLayout.setVisibility(this.parent.collections.isMine() ? 0 : 8);
@@ -439,17 +433,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
-            if (this.list != null) {
-                NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-            }
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starUserGiftsLoaded);
         }
 
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
-            if (this.list != null) {
-                NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-            }
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
         }
 
         @Override

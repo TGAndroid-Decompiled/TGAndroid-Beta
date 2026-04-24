@@ -11,7 +11,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -196,6 +195,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private Bitmap[] bitmapCache = new Bitmap[7];
 
     public static class LiveLocation {
+        public ImageReceiver avatarReceiver;
         public TLRPC.Chat chat;
         public IMapsProvider.IMarker directionMarker;
         public boolean hasRotation;
@@ -475,6 +475,15 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         if (runnable2 != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable2);
             this.markAsReadRunnable = null;
+        }
+        int size = this.markers.size();
+        for (int i = 0; i < size; i++) {
+            LiveLocation liveLocation = (LiveLocation) this.markers.get(i);
+            ImageReceiver imageReceiver = liveLocation.avatarReceiver;
+            if (imageReceiver != null) {
+                imageReceiver.onDetachedFromWindow();
+                liveLocation.avatarReceiver = null;
+            }
         }
     }
 
@@ -1803,18 +1812,8 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     private Bitmap createUserBitmap(LiveLocation liveLocation) {
-        TLRPC.FileLocation fileLocation;
-        TLRPC.ChatPhoto chatPhoto;
-        TLRPC.UserProfilePhoto userProfilePhoto;
         Bitmap bitmap = null;
         try {
-            TLRPC.User user = liveLocation.user;
-            if (user != null && (userProfilePhoto = user.photo) != null) {
-                fileLocation = userProfilePhoto.photo_small;
-            } else {
-                TLRPC.Chat chat = liveLocation.chat;
-                fileLocation = (chat == null || (chatPhoto = chat.photo) == null) ? null : chatPhoto.photo_small;
-            }
             Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(62.0f), AndroidUtilities.dp(85.0f), Bitmap.Config.ARGB_8888);
             try {
                 bitmapCreateBitmap.eraseColor(0);
@@ -1827,38 +1826,32 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 canvas.save();
                 canvas.save();
                 AvatarDrawable avatarDrawable = new AvatarDrawable();
-                TLRPC.User user2 = liveLocation.user;
-                if (user2 != null) {
-                    avatarDrawable.setInfo(this.currentAccount, user2);
+                TLRPC.User user = liveLocation.user;
+                if (user != null) {
+                    avatarDrawable.setInfo(this.currentAccount, user);
                 } else {
-                    TLRPC.Chat chat2 = liveLocation.chat;
-                    if (chat2 != null) {
-                        avatarDrawable.setInfo(this.currentAccount, chat2);
+                    TLRPC.Chat chat = liveLocation.chat;
+                    if (chat != null) {
+                        avatarDrawable.setInfo(this.currentAccount, chat);
                     }
                 }
                 canvas.translate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
                 avatarDrawable.setBounds(0, 0, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
                 avatarDrawable.draw(canvas);
                 canvas.restore();
-                if (fileLocation != null) {
-                    int i = this.currentAccount;
-                    TLObject tLObject = liveLocation.user;
-                    if (tLObject == null) {
-                        tLObject = liveLocation.chat;
-                    }
-                    Bitmap bitmapDecodeFile = BitmapFactory.decodeFile(ImageReceiver.getAvatarLocalFile(i, tLObject).toString());
-                    if (bitmapDecodeFile != null) {
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        BitmapShader bitmapShader = new BitmapShader(bitmapDecodeFile, tileMode, tileMode);
-                        Matrix matrix = new Matrix();
-                        float fDp = AndroidUtilities.dp(50.0f) / bitmapDecodeFile.getWidth();
-                        matrix.postTranslate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
-                        matrix.postScale(fDp, fDp);
-                        paint.setShader(bitmapShader);
-                        bitmapShader.setLocalMatrix(matrix);
-                        rectF.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f), paint);
-                    }
+                ImageReceiver imageReceiver = liveLocation.avatarReceiver;
+                Bitmap bitmap2 = (imageReceiver == null || !imageReceiver.hasImageLoaded()) ? null : liveLocation.avatarReceiver.getBitmap();
+                if (bitmap2 != null && !bitmap2.isRecycled()) {
+                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                    BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                    Matrix matrix = new Matrix();
+                    float fDp = AndroidUtilities.dp(50.0f) / bitmap2.getWidth();
+                    matrix.postTranslate(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
+                    matrix.postScale(fDp, fDp);
+                    paint.setShader(bitmapShader);
+                    bitmapShader.setLocalMatrix(matrix);
+                    rectF.set(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(25.0f), AndroidUtilities.dp(25.0f), paint);
                 }
                 canvas.restore();
                 try {
@@ -2152,6 +2145,55 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
+    private void setupAvatarReceiver(final LiveLocation liveLocation) {
+        if (liveLocation.avatarReceiver != null) {
+            return;
+        }
+        TLRPC.User user = liveLocation.user;
+        TLRPC.Chat chat = liveLocation.chat;
+        if (user == null && chat == 0) {
+            return;
+        }
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        if (user != null) {
+            avatarDrawable.setInfo(this.currentAccount, user);
+        } else {
+            avatarDrawable.setInfo(this.currentAccount, chat);
+        }
+        ImageReceiver imageReceiver = new ImageReceiver();
+        imageReceiver.setCurrentAccount(this.currentAccount);
+        imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+            @Override
+            public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
+                this.f$0.lambda$setupAvatarReceiver$34(liveLocation, imageReceiver2, z, z2, z3);
+            }
+
+            @Override
+            public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
+            }
+
+            @Override
+            public void onAnimationReady(ImageReceiver imageReceiver2) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
+            }
+        });
+        imageReceiver.onAttachedToWindow();
+        if (user == null) {
+            user = chat;
+        }
+        imageReceiver.setForUserOrChat(user, avatarDrawable);
+        liveLocation.avatarReceiver = imageReceiver;
+    }
+
+    public void lambda$setupAvatarReceiver$34(LiveLocation liveLocation, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        Bitmap bitmapCreateUserBitmap;
+        if (!z || z2 || liveLocation.marker == null || (bitmapCreateUserBitmap = createUserBitmap(liveLocation)) == null) {
+            return;
+        }
+        liveLocation.marker.setIcon(bitmapCreateUserBitmap);
+    }
+
     private LiveLocation addUserMarker(TLRPC.Message message) {
         Location location;
         TLRPC.GeoPoint geoPoint = message.media.geo;
@@ -2172,6 +2214,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 }
                 liveLocation.id = dialogId;
             }
+            setupAvatarReceiver(liveLocation);
             try {
                 IMapsProvider.IMarkerOptions iMarkerOptionsPosition = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng);
                 Bitmap bitmapCreateUserBitmap = createUserBitmap(liveLocation);
@@ -2229,6 +2272,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             liveLocation.chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
         }
         liveLocation.id = this.dialogId;
+        setupAvatarReceiver(liveLocation);
         try {
             IMapsProvider.IMarkerOptions iMarkerOptionsPosition = ApplicationLoader.getMapsProvider().onCreateMarkerOptions().position(latLng);
             Bitmap bitmapCreateUserBitmap = createUserBitmap(liveLocation);
@@ -2309,25 +2353,25 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.map.setOnCameraMoveStartedListener(new IMapsProvider.OnCameraMoveStartedListener() {
             @Override
             public final void onCameraMoveStarted(int i2) {
-                this.f$0.lambda$onMapInit$34(i2);
+                this.f$0.lambda$onMapInit$35(i2);
             }
         });
         this.map.setOnMyLocationChangeListener(new Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$onMapInit$35((Location) obj);
+                this.f$0.lambda$onMapInit$36((Location) obj);
             }
         });
         this.map.setOnMarkerClickListener(new IMapsProvider.OnMarkerClickListener() {
             @Override
             public final boolean onClick(IMapsProvider.IMarker iMarker) {
-                return this.f$0.lambda$onMapInit$36(minZoomLevel, iMarker);
+                return this.f$0.lambda$onMapInit$37(minZoomLevel, iMarker);
             }
         });
         this.map.setOnCameraMoveListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onMapInit$37();
+                this.f$0.lambda$onMapInit$38();
             }
         });
         Location lastLocation = getLastLocation();
@@ -2344,7 +2388,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         createCircle(i);
     }
 
-    public void lambda$onMapInit$34(int i) {
+    public void lambda$onMapInit$35(int i) {
         View childAt;
         RecyclerView.ViewHolder viewHolderFindContainingViewHolder;
         if (i == 1) {
@@ -2367,13 +2411,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$onMapInit$35(Location location) {
+    public void lambda$onMapInit$36(Location location) {
         positionMarker(location);
         getLocationController().setMapLocation(location, this.isFirstLocation);
         this.isFirstLocation = false;
     }
 
-    public boolean lambda$onMapInit$36(float f, IMapsProvider.IMarker iMarker) {
+    public boolean lambda$onMapInit$37(float f, IMapsProvider.IMarker iMarker) {
         if (!(iMarker.getTag() instanceof VenueLocation)) {
             return true;
         }
@@ -2403,7 +2447,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return true;
     }
 
-    public void lambda$onMapInit$37() {
+    public void lambda$onMapInit$38() {
         MapOverlayView mapOverlayView = this.overlayView;
         if (mapOverlayView != null) {
             mapOverlayView.updatePositions();
@@ -2425,7 +2469,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 builder.setPositiveButton(LocaleController.getString(R.string.ConnectingToProxyEnable), new AlertDialog.OnButtonClickListener() {
                     @Override
                     public final void onClick(AlertDialog alertDialog, int i) {
-                        this.f$0.lambda$checkGpsEnabled$38(alertDialog, i);
+                        this.f$0.lambda$checkGpsEnabled$39(alertDialog, i);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -2438,7 +2482,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return true;
     }
 
-    public void lambda$checkGpsEnabled$38(AlertDialog alertDialog, int i) {
+    public void lambda$checkGpsEnabled$39(AlertDialog alertDialog, int i) {
         if (getParentActivity() == null) {
             return;
         }
@@ -2492,14 +2536,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         builder.setNegativeButton(LocaleController.getString(R.string.PermissionOpenSettings), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$showPermissionAlert$39(alertDialog, i);
+                this.f$0.lambda$showPermissionAlert$40(alertDialog, i);
             }
         });
         builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         showDialog(builder.create());
     }
 
-    public void lambda$showPermissionAlert$39(AlertDialog alertDialog, int i) {
+    public void lambda$showPermissionAlert$40(AlertDialog alertDialog, int i) {
         if (getParentActivity() == null) {
             return;
         }
@@ -2705,7 +2749,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 this.listView.post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$fixLayoutInternal$40(i3);
+                        this.f$0.lambda$fixLayoutInternal$41(i3);
                     }
                 });
                 return;
@@ -2714,7 +2758,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$fixLayoutInternal$40(int i) {
+    public void lambda$fixLayoutInternal$41(int i) {
         this.layoutManager.scrollToPositionWithOffset(0, -AndroidUtilities.dp(i));
         updateClipView(false);
     }
@@ -2940,24 +2984,24 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$getRecentLocations$43(dialogId, tLObject, tL_error);
+                this.f$0.lambda$getRecentLocations$44(dialogId, tLObject, tL_error);
             }
         });
         return arrayList != null;
     }
 
-    public void lambda$getRecentLocations$43(final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$getRecentLocations$44(final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$getRecentLocations$42(tLObject, j);
+                    this.f$0.lambda$getRecentLocations$43(tLObject, j);
                 }
             });
         }
     }
 
-    public void lambda$getRecentLocations$42(TLObject tLObject, long j) {
+    public void lambda$getRecentLocations$43(TLObject tLObject, long j) {
         if (this.map == null) {
             return;
         }
@@ -2981,7 +3025,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$getRecentLocations$41();
+                    this.f$0.lambda$getRecentLocations$42();
                 }
             };
             this.markAsReadRunnable = runnable;
@@ -2989,7 +3033,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    public void lambda$getRecentLocations$41() {
+    public void lambda$getRecentLocations$42() {
         Runnable runnable;
         getLocationController().markLiveLoactionsAsRead(this.dialogId);
         if (this.isPaused || (runnable = this.markAsReadRunnable) == null) {
@@ -3174,13 +3218,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         glSurfaceView.queueEvent(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCheckGlScreenshot$46(glSurfaceView);
+                this.f$0.lambda$onCheckGlScreenshot$47(glSurfaceView);
             }
         });
         return true;
     }
 
-    public void lambda$onCheckGlScreenshot$46(final GLSurfaceView gLSurfaceView) {
+    public void lambda$onCheckGlScreenshot$47(final GLSurfaceView gLSurfaceView) {
         if (gLSurfaceView.getWidth() == 0 || gLSurfaceView.getHeight() == 0) {
             return;
         }
@@ -3195,12 +3239,12 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCheckGlScreenshot$45(bitmapCreateBitmap2, gLSurfaceView);
+                this.f$0.lambda$onCheckGlScreenshot$46(bitmapCreateBitmap2, gLSurfaceView);
             }
         });
     }
 
-    public void lambda$onCheckGlScreenshot$45(Bitmap bitmap, final GLSurfaceView gLSurfaceView) {
+    public void lambda$onCheckGlScreenshot$46(Bitmap bitmap, final GLSurfaceView gLSurfaceView) {
         ImageView imageView = new ImageView(getContext());
         imageView.setImageBitmap(bitmap);
         final ViewGroup viewGroup = (ViewGroup) gLSurfaceView.getParent();
@@ -3212,12 +3256,12 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCheckGlScreenshot$44(viewGroup, gLSurfaceView);
+                this.f$0.lambda$onCheckGlScreenshot$45(viewGroup, gLSurfaceView);
             }
         }, 100L);
     }
 
-    public void lambda$onCheckGlScreenshot$44(ViewGroup viewGroup, GLSurfaceView gLSurfaceView) {
+    public void lambda$onCheckGlScreenshot$45(ViewGroup viewGroup, GLSurfaceView gLSurfaceView) {
         try {
             viewGroup.removeView(gLSurfaceView);
         } catch (Exception e) {
@@ -3301,7 +3345,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$47();
+                this.f$0.lambda$getThemeDescriptions$48();
             }
 
             @Override
@@ -3431,7 +3475,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$47() {
+    public void lambda$getThemeDescriptions$48() {
         this.mapTypeButton.setIconColor(getThemedColor(Theme.key_location_actionIcon));
         this.mapTypeButton.redrawPopup(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
         this.mapTypeButton.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), true);

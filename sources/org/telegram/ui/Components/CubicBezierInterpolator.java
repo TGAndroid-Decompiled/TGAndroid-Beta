@@ -20,6 +20,7 @@ public class CubicBezierInterpolator implements Interpolator {
     public static final Interpolator Emphasized = new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
     public static final Interpolator EmphasizedDecelerate = new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
     public static final Interpolator EmphasizedAccelerate = new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+    public static final Interpolator StandardDecelerate = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
 
     public CubicBezierInterpolator(PointF pointF, PointF pointF2) {
         this.a = new PointF();

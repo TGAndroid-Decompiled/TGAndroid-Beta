@@ -378,7 +378,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1290getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1288getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -1241,46 +1241,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         return this.startedTracking;
     }
 
-    public void onBackStarted(float f, float f2) {
-        if (this.animationInProgress) {
-            AnimatorSet animatorSet = this.backAnimator;
-            if (animatorSet == null) {
-                return;
-            }
-            animatorSet.end();
-            this.backAnimator = null;
-            if (this.animationInProgress) {
-                return;
-            }
-        }
-        if (this.predictiveBackInProgress || this.predictiveInput || this.transitionAnimationPreviewMode || this.startedTracking || checkTransitionAnimation()) {
-            return;
-        }
-        if (this.fragmentsStack.size() > 1 && !isInPreviewMode()) {
-            EmptyBaseFragment emptyBaseFragment = this.sheetFragment;
-            if (emptyBaseFragment == null || !emptyBaseFragment.hasShownSheet()) {
-                List list = this.fragmentsStack;
-                BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 1);
-                if (baseFragment.onBackPressed(false) && !baseFragment.hasShownSheet() && baseFragment.canBeginSlide()) {
-                    this.predictiveBackHasProgress = false;
-                    this.predictiveBackInProgress = true;
-                    this.predictiveInput = true;
-                    this.predictiveBackLeft = f < ((float) AndroidUtilities.displaySize.x) / 2.0f;
-                    this.predictiveBackY = f2;
-                    prepareForMoving();
-                    Activity activity = this.parentActivity;
-                    if (activity != null && activity.getCurrentFocus() != null) {
-                        AndroidUtilities.hideKeyboard(this.parentActivity.getCurrentFocus());
-                    }
-                    baseFragment.onBeginSlide();
-                }
-            }
-        }
+    public boolean onBackStarted(float r6, float r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.onBackStarted(float, float):boolean");
     }
 
     public void onBackProgress(float f) {
         if (this.predictiveInput) {
-            float fDp = AndroidUtilities.dp(56.0f) * f;
+            float fDp = AndroidUtilities.dp(56.0f) * CubicBezierInterpolator.StandardDecelerate.getInterpolation(f);
             this.predictiveBackHasProgress = f > 0.0f;
             this.containerView.setTranslationX(fDp);
             setInnerTranslationX(fDp);

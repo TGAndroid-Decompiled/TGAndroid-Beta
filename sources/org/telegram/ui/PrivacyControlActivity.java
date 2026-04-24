@@ -921,7 +921,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             ContactsController.getInstance(this.currentAccount).loadPrivacySettings();
         }
         if (this.rulesType == 4) {
-            ImageUpdater imageUpdater = new ImageUpdater(false, 0, true);
+            ImageUpdater imageUpdater = new ImageUpdater(true, 0, true);
             this.imageUpdater = imageUpdater;
             imageUpdater.parentFragment = this;
             imageUpdater.setDelegate(this);

@@ -291,7 +291,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                     if (z) {
                         if (z2) {
                             this.loadingFilePath = FileLoader.getAttachFileName(fileLocation);
-                            this.imageReceiver.setImage(ImageLocation.getForUser(user, 0), "", null, null, null, 0);
+                            this.imageReceiver.setImage(ImageLocation.getForUser(UserConfig.selectedAccount, user, 0), "", null, null, null, 0);
                         } else {
                             this.loadingFilePath = null;
                         }

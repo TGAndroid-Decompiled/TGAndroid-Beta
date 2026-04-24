@@ -63,6 +63,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BackupAgent;
@@ -228,6 +229,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private String loadingThemeWallpaperName;
     private Dialog localeDialog;
     private Runnable lockRunnable;
+    private AlertDialog memoryLeakErrorAlertDialog;
     private ValueAnimator navBarAnimator;
     private boolean navigateToPremiumBot;
     public Runnable navigateToPremiumGiftCallback;
@@ -267,6 +269,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private ActionMode visibleActionMode;
     public final ArrayList visibleDialogs;
     private String voicePath;
+    public boolean voipLaunchedInBackground;
     private boolean wasMutedByAdminRaisedHand;
     private Utilities.Callback webviewShareAPIDoneListener;
     public static final Pattern PREFIX_T_ME_PATTERN = Pattern.compile("^(?:http(?:s|)://|)([A-z0-9-]+?)\\.t\\.me");
@@ -494,6 +497,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingConfirmPurchaseError);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.tlSchemeParseException);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.memoryLeakFoundException);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         Utilities.Callback callback = new Utilities.Callback() {
             @Override
@@ -670,13 +674,19 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (i2 >= 34) {
             if (this.onBackAnimationCallback == null) {
                 this.onBackAnimationCallback = new OnBackAnimationCallback() {
+                    private boolean locked;
                     private boolean predictiveBackStarted;
+                    private AnimationNotificationsLocker locker = new AnimationNotificationsLocker();
                     private boolean started = false;
                     private boolean invoked = false;
 
                     @Override
                     public void onBackInvoked() {
                         this.invoked = true;
+                        if (this.locked) {
+                            this.locker.unlock();
+                            this.locked = false;
+                        }
                         if (AndroidUtilities.isTablet()) {
                             LaunchActivity.this.onBackPressed();
                             return;
@@ -701,10 +711,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
                     private void onBackStartedInternal(BackEvent backEvent) {
                         ActionBarLayout actionBarLayout2;
-                        if (AndroidUtilities.isTablet() || !LaunchActivity.this.onBackPressed(false) || (actionBarLayout2 = LaunchActivity.this.actionBarLayout) == null) {
+                        if (AndroidUtilities.isTablet() || !LaunchActivity.this.onBackPressed(false) || (actionBarLayout2 = LaunchActivity.this.actionBarLayout) == null || !actionBarLayout2.onBackStarted(backEvent.getTouchX(), backEvent.getTouchY()) || this.locked) {
                             return;
                         }
-                        actionBarLayout2.onBackStarted(backEvent.getTouchX(), backEvent.getTouchY());
+                        this.locker.lock();
+                        this.locked = true;
                     }
 
                     @Override
@@ -730,6 +741,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ActionBarLayout actionBarLayout2;
                         this.started = false;
                         this.invoked = false;
+                        if (this.locked) {
+                            this.locker.unlock();
+                            this.locked = false;
+                        }
                         if (AndroidUtilities.isTablet() || (actionBarLayout2 = LaunchActivity.this.actionBarLayout) == null) {
                             return;
                         }
@@ -4105,7 +4120,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
@@ -4217,6 +4232,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.billingConfirmPurchaseError);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.tlSchemeParseException);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.memoryLeakFoundException);
         Utilities.Callback callback = this.onPowerSaverCallback;
         if (callback != null) {
             LiteMode.removeOnPowerSaverAppliedListener(callback);
@@ -4353,7 +4369,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4380,6 +4396,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.activityPermissionsGranted, Integer.valueOf(i), strArr, iArr);
             }
         }
+    }
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        this.voipLaunchedInBackground = false;
     }
 
     @Override
@@ -4592,7 +4614,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() throws Resources.NotFoundException {
+    protected void onResume() {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
@@ -4929,6 +4951,19 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.tlErrorAlertDialog = null;
     }
 
+    public void lambda$didReceivedNotification$164(DialogInterface dialogInterface) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$didReceivedNotification$163();
+            }
+        }, 30000L);
+    }
+
+    public void lambda$didReceivedNotification$163() {
+        this.memoryLeakErrorAlertDialog = null;
+    }
+
     private void invalidateCachedViews(View view) {
         if (view.getLayerType() != 0) {
             view.invalidate();
@@ -5045,13 +5080,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkFreeDiscSpace$165(i);
+                    this.f$0.lambda$checkFreeDiscSpace$167(i);
                 }
             }, 2000L);
         }
     }
 
-    public void lambda$checkFreeDiscSpace$165(int i) {
+    public void lambda$checkFreeDiscSpace$167(int i) {
         File directory;
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
@@ -5067,7 +5102,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$checkFreeDiscSpace$164();
+                                this.f$0.lambda$checkFreeDiscSpace$166();
                             }
                         });
                     }
@@ -5077,7 +5112,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkFreeDiscSpace$164() {
+    public void lambda$checkFreeDiscSpace$166() {
         if (this.checkFreeDiscSpaceShown) {
             return;
         }
@@ -5086,7 +5121,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             dialogCreateFreeSpaceDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$checkFreeDiscSpace$163(dialogInterface);
+                    this.f$0.lambda$checkFreeDiscSpace$165(dialogInterface);
                 }
             });
             this.checkFreeDiscSpaceShown = true;
@@ -5095,7 +5130,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkFreeDiscSpace$163(DialogInterface dialogInterface) {
+    public void lambda$checkFreeDiscSpace$165(DialogInterface dialogInterface) {
         this.checkFreeDiscSpaceShown = false;
     }
 
@@ -5138,7 +5173,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 languageCellArr[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        LaunchActivity.lambda$showLanguageAlertInternal$166(localeInfoArr2, languageCellArr, view);
+                        LaunchActivity.lambda$showLanguageAlertInternal$168(localeInfoArr2, languageCellArr, view);
                     }
                 });
                 i2++;
@@ -5151,7 +5186,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             languageCell2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showLanguageAlertInternal$167(view);
+                    this.f$0.lambda$showLanguageAlertInternal$169(view);
                 }
             });
             linearLayout.addView(languageCell2, LayoutHelper.createLinear(-1, 50));
@@ -5159,7 +5194,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             builder.setNegativeButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i4) {
-                    this.f$0.lambda$showLanguageAlertInternal$168(localeInfoArr2, alertDialog, i4);
+                    this.f$0.lambda$showLanguageAlertInternal$170(localeInfoArr2, alertDialog, i4);
                 }
             });
             this.localeDialog = showAlertDialog(builder);
@@ -5169,7 +5204,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$showLanguageAlertInternal$166(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
+    public static void lambda$showLanguageAlertInternal$168(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
         Integer num = (Integer) view.getTag();
         localeInfoArr[0] = ((LanguageCell) view).getCurrentLocale();
         int i = 0;
@@ -5179,7 +5214,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$showLanguageAlertInternal$167(View view) {
+    public void lambda$showLanguageAlertInternal$169(View view) {
         this.localeDialog = null;
         lambda$runLinkRequest$99(new LanguageSelectActivity());
         for (int i = 0; i < this.visibleDialogs.size(); i++) {
@@ -5190,7 +5225,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.visibleDialogs.clear();
     }
 
-    public void lambda$showLanguageAlertInternal$168(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
+    public void lambda$showLanguageAlertInternal$170(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
         LocaleController.getInstance().applyLanguage(localeInfoArr[0], true, false, this.currentAccount);
         rebuildAllFragments(true);
     }
@@ -5270,7 +5305,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                this.f$0.lambda$showLanguageAlert$170(localeInfoArr, str2, tLObject, tL_error);
+                                this.f$0.lambda$showLanguageAlert$172(localeInfoArr, str2, tLObject, tL_error);
                             }
                         }, 8);
                         TLRPC.TL_langpack_getStrings tL_langpack_getStrings2 = new TLRPC.TL_langpack_getStrings();
@@ -5282,7 +5317,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings2, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                this.f$0.lambda$showLanguageAlert$172(localeInfoArr, str2, tLObject, tL_error);
+                                this.f$0.lambda$showLanguageAlert$174(localeInfoArr, str2, tLObject, tL_error);
                             }
                         }, 8);
                     }
@@ -5291,31 +5326,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 FileLog.e(e);
             }
         }
-    }
-
-    public void lambda$showLanguageAlert$170(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        final HashMap map = new HashMap();
-        if (tLObject instanceof Vector) {
-            Vector vector = (Vector) tLObject;
-            for (int i = 0; i < vector.objects.size(); i++) {
-                TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(i);
-                map.put(langPackString.key, langPackString.value);
-            }
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showLanguageAlert$169(map, localeInfoArr, str);
-            }
-        });
-    }
-
-    public void lambda$showLanguageAlert$169(HashMap map, LocaleController.LocaleInfo[] localeInfoArr, String str) {
-        this.systemLocaleStrings = map;
-        if (this.englishLocaleStrings == null || map == null) {
-            return;
-        }
-        showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
     }
 
     public void lambda$showLanguageAlert$172(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -5336,6 +5346,31 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$showLanguageAlert$171(HashMap map, LocaleController.LocaleInfo[] localeInfoArr, String str) {
+        this.systemLocaleStrings = map;
+        if (this.englishLocaleStrings == null || map == null) {
+            return;
+        }
+        showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
+    }
+
+    public void lambda$showLanguageAlert$174(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+        final HashMap map = new HashMap();
+        if (tLObject instanceof Vector) {
+            Vector vector = (Vector) tLObject;
+            for (int i = 0; i < vector.objects.size(); i++) {
+                TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(i);
+                map.put(langPackString.key, langPackString.value);
+            }
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showLanguageAlert$173(map, localeInfoArr, str);
+            }
+        });
+    }
+
+    public void lambda$showLanguageAlert$173(HashMap map, LocaleController.LocaleInfo[] localeInfoArr, String str) {
         this.englishLocaleStrings = map;
         if (map == null || this.systemLocaleStrings == null) {
             return;
@@ -5447,13 +5482,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.actionBarLayout.setTitleOverlayText(str, i2, (connectionState == 1 || connectionState == 4) ? new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateCurrentConnectionState$173();
+                this.f$0.lambda$updateCurrentConnectionState$175();
             }
         } : null);
     }
 
-    public void lambda$updateCurrentConnectionState$173() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$updateCurrentConnectionState$173():void");
+    public void lambda$updateCurrentConnectionState$175() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$updateCurrentConnectionState$175():void");
     }
 
     public void hideVisibleActionMode() {
@@ -6032,7 +6067,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         valueAnimatorOfArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateNavigationBarColor$174(valueAnimator2);
+                this.f$0.lambda$animateNavigationBarColor$176(valueAnimator2);
             }
         });
         this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
@@ -6046,7 +6081,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.navBarAnimator.start();
     }
 
-    public void lambda$animateNavigationBarColor$174(ValueAnimator valueAnimator) {
+    public void lambda$animateNavigationBarColor$176(ValueAnimator valueAnimator) {
         setNavigationBarColor(((Integer) valueAnimator.getAnimatedValue()).intValue());
     }
 
@@ -6148,21 +6183,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$openStory$176(i, j, z, tLObject, tL_error);
+                this.f$0.lambda$openStory$178(i, j, z, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$openStory$176(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openStory$178(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openStory$175(tLObject, i, j, z);
+                this.f$0.lambda$openStory$177(tLObject, i, j, z);
             }
         });
     }
 
-    public void lambda$openStory$175(TLObject tLObject, int i, long j, boolean z) {
+    public void lambda$openStory$177(TLObject tLObject, int i, long j, boolean z) {
         StoriesListPlaceProvider storiesListPlaceProviderOf;
         TL_stories.StoryItem storyItem;
         if (tLObject instanceof TL_stories.TL_stories_stories) {
@@ -6257,7 +6292,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$openStories$177(iArr, array);
+                    this.f$0.lambda$openStories$179(iArr, array);
                 }
             };
             for (int i3 = 0; i3 < arrayList3.size(); i3++) {
@@ -6273,7 +6308,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getPeerStories, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LaunchActivity.lambda$openStories$179(messagesController, jLongValue, runnable, tLObject, tL_error);
+                            LaunchActivity.lambda$openStories$181(messagesController, jLongValue, runnable, tLObject, tL_error);
                         }
                     });
                 }
@@ -6303,7 +6338,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, storiesListPlaceProvider, false);
     }
 
-    public void lambda$openStories$177(int[] iArr, long[] jArr) {
+    public void lambda$openStories$179(int[] iArr, long[] jArr) {
         int i = iArr[0] - 1;
         iArr[0] = i;
         if (i == 0) {
@@ -6312,16 +6347,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$openStories$179(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$openStories$181(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$openStories$178(tLObject, messagesController, j, runnable);
+                LaunchActivity.lambda$openStories$180(tLObject, messagesController, j, runnable);
             }
         });
     }
 
-    public static void lambda$openStories$178(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
+    public static void lambda$openStories$180(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
         if (tLObject instanceof TL_stories.TL_stories_peerStories) {
             TL_stories.TL_stories_peerStories tL_stories_peerStories = (TL_stories.TL_stories_peerStories) tLObject;
             messagesController.putUsers(tL_stories_peerStories.users, false);

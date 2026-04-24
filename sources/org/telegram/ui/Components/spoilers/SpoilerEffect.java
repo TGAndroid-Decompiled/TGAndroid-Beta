@@ -9,6 +9,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -34,14 +35,15 @@ import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.spoilers.SpoilerEffectBitmapFactory;
 
 public class SpoilerEffect extends Drawable {
     public static final float[] ALPHAS;
@@ -52,8 +54,9 @@ public class SpoilerEffect extends Drawable {
     private static final Path tempPath;
     private static Paint xRefPaint;
     private int bitmapSize;
-    public boolean drawPoints;
-    private boolean enableAlpha;
+    private final RectF boundsFWithInset;
+    private ColorFilter colorFilter;
+    private final float[] halfStrokeWidths;
     public boolean insideQuote;
     private boolean invalidateParent;
     private boolean isLowDevice;
@@ -76,7 +79,6 @@ public class SpoilerEffect extends Drawable {
     private float rippleX;
     private float rippleY;
     private boolean shouldInvalidateColor;
-    private List spaces;
     private boolean suppressUpdates;
     private RectF visibleRect;
 
@@ -109,12 +111,12 @@ public class SpoilerEffect extends Drawable {
     public SpoilerEffect() {
         float[] fArr = ALPHAS;
         this.particlePaints = new Paint[fArr.length];
+        this.halfStrokeWidths = new float[fArr.length];
         this.particlesPool = new Stack();
         this.particleRands = new float[14];
         this.renderCount = new int[fArr.length];
         this.particles = new ArrayList();
         this.rippleProgress = -1.0f;
-        this.spaces = new ArrayList();
         this.mAlpha = 255;
         this.rippleInterpolator = new TimeInterpolator() {
             @Override
@@ -122,6 +124,7 @@ public class SpoilerEffect extends Drawable {
                 return SpoilerEffect.lambda$new$0(f);
             }
         };
+        this.boundsFWithInset = new RectF();
         for (int i = 0; i < ALPHAS.length; i++) {
             this.particlePaints[i] = new Paint();
             if (i == 0) {
@@ -133,9 +136,9 @@ public class SpoilerEffect extends Drawable {
                 this.particlePaints[i].setStyle(Paint.Style.STROKE);
                 this.particlePaints[i].setStrokeCap(Paint.Cap.ROUND);
             }
+            this.halfStrokeWidths[i] = this.particlePaints[i].getStrokeWidth() * 0.5f;
         }
         this.isLowDevice = SharedConfig.getDevicePerformanceClass() == 0;
-        this.enableAlpha = true;
         setColor(0);
     }
 
@@ -260,8 +263,38 @@ public class SpoilerEffect extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.spoilers.SpoilerEffect.draw(android.graphics.Canvas):void");
+    public void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (bounds.isEmpty()) {
+            return;
+        }
+        Paint paint = SpoilerEffectBitmapFactory.getInstance().getPaint();
+        paint.setColorFilter(this.colorFilter);
+        canvas.drawRect(bounds, paint);
+        if (LiteMode.isEnabled(128)) {
+            invalidateSelf();
+            SpoilerEffectBitmapFactory.getInstance().checkUpdate(bounds);
+        }
+    }
+
+    @Override
+    protected void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.boundsFWithInset.set(rect);
+        this.boundsFWithInset.inset(0.0f, AndroidUtilities.dp(2.5f));
+    }
+
+    public void addPoints(org.telegram.ui.Components.spoilers.SpoilerEffectBitmapFactory.PointsBuffer[] r31, android.graphics.Rect r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.spoilers.SpoilerEffect.addPoints(org.telegram.ui.Components.spoilers.SpoilerEffectBitmapFactory$PointsBuffer[], android.graphics.Rect):void");
+    }
+
+    public void drawPoints(Canvas canvas, SpoilerEffectBitmapFactory.PointsBuffer[] pointsBufferArr) {
+        if (pointsBufferArr == null || pointsBufferArr.length != ALPHAS.length) {
+            return;
+        }
+        for (int i = 0; i < ALPHAS.length; i++) {
+            pointsBufferArr[i].draw(canvas, this.particlePaints[i]);
+        }
     }
 
     public void setVisibleBounds(float f, float f2, float f3, float f4) {
@@ -277,23 +310,6 @@ public class SpoilerEffect extends Drawable {
         rectF.right = f3;
         rectF.bottom = f4;
         invalidateSelf();
-    }
-
-    private boolean isOutOfBounds(int i, int i2, int i3, int i4, float f, float f2) {
-        if (f < i || f > i3 || f2 < i2 + AndroidUtilities.dp(2.5f) || f2 > i4 - AndroidUtilities.dp(2.5f)) {
-            return true;
-        }
-        for (int i5 = 0; i5 < this.spaces.size(); i5++) {
-            if (((RectF) this.spaces.get(i5)).contains(f, f2)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void generateRandomLocation(Particle particle, int i) {
-        particle.x = getBounds().left + (Utilities.fastRandom.nextFloat() * getBounds().width());
-        particle.y = getBounds().top + (Utilities.fastRandom.nextFloat() * getBounds().height());
     }
 
     @Override
@@ -351,6 +367,7 @@ public class SpoilerEffect extends Drawable {
                 this.particlePaints[i2].setColor(ColorUtils.setAlphaComponent(i, (int) (this.mAlpha * fArr[i2])));
                 i2++;
             } else {
+                this.colorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
                 this.lastColor = i;
                 return;
             }
@@ -654,18 +671,6 @@ public class SpoilerEffect extends Drawable {
         private float y;
 
         private Particle() {
-        }
-
-        static float access$516(Particle particle, float f) {
-            float f2 = particle.x + f;
-            particle.x = f2;
-            return f2;
-        }
-
-        static float access$616(Particle particle, float f) {
-            float f2 = particle.y + f;
-            particle.y = f2;
-            return f2;
         }
     }
 }

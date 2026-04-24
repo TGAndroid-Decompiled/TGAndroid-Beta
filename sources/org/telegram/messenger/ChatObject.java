@@ -703,7 +703,6 @@ public class ChatObject {
         }
 
         private void loadUnknownParticipants(final ArrayList<Long> arrayList, boolean z, final OnParticipantsLoad onParticipantsLoad) {
-            TLRPC.InputPeer tL_inputPeerChannel;
             final HashSet<Long> hashSet = z ? this.loadingUids : this.loadingSsrcs;
             int size = arrayList.size();
             int i = 0;
@@ -727,23 +726,10 @@ public class ChatObject {
             int size2 = arrayList.size();
             for (int i3 = 0; i3 < size2; i3++) {
                 long jLongValue = arrayList.get(i3).longValue();
-                if (!z) {
-                    getgroupparticipants.sources.add(Integer.valueOf((int) jLongValue));
-                } else if (jLongValue > 0) {
-                    TLRPC.TL_inputPeerUser tL_inputPeerUser = new TLRPC.TL_inputPeerUser();
-                    tL_inputPeerUser.user_id = jLongValue;
-                    getgroupparticipants.ids.add(tL_inputPeerUser);
+                if (z) {
+                    getgroupparticipants.ids.add(this.currentAccount.getMessagesController().getInputPeer(jLongValue));
                 } else {
-                    long j = -jLongValue;
-                    TLRPC.Chat chat = this.currentAccount.getMessagesController().getChat(Long.valueOf(j));
-                    if (chat == null || ChatObject.isChannel(chat)) {
-                        tL_inputPeerChannel = new TLRPC.TL_inputPeerChannel();
-                        tL_inputPeerChannel.channel_id = j;
-                    } else {
-                        tL_inputPeerChannel = new TLRPC.TL_inputPeerChat();
-                        tL_inputPeerChannel.chat_id = j;
-                    }
-                    getgroupparticipants.ids.add(tL_inputPeerChannel);
+                    getgroupparticipants.sources.add(Integer.valueOf((int) jLongValue));
                 }
             }
             getgroupparticipants.offset = "";

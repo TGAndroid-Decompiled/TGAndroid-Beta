@@ -778,13 +778,13 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
             if (peerId > 0) {
                 TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerId));
-                ImageLocation forUser = ImageLocation.getForUser(user, 1);
+                ImageLocation forUser = ImageLocation.getForUser(this.currentAccount, user, 1);
                 int colorForId = user != null ? AvatarDrawable.getColorForId(user.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
                 this.imageReceiver.setImage(forUser, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId, -16777216, 0.2f), ColorUtils.blendARGB(colorForId, -16777216, 0.4f)}), null, user, 0);
                 return;
             }
             TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-peerId));
-            ImageLocation forChat = ImageLocation.getForChat(chat, 1);
+            ImageLocation forChat = ImageLocation.getForChat(this.currentAccount, chat, 1);
             int colorForId2 = chat != null ? AvatarDrawable.getColorForId(chat.id) : ColorUtils.blendARGB(-16777216, -1, 0.2f);
             this.imageReceiver.setImage(forChat, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{ColorUtils.blendARGB(colorForId2, -16777216, 0.2f), ColorUtils.blendARGB(colorForId2, -16777216, 0.4f)}), null, chat, 0);
         }

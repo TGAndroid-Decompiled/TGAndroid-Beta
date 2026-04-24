@@ -3864,7 +3864,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 long dialogId = GroupCallActivity.this.avatarsViewPager.getDialogId();
                 if (dialogId > 0) {
                     TLRPC.User user = GroupCallActivity.this.accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));
-                    GroupCallActivity.this.avatarsViewPager.initIfEmpty(null, ImageLocation.getForUserOrChat(user, 0), ImageLocation.getForUserOrChat(user, 1), false);
+                    GroupCallActivity.this.avatarsViewPager.initIfEmpty(null, ImageLocation.getForUserOrChat(GroupCallActivity.this.accountInstance.getCurrentAccount(), user, 0), ImageLocation.getForUserOrChat(GroupCallActivity.this.accountInstance.getCurrentAccount(), user, 1), false);
                 }
             }
         };
@@ -8655,7 +8655,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
                 if (closestPhotoSizeWithSize != null && this.avatar != null) {
                     FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(this.avatar, true).renameTo(FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(closestPhotoSizeWithSize, true));
-                    ImageLoader.getInstance().replaceImageInCache(this.avatar.volume_id + "_" + this.avatar.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(user, 1), false);
+                    ImageLoader.getInstance().replaceImageInCache(this.avatar.volume_id + "_" + this.avatar.local_id + "@50_50", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@50_50", ImageLocation.getForUser(((BottomSheet) GroupCallActivity.this).currentAccount, user, 1), false);
                 }
                 if (closestPhotoSizeWithSize2 != null && this.avatarBig != null) {
                     FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(this.avatarBig, true).renameTo(FileLoader.getInstance(((BottomSheet) GroupCallActivity.this).currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
@@ -8668,8 +8668,8 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 arrayList2.add(user);
                 GroupCallActivity.this.accountInstance.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
                 TLRPC.User user2 = GroupCallActivity.this.accountInstance.getMessagesController().getUser(Long.valueOf(this.peerId));
-                ImageLocation forUser = ImageLocation.getForUser(user2, 0);
-                ImageLocation forUser2 = ImageLocation.getForUser(user2, 1);
+                ImageLocation forUser = ImageLocation.getForUser(GroupCallActivity.this.accountInstance.getCurrentAccount(), user2, 0);
+                ImageLocation forUser2 = ImageLocation.getForUser(GroupCallActivity.this.accountInstance.getCurrentAccount(), user2, 1);
                 if (ImageLocation.getForLocal(this.avatarBig) == null) {
                     forUser2 = ImageLocation.getForLocal(this.avatar);
                 }

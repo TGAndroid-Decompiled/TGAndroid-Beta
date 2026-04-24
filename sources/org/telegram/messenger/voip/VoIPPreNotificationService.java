@@ -507,5 +507,23 @@ public class VoIPPreNotificationService {
         for (int i = 0; i < 4; i++) {
             MessagesController.getInstance(i).ignoreSetOnline = false;
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VoIPPreNotificationService.lambda$dismiss$5();
+            }
+        });
+    }
+
+    public static void lambda$dismiss$5() {
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        if (launchActivity != null && launchActivity.voipLaunchedInBackground && VoIPService.getSharedInstance() == null) {
+            launchActivity.voipLaunchedInBackground = false;
+            VoIPFragment voIPFragment = VoIPFragment.getInstance();
+            if (voIPFragment != null) {
+                voIPFragment.finish();
+            }
+            launchActivity.moveTaskToBack(true);
+        }
     }
 }

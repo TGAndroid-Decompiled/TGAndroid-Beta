@@ -141,6 +141,10 @@ public class RadialProgress2 {
         this.overlayImageView.setImage(str, str != null ? String.format(Locale.US, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2)) : null, null, null, -1L);
     }
 
+    public void setImageOverlay(Bitmap bitmap) {
+        this.overlayImageView.setImageBitmap(bitmap);
+    }
+
     public void onAttachedToWindow() {
         this.overlayImageView.onAttachedToWindow();
     }

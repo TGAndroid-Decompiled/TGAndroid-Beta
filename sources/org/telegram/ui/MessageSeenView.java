@@ -425,7 +425,7 @@ public class MessageSeenView extends FrameLayout {
             updateStatus(false);
             if (tLObject != null) {
                 this.avatarDrawable.setInfo(this.currentAccount, tLObject);
-                this.avatarImageView.setImage(ImageLocation.getForUserOrChat(tLObject, 1), "50_50", this.avatarDrawable, tLObject);
+                this.avatarImageView.setImage(ImageLocation.getForUserOrChat(this.currentAccount, tLObject, 1), "50_50", this.avatarDrawable, tLObject);
                 this.nameView.setText(ContactsController.formatName(tLObject));
             }
             if (i <= 0) {

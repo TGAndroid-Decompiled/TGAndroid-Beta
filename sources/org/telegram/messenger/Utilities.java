@@ -111,6 +111,8 @@ public class Utilities {
 
     public static native int convertVideoFrame(ByteBuffer byteBuffer, ByteBuffer byteBuffer2, int i, int i2, int i3, int i4, int i5);
 
+    public static native boolean copyBitmaps(Bitmap bitmap, Bitmap bitmap2);
+
     public static native void drawDitheredGradient(Bitmap bitmap, int[] iArr, int i, int i2, int i3, int i4);
 
     public static native void generateGradient(Bitmap bitmap, boolean z, int i, float f, int i2, int i3, int i4, int[] iArr);

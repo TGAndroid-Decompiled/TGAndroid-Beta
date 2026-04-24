@@ -78,7 +78,7 @@ public class TranslateController extends BaseController {
     private final HashSet<MessageKey> translatingPhotos;
     private final HashSet<StoryKey> translatingStories;
     private static final List<String> languagesOrder = Arrays.asList("en", "ar", "zh", "fr", "de", "it", "ja", "ko", "pt", "ru", "es", "uk");
-    private static final List<String> allLanguages = Arrays.asList("af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-cn", "zh", "zh-tw", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "hi", "hmn", "hu", "is", "ig", "id", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "yo", "zu");
+    private static final List<String> allLanguages = Arrays.asList("af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-cn", "zh", "zh-tw", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "hi", "hmn", "hu", "is", "ig", "id", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pt-br", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "yo", "zu");
     private static LinkedHashSet<String> suggestedLanguageCodes = null;
 
     public static class Language {
@@ -1024,7 +1024,7 @@ public class TranslateController extends BaseController {
         tL_messages_summarizeText.id = messageObject.getId();
         if (str != null) {
             tL_messages_summarizeText.flags |= 1;
-            tL_messages_summarizeText.to_lang = str;
+            tL_messages_summarizeText.to_lang = normalizeLanguage(str);
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
             @Override
@@ -1210,7 +1210,7 @@ public class TranslateController extends BaseController {
             tL_messages_translateText.peer = getMessagesController().getInputPeer(j);
             tL_messages_translateText.id = pendingTranslation.messageIds;
         }
-        tL_messages_translateText.to_lang = pendingTranslation.language;
+        tL_messages_translateText.to_lang = normalizeLanguage(pendingTranslation.language);
         int iSendRequest = getConnectionsManager().sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1375,7 +1375,7 @@ public class TranslateController extends BaseController {
                 tL_messages_translateText.text.add(tL_textWithEntities2);
             }
         }
-        tL_messages_translateText.to_lang = pendingPollTranslation.language;
+        tL_messages_translateText.to_lang = normalizeLanguage(pendingPollTranslation.language);
         int iSendRequest = getConnectionsManager().sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1765,7 +1765,7 @@ public class TranslateController extends BaseController {
             tL_textWithEntities.text = storyItem.caption;
             tL_textWithEntities.entities = storyItem.entities;
             tL_messages_translateText.text.add(tL_textWithEntities);
-            tL_messages_translateText.to_lang = toLanguage;
+            tL_messages_translateText.to_lang = normalizeLanguage(toLanguage);
             getConnectionsManager().sendRequest(tL_messages_translateText, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1953,7 +1953,7 @@ public class TranslateController extends BaseController {
             tL_textWithEntities.entities = new ArrayList<>();
         }
         tL_messages_translateText.text.add(tL_textWithEntities);
-        tL_messages_translateText.to_lang = toLanguage;
+        tL_messages_translateText.to_lang = normalizeLanguage(toLanguage);
         final long jCurrentTimeMillis = System.currentTimeMillis();
         getConnectionsManager().sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
@@ -2024,6 +2024,21 @@ public class TranslateController extends BaseController {
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable, Math.max(0L, 400 - (System.currentTimeMillis() - j)));
         }
+    }
+
+    public static String normalizeLanguage(String str) {
+        if (str == null) {
+            return null;
+        }
+        if (str.contains("_")) {
+            String[] strArrSplit = str.split("_", 2);
+            return strArrSplit[0].toLowerCase() + "-" + strArrSplit[1].toUpperCase();
+        }
+        if (!str.contains("-")) {
+            return str;
+        }
+        String[] strArrSplit2 = str.split("-", 2);
+        return strArrSplit2[0].toLowerCase() + "-" + strArrSplit2[1].toUpperCase();
     }
 
     static class MessageKey {

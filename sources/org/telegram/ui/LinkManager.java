@@ -137,7 +137,7 @@ public class LinkManager {
         return Uri.parse(scheme + "://" + schemeSpecificPart);
     }
 
-    private boolean handleTg(Uri uri) throws Resources.NotFoundException {
+    private boolean handleTg(Uri uri) {
         Uri uriNormalizeTgUri = normalizeTgUri(uri);
         List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
         if (pathSegments == null) {

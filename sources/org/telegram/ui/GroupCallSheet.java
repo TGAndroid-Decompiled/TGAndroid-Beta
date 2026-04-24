@@ -189,7 +189,7 @@ public abstract class GroupCallSheet {
         linearLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
         linearLayout2.setClipToPadding(false);
         linearLayout2.setOrientation(0);
-        linearLayout2.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, darkThemeResourceProvider), 6, 6));
+        linearLayout2.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, darkThemeResourceProvider), 20, 20));
         final CheckBox2 checkBox2 = new CheckBox2(context, 24, darkThemeResourceProvider);
         checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
         checkBox2.setDrawUnchecked(true);
@@ -199,7 +199,7 @@ public abstract class GroupCallSheet {
         TextView textView = new TextView(context);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, darkThemeResourceProvider));
         textView.setTextSize(1, 14.0f);
-        textView.setText("Turn on the microphone");
+        textView.setText(LocaleController.getString(R.string.GroupCallLinkMicrophone));
         linearLayout2.addView(textView, LayoutHelper.createLinear(-2, -2, 16, 9, 0, 0, 0));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, 38, 1, 0, 4, 0, 12));
         ScaleStateListAnimator.apply(linearLayout2, 0.025f, 1.5f);
@@ -209,12 +209,12 @@ public abstract class GroupCallSheet {
                 GroupCallSheet.lambda$show$5(checkBox2, view2);
             }
         });
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, darkThemeResourceProvider);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.GroupCallLinkJoin), false);
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 2.0f, 0.0f, 2.0f, 0.0f));
+        ButtonWithCounterView round = new ButtonWithCounterView(context, darkThemeResourceProvider).setRound();
+        round.setText(LocaleController.getString(R.string.GroupCallLinkJoin), false);
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 2.0f, 0.0f, 2.0f, 0.0f));
         builder.setCustomView(linearLayout);
         final BottomSheet bottomSheetCreate = builder.create();
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
                 GroupCallSheet.lambda$show$6(bottomSheetCreate, context, checkBox2, i, inputGroupCall, view2);

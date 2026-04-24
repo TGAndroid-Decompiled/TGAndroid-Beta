@@ -573,7 +573,7 @@ public class GroupCallUserCell extends FrameLayout {
                 this.hasAvatar = true;
                 this.avatarImageView.setImage(ImageLocation.getForLocal(fileLocation), "50_50", this.avatarDrawable, (Object) null);
             } else {
-                ImageLocation forUser = ImageLocation.getForUser(this.currentUser, 1);
+                ImageLocation forUser = ImageLocation.getForUser(accountInstance.getCurrentAccount(), this.currentUser, 1);
                 this.hasAvatar = forUser != null;
                 this.avatarImageView.setImage(forUser, "50_50", this.avatarDrawable, this.currentUser);
             }

@@ -117,7 +117,7 @@ public class TopicCreateFragment extends BaseFragment {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
         if (this.topicForEdit == null) {
-            this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Create).toUpperCase());
+            this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Create));
         } else {
             this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_done);
         }
@@ -161,7 +161,7 @@ public class TopicCreateFragment extends BaseFragment {
         this.editTextBoldCursor.setHintColor(getThemedColor(Theme.key_chat_messagePanelHint));
         this.editTextBoldCursor.setTextColor(getThemedColor(Theme.key_chat_messagePanelText));
         this.editTextBoldCursor.setPadding(AndroidUtilities.dp(0.0f), this.editTextBoldCursor.getPaddingTop(), AndroidUtilities.dp(0.0f), this.editTextBoldCursor.getPaddingBottom());
-        this.editTextBoldCursor.setBackgroundDrawable(null);
+        this.editTextBoldCursor.setBackground(null);
         this.editTextBoldCursor.setSingleLine(true);
         EditTextBoldCursor editTextBoldCursor2 = this.editTextBoldCursor;
         editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
@@ -548,9 +548,7 @@ public class TopicCreateFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        this.editTextBoldCursor.requestFocus();
-        AndroidUtilities.showKeyboard(this.editTextBoldCursor);
-        AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
+        showKeyboard();
     }
 
     public void showKeyboard() {

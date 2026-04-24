@@ -1008,7 +1008,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.callingUserPhotoViewMini = new ImageWithWavesView(context);
         AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setInfo(this.callingUser);
-        this.callingUserPhotoViewMini.setImage(ImageLocation.getForUserOrChat(this.callingUser, 0), null, avatarDrawable, this.callingUser);
+        this.callingUserPhotoViewMini.setImage(ImageLocation.getForUserOrChat(this.currentAccount, this.callingUser, 0), null, avatarDrawable, this.callingUser);
         this.callingUserPhotoViewMini.setRoundRadius(AndroidUtilities.dp(135.0f) / 2);
         TextView textView3 = new TextView(context);
         this.callingUserTitle = textView3;

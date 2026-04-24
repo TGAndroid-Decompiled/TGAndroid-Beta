@@ -927,7 +927,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView {
         final TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = new TLRPC.TL_messages_composeMessageWithAI();
         tL_messages_composeMessageWithAI.text = tL_textWithEntities;
         if (selectedTab == 0) {
-            tL_messages_composeMessageWithAI.translate_to_lang = this.to_lang;
+            tL_messages_composeMessageWithAI.translate_to_lang = TranslateController.normalizeLanguage(this.to_lang);
             tL_messages_composeMessageWithAI.change_tone = this.translateTone;
             tL_messages_composeMessageWithAI.emojify = this.emojify;
         } else if (selectedTab == 1) {
