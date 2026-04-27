@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="67119"
+    android:versionCode="67139"
     android:versionName="12.7.0"
     android:installLocation="auto"
     android:compileSdkVersion="35"
@@ -1036,6 +1036,10 @@
                 <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
             </intent-filter>
         </receiver>
+        <provider
+            android:name="ru.noties.jlatexmath.JLatexMathInitProvider"
+            android:exported="false"
+            android:authorities="org.telegram.messenger.beta.jlatexmathinitprovider"/>
         <activity
             android:theme="@style/Theme.PlayCore.Transparent"
             android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"

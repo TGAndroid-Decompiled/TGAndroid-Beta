@@ -151,7 +151,7 @@ public class VoIPPreNotificationService {
         TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
         NotificationManager notificationManager = (NotificationManager) context.getSystemService("notification");
         Intent action = new Intent(context, (Class<?>) LaunchActivity.class).setAction("voip");
-        Notification.Builder contentIntent = new Notification.Builder(context).setContentTitle(LocaleController.getString(z ? R.string.VoipInVideoCallBranding : R.string.VoipInCallBranding)).setSmallIcon(R.drawable.ic_call).setContentIntent(PendingIntent.getActivity(context, 0, action, 301989888));
+        Notification.Builder contentIntent = new Notification.Builder(context).setContentTitle(LocaleController.getString(z ? R.string.VoipInVideoCallBranding : R.string.VoipInCallBranding)).setSmallIcon(R.drawable.call).setContentIntent(PendingIntent.getActivity(context, 0, action, 301989888));
         SharedPreferences globalNotificationsSettings = MessagesController.getGlobalNotificationsSettings();
         int i4 = globalNotificationsSettings.getInt("calls_notification_channel", 0);
         NotificationChannel notificationChannel = notificationManager.getNotificationChannel("incoming_calls2" + i4);

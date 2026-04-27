@@ -33,6 +33,8 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
@@ -2473,7 +2475,7 @@ public abstract class TextSelectionHelper {
 
         @Override
         protected CharSequence getSelectedText() {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            final SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             int i = this.startViewPosition;
             while (true) {
                 int i2 = this.endViewPosition;
@@ -2583,10 +2585,34 @@ public abstract class TextSelectionHelper {
             if (spannableStringBuilder.length() <= 0) {
                 return null;
             }
+            ReplaceCopyTextSpannable[] replaceCopyTextSpannableArr = (ReplaceCopyTextSpannable[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length() - 1, ReplaceCopyTextSpannable.class);
+            if (replaceCopyTextSpannableArr != null && replaceCopyTextSpannableArr.length > 0) {
+                Arrays.sort(replaceCopyTextSpannableArr, new Comparator() {
+                    @Override
+                    public final int compare(Object obj, Object obj2) {
+                        return TextSelectionHelper.ArticleTextSelectionHelper.lambda$getSelectedText$0(spannableStringBuilder, (TextSelectionHelper.ReplaceCopyTextSpannable) obj, (TextSelectionHelper.ReplaceCopyTextSpannable) obj2);
+                    }
+                });
+                for (ReplaceCopyTextSpannable replaceCopyTextSpannable : replaceCopyTextSpannableArr) {
+                    int spanStart = spannableStringBuilder.getSpanStart(replaceCopyTextSpannable);
+                    int spanEnd = spannableStringBuilder.getSpanEnd(replaceCopyTextSpannable);
+                    if (spanStart >= 0 && spanEnd > spanStart) {
+                        CharSequence charSequence8 = replaceCopyTextSpannable.replacement;
+                        if (charSequence8 == null) {
+                            charSequence8 = "";
+                        }
+                        spannableStringBuilder.replace(spanStart, spanEnd, charSequence8);
+                    }
+                }
+            }
             for (IgnoreCopySpannable ignoreCopySpannable : (IgnoreCopySpannable[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length() - 1, IgnoreCopySpannable.class)) {
                 spannableStringBuilder.delete(spannableStringBuilder.getSpanStart(ignoreCopySpannable), spannableStringBuilder.getSpanEnd(ignoreCopySpannable));
             }
             return spannableStringBuilder.subSequence(0, spannableStringBuilder.length() - 1);
+        }
+
+        public static int lambda$getSelectedText$0(SpannableStringBuilder spannableStringBuilder, ReplaceCopyTextSpannable replaceCopyTextSpannable, ReplaceCopyTextSpannable replaceCopyTextSpannable2) {
+            return spannableStringBuilder.getSpanStart(replaceCopyTextSpannable2) - spannableStringBuilder.getSpanStart(replaceCopyTextSpannable);
         }
 
         @Override
@@ -2657,6 +2683,14 @@ public abstract class TextSelectionHelper {
                 return i >= iFindFirstVisibleItemPosition && this.endViewPosition <= iFindLastVisibleItemPosition;
             }
             return true;
+        }
+    }
+
+    public static class ReplaceCopyTextSpannable {
+        public final CharSequence replacement;
+
+        public ReplaceCopyTextSpannable(CharSequence charSequence) {
+            this.replacement = charSequence;
         }
     }
 

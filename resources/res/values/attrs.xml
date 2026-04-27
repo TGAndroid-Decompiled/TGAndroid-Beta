@@ -575,6 +575,24 @@
     </attr>
     <attr name="itemPadding" format="dimension">
     </attr>
+    <attr name="jlmv_alignHorizontal">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+    <attr name="jlmv_alignVertical">
+        <enum name="start" value="0" />
+        <enum name="center" value="1" />
+        <enum name="end" value="2" />
+    </attr>
+    <attr name="jlmv_background" format="reference">
+    </attr>
+    <attr name="jlmv_latex" format="string">
+    </attr>
+    <attr name="jlmv_textColor" format="color">
+    </attr>
+    <attr name="jlmv_textSize" format="dimension">
+    </attr>
     <attr name="lStar" format="float">
     </attr>
     <attr name="lastBaselineToBottomHeight" format="dimension">

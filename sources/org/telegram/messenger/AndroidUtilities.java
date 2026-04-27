@@ -225,7 +225,6 @@ public class AndroidUtilities {
     public static final int REPLACING_TAG_TYPE_UNDERLINE = 4;
     public static final String STICKERS_PLACEHOLDER_PACK_NAME = "tg_placeholders_android";
     public static final String STICKERS_PLACEHOLDER_PACK_NAME_2 = "tg_superplaceholders_android_2";
-    public static final String TYPEFACE_COURIER_NEW_BOLD = "fonts/courier_new_bold.ttf";
     public static final String TYPEFACE_MERRIWEATHER_BOLD = "fonts/mw_bold.ttf";
     public static final String TYPEFACE_ROBOTO_EXTRA_BOLD = "fonts/rextrabold.ttf";
     public static final String TYPEFACE_ROBOTO_MEDIUM = "fonts/rmedium.ttf";

@@ -2,16 +2,6 @@ package org.commonmark.node;
 
 public abstract class AbstractVisitor implements Visitor {
     @Override
-    public void visit(BlockQuote blockQuote) {
-        visitChildren(blockQuote);
-    }
-
-    @Override
-    public void visit(BulletList bulletList) {
-        visitChildren(bulletList);
-    }
-
-    @Override
     public void visit(Code code) {
         visitChildren(code);
     }
@@ -74,11 +64,6 @@ public abstract class AbstractVisitor implements Visitor {
     @Override
     public void visit(ListItem listItem) {
         visitChildren(listItem);
-    }
-
-    @Override
-    public void visit(OrderedList orderedList) {
-        visitChildren(orderedList);
     }
 
     @Override

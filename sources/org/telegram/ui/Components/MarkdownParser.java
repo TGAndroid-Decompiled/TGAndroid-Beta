@@ -1,9 +1,17 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.text.TextUtils;
+import io.noties.markwon.MarkwonPlugin;
+import io.noties.markwon.ext.latex.JLatexMathBlock;
+import io.noties.markwon.ext.latex.JLatexMathNode;
+import io.noties.markwon.ext.latex.JLatexMathPlugin;
 import io.noties.markwon.html.HtmlTag;
 import io.noties.markwon.html.MarkwonHtmlParser;
 import io.noties.markwon.html.MarkwonHtmlParserImpl;
+import io.noties.markwon.inlineparser.InlineProcessor;
+import io.noties.markwon.inlineparser.MarkwonInlineParserPlugin;
 import j$.util.Comparator$CC;
 import java.io.File;
 import java.io.FileInputStream;
@@ -62,6 +70,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.MarkdownParser;
+import ru.noties.jlatexmath.JLatexMathDrawable;
 
 public abstract class MarkdownParser {
     private static final Pattern FOOTNOTE_DEF = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
@@ -121,7 +130,28 @@ public abstract class MarkdownParser {
                     fileInputStream.close();
                     LinkedHashMap linkedHashMap = new LinkedHashMap();
                     String strRewriteFootnoteRefs = rewriteFootnoteRefs(extractFootnoteDefs(str2, linkedHashMap));
-                    Parser parserBuild = Parser.builder().extensions(Arrays.asList(StrikethroughExtension.create(), TablesExtension.create())).build();
+                    List listAsList = Arrays.asList(StrikethroughExtension.create(), TablesExtension.create());
+                    final MarkwonInlineParserPlugin markwonInlineParserPluginCreate = MarkwonInlineParserPlugin.create();
+                    JLatexMathPlugin jLatexMathPluginCreate = JLatexMathPlugin.create(AndroidUtilities.dp(18.0f), new JLatexMathPlugin.BuilderConfigure() {
+                        @Override
+                        public final void configureBuilder(JLatexMathPlugin.Builder builder) {
+                            builder.inlinesEnabled(true);
+                        }
+                    });
+                    jLatexMathPluginCreate.configure(new MarkwonPlugin.Registry() {
+                        @Override
+                        public MarkwonPlugin require(Class cls) {
+                            if (cls == MarkwonInlineParserPlugin.class) {
+                                return markwonInlineParserPluginCreate;
+                            }
+                            throw new IllegalStateException("plugin not registered: " + cls);
+                        }
+                    });
+                    markwonInlineParserPluginCreate.factoryBuilder().addInlineProcessor(new SingleDollarLatexInlineProcessor());
+                    Parser.Builder builderExtensions = Parser.builder().extensions(listAsList);
+                    markwonInlineParserPluginCreate.configureParser(builderExtensions);
+                    jLatexMathPluginCreate.configureParser(builderExtensions);
+                    Parser parserBuild = builderExtensions.build();
                     BlockVisitor blockVisitor = new BlockVisitor(tL_page.blocks, scanOrderedListMarkers(strRewriteFootnoteRefs));
                     parserBuild.parse(strRewriteFootnoteRefs).accept(blockVisitor);
                     blockVisitor.finish();
@@ -144,6 +174,53 @@ public abstract class MarkdownParser {
             }
         }
         return null;
+    }
+
+    public static class SingleDollarLatexInlineProcessor extends InlineProcessor {
+        private static final Pattern RE = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+
+        @Override
+        public char specialCharacter() {
+            return '$';
+        }
+
+        @Override
+        protected Node parse() {
+            String strMatch = match(RE);
+            if (strMatch == null) {
+                return null;
+            }
+            JLatexMathNode jLatexMathNode = new JLatexMathNode();
+            jLatexMathNode.latex(strMatch.substring(1, strMatch.length() - 1));
+            return jLatexMathNode;
+        }
+    }
+
+    public static TLRPC.TL_textLatex makeLatex(String str) {
+        TLRPC.TL_textLatex tL_textLatex = new TLRPC.TL_textLatex();
+        String strTrim = str == null ? "" : str.trim();
+        tL_textLatex.raw = strTrim;
+        try {
+            JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(strTrim).textSize(AndroidUtilities.dp(20.0f)).build();
+            int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
+            int intrinsicHeight = jLatexMathDrawableBuild.getIntrinsicHeight();
+            if (intrinsicWidth > 0 && intrinsicHeight > 0) {
+                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
+                jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+                jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
+                tL_textLatex.w = intrinsicWidth;
+                tL_textLatex.h = intrinsicHeight;
+                try {
+                    tL_textLatex.depth = jLatexMathDrawableBuild.icon().getIconDepth();
+                } catch (Throwable th) {
+                    FileLog.e(th);
+                }
+                tL_textLatex.bitmap = bitmapCreateBitmap;
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+        return tL_textLatex;
     }
 
     private static java.util.ArrayDeque scanOrderedListMarkers(java.lang.String r12) {
@@ -259,7 +336,7 @@ public abstract class MarkdownParser {
     public static TLRPC.RichText richTextOf(Node node, TLRPC.PageBlock pageBlock) {
         RichTextParser richTextParser = new RichTextParser(pageBlock);
         node.accept(richTextParser);
-        return pairHtml(richTextParser.getText());
+        return materializeStyles(pairHtml(richTextParser.getText()));
     }
 
     private static TLRPC.RichText pairHtml(TLRPC.RichText richText) {
@@ -274,9 +351,17 @@ public abstract class MarkdownParser {
             }
             return pairHtmlConcat(tL_textConcat);
         }
-        TLRPC.RichText richText2 = richText.text;
-        if (richText2 != null) {
-            richText.text = pairHtml(richText2);
+        TLRPC.RichText richText2 = richText;
+        while (true) {
+            TLRPC.RichText richText3 = richText2.text;
+            if (richText3 == null) {
+                break;
+            }
+            if (richText3 instanceof TLRPC.TL_textConcat) {
+                richText2.text = pairHtml(richText3);
+                break;
+            }
+            richText2 = richText3;
         }
         return richText;
     }
@@ -338,7 +423,7 @@ public abstract class MarkdownParser {
         Collections.sort(arrayList3, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override
             public final int applyAsInt(Object obj) {
-                return MarkdownParser.lambda$pairHtmlConcat$2((HtmlTag) obj);
+                return MarkdownParser.lambda$pairHtmlConcat$3((HtmlTag) obj);
             }
         }));
         for (HtmlTag htmlTag : arrayList3) {
@@ -391,7 +476,7 @@ public abstract class MarkdownParser {
         return tL_textConcat3;
     }
 
-    public static int lambda$pairHtmlConcat$2(HtmlTag htmlTag) {
+    public static int lambda$pairHtmlConcat$3(HtmlTag htmlTag) {
         return htmlTag.end() - htmlTag.start();
     }
 
@@ -408,52 +493,88 @@ public abstract class MarkdownParser {
         return str != null && str.length() >= 2 && str.charAt(0) == '<' && str.charAt(str.length() - 1) == '>';
     }
 
-    private static TLRPC.RichText wrapByTag(String str, TLRPC.RichText richText) {
+    private static final class TextStyle extends TLRPC.RichText {
+        int styleFlags;
+
+        private TextStyle() {
+        }
+    }
+
+    private static int flagFor(String str) {
         if (str == null) {
-            return richText;
+            return 0;
         }
         String lowerCase = str.toLowerCase();
         lowerCase.hashCode();
         switch (lowerCase) {
-            case "strike":
-            case "s":
-            case "del":
-                TLRPC.TL_textStrike tL_textStrike = new TLRPC.TL_textStrike();
-                tL_textStrike.text = richText;
-                break;
-            case "strong":
-            case "b":
-                TLRPC.TL_textBold tL_textBold = new TLRPC.TL_textBold();
-                tL_textBold.text = richText;
-                break;
-            case "i":
-            case "em":
-                TLRPC.TL_textItalic tL_textItalic = new TLRPC.TL_textItalic();
-                tL_textItalic.text = richText;
-                break;
-            case "u":
-            case "ins":
-                TLRPC.TL_textUnderline tL_textUnderline = new TLRPC.TL_textUnderline();
-                tL_textUnderline.text = richText;
-                break;
-            case "tt":
-            case "code":
-                TLRPC.TL_textFixed tL_textFixed = new TLRPC.TL_textFixed();
-                tL_textFixed.text = richText;
-                break;
-            case "sub":
-                TLRPC.TL_textSubscript tL_textSubscript = new TLRPC.TL_textSubscript();
-                tL_textSubscript.text = richText;
-                break;
-            case "sup":
-                TLRPC.TL_textSuperscript tL_textSuperscript = new TLRPC.TL_textSuperscript();
-                tL_textSuperscript.text = richText;
-                break;
-            case "mark":
-                TLRPC.TL_textMarked tL_textMarked = new TLRPC.TL_textMarked();
-                tL_textMarked.text = richText;
-                break;
         }
+        return 0;
+    }
+
+    private static TLRPC.RichText wrapByTag(String str, TLRPC.RichText richText) {
+        int iFlagFor = flagFor(str);
+        if (iFlagFor == 0) {
+            return richText;
+        }
+        if (richText instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) richText;
+            textStyle.styleFlags = iFlagFor | textStyle.styleFlags;
+            return richText;
+        }
+        TextStyle textStyle2 = new TextStyle();
+        textStyle2.styleFlags = iFlagFor;
+        textStyle2.text = richText;
+        return textStyle2;
+    }
+
+    private static TLRPC.RichText materializeStyles(TLRPC.RichText richText) {
+        if (richText == null) {
+            return null;
+        }
+        if (richText instanceof TLRPC.TL_textConcat) {
+            TLRPC.TL_textConcat tL_textConcat = (TLRPC.TL_textConcat) richText;
+            for (int i = 0; i < tL_textConcat.texts.size(); i++) {
+                ArrayList<TLRPC.RichText> arrayList = tL_textConcat.texts;
+                arrayList.set(i, materializeStyles(arrayList.get(i)));
+            }
+            return tL_textConcat;
+        }
+        if (richText instanceof TextStyle) {
+            TextStyle textStyle = (TextStyle) richText;
+            TLRPC.RichText richTextMaterializeStyles = materializeStyles(textStyle.text);
+            int i2 = textStyle.styleFlags;
+            if ((i2 & 4) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textFixed(), richTextMaterializeStyles);
+            }
+            if ((i2 & 32) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textStrike(), richTextMaterializeStyles);
+            }
+            if ((i2 & 16) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textUnderline(), richTextMaterializeStyles);
+            }
+            if ((i2 & 64) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textMarked(), richTextMaterializeStyles);
+            }
+            if ((i2 & 128) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textSubscript(), richTextMaterializeStyles);
+            }
+            if ((i2 & 256) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textSuperscript(), richTextMaterializeStyles);
+            }
+            if ((i2 & 2) != 0) {
+                richTextMaterializeStyles = wrapStyle(new TLRPC.TL_textItalic(), richTextMaterializeStyles);
+            }
+            return (i2 & 1) != 0 ? wrapStyle(new TLRPC.TL_textBold(), richTextMaterializeStyles) : richTextMaterializeStyles;
+        }
+        TLRPC.RichText richText2 = richText.text;
+        if (richText2 != null) {
+            richText.text = materializeStyles(richText2);
+        }
+        return richText;
+    }
+
+    private static TLRPC.RichText wrapStyle(TLRPC.RichText richText, TLRPC.RichText richText2) {
+        richText.text = richText2;
         return richText;
     }
 
@@ -648,6 +769,10 @@ public abstract class MarkdownParser {
         }
 
         private void materialize(List list, List list2) {
+            materialize(list, list2, 0);
+        }
+
+        private void materialize(List list, List list2, int i) {
             for (Object obj : list) {
                 if (obj instanceof Item) {
                     TLRPC.PageBlock pageBlock = ((Item) obj).block;
@@ -655,13 +780,13 @@ public abstract class MarkdownParser {
                         list2.add(pageBlock);
                     }
                 } else if (obj instanceof Scope) {
-                    wrapScope((Scope) obj, list2);
+                    wrapScope((Scope) obj, list2, i);
                 }
             }
         }
 
-        private void wrapScope(org.telegram.ui.Components.MarkdownParser.BlockVisitor.Scope r8, java.util.List r9) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MarkdownParser.BlockVisitor.wrapScope(org.telegram.ui.Components.MarkdownParser$BlockVisitor$Scope, java.util.List):void");
+        private void wrapScope(org.telegram.ui.Components.MarkdownParser.BlockVisitor.Scope r9, java.util.List r10, int r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MarkdownParser.BlockVisitor.wrapScope(org.telegram.ui.Components.MarkdownParser$BlockVisitor$Scope, java.util.List, int):void");
         }
 
         private TLRPC.RichText scopeToRichText(Scope scope) {
@@ -857,6 +982,12 @@ public abstract class MarkdownParser {
             if (customBlock instanceof TableBlock) {
                 emit(buildTable((TableBlock) customBlock));
             } else {
+                if (customBlock instanceof JLatexMathBlock) {
+                    TLRPC.TL_pageBlockParagraph tL_pageBlockParagraph = new TLRPC.TL_pageBlockParagraph();
+                    tL_pageBlockParagraph.text = MarkdownParser.makeLatex(((JLatexMathBlock) customBlock).latex());
+                    emit(tL_pageBlockParagraph);
+                    return;
+                }
                 super.visit(customBlock);
             }
         }
@@ -905,10 +1036,67 @@ public abstract class MarkdownParser {
 
     public static class RichTextParser extends AbstractVisitor {
         private final TLRPC.PageBlock block;
+        private int blockDepth;
         private TLRPC.TL_textConcat current = new TLRPC.TL_textConcat();
 
         public RichTextParser(TLRPC.PageBlock pageBlock) {
             this.block = pageBlock;
+        }
+
+        @Override
+        public void visit(BlockQuote blockQuote) {
+            int i = this.blockDepth;
+            if (i >= 64) {
+                return;
+            }
+            this.blockDepth = i + 1;
+            try {
+                visitChildren(blockQuote);
+            } finally {
+                this.blockDepth--;
+            }
+        }
+
+        @Override
+        public void visit(BulletList bulletList) {
+            int i = this.blockDepth;
+            if (i >= 64) {
+                return;
+            }
+            this.blockDepth = i + 1;
+            try {
+                visitChildren(bulletList);
+            } finally {
+                this.blockDepth--;
+            }
+        }
+
+        @Override
+        public void visit(OrderedList orderedList) {
+            int i = this.blockDepth;
+            if (i >= 64) {
+                return;
+            }
+            this.blockDepth = i + 1;
+            try {
+                visitChildren(orderedList);
+            } finally {
+                this.blockDepth--;
+            }
+        }
+
+        @Override
+        public void visit(ListItem listItem) {
+            int i = this.blockDepth;
+            if (i >= 64) {
+                return;
+            }
+            this.blockDepth = i + 1;
+            try {
+                visitChildren(listItem);
+            } finally {
+                this.blockDepth--;
+            }
         }
 
         public TLRPC.RichText getText() {
@@ -1015,9 +1203,24 @@ public abstract class MarkdownParser {
                 TLRPC.TL_textStrike tL_textStrike = new TLRPC.TL_textStrike();
                 tL_textStrike.text = collectChildren(customNode);
                 append(tL_textStrike);
+            } else if (customNode instanceof JLatexMathNode) {
+                append(MarkdownParser.makeLatex(((JLatexMathNode) customNode).latex()));
+            } else {
+                super.visit(customNode);
+            }
+        }
+
+        @Override
+        public void visit(CustomBlock customBlock) {
+            if (customBlock instanceof JLatexMathBlock) {
+                if (!this.current.texts.isEmpty()) {
+                    append(MarkdownParser.plain("\n"));
+                }
+                append(MarkdownParser.makeLatex(((JLatexMathBlock) customBlock).latex()));
+                append(MarkdownParser.plain("\n"));
                 return;
             }
-            super.visit(customNode);
+            super.visit(customBlock);
         }
     }
 }

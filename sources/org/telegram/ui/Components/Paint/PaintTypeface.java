@@ -21,7 +21,6 @@ import org.telegram.messenger.Utilities;
 
 public class PaintTypeface {
     public static final List BUILT_IN_FONTS;
-    public static final PaintTypeface COURIER_NEW_BOLD;
     public static final PaintTypeface MW_BOLD;
     public static final PaintTypeface ROBOTO_CONDENSED;
     public static final PaintTypeface ROBOTO_ITALIC;
@@ -81,14 +80,7 @@ public class PaintTypeface {
             }
         }));
         MW_BOLD = paintTypeface6;
-        PaintTypeface paintTypeface7 = new PaintTypeface("courier_new_bold", "PhotoEditorTypefaceCourierNew", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
-            @Override
-            public final Typeface load() {
-                return PaintTypeface.lambda$static$6();
-            }
-        }));
-        COURIER_NEW_BOLD = paintTypeface7;
-        BUILT_IN_FONTS = Arrays.asList(paintTypeface, paintTypeface2, paintTypeface3, paintTypeface4, paintTypeface5, paintTypeface6, paintTypeface7);
+        BUILT_IN_FONTS = Arrays.asList(paintTypeface, paintTypeface2, paintTypeface3, paintTypeface4, paintTypeface5, paintTypeface6);
         preferable = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
@@ -114,10 +106,6 @@ public class PaintTypeface {
 
     public static Typeface lambda$static$5() {
         return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
-    }
-
-    public static Typeface lambda$static$6() {
-        return AndroidUtilities.getTypeface("fonts/courier_new_bold.ttf");
     }
 
     static class LazyTypeface {
@@ -157,13 +145,13 @@ public class PaintTypeface {
         this.lazyTypeface = new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                return PaintTypeface.lambda$new$7(font);
+                return PaintTypeface.lambda$new$6(font);
             }
         });
         this.font = font;
     }
 
-    public static Typeface lambda$new$7(Font font) {
+    public static Typeface lambda$new$6(Font font) {
         return Typeface.createFromFile(font.getFile());
     }
 
@@ -192,12 +180,12 @@ public class PaintTypeface {
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaintTypeface.lambda$load$9();
+                PaintTypeface.lambda$load$8();
             }
         });
     }
 
-    public static void lambda$load$9() {
+    public static void lambda$load$8() {
         FontData font;
         final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
         if (Build.VERSION.SDK_INT >= 29) {
@@ -233,12 +221,12 @@ public class PaintTypeface {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaintTypeface.lambda$load$8(arrayList);
+                PaintTypeface.lambda$load$7(arrayList);
             }
         });
     }
 
-    public static void lambda$load$8(ArrayList arrayList) {
+    public static void lambda$load$7(ArrayList arrayList) {
         typefaces = arrayList;
         loadingTypefaces = false;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);

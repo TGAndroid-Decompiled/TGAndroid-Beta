@@ -165,7 +165,6 @@ import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingDrawable;
-import org.telegram.ui.Components.MarkdownParser;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
@@ -1567,7 +1566,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         checkScrollAnimated();
                         return;
                     }
-                    scrollToAnchor(strDecode, false);
+                    scrollToAnchor(strDecode, true);
                     return;
                 }
             }
@@ -2790,8 +2789,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     i5 = iDp;
                 }
                 if (view != null) {
-                    int themedColor = getThemedColor(Theme.key_windowBackgroundWhite);
-                    spannableStringBuilder8.setSpan(new TextPaintImageReceiverSpan(view, documentWithId, (Object) webPage, i5, i4, false, (((((float) Color.red(themedColor)) * 0.2126f) + (((float) Color.green(themedColor)) * 0.7152f)) + (((float) Color.blue(themedColor)) * 0.0722f)) / 255.0f <= 0.705f), 0, spannableStringBuilder8.length(), 33);
+                    spannableStringBuilder8.setSpan(new TextPaintImageReceiverSpan(view, documentWithId, (Object) webPage, i5, i4, false, AndroidUtilities.computePerceivedBrightness(getThemedColor(Theme.key_windowBackgroundWhite)) <= 0.705f), 0, spannableStringBuilder8.length(), 33);
                 }
                 return spannableStringBuilder8;
             }
@@ -2809,11 +2807,24 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     i3 = iDp3;
                 }
                 if (view != null) {
-                    getThemedColor(Theme.key_windowBackgroundWhite);
                     spannableStringBuilder4.setSpan(new TextPaintImageReceiverSpan(view, webPhoto, (Object) webPage, i3, i2, false, false), 0, spannableStringBuilder4.length(), 33);
                 }
             }
             return spannableStringBuilder4;
+        }
+        if (richText2 instanceof TLRPC.TL_textLatex) {
+            TLRPC.TL_textLatex tL_textLatex = (TLRPC.TL_textLatex) richText2;
+            if (tL_textLatex.bitmap == null) {
+                String str = tL_textLatex.raw;
+                return str == null ? "" : str;
+            }
+            SpannableStringBuilder spannableStringBuilder9 = new SpannableStringBuilder("￼");
+            spannableStringBuilder9.setSpan(new TextPaintImageReceiverSpan(view, tL_textLatex.bitmap, tL_textLatex.w, tL_textLatex.h, getThemedColor(Theme.key_windowBackgroundWhiteBlackText), tL_textLatex.depth), 0, spannableStringBuilder9.length(), 33);
+            String str2 = tL_textLatex.raw;
+            if (str2 != null && !str2.isEmpty()) {
+                spannableStringBuilder9.setSpan(new TextSelectionHelper.ReplaceCopyTextSpannable(tL_textLatex.raw), 0, spannableStringBuilder9.length(), 33);
+            }
+            return spannableStringBuilder9;
         }
         return "not supported " + richText2;
     }
@@ -5485,8 +5496,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         String strSubstring;
         boolean z;
         int iLastIndexOf;
-        TLRPC.WebPage webPageFromMarkdown;
         String lowerCase;
+        TLRPC.Page page;
         if (this.parentActivity == null || (this.sheet == null && this.isVisible && !this.collapsed)) {
             return false;
         }
@@ -5496,13 +5507,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
         if (messageObject != null) {
             TLRPC.WebPage webPage3 = messageObject.messageOwner.media.webpage;
-            if (webPage3 == null) {
-                webPageFromMarkdown = MarkdownParser.fromMarkdown(messageObject);
-                z = true;
-            } else {
-                webPageFromMarkdown = webPage3;
-                z = false;
-            }
+            z = (webPage3 == null || (page = webPage3.cached_page) == null || page.local == null) ? false : true;
             for (int i = 0; i < messageObject.messageOwner.entities.size(); i++) {
                 TLRPC.MessageEntity messageEntity = messageObject.messageOwner.entities.get(i);
                 if (messageEntity instanceof TLRPC.TL_messageEntityUrl) {
@@ -5510,10 +5515,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         String str3 = messageObject.messageOwner.message;
                         int i2 = messageEntity.offset;
                         String lowerCase2 = str3.substring(i2, messageEntity.length + i2).toLowerCase();
-                        if (!TextUtils.isEmpty(webPageFromMarkdown.cached_page.url)) {
-                            lowerCase = webPageFromMarkdown.cached_page.url.toLowerCase();
+                        if (!TextUtils.isEmpty(webPage3.cached_page.url)) {
+                            lowerCase = webPage3.cached_page.url.toLowerCase();
                         } else {
-                            lowerCase = webPageFromMarkdown.url.toLowerCase();
+                            lowerCase = webPage3.url.toLowerCase();
                         }
                         if (lowerCase2.contains(lowerCase) || lowerCase.contains(lowerCase2)) {
                             int iLastIndexOf2 = lowerCase2.lastIndexOf(35);
@@ -5521,7 +5526,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                                 break;
                             }
                             strSubstring = lowerCase2.substring(iLastIndexOf2 + 1);
-                            webPage2 = webPageFromMarkdown;
+                            webPage2 = webPage3;
                             break;
                         }
                     } catch (Exception e) {
@@ -5529,7 +5534,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     }
                 }
             }
-            webPage2 = webPageFromMarkdown;
+            webPage2 = webPage3;
             strSubstring = null;
         } else {
             if (str == null || (iLastIndexOf = str.lastIndexOf(35)) == -1) {
@@ -5571,8 +5576,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 }
                 TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
                 tL_messages_getWebPage.url = webPage2.url;
-                TLRPC.Page page = webPage2.cached_page;
-                if ((page instanceof TLRPC.TL_pagePart_layer82) || page.part) {
+                TLRPC.Page page2 = webPage2.cached_page;
+                if ((page2 instanceof TLRPC.TL_pagePart_layer82) || page2.part) {
                     tL_messages_getWebPage.hash = 0;
                 } else {
                     tL_messages_getWebPage.hash = webPage2.hash;
@@ -8654,6 +8659,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         protected void onMeasure(int i, int i2) {
             int i3;
+            Layout.Alignment alignmentALIGN_RIGHT;
             int iDp;
             int size = View.MeasureSpec.getSize(i);
             TLRPC.TL_pageBlockParagraph tL_pageBlockParagraph = this.currentBlock;
@@ -8666,7 +8672,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     this.textY = 0;
                     this.textX = AndroidUtilities.dp((r15 * 14) + 18);
                 }
-                DrawingText drawingTextCreateLayoutForText = ArticleViewer.this.createLayoutForText(this, null, this.currentBlock.text, (size - AndroidUtilities.dp(18.0f)) - this.textX, this.textY, this.currentBlock, this.parentAdapter.isRtl ? StaticLayoutEx.ALIGN_RIGHT() : Layout.Alignment.ALIGN_NORMAL, 0, this.parentAdapter);
+                if (!(this.currentBlock.text instanceof TLRPC.TL_textLatex)) {
+                    alignmentALIGN_RIGHT = this.parentAdapter.isRtl ? StaticLayoutEx.ALIGN_RIGHT() : Layout.Alignment.ALIGN_NORMAL;
+                } else {
+                    alignmentALIGN_RIGHT = Layout.Alignment.ALIGN_CENTER;
+                }
+                DrawingText drawingTextCreateLayoutForText = ArticleViewer.this.createLayoutForText(this, null, this.currentBlock.text, (size - AndroidUtilities.dp(18.0f)) - this.textX, this.textY, this.currentBlock, alignmentALIGN_RIGHT, 0, this.parentAdapter);
                 this.textLayout = drawingTextCreateLayoutForText;
                 if (drawingTextCreateLayoutForText != null) {
                     int height = drawingTextCreateLayoutForText.getHeight();
@@ -14049,7 +14060,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1273getWindowView() {
+        public WindowView mo1274getWindowView() {
             return this.windowView;
         }
 
@@ -14444,7 +14455,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1273getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1274getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

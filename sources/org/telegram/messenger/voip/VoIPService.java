@@ -4533,7 +4533,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             contentIntent.setSmallIcon(isMicMute() ? R.drawable.voicechat_muted : R.drawable.voicechat_active);
         } else {
             contentIntent.setContentTitle(LocaleController.getString(R.string.VoipOutgoingCall));
-            contentIntent.setSmallIcon(R.drawable.ic_call);
+            contentIntent.setSmallIcon(R.drawable.call);
             contentIntent.setOngoing(true);
         }
         int i = Build.VERSION.SDK_INT;
@@ -5278,7 +5278,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 if (this.groupCall != null) {
                     showWhen.setSmallIcon(isMicMute() ? R.drawable.voicechat_muted : R.drawable.voicechat_active);
                 } else {
-                    showWhen.setSmallIcon(R.drawable.ic_call);
+                    showWhen.setSmallIcon(R.drawable.call);
                 }
                 this.foregroundStarted = true;
                 if (i >= 33) {
@@ -5299,7 +5299,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             NotificationsController.checkOtherNotificationsChannel();
             Distribute$$ExternalSyntheticApiModelOutline1.m();
             Notification.Builder showWhen2 = Distribute$$ExternalSyntheticApiModelOutline0.m(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.VoipCallEnded)).setShowWhen(false);
-            showWhen2.setSmallIcon(R.drawable.ic_call);
+            showWhen2.setSmallIcon(R.drawable.call);
             this.foregroundStarted = true;
             if (i >= 33) {
                 this.foregroundId = 201;

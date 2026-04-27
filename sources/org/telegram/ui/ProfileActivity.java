@@ -2849,7 +2849,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.callItem.setContentDescription(LocaleController.getString(R.string.VoipGroupVoiceChat));
             }
         } else {
-            ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(15, R.drawable.ic_call);
+            ActionBarMenuItem actionBarMenuItemAddItem2 = actionBarMenuCreateMenu.addItem(15, R.drawable.call);
             this.callItem = actionBarMenuItemAddItem2;
             actionBarMenuItemAddItem2.setContentDescription(LocaleController.getString(R.string.Call));
         }
@@ -3806,7 +3806,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             ImageView imageView6 = new ImageView(context2);
             this.callToActionItem = imageView6;
             imageView6.setScaleType(scaleType);
-            this.callToActionItem.setImageResource(R.drawable.ic_call);
+            this.callToActionItem.setImageResource(R.drawable.call);
             this.callToActionItem.setVisibility(i5);
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(AndroidUtilities.dp(48.0f), ActionBar.getCurrentActionBarHeight());
             layoutParams.topMargin = this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0;

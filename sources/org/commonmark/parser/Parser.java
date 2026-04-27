@@ -99,6 +99,11 @@ public class Parser {
             return this;
         }
 
+        public Builder inlineParserFactory(InlineParserFactory inlineParserFactory) {
+            this.inlineParserFactory = inlineParserFactory;
+            return this;
+        }
+
         public InlineParserFactory getInlineParserFactory() {
             InlineParserFactory inlineParserFactory = this.inlineParserFactory;
             return inlineParserFactory != null ? inlineParserFactory : new InlineParserFactory() {

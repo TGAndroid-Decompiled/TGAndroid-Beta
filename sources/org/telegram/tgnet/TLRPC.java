@@ -9248,6 +9248,14 @@ public class TLRPC {
         }
     }
 
+    public static class TL_textLatex extends RichText {
+        public Bitmap bitmap;
+        public int depth;
+        public int h;
+        public String raw;
+        public int w;
+    }
+
     public static class TL_timezone extends TLObject {
         public static final int constructor = -7173643;
         public String id;
@@ -81599,15 +81607,15 @@ public class TLRPC {
         public long offset;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new TLRPC$TL_upload_fileCdnRedirect$$ExternalSyntheticLambda0());
-        }
-
-        @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1847836879);
             outputSerializedData.writeByteArray(this.file_token);
             outputSerializedData.writeInt64(this.offset);
+        }
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Vector.TLDeserialize(inputSerializedData, i, z, new TLRPC$TL_upload_fileCdnRedirect$$ExternalSyntheticLambda0());
         }
     }
 }
