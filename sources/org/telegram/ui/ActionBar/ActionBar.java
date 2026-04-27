@@ -67,6 +67,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     private View actionModeTranslationView;
     protected boolean actionModeVisible;
     private boolean adaptiveBackground;
+    private boolean adaptiveBackgroundHideTitle;
     private ValueAnimator adaptive_animator;
     private int adaptive_lowerColorKey;
     private int adaptive_topColorKey;
@@ -1459,7 +1460,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
                     simpleTextViewArr[0] = simpleTextView4;
                     simpleTextView4.setAlpha(0.0f);
                     this.titleTextView[0].setTranslationY(-AndroidUtilities.dp(20.0f));
-                    this.titleTextView[0].animate().alpha(1.0f).translationY(0.0f).setDuration(220L).start();
+                    this.titleTextView[0].animate().alpha(this.adaptiveBackgroundHideTitle ? 1.0f - this.onTopAnimated : 1.0f).translationY(0.0f).setDuration(220L).start();
                     ViewPropertyAnimator viewPropertyAnimatorAlpha = this.titleTextView[1].animate().alpha(0.0f);
                     if (this.subtitleTextView == null) {
                         viewPropertyAnimatorAlpha.translationY(AndroidUtilities.dp(20.0f));
@@ -1909,10 +1910,14 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     }
 
     public void setAdaptiveBackground(RecyclerView recyclerView) {
-        setAdaptiveBackground(recyclerView, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
+        setAdaptiveBackground(recyclerView, false, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
     }
 
-    public void setAdaptiveBackground(final RecyclerView recyclerView, int i, int i2) {
+    public void setAdaptiveBackground(RecyclerView recyclerView, boolean z) {
+        setAdaptiveBackground(recyclerView, z, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
+    }
+
+    public void setAdaptiveBackground(final RecyclerView recyclerView, boolean z, int i, int i2) {
         this.adaptive_topColorKey = i;
         this.adaptive_lowerColorKey = i2;
         final Runnable runnable = new Runnable() {
@@ -1927,6 +1932,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
                 runnable.run();
             }
         });
+        this.adaptiveBackgroundHideTitle = z;
         if (this.adaptiveBackground) {
             runnable.run();
             return;
@@ -2040,6 +2046,17 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
 
     public void adaptive_updateColor() {
         if (this.adaptiveBackground) {
+            if (this.adaptiveBackgroundHideTitle) {
+                FrameLayout frameLayout = this.titlesContainer;
+                if (frameLayout != null) {
+                    frameLayout.setAlpha(1.0f - this.onTopAnimated);
+                } else {
+                    SimpleTextView simpleTextView = this.titleTextView[0];
+                    if (simpleTextView != null) {
+                        simpleTextView.setAlpha(1.0f - this.onTopAnimated);
+                    }
+                }
+            }
             int color = this.adaptive_topColorKey == -1 ? 0 : Theme.getColor(this.adaptive_lowerColorKey, this.resourcesProvider);
             int i = this.adaptive_topColorKey;
             setBackgroundColor(ColorUtils.blendARGB(color, i != -1 ? Theme.getColor(i, this.resourcesProvider) : 0, this.onTopAnimated));

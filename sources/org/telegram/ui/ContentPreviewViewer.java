@@ -2076,7 +2076,7 @@ public class ContentPreviewViewer {
                 if (!stickerSet.emojis && !stickerSet.masks) {
                     TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                     tL_inputStickerSetID.id = next.set.id;
-                    TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(this.currentAccount).getStickerSet(tL_inputStickerSetID, true);
+                    TLRPC.TL_messages_stickerSet stickerSet2 = MediaDataController.getInstance(this.currentAccount).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID, true);
                     if (stickerSet2 == null || stickerSet2.documents.size() < 120) {
                         list.add(next);
                     }

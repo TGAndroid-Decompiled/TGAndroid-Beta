@@ -1509,6 +1509,9 @@ public abstract class FilterTabsView extends FrameLayout {
                 AndroidUtilities.runOnUIThread(this.resetDefaultPosition, 320L);
             }
             super.onSelectedChanged(viewHolder, i);
+            if (viewHolder != null) {
+                viewHolder.itemView.setTag(R.id.dragging, i == 2 ? Boolean.TRUE : null);
+            }
         }
 
         @Override
@@ -1516,6 +1519,7 @@ public abstract class FilterTabsView extends FrameLayout {
             super.clearView(recyclerView, viewHolder);
             viewHolder.itemView.setPressed(false);
             viewHolder.itemView.setBackground(null);
+            viewHolder.itemView.setTag(R.id.dragging, null);
         }
     }
 

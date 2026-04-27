@@ -23,6 +23,7 @@ import org.telegram.ui.ActionBar.Theme;
 public class GroupCreateSpan extends View {
     private AvatarDrawable avatarDrawable;
     private int[] colors;
+    private String countryIso2;
     private ContactsController.Contact currentContact;
     private Drawable deleteDrawable;
     private boolean deleting;
@@ -72,6 +73,10 @@ public class GroupCreateSpan extends View {
         this.colors[7] = Color.alpha(color);
         this.deleteDrawable.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
         backPaint.setColor(iMultAlpha);
+    }
+
+    public String getCountryIso2() {
+        return this.countryIso2;
     }
 
     public boolean isDeleting() {

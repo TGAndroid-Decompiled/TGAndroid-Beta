@@ -1,27 +1,197 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.FloatPropertyCompat;
+import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
+import java.util.HashSet;
+import java.util.Set;
 import me.vkryl.android.animator.ListAnimator;
+import me.vkryl.android.util.ClickHelper;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedLinearLayout;
 import org.telegram.ui.Components.glass.GlassTabView;
 
 public class MainTabsLayout extends AnimatedLinearLayout {
+    private float animatedLongSelectedViewCenterX;
+    private float animatedLongSelectedViewWidth;
     private int biggestTabTextWidth;
+    private final ClickHelper clickHelper;
+    private boolean drawCustomSelector;
+    private boolean isInLongPress;
+    private View lastLongSelectedView;
+    private float lastLongSelectedViewCenterX;
+    private float lastLongSelectedViewWidth;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final Runnable restoreDrawSelector;
+    final SpringAnimation scaleX;
+    final SpringAnimation scaleY;
+    final SpringAnimation selectedTabPositionWidth;
+    final SpringAnimation selectedTabPositionX;
+    final Paint selectorPaint;
     private int[] tabsLeftPos;
     private float[] tabsTextWidth;
     private float[] tabsTextWidthWithMargin;
     private int[] tabsWeight;
     private int[] tabsWidth;
+    private final Set tabsWithIgnoreClick;
     private int visibleChildCount;
 
     public interface Tab {
         float measureTextWidth();
     }
 
-    public MainTabsLayout(Context context) {
+    public MainTabsLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.restoreDrawSelector = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$0();
+            }
+        };
+        this.selectorPaint = new Paint(1);
+        SpringAnimation springAnimation = new SpringAnimation(this, DynamicAnimation.SCALE_X, 1.0f);
+        this.scaleX = springAnimation;
+        SpringAnimation springAnimation2 = new SpringAnimation(this, DynamicAnimation.SCALE_Y, 1.0f);
+        this.scaleY = springAnimation2;
+        SpringAnimation springAnimation3 = new SpringAnimation(this, new FloatPropertyCompat("selectedTabPositionX") {
+            @Override
+            public float getValue(MainTabsLayout mainTabsLayout) {
+                return mainTabsLayout.animatedLongSelectedViewCenterX;
+            }
+
+            @Override
+            public void setValue(MainTabsLayout mainTabsLayout, float f) {
+                mainTabsLayout.animatedLongSelectedViewCenterX = f;
+                mainTabsLayout.invalidate();
+            }
+        });
+        this.selectedTabPositionX = springAnimation3;
+        SpringAnimation springAnimation4 = new SpringAnimation(this, new FloatPropertyCompat("selectedTabPositionWidth") {
+            @Override
+            public float getValue(MainTabsLayout mainTabsLayout) {
+                return mainTabsLayout.animatedLongSelectedViewWidth;
+            }
+
+            @Override
+            public void setValue(MainTabsLayout mainTabsLayout, float f) {
+                mainTabsLayout.animatedLongSelectedViewWidth = f;
+                mainTabsLayout.invalidate();
+            }
+        });
+        this.selectedTabPositionWidth = springAnimation4;
+        springAnimation.setSpring(new SpringForce(1.0f).setStiffness(250.0f).setDampingRatio(0.25f));
+        springAnimation2.setSpring(new SpringForce(1.0f).setStiffness(250.0f).setDampingRatio(0.25f));
+        springAnimation3.setSpring(new SpringForce(1.0f).setStiffness(1500.0f).setDampingRatio(0.75f));
+        springAnimation4.setSpring(new SpringForce(1.0f).setStiffness(1500.0f).setDampingRatio(0.75f));
+        this.tabsWithIgnoreClick = new HashSet();
+        this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
+            @Override
+            public boolean forceEnableVibration() {
+                return ClickHelper.Delegate.CC.$default$forceEnableVibration(this);
+            }
+
+            @Override
+            public long getLongPressDuration() {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsLayout.AnonymousClass3.getLongPressDuration():long");
+            }
+
+            @Override
+            public boolean ignoreHapticFeedbackSettings(float f, float f2) {
+                return ClickHelper.Delegate.CC.$default$ignoreHapticFeedbackSettings(this, f, f2);
+            }
+
+            @Override
+            public boolean needCancelTouchBySlopMove() {
+                return false;
+            }
+
+            @Override
+            public boolean needLongPress(float f, float f2) {
+                return true;
+            }
+
+            @Override
+            public void onClickAt(View view, float f, float f2) {
+            }
+
+            @Override
+            public boolean needClickAt(View view, float f, float f2) {
+                MainTabsLayout.this.lastLongSelectedView = null;
+                View viewFindChildUnder = MainTabsLayout.findChildUnder(MainTabsLayout.this, f, r2.getHeight() / 2.0f);
+                return viewFindChildUnder == null || !MainTabsLayout.this.tabsWithIgnoreClick.contains(viewFindChildUnder);
+            }
+
+            @Override
+            public boolean onLongPressRequestedAt(View view, float f, float f2) {
+                MainTabsLayout.this.isInLongPress = true;
+                AndroidUtilities.cancelRunOnUIThread(MainTabsLayout.this.restoreDrawSelector);
+                MainTabsLayout.this.setSkipDrawSelector(true);
+                MainTabsLayout.this.checkLongMove(f, f2, true);
+                MainTabsLayout.this.invalidate();
+                return true;
+            }
+
+            @Override
+            public void onLongPressMove(View view, MotionEvent motionEvent, float f, float f2, float f3, float f4) {
+                MainTabsLayout.this.checkLongMove(f, f2, false);
+                MainTabsLayout.this.invalidate();
+            }
+
+            @Override
+            public void onLongPressFinish(View view, float f, float f2) {
+                MainTabsLayout.this.isInLongPress = false;
+                AndroidUtilities.runOnUIThread(MainTabsLayout.this.restoreDrawSelector, 450L);
+                if (MainTabsLayout.this.lastLongSelectedView != null) {
+                    MainTabsLayout.this.lastLongSelectedView.performClick();
+                }
+                MainTabsLayout.this.lastLongSelectedView = null;
+                MainTabsLayout.this.invalidate();
+            }
+
+            @Override
+            public void onLongPressCancelled(View view, float f, float f2) {
+                MainTabsLayout.this.isInLongPress = false;
+                AndroidUtilities.runOnUIThread(MainTabsLayout.this.restoreDrawSelector, 450L);
+                MainTabsLayout.this.lastLongSelectedView = null;
+                MainTabsLayout.this.invalidate();
+            }
+
+            @Override
+            public void onClickTouchDown(View view, float f, float f2) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
+                if (!MainTabsLayout.this.scaleX.isRunning()) {
+                    MainTabsLayout.this.scaleX.setStartVelocity(-0.55f);
+                    MainTabsLayout.this.scaleY.setStartVelocity(-0.55f);
+                }
+                MainTabsLayout.this.scaleX.animateToFinalPosition(1.025f);
+                MainTabsLayout.this.scaleY.animateToFinalPosition(1.025f);
+            }
+
+            @Override
+            public void onClickTouchMove(View view, float f, float f2) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
+            }
+
+            @Override
+            public void onClickTouchUp(View view, float f, float f2) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
+                if (!MainTabsLayout.this.scaleX.isRunning()) {
+                    MainTabsLayout.this.scaleX.setStartVelocity(0.55f);
+                    MainTabsLayout.this.scaleY.setStartVelocity(0.55f);
+                }
+                MainTabsLayout.this.scaleX.animateToFinalPosition(1.0f);
+                MainTabsLayout.this.scaleY.animateToFinalPosition(1.0f);
+            }
+        });
+        this.resourcesProvider = resourcesProvider;
     }
 
     @Override
@@ -153,5 +323,128 @@ public class MainTabsLayout extends AnimatedLinearLayout {
             ListAnimator.Entry entry = getEntry(i);
             ((GlassTabView) ((AnimatedLinearLayout.Holder) entry.item).view).setVisualWidth(entry.getRectF().width());
         }
+    }
+
+    public void setTabSelected(View view, boolean z) {
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt instanceof GlassTabView) {
+                ((GlassTabView) childAt).setSelected(childAt == view, z);
+            }
+        }
+    }
+
+    private View findSelectedTab() {
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt.getVisibility() == 0 && (childAt instanceof GlassTabView) && ((GlassTabView) childAt).isTabSelected()) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
+    public void lambda$new$0() {
+        setSkipDrawSelector(false);
+    }
+
+    public void setSkipDrawSelector(boolean z) {
+        this.drawCustomSelector = z;
+        if (z) {
+            this.selectorPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_glass_tabSelected, this.resourcesProvider), 0.09f));
+        }
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            if (childAt.getVisibility() == 0 && (childAt instanceof GlassTabView)) {
+                ((GlassTabView) childAt).setSkipDrawSelector(z);
+            }
+        }
+        invalidate();
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        if (this.drawCustomSelector) {
+            float f = this.animatedLongSelectedViewWidth;
+            float height = (getHeight() - getPaddingTop()) - getPaddingBottom();
+            float f2 = f / 2.0f;
+            float f3 = height / 2.0f;
+            canvas.drawRoundRect(this.animatedLongSelectedViewCenterX - f2, (getHeight() - height) / 2.0f, this.animatedLongSelectedViewCenterX + f2, (getHeight() + height) / 2.0f, f3, f3, this.selectorPaint);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    public static View findChildUnder(ViewGroup viewGroup, float f, float f2) {
+        for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
+            View childAt = viewGroup.getChildAt(childCount);
+            if (childAt.getVisibility() == 0 && f >= childAt.getLeft() && f <= childAt.getRight() && f2 >= childAt.getTop() && f2 <= childAt.getBottom()) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
+    public void checkLongMove(float f, float f2, boolean z) {
+        View viewFindChildUnder = findChildUnder(this, f, getHeight() / 2.0f);
+        if (z) {
+            View viewFindSelectedTab = findSelectedTab();
+            if (viewFindSelectedTab != null) {
+                this.animatedLongSelectedViewCenterX = viewFindSelectedTab.getX() + (viewFindSelectedTab.getWidth() / 2.0f);
+                this.animatedLongSelectedViewWidth = viewFindSelectedTab.getWidth();
+                if (viewFindSelectedTab != viewFindChildUnder && viewFindChildUnder != null) {
+                    viewFindChildUnder.performClick();
+                }
+            }
+            this.selectedTabPositionX.cancel();
+            this.selectedTabPositionWidth.cancel();
+        }
+        if (viewFindChildUnder != null) {
+            this.lastLongSelectedView = viewFindChildUnder;
+            setTabSelected(viewFindChildUnder, true);
+            float width = viewFindChildUnder.getWidth();
+            float x = viewFindChildUnder.getX() + (width / 2.0f);
+            if (this.lastLongSelectedViewWidth == width && this.lastLongSelectedViewCenterX == x) {
+                return;
+            }
+            this.lastLongSelectedViewWidth = width;
+            this.lastLongSelectedViewCenterX = x;
+            this.selectedTabPositionX.animateToFinalPosition(x);
+            this.selectedTabPositionWidth.animateToFinalPosition(width);
+        }
+    }
+
+    public void addTabToIgnoreClick(View view) {
+        this.tabsWithIgnoreClick.add(view);
+    }
+
+    public void checkPivot(View view, float f, float f2) {
+        float width = view.getWidth();
+        float height = view.getHeight();
+        if (width <= 0.0f || height <= 0.0f) {
+            return;
+        }
+        float f3 = width * 0.5f;
+        float f4 = height * 0.5f;
+        float f5 = f - f3;
+        float f6 = f2 - f4;
+        float f7 = f5 / f3;
+        float f8 = f6 / f4;
+        float fSqrt = (float) Math.sqrt((f7 * f7) + (f8 * f8));
+        if (fSqrt > 1.0E-4f) {
+            float f9 = ((1.5f * fSqrt) / (0.5f + fSqrt)) / fSqrt;
+            f3 += f5 * f9;
+            f4 += f6 * f9;
+        }
+        view.setPivotX(f3);
+        view.setPivotY(f4);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.clickHelper.onTouchEvent(this, motionEvent);
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

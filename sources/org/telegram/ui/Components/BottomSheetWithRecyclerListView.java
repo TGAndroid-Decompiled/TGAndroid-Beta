@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     private int savedScrollPosition;
     private float shadowAlpha;
     private boolean showHandle;
-    boolean showShadow;
+    protected boolean showShadow;
     public final boolean stackFromEnd;
     protected boolean takeTranslationIntoAccount;
     public float topPadding;
@@ -593,9 +594,16 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     public void updateTitleAnimated() {
-        ActionBar actionBar = this.actionBar;
-        if (actionBar != null) {
-            actionBar.setTitleAnimated(getTitle(), false, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        updateTitleAnimated(true);
+    }
+
+    public void updateTitleAnimated(boolean z) {
+        if (this.actionBar != null) {
+            CharSequence title = getTitle();
+            if (z && TextUtils.equals(title, this.actionBar.getTitle())) {
+                return;
+            }
+            this.actionBar.setTitleAnimated(getTitle(), false, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         }
     }
 

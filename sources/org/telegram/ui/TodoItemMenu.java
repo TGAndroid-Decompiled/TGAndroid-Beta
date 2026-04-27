@@ -66,6 +66,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.PollCreateActivity;
 
@@ -707,6 +708,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
+                }
+
+                @Override
                 public PinchToZoomHelper getPinchToZoomHelper() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getPinchToZoomHelper(this);
                 }
@@ -1170,6 +1176,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public String getAdminRank(long j) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                }
+
+                @Override
+                public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                 }
 
                 @Override

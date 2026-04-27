@@ -92,7 +92,7 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
         universalRecyclerView.setSections();
         this.listView.adapter.setApplyBackground(false);
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.actionBar.setAdaptiveBackground(this.listView);
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         setValue();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -494,23 +494,24 @@ public class OpeningHoursActivity extends BaseFragment implements NotificationCe
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessHoursInfo), R.raw.biz_clock));
+        int i = R.string.BusinessHours;
+        arrayList.add(UItem.asTopView(LocaleController.getString(i), LocaleController.getString(R.string.BusinessHoursInfo), R.raw.biz_clock));
         arrayList.add(UItem.asCheck(-1, LocaleController.getString(R.string.BusinessHoursShow)).setChecked(this.enabled));
         arrayList.add(UItem.asShadow(-100, null));
         if (!this.enabled) {
             return;
         }
-        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessHours)));
-        int i = 0;
+        arrayList.add(UItem.asHeader(LocaleController.getString(i)));
+        int i2 = 0;
         while (true) {
             ArrayList[] arrayListArr = this.value;
-            if (i < arrayListArr.length) {
-                if (arrayListArr[i] == null) {
-                    arrayListArr[i] = new ArrayList();
+            if (i2 < arrayListArr.length) {
+                if (arrayListArr[i2] == null) {
+                    arrayListArr[i2] = new ArrayList();
                 }
-                String displayName = DayOfWeek.values()[i].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-                arrayList.add(UItem.asButtonCheck(i, displayName.substring(0, 1).toUpperCase() + displayName.substring(1), getPeriodsValue(this.value[i])).setChecked(!this.value[i].isEmpty()));
-                i++;
+                String displayName = DayOfWeek.values()[i2].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
+                arrayList.add(UItem.asButtonCheck(i2, displayName.substring(0, 1).toUpperCase() + displayName.substring(1), getPeriodsValue(this.value[i2])).setChecked(!this.value[i2].isEmpty()));
+                i2++;
             } else {
                 arrayList.add(UItem.asShadow(-101, null));
                 arrayList.add(UItem.asButton(-2, LocaleController.getString(R.string.BusinessHoursTimezone), TimezonesController.getInstance(this.currentAccount).getTimezoneName(this.timezoneId, false)));

@@ -25,6 +25,8 @@ import java.util.List;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AttachableDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -33,7 +35,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclableDrawable;
 import org.telegram.ui.Components.VectorAvatarThumbDrawable;
 
-public class ImageReceiver implements NotificationCenter.NotificationCenterDelegate {
+public class ImageReceiver implements NotificationCenter.NotificationCenterDelegate, AnimatedEmojiSpan.InvalidateHolder {
     public static final int DEFAULT_CROSSFADE_DURATION = 150;
     private static final int TYPE_CROSSFDADE = 2;
     public static final int TYPE_IMAGE = 0;
@@ -118,6 +120,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private float imageX;
     private float imageY;
     private boolean invalidateAll;
+    public final Runnable invalidateRunnable;
     private boolean isAspectFit;
     private int isLastFrame;
     private int isPressed;
@@ -399,6 +402,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.loadingOperations = new ArrayList<>();
         this.allowLoadingOnAttachedOnly = false;
         this.clip = true;
+        this.invalidateRunnable = new ImageReceiver$$ExternalSyntheticLambda2(this);
         this.parentView = view;
         this.roundPaint = new Paint(3);
         this.currentAccount = UserConfig.selectedAccount;
@@ -885,7 +889,12 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (drawable2 instanceof RecyclableDrawable) {
             ((RecyclableDrawable) drawable2).recycle();
         }
-        if (drawable instanceof AnimatedFileDrawable) {
+        if (drawable instanceof AnimatedEmojiDrawable) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) drawable;
+            if (this.attachedToWindow) {
+                animatedEmojiDrawable.addView(this);
+            }
+        } else if (drawable instanceof AnimatedFileDrawable) {
             AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) drawable;
             animatedFileDrawable.setParentView(this.parentView);
             if (this.attachedToWindow) {
@@ -1112,6 +1121,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (this.isPressed == 0) {
                 this.pressedProgress = 0.0f;
             }
+            AnimatedEmojiDrawable animatedEmojiDrawable = getAnimatedEmojiDrawable();
+            if (animatedEmojiDrawable != null) {
+                animatedEmojiDrawable.removeView(this);
+            }
             AnimatedFileDrawable animation = getAnimation();
             if (animation != null) {
                 animation.removeParent(this);
@@ -1188,6 +1201,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (animation != null && this.allowStartAnimation && this.currentOpenedLayerFlags == 0) {
             animation.checkRepeat();
             invalidate();
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = getAnimatedEmojiDrawable();
+        if (animatedEmojiDrawable != null) {
+            animatedEmojiDrawable.addView(this);
         }
         if (NotificationCenter.getGlobalInstance().isAnimationInProgress()) {
             didReceivedNotification(NotificationCenter.stopAllHeavyOperations, this.currentAccount, 512);
@@ -1346,12 +1363,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 }
             }
             if (backgroundThreadDrawHolder != null) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.invalidate();
-                    }
-                });
+                AndroidUtilities.runOnUIThread(new ImageReceiver$$ExternalSyntheticLambda2(this));
             } else {
                 invalidate();
             }
@@ -1567,6 +1579,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.visibleInvalidate = runnable;
     }
 
+    @Override
     public void invalidate() {
         View view = this.parentView;
         if (view == null) {
@@ -2084,6 +2097,26 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return lottieAnimation != null && lottieAnimation.isRunning();
     }
 
+    public AnimatedEmojiDrawable getAnimatedEmojiDrawable() {
+        Drawable drawable = this.currentMediaDrawable;
+        if (drawable instanceof AnimatedEmojiDrawable) {
+            return (AnimatedEmojiDrawable) drawable;
+        }
+        Drawable drawable2 = this.currentImageDrawable;
+        if (drawable2 instanceof AnimatedEmojiDrawable) {
+            return (AnimatedEmojiDrawable) drawable2;
+        }
+        Drawable drawable3 = this.currentThumbDrawable;
+        if (drawable3 instanceof AnimatedEmojiDrawable) {
+            return (AnimatedEmojiDrawable) drawable3;
+        }
+        Drawable drawable4 = this.staticThumbDrawable;
+        if (drawable4 instanceof AnimatedEmojiDrawable) {
+            return (AnimatedEmojiDrawable) drawable4;
+        }
+        return null;
+    }
+
     public AnimatedFileDrawable getAnimation() {
         Drawable drawable = this.currentMediaDrawable;
         if (drawable instanceof AnimatedFileDrawable) {
@@ -2190,6 +2223,9 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
         if (drawable instanceof AnimatedFileDrawable) {
             ((AnimatedFileDrawable) drawable).removeParent(this);
+        }
+        if (drawable instanceof AnimatedEmojiDrawable) {
+            ((AnimatedEmojiDrawable) drawable).removeView(this);
         }
         if (str2 != null && ((str == null || !str.equals(str2)) && drawable != null)) {
             if (drawable instanceof RLottieDrawable) {

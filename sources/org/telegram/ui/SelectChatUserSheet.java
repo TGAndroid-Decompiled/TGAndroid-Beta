@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -540,7 +540,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
                 tL_channels_getParticipants.filter = this.filter;
                 tL_channels_getParticipants.limit = 30;
                 tL_channels_getParticipants.offset = this.clearOnLoad ? 0 : this.users.size();
-                ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_channels_getParticipants, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+                ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_channels_getParticipants, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
                         this.f$0.lambda$load$0((TLRPC.channels_ChannelParticipants) obj, (TLRPC.TL_error) obj2);
@@ -850,7 +850,7 @@ public class SelectChatUserSheet extends BottomSheetWithRecyclerListView {
         if (safeLastFragment3 == null) {
             return;
         }
-        AlertsCreator.showAddUserAlert(tL_error.text, safeLastFragment3, ChatObject.isChannelAndNotMegaGroup(this.chat), tL_channels_editCreator);
+        AlertsCreator.showAddUserAlert(tL_error, safeLastFragment3, ChatObject.isChannelAndNotMegaGroup(this.chat), tL_channels_editCreator);
     }
 
     public void lambda$initTransfer$5(final TLRPC.User user, AlertDialog alertDialog, int i) {

@@ -1,7 +1,5 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -18,12 +16,10 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Property;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.view.OnApplyWindowInsetsListener;
@@ -72,10 +68,11 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.FragmentSearchField;
+import org.telegram.ui.Components.FragmentSpansContainer;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PermanentLinkBottomSheet;
@@ -94,7 +91,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private View actionBarBackgroundView;
     private GroupCreateAdapter adapter;
     private final boolean addToGroup;
-    private final ArrayList allSpans;
+    private ArrayList allSpans;
     private final boolean allowMiniApps;
     private final boolean allowPremium;
     private final BoolAnimator animatorCallButtonsVisible;
@@ -110,7 +107,6 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private ContactsAddActivityDelegate delegate2;
     private boolean doneButtonVisible;
     private StickerEmptyView emptyView;
-    private int fieldY;
     private FragmentFloatingButton floatingButton;
     private final boolean forImport;
     private HeaderShadowView headerShadowView;
@@ -120,7 +116,6 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private final RectF iBlur3PositionBottomBar;
     private final ArrayList iBlur3Positions;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
-    private boolean ignoreScrollEvent;
     private LongSparseArray ignoreUsers;
     private int imeInsetAnimatedHeight;
     private TLRPC.ChatFull info;
@@ -135,18 +130,17 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
     private final int maxCount;
     int maxSize;
     private int navigationBarHeight;
-    private ScrollView scrollView;
     private final DownscaleScrollableNoiseSuppressor scrollableViewNoiseSuppressor;
     private FragmentSearchField searchField;
     private boolean searchWas;
     private boolean searching;
-    private final LongSparseArray selectedContacts;
+    private LongSparseArray selectedContacts;
     private GroupCreateSpan selectedMiniApps;
     private GroupCreateSpan selectedPremium;
     private PermanentLinkBottomSheet sharedLinkBottomSheet;
     private int shiftDp;
     private boolean showDiscardConfirm;
-    private SpansContainer spansContainer;
+    private FragmentSpansContainer spansContainer;
     private final Rect tmpClipRect;
     private ArrayList toSelectIds;
     private boolean toSelectMiniApps;
@@ -212,8 +206,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.initialIds.addAll(arrayList);
         this.initialPremium = z;
         this.initialMiniApps = z2;
-        SpansContainer spansContainer = this.spansContainer;
-        if (spansContainer == null) {
+        FragmentSpansContainer fragmentSpansContainer = this.spansContainer;
+        if (fragmentSpansContainer == null) {
             this.toSelectIds = arrayList;
             this.toSelectPremium = z;
             this.toSelectMiniApps = z2;
@@ -225,7 +219,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             this.spansContainer.addSpan(groupCreateSpan3);
             this.selectedPremium.setOnClickListener(this);
         } else if (!z && (groupCreateSpan = this.selectedPremium) != null) {
-            spansContainer.removeSpan(groupCreateSpan);
+            fragmentSpansContainer.removeSpan(groupCreateSpan);
             this.selectedPremium = null;
         }
         if (z2 && this.selectedMiniApps == null) {
@@ -254,162 +248,6 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         }
         this.spansContainer.endAnimation();
         AndroidUtilities.updateVisibleRows(this.listView);
-    }
-
-    private class SpansContainer extends ViewGroup {
-        private View addingSpan;
-        private int animationIndex;
-        private boolean animationStarted;
-        private final ArrayList animators;
-        private int containerHeight;
-        private AnimatorSet currentAnimation;
-        private final ArrayList removingSpans;
-
-        public SpansContainer(Context context) {
-            super(context);
-            this.animators = new ArrayList();
-            this.removingSpans = new ArrayList();
-            this.animationIndex = -1;
-        }
-
-        @Override
-        protected void onMeasure(int r18, int r19) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateActivity.SpansContainer.onMeasure(int, int):void");
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int childCount = getChildCount();
-            for (int i5 = 0; i5 < childCount; i5++) {
-                View childAt = getChildAt(i5);
-                childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-            }
-        }
-
-        public void addSpan(GroupCreateSpan groupCreateSpan) {
-            GroupCreateActivity.this.allSpans.add(groupCreateSpan);
-            if (!groupCreateSpan.isFlag) {
-                GroupCreateActivity.this.selectedContacts.put(groupCreateSpan.getUid(), groupCreateSpan);
-            }
-            AnimatorSet animatorSet = this.currentAnimation;
-            if (animatorSet != null && animatorSet.isRunning()) {
-                this.currentAnimation.setupEndValues();
-                this.currentAnimation.cancel();
-            }
-            this.animationStarted = false;
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.currentAnimation = animatorSet2;
-            animatorSet2.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    SpansContainer.this.addingSpan = null;
-                    SpansContainer.this.currentAnimation = null;
-                    SpansContainer.this.animationStarted = false;
-                }
-            });
-            this.currentAnimation.setDuration(150L);
-            this.addingSpan = groupCreateSpan;
-            this.animators.clear();
-            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, (Property<View, Float>) View.SCALE_X, 0.01f, 1.0f));
-            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, (Property<View, Float>) View.SCALE_Y, 0.01f, 1.0f));
-            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f));
-            addView(groupCreateSpan);
-            GroupCreateActivity.this.updateButtonsVisibility();
-        }
-
-        public void endAnimation() {
-            AnimatorSet animatorSet = this.currentAnimation;
-            if (animatorSet == null || !animatorSet.isRunning()) {
-                return;
-            }
-            this.currentAnimation.setupEndValues();
-            this.currentAnimation.cancel();
-        }
-
-        public void removeSpan(final GroupCreateSpan groupCreateSpan) {
-            GroupCreateActivity.this.ignoreScrollEvent = true;
-            if (!groupCreateSpan.isFlag) {
-                GroupCreateActivity.this.selectedContacts.remove(groupCreateSpan.getUid());
-            }
-            if (groupCreateSpan == GroupCreateActivity.this.selectedPremium) {
-                GroupCreateActivity.this.selectedPremium = null;
-            }
-            if (groupCreateSpan == GroupCreateActivity.this.selectedMiniApps) {
-                GroupCreateActivity.this.selectedMiniApps = null;
-            }
-            GroupCreateActivity.this.allSpans.remove(groupCreateSpan);
-            groupCreateSpan.setOnClickListener(null);
-            AnimatorSet animatorSet = this.currentAnimation;
-            if (animatorSet != null) {
-                animatorSet.setupEndValues();
-                this.currentAnimation.cancel();
-            }
-            this.animationStarted = false;
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.currentAnimation = animatorSet2;
-            animatorSet2.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    SpansContainer.this.removeView(groupCreateSpan);
-                    SpansContainer.this.removingSpans.clear();
-                    SpansContainer.this.currentAnimation = null;
-                    SpansContainer.this.animationStarted = false;
-                }
-            });
-            this.currentAnimation.setDuration(150L);
-            this.removingSpans.clear();
-            this.removingSpans.add(groupCreateSpan);
-            this.animators.clear();
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-            this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
-            requestLayout();
-            GroupCreateActivity.this.updateButtonsVisibility();
-        }
-
-        public void removeAllSpans(boolean z) {
-            GroupCreateActivity.this.ignoreScrollEvent = true;
-            final ArrayList arrayList = new ArrayList(GroupCreateActivity.this.allSpans);
-            GroupCreateActivity.this.allSpans.clear();
-            this.removingSpans.clear();
-            this.removingSpans.addAll(arrayList);
-            for (int i = 0; i < arrayList.size(); i++) {
-                ((GroupCreateSpan) arrayList.get(i)).setOnClickListener(null);
-            }
-            endAnimation();
-            if (z) {
-                this.animationStarted = false;
-                AnimatorSet animatorSet = new AnimatorSet();
-                this.currentAnimation = animatorSet;
-                animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            SpansContainer.this.removeView((View) arrayList.get(i2));
-                        }
-                        SpansContainer.this.removingSpans.clear();
-                        SpansContainer.this.currentAnimation = null;
-                        SpansContainer.this.animationStarted = false;
-                    }
-                });
-                this.animators.clear();
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList.get(i2);
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-                    this.animators.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
-                }
-            } else {
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    removeView((View) arrayList.get(i3));
-                }
-                this.removingSpans.clear();
-                this.currentAnimation = null;
-                this.animationStarted = false;
-            }
-            requestLayout();
-            GroupCreateActivity.this.updateButtonsVisibility();
-        }
     }
 
     public GroupCreateActivity(Bundle bundle) {
@@ -593,8 +431,8 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 ((ViewGroup.MarginLayoutParams) GroupCreateActivity.this.emptyView.getLayoutParams()).topMargin = ((BaseFragment) GroupCreateActivity.this).actionBar.getMeasuredHeight() + AndroidUtilities.dp(48.0f);
                 ((ViewGroup.MarginLayoutParams) GroupCreateActivity.this.headerShadowView.getLayoutParams()).topMargin = ((BaseFragment) GroupCreateActivity.this).actionBar.getMeasuredHeight();
                 ((ViewGroup.MarginLayoutParams) GroupCreateActivity.this.searchField.getLayoutParams()).topMargin = ((BaseFragment) GroupCreateActivity.this).actionBar.getMeasuredHeight();
-                ((ViewGroup.MarginLayoutParams) GroupCreateActivity.this.scrollView.getLayoutParams()).topMargin = ((BaseFragment) GroupCreateActivity.this).actionBar.getMeasuredHeight();
-                ViewGroup.LayoutParams layoutParams = GroupCreateActivity.this.scrollView.getLayoutParams();
+                ((ViewGroup.MarginLayoutParams) GroupCreateActivity.this.spansContainer.getLayoutParams()).topMargin = ((BaseFragment) GroupCreateActivity.this).actionBar.getMeasuredHeight();
+                ViewGroup.LayoutParams layoutParams = GroupCreateActivity.this.spansContainer.getLayoutParams();
                 GroupCreateActivity groupCreateActivity = GroupCreateActivity.this;
                 layoutParams.height = groupCreateActivity.maxSize;
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) groupCreateActivity.actionBarBackgroundView.getLayoutParams();
@@ -618,46 +456,52 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.fragmentView = frameLayout;
         frameLayout.setFocusableInTouchMode(true);
         frameLayout.setDescendantFocusability(131072);
-        ScrollView scrollView = new ScrollView(context) {
+        FragmentSpansContainer fragmentSpansContainer = new FragmentSpansContainer(context, this.currentAccount) {
             @Override
-            public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-                if (GroupCreateActivity.this.ignoreScrollEvent) {
-                    GroupCreateActivity.this.ignoreScrollEvent = false;
-                    return false;
-                }
-                rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-                rect.top += GroupCreateActivity.this.fieldY + AndroidUtilities.dp(20.0f);
-                rect.bottom += GroupCreateActivity.this.fieldY + AndroidUtilities.dp(50.0f);
-                return super.requestChildRectangleOnScreen(view, rect, z);
+            public void addSpan(GroupCreateSpan groupCreateSpan) {
+                super.addSpan(groupCreateSpan);
+                GroupCreateActivity.this.updateButtonsVisibility();
             }
 
             @Override
-            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                int action = motionEvent.getAction();
-                float factor = GroupCreateActivity.this.animatorSelectorContainerHeight.getFactor();
-                float y = motionEvent.getY();
-                if (action != 0 || y <= factor) {
-                    return super.dispatchTouchEvent(motionEvent);
+            public void removeSpan(GroupCreateSpan groupCreateSpan) {
+                if (groupCreateSpan == GroupCreateActivity.this.selectedPremium) {
+                    GroupCreateActivity.this.selectedPremium = null;
                 }
-                return false;
+                if (groupCreateSpan == GroupCreateActivity.this.selectedMiniApps) {
+                    GroupCreateActivity.this.selectedMiniApps = null;
+                }
+                super.removeSpan(groupCreateSpan);
+                GroupCreateActivity.this.updateButtonsVisibility();
+            }
+
+            @Override
+            public void removeAllSpans(boolean z) {
+                super.removeAllSpans(z);
+                GroupCreateActivity.this.updateButtonsVisibility();
             }
         };
-        this.scrollView = scrollView;
-        scrollView.setVerticalScrollBarEnabled(false);
-        SpansContainer spansContainer = new SpansContainer(context);
-        this.spansContainer = spansContainer;
-        this.scrollView.addView(spansContainer, LayoutHelper.createFrame(-1, -2.0f));
-        this.spansContainer.setOnClickListener(new View.OnClickListener() {
+        this.spansContainer = fragmentSpansContainer;
+        fragmentSpansContainer.setDelegate(new FragmentSpansContainer.Delegate() {
             @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$createView$0(view);
+            public final void onAfterMeasure(int i4) {
+                this.f$0.lambda$createView$0(i4);
             }
         });
+        this.spansContainer.getSpansContainer().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$createView$1(view);
+            }
+        });
+        FragmentSpansContainer fragmentSpansContainer2 = this.spansContainer;
+        this.selectedContacts = fragmentSpansContainer2.selectedContacts;
+        this.allSpans = fragmentSpansContainer2.allSpans;
         updateEditTextHint();
         this.searchField.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i4, KeyEvent keyEvent) {
-                return this.f$0.lambda$createView$1(textView, i4, keyEvent);
+                return this.f$0.lambda$createView$2(textView, i4, keyEvent);
             }
         });
         this.searchField.editText.setOnKeyListener(new View.OnKeyListener() {
@@ -736,7 +580,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i4) {
-                this.f$0.lambda$createView$3(context, view, i4);
+                this.f$0.lambda$createView$4(context, view, i4);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -776,7 +620,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         this.floatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$createView$4(view);
+                this.f$0.lambda$createView$5(view);
             }
         });
         this.floatingButton.setButtonVisible(this.doneButtonVisible, false);
@@ -816,7 +660,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$5(view2);
+                    this.f$0.lambda$createView$6(view2);
                 }
             });
             ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, this.resourceProvider);
@@ -830,7 +674,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    this.f$0.lambda$createView$6(view2);
+                    this.f$0.lambda$createView$7(view2);
                 }
             });
             frameLayout.addView(this.buttonsContainer, LayoutHelper.createFrame(-1, -2, 87));
@@ -854,14 +698,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         frameLayout.addView(view2, LayoutHelper.createFrame(-1, 0, 48));
         frameLayout.addView(this.actionBar);
         frameLayout.addView(this.searchField, LayoutHelper.createFrame(-1, 40.0f, 48, 11.0f, 0.0f, 11.0f, 0.0f));
-        frameLayout.addView(this.scrollView);
+        frameLayout.addView(this.spansContainer);
         RecyclerListView recyclerListView4 = this.listView;
         Objects.requireNonNull(recyclerListView4);
-        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, frameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView4));
+        this.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView4, frameLayout, new EmojiView$$ExternalSyntheticLambda15(recyclerListView4));
         this.listView.addEdgeEffectListener(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$8();
+                this.f$0.lambda$createView$9();
             }
         });
         HeaderShadowView headerShadowView = new HeaderShadowView(context, this.parentLayout);
@@ -881,17 +725,21 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view) {
+    public void lambda$createView$0(int i) {
+        this.animatorSelectorContainerHeight.animateTo(Math.min(i, this.maxSize));
+    }
+
+    public void lambda$createView$1(View view) {
         this.searchField.editText.clearFocus();
         this.searchField.editText.requestFocus();
         AndroidUtilities.showKeyboard(this.searchField.editText);
     }
 
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
         return i == 6 && onDonePressed(true);
     }
 
-    public void lambda$createView$3(Context context, View view, int i) {
+    public void lambda$createView$4(Context context, View view, int i) {
         long j;
         if (i == this.adapter.createCallLinkRow) {
             CallLogActivity.createCallLink(context, this.currentAccount, this.resourceProvider, new Runnable() {
@@ -990,7 +838,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                                     builder2.setPositiveButton(LocaleController.getString(R.string.AddAsAdmin), new AlertDialog.OnButtonClickListener() {
                                         @Override
                                         public final void onClick(AlertDialog alertDialog, int i2) {
-                                            this.f$0.lambda$createView$2(user, alertDialog, i2);
+                                            this.f$0.lambda$createView$3(user, alertDialog, i2);
                                         }
                                     });
                                     builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1023,35 +871,35 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$createView$2(TLRPC.User user, AlertDialog alertDialog, int i) {
+    public void lambda$createView$3(TLRPC.User user, AlertDialog alertDialog, int i) {
         this.delegate2.needAddBot(user);
         if (this.searchField.editText.length() > 0) {
             this.searchField.editText.setText((CharSequence) null);
         }
     }
 
-    public void lambda$createView$4(View view) {
-        onDonePressed(true);
-    }
-
     public void lambda$createView$5(View view) {
-        onCallUsersSelected(getSelectedUsers(), false);
+        onDonePressed(true);
     }
 
     public void lambda$createView$6(View view) {
         onCallUsersSelected(getSelectedUsers(), false);
     }
 
-    public void lambda$createView$8() {
+    public void lambda$createView$7(View view) {
+        onCallUsersSelected(getSelectedUsers(), false);
+    }
+
+    public void lambda$createView$9() {
         this.listView.postOnAnimation(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$7();
+                this.f$0.lambda$createView$8();
             }
         });
     }
 
-    public void lambda$createView$7() {
+    public void lambda$createView$8() {
         checkUi_listClip();
         blur3_InvalidateBlur();
     }
@@ -1101,14 +949,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             bulletinCreateSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserBlockedNonPremium, userName)), LocaleController.getString(R.string.UserBlockedNonPremiumButton), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showPremiumBlockedToast$9();
+                    this.f$0.lambda$showPremiumBlockedToast$10();
                 }
             });
         }
         bulletinCreateSimpleBulletin.show();
     }
 
-    public void lambda$showPremiumBlockedToast$9() {
+    public void lambda$showPremiumBlockedToast$10() {
         presentFragment(new PremiumPreviewFragment("noncontacts"));
     }
 
@@ -1142,12 +990,12 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         AndroidUtilities.doOnPreDraw(this.listView, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showItemsAnimated$10(i);
+                this.f$0.lambda$showItemsAnimated$11(i);
             }
         });
     }
 
-    public void lambda$showItemsAnimated$10(int i) {
+    public void lambda$showItemsAnimated$11(int i) {
         AnimatorSet animatorSet = new AnimatorSet();
         int childCount = this.listView.getChildCount();
         for (int i2 = 0; i2 < childCount; i2++) {
@@ -1242,14 +1090,14 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 ((GraySectionCell) childAt).setRightText((this.selectedPremium == null && this.selectedContacts.isEmpty()) ? "" : LocaleController.getString(R.string.DeselectAll), true, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        this.f$0.lambda$checkVisibleRows$11(view);
+                        this.f$0.lambda$checkVisibleRows$12(view);
                     }
                 });
             }
         }
     }
 
-    public void lambda$checkVisibleRows$11(View view) {
+    public void lambda$checkVisibleRows$12(View view) {
         this.selectedPremium = null;
         this.selectedContacts.clear();
         this.spansContainer.removeAllSpans(true);
@@ -1287,11 +1135,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateActivity.checkDiscard(boolean):boolean");
     }
 
-    public void lambda$checkDiscard$12(AlertDialog alertDialog, int i) {
+    public void lambda$checkDiscard$13(AlertDialog alertDialog, int i) {
         onDonePressed(true);
     }
 
-    public void lambda$checkDiscard$13(AlertDialog alertDialog, int i) {
+    public void lambda$checkDiscard$14(AlertDialog alertDialog, int i) {
         finishFragment();
     }
 
@@ -1360,7 +1208,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        GroupCreateActivity.lambda$onDonePressed$14(checkBoxCellArr, view);
+                        GroupCreateActivity.lambda$onDonePressed$15(checkBoxCellArr, view);
                     }
                 });
                 builder.setView(linearLayout);
@@ -1368,7 +1216,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
             builder.setPositiveButton(LocaleController.getString(R.string.Add), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i2) {
-                    this.f$0.lambda$onDonePressed$15(checkBoxCellArr, alertDialog, i2);
+                    this.f$0.lambda$onDonePressed$16(checkBoxCellArr, alertDialog, i2);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -1421,11 +1269,11 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return true;
     }
 
-    public static void lambda$onDonePressed$14(CheckBoxCell[] checkBoxCellArr, View view) {
+    public static void lambda$onDonePressed$15(CheckBoxCell[] checkBoxCellArr, View view) {
         checkBoxCellArr[0].setChecked(!r1.isChecked(), true);
     }
 
-    public void lambda$onDonePressed$15(CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
+    public void lambda$onDonePressed$16(CheckBoxCell[] checkBoxCellArr, AlertDialog alertDialog, int i) {
         int i2 = 0;
         CheckBoxCell checkBoxCell = checkBoxCellArr[0];
         if (checkBoxCell != null && checkBoxCell.isChecked()) {
@@ -1902,7 +1750,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                this.f$0.lambda$getThemeDescriptions$16();
+                this.f$0.lambda$getThemeDescriptions$17();
             }
 
             @Override
@@ -1922,7 +1770,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
-        arrayList.add(new ThemeDescription(this.scrollView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.spansContainer, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_FASTSCROLL, null, null, null, null, Theme.key_fastScrollActive));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_FASTSCROLL, null, null, null, null, Theme.key_fastScrollInactive));
@@ -1950,10 +1798,10 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         int i7 = Theme.key_avatar_backgroundBlue;
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i7));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
-        arrayList.add(new ThemeDescription(this.spansContainer, 0, new Class[]{GroupCreateSpan.class}, null, null, null, Theme.key_groupcreate_spanBackground));
-        arrayList.add(new ThemeDescription(this.spansContainer, 0, new Class[]{GroupCreateSpan.class}, null, null, null, Theme.key_groupcreate_spanText));
-        arrayList.add(new ThemeDescription(this.spansContainer, 0, new Class[]{GroupCreateSpan.class}, null, null, null, Theme.key_groupcreate_spanDelete));
-        arrayList.add(new ThemeDescription(this.spansContainer, 0, new Class[]{GroupCreateSpan.class}, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.spansContainer.getSpansContainer(), 0, new Class[]{GroupCreateSpan.class}, null, null, null, Theme.key_groupcreate_spanBackground));
+        arrayList.add(new ThemeDescription(this.spansContainer.getSpansContainer(), 0, new Class[]{GroupCreateSpan.class}, null, null, null, Theme.key_groupcreate_spanText));
+        arrayList.add(new ThemeDescription(this.spansContainer.getSpansContainer(), 0, new Class[]{GroupCreateSpan.class}, null, null, null, Theme.key_groupcreate_spanDelete));
+        arrayList.add(new ThemeDescription(this.spansContainer.getSpansContainer(), 0, new Class[]{GroupCreateSpan.class}, null, null, null, i7));
         arrayList.add(new ThemeDescription(this.emptyView.title, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
         arrayList.add(new ThemeDescription(this.emptyView.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
         PermanentLinkBottomSheet permanentLinkBottomSheet = this.sharedLinkBottomSheet;
@@ -1963,7 +1811,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$16() {
+    public void lambda$getThemeDescriptions$17() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

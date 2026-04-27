@@ -100,7 +100,7 @@ public final class BulletinFactory {
                 Bulletin bulletinCreateErrorBulletin = createErrorBulletin(LocaleController.formatString(R.string.UnknownError, new Object[0]));
                 bulletinCreateErrorBulletin.hideAfterBottomSheet = false;
                 bulletinCreateErrorBulletin.show(z);
-            } else {
+            } else if (tL_error.code != 406) {
                 Bulletin bulletinCreateErrorBulletin2 = createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text));
                 bulletinCreateErrorBulletin2.hideAfterBottomSheet = false;
                 bulletinCreateErrorBulletin2.show(z);
@@ -128,7 +128,9 @@ public final class BulletinFactory {
 
     public static void showError(TLRPC.TL_error tL_error) {
         if (LaunchActivity.isActive) {
-            global().createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text)).show();
+            if (tL_error == null || tL_error.code != 406) {
+                global().createErrorBulletin(LocaleController.formatString(R.string.UnknownErrorCode, tL_error.text)).show();
+            }
         }
     }
 
@@ -638,6 +640,14 @@ public final class BulletinFactory {
             spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("AddedSubscribersToChannel", arrayList.size(), new Object[0]));
         }
         return createUsersBulletin(arrayList, spannableStringBuilderReplaceTags);
+    }
+
+    public Bulletin createEmojiBulletin(long j, String str, String str2) {
+        Bulletin.TwoLineBackupLayout twoLineBackupLayout = new Bulletin.TwoLineBackupLayout(getContext(), this.resourcesProvider);
+        twoLineBackupLayout.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(1, UserConfig.selectedAccount, j));
+        twoLineBackupLayout.titleTextView.setText(str);
+        twoLineBackupLayout.subtitleTextView.setText(str2);
+        return create(twoLineBackupLayout, 2750);
     }
 
     public Bulletin createEmojiBulletin(TLRPC.Document document, CharSequence charSequence) {

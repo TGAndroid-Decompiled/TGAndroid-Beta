@@ -541,8 +541,23 @@ public class ChangeUsernameActivity extends BaseFragment {
             }
         }
 
+        public void updateSections() {
+            if (ChangeUsernameActivity.this.listView == null) {
+                return;
+            }
+            if (ChangeUsernameActivity.this.listView.forcedSections != null) {
+                ChangeUsernameActivity.this.listView.forcedSections.clear();
+            } else {
+                ChangeUsernameActivity.this.listView.forcedSections = new ArrayList();
+            }
+            if (ChangeUsernameActivity.this.usernames.size() > 0) {
+                ChangeUsernameActivity.this.listView.forcedSections.add(Long.valueOf(AndroidUtilities.pack(3, ChangeUsernameActivity.this.usernames.size() + 3)));
+            }
+        }
+
         @Override
         public int getItemCount() {
+            updateSections();
             return (ChangeUsernameActivity.this.usernames.size() > 0 ? ChangeUsernameActivity.this.usernames.size() + 2 : 0) + 3;
         }
 
@@ -1157,12 +1172,16 @@ public class ChangeUsernameActivity extends BaseFragment {
                 viewHolder.itemView.setPressed(true);
             }
             super.onSelectedChanged(viewHolder, i);
+            if (viewHolder != null) {
+                viewHolder.itemView.setTag(R.id.dragging, i == 2 ? Boolean.TRUE : null);
+            }
         }
 
         @Override
         public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
             super.clearView(recyclerView, viewHolder);
             viewHolder.itemView.setPressed(false);
+            viewHolder.itemView.setTag(R.id.dragging, null);
         }
     }
 

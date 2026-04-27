@@ -66,7 +66,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
         super.createView(context);
         this.listView.setSections();
         this.listView.adapter.setApplyBackground(false);
-        this.actionBar.setAdaptiveBackground(this.listView);
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         return this.fragmentView;
     }
 
@@ -338,7 +338,7 @@ public class BusinessLinksActivity extends UniversalFragment implements Notifica
     @Override
     protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         String string;
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLinksInfo), R.raw.biz_links));
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLinks), LocaleController.getString(R.string.BusinessLinksInfo), R.raw.biz_links));
         universalAdapter.whiteSectionStart();
         if (BusinessLinksController.getInstance(this.currentAccount).canAddNew()) {
             arrayList.add(UItem.asButton(1, R.drawable.menu_link_create, LocaleController.getString(R.string.BusinessLinksAdd)).accent());

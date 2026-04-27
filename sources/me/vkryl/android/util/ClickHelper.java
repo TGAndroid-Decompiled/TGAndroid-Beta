@@ -26,6 +26,8 @@ public class ClickHelper {
 
         boolean ignoreHapticFeedbackSettings(float f, float f2);
 
+        boolean needCancelTouchBySlopMove();
+
         boolean needClickAt(View view, float f, float f2);
 
         boolean needLongPress(float f, float f2);
@@ -53,6 +55,10 @@ public class ClickHelper {
 
             public static boolean $default$ignoreHapticFeedbackSettings(Delegate delegate, float f, float f2) {
                 return false;
+            }
+
+            public static boolean $default$needCancelTouchBySlopMove(Delegate delegate) {
+                return true;
             }
 
             public static boolean $default$needLongPress(Delegate delegate, float f, float f2) {
@@ -196,7 +202,7 @@ public class ClickHelper {
             this.delegate.onClickTouchMove(view, x, y);
             if ((this.flags & 4) != 0) {
                 this.delegate.onLongPressMove(view, motionEvent, x, y, this.longPressX, this.longPressY);
-            } else if (Math.max(Math.abs(this.startX - x), Math.abs(this.startY - y)) > ViewConfiguration.get(view.getContext()).getScaledTouchSlop() * 1.89f) {
+            } else if (this.delegate.needCancelTouchBySlopMove() && Math.max(Math.abs(this.startX - x), Math.abs(this.startY - y)) > ViewConfiguration.get(view.getContext()).getScaledTouchSlop() * 1.89f) {
                 resetTouch(view, x, y);
             }
             return true;

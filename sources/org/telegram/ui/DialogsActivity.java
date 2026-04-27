@@ -3314,7 +3314,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$18(View view) {
+    public void lambda$createView$18(View view) throws Resources.NotFoundException {
         openStoriesRecorder();
     }
 
@@ -7761,7 +7761,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 boolean z4 = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).getBoolean("proxy_enabled", false);
                 int i2 = this.currentConnectionState;
                 boolean z5 = i2 == 3 || i2 == 5;
-                this.proxyMenuSubItem.setSubtext(LocaleController.getString(z5 ? R.string.MenuProxyConnected : R.string.MenuProxyConnecting));
+                this.proxyMenuSubItem.setSubtext(LocaleController.getString(z4 ? z5 ? R.string.MenuProxyConnected : R.string.MenuProxyConnecting : R.string.MenuProxyDisabled));
                 this.proxyDrawable.setConnected(z4, z5, z);
             }
         }
@@ -11000,7 +11000,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() {
+    private void openStoriesRecorder() throws Resources.NotFoundException {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {

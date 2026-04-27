@@ -317,8 +317,8 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         textView2.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 40.0f, 9.0f, 40.0f, 0.0f));
         FrameLayout frameLayout = new FrameLayout(getContext());
-        frameLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        int iDp = AndroidUtilities.dp(8.0f);
+        frameLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f));
+        int iDp = AndroidUtilities.dp(12.0f);
         int i2 = Theme.key_text_RedBold;
         frameLayout.setBackground(Theme.createRoundRectDrawable(iDp, Theme.multAlpha(Theme.getColor(i2), Theme.isCurrentThemeDark() ? 0.2f : 0.15f)));
         TextView textView3 = new TextView(getContext());
@@ -329,23 +329,23 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         textView3.setText(LocaleController.getString(R.string.UnconfirmedAuthDeniedWarning));
         frameLayout.addView(textView3, LayoutHelper.createFrame(-1, -1, 119));
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 14.0f, 19.0f, 14.0f, 0.0f));
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), null);
-        ScaleStateListAnimator.apply(buttonWithCounterView, 0.02f, 1.5f);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.GotIt), false);
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 20.0f, 14.0f, 4.0f));
+        final ButtonWithCounterView round = new ButtonWithCounterView(getContext(), null).setRound();
+        ScaleStateListAnimator.apply(round, 0.02f, 1.5f);
+        round.setText(LocaleController.getString(R.string.GotIt), false);
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 14.0f, 20.0f, 14.0f, 4.0f));
         final BottomSheet bottomSheetShow = new BottomSheet.Builder(getContext()).setCustomView(linearLayout).show();
         bottomSheetShow.setCanDismissWithSwipe(false);
         bottomSheetShow.setCanDismissWithTouchOutside(false);
-        buttonWithCounterView.setTimer(5, new Runnable() {
+        round.setTimer(5, new Runnable() {
             @Override
             public final void run() {
                 UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$5(bottomSheetShow);
             }
         });
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$6(buttonWithCounterView, bottomSheetShow, view);
+                UnconfirmedAuthHintCell.lambda$showLoginPreventedSheet$6(round, bottomSheetShow, view);
             }
         });
     }

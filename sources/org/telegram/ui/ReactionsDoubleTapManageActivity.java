@@ -45,6 +45,11 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
     private SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialog;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.reactionsDidLoad);
         getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
@@ -68,7 +73,9 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         linearLayout.setOrientation(1);
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        ((DefaultItemAnimator) recyclerListView.getItemAnimator()).setSupportsChangeAnimations(false);
+        recyclerListView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        ((DefaultItemAnimator) this.listView.getItemAnimator()).setSupportsChangeAnimations(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context));
         RecyclerListView recyclerListView2 = this.listView;
         RecyclerListView.SelectionAdapter selectionAdapter = new RecyclerListView.SelectionAdapter() {
@@ -88,7 +95,6 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                 } else if (i == 2) {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
                     textInfoPrivacyCell.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     availableReactionCell = textInfoPrivacyCell;
                 } else if (i == 3) {
                     SetDefaultReactionCell setDefaultReactionCell = ReactionsDoubleTapManageActivity.this.new SetDefaultReactionCell(context);
@@ -101,7 +107,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
                         }
                     };
-                    view.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    view.setTag(-33024);
                     availableReactionCell = view;
                 } else {
                     availableReactionCell = new AvailableReactionCell(context, true, true);
@@ -179,7 +185,6 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
 
         public SetDefaultReactionCell(Context context) {
             super(context);
-            setBackgroundColor(ReactionsDoubleTapManageActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
@@ -294,5 +299,11 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             updateRows();
             this.listAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

@@ -67,10 +67,10 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import org.json.JSONObject;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
@@ -974,7 +974,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             tL_inputSavedStarGiftSlug.slug = starGift.slug;
             craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(craftstargift, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(craftstargift, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$openCrafting$4(callback2, arrayList, runnable, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
@@ -10197,9 +10197,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
 
             public void setReplaceIcon(boolean z) {
-                float f = z ? 1.0f : 0.8f;
-                this.closeIcon.setScaleX(f);
-                this.closeIcon.setScaleY(f);
+                this.closeIcon.setScaleX(0.8f);
+                this.closeIcon.setScaleY(0.8f);
                 ImageView imageView = this.closeIcon;
                 this.isReplaceIcon = z;
                 imageView.setImageResource(z ? R.drawable.mini_replace2 : R.drawable.msg_close);

@@ -2,12 +2,10 @@ package org.telegram.ui.Components.chat.layouts;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 import me.vkryl.android.animator.BoolAnimator;
@@ -15,6 +13,7 @@ import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -70,12 +69,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
         FrameLayout frameLayout = new FrameLayout(context);
         this.container = frameLayout;
         frameLayout.setClipToOutline(true);
-        frameLayout.setOutlineProvider(new ViewOutlineProvider() {
-            @Override
-            public void getOutline(View view, Outline outline) {
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(22.0f));
-            }
-        });
+        frameLayout.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(22.0f)));
         addView(frameLayout, LayoutHelper.createFrame(-1, 44, 16));
     }
 

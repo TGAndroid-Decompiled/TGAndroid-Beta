@@ -1963,7 +1963,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                         TextCell textCell28 = this.logCell;
                         textCell27.setTextAndValueAndIcon(string9, str7, i10, textCell28 != null && textCell28.getVisibility() == 0);
                     } else {
-                        int i11 = this.forum ? 15 : 14;
+                        int i11 = this.forum ? 16 : 15;
                         TLRPC.TL_chatBannedRights tL_chatBannedRights = chat3.default_banned_rights;
                         if (tL_chatBannedRights != null) {
                             int i12 = !tL_chatBannedRights.send_plain ? 1 : 0;

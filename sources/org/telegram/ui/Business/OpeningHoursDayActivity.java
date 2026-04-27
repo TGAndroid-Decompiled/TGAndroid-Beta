@@ -85,7 +85,9 @@ public class OpeningHoursDayActivity extends BaseFragment {
             }
         }, null);
         this.listView = universalRecyclerView;
-        frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
+        universalRecyclerView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.fragmentView = frameLayout;
         return frameLayout;
     }

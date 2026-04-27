@@ -770,7 +770,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    private boolean matchLocal(TLObject tLObject, String str) {
+    public static boolean matchLocal(TLObject tLObject, String str) {
         if (TextUtils.isEmpty(str)) {
             return true;
         }

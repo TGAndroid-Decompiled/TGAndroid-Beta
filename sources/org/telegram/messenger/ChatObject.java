@@ -49,6 +49,7 @@ public class ChatObject {
     public static final int ACTION_SEND_PHOTO = 16;
     public static final int ACTION_SEND_PLAIN = 22;
     public static final int ACTION_SEND_POLLS = 10;
+    public static final int ACTION_SEND_REACTIONS = 26;
     public static final int ACTION_SEND_ROUND = 21;
     public static final int ACTION_SEND_STICKERS = 8;
     public static final int ACTION_SEND_TEXT = 22;
@@ -74,7 +75,7 @@ public class ChatObject {
     }
 
     private static boolean isBannableAction(int i) {
-        if (i != 0 && i != 1 && i != 3) {
+        if (i != 0 && i != 1 && i != 3 && i != 26) {
             switch (i) {
                 default:
                     switch (i) {
@@ -1461,6 +1462,9 @@ public class ChatObject {
         if (i == 3) {
             return tL_chatBannedRights.invite_users;
         }
+        if (i == 26) {
+            return tL_chatBannedRights.send_reactions;
+        }
         switch (i) {
             case 6:
                 break;
@@ -1991,7 +1995,7 @@ public class ChatObject {
     }
 
     public static String getBannedRightsString(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
-        return ((((((((((((((((((((("" + (tL_chatBannedRights.view_messages ? 1 : 0)) + (tL_chatBannedRights.send_messages ? 1 : 0)) + (tL_chatBannedRights.send_media ? 1 : 0)) + (tL_chatBannedRights.send_stickers ? 1 : 0)) + (tL_chatBannedRights.send_gifs ? 1 : 0)) + (tL_chatBannedRights.send_games ? 1 : 0)) + (tL_chatBannedRights.send_inline ? 1 : 0)) + (tL_chatBannedRights.embed_links ? 1 : 0)) + (tL_chatBannedRights.send_polls ? 1 : 0)) + (tL_chatBannedRights.invite_users ? 1 : 0)) + (tL_chatBannedRights.change_info ? 1 : 0)) + (tL_chatBannedRights.pin_messages ? 1 : 0)) + (tL_chatBannedRights.manage_topics ? 1 : 0)) + (tL_chatBannedRights.send_photos ? 1 : 0)) + (tL_chatBannedRights.send_videos ? 1 : 0)) + (tL_chatBannedRights.send_roundvideos ? 1 : 0)) + (tL_chatBannedRights.send_voices ? 1 : 0)) + (tL_chatBannedRights.send_audios ? 1 : 0)) + (tL_chatBannedRights.send_docs ? 1 : 0)) + (tL_chatBannedRights.send_plain ? 1 : 0)) + (tL_chatBannedRights.edit_rank ? 1 : 0)) + tL_chatBannedRights.until_date;
+        return (((((((((((((((((((((("" + (tL_chatBannedRights.view_messages ? 1 : 0)) + (tL_chatBannedRights.send_messages ? 1 : 0)) + (tL_chatBannedRights.send_media ? 1 : 0)) + (tL_chatBannedRights.send_stickers ? 1 : 0)) + (tL_chatBannedRights.send_gifs ? 1 : 0)) + (tL_chatBannedRights.send_games ? 1 : 0)) + (tL_chatBannedRights.send_inline ? 1 : 0)) + (tL_chatBannedRights.embed_links ? 1 : 0)) + (tL_chatBannedRights.send_polls ? 1 : 0)) + (tL_chatBannedRights.invite_users ? 1 : 0)) + (tL_chatBannedRights.change_info ? 1 : 0)) + (tL_chatBannedRights.pin_messages ? 1 : 0)) + (tL_chatBannedRights.manage_topics ? 1 : 0)) + (tL_chatBannedRights.send_photos ? 1 : 0)) + (tL_chatBannedRights.send_videos ? 1 : 0)) + (tL_chatBannedRights.send_roundvideos ? 1 : 0)) + (tL_chatBannedRights.send_voices ? 1 : 0)) + (tL_chatBannedRights.send_audios ? 1 : 0)) + (tL_chatBannedRights.send_docs ? 1 : 0)) + (tL_chatBannedRights.send_plain ? 1 : 0)) + (tL_chatBannedRights.edit_rank ? 1 : 0)) + (tL_chatBannedRights.send_reactions ? 1 : 0)) + tL_chatBannedRights.until_date;
     }
 
     public static boolean hasPhoto(TLRPC.Chat chat) {

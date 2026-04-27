@@ -273,7 +273,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     @Override
     public View createView(Context context) {
         super.createView(context);
-        MainTabsLayout mainTabsLayout = new MainTabsLayout(context);
+        MainTabsLayout mainTabsLayout = new MainTabsLayout(context, this.resourceProvider);
         this.tabsView = mainTabsLayout;
         mainTabsLayout.setClipChildren(false);
         this.tabsView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
@@ -290,6 +290,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 return this.f$0.lambda$createView$0(view);
             }
         });
+        this.tabsView.addTabToIgnoreClick(this.tabs[4]);
         int i = 0;
         while (true) {
             GlassTabView[] glassTabViewArr2 = this.tabs;
@@ -815,10 +816,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public void checkUi_tabsPosition() {
         int iDp = AndroidUtilities.dp(40.0f) + (-(this.updateLayoutWrapper.isUpdateLayoutVisible() ? AndroidUtilities.dp(44.0f) : 0));
         float floatValue = this.animatorTabsVisible.getFloatValue();
-        float fLerp = AndroidUtilities.lerp(0.85f, 1.0f, floatValue);
+        AndroidUtilities.lerp(0.85f, 1.0f, floatValue);
         this.tabsViewWrapper.setTranslationY(AndroidUtilities.lerp(iDp, r0, floatValue));
-        this.tabsView.setScaleX(fLerp);
-        this.tabsView.setScaleY(fLerp);
         this.tabsView.setClickable(floatValue > 1.0f);
         this.tabsView.setEnabled(floatValue > 1.0f);
         this.tabsView.setAlpha(floatValue);

@@ -51,6 +51,7 @@ public class ReactedUsersListView extends FrameLayout {
     private OnCustomEmojiSelectedListener onCustomEmojiSelectedListener;
     private OnHeightChangedListener onHeightChangedListener;
     private OnProfileSelectedListener onProfileSelectedListener;
+    private OnProfileSelectedListener onProfileSelectedLongListener;
     private boolean onlySeenNow;
     private LongSparseArray peerReactionMap;
     private int predictiveCount;
@@ -153,6 +154,12 @@ public class ReactedUsersListView extends FrameLayout {
                 this.f$0.lambda$new$0(view, i2);
             }
         });
+        this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
+            @Override
+            public final boolean onItemClick(View view, int i2) {
+                return this.f$0.lambda$new$1(view, i2);
+            }
+        });
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
@@ -204,6 +211,15 @@ public class ReactedUsersListView extends FrameLayout {
             return;
         }
         onCustomEmojiSelectedListener.showCustomEmojiAlert(this, this.customEmojiStickerSets);
+    }
+
+    public boolean lambda$new$1(View view, int i) {
+        OnProfileSelectedListener onProfileSelectedListener;
+        if (this.adapter.getItemViewType(i) != 0 || (onProfileSelectedListener = this.onProfileSelectedLongListener) == null) {
+            return true;
+        }
+        onProfileSelectedListener.onProfileSelected(this, MessageObject.getPeerId(((TLRPC.MessagePeerReaction) this.userReactions.get(i)).peer_id), (TLRPC.MessagePeerReaction) this.userReactions.get(i));
+        return true;
     }
 
     public ReactedUsersListView setSeenUsers(List list) {
@@ -262,7 +278,7 @@ public class ReactedUsersListView extends FrameLayout {
         Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override
             public final int applyAsInt(Object obj) {
-                return ReactedUsersListView.lambda$setSeenUsers$1((TLRPC.MessagePeerReaction) obj);
+                return ReactedUsersListView.lambda$setSeenUsers$2((TLRPC.MessagePeerReaction) obj);
             }
         }));
         this.adapter.notifyDataSetChanged();
@@ -270,7 +286,7 @@ public class ReactedUsersListView extends FrameLayout {
         return this;
     }
 
-    public static int lambda$setSeenUsers$1(TLRPC.MessagePeerReaction messagePeerReaction) {
+    public static int lambda$setSeenUsers$2(TLRPC.MessagePeerReaction messagePeerReaction) {
         int i = messagePeerReaction.date;
         if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
@@ -307,22 +323,13 @@ public class ReactedUsersListView extends FrameLayout {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getMessageReactionsList, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$load$6(tLObject, tL_error);
+                this.f$0.lambda$load$7(tLObject, tL_error);
             }
         }, 64);
     }
 
-    public void lambda$load$5(final TLObject tLObject) {
+    public void lambda$load$6(final TLObject tLObject) {
         NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$load$4(tLObject);
-            }
-        });
-    }
-
-    public void lambda$load$6(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$load$5(tLObject);
@@ -330,7 +337,16 @@ public class ReactedUsersListView extends FrameLayout {
         });
     }
 
-    public void lambda$load$4(TLObject tLObject) {
+    public void lambda$load$7(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$load$6(tLObject);
+            }
+        });
+    }
+
+    public void lambda$load$5(TLObject tLObject) {
         if (tLObject instanceof TLRPC.TL_messages_messageReactionsList) {
             TLRPC.TL_messages_messageReactionsList tL_messages_messageReactionsList = (TLRPC.TL_messages_messageReactionsList) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(tL_messages_messageReactionsList.users, false);
@@ -366,7 +382,7 @@ public class ReactedUsersListView extends FrameLayout {
             Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
                 @Override
                 public final int applyAsInt(Object obj) {
-                    return ReactedUsersListView.lambda$load$2((TLRPC.MessagePeerReaction) obj);
+                    return ReactedUsersListView.lambda$load$3((TLRPC.MessagePeerReaction) obj);
                 }
             }));
             this.adapter.notifyDataSetChanged();
@@ -376,7 +392,7 @@ public class ReactedUsersListView extends FrameLayout {
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$load$3(valueAnimator);
+                        this.f$0.lambda$load$4(valueAnimator);
                     }
                 });
                 duration.addListener(new AnimatorListenerAdapter() {
@@ -400,7 +416,7 @@ public class ReactedUsersListView extends FrameLayout {
         this.isLoading = false;
     }
 
-    public static int lambda$load$2(TLRPC.MessagePeerReaction messagePeerReaction) {
+    public static int lambda$load$3(TLRPC.MessagePeerReaction messagePeerReaction) {
         int i = messagePeerReaction.date;
         if (i <= 0 || messagePeerReaction.reaction != null) {
             return Integer.MIN_VALUE;
@@ -408,7 +424,7 @@ public class ReactedUsersListView extends FrameLayout {
         return -i;
     }
 
-    public void lambda$load$3(ValueAnimator valueAnimator) {
+    public void lambda$load$4(ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.listView.setAlpha(fFloatValue);
         this.loadingView.setAlpha(1.0f - fFloatValue);
@@ -458,6 +474,11 @@ public class ReactedUsersListView extends FrameLayout {
 
     public ReactedUsersListView setOnProfileSelectedListener(OnProfileSelectedListener onProfileSelectedListener) {
         this.onProfileSelectedListener = onProfileSelectedListener;
+        return this;
+    }
+
+    public ReactedUsersListView setOnProfileLongSelectedListener(OnProfileSelectedListener onProfileSelectedListener) {
+        this.onProfileSelectedLongListener = onProfileSelectedListener;
         return this;
     }
 

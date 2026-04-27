@@ -208,6 +208,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     public void onContainerDraw(Canvas canvas) {
     }
 
+    protected void onContainerLayout(int i, int i2, int i3, int i4) {
+    }
+
     protected boolean onContainerTouchEvent(MotionEvent motionEvent) {
         return false;
     }
@@ -248,9 +251,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     protected void onScrollUpEnd(float f) {
-    }
-
-    protected void onSmoothContainerViewLayout(float f) {
     }
 
     protected void onSwipeStarts() {
@@ -437,14 +437,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         @Override
         public void onStopNestedScroll(View view) {
             this.nestedScrollingParentHelper.onStopNestedScroll(view);
-            if (BottomSheet.this.dismissed) {
+            if (BottomSheet.this.dismissed || !BottomSheet.this.allowNestedScroll) {
                 return;
             }
-            BottomSheet bottomSheet = BottomSheet.this;
-            if (bottomSheet.allowNestedScroll) {
-                bottomSheet.containerView.getTranslationY();
-                checkDismiss(0.0f, 0.0f);
-            }
+            checkDismiss(0.0f, 0.0f);
         }
 
         @Override
@@ -730,7 +726,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
 
         @Override
-        protected void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
+        protected void onLayout(boolean r18, int r19, int r20, int r21, int r22) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheet.ContainerView.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -1944,7 +1940,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1288getWindowView() {
+    public View mo1272getWindowView() {
         return this.container;
     }
 
@@ -2236,7 +2232,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true);
-            AndroidUtilities.setLightNavigationBar(mo1288getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1272getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(this, this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
@@ -2289,6 +2285,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     public void smoothContainerViewLayout() {
         this.smoothContainerViewLayoutUntil = System.currentTimeMillis() + 80;
+    }
+
+    protected void onSmoothContainerViewLayout(float f) {
+        ContainerView containerView = this.container;
+        if (containerView != null) {
+            containerView.invalidate();
+        }
     }
 
     public void makeAttached(BaseFragment baseFragment) {

@@ -17,6 +17,12 @@ public class TypefaceSpan extends MetricAffectingSpan {
         this.typeface = typeface;
     }
 
+    public TypefaceSpan(Typeface typeface, int i) {
+        this.colorKey = -1;
+        this.typeface = typeface;
+        this.textSize = i;
+    }
+
     public TypefaceSpan(Typeface typeface, int i, int i2) {
         this.colorKey = -1;
         this.typeface = typeface;

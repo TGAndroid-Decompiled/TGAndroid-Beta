@@ -19,9 +19,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import org.telegram.PhoneFormat.PhoneFormat;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -433,7 +433,7 @@ public abstract class OAuthSheet {
         }
         final AlertDialog alertDialog = new AlertDialog(ApplicationLoader.applicationContext, 3);
         alertDialog.showDelayed(200L);
-        ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(num.intValue()).sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 OAuthSheet.lambda$handle$3(alertDialog, bottomSheet, z, num, tL_messages_requestUrlAuth, str, urlAuthResult, strArr, z2, botWebViewContainer, str2, resourcesProvider, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
@@ -495,7 +495,7 @@ public abstract class OAuthSheet {
             }
             TLRPC.TL_messages_declineUrlAuth tL_messages_declineUrlAuth = new TLRPC.TL_messages_declineUrlAuth();
             tL_messages_declineUrlAuth.url = tL_messages_requestUrlAuth.url;
-            ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_declineUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_declineUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     OAuthSheet.lambda$handle$7(zArr, bottomSheet, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
@@ -531,7 +531,7 @@ public abstract class OAuthSheet {
         }
         tL_messages_acceptUrlAuth.write_allowed = textCheckCell != null && textCheckCell.isChecked();
         tL_messages_acceptUrlAuth.share_phone_number = zArr[0];
-        ConnectionsManager.getInstance(iArr[0]).sendRequestTyped(tL_messages_acceptUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(iArr[0]).sendRequestTyped(tL_messages_acceptUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 OAuthSheet.lambda$handle$9(zArr2, bottomSheet, str, resourcesProvider, z, iArr, tL_messages_requestUrlAuth, str2, tL_urlAuthResultRequest, tL_messages_acceptUrlAuth, botWebViewContainer, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
@@ -630,7 +630,7 @@ public abstract class OAuthSheet {
         strArr[0] = str2;
         tL_messages_checkUrlAuthMatchCode.match_code = str2;
         tL_messages_checkUrlAuthMatchCode.url = tL_messages_requestUrlAuth.url;
-        ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_checkUrlAuthMatchCode, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_checkUrlAuthMatchCode, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 OAuthSheet.lambda$handle$18(alertDialog, bottomSheet, str, resourcesProvider, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);

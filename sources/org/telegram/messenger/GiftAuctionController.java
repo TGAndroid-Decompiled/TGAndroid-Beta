@@ -80,7 +80,7 @@ public class GiftAuctionController extends BaseController {
         tL_inputStarGiftAuction.gift_id = orCreateAuction.giftId;
         tL_getStarGiftAuctionState.auction = tL_inputStarGiftAuction;
         tL_getStarGiftAuctionState.version = orCreateAuction.getVersion();
-        getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$subscribeToGiftAuctionStateInternal$1(j, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
@@ -147,7 +147,7 @@ public class GiftAuctionController extends BaseController {
         TL_payments.TL_getStarGiftAuctionState tL_getStarGiftAuctionState = new TL_payments.TL_getStarGiftAuctionState();
         tL_getStarGiftAuctionState.auction = inputStarGiftAuction;
         tL_getStarGiftAuctionState.version = 0;
-        return getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        return getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$requestGiftAuctionInternal$4(callback2, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
@@ -185,7 +185,7 @@ public class GiftAuctionController extends BaseController {
     public void requestAuctionUpgrades(long j, final Utilities.Callback<ArrayList<TL_stars.StarGiftAttribute>> callback) {
         TL_stars.getStarGiftUpgradeAttributes getstargiftupgradeattributes = new TL_stars.getStarGiftUpgradeAttributes();
         getstargiftupgradeattributes.gift_id = j;
-        getConnectionsManager().sendRequestTyped(getstargiftupgradeattributes, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        getConnectionsManager().sendRequestTyped(getstargiftupgradeattributes, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 GiftAuctionController.lambda$requestAuctionUpgrades$5(callback, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
@@ -258,7 +258,7 @@ public class GiftAuctionController extends BaseController {
             tL_inputInvoiceStarGiftAuctionBid.hide_name = false;
         }
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftAuctionBid;
-        getConnectionsManager().sendRequestTyped(tL_payments_getPaymentForm, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        getConnectionsManager().sendRequestTyped(tL_payments_getPaymentForm, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$sendBid$9(callback2, auctionInternal, tL_payments_getPaymentForm, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
@@ -285,7 +285,7 @@ public class GiftAuctionController extends BaseController {
             TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
             tL_payments_sendStarsForm.form_id = ((TLRPC.TL_payments_paymentFormStarGift) paymentForm).form_id;
             tL_payments_sendStarsForm.invoice = tL_payments_getPaymentForm.invoice;
-            getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$sendBid$8(auctionInternal, callback2, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
@@ -336,7 +336,7 @@ public class GiftAuctionController extends BaseController {
     public void requestUserAuctions() {
         TL_payments.TL_getStarGiftActiveAuctions tL_getStarGiftActiveAuctions = new TL_payments.TL_getStarGiftActiveAuctions();
         tL_getStarGiftActiveAuctions.hash = calculateUserAuctionsHash();
-        getConnectionsManager().sendRequestTyped(tL_getStarGiftActiveAuctions, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        getConnectionsManager().sendRequestTyped(tL_getStarGiftActiveAuctions, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$requestUserAuctions$10((TL_payments.StarGiftActiveAuctions) obj, (TLRPC.TL_error) obj2);
@@ -371,7 +371,7 @@ public class GiftAuctionController extends BaseController {
         if (auctionInternal.acquiredGifts == null || auctionInternal.internalState.auctionUserState.acquired_count != auctionInternal.acquiredGifts.size()) {
             TL_payments.TL_getStarGiftAuctionAcquiredGifts tL_getStarGiftAuctionAcquiredGifts = new TL_payments.TL_getStarGiftAuctionAcquiredGifts();
             tL_getStarGiftAuctionAcquiredGifts.gift_id = j;
-            getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionAcquiredGifts, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionAcquiredGifts, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$getOrRequestAcquiredGifts$11(callback, auctionInternal, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);

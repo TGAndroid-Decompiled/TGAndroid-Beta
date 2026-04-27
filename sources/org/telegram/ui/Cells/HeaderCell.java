@@ -130,6 +130,15 @@ public class HeaderCell extends FrameLayout {
         }
     }
 
+    public void setEnabled(boolean z, boolean z2) {
+        super.setEnabled(z);
+        if (z2) {
+            this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+        }
+    }
+
     public void setEnabled(boolean z, ArrayList arrayList) {
         if (arrayList != null) {
             arrayList.add(ObjectAnimator.ofFloat(this.textView, (Property<TextView, Float>) View.ALPHA, z ? 1.0f : 0.5f));

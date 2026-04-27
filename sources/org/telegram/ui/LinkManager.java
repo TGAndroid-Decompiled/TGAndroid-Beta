@@ -12,8 +12,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -27,10 +27,12 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_aicompose;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
+import org.telegram.ui.Components.AIEditorAlert;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CreateBotAlert;
@@ -114,6 +116,9 @@ public class LinkManager {
                 if ("invoice".equalsIgnoreCase(str2)) {
                     return handleInvoiceSlug(str3);
                 }
+                if ("addstyle".equalsIgnoreCase(str2)) {
+                    return handleAiStyle(str3);
+                }
                 if ("oauth".equalsIgnoreCase(str2)) {
                     return handleOAuth(uri, uri.getQueryParameter("startapp"));
                 }
@@ -137,7 +142,7 @@ public class LinkManager {
         return Uri.parse(scheme + "://" + schemeSpecificPart);
     }
 
-    private boolean handleTg(Uri uri) {
+    private boolean handleTg(Uri uri) throws Resources.NotFoundException {
         Uri uriNormalizeTgUri = normalizeTgUri(uri);
         List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
         if (pathSegments == null) {
@@ -207,23 +212,26 @@ public class LinkManager {
             StoryRecorder.getInstance(this.activity, this.currentAccount).setMode(EqualsIgnoreCase).open(null);
             return true;
         }
-        if (!"contacts".equalsIgnoreCase(str)) {
-            return false;
-        }
-        if ("new".equalsIgnoreCase(str2)) {
-            new NewContactBottomSheet(getLastFragment(), this.activity).show();
+        if ("contacts".equalsIgnoreCase(str)) {
+            if ("new".equalsIgnoreCase(str2)) {
+                new NewContactBottomSheet(getLastFragment(), this.activity).show();
+                return true;
+            }
+            Bundle bundle3 = new Bundle();
+            bundle3.putBoolean("needPhonebook", true);
+            bundle3.putBoolean("needFinishFragment", true);
+            presentFragment(new ContactsActivity(bundle3));
+            "search".equalsIgnoreCase(str2);
+            "sort".equalsIgnoreCase(str2);
+            if ("invite".equalsIgnoreCase(str2)) {
+                scrollTo("phonebookRow");
+            }
             return true;
         }
-        Bundle bundle3 = new Bundle();
-        bundle3.putBoolean("needPhonebook", true);
-        bundle3.putBoolean("needFinishFragment", true);
-        presentFragment(new ContactsActivity(bundle3));
-        "search".equalsIgnoreCase(str2);
-        "sort".equalsIgnoreCase(str2);
-        if ("invite".equalsIgnoreCase(str2)) {
-            scrollTo("phonebookRow");
+        if ("addstyle".equalsIgnoreCase(str)) {
+            return handleAiStyle(uriNormalizeTgUri.getQueryParameter("slug"));
         }
-        return true;
+        return false;
     }
 
     private boolean handleTgResolve(Uri uri) {
@@ -639,7 +647,7 @@ public class LinkManager {
         final TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
         tL_messages_requestUrlAuth.flags |= 4;
         tL_messages_requestUrlAuth.url = uri.toString();
-        getConnectionsManager().sendRequestTyped(tL_messages_requestUrlAuth, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        getConnectionsManager().sendRequestTyped(tL_messages_requestUrlAuth, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$handleOAuth$18(tL_messages_requestUrlAuth, (TLRPC.UrlAuthResult) obj, (TLRPC.TL_error) obj2);
@@ -762,6 +770,47 @@ public class LinkManager {
         }
     }
 
+    private boolean handleAiStyle(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return false;
+        }
+        TL_aicompose.getTone gettone = new TL_aicompose.getTone();
+        TL_aicompose.inputAiComposeToneSlug inputaicomposetoneslug = new TL_aicompose.inputAiComposeToneSlug();
+        inputaicomposetoneslug.slug = str;
+        gettone.tone = inputaicomposetoneslug;
+        init();
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettone, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$handleAiStyle$22((TL_aicompose.Tones) obj, (TLRPC.TL_error) obj2);
+            }
+        });
+        return true;
+    }
+
+    public void lambda$handleAiStyle$22(TL_aicompose.Tones tones, TLRPC.TL_error tL_error) {
+        lambda$handleInvoiceSlug$13();
+        if (!(tones instanceof TL_aicompose.TL_tones)) {
+            if (tL_error != null) {
+                if ("AICOMPOSE_TONE_SLUG_INVALID".equalsIgnoreCase(tL_error.text)) {
+                    getBulletinFactory().createSimpleBulletin(R.raw.error, "AI Style not found.").show();
+                    return;
+                } else {
+                    getBulletinFactory().showForError(tL_error);
+                    return;
+                }
+            }
+            return;
+        }
+        TL_aicompose.TL_tones tL_tones = (TL_aicompose.TL_tones) tones;
+        MessagesController.getInstance(this.currentAccount).putUsers(tL_tones.users, false);
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null || tL_tones.tones.isEmpty()) {
+            return;
+        }
+        new AIEditorAlert.AiStyleAlert(safeLastFragment.getContext(), tL_tones.tones.get(0), safeLastFragment.getResourceProvider()).show();
+    }
+
     private void setRequestId(int i) {
         this.currentRequestId = i;
     }
@@ -818,7 +867,7 @@ public class LinkManager {
             this.progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    this.f$0.lambda$init$22(dialogInterface);
+                    this.f$0.lambda$init$23(dialogInterface);
                 }
             });
             this.progressDialog.showDelayed(300L);
@@ -834,7 +883,7 @@ public class LinkManager {
         this.inited = true;
     }
 
-    public void lambda$init$22(DialogInterface dialogInterface) {
+    public void lambda$init$23(DialogInterface dialogInterface) {
         cancel();
     }
 

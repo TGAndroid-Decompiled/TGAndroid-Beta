@@ -28,6 +28,11 @@ public class ChatActivitySideControlsButtonsLayout extends FrameLayout implement
     private final Theme.ResourcesProvider resourcesProvider;
 
     @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }

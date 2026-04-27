@@ -140,7 +140,7 @@ public class EditTextCell extends FrameLayout {
                 super.dispatchDraw(canvas);
                 EditTextCell editTextCell = EditTextCell.this;
                 editTextCell.limit.setTextColor(editTextCell.limitColor.set(Theme.getColor(editTextCell.limitCount <= 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
-                EditTextCell.this.limit.setBounds(getScrollX(), 0, ((getScrollX() + getWidth()) - getPaddingRight()) + AndroidUtilities.dp(42.0f), getHeight());
+                EditTextCell.this.limit.setBounds(getScrollX(), getHeight() - Math.min(AndroidUtilities.dp(52.0f), getHeight()), ((getScrollX() + getWidth()) - getPaddingRight()) + AndroidUtilities.dp(42.0f), getHeight());
                 EditTextCell.this.limit.draw(canvas);
             }
 
@@ -195,7 +195,7 @@ public class EditTextCell extends FrameLayout {
         editTextCaption.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp((i > 0 ? 42 : 0) + 21), AndroidUtilities.dp(15.0f));
         editTextCaption.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         editTextCaption.setInputType((z ? 131072 : 0) | 573441);
-        editTextCaption.setRawInputType(573441);
+        editTextCaption.setRawInputType((z ? 131072 : 0) | 573441);
         editTextCaption.setHint(str);
         editTextCaption.setCursorColor(Theme.getColor(i2, resourcesProvider));
         editTextCaption.setCursorSize(AndroidUtilities.dp(19.0f));
@@ -225,7 +225,7 @@ public class EditTextCell extends FrameLayout {
                     }
                     EditTextCell.this.onTextChanged(editable);
                 }
-                if (!z) {
+                if (z) {
                     return;
                 }
                 while (true) {

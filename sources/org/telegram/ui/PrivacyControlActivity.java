@@ -87,6 +87,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.bots.AffiliateProgramFragment;
@@ -709,6 +710,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 @Override
                 public String getAdminRank(long j) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                }
+
+                @Override
+                public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                 }
 
                 @Override

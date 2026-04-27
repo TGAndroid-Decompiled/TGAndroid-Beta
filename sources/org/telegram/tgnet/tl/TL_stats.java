@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import java.util.ArrayList;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
@@ -867,6 +868,49 @@ public class TL_stats {
             outputSerializedData.writeInt32(-875679776);
             outputSerializedData.writeDouble(this.part);
             outputSerializedData.writeDouble(this.total);
+        }
+    }
+
+    public static class TL_statsPollStats extends TLObject {
+        public static int constructor = 697941741;
+        public StatsGraph votes_graph;
+
+        public static TL_statsPollStats TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (TL_statsPollStats) TLObject.TLdeserialize(TL_statsPollStats.class, i != constructor ? null : new TL_statsPollStats(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.votes_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(constructor);
+            this.votes_graph.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_statsGetPollStats extends TLMethod<TL_statsPollStats> {
+        public static int constructor = -1031931288;
+        public boolean dark;
+        public int flags;
+        public int msg_id;
+        public TLRPC.InputPeer peer;
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(constructor);
+            int flag = TLObject.setFlag(this.flags, 1, this.dark);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.msg_id);
+        }
+
+        @Override
+        public TL_statsPollStats deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TL_statsPollStats.TLdeserialize(inputSerializedData, i, z);
         }
     }
 }

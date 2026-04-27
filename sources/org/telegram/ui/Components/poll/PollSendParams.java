@@ -30,6 +30,8 @@ public class PollSendParams {
         tL_poll.open_answers = poll.open_answers;
         tL_poll.revoting_disabled = poll.revoting_disabled;
         tL_poll.shuffle_answers = poll.shuffle_answers;
+        tL_poll.subscribers_only = poll.subscribers_only;
+        tL_poll.countries_iso2 = poll.countries_iso2;
         tL_poll.hide_results_until_close = poll.hide_results_until_close;
         tL_poll.creator = poll.creator;
         tL_poll.quiz = poll.quiz;

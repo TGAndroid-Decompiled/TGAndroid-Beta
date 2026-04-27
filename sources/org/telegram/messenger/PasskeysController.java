@@ -39,7 +39,7 @@ public class PasskeysController {
             final CredentialManager credentialManagerCreate = CredentialManager.CC.create(context);
             final AlertDialog alertDialog = new AlertDialog(context, 3);
             alertDialog.showDelayed(500L);
-            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     PasskeysController.lambda$create$9(alertDialog, callback2, credentialManagerCreate, context, i, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
@@ -149,7 +149,7 @@ public class PasskeysController {
     public static void lambda$create$6(Context context, final int i, TL_account.registerPasskey registerpasskey, final Utilities.Callback2 callback2) {
         final AlertDialog alertDialog = new AlertDialog(context, 3);
         alertDialog.showDelayed(500L);
-        final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(registerpasskey, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(registerpasskey, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 PasskeysController.lambda$create$4(alertDialog, callback2, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
@@ -190,7 +190,7 @@ public class PasskeysController {
         TL_account.initPasskeyLogin initpasskeylogin = new TL_account.initPasskeyLogin();
         initpasskeylogin.api_id = BuildVars.APP_ID;
         initpasskeylogin.api_hash = BuildVars.APP_HASH;
-        final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(initpasskeylogin, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(initpasskeylogin, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 PasskeysController.lambda$login$10(zArr, callback3, z, credentialManagerCreate, context, i, runnableArr, (TL_account.passkeyLoginOptions) obj, (TLRPC.TL_error) obj2);
@@ -281,9 +281,9 @@ public class PasskeysController {
                     finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
                 }
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.val$currentAccount);
-                BotForumHelper$$ExternalSyntheticLambda2 botForumHelper$$ExternalSyntheticLambda2 = new BotForumHelper$$ExternalSyntheticLambda2();
+                AiTonesController$$ExternalSyntheticLambda0 aiTonesController$$ExternalSyntheticLambda0 = new AiTonesController$$ExternalSyntheticLambda0();
                 final Utilities.Callback3 callback3 = this.val$done;
-                final int iSendRequestTyped = connectionsManager.sendRequestTyped(finishpasskeylogin, botForumHelper$$ExternalSyntheticLambda2, new Utilities.Callback2() {
+                final int iSendRequestTyped = connectionsManager.sendRequestTyped(finishpasskeylogin, aiTonesController$$ExternalSyntheticLambda0, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
                         PasskeysController.AnonymousClass1.lambda$onResult$0(alertDialog, callback3, j, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);

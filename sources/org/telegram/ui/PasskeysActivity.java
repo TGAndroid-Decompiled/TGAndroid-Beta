@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.PasskeysController;
@@ -164,7 +164,7 @@ public class PasskeysActivity extends BaseFragment {
         this.listView.adapter.update(true);
         TL_account.deletePasskey deletepasskey = new TL_account.deletePasskey();
         deletepasskey.id = str;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(deletepasskey, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(deletepasskey, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$openMenu$1(i, passkey, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
@@ -452,7 +452,7 @@ public class PasskeysActivity extends BaseFragment {
                 safeLastFragment.presentFragment(new PasskeysActivity(arrayList));
                 return;
             }
-            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.getPasskeys(), new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.getPasskeys(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     PasskeysActivity.lambda$showLearnSheet$7(bottomSheet, passkey, str, (TL_account.Passkeys) obj, (TLRPC.TL_error) obj2);

@@ -53,7 +53,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -170,7 +170,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
         RecyclerListView recyclerListView = this.recyclerListView;
         BottomSheet.ContainerView containerView = this.container;
         Objects.requireNonNull(recyclerListView);
-        this.viewGroupPartRenderer = new ViewGroupPartRenderer(recyclerListView, containerView, new EmojiView$$ExternalSyntheticLambda12(recyclerListView));
+        this.viewGroupPartRenderer = new ViewGroupPartRenderer(recyclerListView, containerView, new EmojiView$$ExternalSyntheticLambda15(recyclerListView));
         ArrayList arrayListFindAllInstances = TlUtils.findAllInstances(arrayList, TL_stars.starGiftAttributeBackdrop.class);
         this.backdrops = arrayListFindAllInstances;
         BagRandomizer bagRandomizer = new BagRandomizer(arrayListFindAllInstances);

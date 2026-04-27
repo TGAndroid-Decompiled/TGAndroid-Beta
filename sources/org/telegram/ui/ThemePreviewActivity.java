@@ -132,6 +132,7 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.WallpaperCheckBoxView;
 import org.telegram.ui.Components.WallpaperParallaxEffect;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.recorder.SliderView;
 import org.telegram.ui.WallpapersListActivity;
@@ -4419,6 +4420,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public String getAdminRank(long j) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                    }
+
+                    @Override
+                    public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                     }
 
                     @Override

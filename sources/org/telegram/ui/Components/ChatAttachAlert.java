@@ -2212,7 +2212,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
                 if (ChatAttachAlert.this.mentionContainer.getAdapter() != null) {
                     ChatAttachAlert.this.mentionContainer.setReversed(false);
-                    ChatAttachAlert.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$7(charSequence, ChatAttachAlert.this.commentTextView.getEditText().getSelectionStart(), null, false, false);
+                    ChatAttachAlert.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$8(charSequence, ChatAttachAlert.this.commentTextView.getEditText().getSelectionStart(), null, false, false);
                     ChatAttachAlert.this.updateCommentTextViewPosition();
                 }
             }
@@ -2278,7 +2278,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 if (chatAttachAlert2.captionAbove) {
                     return;
                 }
-                chatAttachAlert2.showAiButton(MessagesController.getInstance(chatAttachAlert2.currentAccount).aiEditorAvailable() && ChatAttachAlert.this.commentTextView.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ChatAttachAlert.this.commentTextView.getText().toString().trim()));
+                chatAttachAlert2.showAiButton(chatAttachAlert2.commentTextView.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ChatAttachAlert.this.commentTextView.getText().toString().trim()));
             }
         });
         this.captionContainer.addView(this.commentTextView, LayoutHelper.createFrame(-1, -2.0f, 83, 0.0f, 0.0f, 84.0f, 0.0f));
@@ -2308,7 +2308,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 ChatAttachAlert.this.updatedTopCaptionHeight();
                 ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
                 if (chatAttachAlert.captionAbove) {
-                    chatAttachAlert.showAiButton(MessagesController.getInstance(chatAttachAlert.currentAccount).aiEditorAvailable() && i15 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim()));
+                    chatAttachAlert.showAiButton(i15 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim()));
                 }
             }
 
@@ -2360,7 +2360,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
                 if (ChatAttachAlert.this.mentionContainer.getAdapter() != null) {
                     ChatAttachAlert.this.mentionContainer.setReversed(true);
-                    ChatAttachAlert.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$7(charSequence, ChatAttachAlert.this.topCommentTextView.getEditText().getSelectionStart(), null, false, false);
+                    ChatAttachAlert.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$8(charSequence, ChatAttachAlert.this.topCommentTextView.getEditText().getSelectionStart(), null, false, false);
                     ChatAttachAlert.this.updateCommentTextViewPosition();
                 }
             }
@@ -2430,7 +2430,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
                 ChatAttachAlert chatAttachAlert4 = ChatAttachAlert.this;
                 if (chatAttachAlert4.captionAbove) {
-                    chatAttachAlert4.showAiButton(MessagesController.getInstance(chatAttachAlert4.currentAccount).aiEditorAvailable() && ChatAttachAlert.this.topCommentTextView.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ChatAttachAlert.this.topCommentTextView.getText().toString().trim()));
+                    chatAttachAlert4.showAiButton(chatAttachAlert4.topCommentTextView.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ChatAttachAlert.this.topCommentTextView.getText().toString().trim()));
                 }
             }
         });
@@ -3846,7 +3846,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
             ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
             if (!chatAttachAlert.captionAbove) {
-                if (MessagesController.getInstance(chatAttachAlert.currentAccount).aiEditorAvailable() && i2 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
+                if (i2 > 2 && !TextUtils.isEmpty(getEditText().getText().toString().trim())) {
                     z = true;
                 }
                 chatAttachAlert.showAiButton(z);
@@ -6638,7 +6638,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void lambda$setCaptionAbove$71() {
         EditTextEmoji editTextEmoji = this.captionAbove ? this.topCommentTextView : this.commentTextView;
-        showAiButton(MessagesController.getInstance(this.currentAccount).aiEditorAvailable() && editTextEmoji.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(editTextEmoji.getText().toString().trim()));
+        showAiButton(editTextEmoji.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(editTextEmoji.getText().toString().trim()));
     }
 
     public void updatedTopCaptionHeight() {

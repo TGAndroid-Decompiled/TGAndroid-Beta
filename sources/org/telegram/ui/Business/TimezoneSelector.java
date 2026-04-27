@@ -39,6 +39,11 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
     private Utilities.Callback whenTimezoneSelected;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -90,7 +95,9 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             }
         }, null);
         this.listView = universalRecyclerView;
-        frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
+        universalRecyclerView.setSections();
+        this.actionBar.setAdaptiveBackground(this.listView);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i) {
@@ -135,7 +142,7 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
         return this;
     }
 
-    public void fillItems(java.util.ArrayList r11, org.telegram.ui.Components.UniversalAdapter r12) {
+    public void fillItems(java.util.ArrayList r13, org.telegram.ui.Components.UniversalAdapter r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.TimezoneSelector.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 
@@ -190,5 +197,11 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
     public void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.timezonesUpdated);
         super.onFragmentDestroy();
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

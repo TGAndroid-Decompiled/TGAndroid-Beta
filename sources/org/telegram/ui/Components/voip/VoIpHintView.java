@@ -29,9 +29,9 @@ public class VoIpHintView extends HintView2 {
     }
 
     @Override
-    protected void drawBgPath(Canvas canvas) {
+    protected void drawBgPath(Canvas canvas, float f) {
         this.mainPaint.setShader(this.backgroundProvider.getDarkPaint().getShader());
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), Math.min(this.backgroundPaint.getAlpha(), this.backgroundProvider.getDarkPaint().getAlpha()), 31);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.backgroundPaint.getAlpha(), this.backgroundProvider.getDarkPaint().getAlpha()) * f), 31);
         canvas.drawPath(this.path, this.mainPaint);
         if (this.backgroundProvider.isReveal()) {
             this.mainPaint.setShader(this.backgroundProvider.getRevealDarkPaint().getShader());

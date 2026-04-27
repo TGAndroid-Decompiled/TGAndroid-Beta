@@ -8,6 +8,11 @@ import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 
 public class AppGlobalConfig {
+    public final ConfigInt aicomposeToneExamplesNum;
+    public final ConfigInt aicomposeTonePromptLengthMax;
+    public final ConfigInt aicomposeToneSavedLimitDefault;
+    public final ConfigInt aicomposeToneSavedLimitPremium;
+    public final ConfigInt aicomposeToneTitleLengthMax;
     public final ConfigInt botsCreateLimitDefault;
     public final ConfigInt botsCreateLimitPremium;
     public final ConfigInt contactNoteLengthLimit;
@@ -20,6 +25,7 @@ public class AppGlobalConfig {
     public final ConfigBoolean needAgeVideoVerification;
     public final ConfigTime noForwardsRequestExpirePeriod;
     public final ConfigInt passkeysAccountPasskeysMax;
+    public final ConfigString phoneCountryIso2;
     public final ConfigTime pollAnswerDeletePeriod;
     public final ConfigInt pollAnswerLengthMax;
     public final ConfigInt pollAnswersMax;
@@ -95,6 +101,12 @@ public class AppGlobalConfig {
         this.pollAnswerDeletePeriod = ofTime("poll_answer_delete_period", 300L, timeUnit);
         this.botsCreateLimitDefault = ofInt("bots_create_limit_default", 20);
         this.botsCreateLimitPremium = ofInt("bots_create_limit_premium", 40);
+        this.phoneCountryIso2 = ofString("phone_country_iso2", "en");
+        this.aicomposeToneExamplesNum = ofInt("aicompose_tone_examples_num", 3);
+        this.aicomposeToneTitleLengthMax = ofInt("aicompose_tone_title_length_max", 12);
+        this.aicomposeTonePromptLengthMax = ofInt("aicompose_tone_prompt_length_max", 1024);
+        this.aicomposeToneSavedLimitDefault = ofInt("aicompose_tone_saved_limit_default", 5);
+        this.aicomposeToneSavedLimitPremium = ofInt("aicompose_tone_saved_limit_premium", 20);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

@@ -214,11 +214,26 @@ public class TextCell extends FrameLayout {
 
     @Override
     public void setEnabled(boolean z) {
+        setEnabled(z, true);
+    }
+
+    public void setEnabled(boolean z, boolean z2) {
         super.setEnabled(z);
         Switch r0 = this.checkBox;
         if (r0 != null) {
             r0.setEnabled(z);
         }
+        if (z2) {
+            this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
+            this.subtitleView.animate().alpha(z ? 1.0f : 0.5f).start();
+            this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
+            this.valueSpoilersTextView.animate().alpha(z ? 1.0f : 0.5f).start();
+            return;
+        }
+        this.textView.setAlpha(z ? 1.0f : 0.5f);
+        this.subtitleView.setAlpha(z ? 1.0f : 0.5f);
+        this.valueTextView.setAlpha(z ? 1.0f : 0.5f);
+        this.valueSpoilersTextView.setAlpha(z ? 1.0f : 0.5f);
     }
 
     public void updateEmojiBounds() {

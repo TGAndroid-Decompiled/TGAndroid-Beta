@@ -25,8 +25,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
@@ -464,7 +464,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
                 tL_messages_summarizeText.flags |= 4;
                 tL_messages_summarizeText.tone = this.tones[i];
             }
-            this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$requestTranslate$11((TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
@@ -486,7 +486,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
                 tL_messages_translateText.flags |= 4;
                 tL_messages_translateText.tone = this.tones[i2];
             }
-            this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$requestTranslate$14((TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
@@ -562,6 +562,9 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
     }
 
     public static class Header extends FrameLayout implements Theme.Colorable {
+        public final LinearLayout anotherExample;
+        public final ImageView anotherExampleIcon;
+        public final TextView anotherExampleText;
         public final CheckBox2 emojifyCheckbox;
         public final LinearLayout emojifyContainer;
         public final TextView emojifyTextView;
@@ -629,6 +632,23 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             linearLayout3.addView(textView4, LayoutHelper.createLinear(-2, -2, 16, 3, -1, 2, 0));
             addView(linearLayout3, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, -3.0f, -6.0f, -3.0f));
             ScaleStateListAnimator.apply(linearLayout3, 0.025f, 1.5f);
+            LinearLayout linearLayout4 = new LinearLayout(context);
+            this.anotherExample = linearLayout4;
+            linearLayout4.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(3.0f));
+            linearLayout4.setOrientation(0);
+            linearLayout4.setVisibility(8);
+            addView(linearLayout4, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -6.0f, 0.0f));
+            ScaleStateListAnimator.apply(linearLayout4, 0.025f, 1.5f);
+            ImageView imageView2 = new ImageView(context);
+            this.anotherExampleIcon = imageView2;
+            imageView2.setImageResource(R.drawable.mini_replace2);
+            linearLayout4.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 4, 0));
+            TextView textView5 = new TextView(context);
+            this.anotherExampleText = textView5;
+            textView5.setTextSize(1, 14.0f);
+            textView5.setTypeface(AndroidUtilities.bold());
+            textView5.setText(LocaleController.getString(R.string.AIEditorAnotherExample));
+            linearLayout4.addView(textView5, LayoutHelper.createLinear(-2, -2, 16));
             updateColors();
         }
 
@@ -650,9 +670,14 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
                 ScaleStateListAnimator.reset(this.layout2);
             }
             this.emojifyContainer.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 24, 24));
+            ImageView imageView = this.anotherExampleIcon;
+            int i3 = Theme.key_featuredStickers_addButton;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+            this.anotherExampleText.setTextColor(Theme.getColor(i3, this.resourcesProvider));
+            this.anotherExample.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(Theme.getColor(i3, this.resourcesProvider), 0.1f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f)));
         }
 
-        public void set(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z, View.OnClickListener onClickListener2) {
+        public void set(CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z, View.OnClickListener onClickListener2, final View.OnClickListener onClickListener3) {
             this.text1View.setText(charSequence);
             this.text2View.setText(charSequence2);
             this.text3View.setText(charSequence3);
@@ -662,7 +687,21 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
             this.emojifyCheckbox.setChecked(z, false);
             this.emojifyContainer.setVisibility(onClickListener2 != null ? 0 : 8);
             this.emojifyContainer.setOnClickListener(onClickListener2);
+            this.anotherExample.setVisibility(onClickListener3 != null ? 0 : 8);
+            this.anotherExample.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    this.f$0.lambda$set$0(onClickListener3, view);
+                }
+            });
             updateColors();
+        }
+
+        public void lambda$set$0(View.OnClickListener onClickListener, View view) {
+            this.anotherExampleIcon.animate().rotation(this.anotherExampleIcon.getRotation() + 180.0f).setDuration(380L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            if (onClickListener != null) {
+                onClickListener.onClick(view);
+            }
         }
 
         @Override
@@ -687,14 +726,22 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
 
             @Override
             public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((Header) view).set(uItem.text, uItem.subtext, uItem.textValue, uItem.clickCallback, uItem.checked, uItem.clickCallback2);
+                Header header = (Header) view;
+                CharSequence charSequence = uItem.text;
+                CharSequence charSequence2 = uItem.subtext;
+                CharSequence charSequence3 = uItem.textValue;
+                View.OnClickListener onClickListener = uItem.clickCallback;
+                boolean z2 = uItem.checked;
+                View.OnClickListener onClickListener2 = uItem.clickCallback2;
+                Object obj = uItem.object;
+                header.set(charSequence, charSequence2, charSequence3, onClickListener, z2, onClickListener2, obj instanceof View.OnClickListener ? (View.OnClickListener) obj : null);
             }
 
             public static UItem of(int i, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener) {
-                return of(i, charSequence, charSequence2, charSequence3, onClickListener, false, null);
+                return of(i, charSequence, charSequence2, charSequence3, onClickListener, false, null, null);
             }
 
-            public static UItem of(int i, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z, View.OnClickListener onClickListener2) {
+            public static UItem of(int i, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z, View.OnClickListener onClickListener2, View.OnClickListener onClickListener3) {
                 UItem uItemOfFactory = UItem.ofFactory(Factory.class);
                 uItemOfFactory.id = i;
                 uItemOfFactory.text = charSequence;
@@ -703,6 +750,7 @@ public class TranslateAlert3 extends BottomSheetWithRecyclerListView {
                 uItemOfFactory.clickCallback = onClickListener;
                 uItemOfFactory.checked = z;
                 uItemOfFactory.clickCallback2 = onClickListener2;
+                uItemOfFactory.object = onClickListener3;
                 return uItemOfFactory;
             }
 

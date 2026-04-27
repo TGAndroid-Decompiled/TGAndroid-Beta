@@ -50,6 +50,12 @@ public class AnimatedEmojiDrawable extends Drawable {
     private static boolean LOG_MEMORY_LEAK = false;
     public static int attachedCount;
     public static ArrayList attachedDrawable;
+    private static final Runnable cleanup = new Runnable() {
+        @Override
+        public final void run() {
+            AnimatedEmojiDrawable.lambda$static$2();
+        }
+    };
     private static boolean disabledToggleableAnimations;
     private static HashMap dominantColors;
     private static HashMap fetchers;
@@ -187,10 +193,6 @@ public class AnimatedEmojiDrawable extends Drawable {
 
         public EmojiDocumentFetcher(int i) {
             this.currentAccount = i;
-        }
-
-        public void setUiDbCallback(Runnable runnable) {
-            this.uiDbCallback = runnable;
         }
 
         public void fetchDocument(long j, ReceivedDocument receivedDocument) {
@@ -732,6 +734,16 @@ public class AnimatedEmojiDrawable extends Drawable {
     }
 
     @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(this.sizedp);
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(this.sizedp);
+    }
+
+    @Override
     public void draw(Canvas canvas) {
         ImageReceiver imageReceiver = this.imageReceiver;
         if (imageReceiver == null) {
@@ -857,6 +869,35 @@ public class AnimatedEmojiDrawable extends Drawable {
                     attachedDrawable.remove(this);
                 }
                 Log.d("animatedDrawable", "attached count " + attachedCount);
+            }
+            if (this.attached) {
+                return;
+            }
+            Runnable runnable = cleanup;
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            AndroidUtilities.runOnUIThread(runnable, 5000L);
+        }
+    }
+
+    public static void lambda$static$2() {
+        AndroidUtilities.cancelRunOnUIThread(cleanup);
+        for (int i = 0; i < globalEmojiCache.size(); i++) {
+            try {
+                LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.valueAt(i);
+                int i2 = 0;
+                while (i2 < longSparseArray.size()) {
+                    if (!((AnimatedEmojiDrawable) longSparseArray.valueAt(i2)).attached) {
+                        longSparseArray.removeAt(i2);
+                        i2--;
+                    }
+                    i2++;
+                }
+            } catch (Exception e) {
+                if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                    FileLog.e(e);
+                    return;
+                }
+                return;
             }
         }
     }

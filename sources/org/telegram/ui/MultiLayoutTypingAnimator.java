@@ -1,6 +1,5 @@
 package org.telegram.ui;
 
-import android.graphics.BlendMode;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
@@ -8,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
-import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.view.Choreographer;
@@ -256,11 +254,7 @@ public final class MultiLayoutTypingAnimator implements Choreographer.FrameCallb
     static {
         Paint paint = new Paint(1);
         MASK_PAINT = paint;
-        if (Build.VERSION.SDK_INT >= 29) {
-            paint.setBlendMode(BlendMode.DST_IN);
-        } else {
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        }
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, -1, 16777215, Shader.TileMode.CLAMP);
         GRADIENT = linearGradient;
         paint.setShader(linearGradient);

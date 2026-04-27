@@ -555,7 +555,7 @@ public abstract class CaptionContainerView extends FrameLayout {
             }
             if (CaptionContainerView.this.mentionContainer.getAdapter() != null) {
                 CaptionContainerView.this.mentionContainer.getAdapter().setUserOrChat(MessagesController.getInstance(CaptionContainerView.this.currentAccount).getUser(Long.valueOf(CaptionContainerView.this.dialogId)), MessagesController.getInstance(CaptionContainerView.this.currentAccount).getChat(Long.valueOf(-CaptionContainerView.this.dialogId)));
-                CaptionContainerView.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$7(charSequence, CaptionContainerView.this.editText.getEditText().getSelectionStart(), null, false, false);
+                CaptionContainerView.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$8(charSequence, CaptionContainerView.this.editText.getEditText().getSelectionStart(), null, false, false);
             }
         }
 

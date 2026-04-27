@@ -13,8 +13,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -271,7 +271,7 @@ public abstract class CreateBotAlert {
         TL_bots.checkUsername checkusername = new TL_bots.checkUsername();
         checkusername.username = str;
         buttonWithCounterView.setLoading(true);
-        iArr[0] = ConnectionsManager.getInstance(i).sendRequestTyped(checkusername, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        iArr[0] = ConnectionsManager.getInstance(i).sendRequestTyped(checkusername, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 CreateBotAlert.lambda$show$1(buttonWithCounterView, strArr2, strArr, str, textInfoPrivacyCell, resourcesProvider, iArr2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
@@ -316,7 +316,7 @@ public abstract class CreateBotAlert {
         createbot.username = strArr[0];
         createbot.name = strTrim;
         createbot.manager_id = MessagesController.getInstance(i).getInputUser(user);
-        iArr2[0] = ConnectionsManager.getInstance(i).sendRequestTyped(createbot, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        iArr2[0] = ConnectionsManager.getInstance(i).sendRequestTyped(createbot, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) throws NumberFormatException {
                 CreateBotAlert.lambda$show$5(iArr2, buttonWithCounterView, zArr, i, callback, bottomSheet, resourcesProvider, context, user, (TLRPC.User) obj, (TLRPC.TL_error) obj2);

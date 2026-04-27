@@ -113,13 +113,13 @@ public class PinchToZoomHelper {
     protected void drawOverlays(Canvas canvas, float f, float f2, float f3, float f4, float f5) {
     }
 
-    static float access$1416(PinchToZoomHelper pinchToZoomHelper, float f) {
+    static float access$1216(PinchToZoomHelper pinchToZoomHelper, float f) {
         float f2 = pinchToZoomHelper.progressToFullView + f;
         pinchToZoomHelper.progressToFullView = f2;
         return f2;
     }
 
-    static float access$616(PinchToZoomHelper pinchToZoomHelper, float f) {
+    static float access$416(PinchToZoomHelper pinchToZoomHelper, float f) {
         float f2 = pinchToZoomHelper.enterProgress + f;
         pinchToZoomHelper.enterProgress = f2;
         return f2;
@@ -485,7 +485,7 @@ public class PinchToZoomHelper {
             ClipBoundsListener clipBoundsListener;
             PinchToZoomHelper pinchToZoomHelper2 = PinchToZoomHelper.this;
             if (pinchToZoomHelper2.finishTransition == null && pinchToZoomHelper2.enterProgress != 1.0f) {
-                PinchToZoomHelper.access$616(PinchToZoomHelper.this, 0.07272727f);
+                PinchToZoomHelper.access$416(PinchToZoomHelper.this, 0.07272727f);
                 if (PinchToZoomHelper.this.enterProgress > 1.0f) {
                     PinchToZoomHelper.this.enterProgress = 1.0f;
                 } else {
@@ -533,7 +533,7 @@ public class PinchToZoomHelper {
             canvas.translate(f2, (pinchToZoomHelper4.pinchTranslationY * pinchToZoomHelper4.finishProgress) + top);
             if (PinchToZoomHelper.this.fullImage != null && PinchToZoomHelper.this.fullImage.hasNotThumb()) {
                 if (PinchToZoomHelper.this.progressToFullView != 1.0f) {
-                    PinchToZoomHelper.access$1416(PinchToZoomHelper.this, 0.10666667f);
+                    PinchToZoomHelper.access$1216(PinchToZoomHelper.this, 0.10666667f);
                     if (PinchToZoomHelper.this.progressToFullView > 1.0f) {
                         PinchToZoomHelper.this.progressToFullView = 1.0f;
                     } else {

@@ -4,7 +4,7 @@ import j$.util.function.Function$CC;
 import java.util.function.Function;
 import org.telegram.messenger.MessageObject;
 
-public final class DeleteMessagesBottomSheet$$ExternalSyntheticLambda8 implements Function {
+public final class DeleteMessagesBottomSheet$$ExternalSyntheticLambda11 implements Function {
     public Function andThen(Function function) {
         return Function$CC.$default$andThen(this, function);
     }

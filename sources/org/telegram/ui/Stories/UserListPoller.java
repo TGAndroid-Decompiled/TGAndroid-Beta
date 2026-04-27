@@ -2,8 +2,8 @@ package org.telegram.ui.Stories;
 
 import android.view.View;
 import java.util.ArrayList;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -54,7 +54,7 @@ public class UserListPoller {
             for (int i = 0; i < arrayList.size(); i++) {
                 tL_stories_getPeerMaxIDs.id.add(MessagesController.getInstance(UserListPoller.this.currentAccount).getInputPeer(((Long) arrayList.get(i)).longValue()));
             }
-            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequestTyped(tL_stories_getPeerMaxIDs, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequestTyped(tL_stories_getPeerMaxIDs, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$run$0(arrayList, (Vector) obj, (TLRPC.TL_error) obj2);

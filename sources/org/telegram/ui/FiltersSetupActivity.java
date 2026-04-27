@@ -461,16 +461,30 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
     public void updateRows(boolean z) {
         this.showTagsRow = -1;
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView != null) {
+            ArrayList arrayList = recyclerListView.forcedSections;
+            if (arrayList == null) {
+                recyclerListView.forcedSections = new ArrayList();
+            } else {
+                arrayList.clear();
+            }
+        }
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
-        ArrayList<TLRPC.TL_dialogFilterSuggested> arrayList = getMessagesController().suggestedFilters;
+        ArrayList<TLRPC.TL_dialogFilterSuggested> arrayList2 = getMessagesController().suggestedFilters;
         ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
         this.items.add(ItemInner.asHint());
-        if (!arrayList.isEmpty() && dialogFilters.size() < 10) {
+        if (!arrayList2.isEmpty() && dialogFilters.size() < 10) {
+            int size = this.items.size();
             this.items.add(ItemInner.asHeader(LocaleController.getString(R.string.FilterRecommended)));
-            for (int i = 0; i < arrayList.size(); i++) {
-                this.items.add(ItemInner.asSuggested(arrayList.get(i)));
+            for (int i = 0; i < arrayList2.size(); i++) {
+                this.items.add(ItemInner.asSuggested(arrayList2.get(i)));
+            }
+            RecyclerListView recyclerListView2 = this.listView;
+            if (recyclerListView2 != null) {
+                recyclerListView2.forcedSections.add(Long.valueOf(AndroidUtilities.pack(size, this.items.size() - 1)));
             }
             this.items.add(ItemInner.asShadow(null));
         }
@@ -484,7 +498,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                     this.loadedColors = true;
                 }
             }
-            this.filtersSectionEnd = this.items.size();
+            int size2 = this.items.size();
+            this.filtersSectionEnd = size2;
+            RecyclerListView recyclerListView3 = this.listView;
+            if (recyclerListView3 != null) {
+                recyclerListView3.forcedSections.add(Long.valueOf(AndroidUtilities.pack(this.filtersSectionStart, (size2 - 1) + (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium ? 1 : 0))));
+            }
         } else {
             this.filtersSectionEnd = -1;
             this.filtersSectionStart = -1;
@@ -1253,12 +1272,16 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 }, 320L);
             }
             super.onSelectedChanged(viewHolder, i);
+            if (viewHolder != null) {
+                viewHolder.itemView.setTag(R.id.dragging, i == 2 ? Boolean.TRUE : null);
+            }
         }
 
         @Override
         public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
             super.clearView(recyclerView, viewHolder);
             viewHolder.itemView.setPressed(false);
+            viewHolder.itemView.setTag(R.id.dragging, null);
         }
     }
 

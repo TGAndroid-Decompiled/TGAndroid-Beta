@@ -130,6 +130,7 @@ import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.URLSpanUserMention;
 import org.telegram.ui.Components.UndoView;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
 
@@ -2569,6 +2570,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public String getAdminRank(long j) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+            }
+
+            @Override
+            public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
             }
 
             @Override

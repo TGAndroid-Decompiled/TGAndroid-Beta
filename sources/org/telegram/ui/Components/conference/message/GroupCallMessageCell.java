@@ -88,6 +88,11 @@ public class GroupCallMessageCell extends ViewGroup implements ClickHelper.Deleg
     }
 
     @Override
+    public boolean needCancelTouchBySlopMove() {
+        return ClickHelper.Delegate.CC.$default$needCancelTouchBySlopMove(this);
+    }
+
+    @Override
     public boolean needLongPress(float f, float f2) {
         return ClickHelper.Delegate.CC.$default$needLongPress(this, f, f2);
     }

@@ -61,6 +61,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.PinchToZoomHelper;
 
 public abstract class MessagePreviewView extends FrameLayout {
@@ -1375,6 +1376,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
+                    }
+
+                    @Override
                     public PinchToZoomHelper getPinchToZoomHelper() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getPinchToZoomHelper(this);
                     }
@@ -1871,6 +1877,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                         @Override
                         public String getAdminRank(long j) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                        }
+
+                        @Override
+                        public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                         }
 
                         @Override

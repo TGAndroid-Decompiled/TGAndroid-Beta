@@ -38,8 +38,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -902,7 +902,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         this.polling = true;
         final TL_phone.getGroupCallStars getgroupcallstars = new TL_phone.getGroupCallStars();
         getgroupcallstars.call = this.inputCall;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(getgroupcallstars, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(getgroupcallstars, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 this.f$0.lambda$pollStars$10(getgroupcallstars, (TL_phone.groupCallStars) obj, (TLRPC.TL_error) obj2);

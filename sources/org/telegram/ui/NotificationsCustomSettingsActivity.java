@@ -1452,7 +1452,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 if (itemInner == null || itemInner.id != 102) {
                     int itemViewType = viewHolder.getItemViewType();
                     if (itemViewType == 0) {
-                        ((HeaderCell) viewHolder.itemView).setEnabled(zIsGlobalNotificationsEnabled, null);
+                        ((HeaderCell) viewHolder.itemView).setEnabled(zIsGlobalNotificationsEnabled, (ArrayList) null);
                         return;
                     }
                     if (itemViewType == 1) {

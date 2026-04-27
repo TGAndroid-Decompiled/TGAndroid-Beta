@@ -19,6 +19,7 @@ import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -93,7 +94,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda12;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.FlatCheckBox;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
@@ -682,7 +683,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             arrayList.add(GlassTabView.createMainTab(context, this.resourceProvider, GlassTabView.TabAnimation.MONETIZATION, R.string.Monetization));
         }
         this.tabs = (GlassTabView[]) arrayList.toArray(new GlassTabView[0]);
-        MainTabsLayout mainTabsLayout = new MainTabsLayout(context);
+        MainTabsLayout mainTabsLayout = new MainTabsLayout(context, this.resourceProvider);
         this.tabsView = mainTabsLayout;
         mainTabsLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
         final int i2 = 0;
@@ -903,12 +904,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.recyclerListView.setClipToPadding(false);
         RecyclerListView recyclerListView2 = this.recyclerListView;
         Objects.requireNonNull(recyclerListView2);
-        this.listBlur3Capture = new ViewGroupPartRenderer(recyclerListView2, sizeNotifierFrameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView2));
+        this.listBlur3Capture = new ViewGroupPartRenderer(recyclerListView2, sizeNotifierFrameLayout, new EmojiView$$ExternalSyntheticLambda15(recyclerListView2));
         ChannelBoostLayout channelBoostLayout = this.boostLayout;
         if (channelBoostLayout != null) {
             RecyclerListView recyclerListView3 = channelBoostLayout.listView;
             Objects.requireNonNull(recyclerListView3);
-            channelBoostLayout.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView3, sizeNotifierFrameLayout, new EmojiView$$ExternalSyntheticLambda12(recyclerListView3));
+            channelBoostLayout.iBlur3Capture = new ViewGroupPartRenderer(recyclerListView3, sizeNotifierFrameLayout, new EmojiView$$ExternalSyntheticLambda15(recyclerListView3));
             this.boostLayout.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
@@ -2085,6 +2086,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         ChartViewData data;
         TextView errorTextView;
         RadialProgressView progressView;
+        final Window window;
         BaseChartView zoomedChartView;
 
         protected abstract void loadData(ChartViewData chartViewData);
@@ -2101,6 +2103,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             super(context);
             this.checkBoxes = new ArrayList();
             setWillNotDraw(false);
+            if (context instanceof Activity) {
+                this.window = ((Activity) context).getWindow();
+            } else {
+                this.window = null;
+            }
             this.chartType = i;
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(1);
@@ -2218,7 +2225,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.chartView.setHeader(this.chartHeaderView);
             linearLayout.addView(this.chartHeaderView, LayoutHelper.createFrame(-1, 52.0f));
             linearLayout.addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f));
-            linearLayout.addView(this.checkboxContainer, LayoutHelper.createFrame(-1, -2.0f, 7, 16.0f, 0.0f, 16.0f, 0.0f));
+            linearLayout.addView(this.checkboxContainer, LayoutHelper.createFrame(-1, -2.0f, 7, 10.0f, 0.0f, 10.0f, 0.0f));
             if (this.chartType == 4) {
                 frameLayout.setClipChildren(false);
                 frameLayout.setClipToPadding(false);
@@ -2326,7 +2333,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     baseChartView5.enabled = true;
                     baseChartView4.transitionMode = 0;
                     baseChartView5.transitionMode = 0;
-                    ((Activity) baseChartCell.getContext()).getWindow().clearFlags(16);
+                    Window window = baseChartCell.window;
+                    if (window != null) {
+                        window.clearFlags(16);
+                    }
                 }
             });
             valueAnimatorCreateTransitionAnimator.start();
@@ -2353,7 +2363,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 baseChartView.enabled = true;
                 this.zoomedChartView.enabled = false;
                 baseChartView.invalidate();
-                ((Activity) getContext()).getWindow().clearFlags(16);
+                Window window = this.window;
+                if (window != null) {
+                    window.clearFlags(16);
+                }
                 Iterator it = this.checkBoxes.iterator();
                 while (it.hasNext()) {
                     CheckBoxHolder checkBoxHolder = (CheckBoxHolder) it.next();
@@ -2383,7 +2396,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                         baseChartView2.legendShowing = false;
                         baseChartView2.clearSelection();
                     }
-                    ((Activity) BaseChartCell.this.getContext()).getWindow().clearFlags(16);
+                    Window window2 = BaseChartCell.this.window;
+                    if (window2 != null) {
+                        window2.clearFlags(16);
+                    }
                 }
             });
             Iterator it2 = this.checkBoxes.iterator();
@@ -2396,7 +2412,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         }
 
         private ValueAnimator createTransitionAnimator(long j, boolean z) {
-            ((Activity) getContext()).getWindow().setFlags(16, 16);
+            Window window = this.window;
+            if (window != null) {
+                window.setFlags(16, 16);
+            }
             BaseChartView baseChartView = this.chartView;
             baseChartView.enabled = false;
             BaseChartView baseChartView2 = this.zoomedChartView;

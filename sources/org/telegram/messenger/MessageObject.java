@@ -2412,7 +2412,9 @@ public class MessageObject {
         if (pollResults.min) {
             return;
         }
-        tL_messageMediaPoll.results.has_unread_votes = pollResults.has_unread_votes;
+        TLRPC.PollResults pollResults8 = tL_messageMediaPoll.results;
+        pollResults8.has_unread_votes = pollResults.has_unread_votes;
+        pollResults8.can_view_stats = pollResults.can_view_stats;
     }
 
     public void loadAnimatedEmojiDocument() {
@@ -2995,6 +2997,14 @@ public class MessageObject {
             return ((TLRPC.TL_messageExtendedMedia) message.media.extended_media.get(0)).media;
         }
         return message.media;
+    }
+
+    public static <T extends TLRPC.MessageMedia> T getMedia(TLRPC.Message message, Class<T> cls) {
+        TLRPC.MessageMedia media = getMedia(message);
+        if (cls.isInstance(media)) {
+            return cls.cast(media);
+        }
+        return null;
     }
 
     public boolean hasRevealedExtendedMedia() {
@@ -4380,7 +4390,11 @@ public class MessageObject {
 
     public boolean needDrawAvatarInternal() {
         TLRPC.Chat chat;
-        if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null || this.searchType != 0) {
+        if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null) {
+            return true;
+        }
+        TLRPC.Message message = this.messageOwner;
+        if ((message != null && message.guestchat_via_from != null) || this.searchType != 0) {
             return true;
         }
         boolean z = getDialogId() >= 0 ? getDialogId() == 489000 : !((chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) == null || !chat.signature_profiles);
@@ -4844,7 +4858,7 @@ public class MessageObject {
                 long j2 = peer.channel_id;
                 if (j2 != 0) {
                     message.dialog_id = -j2;
-                } else if (message.from_id == null || isOut(message)) {
+                } else if (message.from_id == null || isOut(message) || message.guestchat_via_from != null) {
                     message.dialog_id = message.peer_id.user_id;
                 } else {
                     message.dialog_id = message.from_id.user_id;

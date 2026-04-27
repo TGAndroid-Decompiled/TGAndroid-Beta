@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -53,6 +53,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PinchToZoomHelper;
@@ -195,7 +196,7 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
         final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = new NotificationCenter.NotificationCenterDelegate[1];
         TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
         getwebpagepreview.message = str;
-        iArr[0] = ConnectionsManager.getInstance(i).sendRequestTyped(getwebpagepreview, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        iArr[0] = ConnectionsManager.getInstance(i).sendRequestTyped(getwebpagepreview, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 BotShareSheet.lambda$loadWebPagePreview$7(iArr, callback, notificationCenterDelegateArr, i, (TL_account.webPagePreview) obj, (TLRPC.TL_error) obj2);
@@ -690,6 +691,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             @Override
             public String getAdminRank(long j2) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j2);
+            }
+
+            @Override
+            public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
             }
 
             @Override

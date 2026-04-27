@@ -52,7 +52,7 @@ import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda55;
+import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda65;
 
 public class HintView2 extends View {
     private float arrowHalfWidth;
@@ -122,6 +122,10 @@ public class HintView2 extends View {
     private boolean roundWithCornerEffect;
     protected float rounding;
     private Drawable selectorDrawable;
+    private int shadowColor;
+    private float shadowDx;
+    private float shadowDy;
+    private float shadowRadius;
     private AnimatedFloat show;
     private boolean shown;
     private AnimatedTextView.AnimatedTextDrawable textDrawable;
@@ -178,7 +182,7 @@ public class HintView2 extends View {
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.show = new AnimatedFloat(this, 350L, cubicBezierInterpolator);
         this.iconMargin = AndroidUtilities.dp(2.0f);
-        this.hideRunnable = new ProfileActivity$$ExternalSyntheticLambda55(this);
+        this.hideRunnable = new ProfileActivity$$ExternalSyntheticLambda65(this);
         this.bounceT = 1.0f;
         this.bounce = new ButtonBounce(this, 2.0f, 5.0f);
         this.boundsWithArrow = new Rect();
@@ -196,6 +200,16 @@ public class HintView2 extends View {
         this.textDrawable.setCallback(this);
         setTextSize(14.0f);
         setTextColor(-1);
+    }
+
+    public HintView2 setShadow(float f, float f2, float f3, int i) {
+        Paint paint = this.backgroundPaint;
+        this.shadowRadius = f;
+        this.shadowDx = f2;
+        this.shadowDy = f3;
+        this.shadowColor = i;
+        paint.setShadowLayer(f, f2, f3, i);
+        return this;
     }
 
     public HintView2 setDirection(int i) {
@@ -747,14 +761,21 @@ public class HintView2 extends View {
         AnimatedEmojiSpan.release(this, this.emojiGroupedSpans);
     }
 
-    protected void drawBgPath(Canvas canvas) {
+    protected void drawBgPath(Canvas canvas, float f) {
         if (this.blurBackgroundPaint != null) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
             canvas.drawPath(this.path, this.blurBackgroundPaint);
             canvas.drawPath(this.path, this.blurCutPaint);
             canvas.restore();
         }
+        int i = this.shadowColor;
+        if (i != 0) {
+            this.backgroundPaint.setShadowLayer(this.shadowRadius, this.shadowDx, this.shadowDy, Theme.multAlpha(i, f));
+        }
+        int alpha = this.backgroundPaint.getAlpha();
+        this.backgroundPaint.setAlpha((int) (alpha * f));
         canvas.drawPath(this.path, this.backgroundPaint);
+        this.backgroundPaint.setAlpha(alpha);
         if (this.flicker) {
             int iDp = AndroidUtilities.dp(64.0f);
             float fCurrentTimeMillis = (-iDp) + ((((System.currentTimeMillis() - this.flickerStart) % 4000) / 4000.0f) * ((this.pathLastWidth * 4.0f) + (iDp * 2)));
@@ -835,7 +856,6 @@ public class HintView2 extends View {
             }
         }
         updateBlurBounds();
-        int alpha = this.backgroundPaint.getAlpha();
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(this.bounds);
         float f8 = -this.arrowHeight;
@@ -847,9 +867,7 @@ public class HintView2 extends View {
             f = (1.0f - this.blurAlpha) * f7;
             paint.setAlpha((int) (f7 * 255.0f));
         }
-        this.backgroundPaint.setAlpha((int) (alpha * f));
-        drawBgPath(canvas);
-        this.backgroundPaint.setAlpha(alpha);
+        drawBgPath(canvas, f);
         Drawable drawable = this.selectorDrawable;
         if (drawable != null) {
             drawable.setAlpha((int) (f7 * 255.0f));
@@ -926,20 +944,13 @@ public class HintView2 extends View {
     }
 
     private void fillPath(Path path, float f, float f2, float f3, RectF rectF, Rect rect) {
-        float fLerp;
         float fClamp;
-        float fLerp2;
         float f4 = f / 2.0f;
         float f5 = f2 / 2.0f;
         float fMin = Math.min(this.rounding, Math.min(f4, f5));
         int i = this.direction;
         if (i == 1 || i == 3) {
-            if (this.roundWithCornerEffect) {
-                fLerp = AndroidUtilities.lerp(getPaddingLeft(), getMeasuredWidth() - getPaddingRight(), this.joint);
-            } else {
-                fLerp = AndroidUtilities.lerp(getPaddingLeft() + fMin + this.arrowHalfWidth, ((getMeasuredWidth() - getPaddingRight()) - fMin) - this.arrowHalfWidth, this.joint);
-            }
-            float fClamp2 = Utilities.clamp(fLerp + this.jointTranslate, getMeasuredWidth() - getPaddingRight(), getPaddingLeft());
+            float fClamp2 = Utilities.clamp(AndroidUtilities.lerp(getPaddingLeft(), getMeasuredWidth() - getPaddingRight(), this.joint) + this.jointTranslate, getMeasuredWidth() - getPaddingRight(), getPaddingLeft());
             float fMin2 = Math.min(Math.max(getPaddingLeft(), fClamp2 - f4) + f, getMeasuredWidth() - getPaddingRight());
             float f6 = fMin2 - f;
             float f7 = this.arrowHalfWidth;
@@ -951,12 +962,7 @@ public class HintView2 extends View {
             }
             fClamp = fClamp3;
         } else {
-            if (this.roundWithCornerEffect) {
-                fLerp2 = AndroidUtilities.lerp(getPaddingTop(), getMeasuredHeight() - getPaddingBottom(), this.joint);
-            } else {
-                fLerp2 = AndroidUtilities.lerp(getPaddingTop() + fMin + this.arrowHalfWidth, ((getMeasuredHeight() - getPaddingBottom()) - fMin) - this.arrowHalfWidth, this.joint);
-            }
-            float fClamp4 = Utilities.clamp(fLerp2 + this.jointTranslate, getMeasuredHeight() - getPaddingBottom(), getPaddingTop());
+            float fClamp4 = Utilities.clamp(AndroidUtilities.lerp(getPaddingTop(), getMeasuredHeight() - getPaddingBottom(), this.joint) + this.jointTranslate, getMeasuredHeight() - getPaddingBottom(), getPaddingTop());
             float fMin3 = Math.min(Math.max(getPaddingTop(), fClamp4 - f5) + f2, getMeasuredHeight() - getPaddingBottom());
             float f8 = fMin3 - f2;
             float f9 = this.arrowHalfWidth;

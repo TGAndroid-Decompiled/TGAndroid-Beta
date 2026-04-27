@@ -161,7 +161,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         Paint paint = new Paint(1);
         this.paint = paint;
-        paint.setColor(this.backgroundColor);
+        paint.setColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.text = animatedTextDrawable;
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
@@ -239,7 +239,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.subText.setTextColor(Theme.getColor(this.filled ? this.neutral ? Theme.key_buttonNeutralText : Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.countText.setTextColor(this.backgroundColor);
-        this.paint.setColor(this.backgroundColor);
+        this.paint.setColor(Theme.getColor(Theme.key_featuredStickers_buttonText, this.resourcesProvider));
     }
 
     public void setCounterColor(int i) {
@@ -612,32 +612,30 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             rect.set((int) (((getMeasuredWidth() - fCalculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - fCalculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 8) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + fDp)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
-            if (f2 > 0.0f) {
-                if (this.countScale != 1.0f) {
-                    canvas.save();
-                    float f3 = this.countScale;
-                    canvas.scale(f3, f3, rect.centerX(), rect.centerY());
-                }
-                if (this.countFilled) {
-                    this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
-                    float fDp2 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
-                    canvas.drawRoundRect(rectF, fDp2, fDp2, this.paint);
-                }
-                rect.offset(-AndroidUtilities.dp((this.countText.getText() != null ? this.countText.getText().length() : 0) > 1 ? 0.3f : 0.0f), -AndroidUtilities.dp(0.4f));
-                this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * (this.countFilled ? 1.0f : 0.5f)));
-                this.countText.setBounds(rect);
+            if (this.countScale != 1.0f) {
                 canvas.save();
-                if (this.countFilled && this.withCounterIcon) {
-                    this.counterDrawable.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * 1.0f));
-                    this.counterDrawable.setBounds(AndroidUtilities.dp(1.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top, AndroidUtilities.dp(1.0f) + rect.left + this.counterDrawable.getIntrinsicWidth(), AndroidUtilities.dp(2.0f) + rect.top + this.counterDrawable.getIntrinsicHeight());
-                    this.counterDrawable.draw(canvas);
-                    canvas.translate(fDp / 2.0f, 0.0f);
-                }
-                this.countText.draw(canvas);
+                float f3 = this.countScale;
+                canvas.scale(f3, f3, rect.centerX(), rect.centerY());
+            }
+            if (this.countFilled) {
+                this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
+                float fDp2 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
+                canvas.drawRoundRect(rectF, fDp2, fDp2, this.paint);
+            }
+            rect.offset(-AndroidUtilities.dp((this.countText.getText() != null ? this.countText.getText().length() : 0) > 1 ? 0.3f : 0.0f), -AndroidUtilities.dp(0.4f));
+            this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * (this.countFilled ? 1.0f : 0.5f)));
+            this.countText.setBounds(rect);
+            canvas.save();
+            if (this.countFilled && this.withCounterIcon) {
+                this.counterDrawable.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * 1.0f));
+                this.counterDrawable.setBounds(AndroidUtilities.dp(1.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top, AndroidUtilities.dp(1.0f) + rect.left + this.counterDrawable.getIntrinsicWidth(), AndroidUtilities.dp(2.0f) + rect.top + this.counterDrawable.getIntrinsicHeight());
+                this.counterDrawable.draw(canvas);
+                canvas.translate(fDp / 2.0f, 0.0f);
+            }
+            this.countText.draw(canvas);
+            canvas.restore();
+            if (this.countScale != 1.0f) {
                 canvas.restore();
-                if (this.countScale != 1.0f) {
-                    canvas.restore();
-                }
             }
             if (z) {
                 canvas.restore();

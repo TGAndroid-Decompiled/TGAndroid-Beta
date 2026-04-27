@@ -64,6 +64,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
     private Drawable premiumStarDrawable;
     private Theme.ResourcesProvider resourcesProvider;
     private boolean selfMeasure;
+    private boolean skipDrawSelector;
     private TabAnimation tabAnimation;
     private TLRPC.TL_attachMenuBot tabAnimationBot;
     private final TextView textView;
@@ -138,11 +139,18 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         invalidate();
     }
 
+    public void setSkipDrawSelector(boolean z) {
+        if (this.skipDrawSelector != z) {
+            this.skipDrawSelector = z;
+            invalidate();
+        }
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         float width = this.hasVisualWidth ? this.visualWidth : getWidth();
         float floatValue = this.hasGestureSelectedOverride ? this.gestureSelectedOverride : this.isSelectedAnimator.getFloatValue();
-        if (floatValue > 0.0f) {
+        if (floatValue > 0.0f && !this.skipDrawSelector) {
             this.paintCounterBackground.setColor(Theme.multAlpha(this.colorSelected, AnimatorUtils.DECELERATE_INTERPOLATOR.getInterpolation(floatValue) * 0.09f));
             RectF rectF = tmpRectF;
             rectF.set(0.0f, 0.0f, width, getHeight());
@@ -214,8 +222,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         this.textView.setTypeface(z ? AndroidUtilities.getTypeface("fonts/rextrabold.ttf") : AndroidUtilities.bold());
     }
 
-    @Override
-    public boolean isSelected() {
+    public boolean isTabSelected() {
         return this.isSelectedAnimator.getValue();
     }
 

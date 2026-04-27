@@ -40,10 +40,10 @@ public class FlatCheckBox extends View {
         this.fillPaint = new Paint(1);
         this.outLinePaint = new Paint(1);
         this.checkPaint = new Paint(1);
-        this.HEIGHT = AndroidUtilities.dp(37.0f);
+        this.HEIGHT = AndroidUtilities.dp(35.0f);
         this.INNER_PADDING = AndroidUtilities.dp(22.0f);
         this.TRANSLETE_TEXT = AndroidUtilities.dp(8.0f);
-        this.P = AndroidUtilities.dp(2.5f);
+        this.P = AndroidUtilities.dp(3.5f);
         this.rectF = new RectF();
         this.progress = 0.0f;
         this.lastW = 0;

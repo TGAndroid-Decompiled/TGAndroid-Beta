@@ -94,7 +94,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CastSync;
 import org.telegram.ui.Cells.AudioPlayerCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda318;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda291;
 import org.telegram.ui.ChooseQualityLayout$QualityIcon;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.AudioPlayerAlert;
@@ -1215,12 +1215,16 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                         }
                     }
                     super.onSelectedChanged(viewHolder, i11);
+                    if (viewHolder != null) {
+                        viewHolder.itemView.setTag(R.id.dragging, i11 == 2 ? Boolean.TRUE : null);
+                    }
                 }
 
                 @Override
                 public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
                     super.clearView(recyclerView, viewHolder);
                     viewHolder.itemView.setPressed(false);
+                    viewHolder.itemView.setTag(R.id.dragging, null);
                 }
             });
             this.itemTouchHelper = itemTouchHelper;
@@ -3117,7 +3121,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             TLRPC.Document document = messageObject.getDocument();
             long j = document != null ? document.id : 0L;
             final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda318(itemOptionsMakeOptions));
+            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda291(itemOptionsMakeOptions));
             itemOptionsMakeSwipeback.addGap();
             itemOptionsMakeSwipeback.addIf(!savedMusicIds.ids.contains(Long.valueOf(j)), R.drawable.left_status_profile, LocaleController.getString(R.string.AudioSaveToMyProfile), new Runnable() {
                 @Override

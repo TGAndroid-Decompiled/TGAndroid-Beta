@@ -10,14 +10,16 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
 
-public class TopViewCell extends LinearLayout {
+public class TopViewCell extends LinearLayout implements Theme.Colorable {
     public final BackupImageView imageView;
     private int lastIconResId;
-    private int maxWidth;
+    private final Theme.ResourcesProvider resourcesProvider;
     public final LinkSpanDrawable.LinksTextView textView;
+    public final LinkSpanDrawable.LinksTextView titleView;
 
     public TopViewCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         setOrientation(1);
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
@@ -30,27 +32,41 @@ public class TopViewCell extends LinearLayout {
             }
         });
         addView(backupImageView, LayoutHelper.createLinear(90, 90, 17, 0, 9, 0, 9));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
-            @Override
-            protected void onMeasure(int i, int i2) {
-                int size = View.MeasureSpec.getSize(i);
-                if (TopViewCell.this.maxWidth > 0 && TopViewCell.this.maxWidth < size) {
-                    size = TopViewCell.this.maxWidth;
-                }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
-            }
-        };
-        this.textView = linksTextView;
-        linksTextView.setTextSize(1, 14.0f);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+        this.titleView = linksTextView;
+        linksTextView.setTextSize(1, 20.0f);
         linksTextView.setGravity(17);
+        linksTextView.setTypeface(AndroidUtilities.bold());
         linksTextView.setTextAlignment(4);
-        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
-        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 48, 0, 48, 17));
+        addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 48, 0, 48, 10));
+        LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
+        this.textView = linksTextView2;
+        linksTextView2.setTextSize(1, 14.0f);
+        linksTextView2.setGravity(17);
+        linksTextView2.setTextAlignment(4);
+        addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 17, 48, 0, 48, 17));
+        updateColors();
     }
 
     public void lambda$new$0(View view) {
         this.imageView.getImageReceiver().startAnimation();
+    }
+
+    @Override
+    public void updateColors() {
+        LinkSpanDrawable.LinksTextView linksTextView = this.titleView;
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        linksTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        LinkSpanDrawable.LinksTextView linksTextView2 = this.titleView;
+        int i2 = Theme.key_chat_messageLinkIn;
+        linksTextView2.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
+        LinkSpanDrawable.LinksTextView linksTextView3 = this.textView;
+        if (this.titleView.getVisibility() != 0) {
+            i = Theme.key_windowBackgroundWhiteGrayText4;
+        }
+        linksTextView3.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.textView.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
+        this.imageView.setLayoutParams(LayoutHelper.createLinear(90, 90, 17, 0, this.titleView.getVisibility() == 0 ? 0 : 9, 0, 9));
     }
 
     public void setEmoji(String str, String str2) {
@@ -76,9 +92,22 @@ public class TopViewCell extends LinearLayout {
     }
 
     public void setText(CharSequence charSequence) {
+        this.titleView.setVisibility(8);
         this.textView.setText(charSequence);
-        this.maxWidth = HintView2.cutInFancyHalf(charSequence, this.textView.getPaint());
+        LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(charSequence, linksTextView.getPaint()));
         this.textView.requestLayout();
+        updateColors();
+    }
+
+    public void setText(CharSequence charSequence, CharSequence charSequence2) {
+        this.titleView.setText(charSequence);
+        this.titleView.setVisibility(0);
+        this.textView.setText(charSequence2);
+        LinkSpanDrawable.LinksTextView linksTextView = this.textView;
+        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(charSequence2, linksTextView.getPaint()));
+        this.textView.requestLayout();
+        updateColors();
     }
 
     @Override

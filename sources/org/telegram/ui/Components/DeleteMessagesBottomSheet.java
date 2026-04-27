@@ -1,10 +1,9 @@
 package org.telegram.ui.Components;
 
 import android.content.SharedPreferences;
+import android.graphics.Rect;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
@@ -14,12 +13,14 @@ import j$.util.function.Predicate$CC;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -35,24 +36,26 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CollapseTextCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda244;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda245;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
-    private TextView actionButton;
+    private ButtonWithCounterView actionButton;
     private UniversalAdapter adapter;
     private boolean banChecked;
     private boolean[] banFilter;
     private Action banOrRestrict;
     private TLRPC.TL_chatBannedRights bannedRights;
-    private SelectorBtnCell buttonContainer;
     private boolean canRestrict;
     private TLRPC.TL_chatBannedRights defaultBannedRights;
     private Action deleteAll;
+    private Action deleteAllReactions;
     private TLRPC.Chat inChat;
     private boolean isForum;
+    private final boolean isReactionOnlyMode;
+    private final boolean isSingleUsersMode;
     private long mergeDialogId;
     private ArrayList messages;
     private int mode;
@@ -65,6 +68,9 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
     private Action report;
     private boolean restrict;
     private boolean[] restrictFilter;
+    private boolean restrictUserCollapsed;
+    private boolean restrictUserDeleteAllMessages;
+    private boolean restrictUserDeleteAllReactions;
     private boolean sendMediaCollapsed;
     private float shiftDp;
     private int topicId;
@@ -147,6 +153,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
         void updateTitle() {
             String name;
+            String string;
+            String string2;
             if (this.totalCount == 0) {
                 return;
             }
@@ -162,8 +170,24 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 return;
             }
             if (i == 1) {
-                this.title = isExpandable() ? LocaleController.getString(R.string.DeleteAllFromUsers) : LocaleController.formatString(R.string.DeleteAllFrom, name);
-            } else if (i == 2) {
+                if (isExpandable()) {
+                    string2 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
+                } else {
+                    string2 = LocaleController.formatString(R.string.DeleteAllFrom, name);
+                }
+                this.title = string2;
+                return;
+            }
+            if (i == 3) {
+                if (isExpandable()) {
+                    string = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
+                } else {
+                    string = LocaleController.formatString(R.string.DeleteAllReactionsFrom, name);
+                }
+                this.title = string;
+                return;
+            }
+            if (i == 2) {
                 if (DeleteMessagesBottomSheet.this.restrict) {
                     this.title = isExpandable() ? LocaleController.getString(R.string.DeleteRestrictUsers) : LocaleController.formatString(R.string.DeleteRestrict, name);
                 } else {
@@ -247,7 +271,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public DeleteMessagesBottomSheet(BaseFragment baseFragment, TLRPC.Chat chat, ArrayList arrayList, ArrayList arrayList2, TLRPC.ChannelParticipant[] channelParticipantArr, long j, int i, int i2, Runnable runnable) {
+    public DeleteMessagesBottomSheet(BaseFragment baseFragment, TLRPC.Chat chat, ArrayList arrayList, ArrayList arrayList2, TLRPC.ChannelParticipant[] channelParticipantArr, long j, int i, int i2, boolean z, Runnable runnable) {
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
         TLRPC.TL_chatBannedRights tL_chatBannedRights2;
         super(baseFragment.getContext(), baseFragment, false, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, baseFragment.getResourceProvider());
@@ -255,13 +279,19 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         this.participantMessageCountsLoading = false;
         this.participantMessageCountsLoaded = false;
         this.sendMediaCollapsed = true;
+        this.restrictUserCollapsed = true;
+        this.restrictUserDeleteAllMessages = false;
+        this.restrictUserDeleteAllReactions = false;
         this.shiftDp = 10.0f;
+        setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
         setShowHandle(true);
         fixNavigationBar();
         this.takeTranslationIntoAccount = true;
+        this.isReactionOnlyMode = true;
         RecyclerListView recyclerListView = this.recyclerListView;
         int i3 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i3, this.headerTotalHeight, i3, AndroidUtilities.dp(68.0f));
+        recyclerListView.setPadding(i3, this.headerTotalHeight, i3, AndroidUtilities.dp(63.0f));
+        this.recyclerListView.setClipToPadding(false);
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
             public boolean hasDoubleTap(View view, int i4) {
@@ -291,35 +321,18 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(350L);
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, null);
-        this.buttonContainer = selectorBtnCell;
-        selectorBtnCell.setClickable(true);
-        this.buttonContainer.setOrientation(1);
-        this.buttonContainer.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        this.buttonContainer.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-        TextView textView = new TextView(getContext());
-        this.actionButton = textView;
-        textView.setLines(1);
-        this.actionButton.setSingleLine(true);
-        this.actionButton.setGravity(1);
-        this.actionButton.setEllipsize(TextUtils.TruncateAt.END);
-        this.actionButton.setGravity(17);
-        this.actionButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.actionButton.setTypeface(AndroidUtilities.bold());
-        this.actionButton.setTextSize(1, 14.0f);
+        this.recyclerListView.setSections();
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), true, this.resourcesProvider);
+        this.actionButton = buttonWithCounterView;
+        buttonWithCounterView.setRound();
         this.actionButton.setText(LocaleController.getString(R.string.DeleteProceedBtn));
-        this.actionButton.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 6.0f));
         this.actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$1(view);
             }
         });
-        this.buttonContainer.addView(this.actionButton, LayoutHelper.createLinear(-1, 48, 87));
-        ViewGroup viewGroup = this.containerView;
-        SelectorBtnCell selectorBtnCell2 = this.buttonContainer;
-        int i4 = this.backgroundPaddingLeft;
-        viewGroup.addView(selectorBtnCell2, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i4, 0, i4, 0));
+        this.containerView.addView(this.actionButton, LayoutHelper.createFrameMarginPx(-1, 48.0f, 87, this.backgroundPaddingLeft + AndroidUtilities.dp(10.0f), 0, this.backgroundPaddingLeft + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f)));
         this.inChat = chat;
         this.isForum = ChatObject.isForum(chat);
         this.messages = arrayList;
@@ -391,30 +404,38 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         if (tL_chatBannedRights4.send_plain) {
             tL_chatBannedRights3.send_plain = true;
         }
+        if (tL_chatBannedRights4.send_reactions) {
+            tL_chatBannedRights3.send_reactions = true;
+        }
         MessagesController.getInstance(this.currentAccount).getMainSettings();
         this.report = new Action(0, arrayList2);
         this.deleteAll = new Action(1, arrayList2);
+        this.deleteAllReactions = new Action(3, arrayList2);
+        this.isSingleUsersMode = arrayList2.size() == 1;
         this.monoforum = ChatObject.isMonoForum(chat);
         if (ChatObject.canBlockUsers(chat)) {
             this.banFilter = new boolean[arrayList2.size()];
-            int i5 = 0;
-            while (i5 < arrayList2.size()) {
-                TLRPC.ChannelParticipant channelParticipant = i5 < channelParticipantArr.length ? channelParticipantArr[i5] : null;
-                if ((chat.creator || (!(channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) && !(channelParticipant instanceof TLRPC.TL_channelParticipantCreator))) && (!(channelParticipant instanceof TLRPC.TL_channelParticipantBanned) || (tL_chatBannedRights2 = channelParticipant.banned_rights) == null || !isBanned(tL_chatBannedRights2))) {
-                    this.banFilter[i5] = true;
+            int i4 = 0;
+            while (true) {
+                if (i4 >= arrayList2.size()) {
+                    break;
                 }
-                i5++;
+                TLRPC.ChannelParticipant channelParticipant = i4 < channelParticipantArr.length ? channelParticipantArr[i4] : null;
+                if ((chat.creator || (!(channelParticipant instanceof TLRPC.TL_channelParticipantAdmin) && !(channelParticipant instanceof TLRPC.TL_channelParticipantCreator))) && (!(channelParticipant instanceof TLRPC.TL_channelParticipantBanned) || (tL_chatBannedRights2 = channelParticipant.banned_rights) == null || !isBanned(tL_chatBannedRights2))) {
+                    this.banFilter[i4] = true;
+                }
+                i4++;
             }
             this.restrictFilter = new boolean[arrayList2.size()];
             if (hasAnyDefaultRights()) {
-                int i6 = 0;
-                while (i6 < arrayList2.size()) {
-                    TLRPC.ChannelParticipant channelParticipant2 = i6 < channelParticipantArr.length ? channelParticipantArr[i6] : null;
-                    if (!(arrayList2.get(i6) instanceof TLRPC.Chat) && ((!(channelParticipant2 instanceof TLRPC.TL_channelParticipantBanned) || (tL_chatBannedRights = channelParticipant2.banned_rights) == null || canBeRestricted(tL_chatBannedRights)) && this.banFilter[i6])) {
-                        this.restrictFilter[i6] = true;
+                int i5 = 0;
+                while (i5 < arrayList2.size()) {
+                    TLRPC.ChannelParticipant channelParticipant2 = i5 < channelParticipantArr.length ? channelParticipantArr[i5] : null;
+                    if (!(arrayList2.get(i5) instanceof TLRPC.Chat) && ((!(channelParticipant2 instanceof TLRPC.TL_channelParticipantBanned) || (tL_chatBannedRights = channelParticipant2.banned_rights) == null || canBeRestricted(tL_chatBannedRights)) && this.banFilter[i5])) {
+                        this.restrictFilter[i5] = true;
                         this.canRestrict = true;
                     }
-                    i6++;
+                    i5++;
                 }
             }
             this.participantsBannedRights = (ArrayList) DesugarArrays.stream(channelParticipantArr).map(new Function() {
@@ -430,7 +451,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 public Function compose(Function function) {
                     return Function$CC.$default$compose(this, function);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda244()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda245()));
             Action action = new Action(2, arrayList2);
             this.banOrRestrict = action;
             action.setFilter(this.banFilter);
@@ -458,6 +479,14 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             return null;
         }
         return channelParticipant.banned_rights;
+    }
+
+    @Override
+    protected void onContainerLayout(int i, int i2, int i3, int i4) {
+        super.onContainerLayout(i, i2, i3, i4);
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.set(0, 0, this.recyclerListView.getMeasuredWidth(), this.recyclerListView.getMeasuredHeight() - AndroidUtilities.dp(34.0f));
+        this.recyclerListView.setClipBounds(rect);
     }
 
     private static boolean isBanned(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
@@ -510,6 +539,12 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected CharSequence getTitle() {
+        if (!this.restrictUserDeleteAllMessages && this.isReactionOnlyMode) {
+            if (this.restrictUserDeleteAllReactions) {
+                return LocaleController.getString(R.string.DeleteReactionOptionsTitleAll);
+            }
+            return LocaleController.formatPluralString("DeleteReactionOptionsTitle", 1, new Object[0]);
+        }
         ArrayList arrayList = this.messages;
         final int[] iArr = {arrayList != null ? arrayList.size() : 0};
         if (this.participantMessageCounts != null && this.participantMessageCountsLoaded) {
@@ -536,7 +571,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             }
         }, this.resourcesProvider);
         this.adapter = universalAdapter;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -577,7 +613,10 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 i++;
             }
         }
-        return (tL_chatBannedRights.send_polls || this.defaultBannedRights.send_polls) ? i : i + 1;
+        if (!tL_chatBannedRights.send_polls && !this.defaultBannedRights.send_polls) {
+            i++;
+        }
+        return (tL_chatBannedRights.send_reactions || this.defaultBannedRights.send_reactions) ? i : i + 1;
     }
 
     private void updateParticipantMessageCounts() {
@@ -694,11 +733,16 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         arrayList.add(UItem.asUserCheckbox((action.type << 24) | i, tLObject).setChecked(action.checks[i]).setPad(1));
     }
 
-    public void fillItems(java.util.ArrayList r8, final org.telegram.ui.Components.UniversalAdapter r9) {
+    public void fillItems(java.util.ArrayList r9, final org.telegram.ui.Components.UniversalAdapter r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DeleteMessagesBottomSheet.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 
-    public void lambda$fillItems$9(int i, UniversalAdapter universalAdapter, View view) {
+    public void lambda$fillItems$9(UniversalAdapter universalAdapter, View view) {
+        this.restrictUserCollapsed = !this.restrictUserCollapsed;
+        universalAdapter.update(true);
+    }
+
+    public void lambda$fillItems$10(int i, UniversalAdapter universalAdapter, View view) {
         if (allDefaultMediaBanned()) {
             new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.UserRestrictionsCantModify)).setMessage(LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled)).setPositiveButton(LocaleController.getString(R.string.OK), null).create().show();
             return;
@@ -753,13 +797,17 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         if (i2 == 37) {
             int i3 = uItem.id;
             int i4 = i3 >>> 24;
-            int i5 = i3 & 16777215;
+            int i5 = 16777215 & i3;
             if (i4 == 0) {
                 this.report.toggleCheck(i5);
                 return;
             }
             if (i4 == 1) {
                 this.deleteAll.toggleCheck(i5);
+                onDeleteAllChanged();
+                return;
+            } else if (i3 == 3) {
+                this.deleteAllReactions.toggleCheck(i5);
                 onDeleteAllChanged();
                 return;
             } else {
@@ -774,6 +822,13 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             if (i2 != 39) {
                 if (i2 == 40) {
                     this.sendMediaCollapsed = !this.sendMediaCollapsed;
+                    saveScrollPosition();
+                    this.adapter.update(true);
+                    applyScrolledPosition(true);
+                    return;
+                }
+                if (uItem.id == 100) {
+                    this.restrictUserCollapsed = !this.restrictUserCollapsed;
                     saveScrollPosition();
                     this.adapter.update(true);
                     applyScrolledPosition(true);
@@ -795,19 +850,22 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             }
             int i6 = uItem.id;
             if (i6 == 2) {
-                this.bannedRights.invite_users = !r4.invite_users;
+                this.bannedRights.invite_users = !r5.invite_users;
                 onRestrictionsChanged();
             } else if (i6 == 3) {
-                this.bannedRights.pin_messages = !r4.pin_messages;
+                this.bannedRights.pin_messages = !r5.pin_messages;
                 onRestrictionsChanged();
             } else if (i6 == 4) {
-                this.bannedRights.change_info = !r4.change_info;
+                this.bannedRights.change_info = !r5.change_info;
                 onRestrictionsChanged();
             } else if (i6 == 5) {
-                this.bannedRights.manage_topics = !r4.manage_topics;
+                this.bannedRights.manage_topics = !r5.manage_topics;
                 onRestrictionsChanged();
             } else if (i6 == 0) {
-                this.bannedRights.send_plain = !r4.send_plain;
+                this.bannedRights.send_plain = !r5.send_plain;
+                onRestrictionsChanged();
+            } else if (i6 == 15) {
+                this.bannedRights.send_reactions = !r5.send_reactions;
                 onRestrictionsChanged();
             }
             this.adapter.update(true);
@@ -823,6 +881,11 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             onDeleteAllChanged();
             return;
         }
+        if (i7 == 3) {
+            this.deleteAllReactions.toggleAllChecks();
+            onDeleteAllChanged();
+            return;
+        }
         if (i7 == 2) {
             this.banOrRestrict.toggleAllChecks();
             return;
@@ -833,22 +896,22 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 return;
             }
             if (i7 == 6) {
-                this.bannedRights.send_photos = !r4.send_photos;
+                this.bannedRights.send_photos = !r5.send_photos;
                 onRestrictionsChanged();
             } else if (i7 == 7) {
-                this.bannedRights.send_videos = !r4.send_videos;
+                this.bannedRights.send_videos = !r5.send_videos;
                 onRestrictionsChanged();
             } else if (i7 == 9) {
-                this.bannedRights.send_audios = !r4.send_audios;
+                this.bannedRights.send_audios = !r5.send_audios;
                 onRestrictionsChanged();
             } else if (i7 == 8) {
-                this.bannedRights.send_docs = !r4.send_docs;
+                this.bannedRights.send_docs = !r5.send_docs;
                 onRestrictionsChanged();
             } else if (i7 == 11) {
-                this.bannedRights.send_roundvideos = !r4.send_roundvideos;
+                this.bannedRights.send_roundvideos = !r5.send_roundvideos;
                 onRestrictionsChanged();
             } else if (i7 == 10) {
-                this.bannedRights.send_voices = !r4.send_voices;
+                this.bannedRights.send_voices = !r5.send_voices;
                 onRestrictionsChanged();
             } else if (i7 == 12) {
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
@@ -885,33 +948,21 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 tL_chatBannedRights2.embed_links = !tL_chatBannedRights2.embed_links;
                 onRestrictionsChanged();
             } else if (i7 == 13) {
-                this.bannedRights.send_polls = !r4.send_polls;
+                this.bannedRights.send_polls = !r5.send_polls;
                 onRestrictionsChanged();
+            } else if (i7 == 101) {
+                this.restrictUserDeleteAllMessages = !this.restrictUserDeleteAllMessages;
+                updateTitleAnimated();
+            } else if (i7 == 102) {
+                this.restrictUserDeleteAllReactions = !this.restrictUserDeleteAllReactions;
+                updateTitleAnimated();
             }
             this.adapter.update(true);
         }
     }
 
     private void performDelete() {
-        ArrayList<Integer> arrayList = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
-            public Predicate and(Predicate predicate) {
-                return Predicate$CC.$default$and(this, predicate);
-            }
-
-            public Predicate negate() {
-                return Predicate$CC.$default$negate(this);
-            }
-
-            public Predicate or(Predicate predicate) {
-                return Predicate$CC.$default$or(this, predicate);
-            }
-
-            @Override
-            public final boolean test(Object obj) {
-                return this.f$0.lambda$performDelete$10((MessageObject) obj);
-            }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda244()));
-        ArrayList<Integer> arrayList2 = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
+        final ArrayList<Integer> arrayList = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
             public Predicate and(Predicate predicate) {
                 return Predicate$CC.$default$and(this, predicate);
             }
@@ -928,63 +979,8 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             public final boolean test(Object obj) {
                 return this.f$0.lambda$performDelete$11((MessageObject) obj);
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda244()));
-        if (!arrayList.isEmpty()) {
-            MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList, null, null, -this.inChat.id, this.topicId, false, this.mode);
-        }
-        if (!arrayList2.isEmpty()) {
-            MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList2, null, null, this.mergeDialogId, this.topicId, true, this.mode);
-        }
-        this.banOrRestrict.forEachSelected(new Utilities.IndexedConsumer() {
-            @Override
-            public final void accept(Object obj, int i) {
-                this.f$0.lambda$performDelete$12((TLObject) obj, i);
-            }
-        });
-        this.report.forEachSelected(new Utilities.IndexedConsumer() {
-            @Override
-            public final void accept(Object obj, int i) {
-                this.f$0.lambda$performDelete$15((TLObject) obj, i);
-            }
-        });
-        this.deleteAll.forEachSelected(new Utilities.IndexedConsumer() {
-            @Override
-            public final void accept(Object obj, int i) {
-                this.f$0.lambda$performDelete$16((TLObject) obj, i);
-            }
-        });
-    }
-
-    public boolean lambda$performDelete$10(MessageObject messageObject) {
-        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
-        return !(peer == null || peer.chat_id == (-this.mergeDialogId)) || this.mergeDialogId == 0;
-    }
-
-    public boolean lambda$performDelete$11(MessageObject messageObject) {
-        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
-        if (peer != null) {
-            long j = peer.chat_id;
-            long j2 = this.mergeDialogId;
-            if (j == (-j2) && j2 != 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void lambda$performDelete$12(org.telegram.tgnet.TLObject r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DeleteMessagesBottomSheet.lambda$performDelete$12(org.telegram.tgnet.TLObject, int):void");
-    }
-
-    public void lambda$performDelete$15(final TLObject tLObject, int i) {
-        TLRPC.TL_channels_reportSpam tL_channels_reportSpam = new TLRPC.TL_channels_reportSpam();
-        tL_channels_reportSpam.channel = MessagesController.getInputChannel(this.inChat);
-        if (tLObject instanceof TLRPC.User) {
-            tL_channels_reportSpam.participant = MessagesController.getInputPeer((TLRPC.User) tLObject);
-        } else if (tLObject instanceof TLRPC.Chat) {
-            tL_channels_reportSpam.participant = MessagesController.getInputPeer((TLRPC.Chat) tLObject);
-        }
-        tL_channels_reportSpam.id = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda245()));
+        final ArrayList<Integer> arrayList2 = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
             public Predicate and(Predicate predicate) {
                 return Predicate$CC.$default$and(this, predicate);
             }
@@ -999,7 +995,111 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final boolean test(Object obj) {
-                return this.f$0.lambda$performDelete$13((MessageObject) obj);
+                return this.f$0.lambda$performDelete$12((MessageObject) obj);
+            }
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda245()));
+        if (this.isReactionOnlyMode) {
+            if (!this.restrictUserDeleteAllReactions) {
+                this.deleteAll.forEach(new Utilities.IndexedConsumer() {
+                    @Override
+                    public final void accept(Object obj, int i) {
+                        this.f$0.lambda$performDelete$13(arrayList, arrayList2, (TLObject) obj, i);
+                    }
+                });
+            }
+        } else {
+            if (!arrayList.isEmpty()) {
+                MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList, null, null, -this.inChat.id, this.topicId, false, this.mode);
+            }
+            if (!arrayList2.isEmpty()) {
+                MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList2, null, null, this.mergeDialogId, this.topicId, true, this.mode);
+            }
+        }
+        this.banOrRestrict.forEachSelected(new Utilities.IndexedConsumer() {
+            @Override
+            public final void accept(Object obj, int i) {
+                this.f$0.lambda$performDelete$14((TLObject) obj, i);
+            }
+        });
+        this.report.forEachSelected(new Utilities.IndexedConsumer() {
+            @Override
+            public final void accept(Object obj, int i) {
+                this.f$0.lambda$performDelete$17((TLObject) obj, i);
+            }
+        });
+        if (this.isSingleUsersMode) {
+            this.deleteAll.forEach(new Utilities.IndexedConsumer() {
+                @Override
+                public final void accept(Object obj, int i) {
+                    this.f$0.lambda$performDelete$18((TLObject) obj, i);
+                }
+            });
+        } else {
+            this.deleteAll.forEachSelected(new Utilities.IndexedConsumer() {
+                @Override
+                public final void accept(Object obj, int i) {
+                    this.f$0.lambda$performDelete$19((TLObject) obj, i);
+                }
+            });
+            this.deleteAllReactions.forEachSelected(new Utilities.IndexedConsumer() {
+                @Override
+                public final void accept(Object obj, int i) {
+                    this.f$0.lambda$performDelete$20((TLObject) obj, i);
+                }
+            });
+        }
+    }
+
+    public boolean lambda$performDelete$11(MessageObject messageObject) {
+        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+        return !(peer == null || peer.chat_id == (-this.mergeDialogId)) || this.mergeDialogId == 0;
+    }
+
+    public boolean lambda$performDelete$12(MessageObject messageObject) {
+        TLRPC.Peer peer = messageObject.messageOwner.peer_id;
+        if (peer != null) {
+            long j = peer.chat_id;
+            long j2 = this.mergeDialogId;
+            if (j == (-j2) && j2 != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void lambda$performDelete$13(ArrayList arrayList, ArrayList arrayList2, TLObject tLObject, int i) {
+        long dialogId = DialogObject.getDialogId(tLObject);
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            MessagesController.getInstance(this.currentAccount).deleteReactionsFromMessage(-this.inChat.id, dialogId, ((Integer) it.next()).intValue());
+        }
+        Iterator it2 = arrayList2.iterator();
+        while (it2.hasNext()) {
+            MessagesController.getInstance(this.currentAccount).deleteReactionsFromMessage(this.mergeDialogId, dialogId, ((Integer) it2.next()).intValue());
+        }
+    }
+
+    public void lambda$performDelete$14(org.telegram.tgnet.TLObject r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DeleteMessagesBottomSheet.lambda$performDelete$14(org.telegram.tgnet.TLObject, int):void");
+    }
+
+    public void lambda$performDelete$17(final TLObject tLObject, int i) {
+        ArrayList<Integer> arrayList = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
+            public Predicate and(Predicate predicate) {
+                return Predicate$CC.$default$and(this, predicate);
+            }
+
+            public Predicate negate() {
+                return Predicate$CC.$default$negate(this);
+            }
+
+            public Predicate or(Predicate predicate) {
+                return Predicate$CC.$default$or(this, predicate);
+            }
+
+            @Override
+            public final boolean test(Object obj) {
+                return this.f$0.lambda$performDelete$15((MessageObject) obj);
             }
         }).filter(new Predicate() {
             public Predicate and(Predicate predicate) {
@@ -1016,26 +1116,67 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final boolean test(Object obj) {
-                return DeleteMessagesBottomSheet.lambda$performDelete$14(tLObject, (MessageObject) obj);
+                return DeleteMessagesBottomSheet.lambda$performDelete$16(tLObject, (MessageObject) obj);
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda8()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda244()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda245()));
+        if (this.isReactionOnlyMode && (tLObject instanceof TLRPC.User) && arrayList.size() == 1) {
+            TLRPC.TL_messages_reportReaction tL_messages_reportReaction = new TLRPC.TL_messages_reportReaction();
+            tL_messages_reportReaction.peer = MessagesController.getInputPeer(this.inChat);
+            tL_messages_reportReaction.user_id = MessagesController.getInstance(this.currentAccount).getInputUser((TLRPC.User) tLObject);
+            tL_messages_reportReaction.id = arrayList.get(0).intValue();
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_reportReaction, null);
+            return;
+        }
+        TLRPC.TL_channels_reportSpam tL_channels_reportSpam = new TLRPC.TL_channels_reportSpam();
+        tL_channels_reportSpam.channel = MessagesController.getInputChannel(this.inChat);
+        if (tLObject instanceof TLRPC.User) {
+            tL_channels_reportSpam.participant = MessagesController.getInputPeer((TLRPC.User) tLObject);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            tL_channels_reportSpam.participant = MessagesController.getInputPeer((TLRPC.Chat) tLObject);
+        }
+        tL_channels_reportSpam.id = arrayList;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_reportSpam, null);
     }
 
-    public boolean lambda$performDelete$13(MessageObject messageObject) {
+    public boolean lambda$performDelete$15(MessageObject messageObject) {
         TLRPC.Peer peer = messageObject.messageOwner.peer_id;
         return (peer == null || peer.chat_id == (-this.mergeDialogId)) ? false : true;
     }
 
-    public static boolean lambda$performDelete$14(TLObject tLObject, MessageObject messageObject) {
+    public static boolean lambda$performDelete$16(TLObject tLObject, MessageObject messageObject) {
         return tLObject instanceof TLRPC.User ? messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).id : (tLObject instanceof TLRPC.Chat) && messageObject.messageOwner.from_id.user_id == ((TLRPC.Chat) tLObject).id;
     }
 
-    public void lambda$performDelete$16(TLObject tLObject, int i) {
+    public void lambda$performDelete$18(TLObject tLObject, int i) {
+        if (this.restrictUserDeleteAllMessages) {
+            if (tLObject instanceof TLRPC.User) {
+                MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, (TLRPC.User) tLObject, null, 0);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, null, (TLRPC.Chat) tLObject, 0);
+            }
+        }
+        if (this.restrictUserDeleteAllReactions) {
+            if (tLObject instanceof TLRPC.User) {
+                MessagesController.getInstance(this.currentAccount).deleteUserChannelAllReactions(this.inChat, (TLRPC.User) tLObject, null);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                MessagesController.getInstance(this.currentAccount).deleteUserChannelAllReactions(this.inChat, null, (TLRPC.Chat) tLObject);
+            }
+        }
+    }
+
+    public void lambda$performDelete$19(TLObject tLObject, int i) {
         if (tLObject instanceof TLRPC.User) {
             MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, (TLRPC.User) tLObject, null, 0);
         } else if (tLObject instanceof TLRPC.Chat) {
             MessagesController.getInstance(this.currentAccount).deleteUserChannelHistory(this.inChat, null, (TLRPC.Chat) tLObject, 0);
+        }
+    }
+
+    public void lambda$performDelete$20(TLObject tLObject, int i) {
+        if (tLObject instanceof TLRPC.User) {
+            MessagesController.getInstance(this.currentAccount).deleteUserChannelAllReactions(this.inChat, (TLRPC.User) tLObject, null);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            MessagesController.getInstance(this.currentAccount).deleteUserChannelAllReactions(this.inChat, null, (TLRPC.Chat) tLObject);
         }
     }
 
@@ -1059,6 +1200,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         if (runnable != null) {
             runnable.run();
         }
+        boolean z = false;
         String str = "";
         if (this.report.selectedCount > 0) {
             str = "" + LocaleController.formatPluralString("UsersReported", this.report.selectedCount, new Object[0]);
@@ -1073,11 +1215,14 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 str = str + LocaleController.formatPluralString("UsersBanned", this.banOrRestrict.selectedCount, new Object[0]);
             }
         }
+        if (this.isReactionOnlyMode && !this.restrictUserDeleteAllMessages) {
+            z = true;
+        }
         int i = this.banOrRestrict.selectedCount > 0 ? R.raw.ic_admin : R.raw.contact_check;
         if (TextUtils.isEmpty(str)) {
-            BulletinFactory.of(getBaseFragment()).createSimpleBulletin(i, LocaleController.getString(R.string.MessagesDeleted)).show();
+            BulletinFactory.of(getBaseFragment()).createSimpleBulletin(i, LocaleController.getString(z ? R.string.ReactionsDeleted : R.string.MessagesDeleted)).show();
         } else {
-            BulletinFactory.of(getBaseFragment()).createSimpleBulletin(i, LocaleController.getString(R.string.MessagesDeleted), str).show();
+            BulletinFactory.of(getBaseFragment()).createSimpleBulletin(i, LocaleController.getString(z ? R.string.ReactionsDeleted : R.string.MessagesDeleted), str).show();
         }
         performDelete();
     }

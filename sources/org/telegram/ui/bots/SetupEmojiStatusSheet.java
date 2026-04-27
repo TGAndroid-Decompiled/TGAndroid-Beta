@@ -426,7 +426,7 @@ public abstract class SetupEmojiStatusSheet {
 
         public void setRandomStatus() {
             AnimatedEmojiDrawable animatedEmojiDrawable;
-            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet(new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
+            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet((TLRPC.InputStickerSet) new TLRPC.TL_inputStickerSetEmojiDefaultStatuses(), false);
             if (stickerSet == null || stickerSet.documents.isEmpty()) {
                 this.waitingForStatuses = true;
                 return;

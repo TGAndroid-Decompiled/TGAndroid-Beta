@@ -5265,7 +5265,7 @@ public class StoriesController {
     }
 
     public void checkUnsupportedStory(final long j, final int i) {
-        final String str = "224:" + j + ":" + i;
+        final String str = "225:" + j + ":" + i;
         if (this.requestingUnsupportedStories.contains(str) || this.unsupportedStoriesChecked.contains(str)) {
             return;
         }

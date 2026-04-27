@@ -23,8 +23,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotForumHelper$$ExternalSyntheticLambda2;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ChatObject;
@@ -46,6 +46,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.PollEditTextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PinchToZoomHelper;
@@ -507,6 +508,11 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
+            public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
+            }
+
+            @Override
             public PinchToZoomHelper getPinchToZoomHelper() {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getPinchToZoomHelper(this);
             }
@@ -784,7 +790,7 @@ public class TagEditCell extends LinearLayout {
         tL_messages_editChatParticipantRank.peer = messagesController.getInputPeer(j);
         tL_messages_editChatParticipantRank.participant = MessagesController.getInputPeer(user);
         tL_messages_editChatParticipantRank.rank = strArr[0];
-        ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_editChatParticipantRank, new BotForumHelper$$ExternalSyntheticLambda2(), new Utilities.Callback2() {
+        ConnectionsManager.getInstance(i).sendRequestTyped(tL_messages_editChatParticipantRank, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 TagEditCell.lambda$showSheet$2(messagesController, j, user, tL_messages_editChatParticipantRank, bottomSheet, z, resourcesProvider, buttonWithCounterView, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
@@ -1235,6 +1241,11 @@ public class TagEditCell extends LinearLayout {
                 @Override
                 public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell2);
+                }
+
+                @Override
+                public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                 }
 
                 @Override

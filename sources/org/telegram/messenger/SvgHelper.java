@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
@@ -460,7 +459,7 @@ public class SvgHelper {
         return getBitmap(i, i2, i3, i4, f, ScaleMode.Default);
     }
 
-    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f, ScaleMode scaleMode) throws Resources.NotFoundException, IOException {
+    public static Bitmap getBitmap(int i, int i2, int i3, int i4, float f, ScaleMode scaleMode) {
         try {
             InputStream inputStreamOpenRawResource = ApplicationLoader.applicationContext.getResources().openRawResource(i);
             try {
@@ -498,7 +497,7 @@ public class SvgHelper {
         return getBitmap(file, i, i2, z, ScaleMode.Default);
     }
 
-    public static Bitmap getBitmap(File file, int i, int i2, boolean z, ScaleMode scaleMode) throws IOException {
+    public static Bitmap getBitmap(File file, int i, int i2, boolean z, ScaleMode scaleMode) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
             try {

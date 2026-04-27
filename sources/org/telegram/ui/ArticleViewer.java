@@ -1493,7 +1493,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
         BottomSheet bottomSheet = this.linkSheet;
         if (bottomSheet != null) {
-            bottomSheet.dismiss();
+            bottomSheet.lambda$new$0();
             this.linkSheet = null;
         }
         BottomSheet.Builder builder = new BottomSheet.Builder(this.parentActivity);
@@ -3201,7 +3201,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         if (url != null) {
                             BottomSheet bottomSheet = this.linkSheet;
                             if (bottomSheet != null) {
-                                bottomSheet.dismiss();
+                                bottomSheet.lambda$new$0();
                                 this.linkSheet = null;
                             }
                             int iLastIndexOf = url.lastIndexOf(35);
@@ -6037,7 +6037,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }, 1000L);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
         long j = chat.id;
-        messagesStorage.updateDialogsWithDeletedMessages(-j, j, new ArrayList<>(), null, true);
+        messagesStorage.updateDialogsWithDeletedMessages(-j, j, new ArrayList<>(), null);
     }
 
     public void lambda$joinChannel$60(BlockChannelCell blockChannelCell, int i, TLRPC.TL_error tL_error, TLRPC.TL_channels_joinChannel tL_channels_joinChannel) {
@@ -13846,7 +13846,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1288getWindowView() {
+        public WindowView mo1272getWindowView() {
             return this.windowView;
         }
 
@@ -13936,7 +13936,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void dismiss() {
+        public void lambda$new$0() {
             dismiss(true);
         }
 
@@ -14241,7 +14241,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1288getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1272getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

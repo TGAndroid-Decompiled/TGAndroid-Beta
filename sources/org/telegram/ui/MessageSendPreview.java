@@ -77,6 +77,7 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.EmojiAnimationsOverlay;
@@ -219,16 +220,21 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 this.f$0.lambda$new$0(view);
             }
         });
-        frameLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new AnonymousClass2());
+        frameLayout.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
+            @Override
+            public final void onGlobalFocusChanged(View view, View view2) {
+                this.f$0.lambda$new$3(view, view2);
+            }
+        });
         BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = new BlurredBackgroundSourceBitmap();
         this.iBlur3SourceBitmap = blurredBackgroundSourceBitmap;
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceBitmap);
         this.iBlur3Factory = blurredBackgroundDrawableViewFactory;
         blurredBackgroundDrawableViewFactory.setSourceRootView(new ViewPositionWatcher(frameLayout), frameLayout);
-        AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, resourcesProvider);
-        this.containerView = anonymousClass3;
-        anonymousClass3.setClipToPadding(false);
-        frameLayout.addView(anonymousClass3, LayoutHelper.createFrame(-1, -1, 119));
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(context, resourcesProvider);
+        this.containerView = anonymousClass2;
+        anonymousClass2.setClipToPadding(false);
+        frameLayout.addView(anonymousClass2, LayoutHelper.createFrame(-1, -1, 119));
         ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
@@ -278,6 +284,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                MessageSendPreview.this.updateMessagesVisiblePart();
                 canvas.saveLayerAlpha(0.0f, getScrollY() + 1, getWidth(), (getScrollY() + getHeight()) - 1, 255, 31);
                 canvas.save();
                 drawChatBackgroundElements(canvas);
@@ -342,7 +349,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             private void drawChatBackgroundElements(android.graphics.Canvas r29) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass5.drawChatBackgroundElements(android.graphics.Canvas):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass4.drawChatBackgroundElements(android.graphics.Canvas):void");
             }
 
             private void drawChatForegroundElements(Canvas canvas) {
@@ -440,13 +447,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         recyclerListView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(view);
+                this.f$0.lambda$new$4(view);
             }
         });
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i2) {
-                this.f$0.lambda$new$2(view, i2);
+                this.f$0.lambda$new$5(view, i2);
             }
         });
         recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -455,7 +462,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                 MessageSendPreview.this.chatListView.invalidate();
             }
         });
-        recyclerListView.setItemAnimator(new AnonymousClass7(null, recyclerListView, resourcesProvider));
+        recyclerListView.setItemAnimator(new AnonymousClass6(null, recyclerListView, resourcesProvider));
         GridLayoutManagerFixed gridLayoutManagerFixed = new GridLayoutManagerFixed(context, 1000, 1, true) {
             boolean computingScroll;
 
@@ -901,6 +908,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
+                    }
+
+                    @Override
                     public PinchToZoomHelper getPinchToZoomHelper() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getPinchToZoomHelper(this);
                     }
@@ -1024,6 +1036,9 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     return;
                 }
                 MessageSendPreview.this.mainMessageCell = chatMessageCell;
+                ChatMessageCell chatMessageCell2 = MessageSendPreview.this.mainMessageCell;
+                Point point = AndroidUtilities.displaySize;
+                chatMessageCell2.setParentViewSize(point.x, point.y);
                 MessageSendPreview.this.mainMessageCellId = messageObject.getId();
             }
 
@@ -1036,7 +1051,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         recyclerListView.setAdapter(adapter);
         recyclerListView.setVerticalScrollBarEnabled(false);
         recyclerListView.setOverScrollMode(2);
-        anonymousClass3.addView(recyclerListView, LayoutHelper.createFrame(-1, -2.0f));
+        anonymousClass2.addView(recyclerListView, LayoutHelper.createFrame(-1, -2.0f));
         FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
@@ -1092,45 +1107,43 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         onBackPressed();
     }
 
-    class AnonymousClass2 implements ViewTreeObserver.OnGlobalFocusChangeListener {
-        AnonymousClass2() {
+    public void lambda$new$3(View view, final View view2) {
+        if (this.focusable || !(view2 instanceof EditText)) {
+            return;
         }
-
-        @Override
-        public void onGlobalFocusChanged(View view, final View view2) {
-            if (MessageSendPreview.this.focusable || !(view2 instanceof EditText)) {
-                return;
+        AndroidUtilities.hideKeyboard(this.editText);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$2(view2);
             }
-            AndroidUtilities.hideKeyboard(MessageSendPreview.this.editText);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onGlobalFocusChanged$1(view2);
-                }
-            }, 200L);
-        }
+        }, 200L);
+    }
 
-        public void lambda$onGlobalFocusChanged$1(final View view) {
-            MessageSendPreview.this.makeFocusable();
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onGlobalFocusChanged$0(view);
-                }
-            }, 100L);
-        }
-
-        public void lambda$onGlobalFocusChanged$0(View view) {
-            AndroidUtilities.showKeyboard(view);
-            if (MessageSendPreview.this.anchorSendButton != null) {
-                MessageSendPreview.this.anchorSendButton.getLocationOnScreen(MessageSendPreview.this.sendButtonInitialPosition);
-                int[] iArr = MessageSendPreview.this.sendButtonInitialPosition;
-                iArr[0] = iArr[0] + ((MessageSendPreview.this.anchorSendButton.getWidth() - MessageSendPreview.this.anchorSendButton.width(MessageSendPreview.this.anchorSendButton.getHeight())) - AndroidUtilities.dp(6.0f));
+    public void lambda$new$2(final View view) {
+        makeFocusable();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$1(view);
             }
+        }, 100L);
+    }
+
+    public void lambda$new$1(View view) {
+        AndroidUtilities.showKeyboard(view);
+        ChatActivityEnterView.SendButton sendButton = this.anchorSendButton;
+        if (sendButton != null) {
+            sendButton.getLocationOnScreen(this.sendButtonInitialPosition);
+            int[] iArr = this.sendButtonInitialPosition;
+            int i = iArr[0];
+            int width = this.anchorSendButton.getWidth();
+            ChatActivityEnterView.SendButton sendButton2 = this.anchorSendButton;
+            iArr[0] = i + ((width - sendButton2.width(sendButton2.getHeight())) - AndroidUtilities.dp(6.0f));
         }
     }
 
-    class AnonymousClass3 extends SizeNotifierFrameLayout {
+    class AnonymousClass2 extends SizeNotifierFrameLayout {
         private Paint backgroundPaint;
         int chatListViewTy;
         private GradientClip clip;
@@ -1140,7 +1153,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         final int[] pos2;
         final Theme.ResourcesProvider val$resourcesProvider;
 
-        AnonymousClass3(Context context, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass2(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.val$resourcesProvider = resourcesProvider;
             this.pos = new int[2];
@@ -1154,7 +1167,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
         @Override
         protected void dispatchDraw(final android.graphics.Canvas r30) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass3.dispatchDraw(android.graphics.Canvas):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
         public Boolean lambda$dispatchDraw$0(Canvas canvas, float f) {
@@ -1181,22 +1194,22 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
     }
 
-    public void lambda$new$1(View view) {
+    public void lambda$new$4(View view) {
         onBackPressed();
     }
 
-    public void lambda$new$2(View view, int i) {
+    public void lambda$new$5(View view, int i) {
         onBackPressed();
     }
 
-    class AnonymousClass7 extends ChatListItemAnimator {
+    class AnonymousClass6 extends ChatListItemAnimator {
         Runnable finishRunnable;
 
         @Override
         public void checkIsRunning() {
         }
 
-        AnonymousClass7(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass6(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider) {
             super(chatActivity, recyclerListView, resourcesProvider);
         }
 
@@ -1258,6 +1271,26 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             this.finishRunnable = null;
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("chatItemAnimator enable notifications");
+            }
+        }
+    }
+
+    public void updateMessagesVisiblePart() {
+        int measuredHeight = this.containerView.getMeasuredHeight();
+        int childCount = this.chatListView.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = this.chatListView.getChildAt(i);
+            if (childAt instanceof ChatMessageCell) {
+                float fComputeYCoordinateInParent = ViewPositionWatcher.computeYCoordinateInParent(childAt, this.containerView);
+                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
+                int i2 = (int) fComputeYCoordinateInParent;
+                childAt.getMeasuredHeight();
+                int i3 = i2 >= 0 ? 0 : -i2;
+                int measuredHeight2 = childAt.getMeasuredHeight();
+                if (measuredHeight2 > measuredHeight) {
+                    measuredHeight2 = i3 + measuredHeight;
+                }
+                chatMessageCell.setVisiblePart(i3, measuredHeight2 - i3, measuredHeight, fComputeYCoordinateInParent, fComputeYCoordinateInParent, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight(), 0, 0, 0);
             }
         }
     }
@@ -1334,10 +1367,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         attributes.dimAmount = 0.0f;
         int i = attributes.flags & (-3);
         attributes.softInputMode = 16;
-        attributes.flags = 131072 | i;
-        int i2 = Build.VERSION.SDK_INT;
         attributes.flags = i | (-1945959040);
-        if (i2 >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
@@ -1474,7 +1505,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         reactionsContainerLayout.setClipChildren(false);
         this.effectSelector.setClipToPadding(false);
         this.effectSelector.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(22.0f));
-        this.effectSelector.setDelegate(new AnonymousClass16(baseFragment));
+        this.effectSelector.setDelegate(new AnonymousClass15(baseFragment));
         this.effectSelector.setTop(false);
         this.effectSelector.setClipChildren(false);
         this.effectSelector.setClipToPadding(false);
@@ -1499,12 +1530,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         new KeyboardNotifier(this.windowView, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$allowEffectSelector$3((Integer) obj);
+                this.f$0.lambda$allowEffectSelector$6((Integer) obj);
             }
         });
     }
 
-    class AnonymousClass16 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+    class AnonymousClass15 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         final BaseFragment val$fragment;
 
         @Override
@@ -1532,13 +1563,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
         }
 
-        AnonymousClass16(BaseFragment baseFragment) {
+        AnonymousClass15(BaseFragment baseFragment) {
             this.val$fragment = baseFragment;
         }
 
         @Override
         public void onReactionClicked(android.view.View r18, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r19, boolean r20, boolean r21) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass16.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass15.onReactionClicked(android.view.View, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, boolean, boolean):void");
         }
 
         public static void lambda$onReactionClicked$0(BaseFragment baseFragment) {
@@ -1549,7 +1580,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
     }
 
-    public void lambda$allowEffectSelector$3(Integer num) {
+    public void lambda$allowEffectSelector$6(Integer num) {
         boolean z = num.intValue() - this.insets.bottom > AndroidUtilities.dp(20.0f);
         this.keyboardVisible = z;
         this.effectSelectorContainer.animate().translationY((z ? Math.min(this.effectSelectorContainerY, (this.windowView.getHeight() - num.intValue()) - this.effectSelectorContainer.getMeasuredHeight()) : this.effectSelectorContainerY) - this.effectSelectorContainer.getTop()).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
@@ -1795,14 +1826,14 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismissInto$5();
+                this.f$0.lambda$dismissInto$8();
             }
         });
         this.windowView.invalidate();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
     }
 
-    public void lambda$dismissInto$5() {
+    public void lambda$dismissInto$8() {
         SpoilerEffect2.pause(0, false);
         SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
         if (spoilerEffect2 != null) {
@@ -1811,12 +1842,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismissInto$4();
+                this.f$0.lambda$dismissInto$7();
             }
         });
     }
 
-    public void lambda$dismissInto$4() {
+    public void lambda$dismissInto$7() {
         super.dismiss();
     }
 
@@ -1856,14 +1887,14 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         animateOpenTo(false, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismiss$7();
+                this.f$0.lambda$dismiss$10();
             }
         });
         this.windowView.invalidate();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
     }
 
-    public void lambda$dismiss$7() {
+    public void lambda$dismiss$10() {
         SpoilerEffect2.pause(0, false);
         SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
         if (spoilerEffect2 != null) {
@@ -1872,12 +1903,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$dismiss$6();
+                this.f$0.lambda$dismiss$9();
             }
         });
     }
 
-    public void lambda$dismiss$6() {
+    public void lambda$dismiss$9() {
         super.dismiss();
     }
 
@@ -1905,7 +1936,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateOpenTo$8(z2, valueAnimator2);
+                this.f$0.lambda$animateOpenTo$11(z2, valueAnimator2);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1955,7 +1986,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.openAnimator.start();
     }
 
-    public void lambda$animateOpenTo$8(boolean z, ValueAnimator valueAnimator) {
+    public void lambda$animateOpenTo$11(boolean z, ValueAnimator valueAnimator) {
         View view;
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.openProgress = fFloatValue;
@@ -1980,12 +2011,12 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$prepareBlur$9(alpha, view, (Bitmap) obj, (Bitmap) obj2);
+                this.f$0.lambda$prepareBlur$12(alpha, view, (Bitmap) obj, (Bitmap) obj2);
             }
         });
     }
 
-    public void lambda$prepareBlur$9(float f, View view, Bitmap bitmap, Bitmap bitmap2) {
+    public void lambda$prepareBlur$12(float f, View view, Bitmap bitmap, Bitmap bitmap2) {
         ChatActivityEnterView.SendButton sendButton = this.anchorSendButton;
         if (sendButton != null) {
             sendButton.setAlpha(f);

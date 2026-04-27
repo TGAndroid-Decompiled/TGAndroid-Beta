@@ -12,9 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.RecyclerView;
+import j$.util.List;
+import j$.util.Map;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -212,7 +216,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             public void onSetHashtags(ArrayList arrayList, HashMap map) {
                 if (MentionsAdapter.this.lastText != null) {
                     MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                    mentionsAdapter.lambda$searchUsernameOrHashtag$7(mentionsAdapter.lastText, MentionsAdapter.this.lastPosition, MentionsAdapter.this.messages, MentionsAdapter.this.lastUsernameOnly, MentionsAdapter.this.lastForSearch);
+                    mentionsAdapter.lambda$searchUsernameOrHashtag$8(mentionsAdapter.lastText, MentionsAdapter.this.lastPosition, MentionsAdapter.this.messages, MentionsAdapter.this.lastUsernameOnly, MentionsAdapter.this.lastForSearch);
                 }
             }
         });
@@ -498,7 +502,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
         String str = this.lastText;
         if (str != null) {
-            lambda$searchUsernameOrHashtag$7(str, this.lastPosition, this.messages, this.lastUsernameOnly, this.lastForSearch);
+            lambda$searchUsernameOrHashtag$8(str, this.lastPosition, this.messages, this.lastUsernameOnly, this.lastForSearch);
         }
     }
 
@@ -996,11 +1000,31 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r31, final int r32, final java.util.ArrayList r33, final boolean r34, final boolean r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$7(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
+    public static int lambda$sortAndDeduplicateTopPeers$7(TLRPC.TL_topPeer tL_topPeer, TLRPC.TL_topPeer tL_topPeer2) {
+        return Double.compare(tL_topPeer2.rating, tL_topPeer.rating);
     }
 
-    public void lambda$searchUsernameOrHashtag$8(ArrayList arrayList, LongSparseArray longSparseArray) {
+    private static ArrayList sortAndDeduplicateTopPeers(ArrayList arrayList) {
+        List.EL.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                return MentionsAdapter.lambda$sortAndDeduplicateTopPeers$7((TLRPC.TL_topPeer) obj, (TLRPC.TL_topPeer) obj2);
+            }
+        });
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) it.next();
+            Map.EL.putIfAbsent(linkedHashMap, Long.valueOf(DialogObject.getPeerDialogId(tL_topPeer.peer)), tL_topPeer);
+        }
+        return new ArrayList(linkedHashMap.values());
+    }
+
+    public void lambda$searchUsernameOrHashtag$8(final java.lang.CharSequence r31, final int r32, final java.util.ArrayList r33, final boolean r34, final boolean r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$8(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
+    }
+
+    public void lambda$searchUsernameOrHashtag$9(ArrayList arrayList, LongSparseArray longSparseArray) {
         this.cancelDelayRunnable = null;
         showUsersResult(arrayList, longSparseArray, true);
     }
@@ -1103,7 +1127,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void lambda$searchUsernameOrHashtag$9(ArrayList arrayList, String str) {
+    public void lambda$searchUsernameOrHashtag$10(ArrayList arrayList, String str) {
         this.searchResultSuggestions = arrayList;
         this.searchResultHashtags = null;
         this.stickers = null;
@@ -1392,7 +1416,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return (this.foundContextBot == null || this.inlineMediaEnabled) && this.stickers == null;
     }
 
-    public void lambda$onCreateViewHolder$10(ContextLinkCell contextLinkCell) {
+    public void lambda$onCreateViewHolder$11(ContextLinkCell contextLinkCell) {
         this.delegate.onContextClick(contextLinkCell.getResult());
     }
 
@@ -1409,7 +1433,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             contextLinkCell.setDelegate(new ContextLinkCell.ContextLinkCellDelegate() {
                 @Override
                 public final void didPressedImage(ContextLinkCell contextLinkCell2) {
-                    this.f$0.lambda$onCreateViewHolder$10(contextLinkCell2);
+                    this.f$0.lambda$onCreateViewHolder$11(contextLinkCell2);
                 }
             });
             botSwitchCell = contextLinkCell;

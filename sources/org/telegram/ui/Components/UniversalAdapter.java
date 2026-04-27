@@ -110,6 +110,10 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         Section section = this.currentWhiteSection;
         if (section != null) {
             section.end = Math.max(0, (this.itemsOffset + this.items.size()) - 1);
+            Section section2 = this.currentWhiteSection;
+            if (section2.start == section2.end) {
+                this.whiteSections.remove(section2);
+            }
             this.currentWhiteSection = null;
         }
     }

@@ -887,7 +887,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
         public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
             int itemViewType = viewHolder.getItemViewType();
             if (itemViewType == 0) {
-                ((HeaderCell) viewHolder.itemView).setEnabled(ProfileNotificationsActivity.this.notificationsEnabled, null);
+                ((HeaderCell) viewHolder.itemView).setEnabled(ProfileNotificationsActivity.this.notificationsEnabled, (ArrayList) null);
                 return;
             }
             if (itemViewType == 1) {

@@ -277,6 +277,21 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         }
     }
 
+    public void adaptRenderingSize() {
+        int i;
+        if (this.renderingWidth == 0 && this.renderingHeight == 0) {
+            int[] iArr = this.metaData;
+            int i2 = iArr[0];
+            if (i2 > 3000 || (i = iArr[1]) > 3000) {
+                this.renderingWidth = i2 / 4;
+                this.renderingHeight = iArr[1] / 4;
+            } else if (i2 > 2200 || i > 2200) {
+                this.renderingWidth = i2 / 2;
+                this.renderingHeight = i / 2;
+            }
+        }
+    }
+
     public void updateScaleFactor() {
         int i;
         int i2;
@@ -318,7 +333,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
 
     public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions, int i5, boolean z3) {
         long j3;
-        boolean z4;
         this.USE_BITMAP_SHADER = Build.VERSION.SDK_INT < 29;
         this.PRERENDER_FRAME = true;
         this.invalidateAfter = 50;
@@ -505,21 +519,13 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         if (z && !this.precache) {
             this.nativePtr = createDecoder(file.getAbsolutePath(), iArr, this.currentAccount, this.streamFileSize, this.stream, z2);
             this.ptrFail = this.nativePtr == j3 && (!this.isWebmSticker || this.decoderTryCount > 15);
-            if (this.nativePtr != j3) {
-                if (iArr[0] <= 3840) {
-                    z4 = true;
-                    if (iArr[1] > 3840) {
-                    }
-                } else {
-                    z4 = true;
-                }
+            if (this.nativePtr != j3 && (iArr[0] > 3840 || iArr[1] > 3840)) {
                 destroyDecoder(this.nativePtr);
                 this.nativePtr = j3;
-            } else {
-                z4 = true;
             }
+            adaptRenderingSize();
             updateScaleFactor();
-            this.decoderCreated = z4;
+            this.decoderCreated = true;
         }
         if (this.precache) {
             this.nativePtr = createDecoder(file.getAbsolutePath(), iArr, this.currentAccount, this.streamFileSize, this.stream, z2);

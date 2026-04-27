@@ -2222,7 +2222,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 str2 = "📎 ";
             }
             if (captionMessage.hasHighlightedWords() && !TextUtils.isEmpty(captionMessage.messageOwner.message)) {
-                CharSequence string3 = captionMessage.messageTrimmedToHighlight;
+                CharSequence charSequenceEllipsizeCenterEnd = captionMessage.messageTrimmedToHighlight;
                 int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(this.messagePaddingStart + 47);
                 if (this.hasNameInMessage) {
                     if (!TextUtils.isEmpty(charSequence)) {
@@ -2231,9 +2231,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     measuredWidth = (int) (measuredWidth - this.currentMessagePaint.measureText(": "));
                 }
                 if (measuredWidth > 0 && captionMessage.messageTrimmedToHighlightCut) {
-                    string3 = AndroidUtilities.ellipsizeCenterEnd(string3, captionMessage.highlightedWords.get(0), measuredWidth, this.currentMessagePaint, 130).toString();
+                    charSequenceEllipsizeCenterEnd = AndroidUtilities.ellipsizeCenterEnd(charSequenceEllipsizeCenterEnd, captionMessage.highlightedWords.get(0), measuredWidth, this.currentMessagePaint, 130);
                 }
-                return new SpannableStringBuilder(str2).append(string3);
+                return new SpannableStringBuilder(str2).append(charSequenceEllipsizeCenterEnd);
             }
             if (string2.length() > 150) {
                 string2 = string2.subSequence(0, 150);
@@ -2342,7 +2342,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     measuredWidth2 = (int) (measuredWidth2 - this.currentMessagePaint.measureText(": "));
                 }
                 if (measuredWidth2 > 0) {
-                    charSequenceReplaceNewLines = AndroidUtilities.ellipsizeCenterEnd(charSequenceReplaceNewLines, this.message.highlightedWords.get(0), measuredWidth2, this.currentMessagePaint, 130).toString();
+                    charSequenceReplaceNewLines = AndroidUtilities.ellipsizeCenterEnd(charSequenceReplaceNewLines, this.message.highlightedWords.get(0), measuredWidth2, this.currentMessagePaint, 130);
                 }
             } else {
                 if (charSequenceReplaceNewLines.length() > 150) {

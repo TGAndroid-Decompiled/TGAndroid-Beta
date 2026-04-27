@@ -25,6 +25,7 @@ public class UserConfig extends BaseController {
     public static final int i_dialogsLoadOffsetUserId = 2;
     public static int selectedAccount;
     public long autoDownloadConfigLoadTime;
+    public int botGuestRatingLoadTime;
     public int botRatingLoadTime;
     LongSparseArray<SaveToGallerySettingsHelper.DialogException> chanelSaveGalleryExceptions;
     public long clientUserId;
@@ -175,6 +176,7 @@ public class UserConfig extends BaseController {
                         editorEdit.putBoolean("unreadDialogsLoaded", this.unreadDialogsLoaded);
                         editorEdit.putInt("ratingLoadTime", this.ratingLoadTime);
                         editorEdit.putInt("botRatingLoadTime", this.botRatingLoadTime);
+                        editorEdit.putInt("botGuestRatingLoadTime", this.botGuestRatingLoadTime);
                         editorEdit.putInt("webappRatingLoadTime", this.webappRatingLoadTime);
                         editorEdit.putBoolean("contactsReimported", this.contactsReimported);
                         editorEdit.putInt("loginTime", this.loginTime);
@@ -354,6 +356,7 @@ public class UserConfig extends BaseController {
                 this.contactsReimported = preferences.getBoolean("contactsReimported", false);
                 this.ratingLoadTime = preferences.getInt("ratingLoadTime", 0);
                 this.botRatingLoadTime = preferences.getInt("botRatingLoadTime", 0);
+                this.botGuestRatingLoadTime = preferences.getInt("botGuestRatingLoadTime", 0);
                 this.webappRatingLoadTime = preferences.getInt("webappRatingLoadTime", 0);
                 this.loginTime = preferences.getInt("loginTime", this.currentAccount);
                 this.syncContacts = preferences.getBoolean("syncContacts", true);
@@ -509,6 +512,7 @@ public class UserConfig extends BaseController {
         this.migrateOffsetAccess = -1L;
         this.ratingLoadTime = 0;
         this.botRatingLoadTime = 0;
+        this.botGuestRatingLoadTime = 0;
         this.webappRatingLoadTime = 0;
         this.draftsLoaded = false;
         this.contactsReimported = true;

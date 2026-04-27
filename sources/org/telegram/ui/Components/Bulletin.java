@@ -1737,6 +1737,50 @@ public class Bulletin {
         }
     }
 
+    public static class TwoLineBackupLayout extends ButtonLayout {
+        public final BackupImageView imageView;
+        private final LinearLayout linearLayout;
+        public final LinkSpanDrawable.LinksTextView subtitleTextView;
+        private final int textColor;
+        public final LinkSpanDrawable.LinksTextView titleTextView;
+
+        public TwoLineBackupLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+            int i = Theme.key_undo_infoColor;
+            this.textColor = getThemedColor(i);
+            setBackground(getThemedColor(Theme.key_undo_background));
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.imageView = backupImageView;
+            addView(backupImageView, LayoutHelper.createFrameRelatively(32.0f, 32.0f, 8388627, 12.0f, 0.0f, 12.0f, 0.0f));
+            int themedColor = getThemedColor(i);
+            int themedColor2 = getThemedColor(Theme.key_undo_cancelColor);
+            LinearLayout linearLayout = new LinearLayout(context);
+            this.linearLayout = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.titleTextView = linksTextView;
+            linksTextView.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            linksTextView.setTextColor(themedColor);
+            linksTextView.setTextSize(1, 14.0f);
+            linksTextView.setTypeface(AndroidUtilities.bold());
+            linearLayout.addView(linksTextView);
+            LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
+            this.subtitleTextView = linksTextView2;
+            linksTextView2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            linksTextView2.setTextColor(themedColor);
+            linksTextView2.setLinkTextColor(themedColor2);
+            linksTextView2.setTypeface(Typeface.SANS_SERIF);
+            linksTextView2.setTextSize(1, 13.0f);
+            linearLayout.addView(linksTextView2);
+        }
+
+        @Override
+        public CharSequence getAccessibilityText() {
+            return ((Object) this.titleTextView.getText()) + ".\n" + ((Object) this.subtitleTextView.getText());
+        }
+    }
+
     public static class TwoLineAnimatedLottieLayout extends ButtonLayout {
         public final RLottieImageView imageView;
         private final LinearLayout linearLayout;

@@ -150,7 +150,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             }
         });
         sizeNotifierFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.actionBar.setAdaptiveBackground(this.listView);
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         this.fragmentView = sizeNotifierFrameLayout;
         return sizeNotifierFrameLayout;
     }
@@ -211,7 +211,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessRepliesInfo), "RestrictedEmoji", "📝"));
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessReplies), LocaleController.getString(R.string.BusinessRepliesInfo), "RestrictedEmoji", "📝"));
         universalAdapter.whiteSectionStart();
         if (QuickRepliesController.getInstance(this.currentAccount).canAddNew()) {
             arrayList.add(UItem.asButton(1, R.drawable.msg_viewintopic, LocaleController.getString(R.string.BusinessRepliesAdd)).accent());

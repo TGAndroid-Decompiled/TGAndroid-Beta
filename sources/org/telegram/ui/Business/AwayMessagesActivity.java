@@ -113,7 +113,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         universalRecyclerView.setSections();
         this.listView.adapter.setApplyBackground(false);
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.actionBar.setAdaptiveBackground(this.listView);
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         setValue();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -297,7 +297,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessAwayInfo), "RestrictedEmoji", "💤"));
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessAway), LocaleController.getString(R.string.BusinessAwayInfo), "RestrictedEmoji", "💤"));
         arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessAwaySend)).setChecked(this.enabled));
         arrayList.add(UItem.asShadow(null));
         if (this.enabled) {
@@ -325,10 +325,10 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             arrayList.add(UItem.asCheck(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline)).setChecked(this.offline_only));
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessAwayOnlyOfflineInfo)));
             arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessRecipients)));
-            arrayList.add(UItem.asRadio(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept)).setChecked(this.exclude));
-            arrayList.add(UItem.asRadio(7, LocaleController.getString(R.string.BusinessChatsOnlySelected)).setChecked(true ^ this.exclude));
+            arrayList.add(UItem.asRadio(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2)).setChecked(this.exclude));
+            arrayList.add(UItem.asRadio(7, LocaleController.getString(R.string.BusinessChatsOnlySelected2)).setChecked(true ^ this.exclude));
             arrayList.add(UItem.asShadow(null));
-            this.recipientsHelper.fillItems(arrayList);
+            this.recipientsHelper.fillItems(arrayList, universalAdapter);
             arrayList.add(UItem.asShadow(null));
         }
     }
