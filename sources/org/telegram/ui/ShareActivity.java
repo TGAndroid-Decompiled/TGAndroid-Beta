@@ -25,7 +25,7 @@ public class ShareActivity extends Activity {
     private Dialog visibleDialog;
 
     @Override
-    protected void onCreate(Bundle bundle) throws NumberFormatException {
+    protected void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         AndroidUtilities.checkDisplaySize(this, getResources().getConfiguration());
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());

@@ -78650,7 +78650,7 @@ public class TLRPC {
             return message;
         }
 
-        public void readAttachPath(org.telegram.tgnet.InputSerializedData r12, long r13) throws java.lang.NumberFormatException {
+        public void readAttachPath(org.telegram.tgnet.InputSerializedData r12, long r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC.Message.readAttachPath(org.telegram.tgnet.InputSerializedData, long):void");
         }
 

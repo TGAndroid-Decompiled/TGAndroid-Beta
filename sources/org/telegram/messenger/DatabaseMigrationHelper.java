@@ -13,7 +13,7 @@ public class DatabaseMigrationHelper {
         return migrate(messagesStorage, messagesStorage.getDatabase(), i);
     }
 
-    public static int migrate(MessagesStorage messagesStorage, SQLiteDatabase sQLiteDatabase, int i) throws NumberFormatException {
+    public static int migrate(MessagesStorage messagesStorage, SQLiteDatabase sQLiteDatabase, int i) {
         SQLiteDatabase sQLiteDatabase2;
         SQLiteCursor sQLiteCursorQueryFinalized;
         SQLiteCursor sQLiteCursorQueryFinalized2;
