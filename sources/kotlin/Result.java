@@ -8,19 +8,19 @@ public final class Result implements Serializable {
     public static final Companion Companion = new Companion(null);
     private final Object value;
 
-    public static final Result m274boximpl(Object obj) {
+    public static final Result m276boximpl(Object obj) {
         return new Result(obj);
     }
 
-    public static Object m275constructorimpl(Object obj) {
+    public static Object m277constructorimpl(Object obj) {
         return obj;
     }
 
-    public static boolean m276equalsimpl(Object obj, Object obj2) {
-        return (obj2 instanceof Result) && Intrinsics.areEqual(obj, ((Result) obj2).m282unboximpl());
+    public static boolean m278equalsimpl(Object obj, Object obj2) {
+        return (obj2 instanceof Result) && Intrinsics.areEqual(obj, ((Result) obj2).m284unboximpl());
     }
 
-    public static int m278hashCodeimpl(Object obj) {
+    public static int m280hashCodeimpl(Object obj) {
         if (obj == null) {
             return 0;
         }
@@ -28,14 +28,14 @@ public final class Result implements Serializable {
     }
 
     public boolean equals(Object obj) {
-        return m276equalsimpl(this.value, obj);
+        return m278equalsimpl(this.value, obj);
     }
 
     public int hashCode() {
-        return m278hashCodeimpl(this.value);
+        return m280hashCodeimpl(this.value);
     }
 
-    public final Object m282unboximpl() {
+    public final Object m284unboximpl() {
         return this.value;
     }
 
@@ -43,15 +43,15 @@ public final class Result implements Serializable {
         this.value = obj;
     }
 
-    public static final boolean m280isSuccessimpl(Object obj) {
+    public static final boolean m282isSuccessimpl(Object obj) {
         return !(obj instanceof Failure);
     }
 
-    public static final boolean m279isFailureimpl(Object obj) {
+    public static final boolean m281isFailureimpl(Object obj) {
         return obj instanceof Failure;
     }
 
-    public static final Throwable m277exceptionOrNullimpl(Object obj) {
+    public static final Throwable m279exceptionOrNullimpl(Object obj) {
         if (obj instanceof Failure) {
             return ((Failure) obj).exception;
         }
@@ -59,10 +59,10 @@ public final class Result implements Serializable {
     }
 
     public String toString() {
-        return m281toStringimpl(this.value);
+        return m283toStringimpl(this.value);
     }
 
-    public static String m281toStringimpl(Object obj) {
+    public static String m283toStringimpl(Object obj) {
         if (obj instanceof Failure) {
             return ((Failure) obj).toString();
         }

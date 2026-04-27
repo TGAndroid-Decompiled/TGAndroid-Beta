@@ -378,7 +378,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1272getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1273getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -448,7 +448,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         @Override
-        protected void onMeasure(int i, int i2) throws IllegalAccessException, NoSuchFieldException, SecurityException, IllegalArgumentException {
+        protected void onMeasure(int i, int i2) {
             int measuredHeight;
             int size = View.MeasureSpec.getSize(i);
             int size2 = View.MeasureSpec.getSize(i2);
@@ -458,35 +458,30 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
             this.wasPortrait = z;
             int childCount = getChildCount();
-            View rootView = getRootView();
             getWindowVisibleDisplayFrame(this.rect);
-            rootView.getHeight();
-            if (this.rect.top != 0) {
-                int i3 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
-            }
-            AndroidUtilities.getViewInset(rootView);
-            int i4 = this.rect.bottom;
             if (ActionBarLayout.this.bottomSheetTabs != null) {
                 ActionBarLayout.this.bottomSheetTabs.updateCurrentAccount();
             }
-            int i5 = 0;
+            int i3 = 0;
             while (true) {
-                if (i5 >= childCount) {
+                if (i3 >= childCount) {
                     measuredHeight = 0;
                     break;
                 }
-                View childAt = getChildAt(i5);
+                View childAt = getChildAt(i3);
                 if (childAt instanceof ActionBar) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 0));
                     measuredHeight = childAt.getMeasuredHeight();
                     break;
                 }
-                i5++;
+                i3++;
             }
-            for (int i6 = 0; i6 < childCount; i6++) {
-                View childAt2 = getChildAt(i6);
+            for (int i4 = 0; i4 < childCount; i4++) {
+                View childAt2 = getChildAt(i4);
                 if (!(childAt2 instanceof ActionBar)) {
-                    if (childAt2.getTag(-15654349) != null || childAt2.getFitsSystemWindows() || (childAt2 instanceof BaseFragment.AttachedSheetWindow)) {
+                    if (childAt2 instanceof BaseFragment.AttachedSheetWindow) {
+                        measureChildWithMargins(childAt2, i, 0, i2, 0);
+                    } else if (childAt2.getTag(-15654349) != null || childAt2.getFitsSystemWindows()) {
                         measureChildWithMargins(childAt2, i, 0, i2, this.isSupportEdgeToEdge ? ActionBarLayout.this.navigationBarInsetHeight : 0);
                     } else {
                         measureChildWithMargins(childAt2, i, 0, i2, measuredHeight);
@@ -3168,7 +3163,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    public boolean dispatchTouchEvent(android.view.MotionEvent r6) {
+    public boolean dispatchTouchEvent(android.view.MotionEvent r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.dispatchTouchEvent(android.view.MotionEvent):boolean");
     }
 
@@ -3232,6 +3227,11 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (windowInsetsCompat != null) {
             dispatchApplyWindowInsetsInternal(view, windowInsetsCompat);
         }
+        BottomSheetTabs bottomSheetTabs = this.bottomSheetTabs;
+        if (bottomSheetTabs == null || indexOfChild(bottomSheetTabs) >= getChildCount() - 1) {
+            return;
+        }
+        this.bottomSheetTabs.bringToFront();
     }
 
     private void dispatchApplyWindowInsetsInternal(View view, WindowInsetsCompat windowInsetsCompat) {

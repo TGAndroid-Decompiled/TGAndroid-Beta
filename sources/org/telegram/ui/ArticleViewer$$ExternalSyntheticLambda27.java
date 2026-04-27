@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 
-public final class ArticleViewer$$ExternalSyntheticLambda30 implements Utilities.Callback {
+public final class ArticleViewer$$ExternalSyntheticLambda27 implements Utilities.Callback {
     public final ArticleViewer f$0;
 
     @Override

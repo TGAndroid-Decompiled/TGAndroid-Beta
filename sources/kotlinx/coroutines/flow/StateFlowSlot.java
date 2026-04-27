@@ -44,7 +44,7 @@ final class StateFlowSlot extends AbstractSharedFlowSlot {
                 }
             } else if (AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, value, StateFlowKt.NONE)) {
                 Result.Companion companion = Result.Companion;
-                ((CancellableContinuationImpl) value).resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
+                ((CancellableContinuationImpl) value).resumeWith(Result.m277constructorimpl(Unit.INSTANCE));
                 return;
             }
         }
@@ -61,7 +61,7 @@ final class StateFlowSlot extends AbstractSharedFlowSlot {
         cancellableContinuationImpl.initCancellability();
         if (!AsynchronousMediaCodecBufferEnqueuer$$ExternalSyntheticBackportWithForwarding1.m(this._state, StateFlowKt.NONE, cancellableContinuationImpl)) {
             Result.Companion companion = Result.Companion;
-            cancellableContinuationImpl.resumeWith(Result.m275constructorimpl(Unit.INSTANCE));
+            cancellableContinuationImpl.resumeWith(Result.m277constructorimpl(Unit.INSTANCE));
         }
         Object result = cancellableContinuationImpl.getResult();
         if (result == IntrinsicsKt.getCOROUTINE_SUSPENDED()) {

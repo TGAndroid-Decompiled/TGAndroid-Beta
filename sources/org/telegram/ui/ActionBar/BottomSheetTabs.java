@@ -666,7 +666,7 @@ public class BottomSheetTabs extends FrameLayout {
                     getTabBounds(this.rect, position);
                     tabDrawable.setExpandProgress(0.0f);
                     tabDrawable.setBackgroundColor(i, f > 0.5f);
-                    tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(10.0f), alpha, 1.0f);
+                    tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(18.0f), alpha, 1.0f);
                 }
             }
         }

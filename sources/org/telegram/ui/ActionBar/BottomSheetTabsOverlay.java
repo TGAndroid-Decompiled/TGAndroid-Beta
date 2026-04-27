@@ -33,6 +33,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline2;
 import org.telegram.messenger.Utilities;
@@ -43,6 +45,7 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.GradientClip;
+import org.telegram.ui.bots.BotWebViewSheet;
 
 public class BottomSheetTabsOverlay extends View {
     private View actionBarLayout;
@@ -105,7 +108,7 @@ public class BottomSheetTabsOverlay extends View {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo1272getWindowView();
+        SheetView mo1273getWindowView();
 
         boolean hadDialog();
 
@@ -520,10 +523,10 @@ public class BottomSheetTabsOverlay extends View {
     }
 
     public static void lambda$dismissSheet$3(Sheet sheet) {
-        if (sheet == null || sheet.mo1272getWindowView() == null) {
+        if (sheet == null || sheet.mo1273getWindowView() == null) {
             return;
         }
-        sheet.mo1272getWindowView().setDrawingFromOverlay(true);
+        sheet.mo1273getWindowView().setDrawingFromOverlay(true);
     }
 
     public void lambda$dismissSheet$4(ValueAnimator valueAnimator) {
@@ -568,7 +571,7 @@ public class BottomSheetTabsOverlay extends View {
                 canvas.translate(0.0f, -this.val$tab.viewScroll);
                 view.draw(canvas);
             }
-            this.val$sheet.mo1272getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo1273getWindowView().setDrawingFromOverlay(false);
             this.val$sheet.release();
             BottomSheetTabsOverlay.this.dismissingSheet = null;
             BottomSheetTabsOverlay.this.invalidate();
@@ -576,7 +579,7 @@ public class BottomSheetTabsOverlay extends View {
 
         public static void lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData webTabData, Sheet sheet, Bitmap bitmap) {
             webTabData.previewBitmap = bitmap;
-            sheet.mo1272getWindowView().setDrawingFromOverlay(false);
+            sheet.mo1273getWindowView().setDrawingFromOverlay(false);
             sheet.release();
         }
     }
@@ -609,6 +612,19 @@ public class BottomSheetTabsOverlay extends View {
     public void openTabsView() {
         BottomSheetTabs bottomSheetTabs = this.tabsView;
         if (bottomSheetTabs == null || !(bottomSheetTabs.getParent() instanceof View)) {
+            return;
+        }
+        if (!BotWebViewSheet.activeSheets.isEmpty()) {
+            Iterator it = new HashSet(BotWebViewSheet.activeSheets).iterator();
+            while (it.hasNext()) {
+                ((BotWebViewSheet) it.next()).dismiss(true);
+            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.openTabsView();
+                }
+            }, 100L);
             return;
         }
         stopAnimations();
@@ -748,10 +764,10 @@ public class BottomSheetTabsOverlay extends View {
             rectF.offset(i - iArr[0], r1[1] - iArr[1]);
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - this.navigationBarInset);
-            SheetView sheetViewMo1272getWindowView = this.dismissingSheet.mo1272getWindowView();
+            SheetView sheetViewMo1273getWindowView = this.dismissingSheet.mo1273getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float fDrawInto = sheetViewMo1272getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float fDrawInto = sheetViewMo1273getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, fDrawInto, fDrawInto, Path.Direction.CW);
@@ -896,7 +912,7 @@ public class BottomSheetTabsOverlay extends View {
             canvas.rotate(this.dismissProgress * 20.0f, rectF.centerX() + (AndroidUtilities.dp(50.0f) * this.dismissProgress), rectF.bottom + AndroidUtilities.dp(350.0f));
             float scale = this.bounce.getScale(0.01f);
             canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
-            float fLerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(6.0f), f2);
+            float fLerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), f2);
             if (z) {
                 this.shadowPaint.setColor(0);
                 this.shadowPaint.setShadowLayer(AndroidUtilities.dp(30.0f), 0.0f, AndroidUtilities.dp(10.0f), Theme.multAlpha(536870912, fClamp * f2 * f7));

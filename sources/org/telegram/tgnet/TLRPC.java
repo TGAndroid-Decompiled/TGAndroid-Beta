@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.SparseArray;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8074,6 +8075,17 @@ public class TLRPC {
         }
     }
 
+    public static class TL_pageListItemCheckbox extends PageListItem {
+        public boolean checked;
+        public RichText text;
+    }
+
+    public static class TL_pageListOrderedItemCheckbox extends PageListOrderedItem {
+        public boolean checked;
+        public String num;
+        public RichText text;
+    }
+
     public static class TL_paymentCharge extends TLObject {
         public static final int constructor = -368917890;
         public String id;
@@ -9879,6 +9891,24 @@ public class TLRPC {
             outputSerializedData.writeByteArray(this.encryption_key);
             outputSerializedData.writeByteArray(this.encryption_iv);
             Vector.serialize(outputSerializedData, this.file_hashes);
+        }
+    }
+
+    public static class TL_upload_getFileHashes extends TLObject {
+        public static final int constructor = -956147407;
+        public InputFileLocation location;
+        public int offset;
+
+        @Override
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+            return Vector.TLDeserialize(inputSerializedData, i, z, new TLRPC$TL_upload_fileCdnRedirect$$ExternalSyntheticLambda0());
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-956147407);
+            this.location.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.offset);
         }
     }
 
@@ -30218,6 +30248,7 @@ public class TLRPC {
 
     public static abstract class Page extends TLObject {
         public int flags;
+        public File local;
         public boolean part;
         public boolean rtl;
         public String url;
@@ -78619,7 +78650,7 @@ public class TLRPC {
             return message;
         }
 
-        public void readAttachPath(org.telegram.tgnet.InputSerializedData r12, long r13) {
+        public void readAttachPath(org.telegram.tgnet.InputSerializedData r12, long r13) throws java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC.Message.readAttachPath(org.telegram.tgnet.InputSerializedData, long):void");
         }
 
@@ -81577,24 +81608,6 @@ public class TLRPC {
             outputSerializedData.writeInt32(-1847836879);
             outputSerializedData.writeByteArray(this.file_token);
             outputSerializedData.writeInt64(this.offset);
-        }
-    }
-
-    public static class TL_upload_getFileHashes extends TLObject {
-        public static final int constructor = -956147407;
-        public InputFileLocation location;
-        public int offset;
-
-        @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
-            return Vector.TLDeserialize(inputSerializedData, i, z, new TLRPC$TL_upload_fileCdnRedirect$$ExternalSyntheticLambda0());
-        }
-
-        @Override
-        public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-956147407);
-            this.location.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.offset);
         }
     }
 }

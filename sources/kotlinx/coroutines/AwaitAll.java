@@ -100,7 +100,7 @@ final class AwaitAll {
                 for (Deferred deferred : deferredArr) {
                     arrayList.add(deferred.getCompleted());
                 }
-                cancellableContinuation.resumeWith(Result.m275constructorimpl(arrayList));
+                cancellableContinuation.resumeWith(Result.m277constructorimpl(arrayList));
             }
         }
     }
