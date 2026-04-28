@@ -287,7 +287,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         setShowHandle(true);
         fixNavigationBar();
         this.takeTranslationIntoAccount = true;
-        this.isReactionOnlyMode = true;
+        this.isReactionOnlyMode = z;
         RecyclerListView recyclerListView = this.recyclerListView;
         int i3 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i3, this.headerTotalHeight, i3, AndroidUtilities.dp(63.0f));

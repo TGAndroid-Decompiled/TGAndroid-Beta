@@ -5,7 +5,8 @@ import java.util.Map;
 import ru.noties.jlatexmath.awt.Font;
 
 public class FontInfo {
-    private static Map fonts = new HashMap();
+    public static final int NUMBER_OF_CHAR_CODES = 256;
+    private static Map<Integer, FontInfo> fonts = new HashMap();
     private final Object base;
     private int boldId;
     protected final String boldVersion;
@@ -26,10 +27,10 @@ public class FontInfo {
     protected final String ssVersion;
     private int ttId;
     protected final String ttVersion;
-    private HashMap unicode;
+    private HashMap<Character, Character> unicode;
     private final float xHeight;
-    private final Map lig = new HashMap();
-    private final Map kern = new HashMap();
+    private final Map<CharCouple, Character> lig = new HashMap();
+    private final Map<CharCouple, Float> kern = new HashMap();
     private char skewChar = 65535;
 
     private class CharCouple {
@@ -66,7 +67,7 @@ public class FontInfo {
         this.ttVersion = str6;
         this.itVersion = str7;
         if (i2 != 0) {
-            this.unicode = new HashMap(i2);
+            this.unicode = new HashMap<>(i2);
         } else {
             i2 = 256;
         }
@@ -85,43 +86,43 @@ public class FontInfo {
     }
 
     public int[] getExtension(char c) {
-        HashMap map = this.unicode;
+        HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             return this.extensions[c];
         }
-        return this.extensions[((Character) map.get(Character.valueOf(c))).charValue()];
+        return this.extensions[map.get(Character.valueOf(c)).charValue()];
     }
 
     public float getKern(char c, char c2, float f) {
-        Object obj = this.kern.get(new CharCouple(c, c2));
-        if (obj == null) {
+        Float f2 = this.kern.get(new CharCouple(c, c2));
+        if (f2 == null) {
             return 0.0f;
         }
-        return ((Float) obj).floatValue() * f;
+        return f2.floatValue() * f;
     }
 
     public CharFont getLigature(char c, char c2) {
-        Object obj = this.lig.get(new CharCouple(c, c2));
-        if (obj == null) {
+        Character ch = this.lig.get(new CharCouple(c, c2));
+        if (ch == null) {
             return null;
         }
-        return new CharFont(((Character) obj).charValue(), this.fontId);
+        return new CharFont(ch.charValue(), this.fontId);
     }
 
     public float[] getMetrics(char c) {
-        HashMap map = this.unicode;
+        HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             return this.metrics[c];
         }
-        return this.metrics[((Character) map.get(Character.valueOf(c))).charValue()];
+        return this.metrics[map.get(Character.valueOf(c)).charValue()];
     }
 
     public CharFont getNextLarger(char c) {
-        HashMap map = this.unicode;
+        HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             return this.nextLarger[c];
         }
-        return this.nextLarger[((Character) map.get(Character.valueOf(c))).charValue()];
+        return this.nextLarger[map.get(Character.valueOf(c)).charValue()];
     }
 
     public float getQuad(float f) {
@@ -145,7 +146,7 @@ public class FontInfo {
     }
 
     public void setExtension(char c, int[] iArr) {
-        HashMap map = this.unicode;
+        HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             this.extensions[c] = iArr;
         } else {
@@ -155,12 +156,12 @@ public class FontInfo {
                 this.extensions[size] = iArr;
                 return;
             }
-            this.extensions[((Character) this.unicode.get(Character.valueOf(c))).charValue()] = iArr;
+            this.extensions[this.unicode.get(Character.valueOf(c)).charValue()] = iArr;
         }
     }
 
     public void setMetrics(char c, float[] fArr) {
-        HashMap map = this.unicode;
+        HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             this.metrics[c] = fArr;
         } else {
@@ -170,12 +171,12 @@ public class FontInfo {
                 this.metrics[size] = fArr;
                 return;
             }
-            this.metrics[((Character) this.unicode.get(Character.valueOf(c))).charValue()] = fArr;
+            this.metrics[this.unicode.get(Character.valueOf(c)).charValue()] = fArr;
         }
     }
 
     public void setNextLarger(char c, char c2, int i) {
-        HashMap map = this.unicode;
+        HashMap<Character, Character> map = this.unicode;
         if (map == null) {
             this.nextLarger[c] = new CharFont(c2, i);
         } else {
@@ -185,12 +186,16 @@ public class FontInfo {
                 this.nextLarger[size] = new CharFont(c2, i);
                 return;
             }
-            this.nextLarger[((Character) this.unicode.get(Character.valueOf(c))).charValue()] = new CharFont(c2, i);
+            this.nextLarger[this.unicode.get(Character.valueOf(c)).charValue()] = new CharFont(c2, i);
         }
     }
 
     public void setSkewChar(char c) {
         this.skewChar = c;
+    }
+
+    public int getId() {
+        return this.fontId;
     }
 
     public int getBoldId() {
@@ -260,6 +265,6 @@ public class FontInfo {
     }
 
     public static Font getFont(int i) {
-        return ((FontInfo) fonts.get(Integer.valueOf(i))).getFont();
+        return fonts.get(Integer.valueOf(i)).getFont();
     }
 }

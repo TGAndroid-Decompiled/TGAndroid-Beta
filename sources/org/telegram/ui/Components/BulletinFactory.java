@@ -645,6 +645,7 @@ public final class BulletinFactory {
     public Bulletin createEmojiBulletin(long j, String str, String str2) {
         Bulletin.TwoLineBackupLayout twoLineBackupLayout = new Bulletin.TwoLineBackupLayout(getContext(), this.resourcesProvider);
         twoLineBackupLayout.imageView.setAnimatedEmojiDrawable(new AnimatedEmojiDrawable(1, UserConfig.selectedAccount, j));
+        twoLineBackupLayout.imageView.setEmojiColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
         twoLineBackupLayout.titleTextView.setText(str);
         twoLineBackupLayout.subtitleTextView.setText(str2);
         return create(twoLineBackupLayout, 2750);

@@ -13,6 +13,10 @@ public class Dummy {
         this.type = i;
     }
 
+    public int getType() {
+        return this.type;
+    }
+
     public int getLeftType() {
         int i = this.type;
         return i >= 0 ? i : this.el.getLeftType();

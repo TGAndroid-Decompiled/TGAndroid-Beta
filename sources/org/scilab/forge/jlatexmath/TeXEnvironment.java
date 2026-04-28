@@ -60,6 +60,10 @@ public class TeXEnvironment {
         return this.interline * SpaceAtom.getFactor(this.interlineUnit, this);
     }
 
+    public void setTextwidth(int i, float f) {
+        this.textwidth = f * SpaceAtom.getFactor(i, this);
+    }
+
     public float getTextwidth() {
         return this.textwidth;
     }

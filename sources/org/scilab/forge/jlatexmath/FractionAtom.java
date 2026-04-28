@@ -18,6 +18,10 @@ public class FractionAtom extends Atom {
         return 2;
     }
 
+    public FractionAtom(Atom atom, Atom atom2) {
+        this(atom, atom2, true);
+    }
+
     public FractionAtom(Atom atom, Atom atom2, boolean z) {
         this(atom, atom2, !z, 2, 0.0f);
     }
@@ -40,6 +44,18 @@ public class FractionAtom extends Atom {
         this(atom, atom2, z);
         this.numAlign = checkAlignment(i);
         this.denomAlign = checkAlignment(i2);
+    }
+
+    public FractionAtom(Atom atom, Atom atom2, float f, int i, int i2) {
+        this(atom, atom2, true, i, i2);
+        this.defFactor = f;
+        this.defFactorSet = true;
+    }
+
+    public FractionAtom(Atom atom, Atom atom2, int i, float f, int i2, int i3) {
+        this(atom, atom2, i, f);
+        this.numAlign = checkAlignment(i2);
+        this.denomAlign = checkAlignment(i3);
     }
 
     public FractionAtom(Atom atom, Atom atom2, int i, float f) {

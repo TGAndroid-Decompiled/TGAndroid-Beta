@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class SpaceAtom extends Atom {
     private static UnitConversion[] unitConversions;
-    private static Map units;
+    private static Map<String, Integer> units;
     private boolean blankSpace;
     private int blankType;
     private int dUnit;
@@ -137,8 +137,20 @@ public class SpaceAtom extends Atom {
         }
     }
 
+    public SpaceAtom(int i, float f, int i2, float f2, int i3, float f3) {
+        checkUnit(i);
+        checkUnit(i2);
+        checkUnit(i3);
+        this.wUnit = i;
+        this.hUnit = i2;
+        this.dUnit = i3;
+        this.width = f;
+        this.height = f2;
+        this.depth = f3;
+    }
+
     public static int getUnit(String str) {
-        Integer num = (Integer) units.get(str);
+        Integer num = units.get(str);
         if (num == null) {
             return 2;
         }

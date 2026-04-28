@@ -1,5 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.Character;
 import java.util.ArrayList;
@@ -10,13 +12,26 @@ import ru.noties.jlatexmath.JLatexMathAndroid;
 import ru.noties.jlatexmath.awt.Font;
 
 public class DefaultTeXFont implements TeXFont {
+    protected static final int BOT = 3;
+    protected static final int CAPITALS = 1;
+    protected static final int DEPTH = 2;
+    protected static final int HEIGHT = 1;
+    protected static final int IT = 3;
+    protected static final int MID = 1;
+    protected static final int NONE = -1;
+    protected static final int NUMBERS = 0;
+    protected static final int REP = 2;
+    protected static final int SMALL = 2;
+    protected static final int TOP = 0;
+    protected static final int UNICODE = 3;
+    protected static final int WIDTH = 0;
     private static String[] defaultTextStyleMappings = null;
     private static FontInfo[] fontInfo = null;
-    private static Map generalSettings = null;
+    private static Map<String, Number> generalSettings = null;
     private static boolean magnificationEnable = true;
-    private static Map parameters;
-    private static Map symbolMappings;
-    private static Map textStyleMappings;
+    private static Map<String, Float> parameters;
+    private static Map<String, CharFont> symbolMappings;
+    private static Map<String, CharFont[]> textStyleMappings;
     protected float factor;
     public boolean isBold;
     public boolean isIt;
@@ -24,8 +39,8 @@ public class DefaultTeXFont implements TeXFont {
     public boolean isSs;
     public boolean isTt;
     private final float size;
-    public static List loadedAlphabets = new ArrayList();
-    public static Map registeredAlphabets = new HashMap();
+    public static List<Character.UnicodeBlock> loadedAlphabets = new ArrayList();
+    public static Map<Character.UnicodeBlock, AlphabetRegistration> registeredAlphabets = new HashMap();
 
     static {
         fontInfo = new FontInfo[0];
@@ -36,10 +51,10 @@ public class DefaultTeXFont implements TeXFont {
         textStyleMappings = defaultTeXFontParser.parseTextStyleMappings();
         defaultTextStyleMappings = defaultTeXFontParser.parseDefaultTextStyleMappings();
         symbolMappings = defaultTeXFontParser.parseSymbolMappings();
-        Map generalSettings2 = defaultTeXFontParser.parseGeneralSettings();
+        Map<String, Number> generalSettings2 = defaultTeXFontParser.parseGeneralSettings();
         generalSettings = generalSettings2;
         generalSettings2.put("textfactor", 1);
-        int iIntValue = ((Number) generalSettings.get("mufontid")).intValue();
+        int iIntValue = generalSettings.get("mufontid").intValue();
         if (iIntValue >= 0) {
             FontInfo[] fontInfoArr = fontInfo;
             if (iIntValue < fontInfoArr.length && fontInfoArr[iIntValue] != null) {
@@ -59,6 +74,10 @@ public class DefaultTeXFont implements TeXFont {
         this.size = f;
     }
 
+    public DefaultTeXFont(float f, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
+        this(f, 1.0f, z, z2, z3, z4, z5);
+    }
+
     public DefaultTeXFont(float f, float f2, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
         this.size = f;
         this.factor = f2;
@@ -69,12 +88,37 @@ public class DefaultTeXFont implements TeXFont {
         this.isIt = z5;
     }
 
+    public static void addTeXFontDescription(String str) {
+        try {
+            addTeXFontDescription(new FileInputStream(str), str);
+        } catch (FileNotFoundException e) {
+            throw new ResourceParseException(str, e);
+        }
+    }
+
+    public static void addTeXFontDescription(InputStream inputStream, String str) {
+        DefaultTeXFontParser defaultTeXFontParser = new DefaultTeXFontParser(inputStream, str);
+        fontInfo = defaultTeXFontParser.parseFontDescriptions(fontInfo);
+        textStyleMappings.putAll(defaultTeXFontParser.parseTextStyleMappings());
+        symbolMappings.putAll(defaultTeXFontParser.parseSymbolMappings());
+    }
+
     public static void addTeXFontDescription(Object obj, InputStream inputStream, String str) {
         DefaultTeXFontParser defaultTeXFontParser = new DefaultTeXFontParser(obj, inputStream, str);
         fontInfo = defaultTeXFontParser.parseFontDescriptions(fontInfo);
         defaultTeXFontParser.parseExtraPath();
         textStyleMappings.putAll(defaultTeXFontParser.parseTextStyleMappings());
         symbolMappings.putAll(defaultTeXFontParser.parseSymbolMappings());
+    }
+
+    public static void addAlphabet(Character.UnicodeBlock unicodeBlock, InputStream inputStream, String str, InputStream inputStream2, String str2, InputStream inputStream3, String str3) {
+        if (loadedAlphabets.contains(unicodeBlock)) {
+            return;
+        }
+        addTeXFontDescription(inputStream, str);
+        SymbolAtom.addSymbolAtom(inputStream2, str2);
+        TeXFormula.addSymbolMappings(inputStream3, str3);
+        loadedAlphabets.add(unicodeBlock);
     }
 
     public static void addAlphabet(Object obj, Character.UnicodeBlock[] unicodeBlockArr, String str) {
@@ -93,10 +137,22 @@ public class DefaultTeXFont implements TeXFont {
         TeXParser.isLoading = false;
     }
 
+    public static void addAlphabet(Character.UnicodeBlock unicodeBlock, String str) {
+        String str2 = "fonts/" + str + "/language_" + str + ".xml";
+        String str3 = "fonts/" + str + "/symbols_" + str + ".xml";
+        String str4 = "fonts/" + str + "/mappings_" + str + ".xml";
+        try {
+            addAlphabet(unicodeBlock, JLatexMathAndroid.getResourceAsStream(str2), str2, JLatexMathAndroid.getResourceAsStream(str3), str3, JLatexMathAndroid.getResourceAsStream(str4), str4);
+        } catch (FontAlreadyLoadedException unused) {
+        }
+    }
+
     public static void addAlphabet(AlphabetRegistration alphabetRegistration) {
         if (alphabetRegistration != null) {
             try {
                 addAlphabet(alphabetRegistration.getPackage(), alphabetRegistration.getUnicodeBlock(), alphabetRegistration.getTeXFontFileName());
+            } catch (AlphabetRegistrationException e) {
+                System.err.println(e.toString());
             } catch (FontAlreadyLoadedException unused) {
             }
         }
@@ -111,6 +167,16 @@ public class DefaultTeXFont implements TeXFont {
     @Override
     public TeXFont copy() {
         return new DefaultTeXFont(this.size, this.factor, this.isBold, this.isRoman, this.isSs, this.isTt, this.isIt);
+    }
+
+    @Override
+    public TeXFont deriveFont(float f) {
+        return new DefaultTeXFont(f, this.factor, this.isBold, this.isRoman, this.isSs, this.isTt, this.isIt);
+    }
+
+    @Override
+    public TeXFont scaleFont(float f) {
+        return new DefaultTeXFont(this.size, f, this.isBold, this.isRoman, this.isSs, this.isTt, this.isIt);
     }
 
     @Override
@@ -173,11 +239,11 @@ public class DefaultTeXFont implements TeXFont {
 
     @Override
     public Char getChar(char c, String str, int i) {
-        Object obj = textStyleMappings.get(str);
-        if (obj == null) {
+        CharFont[] charFontArr = textStyleMappings.get(str);
+        if (charFontArr == null) {
             throw new TextStyleMappingNotFoundException(str);
         }
-        return getChar(c, (CharFont[]) obj, i);
+        return getChar(c, charFontArr, i);
     }
 
     @Override
@@ -216,11 +282,11 @@ public class DefaultTeXFont implements TeXFont {
 
     @Override
     public Char getChar(String str, int i) {
-        Object obj = symbolMappings.get(str);
-        if (obj == null) {
+        CharFont charFont = symbolMappings.get(str);
+        if (charFont == null) {
             throw new SymbolMappingNotFoundException(str);
         }
-        return getChar((CharFont) obj, i);
+        return getChar(charFont, i);
     }
 
     @Override
@@ -292,7 +358,7 @@ public class DefaultTeXFont implements TeXFont {
 
     @Override
     public int getMuFontId() {
-        return ((Number) generalSettings.get("mufontid")).intValue();
+        return generalSettings.get("mufontid").intValue();
     }
 
     @Override
@@ -337,7 +403,7 @@ public class DefaultTeXFont implements TeXFont {
 
     @Override
     public float getSpace(int i) {
-        return fontInfo[((Number) generalSettings.get("spacefontid")).intValue()].getSpace(getSizeFactor(i) * TeXFormula.PIXELS_PER_POINT);
+        return fontInfo[generalSettings.get("spacefontid").intValue()].getSpace(getSizeFactor(i) * TeXFormula.PIXELS_PER_POINT);
     }
 
     @Override
@@ -396,8 +462,18 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
+    public boolean getBold() {
+        return this.isBold;
+    }
+
+    @Override
     public void setRoman(boolean z) {
         this.isRoman = z;
+    }
+
+    @Override
+    public boolean getRoman() {
+        return this.isRoman;
     }
 
     @Override
@@ -406,13 +482,28 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
+    public boolean getTt() {
+        return this.isTt;
+    }
+
+    @Override
     public void setIt(boolean z) {
         this.isIt = z;
     }
 
     @Override
+    public boolean getIt() {
+        return this.isIt;
+    }
+
+    @Override
     public void setSs(boolean z) {
         this.isSs = z;
+    }
+
+    @Override
+    public boolean getSs() {
+        return this.isSs;
     }
 
     @Override
@@ -440,12 +531,16 @@ public class DefaultTeXFont implements TeXFont {
         }
     }
 
+    public static void enableMagnification(boolean z) {
+        magnificationEnable = z;
+    }
+
     private static float getParameter(String str) {
-        Object obj = parameters.get(str);
-        if (obj == null) {
+        Float f = parameters.get(str);
+        if (f == null) {
             return 0.0f;
         }
-        return ((Float) obj).floatValue();
+        return f.floatValue();
     }
 
     public static float getSizeFactor(int i) {
@@ -453,11 +548,11 @@ public class DefaultTeXFont implements TeXFont {
             return 1.0f;
         }
         if (i < 4) {
-            return ((Number) generalSettings.get("textfactor")).floatValue();
+            return generalSettings.get("textfactor").floatValue();
         }
         if (i < 6) {
-            return ((Number) generalSettings.get("scriptfactor")).floatValue();
+            return generalSettings.get("scriptfactor").floatValue();
         }
-        return ((Number) generalSettings.get("scriptscriptfactor")).floatValue();
+        return generalSettings.get("scriptscriptfactor").floatValue();
     }
 }

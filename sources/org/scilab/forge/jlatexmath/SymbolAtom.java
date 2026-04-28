@@ -1,11 +1,13 @@
 package org.scilab.forge.jlatexmath;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.BitSet;
 import java.util.Map;
 
 public class SymbolAtom extends CharSymbol {
-    public static Map symbols = new TeXSymbolParser().readSymbols();
+    public static Map<String, SymbolAtom> symbols = new TeXSymbolParser().readSymbols();
     private static BitSet validSymbolTypes;
     private final boolean delimiter;
     private final String name;
@@ -24,6 +26,18 @@ public class SymbolAtom extends CharSymbol {
         validSymbolTypes.set(10);
     }
 
+    public SymbolAtom(SymbolAtom symbolAtom, int i) {
+        if (!validSymbolTypes.get(i)) {
+            throw new InvalidSymbolTypeException("The symbol type was not valid! Use one of the symbol type constants from the class 'TeXConstants'.");
+        }
+        this.name = symbolAtom.name;
+        this.type = i;
+        if (i == 1) {
+            this.type_limits = 0;
+        }
+        this.delimiter = symbolAtom.delimiter;
+    }
+
     public SymbolAtom(String str, int i, boolean z) {
         this.name = str;
         this.type = i;
@@ -38,16 +52,36 @@ public class SymbolAtom extends CharSymbol {
         return this;
     }
 
+    public char getUnicode() {
+        return this.unicode;
+    }
+
+    public static void addSymbolAtom(String str) {
+        try {
+            addSymbolAtom(new FileInputStream(str), str);
+        } catch (FileNotFoundException e) {
+            throw new ResourceParseException(str, e);
+        }
+    }
+
     public static void addSymbolAtom(InputStream inputStream, String str) {
         symbols.putAll(new TeXSymbolParser(inputStream, str).readSymbols());
     }
 
+    public static void addSymbolAtom(SymbolAtom symbolAtom) {
+        symbols.put(symbolAtom.name, symbolAtom);
+    }
+
     public static SymbolAtom get(String str) {
-        Object obj = symbols.get(str);
-        if (obj == null) {
+        SymbolAtom symbolAtom = symbols.get(str);
+        if (symbolAtom == null) {
             throw new SymbolNotFoundException(str);
         }
-        return (SymbolAtom) obj;
+        return symbolAtom;
+    }
+
+    public boolean isDelimiter() {
+        return this.delimiter;
     }
 
     public String getName() {

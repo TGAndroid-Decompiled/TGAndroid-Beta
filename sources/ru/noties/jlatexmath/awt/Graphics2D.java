@@ -1,17 +1,18 @@
 package ru.noties.jlatexmath.awt;
 
 import ru.noties.jlatexmath.awt.RenderingHints;
+import ru.noties.jlatexmath.awt.font.FontRenderContext;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
-import ru.noties.jlatexmath.awt.geom.Line2D$Float;
+import ru.noties.jlatexmath.awt.geom.Line2D;
 import ru.noties.jlatexmath.awt.geom.Rectangle2D;
-import ru.noties.jlatexmath.awt.geom.RoundRectangle2D$Float;
+import ru.noties.jlatexmath.awt.geom.RoundRectangle2D;
 
 public interface Graphics2D extends Graphics {
-    void draw(Line2D$Float line2D$Float);
+    void draw(Line2D.Float r1);
 
     void draw(Rectangle2D.Float r1);
 
-    void draw(RoundRectangle2D$Float roundRectangle2D$Float);
+    void draw(RoundRectangle2D.Float r1);
 
     void drawArc(int i, int i2, int i3, int i4, int i5, int i6);
 
@@ -21,9 +22,13 @@ public interface Graphics2D extends Graphics {
 
     void fillArc(int i, int i2, int i3, int i4, int i5, int i6);
 
+    void fillRect(int i, int i2, int i3, int i4);
+
     Color getColor();
 
     Font getFont();
+
+    FontRenderContext getFontRenderContext();
 
     RenderingHints getRenderingHints();
 

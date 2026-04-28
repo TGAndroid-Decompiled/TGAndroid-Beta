@@ -34,6 +34,14 @@ public class HorizontalRule extends Box {
         }
     }
 
+    public HorizontalRule(float f, float f2, float f3, Color color) {
+        this.speShift = 0.0f;
+        this.height = f;
+        this.width = f2;
+        this.color = color;
+        this.shift = f3;
+    }
+
     @Override
     public void draw(Graphics2D graphics2D, float f, float f2) {
         Color color = graphics2D.getColor();

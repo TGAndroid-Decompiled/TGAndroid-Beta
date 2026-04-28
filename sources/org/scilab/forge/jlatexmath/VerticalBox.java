@@ -82,12 +82,12 @@ class VerticalBox extends Box {
     @Override
     public void draw(Graphics2D graphics2D, float f, float f2) {
         float depth = f2 - this.height;
-        Iterator it = this.children.iterator();
+        Iterator<Box> it = this.children.iterator();
         while (it.hasNext()) {
-            Box box = (Box) it.next();
-            float height = depth + box.getHeight();
-            box.draw(graphics2D, (box.getShift() + f) - this.leftMostPos, height);
-            depth = height + box.getDepth();
+            Box next = it.next();
+            float height = depth + next.getHeight();
+            next.draw(graphics2D, (next.getShift() + f) - this.leftMostPos, height);
+            depth = height + next.getDepth();
         }
     }
 
@@ -97,11 +97,11 @@ class VerticalBox extends Box {
 
     @Override
     public int getLastFontId() {
-        LinkedList linkedList = this.children;
-        ListIterator listIterator = linkedList.listIterator(linkedList.size());
+        LinkedList<Box> linkedList = this.children;
+        ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
         int lastFontId = -1;
         while (lastFontId == -1 && listIterator.hasPrevious()) {
-            lastFontId = ((Box) listIterator.previous()).getLastFontId();
+            lastFontId = listIterator.previous().getLastFontId();
         }
         return lastFontId;
     }

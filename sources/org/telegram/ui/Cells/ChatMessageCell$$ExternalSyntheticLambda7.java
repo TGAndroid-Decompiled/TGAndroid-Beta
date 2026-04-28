@@ -1,6 +1,6 @@
 package org.telegram.ui.Cells;
 
-public final class ChatMessageCell$$ExternalSyntheticLambda6 implements Runnable {
+public final class ChatMessageCell$$ExternalSyntheticLambda7 implements Runnable {
     public final ChatMessageCell f$0;
 
     @Override

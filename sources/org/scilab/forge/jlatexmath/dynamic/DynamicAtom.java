@@ -8,21 +8,31 @@ import org.scilab.forge.jlatexmath.TeXEnvironment;
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class DynamicAtom extends Atom {
+    private static ExternalConverterFactory ecFactory;
+    private ExternalConverter converter;
     private String externalCode;
     private TeXFormula formula = new TeXFormula();
     private boolean insert;
     private boolean refreshed;
 
-    public static boolean hasAnExternalConverterFactory() {
-        return false;
-    }
-
     public DynamicAtom(String str, String str2) {
         this.externalCode = str;
+        ExternalConverterFactory externalConverterFactory = ecFactory;
+        if (externalConverterFactory != null) {
+            this.converter = externalConverterFactory.getExternalConverter();
+        }
         if (str2 == null || !str2.equals("i")) {
             return;
         }
         this.insert = true;
+    }
+
+    public static boolean hasAnExternalConverterFactory() {
+        return ecFactory != null;
+    }
+
+    public static void setExternalConverterFactory(ExternalConverterFactory externalConverterFactory) {
+        ecFactory = externalConverterFactory;
     }
 
     public boolean getInsertMode() {
@@ -31,7 +41,8 @@ public class DynamicAtom extends Atom {
 
     public Atom getAtom() {
         if (!this.refreshed) {
-            throw null;
+            this.formula.setLaTeX(this.converter.getLaTeXString(this.externalCode));
+            this.refreshed = true;
         }
         Atom atom = this.formula.root;
         return atom == null ? new EmptyAtom() : atom;
@@ -39,6 +50,18 @@ public class DynamicAtom extends Atom {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
+        ExternalConverter externalConverter = this.converter;
+        if (externalConverter != null) {
+            if (this.refreshed) {
+                this.refreshed = false;
+            } else {
+                this.formula.setLaTeX(externalConverter.getLaTeXString(this.externalCode));
+            }
+            Atom atom = this.formula.root;
+            if (atom != null) {
+                return atom.createBox(teXEnvironment);
+            }
+        }
         return new StrutBox(0.0f, 0.0f, 0.0f, 0.0f);
     }
 }

@@ -10,7 +10,7 @@ import ru.noties.jlatexmath.awt.geom.Rectangle2D;
 public abstract class Box {
     public static boolean DEBUG = false;
     protected Color background;
-    protected LinkedList children;
+    protected LinkedList<Box> children;
     protected float depth;
     protected Box elderParent;
     protected Color foreground;
@@ -48,9 +48,25 @@ public abstract class Box {
         this.depth = 0.0f;
         this.shift = 0.0f;
         this.type = -1;
-        this.children = new LinkedList();
+        this.children = new LinkedList<>();
         this.foreground = color;
         this.background = color2;
+    }
+
+    public void setParent(Box box) {
+        this.parent = box;
+    }
+
+    public Box getParent() {
+        return this.parent;
+    }
+
+    public void setElderParent(Box box) {
+        this.elderParent = box;
+    }
+
+    public Box getElderParent() {
+        return this.elderParent;
     }
 
     public float getWidth() {

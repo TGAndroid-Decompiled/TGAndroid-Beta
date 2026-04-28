@@ -1,6 +1,8 @@
 package org.scilab.forge.jlatexmath;
 
 public class NthRoot extends Atom {
+    private static final float FACTOR = 0.55f;
+    private static final String sqrtSymbol = "sqrt";
     private final Atom base;
     private final Atom root;
 

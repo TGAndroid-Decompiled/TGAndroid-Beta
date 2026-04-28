@@ -174,7 +174,6 @@ public class DefaultThemesPreviewCell extends LinearLayout {
             }
             themeInfo = theme;
         }
-        chatThemeItem.chatTheme.preloadWallpaper();
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, null, Integer.valueOf(accentId));
         this.selectedPosition = i;
         int i2 = 0;

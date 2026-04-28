@@ -4,10 +4,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import ru.noties.jlatexmath.awt.RenderingHints;
+import ru.noties.jlatexmath.awt.font.FontRenderContext;
 import ru.noties.jlatexmath.awt.geom.AffineTransform;
-import ru.noties.jlatexmath.awt.geom.Line2D$Float;
+import ru.noties.jlatexmath.awt.geom.Line2D;
 import ru.noties.jlatexmath.awt.geom.Rectangle2D;
-import ru.noties.jlatexmath.awt.geom.RoundRectangle2D$Float;
+import ru.noties.jlatexmath.awt.geom.RoundRectangle2D;
 
 public class AndroidGraphics2D implements Graphics2D {
     private Canvas canvas;
@@ -17,6 +18,11 @@ public class AndroidGraphics2D implements Graphics2D {
     private final RectF rectF = new RectF();
     private Stroke stroke;
     private AffineTransform transform;
+
+    @Override
+    public FontRenderContext getFontRenderContext() {
+        return null;
+    }
 
     @Override
     public RenderingHints getRenderingHints() {
@@ -135,9 +141,9 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void draw(Line2D$Float line2D$Float) {
+    public void draw(Line2D.Float r9) {
         this.paint.setStyle(Paint.Style.STROKE);
-        this.canvas.drawLine((float) line2D$Float.x1, (float) line2D$Float.y1, (float) line2D$Float.x2, (float) line2D$Float.y2, this.paint);
+        this.canvas.drawLine((float) r9.x1, (float) r9.y1, (float) r9.x2, (float) r9.y2, this.paint);
     }
 
     @Override
@@ -165,12 +171,18 @@ public class AndroidGraphics2D implements Graphics2D {
     }
 
     @Override
-    public void draw(RoundRectangle2D$Float roundRectangle2D$Float) {
+    public void draw(RoundRectangle2D.Float r6) {
         this.paint.setStyle(Paint.Style.STROKE);
         RectF rectF = this.rectF;
-        float f = roundRectangle2D$Float.x;
-        float f2 = roundRectangle2D$Float.y;
-        rectF.set(f, f2, roundRectangle2D$Float.width + f, roundRectangle2D$Float.height + f2);
-        this.canvas.drawRoundRect(this.rectF, roundRectangle2D$Float.arcwidth, roundRectangle2D$Float.archeight, this.paint);
+        float f = r6.x;
+        float f2 = r6.y;
+        rectF.set(f, f2, r6.width + f, r6.height + f2);
+        this.canvas.drawRoundRect(this.rectF, r6.arcwidth, r6.archeight, this.paint);
+    }
+
+    @Override
+    public void fillRect(int i, int i2, int i3, int i4) {
+        this.paint.setStyle(Paint.Style.FILL);
+        this.canvas.drawRect(i, i2, i + i3, i2 + i4, this.paint);
     }
 }

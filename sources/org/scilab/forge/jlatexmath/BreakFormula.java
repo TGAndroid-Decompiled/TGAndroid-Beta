@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
-public abstract class BreakFormula {
+public final class BreakFormula {
     public static Box split(Box box, float f, float f2) {
         if (box instanceof HorizontalBox) {
             return split((HorizontalBox) box, f, f2);
@@ -44,20 +44,20 @@ public abstract class BreakFormula {
 
     private static Box split(VerticalBox verticalBox, float f, float f2) {
         VerticalBox verticalBox2 = new VerticalBox();
-        Iterator it = verticalBox.children.iterator();
+        Iterator<Box> it = verticalBox.children.iterator();
         while (it.hasNext()) {
-            verticalBox2.add(split((Box) it.next(), f, f2));
+            verticalBox2.add(split(it.next(), f, f2));
         }
         return verticalBox2;
     }
 
-    private static float canBreak(Stack stack, HorizontalBox horizontalBox, float f) {
-        LinkedList linkedList = horizontalBox.children;
+    private static float canBreak(Stack<Position> stack, HorizontalBox horizontalBox, float f) {
+        LinkedList<Box> linkedList = horizontalBox.children;
         float[] fArr = new float[linkedList.size() + 1];
         int i = 0;
         fArr[0] = 0.0f;
         while (i < linkedList.size()) {
-            Box box = (Box) linkedList.get(i);
+            Box box = linkedList.get(i);
             int i2 = i + 1;
             float f2 = fArr[i] + box.width;
             fArr[i2] = f2;
@@ -83,24 +83,24 @@ public abstract class BreakFormula {
     }
 
     private static int getBreakPosition(HorizontalBox horizontalBox, int i) {
-        List list = horizontalBox.breakPositions;
+        List<Integer> list = horizontalBox.breakPositions;
         if (list == null) {
             return -1;
         }
         int i2 = 0;
-        if (list.size() == 1 && ((Integer) horizontalBox.breakPositions.get(0)).intValue() <= i) {
-            return ((Integer) horizontalBox.breakPositions.get(0)).intValue();
+        if (list.size() == 1 && horizontalBox.breakPositions.get(0).intValue() <= i) {
+            return horizontalBox.breakPositions.get(0).intValue();
         }
         while (i2 < horizontalBox.breakPositions.size()) {
-            if (((Integer) horizontalBox.breakPositions.get(i2)).intValue() > i) {
+            if (horizontalBox.breakPositions.get(i2).intValue() > i) {
                 if (i2 == 0) {
                     return -1;
                 }
-                return ((Integer) horizontalBox.breakPositions.get(i2 - 1)).intValue();
+                return horizontalBox.breakPositions.get(i2 - 1).intValue();
             }
             i2++;
         }
-        return ((Integer) horizontalBox.breakPositions.get(i2 - 1)).intValue();
+        return horizontalBox.breakPositions.get(i2 - 1).intValue();
     }
 
     private static class Position {

@@ -75,6 +75,7 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BotForumHelper;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
@@ -386,6 +387,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private int docTitleWidth;
     private TLRPC.Document documentAttach;
     private int documentAttachType;
+    public BotForumHelper.BotDraftAnimationsPool draftAnimationsPool;
     private boolean drawBackground;
     private boolean drawCommentButton;
     private boolean drawCommentNumber;
@@ -2032,7 +2034,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.pressedEffect = false;
         this.overridenDuration = -1L;
         this.hadLongPress = false;
-        this.invalidateOutboundsRunnable = new ChatMessageCell$$ExternalSyntheticLambda6(this);
+        this.invalidateOutboundsRunnable = new ChatMessageCell$$ExternalSyntheticLambda7(this);
         this.showTopicSeparator = true;
         this.radialProgressAlpha = 1.0f;
         this.ANIMATION_OFFSET_X = new Property(Float.class, "animationOffsetX") {
@@ -2976,7 +2978,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (this.factCheckBounce == null) {
             ButtonBounce buttonBounce = new ButtonBounce(this);
             this.factCheckBounce = buttonBounce;
-            buttonBounce.setAdditionalInvalidate(new ChatMessageCell$$ExternalSyntheticLambda6(this));
+            buttonBounce.setAdditionalInvalidate(new ChatMessageCell$$ExternalSyntheticLambda7(this));
         }
         float backgroundDrawableRight = getBackgroundDrawableRight();
         TransitionParams transitionParams = this.transitionParams;
@@ -3019,7 +3021,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (this.factCheckLinks == null) {
                 LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
                 this.factCheckLinks = linkCollector;
-                linkCollector.setAdditionalInvalidate(new ChatMessageCell$$ExternalSyntheticLambda6(this));
+                linkCollector.setAdditionalInvalidate(new ChatMessageCell$$ExternalSyntheticLambda7(this));
             }
             int iDp6 = (iDp3 + AndroidUtilities.dp(10.0f)) - this.factCheckTextLayoutLeft;
             int iDp7 = i + AndroidUtilities.dp(22.0f);
@@ -5489,7 +5491,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContent(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean, boolean, boolean):void");
     }
 
-    public void lambda$setMessageContent$7(TLRPC.User user, int i, TLRPC.Chat chat, long j) {
+    public void lambda$setMessageContent$7(long j, int i) {
+        BotForumHelper.BotDraftAnimationsPool botDraftAnimationsPool = this.draftAnimationsPool;
+        if (botDraftAnimationsPool != null) {
+            botDraftAnimationsPool.removeAnimator(j, i);
+        }
+    }
+
+    public void lambda$setMessageContent$8(TLRPC.User user, int i, TLRPC.Chat chat, long j) {
         if (user != null) {
             this.commentAvatarDrawables[i].setInfo(this.currentAccount, user);
             this.commentAvatarImages[i].setForUserOrChat(user, this.commentAvatarDrawables[i]);
@@ -5501,7 +5510,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void lambda$setMessageContent$8() {
+    public void lambda$setMessageContent$9() {
         ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
         if (chatMessageCellDelegate != null) {
             chatMessageCellDelegate.didPressSideButton(this);
@@ -5527,7 +5536,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContentIfPoll(org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$setMessageContentIfPoll$9(boolean z, long j) {
+    public void lambda$setMessageContentIfPoll$10(boolean z, long j) {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.animatedInfoLayout2;
         if (animatedTextDrawable != null) {
             animatedTextDrawable.setText(LocaleController.formatPollEndTime((int) j, z), true);
@@ -5642,7 +5651,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 FlagSecureReason flagSecureReason = new FlagSecureReason(window, new FlagSecureReason.FlagSecureCondition() {
                     @Override
                     public final boolean run() {
-                        return this.f$0.lambda$updateFlagSecure$10();
+                        return this.f$0.lambda$updateFlagSecure$11();
                     }
                 });
                 this.flagSecure = flagSecureReason;
@@ -5657,7 +5666,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public boolean lambda$updateFlagSecure$10() {
+    public boolean lambda$updateFlagSecure$11() {
         TLRPC.Message message;
         GroupMedia groupMedia;
         MessageObject messageObject = this.currentMessageObject;
@@ -5700,7 +5709,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.onLongPress():boolean");
     }
 
-    public void lambda$onLongPress$11() {
+    public void lambda$onLongPress$12() {
         this.replySelector.setState(new int[0]);
         invalidate();
     }
@@ -6140,11 +6149,19 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.songLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 this.songX = -((int) Math.ceil(this.songLayout.getLineLeft(0)));
+                int lineWidth = (int) this.songLayout.getLineWidth(0);
+                if (AndroidUtilities.dp(104.0f) + lineWidth > this.backgroundWidth) {
+                    this.backgroundWidth = lineWidth + AndroidUtilities.dp(104.0f);
+                }
             }
             StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(messageObject.getMusicAuthor().replace('\n', ' '), Theme.chat_audioPerformerPaint, iDp3, truncateAt), Theme.chat_audioPerformerPaint, iDp3, alignment, 1.0f, 0.0f, false);
             this.performerLayout = staticLayout2;
             if (staticLayout2.getLineCount() > 0) {
                 this.performerX = -((int) Math.ceil(this.performerLayout.getLineLeft(0)));
+                int lineWidth2 = (int) this.performerLayout.getLineWidth(0);
+                if (AndroidUtilities.dp(104.0f) + lineWidth2 > this.backgroundWidth) {
+                    this.backgroundWidth = lineWidth2 + AndroidUtilities.dp(104.0f);
+                }
             }
             while (true) {
                 if (i2 >= this.documentAttach.attributes.size()) {
@@ -7247,7 +7264,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawContent(android.graphics.Canvas, boolean):void");
     }
 
-    public void lambda$drawContent$12(Canvas canvas) {
+    public void lambda$drawContent$13(Canvas canvas) {
         this.radialProgress.draw(canvas);
     }
 
@@ -7302,7 +7319,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$startRevealMedia$13(valueAnimator);
+                this.f$0.lambda$startRevealMedia$14(valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -7315,7 +7332,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         duration.start();
     }
 
-    public void lambda$startRevealMedia$13(ValueAnimator valueAnimator) {
+    public void lambda$startRevealMedia$14(ValueAnimator valueAnimator) {
         this.mediaSpoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -9295,11 +9312,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     public void setDrawableBoundsInner(Drawable drawable, int i, int i2, int i3, int i4) {
         if (drawable != null) {
+            MultiLayoutTypingAnimator multiLayoutTypingAnimator = this.botDraftTypingAnimator;
+            if (multiLayoutTypingAnimator != null && multiLayoutTypingAnimator.isRunning()) {
+                this.transitionYOffsetForDrawables = 0.0f;
+            } else {
+                this.transitionYOffsetForDrawables = ((i2 + i4) + this.transitionParams.deltaBottom) - ((int) r0);
+            }
             TransitionParams transitionParams = this.transitionParams;
-            float f = i4 + i2 + transitionParams.deltaBottom;
-            int i5 = (int) f;
-            this.transitionYOffsetForDrawables = f - i5;
-            drawable.setBounds((int) (i + transitionParams.deltaLeft), (int) (i2 + transitionParams.deltaTop), (int) (i + i3 + transitionParams.deltaRight), i5);
+            drawable.setBounds((int) (i + transitionParams.deltaLeft), (int) (i2 + transitionParams.deltaTop), (int) (i + i3 + transitionParams.deltaRight), (int) (i2 + i4 + transitionParams.deltaBottom));
         }
     }
 
@@ -10813,7 +10833,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.statusDrawableAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$createStatusDrawableAnimator$14(z, valueAnimator);
+                    this.f$0.lambda$createStatusDrawableAnimator$15(z, valueAnimator);
                 }
             });
             this.statusDrawableAnimator.addListener(new AnimatorListenerAdapter() {
@@ -10835,7 +10855,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void lambda$createStatusDrawableAnimator$14(boolean z, ValueAnimator valueAnimator) {
+    public void lambda$createStatusDrawableAnimator$15(boolean z, ValueAnimator valueAnimator) {
         this.statusDrawableProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
         if (!z || getParent() == null) {
@@ -13315,7 +13335,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                return ChatMessageCell.lambda$normalizePollPercents$15((ChatMessageCell.PollButton) obj, (ChatMessageCell.PollButton) obj2);
+                return ChatMessageCell.lambda$normalizePollPercents$16((ChatMessageCell.PollButton) obj, (ChatMessageCell.PollButton) obj2);
             }
         });
         int size = arrayList.size();
@@ -13328,7 +13348,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public static int lambda$normalizePollPercents$15(PollButton pollButton, PollButton pollButton2) {
+    public static int lambda$normalizePollPercents$16(PollButton pollButton, PollButton pollButton2) {
         if (pollButton.decimal > pollButton2.decimal) {
             return -1;
         }

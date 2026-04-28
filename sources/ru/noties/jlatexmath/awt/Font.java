@@ -1,12 +1,21 @@
 package ru.noties.jlatexmath.awt;
 
 import android.graphics.Typeface;
+import java.io.InputStream;
 import java.util.Locale;
 
 public class Font {
+    public static final int BOLD = 1;
+    public static final int ITALIC = 2;
+    public static final int PLAIN = 0;
     private float size;
     private int style;
     private final Typeface typeface;
+
+    @Deprecated
+    public static Font createFont(int i, InputStream inputStream) {
+        return null;
+    }
 
     private static int toAndroidStyle(int i) {
         if (i == 0) {
@@ -44,8 +53,20 @@ public class Font {
         return this.typeface;
     }
 
+    public int style() {
+        return this.style;
+    }
+
     public float size() {
         return this.size;
+    }
+
+    public boolean isBold() {
+        return (this.style & 1) != 0;
+    }
+
+    public boolean isItalic() {
+        return (this.style & 2) != 0;
     }
 
     private static Typeface createTypeface(String str, int i) {

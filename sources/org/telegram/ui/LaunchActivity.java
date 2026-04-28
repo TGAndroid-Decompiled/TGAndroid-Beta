@@ -2453,7 +2453,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$81(final java.lang.Runnable r68, final boolean r69, final int r70, final int r71, final java.lang.String r72, final java.lang.String r73, final boolean r74, final java.lang.String r75, final java.lang.String r76, final int r77, final java.lang.String r78, final java.lang.String r79, final java.lang.String r80, final java.lang.String r81, final java.lang.String r82, final java.lang.String r83, final java.lang.String r84, final java.lang.String r85, final java.lang.String r86, final java.lang.String r87, final java.lang.String r88, final java.lang.String r89, final boolean r90, final java.lang.Integer r91, final java.lang.Long r92, final java.lang.Long r93, final java.lang.Integer r94, final java.util.HashMap r95, final java.lang.String r96, final java.lang.String r97, final java.lang.String r98, final java.lang.String r99, final org.telegram.tgnet.TLRPC.TL_wallPaper r100, final java.lang.String r101, final java.lang.String r102, final java.lang.String r103, final int r104, final int r105, final java.lang.String r106, final java.lang.String r107, final java.lang.String r108, final org.telegram.messenger.browser.Browser.Progress r109, final boolean r110, final int r111, final java.lang.String r112, final java.lang.String r113, final boolean r114, final java.lang.String r115, final boolean r116, final boolean r117, final boolean r118, final boolean r119, final boolean r120, final java.lang.String r121, final java.lang.Integer r122, final boolean r123, final byte[] r124, final java.lang.String r125, int[] r126, final java.lang.Long r127) throws java.lang.NumberFormatException {
+    public void lambda$runLinkRequest$81(final java.lang.Runnable r68, final boolean r69, final int r70, final int r71, final java.lang.String r72, final java.lang.String r73, final boolean r74, final java.lang.String r75, final java.lang.String r76, final int r77, final java.lang.String r78, final java.lang.String r79, final java.lang.String r80, final java.lang.String r81, final java.lang.String r82, final java.lang.String r83, final java.lang.String r84, final java.lang.String r85, final java.lang.String r86, final java.lang.String r87, final java.lang.String r88, final java.lang.String r89, final boolean r90, final java.lang.Integer r91, final java.lang.Long r92, final java.lang.Long r93, final java.lang.Integer r94, final java.util.HashMap r95, final java.lang.String r96, final java.lang.String r97, final java.lang.String r98, final java.lang.String r99, final org.telegram.tgnet.TLRPC.TL_wallPaper r100, final java.lang.String r101, final java.lang.String r102, final java.lang.String r103, final int r104, final int r105, final java.lang.String r106, final java.lang.String r107, final java.lang.String r108, final org.telegram.messenger.browser.Browser.Progress r109, final boolean r110, final int r111, final java.lang.String r112, final java.lang.String r113, final boolean r114, final java.lang.String r115, final boolean r116, final boolean r117, final boolean r118, final boolean r119, final boolean r120, final java.lang.String r121, final java.lang.Integer r122, final boolean r123, final byte[] r124, final java.lang.String r125, int[] r126, final java.lang.Long r127) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runLinkRequest$81(java.lang.Runnable, boolean, int, int, java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.Integer, java.lang.Long, java.lang.Long, java.lang.Integer, java.util.HashMap, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$TL_wallPaper, java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, org.telegram.messenger.browser.Browser$Progress, boolean, int, java.lang.String, java.lang.String, boolean, java.lang.String, boolean, boolean, boolean, boolean, boolean, java.lang.String, java.lang.Integer, boolean, byte[], java.lang.String, int[], java.lang.Long):void");
     }
 
@@ -4120,7 +4120,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws java.io.IOException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
@@ -4369,7 +4369,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4614,7 +4614,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() throws Resources.NotFoundException {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;

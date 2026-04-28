@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-public abstract class XLeftRightArrowFactory {
+public class XLeftRightArrowFactory {
     private static final Atom MINUS = SymbolAtom.get("minus");
     private static final Atom LEFT = SymbolAtom.get("leftarrow");
     private static final Atom RIGHT = SymbolAtom.get("rightarrow");

@@ -2,16 +2,23 @@ package org.scilab.forge.jlatexmath;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class MatrixAtom extends Atom {
+    public static final int ALIGN = 2;
+    public static final int ALIGNAT = 3;
+    public static final int ALIGNED = 6;
+    public static final int ALIGNEDAT = 7;
+    public static final int ARRAY = 0;
+    public static final int FLALIGN = 4;
+    public static final int MATRIX = 1;
+    public static final int SMALLMATRIX = 5;
     private boolean isPartial;
     private ArrayOfAtoms matrix;
     private int[] position;
     private boolean spaceAround;
     private int type;
-    private Map vlines;
+    private Map<Integer, VlineAtom> vlines;
     public static SpaceAtom hsep = new SpaceAtom(0, 1.0f, 0.0f, 0.0f);
     public static SpaceAtom semihsep = new SpaceAtom(0, 0.5f, 0.0f, 0.0f);
     public static SpaceAtom vsep_in = new SpaceAtom(1, 0.0f, 1.0f, 0.0f);
@@ -31,6 +38,10 @@ public class MatrixAtom extends Atom {
 
     public MatrixAtom(boolean z, ArrayOfAtoms arrayOfAtoms, String str) {
         this(z, arrayOfAtoms, str, false);
+    }
+
+    public MatrixAtom(ArrayOfAtoms arrayOfAtoms, String str) {
+        this(false, arrayOfAtoms, str);
     }
 
     public MatrixAtom(boolean z, ArrayOfAtoms arrayOfAtoms, int i) {
@@ -67,6 +78,26 @@ public class MatrixAtom extends Atom {
         }
     }
 
+    public MatrixAtom(boolean z, ArrayOfAtoms arrayOfAtoms, int i, int i2) {
+        this(z, arrayOfAtoms, i, i2, true);
+    }
+
+    public MatrixAtom(boolean z, ArrayOfAtoms arrayOfAtoms, int i, int i2, boolean z2) {
+        this.vlines = new HashMap();
+        this.isPartial = z;
+        this.matrix = arrayOfAtoms;
+        this.type = i;
+        this.spaceAround = z2;
+        this.position = new int[arrayOfAtoms.col];
+        for (int i3 = 0; i3 < this.matrix.col; i3++) {
+            this.position[i3] = i2;
+        }
+    }
+
+    public MatrixAtom(ArrayOfAtoms arrayOfAtoms, int i) {
+        this(false, arrayOfAtoms, i);
+    }
+
     private void parsePositions(StringBuffer stringBuffer) throws NumberFormatException {
         int pos;
         int length = stringBuffer.length();
@@ -98,7 +129,7 @@ public class MatrixAtom extends Atom {
                         if (i6 >= arrayOfAtoms.row) {
                             break;
                         }
-                        ((LinkedList) arrayOfAtoms.array.get(i6)).add(arrayList.size(), argument);
+                        arrayOfAtoms.array.get(i6).add(arrayList.size(), argument);
                         i6++;
                     }
                     arrayList.add(5);
@@ -263,7 +294,7 @@ public class MatrixAtom extends Atom {
     }
 
     private Box generateMulticolumn(TeXEnvironment teXEnvironment, Box[] boxArr, float[] fArr, int i, int i2) {
-        MulticolumnAtom multicolumnAtom = (MulticolumnAtom) ((LinkedList) this.matrix.array.get(i)).get(i2);
+        MulticolumnAtom multicolumnAtom = (MulticolumnAtom) this.matrix.array.get(i).get(i2);
         int skipped = multicolumnAtom.getSkipped();
         int i3 = i2;
         float width = 0.0f;
@@ -272,7 +303,7 @@ public class MatrixAtom extends Atom {
             i3++;
             width += f + boxArr[i3].getWidth();
             if (this.vlines.get(Integer.valueOf(i3)) != null) {
-                width += ((VlineAtom) this.vlines.get(Integer.valueOf(i3))).getWidth(teXEnvironment);
+                width += this.vlines.get(Integer.valueOf(i3)).getWidth(teXEnvironment);
             }
         }
         float f2 = width + fArr[i3];

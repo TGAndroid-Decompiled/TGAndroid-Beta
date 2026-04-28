@@ -1,5 +1,7 @@
 package org.telegram.messenger;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import android.util.SparseIntArray;
@@ -14,11 +16,13 @@ import org.telegram.messenger.utils.tlutils.TlUtils;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_forum;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.TypingDotsDrawable;
 import org.telegram.ui.MultiLayoutTypingAnimator;
 
 public class BotForumHelper extends BaseController {
     private static volatile BotForumHelper[] Instance = new BotForumHelper[4];
-    private BotDraftAnimationsPool botDraftAnimationsPool;
     private final DialogTopicIdKeyMap<BotDraftMessage> botTextDraftsByRandomIds;
     private final LongSparseArray<List<MessagesStorage.IntCallback>> pendingBotTopics;
 
@@ -42,7 +46,7 @@ public class BotForumHelper extends BaseController {
         tL_messageReplyHeader.flags |= 2;
         tL_message.media = new TLRPC.TL_messageMediaEmpty();
         tL_message.flags |= 512;
-        MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, true, true);
+        MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, false, true);
         messageObject.isBotPendingDraft = true;
         messageObject.resetLayout();
         return messageObject;
@@ -144,7 +148,6 @@ public class BotForumHelper extends BaseController {
             AndroidUtilities.cancelRunOnUIThread(botDraftMessage.selfDestruct);
         }
         this.botTextDraftsByRandomIds.remove(j, j2, botDraftMessage.randomId);
-        this.botDraftAnimationsPool.bind(botDraftMessage.messageObject.getId(), i2);
         FileLog.d("[BotForum] onDraftNewMessage " + j + " " + i);
         return botDraftMessage.messageObject;
     }
@@ -373,7 +376,6 @@ public class BotForumHelper extends BaseController {
         super(i);
         this.botTextDraftsByRandomIds = new DialogTopicIdKeyMap<>();
         this.pendingBotTopics = new LongSparseArray<>();
-        this.botDraftAnimationsPool = new BotDraftAnimationsPool();
     }
 
     public static BotForumHelper getInstance(int i) {
@@ -395,32 +397,24 @@ public class BotForumHelper extends BaseController {
         return botForumHelper;
     }
 
-    public MultiLayoutTypingAnimator getTypingAnimator(long j, int i, boolean z) {
-        return this.botDraftAnimationsPool.getAnimator(j, i, z);
-    }
-
     public static class BotDraftAnimationsPool {
         private final DialogTopicIdKeyMap<MultiLayoutTypingAnimator> animators = new DialogTopicIdKeyMap<>();
         private final SparseIntArray ids = new SparseIntArray();
 
-        public MultiLayoutTypingAnimator getAnimator(final long j, final int i, boolean z) {
-            int i2 = i > 0 ? this.ids.get(i, 0) : i;
-            if (i2 == 0) {
+        public MultiLayoutTypingAnimator getAnimator(long j, int i, boolean z) {
+            if (i > 0) {
+                i = this.ids.get(i, 0);
+            }
+            if (i == 0) {
                 return null;
             }
-            long j2 = i2;
+            long j2 = i;
             MultiLayoutTypingAnimator multiLayoutTypingAnimator = this.animators.get(j, 0L, j2);
             if (multiLayoutTypingAnimator != null || !z) {
                 return multiLayoutTypingAnimator;
             }
             MultiLayoutTypingAnimator multiLayoutTypingAnimator2 = new MultiLayoutTypingAnimator();
             this.animators.put(j, 0L, j2, multiLayoutTypingAnimator2);
-            multiLayoutTypingAnimator2.setOnFinishListener(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$getAnimator$0(j, i);
-                }
-            });
             return multiLayoutTypingAnimator2;
         }
 
@@ -428,7 +422,7 @@ public class BotForumHelper extends BaseController {
             this.ids.put(i2, i);
         }
 
-        public void lambda$getAnimator$0(long j, int i) {
+        public void removeAnimator(long j, int i) {
             if (i > 0) {
                 i = this.ids.get(i, 0);
             }
@@ -483,6 +477,34 @@ public class BotForumHelper extends BaseController {
             T t = longSparseArray.get(j3);
             longSparseArray.remove(j3);
             return t;
+        }
+    }
+
+    public static CharSequence applyTypingAnimationSpan(CharSequence charSequence) {
+        SpannableStringBuilder spannableStringBuilder;
+        TypingBotSpan[] typingBotSpanArr;
+        if ((charSequence instanceof Spannable) && (typingBotSpanArr = (TypingBotSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), TypingBotSpan.class)) != null && typingBotSpanArr.length > 0) {
+            return charSequence;
+        }
+        if (charSequence instanceof SpannableStringBuilder) {
+            spannableStringBuilder = (SpannableStringBuilder) charSequence;
+        } else {
+            spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        }
+        TypingDotsDrawable typingDotsDrawable = new TypingDotsDrawable(true);
+        typingDotsDrawable.setColor(-1);
+        typingDotsDrawable.start();
+        TypingBotSpan typingBotSpan = new TypingBotSpan(typingDotsDrawable, 1);
+        typingBotSpan.setColorKey(Theme.key_chat_messageTextIn);
+        typingBotSpan.setTopOffset(-AndroidUtilities.dp(10.0f));
+        spannableStringBuilder.append((CharSequence) " _");
+        spannableStringBuilder.setSpan(typingBotSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
+    }
+
+    private static class TypingBotSpan extends ColoredImageSpan {
+        public TypingBotSpan(TypingDotsDrawable typingDotsDrawable, int i) {
+            super(typingDotsDrawable, i);
         }
     }
 }

@@ -2,9 +2,9 @@ package org.scilab.forge.jlatexmath;
 
 import java.util.HashMap;
 
-public abstract class NewCommandMacro {
-    protected static HashMap macrocode = new HashMap();
-    protected static HashMap macroreplacement = new HashMap();
+public class NewCommandMacro {
+    protected static HashMap<String, String> macrocode = new HashMap<>();
+    protected static HashMap<String, String> macroreplacement = new HashMap<>();
 
     public static void addNewCommand(String str, String str2, int i) {
         macrocode.put(str, str2);
@@ -30,5 +30,9 @@ public abstract class NewCommandMacro {
         }
         macrocode.put(str, str2);
         MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i));
+    }
+
+    public java.lang.String executeMacro(org.scilab.forge.jlatexmath.TeXParser r7, java.lang.String[] r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.NewCommandMacro.executeMacro(org.scilab.forge.jlatexmath.TeXParser, java.lang.String[]):java.lang.String");
     }
 }

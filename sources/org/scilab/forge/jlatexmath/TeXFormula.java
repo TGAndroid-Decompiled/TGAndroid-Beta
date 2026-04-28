@@ -1,5 +1,7 @@
 package org.scilab.forge.jlatexmath;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.lang.Character;
 import java.util.HashMap;
@@ -9,22 +11,32 @@ import java.util.Map;
 import org.scilab.forge.jlatexmath.cyrillic.CyrillicRegistration;
 import org.scilab.forge.jlatexmath.greek.GreekRegistration;
 import ru.noties.jlatexmath.awt.Color;
+import ru.noties.jlatexmath.awt.GraphicsEnvironment;
+import ru.noties.jlatexmath.awt.Toolkit;
 
 public class TeXFormula {
+    public static final int BOLD = 2;
     public static float FONT_SCALE_FACTOR = 100.0f;
+    public static final int ITALIC = 4;
     public static float PIXELS_PER_POINT = 1.0f;
+    protected static final float PREC = 1.0E-7f;
+    public static final int ROMAN = 8;
+    public static final int SANSSERIF = 1;
+    public static final int SERIF = 0;
+    public static final int TYPEWRITER = 16;
+    public static final String VERSION = "1.0.3";
     public boolean isColored;
-    protected Map jlmXMLMap;
-    public List middle;
+    protected Map<String, String> jlmXMLMap;
+    public List<MiddleAtom> middle;
     private TeXParser parser;
     public Atom root;
     public String textStyle;
-    public static Map predefinedTeXFormulas = new HashMap(150);
-    public static Map predefinedTeXFormulasAsString = new HashMap(150);
+    public static Map<String, TeXFormula> predefinedTeXFormulas = new HashMap(150);
+    public static Map<String, String> predefinedTeXFormulasAsString = new HashMap(150);
     public static String[] symbolMappings = new String[65536];
     public static String[] symbolTextMappings = new String[65536];
     public static String[] symbolFormulaMappings = new String[65536];
-    public static Map externalFontMap = new HashMap();
+    public static Map<Character.UnicodeBlock, FontInfos> externalFontMap = new HashMap();
 
     static {
         TeXFormulaSettingsParser teXFormulaSettingsParser = new TeXFormulaSettingsParser();
@@ -40,6 +52,14 @@ public class TeXFormula {
         }
     }
 
+    public static void addSymbolMappings(String str) {
+        try {
+            addSymbolMappings(new FileInputStream(str), str);
+        } catch (FileNotFoundException e) {
+            throw new ResourceParseException(str, e);
+        }
+    }
+
     public static void addSymbolMappings(InputStream inputStream, String str) {
         TeXFormulaSettingsParser teXFormulaSettingsParser = new TeXFormulaSettingsParser(inputStream, str);
         teXFormulaSettingsParser.parseSymbolMappings(symbolMappings, symbolTextMappings);
@@ -51,7 +71,7 @@ public class TeXFormula {
     }
 
     public static FontInfos getExternalFont(Character.UnicodeBlock unicodeBlock) {
-        FontInfos fontInfos = (FontInfos) externalFontMap.get(unicodeBlock);
+        FontInfos fontInfos = externalFontMap.get(unicodeBlock);
         if (fontInfos != null) {
             return fontInfos;
         }
@@ -60,12 +80,49 @@ public class TeXFormula {
         return fontInfos2;
     }
 
+    public static void registerExternalFont(Character.UnicodeBlock unicodeBlock, String str, String str2) {
+        if (str == null && str2 == null) {
+            externalFontMap.remove(unicodeBlock);
+            return;
+        }
+        externalFontMap.put(unicodeBlock, new FontInfos(str, str2));
+        if (unicodeBlock.equals(Character.UnicodeBlock.BASIC_LATIN)) {
+            predefinedTeXFormulas.clear();
+        }
+    }
+
+    public static void registerExternalFont(Character.UnicodeBlock unicodeBlock, String str) {
+        registerExternalFont(unicodeBlock, str, str);
+    }
+
+    public static void setDPITarget(float f) {
+        PIXELS_PER_POINT = f / 72.0f;
+    }
+
+    public static void setDefaultDPI() {
+        if (GraphicsEnvironment.isHeadless()) {
+            return;
+        }
+        setDPITarget(Toolkit.getDefaultToolkit().getScreenResolution());
+    }
+
     public TeXFormula() {
         this.middle = new LinkedList();
         this.root = null;
         this.textStyle = null;
         this.isColored = false;
         this.parser = new TeXParser("", this, false);
+    }
+
+    public TeXFormula(String str, Map<String, String> map) {
+        this.middle = new LinkedList();
+        this.root = null;
+        this.textStyle = null;
+        this.isColored = false;
+        this.jlmXMLMap = map;
+        TeXParser teXParser = new TeXParser(str, this);
+        this.parser = teXParser;
+        teXParser.parse();
     }
 
     public TeXFormula(String str) {
@@ -92,6 +149,16 @@ public class TeXFormula {
         teXParser.parse();
     }
 
+    public TeXFormula(String str, String str2, boolean z, boolean z2) {
+        this.middle = new LinkedList();
+        this.root = null;
+        this.isColored = false;
+        this.textStyle = str2;
+        TeXParser teXParser = new TeXParser(str, this, z, z2);
+        this.parser = teXParser;
+        teXParser.parse();
+    }
+
     public TeXFormula(TeXFormula teXFormula) {
         this.middle = new LinkedList();
         this.root = null;
@@ -100,6 +167,15 @@ public class TeXFormula {
         if (teXFormula != null) {
             addImpl(teXFormula);
         }
+    }
+
+    protected TeXFormula(TeXParser teXParser) {
+        this.middle = new LinkedList();
+        this.root = null;
+        this.textStyle = null;
+        this.isColored = false;
+        this.jlmXMLMap = teXParser.formula.jlmXMLMap;
+        this.parser = new TeXParser(teXParser.getIsPartial(), "", this, false);
     }
 
     protected TeXFormula(TeXParser teXParser, String str) {
@@ -173,6 +249,51 @@ public class TeXFormula {
         teXParser2.parse();
     }
 
+    public static TeXFormula getAsText(String str, int i) {
+        TeXFormula teXFormula = new TeXFormula();
+        if (str == null || "".equals(str)) {
+            teXFormula.add(new EmptyAtom());
+            return teXFormula;
+        }
+        String[] strArrSplit = str.split("\n|\\\\\\\\|\\\\cr");
+        ArrayOfAtoms arrayOfAtoms = new ArrayOfAtoms();
+        for (String str2 : strArrSplit) {
+            arrayOfAtoms.add(new RomanAtom(new TeXFormula(str2, "mathnormal", true, false).root));
+            arrayOfAtoms.addRow();
+        }
+        arrayOfAtoms.checkDimensions();
+        teXFormula.add(new MatrixAtom(false, arrayOfAtoms, 0, i));
+        return teXFormula;
+    }
+
+    public static TeXFormula getPartialTeXFormula(String str) {
+        TeXFormula teXFormula = new TeXFormula();
+        if (str == null) {
+            teXFormula.add(new EmptyAtom());
+            return teXFormula;
+        }
+        try {
+            new TeXParser(true, str, teXFormula).parse();
+        } catch (Exception unused) {
+            if (teXFormula.root == null) {
+                teXFormula.root = new EmptyAtom();
+            }
+        }
+        return teXFormula;
+    }
+
+    public static void registerFonts(boolean z) {
+        DefaultTeXFontParser.registerFonts(z);
+    }
+
+    public void setLaTeX(String str) {
+        this.parser.reset(str);
+        if (str == null || str.length() == 0) {
+            return;
+        }
+        this.parser.parse();
+    }
+
     public TeXFormula add(Atom atom) {
         int rightType;
         if (atom != null) {
@@ -203,6 +324,10 @@ public class TeXFormula {
         return this;
     }
 
+    public TeXFormula append(String str) {
+        return append(false, str);
+    }
+
     public TeXFormula append(boolean z, String str) {
         if (str != null && str.length() != 0) {
             new TeXParser(z, str, this).parse();
@@ -224,6 +349,46 @@ public class TeXFormula {
                 add(atom);
             }
         }
+    }
+
+    public void setLookAtLastAtom(boolean z) {
+        Atom atom = this.root;
+        if (atom instanceof RowAtom) {
+            ((RowAtom) atom).lookAtLastAtom = z;
+        }
+    }
+
+    public boolean getLookAtLastAtom() {
+        Atom atom = this.root;
+        if (atom instanceof RowAtom) {
+            return ((RowAtom) atom).lookAtLastAtom;
+        }
+        return false;
+    }
+
+    public TeXFormula centerOnAxis() {
+        this.root = new VCenteredAtom(this.root);
+        return this;
+    }
+
+    public static void addPredefinedTeXFormula(InputStream inputStream) {
+        new PredefinedTeXFormulaParser(inputStream, "TeXFormula").parse(predefinedTeXFormulas);
+    }
+
+    public static void addPredefinedCommands(InputStream inputStream) {
+        new PredefinedTeXFormulaParser(inputStream, "Command").parse(MacroInfo.Commands);
+    }
+
+    public TeXFormula addStrut(int i, float f, float f2, float f3) {
+        return add(new SpaceAtom(i, f, f2, f3));
+    }
+
+    public TeXFormula addStrut(int i) {
+        return add(new SpaceAtom(i));
+    }
+
+    public TeXFormula addStrut(int i, float f, int i2, float f2, int i3, float f3) {
+        return add(new SpaceAtom(i, f, i2, f2, i3, f3));
     }
 
     public Box createBox(TeXEnvironment teXEnvironment) {
@@ -283,8 +448,46 @@ public class TeXFormula {
             return this;
         }
 
+        public TeXIconBuilder setType(int i) {
+            this.type = Integer.valueOf(i);
+            return this;
+        }
+
         public TeXIconBuilder setFGColor(Color color) {
             this.fgcolor = color;
+            return this;
+        }
+
+        public TeXIconBuilder setTrueValues(boolean z) {
+            this.trueValues = z;
+            return this;
+        }
+
+        public TeXIconBuilder setWidth(int i, float f, int i2) {
+            this.widthUnit = Integer.valueOf(i);
+            this.textWidth = Float.valueOf(f);
+            this.align = Integer.valueOf(i2);
+            this.trueValues = true;
+            return this;
+        }
+
+        public TeXIconBuilder setIsMaxWidth(boolean z) {
+            if (this.widthUnit == null) {
+                throw new IllegalStateException("Cannot set 'isMaxWidth' without having specified a width!");
+            }
+            if (z) {
+                this.align = 0;
+            }
+            this.isMaxWidth = z;
+            return this;
+        }
+
+        public TeXIconBuilder setInterLineSpacing(int i, float f) {
+            if (this.widthUnit == null) {
+                throw new IllegalStateException("Cannot set inter line spacing without having specified a width!");
+            }
+            this.interLineUnit = Integer.valueOf(i);
+            this.interLineSpacing = Float.valueOf(f);
             return this;
         }
 
@@ -330,10 +533,73 @@ public class TeXFormula {
         }
     }
 
+    public TeXIcon createTeXIcon(int i, float f) {
+        return new TeXIconBuilder().setStyle(i).setSize(f).build();
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, int i2) {
+        return new TeXIconBuilder().setStyle(i).setSize(f).setType(i2).build();
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, int i2, Color color) {
+        return new TeXIconBuilder().setStyle(i).setSize(f).setType(i2).setFGColor(color).build();
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, boolean z) {
+        return new TeXIconBuilder().setStyle(i).setSize(f).setTrueValues(z).build();
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, int i2, float f2, int i3) {
+        return createTeXIcon(i, f, 0, i2, f2, i3);
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, int i2, int i3, float f2, int i4) {
+        return new TeXIconBuilder().setStyle(i).setSize(f).setType(i2).setWidth(i3, f2, i4).build();
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, int i2, float f2, int i3, int i4, float f3) {
+        return createTeXIcon(i, f, 0, i2, f2, i3, i4, f3);
+    }
+
+    public TeXIcon createTeXIcon(int i, float f, int i2, int i3, float f2, int i4, int i5, float f3) {
+        return new TeXIconBuilder().setStyle(i).setSize(f).setType(i2).setWidth(i3, f2, i4).setInterLineSpacing(i5, f3).build();
+    }
+
+    public void setDEBUG(boolean z) {
+        Box.DEBUG = z;
+    }
+
+    public TeXFormula setBackground(Color color) {
+        if (color != null) {
+            if (this.root instanceof ColorAtom) {
+                this.root = new ColorAtom(color, (Color) null, (ColorAtom) this.root);
+            } else {
+                this.root = new ColorAtom(this.root, color, (Color) null);
+            }
+        }
+        return this;
+    }
+
+    public TeXFormula setColor(Color color) {
+        if (color != null) {
+            if (this.root instanceof ColorAtom) {
+                this.root = new ColorAtom((Color) null, color, (ColorAtom) this.root);
+            } else {
+                this.root = new ColorAtom(this.root, (Color) null, color);
+            }
+        }
+        return this;
+    }
+
+    public TeXFormula setFixedTypes(int i, int i2) {
+        this.root = new TypedAtom(i, i2, this.root);
+        return this;
+    }
+
     public static TeXFormula get(String str) {
-        TeXFormula teXFormula = (TeXFormula) predefinedTeXFormulas.get(str);
+        TeXFormula teXFormula = predefinedTeXFormulas.get(str);
         if (teXFormula == null) {
-            String str2 = (String) predefinedTeXFormulasAsString.get(str);
+            String str2 = predefinedTeXFormulasAsString.get(str);
             if (str2 == null) {
                 throw new FormulaNotFoundException(str);
             }

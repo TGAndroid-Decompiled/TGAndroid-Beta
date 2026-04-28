@@ -9,7 +9,7 @@ import ru.noties.jlatexmath.awt.Color;
 import ru.noties.jlatexmath.awt.Graphics2D;
 
 public class HorizontalBox extends Box {
-    protected List breakPositions;
+    protected List<Integer> breakPositions;
     private float curPos;
 
     public HorizontalBox(Box box, float f, int i) {
@@ -66,11 +66,11 @@ public class HorizontalBox extends Box {
     @Override
     public void draw(Graphics2D graphics2D, float f, float f2) {
         startDraw(graphics2D, f, f2);
-        Iterator it = this.children.iterator();
+        Iterator<Box> it = this.children.iterator();
         while (it.hasNext()) {
-            Box box = (Box) it.next();
-            box.draw(graphics2D, f, box.shift + f2);
-            f += box.getWidth();
+            Box next = it.next();
+            next.draw(graphics2D, f, next.shift + f2);
+            f += next.getWidth();
         }
         endDraw(graphics2D);
     }
@@ -95,11 +95,11 @@ public class HorizontalBox extends Box {
 
     @Override
     public int getLastFontId() {
-        LinkedList linkedList = this.children;
-        ListIterator listIterator = linkedList.listIterator(linkedList.size());
+        LinkedList<Box> linkedList = this.children;
+        ListIterator<Box> listIterator = linkedList.listIterator(linkedList.size());
         int lastFontId = -1;
         while (lastFontId == -1 && listIterator.hasPrevious()) {
-            lastFontId = ((Box) listIterator.previous()).getLastFontId();
+            lastFontId = listIterator.previous().getLastFontId();
         }
         return lastFontId;
     }
@@ -123,15 +123,15 @@ public class HorizontalBox extends Box {
         HorizontalBox horizontalBoxCloneBox = cloneBox();
         HorizontalBox horizontalBoxCloneBox2 = cloneBox();
         for (int i3 = 0; i3 <= i; i3++) {
-            horizontalBoxCloneBox.add((Box) this.children.get(i3));
+            horizontalBoxCloneBox.add(this.children.get(i3));
         }
         for (int i4 = i2 + i; i4 < this.children.size(); i4++) {
-            horizontalBoxCloneBox2.add((Box) this.children.get(i4));
+            horizontalBoxCloneBox2.add(this.children.get(i4));
         }
         if (this.breakPositions != null) {
             for (int i5 = 0; i5 < this.breakPositions.size(); i5++) {
-                if (((Integer) this.breakPositions.get(i5)).intValue() > i + 1) {
-                    horizontalBoxCloneBox2.addBreakPosition((((Integer) this.breakPositions.get(i5)).intValue() - i) - 1);
+                if (this.breakPositions.get(i5).intValue() > i + 1) {
+                    horizontalBoxCloneBox2.addBreakPosition((this.breakPositions.get(i5).intValue() - i) - 1);
                 }
             }
         }

@@ -1552,7 +1552,7 @@ public class AndroidUtilities {
 
     public static void fillStatusBarHeight(Context context, boolean z) {
         if (context != null) {
-            if (statusBarHeight <= 0 || z) {
+            if ((statusBarHeight <= 0 || z) && BuildVars.USE_LEGACY_SYSTEM_INSETS) {
                 statusBarHeight = getStatusBarHeight(context);
                 navigationBarHeight = getNavigationBarHeight(context);
             }

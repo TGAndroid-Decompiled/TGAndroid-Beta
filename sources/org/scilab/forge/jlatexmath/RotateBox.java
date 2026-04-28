@@ -1,9 +1,21 @@
 package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
-import ru.noties.jlatexmath.awt.geom.Point2D$Float;
+import ru.noties.jlatexmath.awt.geom.Point2D;
 
 public class RotateBox extends Box {
+    public static final int BBC = 8;
+    public static final int BBL = 6;
+    public static final int BBR = 7;
+    public static final int BC = 1;
+    public static final int BL = 0;
+    public static final int BR = 2;
+    public static final int CC = 10;
+    public static final int CL = 9;
+    public static final int CR = 11;
+    public static final int TC = 4;
+    public static final int TL = 3;
+    public static final int TR = 5;
     protected double angle;
     private Box box;
     private float shiftX;
@@ -51,8 +63,8 @@ public class RotateBox extends Box {
         this.depth = (-fMin) - f16;
     }
 
-    public RotateBox(Box box, double d, Point2D$Float point2D$Float) {
-        this(box, d, point2D$Float.x, point2D$Float.y);
+    public RotateBox(Box box, double d, Point2D.Float r10) {
+        this(box, d, r10.x, r10.y);
     }
 
     public RotateBox(Box box, double d, int i) {
@@ -102,59 +114,59 @@ public class RotateBox extends Box {
         return (str.equals("Br") || str.equals("rB")) ? 7 : 6;
     }
 
-    private static Point2D$Float calculateShift(Box box, int i) {
-        Point2D$Float point2D$Float = new Point2D$Float(0.0f, -box.depth);
+    private static Point2D.Float calculateShift(Box box, int i) {
+        Point2D.Float r0 = new Point2D.Float(0.0f, -box.depth);
         switch (i) {
             case 0:
-                point2D$Float.x = 0.0f;
-                point2D$Float.y = -box.depth;
-                return point2D$Float;
+                r0.x = 0.0f;
+                r0.y = -box.depth;
+                return r0;
             case 1:
-                point2D$Float.x = box.width / 2.0f;
-                point2D$Float.y = -box.depth;
-                return point2D$Float;
+                r0.x = box.width / 2.0f;
+                r0.y = -box.depth;
+                return r0;
             case 2:
-                point2D$Float.x = box.width;
-                point2D$Float.y = -box.depth;
-                return point2D$Float;
+                r0.x = box.width;
+                r0.y = -box.depth;
+                return r0;
             case 3:
-                point2D$Float.x = 0.0f;
-                point2D$Float.y = box.height;
-                return point2D$Float;
+                r0.x = 0.0f;
+                r0.y = box.height;
+                return r0;
             case 4:
-                point2D$Float.x = box.width / 2.0f;
-                point2D$Float.y = box.height;
-                return point2D$Float;
+                r0.x = box.width / 2.0f;
+                r0.y = box.height;
+                return r0;
             case 5:
-                point2D$Float.x = box.width;
-                point2D$Float.y = box.height;
-                return point2D$Float;
+                r0.x = box.width;
+                r0.y = box.height;
+                return r0;
             case 6:
-                point2D$Float.x = 0.0f;
-                point2D$Float.y = 0.0f;
-                return point2D$Float;
+                r0.x = 0.0f;
+                r0.y = 0.0f;
+                return r0;
             case 7:
-                point2D$Float.x = box.width;
-                point2D$Float.y = 0.0f;
-                return point2D$Float;
+                r0.x = box.width;
+                r0.y = 0.0f;
+                return r0;
             case 8:
-                point2D$Float.x = box.width / 2.0f;
-                point2D$Float.y = 0.0f;
-                return point2D$Float;
+                r0.x = box.width / 2.0f;
+                r0.y = 0.0f;
+                return r0;
             case 9:
-                point2D$Float.x = 0.0f;
-                point2D$Float.y = (box.height - box.depth) / 2.0f;
-                return point2D$Float;
+                r0.x = 0.0f;
+                r0.y = (box.height - box.depth) / 2.0f;
+                return r0;
             case 10:
-                point2D$Float.x = box.width / 2.0f;
-                point2D$Float.y = (box.height - box.depth) / 2.0f;
-                return point2D$Float;
+                r0.x = box.width / 2.0f;
+                r0.y = (box.height - box.depth) / 2.0f;
+                return r0;
             case 11:
-                point2D$Float.x = box.width;
-                point2D$Float.y = (box.height - box.depth) / 2.0f;
-                return point2D$Float;
+                r0.x = box.width;
+                r0.y = (box.height - box.depth) / 2.0f;
+                return r0;
             default:
-                return point2D$Float;
+                return r0;
         }
     }
 

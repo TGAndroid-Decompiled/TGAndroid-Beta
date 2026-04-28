@@ -73,6 +73,14 @@ public class AffineTransform implements Cloneable {
         return this.canvas;
     }
 
+    public float translateX() {
+        return this.translateX;
+    }
+
+    public float translateY() {
+        return this.translateY;
+    }
+
     public AffineTransform clone() {
         AffineTransform affineTransform = new AffineTransform(this, this.canvas);
         affineTransform.setScale(this.scaleX, this.scaleY);

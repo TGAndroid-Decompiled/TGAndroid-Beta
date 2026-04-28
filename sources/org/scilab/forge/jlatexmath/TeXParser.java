@@ -5,8 +5,52 @@ import java.util.Set;
 import ru.noties.jlatexmath.awt.Color;
 
 public class TeXParser {
+    private static final char BACKPRIME = 8245;
+    private static final char DEGRE = 176;
+    private static final char DOLLAR = '$';
+    private static final char DQUOTE = '\"';
+    private static final char ESCAPE = '\\';
+    private static final char L_BRACK = '[';
+    private static final char L_GROUP = '{';
+    private static final char PERCENT = '%';
+    private static final char PRIME = '\'';
+    private static final char R_BRACK = ']';
+    private static final char R_GROUP = '}';
+    private static final char SUBEIGHT = 8328;
+    private static final char SUBEQUAL = 8332;
+    private static final char SUBFIVE = 8325;
+    private static final char SUBFOUR = 8324;
+    private static final char SUBLPAR = 8333;
+    private static final char SUBMINUS = 8331;
+    private static final char SUBNINE = 8329;
+    private static final char SUBONE = 8321;
+    private static final char SUBPLUS = 8330;
+    private static final char SUBRPAR = 8334;
+    private static final char SUBSEVEN = 8327;
+    private static final char SUBSIX = 8326;
+    private static final char SUBTHREE = 8323;
+    private static final char SUBTWO = 8322;
+    private static final char SUBZERO = 8320;
+    private static final char SUB_SCRIPT = '_';
+    private static final char SUPEIGHT = 8312;
+    private static final char SUPEQUAL = 8316;
+    private static final char SUPER_SCRIPT = '^';
+    private static final char SUPFIVE = 8309;
+    private static final char SUPFOUR = 8308;
+    private static final char SUPLPAR = 8317;
+    private static final char SUPMINUS = 8315;
+    private static final char SUPN = 8319;
+    private static final char SUPNINE = 8313;
+    private static final char SUPONE = 185;
+    private static final char SUPPLUS = 8314;
+    private static final char SUPRPAR = 8318;
+    private static final char SUPSEVEN = 8311;
+    private static final char SUPSIX = 8310;
+    private static final char SUPTHREE = 179;
+    private static final char SUPTWO = 178;
+    private static final char SUPZERO = 8304;
     protected static boolean isLoading = false;
-    private static final Set unparsedContents;
+    private static final Set<String> unparsedContents;
     private boolean arrayMode;
     private int atIsLetter;
     private int col;
@@ -127,9 +171,35 @@ public class TeXParser {
         this.arrayMode = true;
     }
 
+    public TeXParser(String str, ArrayOfAtoms arrayOfAtoms, boolean z) {
+        this(false, str, (TeXFormula) arrayOfAtoms, z);
+    }
+
     public TeXParser(boolean z, String str, TeXFormula teXFormula, boolean z2, boolean z3) {
         this(z, str, teXFormula, z2);
         this.ignoreWhiteSpace = z3;
+    }
+
+    public TeXParser(String str, TeXFormula teXFormula, boolean z, boolean z2) {
+        this(false, str, teXFormula, z);
+        this.ignoreWhiteSpace = z2;
+    }
+
+    public void reset(String str) {
+        StringBuffer stringBuffer = new StringBuffer(str);
+        this.parseString = stringBuffer;
+        this.len = stringBuffer.length();
+        this.formula.root = null;
+        this.pos = 0;
+        this.spos = 0;
+        this.line = 0;
+        this.col = 0;
+        this.group = 0;
+        this.insertion = false;
+        this.atIsLetter = 0;
+        this.arrayMode = false;
+        this.ignoreWhiteSpace = true;
+        firstpass();
     }
 
     public boolean getIsPartial() {
@@ -173,8 +243,16 @@ public class TeXParser {
         this.atIsLetter--;
     }
 
+    public boolean isAtLetter() {
+        return this.atIsLetter != 0;
+    }
+
     public boolean isArrayMode() {
         return this.arrayMode;
+    }
+
+    public void setArrayMode(boolean z) {
+        this.arrayMode = z;
     }
 
     public boolean isIgnoreWhiteSpace() {
@@ -187,6 +265,12 @@ public class TeXParser {
 
     public int getPos() {
         return this.pos;
+    }
+
+    public int rewind(int i) {
+        int i2 = this.pos - i;
+        this.pos = i2;
+        return i2;
     }
 
     public String getStringFromCurrentPos() {
@@ -601,7 +685,7 @@ public class TeXParser {
                 if (!this.isPartial) {
                     throw new ParseException("Unknown symbol or command or predefined TeXFormula: '" + command + "'");
                 }
-                return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash " + command).root), null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash " + command).root), (Color) null, Color.RED);
             }
         } catch (FormulaNotFoundException unused2) {
             return SymbolAtom.get(command);
@@ -673,7 +757,7 @@ public class TeXParser {
         if (str.equals("left")) {
             return getGroup("\\left", "\\right");
         }
-        MacroInfo macroInfo = (MacroInfo) MacroInfo.Commands.get(str);
+        MacroInfo macroInfo = MacroInfo.Commands.get(str);
         if (macroInfo != null) {
             int i = 0;
             String[] optsArgs = getOptsArgs(macroInfo.nbArgs, macroInfo.hasOptions ? macroInfo.posOpts : 0);
@@ -702,7 +786,7 @@ public class TeXParser {
     }
 
     private Atom processCommands(String str) {
-        MacroInfo macroInfo = (MacroInfo) MacroInfo.Commands.get(str);
+        MacroInfo macroInfo = MacroInfo.Commands.get(str);
         String[] optsArgs = getOptsArgs(macroInfo.nbArgs, macroInfo.hasOptions ? macroInfo.posOpts : 0);
         optsArgs[0] = str;
         if (NewCommandMacro.isMacro(str)) {

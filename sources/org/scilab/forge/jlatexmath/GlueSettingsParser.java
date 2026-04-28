@@ -10,11 +10,12 @@ import org.w3c.dom.NodeList;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 
 public class GlueSettingsParser {
+    private static final String RESOURCE_NAME = "GlueSettings.xml";
     private Glue[] glueTypes;
     private Element root;
-    private final Map typeMappings = new HashMap();
-    private final Map glueTypeMappings = new HashMap();
-    private final Map styleMappings = new HashMap();
+    private final Map<String, Integer> typeMappings = new HashMap();
+    private final Map<String, Integer> glueTypeMappings = new HashMap();
+    private final Map<String, Integer> styleMappings = new HashMap();
 
     public GlueSettingsParser() {
         try {
@@ -127,18 +128,18 @@ public class GlueSettingsParser {
                 while (i2 < elementsByTagName2.getLength()) {
                     String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("name", (Element) elementsByTagName2.item(i2));
                     NodeList nodeList = elementsByTagName;
-                    Object obj = this.typeMappings.get(attrValueAndCheckIfNotNull);
+                    Integer num = this.typeMappings.get(attrValueAndCheckIfNotNull);
                     NodeList nodeList2 = elementsByTagName2;
-                    Object obj2 = this.typeMappings.get(attrValueAndCheckIfNotNull2);
+                    Integer num2 = this.typeMappings.get(attrValueAndCheckIfNotNull2);
                     int i3 = i;
-                    Object obj3 = this.styleMappings.get(attrValueAndCheckIfNotNull4);
+                    Integer num3 = this.styleMappings.get(attrValueAndCheckIfNotNull4);
                     int i4 = i2;
-                    Object obj4 = this.glueTypeMappings.get(attrValueAndCheckIfNotNull3);
-                    checkMapping(obj, "Glue", "lefttype", attrValueAndCheckIfNotNull);
-                    checkMapping(obj2, "Glue", "righttype", attrValueAndCheckIfNotNull2);
-                    checkMapping(obj4, "Glue", "gluetype", attrValueAndCheckIfNotNull3);
-                    checkMapping(obj3, "Style", "name", attrValueAndCheckIfNotNull4);
-                    iArr[((Integer) obj).intValue()][((Integer) obj2).intValue()][((Integer) obj3).intValue()] = ((Integer) obj4).intValue();
+                    Integer num4 = this.glueTypeMappings.get(attrValueAndCheckIfNotNull3);
+                    checkMapping(num, "Glue", "lefttype", attrValueAndCheckIfNotNull);
+                    checkMapping(num2, "Glue", "righttype", attrValueAndCheckIfNotNull2);
+                    checkMapping(num4, "Glue", "gluetype", attrValueAndCheckIfNotNull3);
+                    checkMapping(num3, "Style", "name", attrValueAndCheckIfNotNull4);
+                    iArr[num.intValue()][num2.intValue()][num3.intValue()] = num4.intValue();
                     i2 = i4 + 1;
                     elementsByTagName = nodeList;
                     elementsByTagName2 = nodeList2;

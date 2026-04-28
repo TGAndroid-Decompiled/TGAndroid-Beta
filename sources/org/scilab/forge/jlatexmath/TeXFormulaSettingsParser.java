@@ -7,6 +7,8 @@ import org.w3c.dom.NodeList;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 
 public class TeXFormulaSettingsParser {
+    public static final String CHARTODEL_MAPPING_EL = "Map";
+    public static final String RESOURCE_NAME = "TeXFormulaSettings.xml";
     private Element root;
 
     public TeXFormulaSettingsParser() {

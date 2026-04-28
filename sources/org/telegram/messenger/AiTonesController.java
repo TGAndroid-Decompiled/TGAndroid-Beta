@@ -1,23 +1,30 @@
 package org.telegram.messenger;
 
+import j$.util.Base64;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 
 public final class AiTonesController {
     public final int currentAccount;
     public long hash;
+    public boolean open;
     public final ArrayList<TL_aicompose.AiComposeTone> tones = new ArrayList<>();
     private int requestId = -1;
     private long requestedTime = 0;
 
-    private void save() {
-    }
-
     public AiTonesController(int i) {
         this.currentAccount = i;
+    }
+
+    public void invalidate() {
+        this.requestedTime = 0L;
+        if (this.open) {
+            load();
+        }
     }
 
     public void request() {
@@ -65,7 +72,30 @@ public final class AiTonesController {
     }
 
     public void load() {
+        try {
+            String string = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("ai_styles", null);
+            if (string != null) {
+                SerializedData serializedData = new SerializedData(Base64.getDecoder().decode(string));
+                TL_aicompose.Tones tonesTLdeserialize = TL_aicompose.Tones.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (tonesTLdeserialize instanceof TL_aicompose.TL_tones) {
+                    this.hash = ((TL_aicompose.TL_tones) tonesTLdeserialize).hash;
+                    this.tones.clear();
+                    this.tones.addAll(((TL_aicompose.TL_tones) tonesTLdeserialize).tones);
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
         request();
+    }
+
+    private void save() {
+        TL_aicompose.TL_tones tL_tones = new TL_aicompose.TL_tones();
+        tL_tones.hash = this.hash;
+        tL_tones.tones.addAll(this.tones);
+        SerializedData serializedData = new SerializedData(tL_tones.getObjectSize());
+        tL_tones.serializeToStream(serializedData);
+        MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putString("ai_styles", Base64.getEncoder().encodeToString(serializedData.toByteArray())).apply();
     }
 
     public void edit(TL_aicompose.TL_aiComposeTone tL_aiComposeTone) {
@@ -76,6 +106,16 @@ public final class AiTonesController {
                 return;
             }
         }
+    }
+
+    public int getSavedTonesCount() {
+        int i = 0;
+        for (int i2 = 0; i2 < this.tones.size(); i2++) {
+            if (this.tones.get(i2) instanceof TL_aicompose.TL_aiComposeTone) {
+                i++;
+            }
+        }
+        return i;
     }
 
     public void remove(TL_aicompose.AiComposeTone aiComposeTone) {

@@ -21,7 +21,7 @@ import org.telegram.ui.Components.glass.GlassTabView;
 
 public class MainTabsLayout extends AnimatedLinearLayout {
     private float animatedLongSelectedViewCenterX;
-    private float animatedLongSelectedViewWidth;
+    private float animatedLongSelectedViewOffsetX;
     private int biggestTabTextWidth;
     private final ClickHelper clickHelper;
     private boolean drawCustomSelector;
@@ -33,7 +33,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
     private final Runnable restoreDrawSelector;
     final SpringAnimation scaleX;
     final SpringAnimation scaleY;
-    final SpringAnimation selectedTabPositionWidth;
+    final SpringAnimation selectedTabPositionOffsetX;
     final SpringAnimation selectedTabPositionX;
     final Paint selectorPaint;
     private int[] tabsLeftPos;
@@ -61,7 +61,20 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         this.scaleX = springAnimation;
         SpringAnimation springAnimation2 = new SpringAnimation(this, DynamicAnimation.SCALE_Y, 1.0f);
         this.scaleY = springAnimation2;
-        SpringAnimation springAnimation3 = new SpringAnimation(this, new FloatPropertyCompat("selectedTabPositionX") {
+        SpringAnimation springAnimation3 = new SpringAnimation(this, new FloatPropertyCompat("selectedTabPositionOffsetX") {
+            @Override
+            public float getValue(MainTabsLayout mainTabsLayout) {
+                return mainTabsLayout.animatedLongSelectedViewOffsetX;
+            }
+
+            @Override
+            public void setValue(MainTabsLayout mainTabsLayout, float f) {
+                mainTabsLayout.animatedLongSelectedViewOffsetX = f;
+                mainTabsLayout.invalidate();
+            }
+        });
+        this.selectedTabPositionOffsetX = springAnimation3;
+        SpringAnimation springAnimation4 = new SpringAnimation(this, new FloatPropertyCompat("selectedTabPositionX") {
             @Override
             public float getValue(MainTabsLayout mainTabsLayout) {
                 return mainTabsLayout.animatedLongSelectedViewCenterX;
@@ -73,23 +86,10 @@ public class MainTabsLayout extends AnimatedLinearLayout {
                 mainTabsLayout.invalidate();
             }
         });
-        this.selectedTabPositionX = springAnimation3;
-        SpringAnimation springAnimation4 = new SpringAnimation(this, new FloatPropertyCompat("selectedTabPositionWidth") {
-            @Override
-            public float getValue(MainTabsLayout mainTabsLayout) {
-                return mainTabsLayout.animatedLongSelectedViewWidth;
-            }
-
-            @Override
-            public void setValue(MainTabsLayout mainTabsLayout, float f) {
-                mainTabsLayout.animatedLongSelectedViewWidth = f;
-                mainTabsLayout.invalidate();
-            }
-        });
-        this.selectedTabPositionWidth = springAnimation4;
+        this.selectedTabPositionX = springAnimation4;
+        springAnimation3.setSpring(new SpringForce(1.0f).setStiffness(1500.0f).setDampingRatio(0.75f));
         springAnimation.setSpring(new SpringForce(1.0f).setStiffness(250.0f).setDampingRatio(0.25f));
         springAnimation2.setSpring(new SpringForce(1.0f).setStiffness(250.0f).setDampingRatio(0.25f));
-        springAnimation3.setSpring(new SpringForce(1.0f).setStiffness(1500.0f).setDampingRatio(0.75f));
         springAnimation4.setSpring(new SpringForce(1.0f).setStiffness(1500.0f).setDampingRatio(0.75f));
         this.tabsWithIgnoreClick = new HashSet();
         this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
@@ -134,19 +134,20 @@ public class MainTabsLayout extends AnimatedLinearLayout {
                 MainTabsLayout.this.isInLongPress = true;
                 AndroidUtilities.cancelRunOnUIThread(MainTabsLayout.this.restoreDrawSelector);
                 MainTabsLayout.this.setSkipDrawSelector(true);
-                MainTabsLayout.this.checkLongMove(f, f2, true);
+                MainTabsLayout.this.checkLongMove(f, f2, true, false);
                 MainTabsLayout.this.invalidate();
                 return true;
             }
 
             @Override
             public void onLongPressMove(View view, MotionEvent motionEvent, float f, float f2, float f3, float f4) {
-                MainTabsLayout.this.checkLongMove(f, f2, false);
+                MainTabsLayout.this.checkLongMove(f, f2, false, false);
                 MainTabsLayout.this.invalidate();
             }
 
             @Override
             public void onLongPressFinish(View view, float f, float f2) {
+                MainTabsLayout.this.checkLongMove(f, f2, false, true);
                 MainTabsLayout.this.isInLongPress = false;
                 AndroidUtilities.runOnUIThread(MainTabsLayout.this.restoreDrawSelector, 450L);
                 if (MainTabsLayout.this.lastLongSelectedView != null) {
@@ -158,6 +159,7 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
             @Override
             public void onLongPressCancelled(View view, float f, float f2) {
+                MainTabsLayout.this.checkLongMove(f, f2, false, true);
                 MainTabsLayout.this.isInLongPress = false;
                 AndroidUtilities.runOnUIThread(MainTabsLayout.this.restoreDrawSelector, 450L);
                 MainTabsLayout.this.lastLongSelectedView = null;
@@ -168,11 +170,11 @@ public class MainTabsLayout extends AnimatedLinearLayout {
             public void onClickTouchDown(View view, float f, float f2) {
                 MainTabsLayout.this.checkPivot(view, f, f2);
                 if (!MainTabsLayout.this.scaleX.isRunning()) {
-                    MainTabsLayout.this.scaleX.setStartVelocity(-0.55f);
-                    MainTabsLayout.this.scaleY.setStartVelocity(-0.55f);
+                    MainTabsLayout.this.scaleX.setStartVelocity(-0.45f);
+                    MainTabsLayout.this.scaleY.setStartVelocity(-0.45f);
                 }
-                MainTabsLayout.this.scaleX.animateToFinalPosition(1.025f);
-                MainTabsLayout.this.scaleY.animateToFinalPosition(1.025f);
+                MainTabsLayout.this.scaleX.animateToFinalPosition(1.012f);
+                MainTabsLayout.this.scaleY.animateToFinalPosition(1.012f);
             }
 
             @Override
@@ -184,8 +186,8 @@ public class MainTabsLayout extends AnimatedLinearLayout {
             public void onClickTouchUp(View view, float f, float f2) {
                 MainTabsLayout.this.checkPivot(view, f, f2);
                 if (!MainTabsLayout.this.scaleX.isRunning()) {
-                    MainTabsLayout.this.scaleX.setStartVelocity(0.55f);
-                    MainTabsLayout.this.scaleY.setStartVelocity(0.55f);
+                    MainTabsLayout.this.scaleX.setStartVelocity(0.25f);
+                    MainTabsLayout.this.scaleY.setStartVelocity(0.25f);
                 }
                 MainTabsLayout.this.scaleX.animateToFinalPosition(1.0f);
                 MainTabsLayout.this.scaleY.animateToFinalPosition(1.0f);
@@ -368,11 +370,12 @@ public class MainTabsLayout extends AnimatedLinearLayout {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (this.drawCustomSelector) {
-            float f = this.animatedLongSelectedViewWidth;
+            float f = this.animatedLongSelectedViewCenterX + this.animatedLongSelectedViewOffsetX;
+            float interpolatedWidthByX = getInterpolatedWidthByX(f, this);
             float height = (getHeight() - getPaddingTop()) - getPaddingBottom();
-            float f2 = f / 2.0f;
+            float f2 = interpolatedWidthByX / 2.0f;
             float f3 = height / 2.0f;
-            canvas.drawRoundRect(this.animatedLongSelectedViewCenterX - f2, (getHeight() - height) / 2.0f, this.animatedLongSelectedViewCenterX + f2, (getHeight() + height) / 2.0f, f3, f3, this.selectorPaint);
+            canvas.drawRoundRect(f - f2, (getHeight() - height) / 2.0f, f + f2, (getHeight() + height) / 2.0f, f3, f3, this.selectorPaint);
         }
         super.dispatchDraw(canvas);
     }
@@ -387,32 +390,37 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         return null;
     }
 
-    public void checkLongMove(float f, float f2, boolean z) {
-        View viewFindChildUnder = findChildUnder(this, f, getHeight() / 2.0f);
+    public void checkLongMove(float f, float f2, boolean z, boolean z2) {
+        float fClampXToChildrenCenters = clampXToChildrenCenters(f, this);
+        View viewFindNearestVisibleChildByX = findNearestVisibleChildByX(fClampXToChildrenCenters, this);
         if (z) {
             View viewFindSelectedTab = findSelectedTab();
             if (viewFindSelectedTab != null) {
-                this.animatedLongSelectedViewCenterX = viewFindSelectedTab.getX() + (viewFindSelectedTab.getWidth() / 2.0f);
-                this.animatedLongSelectedViewWidth = viewFindSelectedTab.getWidth();
-                if (viewFindSelectedTab != viewFindChildUnder && viewFindChildUnder != null) {
-                    viewFindChildUnder.performClick();
+                float x = viewFindSelectedTab.getX() + (viewFindSelectedTab.getWidth() / 2.0f);
+                this.animatedLongSelectedViewCenterX = x;
+                this.animatedLongSelectedViewOffsetX = x - fClampXToChildrenCenters;
+                this.selectedTabPositionOffsetX.animateToFinalPosition(0.0f);
+                if (viewFindSelectedTab != viewFindNearestVisibleChildByX && viewFindNearestVisibleChildByX != null) {
+                    viewFindNearestVisibleChildByX.performClick();
                 }
             }
             this.selectedTabPositionX.cancel();
-            this.selectedTabPositionWidth.cancel();
         }
-        if (viewFindChildUnder != null) {
-            this.lastLongSelectedView = viewFindChildUnder;
-            setTabSelected(viewFindChildUnder, true);
-            float width = viewFindChildUnder.getWidth();
-            float x = viewFindChildUnder.getX() + (width / 2.0f);
-            if (this.lastLongSelectedViewWidth == width && this.lastLongSelectedViewCenterX == x) {
-                return;
+        if (!z2) {
+            this.animatedLongSelectedViewCenterX = fClampXToChildrenCenters;
+            invalidate();
+        }
+        if (viewFindNearestVisibleChildByX != null) {
+            this.lastLongSelectedView = viewFindNearestVisibleChildByX;
+            setTabSelected(viewFindNearestVisibleChildByX, true);
+            if (z2) {
+                float width = viewFindNearestVisibleChildByX.getWidth();
+                float x2 = viewFindNearestVisibleChildByX.getX() + (width / 2.0f);
+                if (this.lastLongSelectedViewWidth == width && this.lastLongSelectedViewCenterX == x2) {
+                    return;
+                }
+                this.selectedTabPositionX.animateToFinalPosition(x2);
             }
-            this.lastLongSelectedViewWidth = width;
-            this.lastLongSelectedViewCenterX = x;
-            this.selectedTabPositionX.animateToFinalPosition(x);
-            this.selectedTabPositionWidth.animateToFinalPosition(width);
         }
     }
 
@@ -421,30 +429,128 @@ public class MainTabsLayout extends AnimatedLinearLayout {
     }
 
     public void checkPivot(View view, float f, float f2) {
+        float f3;
+        float f4;
         float width = view.getWidth();
         float height = view.getHeight();
         if (width <= 0.0f || height <= 0.0f) {
             return;
         }
-        float f3 = width * 0.5f;
-        float f4 = height * 0.5f;
-        float f5 = f - f3;
-        float f6 = f2 - f4;
-        float f7 = f5 / f3;
-        float f8 = f6 / f4;
-        float fSqrt = (float) Math.sqrt((f7 * f7) + (f8 * f8));
+        float f5 = width * 0.5f;
+        float f6 = height * 0.5f;
+        float f7 = f - f5;
+        float f8 = f2 - f6;
+        float f9 = f7 / f5;
+        float f10 = f8 / f6;
+        float fSqrt = (float) Math.sqrt((f9 * f9) + (f10 * f10));
         if (fSqrt > 1.0E-4f) {
-            float f9 = ((1.5f * fSqrt) / (0.5f + fSqrt)) / fSqrt;
-            f3 += f5 * f9;
-            f4 += f6 * f9;
+            float f11 = ((1.5f * fSqrt) / (0.5f + fSqrt)) / fSqrt;
+            f3 = (f7 * f11) + f5;
+            f4 = (f8 * f11) + f6;
+        } else {
+            f3 = f5;
+            f4 = f6;
         }
-        view.setPivotX(f3);
-        view.setPivotY(f4);
+        float fLerp = AndroidUtilities.lerp(f5, f3, 0.95f);
+        float fLerp2 = AndroidUtilities.lerp(f6, f4, 2.83f);
+        view.setPivotX(fLerp);
+        view.setPivotY(fLerp2);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         this.clickHelper.onTouchEvent(this, motionEvent);
         return super.dispatchTouchEvent(motionEvent);
+    }
+
+    private static float clampXToChildrenCenters(float f, ViewGroup viewGroup) {
+        if (viewGroup != null && viewGroup.getChildCount() != 0) {
+            boolean z = false;
+            float f2 = Float.MAX_VALUE;
+            float f3 = -3.4028235E38f;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt != null && childAt.getVisibility() == 0) {
+                    float x = childAt.getX() + (childAt.getWidth() * 0.5f);
+                    if (x < f2) {
+                        f2 = x;
+                    }
+                    if (x > f3) {
+                        f3 = x;
+                    }
+                    z = true;
+                }
+            }
+            if (!z) {
+                return f;
+            }
+            if (f < f2) {
+                return f2;
+            }
+            if (f > f3) {
+                return f3;
+            }
+        }
+        return f;
+    }
+
+    private static View findNearestVisibleChildByX(float f, ViewGroup viewGroup) {
+        View view = null;
+        if (viewGroup != null && viewGroup.getChildCount() != 0) {
+            float f2 = Float.MAX_VALUE;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt != null && childAt.getVisibility() == 0) {
+                    float fAbs = Math.abs((childAt.getX() + (childAt.getWidth() * 0.5f)) - f);
+                    if (fAbs < f2) {
+                        view = childAt;
+                        f2 = fAbs;
+                    }
+                }
+            }
+        }
+        return view;
+    }
+
+    private static float getInterpolatedWidthByX(float f, ViewGroup viewGroup) {
+        int width;
+        if (viewGroup == null || viewGroup.getChildCount() == 0) {
+            return 0.0f;
+        }
+        View view = null;
+        View view2 = null;
+        for (int i = 0; i < viewGroup.getChildCount(); i++) {
+            View childAt = viewGroup.getChildAt(i);
+            if (childAt != null && childAt.getVisibility() == 0) {
+                float x = childAt.getX() + (childAt.getWidth() * 0.5f);
+                if (x <= f && (view == null || x > getCenterX(view))) {
+                    view = childAt;
+                }
+                if (x >= f && (view2 == null || x < getCenterX(view2))) {
+                    view2 = childAt;
+                }
+            }
+        }
+        if (view == null && view2 == null) {
+            return 0.0f;
+        }
+        if (view == null) {
+            width = view2.getWidth();
+        } else if (view2 == null) {
+            width = view.getWidth();
+        } else {
+            float centerX = getCenterX(view);
+            float centerX2 = getCenterX(view2);
+            if (view == view2 || centerX == centerX2) {
+                width = view.getWidth();
+            } else {
+                width = AndroidUtilities.lerp(view.getWidth(), view2.getWidth(), (f - centerX) / (centerX2 - centerX));
+            }
+        }
+        return width;
+    }
+
+    private static float getCenterX(View view) {
+        return view.getX() + (view.getWidth() * 0.5f);
     }
 }

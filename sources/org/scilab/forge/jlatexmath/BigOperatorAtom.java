@@ -2,16 +2,24 @@ package org.scilab.forge.jlatexmath;
 
 public class BigOperatorAtom extends Atom {
     protected Atom base;
+    private boolean limits;
+    private boolean limitsSet;
     private Atom over;
     private Atom under;
-    private boolean limitsSet = false;
-    private boolean limits = false;
 
     public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3) {
+        this.limitsSet = false;
+        this.limits = false;
         this.base = atom;
         this.under = atom2;
         this.over = atom3;
         this.type = 1;
+    }
+
+    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z) {
+        this(atom, atom2, atom3);
+        this.limits = z;
+        this.limitsSet = true;
     }
 
     @Override

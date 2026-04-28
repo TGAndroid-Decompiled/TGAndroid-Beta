@@ -3,7 +3,7 @@ package org.scilab.forge.jlatexmath;
 import ru.noties.jlatexmath.awt.BasicStroke;
 import ru.noties.jlatexmath.awt.Graphics2D;
 import ru.noties.jlatexmath.awt.Stroke;
-import ru.noties.jlatexmath.awt.geom.RoundRectangle2D$Float;
+import ru.noties.jlatexmath.awt.geom.RoundRectangle2D;
 
 public class OvalBox extends FramedBox {
     public OvalBox(FramedBox framedBox) {
@@ -23,7 +23,7 @@ public class OvalBox extends FramedBox {
         float f7 = (f2 - f6) + f4;
         float f8 = this.width;
         float f9 = this.thickness;
-        graphics2D.draw(new RoundRectangle2D$Float(f5, f7, f8 - f9, (f6 + this.depth) - f9, fMin, fMin));
+        graphics2D.draw(new RoundRectangle2D.Float(f5, f7, f8 - f9, (f6 + this.depth) - f9, fMin, fMin));
         graphics2D.setStroke(stroke);
     }
 

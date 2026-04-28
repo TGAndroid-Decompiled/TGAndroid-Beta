@@ -133,8 +133,7 @@ import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
-import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
-import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
+import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
@@ -502,7 +501,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         void showTrendingStickersAlert(TrendingStickersLayout trendingStickersLayout);
     }
 
-    private interface SearchRunnable extends Runnable {
+    interface SearchRunnable extends Runnable {
         boolean isCompleted();
 
         boolean isLoading();
@@ -2085,7 +2084,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     return;
                 }
                 if (EmojiView.this.emojiLayoutManager.findLastVisibleItemPosition() + 20 > EmojiView.this.emojiSearchAdapter.getItemCount()) {
-                    EmojiView.this.emojiSearchAdapter.searchRunnable.loadNext();
+                    SearchRunnable searchRunnable = EmojiView.this.emojiSearchAdapter.searchRunnable;
+                    Objects.requireNonNull(searchRunnable);
+                    AndroidUtilities.runOnUIThread(new EmojiView$18$$ExternalSyntheticLambda0(searchRunnable));
                 }
             }
 
@@ -2443,7 +2444,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                         return;
                     }
                     if (EmojiView.this.stickersLayoutManager.findLastVisibleItemPosition() + 50 > EmojiView.this.stickersSearchGridAdapter.getItemCount()) {
-                        EmojiView.this.stickersSearchGridAdapter.searchRunnable.loadNext();
+                        SearchRunnable searchRunnable = EmojiView.this.stickersSearchGridAdapter.searchRunnable;
+                        Objects.requireNonNull(searchRunnable);
+                        AndroidUtilities.runOnUIThread(new EmojiView$18$$ExternalSyntheticLambda0(searchRunnable));
                     }
                 }
             };
@@ -3394,36 +3397,21 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
     }
 
     public void setBlurredBackgroundDrawableFactory(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
-        BlurredBackgroundColorProviderThemed blurredBackgroundColorProviderThemed = new BlurredBackgroundColorProviderThemed(this.resourcesProvider, Theme.key_windowBackgroundWhite);
         ImageView imageView = this.backspaceButton;
         if (imageView != null) {
-            BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(imageView, blurredBackgroundColorProviderThemed);
-            blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(18.0f));
-            blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(6.0f));
-            this.backspaceButton.setBackground(blurredBackgroundDrawableCreate);
-            this.backspaceButton.setTranslationZ(AndroidUtilities.dp(3.0f));
+            imageView.setBackground(blurredBackgroundDrawableViewFactory.create(imageView).setColorProvider(BlurredBackgroundProviderImpl.emojiViewButton(this.resourcesProvider)).setRadius(AndroidUtilities.dp(18.0f)).setPadding(AndroidUtilities.dp(6.0f)));
         }
-        if (this.searchButton != null) {
-            BlurredBackgroundDrawable blurredBackgroundDrawableCreate2 = blurredBackgroundDrawableViewFactory.create(this.backspaceButton, blurredBackgroundColorProviderThemed);
-            blurredBackgroundDrawableCreate2.setRadius(AndroidUtilities.dp(18.0f));
-            blurredBackgroundDrawableCreate2.setPadding(AndroidUtilities.dp(6.0f));
-            this.searchButton.setBackground(blurredBackgroundDrawableCreate2);
-            this.searchButton.setTranslationZ(AndroidUtilities.dp(3.0f));
+        ImageView imageView2 = this.searchButton;
+        if (imageView2 != null) {
+            imageView2.setBackground(blurredBackgroundDrawableViewFactory.create(imageView2).setColorProvider(BlurredBackgroundProviderImpl.emojiViewButton(this.resourcesProvider)).setRadius(AndroidUtilities.dp(18.0f)).setPadding(AndroidUtilities.dp(6.0f)));
         }
         PagerSlidingTabStrip pagerSlidingTabStrip = this.typeTabs;
         if (pagerSlidingTabStrip != null) {
-            BlurredBackgroundDrawable blurredBackgroundDrawableCreate3 = blurredBackgroundDrawableViewFactory.create(pagerSlidingTabStrip, blurredBackgroundColorProviderThemed);
-            blurredBackgroundDrawableCreate3.setRadius(AndroidUtilities.dp(18.0f));
-            blurredBackgroundDrawableCreate3.setPadding(AndroidUtilities.dp(6.0f));
-            this.typeTabs.setBackground(blurredBackgroundDrawableCreate3);
-            this.typeTabs.setTranslationZ(AndroidUtilities.dp(3.0f));
+            pagerSlidingTabStrip.setBackground(blurredBackgroundDrawableViewFactory.create(pagerSlidingTabStrip).setColorProvider(BlurredBackgroundProviderImpl.emojiViewButton(this.resourcesProvider)).setRadius(AndroidUtilities.dp(18.0f)).setPadding(AndroidUtilities.dp(6.0f)));
         }
-        if (this.stickerSettingsButton != null) {
-            BlurredBackgroundDrawable blurredBackgroundDrawableCreate4 = blurredBackgroundDrawableViewFactory.create(this.backspaceButton, blurredBackgroundColorProviderThemed);
-            blurredBackgroundDrawableCreate4.setRadius(AndroidUtilities.dp(18.0f));
-            blurredBackgroundDrawableCreate4.setPadding(AndroidUtilities.dp(6.0f));
-            this.stickerSettingsButton.setBackground(blurredBackgroundDrawableCreate4);
-            this.stickerSettingsButton.setTranslationZ(AndroidUtilities.dp(3.0f));
+        ImageView imageView3 = this.stickerSettingsButton;
+        if (imageView3 != null) {
+            imageView3.setBackground(blurredBackgroundDrawableViewFactory.create(imageView3).setColorProvider(BlurredBackgroundProviderImpl.emojiViewButton(this.resourcesProvider)).setRadius(AndroidUtilities.dp(18.0f)).setPadding(AndroidUtilities.dp(6.0f)));
         }
     }
 

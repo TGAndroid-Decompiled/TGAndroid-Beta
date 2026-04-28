@@ -3,9 +3,11 @@ package org.scilab.forge.jlatexmath;
 import java.util.List;
 
 public class FencedAtom extends Atom {
+    private static final int DELIMITER_FACTOR = 901;
+    private static final float DELIMITER_SHORTFALL = 5.0f;
     private final Atom base;
     private SymbolAtom left;
-    private final List middle;
+    private final List<MiddleAtom> middle;
     private SymbolAtom right;
 
     @Override
@@ -22,7 +24,7 @@ public class FencedAtom extends Atom {
         this(atom, symbolAtom, null, symbolAtom2);
     }
 
-    public FencedAtom(Atom atom, SymbolAtom symbolAtom, List list, SymbolAtom symbolAtom2) {
+    public FencedAtom(Atom atom, SymbolAtom symbolAtom, List<MiddleAtom> list, SymbolAtom symbolAtom2) {
         this.left = null;
         this.right = null;
         if (atom == null) {
@@ -55,7 +57,7 @@ public class FencedAtom extends Atom {
         HorizontalBox horizontalBox = new HorizontalBox();
         if (this.middle != null) {
             for (int i = 0; i < this.middle.size(); i++) {
-                MiddleAtom middleAtom = (MiddleAtom) this.middle.get(i);
+                MiddleAtom middleAtom = this.middle.get(i);
                 Atom atom = middleAtom.base;
                 if (atom instanceof SymbolAtom) {
                     Box boxCreate = DelimiterFactory.create(((SymbolAtom) atom).getName(), teXEnvironment, fMax2);

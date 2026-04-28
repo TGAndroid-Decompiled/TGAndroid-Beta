@@ -6,8 +6,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 public class MacroInfo {
-    public static HashMap Commands = new HashMap(300);
-    public static HashMap Packages = new HashMap();
+    public static HashMap<String, MacroInfo> Commands = new HashMap<>(300);
+    public static HashMap<String, Object> Packages = new HashMap<>();
     public boolean hasOptions;
     public Method macro;
     public int nbArgs;
@@ -19,6 +19,12 @@ public class MacroInfo {
         this.pack = obj;
         this.macro = method;
         this.nbArgs = i;
+    }
+
+    public MacroInfo(Object obj, Method method, int i, int i2) {
+        this(obj, method, i);
+        this.hasOptions = true;
+        this.posOpts = i2;
     }
 
     public MacroInfo(int i, int i2) {

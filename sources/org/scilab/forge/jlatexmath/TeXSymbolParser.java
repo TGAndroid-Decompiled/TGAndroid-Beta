@@ -9,7 +9,10 @@ import org.w3c.dom.NodeList;
 import ru.noties.jlatexmath.JLatexMathAndroid;
 
 public class TeXSymbolParser {
-    private static Map typeMappings = new HashMap();
+    public static final String DELIMITER_ATTR = "del";
+    public static final String RESOURCE_NAME = "TeXSymbols.xml";
+    public static final String TYPE_ATTR = "type";
+    private static Map<String, Integer> typeMappings = new HashMap();
     private Element root;
 
     public TeXSymbolParser() {
@@ -28,7 +31,7 @@ public class TeXSymbolParser {
         }
     }
 
-    public Map readSymbols() {
+    public Map<String, SymbolAtom> readSymbols() {
         HashMap map = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
         for (int i = 0; i < elementsByTagName.getLength(); i++) {
@@ -37,11 +40,11 @@ public class TeXSymbolParser {
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
             boolean z = attribute != null && attribute.equals("true");
-            Object obj = typeMappings.get(attrValueAndCheckIfNotNull2);
-            if (obj == null) {
+            Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
+            if (num == null) {
                 throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", "has an unknown value '" + attrValueAndCheckIfNotNull2 + "'!");
             }
-            map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, ((Integer) obj).intValue(), z));
+            map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
         }
         return map;
     }

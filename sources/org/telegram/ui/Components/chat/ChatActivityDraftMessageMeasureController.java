@@ -8,6 +8,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 
 public class ChatActivityDraftMessageMeasureController {
     private long groupIdToOverride;
+    private boolean hasAdditionalHeight;
     private int messageIdToOverride;
     private int previousMessageHeight;
     private RecyclerView recyclerView;
@@ -17,7 +18,9 @@ public class ChatActivityDraftMessageMeasureController {
             return i;
         }
         int iMax = Math.max(0, (((this.recyclerView.getHeight() - this.recyclerView.getPaddingTop()) - this.recyclerView.getPaddingBottom()) - this.previousMessageHeight) - i);
-        if (this.messageIdToOverride > 0 && iMax == 0) {
+        boolean z = iMax > 0;
+        this.hasAdditionalHeight = z;
+        if (this.messageIdToOverride > 0 && !z) {
             setMessageIdToOverride(0, 0L);
         }
         return i + iMax;
@@ -31,12 +34,20 @@ public class ChatActivityDraftMessageMeasureController {
         this.previousMessageHeight = i;
     }
 
+    public boolean hasAdditionalHeight() {
+        return this.hasAdditionalHeight;
+    }
+
     public boolean setMessageIdToOverride(int i, long j) {
         if (this.messageIdToOverride == i && this.groupIdToOverride == j) {
             return false;
         }
         this.messageIdToOverride = i;
         this.groupIdToOverride = j;
+        if (i != 0) {
+            return true;
+        }
+        this.hasAdditionalHeight = false;
         return true;
     }
 

@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 import ru.noties.jlatexmath.awt.Color;
 
 public class ColorAtom extends Atom implements Row {
-    public static Map Colors = new HashMap();
+    public static Map<String, Color> Colors = new HashMap();
     private final Color background;
     private final Color color;
     private final RowAtom elements;
@@ -19,6 +19,12 @@ public class ColorAtom extends Atom implements Row {
         this.elements = new RowAtom(atom);
         this.background = color;
         this.color = color2;
+    }
+
+    public ColorAtom(Color color, Color color2, ColorAtom colorAtom) {
+        this.elements = new RowAtom(colorAtom.elements);
+        this.background = color == null ? colorAtom.background : color;
+        this.color = color2 == null ? colorAtom.color : color2;
     }
 
     @Override
@@ -85,7 +91,7 @@ public class ColorAtom extends Atom implements Row {
                         }
                     }
                 }
-                Color color = (Color) Colors.get(strTrim.toLowerCase());
+                Color color = Colors.get(strTrim.toLowerCase());
                 if (color != null) {
                     return color;
                 }

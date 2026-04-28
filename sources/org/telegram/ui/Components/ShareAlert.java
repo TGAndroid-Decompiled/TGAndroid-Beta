@@ -36,7 +36,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.arch.core.util.Function;
 import androidx.collection.LongSparseArray;
+import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -188,6 +190,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private SizeNotifierFrameLayout sizeNotifierFrameLayout;
     TL_stories.StoryItem storyItem;
     private SwitchView switchView;
+    private Insets systemInsets;
     private TextPaint textPaint;
     public int timestamp;
     public CheckBox2 timestampCheckbox;
@@ -389,7 +392,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this(context, chatActivity, arrayList, str, str2, z, str3, str4, z2, z3, false, null, null);
     }
 
-    public ShareAlert(final android.content.Context r31, org.telegram.ui.ChatActivity r32, java.util.ArrayList r33, java.lang.String r34, java.lang.String r35, boolean r36, java.lang.String r37, java.lang.String r38, boolean r39, boolean r40, boolean r41, java.lang.Integer r42, org.telegram.ui.ActionBar.Theme.ResourcesProvider r43) {
+    public ShareAlert(final android.content.Context r34, org.telegram.ui.ChatActivity r35, java.util.ArrayList r36, java.lang.String r37, java.lang.String r38, boolean r39, java.lang.String r40, java.lang.String r41, boolean r42, boolean r43, boolean r44, java.lang.Integer r45, org.telegram.ui.ActionBar.Theme.ResourcesProvider r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ShareAlert.<init>(android.content.Context, org.telegram.ui.ChatActivity, java.util.ArrayList, java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String, boolean, boolean, boolean, java.lang.Integer, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -534,8 +537,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         safeLastFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
-    class AnonymousClass22 extends FrameLayout {
-        AnonymousClass22(Context context) {
+    class AnonymousClass21 extends FrameLayout {
+        AnonymousClass21(Context context) {
             super(context);
         }
 
@@ -594,13 +597,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    class AnonymousClass23 extends EditTextEmoji {
+    class AnonymousClass22 extends EditTextEmoji {
         private ValueAnimator messageEditTextAnimator;
         private int messageEditTextPredrawHeigth;
         private int messageEditTextPredrawScrollY;
         private boolean shouldAnimateEditTextWithBounds;
 
-        AnonymousClass23(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, BaseFragment baseFragment, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass22(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout, BaseFragment baseFragment, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context, sizeNotifierFrameLayout, baseFragment, i, z, resourcesProvider);
         }
 
@@ -619,7 +622,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ShareAlert.AnonymousClass23.lambda$dispatchDraw$0(editText, valueAnimator);
+                        ShareAlert.AnonymousClass22.lambda$dispatchDraw$0(editText, valueAnimator);
                     }
                 });
                 ValueAnimator valueAnimator = this.messageEditTextAnimator;
@@ -673,7 +676,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 emojiView.shouldLightenBackground = false;
                 emojiView.fixBottomTabContainerTranslation = false;
                 emojiView.setShouldDrawBackground(false);
-                emojiView.setBottomInset(AndroidUtilities.navigationBarHeight);
+                emojiView.setBottomInset(ShareAlert.this.systemInsets.bottom);
             }
             FrameLayout frameLayout = ShareAlert.this.timestampFrameLayout;
             if (frameLayout != null) {
@@ -688,7 +691,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    class AnonymousClass24 implements TextWatcher {
+    class AnonymousClass23 implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
@@ -697,7 +700,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         }
 
-        AnonymousClass24() {
+        AnonymousClass23() {
         }
 
         @Override
@@ -726,6 +729,16 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void lambda$new$18(View view) {
         this.timestampCheckbox.setChecked(!r3.isChecked(), true);
         updateLinkTextView();
+    }
+
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        processLegacyContainerInsets(windowInsetsCompat.toWindowInsets());
+        Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars());
+        if (!this.systemInsets.equals(insets)) {
+            this.systemInsets = insets;
+            this.container.requestLayout();
+        }
+        return WindowInsetsCompat.CONSUMED;
     }
 
     public void showPremiumBlockedToast(View view, long j) {
@@ -853,18 +866,18 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 this.selectedTopicDialog = dialog;
                 this.topicsLayoutManager.scrollToPositionWithOffset(0, this.scrollOffsetY - this.topicsGridView.getPaddingTop());
                 final AtomicReference atomicReference = new AtomicReference();
-                final AnonymousClass28 anonymousClass28 = new AnonymousClass28(dialog, atomicReference, view);
+                final AnonymousClass27 anonymousClass27 = new AnonymousClass27(dialog, atomicReference, view);
                 atomicReference.set(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$selectDialog$21(atomicReference, anonymousClass28, dialog);
+                        this.f$0.lambda$selectDialog$21(atomicReference, anonymousClass27, dialog);
                     }
                 });
                 NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
                 int i4 = NotificationCenter.topicsDidLoaded;
-                notificationCenter.addObserver(anonymousClass28, i4);
+                notificationCenter.addObserver(anonymousClass27, i4);
                 if (MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-dialog.id) != null) {
-                    anonymousClass28.didReceivedNotification(i4, this.currentAccount, Long.valueOf(-dialog.id));
+                    anonymousClass27.didReceivedNotification(i4, this.currentAccount, Long.valueOf(-dialog.id));
                     return;
                 } else {
                     MessagesController.getInstance(this.currentAccount).getTopicsController().loadTopics(-dialog.id);
@@ -903,12 +916,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         categoryAdapterRecycler.notifyItemRangeChanged(0, categoryAdapterRecycler.getItemCount());
     }
 
-    class AnonymousClass28 implements NotificationCenter.NotificationCenterDelegate {
+    class AnonymousClass27 implements NotificationCenter.NotificationCenterDelegate {
         final View val$cell;
         final TLRPC.Dialog val$dialog;
         final AtomicReference val$timeoutRef;
 
-        AnonymousClass28(TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
+        AnonymousClass27(TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
             this.val$dialog = dialog;
             this.val$timeoutRef = atomicReference;
             this.val$cell = view;

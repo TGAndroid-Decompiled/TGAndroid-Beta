@@ -3,7 +3,10 @@ package ru.noties.jlatexmath;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXFormula.TeXIconBuilder;
 import org.scilab.forge.jlatexmath.TeXIcon;
@@ -12,12 +15,19 @@ import ru.noties.jlatexmath.awt.Color;
 import ru.noties.jlatexmath.awt.Insets;
 
 public class JLatexMathDrawable extends Drawable {
+    public static final int ALIGN_CENTER = 1;
+    public static final int ALIGN_LEFT = 0;
+    public static final int ALIGN_RIGHT = 2;
     private final int align;
     private final Drawable background;
     private final AndroidGraphics2D graphics2D;
     private final TeXIcon icon;
     private final int iconHeight;
     private final int iconWidth;
+
+    @Retention(RetentionPolicy.CLASS)
+    public @interface Align {
+    }
 
     @Override
     public int getOpacity() {
@@ -120,12 +130,47 @@ public class JLatexMathDrawable extends Drawable {
         private final String latex;
         private float textSize;
 
+        @Deprecated
+        public Builder fitCanvas(boolean z) {
+            return this;
+        }
+
         public Builder(String str) {
             this.latex = str;
         }
 
         public Builder textSize(float f) {
             this.textSize = f;
+            return this;
+        }
+
+        public Builder color(int i) {
+            this.color = i;
+            return this;
+        }
+
+        public Builder align(int i) {
+            this.align = i;
+            return this;
+        }
+
+        public Builder background(Drawable drawable) {
+            this.background = drawable;
+            return this;
+        }
+
+        public Builder background(int i) {
+            this.background = new ColorDrawable(i);
+            return this;
+        }
+
+        public Builder padding(int i) {
+            this.insets = new Insets(i, i, i, i);
+            return this;
+        }
+
+        public Builder padding(int i, int i2, int i3, int i4) {
+            this.insets = new Insets(i2, i, i4, i3);
             return this;
         }
 

@@ -663,7 +663,7 @@ public abstract class BoostRepository {
                 if (str != null) {
                     tL_help_country.default_name = str;
                 }
-                if (!tL_help_country.iso2.equalsIgnoreCase("FT")) {
+                if (!tL_help_country.hidden && !tL_help_country.iso2.equalsIgnoreCase("FT")) {
                     String upperCase = tL_help_country.default_name.substring(0, 1).toUpperCase();
                     List arrayList2 = (List) map.get(upperCase);
                     if (arrayList2 == null) {
