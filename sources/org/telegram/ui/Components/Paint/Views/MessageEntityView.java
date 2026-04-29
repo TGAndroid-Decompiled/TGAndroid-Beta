@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Paint.Views;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -522,7 +521,7 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws Resources.NotFoundException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) {
                 MessageObject.GroupedMessagePosition position;
                 MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
                 View view = viewHolder.itemView;

@@ -10708,7 +10708,7 @@
     <string name="chatDate">MMMM d</string>
     <string name="chatDateShort">MMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="com.google.firebase.crashlytics.mapping_file_id">577844b62174445d8ab8944afdc7de35</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id">6b83c1c71217449ba5da4d768ea4207b</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>
