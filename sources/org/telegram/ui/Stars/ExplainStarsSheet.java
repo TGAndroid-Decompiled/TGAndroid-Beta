@@ -175,6 +175,14 @@ public class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             this.subtitleView.setText(charSequence2);
         }
 
+        public void setTitle(CharSequence charSequence) {
+            this.titleView.setText(charSequence);
+        }
+
+        public void setSubtitle(CharSequence charSequence) {
+            this.subtitleView.setText(charSequence);
+        }
+
         public static class Factory extends UItem.UItemFactory {
             static {
                 UItem.UItemFactory.setup(new Factory());

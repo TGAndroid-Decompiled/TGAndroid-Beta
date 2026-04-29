@@ -864,9 +864,6 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             } else if (i6 == 0) {
                 this.bannedRights.send_plain = !r5.send_plain;
                 onRestrictionsChanged();
-            } else if (i6 == 15) {
-                this.bannedRights.send_reactions = !r5.send_reactions;
-                onRestrictionsChanged();
             }
             this.adapter.update(true);
             return;
@@ -912,6 +909,9 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 onRestrictionsChanged();
             } else if (i7 == 10) {
                 this.bannedRights.send_voices = !r5.send_voices;
+                onRestrictionsChanged();
+            } else if (i7 == 15) {
+                this.bannedRights.send_reactions = !r5.send_reactions;
                 onRestrictionsChanged();
             } else if (i7 == 12) {
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;

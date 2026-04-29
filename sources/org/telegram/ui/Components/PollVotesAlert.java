@@ -162,7 +162,7 @@ public class PollVotesAlert extends BottomSheet {
 
         public SectionCell(Context context) {
             super(context);
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+            setBackgroundColor(Theme.getColor(Theme.key_dialogBackgroundGray));
             AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(getContext());
             this.textView = textViewEmojis;
             textViewEmojis.setTextSize(1, 14.0f);

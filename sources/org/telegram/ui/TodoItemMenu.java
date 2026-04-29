@@ -316,7 +316,7 @@ public class TodoItemMenu extends Dialog {
         attributes.dimAmount = 0.0f;
         int i = attributes.flags;
         attributes.softInputMode = 48;
-        attributes.flags = (i & (-131075)) | (-1946090112);
+        attributes.flags = (i & (-131075)) | (-1946090104);
         if (Build.VERSION.SDK_INT >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }

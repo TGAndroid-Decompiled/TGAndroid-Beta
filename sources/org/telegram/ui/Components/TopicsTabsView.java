@@ -63,6 +63,7 @@ import org.telegram.ui.GradientClip;
 import org.telegram.ui.TopicCreateFragment;
 
 public class TopicsTabsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    private boolean allTopicsHidden;
     private long animateFromSelectedTopicId;
     private ValueAnimator animator;
     private final BoolAnimator animatorCloseButtonVisibility;
@@ -694,7 +695,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         }
     }
 
-    private void updateTabs() {
+    public void updateTabs() {
         boolean zCanScrollHorizontally = this.topTabs.canScrollHorizontally(-1);
         this.topTabs.adapter.update(true);
         if (!zCanScrollHorizontally) {
@@ -783,6 +784,9 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         if (!z2) {
             arrayList.add(VerticalTabView.Factory.asAll(z2, this.mono).setChecked(this.currentTopicId == 0));
         }
+        if (this.allTopicsHidden) {
+            return;
+        }
         if (topics != null) {
             Iterator<TLRPC.TL_forumTopic> it = topics.iterator();
             z = false;
@@ -829,6 +833,9 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         ArrayList<TLRPC.TL_forumTopic> topics = topicsController.getTopics(-this.dialogId);
         boolean z = false;
         arrayList.add(HorizontalTabView.Factory.asAll(this.bot, this.mono).setChecked(this.currentTopicId == 0));
+        if (this.allTopicsHidden) {
+            return;
+        }
         if (topics != null) {
             Iterator<TLRPC.TL_forumTopic> it = topics.iterator();
             boolean z2 = false;
@@ -2140,6 +2147,18 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         checkUi_topicsVerticalPosition();
+    }
+
+    public void setAllTopicsHidden(boolean z) {
+        if (this.allTopicsHidden != z) {
+            this.allTopicsHidden = z;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.updateTabs();
+                }
+            });
+        }
     }
 
     private void deleteTopics(final HashSet hashSet, final Runnable runnable) {

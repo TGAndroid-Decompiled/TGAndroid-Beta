@@ -133,7 +133,7 @@ import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.HintEditText;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda24;
 import org.telegram.ui.Components.RadialProgress;
 import org.telegram.ui.Components.SlideView;
 import org.telegram.ui.Components.URLSpanNoUnderline;
@@ -2653,7 +2653,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         } catch (Exception e) {
             FileLog.e(e);
         }
-        Collections.sort(this.countriesArray, new BoostRepository$$ExternalSyntheticLambda31());
+        Collections.sort(this.countriesArray, new BoostRepository$$ExternalSyntheticLambda24());
         String str2 = UserConfig.getInstance(this.currentAccount).getCurrentUser().phone;
         TextSettingsCell textSettingsCell = new TextSettingsCell(context);
         textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));

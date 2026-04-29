@@ -48,8 +48,8 @@ import org.telegram.ui.Cells.LetterSectionCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda30;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda23;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda24;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.CountrySelectActivity;
 
@@ -263,7 +263,7 @@ public class CountrySelectActivity extends BaseFragment {
         }
 
         public CountryAdapter(Context context, ArrayList arrayList, boolean z) throws IOException {
-            final Comparator boostRepository$$ExternalSyntheticLambda31;
+            final Comparator boostRepository$$ExternalSyntheticLambda24;
             this.mContext = context;
             if (arrayList != null) {
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -312,17 +312,17 @@ public class CountrySelectActivity extends BaseFragment {
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());
                 Objects.requireNonNull(collator);
-                boostRepository$$ExternalSyntheticLambda31 = new BoostRepository$$ExternalSyntheticLambda30(collator);
+                boostRepository$$ExternalSyntheticLambda24 = new BoostRepository$$ExternalSyntheticLambda23(collator);
             } else {
-                boostRepository$$ExternalSyntheticLambda31 = new BoostRepository$$ExternalSyntheticLambda31();
+                boostRepository$$ExternalSyntheticLambda24 = new BoostRepository$$ExternalSyntheticLambda24();
             }
-            Collections.sort(this.sortedCountries, boostRepository$$ExternalSyntheticLambda31);
+            Collections.sort(this.sortedCountries, boostRepository$$ExternalSyntheticLambda24);
             Iterator it = this.countries.values().iterator();
             while (it.hasNext()) {
                 Collections.sort((ArrayList) it.next(), new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
-                        return CountrySelectActivity.CountryAdapter.lambda$new$0(boostRepository$$ExternalSyntheticLambda31, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
+                        return CountrySelectActivity.CountryAdapter.lambda$new$0(boostRepository$$ExternalSyntheticLambda24, (CountrySelectActivity.Country) obj, (CountrySelectActivity.Country) obj2);
                     }
                 });
             }

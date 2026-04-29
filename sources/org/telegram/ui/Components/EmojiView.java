@@ -8067,8 +8067,10 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
 
         public void foundPackListOnClickItem(UItem uItem, View view, int i, float f, float f2) {
             TLRPC.StickerSet stickerSet;
-            TLRPC.TL_messages_stickerSet stickerSet2;
+            TLRPC.StickerSet stickerSet2;
+            TLRPC.TL_messages_stickerSet stickerSet3;
             Object obj = uItem.object;
+            TLRPC.Document document = null;
             if (obj instanceof TLRPC.StickerSetCovered) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) obj;
                 EmojiPackInfo emojiPackInfo = (EmojiPackInfo) uItem.object2;
@@ -8077,28 +8079,29 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 long j2 = stickerSet.id;
                 if (j == j2) {
                     this.selectedPackId = 0L;
-                    stickerSet = null;
+                    stickerSet2 = null;
                 } else {
                     this.selectedPackId = j2;
                     this.selectedPackStickers = emojiPackInfo.documents;
                     this.selectedPackStickerSet = stickerSetCovered.set;
-                }
-            } else if (obj instanceof TLRPC.TL_messages_stickerSet) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                long j3 = this.selectedPackId;
-                TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet.set;
-                long j4 = stickerSet3.id;
-                if (j3 == j4) {
-                    this.selectedPackId = 0L;
-                    stickerSet = null;
-                } else {
-                    this.selectedPackId = j4;
-                    this.selectedPackStickers = tL_messages_stickerSet.documents;
-                    this.selectedPackStickerSet = stickerSet3;
-                    stickerSet = stickerSet3;
+                    stickerSet2 = stickerSet;
                 }
             } else {
-                stickerSet = null;
+                if (obj instanceof TLRPC.TL_messages_stickerSet) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+                    long j3 = this.selectedPackId;
+                    stickerSet = tL_messages_stickerSet.set;
+                    long j4 = stickerSet.id;
+                    if (j3 == j4) {
+                        this.selectedPackId = 0L;
+                    } else {
+                        this.selectedPackId = j4;
+                        this.selectedPackStickers = tL_messages_stickerSet.documents;
+                        this.selectedPackStickerSet = stickerSet;
+                        stickerSet2 = stickerSet;
+                    }
+                }
+                stickerSet2 = null;
             }
             int childCount = this.foundPacksListView.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {
@@ -8107,12 +8110,17 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     foundStickerPackCell.setSelected(false, true);
                 }
             }
-            if (this.selectedPackId != 0 && this.selectedPackStickers.size() < this.selectedPackStickerSet.count && (stickerSet2 = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSet(this.selectedPackStickerSet, false)) != null) {
-                this.selectedPackStickers = stickerSet2.documents;
+            if (this.selectedPackId != 0 && this.selectedPackStickers.size() < this.selectedPackStickerSet.count && (stickerSet3 = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSet(this.selectedPackStickerSet, false)) != null) {
+                this.selectedPackStickers = stickerSet3.documents;
             }
             TLObject tLObject = (TLObject) uItem.object;
             EmojiView emojiView = EmojiView.this;
-            emojiView.setFoundPackButtonText(emojiView.emojiAddPackButton, tLObject, stickerSet, EmojiView.this.animatorSearchEmojiPackSelected.getFloatValue() > 0.0f);
+            FoundStickerPackButton foundStickerPackButton = emojiView.emojiAddPackButton;
+            ArrayList arrayList = this.selectedPackStickers;
+            if (arrayList != null && !arrayList.isEmpty()) {
+                document = (TLRPC.Document) this.selectedPackStickers.get(0);
+            }
+            emojiView.setFoundPackButtonText(foundStickerPackButton, tLObject, stickerSet2, document, true, EmojiView.this.animatorSearchEmojiPackSelected.getFloatValue() > 0.0f);
             ((FoundStickerPackCell) view).setSelected(this.selectedPackId != 0, true);
             EmojiView.this.animatorSearchEmojiPackSelected.setValue(this.selectedPackId != 0, true);
             notifyDataSetChanged();
@@ -9771,8 +9779,10 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
 
         public void foundPackListOnClickItem(UItem uItem, View view, int i, float f, float f2) {
             TLRPC.StickerSet stickerSet;
-            TLRPC.TL_messages_stickerSet stickerSet2;
+            TLRPC.StickerSet stickerSet2;
+            TLRPC.TL_messages_stickerSet stickerSet3;
             Object obj = uItem.object;
+            TLRPC.Document document = null;
             if (obj instanceof TLRPC.StickerSetCovered) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) obj;
                 EmojiPackInfo emojiPackInfo = (EmojiPackInfo) uItem.object2;
@@ -9781,28 +9791,29 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 long j2 = stickerSet.id;
                 if (j == j2) {
                     this.selectedPackId = 0L;
-                    stickerSet = null;
+                    stickerSet2 = null;
                 } else {
                     this.selectedPackId = j2;
                     this.selectedPackStickers = emojiPackInfo.documents;
                     this.selectedPackStickerSet = stickerSetCovered.set;
-                }
-            } else if (obj instanceof TLRPC.TL_messages_stickerSet) {
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                long j3 = this.selectedPackId;
-                TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet.set;
-                long j4 = stickerSet3.id;
-                if (j3 == j4) {
-                    this.selectedPackId = 0L;
-                    stickerSet = null;
-                } else {
-                    this.selectedPackId = j4;
-                    this.selectedPackStickers = tL_messages_stickerSet.documents;
-                    this.selectedPackStickerSet = stickerSet3;
-                    stickerSet = stickerSet3;
+                    stickerSet2 = stickerSet;
                 }
             } else {
-                stickerSet = null;
+                if (obj instanceof TLRPC.TL_messages_stickerSet) {
+                    TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+                    long j3 = this.selectedPackId;
+                    stickerSet = tL_messages_stickerSet.set;
+                    long j4 = stickerSet.id;
+                    if (j3 == j4) {
+                        this.selectedPackId = 0L;
+                    } else {
+                        this.selectedPackId = j4;
+                        this.selectedPackStickers = tL_messages_stickerSet.documents;
+                        this.selectedPackStickerSet = stickerSet;
+                        stickerSet2 = stickerSet;
+                    }
+                }
+                stickerSet2 = null;
             }
             int childCount = this.foundPacksListView.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {
@@ -9811,12 +9822,17 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     foundStickerPackCell.setSelected(false, true);
                 }
             }
-            if (this.selectedPackId != 0 && this.selectedPackStickers.size() < this.selectedPackStickerSet.count && (stickerSet2 = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSet(this.selectedPackStickerSet, false)) != null) {
-                this.selectedPackStickers = stickerSet2.documents;
+            if (this.selectedPackId != 0 && this.selectedPackStickers.size() < this.selectedPackStickerSet.count && (stickerSet3 = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSet(this.selectedPackStickerSet, false)) != null) {
+                this.selectedPackStickers = stickerSet3.documents;
             }
             TLObject tLObject = (TLObject) uItem.object;
             EmojiView emojiView = EmojiView.this;
-            emojiView.setFoundPackButtonText(emojiView.stickerAddPackButton, tLObject, stickerSet, EmojiView.this.animatorSearchStickerPackSelected.getFloatValue() > 0.0f);
+            FoundStickerPackButton foundStickerPackButton = emojiView.stickerAddPackButton;
+            ArrayList arrayList = this.selectedPackStickers;
+            if (arrayList != null && !arrayList.isEmpty()) {
+                document = (TLRPC.Document) this.selectedPackStickers.get(0);
+            }
+            emojiView.setFoundPackButtonText(foundStickerPackButton, tLObject, stickerSet2, document, false, EmojiView.this.animatorSearchStickerPackSelected.getFloatValue() > 0.0f);
             ((FoundStickerPackCell) view).setSelected(this.selectedPackId != 0, true);
             EmojiView.this.animatorSearchStickerPackSelected.setValue(this.selectedPackId != 0, true);
             notifyDataSetChanged();
@@ -10312,39 +10328,54 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
     }
 
-    public void setFoundPackButtonText(final FoundStickerPackButton foundStickerPackButton, final TLObject tLObject, final TLRPC.StickerSet stickerSet, boolean z) {
+    public void setFoundPackButtonText(final FoundStickerPackButton foundStickerPackButton, final TLObject tLObject, final TLRPC.StickerSet stickerSet, final TLRPC.Document document, final boolean z, boolean z2) {
         String pluralString;
+        StickersSearchGridAdapter stickersSearchGridAdapter;
+        EmojiSearchAdapter emojiSearchAdapter;
         if (stickerSet == null) {
             return;
         }
-        final boolean zIsStickerPackInstalled = MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(stickerSet.id);
-        if (zIsStickerPackInstalled) {
-            if (stickerSet.masks) {
-                pluralString = LocaleController.formatPluralString("RemoveManyMasksCount", stickerSet.count, new Object[0]);
-            } else if (stickerSet.emojis) {
-                pluralString = LocaleController.formatPluralString("RemoveManyEmojiCount", stickerSet.count, new Object[0]);
-            } else {
-                pluralString = LocaleController.formatPluralString("RemoveManyStickersCount", stickerSet.count, new Object[0]);
+        if (!z || (emojiSearchAdapter = this.emojiSearchAdapter) == null || emojiSearchAdapter.selectedPackId == stickerSet.id) {
+            if (z || (stickersSearchGridAdapter = this.stickersSearchGridAdapter) == null || stickersSearchGridAdapter.selectedPackId == stickerSet.id) {
+                final boolean zIsStickerPackInstalled = MediaDataController.getInstance(this.currentAccount).isStickerPackInstalled(stickerSet.id);
+                if (zIsStickerPackInstalled) {
+                    if (stickerSet.masks) {
+                        pluralString = LocaleController.formatPluralString("RemoveManyMasksCount", stickerSet.count, new Object[0]);
+                    } else if (stickerSet.emojis) {
+                        pluralString = LocaleController.formatPluralString("RemoveManyEmojiCount", stickerSet.count, new Object[0]);
+                    } else {
+                        pluralString = LocaleController.formatPluralString("RemoveManyStickersCount", stickerSet.count, new Object[0]);
+                    }
+                } else if (stickerSet.masks) {
+                    pluralString = LocaleController.formatPluralString("AddManyMasksCount", stickerSet.count, new Object[0]);
+                } else if (stickerSet.emojis) {
+                    pluralString = LocaleController.formatPluralString("AddManyEmojiCount", stickerSet.count, new Object[0]);
+                } else {
+                    pluralString = LocaleController.formatPluralString("AddManyStickersCount", stickerSet.count, new Object[0]);
+                }
+                foundStickerPackButton.setText(pluralString, z2);
+                foundStickerPackButton.setIsPrimary(!zIsStickerPackInstalled, z2);
+                foundStickerPackButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$setFoundPackButtonText$30(tLObject, document, zIsStickerPackInstalled, foundStickerPackButton, stickerSet, z, view);
+                    }
+                });
             }
-        } else if (stickerSet.masks) {
-            pluralString = LocaleController.formatPluralString("AddManyMasksCount", stickerSet.count, new Object[0]);
-        } else if (stickerSet.emojis) {
-            pluralString = LocaleController.formatPluralString("AddManyEmojiCount", stickerSet.count, new Object[0]);
-        } else {
-            pluralString = LocaleController.formatPluralString("AddManyStickersCount", stickerSet.count, new Object[0]);
         }
-        foundStickerPackButton.setText(pluralString, z);
-        foundStickerPackButton.setIsPrimary(!zIsStickerPackInstalled, z);
-        foundStickerPackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$setFoundPackButtonText$29(tLObject, zIsStickerPackInstalled, foundStickerPackButton, stickerSet, view);
-            }
-        });
     }
 
-    public void lambda$setFoundPackButtonText$29(TLObject tLObject, boolean z, FoundStickerPackButton foundStickerPackButton, TLRPC.StickerSet stickerSet, View view) {
-        MediaDataController.getInstance(this.currentAccount).toggleStickerSet(getContext(), tLObject, z ? 0 : 2, this.fragment, this.bulletinContainer2, false, true, null, false);
-        setFoundPackButtonText(foundStickerPackButton, tLObject, stickerSet, true);
+    public void lambda$setFoundPackButtonText$30(final TLObject tLObject, final TLRPC.Document document, boolean z, final FoundStickerPackButton foundStickerPackButton, final TLRPC.StickerSet stickerSet, final boolean z2, View view) {
+        MediaDataController.getInstance(this.currentAccount).toggleStickerSet(getContext(), tLObject, document, z ? 0 : 2, this.fragment, this.bulletinContainer2, false, true, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$setFoundPackButtonText$29(foundStickerPackButton, tLObject, stickerSet, document, z2);
+            }
+        }, false);
+        setFoundPackButtonText(foundStickerPackButton, tLObject, stickerSet, document, z2, true);
+    }
+
+    public void lambda$setFoundPackButtonText$29(FoundStickerPackButton foundStickerPackButton, TLObject tLObject, TLRPC.StickerSet stickerSet, TLRPC.Document document, boolean z) {
+        setFoundPackButtonText(foundStickerPackButton, tLObject, stickerSet, document, z, true);
     }
 }

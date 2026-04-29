@@ -2530,6 +2530,7 @@
     <string name="ChromecastStarted">Started streaming media to Chromecast.</string>
     <string name="ChromecastStartedTo">Started streaming media to %s.</string>
     <string name="Clear">Clear</string>
+    <string name="ClearAllHistory">Clear All History</string>
     <string name="ClearButton">Clear</string>
     <string name="ClearCache">Clear Cache</string>
     <string name="ClearCacheFewChatsTitle">Empty cache for %1$s</string>
@@ -7902,9 +7903,13 @@
     <string name="SMSFee2Text">Telegram needs to send you an SMS with a verification code to confirm your phone number.</string>
     <string name="SMSFee2Title">Verification Required</string>
     <string name="SMSFee3Text">Sign up for 1-week Telegram Premium subscription to help cover the SMS costs.</string>
+    <string name="SMSFee3TextDays_one">Sign up for %d day of Telegram Premium subscription to help cover the SMS costs.</string>
+    <string name="SMSFee3TextDays_other">Sign up for %d days of Telegram Premium subscription to help cover the SMS costs.</string>
     <string name="SMSFee3Title">Support via **Telegram Premium &gt;**</string>
     <string name="SMSFeeContact">Having issues? **Contact us**</string>
     <string name="SMSFeePurchaseText">Get Telegram Premium for 1 week</string>
+    <string name="SMSFeePurchaseTextDays_one">Get Telegram Premium for %d day</string>
+    <string name="SMSFeePurchaseTextDays_other">Get Telegram Premium for %d days</string>
     <string name="SMSFeePurchaseTitle">Sign up for %s</string>
     <string name="SMSFeeTitle">SMS Fee</string>
     <string name="SMSPhrase">Secret phrase</string>
@@ -8268,6 +8273,7 @@
     <string name="SendMessagesToGroupText">Do you want to send this message to **%1$s**?</string>
     <string name="SendMessagesToText">Do you want to send this message to **%1$s**?</string>
     <string name="SendPlainTextRestrictionHint">The admins of this group only allow to send %s.</string>
+    <string name="SendReactionsIsRestrictedInThisChat">You cannot send reactions in this chat.</string>
     <string name="SendSelectedLocation">Send selected location</string>
     <string name="SendSticker">SEND STICKER</string>
     <string name="SendStickerPreview">Send Sticker</string>
@@ -10702,7 +10708,7 @@
     <string name="chatDate">MMMM d</string>
     <string name="chatDateShort">MMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="com.google.firebase.crashlytics.mapping_file_id">4752bb5e5c9e44bcbf66df692830808e</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id">577844b62174445d8ab8944afdc7de35</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -19,6 +21,8 @@ import org.telegram.ui.Components.RadioButton;
 public class SelectorCountryCell extends BaseCell {
     private final CheckBox2 checkBox;
     private TLRPC.TL_help_country country;
+    private TextPaint paint;
+    private final Runnable setCountryRunnable;
 
     @Override
     protected int dividerPadding() {
@@ -37,7 +41,14 @@ public class SelectorCountryCell extends BaseCell {
 
     public SelectorCountryCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        this.titleTextView.setTypeface(AndroidUtilities.bold());
+        this.paint = new TextPaint();
+        this.setCountryRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.setCountryInternal();
+            }
+        };
+        this.paint.setTextSize(AndroidUtilities.dp(20.0f));
         this.radioButton.setVisibility(8);
         this.imageView.setVisibility(8);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
@@ -65,21 +76,29 @@ public class SelectorCountryCell extends BaseCell {
 
     public void setCountry(TLRPC.TL_help_country tL_help_country, boolean z) {
         this.country = tL_help_country;
-        this.titleTextView.setText(Emoji.replaceEmoji(getCountryNameWithFlag(tL_help_country), this.titleTextView.getPaint().getFontMetricsInt(), false));
+        setCountryInternal();
         setDivider(z);
+    }
+
+    public void setCountryInternal() {
+        this.titleTextView.setText(getCountryNameWithFlag(this.country));
     }
 
     private CharSequence getCountryNameWithFlag(TLRPC.TL_help_country tL_help_country) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String languageFlag = LocaleController.getLanguageFlag(tL_help_country.iso2);
-        if (languageFlag != null) {
-            spannableStringBuilder.append((CharSequence) languageFlag).append((CharSequence) " ");
-            spannableStringBuilder.setSpan(new SpaceDrawable(16), languageFlag.length(), languageFlag.length() + 1, 0);
+        CharSequence charSequenceReplaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.paint.getFontMetricsInt(), 0, this.setCountryRunnable);
+        if (charSequenceReplaceWithRestrictedEmoji != null) {
+            spannableStringBuilder.append(charSequenceReplaceWithRestrictedEmoji).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new SpaceDrawable(16), charSequenceReplaceWithRestrictedEmoji.length(), charSequenceReplaceWithRestrictedEmoji.length() + 1, 0);
         } else {
             spannableStringBuilder.append((CharSequence) " ");
             spannableStringBuilder.setSpan(new SpaceDrawable(34), 0, 1, 0);
         }
-        spannableStringBuilder.append((CharSequence) tL_help_country.default_name);
+        String countryName = LocaleController.getCountryName(tL_help_country.iso2);
+        if (TextUtils.isEmpty(countryName)) {
+            countryName = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) countryName);
         return spannableStringBuilder;
     }
 

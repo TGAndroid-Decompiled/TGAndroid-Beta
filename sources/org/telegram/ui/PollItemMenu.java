@@ -322,7 +322,7 @@ public class PollItemMenu extends Dialog {
         attributes.dimAmount = 0.0f;
         int i = attributes.flags;
         attributes.softInputMode = 48;
-        attributes.flags = (i & (-131075)) | (-1946090112);
+        attributes.flags = (i & (-131075)) | (-1946090104);
         if (Build.VERSION.SDK_INT >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
@@ -1385,7 +1385,7 @@ public class PollItemMenu extends Dialog {
                 final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                 itemOptionsMakeSwipeback.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
                 itemOptionsMakeSwipeback.setBlurBackgroundForSwipeback(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
-                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda321(itemOptionsMakeOptions));
+                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda379(itemOptionsMakeOptions));
                 itemOptionsMakeSwipeback.addGap();
                 arrayList = arrayList3;
                 z2 = z4;

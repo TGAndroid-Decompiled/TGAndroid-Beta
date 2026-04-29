@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -67,7 +66,7 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda281;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
@@ -3292,7 +3291,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
         });
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.resourcesProvider);
-        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda281(scrimOptions));
+        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda267(scrimOptions));
         itemOptionsAdd.setMinWidth(AndroidUtilities.dp(185.0f));
         itemOptionsAdd.setupSelectors();
         scrimOptions.setItemOptions(itemOptionsAdd);
@@ -3681,15 +3680,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPollLayout.lambda$openAttachMenuForOptions$21(int, org.telegram.ui.Components.poll.PollAttachedMedia):void");
     }
 
-    private static String getCountryName(String str) {
-        return new Locale("", str).getDisplayCountry(Locale.getDefault());
-    }
-
     private static String formatCountriesList(ArrayList arrayList) {
         if (arrayList.isEmpty()) {
             return LocaleController.getString(R.string.SearchCountriesSelect);
         }
-        return arrayList.size() == 1 ? getCountryName((String) arrayList.get(0)) : LocaleController.formatString(R.string.PollV2AllowedCountriesListMany, Integer.valueOf(arrayList.size()));
+        return arrayList.size() == 1 ? LocaleController.getCountryName((String) arrayList.get(0)) : LocaleController.formatString(R.string.PollV2AllowedCountriesListMany, Integer.valueOf(arrayList.size()));
     }
 
     private class ToggleRow {

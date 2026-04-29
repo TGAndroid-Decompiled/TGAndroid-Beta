@@ -2,12 +2,17 @@ package org.telegram.ui.Components.poll.sheets;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Map;
@@ -21,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiConsumer;
+import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -34,6 +40,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.FragmentSearchField;
 import org.telegram.ui.Components.FragmentSpansContainer;
 import org.telegram.ui.Components.GroupCreateSpan;
@@ -42,6 +49,7 @@ import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorCountryCell;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
@@ -50,6 +58,7 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView implements FactorAnimator.Target {
     private UniversalAdapter adapter;
     private final FactorAnimator animatorSelectorContainerHeight;
+    private final BoolAnimator animatorTopSaveButtonVisibility;
     private final ButtonWithCounterView button;
     private final FrameLayout buttonContainer;
     private final List countriesLetters;
@@ -57,6 +66,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
     private final Map countriesMap;
     private Set countriesToSelect;
     private GroupCreateSpan currentDeletingSpan;
+    private final TextView doneItem;
     private final GraySectionCell graySectionCell;
     private final Rect listViewClipBounds;
     private Listener listener;
@@ -81,9 +91,10 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     public CountrySelectBottomSheet(Context context, final Theme.ResourcesProvider resourcesProvider) {
-        super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+        super(context, null, true, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorSelectorContainerHeight = new FactorAnimator(3, this, cubicBezierInterpolator, 350L);
+        this.animatorTopSaveButtonVisibility = new BoolAnimator(4, this, cubicBezierInterpolator, 320L);
         this.countriesMap = new HashMap();
         this.countriesLetters = new ArrayList();
         this.countriesList = new ArrayList();
@@ -91,6 +102,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         this.listViewClipBounds = new Rect();
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
+        this.ignoreTouchActionBar = false;
         this.showShadow = false;
         AndroidUtilities.enableEdgeToEdge(getWindow());
         RecyclerListView recyclerListView = this.recyclerListView;
@@ -109,11 +121,38 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         this.button = buttonWithCounterView;
         buttonWithCounterView.setRound();
         buttonWithCounterView.setCountFilled(true);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.Save));
+        int i2 = R.string.Save;
+        buttonWithCounterView.setText(LocaleController.getString(i2));
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$0(view);
+            }
+        });
+        TextView textView = new TextView(context) {
+            final Paint p = new Paint(1);
+
+            @Override
+            protected void onDraw(Canvas canvas) {
+                this.p.setColor(CountrySelectBottomSheet.this.getThemedColor(Theme.key_featuredStickers_addButton));
+                canvas.drawRoundRect(0.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(14.0f), getWidth(), (getHeight() / 2.0f) + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.p);
+                super.onDraw(canvas);
+            }
+        };
+        this.doneItem = textView;
+        textView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
+        textView.setText(LocaleController.getString(i2));
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextSize(1, 14.0f);
+        textView.setGravity(17);
+        textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        textView.setVisibility(8);
+        ScaleStateListAnimator.apply(textView);
+        this.actionBar.createMenu().addView(textView, LayoutHelper.createLinear(-2, 48, 16, 12, 0, 12, 0));
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                this.f$0.lambda$new$1(view);
             }
         });
         FragmentSearchField fragmentSearchField = new FragmentSearchField(context, resourcesProvider);
@@ -121,17 +160,18 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         fragmentSearchField.editText.setHint(LocaleController.getString(R.string.PollV2SearchHint));
         fragmentSearchField.editText.addTextChangedListener(new TextWatcherImpl() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                TextWatcherImpl.CC.$default$beforeTextChanged(this, charSequence, i2, i3, i4);
+            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                TextWatcherImpl.CC.$default$beforeTextChanged(this, charSequence, i3, i4, i5);
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                TextWatcherImpl.CC.$default$onTextChanged(this, charSequence, i2, i3, i4);
+            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                TextWatcherImpl.CC.$default$onTextChanged(this, charSequence, i3, i4, i5);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                CountrySelectBottomSheet.this.saveScrollPosition();
                 CountrySelectBottomSheet.this.query = editable.toString();
                 CountrySelectBottomSheet.this.adapter.update(true);
             }
@@ -140,8 +180,8 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         this.spansContainer = fragmentSpansContainer;
         fragmentSpansContainer.setDelegate(new FragmentSpansContainer.Delegate() {
             @Override
-            public final void onAfterMeasure(int i2) {
-                this.f$0.lambda$new$2(i2);
+            public final void onAfterMeasure(int i3) {
+                this.f$0.lambda$new$3(i3);
             }
         });
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -155,20 +195,20 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
                 if (view == CountrySelectBottomSheet.this.spansContainer && factor > 0) {
                     this.gradientProtectionDrawableTop.setBounds(0, AndroidUtilities.dp(40.0f), getWidth(), AndroidUtilities.dp(48.0f));
                     GradientProtectionDrawable gradientProtectionDrawable = this.gradientProtectionDrawableTop;
-                    int i2 = Theme.key_dialogBackground;
-                    gradientProtectionDrawable.setColor(Theme.getColor(i2, resourcesProvider));
+                    int i3 = Theme.key_dialogBackground;
+                    gradientProtectionDrawable.setColor(Theme.getColor(i3, resourcesProvider));
                     this.gradientProtectionDrawableTop.draw(canvas);
                     int iDp = AndroidUtilities.dp(48.0f) + factor;
                     this.gradientProtectionDrawableBottom.setBounds(0, iDp - AndroidUtilities.dp(8.0f), getWidth(), iDp);
-                    this.gradientProtectionDrawableBottom.setColor(Theme.getColor(i2, resourcesProvider));
+                    this.gradientProtectionDrawableBottom.setColor(Theme.getColor(i3, resourcesProvider));
                     this.gradientProtectionDrawableBottom.draw(canvas);
                 }
                 return zDrawChild;
             }
         };
         this.searchContainer = frameLayout;
-        int i2 = this.backgroundPaddingLeft;
-        frameLayout.setPadding(i2, 0, i2, 0);
+        int i3 = this.backgroundPaddingLeft;
+        frameLayout.setPadding(i3, 0, i3, 0);
         frameLayout.addView(fragmentSearchField, LayoutHelper.createFrame(-1, 40.0f, 48, 10.0f, 0.0f, 10.0f, 0.0f));
         frameLayout.addView(fragmentSpansContainer, LayoutHelper.createFrame(-1, 144.0f, 48, -3.0f, 40.0f, -3.0f, 0.0f));
         GraySectionCell graySectionCell = new GraySectionCell(context, 18, resourcesProvider);
@@ -177,7 +217,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         graySectionCell.setText(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$3(view);
+                this.f$0.lambda$new$4(view);
             }
         });
         frameLayout.addView(graySectionCell, LayoutHelper.createFrame(-1, 32, 48));
@@ -198,13 +238,21 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
 
             @Override
             public void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
-                int iMax = Math.max(0, ((((int) CountrySelectBottomSheet.this.searchContainer.getTranslationY()) - AndroidUtilities.dp(8.0f)) - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) + CountrySelectBottomSheet.this.listViewClipBounds.top + AndroidUtilities.dp(32.0f);
+                int iMax = Math.max(0, ((int) CountrySelectBottomSheet.this.searchContainer.getTranslationY()) + AndroidUtilities.dp(80.0f) + ((int) CountrySelectBottomSheet.this.animatorSelectorContainerHeight.getFactor()));
                 this.gradientProtectionDrawable.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
                 this.gradientProtectionDrawable.setBounds(0, iMax, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + iMax);
                 this.gradientProtectionDrawable.draw(canvas);
+                CountrySelectBottomSheet.this.checkUi_listViewClip();
+                CountrySelectBottomSheet.this.checkUi_searchFieldY();
             }
         });
         loadCountries();
+        ViewCompat.setOnApplyWindowInsetsListener(getContainer(), new OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
+            }
+        });
     }
 
     class AnonymousClass2 implements RecyclerListView.OnItemClickListener {
@@ -247,7 +295,15 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         lambda$new$0();
     }
 
-    public void lambda$new$2(int i) {
+    public void lambda$new$1(View view) {
+        Listener listener = this.listener;
+        if (listener != null) {
+            listener.onCountrySelected(new ArrayList(this.selectedCountries.keySet()));
+        }
+        lambda$new$0();
+    }
+
+    public void lambda$new$3(int i) {
         int iMin = Math.min(i, AndroidUtilities.dp(144.0f));
         if (i > 0) {
             iMin -= AndroidUtilities.dp(8.0f);
@@ -258,21 +314,27 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
             this.spansContainer.postOnAnimation(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$new$1();
+                    this.f$0.lambda$new$2();
                 }
             });
         }
     }
 
-    public void lambda$new$1() {
+    public void lambda$new$2() {
         this.adapter.update(true);
     }
 
-    public void lambda$new$3(View view) {
+    public void lambda$new$4(View view) {
         this.selectedCountries.clear();
         this.spansContainer.removeAllSpans(true);
         this.adapter.update(true);
         checkUi_buttonCounter();
+    }
+
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        processLegacyContainerInsets(windowInsetsCompat.toWindowInsets());
+        this.animatorTopSaveButtonVisibility.setValue(windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom > 0, true);
+        return WindowInsetsCompat.CONSUMED;
     }
 
     public void setListener(Listener listener) {
@@ -286,27 +348,22 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         checkUi_searchFieldY();
     }
 
-    @Override
-    protected boolean canDismissWithSwipe() {
-        return super.canDismissWithSwipe();
-    }
-
     private void loadCountries() {
-        BoostRepository.loadCountries(new Utilities.Callback() {
+        BoostRepository.loadCountriesForPolls(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$loadCountries$5((Pair) obj);
+                this.f$0.lambda$loadCountries$6((Pair) obj);
             }
         });
     }
 
-    public void lambda$loadCountries$5(Pair pair) {
+    public void lambda$loadCountries$6(Pair pair) {
         this.countriesMap.putAll((Map) pair.first);
         this.countriesLetters.addAll((Collection) pair.second);
         Map.EL.forEach(this.countriesMap, new BiConsumer() {
             @Override
             public final void accept(Object obj, Object obj2) {
-                this.f$0.lambda$loadCountries$4((String) obj, (List) obj2);
+                this.f$0.lambda$loadCountries$5((String) obj, (List) obj2);
             }
 
             public BiConsumer andThen(BiConsumer biConsumer) {
@@ -335,7 +392,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         checkUi_buttonCounter();
     }
 
-    public void lambda$loadCountries$4(String str, List list) {
+    public void lambda$loadCountries$5(String str, List list) {
         this.countriesList.addAll(list);
     }
 
@@ -348,7 +405,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
         return !TextUtils.isEmpty(this.query);
     }
 
-    private void checkUi_listViewClip() {
+    public void checkUi_listViewClip() {
         int currentActionBarHeight = AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight() + AndroidUtilities.dp(56.0f) + ((int) this.animatorSelectorContainerHeight.getFactor());
         int measuredHeight = (this.containerView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(34.0f);
         Rect rect = this.listViewClipBounds;
@@ -368,7 +425,7 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
                 y = childAt.getY();
             }
         }
-        float fMax = Math.max(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), y) + AndroidUtilities.dp(8.0f);
+        float fMax = Math.max(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), y + AndroidUtilities.dp(8.0f));
         if (this.searchContainer.getTranslationY() != fMax) {
             this.searchContainer.setTranslationY(fMax);
             this.recyclerListView.invalidate();
@@ -488,8 +545,12 @@ public class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView im
 
     @Override
     public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
-        checkUi_listViewClip();
-        this.graySectionCell.setTranslationY(AndroidUtilities.dp(48.0f) + f);
-        this.searchContainer.invalidate();
+        if (i == 3) {
+            checkUi_listViewClip();
+            this.graySectionCell.setTranslationY(AndroidUtilities.dp(48.0f) + f);
+            this.searchContainer.invalidate();
+        } else if (i == 4) {
+            FragmentFloatingButton.setAnimatedVisibility(this.doneItem, f);
+        }
     }
 }

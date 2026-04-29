@@ -574,18 +574,22 @@ public class Emoji {
         return replaceWithRestrictedEmoji(charSequence, textView.getPaint().getFontMetricsInt(), runnable);
     }
 
-    public static CharSequence replaceWithRestrictedEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, final Runnable runnable) {
+    public static CharSequence replaceWithRestrictedEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, Runnable runnable) {
+        return replaceWithRestrictedEmoji(charSequence, fontMetricsInt, 20, runnable);
+    }
+
+    public static CharSequence replaceWithRestrictedEmoji(CharSequence charSequence, Paint.FontMetricsInt fontMetricsInt, int i, final Runnable runnable) {
         Spannable spannableNewSpannable;
         TLRPC.Document next;
         AnimatedEmojiSpan animatedEmojiSpan;
-        int i;
+        int i2;
         if (SharedConfig.useSystemEmoji || charSequence == null || charSequence.length() == 0) {
             return charSequence;
         }
-        int i2 = UserConfig.selectedAccount;
+        int i3 = UserConfig.selectedAccount;
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
-        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i2).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new Utilities.Callback() {
+        TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i3).getStickerSet(tL_inputStickerSetShortName, 0, false, true, runnable == null ? null : new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 runnable.run();
@@ -601,14 +605,14 @@ public class Emoji {
             return charSequence;
         }
         AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableNewSpannable.getSpans(0, spannableNewSpannable.length(), AnimatedEmojiSpan.class);
-        int i3 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
-        for (int i4 = 0; i4 < emojis.size(); i4++) {
+        int i4 = SharedConfig.getDevicePerformanceClass() >= 2 ? 100 : 50;
+        for (int i5 = 0; i5 < emojis.size(); i5++) {
             try {
-                EmojiSpanRange emojiSpanRange = emojis.get(i4);
+                EmojiSpanRange emojiSpanRange = emojis.get(i5);
                 if (animatedEmojiSpanArr != null) {
-                    while (i < animatedEmojiSpanArr.length) {
-                        AnimatedEmojiSpan animatedEmojiSpan2 = animatedEmojiSpanArr[i];
-                        i = (animatedEmojiSpan2 != null && spannableNewSpannable.getSpanStart(animatedEmojiSpan2) == emojiSpanRange.start && spannableNewSpannable.getSpanEnd(animatedEmojiSpan2) == emojiSpanRange.end) ? 0 : i + 1;
+                    while (i2 < animatedEmojiSpanArr.length) {
+                        AnimatedEmojiSpan animatedEmojiSpan2 = animatedEmojiSpanArr[i2];
+                        i2 = (animatedEmojiSpan2 != null && spannableNewSpannable.getSpanStart(animatedEmojiSpan2) == emojiSpanRange.start && spannableNewSpannable.getSpanEnd(animatedEmojiSpan2) == emojiSpanRange.end) ? 0 : i2 + 1;
                     }
                 }
                 if (stickerSet != null) {
@@ -627,13 +631,13 @@ public class Emoji {
                     animatedEmojiSpan = new AnimatedEmojiSpan(0L, fontMetricsInt);
                 }
                 animatedEmojiSpan.emoji = emojiSpanRange.code.toString();
-                animatedEmojiSpan.cacheType = 20;
+                animatedEmojiSpan.cacheType = i;
                 spannableNewSpannable.setSpan(animatedEmojiSpan, emojiSpanRange.start, emojiSpanRange.end, 33);
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            int i5 = Build.VERSION.SDK_INT;
-            if ((i5 < 23 || i5 >= 29) && i4 + 1 >= i3) {
+            int i6 = Build.VERSION.SDK_INT;
+            if ((i6 < 23 || i6 >= 29) && i5 + 1 >= i4) {
                 break;
             }
         }

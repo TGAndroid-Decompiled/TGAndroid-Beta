@@ -33,6 +33,8 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
         TLRPC.Document document2;
         TLRPC.StickerSet stickerSet;
         TLRPC.Document document3;
+        TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered;
+        ArrayList<TLRPC.Document> arrayList;
         int i3;
         ImageLocation forSticker;
         TLRPC.TL_messages_stickerSet stickerSet2;
@@ -41,11 +43,11 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
         if (z) {
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
             stickerSet = tL_messages_stickerSet.set;
-            ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
-            if (arrayList == null || arrayList.isEmpty()) {
-                document2 = null;
+            ArrayList<TLRPC.Document> arrayList2 = tL_messages_stickerSet.documents;
+            if (arrayList2 == null || arrayList2.isEmpty()) {
+                document2 = document;
             } else {
-                document3 = arrayList.get(0);
+                document3 = arrayList2.get(0);
                 document2 = document3;
             }
         } else if (tLObject instanceof TLRPC.StickerSetCovered) {
@@ -54,8 +56,10 @@ public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
             TLRPC.Document document4 = stickerSetCovered.cover;
             if (document4 != null) {
                 document3 = document4;
+            } else if (!stickerSetCovered.covers.isEmpty()) {
+                document3 = stickerSetCovered.covers.get(0);
             } else {
-                document3 = !stickerSetCovered.covers.isEmpty() ? stickerSetCovered.covers.get(0) : null;
+                document3 = (!(stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) || (arrayList = (tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents) == null || arrayList.isEmpty()) ? document : tL_stickerSetFullCovered.documents.get(0);
             }
             document2 = document3;
         } else {
