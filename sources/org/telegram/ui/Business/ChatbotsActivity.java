@@ -44,6 +44,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.LaunchActivity;
 
 public class ChatbotsActivity extends BaseFragment {
     private static final int BUTTON_DELETE = -3;
@@ -394,7 +395,7 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessBots2), LocaleController.getString(R.string.BusinessBots2Info), "RestrictedEmoji", "🤖"));
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessBots2), LocaleController.getString(R.string.BusinessBots2Info), 120, "tg_superplaceholders_android_2", "🤖🏝️"));
         boolean z = false;
         if (this.selectedBot != null) {
             universalAdapter.whiteSectionStart();
@@ -415,7 +416,7 @@ public class ChatbotsActivity extends BaseFragment {
                 if (tLObject instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject;
                     if (user.bot) {
-                        arrayList.add(UItem.asAddChat(Long.valueOf(user.id)));
+                        arrayList.add(UItem.asAddChat(Long.valueOf(user.id), this.lastQuery));
                         this.foundBots.put(user.id, user);
                         z2 = true;
                     }
@@ -426,7 +427,7 @@ public class ChatbotsActivity extends BaseFragment {
                 if (tLObject2 instanceof TLRPC.User) {
                     TLRPC.User user2 = (TLRPC.User) tLObject2;
                     if (user2.bot) {
-                        arrayList.add(UItem.asAddChat(Long.valueOf(user2.id)));
+                        arrayList.add(UItem.asAddChat(Long.valueOf(user2.id), this.lastQuery));
                         this.foundBots.put(user2.id, user2);
                         z2 = true;
                     }
@@ -872,6 +873,7 @@ public class ChatbotsActivity extends BaseFragment {
 
     public void processDone() {
         TLRPC.User user;
+        TL_account.TL_connectedBot tL_connectedBot;
         if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
@@ -880,9 +882,11 @@ public class ChatbotsActivity extends BaseFragment {
             return;
         }
         if (this.recipientsHelper.validate(this.listView)) {
+            final TLRPC.User user2 = this.selectedBot;
+            boolean z = user2 != null && ((tL_connectedBot = this.currentBot) == null || tL_connectedBot.bot_id != user2.id);
             final ArrayList arrayList = new ArrayList();
-            TL_account.TL_connectedBot tL_connectedBot = this.currentBot;
-            if (tL_connectedBot != null && ((user = this.selectedBot) == null || tL_connectedBot.bot_id != user.id)) {
+            TL_account.TL_connectedBot tL_connectedBot2 = this.currentBot;
+            if (tL_connectedBot2 != null && ((user = this.selectedBot) == null || tL_connectedBot2.bot_id != user.id)) {
                 TL_account.updateConnectedBot updateconnectedbot = new TL_account.updateConnectedBot();
                 updateconnectedbot.deleted = true;
                 updateconnectedbot.bot = getMessagesController().getInputUser(this.currentBot.bot_id);
@@ -896,10 +900,10 @@ public class ChatbotsActivity extends BaseFragment {
                 updateconnectedbot2.bot = getMessagesController().getInputUser(this.selectedBot);
                 updateconnectedbot2.recipients = this.recipientsHelper.getBotInputValue();
                 arrayList.add(updateconnectedbot2);
-                TL_account.TL_connectedBot tL_connectedBot2 = this.currentBot;
-                if (tL_connectedBot2 != null) {
-                    tL_connectedBot2.bot_id = this.selectedBot.id;
-                    tL_connectedBot2.recipients = this.recipientsHelper.getBotValue();
+                TL_account.TL_connectedBot tL_connectedBot3 = this.currentBot;
+                if (tL_connectedBot3 != null) {
+                    tL_connectedBot3.bot_id = this.selectedBot.id;
+                    tL_connectedBot3.recipients = this.recipientsHelper.getBotValue();
                     this.currentBot.rights = this.rights;
                 }
             }
@@ -909,26 +913,28 @@ public class ChatbotsActivity extends BaseFragment {
             }
             final int[] iArr = {0};
             for (int i = 0; i < arrayList.size(); i++) {
+                final boolean z2 = z;
                 getConnectionsManager().sendRequest((TLObject) arrayList.get(i), new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$processDone$20(iArr, arrayList, tLObject, tL_error);
+                        this.f$0.lambda$processDone$20(iArr, arrayList, z2, user2, tLObject, tL_error);
                     }
                 });
             }
         }
     }
 
-    public void lambda$processDone$20(final int[] iArr, final ArrayList arrayList, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$processDone$20(final int[] iArr, final ArrayList arrayList, final boolean z, final TLRPC.User user, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processDone$19(tL_error, tLObject, iArr, arrayList);
+                this.f$0.lambda$processDone$19(tL_error, tLObject, iArr, arrayList, z, user);
             }
         });
     }
 
-    public void lambda$processDone$19(TLRPC.TL_error tL_error, final TLObject tLObject, int[] iArr, ArrayList arrayList) {
+    public void lambda$processDone$19(TLRPC.TL_error tL_error, final TLObject tLObject, int[] iArr, ArrayList arrayList, boolean z, TLRPC.User user) {
+        BaseFragment safeLastFragment;
         if (tL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
@@ -953,6 +959,10 @@ public class ChatbotsActivity extends BaseFragment {
             BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
             getMessagesController().clearFullUsers();
             finishFragment();
+            if (!z || user == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
+                return;
+            }
+            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotDone, UserObject.getUserName(user))).show();
         }
     }
 
@@ -995,6 +1005,13 @@ public class ChatbotsActivity extends BaseFragment {
         this.valueSet = true;
     }
 
+    public boolean notSelectedBot() {
+        if (this.selectedBot == null && !hasChanges()) {
+            return (this.searchHelper.getLocalServerSearch().isEmpty() && this.searchHelper.getGlobalSearch().isEmpty()) ? false : true;
+        }
+        return false;
+    }
+
     public boolean hasChanges() {
         if (!this.valueSet) {
             return false;
@@ -1022,28 +1039,43 @@ public class ChatbotsActivity extends BaseFragment {
 
     @Override
     public boolean onBackPressed(boolean z) {
-        if (!hasChanges()) {
-            return super.onBackPressed(z);
-        }
-        if (!z) {
+        if (hasChanges()) {
+            if (z) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+                builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+                builder.setMessage(LocaleController.getString(R.string.BusinessBotUnsavedChanges));
+                builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i) {
+                        this.f$0.lambda$onBackPressed$22(alertDialog, i);
+                    }
+                });
+                builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
+                    @Override
+                    public final void onClick(AlertDialog alertDialog, int i) {
+                        this.f$0.lambda$onBackPressed$23(alertDialog, i);
+                    }
+                });
+                showDialog(builder.create());
+            }
             return false;
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
-        builder.setMessage(LocaleController.getString(R.string.BusinessBotUnsavedChanges));
-        builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$onBackPressed$22(alertDialog, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AlertDialog.OnButtonClickListener() {
-            @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$onBackPressed$23(alertDialog, i);
-            }
-        });
-        showDialog(builder.create());
+        if (!notSelectedBot()) {
+            return super.onBackPressed(z);
+        }
+        if (z) {
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity());
+            builder2.setTitle(LocaleController.getString(R.string.BusinessBotNoAddedTitle));
+            builder2.setMessage(LocaleController.getString(R.string.BusinessBotNoAddedText));
+            builder2.setPositiveButton(LocaleController.getString(R.string.BusinessBotNoAddedButton), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i) {
+                    this.f$0.lambda$onBackPressed$24(alertDialog, i);
+                }
+            });
+            builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            showDialog(builder2.create());
+        }
         return false;
     }
 
@@ -1053,6 +1085,10 @@ public class ChatbotsActivity extends BaseFragment {
 
     public void lambda$onBackPressed$23(AlertDialog alertDialog, int i) {
         finishFragment();
+    }
+
+    public void lambda$onBackPressed$24(AlertDialog alertDialog, int i) {
+        processDone();
     }
 
     private void checkDone(boolean z) {

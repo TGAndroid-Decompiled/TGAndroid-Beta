@@ -21,6 +21,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
@@ -403,28 +404,28 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             linearLayout.setAlpha(0.0f);
             linearLayout.setTranslationY(AndroidUtilities.dp(32.0f));
             linearLayout.setVisibility(8);
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
-            this.button1View = buttonWithCounterView;
-            buttonWithCounterView.setText(LocaleController.formatPluralStringComma("StoriesCreate", 1), false);
+            ButtonWithCounterView round = new ButtonWithCounterView(context, true, resourcesProvider).setRound();
+            this.button1View = round;
+            round.setText(LocaleController.formatPluralStringComma("StoriesCreate", 1), false);
             if (!z3) {
-                linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 8.0f));
-                buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+                linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 8.0f));
+                round.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         this.f$0.lambda$new$6(view);
                     }
                 });
             }
-            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, z3, resourcesProvider);
-            this.button2View = buttonWithCounterView2;
+            ButtonWithCounterView round2 = new ButtonWithCounterView(context, z3, resourcesProvider).setRound();
+            this.button2View = round2;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v");
             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_collage);
             coloredImageSpan.translate(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(0.66f));
             spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.StoriesCollage));
-            buttonWithCounterView2.setText(spannableStringBuilder, false);
-            linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 0.0f));
-            buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+            round2.setText(spannableStringBuilder, false);
+            linearLayout.addView(round2, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+            round2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     this.f$0.lambda$new$7(view);
@@ -984,6 +985,9 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
 
     static class Cell extends FrameLayout {
         private static int allQueuesIndex;
+        public Runnable accessibilityClick;
+        public Runnable accessibilityLongClick;
+        private CharSequence accessibilityText;
         private final boolean alwaysShowCheckbox;
         private float aspectRatio;
         private final Paint bgPaint;
@@ -1081,6 +1085,8 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             frameLayout.addView(this.checkBox, LayoutHelper.createFrame(26, 26, 17));
             addView(this.checkBoxContainer, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
             this.checkBoxContainer.setVisibility(0);
+            this.checkBoxContainer.setImportantForAccessibility(2);
+            this.checkBox.setImportantForAccessibility(2);
             setWillNotDraw(false);
         }
 
@@ -1111,12 +1117,18 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                 setDraft(false);
                 setDuration(LocaleController.formatPluralString("StoryDrafts", i, new Object[0]));
                 this.drawDurationPlay = false;
+                this.accessibilityText = LocaleController.formatPluralString("StoryDrafts", i, new Object[0]);
             } else {
                 if (storyEntry != null && storyEntry.isDraft) {
                     z = true;
                 }
                 setDraft(z);
                 setDuration((storyEntry == null || !storyEntry.isVideo) ? null : AndroidUtilities.formatShortDuration((int) Math.max(0.0f, (storyEntry.duration * (storyEntry.right - storyEntry.left)) / 1000.0f)));
+                if (storyEntry != null && storyEntry.isVideo) {
+                    this.accessibilityText = LocaleController.getString(R.string.StoryDraft) + ", " + LocaleController.formatDuration((int) Math.max(0.0f, (storyEntry.duration * (storyEntry.right - storyEntry.left)) / 1000.0f));
+                } else {
+                    this.accessibilityText = LocaleController.getString(R.string.StoryDraft);
+                }
             }
             loadBitmap(storyEntry);
         }
@@ -1125,8 +1137,55 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             this.currentObject = photoEntry;
             setDuration((photoEntry == null || !photoEntry.isVideo || photoEntry.isLivePhoto) ? null : AndroidUtilities.formatShortDuration(photoEntry.duration));
             setDraft(false);
+            if (photoEntry == null) {
+                this.accessibilityText = null;
+            } else if (photoEntry.isVideo) {
+                this.accessibilityText = LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration);
+            } else {
+                this.accessibilityText = LocaleController.getString(R.string.AttachPhoto);
+            }
             loadBitmap(photoEntry);
             invalidate();
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            FrameLayout frameLayout = this.checkBoxContainer;
+            if (frameLayout != null && frameLayout.getVisibility() == 0) {
+                accessibilityNodeInfo.setClassName("android.widget.CheckBox");
+                accessibilityNodeInfo.setCheckable(true);
+                CheckBox2 checkBox2 = this.checkBox;
+                accessibilityNodeInfo.setChecked(checkBox2 != null && checkBox2.isChecked());
+            } else {
+                accessibilityNodeInfo.setClassName("android.widget.ImageView");
+            }
+            accessibilityNodeInfo.setClickable(true);
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.addAction(16);
+            if (this.accessibilityLongClick != null) {
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.addAction(32);
+            }
+            CharSequence charSequence = this.accessibilityText;
+            if (charSequence != null) {
+                accessibilityNodeInfo.setContentDescription(charSequence);
+            }
+        }
+
+        @Override
+        public boolean performAccessibilityAction(int i, Bundle bundle) {
+            Runnable runnable;
+            Runnable runnable2;
+            if (i == 16 && (runnable2 = this.accessibilityClick) != null) {
+                runnable2.run();
+                return true;
+            }
+            if (i == 32 && (runnable = this.accessibilityLongClick) != null) {
+                runnable.run();
+                return true;
+            }
+            return super.performAccessibilityAction(i, bundle);
         }
 
         public void setCheckbox(final boolean z, int i, boolean z2) {
@@ -1637,6 +1696,18 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
             if (itemViewType == 2) {
                 final Cell cell = (Cell) viewHolder.itemView;
                 cell.setRounding(i == 2, i == 4);
+                cell.accessibilityClick = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onBindViewHolder$0(cell);
+                    }
+                };
+                cell.accessibilityLongClick = new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onBindViewHolder$1(cell);
+                    }
+                };
                 int size = i - 2;
                 if (GalleryListView.this.containsDraftFolder) {
                     if (size == 0) {
@@ -1665,14 +1736,28 @@ public abstract class GalleryListView extends FrameLayout implements Notificatio
                     cell.checkBoxContainer.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            this.f$0.lambda$onBindViewHolder$0(photoEntry, cell, view);
+                            this.f$0.lambda$onBindViewHolder$2(photoEntry, cell, view);
                         }
                     });
                 }
             }
         }
 
-        public void lambda$onBindViewHolder$0(MediaController.PhotoEntry photoEntry, Cell cell, View view) {
+        public void lambda$onBindViewHolder$0(Cell cell) {
+            int childAdapterPosition = GalleryListView.this.listView.getChildAdapterPosition(cell);
+            if (childAdapterPosition != -1) {
+                GalleryListView.this.listView.clickItem(cell, childAdapterPosition);
+            }
+        }
+
+        public void lambda$onBindViewHolder$1(Cell cell) {
+            int childAdapterPosition = GalleryListView.this.listView.getChildAdapterPosition(cell);
+            if (childAdapterPosition != -1) {
+                GalleryListView.this.listView.longClickItem(cell, childAdapterPosition);
+            }
+        }
+
+        public void lambda$onBindViewHolder$2(MediaController.PhotoEntry photoEntry, Cell cell, View view) {
             if (!GalleryListView.this.selectedPhotos.contains(photoEntry)) {
                 if (GalleryListView.this.selectedPhotos.size() + 1 > GalleryListView.this.maxCount) {
                     GalleryListView galleryListView = GalleryListView.this;

@@ -2672,6 +2672,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             imageView2.setVisibility(8);
             ImageView imageView3 = new ImageView(context);
             this.optionsView = imageView3;
+            imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
             imageView3.setImageResource(R.drawable.media_more);
             imageView3.setScaleType(scaleType);
             imageView3.setBackground(Theme.createSelectorDrawable(553648127, 1));

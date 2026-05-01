@@ -182,7 +182,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 super.dispatchDraw(canvas);
             }
         };
-        this.closeLayout = new FrameLayout(getContext());
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        this.closeLayout = frameLayout2;
+        frameLayout2.setContentDescription(LocaleController.getString(R.string.Close));
         ImageView imageView = new ImageView(getContext());
         imageView.setImageResource(R.drawable.msg_close);
         imageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(12.0f), ColorUtils.setAlphaComponent(-1, 40), ColorUtils.setAlphaComponent(-1, 100)));
@@ -329,9 +331,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 this.f$0.lambda$new$2(view);
             }
         });
-        FrameLayout frameLayout2 = new FrameLayout(getContext());
-        this.buttonContainer = frameLayout2;
-        frameLayout2.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        FrameLayout frameLayout3 = new FrameLayout(getContext());
+        this.buttonContainer = frameLayout3;
+        frameLayout3.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
         this.buttonContainer.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         linearLayout.addView(this.buttonContainer, LayoutHelper.createLinear(-1, 68, 80));
         if (i2 == 40) {
@@ -346,7 +348,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         setButtonText();
         this.customViewGravity = 83;
         final Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
-        FrameLayout frameLayout3 = new FrameLayout(getContext()) {
+        FrameLayout frameLayout4 = new FrameLayout(getContext()) {
             int lastSize;
             Path path = new Path();
 
@@ -415,9 +417,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 return super.dispatchTouchEvent(motionEvent);
             }
         };
-        this.containerView = frameLayout3;
+        this.containerView = frameLayout4;
         int i4 = this.backgroundPaddingLeft;
-        frameLayout3.setPadding(i4, this.backgroundPaddingTop - 1, i4, 0);
+        frameLayout4.setPadding(i4, this.backgroundPaddingTop - 1, i4, 0);
     }
 
     public void lambda$new$0(View view) {
@@ -678,6 +680,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 this.description.setLines(2);
             }
             addView(this.description, LayoutHelper.createLinear(-1, -2, 1, 21, 10, 21, 16));
+            setImportantForAccessibility(2);
             setClipChildren(false);
         }
 

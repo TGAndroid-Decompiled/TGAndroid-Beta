@@ -648,7 +648,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         ActionBarMenuItem actionBarMenuItemAddItem3 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
         this.other = actionBarMenuItemAddItem3;
-        actionBarMenuItemAddItem3.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
+        actionBarMenuItemAddItem3.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
+        this.other.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
         this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString(R.string.AddMember));
         ActionBarMenuItem actionBarMenuItem = this.other;
         int i2 = R.raw.boosts;
@@ -2255,7 +2256,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
     private void checkLoading() {
         this.loadingTopics = this.topicsController.isLoading(this.chatId);
-        if (this.topicsEmptyView != null && (this.forumTopics.size() == 0 || (this.forumTopics.size() == 1 && ((Item) this.forumTopics.get(0)).topic.id == 1))) {
+        if (this.topicsEmptyView != null && (this.forumTopics.size() == 0 || (this.forumTopics.size() == 1 && ((Item) this.forumTopics.get(0)).topic != null && ((Item) this.forumTopics.get(0)).topic.id == 1))) {
             this.topicsEmptyView.showProgress(this.loadingTopics, this.fragmentBeginToShow);
         }
         TopicsRecyclerView topicsRecyclerView = this.recyclerListView;
@@ -2673,7 +2674,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int size = this.forumTopics.size();
             ArrayList arrayList = new ArrayList(this.forumTopics);
             this.forumTopics.clear();
-            if (UserObject.isBotForumWithEditableTopics(this.currentAccount, -this.chatId) && this.openedForForward) {
+            if (UserObject.isBotForum(this.currentAccount, -this.chatId) && this.openedForForward) {
                 this.forumTopics.add(new Item(3, null));
             }
             for (int i = 0; i < topics.size(); i++) {
@@ -2854,64 +2855,65 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            if (i == 0 || i == 3) {
-                TopicDialogCell topicDialogCell = TopicsFragment.this.new TopicDialogCell(null, viewGroup.getContext(), true, false);
-                if (i == 3) {
-                    topicDialogCell.setForumIcon(ForumUtilities.createTopicDrawable("", ForumBubbleDrawable.serverSupportedColor[0], false));
-                    topicDialogCell.setTitleOverride(LocaleController.getString(R.string.BotForumAskForStartNewChatTitle));
-                    topicDialogCell.setCustomMessage(LocaleController.getString(R.string.BotForumAskForStartNewChatForward));
-                }
-                topicDialogCell.inPreviewMode = ((BaseFragment) TopicsFragment.this).inPreviewMode;
-                topicDialogCell.setArchivedPullAnimation(TopicsFragment.this.pullForegroundDrawable);
-                return new RecyclerListView.Holder(topicDialogCell);
-            }
-            if (i == 2) {
-                return new RecyclerListView.Holder(TopicsFragment.this.emptyView = new View(TopicsFragment.this.getContext()) {
-                    HashMap precalcEllipsized = new HashMap();
+            if (i != 0 && i != 3) {
+                if (i == 2) {
+                    return new RecyclerListView.Holder(TopicsFragment.this.emptyView = new View(TopicsFragment.this.getContext()) {
+                        HashMap precalcEllipsized = new HashMap();
 
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        int i4;
-                        int iDp;
-                        int size = View.MeasureSpec.getSize(i2);
-                        int iDp2 = AndroidUtilities.dp(64.0f);
-                        int i5 = 0;
-                        int i6 = 0;
-                        for (int i7 = 0; i7 < Adapter.this.getArray().size(); i7++) {
-                            if (Adapter.this.getArray().get(i7) != null && ((Item) Adapter.this.getArray().get(i7)).topic != null) {
-                                String str = ((Item) Adapter.this.getArray().get(i7)).topic.title;
-                                Boolean boolValueOf = (Boolean) this.precalcEllipsized.get(str);
-                                if (boolValueOf == null) {
-                                    int iDp3 = AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : (TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 4);
-                                    if (LocaleController.isRTL) {
-                                        i4 = size - iDp3;
-                                        iDp = AndroidUtilities.dp((TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 13);
-                                    } else {
-                                        i4 = size - iDp3;
-                                        iDp = AndroidUtilities.dp(22.0f);
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            int i4;
+                            int iDp;
+                            int size = View.MeasureSpec.getSize(i2);
+                            int iDp2 = AndroidUtilities.dp(64.0f);
+                            int i5 = 0;
+                            int i6 = 0;
+                            for (int i7 = 0; i7 < Adapter.this.getArray().size(); i7++) {
+                                if (Adapter.this.getArray().get(i7) != null && ((Item) Adapter.this.getArray().get(i7)).topic != null) {
+                                    String str = ((Item) Adapter.this.getArray().get(i7)).topic.title;
+                                    Boolean boolValueOf = (Boolean) this.precalcEllipsized.get(str);
+                                    if (boolValueOf == null) {
+                                        int iDp3 = AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : (TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 4);
+                                        if (LocaleController.isRTL) {
+                                            i4 = size - iDp3;
+                                            iDp = AndroidUtilities.dp((TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 13);
+                                        } else {
+                                            i4 = size - iDp3;
+                                            iDp = AndroidUtilities.dp(22.0f);
+                                        }
+                                        boolValueOf = Boolean.valueOf(Theme.dialogs_namePaint[0].measureText(str) <= ((float) ((i4 - iDp) - ((int) Math.ceil((double) Theme.dialogs_timePaint.measureText("00:00"))))));
+                                        this.precalcEllipsized.put(str, boolValueOf);
                                     }
-                                    boolValueOf = Boolean.valueOf(Theme.dialogs_namePaint[0].measureText(str) <= ((float) ((i4 - iDp) - ((int) Math.ceil((double) Theme.dialogs_timePaint.measureText("00:00"))))));
-                                    this.precalcEllipsized.put(str, boolValueOf);
+                                    int iDp4 = AndroidUtilities.dp((!boolValueOf.booleanValue() ? 20 : 0) + 64);
+                                    if (((Item) Adapter.this.getArray().get(i7)).topic.id == 1) {
+                                        iDp2 = iDp4;
+                                    }
+                                    if (((Item) Adapter.this.getArray().get(i7)).topic.hidden) {
+                                        i5++;
+                                    }
+                                    i6 += iDp4;
                                 }
-                                int iDp4 = AndroidUtilities.dp((!boolValueOf.booleanValue() ? 20 : 0) + 64);
-                                if (((Item) Adapter.this.getArray().get(i7)).topic.id == 1) {
-                                    iDp2 = iDp4;
-                                }
-                                if (((Item) Adapter.this.getArray().get(i7)).topic.hidden) {
-                                    i5++;
-                                }
-                                i6 += iDp4;
                             }
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(0, i5 > 0 ? (((TopicsFragment.this.recyclerListView.getMeasuredHeight() - TopicsFragment.this.recyclerListView.getPaddingTop()) - TopicsFragment.this.recyclerListView.getPaddingBottom()) - i6) + iDp2 : 0), 1073741824));
                         }
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(0, i5 > 0 ? (((TopicsFragment.this.recyclerListView.getMeasuredHeight() - TopicsFragment.this.recyclerListView.getPaddingTop()) - TopicsFragment.this.recyclerListView.getPaddingBottom()) - i6) + iDp2 : 0), 1073741824));
-                    }
-                });
+                    });
+                }
+                FlickerLoadingView flickerLoadingView = new FlickerLoadingView(viewGroup.getContext());
+                flickerLoadingView.setViewType(24);
+                flickerLoadingView.setIsSingleCell(true);
+                flickerLoadingView.showDate(true);
+                return new RecyclerListView.Holder(flickerLoadingView);
             }
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(viewGroup.getContext());
-            flickerLoadingView.setViewType(24);
-            flickerLoadingView.setIsSingleCell(true);
-            flickerLoadingView.showDate(true);
-            return new RecyclerListView.Holder(flickerLoadingView);
+            TopicDialogCell topicDialogCell = TopicsFragment.this.new TopicDialogCell(null, viewGroup.getContext(), true, false);
+            if (i == 3) {
+                boolean zIsBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(((BaseFragment) TopicsFragment.this).currentAccount, -TopicsFragment.this.chatId);
+                topicDialogCell.setForumIcon(ForumUtilities.createTopicDrawable("", ForumBubbleDrawable.serverSupportedColor[0], false));
+                topicDialogCell.setTitleOverride(LocaleController.getString(!zIsBotForumWithEditableTopics ? R.string.BotForumAskForStartOffNewChatTitle : R.string.BotForumAskForStartNewChatTitle));
+                topicDialogCell.setCustomMessage(LocaleController.getString(!zIsBotForumWithEditableTopics ? R.string.BotForumAskForStartOffNewChatForward : R.string.BotForumAskForStartNewChatForward));
+            }
+            topicDialogCell.inPreviewMode = ((BaseFragment) TopicsFragment.this).inPreviewMode;
+            topicDialogCell.setArchivedPullAnimation(TopicsFragment.this.pullForegroundDrawable);
+            return new RecyclerListView.Holder(topicDialogCell);
         }
 
         @Override

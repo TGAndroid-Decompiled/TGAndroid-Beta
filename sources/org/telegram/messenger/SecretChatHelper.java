@@ -915,7 +915,8 @@ public class SecretChatHelper extends BaseController {
     }
 
     private void resendMessages(final int i, final int i2, final TLRPC.EncryptedChat encryptedChat) {
-        if (encryptedChat == null || i2 - i < 0) {
+        int i3;
+        if (encryptedChat == null || (i3 = i2 - i) < 0 || i3 > 10000) {
             return;
         }
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {

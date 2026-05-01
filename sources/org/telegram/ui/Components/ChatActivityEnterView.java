@@ -557,6 +557,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             public static void $default$onEditTextScroll(ChatActivityEnterViewDelegate chatActivityEnterViewDelegate) {
             }
 
+            public static void $default$onEmojiViewTabChanged(ChatActivityEnterViewDelegate chatActivityEnterViewDelegate) {
+            }
+
             public static void $default$onKeyboardRequested(ChatActivityEnterViewDelegate chatActivityEnterViewDelegate) {
             }
 
@@ -628,6 +631,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         void onContextMenuOpen();
 
         void onEditTextScroll();
+
+        void onEmojiViewTabChanged();
 
         void onKeyboardRequested();
 
@@ -2504,6 +2509,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         });
         this.sendButton.setOnLongClickListener(new ChatActivityEnterView$$ExternalSyntheticLambda9(this));
+        if (AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+            this.sendButtonContainer.setOnLongClickListener(new ChatActivityEnterView$$ExternalSyntheticLambda9(this));
+        }
         SlowModeBtn slowModeBtn = new SlowModeBtn(activity);
         this.slowModeButton = slowModeBtn;
         slowModeBtn.setTextSize(18);
@@ -3514,8 +3522,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         };
         this.doneButton = sendButton;
+        sendButton.setContentDescription(LocaleController.getString(R.string.EditMessage));
         if (z) {
-            ScaleStateListAnimator.apply(sendButton);
+            ScaleStateListAnimator.apply(this.doneButton);
         }
         this.textFieldContainer.addView(this.doneButton, LayoutHelper.createFrame(44, 44, 85));
     }
@@ -9176,6 +9185,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     this.f$0.lambda$setEditingBusinessLink$63(view);
                 }
             });
+            this.doneButton.setContentDescription(LocaleController.getString(R.string.Done));
             this.doneButton.setVisibility(0);
             this.doneButton.setScaleX(0.1f);
             this.doneButton.setScaleY(0.1f);
@@ -10577,11 +10587,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     ChatActivityEnterView.this.stickersExpanded = true;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 1);
                     ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                    chatActivityEnterView.stickersExpandedHeight = ((((chatActivityEnterView.sizeNotifierLayout.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - ActionBar.getCurrentActionBarHeight()) - ChatActivityEnterView.this.getHeight()) + Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+                    chatActivityEnterView.stickersExpandedHeight = ((((chatActivityEnterView.sizeNotifierLayout.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(11.0f)) - ActionBar.getCurrentActionBarHeight()) - ChatActivityEnterView.this.getHeight();
                     if (ChatActivityEnterView.this.searchingType == 2) {
                         ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
                         int i = chatActivityEnterView2.stickersExpandedHeight;
-                        int iDp = AndroidUtilities.dp(120.0f);
+                        int iDp = AndroidUtilities.dp(175.0f);
                         Point point = AndroidUtilities.displaySize;
                         chatActivityEnterView2.stickersExpandedHeight = Math.min(i, iDp + (point.x > point.y ? ChatActivityEnterView.this.keyboardHeightLand : ChatActivityEnterView.this.keyboardHeight));
                     }
@@ -11216,6 +11226,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
         @Override
         public void onTabOpened(int i) {
+            ChatActivityEnterView.this.delegate.onEmojiViewTabChanged();
             ChatActivityEnterView.this.delegate.onStickersTab(i == 3);
             ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
             chatActivityEnterView.post(chatActivityEnterView.updateExpandabilityRunnable);
@@ -11939,6 +11950,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
+    public boolean isCurrentPageEmoji() {
+        EmojiView emojiView = this.emojiView;
+        return emojiView != null && emojiView.getCurrentPage() == 0;
+    }
+
     public void openKeyboardInternal() throws Resources.NotFoundException {
         ChatActivity chatActivity;
         if ((hasBotWebView() && botCommandsMenuIsShowing()) || BaseFragment.hasSheets(this.parentFragment)) {
@@ -12545,12 +12561,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         Point point = AndroidUtilities.displaySize;
         int i = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
-        int currentActionBarHeight = ((((this.originalViewHeight - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - ActionBar.getCurrentActionBarHeight()) - getHeight()) + Theme.chat_composeShadowDrawable.getIntrinsicHeight();
+        int iDp = ((((this.originalViewHeight - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(11.0f)) - ActionBar.getCurrentActionBarHeight()) - getHeight();
         if (this.searchingType == 2) {
-            currentActionBarHeight = Math.min(currentActionBarHeight, AndroidUtilities.dp(120.0f) + i);
+            iDp = Math.min(iDp, AndroidUtilities.dp(175.0f) + i);
         }
         int i2 = this.emojiView.getLayoutParams().height;
-        if (i2 == currentActionBarHeight) {
+        if (i2 == iDp) {
             return;
         }
         Animator animator = this.stickersExpansionAnim;
@@ -12558,8 +12574,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             animator.cancel();
             this.stickersExpansionAnim = null;
         }
-        this.stickersExpandedHeight = currentActionBarHeight;
-        if (i2 > currentActionBarHeight) {
+        this.stickersExpandedHeight = iDp;
+        if (i2 > iDp) {
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
@@ -12634,7 +12650,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         WindowInsetsInAppController windowInsetsInAppController = this.windowInsetsInAppController;
         if (windowInsetsInAppController != null) {
-            windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(currentActionBarHeight);
+            windowInsetsInAppController.requestInAppKeyboardHeightIncludeNavbar(iDp);
         }
     }
 
@@ -12684,10 +12700,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
                 int height = this.sizeNotifierLayout.getHeight();
                 this.originalViewHeight = height;
-                int currentActionBarHeight = ((((height - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - ActionBar.getCurrentActionBarHeight()) - getHeight()) + Theme.chat_composeShadowDrawable.getIntrinsicHeight();
-                this.stickersExpandedHeight = currentActionBarHeight;
+                int iDp = ((((height - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(11.0f)) - ActionBar.getCurrentActionBarHeight()) - getHeight();
+                this.stickersExpandedHeight = iDp;
                 if (this.searchingType == 2) {
-                    this.stickersExpandedHeight = Math.min(currentActionBarHeight, AndroidUtilities.dp(120.0f) + i);
+                    this.stickersExpandedHeight = Math.min(iDp, AndroidUtilities.dp(175.0f) + i);
                 }
                 if (this.windowInsetsInAppController == null) {
                     this.emojiView.getLayoutParams().height = this.stickersExpandedHeight;
@@ -14287,6 +14303,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             float fDpf2 = AndroidUtilities.dpf2(3.0f);
             float fDpf22 = AndroidUtilities.dpf2(38.0f);
             this.backgroundRect.set((getMeasuredWidth() - Math.max(fDpf22, AndroidUtilities.dpf2(20.0f) + this.priceText.getCurrentWidth())) - fDpf2, (getMeasuredHeight() - fDpf22) - fDpf2, getMeasuredWidth() - fDpf2, getMeasuredHeight() - fDpf2);
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.Button");
         }
     }
 

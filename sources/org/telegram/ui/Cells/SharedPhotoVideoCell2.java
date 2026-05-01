@@ -21,12 +21,14 @@ import android.text.TextPaint;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
@@ -274,6 +276,24 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
 
     private void setMessageObject(org.telegram.messenger.MessageObject r23, int r24, boolean r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.setMessageObject(org.telegram.messenger.MessageObject, int, boolean):void");
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        try {
+            if (this.currentMessageObject != null) {
+                accessibilityNodeInfo.setEnabled(true);
+                accessibilityNodeInfo.setClickable(true);
+                accessibilityNodeInfo.addAction(16);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    private void updateAccessibilityDescription() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.updateAccessibilityDescription():void");
     }
 
     private void setPrivacyType(int i) {

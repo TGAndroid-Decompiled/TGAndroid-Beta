@@ -438,7 +438,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     public void lambda$new$5(View view, int i) {
-        if (this.shareTopicsAdapter.botforumWithManageTopics && i == 1) {
+        if (this.shareTopicsAdapter.isBotForum && i == 1) {
             onTopicCreateCellClick();
             return;
         }
@@ -862,7 +862,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         } else {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialog.id));
             TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialog.id));
-            if (UserObject.isBotForum(user) || (DialogObject.isChatDialog(dialog.id) && (ChatObject.isForum(chat2) || (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2))))) {
+            if (isBotForumWithNotEmptyTopics(user) || (DialogObject.isChatDialog(dialog.id) && (ChatObject.isForum(chat2) || (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(this.currentAccount, chat2))))) {
                 this.selectedTopicDialog = dialog;
                 this.topicsLayoutManager.scrollToPositionWithOffset(0, this.scrollOffsetY - this.topicsGridView.getPaddingTop());
                 final AtomicReference atomicReference = new AtomicReference();
@@ -932,7 +932,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             if (((Long) objArr[0]).longValue() == (-this.val$dialog.id)) {
                 boolean z = (ShareAlert.this.shareTopicsAdapter.topics == null && MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getTopicsController().getTopics(-this.val$dialog.id) != null) || this.val$timeoutRef.get() == null;
                 ShareAlert.this.shareTopicsAdapter.topics = MessagesController.getInstance(((BottomSheet) ShareAlert.this).currentAccount).getTopicsController().getTopics(-this.val$dialog.id);
-                ShareAlert.this.shareTopicsAdapter.botforumWithManageTopics = UserObject.isBotForumWithEditableTopics(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id);
+                ShareAlert.this.shareTopicsAdapter.isBotForum = UserObject.isBotForum(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id);
+                ShareAlert.this.shareTopicsAdapter.isBotForumWithManageTopics = UserObject.isBotForumWithEditableTopics(((BottomSheet) ShareAlert.this).currentAccount, this.val$dialog.id);
                 if (z) {
                     ShareAlert.this.shareTopicsAdapter.notifyDataSetChanged();
                 }
@@ -1004,6 +1005,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void lambda$selectDialog$21(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC.Dialog dialog) {
         atomicReference.set(null);
         notificationCenterDelegate.didReceivedNotification(NotificationCenter.topicsDidLoaded, this.currentAccount, Long.valueOf(-dialog.id));
+    }
+
+    private boolean isBotForumWithNotEmptyTopics(TLRPC.User user) {
+        if (!UserObject.isBotForum(user)) {
+            return false;
+        }
+        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(-user.id);
+        return ((topics == null || topics.isEmpty()) && MessagesController.getInstance(this.currentAccount).getTopicsController().endIsReached(-user.id)) ? false : true;
     }
 
     private void collapseTopics() {
@@ -2054,8 +2063,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     }
 
     private class ShareTopicsAdapter extends RecyclerListView.SelectionAdapter {
-        private boolean botforumWithManageTopics;
         private Context context;
+        private boolean isBotForum;
+        private boolean isBotForumWithManageTopics;
         private List topics;
 
         @Override
@@ -2070,12 +2080,12 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         @Override
         public int getItemCount() {
             List list = this.topics;
-            return (list != null ? list.size() + 1 : 0) + (this.botforumWithManageTopics ? 1 : 0);
+            return (list != null ? list.size() + 1 : 0) + (this.isBotForum ? 1 : 0);
         }
 
         public TLRPC.TL_forumTopic getItemTopic(int i) {
             int i2 = i - 1;
-            if (this.botforumWithManageTopics) {
+            if (this.isBotForum) {
                 i2 = i - 2;
             }
             List list = this.topics;
@@ -2107,8 +2117,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder.getItemViewType() == 0) {
                 ShareTopicCell shareTopicCell = (ShareTopicCell) viewHolder.itemView;
-                if (i == 1 && this.botforumWithManageTopics) {
-                    shareTopicCell.setAsNewBotForumTopic(ShareAlert.this.selectedTopicDialog);
+                if (i == 1 && this.isBotForum) {
+                    shareTopicCell.setAsNewBotForumTopic(this.isBotForumWithManageTopics);
                 } else if (this.topics != null) {
                     TLRPC.TL_forumTopic itemTopic = getItemTopic(i);
                     shareTopicCell.setTopic(ShareAlert.this.selectedTopicDialog, itemTopic, itemTopic != null && ShareAlert.this.selectedDialogs.indexOfKey((long) itemTopic.id) >= 0, null);

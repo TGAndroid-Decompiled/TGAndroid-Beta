@@ -73,7 +73,7 @@ public class SelectPeerView extends FrameLayout {
         this.titleView.setText(chat == null ? "" : chat.title);
     }
 
-    public void setShowing(boolean z, boolean z2) {
+    public void setShowing(final boolean z, boolean z2) {
         ViewPropertyAnimator viewPropertyAnimator = this.showAnimator;
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
@@ -81,12 +81,24 @@ public class SelectPeerView extends FrameLayout {
         }
         if (z2) {
             setVisibility(0);
-            ViewPropertyAnimator duration = animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L);
+            ViewPropertyAnimator duration = animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$setShowing$0(z);
+                }
+            }).setDuration(320L);
             this.showAnimator = duration;
             duration.start();
             return;
         }
         setVisibility(z ? 0 : 8);
         setAlpha(z ? 1.0f : 0.0f);
+    }
+
+    public void lambda$setShowing$0(boolean z) {
+        if (z) {
+            return;
+        }
+        setVisibility(8);
     }
 }

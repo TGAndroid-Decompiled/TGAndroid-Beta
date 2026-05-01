@@ -114,6 +114,7 @@ public class PreviewHighlightView extends FrameLayout {
         addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
         frameLayout.setAlpha(0.0f);
         frameLayout2.setAlpha(0.0f);
+        setImportantForAccessibility(4);
     }
 
     public void updateCount() {

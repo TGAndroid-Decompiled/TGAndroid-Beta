@@ -118,12 +118,11 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         this.emptyLayout = view;
         view.setBackgroundColor(Theme.getColor(Theme.key_dialogBackgroundGray));
         super.createView(context);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.aboveTitleView = frameLayout;
-        frameLayout.setClickable(true);
+        this.aboveTitleView = new FrameLayout(context);
         GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 3);
         this.iconTextureView = gLIconTextureView;
-        GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
+        gLIconTextureView.setImportantForAccessibility(4);
+        GLIconRenderer gLIconRenderer = this.iconTextureView.mRenderer;
         gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
         gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
         gLIconRenderer.updateColors();
@@ -968,7 +967,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     public static void lambda$showConnectAffiliateAlert$10(BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             safeLastFragment.presentFragment(ProfileActivity.of(starrefprogram.bot_id));
         }
     }
@@ -1013,7 +1012,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         }
         TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
         BotStarsController.getInstance(i).getChannelConnectedBots(j).apply(connectedstarrefbots);
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         while (true) {
             if (i2 >= connectedstarrefbots.connected_bots.size()) {
                 connectedbotstarref = null;
@@ -1105,7 +1104,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
     public static void lambda$showConnectAffiliateAlert$18(final BottomSheet bottomSheet, TL_payments.starRefProgram starrefprogram, View view) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
-            bottomSheet.lambda$new$0();
+            bottomSheet.dismiss();
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", starrefprogram.bot_id);
             safeLastFragment.presentFragment(new ChatActivity(bundle) {
@@ -1458,7 +1457,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
@@ -1512,7 +1511,7 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
             }
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         showShareAffiliateAlert(context, i, connectedbotstarref2, j, resourcesProvider);
     }
 
@@ -1529,12 +1528,12 @@ public class ChannelAffiliateProgramsFragment extends GradientHeaderActivity imp
         if (userFull == null || userFull.starref_program == null) {
             return;
         }
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         showConnectAffiliateAlert(context, i, userFull.starref_program, j, resourcesProvider, true);
     }
 
     public static void lambda$showShareAffiliateAlert$30(BottomSheet bottomSheet, TL_payments.connectedBotStarRef connectedbotstarref, View view) {
-        bottomSheet.lambda$new$0();
+        bottomSheet.dismiss();
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             safeLastFragment.presentFragment(ProfileActivity.of(connectedbotstarref.bot_id));

@@ -326,6 +326,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
+            public void onEmojiViewTabChanged() {
+                ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onEmojiViewTabChanged(this);
+            }
+
+            @Override
             public void onKeyboardRequested() {
                 ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onKeyboardRequested(this);
             }

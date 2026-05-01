@@ -31,6 +31,7 @@ public class AppGlobalConfig {
     public final ConfigInt pollAnswersMax;
     public final ConfigInt pollCaptionLengthMax;
     public final ConfigTime pollClosePeriodMax;
+    public final ConfigInt pollCountriesMax;
     public final ConfigInt pollQuestionLengthMax;
     public final ConfigInt pollSolutionLengthMax;
     public final ConfigBoolean settingsDisplayPasskeys;
@@ -94,6 +95,7 @@ public class AppGlobalConfig {
         this.pollClosePeriodMax = ofTime("poll_close_period_max", 2592000L, timeUnit);
         this.musicSearchUsername = ofString("music_search_username", null);
         this.pollAnswersMax = ofInt("poll_answers_max", 12);
+        this.pollCountriesMax = ofInt("poll_countries_max", 12);
         this.pollAnswerLengthMax = ofInt("poll_answer_length_max", 100);
         this.pollQuestionLengthMax = ofInt("poll_question_length_max", 255);
         this.pollSolutionLengthMax = ofInt("poll_solution_length_max", 200);

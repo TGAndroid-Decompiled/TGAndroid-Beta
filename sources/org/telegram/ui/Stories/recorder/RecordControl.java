@@ -11,19 +11,26 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RadialGradient;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.customview.widget.ExploreByTouchHelper;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -37,6 +44,13 @@ import org.telegram.ui.Stories.recorder.FlashViews;
 
 public class RecordControl extends View implements FlashViews.Invertable {
     private final float HALF_PI;
+    private boolean a11yPrevCheck;
+    private boolean a11yPrevDual;
+    private boolean a11yPrevLoading;
+    private boolean a11yPrevRecording;
+    private boolean a11yPrevShowLock;
+    private boolean a11yPrevStartIsVideo;
+    private RecordControlAccessibilityHelper accessibilityHelper;
     public float amplitude;
     public final AnimatedFloat animatedAmplitude;
     private final Paint buttonPaint;
@@ -246,6 +260,9 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.h3 = new PointF();
         this.h4 = new PointF();
         setWillNotDraw(false);
+        RecordControlAccessibilityHelper recordControlAccessibilityHelper = new RecordControlAccessibilityHelper(this);
+        this.accessibilityHelper = recordControlAccessibilityHelper;
+        ViewCompat.setAccessibilityDelegate(this, recordControlAccessibilityHelper);
         RadialGradient radialGradient = new RadialGradient(0.0f, 0.0f, AndroidUtilities.dp(48.0f), new int[]{-577231, -577231, -1}, new float[]{0.0f, 0.64f, 1.0f}, Shader.TileMode.CLAMP);
         this.redGradient = radialGradient;
         radialGradient.setLocalMatrix(matrix);
@@ -389,6 +406,10 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.redMatrix.postTranslate(this.cx, this.cy);
         this.redGradient.setLocalMatrix(this.redMatrix);
         setMeasuredDimension(size, iDp);
+        RecordControlAccessibilityHelper recordControlAccessibilityHelper = this.accessibilityHelper;
+        if (recordControlAccessibilityHelper != null) {
+            recordControlAccessibilityHelper.invalidateRoot();
+        }
     }
 
     private static void setDrawableBounds(Drawable drawable, float f, float f2) {
@@ -633,5 +654,199 @@ public class RecordControl extends View implements FlashViews.Invertable {
             this.recordingLoadingT.set(false, true);
         }
         invalidate();
+    }
+
+    @Override
+    protected boolean dispatchHoverEvent(MotionEvent motionEvent) {
+        RecordControlAccessibilityHelper recordControlAccessibilityHelper = this.accessibilityHelper;
+        if (recordControlAccessibilityHelper == null || !recordControlAccessibilityHelper.dispatchHoverEvent(motionEvent)) {
+            return super.dispatchHoverEvent(motionEvent);
+        }
+        return true;
+    }
+
+    private void notifyAccessibilityIfChanged() {
+        if (this.accessibilityHelper == null) {
+            return;
+        }
+        boolean zHasCheck = hasCheck();
+        boolean z = this.a11yPrevRecording;
+        boolean z2 = this.recording;
+        if (z == z2 && this.a11yPrevCheck == zHasCheck && this.a11yPrevDual == this.dual && this.a11yPrevStartIsVideo == this.startModeIsVideo && this.a11yPrevLoading == this.recordingLoading && this.a11yPrevShowLock == this.showLock) {
+            return;
+        }
+        this.a11yPrevRecording = z2;
+        this.a11yPrevCheck = zHasCheck;
+        this.a11yPrevDual = this.dual;
+        this.a11yPrevStartIsVideo = this.startModeIsVideo;
+        this.a11yPrevLoading = this.recordingLoading;
+        this.a11yPrevShowLock = this.showLock;
+        this.accessibilityHelper.invalidateRoot();
+    }
+
+    class RecordControlAccessibilityHelper extends ExploreByTouchHelper {
+        private final Rect tmpRect;
+
+        RecordControlAccessibilityHelper(View view) {
+            super(view);
+            this.tmpRect = new Rect();
+        }
+
+        @Override
+        protected int getVirtualViewAt(float f, float f2) {
+            if (Math.abs(f - RecordControl.this.leftCx) <= AndroidUtilities.dp(30.0f) && Math.abs(f2 - RecordControl.this.cy) <= AndroidUtilities.dp(30.0f) && !RecordControl.this.hasCheck() && !RecordControl.this.recordingLoading) {
+                return 0;
+            }
+            if (Math.abs(f - RecordControl.this.rightCx) > AndroidUtilities.dp(30.0f) || Math.abs(f2 - RecordControl.this.cy) > AndroidUtilities.dp(30.0f) || RecordControl.this.hasCheck() || RecordControl.this.recordingLoading) {
+                return (Math.abs(f - RecordControl.this.cx) > ((float) AndroidUtilities.dp(60.0f)) || Math.abs(f2 - RecordControl.this.cy) > ((float) AndroidUtilities.dp(60.0f))) ? Integer.MIN_VALUE : 1;
+            }
+            return 2;
+        }
+
+        @Override
+        protected void getVisibleVirtualViews(List list) {
+            if (!RecordControl.this.hasCheck() && !RecordControl.this.recordingLoading) {
+                list.add(0);
+            }
+            list.add(1);
+            if (RecordControl.this.hasCheck() || RecordControl.this.recordingLoading) {
+                return;
+            }
+            list.add(2);
+        }
+
+        @Override
+        protected void onPopulateNodeForVirtualView(int i, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            String string;
+            String string2;
+            accessibilityNodeInfoCompat.setClassName("android.widget.Button");
+            boolean z = false;
+            if (i == 0) {
+                float fDp = AndroidUtilities.dp(22.0f);
+                this.tmpRect.set((int) (RecordControl.this.leftCx - fDp), (int) (RecordControl.this.cy - fDp), (int) (RecordControl.this.leftCx + fDp), (int) (RecordControl.this.cy + fDp));
+                accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                if (RecordControl.this.recording && RecordControl.this.showLock) {
+                    string = LocaleController.getString(R.string.AccDescrLockRecording);
+                } else {
+                    string = LocaleController.getString(R.string.AccDescrCameraGallery);
+                }
+                accessibilityNodeInfoCompat.setContentDescription(string);
+                if (!RecordControl.this.recordingLoading && !RecordControl.this.hasCheck()) {
+                    z = true;
+                }
+                accessibilityNodeInfoCompat.setEnabled(z);
+                if (z) {
+                    accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
+                    return;
+                }
+                return;
+            }
+            if (i == 1) {
+                float fDp2 = AndroidUtilities.dp(40.0f);
+                this.tmpRect.set((int) (RecordControl.this.cx - fDp2), (int) (RecordControl.this.cy - fDp2), (int) (RecordControl.this.cx + fDp2), (int) (RecordControl.this.cy + fDp2));
+                accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                if (!RecordControl.this.hasCheck()) {
+                    if (!RecordControl.this.recording) {
+                        if (RecordControl.this.startModeIsVideo) {
+                            string2 = LocaleController.getString(R.string.AccDescrStartRecording);
+                        } else {
+                            string2 = LocaleController.getString(R.string.AccDescrTakePhoto);
+                        }
+                    } else {
+                        string2 = LocaleController.getString(R.string.AccDescrStopRecording);
+                    }
+                } else {
+                    string2 = LocaleController.getString(R.string.Send);
+                }
+                accessibilityNodeInfoCompat.setContentDescription(string2);
+                accessibilityNodeInfoCompat.setEnabled(!RecordControl.this.recordingLoading);
+                if (RecordControl.this.recordingLoading) {
+                    return;
+                }
+                accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
+                return;
+            }
+            if (i == 2) {
+                float fDp3 = AndroidUtilities.dp(22.0f);
+                this.tmpRect.set((int) (RecordControl.this.rightCx - fDp3), (int) (RecordControl.this.cy - fDp3), (int) (RecordControl.this.rightCx + fDp3), (int) (RecordControl.this.cy + fDp3));
+                accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                accessibilityNodeInfoCompat.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchCamera));
+                if (!RecordControl.this.recordingLoading && !RecordControl.this.hasCheck()) {
+                    z = true;
+                }
+                accessibilityNodeInfoCompat.setEnabled(z);
+                if (z) {
+                    accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
+                    return;
+                }
+                return;
+            }
+            this.tmpRect.set(0, 0, 1, 1);
+            accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+            accessibilityNodeInfoCompat.setVisibleToUser(false);
+            accessibilityNodeInfoCompat.setContentDescription("");
+        }
+
+        @Override
+        protected boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
+            if (RecordControl.this.delegate == null || RecordControl.this.recordingLoading || i2 != 16) {
+                return false;
+            }
+            if (i == 0) {
+                if (RecordControl.this.hasCheck()) {
+                    return false;
+                }
+                if (!RecordControl.this.recording || !RecordControl.this.showLock) {
+                    RecordControl.this.delegate.onGalleryClick();
+                } else {
+                    RecordControl.this.longpressRecording = false;
+                    RecordControl.this.lockedT.set(1.0f, true);
+                    RecordControl.this.delegate.onVideoRecordLocked();
+                    RecordControl.this.invalidate();
+                }
+                return true;
+            }
+            if (i == 1) {
+                if (RecordControl.this.hasCheck()) {
+                    RecordControl.this.delegate.onCheckClick();
+                } else if (RecordControl.this.recording) {
+                    RecordControl.this.recording = false;
+                    RecordControl.this.longpressRecording = false;
+                    RecordControl.this.recordingLoadingStart = SystemClock.elapsedRealtime();
+                    RecordControl.this.recordingLoading = true;
+                    RecordControl.this.delegate.onVideoRecordEnd(false);
+                    RecordControl.this.invalidate();
+                } else if (RecordControl.this.startModeIsVideo) {
+                    if (RecordControl.this.delegate.canRecordAudio()) {
+                        RecordControl.this.lastDuration = 0L;
+                        RecordControl.this.recordingStart = System.currentTimeMillis();
+                        RecordControl.this.showLock = false;
+                        RecordControl.this.delegate.onVideoRecordStart(false, new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$onPerformActionForVirtualView$0();
+                            }
+                        });
+                    }
+                } else {
+                    RecordControl.this.delegate.onPhotoShoot();
+                }
+                return true;
+            }
+            if (i != 2 || RecordControl.this.hasCheck()) {
+                return false;
+            }
+            RecordControl.this.rotateFlip(180.0f);
+            RecordControl.this.delegate.onFlipClick();
+            return true;
+        }
+
+        public void lambda$onPerformActionForVirtualView$0() {
+            RecordControl.this.recordingStart = System.currentTimeMillis();
+            RecordControl.this.lastDuration = 0L;
+            RecordControl.this.recording = true;
+            RecordControl.this.delegate.onVideoDuration(RecordControl.this.lastDuration);
+            RecordControl.this.invalidate();
+        }
     }
 }

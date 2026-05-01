@@ -198,6 +198,7 @@ public class LocationCell extends FrameLayout {
         this.imageView.setAlpha(f);
         this.nameTextView.setAlpha(f);
         this.addressTextView.setAlpha(f);
+        updateContentDescription(tL_messageMediaVenue, str);
         invalidate();
     }
 
@@ -208,6 +209,38 @@ public class LocationCell extends FrameLayout {
         this.nameTextView.setAlpha(this.enterAlpha);
         this.addressTextView.setAlpha(this.enterAlpha);
         invalidate();
+    }
+
+    private void updateContentDescription(TLRPC.TL_messageMediaVenue tL_messageMediaVenue, String str) {
+        if (tL_messageMediaVenue == null) {
+            try {
+                try {
+                    if (TextUtils.isEmpty(str)) {
+                        setContentDescription(null);
+                        return;
+                    }
+                } catch (Exception unused) {
+                    return;
+                }
+            } catch (Exception unused2) {
+                setContentDescription(null);
+                return;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        if (tL_messageMediaVenue != null && !TextUtils.isEmpty(tL_messageMediaVenue.title)) {
+            sb.append(tL_messageMediaVenue.title);
+        }
+        if (TextUtils.isEmpty(str)) {
+            str = tL_messageMediaVenue != null ? tL_messageMediaVenue.address : null;
+        }
+        if (!TextUtils.isEmpty(str)) {
+            if (sb.length() > 0) {
+                sb.append(", ");
+            }
+            sb.append((CharSequence) str);
+        }
+        setContentDescription(sb.length() > 0 ? sb.toString() : null);
     }
 
     @Override

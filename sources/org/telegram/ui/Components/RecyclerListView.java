@@ -1624,6 +1624,18 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
     }
 
+    public boolean longClickItem(View view, int i) {
+        OnItemLongClickListener onItemLongClickListener = this.onItemLongClickListener;
+        if (onItemLongClickListener != null) {
+            return onItemLongClickListener.onItemClick(view, i);
+        }
+        OnItemLongClickListenerExtended onItemLongClickListenerExtended = this.onItemLongClickListenerExtended;
+        if (onItemLongClickListenerExtended != null) {
+            return onItemLongClickListenerExtended.onItemClick(view, i, 0.0f, 0.0f);
+        }
+        return false;
+    }
+
     public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener) {
         setOnItemLongClickListener(onItemLongClickListener, ViewConfiguration.getLongPressTimeout());
     }

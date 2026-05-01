@@ -187,6 +187,7 @@ public class AddressBarList extends FrameLayout {
         int i3 = Theme.key_iv_background;
         setColors(Theme.getColor(i3), AndroidUtilities.computePerceivedBrightness(Theme.getColor(i3)) >= 0.721f ? -16777216 : -1);
         setOpenProgress(0.0f);
+        setImportantForAccessibility(4);
     }
 
     public void lambda$new$0() {
@@ -334,6 +335,10 @@ public class AddressBarList extends FrameLayout {
     public void setOpenProgress(float f) {
         if (Math.abs(this.openProgress - f) > 1.0E-4f) {
             this.openProgress = f;
+            int i = f <= 1.0E-4f ? 4 : 0;
+            if (getImportantForAccessibility() != i) {
+                setImportantForAccessibility(i);
+            }
             invalidate();
         }
     }

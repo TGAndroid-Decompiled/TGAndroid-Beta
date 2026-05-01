@@ -65,8 +65,8 @@ public class ShareTopicCell extends FrameLayout {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(103.0f), 1073741824));
     }
 
-    public void setAsNewBotForumTopic(TLRPC.Dialog dialog) {
-        this.nameTextView.setText(LocaleController.getString(R.string.ShareSendToNewTopic));
+    public void setAsNewBotForumTopic(boolean z) {
+        this.nameTextView.setText(LocaleController.getString(z ? R.string.ShareSendToNewTopic : R.string.ShareSendToOffTopic));
         this.imageView.setAnimatedEmojiDrawable(null);
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(ForumBubbleDrawable.serverSupportedColor[0]);
         LetterDrawable letterDrawable = new LetterDrawable(null, 1);

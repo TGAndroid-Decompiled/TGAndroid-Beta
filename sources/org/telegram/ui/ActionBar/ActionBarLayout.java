@@ -351,6 +351,50 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
 
         @Override
+        public void onViewAdded(View view) {
+            super.onViewAdded(view);
+            updateChildrenAccessibilityImportance();
+        }
+
+        @Override
+        public void onViewRemoved(View view) {
+            super.onViewRemoved(view);
+            updateChildrenAccessibilityImportance();
+        }
+
+        private void updateChildrenAccessibilityImportance() {
+            try {
+                int childCount = getChildCount();
+                int i = childCount - 1;
+                while (true) {
+                    if (i < 0) {
+                        i = -1;
+                        break;
+                    }
+                    View childAt = getChildAt(i);
+                    if ((childAt instanceof BaseFragment.AttachedSheetWindow) && childAt.getVisibility() == 0) {
+                        break;
+                    } else {
+                        i--;
+                    }
+                }
+                int i2 = 0;
+                while (i2 < childCount) {
+                    View childAt2 = getChildAt(i2);
+                    if (childAt2 != null) {
+                        int i3 = (i == -1 || i2 == i) ? 0 : 4;
+                        if (childAt2.getImportantForAccessibility() != i3) {
+                            childAt2.setImportantForAccessibility(i3);
+                        }
+                    }
+                    i2++;
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+
+        @Override
         public void setTranslationX(float f) {
             boolean z = (getTranslationX() == f || this.isSupportEdgeToEdge) ? false : true;
             super.setTranslationX(f);
@@ -378,7 +422,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1286getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1288getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {

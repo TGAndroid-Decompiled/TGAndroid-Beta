@@ -11,6 +11,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class TopViewCell extends LinearLayout implements Theme.Colorable {
+    public int imageSize;
     public final BackupImageView imageView;
     private int lastIconResId;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -19,6 +20,7 @@ public class TopViewCell extends LinearLayout implements Theme.Colorable {
 
     public TopViewCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.imageSize = 90;
         this.resourcesProvider = resourcesProvider;
         setOrientation(1);
         BackupImageView backupImageView = new BackupImageView(context);
@@ -66,11 +68,20 @@ public class TopViewCell extends LinearLayout implements Theme.Colorable {
         }
         linksTextView3.setTextColor(Theme.getColor(i, this.resourcesProvider));
         this.textView.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
-        this.imageView.setLayoutParams(LayoutHelper.createLinear(90, 90, 17, 0, this.titleView.getVisibility() == 0 ? 0 : 9, 0, 9));
+        BackupImageView backupImageView = this.imageView;
+        int i3 = this.imageSize;
+        backupImageView.setLayoutParams(LayoutHelper.createLinear(i3, i3, 17, 0, this.titleView.getVisibility() == 0 ? 0 : 9, 0, 9));
     }
 
     public void setEmoji(String str, String str2) {
         MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.imageView, str, str2, "90_90");
+    }
+
+    public void setEmojiSize(int i) {
+        if (this.imageSize != i) {
+            this.imageSize = i;
+            updateColors();
+        }
     }
 
     public void setEmoji(int i) {

@@ -142,7 +142,7 @@ public class LinkManager {
         return Uri.parse(scheme + "://" + schemeSpecificPart);
     }
 
-    private boolean handleTg(Uri uri) {
+    private boolean handleTg(Uri uri) throws Resources.NotFoundException {
         Uri uriNormalizeTgUri = normalizeTgUri(uri);
         List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
         if (pathSegments == null) {
@@ -341,13 +341,13 @@ public class LinkManager {
         public void lambda$onCallUsersSelected$3(final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     this.f$0.lambda$onCallUsersSelected$2(tLObject, z, hashSet, tL_error);
                 }
             });
         }
 
-        public void lambda$onCallUsersSelected$2(TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) {
+        public void lambda$onCallUsersSelected$2(TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException {
             if (tLObject instanceof TLRPC.Updates) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);

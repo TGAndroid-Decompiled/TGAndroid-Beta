@@ -41,6 +41,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowInsets;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
@@ -2353,6 +2354,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 string = LocaleController.formatString("AddStickersCount", R.string.AddStickersCount, this.lastTitle);
             }
             this.addButtonTextView.setText(string, z2);
+            this.addButtonView.setContentDescription(string);
             ValueAnimator valueAnimator = this.installFadeAway;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -2530,6 +2532,31 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 }
             };
             this.preloadEffectImageReceiver.ignoreNotifications = true;
+            setFocusable(true);
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            String strFindAnimatedEmojiEmoticon;
+            AnimatedEmojiSpan animatedEmojiSpan;
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            if (this.empty) {
+                strFindAnimatedEmojiEmoticon = LocaleController.getString(R.string.RemoveStatus);
+            } else {
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.reaction;
+                if (visibleReaction == null || (strFindAnimatedEmojiEmoticon = visibleReaction.emojicon) == null) {
+                    TLRPC.Document documentFindDocument = this.document;
+                    if (documentFindDocument == null && (animatedEmojiSpan = this.span) != null && (documentFindDocument = animatedEmojiSpan.document) == null) {
+                        documentFindDocument = AnimatedEmojiDrawable.findDocument(SelectAnimatedEmojiDialog.this.currentAccount, this.span.getDocumentId());
+                    }
+                    strFindAnimatedEmojiEmoticon = documentFindDocument != null ? MessageObject.findAnimatedEmojiEmoticon(documentFindDocument, null) : null;
+                }
+            }
+            if (strFindAnimatedEmojiEmoticon != null) {
+                accessibilityNodeInfo.setContentDescription(strFindAnimatedEmojiEmoticon);
+            }
+            accessibilityNodeInfo.setSelected(this.selected);
+            accessibilityNodeInfo.setClickable(true);
         }
 
         public void setAnimatedScale(float f) {
@@ -3927,6 +3954,8 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                     this.f$0.lambda$new$0(view);
                 }
             });
+            this.search.setClickable(false);
+            this.search.setImportantForAccessibility(2);
             this.box.addView(this.search, LayoutHelper.createFrame(36, 36, 51));
             FrameLayout frameLayout2 = new FrameLayout(context) {
                 Paint fadePaint;
@@ -4234,7 +4263,11 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             StickerCategoriesListView stickerCategoriesListView;
             StickerCategoriesListView stickerCategoriesListView2;
             if (!isInProgress() || ((this.input.length() == 0 && ((stickerCategoriesListView2 = this.categoriesListView) == null || stickerCategoriesListView2.getSelectedCategory() == null)) || z)) {
-                this.searchStateDrawable.setIconState((this.input.length() > 0 || ((stickerCategoriesListView = this.categoriesListView) != null && stickerCategoriesListView.isCategoriesShown() && (this.categoriesListView.isScrolledIntoOccupiedWidth() || this.categoriesListView.getSelectedCategory() != null))) ? 1 : 0);
+                ?? r4 = (this.input.length() > 0 || ((stickerCategoriesListView = this.categoriesListView) != null && stickerCategoriesListView.isCategoriesShown() && (this.categoriesListView.isScrolledIntoOccupiedWidth() || this.categoriesListView.getSelectedCategory() != null))) ? 1 : 0;
+                this.searchStateDrawable.setIconState(r4);
+                this.search.setClickable(r4);
+                this.search.setContentDescription(r4 != 0 ? LocaleController.getString(R.string.AccDescrGoBack) : null);
+                this.search.setImportantForAccessibility(r4 == 0 ? 2 : 1);
             }
         }
 

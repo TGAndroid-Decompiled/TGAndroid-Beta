@@ -160,7 +160,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         this(context, i, j, null, runnable);
     }
 
-    public GiftSheet(final android.content.Context r28, final int r29, final long r30, java.util.List r32, final java.lang.Runnable r33) {
+    public GiftSheet(final android.content.Context r29, final int r30, final long r31, java.util.List r33, final java.lang.Runnable r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.<init>(android.content.Context, int, long, java.util.List, java.lang.Runnable):void");
     }
 
@@ -1161,6 +1161,14 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             textView5.setTextColor(-1);
             frameLayout.addView(textView5, LayoutHelper.createFrame(-2, 17.0f, 51, 4.0f, 4.0f, 0.0f, 0.0f));
             textView5.setVisibility(8);
+            setImportantForAccessibility(1);
+            frameLayout.setImportantForAccessibility(4);
+            ribbon.setImportantForAccessibility(2);
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo r10) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.onInitializeAccessibilityNodeInfo(android.view.accessibility.AccessibilityNodeInfo):void");
         }
 
         public void removeImage() {
@@ -2025,6 +2033,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
     }
 
     public static class Ribbon extends View {
+        private CharSequence currentText;
         public final RibbonDrawable drawable;
 
         public Ribbon(Context context) {
@@ -2034,11 +2043,17 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             ribbonDrawable.setCallback(this);
         }
 
+        public CharSequence getText() {
+            return this.currentText;
+        }
+
         public void setText(CharSequence charSequence, boolean z) {
+            this.currentText = charSequence;
             this.drawable.setText(z ? 10 : 11, charSequence, z);
         }
 
         public void setText(int i, CharSequence charSequence, boolean z) {
+            this.currentText = charSequence;
             this.drawable.setText(i, charSequence, z);
         }
 

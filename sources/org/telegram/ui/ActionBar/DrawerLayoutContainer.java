@@ -50,8 +50,6 @@ public class DrawerLayoutContainer extends FrameLayout {
         this.allowDrawContent = true;
         this.firstLayout = true;
         this.internalNavbarPaint = new Paint(1);
-        setDescendantFocusability(262144);
-        setFocusableInTouchMode(true);
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {

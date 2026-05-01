@@ -423,8 +423,12 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                 return ProxyListActivity.lambda$createView$3(view, motionEvent);
             }
         });
-        this.shareMenuItem = actionBarMenuCreateActionMode.addItemWithWidth(1, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
-        this.deleteMenuItem = actionBarMenuCreateActionMode.addItemWithWidth(0, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
+        ActionBarMenuItem actionBarMenuItemAddItemWithWidth = actionBarMenuCreateActionMode.addItemWithWidth(1, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
+        this.shareMenuItem = actionBarMenuItemAddItemWithWidth;
+        actionBarMenuItemAddItemWithWidth.setContentDescription(LocaleController.getString(R.string.StickersShare));
+        ActionBarMenuItem actionBarMenuItemAddItemWithWidth2 = actionBarMenuCreateActionMode.addItemWithWidth(0, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
+        this.deleteMenuItem = actionBarMenuItemAddItemWithWidth2;
+        actionBarMenuItemAddItemWithWidth2.setContentDescription(LocaleController.getString(R.string.Delete));
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass2(context));
         return this.fragmentView;
     }

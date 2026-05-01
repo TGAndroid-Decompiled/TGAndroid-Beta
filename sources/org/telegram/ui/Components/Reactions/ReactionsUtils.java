@@ -114,7 +114,7 @@ public abstract class ReactionsUtils {
         AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = createAnimatedEmojiSpan(document, Long.valueOf(j), fontMetricsInt);
         map.put(Long.valueOf(j), animatedEmojiSpanCreateAnimatedEmojiSpan);
         list.add(Long.valueOf(j));
-        editable.append((CharSequence) createSpannableText(animatedEmojiSpanCreateAnimatedEmojiSpan, "e"));
+        editable.append((CharSequence) createSpannableText(animatedEmojiSpanCreateAnimatedEmojiSpan, tL_availableReaction.reaction));
         if (selectAnimatedEmojiDialog != null) {
             selectAnimatedEmojiDialog.setMultiSelected(Long.valueOf(j), false);
         }

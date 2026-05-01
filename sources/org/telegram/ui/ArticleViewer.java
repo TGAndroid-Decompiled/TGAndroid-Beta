@@ -41,6 +41,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
 import android.text.style.MetricAffectingSpan;
 import android.text.style.URLSpan;
 import android.util.Property;
@@ -371,13 +372,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         return null;
     }
 
-    static int access$13108(ArticleViewer articleViewer) {
+    static int access$13308(ArticleViewer articleViewer) {
         int i = articleViewer.lastBlockNum;
         articleViewer.lastBlockNum = i + 1;
         return i;
     }
 
-    static int access$2004(ArticleViewer articleViewer) {
+    static int access$2304(ArticleViewer articleViewer) {
         int i = articleViewer.pressCount + 1;
         articleViewer.pressCount = i;
         return i;
@@ -589,6 +590,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     }
 
     public class DrawingText implements TextSelectionHelper.TextLayoutBlock {
+        private CharSequence accessibilityText;
         private boolean isDrawing;
         private View latestParentView;
         public LinkPath markPath;
@@ -717,6 +719,94 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public CharSequence getPrefix() {
             return this.prefix;
         }
+    }
+
+    public CharSequence buildAccessibilityText(final WebpageAdapter webpageAdapter, DrawingText drawingText) {
+        if (drawingText == null || drawingText.textLayout == null) {
+            return null;
+        }
+        if (drawingText.accessibilityText != null) {
+            return drawingText.accessibilityText;
+        }
+        CharSequence text = drawingText.textLayout.getText();
+        if (!(text instanceof Spannable)) {
+            return text;
+        }
+        Spannable spannable = (Spannable) text;
+        TextPaintUrlSpan[] textPaintUrlSpanArr = (TextPaintUrlSpan[]) spannable.getSpans(0, spannable.length(), TextPaintUrlSpan.class);
+        CharSequence charSequence = text;
+        if (textPaintUrlSpanArr != null) {
+            charSequence = text;
+            if (textPaintUrlSpanArr.length != 0) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(spannable);
+                for (final TextPaintUrlSpan textPaintUrlSpan : textPaintUrlSpanArr) {
+                    int spanStart = spannableStringBuilder.getSpanStart(textPaintUrlSpan);
+                    int spanEnd = spannableStringBuilder.getSpanEnd(textPaintUrlSpan);
+                    if (spanStart >= 0 && spanEnd > spanStart) {
+                        spannableStringBuilder.setSpan(new ClickableSpan() {
+                            @Override
+                            public void onClick(View view) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
+                                ArticleViewer.this.handleLinkClick(webpageAdapter, textPaintUrlSpan);
+                            }
+                        }, spanStart, spanEnd, 33);
+                    }
+                }
+                drawingText.accessibilityText = spannableStringBuilder;
+                charSequence = spannableStringBuilder;
+            }
+        }
+        return charSequence;
+    }
+
+    public void handleLinkClick(WebpageAdapter webpageAdapter, TextPaintUrlSpan textPaintUrlSpan) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
+        String url;
+        String strDecode;
+        if (textPaintUrlSpan == null || (url = textPaintUrlSpan.getUrl()) == null) {
+            return;
+        }
+        BottomSheet bottomSheet = this.linkSheet;
+        if (bottomSheet != null) {
+            bottomSheet.lambda$new$0();
+            this.linkSheet = null;
+        }
+        int iLastIndexOf = url.lastIndexOf(35);
+        boolean z = false;
+        if (iLastIndexOf != -1) {
+            String lowerCase = !TextUtils.isEmpty(webpageAdapter.currentPage.cached_page.url) ? webpageAdapter.currentPage.cached_page.url.toLowerCase() : webpageAdapter.currentPage.url.toLowerCase();
+            try {
+                strDecode = URLDecoder.decode(url.substring(iLastIndexOf + 1), "UTF-8");
+            } catch (Exception unused) {
+                strDecode = "";
+            }
+            if (iLastIndexOf == 0 || url.toLowerCase().contains(lowerCase)) {
+                if (TextUtils.isEmpty(strDecode)) {
+                    this.pages[0].layoutManager.scrollToPositionWithOffset(0, 0);
+                    checkScrollAnimated();
+                } else {
+                    scrollToAnchor(strDecode, true);
+                }
+                z = true;
+            }
+        } else {
+            strDecode = null;
+        }
+        if (z) {
+            return;
+        }
+        DrawingText drawingText = this.pressedLinkOwnerLayout;
+        openWebpageUrl(url, strDecode, drawingText != null ? makeProgress(this.pressedLink, drawingText) : null);
+    }
+
+    public CharSequence appendA11yLabel(CharSequence charSequence, int i) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (charSequence != null) {
+            spannableStringBuilder.append(charSequence);
+        }
+        if (spannableStringBuilder.length() > 0) {
+            spannableStringBuilder.append((CharSequence) ", ");
+        }
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(i));
+        return spannableStringBuilder;
     }
 
     private class TextSizeCell extends FrameLayout {
@@ -863,7 +953,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 ArticleViewer articleViewer = ArticleViewer.this;
                 articleViewer.pendingCheckForLongPress = articleViewer.new CheckForLongPress();
             }
-            ArticleViewer.this.pendingCheckForLongPress.currentPressCount = ArticleViewer.access$2004(ArticleViewer.this);
+            ArticleViewer.this.pendingCheckForLongPress.currentPressCount = ArticleViewer.access$2304(ArticleViewer.this);
             if (ArticleViewer.this.windowView != null) {
                 ArticleViewer.this.windowView.postDelayed(ArticleViewer.this.pendingCheckForLongPress, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
             }
@@ -892,6 +982,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public WindowView(Context context) {
             super(context);
             this.blackPaint = new Paint();
+            this.alpha = 1.0f;
         }
 
         @Override
@@ -3154,8 +3245,6 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public boolean checkLayoutForLinks(WebpageAdapter webpageAdapter, MotionEvent motionEvent, View view, DrawingText drawingText, int i, int i2) throws NoSuchFieldException, InterruptedException, SecurityException, UnsupportedEncodingException {
         ActionBarPopupWindow actionBarPopupWindow;
-        String strDecode;
-        boolean z;
         int iDp;
         if (this.pageSwitchAnimation != null || view == null || !this.textSelectionHelper.isSelectable(view)) {
             return false;
@@ -3236,49 +3325,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         }
                     }
                 }
-            } else {
-                if (motionEvent.getAction() == 1) {
-                    LinkSpanDrawable linkSpanDrawable4 = this.pressedLink;
-                    if (linkSpanDrawable4 != null) {
-                        String url = ((TextPaintUrlSpan) linkSpanDrawable4.getSpan()).getUrl();
-                        if (url != null) {
-                            BottomSheet bottomSheet = this.linkSheet;
-                            if (bottomSheet != null) {
-                                bottomSheet.lambda$new$0();
-                                this.linkSheet = null;
-                            }
-                            int iLastIndexOf = url.lastIndexOf(35);
-                            if (iLastIndexOf != -1) {
-                                String lowerCase = !TextUtils.isEmpty(webpageAdapter.currentPage.cached_page.url) ? webpageAdapter.currentPage.cached_page.url.toLowerCase() : webpageAdapter.currentPage.url.toLowerCase();
-                                try {
-                                    strDecode = URLDecoder.decode(url.substring(iLastIndexOf + 1), "UTF-8");
-                                } catch (Exception unused) {
-                                    strDecode = "";
-                                }
-                                if (iLastIndexOf == 0 || url.toLowerCase().contains(lowerCase)) {
-                                    if (TextUtils.isEmpty(strDecode)) {
-                                        this.pages[0].layoutManager.scrollToPositionWithOffset(0, 0);
-                                        checkScrollAnimated();
-                                    } else {
-                                        scrollToAnchor(strDecode, true);
-                                    }
-                                    z = true;
-                                } else {
-                                    z = false;
-                                }
-                            } else {
-                                strDecode = null;
-                                z = false;
-                            }
-                            if (!z) {
-                                String url2 = ((TextPaintUrlSpan) this.pressedLink.getSpan()).getUrl();
-                                DrawingText drawingText2 = this.pressedLinkOwnerLayout;
-                                openWebpageUrl(url2, strDecode, drawingText2 != null ? makeProgress(this.pressedLink, drawingText2) : null);
-                            }
-                        }
-                    }
-                } else if (motionEvent.getAction() == 3 && ((actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing())) {
+            } else if (motionEvent.getAction() == 1) {
+                LinkSpanDrawable linkSpanDrawable4 = this.pressedLink;
+                if (linkSpanDrawable4 != null) {
+                    handleLinkClick(webpageAdapter, (TextPaintUrlSpan) linkSpanDrawable4.getSpan());
+                    removePressedLink();
                 }
+            } else if (motionEvent.getAction() == 3 && ((actionBarPopupWindow = this.popupWindow) == null || !actionBarPopupWindow.isShowing())) {
                 removePressedLink();
             }
         }
@@ -3887,7 +3940,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         FrameLayout frameLayout = new FrameLayout(activity) {
             @Override
             protected boolean drawChild(android.graphics.Canvas r13, android.view.View r14, long r15) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.AnonymousClass13.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.AnonymousClass14.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
             }
 
             @Override
@@ -5650,7 +5703,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 };
                 animatorSet.setDuration(150L);
                 animatorSet.setInterpolator(this.interpolator);
-                animatorSet.addListener(new AnonymousClass25());
+                animatorSet.addListener(new AnonymousClass26());
                 this.transitionAnimationStartTime = System.currentTimeMillis();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -5759,8 +5812,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         AndroidUtilities.hideKeyboard(this.parentActivity.getCurrentFocus());
     }
 
-    class AnonymousClass25 extends AnimatorListenerAdapter {
-        AnonymousClass25() {
+    class AnonymousClass26 extends AnimatorListenerAdapter {
+        AnonymousClass26() {
         }
 
         @Override
@@ -7058,7 +7111,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     addAllMediaFromBlock(webpageAdapter, pageBlock2);
                     i++;
                 }
-                ArticleViewer.access$13108(ArticleViewer.this);
+                ArticleViewer.access$13308(ArticleViewer.this);
                 return;
             }
             if (pageBlock instanceof TLRPC.TL_pageBlockCollage) {
@@ -7070,7 +7123,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     addAllMediaFromBlock(webpageAdapter, pageBlock3);
                     i++;
                 }
-                ArticleViewer.access$13108(ArticleViewer.this);
+                ArticleViewer.access$13308(ArticleViewer.this);
                 return;
             }
             if (pageBlock instanceof TLRPC.TL_pageBlockCover) {
@@ -7086,12 +7139,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             } else if (i == 91) {
                 reportCell = ArticleViewer.this.new ReportCell(this.context, true);
             } else if (i == 2147483646) {
-                reportCell = new View(this.context) {
+                View view = new View(this.context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.displaySize.y * 0.4f), 1073741824));
                     }
                 };
+                view.setImportantForAccessibility(2);
+                reportCell = view;
             } else {
                 switch (i) {
                     case 0:
@@ -8425,6 +8480,26 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText3);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrIVAudio));
+            if (this.titleLayout != null) {
+                sb.append(", ");
+                sb.append(this.titleLayout.getText());
+            }
+            if (this.captionLayout != null) {
+                sb.append(", ");
+                sb.append(this.captionLayout.getText());
+            }
+            if (this.creditLayout != null) {
+                sb.append(", ");
+                sb.append(this.creditLayout.getText());
+            }
+            accessibilityNodeInfo.setText(sb);
+        }
     }
 
     private class BlockEmbedPostCell extends View implements TextSelectionHelper.ArticleSelectableView {
@@ -8632,6 +8707,30 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText4);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrIVEmbedPost));
+            if (this.nameLayout != null) {
+                sb.append(", ");
+                sb.append(this.nameLayout.getText());
+            }
+            if (this.dateLayout != null) {
+                sb.append(", ");
+                sb.append(this.dateLayout.getText());
+            }
+            if (this.captionLayout != null) {
+                sb.append(", ");
+                sb.append(this.captionLayout.getText());
+            }
+            if (this.creditLayout != null) {
+                sb.append(", ");
+                sb.append(this.creditLayout.getText());
+            }
+            accessibilityNodeInfo.setText(sb);
+        }
     }
 
     public class BlockParagraphCell extends View implements TextSelectionHelper.ArticleSelectableView {
@@ -8717,12 +8816,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
             accessibilityNodeInfo.setEnabled(true);
             DrawingText drawingText = this.textLayout;
             if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(drawingText.getText());
+            accessibilityNodeInfo.setText(ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText));
         }
 
         @Override
@@ -9189,6 +9289,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText2);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrIVEmbed));
+            if (this.captionLayout != null) {
+                sb.append(", ");
+                sb.append(this.captionLayout.getText());
+            }
+            if (this.creditLayout != null) {
+                sb.append(", ");
+                sb.append(this.creditLayout.getText());
+            }
+            accessibilityNodeInfo.setText(sb);
+        }
     }
 
     public class BlockTableCell extends FrameLayout implements TableLayout.TableLayoutDelegate, TextSelectionHelper.ArticleSelectableView {
@@ -9497,6 +9613,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     arrayList.add(drawingText2);
                 }
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrIVTable));
+            if (this.titleLayout != null) {
+                sb.append(", ");
+                sb.append(this.titleLayout.getText());
+            }
+            accessibilityNodeInfo.setText(sb);
         }
     }
 
@@ -9820,6 +9948,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText2);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrCollage));
+            if (this.captionLayout != null) {
+                sb.append(", ");
+                sb.append(this.captionLayout.getText());
+            }
+            if (this.creditLayout != null) {
+                sb.append(", ");
+                sb.append(this.creditLayout.getText());
+            }
+            accessibilityNodeInfo.setText(sb);
+        }
     }
 
     private class BlockSlideshowCell extends FrameLayout implements TextSelectionHelper.ArticleSelectableView {
@@ -10084,6 +10228,22 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (drawingText2 != null) {
                 arrayList.add(drawingText2);
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            StringBuilder sb = new StringBuilder(LocaleController.getString(R.string.AccDescrIVSlideshow));
+            if (this.captionLayout != null) {
+                sb.append(", ");
+                sb.append(this.captionLayout.getText());
+            }
+            if (this.creditLayout != null) {
+                sb.append(", ");
+                sb.append(this.creditLayout.getText());
+            }
+            accessibilityNodeInfo.setText(sb);
         }
     }
 
@@ -10356,12 +10516,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
             accessibilityNodeInfo.setEnabled(true);
             DrawingText drawingText = this.textLayout;
             if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(drawingText.getText());
+            accessibilityNodeInfo.setText(ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText));
         }
 
         @Override
@@ -10637,12 +10798,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
             accessibilityNodeInfo.setEnabled(true);
             DrawingText drawingText = this.textLayout;
             if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(drawingText.getText());
+            accessibilityNodeInfo.setText(ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText));
         }
 
         @Override
@@ -10749,6 +10911,23 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            CharSequence charSequenceBuildAccessibilityText;
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            DrawingText drawingText = this.textLayout;
+            if (drawingText != null && (charSequenceBuildAccessibilityText = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText)) != null) {
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText).append((CharSequence) ", ");
+            }
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AccDescrIVDetails)).append((CharSequence) ", ");
+            TLRPC.TL_pageBlockDetails tL_pageBlockDetails = this.currentBlock;
+            spannableStringBuilder.append((CharSequence) LocaleController.getString((tL_pageBlockDetails == null || !tL_pageBlockDetails.open) ? R.string.AccDescrIVCollapsed : R.string.AccDescrIVExpanded));
+            accessibilityNodeInfo.setText(spannableStringBuilder);
+        }
     }
 
     private static class BlockDetailsBottomCell extends View {
@@ -10757,6 +10936,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public BlockDetailsBottomCell(Context context) {
             super(context);
             this.rect = new RectF();
+            setImportantForAccessibility(2);
         }
 
         @Override
@@ -10779,6 +10959,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.shadowDrawable = combinedDrawable;
             combinedDrawable.setFullsize(true);
             setBackgroundDrawable(this.shadowDrawable);
+            setImportantForAccessibility(2);
         }
 
         @Override
@@ -10850,6 +11031,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (drawingText != null) {
                 arrayList.add(drawingText);
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
+                return;
+            }
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVRelatedArticles));
         }
     }
 
@@ -11009,6 +11205,32 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText2);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            CharSequence charSequenceBuildAccessibilityText;
+            CharSequence charSequenceBuildAccessibilityText2;
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            DrawingText drawingText = this.textLayout;
+            if (drawingText != null && (charSequenceBuildAccessibilityText2 = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText)) != null) {
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText2);
+            }
+            DrawingText drawingText2 = this.textLayout2;
+            if (drawingText2 != null && (charSequenceBuildAccessibilityText = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText2)) != null) {
+                if (spannableStringBuilder.length() > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText);
+            }
+            if (spannableStringBuilder.length() == 0) {
+                return;
+            }
+            spannableStringBuilder.append((CharSequence) ", ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVRelatedArticle));
+            accessibilityNodeInfo.setText(spannableStringBuilder);
+        }
     }
 
     private class BlockHeaderCell extends View implements TextSelectionHelper.ArticleSelectableView {
@@ -11073,10 +11295,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
-            if (this.textLayout == null) {
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVHeading));
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVHeading));
         }
 
         @Override
@@ -11094,6 +11318,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public BlockDividerCell(Context context) {
             super(context);
             this.rect = new RectF();
+            setImportantForAccessibility(2);
         }
 
         @Override
@@ -11170,10 +11395,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
-            if (this.textLayout == null) {
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVHeading));
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVHeading));
         }
 
         @Override
@@ -11278,6 +11505,34 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (drawingText2 != null) {
                 arrayList.add(drawingText2);
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            CharSequence charSequenceBuildAccessibilityText;
+            CharSequence charSequenceBuildAccessibilityText2;
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            DrawingText drawingText = this.textLayout;
+            if (drawingText != null && (charSequenceBuildAccessibilityText2 = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText)) != null) {
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText2);
+            }
+            DrawingText drawingText2 = this.textLayout2;
+            if (drawingText2 != null && (charSequenceBuildAccessibilityText = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText2)) != null) {
+                if (spannableStringBuilder.length() > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText);
+            }
+            if (spannableStringBuilder.length() == 0) {
+                return;
+            }
+            spannableStringBuilder.append((CharSequence) ", ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVPullquote));
+            accessibilityNodeInfo.setText(spannableStringBuilder);
         }
     }
 
@@ -11402,6 +11657,34 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (drawingText2 != null) {
                 arrayList.add(drawingText2);
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            CharSequence charSequenceBuildAccessibilityText;
+            CharSequence charSequenceBuildAccessibilityText2;
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            DrawingText drawingText = this.textLayout;
+            if (drawingText != null && (charSequenceBuildAccessibilityText2 = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText)) != null) {
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText2);
+            }
+            DrawingText drawingText2 = this.textLayout2;
+            if (drawingText2 != null && (charSequenceBuildAccessibilityText = ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText2)) != null) {
+                if (spannableStringBuilder.length() > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                spannableStringBuilder.append(charSequenceBuildAccessibilityText);
+            }
+            if (spannableStringBuilder.length() == 0) {
+                return;
+            }
+            spannableStringBuilder.append((CharSequence) ", ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVBlockquote));
+            accessibilityNodeInfo.setText(spannableStringBuilder);
         }
     }
 
@@ -11980,6 +12263,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 arrayList.add(drawingText);
             }
         }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setEnabled(true);
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
+                return;
+            }
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrChannel));
+        }
     }
 
     private class BlockAuthorDateCell extends View implements TextSelectionHelper.ArticleSelectableView {
@@ -12081,12 +12376,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
             accessibilityNodeInfo.setEnabled(true);
             DrawingText drawingText = this.textLayout;
             if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(drawingText.getText());
+            accessibilityNodeInfo.setText(ArticleViewer.this.buildAccessibilityText(this.parentAdapter, drawingText));
         }
 
         @Override
@@ -12163,11 +12459,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
             accessibilityNodeInfo.setEnabled(true);
-            if (this.textLayout == null) {
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVTitle));
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVTitle));
         }
 
         @Override
@@ -12247,6 +12548,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (drawingText != null) {
                 arrayList.add(drawingText);
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
+                return;
+            }
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVKicker));
         }
     }
 
@@ -12332,6 +12648,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             if (drawingText != null) {
                 arrayList.add(drawingText);
             }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
+                return;
+            }
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVFooter));
         }
     }
 
@@ -12479,6 +12810,21 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.TextView");
+            accessibilityNodeInfo.setEnabled(true);
+            accessibilityNodeInfo.setClickable(false);
+            accessibilityNodeInfo.setLongClickable(false);
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
+                return;
+            }
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVCode));
+        }
+
+        @Override
         public void invalidate() {
             this.textContainer.invalidate();
             super.invalidate();
@@ -12547,10 +12893,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
-            if (this.textLayout == null) {
+            DrawingText drawingText = this.textLayout;
+            if (drawingText == null) {
                 return;
             }
-            accessibilityNodeInfo.setText(((Object) this.textLayout.getText()) + ", " + LocaleController.getString(R.string.AccDescrIVHeading));
+            ArticleViewer articleViewer = ArticleViewer.this;
+            accessibilityNodeInfo.setText(articleViewer.appendA11yLabel(articleViewer.buildAccessibilityText(this.parentAdapter, drawingText), R.string.AccDescrIVHeading));
         }
 
         @Override
@@ -14060,7 +14408,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo1286getWindowView() {
+        public WindowView mo1288getWindowView() {
             return this.windowView;
         }
 
@@ -14455,7 +14803,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1286getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1288getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

@@ -188,6 +188,7 @@ public abstract class WebActionBar extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-2, 56, 83));
         ImageView imageView = new ImageView(context);
         this.backButton = imageView;
+        imageView.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         BackDrawable backDrawable = new BackDrawable(false);
@@ -213,7 +214,13 @@ public abstract class WebActionBar extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         this.forwardButton = imageView2;
         imageView2.setScaleType(scaleType);
-        ForwardDrawable forwardDrawable = new ForwardDrawable();
+        ForwardDrawable forwardDrawable = new ForwardDrawable() {
+            @Override
+            public void setState(boolean z) {
+                super.setState(z);
+                WebActionBar.this.forwardButton.setContentDescription(LocaleController.getString(z ? R.string.PollCollapse : R.string.Forward));
+            }
+        };
         this.forwardButtonDrawable = forwardDrawable;
         imageView2.setImageDrawable(forwardDrawable);
         forwardDrawable.setState(false);

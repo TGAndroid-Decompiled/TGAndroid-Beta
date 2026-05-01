@@ -73,6 +73,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     public boolean needDivider;
     private final int padding;
     private Drawable premiumDrawable;
+    private String query;
     protected Theme.ResourcesProvider resourcesProvider;
     private boolean selfAsSavedMessages;
     private int statusColor;
@@ -239,6 +240,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             ScaleStateListAnimator.apply(textView2, 0.05f, 1.2f);
             this.adminTextView.setTextSize(1, 14.0f);
             this.adminTextView.setTextColor(Theme.getColor(Theme.key_profile_creatorIcon, resourcesProvider));
+            this.adminTextView.setImportantForAccessibility(2);
             View view8 = this.adminTextView;
             boolean z11 = LocaleController.isRTL;
             addView(view8, LayoutHelper.createFrame(-2, -2.0f, (z11 ? 3 : 5) | 48, z11 ? 23.0f : 0.0f, 10.0f, z11 ? 0.0f : 23.0f, 0.0f));
@@ -364,6 +366,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
 
     public void setData(Object obj, CharSequence charSequence, CharSequence charSequence2, int i, boolean z) {
         setData(obj, null, charSequence, charSequence2, i, z);
+    }
+
+    public void setQuery(String str) {
+        this.query = str;
+        update(0);
     }
 
     public void setData(Object obj, TLRPC.EncryptedChat encryptedChat, CharSequence charSequence, CharSequence charSequence2, int i, boolean z) {
@@ -670,10 +677,20 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             }
         }
-        CharSequence charSequence2 = this.currentName;
-        if (charSequence2 != null) {
+        CharSequence charSequenceReplaceEmoji = this.currentName;
+        if (charSequenceReplaceEmoji != null) {
             this.lastName = null;
-            this.nameTextView.setText(charSequence2);
+            String str2 = this.query;
+            if (str2 != null) {
+                charSequenceReplaceEmoji = AndroidUtilities.highlightText(charSequenceReplaceEmoji, str2, this.resourcesProvider);
+            }
+            if (charSequenceReplaceEmoji != null) {
+                try {
+                    charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequenceReplaceEmoji, this.nameTextView.getPaint().getFontMetricsInt(), false);
+                } catch (Exception unused) {
+                }
+            }
+            this.nameTextView.setText(charSequenceReplaceEmoji);
         } else {
             if (user != null) {
                 this.lastName = strRemoveRTL == null ? UserObject.getUserName(user) : AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(strRemoveRTL));
@@ -685,14 +702,18 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             } else {
                 this.lastName = "";
             }
-            CharSequence charSequenceReplaceEmoji = this.lastName;
-            if (charSequenceReplaceEmoji != null) {
+            CharSequence charSequenceReplaceEmoji2 = this.lastName;
+            String str3 = this.query;
+            if (str3 != null) {
+                charSequenceReplaceEmoji2 = AndroidUtilities.highlightText(charSequenceReplaceEmoji2, str3, this.resourcesProvider);
+            }
+            if (charSequenceReplaceEmoji2 != null) {
                 try {
-                    charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequenceReplaceEmoji, this.nameTextView.getPaint().getFontMetricsInt(), false);
-                } catch (Exception unused) {
+                    charSequenceReplaceEmoji2 = Emoji.replaceEmoji(charSequenceReplaceEmoji2, this.nameTextView.getPaint().getFontMetricsInt(), false);
+                } catch (Exception unused2) {
                 }
             }
-            this.nameTextView.setText(charSequenceReplaceEmoji);
+            this.nameTextView.setText(charSequenceReplaceEmoji2);
         }
         if (user != null) {
             botVerificationIcon = DialogObject.getBotVerificationIcon(user);
@@ -736,7 +757,12 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         }
         if (this.currentStatus != null) {
             this.statusTextView.setTextColor(this.statusColor);
-            this.statusTextView.setText(this.currentStatus);
+            CharSequence charSequenceHighlightText = this.currentStatus;
+            String str4 = this.query;
+            if (str4 != null) {
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str4, this.resourcesProvider);
+            }
+            this.statusTextView.setText(charSequenceHighlightText);
         } else if (user != null) {
             if (user.bot) {
                 this.statusTextView.setTextColor(this.statusColor);
@@ -788,15 +814,45 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(this.checkBoxBig.isChecked());
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
-            return;
+        } else {
+            CheckBox2 checkBox2 = this.checkBox;
+            if (checkBox2 != null && checkBox2.getVisibility() == 0) {
+                accessibilityNodeInfo.setCheckable(true);
+                accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
+                accessibilityNodeInfo.setClassName("android.widget.CheckBox");
+            }
         }
-        CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 == null || checkBox2.getVisibility() != 0) {
-            return;
+        StringBuilder sb = new StringBuilder();
+        SimpleTextView simpleTextView = this.nameTextView;
+        if (simpleTextView != null) {
+            CharSequence text = simpleTextView.getText();
+            if (!TextUtils.isEmpty(text)) {
+                sb.append(text);
+            }
         }
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
-        accessibilityNodeInfo.setClassName("android.widget.CheckBox");
+        TextView textView = this.adminTextView;
+        if (textView != null && textView.getVisibility() == 0) {
+            CharSequence text2 = this.adminTextView.getText();
+            if (!TextUtils.isEmpty(text2)) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append(text2);
+            }
+        }
+        SimpleTextView simpleTextView2 = this.statusTextView;
+        if (simpleTextView2 != null) {
+            CharSequence text3 = simpleTextView2.getText();
+            if (!TextUtils.isEmpty(text3)) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append(text3);
+            }
+        }
+        if (sb.length() > 0) {
+            accessibilityNodeInfo.setContentDescription(sb);
+        }
     }
 
     @Override
@@ -838,8 +894,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         long j = uItem.dialogId;
         if (j > 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+            String publicUsername = UserObject.getPublicUsername(user);
             if (user != null) {
-                if (user.bot) {
+                if (!TextUtils.isEmpty(publicUsername)) {
+                    string2 = "@" + publicUsername;
+                } else if (user.bot) {
                     string2 = LocaleController.getString(R.string.Bot);
                 } else if (user.contact) {
                     string2 = LocaleController.getString(R.string.FilterContact);

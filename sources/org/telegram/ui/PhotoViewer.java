@@ -86,6 +86,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -241,6 +242,7 @@ import org.telegram.ui.Components.GestureDetector2;
 import org.telegram.ui.Components.GroupedPhotosListView;
 import org.telegram.ui.Components.HideViewAfterAnimation;
 import org.telegram.ui.Components.ImageUpdater;
+import org.telegram.ui.Components.IntSeekBarAccessibilityDelegate;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -1419,6 +1421,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.subtitleTextView.setGravity(19);
             this.subtitleTextView.setTextColor(-1);
             this.subtitleTextView.setEllipsizeByGradient(true);
+            this.subtitleTextView.setImportantForAccessibility(1);
+            this.subtitleTextView.setAccessibilityLiveRegion(1);
             this.container.addView(this.subtitleTextView, LayoutHelper.createFrame(-1, 20.0f, 51, 16.0f, 0.0f, 0.0f, 0.0f));
         }
 
@@ -1550,6 +1554,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             }
             this.subtitleTextView.setText(charSequence, z);
+            AnimatedTextView animatedTextView2 = this.subtitleTextView;
+            if (TextUtils.isEmpty(charSequence)) {
+                charSequence = null;
+            }
+            animatedTextView2.setContentDescription(charSequence);
         }
 
         public void updateOrientation() {
@@ -2733,6 +2742,16 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 int iCenterY = (int) (((int) this.rect.centerY()) - (AndroidUtilities.dp(5.0f) * (1.0f - this.rotation)));
                 canvas.drawLine(AndroidUtilities.dp(5.0f) + iCenterX, iCenterY - AndroidUtilities.dp(5.0f), iCenterX - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f) + iCenterY, this.paint);
                 canvas.drawLine(iCenterX - AndroidUtilities.dp(5.0f), iCenterY - AndroidUtilities.dp(5.0f), iCenterX + AndroidUtilities.dp(5.0f), iCenterY + AndroidUtilities.dp(5.0f), this.paint);
+            }
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            accessibilityNodeInfo.setClassName("android.widget.Button");
+            int i = this.currentCount;
+            if (i > 0) {
+                accessibilityNodeInfo.setContentDescription(LocaleController.formatPluralString("PhotosSelected", i, new Object[0]));
             }
         }
     }
@@ -6124,7 +6143,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        public boolean lambda$onItemClick$10(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -15911,6 +15930,51 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.textPaint.setColor(-3289651);
             this.lowQualityDescription = LocaleController.getString("AccDescrVideoCompressLow", R.string.AccDescrVideoCompressLow);
             this.hightQualityDescription = LocaleController.getString("AccDescrVideoCompressHigh", R.string.AccDescrVideoCompressHigh);
+            setImportantForAccessibility(1);
+            setFocusable(true);
+            setAccessibilityDelegate(new IntSeekBarAccessibilityDelegate() {
+                @Override
+                protected int getProgress() {
+                    return PhotoViewer.this.selectedCompression;
+                }
+
+                @Override
+                protected void setProgress(int i) throws NumberFormatException {
+                    int iMax;
+                    if (PhotoViewer.this.compressionsCount > 0 && (iMax = Math.max(0, Math.min(PhotoViewer.this.compressionsCount - 1, i))) != PhotoViewer.this.selectedCompression) {
+                        QualityChooseView qualityChooseView = QualityChooseView.this;
+                        qualityChooseView.startMovingQuality = PhotoViewer.this.selectedCompression;
+                        PhotoViewer.this.selectedCompression = iMax;
+                        PhotoViewer.this.didChangedCompressionLevel(false);
+                        QualityChooseView.this.invalidate();
+                        if (PhotoViewer.this.selectedCompression != QualityChooseView.this.startMovingQuality) {
+                            PhotoViewer.this.requestVideoPreview(1);
+                        }
+                    }
+                }
+
+                @Override
+                protected int getMaxValue() {
+                    return Math.max(0, PhotoViewer.this.compressionsCount - 1);
+                }
+
+                @Override
+                protected CharSequence getContentDescription(View view) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+                    if (PhotoViewer.this.compressionsCount > 0) {
+                        sb.append(", ");
+                        sb.append(PhotoViewer.this.selectedCompression + 1);
+                        sb.append(" / ");
+                        sb.append(PhotoViewer.this.compressionsCount);
+                    }
+                    sb.append(", ");
+                    sb.append(QualityChooseView.this.lowQualityDescription);
+                    sb.append(" – ");
+                    sb.append(QualityChooseView.this.hightQualityDescription);
+                    return sb.toString();
+                }
+            });
         }
 
         @Override

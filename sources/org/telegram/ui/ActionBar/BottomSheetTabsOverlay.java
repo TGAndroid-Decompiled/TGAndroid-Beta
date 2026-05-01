@@ -13,30 +13,40 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RadialGradient;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.PixelCopy;
 import android.view.Surface;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.webkit.WebView;
 import android.widget.OverScroller;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.customview.widget.ExploreByTouchHelper;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticApiModelOutline2;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
@@ -48,6 +58,7 @@ import org.telegram.ui.GradientClip;
 import org.telegram.ui.bots.BotWebViewSheet;
 
 public class BottomSheetTabsOverlay extends View {
+    private OverlayAccessibilityHelper accessibilityHelper;
     private View actionBarLayout;
     private final AnimatedFloat animatedCount;
     private ValueAnimator animator;
@@ -108,7 +119,7 @@ public class BottomSheetTabsOverlay extends View {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo1286getWindowView();
+        SheetView mo1288getWindowView();
 
         boolean hadDialog();
 
@@ -148,12 +159,25 @@ public class BottomSheetTabsOverlay extends View {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
         this.maximumVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
         this.minimumVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
+        OverlayAccessibilityHelper overlayAccessibilityHelper = new OverlayAccessibilityHelper(this);
+        this.accessibilityHelper = overlayAccessibilityHelper;
+        ViewCompat.setAccessibilityDelegate(this, overlayAccessibilityHelper);
+        setImportantForAccessibility(2);
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
                 return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
             }
         });
+    }
+
+    @Override
+    protected boolean dispatchHoverEvent(MotionEvent motionEvent) {
+        OverlayAccessibilityHelper overlayAccessibilityHelper;
+        if (this.openProgress <= 0.0f || (overlayAccessibilityHelper = this.accessibilityHelper) == null || !overlayAccessibilityHelper.dispatchHoverEvent(motionEvent)) {
+            return super.dispatchHoverEvent(motionEvent);
+        }
+        return true;
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
@@ -523,10 +547,10 @@ public class BottomSheetTabsOverlay extends View {
     }
 
     public static void lambda$dismissSheet$3(Sheet sheet) {
-        if (sheet == null || sheet.mo1286getWindowView() == null) {
+        if (sheet == null || sheet.mo1288getWindowView() == null) {
             return;
         }
-        sheet.mo1286getWindowView().setDrawingFromOverlay(true);
+        sheet.mo1288getWindowView().setDrawingFromOverlay(true);
     }
 
     public void lambda$dismissSheet$4(ValueAnimator valueAnimator) {
@@ -571,7 +595,7 @@ public class BottomSheetTabsOverlay extends View {
                 canvas.translate(0.0f, -this.val$tab.viewScroll);
                 view.draw(canvas);
             }
-            this.val$sheet.mo1286getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo1288getWindowView().setDrawingFromOverlay(false);
             this.val$sheet.release();
             BottomSheetTabsOverlay.this.dismissingSheet = null;
             BottomSheetTabsOverlay.this.invalidate();
@@ -579,7 +603,7 @@ public class BottomSheetTabsOverlay extends View {
 
         public static void lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData webTabData, Sheet sheet, Bitmap bitmap) {
             webTabData.previewBitmap = bitmap;
-            sheet.mo1286getWindowView().setDrawingFromOverlay(false);
+            sheet.mo1288getWindowView().setDrawingFromOverlay(false);
             sheet.release();
         }
     }
@@ -717,6 +741,7 @@ public class BottomSheetTabsOverlay extends View {
             bottomSheetTabs.drawTabs = false;
             bottomSheetTabs.invalidate();
         }
+        setModalAccessibility(z);
         invalidate();
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
         this.openAnimator = valueAnimatorOfFloat;
@@ -753,6 +778,207 @@ public class BottomSheetTabsOverlay extends View {
         invalidate();
     }
 
+    private void setModalAccessibility(boolean z) {
+        setImportantForAccessibility(z ? 1 : 2);
+        ViewParent parent = getParent();
+        if (parent instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) parent;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt != this) {
+                    childAt.setImportantForAccessibility(z ? 4 : 0);
+                }
+            }
+        }
+        OverlayAccessibilityHelper overlayAccessibilityHelper = this.accessibilityHelper;
+        if (overlayAccessibilityHelper != null) {
+            overlayAccessibilityHelper.invalidateRoot();
+        }
+        if (z) {
+            sendAccessibilityEvent(32);
+        }
+    }
+
+    class OverlayAccessibilityHelper extends ExploreByTouchHelper {
+        private final Rect tmpRect;
+
+        public OverlayAccessibilityHelper(View view) {
+            super(view);
+            this.tmpRect = new Rect();
+        }
+
+        @Override
+        protected int getVirtualViewAt(float f, float f2) {
+            if (BottomSheetTabsOverlay.this.openProgress < 0.5f) {
+                return -1;
+            }
+            if (BottomSheetTabsOverlay.this.closeAllButtonBackground != null && BottomSheetTabsOverlay.this.closeAllButtonBackground.getBounds().contains((int) f, (int) f2)) {
+                return 1;
+            }
+            for (int size = BottomSheetTabsOverlay.this.tabs.size() - 1; size >= 0; size--) {
+                TabPreview tabPreview = (TabPreview) BottomSheetTabsOverlay.this.tabs.get(size);
+                if (Math.abs(tabPreview.dismissProgress) < 0.4f && tabPreview.clickBounds.contains(f, f2)) {
+                    Rect bounds = tabPreview.tabDrawable.closeRipple.getBounds();
+                    if (!bounds.isEmpty()) {
+                        RectF rectF = tabPreview.clickBounds;
+                        if (bounds.contains((int) (f - rectF.left), (int) ((f2 - rectF.top) - AndroidUtilities.dp(24.0f)))) {
+                            return size + 2000;
+                        }
+                    }
+                    return size + 1000;
+                }
+            }
+            return -1;
+        }
+
+        @Override
+        protected void getVisibleVirtualViews(List list) {
+            if (BottomSheetTabsOverlay.this.openProgress < 0.5f) {
+                return;
+            }
+            if (BottomSheetTabsOverlay.this.closeAllButtonBackground != null && !BottomSheetTabsOverlay.this.closeAllButtonBackground.getBounds().isEmpty()) {
+                list.add(1);
+            }
+            for (int i = 0; i < BottomSheetTabsOverlay.this.tabs.size(); i++) {
+                TabPreview tabPreview = (TabPreview) BottomSheetTabsOverlay.this.tabs.get(i);
+                if (Math.abs(tabPreview.dismissProgress) < 0.4f && !tabPreview.clickBounds.isEmpty()) {
+                    list.add(Integer.valueOf(i + 1000));
+                    BottomSheetTabs.TabDrawable tabDrawable = tabPreview.tabDrawable;
+                    if (tabDrawable != null && !tabDrawable.closeRipple.getBounds().isEmpty()) {
+                        list.add(Integer.valueOf(i + 2000));
+                    }
+                }
+            }
+        }
+
+        @Override
+        protected void onPopulateNodeForVirtualView(int i, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+            int i2;
+            boolean z;
+            String string;
+            String string2;
+            accessibilityNodeInfoCompat.setClassName("android.widget.Button");
+            accessibilityNodeInfoCompat.addAction(AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK);
+            if (i == 1) {
+                if (BottomSheetTabsOverlay.this.closeAllButtonBackground != null) {
+                    this.tmpRect.set(BottomSheetTabsOverlay.this.closeAllButtonBackground.getBounds());
+                } else {
+                    this.tmpRect.set(0, 0, 1, 1);
+                    accessibilityNodeInfoCompat.setVisibleToUser(false);
+                }
+                accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                accessibilityNodeInfoCompat.setContentDescription(LocaleController.getString(R.string.BotCloseAllTabs));
+                return;
+            }
+            if (i >= 2000) {
+                i2 = i - 2000;
+                z = true;
+            } else {
+                if (i < 1000) {
+                    this.tmpRect.set(0, 0, 1, 1);
+                    accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                    accessibilityNodeInfoCompat.setVisibleToUser(false);
+                    return;
+                }
+                i2 = i - 1000;
+                z = false;
+            }
+            if (i2 >= 0 && i2 < BottomSheetTabsOverlay.this.tabs.size()) {
+                TabPreview tabPreview = (TabPreview) BottomSheetTabsOverlay.this.tabs.get(i2);
+                BottomSheetTabs.WebTabData webTabData = tabPreview.tabData;
+                String title = (webTabData == null || webTabData.getTitle() == null) ? "" : tabPreview.tabData.getTitle();
+                if (z) {
+                    Rect bounds = tabPreview.tabDrawable.closeRipple.getBounds();
+                    RectF rectF = tabPreview.clickBounds;
+                    int i3 = (int) (rectF.left + bounds.left);
+                    int iDp = (int) (rectF.top + AndroidUtilities.dp(24.0f) + bounds.top);
+                    RectF rectF2 = tabPreview.clickBounds;
+                    this.tmpRect.set(i3, iDp, (int) (rectF2.left + bounds.right), (int) (rectF2.top + AndroidUtilities.dp(24.0f) + bounds.bottom));
+                    accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                    if (TextUtils.isEmpty(title)) {
+                        string2 = LocaleController.getString(R.string.Close);
+                    } else {
+                        string2 = LocaleController.getString(R.string.Close) + ", " + title;
+                    }
+                    accessibilityNodeInfoCompat.setContentDescription(string2);
+                    return;
+                }
+                Rect rect = this.tmpRect;
+                RectF rectF3 = tabPreview.clickBounds;
+                rect.set((int) rectF3.left, (int) rectF3.top, (int) rectF3.right, (int) rectF3.bottom);
+                accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+                if (TextUtils.isEmpty(title)) {
+                    string = LocaleController.getString(R.string.Open);
+                } else {
+                    string = LocaleController.getString(R.string.Open) + ", " + title;
+                }
+                accessibilityNodeInfoCompat.setContentDescription(string);
+                return;
+            }
+            this.tmpRect.set(0, 0, 1, 1);
+            accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
+            accessibilityNodeInfoCompat.setVisibleToUser(false);
+        }
+
+        @Override
+        protected boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
+            int i3;
+            boolean z;
+            if (i2 != 16) {
+                return false;
+            }
+            if (i == 1) {
+                if (BottomSheetTabsOverlay.this.tabsView != null) {
+                    BottomSheetTabsOverlay.this.tabsView.removeAll();
+                }
+                BottomSheetTabsOverlay.this.closeTabsView();
+                return true;
+            }
+            if (i < 2000) {
+                if (i >= 1000) {
+                    i3 = i - 1000;
+                    z = false;
+                }
+                return false;
+            }
+            i3 = i - 2000;
+            z = true;
+            if (i3 >= 0 && i3 < BottomSheetTabsOverlay.this.tabs.size()) {
+                final TabPreview tabPreview = (TabPreview) BottomSheetTabsOverlay.this.tabs.get(i3);
+                if (z) {
+                    if (BottomSheetTabsOverlay.this.tabsView != null) {
+                        BottomSheetTabsOverlay.this.tabsView.removeTab(tabPreview.tabData, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj) {
+                                this.f$0.lambda$onPerformActionForVirtualView$0(tabPreview, (Boolean) obj);
+                            }
+                        });
+                    }
+                    return true;
+                }
+                if (BottomSheetTabsOverlay.this.tabsView != null) {
+                    BottomSheetTabsOverlay.this.closeTabsView();
+                    tabPreview.webView = null;
+                    BottomSheetTabsOverlay.this.tabsView.openTab(tabPreview.tabData);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public void lambda$onPerformActionForVirtualView$0(TabPreview tabPreview, Boolean bool) {
+            if (bool.booleanValue()) {
+                tabPreview.animateDismiss(1.0f);
+                if (BottomSheetTabsOverlay.this.tabsView.getTabs().isEmpty()) {
+                    BottomSheetTabsOverlay.this.closeTabsView();
+                    return;
+                }
+                return;
+            }
+            tabPreview.animateDismiss(0.0f);
+        }
+    }
+
     private void drawDismissingTab(Canvas canvas) {
         if (this.dismissingSheet != null) {
             getLocationOnScreen(this.pos2);
@@ -764,10 +990,10 @@ public class BottomSheetTabsOverlay extends View {
             rectF.offset(i - iArr[0], r1[1] - iArr[1]);
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - this.navigationBarInset);
-            SheetView sheetViewMo1286getWindowView = this.dismissingSheet.mo1286getWindowView();
+            SheetView sheetViewMo1288getWindowView = this.dismissingSheet.mo1288getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float fDrawInto = sheetViewMo1286getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float fDrawInto = sheetViewMo1288getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, fDrawInto, fDrawInto, Path.Direction.CW);

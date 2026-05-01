@@ -164,6 +164,16 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asTopView(CharSequence charSequence, CharSequence charSequence2, int i, String str, String str2) {
+        UItem uItem = new UItem(2, false);
+        uItem.text = charSequence;
+        uItem.animatedText = charSequence2;
+        uItem.subtext = str;
+        uItem.textValue = str2;
+        uItem.intValue = i;
+        return uItem;
+    }
+
     public static UItem asTopView(CharSequence charSequence, CharSequence charSequence2, int i) {
         UItem uItem = new UItem(2, false);
         uItem.text = charSequence;
@@ -314,6 +324,13 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public static UItem asAddChat(Long l) {
         UItem uItem = new UItem(13, false);
         uItem.dialogId = l.longValue();
+        return uItem;
+    }
+
+    public static UItem asAddChat(Long l, String str) {
+        UItem uItem = new UItem(13, false);
+        uItem.dialogId = l.longValue();
+        uItem.textValue = str;
         return uItem;
     }
 

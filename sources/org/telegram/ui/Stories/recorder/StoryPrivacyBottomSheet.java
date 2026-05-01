@@ -31,6 +31,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -3376,6 +3377,26 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 return;
             }
             canvas.drawPath(path, paint);
+        }
+
+        @Override
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+            super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+            try {
+                CheckBox2 checkBox2 = this.checkBox;
+                boolean z = false;
+                boolean z2 = checkBox2 != null && checkBox2.getVisibility() == 0;
+                RadioButton radioButton = this.radioButton;
+                if (radioButton != null && radioButton.getVisibility() == 0) {
+                    z = true;
+                }
+                if (z2 || z) {
+                    accessibilityNodeInfo.setCheckable(true);
+                    accessibilityNodeInfo.setChecked(z2 ? this.checkBox.isChecked() : this.radioButton.isChecked());
+                    accessibilityNodeInfo.setClassName(z2 ? "android.widget.CheckBox" : "android.widget.RadioButton");
+                }
+            } catch (Exception unused) {
+            }
         }
     }
 

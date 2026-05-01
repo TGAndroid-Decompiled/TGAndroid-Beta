@@ -137,6 +137,7 @@ import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundPro
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
+import org.telegram.ui.Components.emojiview.FoundEmojiPacksRecyclerView;
 import org.telegram.ui.Components.emojiview.FoundStickerPackButton;
 import org.telegram.ui.Components.emojiview.FoundStickerPackButtonContainer;
 import org.telegram.ui.Components.emojiview.FoundStickerPackCell;
@@ -1801,7 +1802,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         this(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, false);
     }
 
-    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) throws Resources.NotFoundException {
+    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
         BlurredBackgroundSourceColor blurredBackgroundSourceColor;
         int themedColor;
         final Theme.ResourcesProvider resourcesProvider2;
@@ -8031,7 +8032,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
     }
 
     class EmojiSearchAdapter extends RecyclerListView.SelectionAdapter {
-        private UniversalRecyclerView foundPacksListView;
+        private FoundEmojiPacksRecyclerView foundPacksListView;
         private boolean isCompleted;
         private String lastSearchAlias;
         private String lastSearchEmojiString;
@@ -8045,7 +8046,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         private final ArrayList packs = new ArrayList();
 
         public EmojiSearchAdapter(Context context) {
-            UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, EmojiView.this.currentAccount, -1, false, new Utilities.Callback2() {
+            FoundEmojiPacksRecyclerView foundEmojiPacksRecyclerView = new FoundEmojiPacksRecyclerView(context, EmojiView.this.currentAccount, -1, false, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.foundPackListFillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -8057,8 +8058,8 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 }
             }, null, EmojiView.this.resourcesProvider, -1, 0) {
             };
-            this.foundPacksListView = universalRecyclerView;
-            universalRecyclerView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
+            this.foundPacksListView = foundEmojiPacksRecyclerView;
+            foundEmojiPacksRecyclerView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
             this.foundPacksListView.setClipToPadding(false);
             this.foundPacksListView.adapter.setApplyBackground(false);
             this.foundPacksListView.setNestedScrollingEnabled(false);
@@ -8125,6 +8126,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             EmojiView.this.animatorSearchEmojiPackSelected.setValue(this.selectedPackId != 0, true);
             notifyDataSetChanged();
             EmojiView.this.emojiSearchField.hideKeyboard();
+            if (this.selectedPackId != 0) {
+                this.foundPacksListView.scrollOnSelect(view);
+            }
         }
 
         public void resetSelectedPackId() {
@@ -9399,7 +9403,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
     class StickersSearchGridAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
         private int emojiSearchId;
-        private UniversalRecyclerView foundPacksListView;
+        private FoundEmojiPacksRecyclerView foundPacksListView;
         private boolean isCompleted;
         private int reqId;
         private int reqId2;
@@ -9757,7 +9761,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
 
         public StickersSearchGridAdapter(Context context) {
             this.context = context;
-            UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, EmojiView.this.currentAccount, -1, false, new Utilities.Callback2() {
+            FoundEmojiPacksRecyclerView foundEmojiPacksRecyclerView = new FoundEmojiPacksRecyclerView(context, EmojiView.this.currentAccount, -1, false, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.foundPackListFillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -9769,8 +9773,8 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 }
             }, null, EmojiView.this.resourcesProvider, -1, 0) {
             };
-            this.foundPacksListView = universalRecyclerView;
-            universalRecyclerView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
+            this.foundPacksListView = foundEmojiPacksRecyclerView;
+            foundEmojiPacksRecyclerView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
             this.foundPacksListView.setClipToPadding(false);
             this.foundPacksListView.adapter.setApplyBackground(false);
             this.foundPacksListView.setNestedScrollingEnabled(false);
@@ -9837,6 +9841,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             EmojiView.this.animatorSearchStickerPackSelected.setValue(this.selectedPackId != 0, true);
             notifyDataSetChanged();
             EmojiView.this.stickersSearchField.hideKeyboard();
+            if (this.selectedPackId != 0) {
+                this.foundPacksListView.scrollOnSelect(view);
+            }
         }
 
         public void resetSelectedPackId() {

@@ -42,6 +42,7 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -1736,8 +1737,9 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" ");
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x");
-            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan((TLRPC.Document) arrayList.get(i2), 0.9f, fontMetricsInt), 0, 1, 33);
+            TLRPC.Document document2 = (TLRPC.Document) arrayList.get(i2);
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(MessageObject.getEmoji(document2));
+            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document2, 0.9f, fontMetricsInt), 0, 1, 33);
             spannableStringBuilder.append((CharSequence) spannableStringBuilder2);
         }
         cachedLastEmojis.put(pair, spannableStringBuilder);

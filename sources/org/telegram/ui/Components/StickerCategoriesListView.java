@@ -604,6 +604,13 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
 
         public void set(EmojiCategory emojiCategory, int i, boolean z) {
             this.index = i;
+            if (!TextUtils.isEmpty(emojiCategory.title)) {
+                setContentDescription(emojiCategory.title);
+            } else if (!TextUtils.isEmpty(emojiCategory.emojis)) {
+                setContentDescription(emojiCategory.emojis);
+            } else {
+                setContentDescription(null);
+            }
             ValueAnimator valueAnimator = this.loadAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
