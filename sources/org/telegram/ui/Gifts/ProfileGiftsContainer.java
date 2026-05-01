@@ -1739,7 +1739,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TLRPC.Document document2 = (TLRPC.Document) arrayList.get(i2);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(MessageObject.getEmoji(document2));
-            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document2, 0.9f, fontMetricsInt), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(document2, 0.9f, fontMetricsInt), 0, spannableStringBuilder2.length(), 33);
             spannableStringBuilder.append((CharSequence) spannableStringBuilder2);
         }
         cachedLastEmojis.put(pair, spannableStringBuilder);

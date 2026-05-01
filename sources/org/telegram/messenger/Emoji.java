@@ -527,7 +527,7 @@ public class Emoji {
         if (!z && (charSequence instanceof Spannable)) {
             spannableNewSpannable = (Spannable) charSequence;
         } else {
-            spannableNewSpannable = Spannable.Factory.getInstance().newSpannable(charSequence.toString());
+            spannableNewSpannable = Spannable.Factory.getInstance().newSpannable(charSequence);
         }
         ArrayList<EmojiSpanRange> emojis = parseEmojis(spannableNewSpannable, iArr);
         if (emojis.isEmpty()) {

@@ -10,7 +10,8 @@ public enum IconBackgroundColors {
     GREEN(-11154873, -14175180),
     RED(-765355, -2148011),
     CYAN(-13451058, -14836538),
-    PURPLE(-3903756, -6335009);
+    PURPLE(-3903756, -6335009),
+    GRAY(-7956054, -9534569);
 
     public final int bottom;
     public final int top;
