@@ -648,7 +648,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         ActionBarMenuItem actionBarMenuItemAddItem3 = actionBarMenuCreateMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
         this.other = actionBarMenuItemAddItem3;
-        actionBarMenuItemAddItem3.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
+        actionBarMenuItemAddItem3.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
         this.other.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
         this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString(R.string.AddMember));
         ActionBarMenuItem actionBarMenuItem = this.other;

@@ -106,20 +106,14 @@ public class WebmEncoder {
 
         private void drawEntity(Canvas canvas, VideoEditedInfo.MediaEntity mediaEntity, int i, long j) {
             VideoEditedInfo.MediaEntity mediaEntity2;
-            int i2;
-            int i3;
             long j2 = mediaEntity.ptr;
             if (j2 != 0) {
                 Bitmap bitmap = mediaEntity.bitmap;
-                if (bitmap == null || (i2 = mediaEntity.W) <= 0 || (i3 = mediaEntity.H) <= 0) {
+                if (bitmap == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
                     return;
                 }
-                RLottieDrawable.getFrame(j2, (int) mediaEntity.currentFrame, bitmap, i2, i3, bitmap.getRowBytes(), true);
-                Bitmap bitmap2 = mediaEntity.bitmap;
-                if ((mediaEntity.subType & 8) == 0) {
-                    i = 0;
-                }
-                applyRoundRadius(mediaEntity, bitmap2, i);
+                RLottieDrawable.getFrame(j2, (int) mediaEntity.currentFrame, bitmap, true);
+                applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
                 canvas.drawBitmap(mediaEntity.bitmap, mediaEntity.matrix, this.bitmapPaint);
                 float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f;
@@ -131,10 +125,10 @@ public class WebmEncoder {
             }
             if (mediaEntity.animatedFileDrawable != null) {
                 float f2 = mediaEntity.currentFrame;
-                int i4 = (int) f2;
+                int i2 = (int) f2;
                 float f3 = f2 + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f3;
-                for (int i5 = (int) f3; i4 != i5; i5--) {
+                for (int i3 = (int) f3; i2 != i3; i3--) {
                     mediaEntity.animatedFileDrawable.getNextFrame(true);
                 }
                 Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
@@ -149,8 +143,8 @@ public class WebmEncoder {
             if (arrayList == null || arrayList.isEmpty()) {
                 return;
             }
-            for (int i6 = 0; i6 < mediaEntity.entities.size(); i6++) {
-                VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i6);
+            for (int i4 = 0; i4 < mediaEntity.entities.size(); i4++) {
+                VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i4);
                 if (emojiEntity != null && (mediaEntity2 = emojiEntity.entity) != null) {
                     drawEntity(canvas, mediaEntity2, mediaEntity.color, j);
                 }

@@ -3684,7 +3684,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         if (arrayList.isEmpty()) {
             return LocaleController.getString(R.string.SearchCountriesSelect);
         }
-        return arrayList.size() == 1 ? LocaleController.getCountryName((String) arrayList.get(0)) : LocaleController.formatString(R.string.PollV2AllowedCountriesListMany, Integer.valueOf(arrayList.size()));
+        if (arrayList.size() == 1) {
+            return LocaleController.getCountryName((String) arrayList.get(0));
+        }
+        return LocaleController.formatPluralString("PollV2AllowedCountriesListManyP", arrayList.size(), new Object[0]);
     }
 
     private class ToggleRow {

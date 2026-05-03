@@ -16,15 +16,15 @@ import org.telegram.ui.Cells.ChatMessageCell;
 
 public class SlotsDrawable extends RLottieDrawable {
     private ReelValue center;
-    private int[] frameCounts;
-    private int[] frameNums;
+    private final int[] frameCounts;
+    private final int[] frameNums;
     private ReelValue left;
-    private long[] nativePtrs;
+    private final long[] nativePtrs;
     private boolean playWinAnimation;
     private ReelValue right;
-    private int[] secondFrameCounts;
-    private int[] secondFrameNums;
-    private long[] secondNativePtrs;
+    private final int[] secondFrameCounts;
+    private final int[] secondFrameNums;
+    private final long[] secondNativePtrs;
 
     enum ReelValue {
         bar,
@@ -80,7 +80,7 @@ public class SlotsDrawable extends RLottieDrawable {
                         if (i >= jArr.length) {
                             break;
                         }
-                        frame = RLottieDrawable.getFrame(jArr[i], this.frameNums[i], this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), i == 0);
+                        frame = RLottieDrawable.getFrame(jArr[i], this.frameNums[i], this.backgroundBitmap, i == 0);
                         if (i != 0) {
                             int[] iArr = this.frameNums;
                             int i2 = iArr[i] + 1;
@@ -117,7 +117,7 @@ public class SlotsDrawable extends RLottieDrawable {
                             iArr3[0] = -1;
                         }
                     }
-                    RLottieDrawable.getFrame(this.nativePtrs[0], Math.max(this.frameNums[0], 0), this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), true);
+                    RLottieDrawable.getFrame(this.nativePtrs[0], Math.max(this.frameNums[0], 0), this.backgroundBitmap, true);
                     int i5 = 0;
                     while (true) {
                         long[] jArr2 = this.secondNativePtrs;
@@ -129,7 +129,7 @@ public class SlotsDrawable extends RLottieDrawable {
                         if (i6 < 0) {
                             i6 = this.secondFrameCounts[i5] - 1;
                         }
-                        RLottieDrawable.getFrame(j, i6, this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), false);
+                        RLottieDrawable.getFrame(j, i6, this.backgroundBitmap, false);
                         if (!this.nextFrameIsLast) {
                             int[] iArr4 = this.secondFrameNums;
                             int i7 = iArr4[i5] + 1;
@@ -141,7 +141,7 @@ public class SlotsDrawable extends RLottieDrawable {
                         }
                         i5++;
                     }
-                    frame = RLottieDrawable.getFrame(this.nativePtrs[4], this.frameNums[4], this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), false);
+                    frame = RLottieDrawable.getFrame(this.nativePtrs[4], this.frameNums[4], this.backgroundBitmap, false);
                     int[] iArr5 = this.frameNums;
                     int i8 = iArr5[4] + 1;
                     if (i8 < this.frameCounts[4]) {

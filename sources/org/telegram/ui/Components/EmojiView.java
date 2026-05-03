@@ -1970,7 +1970,15 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             MediaDataController.getInstance(this.currentAccount).checkFeaturedEmoji();
             this.animatedEmojiTextColorFilter = new PorterDuffColorFilter(getThemedColor(Theme.key_featuredStickers_addButton), PorterDuff.Mode.SRC_IN);
         }
-        this.emojiGridView = new EmojiGridView(context);
+        this.emojiGridView = new EmojiGridView(context) {
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                if (EmojiView.this.ignorePagerScroll) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+        };
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setAddDelay(0L);
         defaultItemAnimator.setAddDuration(220L);
@@ -2087,7 +2095,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 if (EmojiView.this.emojiLayoutManager.findLastVisibleItemPosition() + 20 > EmojiView.this.emojiSearchAdapter.getItemCount()) {
                     SearchRunnable searchRunnable = EmojiView.this.emojiSearchAdapter.searchRunnable;
                     Objects.requireNonNull(searchRunnable);
-                    AndroidUtilities.runOnUIThread(new EmojiView$18$$ExternalSyntheticLambda0(searchRunnable));
+                    AndroidUtilities.runOnUIThread(new EmojiView$19$$ExternalSyntheticLambda0(searchRunnable));
                 }
             }
 
@@ -2134,7 +2142,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
 
             @Override
             protected boolean onTabClick(int r10) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.AnonymousClass9.onTabClick(int):boolean");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.AnonymousClass10.onTabClick(int):boolean");
             }
 
             @Override
@@ -2403,6 +2411,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
 
                 @Override
                 public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                    if (EmojiView.this.ignorePagerScroll) {
+                        return false;
+                    }
                     return super.onInterceptTouchEvent(motionEvent) || ContentPreviewViewer.getInstance().onInterceptTouchEvent(motionEvent, EmojiView.this.stickersGridView, EmojiView.this.getMeasuredHeight(), EmojiView.this.contentPreviewViewerDelegate, this.resourcesProvider);
                 }
 
@@ -2447,7 +2458,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     if (EmojiView.this.stickersLayoutManager.findLastVisibleItemPosition() + 50 > EmojiView.this.stickersSearchGridAdapter.getItemCount()) {
                         SearchRunnable searchRunnable = EmojiView.this.stickersSearchGridAdapter.searchRunnable;
                         Objects.requireNonNull(searchRunnable);
-                        AndroidUtilities.runOnUIThread(new EmojiView$18$$ExternalSyntheticLambda0(searchRunnable));
+                        AndroidUtilities.runOnUIThread(new EmojiView$19$$ExternalSyntheticLambda0(searchRunnable));
                     }
                 }
             };
@@ -2549,9 +2560,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.stickersContainer.addView(this.stickerSearchHeader, new FrameLayout.LayoutParams(-1, this.searchFieldHeight));
             c = 2;
             i3 = 51;
-            AnonymousClass22 anonymousClass22 = new AnonymousClass22(context, resourcesProvider, baseFragment, z5);
-            this.stickersTab = anonymousClass22;
-            anonymousClass22.setDragEnabled(true);
+            AnonymousClass23 anonymousClass23 = new AnonymousClass23(context, resourcesProvider, baseFragment, z5);
+            this.stickersTab = anonymousClass23;
+            anonymousClass23.setDragEnabled(true);
             this.stickersTab.setWillNotDraw(false);
             this.stickersTab.setType(ScrollSlidingTabStrip.Type.TAB);
             this.stickersTab.setUnderlineHeight(this.stickersGridView.canScrollVertically(-1) ? AndroidUtilities.getShadowHeight() : 0);
@@ -3112,14 +3123,14 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         this.stickersSearchGridAdapter.resetSelectedPackId();
     }
 
-    class AnonymousClass22 extends DraggableScrollSlidingTabStrip {
+    class AnonymousClass23 extends DraggableScrollSlidingTabStrip {
         final BaseFragment val$fragment;
         final boolean val$shouldDrawBackground;
 
         public static void lambda$sendReorder$2(TLObject tLObject, TLRPC.TL_error tL_error) {
         }
 
-        AnonymousClass22(Context context, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment, boolean z) {
+        AnonymousClass23(Context context, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment, boolean z) {
             super(context, resourcesProvider);
             this.val$fragment = baseFragment;
             this.val$shouldDrawBackground = z;
@@ -3179,7 +3190,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 bulletinFactoryOf.createSimpleBulletin(i5, string, string2, string3, new Runnable() {
                     @Override
                     public final void run() {
-                        EmojiView.AnonymousClass22.lambda$stickerSetPositionChanged$1(baseFragment2);
+                        EmojiView.AnonymousClass23.lambda$stickerSetPositionChanged$1(baseFragment2);
                     }
                 }).show();
             }
@@ -3213,7 +3224,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             ConnectionsManager.getInstance(EmojiView.this.currentAccount).sendRequest(tL_messages_reorderStickerSets, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                    EmojiView.AnonymousClass22.lambda$sendReorder$2(tLObject, tL_error);
+                    EmojiView.AnonymousClass23.lambda$sendReorder$2(tLObject, tL_error);
                 }
             });
             NotificationCenter.getInstance(EmojiView.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, 0, Boolean.TRUE);
@@ -8064,6 +8075,17 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.foundPacksListView.adapter.setApplyBackground(false);
             this.foundPacksListView.setNestedScrollingEnabled(false);
             this.foundPacksListView.setDrawSelection(false);
+            this.foundPacksListView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == 0) {
+                        EmojiView.this.ignorePagerScroll = true;
+                    } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                        EmojiView.this.ignorePagerScroll = false;
+                    }
+                    return false;
+                }
+            });
         }
 
         public void foundPackListOnClickItem(UItem uItem, View view, int i, float f, float f2) {
@@ -8408,13 +8430,13 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.resultPre.clear();
             this.isCompleted = false;
             EmojiView.this.emojiSearchField.showProgress(true);
-            AnonymousClass4 anonymousClass4 = new AnonymousClass4();
-            this.searchRunnable = anonymousClass4;
-            AndroidUtilities.runOnUIThread(anonymousClass4, z ? 300L : 0L);
+            AnonymousClass5 anonymousClass5 = new AnonymousClass5();
+            this.searchRunnable = anonymousClass5;
+            AndroidUtilities.runOnUIThread(anonymousClass5, z ? 300L : 0L);
         }
 
-        class AnonymousClass4 implements SearchRunnable {
-            AnonymousClass4() {
+        class AnonymousClass5 implements SearchRunnable {
+            AnonymousClass5() {
             }
 
             @Override
@@ -8466,7 +8488,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     StickerCategoriesListView.search.fetch(UserConfig.selectedAccount, str, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            EmojiView.EmojiSearchAdapter.AnonymousClass4.lambda$run$9(linkedHashSet, runnable, (TLRPC.TL_emojiList) obj);
+                            EmojiView.EmojiSearchAdapter.AnonymousClass5.lambda$run$9(linkedHashSet, runnable, (TLRPC.TL_emojiList) obj);
                         }
                     });
                 } else {
@@ -8562,7 +8584,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             }
 
             public void lambda$run$5(java.lang.String r11, java.util.ArrayList r12, java.lang.Runnable r13) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.EmojiSearchAdapter.AnonymousClass4.lambda$run$5(java.lang.String, java.util.ArrayList, java.lang.Runnable):void");
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.EmojiSearchAdapter.AnonymousClass5.lambda$run$5(java.lang.String, java.util.ArrayList, java.lang.Runnable):void");
             }
 
             public void lambda$run$6(ArrayList arrayList, Runnable runnable) {
@@ -9779,6 +9801,17 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             this.foundPacksListView.adapter.setApplyBackground(false);
             this.foundPacksListView.setNestedScrollingEnabled(false);
             this.foundPacksListView.setDrawSelection(false);
+            this.foundPacksListView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == 0) {
+                        EmojiView.this.ignorePagerScroll = true;
+                    } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                        EmojiView.this.ignorePagerScroll = false;
+                    }
+                    return false;
+                }
+            });
         }
 
         public void foundPackListOnClickItem(UItem uItem, View view, int i, float f, float f2) {

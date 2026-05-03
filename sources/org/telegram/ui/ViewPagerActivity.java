@@ -63,48 +63,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
     public View createView(final Context context) {
         this.hasOwnBackground = true;
         this.contentView = createContentView(context);
-        this.viewPager = new ViewPagerFixed(context) {
-            @Override
-            protected long getManualScrollDuration() {
-                return 320L;
-            }
-
-            @Override
-            protected void onScrollEnd() {
-                super.onScrollEnd();
-                ViewPagerActivity.this.onViewPagerScrollEnd();
-                ViewPagerActivity.this.checkFragmentsVisibility();
-            }
-
-            @Override
-            protected float getAvailableTranslationX() {
-                return getMeasuredWidth();
-            }
-
-            @Override
-            protected void onItemSelected(View view, View view2, int i, int i2) {
-                super.onItemSelected(view, view2, i, i2);
-                ViewPagerActivity.this.checkFragmentsVisibility();
-            }
-
-            @Override
-            public void onTabAnimationUpdate(boolean z) {
-                super.onTabAnimationUpdate(z);
-                ViewPagerActivity.this.onViewPagerTabAnimationUpdate(z);
-                ViewPagerActivity.this.checkFragmentsVisibility();
-                ViewPagerActivity.this.checkSystemBarColors();
-            }
-
-            @Override
-            protected boolean canScrollBackward(MotionEvent motionEvent) {
-                return ViewPagerActivity.this.canScrollBackward(motionEvent);
-            }
-
-            @Override
-            protected boolean canScrollForward(MotionEvent motionEvent) {
-                return ViewPagerActivity.this.canScrollForward(motionEvent);
-            }
-        };
+        this.viewPager = new ViewPagerActivityPagerLayout(context);
         if (this.initialFragmentPosition == -1) {
             this.initialFragmentPosition = getStartPosition();
         }
@@ -117,7 +76,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
 
             @Override
             public View createView(int i) {
-                return new FrameLayout(context);
+                return new ViewPagerFragmentRootLayout(context);
             }
 
             @Override
@@ -429,6 +388,59 @@ public abstract class ViewPagerActivity extends BaseFragment {
 
         private FragmentState(BaseFragment baseFragment) {
             this.fragment = baseFragment;
+        }
+    }
+
+    private class ViewPagerActivityPagerLayout extends ViewPagerFixed {
+        @Override
+        protected long getManualScrollDuration() {
+            return 320L;
+        }
+
+        public ViewPagerActivityPagerLayout(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onScrollEnd() {
+            super.onScrollEnd();
+            ViewPagerActivity.this.onViewPagerScrollEnd();
+            ViewPagerActivity.this.checkFragmentsVisibility();
+        }
+
+        @Override
+        protected float getAvailableTranslationX() {
+            return getMeasuredWidth();
+        }
+
+        @Override
+        protected void onItemSelected(View view, View view2, int i, int i2) {
+            super.onItemSelected(view, view2, i, i2);
+            ViewPagerActivity.this.checkFragmentsVisibility();
+        }
+
+        @Override
+        public void onTabAnimationUpdate(boolean z) {
+            super.onTabAnimationUpdate(z);
+            ViewPagerActivity.this.onViewPagerTabAnimationUpdate(z);
+            ViewPagerActivity.this.checkFragmentsVisibility();
+            ViewPagerActivity.this.checkSystemBarColors();
+        }
+
+        @Override
+        protected boolean canScrollBackward(MotionEvent motionEvent) {
+            return ViewPagerActivity.this.canScrollBackward(motionEvent);
+        }
+
+        @Override
+        protected boolean canScrollForward(MotionEvent motionEvent) {
+            return ViewPagerActivity.this.canScrollForward(motionEvent);
+        }
+    }
+
+    private static class ViewPagerFragmentRootLayout extends FrameLayout {
+        public ViewPagerFragmentRootLayout(Context context) {
+            super(context);
         }
     }
 }

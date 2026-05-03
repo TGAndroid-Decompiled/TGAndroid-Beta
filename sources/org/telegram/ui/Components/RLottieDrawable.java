@@ -127,7 +127,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public static native double getDuration(String str, String str2);
 
-    public static native int getFrame(long j, int i, Bitmap bitmap, int i2, int i3, int i4, boolean z);
+    public static native int getFrame(long j, int i, Bitmap bitmap, boolean z);
 
     public static native long getFramesCount(String str, String str2);
 
@@ -1410,7 +1410,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             return -1;
         }
         int i = this.shouldLimitFps ? 2 : 1;
-        if (getFrame(j, this.generateCacheFramePointer, bitmap, this.width, this.height, bitmap.getRowBytes(), true) == -5) {
+        if (getFrame(j, this.generateCacheFramePointer, bitmap, true) == -5) {
             try {
                 Thread.sleep(100L);
             } catch (InterruptedException e) {
@@ -1430,8 +1430,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
             long j = this.nativePtr;
             this.rawBackgroundBitmapFrame = i;
-            Bitmap bitmap = this.rawBackgroundBitmap;
-            getFrame(j, i, bitmap, this.width, this.height, bitmap.getRowBytes(), true);
+            getFrame(j, i, this.rawBackgroundBitmap, true);
         }
     }
 

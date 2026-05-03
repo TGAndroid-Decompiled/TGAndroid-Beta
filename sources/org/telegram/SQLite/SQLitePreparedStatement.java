@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLObject;
 
 public class SQLitePreparedStatement {
     private boolean isFinalized = false;
@@ -128,6 +129,16 @@ public class SQLitePreparedStatement {
 
     public void bindByteBuffer(int i, NativeByteBuffer nativeByteBuffer) {
         bindByteBuffer(this.sqliteStatementHandle, i, nativeByteBuffer.buffer, nativeByteBuffer.limit());
+    }
+
+    public void bindTlObject(int i, TLObject tLObject) {
+        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
+        try {
+            tLObject.serializeToStream(nativeByteBuffer);
+            bindByteBuffer(i, nativeByteBuffer);
+        } finally {
+            nativeByteBuffer.reuse();
+        }
     }
 
     public void bindString(int i, String str) {

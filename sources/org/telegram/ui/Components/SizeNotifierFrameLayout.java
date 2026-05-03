@@ -52,7 +52,6 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     private final float DOWN_SCALE;
     private final int TOP_CLIP_OFFSET;
     public AdjustPanLayoutHelper adjustPanLayoutHelper;
-    private boolean animationInProgress;
     boolean attached;
     private Drawable backgroundDrawable;
     private boolean backgroundMotion;
@@ -80,7 +79,6 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     protected final ArrayList delegates;
     private float drawnBottomOffset;
     private int emojiHeight;
-    private float emojiOffset;
     public boolean invalidateBlur;
     protected int keyboardHeight;
     private float lastDrawnBottomBlurOffset;
@@ -313,13 +311,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
                                 canvas.clipRect(0, 0, getMeasuredWidth(), getRootView().getMeasuredHeight() - SizeNotifierFrameLayout.this.bottomClip);
                             }
                             motionBackgroundDrawable.setTranslationY(SizeNotifierFrameLayout.this.backgroundTranslationY);
-                            int measuredHeight2 = (int) ((getRootView().getMeasuredHeight() - SizeNotifierFrameLayout.this.backgroundTranslationY) + f3);
-                            if (SizeNotifierFrameLayout.this.animationInProgress) {
-                                measuredHeight2 = (int) (measuredHeight2 - SizeNotifierFrameLayout.this.emojiOffset);
-                            } else if (SizeNotifierFrameLayout.this.emojiHeight != 0) {
-                                measuredHeight2 -= SizeNotifierFrameLayout.this.emojiHeight;
-                            }
-                            drawable.setBounds(0, 0, getMeasuredWidth(), measuredHeight2);
+                            drawable.setBounds(0, 0, getMeasuredWidth(), (int) ((getRootView().getMeasuredHeight() - SizeNotifierFrameLayout.this.backgroundTranslationY) + f3));
                             drawable.draw(canvas);
                             if (SizeNotifierFrameLayout.this.bottomClip != 0) {
                                 canvas.restore();
@@ -366,12 +358,12 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
                         }
                     } else if (((BitmapDrawable) drawable).getTileModeX() != Shader.TileMode.REPEAT) {
                         int currentActionBarHeight2 = (SizeNotifierFrameLayout.this.isActionBarVisible() ? ActionBar.getCurrentActionBarHeight() : 0) + ((SizeNotifierFrameLayout.this.isStatusBarVisible() && SizeNotifierFrameLayout.this.occupyStatusBar) ? AndroidUtilities.statusBarHeight : 0);
-                        int measuredHeight3 = SizeNotifierFrameLayout.this.useRootView() ? getRootView().getMeasuredHeight() - currentActionBarHeight2 : getHeight();
-                        float fMax2 = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight3 / drawable.getIntrinsicHeight());
+                        int measuredHeight2 = SizeNotifierFrameLayout.this.useRootView() ? getRootView().getMeasuredHeight() - currentActionBarHeight2 : getHeight();
+                        float fMax2 = Math.max(getMeasuredWidth() / drawable.getIntrinsicWidth(), measuredHeight2 / drawable.getIntrinsicHeight());
                         int iCeil3 = (int) Math.ceil(drawable.getIntrinsicWidth() * fMax2 * f);
                         int iCeil4 = (int) Math.ceil(drawable.getIntrinsicHeight() * fMax2 * f);
                         int measuredWidth2 = ((getMeasuredWidth() - iCeil3) / 2) + ((int) f2);
-                        int i3 = SizeNotifierFrameLayout.this.backgroundTranslationY + ((measuredHeight3 - iCeil4) / 2) + currentActionBarHeight2 + ((int) f3);
+                        int i3 = SizeNotifierFrameLayout.this.backgroundTranslationY + ((measuredHeight2 - iCeil4) / 2) + currentActionBarHeight2 + ((int) f3);
                         canvas.save();
                         canvas.clipRect(0, currentActionBarHeight2, iCeil3, getMeasuredHeight() - SizeNotifierFrameLayout.this.bottomClip);
                         drawable.setBounds(measuredWidth2, i3, iCeil3 + measuredWidth2, iCeil4 + i3);
@@ -619,23 +611,7 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
     }
 
     public int getBackgroundSizeY() {
-        Drawable drawable = this.backgroundDrawable;
-        int i = 0;
-        if (drawable instanceof MotionBackgroundDrawable) {
-            if (!((MotionBackgroundDrawable) drawable).hasPattern()) {
-                if (this.animationInProgress) {
-                    i = (int) this.emojiOffset;
-                } else {
-                    i = this.emojiHeight;
-                    if (i == 0) {
-                        i = this.backgroundTranslationY;
-                    }
-                }
-            }
-        } else if (drawable instanceof ChatBackgroundDrawable) {
-            i = this.backgroundTranslationY;
-        }
-        return getMeasuredHeight() - i;
+        return getMeasuredHeight() - (this.backgroundDrawable instanceof ChatBackgroundDrawable ? this.backgroundTranslationY : 0);
     }
 
     public int getHeightWithKeyboard() {

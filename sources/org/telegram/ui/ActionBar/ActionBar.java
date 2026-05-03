@@ -246,14 +246,26 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
             backDrawable.setRotation(isActionModeShowed() ? 1.0f : 0.0f, false);
             backDrawable.setRotatedColor(this.itemsActionModeColor);
             backDrawable.setColor(this.itemsColor);
-            return;
-        }
-        if (drawable instanceof MenuDrawable) {
+        } else if (drawable instanceof MenuDrawable) {
             MenuDrawable menuDrawable = (MenuDrawable) drawable;
             menuDrawable.setBackColor(this.actionBarColor);
             menuDrawable.setIconColor(this.itemsColor);
         } else if (drawable instanceof BitmapDrawable) {
             this.backButtonImageView.setColorFilter(new PorterDuffColorFilter(this.itemsColor, PorterDuff.Mode.SRC_IN));
+        }
+        checkBackButtonLayerType();
+    }
+
+    private void checkBackButtonLayerType() {
+        ImageView imageView = this.backButtonImageView;
+        if (imageView == null) {
+            return;
+        }
+        Drawable drawable = imageView.getDrawable();
+        int i = ((drawable instanceof BackDrawable) || (drawable instanceof MenuDrawable)) ? 2 : 0;
+        if (this.backButtonImageView.getLayerType() != i) {
+            this.backButtonImageView.setLayerType(i, null);
+            this.backButtonImageView.invalidate();
         }
     }
 
@@ -393,6 +405,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
         this.backButtonImageView.setVisibility(i == 0 ? 8 : 0);
         this.backButtonImageView.setImageResource(i);
         this.backButtonImageView.setColorFilter(new PorterDuffColorFilter(this.itemsColor, PorterDuff.Mode.SRC_IN));
+        checkBackButtonLayerType();
     }
 
     private void createSubtitleTextView() {

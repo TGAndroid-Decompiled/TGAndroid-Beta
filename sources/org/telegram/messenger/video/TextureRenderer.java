@@ -361,15 +361,13 @@ public class TextureRenderer {
         long j2;
         long j3;
         long jClamp;
-        int i2;
-        int i3;
         long j4 = mediaEntity.ptr;
         if (j4 != 0) {
             Bitmap bitmap2 = mediaEntity.bitmap;
-            if (bitmap2 == null || (i2 = mediaEntity.W) <= 0 || (i3 = mediaEntity.H) <= 0) {
+            if (bitmap2 == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
                 return;
             }
-            RLottieDrawable.getFrame(j4, (int) mediaEntity.currentFrame, bitmap2, i2, i3, bitmap2.getRowBytes(), true);
+            RLottieDrawable.getFrame(j4, (int) mediaEntity.currentFrame, bitmap2, true);
             applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
             GLES20.glBindTexture(3553, this.stickerTexture[0]);
             GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
@@ -383,7 +381,7 @@ public class TextureRenderer {
         }
         if (mediaEntity.animatedFileDrawable != null) {
             float f2 = mediaEntity.currentFrame;
-            int i4 = (int) f2;
+            int i2 = (int) f2;
             float interpolation = 1.0f;
             if (mediaEntity.type == 5) {
                 if (this.isPhoto) {
@@ -417,7 +415,7 @@ public class TextureRenderer {
             } else {
                 float f3 = f2 + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f3;
-                for (int i5 = (int) f3; i4 != i5; i5--) {
+                for (int i3 = (int) f3; i2 != i3; i3--) {
                     mediaEntity.animatedFileDrawable.getNextFrame(true);
                 }
             }
@@ -477,20 +475,20 @@ public class TextureRenderer {
         if (mediaEntity.bitmap != null) {
             GLES20.glBindTexture(3553, this.stickerTexture[0]);
             GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-            int i6 = this.stickerTexture[0];
+            int i4 = this.stickerTexture[0];
             float f4 = mediaEntity.x;
             float f5 = mediaEntity.additionalWidth;
             float f6 = f4 - (f5 / 2.0f);
             float f7 = mediaEntity.y;
             float f8 = mediaEntity.additionalHeight;
-            drawTexture(false, i6, f6, f7 - (f8 / 2.0f), mediaEntity.width + f5, mediaEntity.height + f8, mediaEntity.rotation, mediaEntity.type == 2 && (mediaEntity.subType & 2) != 0);
+            drawTexture(false, i4, f6, f7 - (f8 / 2.0f), mediaEntity.width + f5, f8 + mediaEntity.height, mediaEntity.rotation, mediaEntity.type == 2 && (mediaEntity.subType & 2) != 0);
         }
         ArrayList<VideoEditedInfo.EmojiEntity> arrayList = mediaEntity.entities;
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
-        for (int i7 = 0; i7 < mediaEntity.entities.size(); i7++) {
-            VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i7);
+        for (int i5 = 0; i5 < mediaEntity.entities.size(); i5++) {
+            VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i5);
             if (emojiEntity != null && (mediaEntity2 = emojiEntity.entity) != null) {
                 drawEntity(mediaEntity2, mediaEntity.color, j);
             }

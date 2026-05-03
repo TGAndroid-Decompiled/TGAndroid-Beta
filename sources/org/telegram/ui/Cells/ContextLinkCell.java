@@ -147,7 +147,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     }
 
     @Override
-    protected void onMeasure(int r44, int r45) {
+    protected void onMeasure(int r38, int r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ContextLinkCell.onMeasure(int, int):void");
     }
 

@@ -11,6 +11,7 @@ import org.telegram.ui.ActionBar.Theme;
 
 public class TypingDotsDrawable extends StatusDrawable {
     private Paint currentPaint;
+    private boolean ignoreAnimationLocks;
     private int currentAccount = UserConfig.selectedAccount;
     private boolean isChat = false;
     private float[] scales = new float[3];
@@ -33,6 +34,10 @@ public class TypingDotsDrawable extends StatusDrawable {
         if (z) {
             this.currentPaint = new Paint(1);
         }
+    }
+
+    public void setIgnoreAnimationLocks() {
+        this.ignoreAnimationLocks = true;
     }
 
     @Override
@@ -102,6 +107,7 @@ public class TypingDotsDrawable extends StatusDrawable {
     public void draw(Canvas canvas) {
         int iDp;
         int i;
+        int i2 = getBounds().left;
         if (this.isChat) {
             iDp = AndroidUtilities.dp(8.5f);
             i = getBounds().top;
@@ -109,22 +115,22 @@ public class TypingDotsDrawable extends StatusDrawable {
             iDp = AndroidUtilities.dp(9.3f);
             i = getBounds().top;
         }
-        int i2 = iDp + i;
+        int i3 = iDp + i;
         Paint paint = this.currentPaint;
         if (paint == null) {
             paint = Theme.chat_statusPaint;
             paint.setAlpha(255);
         }
-        float f = i2;
-        canvas.drawCircle(AndroidUtilities.dp(3.0f), f, this.scales[0] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(9.0f), f, this.scales[1] * AndroidUtilities.density, paint);
-        canvas.drawCircle(AndroidUtilities.dp(15.0f), f, this.scales[2] * AndroidUtilities.density, paint);
+        float f = i3;
+        canvas.drawCircle(AndroidUtilities.dp(3.0f) + i2, f, this.scales[0] * AndroidUtilities.density, paint);
+        canvas.drawCircle(AndroidUtilities.dp(9.0f) + i2, f, this.scales[1] * AndroidUtilities.density, paint);
+        canvas.drawCircle(i2 + AndroidUtilities.dp(15.0f), f, this.scales[2] * AndroidUtilities.density, paint);
         checkUpdate();
     }
 
     public void checkUpdate() {
         if (this.started) {
-            if (!NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress()) {
+            if (!NotificationCenter.getInstance(this.currentAccount).isAnimationInProgress() || this.ignoreAnimationLocks) {
                 update();
             } else {
                 AndroidUtilities.runOnUIThread(new Runnable() {
