@@ -16,6 +16,7 @@ public class BackDrawable extends Drawable {
     private float finalRotation;
     private long lastFrameTime;
     private boolean reverseAngle;
+    private float translationX;
     private Paint paint = new Paint(1);
     private Paint prevPaint = new Paint(1);
     private DecelerateInterpolator interpolator = new DecelerateInterpolator();
@@ -84,6 +85,11 @@ public class BackDrawable extends Drawable {
         this.animationTime = f;
     }
 
+    public BackDrawable setTranslationX(float f) {
+        this.translationX = f;
+        return this;
+    }
+
     @Override
     public void draw(Canvas canvas) {
         float f;
@@ -106,7 +112,7 @@ public class BackDrawable extends Drawable {
         }
         this.paint.setColor(ColorUtils.blendARGB(this.color, this.rotatedColor, this.currentRotation));
         canvas.save();
-        canvas.translate(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2);
+        canvas.translate((getIntrinsicWidth() / 2) + this.translationX, getIntrinsicHeight() / 2);
         int i = this.arrowRotation;
         if (i != 0) {
             canvas.rotate(i);

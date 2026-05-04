@@ -45,6 +45,8 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         this.sectionMessagesExpanded = false;
         this.topPadding = 0.35f;
         fixNavigationBar();
+        int i = Theme.key_dialogBackgroundGray;
+        setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
         setSlidingActionBar();
         setShowHandle(true);
         if (tL_channelAdminLogEventsFilter != null) {
@@ -99,18 +101,18 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         this.recyclerListView.setItemAnimator(defaultItemAnimator);
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view, int i) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+            public boolean hasDoubleTap(View view, int i2) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i2);
             }
 
             @Override
-            public void onDoubleTap(View view, int i, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+            public void onDoubleTap(View view, int i2, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i2, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) {
-                this.f$0.lambda$new$0(view, i, f, f2);
+            public final void onItemClick(View view, int i2, float f, float f2) {
+                this.f$0.lambda$new$0(view, i2, f, f2);
             }
         });
         SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, null);
@@ -118,9 +120,10 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         selectorBtnCell.setClickable(true);
         selectorBtnCell.setOrientation(1);
         selectorBtnCell.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        selectorBtnCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+        selectorBtnCell.setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourcesProvider);
         this.actionButton = buttonWithCounterView;
+        buttonWithCounterView.setRound();
         buttonWithCounterView.setText(LocaleController.getString(R.string.EventLogFilterApply), false);
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,11 +133,12 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         });
         selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
-        int i = this.backgroundPaddingLeft;
-        viewGroup.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i, 0, i, 0));
-        RecyclerListView recyclerListView = this.recyclerListView;
         int i2 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
+        viewGroup.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i2, 0, i2, 0));
+        RecyclerListView recyclerListView = this.recyclerListView;
+        int i3 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i3, 0, i3, AndroidUtilities.dp(68.0f));
+        this.recyclerListView.setSections();
     }
 
     public void lambda$new$0(View view, int i, float f, float f2) {
@@ -219,6 +223,7 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         if (this.currentFilter == null) {
             return;
         }
+        arrayList.add(UItem.asShadow(null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EventLogFilterByActions)));
         UItem uItemAsRoundGroupCheckbox = UItem.asRoundGroupCheckbox(2, LocaleController.getString(this.isMegagroup ? R.string.EventLogFilterSectionMembers : R.string.EventLogFilterSectionSubscribers), getGroupCount(0));
         TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter = this.currentFilter;

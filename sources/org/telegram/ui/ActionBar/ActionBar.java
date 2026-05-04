@@ -95,6 +95,7 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
     private Paint.FontMetricsInt fontMetricsInt;
     private boolean forceSkipTouches;
     private boolean fromBottom;
+    private Drawable glassDrawable;
     private boolean ignoreLayoutRequest;
     private View.OnTouchListener interceptTouchEventListener;
     private boolean interceptTouches;
@@ -193,6 +194,10 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
             return;
         }
         runnable.run();
+    }
+
+    public void setGlassDrawable(Drawable drawable) {
+        this.glassDrawable = drawable;
     }
 
     public INavigationLayout.BackButtonState getBackButtonState() {
@@ -1844,6 +1849,11 @@ public class ActionBar extends FrameLayout implements Theme.Colorable {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        if (this.glassDrawable != null) {
+            int height = ((getHeight() - (getCurrentActionBarHeight() / 2)) - AndroidUtilities.dp(26.0f)) - AndroidUtilities.dp(7.0f);
+            this.glassDrawable.setBounds(0, height, getWidth(), AndroidUtilities.dp(52.0f) + height + AndroidUtilities.dp(7.0f) + AndroidUtilities.dp(7.0f));
+            this.glassDrawable.draw(canvas);
+        }
         if (this.blurredBackground && this.actionBarColor != 0) {
             this.rectTmp.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.blurScrimPaint.setColor(this.actionBarColor);

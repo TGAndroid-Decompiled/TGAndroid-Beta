@@ -5233,21 +5233,21 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         @Override
         protected void onDraw(Canvas canvas) {
             Text text;
-            float fDp = AndroidUtilities.dp(8.0f);
+            float height = getHeight() / 2.0f;
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
             Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
             ColorFilter colorFilter = paint.getColorFilter();
             paint.setColorFilter(this.colorFilter);
-            canvas.drawRoundRect(rectF, fDp, fDp, paint);
+            canvas.drawRoundRect(rectF, height, height, paint);
             paint.setColorFilter(colorFilter);
             if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
                 this.dimPaint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
-                canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint2);
+                canvas.drawRoundRect(rectF, height, height, this.dimPaint2);
             }
             this.dimPaint.setColor(520093695);
-            canvas.drawRoundRect(rectF, fDp, fDp, this.dimPaint);
+            canvas.drawRoundRect(rectF, height, height, this.dimPaint);
             if (this.loadingT > 0.0f) {
                 if (this.loadingDrawable == null) {
                     this.loadingDrawable = new CircularProgressDrawable(-1);

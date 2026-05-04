@@ -3,6 +3,7 @@ package org.telegram.ui.Components.chat.layouts;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +20,15 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.chat.buttons.ChatActivityBlurredRoundButton;
 
-public abstract class ChatActivityChannelButtonsLayout extends FrameLayout implements FactorAnimator.Target {
-    private static final int[] buttonIcons = {R.drawable.msg_search, R.drawable.input_gift_s, R.drawable.input_message, R.drawable.msg_help};
-    private static final int[] buttonsOrderLeft = {0};
-    private static final int[] buttonsOrderRight = {1, 2, 3};
-    private static final RectF tmpRect = new RectF();
+public class ChatActivityChannelButtonsLayout extends FrameLayout implements FactorAnimator.Target {
+    private static final int[] buttonIcons;
+    private static final int[] buttonsOrderLeft;
+    private static final int[] buttonsOrderRight;
+    private static final RectF tmpRect;
     private int accentColor;
     private final BoolAnimator animatorCenterAccentBackground;
     private final BoolAnimator animatorWrappingButton;
@@ -35,6 +37,7 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     private final ButtonHolder[] buttonHolders;
     private final BlurredBackgroundColorProvider colorProvider;
     private final FrameLayout container;
+    private BlurredBackgroundDrawable containerDrawable;
     private final OnButtonFullyVisibleListener[] onButtonFullyVisible;
     private OnButtonsTotalWidthChanged onButtonsTotalWidthChanged;
     private final View.OnClickListener[] onClickListeners;
@@ -52,11 +55,22 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
         void onButtonsTotalWidthChanged(float f, float f2);
     }
 
+    static {
+        int i = R.drawable.msg_search;
+        int i2 = R.drawable.input_gift_s;
+        int i3 = R.drawable.input_message;
+        int i4 = R.drawable.msg_help;
+        buttonIcons = new int[]{i, i2, i3, i4, i4};
+        buttonsOrderLeft = new int[]{0};
+        buttonsOrderRight = new int[]{1, 2, 3, 4};
+        tmpRect = new RectF();
+    }
+
     public ChatActivityChannelButtonsLayout(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundColorProvider blurredBackgroundColorProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
         super(context);
-        this.buttonHolders = new ButtonHolder[4];
-        this.onClickListeners = new View.OnClickListener[4];
-        this.onButtonFullyVisible = new OnButtonFullyVisibleListener[4];
+        this.buttonHolders = new ButtonHolder[5];
+        this.onClickListeners = new View.OnClickListener[5];
+        this.onButtonFullyVisible = new OnButtonFullyVisibleListener[5];
         this.wrapContentButtons = new HashSet();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorCenterAccentBackground = new BoolAnimator(99, this, cubicBezierInterpolator, 320L);
@@ -131,6 +145,10 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
         if (onClickListener != null) {
             onClickListener.onClick(view);
         }
+    }
+
+    public void setupDrawableForContainer() {
+        this.containerDrawable = this.blurredBackgroundDrawableViewFactory.create(this).setColorProvider(this.colorProvider).setRadius(AndroidUtilities.dp(22.0f)).setPadding(AndroidUtilities.dp(6.0f));
     }
 
     public boolean isButtonVisible(int i) {
@@ -343,6 +361,19 @@ public abstract class ChatActivityChannelButtonsLayout extends FrameLayout imple
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         checkButtonsPositionsAndVisibility();
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        if (view == this.container && this.containerDrawable != null) {
+            RectF rectF = tmpRect;
+            rectF.set(this.totalWidthLeft + AndroidUtilities.dp(1.0f), 0.0f, (getMeasuredWidth() - AndroidUtilities.dp(1.0f)) - this.totalWidthRight, getMeasuredHeight());
+            Rect rect = AndroidUtilities.rectTmp2;
+            rectF.round(rect);
+            this.containerDrawable.setBounds(rect);
+            this.containerDrawable.draw(canvas);
+        }
+        return super.drawChild(canvas, view, j);
     }
 
     @Override
