@@ -4656,6 +4656,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             sendMessageParamsOf6.replyQuote = replyQuote;
             sendMessageParamsOf6.payStars = j2;
             sendMessageParamsOf6.monoForumPeer = j3;
+            sendMessageParamsOf6.invert_media = botInlineResult.send_message.invert_media;
             accountInstance.getSendMessagesHelper().sendMessage(sendMessageParamsOf6);
         }
     }

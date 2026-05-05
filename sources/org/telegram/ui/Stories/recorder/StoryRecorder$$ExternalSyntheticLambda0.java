@@ -1,7 +1,5 @@
 package org.telegram.ui.Stories.recorder;
 
-import android.content.res.Resources;
-
 public final class StoryRecorder$$ExternalSyntheticLambda0 implements Runnable {
     public final StoryRecorder f$0;
 
@@ -10,7 +8,7 @@ public final class StoryRecorder$$ExternalSyntheticLambda0 implements Runnable {
     }
 
     @Override
-    public final void run() throws Resources.NotFoundException {
+    public final void run() {
         this.f$0.createCameraView();
     }
 }

@@ -4427,7 +4427,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         editTextBoldCursor.setTextColor(Theme.getColor(i, resourcesProvider));
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
-        ButtonWithCounterView buttonWithCounterView = null;
+        ButtonWithCounterView round = null;
         editTextBoldCursor.setBackground(null);
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setMaxLines(1);
@@ -4470,13 +4470,13 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 14.0f, 3.0f, 14.0f, 24.0f));
-        final ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider);
-        buttonWithCounterView2.setText(LocaleController.getString(j > 0 ? R.string.PaidContentUpdateButton : R.string.PaidContentButton), false);
-        linearLayout.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
+        final ButtonWithCounterView round2 = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round2.setText(LocaleController.getString(j > 0 ? R.string.PaidContentUpdateButton : R.string.PaidContentButton), false);
+        linearLayout.addView(round2, LayoutHelper.createLinear(-1, 48));
         if (j > 0 && z) {
-            buttonWithCounterView = new ButtonWithCounterView(context, false, resourcesProvider);
-            buttonWithCounterView.setText(LocaleController.getString(R.string.PaidContentClearButton), false, false);
-            linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 0.0f, 4.0f, 0.0f, 0.0f));
+            round = new ButtonWithCounterView(context, false, resourcesProvider).setRound();
+            round.setText(LocaleController.getString(R.string.PaidContentClearButton), false, false);
+            linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 0.0f, 4.0f, 0.0f, 0.0f));
         }
         builder.setCustomView(linearLayout);
         final BottomSheet[] bottomSheetArr = {builder.create()};
@@ -4502,21 +4502,21 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
-                return StarsIntroActivity.lambda$showMediaPriceSheet$86(zArr, callback2, buttonWithCounterView2, editTextBoldCursor, bottomSheetArr, textView3, i2, keyEvent);
+                return StarsIntroActivity.lambda$showMediaPriceSheet$86(zArr, callback2, round2, editTextBoldCursor, bottomSheetArr, textView3, i2, keyEvent);
             }
         });
-        buttonWithCounterView2.setOnClickListener(new View.OnClickListener() {
+        round2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StarsIntroActivity.lambda$showMediaPriceSheet$88(zArr, callback2, editTextBoldCursor, buttonWithCounterView2, bottomSheetArr, view);
+                StarsIntroActivity.lambda$showMediaPriceSheet$88(zArr, callback2, editTextBoldCursor, round2, bottomSheetArr, view);
             }
         });
-        if (buttonWithCounterView != null) {
-            final ButtonWithCounterView buttonWithCounterView3 = buttonWithCounterView;
-            buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        if (round != null) {
+            final ButtonWithCounterView buttonWithCounterView = round;
+            round.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StarsIntroActivity.lambda$showMediaPriceSheet$90(zArr, callback2, buttonWithCounterView3, editTextBoldCursor, bottomSheetArr, view);
+                    StarsIntroActivity.lambda$showMediaPriceSheet$90(zArr, callback2, buttonWithCounterView, editTextBoldCursor, bottomSheetArr, view);
                 }
             });
         }

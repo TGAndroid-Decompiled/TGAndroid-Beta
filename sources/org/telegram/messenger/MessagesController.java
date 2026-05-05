@@ -18075,14 +18075,19 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         if (user.bot_has_main_app) {
+            long dialogId = user.id;
+            if (safeLastFragment instanceof ChatActivity) {
+                dialogId = ((ChatActivity) safeLastFragment).getDialogId();
+            } else if (safeLastFragment instanceof ProfileActivity) {
+                dialogId = ((ProfileActivity) safeLastFragment).getDialogId();
+            }
+            long j = dialogId;
             if (safeLastFragment.getParentLayout() instanceof ActionBarLayout) {
                 safeLastFragment = ((ActionBarLayout) safeLastFragment.getParentLayout()).getSheetFragment();
             }
             BaseFragment baseFragment2 = safeLastFragment;
             AndroidUtilities.hideKeyboard(baseFragment2.getFragmentView());
-            int i = this.currentAccount;
-            long j = user.id;
-            WebViewRequestProps webViewRequestPropsOf = WebViewRequestProps.of(i, j, j, null, null, 4, 0, 0L, false, null, false, str, user, 0, z, z2);
+            WebViewRequestProps webViewRequestPropsOf = WebViewRequestProps.of(this.currentAccount, j, user.id, null, null, 4, 0, 0L, false, null, false, str, user, 0, z, z2);
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity == null || launchActivity.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(webViewRequestPropsOf) == null) {
                 BotWebViewSheet botWebViewSheet = new BotWebViewSheet(baseFragment2.getContext(), baseFragment2.getResourceProvider());
@@ -18103,9 +18108,9 @@ public class MessagesController extends BaseController implements NotificationCe
             BaseFragment baseFragment3 = safeLastFragment;
             TL_bots.TL_botMenuButton tL_botMenuButton = (TL_bots.TL_botMenuButton) botInfoArr[0].menu_button;
             AndroidUtilities.hideKeyboard(baseFragment3.getFragmentView());
-            int i2 = this.currentAccount;
+            int i = this.currentAccount;
             long j2 = user.id;
-            WebViewRequestProps webViewRequestPropsOf2 = WebViewRequestProps.of(i2, j2, j2, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, 0L, false, null, false, str, user, 0, z, z2);
+            WebViewRequestProps webViewRequestPropsOf2 = WebViewRequestProps.of(i, j2, j2, tL_botMenuButton.text, tL_botMenuButton.url, 2, 0, 0L, false, null, false, str, user, 0, z, z2);
             LaunchActivity launchActivity2 = LaunchActivity.instance;
             if (launchActivity2 == null || launchActivity2.getBottomSheetTabs() == null || LaunchActivity.instance.getBottomSheetTabs().tryReopenTab(webViewRequestPropsOf2) == null) {
                 BotWebViewSheet botWebViewSheet2 = new BotWebViewSheet(baseFragment3.getContext(), baseFragment3.getResourceProvider());

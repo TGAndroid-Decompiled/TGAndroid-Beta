@@ -1889,7 +1889,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 ChatActivity chatActivity = (ChatActivity) baseFragment;
                 inputPeer2 = chatActivity.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity.getCurrentUser()) : MessagesController.getInputPeer(chatActivity.getCurrentChat());
             } else {
-                inputPeer2 = MessagesController.getInputPeer(webViewRequestProps.botUser);
+                inputPeer2 = MessagesController.getInstance(this.currentAccount).getInputPeer(webViewRequestProps.peerId);
             }
             tL_messages_requestMainWebView.peer = inputPeer2;
             tL_messages_requestMainWebView.compact = webViewRequestProps.compact;
