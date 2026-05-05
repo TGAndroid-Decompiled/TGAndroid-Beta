@@ -140,6 +140,8 @@ public final class BulletinFactory {
         public static final FileType AUDIOS;
         public static final FileType GIF;
         public static final FileType GIF_TO_DOWNLOADS;
+        public static final FileType LIVEPHOTO;
+        public static final FileType LIVEPHOTOS;
         public static final FileType MEDIA;
         public static final FileType PHOTO;
         public static final FileType PHOTOS;
@@ -155,7 +157,7 @@ public final class BulletinFactory {
         private final boolean plural;
 
         private static FileType[] $values() {
-            return new FileType[]{PHOTO, PHOTOS, VIDEO, VIDEOS, MEDIA, PHOTO_TO_DOWNLOADS, VIDEO_TO_DOWNLOADS, GIF, GIF_TO_DOWNLOADS, AUDIO, AUDIOS, UNKNOWN, UNKNOWNS};
+            return new FileType[]{PHOTO, PHOTOS, VIDEO, VIDEOS, LIVEPHOTO, LIVEPHOTOS, MEDIA, PHOTO_TO_DOWNLOADS, VIDEO_TO_DOWNLOADS, GIF, GIF_TO_DOWNLOADS, AUDIO, AUDIOS, UNKNOWN, UNKNOWNS};
         }
 
         public static FileType valueOf(String str) {
@@ -173,19 +175,21 @@ public final class BulletinFactory {
             PHOTOS = new FileType("PHOTOS", 1, "PhotosSavedHint", icon);
             VIDEO = new FileType("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, icon);
             VIDEOS = new FileType("VIDEOS", 3, "VideosSavedHint", icon);
-            MEDIA = new FileType("MEDIA", 4, "MediaSavedHint", icon);
+            LIVEPHOTO = new FileType("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, icon);
+            LIVEPHOTOS = new FileType("LIVEPHOTOS", 5, "LivePhotosSavedHint", icon);
+            MEDIA = new FileType("MEDIA", 6, "MediaSavedHint", icon);
             int i2 = R.string.PhotoSavedToDownloadsHintLinked;
             Icon icon2 = Icon.SAVED_TO_DOWNLOADS;
-            PHOTO_TO_DOWNLOADS = new FileType("PHOTO_TO_DOWNLOADS", 5, "PhotoSavedToDownloadsHintLinked", i2, icon2);
-            VIDEO_TO_DOWNLOADS = new FileType("VIDEO_TO_DOWNLOADS", 6, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, icon2);
-            GIF = new FileType("GIF", 7, "GifSavedHint", R.string.GifSavedHint, Icon.SAVED_TO_GIFS);
-            GIF_TO_DOWNLOADS = new FileType("GIF_TO_DOWNLOADS", 8, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, icon2);
+            PHOTO_TO_DOWNLOADS = new FileType("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i2, icon2);
+            VIDEO_TO_DOWNLOADS = new FileType("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, icon2);
+            GIF = new FileType("GIF", 9, "GifSavedHint", R.string.GifSavedHint, Icon.SAVED_TO_GIFS);
+            GIF_TO_DOWNLOADS = new FileType("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, icon2);
             int i3 = R.string.AudioSavedHint;
             Icon icon3 = Icon.SAVED_TO_MUSIC;
-            AUDIO = new FileType("AUDIO", 9, "AudioSavedHint", i3, icon3);
-            AUDIOS = new FileType("AUDIOS", 10, "AudiosSavedHint", icon3);
-            UNKNOWN = new FileType("UNKNOWN", 11, "FileSavedHintLinked", R.string.FileSavedHintLinked, icon2);
-            UNKNOWNS = new FileType("UNKNOWNS", 12, "FilesSavedHintLinked", icon2);
+            AUDIO = new FileType("AUDIO", 11, "AudioSavedHint", i3, icon3);
+            AUDIOS = new FileType("AUDIOS", 12, "AudiosSavedHint", icon3);
+            UNKNOWN = new FileType("UNKNOWN", 13, "FileSavedHintLinked", R.string.FileSavedHintLinked, icon2);
+            UNKNOWNS = new FileType("UNKNOWNS", 14, "FilesSavedHintLinked", icon2);
             $VALUES = $values();
         }
 
@@ -1064,6 +1068,10 @@ public final class BulletinFactory {
         return of(baseFragment).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
     }
 
+    public static Bulletin createSaveToGalleryBulletin(BaseFragment baseFragment, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+        return of(baseFragment).createDownloadBulletin(z2 ? FileType.LIVEPHOTO : z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
+    }
+
     public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, boolean z, Theme.ResourcesProvider resourcesProvider) {
         return of(frameLayout, resourcesProvider).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
     }
@@ -1072,8 +1080,22 @@ public final class BulletinFactory {
         return of(frameLayout, null).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, 1, i, i2);
     }
 
-    public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, int i, boolean z, int i2, int i3) {
-        return of(frameLayout, null).createDownloadBulletin(z ? i > 1 ? FileType.VIDEOS : FileType.VIDEO : i > 1 ? FileType.PHOTOS : FileType.PHOTO, i, i2, i3);
+    public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, boolean z, boolean z2, int i, int i2) {
+        return of(frameLayout, null).createDownloadBulletin(z2 ? FileType.LIVEPHOTO : z ? FileType.VIDEO : FileType.PHOTO, 1, i, i2);
+    }
+
+    public static Bulletin createSaveMediaToGalleryBulletin(FrameLayout frameLayout, int i, boolean z, boolean z2, boolean z3, int i2, int i3) {
+        FileType fileType;
+        if ((z2 ? 1 : 0) + (z ? 1 : 0) + (z3 ? 1 : 0) > 1) {
+            fileType = FileType.MEDIA;
+        } else if (z3) {
+            fileType = i > 1 ? FileType.LIVEPHOTOS : FileType.LIVEPHOTO;
+        } else if (z) {
+            fileType = i > 1 ? FileType.VIDEOS : FileType.VIDEO;
+        } else {
+            fileType = i > 1 ? FileType.PHOTOS : FileType.PHOTO;
+        }
+        return of(frameLayout, null).createDownloadBulletin(fileType, i, i2, i3);
     }
 
     public static Bulletin createPromoteToAdminBulletin(BaseFragment baseFragment, String str) {

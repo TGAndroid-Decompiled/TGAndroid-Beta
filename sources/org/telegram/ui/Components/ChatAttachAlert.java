@@ -5890,6 +5890,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.avatarPicker = 1;
         this.isPhotoPicker = true;
         this.isStickerMode = true;
+        this.allowLivePhotos = false;
         this.customStickerHandler = callback2;
         if (this.optionsItem != null) {
             this.selectedTextView.setTranslationY(-AndroidUtilities.dp(8.0f));
@@ -5927,6 +5928,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.avatarPicker = 0;
         this.isPhotoPicker = false;
         this.isStickerMode = false;
+        this.allowLivePhotos = true;
         this.customStickerHandler = null;
         if (this.optionsItem != null) {
             this.selectedTextView.setTranslationY(0.0f);

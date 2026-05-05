@@ -66,7 +66,7 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda327;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
@@ -3291,7 +3291,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
         });
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.resourcesProvider);
-        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda267(scrimOptions));
+        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda327(scrimOptions));
         itemOptionsAdd.setMinWidth(AndroidUtilities.dp(185.0f));
         itemOptionsAdd.setupSelectors();
         scrimOptions.setItemOptions(itemOptionsAdd);
@@ -3380,7 +3380,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                             sendingMediaInfo.thumbPath = photoEntry.thumbPath;
                             sendingMediaInfo.coverPath = photoEntry.coverPath;
                             sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
-                            sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto;
+                            sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
                             sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
                             sendingMediaInfo.discardLivePhoto = true;
                             sendingMediaInfo.isVideo = photoEntry.isVideo;

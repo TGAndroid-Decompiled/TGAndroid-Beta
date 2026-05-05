@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -48,6 +49,7 @@ import android.view.TextureView;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
+import androidx.exifinterface.media.ExifInterface;
 import com.google.android.exoplayer2.DeviceInfo;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
@@ -59,6 +61,8 @@ import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.audio.AudioAttributes;
+import com.google.android.exoplayer2.extractor.jpeg.MotionPhotoDescription;
+import com.google.android.exoplayer2.extractor.jpeg.XmpMotionPhotoDescriptionParser;
 import com.google.android.exoplayer2.metadata.Metadata;
 import com.google.android.exoplayer2.text.CueGroup;
 import com.google.android.exoplayer2.trackselection.TrackSelectionParameters;
@@ -67,8 +71,10 @@ import com.google.android.exoplayer2.video.VideoSize;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -134,7 +140,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private static final ConcurrentHashMap<String, Integer> cachedEncoderBitrates;
     public static boolean forceBroadcastNewPhotos;
     private static final String[] projectionPhotos;
-    private static final String[] projectionPhotos2;
     private static final String[] projectionVideo;
     private static Runnable refreshGalleryRunnable;
     private static long volumeBarLastTimeShown;
@@ -388,8 +393,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     static {
         int i = Build.VERSION.SDK_INT;
-        projectionPhotos = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "orientation", "width", "height", "_size", "xmp"};
-        projectionPhotos2 = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "orientation", "width", "height", "_size"};
+        projectionPhotos = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "orientation", "width", "height", "_size"};
         projectionVideo = new String[]{"_id", "bucket_id", "bucket_display_name", "_data", i > 28 ? "date_modified" : "datetaken", "duration", "width", "height", "_size"};
         cachedEncoderBitrates = new ConcurrentHashMap<>();
         allMediaAlbums = new ArrayList<>();
@@ -658,8 +662,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public String imagePath;
         public boolean isCropped;
         public boolean isFiltered;
-        public boolean isLivePhoto;
         public boolean isPainted;
+        public boolean isVideo;
         public long livePhotoVideoOffset;
         public ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
         public String paintPath;
@@ -670,6 +674,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         public String getPath() {
             return null;
+        }
+
+        public boolean isLivePhoto() {
+            return (this instanceof PhotoEntry) && ((PhotoEntry) this).isLivePhoto();
         }
 
         public boolean isHighQuality() {
@@ -722,7 +730,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.isFiltered = mediaEditState.isFiltered;
             this.isPainted = mediaEditState.isPainted;
             this.isCropped = mediaEditState.isCropped;
-            this.isLivePhoto = mediaEditState.isLivePhoto;
             this.livePhotoVideoOffset = mediaEditState.livePhotoVideoOffset;
             this.ttl = mediaEditState.ttl;
             this.cropState = mediaEditState.cropState;
@@ -735,7 +742,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public int bucketId;
         public boolean canDeleteAfter;
         public long dateTaken;
-        public boolean discardLivePhoto;
+        public Boolean discardLivePhoto;
         public int duration;
         public String emoji;
         public TLRPC.VideoSize emojiMarkup;
@@ -747,16 +754,66 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         public int invert;
         public boolean isAttachSpoilerRevealed;
         public boolean isChatPreviewSpoilerRevealed;
+        public boolean isLivePhoto;
         public boolean isMuted;
-        public boolean isVideo;
         public long livePhotoTimestampUs;
         public int orientation;
+        private boolean parsedXmp;
         public String path;
         public long size;
         public long starsAmount;
         public BitmapDrawable thumb;
         public int videoOrientation = -1;
         public int width;
+
+        public boolean isUnalivePhoto() {
+            Boolean bool = this.discardLivePhoto;
+            if (bool == null) {
+                return !SharedConfig.photoLiveDefault;
+            }
+            return bool.booleanValue();
+        }
+
+        @Override
+        public boolean isLivePhoto() {
+            MotionPhotoDescription motionPhotoDescription;
+            if (this.isVideo || this.parsedXmp) {
+                return this.isLivePhoto;
+            }
+            this.parsedXmp = true;
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            try {
+                String attribute = new ExifInterface(new File(this.path)).getAttribute("Xmp");
+                if (attribute != null && (motionPhotoDescription = XmpMotionPhotoDescriptionParser.parse(attribute)) != null) {
+                    MotionPhotoDescription.ContainerItem containerItem = null;
+                    MotionPhotoDescription.ContainerItem containerItem2 = null;
+                    for (int i = 0; i < motionPhotoDescription.items.size(); i++) {
+                        MotionPhotoDescription.ContainerItem containerItem3 = (MotionPhotoDescription.ContainerItem) motionPhotoDescription.items.get(i);
+                        if ("Primary".equalsIgnoreCase(containerItem3.semantic)) {
+                            containerItem = containerItem3;
+                        } else if ("MotionPhoto".equalsIgnoreCase(containerItem3.semantic)) {
+                            containerItem2 = containerItem3;
+                        }
+                    }
+                    if (containerItem != null && containerItem2 != null && containerItem2.length > 0) {
+                        try {
+                            long length = new File(this.path).length() - containerItem2.length;
+                            this.isVideo = true;
+                            this.isLivePhoto = true;
+                            this.livePhotoVideoOffset = length;
+                            this.livePhotoTimestampUs = motionPhotoDescription.photoPresentationTimestampUs;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                    }
+                }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                this.isLivePhoto = false;
+            }
+            FileLog.d("parsed isLivePhoto()=" + this.isLivePhoto + " in " + (System.currentTimeMillis() - jCurrentTimeMillis) + "ms");
+            return this.isLivePhoto;
+        }
 
         public PhotoEntry(int i, int i2, long j, String str, int i3, boolean z, int i4, int i5, long j2) {
             this.bucketId = i;
@@ -806,6 +863,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             boolean z2 = false;
             this.hasSpoiler = z && ((PhotoEntry) mediaEditState).hasSpoiler;
             this.starsAmount = z ? ((PhotoEntry) mediaEditState).starsAmount : 0L;
+            this.parsedXmp = z && ((PhotoEntry) mediaEditState).parsedXmp;
             if (z && ((PhotoEntry) mediaEditState).isLivePhoto) {
                 z2 = true;
             }
@@ -827,7 +885,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             photoEntry.gradientTopColor = this.gradientTopColor;
             photoEntry.gradientBottomColor = this.gradientBottomColor;
             photoEntry.discardLivePhoto = this.discardLivePhoto;
-            photoEntry.livePhotoTimestampUs = this.livePhotoTimestampUs;
             photoEntry.copyFrom(this);
             return photoEntry;
         }
@@ -5300,57 +5357,59 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     int size = this.messageObjects.size();
                     for (int i = 0; i < size; i++) {
                         MessageObject messageObject = this.messageObjects.get(i);
-                        String string = messageObject.messageOwner.attachPath;
-                        TLRPC.Document document = messageObject.getDocument();
-                        TLRPC.Document document2 = messageObject.qualityToSave;
-                        if (document2 != null) {
-                            string = null;
-                            document = document2;
-                        }
-                        String documentFileName = FileLoader.getDocumentFileName(document);
-                        if (string != null && string.length() > 0 && !new File(string).exists()) {
-                            string = null;
-                        }
-                        if (TextUtils.isEmpty(string)) {
-                            FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
-                            TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
-                            TLRPC.Document document3 = messageObject.qualityToSave;
-                            if (document3 != null) {
-                                pathToAttach = fileLoader.getPathToAttach(document3, null, false, true);
-                            } else {
-                                pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
-                                if (media instanceof TLRPC.TL_messageMediaDocument) {
-                                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) media;
-                                    if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
-                                        pathToAttach = fileLoader.getPathToAttach(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                        if (!processLivePhotoMessage(messageObject)) {
+                            String string = messageObject.messageOwner.attachPath;
+                            TLRPC.Document document = messageObject.getDocument();
+                            TLRPC.Document document2 = messageObject.qualityToSave;
+                            if (document2 != null) {
+                                string = null;
+                                document = document2;
+                            }
+                            String documentFileName = FileLoader.getDocumentFileName(document);
+                            if (string != null && string.length() > 0 && !new File(string).exists()) {
+                                string = null;
+                            }
+                            if (TextUtils.isEmpty(string)) {
+                                FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
+                                TLRPC.MessageMedia media = MessageObject.getMedia(messageObject);
+                                TLRPC.Document document3 = messageObject.qualityToSave;
+                                if (document3 != null) {
+                                    pathToAttach = fileLoader.getPathToAttach(document3, null, false, true);
+                                } else {
+                                    pathToMessage = fileLoader.getPathToMessage(messageObject.messageOwner, true);
+                                    if (media instanceof TLRPC.TL_messageMediaDocument) {
+                                        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = (TLRPC.TL_messageMediaDocument) media;
+                                        if (!tL_messageMediaDocument.alt_documents.isEmpty()) {
+                                            pathToAttach = fileLoader.getPathToAttach(tL_messageMediaDocument.alt_documents.get(0), null, false, true);
+                                        }
                                     }
+                                    string = pathToMessage.toString();
                                 }
+                                pathToMessage = pathToAttach;
                                 string = pathToMessage.toString();
                             }
-                            pathToMessage = pathToAttach;
-                            string = pathToMessage.toString();
-                        }
-                        File file2 = new File(string);
-                        if (!file2.exists()) {
-                            this.waitingForFile = new CountDownLatch(1);
-                            addMessageToLoad(messageObject);
-                            this.waitingForFile.await();
-                        }
-                        if (this.cancelled) {
-                            break;
-                        }
-                        if (!file2.exists()) {
-                            file2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject.messageOwner, true);
-                            StringBuilder sb = new StringBuilder();
-                            sb.append("saving file: correcting path from ");
-                            sb.append(string);
-                            sb.append(" to ");
-                            sb.append(file2 == null ? null : file2.getAbsolutePath());
-                            FileLog.d(sb.toString());
-                        }
-                        if (file2 != null && file2.exists()) {
-                            MediaController.saveFileInternal(this.isMusic ? 3 : 2, file2, documentFileName);
-                            this.copiedFiles++;
+                            File file2 = new File(string);
+                            if (!file2.exists()) {
+                                this.waitingForFile = new CountDownLatch(1);
+                                addMessageToLoad(messageObject);
+                                this.waitingForFile.await();
+                            }
+                            if (this.cancelled) {
+                                break;
+                            }
+                            if (!file2.exists()) {
+                                file2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject.messageOwner, true);
+                                StringBuilder sb = new StringBuilder();
+                                sb.append("saving file: correcting path from ");
+                                sb.append(string);
+                                sb.append(" to ");
+                                sb.append(file2 == null ? null : file2.getAbsolutePath());
+                                FileLog.d(sb.toString());
+                            }
+                            if (file2 != null && file2.exists()) {
+                                MediaController.saveFileInternal(this.isMusic ? 3 : 2, file2, documentFileName);
+                                this.copiedFiles++;
+                            }
                         }
                     }
                 } else {
@@ -5363,56 +5422,58 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     int size2 = this.messageObjects.size();
                     for (int i2 = 0; i2 < size2; i2++) {
                         MessageObject messageObject2 = this.messageObjects.get(i2);
-                        TLRPC.Document document4 = messageObject2.getDocument();
-                        TLRPC.Document document5 = messageObject2.qualityToSave;
-                        if (document5 != null) {
-                            document4 = document5;
-                        }
-                        String documentFileName2 = FileLoader.getDocumentFileName(document4);
-                        File file3 = new File(externalStoragePublicDirectory, documentFileName2);
-                        if (file3.exists()) {
-                            int iLastIndexOf = documentFileName2.lastIndexOf(46);
-                            int i3 = 0;
-                            while (true) {
-                                if (i3 >= 10) {
-                                    break;
-                                }
-                                File file4 = new File(externalStoragePublicDirectory, iLastIndexOf != -1 ? documentFileName2.substring(0, iLastIndexOf) + "(" + (i3 + 1) + ")" + documentFileName2.substring(iLastIndexOf) : documentFileName2 + "(" + (i3 + 1) + ")");
-                                if (!file4.exists()) {
-                                    file3 = file4;
-                                    break;
-                                } else {
-                                    i3++;
-                                    file3 = file4;
+                        if (!processLivePhotoMessage(messageObject2)) {
+                            TLRPC.Document document4 = messageObject2.getDocument();
+                            TLRPC.Document document5 = messageObject2.qualityToSave;
+                            if (document5 != null) {
+                                document4 = document5;
+                            }
+                            String documentFileName2 = FileLoader.getDocumentFileName(document4);
+                            File file3 = new File(externalStoragePublicDirectory, documentFileName2);
+                            if (file3.exists()) {
+                                int iLastIndexOf = documentFileName2.lastIndexOf(46);
+                                int i3 = 0;
+                                while (true) {
+                                    if (i3 >= 10) {
+                                        break;
+                                    }
+                                    File file4 = new File(externalStoragePublicDirectory, iLastIndexOf != -1 ? documentFileName2.substring(0, iLastIndexOf) + "(" + (i3 + 1) + ")" + documentFileName2.substring(iLastIndexOf) : documentFileName2 + "(" + (i3 + 1) + ")");
+                                    if (!file4.exists()) {
+                                        file3 = file4;
+                                        break;
+                                    } else {
+                                        i3++;
+                                        file3 = file4;
+                                    }
                                 }
                             }
-                        }
-                        if (!file3.exists()) {
-                            file3.createNewFile();
-                        }
-                        String string2 = messageObject2.messageOwner.attachPath;
-                        if (messageObject2.qualityToSave != null) {
-                            string2 = null;
-                        }
-                        if (string2 != null && string2.length() > 0 && !new File(string2).exists()) {
-                            string2 = null;
-                        }
-                        if (messageObject2.qualityToSave != null) {
-                            file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave, null, false, true);
-                        } else {
-                            if (string2 == null || string2.length() == 0) {
-                                string2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
+                            if (!file3.exists()) {
+                                file3.createNewFile();
                             }
-                            file = new File(string2);
-                        }
-                        if (!file.exists()) {
-                            this.waitingForFile = new CountDownLatch(1);
-                            addMessageToLoad(messageObject2);
-                            this.waitingForFile.await();
-                        }
-                        if (file.exists()) {
-                            copyFile(file, file3, messageObject2.getMimeType());
-                            this.copiedFiles++;
+                            String string2 = messageObject2.messageOwner.attachPath;
+                            if (messageObject2.qualityToSave != null) {
+                                string2 = null;
+                            }
+                            if (string2 != null && string2.length() > 0 && !new File(string2).exists()) {
+                                string2 = null;
+                            }
+                            if (messageObject2.qualityToSave != null) {
+                                file = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToAttach(messageObject2.qualityToSave, null, false, true);
+                            } else {
+                                if (string2 == null || string2.length() == 0) {
+                                    string2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
+                                }
+                                file = new File(string2);
+                            }
+                            if (!file.exists()) {
+                                this.waitingForFile = new CountDownLatch(1);
+                                addMessageToLoad(messageObject2);
+                                this.waitingForFile.await();
+                            }
+                            if (file.exists()) {
+                                copyFile(file, file3, messageObject2.getMimeType());
+                                this.copiedFiles++;
+                            }
                         }
                     }
                 }
@@ -5460,16 +5521,144 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.onFinishRunnable.run(this.copiedFiles);
         }
 
+        private boolean processLivePhotoMessage(final MessageObject messageObject) throws InterruptedException, IOException {
+            TLRPC.MessageMedia media;
+            TLRPC.Photo photo;
+            final TLRPC.PhotoSize closestPhotoSizeWithSize;
+            boolean z = false;
+            if (!messageObject.isLivePhoto() || (media = MessageObject.getMedia(messageObject.messageOwner)) == null || (photo = media.photo) == null || media.document == null || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize(true), false, null, true)) == null) {
+                return false;
+            }
+            FileLoader fileLoader = FileLoader.getInstance(this.currentAccount.getCurrentAccount());
+            File pathToAttach = fileLoader.getPathToAttach(closestPhotoSizeWithSize, null, false, true);
+            File pathToAttach2 = fileLoader.getPathToAttach(media.document, null, false, true);
+            final ?? r3 = (pathToAttach == null || !pathToAttach.exists()) ? 1 : 0;
+            final ?? r7 = (pathToAttach2 == null || !pathToAttach2.exists()) ? 1 : 0;
+            int i = r3 + r7;
+            if (i > 0) {
+                this.waitingForFile = new CountDownLatch(i);
+                final TLRPC.Photo photo2 = media.photo;
+                final TLRPC.Document document = media.document;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$processLivePhotoMessage$5(r3, closestPhotoSizeWithSize, messageObject, photo2, r7, document);
+                    }
+                });
+                this.waitingForFile.await();
+            }
+            if (this.cancelled) {
+                return true;
+            }
+            if (pathToAttach == null || !pathToAttach.exists()) {
+                pathToAttach = fileLoader.getPathToAttach(closestPhotoSizeWithSize, null, true, true);
+            }
+            File file = pathToAttach;
+            if (pathToAttach2 == null || !pathToAttach2.exists()) {
+                pathToAttach2 = fileLoader.getPathToAttach(media.document, null, true, true);
+            }
+            File file2 = pathToAttach2;
+            if (file == null || !file.exists() || file2 == null || !file2.exists()) {
+                return true;
+            }
+            String fileExtension = FileLoader.getFileExtension(file);
+            if (TextUtils.isEmpty(fileExtension)) {
+                fileExtension = "jpg";
+            }
+            String mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(fileExtension.toLowerCase());
+            if (TextUtils.isEmpty(mimeTypeFromExtension)) {
+                mimeTypeFromExtension = "image/jpeg";
+            }
+            String strGenerateFileName = AndroidUtilities.generateFileName(0, fileExtension);
+            if (Build.VERSION.SDK_INT >= 29) {
+                ContentValues contentValues = new ContentValues();
+                Uri contentUri = MediaStore.Downloads.getContentUri("external_primary");
+                contentValues.put("relative_path", new File(Environment.DIRECTORY_DOWNLOADS, "Telegram") + File.separator);
+                contentValues.put("_display_name", strGenerateFileName);
+                contentValues.put("mime_type", mimeTypeFromExtension);
+                Uri uriInsert = ApplicationLoader.applicationContext.getContentResolver().insert(contentUri, contentValues);
+                if (uriInsert != null) {
+                    OutputStream outputStreamOpenOutputStream = ApplicationLoader.applicationContext.getContentResolver().openOutputStream(uriInsert);
+                    if (outputStreamOpenOutputStream != null) {
+                        try {
+                            MediaController.writeMotionPhoto(file, file2, outputStreamOpenOutputStream, null);
+                            z = !this.cancelled;
+                        } finally {
+                        }
+                    }
+                    if (outputStreamOpenOutputStream != null) {
+                        outputStreamOpenOutputStream.close();
+                    }
+                    if (z) {
+                        this.copiedFiles++;
+                    } else {
+                        try {
+                            ApplicationLoader.applicationContext.getContentResolver().delete(uriInsert, null, null);
+                        } catch (Exception unused) {
+                        }
+                    }
+                }
+            } else {
+                File file3 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Telegram");
+                file3.mkdirs();
+                File file4 = new File(file3, strGenerateFileName);
+                if (!file4.exists()) {
+                    file4.createNewFile();
+                }
+                FileOutputStream fileOutputStream = new FileOutputStream(file4);
+                try {
+                    MediaController.writeMotionPhoto(file, file2, fileOutputStream, null);
+                    fileOutputStream.close();
+                    if (this.cancelled) {
+                        file4.delete();
+                    } else {
+                        ((DownloadManager) ApplicationLoader.applicationContext.getSystemService("download")).addCompletedDownload(file4.getName(), file4.getName(), false, mimeTypeFromExtension, file4.getAbsolutePath(), file4.length(), true);
+                        this.copiedFiles++;
+                    }
+                } finally {
+                }
+            }
+            float size = this.finishedProgress + (100.0f / this.messageObjects.size());
+            this.finishedProgress = size;
+            final int i2 = (int) size;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processLivePhotoMessage$6(i2);
+                }
+            });
+            return true;
+        }
+
+        public void lambda$processLivePhotoMessage$5(boolean z, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z2, TLRPC.Document document) {
+            if (z) {
+                this.loadingMessageObjects.put(FileLoader.getAttachFileName(photoSize), messageObject);
+                this.currentAccount.getFileLoader().loadFile(ImageLocation.getForPhoto(photoSize, photo), messageObject, "jpg", 3, 0);
+            }
+            if (z2) {
+                this.loadingMessageObjects.put(FileLoader.getAttachFileName(document), messageObject);
+                this.currentAccount.getFileLoader().loadFile(document, messageObject, 3, 0);
+            }
+        }
+
+        public void lambda$processLivePhotoMessage$6(int i) {
+            try {
+                this.progressDialog.setProgress(i);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+
         private void addMessageToLoad(final MessageObject messageObject) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$addMessageToLoad$5(messageObject);
+                    this.f$0.lambda$addMessageToLoad$7(messageObject);
                 }
             });
         }
 
-        public void lambda$addMessageToLoad$5(MessageObject messageObject) {
+        public void lambda$addMessageToLoad$7(MessageObject messageObject) {
             TLRPC.Document document = messageObject.getDocument();
             TLRPC.Document document2 = messageObject.qualityToSave;
             if (document2 != null) {
@@ -5486,7 +5675,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.MediaLoader.copyFile(java.io.File, java.io.File, java.lang.String):boolean");
         }
 
-        public void lambda$copyFile$6() {
+        public void lambda$copyFile$8() {
             try {
                 this.progressDialog.dismiss();
             } catch (Exception e) {
@@ -5494,7 +5683,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public void lambda$copyFile$7(int i) {
+        public void lambda$copyFile$9(int i) {
             try {
                 this.progressDialog.setProgress(i);
             } catch (Exception e) {
@@ -5502,7 +5691,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
         }
 
-        public void lambda$copyFile$8(int i) {
+        public void lambda$copyFile$10(int i) {
             try {
                 this.progressDialog.setProgress(i);
             } catch (Exception e) {
@@ -5525,14 +5714,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$didReceivedNotification$9(iLongValue);
+                            this.f$0.lambda$didReceivedNotification$11(iLongValue);
                         }
                     });
                 }
             }
         }
 
-        public void lambda$didReceivedNotification$9(int i) {
+        public void lambda$didReceivedNotification$11(int i) {
             try {
                 this.progressDialog.setProgress(i);
             } catch (Exception e) {
@@ -5601,6 +5790,215 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         } catch (Exception e) {
             FileLog.e(e);
         }
+    }
+
+    public static void saveFile(String str, String str2, Context context, final Utilities.Callback<Uri> callback) {
+        final AlertDialog alertDialog;
+        if (TextUtils.isEmpty(str) || TextUtils.isEmpty(str2) || context == null) {
+            return;
+        }
+        final File file = new File(str);
+        final File file2 = new File(str2);
+        if (!file.exists() || !file2.exists()) {
+            saveFile(str, context, 0, null, null, callback);
+            return;
+        }
+        if (AndroidUtilities.isInternalUri(Uri.fromFile(file)) || AndroidUtilities.isInternalUri(Uri.fromFile(file2))) {
+            return;
+        }
+        final boolean[] zArr = {false};
+        final boolean[] zArr2 = new boolean[1];
+        try {
+            final AlertDialog alertDialog2 = new AlertDialog(context, 2);
+            alertDialog2.setMessage(LocaleController.getString(R.string.Loading));
+            alertDialog2.setCanceledOnTouchOutside(false);
+            alertDialog2.setCancelable(true);
+            alertDialog2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public final void onCancel(DialogInterface dialogInterface) {
+                    MediaController.lambda$saveFile$51(zArr, dialogInterface);
+                }
+            });
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaController.lambda$saveFile$52(zArr2, alertDialog2);
+                }
+            }, 250L);
+            alertDialog = alertDialog2;
+        } catch (Exception e) {
+            FileLog.e(e);
+            alertDialog = null;
+        }
+        new Thread(new Runnable() {
+            @Override
+            public final void run() throws IOException {
+                MediaController.lambda$saveFile$55(file, file2, zArr, callback, alertDialog, zArr2);
+            }
+        }).start();
+    }
+
+    public static void lambda$saveFile$51(boolean[] zArr, DialogInterface dialogInterface) {
+        zArr[0] = true;
+    }
+
+    public static void lambda$saveFile$52(boolean[] zArr, AlertDialog alertDialog) {
+        if (zArr[0]) {
+            return;
+        }
+        alertDialog.show();
+    }
+
+    public static void lambda$saveFile$55(File file, File file2, boolean[] zArr, final Utilities.Callback callback, final AlertDialog alertDialog, final boolean[] zArr2) throws IOException {
+        final Uri uriFromFile = null;
+        boolean z = false;
+        try {
+            if (Build.VERSION.SDK_INT >= 29) {
+                String strGenerateFileName = AndroidUtilities.generateFileName(0, "jpg");
+                ContentValues contentValues = new ContentValues();
+                Uri contentUri = MediaStore.Images.Media.getContentUri("external_primary");
+                contentValues.put("relative_path", new File(Environment.DIRECTORY_PICTURES, "Telegram") + File.separator);
+                contentValues.put("_display_name", strGenerateFileName);
+                contentValues.put("mime_type", "image/jpeg");
+                contentValues.put("mime_type", "image/jpeg");
+                Uri uriInsert = ApplicationLoader.applicationContext.getContentResolver().insert(contentUri, contentValues);
+                if (uriInsert != null) {
+                    OutputStream outputStreamOpenOutputStream = ApplicationLoader.applicationContext.getContentResolver().openOutputStream(uriInsert);
+                    if (outputStreamOpenOutputStream != null) {
+                        try {
+                            writeMotionPhoto(file, file2, outputStreamOpenOutputStream, zArr);
+                            z = !zArr[0];
+                        } finally {
+                        }
+                    }
+                    if (outputStreamOpenOutputStream != null) {
+                        outputStreamOpenOutputStream.close();
+                    }
+                    if (z) {
+                        uriFromFile = uriInsert;
+                    } else {
+                        try {
+                            ApplicationLoader.applicationContext.getContentResolver().delete(uriInsert, null, null);
+                        } catch (Exception unused) {
+                        }
+                    }
+                }
+            } else {
+                File file3 = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Telegram");
+                file3.mkdirs();
+                File file4 = new File(file3, AndroidUtilities.generateFileName(0, "jpg"));
+                if (!file4.exists()) {
+                    file4.createNewFile();
+                }
+                FileOutputStream fileOutputStream = new FileOutputStream(file4);
+                try {
+                    writeMotionPhoto(file, file2, fileOutputStream, zArr);
+                    fileOutputStream.close();
+                    if (zArr[0]) {
+                        file4.delete();
+                    } else {
+                        AndroidUtilities.addMediaToGallery(file4.getAbsoluteFile());
+                        uriFromFile = Uri.fromFile(file4);
+                        z = true;
+                    }
+                } finally {
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (z && callback != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    callback.run(uriFromFile);
+                }
+            });
+        }
+        if (alertDialog != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaController.lambda$saveFile$54(alertDialog, zArr2);
+                }
+            });
+        }
+    }
+
+    public static void lambda$saveFile$54(AlertDialog alertDialog, boolean[] zArr) {
+        try {
+            if (alertDialog.isShowing()) {
+                alertDialog.dismiss();
+            } else {
+                zArr[0] = true;
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static void writeMotionPhoto(File file, File file2, OutputStream outputStream, boolean[] zArr) throws IOException {
+        String strBuildMotionPhotoXmp = buildMotionPhotoXmp(file2.length());
+        byte[] bytes = "http://ns.adobe.com/xap/1.0/\u0000".getBytes("UTF-8");
+        byte[] bytes2 = strBuildMotionPhotoXmp.getBytes("UTF-8");
+        int length = bytes.length + bytes2.length + 2;
+        if (length > 65535) {
+            throw new IOException("XMP segment too large: " + length);
+        }
+        FileInputStream fileInputStream = new FileInputStream(file);
+        try {
+            int i = fileInputStream.read();
+            int i2 = fileInputStream.read();
+            if (i != 255 || i2 != 216) {
+                throw new IOException("Not a JPEG: " + file);
+            }
+            outputStream.write(255);
+            outputStream.write(216);
+            outputStream.write(255);
+            outputStream.write(225);
+            outputStream.write((length >> 8) & 255);
+            outputStream.write(length & 255);
+            outputStream.write(bytes);
+            outputStream.write(bytes2);
+            byte[] bArr = new byte[65536];
+            while (true) {
+                int i3 = fileInputStream.read(bArr);
+                if (i3 > 0) {
+                    if (zArr == null || !zArr[0]) {
+                        outputStream.write(bArr, 0, i3);
+                    } else {
+                        fileInputStream.close();
+                        return;
+                    }
+                } else {
+                    fileInputStream.close();
+                    fileInputStream = new FileInputStream(file2);
+                    try {
+                        byte[] bArr2 = new byte[65536];
+                        while (true) {
+                            int i4 = fileInputStream.read(bArr2);
+                            if (i4 > 0) {
+                                if (zArr == null || !zArr[0]) {
+                                    outputStream.write(bArr2, 0, i4);
+                                } else {
+                                    fileInputStream.close();
+                                    return;
+                                }
+                            } else {
+                                fileInputStream.close();
+                                return;
+                            }
+                        }
+                    } finally {
+                    }
+                }
+            }
+        } finally {
+        }
+    }
+
+    private static String buildMotionPhotoXmp(long j) {
+        return "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?><x:xmpmeta xmlns:x=\"adobe:ns:meta/\"><rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"><rdf:Description rdf:about=\"\" xmlns:GCamera=\"http://ns.google.com/photos/1.0/camera/\" xmlns:Container=\"http://ns.google.com/photos/1.0/container/\" xmlns:Item=\"http://ns.google.com/photos/1.0/container/item/\" GCamera:MotionPhoto=\"1\" GCamera:MotionPhotoVersion=\"1\" GCamera:MotionPhotoPresentationTimestampUs=\"0\"><Container:Directory><rdf:Seq><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"image/jpeg\" Item:Semantic=\"Primary\" Item:Length=\"0\" Item:Padding=\"0\"/></rdf:li><rdf:li rdf:parseType=\"Resource\"><Container:Item Item:Mime=\"video/mp4\" Item:Semantic=\"MotionPhoto\" Item:Length=\"" + j + "\" Item:Padding=\"0\"/></rdf:li></rdf:Seq></Container:Directory></rdf:Description></rdf:RDF></x:xmpmeta><?xpacket end=\"w\"?>";
     }
 
     public static Uri saveFileInternal(int i, File file, String str) throws IOException {
@@ -5822,18 +6220,18 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Thread thread = new Thread(new Runnable() {
             @Override
             public final void run() {
-                MediaController.lambda$loadGalleryPhotosAlbums$52(i);
+                MediaController.lambda$loadGalleryPhotosAlbums$57(i);
             }
         });
         thread.setPriority(1);
         thread.start();
     }
 
-    public static void lambda$loadGalleryPhotosAlbums$52(int r57) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$loadGalleryPhotosAlbums$52(int):void");
+    public static void lambda$loadGalleryPhotosAlbums$57(int r55) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.lambda$loadGalleryPhotosAlbums$57(int):void");
     }
 
-    public static int lambda$loadGalleryPhotosAlbums$51(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
+    public static int lambda$loadGalleryPhotosAlbums$56(PhotoEntry photoEntry, PhotoEntry photoEntry2) {
         long j = photoEntry.dateTaken;
         long j2 = photoEntry2.dateTaken;
         if (j < j2) {
@@ -5850,14 +6248,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                MediaController.lambda$broadcastNewPhotos$53(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3);
+                MediaController.lambda$broadcastNewPhotos$58(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3);
             }
         };
         broadcastPhotosRunnable = runnable2;
         AndroidUtilities.runOnUIThread(runnable2, i2);
     }
 
-    public static void lambda$broadcastNewPhotos$53(int i, ArrayList arrayList, ArrayList arrayList2, Integer num, AlbumEntry albumEntry, AlbumEntry albumEntry2, AlbumEntry albumEntry3) {
+    public static void lambda$broadcastNewPhotos$58(int i, ArrayList arrayList, ArrayList arrayList2, Integer num, AlbumEntry albumEntry, AlbumEntry albumEntry2, AlbumEntry albumEntry3) {
         if (PhotoViewer.getInstance().isVisible() && !forceBroadcastNewPhotos) {
             broadcastNewPhotos(i, arrayList, arrayList2, num, albumEntry, albumEntry2, albumEntry3, 1000);
             return;
@@ -6043,12 +6441,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didWriteData$54(z2, z, videoConvertMessage, file, f, j, z3, j2);
+                this.f$0.lambda$didWriteData$59(z2, z, videoConvertMessage, file, f, j, z3, j2);
             }
         });
     }
 
-    public void lambda$didWriteData$54(boolean z, boolean z2, VideoConvertMessage videoConvertMessage, File file, float f, long j, boolean z3, long j2) {
+    public void lambda$didWriteData$59(boolean z, boolean z2, VideoConvertMessage videoConvertMessage, File file, float f, long j, boolean z3, long j2) {
         if (z || z2) {
             boolean z4 = videoConvertMessage.videoEditedInfo.canceled;
             synchronized (this.videoConvertSync) {

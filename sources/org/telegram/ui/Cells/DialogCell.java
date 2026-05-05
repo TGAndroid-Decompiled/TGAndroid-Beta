@@ -92,6 +92,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TimerDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
+import org.telegram.ui.Components.dialogs.DialogMediaIconsHelper;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
@@ -2261,29 +2262,29 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             if (messageMedia instanceof TLRPC.TL_messageMediaPoll) {
                 TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
                 TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageMediaPoll.poll.question;
-                if (tL_textWithEntities == null || tL_textWithEntities.entities == null) {
-                    string = String.format("📊 \u2068%s\u2069", tL_textWithEntities.text);
-                } else {
+                if (tL_textWithEntities != null && tL_textWithEntities.entities != null) {
                     SpannableString spannableString2 = new SpannableString(tL_messageMediaPoll.poll.question.text.replace('\n', ' '));
                     TLRPC.TL_textWithEntities tL_textWithEntities2 = tL_messageMediaPoll.poll.question;
                     MediaDataController.addTextStyleRuns(tL_textWithEntities2.entities, tL_textWithEntities2.text, spannableString2);
                     MediaDataController.addAnimatedEmojiSpans(tL_messageMediaPoll.poll.question.entities, spannableString2, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
-                    string = new SpannableStringBuilder("📊 \u2068").append((CharSequence) spannableString2).append((CharSequence) "\u2069");
+                    string = DialogMediaIconsHelper.addDialogMediaSpan(spannableString2, R.drawable.dialog_media_poll_20, true);
+                } else {
+                    string = DialogMediaIconsHelper.addDialogMediaSpan(tL_textWithEntities.text, R.drawable.dialog_media_poll_20, true);
                 }
             } else if (messageMedia instanceof TLRPC.TL_messageMediaToDo) {
                 TLRPC.TL_messageMediaToDo tL_messageMediaToDo = (TLRPC.TL_messageMediaToDo) messageMedia;
                 TLRPC.TL_textWithEntities tL_textWithEntities3 = tL_messageMediaToDo.todo.title;
-                if (tL_textWithEntities3 == null || tL_textWithEntities3.entities == null) {
-                    string = String.format("✅ \u2068%s\u2069", tL_textWithEntities3.text);
-                } else {
+                if (tL_textWithEntities3 != null && tL_textWithEntities3.entities != null) {
                     SpannableString spannableString3 = new SpannableString(tL_messageMediaToDo.todo.title.text.replace('\n', ' '));
                     TLRPC.TL_textWithEntities tL_textWithEntities4 = tL_messageMediaToDo.todo.title;
                     MediaDataController.addTextStyleRuns(tL_textWithEntities4.entities, tL_textWithEntities4.text, spannableString3);
                     MediaDataController.addAnimatedEmojiSpans(tL_messageMediaToDo.todo.title.entities, spannableString3, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
-                    string = new SpannableStringBuilder("✅ \u2068").append((CharSequence) spannableString3).append((CharSequence) "\u2069");
+                    string = DialogMediaIconsHelper.addDialogMediaSpan(spannableString3, R.drawable.dialog_media_checklist_20, true);
+                } else {
+                    string = DialogMediaIconsHelper.addDialogMediaSpan(tL_textWithEntities3.text, R.drawable.dialog_media_checklist_20, true);
                 }
             } else if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
-                string = String.format("🎮 \u2068%s\u2069", messageMedia.game.title);
+                string = DialogMediaIconsHelper.addDialogMediaSpan(messageMedia.game.title, R.drawable.dialog_media_game_20, true);
             } else if (messageMedia instanceof TLRPC.TL_messageMediaInvoice) {
                 string = messageMedia.title;
             } else if (messageObject3.type == 14) {

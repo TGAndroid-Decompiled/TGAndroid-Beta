@@ -5149,7 +5149,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             boolean z2 = obj instanceof MediaController.PhotoEntry;
             if (z2) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                if (photoEntry.isVideo && !photoEntry.isLivePhoto) {
+                if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
                     i = 1;
                 }
                 this.mode = i;

@@ -129,7 +129,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         }
         if (photoEntry.path != null) {
             this.imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-            if (photoEntry.isLivePhoto) {
+            if (photoEntry.isLivePhoto()) {
                 this.videoInfoContainer.setVisibility(4);
                 setContentDescription(LocaleController.getString(R.string.AttachLivePhoto));
                 this.imageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);

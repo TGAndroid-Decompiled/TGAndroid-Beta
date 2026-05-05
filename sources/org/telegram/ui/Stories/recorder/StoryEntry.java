@@ -768,7 +768,7 @@ public class StoryEntry {
         storyEntry.file = new File(photoEntry.path);
         storyEntry.orientation = photoEntry.orientation;
         storyEntry.invert = photoEntry.invert;
-        storyEntry.isVideo = photoEntry.isVideo && !photoEntry.isLivePhoto;
+        storyEntry.isVideo = !photoEntry.isLivePhoto() && photoEntry.isVideo;
         storyEntry.thumbPath = photoEntry.thumbPath;
         long j = photoEntry.duration * 1000;
         storyEntry.duration = j;

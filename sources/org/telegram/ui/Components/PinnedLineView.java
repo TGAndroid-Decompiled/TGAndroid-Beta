@@ -30,6 +30,7 @@ public class PinnedLineView extends View {
     Paint fadePaint2;
     private int lineHFrom;
     private int lineHTo;
+    private boolean needDrawFade;
     private int nextPosition;
     Paint paint;
     RectF rectF;
@@ -134,21 +135,23 @@ public class PinnedLineView extends View {
         invalidate();
     }
 
+    public void checkLayerType() {
+        boolean z = (this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount) > 3;
+        int i = z ? 2 : 0;
+        if (getLayerType() != i) {
+            setLayerType(i, null);
+            invalidate();
+        }
+        this.needDrawFade = z;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
-        int iMax;
         float measuredHeight;
         float measuredHeight2;
         super.onDraw(canvas);
-        if (this.selectedPosition < 0 || (iMax = this.totalCount) == 0) {
+        if (this.selectedPosition < 0 || this.totalCount == 0) {
             return;
-        }
-        if (this.replaceInProgress) {
-            iMax = Math.max(this.animateFromTotal, this.animateToTotal);
-        }
-        boolean z = iMax > 3;
-        if (z) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31);
         }
         int iDp = AndroidUtilities.dp(8.0f);
         if (this.replaceInProgress) {
@@ -187,19 +190,19 @@ public class PinnedLineView extends View {
         }
         float measuredWidth = getMeasuredWidth() / 2.0f;
         float f8 = iDp;
-        int iMax2 = Math.max(0, (int) (((f8 + measuredHeight2) / measuredHeight) - 1.0f));
-        int iMin = Math.min(iMax2 + 6, this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount);
-        while (iMax2 < iMin) {
-            float f9 = ((iMax2 * measuredHeight) + f8) - measuredHeight2;
+        int iMax = Math.max(0, (int) (((f8 + measuredHeight2) / measuredHeight) - 1.0f));
+        int iMin = Math.min(iMax + 6, this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount);
+        while (iMax < iMin) {
+            float f9 = ((iMax * measuredHeight) + f8) - measuredHeight2;
             float f10 = f9 + measuredHeight;
             if (f10 >= f3 && f9 <= getMeasuredHeight()) {
                 this.rectF.set(f3, f9 + fDpf2, getMeasuredWidth(), f10 - fDpf2);
-                boolean z2 = this.replaceInProgress;
-                if (z2 && iMax2 >= this.animateToTotal) {
-                    this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r15) / 255.0f) * 76.0f * (1.0f - this.animationProgress))));
+                boolean z = this.replaceInProgress;
+                if (z && iMax >= this.animateToTotal) {
+                    this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r14) / 255.0f) * 76.0f * (1.0f - this.animationProgress))));
                     canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
                     this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r11) / 255.0f) * 76.0f)));
-                } else if (z2 && iMax2 >= this.animateFromTotal) {
+                } else if (z && iMax >= this.animateFromTotal) {
                     this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r11) / 255.0f) * 76.0f * this.animationProgress)));
                     canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
                     this.paint.setColor(ColorUtils.setAlphaComponent(this.color, (int) ((Color.alpha(r11) / 255.0f) * 76.0f)));
@@ -207,7 +210,7 @@ public class PinnedLineView extends View {
                     canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
                 }
             }
-            iMax2++;
+            iMax++;
             f3 = 0.0f;
         }
         if (this.animationInProgress) {
@@ -221,7 +224,7 @@ public class PinnedLineView extends View {
             this.rectF.set(0.0f, f14 + fDpf2, getMeasuredWidth(), (f14 + measuredHeight) - fDpf2);
             canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.selectedPaint);
         }
-        if (z) {
+        if (this.needDrawFade) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(6.0f), this.fadePaint);
             canvas.drawRect(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f), getMeasuredWidth(), getMeasuredHeight(), this.fadePaint);
             canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f));
@@ -242,9 +245,7 @@ public class PinnedLineView extends View {
             this.selectedPosition = i;
             this.totalCount = i2;
             invalidate();
-            return;
-        }
-        if (this.totalCount != i2 || (Math.abs(i3 - i) > 2 && !this.animationInProgress && !this.replaceInProgress)) {
+        } else if (this.totalCount != i2 || (Math.abs(i3 - i) > 2 && !this.animationInProgress && !this.replaceInProgress)) {
             ValueAnimator valueAnimator2 = this.animator;
             if (valueAnimator2 != null) {
                 this.nextPosition = 0;
@@ -309,14 +310,16 @@ public class PinnedLineView extends View {
                         pinnedLineView2.selectPosition(pinnedLineView2.nextPosition);
                         PinnedLineView.this.nextPosition = -1;
                     }
+                    PinnedLineView.this.checkLayerType();
                 }
             });
             this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.animator.setDuration(220L);
             this.animator.start();
-            return;
+        } else {
+            selectPosition(i);
         }
-        selectPosition(i);
+        checkLayerType();
     }
 
     public void lambda$set$1(ValueAnimator valueAnimator) {

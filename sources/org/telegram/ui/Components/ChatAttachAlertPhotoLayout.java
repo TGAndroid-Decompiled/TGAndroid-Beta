@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -214,17 +215,17 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         return 1;
     }
 
-    static int access$3308(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+    static int access$3408(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         int i = chatAttachAlertPhotoLayout.videoRecordTime;
         chatAttachAlertPhotoLayout.videoRecordTime = i + 1;
         return i;
     }
 
-    public static void access$6600(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+    public static void access$6700(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         chatAttachAlertPhotoLayout.requestGalleryPermission();
     }
 
-    public static void access$6700(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+    public static void access$6800(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         chatAttachAlertPhotoLayout.openCameraWithPermissionCheck();
     }
 
@@ -334,6 +335,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         public boolean allowLivePhotos() {
             ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
             return chatAttachAlert != null && chatAttachAlert.allowLivePhotos;
+        }
+
+        @Override
+        public void updatedLivePhotos() {
+            ChatAttachAlertPhotoLayout.this.updateCells();
         }
     }
 
@@ -1508,7 +1514,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (ChatAttachAlertPhotoLayout.this.videoRecordRunnable == null) {
                 return;
             }
-            ChatAttachAlertPhotoLayout.access$3308(ChatAttachAlertPhotoLayout.this);
+            ChatAttachAlertPhotoLayout.access$3408(ChatAttachAlertPhotoLayout.this);
             ChatAttachAlertPhotoLayout.this.recordTime.setText(AndroidUtilities.formatLongDuration(ChatAttachAlertPhotoLayout.this.videoRecordTime));
             AndroidUtilities.runOnUIThread(ChatAttachAlertPhotoLayout.this.videoRecordRunnable, 1000L);
         }
@@ -1977,7 +1983,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (selectedPhotos.containsKey(numValueOf)) {
             photoEntry.starsAmount = 0L;
             photoEntry.hasSpoiler = false;
-            photoEntry.discardLivePhoto = false;
+            photoEntry.discardLivePhoto = null;
             photoEntry.highQuality = null;
             selectedPhotos.remove(numValueOf);
             int iIndexOf = selectedPhotosOrder.indexOf(numValueOf);
@@ -1997,7 +2003,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         photoEntry.isChatPreviewSpoilerRevealed = false;
         photoEntry.isAttachSpoilerRevealed = false;
         if (hasLivePhotos()) {
-            photoEntry.discardLivePhoto = !areLivePhotosEnabled();
+            photoEntry.discardLivePhoto = Boolean.valueOf(!areLivePhotosEnabled());
         }
         photoEntry.highQuality = Boolean.valueOf(photoEntry.isHighQuality());
         boolean zCheckSelectedCount = checkSelectedCount(true);
@@ -4704,14 +4710,14 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     galleryEmptyView.doOnCameraAccess(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatAttachAlertPhotoLayout.access$6700(chatAttachAlertPhotoLayout);
+                            ChatAttachAlertPhotoLayout.access$6800(chatAttachAlertPhotoLayout);
                         }
                     });
                     final ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ChatAttachAlertPhotoLayout.this;
                     galleryEmptyView.doOnGalleryAccessClick(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatAttachAlertPhotoLayout.access$6600(chatAttachAlertPhotoLayout2);
+                            ChatAttachAlertPhotoLayout.access$6700(chatAttachAlertPhotoLayout2);
                         }
                     });
                     galleryEmptyView.doOnEmojiButton(new Utilities.Callback() {
@@ -5116,7 +5122,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return false;
         }
         for (Map.Entry entry : selectedPhotos.entrySet()) {
-            if ((entry.getValue() instanceof MediaController.PhotoEntry) && ((MediaController.PhotoEntry) entry.getValue()).isLivePhoto) {
+            if ((entry.getValue() instanceof MediaController.PhotoEntry) && ((MediaController.PhotoEntry) entry.getValue()).isLivePhoto()) {
                 return true;
             }
         }
@@ -5130,7 +5136,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         for (Map.Entry entry : selectedPhotos.entrySet()) {
             if (entry.getValue() instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) entry.getValue();
-                if (photoEntry.isLivePhoto && photoEntry.discardLivePhoto) {
+                if (photoEntry.isLivePhoto() && photoEntry.isUnalivePhoto()) {
                     return false;
                 }
             }
@@ -5142,20 +5148,41 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         if (selectedPhotos.isEmpty()) {
             return;
         }
-        for (Map.Entry entry : selectedPhotos.entrySet()) {
-            if (entry.getValue() instanceof MediaController.PhotoEntry) {
-                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) entry.getValue();
-                if (photoEntry.isLivePhoto) {
-                    photoEntry.discardLivePhoto = !z;
-                    for (int i = 0; i < this.gridView.getChildCount(); i++) {
-                        View childAt = this.gridView.getChildAt(i);
-                        if (childAt instanceof PhotoAttachPhotoCell) {
-                            PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) childAt;
-                            if (photoAttachPhotoCell.getPhotoEntry() == photoEntry) {
-                                photoAttachPhotoCell.getImageView().invalidate();
+        Iterator it = selectedPhotos.entrySet().iterator();
+        while (true) {
+            if (it.hasNext()) {
+                Map.Entry entry = (Map.Entry) it.next();
+                if (entry.getValue() instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) entry.getValue();
+                    if (photoEntry.isLivePhoto()) {
+                        photoEntry.discardLivePhoto = Boolean.valueOf(!z);
+                        for (int i = 0; i < this.gridView.getChildCount(); i++) {
+                            View childAt = this.gridView.getChildAt(i);
+                            if (childAt instanceof PhotoAttachPhotoCell) {
+                                PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) childAt;
+                                if (photoAttachPhotoCell.getPhotoEntry() == photoEntry) {
+                                    photoAttachPhotoCell.getImageView().invalidate();
+                                }
                             }
                         }
                     }
+                }
+            } else {
+                SharedPreferences.Editor editorEdit = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
+                SharedConfig.photoLiveDefault = z;
+                editorEdit.putBoolean("photoLiveDefault", z).apply();
+                updateCells();
+                return;
+            }
+        }
+    }
+
+    public void updateCells() {
+        if (this.gridView != null) {
+            for (int i = 0; i < this.gridView.getChildCount(); i++) {
+                View childAt = this.gridView.getChildAt(i);
+                if (childAt instanceof PhotoAttachPhotoCell) {
+                    ((PhotoAttachPhotoCell) childAt).imageView.invalidate();
                 }
             }
         }
