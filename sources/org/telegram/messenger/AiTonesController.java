@@ -11,6 +11,7 @@ import org.telegram.tgnet.tl.TL_aicompose;
 public final class AiTonesController {
     public final int currentAccount;
     public long hash;
+    private boolean loadedLocal;
     public boolean open;
     public final ArrayList<TL_aicompose.AiComposeTone> tones = new ArrayList<>();
     private int requestId = -1;
@@ -72,19 +73,22 @@ public final class AiTonesController {
     }
 
     public void load() {
-        try {
-            String string = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("ai_styles", null);
-            if (string != null) {
-                SerializedData serializedData = new SerializedData(Base64.getDecoder().decode(string));
-                TL_aicompose.Tones tonesTLdeserialize = TL_aicompose.Tones.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                if (tonesTLdeserialize instanceof TL_aicompose.TL_tones) {
-                    this.hash = ((TL_aicompose.TL_tones) tonesTLdeserialize).hash;
-                    this.tones.clear();
-                    this.tones.addAll(((TL_aicompose.TL_tones) tonesTLdeserialize).tones);
+        if (!this.loadedLocal) {
+            this.loadedLocal = true;
+            try {
+                String string = MessagesController.getInstance(this.currentAccount).getMainSettings().getString("ai_styles", null);
+                if (string != null) {
+                    SerializedData serializedData = new SerializedData(Base64.getDecoder().decode(string));
+                    TL_aicompose.Tones tonesTLdeserialize = TL_aicompose.Tones.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                    if (tonesTLdeserialize instanceof TL_aicompose.TL_tones) {
+                        this.hash = ((TL_aicompose.TL_tones) tonesTLdeserialize).hash;
+                        this.tones.clear();
+                        this.tones.addAll(((TL_aicompose.TL_tones) tonesTLdeserialize).tones);
+                    }
                 }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
-        } catch (Exception e) {
-            FileLog.e(e);
         }
         request();
     }
@@ -120,6 +124,7 @@ public final class AiTonesController {
 
     public void remove(TL_aicompose.AiComposeTone aiComposeTone) {
         this.tones.remove(aiComposeTone);
+        save();
         notifyUpdate();
     }
 
@@ -140,7 +145,8 @@ public final class AiTonesController {
                 }
             }
         }
-        this.tones.add(aiComposeTone);
+        this.tones.add(0, aiComposeTone);
+        save();
         notifyUpdate();
     }
 }
