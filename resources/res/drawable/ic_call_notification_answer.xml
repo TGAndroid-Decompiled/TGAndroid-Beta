@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <bitmap
-            android:src="@drawable/call"
+            android:src="@drawable/ic_call"
             android:tint="#5ee067"/>
     </item>
 </layer-list>

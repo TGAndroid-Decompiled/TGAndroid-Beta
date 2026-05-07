@@ -2333,12 +2333,6 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             });
             ImageView imageView4 = new ImageView(activity) {
                 @Override
-                public ViewPropertyAnimator animate() {
-                    AndroidUtilities.printStackTrace("WTF_DEBUG");
-                    return super.animate();
-                }
-
-                @Override
                 public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                     if (getAlpha() < 0.5f) {
                         return false;

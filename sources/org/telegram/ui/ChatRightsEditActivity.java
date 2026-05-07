@@ -668,11 +668,12 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 if (!(view instanceof TextCheckCell2) || ((TextCheckCell2) view).isEnabled()) {
                     this.sendMediaExpanded = !this.sendMediaExpanded;
                     updateRows(false);
+                    this.listViewAdapter.notifyItemChanged(this.sendMediaRow);
                     if (this.sendMediaExpanded) {
-                        this.listViewAdapter.notifyItemRangeInserted(this.sendMediaRow + 1, 9);
+                        this.listViewAdapter.notifyItemRangeInserted(this.sendMediaRow + 1, 10);
                         return;
                     } else {
-                        this.listViewAdapter.notifyItemRangeRemoved(this.sendMediaRow + 1, 9);
+                        this.listViewAdapter.notifyItemRangeRemoved(this.sendMediaRow + 1, 10);
                         return;
                     }
                 }
@@ -1033,7 +1034,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     }
                     if (zIsChecked2) {
                         TLRPC.TL_chatBannedRights tL_chatBannedRights21 = this.bannedRights;
-                        if ((!tL_chatBannedRights21.send_plain || !tL_chatBannedRights21.embed_links || !tL_chatBannedRights21.send_inline || !tL_chatBannedRights21.send_photos || !tL_chatBannedRights21.send_videos || !tL_chatBannedRights21.send_audios || !tL_chatBannedRights21.send_docs || !tL_chatBannedRights21.send_voices || !tL_chatBannedRights21.send_roundvideos || !tL_chatBannedRights21.send_polls) && tL_chatBannedRights21.view_messages) {
+                        if ((!tL_chatBannedRights21.send_plain || !tL_chatBannedRights21.embed_links || !tL_chatBannedRights21.send_inline || !tL_chatBannedRights21.send_photos || !tL_chatBannedRights21.send_videos || !tL_chatBannedRights21.send_audios || !tL_chatBannedRights21.send_docs || !tL_chatBannedRights21.send_voices || !tL_chatBannedRights21.send_roundvideos || !tL_chatBannedRights21.send_polls || !tL_chatBannedRights21.send_reactions) && tL_chatBannedRights21.view_messages) {
                             tL_chatBannedRights21.view_messages = false;
                         }
                     }
@@ -2667,6 +2668,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         tL_chatBannedRights.send_roundvideos = z2;
         tL_chatBannedRights.embed_links = z2;
         tL_chatBannedRights.send_polls = z2;
+        tL_chatBannedRights.send_reactions = z2;
         AndroidUtilities.updateVisibleRows(this.listView);
     }
 
@@ -2743,7 +2745,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
 
     public boolean allDefaultMediaBanned() {
         TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
-        return tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls;
+        return tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls && tL_chatBannedRights.send_reactions;
     }
 
     public boolean isExpandableSendMediaRow(int i) {

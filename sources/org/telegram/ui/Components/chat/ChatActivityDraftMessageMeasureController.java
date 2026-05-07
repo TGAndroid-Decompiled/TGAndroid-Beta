@@ -38,6 +38,13 @@ public class ChatActivityDraftMessageMeasureController {
         return this.hasAdditionalHeight;
     }
 
+    public boolean onMessageIdChanged(int i, int i2, long j) {
+        if (this.messageIdToOverride == i) {
+            return setMessageIdToOverride(i2, j);
+        }
+        return false;
+    }
+
     public boolean setMessageIdToOverride(int i, long j) {
         if (this.messageIdToOverride == i && this.groupIdToOverride == j) {
             return false;

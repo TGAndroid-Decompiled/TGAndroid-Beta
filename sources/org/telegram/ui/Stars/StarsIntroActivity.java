@@ -1781,15 +1781,24 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                     spannableString.setSpan(imageReceiverSpan, 0, 1, 33);
                     StarsIntroActivity.setGiftImage(imageReceiverSpan.imageReceiver, starsTransaction.stargift, 16);
                     this.titleTextView.setText(string);
-                    if (starsTransaction.stargift_resale) {
+                    if (starsTransaction.offer) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x ");
                         spannableStringBuilder.setSpan(new AnimatedEmojiSpan(starsTransaction.stargift.getDocument(), this.subtitleTextView.getPaint().getFontMetricsInt()), 0, 1, 33);
                         if (starsTransaction.amount.negative()) {
-                            spannableStringBuilder.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftSaleRefund : R.string.StarGiftTransactionGiftPurchase));
+                            spannableStringBuilder.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftSaleRefund : R.string.StarGiftTransactionGiftOffer));
                         } else {
-                            spannableStringBuilder.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftPurchaseRefund : R.string.StarGiftTransactionGiftSale));
+                            spannableStringBuilder.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftOfferRefund : R.string.StarGiftTransactionGiftSale));
                         }
                         this.subtitleTextView.setText(spannableStringBuilder);
+                    } else if (starsTransaction.stargift_resale) {
+                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x ");
+                        spannableStringBuilder2.setSpan(new AnimatedEmojiSpan(starsTransaction.stargift.getDocument(), this.subtitleTextView.getPaint().getFontMetricsInt()), 0, 1, 33);
+                        if (starsTransaction.amount.negative()) {
+                            spannableStringBuilder2.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftSaleRefund : R.string.StarGiftTransactionGiftPurchase));
+                        } else {
+                            spannableStringBuilder2.append((CharSequence) LocaleController.getString(starsTransaction.refund ? R.string.StarGiftTransactionGiftPurchaseRefund : R.string.StarGiftTransactionGiftSale));
+                        }
+                        this.subtitleTextView.setText(spannableStringBuilder2);
                     } else if (starsTransaction.stargift_prepaid_upgrade) {
                         this.subtitleTextView.setText(TextUtils.concat(spannableString, " ", LocaleController.getString(R.string.Gift2TransactionPrepaidUpgrade)));
                     } else if (starsTransaction.stargift instanceof TL_stars.TL_starGiftUnique) {

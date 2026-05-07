@@ -706,7 +706,7 @@ public class PollVotesAlert extends BottomSheet {
                 }
                 super.dispatchDraw(canvas);
                 this.gradientProtectionDrawable.setBounds(0, getMeasuredHeight() - AndroidUtilities.navigationBarHeight, getMeasuredWidth(), getMeasuredHeight());
-                this.gradientProtectionDrawable.setColor(getThemedColor(Theme.key_windowBackgroundGray));
+                this.gradientProtectionDrawable.setColor(getThemedColor(Theme.key_dialogBackgroundGray));
                 this.gradientProtectionDrawable.draw(canvas);
             }
         };

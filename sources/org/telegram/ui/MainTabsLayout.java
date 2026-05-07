@@ -12,16 +12,20 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import java.util.HashSet;
 import java.util.Set;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.android.util.ClickHelper;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedLinearLayout;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.glass.GlassTabView;
 
 public class MainTabsLayout extends AnimatedLinearLayout {
     private float animatedLongSelectedViewCenterX;
     private float animatedLongSelectedViewOffsetX;
+    private final BoolAnimator animatorIsScaled;
     private int biggestTabTextWidth;
     private final ClickHelper clickHelper;
     private boolean drawCustomSelector;
@@ -92,15 +96,21 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         springAnimation2.setSpring(new SpringForce(1.0f).setStiffness(250.0f).setDampingRatio(0.25f));
         springAnimation4.setSpring(new SpringForce(1.0f).setStiffness(1500.0f).setDampingRatio(0.75f));
         this.tabsWithIgnoreClick = new HashSet();
+        this.animatorIsScaled = new BoolAnimator(0, new FactorAnimator.Target() {
+            @Override
+            public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+                FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+            }
+
+            @Override
+            public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+                this.f$0.lambda$new$1(i, f, f2, factorAnimator);
+            }
+        }, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
         this.clickHelper = new ClickHelper(new ClickHelper.Delegate() {
             @Override
             public boolean forceEnableVibration() {
                 return ClickHelper.Delegate.CC.$default$forceEnableVibration(this);
-            }
-
-            @Override
-            public long getLongPressDuration() {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsLayout.AnonymousClass3.getLongPressDuration():long");
             }
 
             @Override
@@ -123,6 +133,21 @@ public class MainTabsLayout extends AnimatedLinearLayout {
             }
 
             @Override
+            public void onClickTouchDown(View view, float f, float f2) {
+                ClickHelper.Delegate.CC.$default$onClickTouchDown(this, view, f, f2);
+            }
+
+            @Override
+            public void onClickTouchMove(View view, float f, float f2) {
+                ClickHelper.Delegate.CC.$default$onClickTouchMove(this, view, f, f2);
+            }
+
+            @Override
+            public void onClickTouchUp(View view, float f, float f2) {
+                ClickHelper.Delegate.CC.$default$onClickTouchUp(this, view, f, f2);
+            }
+
+            @Override
             public boolean needClickAt(View view, float f, float f2) {
                 MainTabsLayout.this.lastLongSelectedView = null;
                 View viewFindChildUnder = MainTabsLayout.findChildUnder(MainTabsLayout.this, f, f2);
@@ -131,22 +156,31 @@ public class MainTabsLayout extends AnimatedLinearLayout {
 
             @Override
             public boolean onLongPressRequestedAt(View view, float f, float f2) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
                 MainTabsLayout.this.isInLongPress = true;
                 AndroidUtilities.cancelRunOnUIThread(MainTabsLayout.this.restoreDrawSelector);
                 MainTabsLayout.this.setSkipDrawSelector(true);
                 MainTabsLayout.this.checkLongMove(f, f2, true, false);
                 MainTabsLayout.this.invalidate();
+                longTouchStart();
                 return true;
             }
 
             @Override
             public void onLongPressMove(View view, MotionEvent motionEvent, float f, float f2, float f3, float f4) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
                 MainTabsLayout.this.checkLongMove(f, f2, false, false);
                 MainTabsLayout.this.invalidate();
             }
 
             @Override
+            public long getLongPressDuration() {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsLayout.AnonymousClass3.getLongPressDuration():long");
+            }
+
+            @Override
             public void onLongPressFinish(View view, float f, float f2) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
                 MainTabsLayout.this.checkLongMove(f, f2, false, true);
                 MainTabsLayout.this.isInLongPress = false;
                 AndroidUtilities.runOnUIThread(MainTabsLayout.this.restoreDrawSelector, 450L);
@@ -155,42 +189,26 @@ public class MainTabsLayout extends AnimatedLinearLayout {
                 }
                 MainTabsLayout.this.lastLongSelectedView = null;
                 MainTabsLayout.this.invalidate();
+                longTouchEnd();
             }
 
             @Override
             public void onLongPressCancelled(View view, float f, float f2) {
+                MainTabsLayout.this.checkPivot(view, f, f2);
                 MainTabsLayout.this.checkLongMove(f, f2, false, true);
                 MainTabsLayout.this.isInLongPress = false;
                 AndroidUtilities.runOnUIThread(MainTabsLayout.this.restoreDrawSelector, 450L);
                 MainTabsLayout.this.lastLongSelectedView = null;
                 MainTabsLayout.this.invalidate();
+                longTouchEnd();
             }
 
-            @Override
-            public void onClickTouchDown(View view, float f, float f2) {
-                MainTabsLayout.this.checkPivot(view, f, f2);
-                if (!MainTabsLayout.this.scaleX.isRunning()) {
-                    MainTabsLayout.this.scaleX.setStartVelocity(-0.45f);
-                    MainTabsLayout.this.scaleY.setStartVelocity(-0.45f);
-                }
-                MainTabsLayout.this.scaleX.animateToFinalPosition(1.012f);
-                MainTabsLayout.this.scaleY.animateToFinalPosition(1.012f);
+            private void longTouchStart() {
+                MainTabsLayout.this.animatorIsScaled.setValue(true, true);
             }
 
-            @Override
-            public void onClickTouchMove(View view, float f, float f2) {
-                MainTabsLayout.this.checkPivot(view, f, f2);
-            }
-
-            @Override
-            public void onClickTouchUp(View view, float f, float f2) {
-                MainTabsLayout.this.checkPivot(view, f, f2);
-                if (!MainTabsLayout.this.scaleX.isRunning()) {
-                    MainTabsLayout.this.scaleX.setStartVelocity(0.25f);
-                    MainTabsLayout.this.scaleY.setStartVelocity(0.25f);
-                }
-                MainTabsLayout.this.scaleX.animateToFinalPosition(1.0f);
-                MainTabsLayout.this.scaleY.animateToFinalPosition(1.0f);
+            private void longTouchEnd() {
+                MainTabsLayout.this.animatorIsScaled.setValue(false, true);
             }
         });
         this.resourcesProvider = resourcesProvider;
@@ -428,6 +446,11 @@ public class MainTabsLayout extends AnimatedLinearLayout {
         this.tabsWithIgnoreClick.add(view);
     }
 
+    public void lambda$new$1(int i, float f, float f2, FactorAnimator factorAnimator) {
+        setScaleX(AndroidUtilities.lerp(1.0f, 1.019f, f));
+        setScaleY(AndroidUtilities.lerp(1.0f, 1.019f, f));
+    }
+
     @Override
     public void setScaleY(float f) {
         super.setScaleY(f);
@@ -471,8 +494,8 @@ public class MainTabsLayout extends AnimatedLinearLayout {
             f3 = f5;
             f4 = f6;
         }
-        float fLerp = AndroidUtilities.lerp(f5, f3, 0.95f);
-        float fLerp2 = AndroidUtilities.lerp(f6, f4, 2.83f);
+        float fLerp = AndroidUtilities.lerp(f5, f3, 1.0f);
+        float fLerp2 = AndroidUtilities.lerp(f6, f4, 3.0f);
         view.setPivotX(fLerp);
         view.setPivotY(fLerp2);
     }

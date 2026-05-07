@@ -6738,6 +6738,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         setMeasuredDimension(isWidthAdaptive() ? getBoundsRight() - getBoundsLeft() : View.MeasureSpec.getSize(i), overrideMeasureHeight);
     }
 
+    public int getAdditionalPaddingHeight() {
+        return this.additionalPaddingHeight;
+    }
+
     public void forceResetMessageObject() {
         MessageObject messageObject = this.messageObjectToSet;
         if (messageObject == null) {

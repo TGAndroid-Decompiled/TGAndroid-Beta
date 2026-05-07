@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -25,6 +26,7 @@ public class BotForumHelper extends BaseController {
     private static volatile BotForumHelper[] Instance = new BotForumHelper[4];
     private final DialogTopicIdKeyMap<BotDraftMessage> botTextDraftsByRandomIds;
     private final LongSparseArray<List<MessagesStorage.IntCallback>> pendingBotTopics;
+    private final SharedPreferences preferences;
 
     private MessageObject createDraftMessage(long j, int i, long j2, int i2, TLRPC.TL_textWithEntities tL_textWithEntities) {
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
@@ -372,10 +374,19 @@ public class BotForumHelper extends BaseController {
         return false;
     }
 
+    public void saveIsStreamingTopic(long j, long j2, boolean z) {
+        this.preferences.edit().putBoolean(j + "_" + j2, z).apply();
+    }
+
+    public boolean isStreamingTopic(long j, long j2) {
+        return this.preferences.getBoolean(j + "_" + j2, false);
+    }
+
     private BotForumHelper(int i) {
         super(i);
         this.botTextDraftsByRandomIds = new DialogTopicIdKeyMap<>();
         this.pendingBotTopics = new LongSparseArray<>();
+        this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("bot_drafts" + i, 0);
     }
 
     public static BotForumHelper getInstance(int i) {

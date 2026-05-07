@@ -1890,7 +1890,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (chat.megagroup && !chat.gigagroup && ChatObject.canUserDoAdminAction(chat, 13)) {
             if (this.selectedSlowmode <= 0) {
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
-                if (tL_chatBannedRights.send_plain || tL_chatBannedRights.send_media || tL_chatBannedRights.send_photos || tL_chatBannedRights.send_videos || tL_chatBannedRights.send_stickers || tL_chatBannedRights.send_audios || tL_chatBannedRights.send_docs || tL_chatBannedRights.send_voices || tL_chatBannedRights.send_roundvideos || tL_chatBannedRights.embed_links || tL_chatBannedRights.send_polls) {
+                if (tL_chatBannedRights.send_plain || tL_chatBannedRights.send_media || tL_chatBannedRights.send_photos || tL_chatBannedRights.send_videos || tL_chatBannedRights.send_stickers || tL_chatBannedRights.send_audios || tL_chatBannedRights.send_docs || tL_chatBannedRights.send_voices || tL_chatBannedRights.send_roundvideos || tL_chatBannedRights.embed_links || tL_chatBannedRights.send_polls || tL_chatBannedRights.send_reactions) {
                 }
             }
             return true;
@@ -2678,7 +2678,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r22, int r23) {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r20, int r21) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.ListAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -2788,6 +2788,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         tL_chatBannedRights.send_roundvideos = z2;
         tL_chatBannedRights.embed_links = z2;
         tL_chatBannedRights.send_polls = z2;
+        tL_chatBannedRights.send_reactions = z2;
         AndroidUtilities.updateVisibleRows(this.listView);
         DiffCallback diffCallbackSaveState = saveState();
         updateRows();

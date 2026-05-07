@@ -7019,7 +7019,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void checkSendButtonBlockedByTyping(boolean z) throws Resources.NotFoundException {
-        this.chatActivityEnterView.setBlockedByStreaming(BotForumHelper.getInstance(this.currentAccount).hasBotForumDrafts(this.dialog_id, (int) getTopicId()), z);
+        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+        if (chatActivityEnterView != null) {
+            chatActivityEnterView.setBlockedByStreaming(BotForumHelper.getInstance(this.currentAccount).hasBotForumDrafts(this.dialog_id, (int) getTopicId()), z);
+        }
     }
 
     private void putFilteredDate(int i, MessageObject messageObject) {
@@ -15493,18 +15496,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private int calculateFirstMessageGroupHeight(int i) {
         MessageObject messageObject;
+        int additionalPaddingHeight;
         int height = this.chatListView.getHeight();
         int i2 = i;
         int iMax = 0;
         while (true) {
             View viewFindViewByPosition = this.chatListView.findViewByPosition(i2);
             if (viewFindViewByPosition instanceof ChatMessageCell) {
-                messageObject = ((ChatMessageCell) viewFindViewByPosition).getMessageObject();
+                ChatMessageCell chatMessageCell = (ChatMessageCell) viewFindViewByPosition;
+                messageObject = chatMessageCell.getMessageObject();
+                additionalPaddingHeight = chatMessageCell.getAdditionalPaddingHeight();
             } else {
                 if (!(viewFindViewByPosition instanceof ChatActionCell)) {
                     break;
                 }
                 messageObject = ((ChatActionCell) viewFindViewByPosition).getMessageObject();
+                additionalPaddingHeight = 0;
             }
             if (messageObject != null) {
                 long groupId = messageObject.getGroupId();
@@ -15512,7 +15519,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     break;
                 }
                 height = Math.min(height, viewFindViewByPosition.getTop());
-                iMax = Math.max(iMax, viewFindViewByPosition.getBottom());
+                iMax = Math.max(iMax, viewFindViewByPosition.getBottom() - additionalPaddingHeight);
                 if (groupId == 0) {
                     break;
                 }
@@ -16199,7 +16206,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processNewMessages(arrayList, true);
     }
 
-    private void processNewMessages(java.util.ArrayList r34, boolean r35) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+    private void processNewMessages(java.util.ArrayList r32, boolean r33) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processNewMessages(java.util.ArrayList, boolean):void");
     }
 

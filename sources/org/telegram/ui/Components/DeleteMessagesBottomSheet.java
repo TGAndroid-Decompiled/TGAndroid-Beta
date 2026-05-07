@@ -495,7 +495,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
     private boolean hasAnyDefaultRights() {
         TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
-        return (tL_chatBannedRights.send_messages && tL_chatBannedRights.send_media && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_gifs && tL_chatBannedRights.send_games && tL_chatBannedRights.send_inline && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls && tL_chatBannedRights.change_info && tL_chatBannedRights.invite_users && tL_chatBannedRights.pin_messages && (tL_chatBannedRights.manage_topics || !this.isForum) && tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_plain) ? false : true;
+        return (tL_chatBannedRights.send_messages && tL_chatBannedRights.send_media && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_gifs && tL_chatBannedRights.send_games && tL_chatBannedRights.send_inline && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls && tL_chatBannedRights.send_reactions && tL_chatBannedRights.change_info && tL_chatBannedRights.invite_users && tL_chatBannedRights.pin_messages && (tL_chatBannedRights.manage_topics || !this.isForum) && tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_plain) ? false : true;
     }
 
     public static TLRPC.TL_chatBannedRights bannedRightsOr(TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2) {
@@ -516,6 +516,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         tL_chatBannedRights3.send_inline = tL_chatBannedRights.send_inline || tL_chatBannedRights2.send_inline;
         tL_chatBannedRights3.embed_links = tL_chatBannedRights.embed_links || tL_chatBannedRights2.embed_links;
         tL_chatBannedRights3.send_polls = tL_chatBannedRights.send_polls || tL_chatBannedRights2.send_polls;
+        tL_chatBannedRights3.send_reactions = tL_chatBannedRights.send_reactions || tL_chatBannedRights2.send_reactions;
         tL_chatBannedRights3.change_info = tL_chatBannedRights.change_info || tL_chatBannedRights2.change_info;
         tL_chatBannedRights3.invite_users = tL_chatBannedRights.invite_users || tL_chatBannedRights2.invite_users;
         tL_chatBannedRights3.pin_messages = tL_chatBannedRights.pin_messages || tL_chatBannedRights2.pin_messages;
@@ -690,7 +691,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
 
     private boolean allDefaultMediaBanned() {
         TLRPC.TL_chatBannedRights tL_chatBannedRights = this.defaultBannedRights;
-        return tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls;
+        return tL_chatBannedRights.send_photos && tL_chatBannedRights.send_videos && tL_chatBannedRights.send_stickers && tL_chatBannedRights.send_audios && tL_chatBannedRights.send_docs && tL_chatBannedRights.send_voices && tL_chatBannedRights.send_roundvideos && tL_chatBannedRights.embed_links && tL_chatBannedRights.send_polls && tL_chatBannedRights.send_reactions;
     }
 
     private void fillAction(final ArrayList arrayList, final Action action) {
@@ -763,6 +764,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
         tL_chatBannedRights.send_roundvideos = z2;
         tL_chatBannedRights.embed_links = z2;
         tL_chatBannedRights.send_polls = z2;
+        tL_chatBannedRights.send_reactions = z2;
         onRestrictionsChanged();
         universalAdapter.update(true);
     }
@@ -818,6 +820,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 return;
             }
         }
+        int i6 = 0;
         if (i2 != 36 && i2 != 35) {
             if (i2 != 39) {
                 if (i2 == 40) {
@@ -827,63 +830,67 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                     applyScrolledPosition(true);
                     return;
                 }
-                if (uItem.id == 100) {
-                    this.restrictUserCollapsed = !this.restrictUserCollapsed;
-                    saveScrollPosition();
-                    this.adapter.update(true);
-                    applyScrolledPosition(true);
+                if (uItem.id != 100) {
+                    if (i2 == 38) {
+                        boolean z = this.restrict;
+                        this.restrict = !z;
+                        this.banOrRestrict.setFilter(!z ? this.restrictFilter : this.banFilter);
+                        this.adapter.update(true);
+                        onRestrictionsChanged();
+                        return;
+                    }
                     return;
                 }
-                if (i2 == 38) {
-                    boolean z = this.restrict;
-                    this.restrict = !z;
-                    this.banOrRestrict.setFilter(!z ? this.restrictFilter : this.banFilter);
-                    this.adapter.update(true);
-                    onRestrictionsChanged();
-                    return;
-                }
+                this.restrictUserCollapsed = false;
+                boolean z2 = !this.restrictUserDeleteAllMessages;
+                this.restrictUserDeleteAllMessages = z2;
+                this.restrictUserDeleteAllReactions = z2;
+                saveScrollPosition();
+                this.adapter.update(true);
+                applyScrolledPosition(true);
+                updateTitleAnimated();
                 return;
             }
             if (uItem.locked) {
                 new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.UserRestrictionsCantModify)).setMessage(LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled)).setPositiveButton(LocaleController.getString(R.string.OK), null).create().show();
                 return;
             }
-            int i6 = uItem.id;
-            if (i6 == 2) {
-                this.bannedRights.invite_users = !r5.invite_users;
+            int i7 = uItem.id;
+            if (i7 == 2) {
+                this.bannedRights.invite_users = !r6.invite_users;
                 onRestrictionsChanged();
-            } else if (i6 == 3) {
-                this.bannedRights.pin_messages = !r5.pin_messages;
+            } else if (i7 == 3) {
+                this.bannedRights.pin_messages = !r6.pin_messages;
                 onRestrictionsChanged();
-            } else if (i6 == 4) {
-                this.bannedRights.change_info = !r5.change_info;
+            } else if (i7 == 4) {
+                this.bannedRights.change_info = !r6.change_info;
                 onRestrictionsChanged();
-            } else if (i6 == 5) {
-                this.bannedRights.manage_topics = !r5.manage_topics;
+            } else if (i7 == 5) {
+                this.bannedRights.manage_topics = !r6.manage_topics;
                 onRestrictionsChanged();
-            } else if (i6 == 0) {
-                this.bannedRights.send_plain = !r5.send_plain;
+            } else if (i7 == 0) {
+                this.bannedRights.send_plain = !r6.send_plain;
                 onRestrictionsChanged();
             }
             this.adapter.update(true);
             return;
         }
-        int i7 = uItem.id;
-        if (i7 == 0) {
+        int i8 = uItem.id;
+        if (i8 == 0) {
             this.report.toggleAllChecks();
             return;
         }
-        if (i7 == 1) {
+        if (i8 == 1) {
             this.deleteAll.toggleAllChecks();
             onDeleteAllChanged();
             return;
         }
-        if (i7 == 3) {
+        if (i8 == 3) {
             this.deleteAllReactions.toggleAllChecks();
             onDeleteAllChanged();
             return;
         }
-        if (i7 == 2) {
+        if (i8 == 2) {
             this.banOrRestrict.toggleAllChecks();
             return;
         }
@@ -892,46 +899,45 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.UserRestrictionsCantModify)).setMessage(LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled)).setPositiveButton(LocaleController.getString(R.string.OK), null).create().show();
                 return;
             }
-            if (i7 == 6) {
-                this.bannedRights.send_photos = !r5.send_photos;
+            if (i8 == 6) {
+                this.bannedRights.send_photos = !r6.send_photos;
                 onRestrictionsChanged();
-            } else if (i7 == 7) {
-                this.bannedRights.send_videos = !r5.send_videos;
+            } else if (i8 == 7) {
+                this.bannedRights.send_videos = !r6.send_videos;
                 onRestrictionsChanged();
-            } else if (i7 == 9) {
-                this.bannedRights.send_audios = !r5.send_audios;
+            } else if (i8 == 9) {
+                this.bannedRights.send_audios = !r6.send_audios;
                 onRestrictionsChanged();
-            } else if (i7 == 8) {
-                this.bannedRights.send_docs = !r5.send_docs;
+            } else if (i8 == 8) {
+                this.bannedRights.send_docs = !r6.send_docs;
                 onRestrictionsChanged();
-            } else if (i7 == 11) {
-                this.bannedRights.send_roundvideos = !r5.send_roundvideos;
+            } else if (i8 == 11) {
+                this.bannedRights.send_roundvideos = !r6.send_roundvideos;
                 onRestrictionsChanged();
-            } else if (i7 == 10) {
-                this.bannedRights.send_voices = !r5.send_voices;
+            } else if (i8 == 10) {
+                this.bannedRights.send_voices = !r6.send_voices;
                 onRestrictionsChanged();
-            } else if (i7 == 15) {
-                this.bannedRights.send_reactions = !r5.send_reactions;
+            } else if (i8 == 15) {
+                this.bannedRights.send_reactions = !r6.send_reactions;
                 onRestrictionsChanged();
-            } else if (i7 == 12) {
+            } else if (i8 == 12) {
                 TLRPC.TL_chatBannedRights tL_chatBannedRights = this.bannedRights;
-                boolean z2 = !tL_chatBannedRights.send_stickers;
-                tL_chatBannedRights.send_inline = z2;
-                tL_chatBannedRights.send_gifs = z2;
-                tL_chatBannedRights.send_games = z2;
-                tL_chatBannedRights.send_stickers = z2;
+                boolean z3 = !tL_chatBannedRights.send_stickers;
+                tL_chatBannedRights.send_inline = z3;
+                tL_chatBannedRights.send_gifs = z3;
+                tL_chatBannedRights.send_games = z3;
+                tL_chatBannedRights.send_stickers = z3;
                 onRestrictionsChanged();
-            } else if (i7 == 14) {
+            } else if (i8 == 14) {
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = this.bannedRights;
                 if (tL_chatBannedRights2.send_plain || this.defaultBannedRights.send_plain) {
-                    int i8 = 0;
                     while (true) {
-                        if (i8 >= this.adapter.getItemCount()) {
+                        if (i6 >= this.adapter.getItemCount()) {
                             break;
                         }
-                        UItem item = this.adapter.getItem(i8);
+                        UItem item = this.adapter.getItem(i6);
                         if (item.viewType == 39 && item.id == 0) {
-                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(i8 + 1);
+                            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(i6 + 1);
                             if (viewHolderFindViewHolderForAdapterPosition != null) {
                                 View view2 = viewHolderFindViewHolderForAdapterPosition.itemView;
                                 float f3 = -this.shiftDp;
@@ -939,7 +945,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                                 AndroidUtilities.shakeViewSpring(view2, f3);
                             }
                         } else {
-                            i8++;
+                            i6++;
                         }
                     }
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
@@ -947,13 +953,13 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 }
                 tL_chatBannedRights2.embed_links = !tL_chatBannedRights2.embed_links;
                 onRestrictionsChanged();
-            } else if (i7 == 13) {
-                this.bannedRights.send_polls = !r5.send_polls;
+            } else if (i8 == 13) {
+                this.bannedRights.send_polls = !r6.send_polls;
                 onRestrictionsChanged();
-            } else if (i7 == 101) {
+            } else if (i8 == 101) {
                 this.restrictUserDeleteAllMessages = !this.restrictUserDeleteAllMessages;
                 updateTitleAnimated();
-            } else if (i7 == 102) {
+            } else if (i8 == 102) {
                 this.restrictUserDeleteAllReactions = !this.restrictUserDeleteAllReactions;
                 updateTitleAnimated();
             }
