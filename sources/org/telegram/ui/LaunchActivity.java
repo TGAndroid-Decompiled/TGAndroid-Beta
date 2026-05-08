@@ -52,6 +52,7 @@ import androidx.core.graphics.ColorUtils;
 import com.google.common.primitives.Longs;
 import j$.util.function.Consumer$CC;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -146,6 +147,7 @@ import org.telegram.ui.Components.PipVideoOverlay;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.BoostPagerBottomSheet;
 import org.telegram.ui.Components.SearchTagsList;
+import org.telegram.ui.Components.ShareTopView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.StickersAlert;
 import org.telegram.ui.Components.TermsOfServiceView;
@@ -1583,7 +1585,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return handleIntent(intent, z, z2, z3, null, true, false);
     }
 
-    private boolean handleIntent(android.content.Intent r121, boolean r122, boolean r123, boolean r124, org.telegram.messenger.browser.Browser.Progress r125, boolean r126, boolean r127) throws java.lang.Throwable {
+    private boolean handleIntent(android.content.Intent r118, boolean r119, boolean r120, boolean r121, org.telegram.messenger.browser.Browser.Progress r122, boolean r123, boolean r124) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean, boolean):boolean");
     }
 
@@ -1870,14 +1872,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     private void openDialogsToSend(boolean z) throws NumberFormatException {
+        ArrayList arrayList;
         Bundle bundle = new Bundle();
         bundle.putBoolean("onlySelect", true);
         bundle.putBoolean("canSelectTopics", true);
         bundle.putInt("dialogsType", 3);
         bundle.putBoolean("allowSwitchAccount", true);
-        ArrayList arrayList = this.contactsToSend;
-        if (arrayList != null) {
-            if (arrayList.size() != 1) {
+        ArrayList arrayList2 = this.contactsToSend;
+        if (arrayList2 != null) {
+            if (arrayList2.size() != 1) {
                 bundle.putString("selectAlertString", LocaleController.getString(R.string.SendMessagesToText));
                 bundle.putString("selectAlertStringGroup", LocaleController.getString(R.string.SendContactToGroupText));
             }
@@ -1885,22 +1888,33 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putString("selectAlertString", LocaleController.getString(R.string.SendMessagesToText));
             bundle.putString("selectAlertStringGroup", LocaleController.getString(R.string.SendMessagesToGroupText));
         }
-        DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
-            @Override
-            public boolean shouldShowNextButton(DialogsActivity dialogsActivity2, ArrayList arrayList2, CharSequence charSequence, boolean z2) {
-                if (LaunchActivity.this.exportingChatUri != null) {
-                    return false;
-                }
-                if (LaunchActivity.this.contactsToSend != null && LaunchActivity.this.contactsToSend.size() == 1 && !LaunchActivity.this.mainFragmentsStack.isEmpty()) {
-                    return true;
-                }
-                if (arrayList2.size() <= 1) {
-                    return LaunchActivity.this.videoPath != null || (LaunchActivity.this.photoPathsArray != null && LaunchActivity.this.photoPathsArray.size() > 0);
-                }
-                return false;
-            }
-        };
+        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
         dialogsActivity.setDelegate(this);
+        if (this.videoPath != null || ((arrayList = this.photoPathsArray) != null && !arrayList.isEmpty())) {
+            ArrayList arrayList3 = new ArrayList();
+            ArrayList arrayList4 = this.photoPathsArray;
+            if (arrayList4 != null && !arrayList4.isEmpty()) {
+                arrayList3.addAll(ChatActivity.createEntriesFromMedia(this.photoPathsArray, false, null));
+            }
+            String str = this.videoPath;
+            if (str != null) {
+                arrayList3.add(new MediaController.PhotoEntry(0, 0, 0L, str, 0, true, 0, 0, 0L));
+            }
+            if (!arrayList3.isEmpty()) {
+                if (!TextUtils.isEmpty(this.sendingText)) {
+                    ((MediaController.PhotoEntry) arrayList3.get(0)).caption = this.sendingText;
+                }
+                dialogsActivity.setSharedMedia(arrayList3, this.sendingText);
+            }
+        } else if (!TextUtils.isEmpty(this.sendingText)) {
+            String strExtractFirstUrl = ShareTopView.extractFirstUrl(this.sendingText);
+            if (strExtractFirstUrl != null) {
+                dialogsActivity.setSharedLink(strExtractFirstUrl, this.sendingText);
+            } else {
+                CharSequence charSequence = this.sendingText;
+                dialogsActivity.setSharedText(charSequence, charSequence);
+            }
+        }
         getActionBarLayout().presentFragment(dialogsActivity, !AndroidUtilities.isTablet() ? this.actionBarLayout.getFragmentStack().size() <= 1 || !(this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1) instanceof MainTabsActivity) : this.layersActionBarLayout.getFragmentStack().isEmpty() || !(this.layersActionBarLayout.getFragmentStack().get(this.layersActionBarLayout.getFragmentStack().size() - 1) instanceof MainTabsActivity), !z, true, false);
         if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
             SecretMediaViewer.getInstance().closePhoto(false, false);
@@ -1943,30 +1957,30 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runCommentRequest$31(final int i, final TLRPC.Chat chat, final Long l, final Integer num, final Integer num2, final Runnable runnable, final String str, final Integer num3, final byte[] bArr, final int i2, final int i3, final TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$runCommentRequest$30(tLObject, i, chat, l, num, num2, runnable, str, num3, bArr, i2, i3, tL_messages_getDiscussionMessage, runnable2);
             }
         });
     }
 
-    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r18, int r19, org.telegram.tgnet.TLRPC.Chat r20, java.lang.Long r21, java.lang.Integer r22, java.lang.Integer r23, java.lang.Runnable r24, java.lang.String r25, java.lang.Integer r26, byte[] r27, int r28, int r29, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r30, java.lang.Runnable r31) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r18, int r19, org.telegram.tgnet.TLRPC.Chat r20, java.lang.Long r21, java.lang.Integer r22, java.lang.Integer r23, java.lang.Runnable r24, java.lang.String r25, java.lang.Integer r26, byte[] r27, int r28, int r29, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r30, java.lang.Runnable r31) throws android.content.res.Resources.NotFoundException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$30(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, java.lang.Integer, byte[], int, int, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
     }
 
-    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final byte[] r25, final int r26, final java.util.ArrayList r27, final int r28) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final byte[] r25, final int r26, final java.util.ArrayList r27, final int r28) throws android.content.res.Resources.NotFoundException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, java.lang.Integer, byte[], int, java.util.ArrayList, int):void");
     }
 
     public void lambda$openTopicRequest$33(final int i, final TLRPC.Chat chat, final int i2, final int i3, final Runnable runnable, final String str, final Integer num, final byte[] bArr, final int i4, final ArrayList arrayList, final int i5, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$openTopicRequest$32(tL_error, tLObject, i, chat, i2, i3, runnable, str, num, bArr, i4, arrayList, i5);
             }
         });
     }
 
-    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, byte[] bArr, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, byte[] bArr, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, IOException {
         if (tL_error == null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
             LongSparseArray longSparseArray = new LongSparseArray();
@@ -2907,7 +2921,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass16 implements MessagesController.MessagesLoadedCallback {
+    class AnonymousClass15 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -2915,7 +2929,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        AnonymousClass16(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        AnonymousClass15(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2926,7 +2940,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         @Override
         public void onMessagesLoaded(boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass16.onMessagesLoaded(boolean):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass15.onMessagesLoaded(boolean):void");
         }
 
         public void lambda$onMessagesLoaded$2(String str, final long j, final BaseFragment baseFragment) {
@@ -4127,12 +4141,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r44, final java.util.ArrayList r45, final java.lang.CharSequence r46, final boolean r47, boolean r48, int r49, final int r50, org.telegram.ui.TopicsFragment r51) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException, java.io.IOException {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r47, final java.util.ArrayList r48, final java.lang.CharSequence r49, final boolean r50, boolean r51, int r52, final int r53, org.telegram.ui.TopicsFragment r54) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
@@ -4193,6 +4207,63 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 SendMessagesHelper.prepareSendingText(accountInstance, charSequence, j3, z, i4 != 0 ? i4 : i, i2, j);
             }
         }
+    }
+
+    private static void sendShareText(AccountInstance accountInstance, DialogsActivity dialogsActivity, CharSequence charSequence, long j, MessageObject messageObject, long j2, boolean z, int i, int i2) {
+        boolean z2 = dialogsActivity == null || dialogsActivity.isWebPagePreviewEnabled();
+        TLRPC.WebPage sharedWebPage = (!z2 || dialogsActivity == null) ? null : dialogsActivity.getSharedWebPage();
+        if (TextUtils.isEmpty(charSequence)) {
+            return;
+        }
+        if (sharedWebPage == null && z2) {
+            SendMessagesHelper.prepareSendingText(accountInstance, charSequence, j, j2, z, i, i2, 0L);
+            return;
+        }
+        CharSequence trimmedString = SendMessagesHelper.getTrimmedString(charSequence);
+        if (trimmedString == null || trimmedString.length() == 0) {
+            return;
+        }
+        CharSequence[] charSequenceArr = {trimmedString};
+        accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequenceArr[0].toString(), j, messageObject, messageObject, sharedWebPage, z2, accountInstance.getMediaDataController().getEntities(charSequenceArr, true), null, null, z, i, i2, null, false));
+    }
+
+    private static ArrayList buildSendingInfosFromEntries(ArrayList arrayList) {
+        String str;
+        ArrayList arrayList2 = new ArrayList();
+        if (arrayList == null) {
+            return arrayList2;
+        }
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) it.next();
+            SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+            boolean z = photoEntry.isVideo;
+            if (!z && (str = photoEntry.imagePath) != null) {
+                sendingMediaInfo.path = str;
+            } else {
+                String str2 = photoEntry.path;
+                if (str2 != null) {
+                    sendingMediaInfo.path = str2;
+                }
+            }
+            sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+            sendingMediaInfo.coverPath = photoEntry.coverPath;
+            sendingMediaInfo.isVideo = z;
+            sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+            sendingMediaInfo.discardLivePhoto = photoEntry.isUnalivePhoto();
+            sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+            sendingMediaInfo.livePhotoTimestampUs = photoEntry.livePhotoTimestampUs;
+            CharSequence charSequence = photoEntry.caption;
+            sendingMediaInfo.caption = charSequence != null ? charSequence.toString() : null;
+            sendingMediaInfo.entities = photoEntry.entities;
+            sendingMediaInfo.masks = photoEntry.stickers;
+            sendingMediaInfo.ttl = photoEntry.ttl;
+            sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+            sendingMediaInfo.canDeleteAfter = photoEntry.canDeleteAfter;
+            sendingMediaInfo.highQuality = photoEntry.isHighQuality();
+            arrayList2.add(sendingMediaInfo);
+        }
+        return arrayList2;
     }
 
     private void onFinish() {
@@ -4376,7 +4447,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4628,7 +4699,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() throws Resources.NotFoundException {
+    protected void onResume() {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;

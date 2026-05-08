@@ -1405,6 +1405,21 @@ public abstract class BaseFragment {
         return storyViewer;
     }
 
+    public ArticleViewer getArticleViewer() {
+        if ((getLastSheet() instanceof ArticleViewer.Sheet) && getLastSheet().isShown()) {
+            return ((ArticleViewer.Sheet) getLastSheet()).getArticleViewer();
+        }
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (!(iNavigationLayout instanceof ActionBarLayout) || ((ActionBarLayout) iNavigationLayout).getSheetFragment(false) == null || !(((ActionBarLayout) this.parentLayout).getSheetFragment(false).getLastSheet() instanceof ArticleViewer.Sheet)) {
+            return null;
+        }
+        ArticleViewer.Sheet sheet = (ArticleViewer.Sheet) ((ActionBarLayout) this.parentLayout).getSheetFragment(false).getLastSheet();
+        if (sheet.isShown()) {
+            return sheet.getArticleViewer();
+        }
+        return null;
+    }
+
     public ArticleViewer createArticleViewer(boolean z) {
         if (this.sheetsStack == null) {
             this.sheetsStack = new ArrayList<>();

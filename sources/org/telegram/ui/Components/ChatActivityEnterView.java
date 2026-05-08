@@ -89,6 +89,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -157,6 +158,7 @@ import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.Forum.ForumUtilities;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
@@ -479,7 +481,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     private ImageView suggestButton;
     private ValueAnimator suggestButtonAppear;
     private boolean suggestButtonVisible;
-    private FrameLayout textFieldContainer;
+    public FrameLayout textFieldContainer;
     boolean textTransitionIsRunning;
     private float tooltipAlpha;
     private final AnimatedFloat topGradientAlpha;
@@ -728,7 +730,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return false;
     }
 
-    public static void access$10100(ChatActivityEnterView chatActivityEnterView) {
+    public static void access$10000(ChatActivityEnterView chatActivityEnterView) {
         chatActivityEnterView.checkBirthdayHint();
     }
 
@@ -744,13 +746,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return f2;
     }
 
-    static float access$5616(ChatActivityEnterView chatActivityEnterView, float f) {
+    static float access$5516(ChatActivityEnterView chatActivityEnterView, float f) {
         float f2 = chatActivityEnterView.slideToCancelLockProgress + f;
         chatActivityEnterView.slideToCancelLockProgress = f2;
         return f2;
     }
 
-    static float access$5624(ChatActivityEnterView chatActivityEnterView, float f) {
+    static float access$5524(ChatActivityEnterView chatActivityEnterView, float f) {
         float f2 = chatActivityEnterView.slideToCancelLockProgress - f;
         chatActivityEnterView.slideToCancelLockProgress = f2;
         return f2;
@@ -3297,7 +3299,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.access$10100(chatActivityEnterView);
+                    ChatActivityEnterView.access$10000(chatActivityEnterView);
                 }
             });
         }
@@ -4945,7 +4947,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() {
+                            public final void run() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -4957,7 +4959,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -5030,7 +5032,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -5359,7 +5361,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             ImageView imageView = this.aiButton;
             AiButtonDrawable aiButtonDrawable = this.aiButtonIcon;
             Objects.requireNonNull(aiButtonDrawable);
-            imageView.postDelayed(new ChatActivityEnterView$$ExternalSyntheticLambda73(aiButtonDrawable), 220L);
+            imageView.postDelayed(new CaptionPhotoViewer$$ExternalSyntheticLambda5(aiButtonDrawable), 220L);
             HintView2 hintView2 = this.aiHint;
             if (hintView2 != null) {
                 hintView2.hide();
@@ -10830,7 +10832,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) {
+        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             if (ChatActivityEnterView.this.parentFragment == null) {
                 return;
             }
@@ -10896,6 +10898,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
 
                 @Override
+                public boolean canSchedule() {
+                    return PhotoViewer.PhotoViewerProvider.CC.$default$canSchedule(this);
+                }
+
+                @Override
                 public boolean canScrollAway() {
                     return false;
                 }
@@ -10955,7 +10962,17 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
 
                 @Override
+                public CharSequence getSubtitleFor(int i3) {
+                    return null;
+                }
+
+                @Override
                 public ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i3) {
+                    return null;
+                }
+
+                @Override
+                public CharSequence getTitleFor(int i3) {
                     return null;
                 }
 
@@ -13783,7 +13800,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public static class SendButton extends View {
+    public static class SendButton extends View implements ItemOptions.ScrimView {
         private final AnimatedFloat animatedPriceVisible;
         private final AnimatedFloat appear;
         private final Paint backgroundPaint;
@@ -13818,6 +13835,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         private final AnimatedTextView.AnimatedTextDrawable priceText;
         public int resId;
         public final Theme.ResourcesProvider resourcesProvider;
+        private int scrimViewBackgroundColor;
+        private final Paint scrimViewBackgroundPaint;
         private final ColoredImageSpan[] spans;
         private long starsPrice;
 
@@ -13842,6 +13861,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             this.backgroundPaint = new Paint(1);
             this.circleWidth = -1;
             this.circleHeight = -1;
+            this.scrimViewBackgroundPaint = new Paint(1);
             this.spans = new ColoredImageSpan[1];
             this.open = new AnimatedFloat(this, 0L, 420L, cubicBezierInterpolator);
             this.bounce = new ButtonBounce(this);
@@ -13910,6 +13930,68 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         public int getCircleHeight() {
             int i = this.circleHeight;
             return i >= 0 ? i : getMeasuredHeight() - AndroidUtilities.dp(8.0f);
+        }
+
+        @Override
+        public void getBounds(RectF rectF) {
+            float circleWidth = getCircleWidth();
+            float circleHeight = getCircleHeight();
+            float measuredWidth = (getMeasuredWidth() - AndroidUtilities.dp(4.0f)) - this.circlePadX;
+            float measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(4.0f)) - this.circlePadY;
+            rectF.set(measuredWidth - circleWidth, measuredHeight - circleHeight, measuredWidth, measuredHeight);
+        }
+
+        public void setScrimViewBackgroundColor(int i) {
+            this.scrimViewBackgroundColor = i;
+            this.scrimViewBackgroundPaint.setColor(i);
+        }
+
+        @Override
+        public void drawScrim(Canvas canvas, float f) {
+            float fLerp;
+            float fLerp2;
+            float fLerp3;
+            float measuredWidth;
+            float measuredHeight;
+            int i = this.scrimViewBackgroundColor;
+            if (i != 0) {
+                this.scrimViewBackgroundPaint.setColor(i);
+                this.scrimViewBackgroundPaint.setAlpha((int) (Color.alpha(this.scrimViewBackgroundColor) * f));
+                float f2 = this.open.get();
+                float f3 = this.animatedPriceVisible.get();
+                if (this.newCounterPos) {
+                    fLerp = AndroidUtilities.lerp(getMeasuredWidth() - (getMeasuredHeight() / 2.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), f2) - this.circlePadX;
+                    fLerp3 = getCircleHeight() * f2;
+                    fLerp2 = ((getMeasuredHeight() - this.circlePadY) - AndroidUtilities.dp(4.0f)) - (fLerp3 / 2.0f);
+                } else {
+                    fLerp = AndroidUtilities.lerp(AndroidUtilities.lerp(getMeasuredWidth() - (getMeasuredHeight() / 2.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), f2) - this.circlePadX, getMeasuredWidth() - AndroidUtilities.dp(9.0f), f3);
+                    fLerp2 = AndroidUtilities.lerp(((getMeasuredHeight() - this.circlePadY) - AndroidUtilities.dp(4.0f)) - (getCircleHeight() / 2.0f), getMeasuredHeight() - AndroidUtilities.dp(24.0f), f3);
+                    fLerp3 = AndroidUtilities.lerp(getCircleHeight(), AndroidUtilities.dp(32.0f), f3) * f2;
+                }
+                float fLerp4 = AndroidUtilities.lerp(getCircleWidth(), AndroidUtilities.dp(this.isNewDesignSendButton ? 20.0f : 22.0f) + this.priceText.getCurrentWidth(), f3) * f2;
+                if (f2 > 0.0f && fLerp4 > 0.0f && fLerp3 > 0.0f) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    float f4 = fLerp3 / 2.0f;
+                    rectF.set(fLerp - fLerp4, fLerp2 - f4, fLerp, f4 + fLerp2);
+                    rectF.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+                    float fMin = (Math.min(fLerp4, fLerp3) / 2.0f) + AndroidUtilities.dp(4.0f);
+                    canvas.drawRoundRect(rectF, fMin, fMin, this.scrimViewBackgroundPaint);
+                }
+                float fIsNotEmpty = this.count.isNotEmpty() * (1.0f - f3);
+                if (fIsNotEmpty > 0.0f) {
+                    float fMax = Math.max(AndroidUtilities.dp(9.0f) + this.count.getCurrentWidth(), AndroidUtilities.dp(18.0f));
+                    if (this.newCounterPos) {
+                        measuredWidth = fLerp - AndroidUtilities.dp(50.0f);
+                        measuredHeight = (fLerp2 - (getCircleHeight() / 2.0f)) + (fMax / 2.0f);
+                    } else {
+                        float f5 = fMax / 2.0f;
+                        measuredWidth = (getMeasuredWidth() - this.circlePadX) - f5;
+                        measuredHeight = (getMeasuredHeight() - this.circlePadY) - f5;
+                    }
+                    canvas.drawCircle(measuredWidth, measuredHeight, ((fMax / 2.0f) + AndroidUtilities.dp(2.0f)) * fIsNotEmpty * this.countBounceScale, this.scrimViewBackgroundPaint);
+                }
+            }
+            draw(canvas);
         }
 
         public void setCirclePadding(float f, float f2) {

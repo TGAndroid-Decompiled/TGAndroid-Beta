@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,6 +16,7 @@ import android.util.Pair;
 import androidx.core.content.FileProvider;
 import j$.util.Objects;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -325,7 +327,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void updateColors() {
+    public void updateColors() throws IOException {
         ChatAttachAlert chatAttachAlert = this.chatAttachAlert;
         if (chatAttachAlert != null) {
             chatAttachAlert.checkColors();
@@ -809,11 +811,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void openPhotoForEdit(String str, String str2, int i, boolean z) {
+    public void openPhotoForEdit(String str, String str2, int i, boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         openPhotoForEdit(str, str2, new Pair(Integer.valueOf(i), 0), z);
     }
 
-    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) {
+    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         final ArrayList arrayList = new ArrayList();
         MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
         orientation.isVideo = z;
@@ -847,7 +849,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation = true;
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) {
+    public void onActivityResult(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();

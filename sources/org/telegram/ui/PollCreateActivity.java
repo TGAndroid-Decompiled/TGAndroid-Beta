@@ -1069,55 +1069,37 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
     }
 
     public void setTextLeft(View view, int i) {
-        int i2;
         int length;
-        int i3;
-        int i4;
-        int length2;
+        int i2;
         if (view instanceof PollEditTextCell) {
             PollEditTextCell pollEditTextCell = (PollEditTextCell) view;
             if (i == this.questionRow) {
+                i2 = this.todo ? getMessagesController().todoTitleLengthMax : 255;
                 CharSequence charSequence = this.questionString;
-                i3 = 255;
-                if (charSequence != null) {
-                    length2 = charSequence.length();
-                    i2 = 255;
-                    length = i3 - length2;
-                } else {
-                    i4 = 255;
-                    i2 = i4;
-                    length2 = 0;
-                    length = i3 - length2;
-                }
+                length = i2 - (charSequence != null ? charSequence.length() : 0);
             } else if (i == this.solutionRow) {
                 CharSequence charSequence2 = this.solutionString;
-                i3 = 200;
-                if (charSequence2 != null) {
-                    length2 = charSequence2.length();
-                    i2 = 200;
-                    length = i3 - length2;
-                } else {
-                    i4 = 200;
-                    i2 = i4;
-                    length2 = 0;
-                    length = i3 - length2;
-                }
+                length = 200 - (charSequence2 != null ? charSequence2.length() : 0);
+                i2 = 200;
             } else {
-                int i5 = this.answerStartRow;
-                if (i < i5 || i >= this.answersCount + i5) {
+                int i3 = this.answerStartRow;
+                if (i < i3 || i >= this.answersCount + i3) {
                     return;
                 }
-                CharSequence charSequence3 = this.answers[i - i5];
-                i2 = 100;
-                length = 100 - (charSequence3 != null ? charSequence3.length() : 0);
+                int i4 = i - i3;
+                int i5 = this.todo ? getMessagesController().todoItemLengthMax : 100;
+                CharSequence charSequence3 = this.answers[i4];
+                int i6 = i5;
+                length = i5 - (charSequence3 != null ? charSequence3.length() : 0);
+                i2 = i6;
             }
             float f = i2;
             if (length <= f - (0.7f * f)) {
                 pollEditTextCell.setText2(String.format("%d", Integer.valueOf(length)));
                 SimpleTextView textView2 = pollEditTextCell.getTextView2();
-                int i6 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
-                textView2.setTextColor(Theme.getColor(i6));
-                textView2.setTag(Integer.valueOf(i6));
+                int i7 = length < 0 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText3;
+                textView2.setTextColor(Theme.getColor(i7));
+                textView2.setTag(Integer.valueOf(i7));
                 return;
             }
             pollEditTextCell.setText2("");

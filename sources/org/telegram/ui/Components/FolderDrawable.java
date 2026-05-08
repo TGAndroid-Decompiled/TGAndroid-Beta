@@ -6,6 +6,8 @@ import android.graphics.ColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -24,7 +26,8 @@ public class FolderDrawable extends Drawable {
             Paint paint = new Paint(1);
             this.strokePaint = paint;
             paint.setStyle(Paint.Style.STROKE);
-            paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+            paint.setColor(-16777216);
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeJoin(Paint.Join.ROUND);
@@ -43,12 +46,12 @@ public class FolderDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        this.drawable.setBounds(getBounds());
-        this.drawable.draw(canvas);
-        Path path = this.path;
-        if (path != null) {
+        if (this.path != null) {
+            canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
+            this.drawable.setBounds(getBounds());
+            this.drawable.draw(canvas);
             if (this.pathInvalidated) {
-                path.rewind();
+                this.path.rewind();
                 this.path.moveTo(x(0.4871f), y(0.6025f));
                 this.path.lineTo(x(0.8974f), y(0.6025f));
                 this.path.lineTo(x(1.0f), y(0.7564f));
@@ -60,7 +63,11 @@ public class FolderDrawable extends Drawable {
             }
             canvas.drawPath(this.path, this.strokePaint);
             canvas.drawPath(this.path, this.fillPaint);
+            canvas.restore();
+            return;
         }
+        this.drawable.setBounds(getBounds());
+        this.drawable.draw(canvas);
     }
 
     int x(float f) {

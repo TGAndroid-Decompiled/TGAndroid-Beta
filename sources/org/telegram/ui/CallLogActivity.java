@@ -46,6 +46,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -2096,84 +2097,97 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void openCreateCall() {
+        openCreateCall(this);
+    }
+
+    public static void openCreateCall(BaseFragment baseFragment) {
         Bundle bundle = new Bundle();
         bundle.putBoolean("isCall", true);
-        presentFragment(new AnonymousClass9(bundle));
+        baseFragment.presentFragment(new AnonymousClass9(bundle, baseFragment.getCurrentAccount(), baseFragment));
     }
 
     class AnonymousClass9 extends GroupCreateActivity {
-        AnonymousClass9(Bundle bundle) {
+        final int val$account;
+        final BaseFragment val$parent;
+
+        AnonymousClass9(Bundle bundle, int i, BaseFragment baseFragment) {
             super(bundle);
+            this.val$account = i;
+            this.val$parent = baseFragment;
         }
 
         @Override
         protected void onCallUsersSelected(final HashSet hashSet, final boolean z) {
             if (hashSet.size() == 1) {
-                final TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-                TLRPC.UserFull userFull = getMessagesController().getUserFull(user.id);
-                if (userFull != null) {
-                    VoIPHelper.startCall(CallLogActivity.this.lastCallUser = user, z, userFull.video_calls_available, getParentActivity(), userFull, getAccountInstance());
-                } else {
+                final TLRPC.User user = MessagesController.getInstance(this.val$account).getUser((Long) hashSet.iterator().next());
+                TLRPC.UserFull userFull = MessagesController.getInstance(this.val$account).getUserFull(user.id);
+                if (userFull == null) {
                     TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                    tL_users_getFullUser.id = getMessagesController().getInputUser(user.id);
-                    getConnectionsManager().sendRequest(tL_users_getFullUser, new RequestDelegate() {
+                    tL_users_getFullUser.id = MessagesController.getInstance(this.val$account).getInputUser(user.id);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.val$account);
+                    final int i = this.val$account;
+                    connectionsManager.sendRequest(tL_users_getFullUser, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$onCallUsersSelected$1(user, z, tLObject, tL_error);
+                            this.f$0.lambda$onCallUsersSelected$1(i, user, z, tLObject, tL_error);
                         }
                     });
                     return;
                 }
+                VoIPHelper.startCall(user, z, userFull.video_calls_available, getParentActivity(), userFull, AccountInstance.getInstance(this.val$account));
             } else {
                 TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
                 createconferencecall.random_id = Utilities.random.nextInt();
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new RequestDelegate() {
+                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(this.val$account);
+                final int i2 = this.val$account;
+                final BaseFragment baseFragment = this.val$parent;
+                connectionsManager2.sendRequest(createconferencecall, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                        this.f$0.lambda$onCallUsersSelected$3(z, hashSet, tLObject, tL_error);
+                        CallLogActivity.AnonymousClass9.lambda$onCallUsersSelected$3(i2, z, hashSet, baseFragment, tLObject, tL_error);
                     }
                 });
             }
             finishFragment();
         }
 
-        public void lambda$onCallUsersSelected$1(final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+        public void lambda$onCallUsersSelected$1(final int i, final TLRPC.User user, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCallUsersSelected$0(tLObject, user, z);
+                    this.f$0.lambda$onCallUsersSelected$0(tLObject, i, user, z);
                 }
             });
         }
 
-        public void lambda$onCallUsersSelected$0(TLObject tLObject, TLRPC.User user, boolean z) {
+        public void lambda$onCallUsersSelected$0(TLObject tLObject, int i, TLRPC.User user, boolean z) {
             TLRPC.UserFull userFull;
             if (tLObject instanceof TLRPC.TL_users_userFull) {
                 TLRPC.TL_users_userFull tL_users_userFull = (TLRPC.TL_users_userFull) tLObject;
-                MessagesController.getInstance(CallLogActivity.this.currentAccount).putUsers(tL_users_userFull.users, false);
-                MessagesController.getInstance(CallLogActivity.this.currentAccount).putChats(tL_users_userFull.chats, false);
+                MessagesController.getInstance(i).putUsers(tL_users_userFull.users, false);
+                MessagesController.getInstance(i).putChats(tL_users_userFull.chats, false);
                 userFull = tL_users_userFull.full_user;
             } else {
                 userFull = null;
             }
             TLRPC.UserFull userFull2 = userFull;
-            VoIPHelper.startCall(CallLogActivity.this.lastCallUser = user, z, userFull2 != null && userFull2.video_calls_available, getParentActivity(), userFull2, getAccountInstance());
+            VoIPHelper.startCall(user, z, userFull2 != null && userFull2.video_calls_available, getParentActivity(), userFull2, AccountInstance.getInstance(i));
         }
 
-        public void lambda$onCallUsersSelected$3(final boolean z, final HashSet hashSet, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        public static void lambda$onCallUsersSelected$3(final int i, final boolean z, final HashSet hashSet, final BaseFragment baseFragment, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() throws InterruptedException {
-                    this.f$0.lambda$onCallUsersSelected$2(tLObject, z, hashSet, tL_error);
+                    CallLogActivity.AnonymousClass9.lambda$onCallUsersSelected$2(tLObject, i, z, hashSet, tL_error, baseFragment);
                 }
             });
         }
 
-        public void lambda$onCallUsersSelected$2(TLObject tLObject, boolean z, HashSet hashSet, TLRPC.TL_error tL_error) throws InterruptedException {
+        public static void lambda$onCallUsersSelected$2(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) throws InterruptedException {
             if (tLObject instanceof TLRPC.Updates) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
-                MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
+                MessagesController.getInstance(i).putUsers(updates.users, false);
+                MessagesController.getInstance(i).putChats(updates.chats, false);
                 Iterator it = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateGroupCall.class).iterator();
                 TLRPC.GroupCall groupCall = null;
                 while (it.hasNext()) {
@@ -2185,19 +2199,19 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
                 tL_inputGroupCall.id = groupCall.id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
-                VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall, z, groupCall, hashSet);
+                VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCall, z, groupCall, hashSet);
                 return;
             }
             if (!(tLObject instanceof TL_phone.groupCall)) {
                 if (tL_error != null) {
-                    BulletinFactory.of(CallLogActivity.this).showForError(tL_error);
+                    BulletinFactory.of(baseFragment).showForError(tL_error);
                     return;
                 }
                 return;
             }
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            MessagesController.getInstance(this.currentAccount).putUsers(groupcall.users, false);
-            MessagesController.getInstance(this.currentAccount).putChats(groupcall.chats, false);
+            MessagesController.getInstance(i).putUsers(groupcall.users, false);
+            MessagesController.getInstance(i).putChats(groupcall.chats, false);
             if (LaunchActivity.instance == null) {
                 return;
             }
@@ -2205,7 +2219,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             TLRPC.GroupCall groupCall2 = groupcall.call;
             tL_inputGroupCall2.id = groupCall2.id;
             tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-            VoIPHelper.joinConference(LaunchActivity.instance, this.currentAccount, tL_inputGroupCall2, z, groupCall2, hashSet);
+            VoIPHelper.joinConference(LaunchActivity.instance, i, tL_inputGroupCall2, z, groupCall2, hashSet);
         }
     }
 

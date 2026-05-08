@@ -1733,9 +1733,19 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.storiesList != null && (currentPeerView = this.storiesViewPager.getCurrentPeerView()) != null && (selectedPosition = currentPeerView.getSelectedPosition()) >= 0 && selectedPosition < this.storiesList.messageObjects.size()) {
             this.messageId = ((MessageObject) this.storiesList.messageObjects.get(selectedPosition)).getId();
         }
-        PlaceProvider placeProvider = this.placeProvider;
-        if (placeProvider != null) {
-            placeProvider.preLayout(this.storiesViewPager.getCurrentDialogId(), this.messageId, new Runnable() {
+        if (this.placeProvider != null) {
+            long currentDialogId = this.storiesViewPager.getCurrentDialogId();
+            int i = this.messageId;
+            if (this.storiesList instanceof StoriesController.StoryRepostsList) {
+                PeerStoriesView currentPeerView2 = this.storiesViewPager.getCurrentPeerView();
+                int selectedPosition2 = currentPeerView2 == null ? 0 : currentPeerView2.getSelectedPosition();
+                TL_stories.StoryItem storyItem = (currentPeerView2 == null || selectedPosition2 < 0 || selectedPosition2 >= currentPeerView2.storyItems.size()) ? null : (TL_stories.StoryItem) currentPeerView2.storyItems.get(selectedPosition2);
+                if (storyItem != null) {
+                    currentDialogId = storyItem.dialogId;
+                    i = storyItem.id;
+                }
+            }
+            this.placeProvider.preLayout(currentDialogId, i, new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$layoutAndFindView$7();
@@ -1779,6 +1789,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if ((storiesList instanceof StoriesController.SearchStoriesList) && storyItem != null) {
                 currentDialogId = storyItem.dialogId;
                 i = storyItem.messageId;
+            } else if ((storiesList instanceof StoriesController.StoryRepostsList) && storyItem != null) {
+                currentDialogId = storyItem.dialogId;
+                i = storyItem.id;
             } else if (storiesList != null) {
                 i = this.dayStoryId;
             }

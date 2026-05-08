@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.ColorUtils;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -369,7 +370,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException, IOException {
         MessageObject messageObject;
         if (i == NotificationCenter.startSpoilers) {
             setSpoilersSuppressed(false);
@@ -641,11 +642,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.overrideText = i2;
     }
 
-    public void setMessageObject(MessageObject messageObject) throws Resources.NotFoundException {
+    public void setMessageObject(MessageObject messageObject) throws Resources.NotFoundException, IOException {
         setMessageObject(messageObject, false);
     }
 
-    public void setMessageObject(org.telegram.messenger.MessageObject r30, boolean r31) throws android.content.res.Resources.NotFoundException {
+    public void setMessageObject(org.telegram.messenger.MessageObject r30, boolean r31) throws android.content.res.Resources.NotFoundException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.setMessageObject(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -750,7 +751,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    protected void onAttachedToWindow() throws Resources.NotFoundException {
+    protected void onAttachedToWindow() throws Resources.NotFoundException, IOException {
         ChatActionCellDelegate chatActionCellDelegate;
         super.onAttachedToWindow();
         this.attachedToWindow = true;

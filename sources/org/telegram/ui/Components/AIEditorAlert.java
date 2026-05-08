@@ -560,7 +560,11 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         }
         HintView2 hintView22 = new HintView2(getContext(), 1);
         this.styleHint = hintView22;
-        hintView22.setText(LocaleController.getString(R.string.AIEditorChooseStyle));
+        hintView22.setRoundingWithCornerEffect(false);
+        this.styleHint.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        this.styleHint.setRounding(20.0f);
+        this.styleHint.setShadow(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(4.0f), Theme.multAlpha(-16777216, 0.25f));
+        this.styleHint.setText(LocaleController.getString(R.string.AIEditorChooseStyle));
         this.styleHint.setJoint(0.5f, 0.0f);
         this.styleHint.setDuration(8000L);
         this.containerView.addView(this.styleHint, LayoutHelper.createFrame(-1, 200.0f, 55, 0.0f, 0.0f, 0.0f, 0.0f));

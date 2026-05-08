@@ -100,6 +100,16 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                 return;
             }
         }
+        RecyclerListView recyclerListView2 = this.recyclerListView;
+        if (recyclerListView2 != null && (recyclerListView2.getParent() instanceof SelfStoryViewsPage)) {
+            if (((SelfStoryViewsPage) this.recyclerListView.getParent()).scrollToRepostCell(j, i)) {
+                this.recyclerListView.post(runnable);
+                return;
+            } else {
+                runnable.run();
+                return;
+            }
+        }
         if (this.isHiddenArchive) {
             MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().sortHiddenStories();
         }

@@ -115,7 +115,7 @@ public class SearchAdsInfoBottomSheet extends BottomSheetWithRecyclerListView {
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setTextSize(1, 14.0f);
         textView4.setText(LocaleController.getString(R.string.SearchAdsAboutUnderstood));
-        textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i, resourcesProvider), 6.0f));
+        textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i, resourcesProvider), 24.0f));
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {

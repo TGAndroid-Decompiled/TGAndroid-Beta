@@ -177,6 +177,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.WebFile;
@@ -461,6 +462,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private int dateOverride;
     private ActionBarMenuItem deleteItem;
     private MessagesController.DialogPhotos dialogPhotos;
+    private boolean disableSelection;
     private boolean disableShowCheck;
     private boolean discardTap;
     private TextView docInfoTextView;
@@ -720,8 +722,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean sendPhotoTypeIsGif;
     private boolean sendPhotoTypeIsPollMedia;
     private boolean sendPhotoTypeIsPollMediaEdit;
-    private ActionBarPopupWindow.ActionBarPopupWindowLayout sendPopupLayout;
-    private ActionBarPopupWindow sendPopupWindow;
     private ImageUpdater.AvatarFor setAvatarFor;
     private Runnable setLoadingRunnable;
     private BlurringShader.StoryBlurDrawer shadowBlurer;
@@ -878,6 +878,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public boolean canSchedule() {
+            return PhotoViewerProvider.CC.$default$canSchedule(this);
+        }
+
+        @Override
         public boolean canScrollAway() {
             return true;
         }
@@ -942,7 +947,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public CharSequence getSubtitleFor(int i) {
+            return null;
+        }
+
+        @Override
         public ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i) {
+            return null;
+        }
+
+        @Override
+        public CharSequence getTitleFor(int i) {
             return null;
         }
 
@@ -1123,6 +1138,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return false;
             }
 
+            public static boolean $default$canSchedule(PhotoViewerProvider photoViewerProvider) {
+                return false;
+            }
+
             public static boolean $default$forceAllInGroup(PhotoViewerProvider photoViewerProvider) {
                 return false;
             }
@@ -1192,6 +1211,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         boolean canReplace(int i);
 
+        boolean canSchedule();
+
         boolean canScrollAway();
 
         boolean cancelButtonPressed();
@@ -1218,7 +1239,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         ArrayList getSelectedPhotosOrder();
 
+        CharSequence getSubtitleFor(int i);
+
         ImageReceiver.BitmapHolder getThumbForPhoto(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i);
+
+        CharSequence getTitleFor(int i);
 
         int getTotalImageCount();
 
@@ -1337,7 +1362,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void onShowPress(MotionEvent motionEvent) {
     }
 
-    public static void access$18300(PhotoViewer photoViewer) {
+    public static void access$18300(PhotoViewer photoViewer) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         photoViewer.updateCaptionTranslated();
     }
 
@@ -1856,6 +1881,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         Instance2 = null;
     }
 
+    public void setSelectionDisabled(boolean z) {
+        this.disableSelection = z;
+        CheckBox checkBox = this.checkImageView;
+        if (checkBox != null) {
+            checkBox.setVisibility(z ? 8 : checkBox.getVisibility());
+        }
+        CounterView counterView = this.photosCounterView;
+        if (counterView == null || !z) {
+            return;
+        }
+        counterView.setVisibility(8);
+    }
+
     public void addPhoto(MessageObject messageObject, int i) throws Resources.NotFoundException {
         if (i != this.classGuid) {
             return;
@@ -1876,7 +1914,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.classGuid;
     }
 
-    public void setCaption(CharSequence charSequence) {
+    public void setCaption(CharSequence charSequence) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         this.hasCaptionForAllMedia = true;
         this.captionForAllMedia = charSequence;
         setCurrentCaption(null, charSequence, false, false);
@@ -2509,7 +2547,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.provider = photoViewerProvider;
         }
 
-        public void restore() throws Resources.NotFoundException, NumberFormatException {
+        public void restore() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             PhotoViewer.this.placeProvider = this.provider;
             PhotoViewer.this.windowLayoutParams.flags = -2147286784;
             PhotoViewer.this.windowLayoutParams.softInputMode = 272;
@@ -4084,7 +4122,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public void didReceivedNotification(int r31, int r32, java.lang.Object... r33) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void didReceivedNotification(int r31, int r32, java.lang.Object... r33) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -4191,19 +4229,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.parentAlert = chatAttachAlert;
     }
 
-    public void setParentActivity(Activity activity) {
+    public void setParentActivity(Activity activity) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setParentActivity(activity, null, null);
     }
 
-    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) {
+    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setParentActivity(activity, null, resourcesProvider);
     }
 
-    public void setParentActivity(BaseFragment baseFragment) {
+    public void setParentActivity(BaseFragment baseFragment) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setParentActivity(baseFragment, (Theme.ResourcesProvider) null);
     }
 
-    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setParentActivity(null, baseFragment, resourcesProvider);
     }
 
@@ -4211,7 +4249,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.parentActivity;
     }
 
-    public void setParentActivity(Activity activity, BaseFragment baseFragment, final Theme.ResourcesProvider resourcesProvider) {
+    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         boolean z;
         boolean z2 = true;
         Activity parentActivity = activity != null ? activity : baseFragment.getParentActivity();
@@ -4651,7 +4689,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             @Override
-            public void setCurrentIndex(int i4) throws Resources.NotFoundException, NumberFormatException {
+            public void setCurrentIndex(int i4) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                 PhotoViewer.this.currentIndex = -1;
                 if (PhotoViewer.this.currentThumb != null) {
                     PhotoViewer.this.currentThumb.release();
@@ -5531,7 +5569,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.pickerViewSendButton.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                return this.f$0.lambda$setParentActivity$64(resourcesProvider, view2);
+                return this.f$0.lambda$setParentActivity$64(view2);
             }
         });
         PhotoViewerPollAttachButtons photoViewerPollAttachButtons = new PhotoViewerPollAttachButtons(this.parentActivity);
@@ -5807,7 +5845,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.containerView.addView(this.selectedPhotosListView, LayoutHelper.createFrame(-1, 103, 51));
         this.selectedPhotosListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view4, int i11) throws Resources.NotFoundException, NumberFormatException {
+            public final void onItemClick(View view4, int i11) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                 this.f$0.lambda$setParentActivity$81(view4, i11);
             }
         });
@@ -6272,7 +6310,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             ((CheckBoxCell) view).setChecked(z, true);
         }
 
-        public void lambda$onItemClick$16(boolean[] zArr, AlertDialog alertDialog, int i) throws Resources.NotFoundException, NumberFormatException {
+        public void lambda$onItemClick$16(boolean[] zArr, AlertDialog alertDialog, int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             ArrayList<Long> arrayList;
             TLRPC.EncryptedChat encryptedChat;
             if (PhotoViewer.this.placeProvider.onDeletePhoto(PhotoViewer.this.currentIndex)) {
@@ -6381,7 +6419,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onItemClick(int r36) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+        public void onItemClick(int r36) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.AnonymousClass18.onItemClick(int):void");
         }
 
@@ -6569,7 +6607,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$setParentActivity$19(View view) throws NumberFormatException {
-        sendPressed(false, 0, 0);
+        lambda$showScheduleDatePickerDialog$85(false, 0, 0);
     }
 
     class AnonymousClass29 implements VideoTimelinePlayView.VideoTimelineViewDelegate {
@@ -7318,54 +7356,111 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (chatActivity3 != null && chatActivity3.isInScheduleMode() && !this.parentChatActivity.isEditingMessageMedia()) {
             showScheduleDatePickerDialog();
         } else {
-            sendPressed(true, 0, 0);
+            lambda$showScheduleDatePickerDialog$85(true, 0, 0);
         }
     }
 
-    public boolean lambda$setParentActivity$64(org.telegram.ui.ActionBar.Theme.ResourcesProvider r17, android.view.View r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.lambda$setParentActivity$64(org.telegram.ui.ActionBar.Theme$ResourcesProvider, android.view.View):boolean");
-    }
-
-    public boolean lambda$setParentActivity$61(View view, MotionEvent motionEvent) {
-        ActionBarPopupWindow actionBarPopupWindow;
-        if (motionEvent.getActionMasked() != 0 || (actionBarPopupWindow = this.sendPopupWindow) == null || !actionBarPopupWindow.isShowing()) {
+    public boolean lambda$setParentActivity$64(View view) {
+        TLRPC.User user;
+        boolean zCanSchedule;
+        boolean z;
+        PhotoViewerProvider photoViewerProvider = this.placeProvider;
+        if ((photoViewerProvider != null && !photoViewerProvider.allowSendingSubmenu()) || this.sendPhotoType == 11) {
             return false;
         }
-        view.getHitRect(this.hitRect);
-        if (this.hitRect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+        BaseFragment baseFragment = this.parentFragment;
+        boolean z2 = (baseFragment == null || baseFragment.getLastStoryViewer() == null) ? false : true;
+        ChatActivity chatActivity = this.parentChatActivity;
+        if (chatActivity != null && chatActivity.isInScheduleMode()) {
             return false;
         }
-        this.sendPopupWindow.dismiss();
-        return false;
+        if ((this.parentChatActivity == null && !z2 && this.placeProvider == null) || this.captionEdit.isCaptionOverLimit()) {
+            return false;
+        }
+        ChatActivity chatActivity2 = this.parentChatActivity;
+        if (chatActivity2 != null) {
+            user = chatActivity2.getCurrentUser();
+            zCanSchedule = this.parentChatActivity.canScheduleMessage();
+        } else {
+            PhotoViewerProvider photoViewerProvider2 = this.placeProvider;
+            if (photoViewerProvider2 == null) {
+                return false;
+            }
+            long dialogId = photoViewerProvider2.getDialogId();
+            user = dialogId != 0 ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId)) : null;
+            zCanSchedule = this.placeProvider.canSchedule();
+        }
+        PhotoViewerProvider photoViewerProvider3 = this.placeProvider;
+        boolean z3 = photoViewerProvider3 != null && photoViewerProvider3.canEdit(this.currentIndex);
+        PhotoViewerProvider photoViewerProvider4 = this.placeProvider;
+        boolean z4 = photoViewerProvider4 != null && photoViewerProvider4.canReplace(this.currentIndex);
+        boolean zIsUserSelf = UserObject.isUserSelf(user);
+        PhotoViewerProvider photoViewerProvider5 = this.placeProvider;
+        if (photoViewerProvider5 == null || photoViewerProvider5.getSelectedPhotos() == null) {
+            z = false;
+        } else {
+            Iterator it = this.placeProvider.getSelectedPhotos().entrySet().iterator();
+            while (it.hasNext()) {
+                Object value = ((Map.Entry) it.next()).getValue();
+                if (value instanceof MediaController.PhotoEntry) {
+                    if (((MediaController.PhotoEntry) value).ttl != 0) {
+                        z = true;
+                        break;
+                    }
+                } else if ((value instanceof MediaController.SearchImage) && ((MediaController.SearchImage) value).ttl != 0) {
+                    z = true;
+                    break;
+                }
+            }
+            z = false;
+        }
+        boolean z5 = (z3 || this.isCurrentVideo || this.captionEdit.hasTimer()) ? false : true;
+        boolean z6 = (z3 || !zCanSchedule || z) ? false : true;
+        boolean z7 = ((z3 && z4) || zIsUserSelf) ? false : true;
+        PhotoViewerProvider photoViewerProvider6 = this.placeProvider;
+        ItemOptions itemOptionsAddIf = ItemOptions.makeOptions(this.containerView, new DarkThemeResourceProvider(), view).addIf(z5, R.drawable.msg_sendfile, LocaleController.getString(photoViewerProvider6 != null && photoViewerProvider6.getSelectedCount() > 1 ? R.string.SendAsFiles : R.string.SendAsFile), new Runnable() {
+            @Override
+            public final void run() throws NumberFormatException {
+                this.f$0.lambda$setParentActivity$61();
+            }
+        }).addIf(z4, R.drawable.msg_send, LocaleController.getString(R.string.SendAsNewPhoto), new Runnable() {
+            @Override
+            public final void run() throws NumberFormatException {
+                this.f$0.lambda$setParentActivity$62();
+            }
+        }).addIf(z4, R.drawable.msg_replace, LocaleController.getString(R.string.ReplacePhoto), new Runnable() {
+            @Override
+            public final void run() throws NumberFormatException {
+                this.f$0.replacePressed();
+            }
+        }).addIf(z6, R.drawable.msg_calendar2, LocaleController.getString(zIsUserSelf ? R.string.SetReminder : R.string.ScheduleMessage), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.showScheduleDatePickerDialog();
+            }
+        }).addIf(z7, R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
+            @Override
+            public final void run() throws NumberFormatException {
+                this.f$0.lambda$setParentActivity$63();
+            }
+        });
+        if (itemOptionsAddIf.getItemsCount() == 0) {
+            return false;
+        }
+        itemOptionsAddIf.setGravity(5).show();
+        return true;
     }
 
-    public void lambda$setParentActivity$62(KeyEvent keyEvent) {
-        ActionBarPopupWindow actionBarPopupWindow;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
-            this.sendPopupWindow.dismiss();
-        }
+    public void lambda$setParentActivity$61() throws NumberFormatException {
+        sendPressed(true, 0, 0, false, true, false);
     }
 
-    public void lambda$setParentActivity$63(int i, View view) throws NumberFormatException {
-        ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
-        if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
-            this.sendPopupWindow.dismiss();
-        }
-        if (i == 0) {
-            showScheduleDatePickerDialog();
-            return;
-        }
-        if (i == 1) {
-            sendPressed(false, 0, 0);
-            return;
-        }
-        if (i == 2) {
-            replacePressed();
-        } else if (i == 3) {
-            sendPressed(true, 0, 0);
-        } else if (i == 4) {
-            sendPressed(true, 0, 0, false, true, false);
-        }
+    public void lambda$setParentActivity$62() throws NumberFormatException {
+        lambda$showScheduleDatePickerDialog$85(true, 0, 0);
+    }
+
+    public void lambda$setParentActivity$63() throws NumberFormatException {
+        lambda$showScheduleDatePickerDialog$85(false, 0, 0);
     }
 
     public void lambda$setParentActivity$65(View view) {
@@ -7581,7 +7676,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         togglePhotosListView(!this.isPhotosListViewVisible, true);
     }
 
-    public void lambda$setParentActivity$81(View view, int i) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$setParentActivity$81(View view, int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         int i2;
         if (!this.imagesArrLocals.isEmpty() && (i2 = this.currentIndex) >= 0 && i2 < this.imagesArrLocals.size()) {
             Object obj = this.imagesArrLocals.get(this.currentIndex);
@@ -7650,11 +7745,23 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.limitBulletin = null;
     }
 
-    private void showScheduleDatePickerDialog() {
-        if (this.parentChatActivity == null) {
+    public void showScheduleDatePickerDialog() {
+        long dialogId;
+        if (this.parentActivity == null) {
             return;
         }
-        AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, this.parentChatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+        ChatActivity chatActivity = this.parentChatActivity;
+        if (chatActivity != null) {
+            dialogId = chatActivity.getDialogId();
+        } else {
+            PhotoViewerProvider photoViewerProvider = this.placeProvider;
+            if (photoViewerProvider == null) {
+                return;
+            } else {
+                dialogId = photoViewerProvider.getDialogId();
+            }
+        }
+        AlertsCreator.createScheduleDatePickerDialog(this.parentActivity, dialogId, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i, int i2) throws NumberFormatException {
                 this.f$0.lambda$showScheduleDatePickerDialog$85(z, i, i2);
@@ -7663,14 +7770,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void lambda$showScheduleDatePickerDialog$85(boolean z, int i, int i2) throws NumberFormatException {
-        sendPressed(z, i, 0);
-    }
-
-    private void sendPressed(boolean z, int i, int i2) throws NumberFormatException {
         sendPressed(z, i, i2, false, false, false);
     }
 
-    private void replacePressed() throws NumberFormatException {
+    public void replacePressed() throws NumberFormatException {
         sendPressed(false, 0, 0, true, false, false);
     }
 
@@ -9658,6 +9761,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return (photoViewerProvider == null || !photoViewerProvider.isCaptionAbove()) ? this.captionEdit : this.topCaptionEdit;
     }
 
+    public CharSequence getCurrentCaptionText() {
+        CaptionContainerView captionView;
+        if (isVisible() && (captionView = getCaptionView()) != null) {
+            return captionView.getText();
+        }
+        return null;
+    }
+
     public CharSequence applyCaption() {
         int i;
         if (!isVisible() || this.placeProvider == null || (i = this.currentIndex) < 0 || i >= this.imagesArrLocals.size()) {
@@ -11214,7 +11325,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onAnimationEnd(Animator animator) throws Resources.NotFoundException, NumberFormatException {
+        public void onAnimationEnd(Animator animator) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             if (PhotoViewer.this.currentEditMode == 1) {
                 PhotoViewer.this.photoCropView.onDisappear();
                 PhotoViewer.this.photoCropView.onHide();
@@ -11356,7 +11467,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     if (PhotoViewer.this.sendPhotoTypeIsGif || PhotoViewer.this.sendPhotoTypeIsPollMedia) {
                         return;
                     }
-                    if (PhotoViewer.this.sendPhotoType == 0 || PhotoViewer.this.sendPhotoType == 4 || ((PhotoViewer.this.sendPhotoType == 2 || PhotoViewer.this.sendPhotoType == 5) && PhotoViewer.this.imagesArrLocals.size() > 1)) {
+                    if ((PhotoViewer.this.sendPhotoType == 0 || PhotoViewer.this.sendPhotoType == 4 || ((PhotoViewer.this.sendPhotoType == 2 || PhotoViewer.this.sendPhotoType == 5) && PhotoViewer.this.imagesArrLocals.size() > 1)) && !PhotoViewer.this.disableSelection) {
                         PhotoViewer.this.checkImageView.setVisibility(0);
                         PhotoViewer.this.photosCounterView.setVisibility(0);
                         PhotoViewer.this.updateActionBarTitlePadding();
@@ -11364,7 +11475,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                public void onAnimationEnd(Animator animator2) {
+                public void onAnimationEnd(Animator animator2) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                     if (PhotoViewer.this.videoConvertSupported && PhotoViewer.this.isCurrentVideo) {
                         PhotoViewer.this.updateVideoInfo();
                     }
@@ -12509,7 +12620,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         updateActionBarTitlePadding();
     }
 
-    public void onPhotoShow(org.telegram.messenger.MessageObject r21, org.telegram.tgnet.TLRPC.FileLocation r22, org.telegram.messenger.ImageLocation r23, org.telegram.messenger.ImageLocation r24, java.util.ArrayList r25, java.util.ArrayList r26, java.util.List r27, int r28, org.telegram.ui.PhotoViewer.PlaceProviderObject r29) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void onPhotoShow(org.telegram.messenger.MessageObject r20, org.telegram.tgnet.TLRPC.FileLocation r21, org.telegram.messenger.ImageLocation r22, org.telegram.messenger.ImageLocation r23, java.util.ArrayList r24, java.util.ArrayList r25, java.util.List r26, int r27, org.telegram.ui.PhotoViewer.PlaceProviderObject r28) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.onPhotoShow(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.List, int, org.telegram.ui.PhotoViewer$PlaceProviderObject):void");
     }
 
@@ -12539,11 +12650,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) {
+    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setIsAboutToSwitchToIndex(i, z, z2, false);
     }
 
-    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) {
+    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean, boolean):void");
     }
 
@@ -12589,7 +12700,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void updateCaptionTranslated() {
+    public void updateCaptionTranslated() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         int i;
         MessageObject messageObject;
         TLRPC.Message message;
@@ -12986,15 +13097,15 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return "mp4";
     }
 
-    public void setImageIndex(int i) throws Resources.NotFoundException, NumberFormatException {
+    public void setImageIndex(int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setImageIndex(i, true, false);
     }
 
-    private void setImageIndex(int i, boolean z, boolean z2) throws Resources.NotFoundException, NumberFormatException {
+    private void setImageIndex(int i, boolean z, boolean z2) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         setImageIndex(i, z, z2, false);
     }
 
-    private void setImageIndex(int r38, boolean r39, boolean r40, boolean r41) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void setImageIndex(int r38, boolean r39, boolean r40, boolean r41) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setImageIndex(int, boolean, boolean, boolean):void");
     }
 
@@ -13025,7 +13136,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         setIndexToImage(this.centerImage, this.currentIndex, null);
     }
 
-    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
+    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         int i;
         boolean z3;
         TLRPC.Message message;
@@ -13783,7 +13894,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return openPhotoForSelect(null, null, arrayList, i, i2, z, photoViewerProvider, chatActivity);
     }
 
-    public boolean openPhotoForSelect(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, ArrayList arrayList, int i, int i2, boolean z, PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity) throws Resources.NotFoundException, NumberFormatException {
+    public boolean openPhotoForSelect(TLRPC.FileLocation fileLocation, ImageLocation imageLocation, ArrayList arrayList, int i, int i2, boolean z, PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         AnimatedTextView animatedTextView;
         this.isDocumentsPicker = z;
         ChatActivityEnterView.SendButton sendButton = this.pickerViewSendButton;
@@ -13943,7 +14054,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 toggleActionBar(false, true, new ActionBarToggleParams().enableStatusBarAnimation(false));
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, NumberFormatException {
+                    public final void run() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                         this.f$0.lambda$openCurrentPhotoInPaintModeForSelect$141(file, z, messageObject, z2, z3);
                     }
                 }, r0.animationDuration);
@@ -13953,7 +14064,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void lambda$openCurrentPhotoInPaintModeForSelect$141(File file, boolean z, final MessageObject messageObject, final boolean z2, final boolean z3) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$openCurrentPhotoInPaintModeForSelect$141(File file, boolean z, final MessageObject messageObject, final boolean z2, final boolean z3) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         Pair<Integer, Integer> imageOrientation = AndroidUtilities.getImageOrientation(file);
         int i = this.lastImageId;
         this.lastImageId = i - 1;
@@ -14154,7 +14265,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.padImageForHorizontalInsets = true;
     }
 
-    public boolean openPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, org.telegram.messenger.ImageLocation r19, org.telegram.messenger.ImageLocation r20, java.util.ArrayList r21, java.util.ArrayList r22, java.util.ArrayList r23, int r24, final org.telegram.ui.PhotoViewer.PhotoViewerProvider r25, org.telegram.ui.ChatActivity r26, long r27, long r29, long r31, boolean r33, org.telegram.ui.PhotoViewer.PageBlocksAdapter r34, final java.lang.Integer r35) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public boolean openPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, org.telegram.messenger.ImageLocation r19, org.telegram.messenger.ImageLocation r20, java.util.ArrayList r21, java.util.ArrayList r22, java.util.ArrayList r23, int r24, final org.telegram.ui.PhotoViewer.PhotoViewerProvider r25, org.telegram.ui.ChatActivity r26, long r27, long r29, long r31, boolean r33, org.telegram.ui.PhotoViewer.PageBlocksAdapter r34, final java.lang.Integer r35) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.openPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int, org.telegram.ui.PhotoViewer$PhotoViewerProvider, org.telegram.ui.ChatActivity, long, long, long, boolean, org.telegram.ui.PhotoViewer$PageBlocksAdapter, java.lang.Integer):boolean");
     }
 
@@ -15645,7 +15756,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.animationValue;
     }
 
-    private void switchToNextIndex(int i, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    private void switchToNextIndex(int i, boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         if (this.currentMessageObject != null) {
             releasePlayer(false);
             FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.currentMessageObject.getDocument());
@@ -15706,11 +15817,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.onDraw(android.graphics.Canvas):void");
     }
 
-    public void lambda$onDraw$154() throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$onDraw$154() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         switchToNextIndex(1, false);
     }
 
-    public void lambda$onDraw$155() throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$onDraw$155() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         switchToNextIndex(-1, false);
     }
 
@@ -15904,7 +16015,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public boolean onSingleTapConfirmed(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
+    public boolean onSingleTapConfirmed(MotionEvent motionEvent) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         PhotoViewerWebView photoViewerWebView;
         MessageObject messageObject;
         MessageObject messageObject2;

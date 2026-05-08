@@ -145,7 +145,7 @@ public class ChatReplyContainer extends FrameLayout {
                 }
             };
             this.image = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.dp(2.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.dp(6.0f));
             addView(this.image, LayoutHelper.createFrame(34, 34.0f, 51, 52.0f, 6.0f, 0.0f, 0.0f));
             updateColors();
         }

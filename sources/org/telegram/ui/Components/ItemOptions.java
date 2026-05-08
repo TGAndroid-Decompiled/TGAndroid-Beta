@@ -19,6 +19,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -28,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -98,6 +100,9 @@ public class ItemOptions {
     private Integer gapBackgroundColor;
     private int gravity;
     private boolean hideScrimUnder;
+    private final int[] hoverLoc;
+    private View.OnTouchListener hoverReleaseListener;
+    private View hoveredItem;
     private Integer iconColor;
     private boolean ignoreX;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout lastLayout;
@@ -207,6 +212,7 @@ public class ItemOptions {
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
+        this.hoverLoc = new int[2];
         if (baseFragment.getContext() == null) {
             return;
         }
@@ -233,6 +239,7 @@ public class ItemOptions {
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
+        this.hoverLoc = new int[2];
         if (viewGroup == null || viewGroup.getContext() == null) {
             return;
         }
@@ -258,6 +265,7 @@ public class ItemOptions {
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
+        this.hoverLoc = new int[2];
         this.context = actionBarPopupWindowLayout.getContext();
         LinearLayout linearLayout = new LinearLayout(this.context);
         this.linearLayout = linearLayout;
@@ -1432,6 +1440,125 @@ public class ItemOptions {
         this.dontDismiss = true;
     }
 
+    private void installHoverReleaseListener() {
+        View view = this.scrimView;
+        if (view == null) {
+            return;
+        }
+        if (view.getParent() != null) {
+            this.scrimView.getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        final WeakReference weakReference = new WeakReference(this);
+        View view2 = this.scrimView;
+        View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view3, MotionEvent motionEvent) {
+                return ItemOptions.lambda$installHoverReleaseListener$17(weakReference, view3, motionEvent);
+            }
+        };
+        this.hoverReleaseListener = onTouchListener;
+        view2.setOnTouchListener(onTouchListener);
+    }
+
+    public static boolean lambda$installHoverReleaseListener$17(WeakReference weakReference, View view, MotionEvent motionEvent) {
+        ActionBarPopupWindow actionBarPopupWindow;
+        ItemOptions itemOptions = (ItemOptions) weakReference.get();
+        if (itemOptions == null || (actionBarPopupWindow = itemOptions.actionBarPopupWindow) == null || !actionBarPopupWindow.isShowing()) {
+            view.setOnTouchListener(null);
+            return false;
+        }
+        if (view.getParent() != null) {
+            view.getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 2) {
+            itemOptions.updateHover((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+        } else if (actionMasked == 1) {
+            itemOptions.releaseHover((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
+            view.setOnTouchListener(null);
+            itemOptions.hoverReleaseListener = null;
+        } else if (actionMasked == 3) {
+            itemOptions.cancelHover();
+            view.setOnTouchListener(null);
+            itemOptions.hoverReleaseListener = null;
+        }
+        return true;
+    }
+
+    public void clearHoverListener() {
+        View view;
+        cancelHover();
+        if (this.hoverReleaseListener != null && (view = this.scrimView) != null) {
+            view.setOnTouchListener(null);
+        }
+        this.hoverReleaseListener = null;
+    }
+
+    private void updateHover(int i, int i2) {
+        View viewFindItemAt = findItemAt(this.layout, i, i2);
+        View view = this.hoveredItem;
+        if (viewFindItemAt != view) {
+            if (view != null) {
+                view.setPressed(false);
+            }
+            this.hoveredItem = viewFindItemAt;
+            if (viewFindItemAt != null) {
+                viewFindItemAt.setPressed(true);
+            }
+        }
+        View view2 = this.hoveredItem;
+        if (view2 != null) {
+            view2.getLocationOnScreen(this.hoverLoc);
+            View view3 = this.hoveredItem;
+            int[] iArr = this.hoverLoc;
+            view3.drawableHotspotChanged(i - iArr[0], i2 - iArr[1]);
+        }
+    }
+
+    private void releaseHover(int i, int i2) {
+        updateHover(i, i2);
+        View view = this.hoveredItem;
+        if (view != null) {
+            this.hoveredItem = null;
+            view.setPressed(false);
+            view.performClick();
+        }
+    }
+
+    private void cancelHover() {
+        View view = this.hoveredItem;
+        if (view != null) {
+            view.setPressed(false);
+            this.hoveredItem = null;
+        }
+    }
+
+    private static View findItemAt(View view, int i, int i2) {
+        if (view != null && view.getVisibility() == 0) {
+            int[] iArr = new int[2];
+            view.getLocationOnScreen(iArr);
+            int i3 = iArr[0];
+            int i4 = iArr[1];
+            int width = view.getWidth() + i3;
+            int height = view.getHeight() + i4;
+            if (i >= i3 && i < width && i2 >= i4 && i2 < height) {
+                if (view instanceof ViewGroup) {
+                    ViewGroup viewGroup = (ViewGroup) view;
+                    for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
+                        View viewFindItemAt = findItemAt(viewGroup.getChildAt(childCount), i, i2);
+                        if (viewFindItemAt != null) {
+                            return viewFindItemAt;
+                        }
+                    }
+                }
+                if (view.isClickable() && view.isEnabled() && !(view instanceof ActionBarPopupWindow.GapView)) {
+                    return view;
+                }
+            }
+        }
+        return null;
+    }
+
     public static void getPointOnScreen(View view, ViewGroup viewGroup, float[] fArr) {
         if (view == null || viewGroup == null) {
             return;
@@ -1740,7 +1867,7 @@ public class ItemOptions {
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ItemOptions.lambda$addAlbumsItemOptions$18(zContains, hashSet, i2, callback, storyAlbum, view);
+                    ItemOptions.lambda$addAlbumsItemOptions$19(zContains, hashSet, i2, callback, storyAlbum, view);
                 }
             });
             linearLayout.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
@@ -1748,7 +1875,7 @@ public class ItemOptions {
         }
     }
 
-    public static void lambda$addAlbumsItemOptions$18(boolean z, HashSet hashSet, int i, Utilities.Callback callback, StoriesController.StoryAlbum storyAlbum, View view) {
+    public static void lambda$addAlbumsItemOptions$19(boolean z, HashSet hashSet, int i, Utilities.Callback callback, StoriesController.StoryAlbum storyAlbum, View view) {
         if (z) {
             hashSet.remove(Integer.valueOf(i));
         } else {

@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda327;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
@@ -1229,28 +1230,30 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         } else {
             i = 0;
         }
-        boolean z = (TextUtils.isEmpty(getFixedString(this.descriptionString)) || this.descriptionString.length() <= this.MAX_CAPTION_LENGTH) && (TextUtils.isEmpty(getFixedString(this.solutionString)) || this.solutionString.length() <= 200) && !TextUtils.isEmpty(getFixedString(this.questionString)) && this.questionString.length() <= 255;
-        int i3 = 0;
-        int i4 = 0;
+        int i3 = this.todo ? getMessagesController().todoTitleLengthMax : 255;
+        int i4 = this.todo ? getMessagesController().todoItemLengthMax : 100;
+        boolean z = (TextUtils.isEmpty(getFixedString(this.descriptionString)) || this.descriptionString.length() <= this.MAX_CAPTION_LENGTH) && (TextUtils.isEmpty(getFixedString(this.solutionString)) || this.solutionString.length() <= 200) && !TextUtils.isEmpty(getFixedString(this.questionString)) && this.questionString.length() <= i3;
+        int i5 = 0;
+        int i6 = 0;
         boolean z2 = false;
         while (true) {
             CharSequence[] charSequenceArr = this.answers;
-            if (i3 >= charSequenceArr.length) {
+            if (i5 >= charSequenceArr.length) {
                 break;
             }
-            if (!TextUtils.isEmpty(getFixedString(charSequenceArr[i3]))) {
-                if (this.answers[i3].length() > 100) {
-                    i4 = 0;
+            if (!TextUtils.isEmpty(getFixedString(charSequenceArr[i5]))) {
+                if (this.answers[i5].length() > i4) {
+                    i6 = 0;
                     z2 = true;
                     break;
                 } else {
-                    i4++;
+                    i6++;
                     z2 = true;
                 }
             }
-            i3++;
+            i5++;
         }
-        if (i4 < 1 || (this.quizPoll && i < 1)) {
+        if (i6 < 1 || (this.quizPoll && i < 1)) {
             z = false;
         }
         if (!TextUtils.isEmpty(this.solutionString) || !TextUtils.isEmpty(this.questionString) || !TextUtils.isEmpty(this.descriptionString) || z2 || this.attachedMedia.medias.size() > 0) {
@@ -2348,11 +2351,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return adapterPosition == ChatAttachAlertPollLayout.this.addAnswerRow || (ChatAttachAlertPollLayout.this.quizOnly == 0 && adapterPosition == ChatAttachAlertPollLayout.this.poll2vQuizRow) || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAnonymousRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vMultipleRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAllowAddingRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAllowRevotingRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vShuffleRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationTimeRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationHideResultsRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitByCountryRow.row || adapterPosition == ChatAttachAlertPollLayout.this.poll2vSubscribersOnlyRow.row || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitByCountryListRow;
         }
 
-        public void lambda$onCreateViewHolder$0(View view) {
+        public void lambda$onCreateViewHolder$0(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(-2);
         }
 
-        public void lambda$onCreateViewHolder$1(View view) {
+        public void lambda$onCreateViewHolder$1(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(-3);
         }
 
@@ -2438,7 +2441,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell.setTextRight(98);
                         pollEditTextCell.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) {
+                            public final void onClick(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                                 this.f$0.lambda$onCreateViewHolder$0(view);
                             }
                         });
@@ -2604,7 +2607,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell2.setTextRight(140);
                         pollEditTextCell2.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) {
+                            public final void onClick(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                                 this.f$0.lambda$onCreateViewHolder$3(pollEditTextCell2, view);
                             }
                         });
@@ -2704,7 +2707,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell3.setTextRight(98);
                         pollEditTextCell3.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) {
+                            public final void onClick(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                                 this.f$0.lambda$onCreateViewHolder$1(view);
                             }
                         });
@@ -2774,7 +2777,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             ChatAttachAlertPollLayout.this.deletePollAnswerView(view, (PollEditTextCell) view.getParent(), true);
         }
 
-        public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) {
+        public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
             int adapterPosition;
             RecyclerView.ViewHolder viewHolderFindContainingViewHolder = ChatAttachAlertPollLayout.this.listView.findContainingViewHolder(pollEditTextCell);
             if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition() - ChatAttachAlertPollLayout.this.answerStartRow) < 0 || adapterPosition >= ChatAttachAlertPollLayout.this.answers.length) {
@@ -2929,7 +2932,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return MessagesController.getInstance(getCurrentAccount());
     }
 
-    private void openEditOrReplaceMenu(final int i) {
+    private void openEditOrReplaceMenu(final int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         ChatAttachAlert chatAttachAlert;
         BaseFragment baseFragment;
         PollAttachedMedia pollAttachedMedia = this.attachedMedia.get(i);
@@ -3291,7 +3294,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
         });
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.resourcesProvider);
-        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda327(scrimOptions));
+        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda267(scrimOptions));
         itemOptionsAdd.setMinWidth(AndroidUtilities.dp(185.0f));
         itemOptionsAdd.setupSelectors();
         scrimOptions.setItemOptions(itemOptionsAdd);
@@ -3304,7 +3307,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         lambda$openAttachMenuForOptions$21(i, null);
     }
 
-    public void openAttachOrReplaceMenuForOptions(int i) {
+    public void openAttachOrReplaceMenuForOptions(int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         if (this.attachedMedia.get(i) != null) {
             openEditOrReplaceMenu(i);
         } else {

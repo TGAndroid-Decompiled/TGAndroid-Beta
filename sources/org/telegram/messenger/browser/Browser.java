@@ -40,6 +40,7 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
+import org.telegram.ui.EmptyBaseFragment;
 import org.telegram.ui.LaunchActivity;
 
 public abstract class Browser {
@@ -367,6 +368,15 @@ public abstract class Browser {
         return true;
     }
 
+    public static boolean isInstantViewOpen() {
+        EmptyBaseFragment sheetFragment;
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment == null || !(safeLastFragment.getParentLayout() instanceof ActionBarLayout) || (sheetFragment = ((ActionBarLayout) safeLastFragment.getParentLayout()).getSheetFragment()) == null || sheetFragment.getArticleViewer() == null) {
+            return (safeLastFragment == null || safeLastFragment.getArticleViewer() == null) ? false : true;
+        }
+        return true;
+    }
+
     public static boolean openInTelegramBrowser(Context context, String str, Progress progress) {
         BottomSheetTabs bottomSheetTabs;
         LaunchActivity launchActivity = LaunchActivity.instance;
@@ -374,6 +384,10 @@ public abstract class Browser {
             return true;
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null && safeLastFragment.getArticleViewer() != null) {
+            safeLastFragment.getArticleViewer().open(str, progress);
+            return true;
+        }
         if (safeLastFragment != null && (safeLastFragment.getParentLayout() instanceof ActionBarLayout)) {
             safeLastFragment = ((ActionBarLayout) safeLastFragment.getParentLayout()).getSheetFragment();
         }

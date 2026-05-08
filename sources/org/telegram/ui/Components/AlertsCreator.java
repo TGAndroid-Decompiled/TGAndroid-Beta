@@ -125,7 +125,7 @@ import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.RadioColorCell;
 import org.telegram.ui.Cells.TextColorCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda245;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda246;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.Forum.ForumUtilities;
@@ -4042,6 +4042,8 @@ public abstract class AlertsCreator {
         hintView2Arr[0] = hintView22;
         hintView22.setRoundingWithCornerEffect(false);
         hintView22.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        hintView22.setRounding(20.0f);
+        hintView22.setShadow(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(4.0f), Theme.multAlpha(-16777216, 0.25f));
         if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             string = LocaleController.getString(zArr[0] ? R.string.ScheduleNotifyOnChannel : R.string.ScheduleNotifyOffChannel);
         } else if (chat != null || user == null) {
@@ -4053,9 +4055,7 @@ public abstract class AlertsCreator {
         }
         hintView22.setText(string);
         hintView22.setDuration(5000L);
-        hintView22.setRounding(20.0f);
         hintView22.setJoint(1.0f, -((actionBarMenuItem != null ? 42 : -8) + 20));
-        hintView22.setShadow(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(4.0f), Theme.multAlpha(-16777216, 0.25f));
         hintView22.setOnHiddenListener(new Runnable() {
             @Override
             public final void run() {
@@ -7422,7 +7422,7 @@ public abstract class AlertsCreator {
                     public final boolean test(Object obj) {
                         return AlertsCreator.lambda$createDeleteMessagesAlert$210(clientUserId, (TLObject) obj);
                     }
-                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda245()));
+                }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda246()));
                 if (!arrayList2.isEmpty()) {
                     if (channelParticipantArr == null) {
                         AlertDialog[] alertDialogArr = {new AlertDialog(parentActivity, 3)};

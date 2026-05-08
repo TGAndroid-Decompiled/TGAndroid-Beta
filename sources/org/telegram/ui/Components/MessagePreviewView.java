@@ -17,6 +17,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
@@ -31,6 +32,7 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -156,8 +158,10 @@ public abstract class MessagePreviewView extends FrameLayout {
         private AnimatorSet quoteSwitcher;
         Rect rect;
         ActionBarMenuSubItem replyAnotherChatButton;
-        int scrollToOffset;
+        int scrollToQuoteEndY;
+        int scrollToQuoteStartY;
         ChatMessageSharedResources sharedResources;
+        boolean shouldScrollToQuote;
         TextSelectionHelper.ChatListTextSelectionHelper textSelectionHelper;
         View textSelectionOverlay;
         boolean toQuote;
@@ -294,6 +298,123 @@ public abstract class MessagePreviewView extends FrameLayout {
                 MessagePreviewView.this.dismiss(true);
             }
             return true;
+        }
+
+        class AnonymousClass6 extends RecyclerListView {
+            final MessagePreviewView val$this$0;
+
+            AnonymousClass6(Context context, Theme.ResourcesProvider resourcesProvider, MessagePreviewView messagePreviewView) {
+                super(context, resourcesProvider);
+                this.val$this$0 = messagePreviewView;
+            }
+
+            @Override
+            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
+                if (!(view instanceof ChatMessageCell)) {
+                    return true;
+                }
+                ChatMessageCell chatMessageCell = (ChatMessageCell) view;
+                boolean zDrawChild = super.drawChild(canvas, view, j);
+                chatMessageCell.drawCheckBox(canvas);
+                canvas.save();
+                canvas.translate(chatMessageCell.getX(), chatMessageCell.getY());
+                canvas.save();
+                canvas.scale(chatMessageCell.getScaleX(), chatMessageCell.getScaleY(), chatMessageCell.getPivotX(), chatMessageCell.getPivotY());
+                chatMessageCell.drawContent(canvas, true);
+                chatMessageCell.layoutTextXY(true);
+                chatMessageCell.drawMessageText(canvas);
+                if (chatMessageCell.getCurrentMessagesGroup() == null || ((chatMessageCell.getCurrentPosition() != null && (((chatMessageCell.getCurrentPosition().flags & chatMessageCell.captionFlag()) != 0 && (chatMessageCell.getCurrentPosition().flags & 1) != 0) || (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().isDocuments))) || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner)) {
+                    chatMessageCell.drawCaptionLayout(canvas, false, chatMessageCell.getAlpha());
+                    chatMessageCell.drawReactionsLayout(canvas, chatMessageCell.getAlpha(), null);
+                    chatMessageCell.drawCommentLayout(canvas, chatMessageCell.getAlpha());
+                }
+                if (chatMessageCell.getCurrentMessagesGroup() != null || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner) {
+                    chatMessageCell.drawNamesLayout(canvas, chatMessageCell.getAlpha());
+                }
+                if ((chatMessageCell.getCurrentPosition() != null && chatMessageCell.getCurrentPosition().last) || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner) {
+                    chatMessageCell.drawTime(canvas, chatMessageCell.getAlpha(), true);
+                }
+                chatMessageCell.drawOverlays(canvas);
+                canvas.restore();
+                chatMessageCell.getTransitionParams().recordDrawingStatePreview();
+                canvas.restore();
+                return zDrawChild;
+            }
+
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                for (int i = 0; i < getChildCount(); i++) {
+                    View childAt = getChildAt(i);
+                    if (childAt instanceof ChatMessageCell) {
+                        ((ChatMessageCell) childAt).setParentViewSize(Page.this.chatPreviewContainer.getMeasuredWidth(), Page.this.chatPreviewContainer.getBackgroundSizeY());
+                    }
+                }
+                drawChatBackgroundElements(canvas);
+                super.dispatchDraw(canvas);
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                if (Page.this.firstLayout) {
+                    if (Page.this.currentTab != 0) {
+                        scrollToPosition(0);
+                    }
+                    Page.this.firstLayout = false;
+                }
+                super.onLayout(z, i, i2, i3, i4);
+                Page.this.updatePositions();
+                Page.this.checkScroll();
+                Page page = Page.this;
+                if (page.shouldScrollToQuote && page.currentTab == 0) {
+                    final int i5 = page.scrollToQuoteStartY;
+                    final int i6 = page.scrollToQuoteEndY;
+                    page.shouldScrollToQuote = false;
+                    post(new Runnable() {
+                        @Override
+                        public final void run() {
+                            this.f$0.lambda$onLayout$0(i5, i6);
+                        }
+                    });
+                }
+            }
+
+            public void lambda$onLayout$0(int i, int i2) {
+                ChatMessageCell replyMessageCell = Page.this.getReplyMessageCell();
+                if (replyMessageCell == null) {
+                    return;
+                }
+                int top = replyMessageCell.getTop() + i;
+                int top2 = replyMessageCell.getTop() + i2;
+                int i3 = top2 - top;
+                int paddingTop = Page.this.chatListView.getPaddingTop();
+                int height = Page.this.chatListView.getHeight() - Page.this.chatListView.getPaddingBottom();
+                if (i3 <= height - paddingTop) {
+                    top = (top + top2) / 2;
+                    paddingTop = (paddingTop + height) / 2;
+                }
+                int i4 = top - paddingTop;
+                if (i4 < 0) {
+                    Page.this.chatListView.scrollBy(0, i4);
+                }
+            }
+
+            private void drawChatBackgroundElements(android.graphics.Canvas r29) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessagePreviewView.Page.AnonymousClass6.drawChatBackgroundElements(android.graphics.Canvas):void");
+            }
+
+            @Override
+            public void onScrollStateChanged(int i) {
+                if (i == 0) {
+                    Page.this.textSelectionHelper.stopScrolling();
+                }
+                super.onScrollStateChanged(i);
+            }
+
+            @Override
+            public void onScrolled(int i, int i2) {
+                super.onScrolled(i, i2);
+                Page.this.textSelectionHelper.onParentScrolled();
+            }
         }
 
         class AnonymousClass7 extends ChatListItemAnimator {
@@ -1051,7 +1172,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, NumberFormatException {
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
                         Page.this.updateLinkHighlight(this);
                     }
@@ -2027,8 +2148,12 @@ public abstract class MessagePreviewView extends FrameLayout {
                     chatListTextSelectionHelper.select(chatMessageCell, messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd);
                     if (Page.this.firstAttach) {
                         Page page4 = Page.this;
-                        page4.scrollToOffset = offset(chatMessageCell, MessagePreviewView.this.messagePreviewParams.quoteStart);
-                        Page.this.firstAttach = false;
+                        page4.scrollToQuoteStartY = offset(chatMessageCell, MessagePreviewView.this.messagePreviewParams.quoteStart, false);
+                        Page page5 = Page.this;
+                        page5.scrollToQuoteEndY = offset(chatMessageCell, MessagePreviewView.this.messagePreviewParams.quoteEnd, true);
+                        Page page6 = Page.this;
+                        page6.shouldScrollToQuote = true;
+                        page6.firstAttach = false;
                         return;
                     }
                     return;
@@ -2036,12 +2161,12 @@ public abstract class MessagePreviewView extends FrameLayout {
                 chatMessageCell.setDrawSelectionBackground(false);
             }
 
-            private int offset(ChatMessageCell chatMessageCell, int i) {
+            private int offset(ChatMessageCell chatMessageCell, int i, boolean z) {
                 MessageObject messageObject;
                 int iDp;
                 ArrayList<MessageObject.TextLayoutBlock> arrayList;
                 CharSequence charSequence;
-                float lineTop;
+                float lineBottom;
                 MessageObject.TextLayoutBlocks textLayoutBlocks;
                 if (chatMessageCell == null || (messageObject = chatMessageCell.getMessageObject()) == null || messageObject.getGroupId() != 0) {
                     return 0;
@@ -2064,15 +2189,17 @@ public abstract class MessagePreviewView extends FrameLayout {
                 if (arrayList != null && charSequence != null) {
                     for (int i2 = 0; i2 < arrayList.size(); i2++) {
                         MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
-                        String string = textLayoutBlock.textLayout.getText().toString();
+                        StaticLayout staticLayout = textLayoutBlock.textLayout;
+                        String string = staticLayout.getText().toString();
                         int i3 = textLayoutBlock.charactersOffset;
                         if (i > i3) {
                             if (i - i3 > string.length() - 1) {
-                                lineTop = iDp + ((int) (textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
+                                lineBottom = iDp + ((int) (textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
                             } else {
-                                lineTop = r6.getLineTop(r6.getLineForOffset(i - textLayoutBlock.charactersOffset)) + iDp + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop;
+                                int lineForOffset = staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset);
+                                lineBottom = (z ? staticLayout.getLineBottom(lineForOffset) : staticLayout.getLineTop(lineForOffset)) + iDp + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop;
                             }
-                            return (int) lineTop;
+                            return (int) lineBottom;
                         }
                     }
                 }

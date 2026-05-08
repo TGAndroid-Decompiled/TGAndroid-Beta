@@ -3263,6 +3263,96 @@ public class StoriesController {
         }
     }
 
+    public static class StoryRepostsList extends StoriesList {
+        private final ArrayList fakeDays;
+
+        @Override
+        protected void invalidateCache() {
+        }
+
+        @Override
+        public boolean isLoading() {
+            return false;
+        }
+
+        @Override
+        public boolean isOnlyCache() {
+            return false;
+        }
+
+        @Override
+        public boolean load(boolean z, int i, List list) {
+            return false;
+        }
+
+        @Override
+        protected boolean markAsRead(int i) {
+            return false;
+        }
+
+        @Override
+        protected void preloadCache() {
+        }
+
+        @Override
+        protected void saveCache() {
+        }
+
+        public StoryRepostsList(int i, ArrayList arrayList) {
+            super(i, 0L, 3, -1, null, null);
+            this.fakeDays = new ArrayList();
+            append(arrayList);
+        }
+
+        public int append(ArrayList arrayList) {
+            if (arrayList == null) {
+                return -1;
+            }
+            int size = this.messageObjects.size();
+            int i = 0;
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) arrayList.get(i2);
+                if (storyItem != null) {
+                    storyItem.messageId = this.messageObjects.size();
+                    MessageObject messageObject = new MessageObject(this.currentAccount, storyItem);
+                    messageObject.generateThumbs(false);
+                    ArrayList arrayList2 = new ArrayList();
+                    arrayList2.add(Integer.valueOf(this.messageObjects.size()));
+                    this.fakeDays.add(arrayList2);
+                    this.messageObjects.add(messageObject);
+                    i++;
+                }
+            }
+            if (i > 0) {
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesListUpdated, this);
+            }
+            return size;
+        }
+
+        @Override
+        public int getCount() {
+            return this.messageObjects.size();
+        }
+
+        @Override
+        public int getLoadedCount() {
+            return this.messageObjects.size();
+        }
+
+        @Override
+        protected ArrayList getDays() {
+            return new ArrayList(this.fakeDays);
+        }
+
+        @Override
+        public MessageObject findMessageObject(int i) {
+            if (i < 0 || i >= this.messageObjects.size()) {
+                return null;
+            }
+            return (MessageObject) this.messageObjects.get(i);
+        }
+    }
+
     public static class StoriesList {
         private static HashMap lastLoadTime;
         public final int albumId;
