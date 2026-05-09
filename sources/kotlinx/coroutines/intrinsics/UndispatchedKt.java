@@ -25,7 +25,7 @@ public abstract class UndispatchedKt {
                 Object objWrapWithContinuationImpl = !(function2 instanceof BaseContinuationImpl) ? IntrinsicsKt.wrapWithContinuationImpl(function2, obj, continuationProbeCoroutineCreated) : ((Function2) TypeIntrinsics.beforeCheckcastToFunctionOfArity(function2, 2)).invoke(obj, continuationProbeCoroutineCreated);
                 ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
                 if (objWrapWithContinuationImpl != IntrinsicsKt.getCOROUTINE_SUSPENDED()) {
-                    continuationProbeCoroutineCreated.resumeWith(Result.m277constructorimpl(objWrapWithContinuationImpl));
+                    continuationProbeCoroutineCreated.resumeWith(Result.m307constructorimpl(objWrapWithContinuationImpl));
                 }
             } catch (Throwable th) {
                 ThreadContextKt.restoreThreadContext(context, objUpdateThreadContext);
@@ -33,7 +33,7 @@ public abstract class UndispatchedKt {
             }
         } catch (Throwable th2) {
             Result.Companion companion = Result.Companion;
-            continuationProbeCoroutineCreated.resumeWith(Result.m277constructorimpl(ResultKt.createFailure(th2)));
+            continuationProbeCoroutineCreated.resumeWith(Result.m307constructorimpl(ResultKt.createFailure(th2)));
         }
     }
 

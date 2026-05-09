@@ -223,6 +223,16 @@
     </attr>
     <attr name="cameraZoom" format="float">
     </attr>
+    <attr name="carColorPrimary" format="color">
+    </attr>
+    <attr name="carColorPrimaryDark" format="color">
+    </attr>
+    <attr name="carColorSecondary" format="color">
+    </attr>
+    <attr name="carColorSecondaryDark" format="color">
+    </attr>
+    <attr name="carPermissionActivityLayout" format="reference">
+    </attr>
     <attr name="castAdBreakMarkerColor" format="color">
     </attr>
     <attr name="castAdInProgressLabelTextAppearance" format="reference">

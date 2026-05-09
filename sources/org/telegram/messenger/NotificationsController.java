@@ -1405,7 +1405,7 @@ public class NotificationsController extends BaseController {
         NotificationBadge.applyCount(i);
     }
 
-    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r27, java.lang.String[] r28, boolean[] r29) {
+    public java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r27, java.lang.String[] r28, boolean[] r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getShortStringForMessage(org.telegram.messenger.MessageObject, java.lang.String[], boolean[]):java.lang.String");
     }
 
@@ -1523,6 +1523,14 @@ public class NotificationsController extends BaseController {
 
     public static void lambda$dismissNotification$36() {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.pushMessagesUpdated, new Object[0]);
+    }
+
+    public ArrayList<MessageObject> getPushMessagesSnapshot() {
+        ArrayList<MessageObject> arrayList;
+        synchronized (this) {
+            arrayList = new ArrayList<>(this.pushMessages);
+        }
+        return arrayList;
     }
 
     private void playInChatSound() {

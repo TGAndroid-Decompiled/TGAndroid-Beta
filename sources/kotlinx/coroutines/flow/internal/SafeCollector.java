@@ -61,9 +61,9 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
 
     @Override
     public Object invokeSuspend(Object obj) {
-        Throwable thM279exceptionOrNullimpl = Result.m279exceptionOrNullimpl(obj);
-        if (thM279exceptionOrNullimpl != null) {
-            this.lastEmissionContext = new DownstreamExceptionContext(thM279exceptionOrNullimpl, getContext());
+        Throwable thM309exceptionOrNullimpl = Result.m309exceptionOrNullimpl(obj);
+        if (thM309exceptionOrNullimpl != null) {
+            this.lastEmissionContext = new DownstreamExceptionContext(thM309exceptionOrNullimpl, getContext());
         }
         Continuation continuation = this.completion_;
         if (continuation != null) {

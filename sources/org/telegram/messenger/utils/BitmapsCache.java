@@ -127,52 +127,52 @@ public class BitmapsCache {
                         randomAccessFile = null;
                         th = th2;
                     }
-                    try {
-                        this.cacheCreated = randomAccessFile.readBoolean();
-                        if (this.cacheCreated && this.frameOffsets.isEmpty()) {
-                            randomAccessFile.seek(randomAccessFile.readInt());
-                            int i4 = randomAccessFile.readInt();
-                            fillFrames(randomAccessFile, i4 > 10000 ? 0 : i4);
-                            if (this.frameOffsets.size() == 0) {
-                                this.cacheCreated = false;
-                                this.fileExist = false;
-                                this.checked = true;
-                                file3.delete();
-                            } else {
-                                if (this.cachedFile != randomAccessFile) {
-                                    closeCachedFile();
-                                }
-                                this.cachedFile = randomAccessFile;
-                            }
-                        }
-                        if (this.cachedFile != randomAccessFile) {
-                            randomAccessFile.close();
-                        }
-                    } catch (Throwable th3) {
-                        th = th3;
-                        try {
-                            th.printStackTrace();
-                            this.file.delete();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    this.cacheCreated = randomAccessFile.readBoolean();
+                    if (this.cacheCreated && this.frameOffsets.isEmpty()) {
+                        randomAccessFile.seek(randomAccessFile.readInt());
+                        int i4 = randomAccessFile.readInt();
+                        fillFrames(randomAccessFile, i4 > 10000 ? 0 : i4);
+                        if (this.frameOffsets.size() == 0) {
+                            this.cacheCreated = false;
                             this.fileExist = false;
                             this.checked = true;
+                            file3.delete();
+                        } else {
+                            if (this.cachedFile != randomAccessFile) {
+                                closeCachedFile();
+                            }
+                            this.cachedFile = randomAccessFile;
+                        }
+                    }
+                    if (this.cachedFile != randomAccessFile) {
+                        randomAccessFile.close();
+                    }
+                } catch (Throwable th3) {
+                    th = th3;
+                    try {
+                        th.printStackTrace();
+                        this.file.delete();
+                        this.fileExist = false;
+                        this.checked = true;
+                        if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
+                            randomAccessFile.close();
+                        }
+                        this.checked = true;
+                        return;
+                    } catch (Throwable th4) {
+                        try {
                             if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
                                 randomAccessFile.close();
                             }
-                            this.checked = true;
-                            return;
-                        } catch (Throwable th4) {
-                            try {
-                                if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
-                                    randomAccessFile.close();
-                                }
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            throw th4;
+                        } catch (IOException e2) {
+                            e2.printStackTrace();
                         }
+                        throw th4;
                     }
-                } catch (IOException e2) {
-                    e2.printStackTrace();
                 }
             }
             this.checked = true;

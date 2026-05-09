@@ -3,12 +3,12 @@ package ru.noties.jlatexmath.android;
 public final class R {
 
     public static final class attr {
-        public static final int jlmv_alignHorizontal = 0x7f0400ee;
-        public static final int jlmv_alignVertical = 0x7f0400ef;
-        public static final int jlmv_background = 0x7f0400f0;
-        public static final int jlmv_latex = 0x7f0400f1;
-        public static final int jlmv_textColor = 0x7f0400f2;
-        public static final int jlmv_textSize = 0x7f0400f3;
+        public static final int jlmv_alignHorizontal = 0x7f0400f3;
+        public static final int jlmv_alignVertical = 0x7f0400f4;
+        public static final int jlmv_background = 0x7f0400f5;
+        public static final int jlmv_latex = 0x7f0400f6;
+        public static final int jlmv_textColor = 0x7f0400f7;
+        public static final int jlmv_textSize = 0x7f0400f8;
 
         private attr() {
         }
@@ -24,7 +24,7 @@ public final class R {
     }
 
     public static final class styleable {
-        public static final int[] JLatexMathView = {2130968814, 2130968815, 2130968816, 2130968817, 2130968818, 2130968819};
+        public static final int[] JLatexMathView = {2130968819, 2130968820, 2130968821, 2130968822, 2130968823, 2130968824};
         public static final int JLatexMathView_jlmv_alignHorizontal = 0x00000000;
         public static final int JLatexMathView_jlmv_alignVertical = 0x00000001;
         public static final int JLatexMathView_jlmv_background = 0x00000002;

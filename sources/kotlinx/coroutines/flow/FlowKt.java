@@ -5,8 +5,8 @@ import kotlin.jvm.functions.Function2;
 import kotlin.jvm.functions.Function3;
 
 public abstract class FlowKt {
-    public static final Flow m329catch(Flow flow, Function3 function3) {
-        return FlowKt__ErrorsKt.m330catch(flow, function3);
+    public static final Flow m359catch(Flow flow, Function3 function3) {
+        return FlowKt__ErrorsKt.m360catch(flow, function3);
     }
 
     public static final Object catchImpl(Flow flow, FlowCollector flowCollector, Continuation continuation) {

@@ -24,6 +24,10 @@
     <color name="button_material_light">#ffd6d7d7</color>
     <color name="call_notification_answer_color">#1d873b</color>
     <color name="call_notification_decline_color">#d93025</color>
+    <color name="carColorBlue">#ff669df6</color>
+    <color name="carColorGreen">#ff61ac70</color>
+    <color name="carColorRed">#ffee675c</color>
+    <color name="carColorYellow">#ffe9a240</color>
     <color name="cast_expanded_controller_ad_break_marker_color">#fec92f</color>
     <color name="cast_expanded_controller_ad_container_white_stripe_color">#1affffff</color>
     <color name="cast_expanded_controller_ad_in_progress_text_color">#ffffff</color>

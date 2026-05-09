@@ -89,7 +89,7 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
             tL_channelAdminLogEventsFilter3.invites = true;
         }
         if (longSparseArray != null) {
-            this.selectedAdmins = longSparseArray.m9clone();
+            this.selectedAdmins = longSparseArray.m39clone();
         }
         this.isMegagroup = z;
         this.adapter.update(false);

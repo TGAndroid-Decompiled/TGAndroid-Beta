@@ -3,15 +3,15 @@ package kotlinx.coroutines.internal;
 import kotlin.jvm.internal.Intrinsics;
 
 public abstract class SegmentOrClosed {
-    public static Object m334constructorimpl(Object obj) {
+    public static Object m364constructorimpl(Object obj) {
         return obj;
     }
 
-    public static final boolean m336isClosedimpl(Object obj) {
+    public static final boolean m366isClosedimpl(Object obj) {
         return obj == ConcurrentLinkedListKt.CLOSED;
     }
 
-    public static final Segment m335getSegmentimpl(Object obj) {
+    public static final Segment m365getSegmentimpl(Object obj) {
         if (obj == ConcurrentLinkedListKt.CLOSED) {
             throw new IllegalStateException("Does not contain segment");
         }

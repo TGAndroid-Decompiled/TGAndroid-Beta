@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="67509"
+    android:versionCode="67519"
     android:versionName="12.7.3"
     android:installLocation="auto"
     android:compileSdkVersion="35"
@@ -139,6 +139,9 @@
         <intent>
             <action android:name="com.google.android.apps.play.billingtestcompanion.BillingOverrideService.BIND"/>
         </intent>
+        <provider
+            android:name="androidx.car.app.connection.provider"
+            android:authorities="androidx.car.app.connection"/>
     </queries>
     <permission
         android:name="org.telegram.messenger.beta.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
@@ -555,13 +558,6 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="org.telegram.messenger.AutoMessageReplyReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="org.telegram.messenger.ACTION_MESSAGE_REPLY"/>
-            </intent-filter>
-        </receiver>
-        <receiver
             android:name="org.telegram.messenger.SmsReceiver"
             android:exported="true">
             <intent-filter>
@@ -649,6 +645,14 @@
             android:enabled="true"
             android:exported="true"
             android:foregroundServiceType="mediaPlayback"/>
+        <service
+            android:name="org.telegram.messenger.MusicBrowserService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
         <service
             android:name="org.telegram.messenger.voip.TelegramConnectionService"
             android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
@@ -796,6 +800,24 @@
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true"/>
+        <meta-data
+            android:name="com.google.android.gms.car.notification.SmallIcon"
+            android:resource="@drawable/ic_player"/>
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc"/>
+        <service
+            android:name="org.telegram.messenger.car.TelegramCarAppService"
+            android:exported="true"
+            android:foregroundServiceType="connectedDevice">
+            <intent-filter>
+                <action android:name="androidx.car.app.CarAppService"/>
+                <category android:name="androidx.car.app.category.MESSAGING"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="androidx.car.app.minCarApiLevel"
+            android:value="5"/>
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="face,barcode"/>
@@ -964,6 +986,22 @@
             android:authorities="org.telegram.messenger.beta.firebaseinitprovider"
             android:initOrder="100"
             android:directBootAware="true"/>
+        <service
+            android:name="androidx.car.app.CarAppMetadataHolderService"
+            android:enabled="false"
+            android:exported="false"
+            android:process="">
+            <meta-data
+                android:name="androidx.car.app.CarAppMetadataHolderService.CAR_HARDWARE_MANAGER"
+                android:value="androidx.car.app.hardware.ProjectedCarHardwareManager"/>
+        </service>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:name="androidx.car.app.CarAppPermissionActivity"
+            android:exported="false"/>
+        <receiver
+            android:name="androidx.car.app.notification.CarAppNotificationBroadcastReceiver"
+            android:exported="false"/>
         <service
             android:name="androidx.sharetarget.ChooserTargetServiceCompat"
             android:permission="android.permission.BIND_CHOOSER_TARGET_SERVICE"

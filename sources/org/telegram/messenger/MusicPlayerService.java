@@ -18,7 +18,6 @@ import android.media.RemoteControlClient;
 import android.media.session.MediaSession;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -32,7 +31,6 @@ import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AudioPlayerAlert;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.LaunchActivity;
 
@@ -65,6 +63,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     private int notificationMessageID;
     private PlaybackStateCompat.Builder playbackState;
     private RemoteControlClient remoteControlClient;
+    private TelegramMediaSession sessionHolder;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -98,107 +97,14 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
             }
         });
-        this.mediaSession = new MediaSessionCompat(this, "telegramAudioPlayer");
+        TelegramMediaSession telegramMediaSession = TelegramMediaSession.getInstance(getApplicationContext());
+        this.sessionHolder = telegramMediaSession;
+        this.mediaSession = telegramMediaSession.getSession();
         this.playbackState = new PlaybackStateCompat.Builder();
         this.albumArtPlaceholder = Bitmap.createBitmap(AndroidUtilities.dp(102.0f), AndroidUtilities.dp(102.0f), Bitmap.Config.ARGB_8888);
         Drawable drawable = getResources().getDrawable(R.drawable.nocover_big);
         drawable.setBounds(0, 0, this.albumArtPlaceholder.getWidth(), this.albumArtPlaceholder.getHeight());
         drawable.draw(new Canvas(this.albumArtPlaceholder));
-        this.mediaSession.setCallback(new MediaSessionCompat.Callback() {
-            @Override
-            public void onStop() {
-            }
-
-            @Override
-            public void onPlay() {
-                MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
-            }
-
-            @Override
-            public void onPause() {
-                MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
-            }
-
-            @Override
-            public void onSkipToNext() {
-                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                if (playingMessageObject == null || !playingMessageObject.isMusic()) {
-                    return;
-                }
-                MediaController.getInstance().playNextMessage();
-            }
-
-            @Override
-            public void onSkipToPrevious() {
-                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                if (playingMessageObject == null || !playingMessageObject.isMusic()) {
-                    return;
-                }
-                MediaController.getInstance().playPreviousMessage();
-            }
-
-            @Override
-            public void onSeekTo(long j) {
-                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                if (playingMessageObject != null) {
-                    MediaController.getInstance().seekToProgress(playingMessageObject, (j / 1000) / ((float) playingMessageObject.getDuration()));
-                    MusicPlayerService.this.updatePlaybackState(j);
-                }
-            }
-
-            @Override
-            public void onSetRepeatMode(int i2) throws IllegalArgumentException {
-                SharedConfig.setRepeatMode(i2 != 1 ? (i2 == 2 || i2 == 3) ? 1 : 0 : 2);
-                MusicPlayerService.this.updateRepeatMode();
-                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                if (playingMessageObject != null) {
-                    MusicPlayerService.this.createNotification(playingMessageObject, false);
-                }
-            }
-
-            @Override
-            public void onSetShuffleMode(int i2) throws IllegalArgumentException {
-                if (i2 == 1 || i2 == 2) {
-                    if (!SharedConfig.shuffleMusic) {
-                        MediaController.getInstance().setPlaybackOrderType(2);
-                    }
-                } else if (SharedConfig.shuffleMusic) {
-                    MediaController.getInstance().setPlaybackOrderType(0);
-                }
-                MusicPlayerService.this.updateShuffleMode();
-                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                if (playingMessageObject != null) {
-                    MusicPlayerService.this.createNotification(playingMessageObject, false);
-                }
-            }
-
-            @Override
-            public void onCustomAction(String str, Bundle bundle) throws IllegalArgumentException {
-                if ("org.telegram.android.musicplayer.repeat".equals(str)) {
-                    SharedConfig.setRepeatMode((SharedConfig.repeatMode + 1) % 3);
-                    MusicPlayerService.this.updateRepeatMode();
-                    AudioPlayerAlert audioPlayerAlert = AudioPlayerAlert.instance;
-                    if (audioPlayerAlert != null) {
-                        audioPlayerAlert.updateRepeatButton();
-                    }
-                } else if ("org.telegram.android.musicplayer.shuffle".equals(str)) {
-                    if (SharedConfig.shuffleMusic) {
-                        MediaController.getInstance().setPlaybackOrderType(0);
-                    } else {
-                        MediaController.getInstance().setPlaybackOrderType(2);
-                    }
-                    MusicPlayerService.this.updateShuffleMode();
-                    AudioPlayerAlert audioPlayerAlert2 = AudioPlayerAlert.instance;
-                    if (audioPlayerAlert2 != null) {
-                        audioPlayerAlert2.updateRepeatButton();
-                    }
-                }
-                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
-                if (playingMessageObject != null) {
-                    MusicPlayerService.this.createNotification(playingMessageObject, false);
-                }
-            }
-        });
         this.mediaSession.setActive(true);
         updateRepeatMode();
         updateShuffleMode();
@@ -336,7 +242,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         return bitmapCreateBitmap;
     }
 
-    public void createNotification(MessageObject messageObject, boolean z) throws IllegalArgumentException {
+    private void createNotification(MessageObject messageObject, boolean z) throws IllegalArgumentException {
         long j;
         Bitmap avatarBitmap;
         Bitmap avatarBitmap2;
@@ -596,7 +502,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
     }
 
-    public void updatePlaybackState(long j) {
+    private void updatePlaybackState(long j) {
         long j2;
         int i;
         this.playbackState = new PlaybackStateCompat.Builder();
@@ -628,7 +534,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         this.mediaSession.setPlaybackState(this.playbackState.build());
     }
 
-    public void updateRepeatMode() {
+    private void updateRepeatMode() {
         MediaSessionCompat mediaSessionCompat = this.mediaSession;
         if (mediaSessionCompat != null) {
             int i = SharedConfig.repeatMode;
@@ -636,7 +542,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
     }
 
-    public void updateShuffleMode() {
+    private void updateShuffleMode() {
         MediaSessionCompat mediaSessionCompat = this.mediaSession;
         if (mediaSessionCompat != null) {
             mediaSessionCompat.setShuffleMode(SharedConfig.shuffleMusic ? 1 : 0);
@@ -679,10 +585,6 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             metadataEditorEditMetadata.clear();
             metadataEditorEditMetadata.apply();
             this.audioManager.unregisterRemoteControlClient(this.remoteControlClient);
-        }
-        MediaSessionCompat mediaSessionCompat = this.mediaSession;
-        if (mediaSessionCompat != null) {
-            mediaSessionCompat.release();
         }
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.messagePlayingDidSeek);
