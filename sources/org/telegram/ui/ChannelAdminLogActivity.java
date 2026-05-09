@@ -962,7 +962,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public View createView(Context context) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+    public View createView(Context context) {
         if (this.chatMessageCellsCache.isEmpty()) {
             for (int i = 0; i < 8; i++) {
                 this.chatMessageCellsCache.add(new ChatMessageCell(context, this.currentAccount));
@@ -3001,7 +3001,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) throws Resources.NotFoundException, IOException {
+            public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) throws Resources.NotFoundException {
                 MessageObject messageObject = chatMessageCell.getMessageObject().replyMessageObject;
                 if (messageObject.getDialogId() == (-ChannelAdminLogActivity.this.currentChat.id)) {
                     for (int i2 = 0; i2 < ChannelAdminLogActivity.this.filteredMessages.size(); i2++) {
@@ -3019,7 +3019,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
+            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float, boolean):void");
             }
 
@@ -3138,7 +3138,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+            public void didClickImage(ChatActionCell chatActionCell) {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 if (messageObject.type == 22) {
                     ChannelAdminLogActivity.this.presentFragment(new ChannelColorActivity(getDialogId()).setOnApplied(ChannelAdminLogActivity.this));
@@ -3270,7 +3270,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -3711,7 +3711,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         return arrayList;
     }
 
-    public void scrollToMessage(org.telegram.messenger.MessageObject r13, boolean r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public void scrollToMessage(org.telegram.messenger.MessageObject r13, boolean r14) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.scrollToMessage(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -3722,7 +3722,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$startMessageUnselect$25();
             }
         };
@@ -3730,7 +3730,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         AndroidUtilities.runOnUIThread(runnable2, this.highlightMessageQuote != null ? 2500L : 1000L);
     }
 
-    public void lambda$startMessageUnselect$25() throws Resources.NotFoundException, IOException {
+    public void lambda$startMessageUnselect$25() throws Resources.NotFoundException {
         this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuote = null;
@@ -3754,11 +3754,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.highlightMessageQuote = null;
     }
 
-    public void updateVisibleRows() throws Resources.NotFoundException, IOException {
+    public void updateVisibleRows() throws Resources.NotFoundException {
         updateVisibleRows(false);
     }
 
-    private void updateVisibleRows(boolean z) throws Resources.NotFoundException, IOException {
+    private void updateVisibleRows(boolean z) throws Resources.NotFoundException {
         String str;
         ChatListRecyclerView chatListRecyclerView = this.chatListView;
         if (chatListRecyclerView == null) {
@@ -3919,7 +3919,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onEndAnimation() throws Resources.NotFoundException, IOException {
+        public void onEndAnimation() throws Resources.NotFoundException {
             if (this.scrollTo != null) {
                 int iIndexOf = ChannelAdminLogActivity.this.chatAdapter.messagesStartRow + ChannelAdminLogActivity.this.filteredMessages.indexOf(this.scrollTo);
                 if (iIndexOf >= 0) {
@@ -4010,7 +4010,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         Objects.requireNonNull(chatActivityFragmentView);
         if (downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(new IBlur3Capture() {
             @Override
-            public final void capture(Canvas canvas, RectF rectF) throws IOException {
+            public final void capture(Canvas canvas, RectF rectF) {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
 
@@ -4091,7 +4091,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             super(context);
         }
 
-        public void drawList(Canvas canvas, RectF rectF) throws IOException {
+        public void drawList(Canvas canvas, RectF rectF) {
             long jUptimeMillis = SystemClock.uptimeMillis();
             if (ChannelAdminLogActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();

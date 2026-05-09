@@ -1952,10 +1952,14 @@ public abstract class AlertsCreator {
         AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public static void showAlertWithCheckbox(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+    public static AlertDialog showAlertWithCheckbox(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+        return showAlertWithCheckbox(context, charSequence, charSequence2, charSequence3, charSequence4, callback, resourcesProvider, true);
+    }
+
+    public static AlertDialog showAlertWithCheckbox(Context context, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, CharSequence charSequence4, final Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider, boolean z) {
         if (context == null) {
             callback.run(Boolean.FALSE);
-            return;
+            return null;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
         final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[1];
@@ -2021,8 +2025,9 @@ public abstract class AlertsCreator {
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         AlertDialog alertDialogCreate = builder.create();
-        alertDialogCreate.setShowStarsBalance(true);
+        alertDialogCreate.setShowStarsBalance(z);
         alertDialogCreate.show();
+        return alertDialogCreate;
     }
 
     public static void lambda$showAlertWithCheckbox$51(boolean[] zArr, View view) {

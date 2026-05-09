@@ -37,7 +37,6 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -1771,7 +1770,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public void lambda$showAsSheet$21() throws InterruptedException, IOException {
+    public void lambda$showAsSheet$21() throws InterruptedException {
         if (isDismissed() || this.isApplyClicked) {
             return;
         }
@@ -1817,7 +1816,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
-            public final void run() throws InterruptedException, IOException {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$showAsSheet$18();
             }
         };
@@ -1881,7 +1880,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
-            public final void run() throws InterruptedException, IOException {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$showAsSheet$21();
             }
         };

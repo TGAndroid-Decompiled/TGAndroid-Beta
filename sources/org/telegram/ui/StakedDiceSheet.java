@@ -472,7 +472,7 @@ public class StakedDiceSheet extends BottomSheetWithRecyclerListView {
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.StakeDiceToast));
             spannableStringBuilder.append((CharSequence) StarsIntroActivity.formatTON(j2));
-            spannableStringBuilder.append((CharSequence) "  ").append(ButtonSpan.make("change", new Runnable() {
+            spannableStringBuilder.append((CharSequence) "  ").append(ButtonSpan.make(LocaleController.getString(R.string.StakeDiceToastChange), new Runnable() {
                 @Override
                 public final void run() {
                     StakedDiceSheet.lambda$showStakeToast$7(safeLastFragment, callback);

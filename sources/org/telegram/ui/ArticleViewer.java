@@ -89,7 +89,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -7781,7 +7780,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
+        public boolean onTouchEvent(android.view.MotionEvent r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockVideoCell.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -7889,7 +7888,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             invalidate();
         }
 
-        private void didPressedButton(boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+        private void didPressedButton(boolean z) {
             int i = this.buttonState;
             if (i == 0) {
                 this.cancelLoading = false;
@@ -8020,7 +8019,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void onSuccessDownload(String str) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+        public void onSuccessDownload(String str) {
             this.radialProgress.setProgress(1.0f, true);
             if (this.isGif) {
                 this.buttonState = 2;
@@ -11767,7 +11766,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
+        public boolean onTouchEvent(android.view.MotionEvent r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -12973,7 +12972,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public boolean openPhoto(TLRPC.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+    public boolean openPhoto(TLRPC.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;

@@ -70,7 +70,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -1286,7 +1285,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this(context, baseFragment, z, z2, true, null);
     }
 
-    public ChatAttachAlert(final Context context, final BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, final Theme.ResourcesProvider resourcesProvider) throws IOException {
+    public ChatAttachAlert(final Context context, final BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, final Theme.ResourcesProvider resourcesProvider) {
         TextView textView;
         int i;
         int i2;
@@ -1725,7 +1724,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.optionsItem.setBackground(Theme.createSelectorDrawable(getThemedColor(i), 3));
         this.optionsItem.addSubItem(1, R.drawable.msg_addbot, LocaleController.getString(R.string.StickerCreateEmpty)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+            public final void onClick(View view) {
                 this.f$0.lambda$new$6(resourcesProvider, view);
             }
         });
@@ -3350,7 +3349,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         lambda$new$0();
     }
 
-    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) {
         this.optionsItem.toggleSubMenu();
         PhotoViewer.getInstance().setParentActivity(this.baseFragment, resourcesProvider);
         PhotoViewer.getInstance().setParentAlert(this);
@@ -4760,11 +4759,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.containerView.invalidate();
     }
 
-    private int getShadowDrawableColor() throws IOException {
+    private int getShadowDrawableColor() {
         return getShadowDrawableColor(false);
     }
 
-    private int getShadowDrawableColor(boolean z) throws IOException {
+    private int getShadowDrawableColor(boolean z) {
         ActionBar actionBar;
         if (this.forceDarkTheme) {
             return getThemedColor(Theme.key_voipgroup_listViewBackground);
@@ -5426,7 +5425,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void checkColors() throws IOException {
+    public void checkColors() {
         RecyclerListView recyclerListView = this.buttonsRecyclerView;
         if (recyclerListView == null) {
             return;

@@ -10,7 +10,6 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -150,20 +149,20 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onReactionClicked$0();
                 }
             });
         }
 
-        public void lambda$onReactionClicked$0() throws Resources.NotFoundException, IOException {
+        public void lambda$onReactionClicked$0() throws Resources.NotFoundException {
             if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
                 ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
             }
             hideMenu();
         }
 
-        public void hideMenu() throws Resources.NotFoundException, IOException {
+        public void hideMenu() throws Resources.NotFoundException {
             ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
         }
     }

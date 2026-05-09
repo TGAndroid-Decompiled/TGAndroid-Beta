@@ -32,7 +32,6 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -166,7 +165,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         rLottieImageView.setAnimation(this.darkThemeDrawable);
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IOException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createView$0(rLottieImageView, view);
             }
         });
@@ -300,7 +299,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(RLottieImageView rLottieImageView, View view) throws IOException {
+    public void lambda$createView$0(RLottieImageView rLottieImageView, View view) {
         Theme.ThemeInfo theme;
         if (DialogsActivity.switchingTheme) {
             return;

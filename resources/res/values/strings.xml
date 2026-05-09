@@ -2886,6 +2886,7 @@
     <string name="DeleteAccountTitle">Account self-destruct</string>
     <string name="DeleteAdditionalActions">Additional actions</string>
     <string name="DeleteAlertReaction">Are you sure you want to delete reaction from this user?</string>
+    <string name="DeleteAlertReactionAll">Delete all user reactions</string>
     <string name="DeleteAll">Delete All</string>
     <string name="DeleteAllCalls">Delete all calls</string>
     <string name="DeleteAllCallsText">Do you want to delete all recent calls?</string>
@@ -2949,6 +2950,7 @@
     <string name="DeleteMessagesOption">Unsend My Messages</string>
     <string name="DeleteMessagesOptionAlso">Also delete for %1$s</string>
     <string name="DeleteMessagesOptionAlsoChat">Also clear for all members</string>
+    <string name="DeleteMessagesOptionsTitleAll">Delete All Messages?</string>
     <string name="DeleteMessagesText">You can also delete the %1$s you sent from **%2$s**\'s inbox by checking \"Unsend my messages\".</string>
     <string name="DeleteMessagesTextGroup">You can also delete the %1$s you sent from the inboxes of other group members by checking \"Unsend my messages\".</string>
     <string name="DeleteMessagesTextGroupPart">You can also delete the %1$s from the inboxes of other group members by checking \"Delete for all members\".</string>
@@ -8654,6 +8656,7 @@
     <string name="StakeDiceTitleBeta">Beta</string>
     <string name="StakeDiceToast">Your Stake: ��</string>
     <string name="StakeDiceToastButton">Send</string>
+    <string name="StakeDiceToastChange">change</string>
     <string name="StarAffiliate">Affiliate</string>
     <string name="StarAffiliateCommission">Commission</string>
     <string name="StarAffiliateMiniApp">Mini App</string>
@@ -10767,7 +10770,7 @@
     <string name="chatDate">MMMM d</string>
     <string name="chatDateShort">MMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
-    <string name="com.google.firebase.crashlytics.mapping_file_id">71eded27c8b245c793a594e62940b68b</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id">4ce6ba55522e4d0daac260e148b702ad</string>
     <string name="common_google_play_services_enable_button">Enable</string>
     <string name="common_google_play_services_enable_text">%1$s won\'t work unless you enable Google Play services.</string>
     <string name="common_google_play_services_enable_title">Enable Google Play services</string>

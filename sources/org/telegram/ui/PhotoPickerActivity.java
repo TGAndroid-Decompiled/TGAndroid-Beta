@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -38,7 +37,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -556,7 +554,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.listView.setGlowColor(Theme.getColor(this.dialogBackgroundKey));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+            public final void onItemClick(View view, int i4) {
                 this.f$0.lambda$createView$1(view, i4);
             }
         });
@@ -948,7 +946,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$createView$1(View view, int i) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+    public void lambda$createView$1(View view, int i) {
         ArrayList<MediaController.PhotoEntry> arrayList;
         int i2;
         if (this.selectedAlbum == null && this.searchResult.isEmpty()) {
