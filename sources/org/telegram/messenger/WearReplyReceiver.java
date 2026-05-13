@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.core.app.RemoteInput;
+import java.util.ArrayList;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 
@@ -25,6 +26,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         final int intExtra = intent.getIntExtra("max_id", 0);
         final long longExtra2 = intent.getLongExtra("topic_id", 0L);
         int intExtra2 = intent.getIntExtra("currentAccount", 0);
+        final int[] intArrayExtra = intent.getIntArrayExtra("voice_msg_ids");
         if (longExtra == 0 || intExtra == 0 || !UserConfig.isValidAccount(intExtra2)) {
             return;
         }
@@ -34,7 +36,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
                 Utilities.globalQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra);
+                        this.f$0.lambda$onReceive$1(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                     }
                 });
                 return;
@@ -43,45 +45,45 @@ public class WearReplyReceiver extends BroadcastReceiver {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra);
+                    this.f$0.lambda$onReceive$3(accountInstance, longExtra, charSequence, longExtra2, intExtra, intArrayExtra);
                 }
             });
             return;
         }
-        sendMessage(accountInstance, charSequence, longExtra, longExtra2, intExtra);
+        sendMessage(accountInstance, charSequence, longExtra, longExtra2, intExtra, intArrayExtra);
     }
 
-    public void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i) {
+    public void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i, final int[] iArr) {
         final TLRPC.User userSync = accountInstance.getMessagesStorage().getUserSync(j);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onReceive$0(accountInstance, userSync, charSequence, j, j2, i);
+                this.f$0.lambda$onReceive$0(accountInstance, userSync, charSequence, j, j2, i, iArr);
             }
         });
     }
 
-    public void lambda$onReceive$0(AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j, long j2, int i) {
+    public void lambda$onReceive$0(AccountInstance accountInstance, TLRPC.User user, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
         accountInstance.getMessagesController().putUser(user, true);
-        sendMessage(accountInstance, charSequence, j, j2, i);
+        sendMessage(accountInstance, charSequence, j, j2, i, iArr);
     }
 
-    public void lambda$onReceive$3(final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i) {
+    public void lambda$onReceive$3(final AccountInstance accountInstance, final long j, final CharSequence charSequence, final long j2, final int i, final int[] iArr) {
         final TLRPC.Chat chatSync = accountInstance.getMessagesStorage().getChatSync(-j);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onReceive$2(accountInstance, chatSync, charSequence, j, j2, i);
+                this.f$0.lambda$onReceive$2(accountInstance, chatSync, charSequence, j, j2, i, iArr);
             }
         });
     }
 
-    public void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j, long j2, int i) {
+    public void lambda$onReceive$2(AccountInstance accountInstance, TLRPC.Chat chat, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
         accountInstance.getMessagesController().putChat(chat, true);
-        sendMessage(accountInstance, charSequence, j, j2, i);
+        sendMessage(accountInstance, charSequence, j, j2, i, iArr);
     }
 
-    private void sendMessage(AccountInstance accountInstance, CharSequence charSequence, long j, long j2, int i) {
+    private void sendMessage(AccountInstance accountInstance, CharSequence charSequence, long j, long j2, int i, int[] iArr) {
         MessageObject messageObject;
         MessageObject messageObject2;
         if (i != 0) {
@@ -106,6 +108,13 @@ public class WearReplyReceiver extends BroadcastReceiver {
             messageObject2 = null;
         }
         accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, messageObject, messageObject2, null, true, null, null, null, true, 0, 0, null, false));
+        if (iArr != null && iArr.length > 0) {
+            ArrayList<Integer> arrayList = new ArrayList<>(iArr.length);
+            for (int i2 : iArr) {
+                arrayList.add(Integer.valueOf(i2));
+            }
+            accountInstance.getMessagesStorage().markVoiceMessageContentAsRead(j, arrayList);
+        }
         if (j2 == 0) {
             accountInstance.getMessagesController().markDialogAsRead(j, i, i, 0, false, j2, 0, true, 0);
         }
