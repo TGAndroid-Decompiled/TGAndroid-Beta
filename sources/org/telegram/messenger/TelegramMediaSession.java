@@ -24,10 +24,14 @@ import android.text.TextUtils;
 import androidx.collection.LongSparseArray;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
@@ -101,6 +105,79 @@ public class TelegramMediaSession {
         mediaSessionCompat.setPlaybackState(new PlaybackStateCompat.Builder().setState(0, 0L, 1.0f).setActions(getAvailableActions()).build());
         updateRepeatMode();
         updateShuffleMode();
+        NotificationCenter.getGlobalInstance().addObserver(new NotificationCenter.NotificationCenterDelegate() {
+            @Override
+            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
+                this.f$0.lambda$new$0(i2, i3, objArr);
+            }
+        }, NotificationCenter.activeAccountChanged);
+    }
+
+    public void lambda$new$0(int i, int i2, Object[] objArr) {
+        if (i == NotificationCenter.activeAccountChanged) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.onAccountSwitched();
+                }
+            });
+        }
+    }
+
+    public void onAccountSwitched() {
+        int i = UserConfig.selectedAccount;
+        this.currentAccount = i;
+        this.lastSelectedDialog = AndroidUtilities.getPrefIntOrLong(MessagesController.getNotificationsSettings(i), "auto_lastSelectedDialog", 0L);
+        this.chatsLoaded = false;
+        this.loadingChats = false;
+        this.dialogs.clear();
+        this.users.clear();
+        this.chats.clear();
+        this.musicObjects.clear();
+        this.musicQueues.clear();
+        try {
+            this.session.setQueue(null);
+            this.session.setQueueTitle(null);
+        } catch (Throwable unused) {
+        }
+    }
+
+    public int getCurrentAccount() {
+        return this.currentAccount;
+    }
+
+    public ArrayList<Long> getMusicDialogsSortedByVisibleOrder() {
+        ArrayList<Long> arrayList = new ArrayList<>(this.dialogs);
+        ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
+        final HashMap map = new HashMap();
+        for (int i = 0; i < allDialogs.size(); i++) {
+            TLRPC.Dialog dialog = allDialogs.get(i);
+            if (dialog != null) {
+                map.put(Long.valueOf(dialog.id), Integer.valueOf(i));
+            }
+        }
+        Collections.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                return TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1(map, (Long) obj, (Long) obj2);
+            }
+        });
+        return arrayList;
+    }
+
+    public static int lambda$getMusicDialogsSortedByVisibleOrder$1(HashMap map, Long l, Long l2) {
+        Integer num = (Integer) map.get(l);
+        Integer num2 = (Integer) map.get(l2);
+        if (num == null && num2 == null) {
+            return Long.compare(l.longValue(), l2.longValue());
+        }
+        if (num == null) {
+            return 1;
+        }
+        if (num2 == null) {
+            return -1;
+        }
+        return Integer.compare(num.intValue(), num2.intValue());
     }
 
     public MediaSessionCompat getSession() {
@@ -136,6 +213,49 @@ public class TelegramMediaSession {
         return SharedConfig.passcodeHash.length() > 0 && (SharedConfig.appLocked || (!(SharedConfig.autoLockIn == 0 || (i = SharedConfig.lastPauseTime) == 0 || i + SharedConfig.autoLockIn > iElapsedRealtime) || iElapsedRealtime + 5 < SharedConfig.lastPauseTime));
     }
 
+    public boolean isChatsLoaded() {
+        return this.chatsLoaded;
+    }
+
+    public ArrayList<Long> getMusicDialogs() {
+        return this.dialogs;
+    }
+
+    public TLRPC.User getMusicUser(long j) {
+        return (TLRPC.User) this.users.get(j);
+    }
+
+    public TLRPC.Chat getMusicChat(long j) {
+        return (TLRPC.Chat) this.chats.get(j);
+    }
+
+    public ArrayList<MessageObject> getMusicMessages(long j) {
+        return (ArrayList) this.musicObjects.get(j);
+    }
+
+    public Bitmap getRoundedAvatar(File file) {
+        return createRoundBitmap(file);
+    }
+
+    public void ensureLoaded(final Runnable runnable) {
+        if (!this.chatsLoaded) {
+            loadBrowseChildren("__ROOT__", new BrowseChildrenCallback() {
+                @Override
+                public final void onResult(List list) {
+                    TelegramMediaSession.lambda$ensureLoaded$2(runnable, list);
+                }
+            });
+        } else if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+        }
+    }
+
+    public static void lambda$ensureLoaded$2(Runnable runnable, List list) {
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
     public void loadBrowseChildren(final String str, final BrowseChildrenCallback browseChildrenCallback) {
         if (this.chatsLoaded) {
             browseChildrenCallback.onResult(loadChildrenSync(str));
@@ -146,12 +266,12 @@ public class TelegramMediaSession {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadBrowseChildren$1(messagesStorage, browseChildrenCallback, str);
+                this.f$0.lambda$loadBrowseChildren$4(messagesStorage, browseChildrenCallback, str);
             }
         });
     }
 
-    public void lambda$loadBrowseChildren$1(MessagesStorage messagesStorage, final BrowseChildrenCallback browseChildrenCallback, final String str) {
+    public void lambda$loadBrowseChildren$4(MessagesStorage messagesStorage, final BrowseChildrenCallback browseChildrenCallback, final String str) {
         try {
             ArrayList<Long> arrayList = new ArrayList<>();
             ArrayList arrayList2 = new ArrayList();
@@ -223,12 +343,12 @@ public class TelegramMediaSession {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$loadBrowseChildren$0(browseChildrenCallback, str);
+                this.f$0.lambda$loadBrowseChildren$3(browseChildrenCallback, str);
             }
         });
     }
 
-    public void lambda$loadBrowseChildren$0(BrowseChildrenCallback browseChildrenCallback, String str) {
+    public void lambda$loadBrowseChildren$3(BrowseChildrenCallback browseChildrenCallback, String str) {
         this.chatsLoaded = true;
         this.loadingChats = false;
         if (this.lastSelectedDialog == 0 && !this.dialogs.isEmpty()) {

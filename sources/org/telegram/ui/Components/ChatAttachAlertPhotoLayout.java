@@ -4448,6 +4448,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     class PhotoAttachAdapter extends RecyclerListView.FastScrollAdapter {
         private boolean hasCamera;
         private boolean hasCameraSpaceRow;
+        private boolean isInFastScroll;
         private int itemsCount;
         private final Context mContext;
         private final boolean needCamera;
@@ -4469,6 +4470,28 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             for (int i = 0; i < 8; i++) {
                 this.viewsCache.add(createHolder());
             }
+        }
+
+        @Override
+        public void onStartFastScroll() {
+            super.onStartFastScroll();
+            this.isInFastScroll = true;
+        }
+
+        @Override
+        public void onFinishFastScroll(RecyclerListView recyclerListView) {
+            super.onFinishFastScroll(recyclerListView);
+            this.isInFastScroll = false;
+            if (recyclerListView != null) {
+                int childCount = recyclerListView.getChildCount();
+                for (int i = 0; i < childCount; i++) {
+                    recyclerListView.getChildAt(i).invalidate();
+                }
+            }
+        }
+
+        public boolean isInFastScroll() {
+            return this.isInFastScroll;
         }
 
         public RecyclerListView.Holder createHolder() {
@@ -4504,6 +4527,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 });
                 photoAttachPhotoCell.setClipToOutline(true);
             }
+            photoAttachPhotoCell.setFastScrollDelegate(new PhotoAttachPhotoCell.ParentFastScrollDelegate() {
+                @Override
+                public final boolean isInFastScroll() {
+                    return this.f$0.isInFastScroll();
+                }
+            });
             photoAttachPhotoCell.setDelegate(new PhotoAttachPhotoCell.PhotoAttachPhotoCellDelegate() {
                 @Override
                 public final void onCheckClick(PhotoAttachPhotoCell photoAttachPhotoCell2) {

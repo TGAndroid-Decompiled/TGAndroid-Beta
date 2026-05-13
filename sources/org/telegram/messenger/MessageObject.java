@@ -198,6 +198,7 @@ public class MessageObject {
     public boolean forceShowPollResults;
     public boolean forceUpdate;
     private float generatedWithDensity;
+    private float generatedWithFontSize;
     private int generatedWithMinSize;
     public float gifState;
     public boolean hadAnimationNotReadyLoading;
@@ -3061,15 +3062,16 @@ public class MessageObject {
         int i = this.type;
         if ((i == 0 || i == 19) && this.messageOwner.peer_id != null && (charSequence = this.messageText) != null && (charSequence.length() != 0 || this.isBotPendingDraft)) {
             if (this.layoutCreated) {
-                if (Math.abs(this.generatedWithMinSize - (AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : AndroidUtilities.displaySize.x)) > AndroidUtilities.dp(52.0f) || this.generatedWithDensity != AndroidUtilities.density) {
+                int minTabletSide = AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : AndroidUtilities.displaySize.x;
+                TextPaint textPaint2 = Theme.chat_msgTextPaint;
+                float textSize = textPaint2 != null ? textPaint2.getTextSize() : 0.0f;
+                if (Math.abs(this.generatedWithMinSize - minTabletSide) > AndroidUtilities.dp(52.0f) || this.generatedWithDensity != AndroidUtilities.density || this.generatedWithFontSize != textSize) {
                     this.layoutCreated = false;
                 }
             }
             if (!this.layoutCreated) {
                 this.layoutCreated = true;
-                if (isFromUser()) {
-                    MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.messageOwner.from_id.user_id));
-                }
+                TLRPC.User user = isFromUser() ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.messageOwner.from_id.user_id)) : null;
                 if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaGame) {
                     textPaint = Theme.chat_msgGameTextPaint;
                 } else {
@@ -3086,6 +3088,11 @@ public class MessageObject {
                 checkEmojiOnly(iArr);
                 checkBigAnimatedEmoji();
                 setType();
+                generateLayout(user);
+                if (this.caption != null) {
+                    this.caption = null;
+                    generateCaption();
+                }
                 return true;
             }
         }

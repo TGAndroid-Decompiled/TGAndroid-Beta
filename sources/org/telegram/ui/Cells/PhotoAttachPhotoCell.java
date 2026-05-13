@@ -59,6 +59,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private FrameLayout container;
     private Float crossfadeDuration;
     private PhotoAttachPhotoCellDelegate delegate;
+    private ParentFastScrollDelegate fastScrollDelegate;
     private boolean hasSpoiler;
     private boolean highQuality;
     public BackupImageView imageView;
@@ -87,6 +88,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private ImageView videoPlayImageView;
     private TextView videoTextView;
     private boolean zoomOnSelect;
+
+    public interface ParentFastScrollDelegate {
+        boolean isInFastScroll();
+    }
 
     public interface PhotoAttachPhotoCellDelegate {
         void onCheckClick(PhotoAttachPhotoCell photoAttachPhotoCell);
@@ -195,21 +200,22 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                         PhotoAttachPhotoCell.this.container.invalidate();
                     }
                 }
-                if (PhotoAttachPhotoCell.this.photoEntry != null && PhotoAttachPhotoCell.this.photoEntry.isLivePhoto() && PhotoAttachPhotoCell.this.allowLivePhotos) {
-                    if (PhotoAttachPhotoCell.this.photoEntry.isUnalivePhoto()) {
-                        if (this.livePhotoIconOff == null) {
-                            this.livePhotoIconOff = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
-                        }
-                        drawable = this.livePhotoIconOff;
-                    } else {
-                        if (this.livePhotoIcon == null) {
-                            this.livePhotoIcon = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
-                        }
-                        drawable = this.livePhotoIcon;
-                    }
-                    drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
-                    drawable.draw(canvas);
+                if (!PhotoAttachPhotoCell.this.allowLivePhotos || PhotoAttachPhotoCell.this.isParentDoFastScroll() || PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isLivePhoto()) {
+                    return;
                 }
+                if (PhotoAttachPhotoCell.this.photoEntry.isUnalivePhoto()) {
+                    if (this.livePhotoIconOff == null) {
+                        this.livePhotoIconOff = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
+                    }
+                    drawable = this.livePhotoIconOff;
+                } else {
+                    if (this.livePhotoIcon == null) {
+                        this.livePhotoIcon = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
+                    }
+                    drawable = this.livePhotoIcon;
+                }
+                drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
+                drawable.draw(canvas);
             }
 
             @Override
@@ -257,6 +263,15 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.checkFrame = frameLayout3;
         addView(frameLayout3, LayoutHelper.createFrame(42, 42.0f, 51, 38.0f, 0.0f, 0.0f, 0.0f));
         this.itemSize = AndroidUtilities.dp(80.0f);
+    }
+
+    public void setFastScrollDelegate(ParentFastScrollDelegate parentFastScrollDelegate) {
+        this.fastScrollDelegate = parentFastScrollDelegate;
+    }
+
+    public boolean isParentDoFastScroll() {
+        ParentFastScrollDelegate parentFastScrollDelegate = this.fastScrollDelegate;
+        return parentFastScrollDelegate != null && parentFastScrollDelegate.isInFastScroll();
     }
 
     public void setHighQuality(boolean z) {

@@ -13,10 +13,14 @@ import androidx.car.app.messaging.model.CarMessage;
 import androidx.car.app.messaging.model.ConversationCallback;
 import androidx.car.app.messaging.model.ConversationItem;
 import androidx.car.app.model.Action;
+import androidx.car.app.model.CarIcon;
 import androidx.car.app.model.CarText;
 import androidx.car.app.model.ItemList;
 import androidx.car.app.model.ListTemplate;
 import androidx.car.app.model.MessageTemplate;
+import androidx.car.app.model.Tab;
+import androidx.car.app.model.TabContents;
+import androidx.car.app.model.TabTemplate;
 import androidx.car.app.model.Template;
 import androidx.core.app.Person;
 import androidx.core.graphics.drawable.IconCompat;
@@ -44,8 +48,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 
-public class ConversationsScreen extends Screen implements DefaultLifecycleObserver, NotificationCenter.NotificationCenterDelegate {
-    private final int currentAccount;
+public class HomeScreen extends Screen implements DefaultLifecycleObserver, NotificationCenter.NotificationCenterDelegate {
+    private String activeTabId;
+    private int currentAccount;
+    private boolean musicLoadKicked;
     private final long sessionStartMillis;
 
     @Override
@@ -68,8 +74,9 @@ public class ConversationsScreen extends Screen implements DefaultLifecycleObser
         Intrinsics.checkNotNullParameter(lifecycleOwner, "owner");
     }
 
-    public ConversationsScreen(CarContext carContext) {
+    public HomeScreen(CarContext carContext) {
         super(carContext);
+        this.activeTabId = "tab_notifications";
         this.sessionStartMillis = System.currentTimeMillis();
         this.currentAccount = UserConfig.selectedAccount;
         getLifecycle().addObserver(this);
@@ -78,25 +85,59 @@ public class ConversationsScreen extends Screen implements DefaultLifecycleObser
     @Override
     public void onResume(LifecycleOwner lifecycleOwner) {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.pushMessagesUpdated);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.notificationsCountUpdated);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.activeAccountChanged);
     }
 
     @Override
     public void onPause(LifecycleOwner lifecycleOwner) {
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.pushMessagesUpdated);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.notificationsCountUpdated);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.activeAccountChanged);
     }
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.pushMessagesUpdated) {
+        if (i == NotificationCenter.activeAccountChanged) {
+            this.currentAccount = UserConfig.selectedAccount;
+            this.musicLoadKicked = false;
+            invalidate();
+        } else if ((i == NotificationCenter.pushMessagesUpdated || i == NotificationCenter.notificationsCountUpdated) && "tab_notifications".equals(this.activeTabId)) {
             invalidate();
         }
     }
 
     @Override
     public Template onGetTemplate() {
+        TabTemplate.Builder builder = new TabTemplate.Builder(new TabTemplate.TabCallback() {
+            @Override
+            public void onTabSelected(String str) {
+                HomeScreen.this.activeTabId = str;
+                HomeScreen.this.invalidate();
+            }
+        });
+        builder.setHeaderAction(Action.APP_ICON);
+        builder.addTab(new Tab.Builder().setContentId("tab_notifications").setIcon(iconResource(R.drawable.msg_notifications)).setTitle(LocaleController.getString(R.string.Notifications)).build());
+        builder.addTab(new Tab.Builder().setContentId("tab_music").setIcon(iconResource(R.drawable.filled_widget_music)).setTitle(LocaleController.getString(R.string.Music)).build());
+        builder.setActiveTabContentId(this.activeTabId);
+        builder.setTabContents(new TabContents.Builder(buildTabContent(this.activeTabId)).build());
+        return builder.build();
+    }
+
+    private Template buildTabContent(String str) {
+        int iHashCode = str.hashCode();
+        if (iHashCode == -2006925890) {
+            str.equals("tab_notifications");
+        } else if (iHashCode == 1942637819 && str.equals("tab_music")) {
+            return buildMusicTemplate();
+        }
+        return buildNotificationsTemplate();
+    }
+
+    private Template buildNotificationsTemplate() {
         Map mapCollectUnreadDuringDrive = collectUnreadDuringDrive();
         if (mapCollectUnreadDuringDrive.isEmpty()) {
-            return new MessageTemplate.Builder(LocaleController.getString(R.string.NoNewCarMessages)).setHeaderAction(Action.APP_ICON).setTitle("Telegram").build();
+            return new MessageTemplate.Builder(LocaleController.getString(R.string.NoNewCarMessages)).build();
         }
         ItemList.Builder builder = new ItemList.Builder();
         int i = 0;
@@ -111,7 +152,7 @@ public class ConversationsScreen extends Screen implements DefaultLifecycleObser
             }
             i = i2;
         }
-        return new ListTemplate.Builder().setSingleList(builder.build()).setTitle("Telegram").setHeaderAction(Action.APP_ICON).build();
+        return new ListTemplate.Builder().setSingleList(builder.build()).build();
     }
 
     private Map collectUnreadDuringDrive() {
@@ -138,7 +179,7 @@ public class ConversationsScreen extends Screen implements DefaultLifecycleObser
     }
 
     private androidx.car.app.messaging.model.ConversationItem buildConversationItem(long r20, java.util.ArrayList r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.car.ConversationsScreen.buildConversationItem(long, java.util.ArrayList):androidx.car.app.messaging.model.ConversationItem");
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.car.HomeScreen.buildConversationItem(long, java.util.ArrayList):androidx.car.app.messaging.model.ConversationItem");
     }
 
     private CarMessage buildCarMessage(MessageObject messageObject, long j, boolean z, TLRPC.User user, TLRPC.Chat chat) {
@@ -166,6 +207,18 @@ public class ConversationsScreen extends Screen implements DefaultLifecycleObser
             builder.setName("");
         }
         return new CarMessage.Builder().setBody(CarText.create(string)).setReceivedTimeEpochMillis(messageObject.messageOwner.date * 1000).setSender(builder.build()).setRead(false).build();
+    }
+
+    private androidx.car.app.model.Template buildMusicTemplate() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.car.HomeScreen.buildMusicTemplate():androidx.car.app.model.Template");
+    }
+
+    public void lambda$buildMusicTemplate$0(long j, String str) {
+        getScreenManager().push(new MusicSongsScreen(getCarContext(), j, str));
+    }
+
+    private CarIcon iconResource(int i) {
+        return new CarIcon.Builder(IconCompat.createWithResource(getCarContext(), i)).build();
     }
 
     private IconCompat loadAvatarIcon(TLRPC.User user, TLRPC.Chat chat) {

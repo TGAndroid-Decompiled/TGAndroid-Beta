@@ -1232,6 +1232,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         UserConfig.selectedAccount = i;
         UserConfig.getInstance(0).saveConfig(false);
         checkCurrentAccount();
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.activeAccountChanged, Integer.valueOf(i));
         if (AndroidUtilities.isTablet()) {
             this.layersActionBarLayout.removeAllFragments();
             this.rightActionBarLayout.removeAllFragments();
@@ -4140,7 +4141,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws java.io.IOException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
@@ -4446,7 +4447,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4698,7 +4699,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() throws Resources.NotFoundException {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
@@ -4879,6 +4880,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
         super.onConfigurationChanged(configuration);
         this.pipActivityHandler.onConfigurationChanged(configuration);
+        AndroidUtilities.resetTabletFlag();
+        invalidateTabletMode();
         checkLayout();
         PipRoundVideoView pipRoundVideoView = PipRoundVideoView.getInstance();
         if (pipRoundVideoView != null) {
