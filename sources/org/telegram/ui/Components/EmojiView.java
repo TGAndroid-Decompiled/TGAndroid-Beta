@@ -8054,6 +8054,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         private ArrayList selectedPackStickers;
         private final ArrayList result = new ArrayList();
         private final ArrayList resultPre = new ArrayList();
+        private final ArrayList resultGlobal = new ArrayList();
         private final ArrayList packs = new ArrayList();
 
         public EmojiSearchAdapter(Context context) {
@@ -8175,18 +8176,35 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             }
         }
 
+        private int globalSectionStart() {
+            int i;
+            if (this.packs.isEmpty()) {
+                i = !this.result.isEmpty() ? 2 : 1;
+            } else {
+                i = 3;
+            }
+            return i + this.result.size();
+        }
+
         @Override
         public int getItemCount() {
             if (this.selectedPackId != 0) {
                 return this.selectedPackStickers.size() + 4;
             }
-            if (this.result.isEmpty() && this.packs.isEmpty() && !this.searchWas) {
+            int i = 1;
+            if (this.result.isEmpty() && this.resultGlobal.isEmpty() && this.packs.isEmpty() && !this.searchWas) {
                 return EmojiView.this.getRecentEmoji().size() + 1;
             }
-            if (this.result.isEmpty() && this.packs.isEmpty()) {
+            if (this.result.isEmpty() && this.resultGlobal.isEmpty() && this.packs.isEmpty()) {
                 return 2;
             }
-            return this.result.size() + 1;
+            if (!this.packs.isEmpty()) {
+                i = 3;
+            } else if (!this.result.isEmpty()) {
+                i = 2;
+            }
+            int size = i + this.result.size();
+            return !this.resultGlobal.isEmpty() ? size + 1 + this.resultGlobal.size() : size;
         }
 
         @Override
@@ -8389,10 +8407,14 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             if (i == 0) {
                 return 1;
             }
-            if (i == 1 && this.searchWas && this.result.isEmpty() && this.packs.isEmpty()) {
+            if (i == 1 && this.searchWas && this.result.isEmpty() && this.resultGlobal.isEmpty() && this.packs.isEmpty()) {
                 return 2;
             }
-            if (!this.packs.isEmpty()) {
+            if (this.packs.isEmpty()) {
+                if (!this.result.isEmpty() && i == 1) {
+                    return 3;
+                }
+            } else {
                 if (i == 1) {
                     return 4;
                 }
@@ -8400,7 +8422,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     return 3;
                 }
             }
-            return 0;
+            return (this.resultGlobal.isEmpty() || i != globalSectionStart()) ? 0 : 3;
         }
 
         public void search(String str) {
@@ -8457,10 +8479,9 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             public void lambda$loadNext$0(ArrayList arrayList) {
                 EmojiView.this.emojiSearchField.showProgress(false);
                 EmojiSearchAdapter emojiSearchAdapter = EmojiSearchAdapter.this;
-                emojiSearchAdapter.isCompleted = emojiSearchAdapter.result.size() - EmojiSearchAdapter.this.resultPre.size() >= arrayList.size();
-                EmojiSearchAdapter.this.result.clear();
-                EmojiSearchAdapter.this.result.addAll(EmojiSearchAdapter.this.resultPre);
-                EmojiSearchAdapter.this.result.addAll(arrayList);
+                emojiSearchAdapter.isCompleted = emojiSearchAdapter.resultGlobal.size() >= arrayList.size();
+                EmojiSearchAdapter.this.resultGlobal.clear();
+                EmojiSearchAdapter.this.resultGlobal.addAll(arrayList);
                 EmojiSearchAdapter.this.notifyDataSetChanged();
             }
 
@@ -8563,16 +8584,12 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             }
 
             public void lambda$run$4(final String str, final Runnable runnable) {
-                if (Emoji.fullyConsistsOfEmojis(str)) {
-                    MediaDataController.getInstance(EmojiView.this.currentAccount).getEmojiSuggestions(EmojiView.this.lastSearchKeyboardLanguage, EmojiSearchAdapter.this.lastSearchEmojiString, false, new MediaDataController.KeywordResultCallback() {
-                        @Override
-                        public final void run(ArrayList arrayList, String str2) {
-                            this.f$0.lambda$run$3(str, runnable, arrayList, str2);
-                        }
-                    }, null, SharedConfig.suggestAnimatedEmoji || UserConfig.getInstance(EmojiView.this.currentAccount).isPremium(), false, true, 25);
-                } else {
-                    runnable.run();
-                }
+                MediaDataController.getInstance(EmojiView.this.currentAccount).getEmojiSuggestions(EmojiView.this.lastSearchKeyboardLanguage, EmojiSearchAdapter.this.lastSearchEmojiString, false, new MediaDataController.KeywordResultCallback() {
+                    @Override
+                    public final void run(ArrayList arrayList, String str2) {
+                        this.f$0.lambda$run$3(str, runnable, arrayList, str2);
+                    }
+                }, null, SharedConfig.suggestAnimatedEmoji || UserConfig.getInstance(EmojiView.this.currentAccount).isPremium(), false, true, 25);
             }
 
             public void lambda$run$3(String str, Runnable runnable, ArrayList arrayList, String str2) {
@@ -8604,7 +8621,8 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     }
                     EmojiSearchAdapter.this.result.clear();
                     EmojiSearchAdapter.this.result.addAll(EmojiSearchAdapter.this.resultPre);
-                    EmojiSearchAdapter.this.result.addAll(arrayList);
+                    EmojiSearchAdapter.this.resultGlobal.clear();
+                    EmojiSearchAdapter.this.resultGlobal.addAll(arrayList);
                     EmojiSearchAdapter.this.packs.clear();
                     LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
                     Iterator it = arrayList2.iterator();
@@ -9445,10 +9463,11 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         private HashMap emojiStickers = new HashMap();
         private ArrayList emojiArrays = new ArrayList();
         private ArrayList foundEmojiPacks = new ArrayList();
+        private ArrayList globalSearchArray = new ArrayList();
         private final SearchRunnable searchRunnable = new AnonymousClass1();
         private int foundPacksRow = -1;
 
-        static int access$21304(StickersSearchGridAdapter stickersSearchGridAdapter) {
+        static int access$21404(StickersSearchGridAdapter stickersSearchGridAdapter) {
             int i = stickersSearchGridAdapter.emojiSearchId + 1;
             stickersSearchGridAdapter.emojiSearchId = i;
             return i;
@@ -9474,20 +9493,58 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 if (StickersSearchGridAdapter.this.emojiSearchId != this.lastId) {
                     return;
                 }
-                if (!this.emojiStickersArray.isEmpty() && !this.emojiArrays.contains(this.emojiStickersArray)) {
-                    this.emojiArrays.add(this.emojiStickersArray);
-                }
+                this.emojiArrays.remove(this.emojiStickersArray);
                 StickersSearchGridAdapter.this.localPacks = this.localPacks;
                 StickersSearchGridAdapter.this.localPacksByShortName = this.localPacksByShortName;
                 StickersSearchGridAdapter.this.localPacksByName = this.localPacksByName;
                 StickersSearchGridAdapter.this.emojiStickers = this.emojiStickers;
                 StickersSearchGridAdapter.this.emojiArrays = this.emojiArrays;
                 StickersSearchGridAdapter.this.foundEmojiPacks = this.foundEmojiPacks;
+                StickersSearchGridAdapter.this.globalSearchArray = new ArrayList(this.emojiStickersArray);
                 EmojiView.this.stickersSearchField.showProgress(false);
                 if (EmojiView.this.stickersGridView.getAdapter() != EmojiView.this.stickersSearchGridAdapter) {
                     EmojiView.this.stickersGridView.setAdapter(EmojiView.this.stickersSearchGridAdapter);
                 }
                 StickersSearchGridAdapter.this.notifyDataSetChanged();
+            }
+
+            public void addFromAllStickers(java.lang.Runnable r11) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.StickersSearchGridAdapter.AnonymousClass1.addFromAllStickers(java.lang.Runnable):void");
+            }
+
+            public void addFromSuggestions(final Runnable runnable) {
+                final HashMap<String, ArrayList<TLRPC.Document>> allStickers = MediaDataController.getInstance(EmojiView.this.currentAccount).getAllStickers();
+                if (allStickers != null && !allStickers.isEmpty() && this.query.length() > 1) {
+                    String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
+                    if (!Arrays.equals(EmojiView.this.lastSearchKeyboardLanguage, currentKeyboardLanguage)) {
+                        MediaDataController.getInstance(EmojiView.this.currentAccount).fetchNewEmojiKeywords(currentKeyboardLanguage);
+                    }
+                    EmojiView.this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
+                    MediaDataController.getInstance(EmojiView.this.currentAccount).getEmojiSuggestions(EmojiView.this.lastSearchKeyboardLanguage, StickersSearchGridAdapter.this.searchQuery, true, new MediaDataController.KeywordResultCallback() {
+                        @Override
+                        public final void run(ArrayList arrayList, String str) {
+                            this.f$0.lambda$addFromSuggestions$0(allStickers, runnable, arrayList, str);
+                        }
+                    }, false);
+                    return;
+                }
+                runnable.run();
+            }
+
+            public void lambda$addFromSuggestions$0(HashMap map, Runnable runnable, ArrayList arrayList, String str) {
+                if (StickersSearchGridAdapter.this.emojiSearchId != this.lastId) {
+                    return;
+                }
+                int size = arrayList.size();
+                for (int i = 0; i < size; i++) {
+                    String str2 = ((MediaDataController.KeywordResult) arrayList.get(i)).emoji;
+                    ArrayList arrayList2 = (ArrayList) map.get(str2);
+                    if (arrayList2 != null && !arrayList2.isEmpty() && !this.emojiStickers.containsKey(arrayList2)) {
+                        this.emojiStickers.put(arrayList2, str2);
+                        this.emojiArrays.add(arrayList2);
+                    }
+                }
+                runnable.run();
             }
 
             public void addPremiumStickers(Runnable runnable) {
@@ -9708,7 +9765,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     StickersSearchGridAdapter.this.notifyDataSetChanged();
                     return;
                 }
-                this.lastId = StickersSearchGridAdapter.access$21304(StickersSearchGridAdapter.this);
+                this.lastId = StickersSearchGridAdapter.access$21404(StickersSearchGridAdapter.this);
                 this.query = StickersSearchGridAdapter.this.searchQuery;
                 StickersSearchGridAdapter.this.isCompleted = false;
                 this.localPacks.clear();
@@ -9737,6 +9794,16 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                         @Override
                         public final void run(Object obj) {
                             this.f$0.searchStickerSetsByName((Runnable) obj);
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            this.f$0.addFromAllStickers((Runnable) obj);
+                        }
+                    }, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            this.f$0.addFromSuggestions((Runnable) obj);
                         }
                     }, new Utilities.Callback() {
                         @Override
@@ -9939,6 +10006,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 this.searchQuery = null;
                 this.localPacks.clear();
                 this.emojiStickers.clear();
+                this.globalSearchArray = new ArrayList();
                 if (EmojiView.this.stickersGridView.getAdapter() != EmojiView.this.stickersGridAdapter) {
                     EmojiView.this.stickersGridView.setAdapter(EmojiView.this.stickersGridAdapter);
                 }
@@ -10179,7 +10247,154 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
 
         private void rebuild() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.EmojiView.StickersSearchGridAdapter.rebuild():void");
+            int i;
+            int i2;
+            this.foundPacksRow = -1;
+            this.rowStartPack.clear();
+            this.positionToRow.clear();
+            this.cache.clear();
+            this.positionToEmoji.clear();
+            this.totalItems = 0;
+            int size = this.localPacks.size() + this.localPacksByName.size();
+            this.foundPacksListView.adapter.update(false);
+            String str = "";
+            if (this.selectedPackId != 0) {
+                ArrayList arrayList = this.selectedPackStickers;
+                SparseArray sparseArray = this.cache;
+                int i3 = this.totalItems;
+                this.totalItems = i3 + 1;
+                sparseArray.put(i3, "search");
+                if (size > 0) {
+                    SparseArray sparseArray2 = this.cache;
+                    int i4 = this.totalItems;
+                    this.totalItems = i4 + 1;
+                    this.foundPacksRow = i4;
+                    sparseArray2.put(i4, "packs");
+                    SparseArray sparseArray3 = this.cache;
+                    int i5 = this.totalItems;
+                    this.totalItems = i5 + 1;
+                    sparseArray3.put(i5, LocaleController.formatPluralString("Stickers", this.selectedPackStickerSet.count, new Object[0]));
+                    i2 = 3;
+                } else {
+                    i2 = 1;
+                }
+                String str2 = (String) this.emojiStickers.get(arrayList);
+                if (str2 != null && !"".equals(str2)) {
+                    this.positionToEmoji.put(this.totalItems, str2);
+                }
+                int size2 = arrayList.size();
+                int i6 = 0;
+                for (int i7 = 0; i7 < size2; i7++) {
+                    int i8 = this.totalItems + i6;
+                    int i9 = (i6 / EmojiView.this.stickersGridAdapter.stickersPerRow) + i2;
+                    TLRPC.Document document = (TLRPC.Document) arrayList.get(i7);
+                    this.cache.put(i8, document);
+                    TLRPC.TL_messages_stickerSet stickerSetById = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSetById(MediaDataController.getStickerSetId(document));
+                    if (stickerSetById != null) {
+                        this.cacheParent.put(i8, stickerSetById);
+                    }
+                    this.positionToRow.put(i8, i9);
+                    i6++;
+                }
+                int iCeil = (int) Math.ceil(i6 / EmojiView.this.stickersGridAdapter.stickersPerRow);
+                for (int i10 = 0; i10 < iCeil; i10++) {
+                    this.rowStartPack.put(i2 + i10, Integer.valueOf(i6));
+                }
+                this.totalItems += iCeil * EmojiView.this.stickersGridAdapter.stickersPerRow;
+                return;
+            }
+            boolean zIsEmpty = this.emojiArrays.isEmpty();
+            ArrayList arrayList2 = this.globalSearchArray;
+            boolean z = (arrayList2 == null || arrayList2.isEmpty()) ? false : true;
+            SparseArray sparseArray4 = this.cache;
+            int i11 = this.totalItems;
+            this.totalItems = i11 + 1;
+            sparseArray4.put(i11, "search");
+            if (size > 0) {
+                SparseArray sparseArray5 = this.cache;
+                int i12 = this.totalItems;
+                this.totalItems = i12 + 1;
+                this.foundPacksRow = i12;
+                sparseArray5.put(i12, "packs");
+                i = 2;
+            } else {
+                i = 1;
+            }
+            if (!zIsEmpty) {
+                SparseArray sparseArray6 = this.cache;
+                int i13 = this.totalItems;
+                this.totalItems = i13 + 1;
+                sparseArray6.put(i13, LocaleController.getString(R.string.StickerOrEmojiSearchResult));
+                int i14 = i + 1;
+                int size3 = this.emojiArrays.size();
+                int i15 = 0;
+                for (int i16 = 0; i16 < size3; i16++) {
+                    ArrayList arrayList3 = (ArrayList) this.emojiArrays.get(i16);
+                    String str3 = (String) this.emojiStickers.get(arrayList3);
+                    if (str3 != null && !str.equals(str3)) {
+                        this.positionToEmoji.put(this.totalItems + i15, str3);
+                        str = str3;
+                    }
+                    int size4 = arrayList3.size();
+                    int i17 = 0;
+                    while (i17 < size4) {
+                        int i18 = this.totalItems + i15;
+                        int i19 = (i15 / EmojiView.this.stickersGridAdapter.stickersPerRow) + i14;
+                        TLRPC.Document document2 = (TLRPC.Document) arrayList3.get(i17);
+                        this.cache.put(i18, document2);
+                        int i20 = size3;
+                        String str4 = str;
+                        TLRPC.TL_messages_stickerSet stickerSetById2 = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSetById(MediaDataController.getStickerSetId(document2));
+                        if (stickerSetById2 != null) {
+                            this.cacheParent.put(i18, stickerSetById2);
+                        }
+                        this.positionToRow.put(i18, i19);
+                        i15++;
+                        i17++;
+                        size3 = i20;
+                        str = str4;
+                    }
+                }
+                int iCeil2 = (int) Math.ceil(i15 / EmojiView.this.stickersGridAdapter.stickersPerRow);
+                for (int i21 = 0; i21 < iCeil2; i21++) {
+                    this.rowStartPack.put(i14 + i21, Integer.valueOf(i15));
+                }
+                this.totalItems += EmojiView.this.stickersGridAdapter.stickersPerRow * iCeil2;
+                i = i14 + iCeil2;
+            }
+            if (z) {
+                SparseArray sparseArray7 = this.cache;
+                int i22 = this.totalItems;
+                this.totalItems = i22 + 1;
+                sparseArray7.put(i22, LocaleController.getString(R.string.StickerOrEmojiGlobalSearchResult));
+                int i23 = i + 1;
+                String str5 = (String) this.emojiStickers.get(this.globalSearchArray);
+                if (str5 != null) {
+                    this.positionToEmoji.put(this.totalItems, str5);
+                }
+                int size5 = this.globalSearchArray.size();
+                int i24 = 0;
+                for (int i25 = 0; i25 < size5; i25++) {
+                    int i26 = this.totalItems + i24;
+                    int i27 = (i24 / EmojiView.this.stickersGridAdapter.stickersPerRow) + i23;
+                    TLRPC.Document document3 = (TLRPC.Document) this.globalSearchArray.get(i25);
+                    this.cache.put(i26, document3);
+                    TLRPC.TL_messages_stickerSet stickerSetById3 = MediaDataController.getInstance(EmojiView.this.currentAccount).getStickerSetById(MediaDataController.getStickerSetId(document3));
+                    if (stickerSetById3 != null) {
+                        this.cacheParent.put(i26, stickerSetById3);
+                    }
+                    this.positionToRow.put(i26, i27);
+                    i24++;
+                }
+                int iCeil3 = (int) Math.ceil(i24 / EmojiView.this.stickersGridAdapter.stickersPerRow);
+                for (int i28 = 0; i28 < iCeil3; i28++) {
+                    this.rowStartPack.put(i23 + i28, Integer.valueOf(i24));
+                }
+                this.totalItems += iCeil3 * EmojiView.this.stickersGridAdapter.stickersPerRow;
+            }
+            if (zIsEmpty && !z && size == 0) {
+                this.totalItems = 1;
+            }
         }
     }
 
