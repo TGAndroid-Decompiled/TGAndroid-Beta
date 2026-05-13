@@ -2558,6 +2558,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         actionBar.setOccupyStatusBar(z);
         if (this.hasMainTabs) {
             actionBar.setBackButtonDrawable(new BackDrawable(false));
+            actionBar.getBackButton().setTranslationX(AndroidUtilities.dp(3.0f));
             actionBar.backButtonImageView.setContentDescription(LocaleController.getString(R.string.QrCode));
             actionBar.backButtonImageView.setImageResource(R.drawable.outline_header_qr_24);
             actionBar.backButtonImageView.setColorFilter(getThemedColor(i), PorterDuff.Mode.SRC_IN);
@@ -2569,6 +2570,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             });
         } else {
             actionBar.setBackButtonDrawable(new BackDrawable(false));
+            actionBar.getBackButton().setTranslationX(AndroidUtilities.dp(3.0f));
             final ImageView backButton = actionBar.getBackButton();
             backButton.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -2796,6 +2798,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             r10 = 0;
         }
         ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
+        actionBarMenuCreateMenu.setTranslationX(-AndroidUtilities.dp(9.0f));
         if (this.userId == getUserConfig().clientUserId && !this.myProfile && ContactsController.getInstance(this.currentAccount).getPrivacyRules(7) == null) {
             ContactsController.getInstance(this.currentAccount).loadPrivacySettings();
         }
@@ -3156,16 +3159,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 super.onMeasure(i13, i14);
                 ProfileActivity.this.updateGooey();
             }
-
-            @Override
-            public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
-                super.setLayoutParams(layoutParams);
-            }
-
-            @Override
-            protected void onLayout(boolean z2, int i13, int i14, int i15, int i16) {
-                super.onLayout(z2, i13, i14, i15, i16);
-            }
         };
         this.avatarContainer2 = new AnonymousClass20(context2);
         ImageReceiver imageReceiver = new ImageReceiver(this.avatarContainer2);
@@ -3177,7 +3170,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.avatarContainer.setPivotY(0.0f);
         ProfileGooeyView profileGooeyView = new ProfileGooeyView(context2);
         this.avatarGooey = profileGooeyView;
-        profileGooeyView.addView(this.avatarContainer, LayoutHelper.createFrame(100, 100.0f, 51, 64.0f, 0.0f, 0.0f, 0.0f));
+        profileGooeyView.addView(this.avatarContainer, LayoutHelper.createFrame(100, 100.0f, 51, 55.0f, 0.0f, 0.0f, 0.0f));
         this.avatarContainer2.addView(this.avatarGooey, LayoutHelper.createFrame(-1, -1.0f));
         AvatarImageView avatarImageView = new AvatarImageView(context2) {
             @Override
@@ -3377,16 +3370,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             ProfileActivity.this.updateCollectibleHint();
                         }
                     }
-
-                    @Override
-                    public void setTextSize(int i15) {
-                        super.setTextSize(i15);
-                    }
-
-                    @Override
-                    public void setScaleX(float f4) {
-                        super.setScaleX(f4);
-                    }
                 };
                 i7 = 1;
                 if (i14 == 1) {
@@ -3409,7 +3392,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.nameTextView[i14].setFocusable(i14 == 0);
                 this.nameTextView[i14].setEllipsizeByGradient(true);
                 this.nameTextView[i14].setRightDrawableOutside(i14 == 0);
-                this.avatarContainer2.addView(this.nameTextView[i14], LayoutHelper.createFrame(-2, -2.0f, 51, 118.0f, -6.0f, i14 == 0 ? width - (z ? 10 : 0) : 0.0f, 0.0f));
+                this.avatarContainer2.addView(this.nameTextView[i14], LayoutHelper.createFrame(-2, -2.0f, 51, 109.0f, -6.0f, i14 == 0 ? width - (z ? 10 : 0) : 0.0f, 0.0f));
             }
             i14 += i7;
         }
@@ -3480,7 +3463,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 this.onlineTextView[i15].setImportantForAccessibility(2);
             }
             this.onlineTextView[i15].setFocusable(i15 == 0);
-            this.avatarContainer2.addView(this.onlineTextView[i15], LayoutHelper.createFrame(-2, -2.0f, 51, 118 - ((i15 == 1 || i15 == 2 || i15 == i4) ? 4 : 0), (i15 == 1 || i15 == 2 || i15 == i4) ? -2 : 0, (i15 == 0 ? width - (z ? 10 : 0) : 8.0f) - ((i15 == 1 || i15 == 2 || i15 == i4) ? 4 : 0), 0.0f));
+            this.avatarContainer2.addView(this.onlineTextView[i15], LayoutHelper.createFrame(-2, -2.0f, 51, 109 - ((i15 == 1 || i15 == 2 || i15 == i4) ? 4 : 0), (i15 == 1 || i15 == 2 || i15 == i4) ? -2 : 0, (i15 == 0 ? width - (z ? 10 : 0) : 8.0f) - ((i15 == 1 || i15 == 2 || i15 == i4) ? 4 : 0), 0.0f));
             i15++;
             i4 = 3;
         }
@@ -3488,7 +3471,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.avatarContainer2.addView(this.animatedStatusView);
         StarRatingView starRatingView = new StarRatingView(context2);
         this.ratingView = starRatingView;
-        starRatingView.setLayoutParams(LayoutHelper.createFrame(32, 32.0f, 3, 112.0f, -2.0f, 0.0f, 0.0f));
+        starRatingView.setLayoutParams(LayoutHelper.createFrame(32, 32.0f, 3, 103.0f, -2.0f, 0.0f, 0.0f));
         this.ratingView.setResourcesProvider(this.resourcesProvider);
         checkStarRatingVisible();
         this.ratingView.setDelegate(new StarRatingView.Delegate() {
@@ -3522,7 +3505,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         };
         this.mediaCounterTextView = clippingTextViewSwitcher;
         clippingTextViewSwitcher.setAlpha(0.0f);
-        this.avatarContainer2.addView(this.mediaCounterTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 118.33f, -2.0f, 8.0f, 0.0f));
+        this.avatarContainer2.addView(this.mediaCounterTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 109.33f, -2.0f, 8.0f, 0.0f));
         this.storyView = new ProfileStoriesView(context, this.currentAccount, getDialogId(), this.isTopic, this.avatarContainer, this.avatarImage, this.resourcesProvider) {
             @Override
             protected void onTap(StoryViewer.PlaceProvider placeProvider) {
@@ -5320,7 +5303,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 public final void run(Object obj) {
                     this.f$0.lambda$createView$20((Boolean) obj);
                 }
-            }, this.resourcesProvider, false).getButton(-1);
+            }, this.resourcesProvider).getButton(-1);
             if (textView != null) {
                 textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                 return;

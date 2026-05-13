@@ -5,14 +5,14 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.RenderEffect;
 
 public abstract class RenderNodeEffects {
-    private static RenderEffect saturationUpX2Effect;
+    private static RenderEffect saturationUpX4Effect;
 
-    public static RenderEffect getSaturationX2RenderEffect() {
-        if (saturationUpX2Effect == null) {
+    public static RenderEffect getSaturationX4RenderEffect() {
+        if (saturationUpX4Effect == null) {
             ColorMatrix colorMatrix = new ColorMatrix();
-            colorMatrix.setSaturation(2.0f);
-            saturationUpX2Effect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+            colorMatrix.setSaturation(4.0f);
+            saturationUpX4Effect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
         }
-        return saturationUpX2Effect;
+        return saturationUpX4Effect;
     }
 }

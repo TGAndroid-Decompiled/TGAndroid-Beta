@@ -536,6 +536,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
             this.sideMenuBackgroundDrawable.draw(canvas);
         }
         if (this.topTabsContainer.getVisibility() == 0) {
+            this.topMenuBackgroundDrawable.setAlpha((int) (this.topTabsContainer.getAlpha() * 255.0f));
             this.topMenuBackgroundDrawable.setBounds(0, (int) this.topTabsContainer.getTranslationY(), getMeasuredWidth(), (int) (this.topTabsContainer.getTranslationY() + AndroidUtilities.dp(50.0f)));
             this.topMenuBackgroundDrawable.draw(canvas);
         }
@@ -626,7 +627,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
     }
 
     private void checkUi_topicsVerticalPosition() {
-        this.topTabsContainer.setAlpha(AndroidUtilities.lerp(1.0f, 0.85f, this.sidemenuT));
+        this.topTabsContainer.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, this.sidemenuT));
         this.topTabsContainer.setVisibility((1.0f - this.sidemenuT) * this.animatorTopicsVisibility.getFloatValue() > 0.0f ? 0 : 8);
         if (this.topicBottom) {
             this.topTabsContainer.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.sideMenuBackgroundMarginBottom) + AndroidUtilities.lerp(AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.BOTTOM)));

@@ -111,7 +111,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
     private boolean firstLocationsLoaded;
     private boolean flickOnAttach;
     private BaseFragment fragment;
-    private BlurredFrameLayout frameLayout;
+    private FrameLayout frameLayout;
     private Paint gradientPaint;
     private TextPaint gradientTextPaint;
     private int gradientWidth;
@@ -339,7 +339,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             return;
         }
         final Context context = getContext();
-        BlurredFrameLayout blurredFrameLayout = new BlurredFrameLayout(context, (this.isInsideBubble || !(this.fragment.getFragmentView() instanceof SizeNotifierFrameLayout)) ? null : (SizeNotifierFrameLayout) this.fragment.getFragmentView()) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             private final RectF notifyButtonRect = new RectF();
 
             @Override
@@ -424,9 +424,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 return drawable == FragmentContextView.this.notifyText || super.verifyDrawable(drawable);
             }
         };
-        this.frameLayout = blurredFrameLayout;
-        blurredFrameLayout.drawBlur = !this.isInsideBubble;
-        this.notifyButtonBounce = new ButtonBounce(blurredFrameLayout);
+        this.frameLayout = frameLayout;
+        this.notifyButtonBounce = new ButtonBounce(frameLayout);
         this.notifyText.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         this.notifyText.setScaleProperty(0.4f);
         this.notifyText.setCallback(this.frameLayout);
@@ -643,14 +642,14 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 this.f$0.lambda$checkCreateView$6(view3);
             }
         });
-        FrameLayout frameLayout = new FrameLayout(getContext()) {
+        FrameLayout frameLayout2 = new FrameLayout(getContext()) {
             @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 return false;
             }
         };
-        this.groupCallMessagesContainer = frameLayout;
-        addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
+        this.groupCallMessagesContainer = frameLayout2;
+        addView(frameLayout2, LayoutHelper.createFrame(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
         setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {

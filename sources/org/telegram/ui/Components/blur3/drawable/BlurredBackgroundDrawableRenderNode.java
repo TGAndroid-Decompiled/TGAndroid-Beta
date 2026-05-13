@@ -47,6 +47,12 @@ public class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawab
         paint3.setStyle(style);
     }
 
+    @Override
+    public BlurredBackgroundDrawable setClipToOutline(boolean z) {
+        this.renderNode.setClipToOutline(z);
+        return super.setClipToOutline(z);
+    }
+
     public void setLiquidGlassEffectAllowed() {
         this.liquidGlassEffect = new LiquidGlassEffect(this.renderNodeFill);
     }

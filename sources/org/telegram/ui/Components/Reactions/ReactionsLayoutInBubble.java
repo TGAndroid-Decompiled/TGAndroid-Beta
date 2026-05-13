@@ -642,6 +642,7 @@ public class ReactionsLayoutInBubble {
         public String countText;
         public CounterView.CounterDrawable counterDrawable;
         private final int currentAccount;
+        public boolean drawBgOnlyIfChosen;
         public int fromBackgroundColor;
         public int fromTagDotColor;
         public int fromTextColor;
@@ -955,6 +956,10 @@ public class ReactionsLayoutInBubble {
                 this.serviceTextColor = Theme.getColor(Theme.key_chat_serviceText, this.resourcesProvider);
                 this.serviceBackgroundColor = 0;
             }
+            if (this.drawBgOnlyIfChosen) {
+                this.backgroundColor = 0;
+                this.serviceBackgroundColor = 0;
+            }
             updateColors(f3);
             ReactionsLayoutInBubble.textPaint.setColor(this.lastDrawnTextColor);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
@@ -1000,7 +1005,7 @@ public class ReactionsLayoutInBubble {
                 z3 = false;
             }
             float f10 = this.height / 2.0f;
-            if (getDrawServiceShaderBackground() > 0.0f) {
+            if (getDrawServiceShaderBackground() > 0.0f && !this.drawBgOnlyIfChosen) {
                 Paint themePaint = Theme.getThemePaint("paintChatActionBackground", this.resourcesProvider);
                 Paint themePaint2 = Theme.getThemePaint("paintChatActionBackgroundDarken", this.resourcesProvider);
                 int alpha = themePaint.getAlpha();

@@ -77,6 +77,10 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     protected void onSourceRelativePositionChanged(RectF rectF) {
     }
 
+    public BlurredBackgroundDrawable setClipToOutline(boolean z) {
+        return this;
+    }
+
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
     }
@@ -155,7 +159,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this;
     }
 
-    public void setRadius(float f, float f2, float f3, float f4) {
+    public BlurredBackgroundDrawable setRadius(float f, float f2, float f3, float f4) {
         Props props = this.boundProps;
         float[] fArr = props.radii;
         fArr[1] = f;
@@ -168,6 +172,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         fArr[6] = f4;
         props.build();
         onBoundPropsChanged();
+        return this;
     }
 
     public void setRadius(float f, float f2, float f3, float f4, boolean z) {
@@ -196,9 +201,10 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         onBoundPropsChanged();
     }
 
-    public void setThickness(int i) {
+    public BlurredBackgroundDrawable setThickness(int i) {
         this.boundProps.liquidThickness = i;
         onBoundPropsChanged();
+        return this;
     }
 
     public void setIntensity(float f) {
@@ -444,7 +450,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         return this.alpha;
     }
 
-    public static void drawStroke(android.graphics.Canvas r11, float r12, float r13, float r14, float r15, float[] r16, float r17, boolean r18, android.graphics.Paint r19) {
+    public static void drawStroke(android.graphics.Canvas r20, float r21, float r22, float r23, float r24, float[] r25, float r26, boolean r27, android.graphics.Paint r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable.drawStroke(android.graphics.Canvas, float, float, float, float, float[], float, boolean, android.graphics.Paint):void");
     }
 

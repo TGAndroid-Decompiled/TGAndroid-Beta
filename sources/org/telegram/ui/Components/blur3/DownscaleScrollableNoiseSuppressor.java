@@ -349,7 +349,7 @@ public class DownscaleScrollableNoiseSuppressor {
                     this.renderNodesForBlur = downscaledRenderNode;
                     boolean z = DownscaleScrollableNoiseSuppressor.this.allowNoiseSuppress;
                     downscaledRenderNode.setScale(z ? 16 : 8, z ? 16 : 8);
-                    downscaledRenderNode.setPrimaryEffectBlur(AndroidUtilities.dpf2(40.0f), RenderNodeEffects.getSaturationX2RenderEffect());
+                    downscaledRenderNode.setPrimaryEffectBlur(AndroidUtilities.dpf2(40.0f), RenderNodeEffects.getSaturationX4RenderEffect());
                     this.renderNodesForGlass = null;
                     return;
                 }
@@ -357,14 +357,14 @@ public class DownscaleScrollableNoiseSuppressor {
                 this.renderNodesForBlur = downscaledRenderNode2;
                 downscaledRenderNode2.setScale(8, 8);
                 downscaledRenderNode2.setPrimaryEffectBlur(AndroidUtilities.dpf2(40.0f));
-                downscaledRenderNode2.setSecondaryEffect(0, RenderNodeEffects.getSaturationX2RenderEffect());
+                downscaledRenderNode2.setSecondaryEffect(0, RenderNodeEffects.getSaturationX4RenderEffect());
                 this.renderNodesForGlass = null;
                 return;
             }
             DownscaledRenderNode downscaledRenderNode3 = DownscaleScrollableNoiseSuppressor.this.new DownscaledRenderNode("glass", 0, true);
             this.renderNodesForGlass = downscaledRenderNode3;
             downscaledRenderNode3.setScale(4, 4);
-            downscaledRenderNode3.setPrimaryEffectBlur(AndroidUtilities.dpf2(1.66f), RenderNodeEffects.getSaturationX2RenderEffect());
+            downscaledRenderNode3.setPrimaryEffectBlur(AndroidUtilities.dpf2(6.0f), RenderNodeEffects.getSaturationX4RenderEffect());
             DownscaledRenderNode downscaledRenderNode4 = new DownscaledRenderNode(DownscaleScrollableNoiseSuppressor.this, "blur", 0);
             this.renderNodesForBlur = downscaledRenderNode4;
             downscaledRenderNode4.setScale(8, 8);

@@ -6,6 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 
 public class ChatActivityFadeView extends View {
     private BlurredBackgroundWithFadeDrawable fadeDrawableBottom;
@@ -18,10 +19,14 @@ public class ChatActivityFadeView extends View {
     }
 
     public void setup(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
-        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable = new BlurredBackgroundWithFadeDrawable(blurredBackgroundDrawableViewFactory.create(this));
+        setup(blurredBackgroundDrawableViewFactory, null);
+    }
+
+    public void setup(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
+        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable = new BlurredBackgroundWithFadeDrawable(blurredBackgroundDrawableViewFactory.create(this).setColorProvider(blurredBackgroundColorProvider));
         this.fadeDrawableTop = blurredBackgroundWithFadeDrawable;
         blurredBackgroundWithFadeDrawable.setFadeHeight(-AndroidUtilities.dp(30.0f), true);
-        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable2 = new BlurredBackgroundWithFadeDrawable(blurredBackgroundDrawableViewFactory.create(this));
+        BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable2 = new BlurredBackgroundWithFadeDrawable(blurredBackgroundDrawableViewFactory.create(this).setColorProvider(blurredBackgroundColorProvider));
         this.fadeDrawableBottom = blurredBackgroundWithFadeDrawable2;
         blurredBackgroundWithFadeDrawable2.setFadeHeight(AndroidUtilities.dp(30.0f), true);
     }
@@ -56,9 +61,21 @@ public class ChatActivityFadeView extends View {
         }
     }
 
+    public void setFadeTopAlpha(int i) {
+        if (this.fadeDrawableTop.getAlpha() != i) {
+            this.fadeDrawableTop.setAlpha(i);
+            invalidate();
+        }
+    }
+
     private void checkBounds() {
         this.fadeDrawableTop.setBounds(0, 0, getMeasuredWidth(), this.fadeZoneTop);
         this.fadeDrawableBottom.setBounds(0, getMeasuredHeight() - this.fadeZoneBottom, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    public void setIgnoreFastWay(boolean z) {
+        this.fadeDrawableTop.setIgnoreFastWay(z);
+        this.fadeDrawableBottom.setIgnoreFastWay(z);
     }
 
     @Override

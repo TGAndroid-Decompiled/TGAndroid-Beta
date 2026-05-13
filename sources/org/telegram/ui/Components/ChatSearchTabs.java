@@ -4,26 +4,21 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.ViewPagerFixed;
 
-public abstract class ChatSearchTabs extends BlurredFrameLayout {
+public abstract class ChatSearchTabs extends FrameLayout {
     private ValueAnimator actionBarTagsAnimator;
     private float actionBarTagsT;
-    private Paint backgroundPaint2;
-    public boolean showWithCut;
     private boolean shown;
     public float shownT;
     public ViewPagerFixed.TabsView tabs;
 
     protected abstract void onShownUpdate(boolean z);
 
-    public ChatSearchTabs(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
-        super(context, sizeNotifierFrameLayout);
-        this.showWithCut = true;
+    public ChatSearchTabs(Context context) {
+        super(context);
     }
 
     public void setTabs(ViewPagerFixed.TabsView tabsView) {
@@ -40,14 +35,7 @@ public abstract class ChatSearchTabs extends BlurredFrameLayout {
             this.tabs.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f));
             this.tabs.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f));
         }
-        if (this.showWithCut) {
-            ViewPagerFixed.TabsView tabsView2 = this.tabs;
-            if (tabsView2 != null) {
-                tabsView2.setAlpha(f);
-            }
-        } else {
-            setAlpha(f);
-        }
+        setAlpha(f);
         invalidate();
     }
 
@@ -107,29 +95,5 @@ public abstract class ChatSearchTabs extends BlurredFrameLayout {
 
     public int getCurrentHeight() {
         return (int) (getMeasuredHeight() * this.shownT);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        if (SharedConfig.chatBlurEnabled() && this.sizeNotifierFrameLayout != null) {
-            super.setBackgroundColor(i);
-            return;
-        }
-        Paint paint = new Paint(1);
-        this.backgroundPaint2 = paint;
-        paint.setColor(i);
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        if (this.showWithCut) {
-            canvas.clipRect(0, 0, getWidth(), getCurrentHeight());
-        }
-        if (this.backgroundPaint2 != null) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), getCurrentHeight(), this.backgroundPaint2);
-        }
-        super.dispatchDraw(canvas);
-        canvas.restore();
     }
 }
