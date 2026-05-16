@@ -1362,7 +1362,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void onShowPress(MotionEvent motionEvent) {
     }
 
-    public static void access$18300(PhotoViewer photoViewer) {
+    public static void access$18300(PhotoViewer photoViewer) throws Resources.NotFoundException {
         photoViewer.updateCaptionTranslated();
     }
 
@@ -1914,7 +1914,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.classGuid;
     }
 
-    public void setCaption(CharSequence charSequence) {
+    public void setCaption(CharSequence charSequence) throws Resources.NotFoundException {
         this.hasCaptionForAllMedia = true;
         this.captionForAllMedia = charSequence;
         setCurrentCaption(null, charSequence, false, false);
@@ -4229,19 +4229,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.parentAlert = chatAttachAlert;
     }
 
-    public void setParentActivity(Activity activity) {
+    public void setParentActivity(Activity activity) throws Resources.NotFoundException {
         setParentActivity(activity, null, null);
     }
 
-    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) {
+    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         setParentActivity(activity, null, resourcesProvider);
     }
 
-    public void setParentActivity(BaseFragment baseFragment) {
+    public void setParentActivity(BaseFragment baseFragment) throws Resources.NotFoundException {
         setParentActivity(baseFragment, (Theme.ResourcesProvider) null);
     }
 
-    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         setParentActivity(null, baseFragment, resourcesProvider);
     }
 
@@ -4249,7 +4249,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.parentActivity;
     }
 
-    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
+    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         boolean z;
         boolean z2 = true;
         Activity parentActivity = activity != null ? activity : baseFragment.getParentActivity();
@@ -6257,7 +6257,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$14(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
+        public boolean lambda$onItemClick$14(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -11475,7 +11475,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                public void onAnimationEnd(Animator animator2) {
+                public void onAnimationEnd(Animator animator2) throws Resources.NotFoundException {
                     if (PhotoViewer.this.videoConvertSupported && PhotoViewer.this.isCurrentVideo) {
                         PhotoViewer.this.updateVideoInfo();
                     }
@@ -12650,11 +12650,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) {
+    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) throws Resources.NotFoundException {
         setIsAboutToSwitchToIndex(i, z, z2, false);
     }
 
-    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) {
+    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean, boolean):void");
     }
 
@@ -12700,7 +12700,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void updateCaptionTranslated() {
+    public void updateCaptionTranslated() throws Resources.NotFoundException {
         int i;
         MessageObject messageObject;
         TLRPC.Message message;
@@ -13136,7 +13136,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         setIndexToImage(this.centerImage, this.currentIndex, null);
     }
 
-    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
+    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) throws Resources.NotFoundException {
         int i;
         boolean z3;
         TLRPC.Message message;

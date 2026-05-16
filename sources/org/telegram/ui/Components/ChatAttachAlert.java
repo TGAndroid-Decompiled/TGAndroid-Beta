@@ -1729,7 +1729,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.optionsItem.setBackground(Theme.createSelectorDrawable(getThemedColor(i), 3));
         this.optionsItem.addSubItem(1, R.drawable.msg_addbot, LocaleController.getString(R.string.StickerCreateEmpty)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$new$6(resourcesProvider, view);
             }
         });
@@ -3324,7 +3324,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         lambda$new$0();
     }
 
-    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) {
+    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) throws Resources.NotFoundException {
         this.optionsItem.toggleSubMenu();
         PhotoViewer.getInstance().setParentActivity(this.baseFragment, resourcesProvider);
         PhotoViewer.getInstance().setParentAlert(this);

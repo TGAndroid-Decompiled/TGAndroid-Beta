@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -651,7 +652,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         MentionsListView listView = getListView();
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) throws NumberFormatException {
+            public final void onItemClick(View view, int i) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$withDelegate$4(delegate, view, i);
             }
         };
@@ -665,7 +666,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         });
     }
 
-    public void lambda$withDelegate$4(Delegate delegate, View view, int i) throws NumberFormatException {
+    public void lambda$withDelegate$4(Delegate delegate, View view, int i) throws Resources.NotFoundException, NumberFormatException {
         Paint.FontMetricsInt fontMetrics;
         AnimatedEmojiSpan animatedEmojiSpan;
         if (i == 0 || getAdapter().isBannedInline()) {

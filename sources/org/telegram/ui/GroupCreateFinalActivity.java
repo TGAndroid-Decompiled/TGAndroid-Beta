@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
@@ -785,7 +786,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 

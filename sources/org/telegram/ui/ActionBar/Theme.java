@@ -3430,7 +3430,7 @@ public abstract class Theme {
         }
     }
 
-    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) {
+    public static Drawable createEmojiIconSelectorDrawable(Context context, int i, int i2, int i3) throws Resources.NotFoundException {
         Resources resources = context.getResources();
         Drawable drawableMutate = resources.getDrawable(i).mutate();
         if (i2 != 0) {
@@ -3584,11 +3584,11 @@ public abstract class Theme {
         return shapeDrawable;
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) throws Resources.NotFoundException {
         return createCircleDrawableWithIcon(i, i2, 0);
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) throws Resources.NotFoundException {
         return createCircleDrawableWithIcon(i, i2 != 0 ? ApplicationLoader.applicationContext.getResources().getDrawable(i2).mutate() : null, i3);
     }
 
@@ -5381,13 +5381,13 @@ public abstract class Theme {
     public static void lambda$checkCurrentRemoteTheme$7(final ThemeAccent themeAccent, final ThemeInfo themeInfo, final TLRPC.TL_theme tL_theme, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException, IOException {
+            public final void run() throws JSONException, Resources.NotFoundException, IOException {
                 Theme.lambda$checkCurrentRemoteTheme$6(tLObject, themeAccent, themeInfo, tL_theme);
             }
         });
     }
 
-    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, java.io.IOException {
+    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, android.content.res.Resources.NotFoundException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject, org.telegram.ui.ActionBar.Theme$ThemeAccent, org.telegram.ui.ActionBar.Theme$ThemeInfo, org.telegram.tgnet.TLRPC$TL_theme):void");
     }
 
@@ -6096,7 +6096,7 @@ public abstract class Theme {
         setDrawableColorByKey(dialogs_fakeDrawable, i10);
     }
 
-    public static void reloadAllResources(Context context) {
+    public static void reloadAllResources(Context context) throws Resources.NotFoundException {
         destroyResources();
         if (chat_msgInDrawable != null) {
             chat_msgInDrawable = null;
@@ -6326,7 +6326,7 @@ public abstract class Theme {
         }
     }
 
-    public static void createChatResources(Context context, boolean z) {
+    public static void createChatResources(Context context, boolean z) throws Resources.NotFoundException {
         TextPaint textPaint;
         createCommonChatResources();
         if (!z && chat_msgInDrawable == null) {

@@ -265,19 +265,21 @@ public class SlotsDrawable extends RLottieDrawable {
                         i2 = 20;
                     }
                 }
-                final TLRPC.Document document = tL_messages_stickerSet.documents.get(i2);
-                String res = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
-                if (TextUtils.isEmpty(res)) {
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            SlotsDrawable.lambda$setBaseDice$2(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
-                        }
-                    });
-                    z = true;
-                } else {
-                    this.nativePtrs[i3] = RLottieDrawable.createWithJson(res, "dice", this.metaData, null);
-                    this.frameCounts[i3] = this.metaData[0];
+                if (i2 < tL_messages_stickerSet.documents.size()) {
+                    final TLRPC.Document document = tL_messages_stickerSet.documents.get(i2);
+                    String res = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(document, true), 0);
+                    if (TextUtils.isEmpty(res)) {
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                SlotsDrawable.lambda$setBaseDice$2(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
+                            }
+                        });
+                        z = true;
+                    } else {
+                        this.nativePtrs[i3] = RLottieDrawable.createWithJson(res, "dice", this.metaData, null);
+                        this.frameCounts[i3] = this.metaData[0];
+                    }
                 }
             }
             i3++;

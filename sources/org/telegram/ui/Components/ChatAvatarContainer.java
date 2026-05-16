@@ -85,6 +85,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     private int rightAvatarPadding;
     private String rightDrawable2ContentDescription;
     private String rightDrawableContentDescription;
+    private boolean rightDrawableIsScam;
     private boolean rightDrawableIsScamOrVerified;
     private boolean secretChatTimer;
     private SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader;
@@ -755,7 +756,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
 
     public void setTitleIcons(Drawable drawable, Drawable drawable2) {
         this.titleTextView.setLeftDrawable(drawable);
-        if (this.rightDrawableIsScamOrVerified) {
+        if (this.rightDrawableIsScamOrVerified || this.rightDrawableIsScam) {
             return;
         }
         if (drawable2 != null) {
@@ -785,7 +786,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
             charSequence = Emoji.replaceEmoji(charSequence, this.titleTextView.getPaint().getFontMetricsInt(), false);
         }
         this.titleTextView.setText(charSequence);
+        this.rightDrawableIsScam = false;
         if (z || z2) {
+            this.rightDrawableIsScam = true;
             if (!(this.titleTextView.getRightDrawable() instanceof ScamDrawable)) {
                 ScamDrawable scamDrawable = new ScamDrawable(11, !z ? 1 : 0);
                 scamDrawable.setColor(getThemedColor(Theme.key_actionBarDefaultSubtitle));

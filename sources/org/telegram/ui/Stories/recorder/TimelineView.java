@@ -627,7 +627,7 @@ public class TimelineView extends View {
         this.delegate = timelineDelegate;
     }
 
-    public void setCoverVideo(long j, long j2) {
+    public void setCoverVideo(long j, long j2) throws IOException {
         this.coverStart = j;
         this.coverEnd = j2;
         Track track = this.videoTrack;

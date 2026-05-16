@@ -7780,7 +7780,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) {
+        public boolean onTouchEvent(android.view.MotionEvent r13) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockVideoCell.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -7888,7 +7888,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             invalidate();
         }
 
-        private void didPressedButton(boolean z) {
+        private void didPressedButton(boolean z) throws Resources.NotFoundException {
             int i = this.buttonState;
             if (i == 0) {
                 this.cancelLoading = false;
@@ -8019,7 +8019,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void onSuccessDownload(String str) {
+        public void onSuccessDownload(String str) throws Resources.NotFoundException {
             this.radialProgress.setProgress(1.0f, true);
             if (this.isGif) {
                 this.buttonState = 2;
@@ -11766,7 +11766,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) {
+        public boolean onTouchEvent(android.view.MotionEvent r13) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -12972,7 +12972,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public boolean openPhoto(TLRPC.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
+    public boolean openPhoto(TLRPC.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;

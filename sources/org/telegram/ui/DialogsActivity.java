@@ -3328,7 +3328,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$19(View view) throws Resources.NotFoundException {
+    public void lambda$createView$19(View view) {
         openStoriesRecorder();
     }
 
@@ -8968,7 +8968,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.shareTopView = shareTopView;
             shareTopView.setLayoutClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws Resources.NotFoundException {
                     this.f$0.lambda$attachShareTopView$125(view);
                 }
             });
@@ -9007,7 +9007,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateShareTopViewRecipients();
     }
 
-    public void lambda$attachShareTopView$125(View view) {
+    public void lambda$attachShareTopView$125(View view) throws Resources.NotFoundException {
         if (hasSharedMediaEntries()) {
             openSharedMediaEditor();
         }
@@ -9033,7 +9033,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         shareTopView.setRecipients(this.currentAccount, this.selectedDialogs);
     }
 
-    private void openSharedMediaEditor() {
+    private void openSharedMediaEditor() throws Resources.NotFoundException {
         ArrayList arrayList = this.sharedMediaEntries;
         if (arrayList == null || arrayList.isEmpty() || getParentActivity() == null) {
             return;
@@ -11346,7 +11346,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {

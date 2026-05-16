@@ -2193,7 +2193,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (ChatActivity.this.editingMessageObject != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$onMessageEditEnd$2();
                     }
                 }, 30L);
@@ -2214,7 +2214,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivity.this.updateVisibleRows();
         }
 
-        public void lambda$onMessageEditEnd$2() {
+        public void lambda$onMessageEditEnd$2() throws Resources.NotFoundException {
             ChatActivity.this.hideFieldPanel(true);
         }
 
@@ -2741,7 +2741,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) {
+            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z, int i2, int i3, boolean z2) throws Resources.NotFoundException {
                 if (i < 0 || i >= ChatActivity.this.botContextResults.size()) {
                     return;
                 }
@@ -5780,7 +5780,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, this.mentionContainer.getListView(), 0, this.mentionsOnItemClickListener, this.mentionContainer.getAdapter().isStickers() ? this.contentPreviewViewerDelegate : null, this.themeDelegate);
     }
 
-    public void lambda$createView$41(View view, int i) throws NumberFormatException {
+    public void lambda$createView$41(View view, int i) throws Resources.NotFoundException, NumberFormatException {
         AnimatedEmojiSpan animatedEmojiSpan;
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
@@ -5825,7 +5825,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(tL_document);
             AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$createView$36(tL_document, strFindAnimatedEmojiEmoticon, itemParent, sendAnimationData, (Long) obj);
                 }
             });
@@ -5864,7 +5864,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (this.chatMode == 1) {
                     AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
-                        public final void didSelectDate(boolean z, int i3, int i4) {
+                        public final void didSelectDate(boolean z, int i3, int i4) throws Resources.NotFoundException {
                             this.f$0.lambda$createView$37(item, z, i3, i4);
                         }
                     }, this.themeDelegate);
@@ -5875,7 +5875,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, this.dialog_id, 1, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) {
+                        public final void run(Object obj) throws Resources.NotFoundException {
                             this.f$0.lambda$createView$38(item, (Long) obj);
                         }
                     });
@@ -5917,7 +5917,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     AlertsCreator.ensurePaidMessageConfirmation(this.currentAccount, getDialogId(), 1, new Utilities.Callback() {
                         @Override
-                        public final void run(Object obj) {
+                        public final void run(Object obj) throws Resources.NotFoundException {
                             this.f$0.lambda$createView$40(botInlineResult, (Long) obj);
                         }
                     });
@@ -5976,7 +5976,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$36(final TLRPC.TL_document tL_document, final String str, final Object obj, MessageObject.SendAnimationData sendAnimationData, Long l) {
+    public void lambda$createView$36(final TLRPC.TL_document tL_document, final String str, final Object obj, MessageObject.SendAnimationData sendAnimationData, Long l) throws Resources.NotFoundException {
         if (this.chatMode == 1) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
@@ -5996,13 +5996,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         SendMessagesHelper.getInstance(this.currentAccount).sendSticker(tL_document, str, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, this.replyingQuote, null, z, i, 0, false, obj, this.quickReplyShortcut, getQuickReplyId(), 0L, getSendMonoForumPeerId(), getSendMessageSuggestionParams());
     }
 
-    public void lambda$createView$37(Object obj, boolean z, int i, int i2) {
+    public void lambda$createView$37(Object obj, boolean z, int i, int i2) throws Resources.NotFoundException {
         getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of((String) obj, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, false, null, null, null, z, i, 0, null, false));
         this.chatActivityEnterView.setFieldText("");
         hideFieldPanel(false);
     }
 
-    public void lambda$createView$38(Object obj, Long l) {
+    public void lambda$createView$38(Object obj, Long l) throws Resources.NotFoundException {
         SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of((String) obj, this.dialog_id, this.replyingMessageObject, getThreadMessage(), null, false, null, null, null, true, 0, 0, null, false);
         sendMessageParamsOf.quick_reply_shortcut = this.quickReplyShortcut;
         sendMessageParamsOf.quick_reply_shortcut_id = getQuickReplyId();
@@ -6014,11 +6014,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         hideFieldPanel(false);
     }
 
-    public void lambda$createView$40(final TLRPC.BotInlineResult botInlineResult, final Long l) {
+    public void lambda$createView$40(final TLRPC.BotInlineResult botInlineResult, final Long l) throws Resources.NotFoundException {
         if (this.chatMode == 1) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
-                public final void didSelectDate(boolean z, int i, int i2) {
+                public final void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
                     this.f$0.lambda$createView$39(botInlineResult, l, z, i, i2);
                 }
             }, this.themeDelegate);
@@ -6027,7 +6027,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$39(TLRPC.BotInlineResult botInlineResult, Long l, boolean z, int i, int i2) {
+    public void lambda$createView$39(TLRPC.BotInlineResult botInlineResult, Long l, boolean z, int i, int i2) throws Resources.NotFoundException {
         sendBotInlineResult(botInlineResult, z, i, l.longValue());
     }
 
@@ -6505,7 +6505,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$57(ChatActivityEnterTopView.EditViewButton editViewButton, boolean[] zArr, View view) {
+    public void lambda$createView$57(ChatActivityEnterTopView.EditViewButton editViewButton, boolean[] zArr, View view) throws Resources.NotFoundException {
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject != null && messageObject.canEditMedia() && this.editingMessageObjectReqId == 0) {
             if (editViewButton.isEditButton()) {
@@ -10351,7 +10351,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i, long j) {
+    public void sendBotInlineResult(TLRPC.BotInlineResult botInlineResult, boolean z, int i, long j) throws Resources.NotFoundException {
         MentionsContainerView mentionsContainerView = this.mentionContainer;
         if (mentionsContainerView == null) {
             return;
@@ -11071,7 +11071,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         builder.setPositiveButton(LocaleController.getString(R.string.ShareContact), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i3) {
+            public final void onClick(AlertDialog alertDialog, int i3) throws Resources.NotFoundException {
                 this.f$0.lambda$shareMyContact$127(i, messageObject, alertDialog, i3);
             }
         });
@@ -11079,7 +11079,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(builder.create());
     }
 
-    public void lambda$shareMyContact$127(int i, MessageObject messageObject, AlertDialog alertDialog, int i2) {
+    public void lambda$shareMyContact$127(int i, MessageObject messageObject, AlertDialog alertDialog, int i2) throws Resources.NotFoundException {
         if (i == 1) {
             TLRPC.TL_contacts_acceptContact tL_contacts_acceptContact = new TLRPC.TL_contacts_acceptContact();
             tL_contacts_acceptContact.id = getMessagesController().getInputUser(this.currentUser);
@@ -12573,14 +12573,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (iSendMessage != 0) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$forwardMessages$146();
                 }
             });
         }
     }
 
-    public void lambda$forwardMessages$146() {
+    public void lambda$forwardMessages$146() throws Resources.NotFoundException {
         this.waitingForSendingMessageLoad = false;
         hideFieldPanel(true);
     }
@@ -12873,7 +12873,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void hideFieldPanel(boolean z) {
+    public void hideFieldPanel(boolean z) throws Resources.NotFoundException {
         showFieldPanel(false, null, null, null, null, true, 0, null, false, 0L, z);
     }
 
@@ -12885,7 +12885,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showFieldPanel(z, null, null, null, webPage, true, 0, null, z2, 0L, true);
     }
 
-    public void showFieldPanelForForward(boolean z, ArrayList arrayList) throws Resources.NotFoundException {
+    public void showFieldPanelForForward(boolean z, ArrayList arrayList) {
         showFieldPanel(z, null, null, arrayList, null, true, 0, null, false, 0L, true);
     }
 
@@ -13315,7 +13315,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateMessagesVisiblePart(boolean):void");
     }
 
-    public void lambda$updateMessagesVisiblePart$154(MessageObject messageObject) {
+    public void lambda$updateMessagesVisiblePart$154(MessageObject messageObject) throws Resources.NotFoundException {
         if (messageObject.isVideo()) {
             openPhotoViewerForMessage(null, messageObject);
         } else {
@@ -15005,7 +15005,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void openEditingMessageInPhotoEditor() {
+    private void openEditingMessageInPhotoEditor() throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.openEditingMessageInPhotoEditor():void");
     }
 
@@ -15047,11 +15047,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void sendUriAsDocument(Uri uri) {
+    private void sendUriAsDocument(Uri uri) throws Resources.NotFoundException {
         sendUriAsDocument(uri, true, 0);
     }
 
-    private void sendUriAsDocument(android.net.Uri r29, boolean r30, int r31) {
+    private void sendUriAsDocument(android.net.Uri r29, boolean r30, int r31) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.sendUriAsDocument(android.net.Uri, boolean, int):void");
     }
 
@@ -15238,9 +15238,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     }
                     motionBackgroundDrawable.setIndeterminateAnimation(z2);
                     motionBackgroundDrawable.setIndeterminateSpeedScale(z2 ? 1.5f : 1.0f);
-                    motionBackgroundDrawable.updateAnimation(true);
+                    motionBackgroundDrawable.lambda$new$0();
                 } else if (z2) {
-                    motionBackgroundDrawable.updateAnimation(false);
+                    motionBackgroundDrawable.lambda$new$0();
                 }
             }
         }
@@ -15549,7 +15549,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$showQuoteMessageUpdate$194(alertDialog, i);
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -15568,7 +15568,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openForwardingPreview(0);
     }
 
-    public void lambda$showQuoteMessageUpdate$194(AlertDialog alertDialog, int i) {
+    public void lambda$showQuoteMessageUpdate$194(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         hideFieldPanel(true);
     }
 
@@ -18776,7 +18776,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) throws NumberFormatException {
+    public void onConfigurationChanged(Configuration configuration) throws Resources.NotFoundException, NumberFormatException {
         MessageObject playingMessageObject;
         fixLayout();
         Dialog dialog = this.visibleDialog;
@@ -23052,7 +23052,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processExternalUrl(2, url2, characterStyle, chatMessageCell, Browser.urlMustNotHaveConfirmation(url2) ? false : z2, false);
     }
 
-    void openPhotoViewerForMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) {
+    void openPhotoViewerForMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) throws Resources.NotFoundException {
         ChatMessageCell chatMessageCell2;
         AnimatedFileDrawable animation;
         Bitmap animatedBitmap;
@@ -23333,7 +23333,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 };
                 botHelpCell.setDelegate(new BotHelpCell.BotHelpCellDelegate() {
                     @Override
-                    public final void didPressUrl(String str) {
+                    public final void didPressUrl(String str) throws Resources.NotFoundException {
                         this.f$0.lambda$onCreateViewHolder$0(str);
                     }
                 });
@@ -23510,7 +23510,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) {
+            public void didClickImage(ChatActionCell chatActionCell) throws Resources.NotFoundException {
                 TLRPC.VideoSize closestVideoSizeWithSize;
                 TLRPC.VideoSize emojiMarkup;
                 String str;
@@ -23765,7 +23765,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }
 
-        public void lambda$onCreateViewHolder$0(String str) {
+        public void lambda$onCreateViewHolder$0(String str) throws Resources.NotFoundException {
             if (str.startsWith("@")) {
                 ChatActivity.this.getMessagesController().openByUserName(str.substring(1), ChatActivity.this, 0);
                 return;
@@ -26464,7 +26464,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+        public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) throws Resources.NotFoundException {
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
                 Browser.Progress progressMakeProgressForPaidMedia = ChatActivity.this.makeProgressForPaidMedia(chatMessageCell);
@@ -26513,7 +26513,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressPollMedia(final ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, final TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i) {
+        public void didPressPollMedia(final ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, final TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i) throws Resources.NotFoundException {
             int i2;
             int size;
             TLRPC.Document document;
@@ -26949,7 +26949,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r24, float r25, float r26, boolean r27) {
+        public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r24, float r25, float r26, boolean r27) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float, boolean):void");
         }
 
@@ -29250,7 +29250,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return Theme.isCurrentThemeDark();
         }
 
-        ThemeDelegate() throws java.io.IOException {
+        ThemeDelegate() throws android.content.res.Resources.NotFoundException, java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ThemeDelegate.<init>(org.telegram.ui.ChatActivity):void");
         }
 
@@ -29384,7 +29384,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ThemeDelegate.setCurrentTheme(org.telegram.ui.ActionBar.EmojiThemes, org.telegram.tgnet.TLRPC$WallPaper, boolean, java.lang.Boolean, boolean):void");
         }
 
-        public void lambda$setCurrentTheme$1(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z) {
+        public void lambda$setCurrentTheme$1(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z) throws Resources.NotFoundException {
             setupChatTheme(emojiThemes, wallPaper, z, true);
             initServiceMessageColors(this.backgroundDrawable);
             ChatActivityFragmentView chatActivityFragmentView = ChatActivity.this.contentView;
@@ -29414,7 +29414,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             updateServiceMessageColor(1.0f);
         }
 
-        private void setupChatTheme(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z, boolean z2) {
+        private void setupChatTheme(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z, boolean z2) throws Resources.NotFoundException {
             Theme.ThemeInfo theme;
             Theme.ThemeInfo theme2;
             if (ChatActivity.this.parentThemeDelegate != null) {
