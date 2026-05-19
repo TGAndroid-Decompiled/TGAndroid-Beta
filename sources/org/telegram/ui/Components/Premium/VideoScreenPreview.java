@@ -188,7 +188,7 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
             this.fromTop = true;
         }
         AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context) {
-            Path clipPath = new Path();
+            private final Path clipPath = new Path();
 
             @Override
             protected void onMeasure(int i4, int i5) {
@@ -294,16 +294,16 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
-        float size3 = (int) (View.MeasureSpec.getSize(i2) * 0.9f);
+        float fMin = (int) (Math.min(size2, size) * 0.9f);
         float f = size;
-        float f2 = (f - (0.671f * size3)) / 2.0f;
-        this.roundRadius = 0.0671f * size3;
+        float f2 = (f - (0.671f * fMin)) / 2.0f;
+        this.roundRadius = 0.0671f * fMin;
         this.aspectRatioFrameLayout.invalidateOutline();
         if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(f2, 0.0f, f - f2, size3);
+            AndroidUtilities.rectTmp.set(f2, 0.0f, f - f2, fMin);
         } else {
             float f3 = size2;
-            AndroidUtilities.rectTmp.set(f2, f3 - size3, f - f2, f3);
+            AndroidUtilities.rectTmp.set(f2, f3 - fMin, f - f2, f3);
         }
         ViewGroup.LayoutParams layoutParams = this.aspectRatioFrameLayout.getLayoutParams();
         RectF rectF = AndroidUtilities.rectTmp;
@@ -318,12 +318,12 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         int measuredWidth = getMeasuredWidth() << (getMeasuredHeight() + 16);
-        float measuredHeight = (int) (getMeasuredHeight() * 0.9f);
-        float measuredWidth2 = (getMeasuredWidth() - (0.671f * measuredHeight)) / 2.0f;
+        float fMin = (int) (Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.9f);
+        float measuredWidth2 = (getMeasuredWidth() - (0.671f * fMin)) / 2.0f;
         if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(measuredWidth2, -this.roundRadius, getMeasuredWidth() - measuredWidth2, measuredHeight);
+            AndroidUtilities.rectTmp.set(measuredWidth2, -this.roundRadius, getMeasuredWidth() - measuredWidth2, fMin);
         } else {
-            AndroidUtilities.rectTmp.set(measuredWidth2, getMeasuredHeight() - measuredHeight, getMeasuredWidth() - measuredWidth2, getMeasuredHeight() + this.roundRadius);
+            AndroidUtilities.rectTmp.set(measuredWidth2, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth2, getMeasuredHeight() + this.roundRadius);
         }
         if (this.size != measuredWidth) {
             this.size = measuredWidth;
@@ -413,14 +413,14 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
                 invalidate();
             }
         }
-        float measuredHeight = (int) (getMeasuredHeight() * 0.9f);
-        float measuredWidth = (getMeasuredWidth() - (0.671f * measuredHeight)) / 2.0f;
-        float f3 = 0.0671f * measuredHeight;
+        float fMin = (int) (Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.9f);
+        float measuredWidth = (getMeasuredWidth() - (0.671f * fMin)) / 2.0f;
+        float f3 = 0.0671f * fMin;
         this.roundRadius = f3;
         if (this.fromTop) {
-            AndroidUtilities.rectTmp.set(measuredWidth, -f3, getMeasuredWidth() - measuredWidth, measuredHeight);
+            AndroidUtilities.rectTmp.set(measuredWidth, -f3, getMeasuredWidth() - measuredWidth, fMin);
         } else {
-            AndroidUtilities.rectTmp.set(measuredWidth, getMeasuredHeight() - measuredHeight, getMeasuredWidth() - measuredWidth, getMeasuredHeight() + this.roundRadius);
+            AndroidUtilities.rectTmp.set(measuredWidth, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth, getMeasuredHeight() + this.roundRadius);
         }
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.inset(-AndroidUtilities.dp(3.0f), -AndroidUtilities.dp(3.0f));
@@ -430,9 +430,9 @@ public class VideoScreenPreview extends FrameLayout implements PagerHeaderView, 
         float f4 = this.roundRadius;
         canvas.drawRoundRect(rectF, f4, f4, this.phoneFrame1);
         if (this.fromTop) {
-            rectF.set(measuredWidth, 0.0f, getMeasuredWidth() - measuredWidth, measuredHeight);
+            rectF.set(measuredWidth, 0.0f, getMeasuredWidth() - measuredWidth, fMin);
         } else {
-            rectF.set(measuredWidth, getMeasuredHeight() - measuredHeight, getMeasuredWidth() - measuredWidth, getMeasuredHeight());
+            rectF.set(measuredWidth, getMeasuredHeight() - fMin, getMeasuredWidth() - measuredWidth, getMeasuredHeight());
         }
         float fDp = this.roundRadius - AndroidUtilities.dp(3.0f);
         this.roundRadius = fDp;

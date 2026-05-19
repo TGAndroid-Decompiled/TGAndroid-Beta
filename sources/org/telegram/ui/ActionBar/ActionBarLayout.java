@@ -16,6 +16,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -118,6 +119,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     public float innerTranslationX;
     public boolean isKeyboardVisible;
     private boolean isLayersLayout;
+    private boolean isRightLayout;
     private boolean isSheet;
     ArrayList lastActions;
     private long lastFrameTime;
@@ -422,7 +424,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1331getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1330getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -712,6 +714,20 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.isLayersLayout = true;
     }
 
+    public void setIsRightLayout() {
+        this.isRightLayout = true;
+    }
+
+    @Override
+    public boolean isRightLayout() {
+        return this.isRightLayout;
+    }
+
+    @Override
+    public boolean isLayersLayout() {
+        return this.isLayersLayout;
+    }
+
     @Override
     public void setFragmentStack(List<BaseFragment> list) {
         this.fragmentsStack = list;
@@ -987,11 +1003,22 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     @Override
     protected void dispatchDraw(Canvas canvas) {
         this.withShadow = true;
+        if (this.isLayersLayout) {
+            canvas.save();
+            float fDp = AndroidUtilities.dp(24.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            this.clipPath.addRoundRect(rectF, fDp, fDp, Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+        }
         super.dispatchDraw(canvas);
+        if (this.isLayersLayout) {
+            canvas.restore();
+        }
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r21, android.view.View r22, long r23) {
+    protected boolean drawChild(android.graphics.Canvas r22, android.view.View r23, long r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarLayout.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
@@ -1852,6 +1879,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ArrayList arrayList = new ArrayList();
                 Property property = View.ALPHA;
                 arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) property, 0.0f, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) View.SCALE_X, 0.9f, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) View.SCALE_Y, 0.9f, 1.0f));
                 View view2 = this.backgroundView;
                 if (view2 != null) {
                     view2.setVisibility(0);
@@ -1864,7 +1893,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 AnimatorSet animatorSet = new AnimatorSet();
                 this.currentAnimation = animatorSet;
                 animatorSet.playTogether(arrayList);
-                this.currentAnimation.setInterpolator(this.accelerateDecelerateInterpolator);
+                this.currentAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.currentAnimation.setDuration(200L);
                 this.currentAnimation.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -2426,6 +2455,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 ArrayList arrayList = new ArrayList();
                 Property property = View.ALPHA;
                 arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) property, 1.0f, 0.0f));
+                arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) View.SCALE_X, 1.0f, 0.9f));
+                arrayList.add(ObjectAnimator.ofFloat(this, (Property<ActionBarLayout, Float>) View.SCALE_Y, 1.0f, 0.9f));
                 View view = this.backgroundView;
                 if (view != null) {
                     arrayList.add(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, 1.0f, 0.0f));

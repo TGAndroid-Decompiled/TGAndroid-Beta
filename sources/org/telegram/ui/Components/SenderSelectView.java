@@ -67,7 +67,7 @@ public class SenderSelectView extends View {
     private void updateColors() {
         this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
         this.menuPaint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoicePressed));
-        Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_windowBackgroundWhite));
+        Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(18.0f), 0, Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite), 0.2f));
         this.selectorDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
         drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this);
     }
@@ -107,7 +107,7 @@ public class SenderSelectView extends View {
         canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, this.backgroundPaint);
         canvas.save();
         this.menuPaint.setAlpha(i);
-        float fDp = AndroidUtilities.dp(9.0f) + this.menuPaint.getStrokeWidth();
+        float fDp = AndroidUtilities.dp(10.0f) + this.menuPaint.getStrokeWidth();
         canvas.drawLine(fDp, fDp, getWidth() - fDp, getHeight() - fDp, this.menuPaint);
         canvas.drawLine(fDp, getHeight() - fDp, getWidth() - fDp, fDp, this.menuPaint);
         canvas.restore();

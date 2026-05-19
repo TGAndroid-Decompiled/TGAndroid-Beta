@@ -38,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -555,7 +556,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.listView.setGlowColor(Theme.getColor(this.dialogBackgroundKey));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i4) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$createView$1(view, i4);
             }
         });
@@ -947,7 +948,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$createView$1(View view, int i) throws Resources.NotFoundException {
+    public void lambda$createView$1(View view, int i) throws Resources.NotFoundException, IOException {
         ArrayList<MediaController.PhotoEntry> arrayList;
         int i2;
         if (this.selectedAlbum == null && this.searchResult.isEmpty()) {

@@ -6,7 +6,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 
-public final class ChatActivity$$ExternalSyntheticLambda249 implements IBlur3Capture {
+public final class ChatActivity$$ExternalSyntheticLambda252 implements IBlur3Capture {
     public final ChatActivity.ChatActivityFragmentView f$0;
 
     @Override

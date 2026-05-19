@@ -11,8 +11,6 @@ import org.telegram.ui.Components.LayoutHelper;
 public abstract class GlassTabsView extends FrameLayout {
     private final Rect lensBounds;
     private final Rect lensBoundsForeground;
-    private int lensColorBackground;
-    private int lensColorForeground;
     private final Paint lensPaint;
     private float lensVisibility;
     public final LinearLayout linearLayout;
@@ -30,8 +28,6 @@ public abstract class GlassTabsView extends FrameLayout {
     }
 
     protected void setLensColor(int i, int i2) {
-        this.lensColorBackground = i;
-        this.lensColorForeground = i2;
         this.lensPaint.setColor(i);
     }
 

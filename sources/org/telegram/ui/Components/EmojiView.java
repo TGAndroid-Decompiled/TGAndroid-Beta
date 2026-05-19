@@ -1802,7 +1802,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         this(baseFragment, z, z2, z3, context, z4, chatFull, viewGroup, z5, resourcesProvider, z6, false);
     }
 
-    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) throws Resources.NotFoundException {
+    public EmojiView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Context context, boolean z4, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z5, final Theme.ResourcesProvider resourcesProvider, boolean z6, boolean z7) {
         BlurredBackgroundSourceColor blurredBackgroundSourceColor;
         int themedColor;
         final Theme.ResourcesProvider resourcesProvider2;

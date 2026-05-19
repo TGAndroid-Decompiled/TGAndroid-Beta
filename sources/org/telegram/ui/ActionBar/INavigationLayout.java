@@ -92,7 +92,11 @@ public interface INavigationLayout {
 
     boolean isInPreviewMode();
 
+    boolean isLayersLayout();
+
     boolean isPreviewOpenAnimationInProgress();
+
+    boolean isRightLayout();
 
     boolean isSheet();
 
@@ -310,6 +314,7 @@ public interface INavigationLayout {
 
     public static class NavigationParams {
         public boolean checkPresentFromDelegate = true;
+        public boolean forceRightLayout;
         public BaseFragment fragment;
         public ActionBarPopupWindow.ActionBarPopupWindowLayout menuView;
         public boolean noAnimation;
@@ -318,6 +323,11 @@ public interface INavigationLayout {
 
         public NavigationParams(BaseFragment baseFragment) {
             this.fragment = baseFragment;
+        }
+
+        public NavigationParams forceRightLayout() {
+            this.forceRightLayout = true;
+            return this;
         }
 
         public NavigationParams setRemoveLast(boolean z) {

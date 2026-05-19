@@ -43,6 +43,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CameraScanActivity;
@@ -182,6 +183,10 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 }
             }
         });
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isRightLayout()) {
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        }
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;

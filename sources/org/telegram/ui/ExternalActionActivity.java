@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -90,7 +91,7 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
     }
 
     @Override
-    protected void onCreate(Bundle bundle) throws Resources.NotFoundException {
+    protected void onCreate(Bundle bundle) throws Resources.NotFoundException, IOException {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);

@@ -121,7 +121,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 if (((BottomSheet) PremiumFeatureBottomSheet.this).isPortrait) {
                     PremiumFeatureBottomSheet.this.contentHeight = View.MeasureSpec.getSize(i3);
                 } else {
-                    PremiumFeatureBottomSheet.this.contentHeight = (int) (View.MeasureSpec.getSize(i4) * 0.65f);
+                    PremiumFeatureBottomSheet.this.contentHeight = (int) (Math.min(View.MeasureSpec.getSize(i3), View.MeasureSpec.getSize(i4)) * 0.8f);
                 }
                 super.onMeasure(i3, i4);
             }
@@ -350,7 +350,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         final Drawable drawableMutate = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
         FrameLayout frameLayout4 = new FrameLayout(getContext()) {
             int lastSize;
-            Path path = new Path();
+            private final Path path = new Path();
 
             @Override
             public boolean hasOverlappingRendering() {
@@ -395,7 +395,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                     canvas.save();
                     this.path.rewind();
                     RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, PremiumFeatureBottomSheet.this.topCurrentOffset + AndroidUtilities.dp(18.0f), getMeasuredWidth(), getMeasuredHeight());
+                    rectF.set(getPaddingLeft(), PremiumFeatureBottomSheet.this.topCurrentOffset + AndroidUtilities.dp(18.0f), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight());
                     this.path.addRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Path.Direction.CW);
                     canvas.clipPath(this.path);
                     super.drawChild(canvas, view, j);
@@ -691,18 +691,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             if (view instanceof BaseListPageView) {
                 ((BaseListPageView) view).setTopOffset(PremiumFeatureBottomSheet.this.topGlobalOffset);
             }
-            ViewGroup.LayoutParams layoutParams = this.topView.getLayoutParams();
-            PremiumFeatureBottomSheet premiumFeatureBottomSheet = PremiumFeatureBottomSheet.this;
-            layoutParams.height = premiumFeatureBottomSheet.contentHeight;
-            this.description.setVisibility(((BottomSheet) premiumFeatureBottomSheet).isPortrait ? 0 : 8);
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.title.getLayoutParams();
-            if (((BottomSheet) PremiumFeatureBottomSheet.this).isPortrait) {
-                marginLayoutParams.topMargin = AndroidUtilities.dp(20.0f);
-                marginLayoutParams.bottomMargin = 0;
-            } else {
-                marginLayoutParams.topMargin = AndroidUtilities.dp(10.0f);
-                marginLayoutParams.bottomMargin = AndroidUtilities.dp(10.0f);
-            }
+            this.topView.getLayoutParams().height = PremiumFeatureBottomSheet.this.contentHeight;
+            this.description.setVisibility(0);
             ((ViewGroup.MarginLayoutParams) this.topView.getLayoutParams()).bottomMargin = 0;
             super.onMeasure(i, i2);
             if (this.topViewOnFullHeight) {

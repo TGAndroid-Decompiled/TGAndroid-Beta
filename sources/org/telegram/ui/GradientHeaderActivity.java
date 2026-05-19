@@ -27,6 +27,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -126,13 +127,13 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         return i;
     }
 
-    static float access$1316(GradientHeaderActivity gradientHeaderActivity, float f) {
+    static float access$1516(GradientHeaderActivity gradientHeaderActivity, float f) {
         float f2 = gradientHeaderActivity.progress + f;
         gradientHeaderActivity.progress = f2;
         return f2;
     }
 
-    static float access$1324(GradientHeaderActivity gradientHeaderActivity, float f) {
+    static float access$1524(GradientHeaderActivity gradientHeaderActivity, float f) {
         float f2 = gradientHeaderActivity.progress - f;
         gradientHeaderActivity.progress = f2;
         return f2;
@@ -187,8 +188,13 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         this.shadowDrawable = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         this.shadowDrawable.getPadding(rect);
-        this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        this.statusBarHeight = (iNavigationLayout == null || !iNavigationLayout.isLayersLayout()) ? AndroidUtilities.statusBarHeight : 0;
         this.contentView = createContentView();
+        INavigationLayout iNavigationLayout2 = this.parentLayout;
+        if (iNavigationLayout2 != null && iNavigationLayout2.isLayersLayout()) {
+            this.actionBar.setOccupyStatusBar(false);
+        }
         this.actionBar.setAddToContainer(false);
         this.listView = new RecyclerListView(context);
         if (this.useFillLastLayoutManager) {
@@ -299,7 +305,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
             BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
             gradientHeaderActivity.isLandscapeMode = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
-            GradientHeaderActivity.this.statusBarHeight = AndroidUtilities.isTablet() ? 0 : AndroidUtilities.statusBarHeight;
+            GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
+            gradientHeaderActivity2.statusBarHeight = (((BaseFragment) gradientHeaderActivity2).parentLayout == null || !((BaseFragment) GradientHeaderActivity.this).parentLayout.isLayersLayout()) ? AndroidUtilities.statusBarHeight : 0;
             backgroundView.measure(i, View.MeasureSpec.makeMeasureSpec(0, 0));
             ViewGroup.LayoutParams layoutParams = GradientHeaderActivity.this.particlesView.getLayoutParams();
             int measuredHeight = GradientHeaderActivity.this.particlesViewHeight;
@@ -307,10 +314,10 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 measuredHeight = backgroundView.getMeasuredHeight();
             }
             layoutParams.height = measuredHeight;
-            GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
-            LinearLayoutManager linearLayoutManager = gradientHeaderActivity2.layoutManager;
+            GradientHeaderActivity gradientHeaderActivity3 = GradientHeaderActivity.this;
+            LinearLayoutManager linearLayoutManager = gradientHeaderActivity3.layoutManager;
             if (linearLayoutManager instanceof FillLastLinearLayoutManager) {
-                ((FillLastLinearLayoutManager) linearLayoutManager).setAdditionalHeight(((BaseFragment) gradientHeaderActivity2).actionBar.getMeasuredHeight());
+                ((FillLastLinearLayoutManager) linearLayoutManager).setAdditionalHeight(((BaseFragment) gradientHeaderActivity3).actionBar.getMeasuredHeight());
                 ((FillLastLinearLayoutManager) GradientHeaderActivity.this.layoutManager).setMinimumLastViewHeight(0);
             }
             super.onMeasure(i, i2);
@@ -380,12 +387,12 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             BackgroundView backgroundView = gradientHeaderActivity.backgroundView;
             if (!gradientHeaderActivity.isDialogVisible) {
                 if (GradientHeaderActivity.this.inc) {
-                    GradientHeaderActivity.access$1316(GradientHeaderActivity.this, 0.016f);
+                    GradientHeaderActivity.access$1516(GradientHeaderActivity.this, 0.016f);
                     if (GradientHeaderActivity.this.progress > 3.0f) {
                         GradientHeaderActivity.this.inc = false;
                     }
                 } else {
-                    GradientHeaderActivity.access$1324(GradientHeaderActivity.this, 0.016f);
+                    GradientHeaderActivity.access$1524(GradientHeaderActivity.this, 0.016f);
                     if (GradientHeaderActivity.this.progress < 1.0f) {
                         GradientHeaderActivity.this.inc = true;
                     }

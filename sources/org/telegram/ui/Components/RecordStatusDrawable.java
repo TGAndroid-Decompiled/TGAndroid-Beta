@@ -61,7 +61,7 @@ public class RecordStatusDrawable extends StatusDrawable {
             if (f > 1.0f) {
                 this.progress = f - 1.0f;
             } else {
-                invalidateSelf();
+                invalidateLimited();
                 return;
             }
         }

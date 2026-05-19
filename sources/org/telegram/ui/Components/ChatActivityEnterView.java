@@ -89,6 +89,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -3747,7 +3748,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         });
         this.senderSelectView.setVisibility(8);
-        this.messageEditTextContainer.addView(this.senderSelectView, LayoutHelper.createFrame(32, 32.0f, 83, 8.0f, 6.0f, 8.0f, 6.0f));
+        this.messageEditTextContainer.addView(this.senderSelectView, LayoutHelper.createFrame(36, 36.0f, 83, 4.66f, 4.0f, 4.66f, 4.0f));
     }
 
     public void lambda$createSenderSelectView$26(View view) throws Resources.NotFoundException {
@@ -4946,7 +4947,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws Resources.NotFoundException {
+                            public final void run() throws Resources.NotFoundException, IOException {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -4958,7 +4959,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws Resources.NotFoundException {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws Resources.NotFoundException, IOException {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -5031,7 +5032,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() throws Resources.NotFoundException {
+                    public void run() throws Resources.NotFoundException, IOException {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -10831,7 +10832,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws Resources.NotFoundException {
+        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws Resources.NotFoundException, IOException {
             if (ChatActivityEnterView.this.parentFragment == null) {
                 return;
             }
@@ -13464,10 +13465,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             if (senderSelectView != null && senderSelectView.getVisibility() == 0) {
                 int i3 = this.senderSelectView.getLayoutParams().width;
                 this.senderSelectView.measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(this.senderSelectView.getLayoutParams().height, 1073741824));
-                ((ViewGroup.MarginLayoutParams) this.emojiButton.getLayoutParams()).leftMargin = AndroidUtilities.dp(16.0f) + i3;
+                ((ViewGroup.MarginLayoutParams) this.emojiButton.getLayoutParams()).leftMargin = AndroidUtilities.dp(7.0f) + i3;
                 EditTextCaption editTextCaption2 = this.messageEditText;
                 if (editTextCaption2 != null) {
-                    ((ViewGroup.MarginLayoutParams) editTextCaption2.getLayoutParams()).leftMargin = AndroidUtilities.dp(63.0f) + i3;
+                    ((ViewGroup.MarginLayoutParams) editTextCaption2.getLayoutParams()).leftMargin = AndroidUtilities.dp(54.0f) + i3;
                 }
             } else {
                 ((ViewGroup.MarginLayoutParams) this.emojiButton.getLayoutParams()).leftMargin = AndroidUtilities.dp(3.0f);

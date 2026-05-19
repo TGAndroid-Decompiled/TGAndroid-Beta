@@ -55,6 +55,7 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -375,7 +376,8 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         } else {
             this.actionBar.setTitle(LocaleController.getString(R.string.NewPoll));
         }
-        if (AndroidUtilities.isTablet()) {
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);

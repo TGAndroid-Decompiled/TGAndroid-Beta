@@ -421,8 +421,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     public boolean isCustomKeyboardForceDisabled() {
-        Point point = AndroidUtilities.displaySize;
-        return point.x > point.y || AndroidUtilities.isTablet() || AndroidUtilities.isAccessibilityTouchExplorationEnabled();
+        return AndroidUtilities.isAccessibilityTouchExplorationEnabled();
     }
 
     public boolean isCustomKeyboardVisible() {
@@ -791,7 +790,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);

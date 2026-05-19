@@ -63,6 +63,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
     private final Paint paintCounterBackground;
     private Drawable premiumStarDrawable;
     private Theme.ResourcesProvider resourcesProvider;
+    private TextPaint scaledTextPaint;
     private boolean selfMeasure;
     private boolean skipDrawSelector;
     private TabAnimation tabAnimation;
@@ -463,9 +464,26 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         }
     }
 
-    @Override
     public float measureTextWidth() {
         return this.defaultTextPaint.measureText(this.textView.getText().toString());
+    }
+
+    @Override
+    public float measureTextWidth(float f) {
+        if (this.scaledTextPaint == null) {
+            this.scaledTextPaint = new TextPaint(this.defaultTextPaint);
+        }
+        this.scaledTextPaint.setTextSize(AndroidUtilities.dp(f));
+        return this.scaledTextPaint.measureText(this.textView.getText().toString());
+    }
+
+    @Override
+    public void setTextSizeDp(float f) {
+        float fDp = AndroidUtilities.dp(f);
+        if (this.textView.getTextSize() != fDp) {
+            this.textView.setTextSize(1, f);
+            this.defaultTextPaint.setTextSize(fDp);
+        }
     }
 
     public enum TabAnimation {

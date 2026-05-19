@@ -37,6 +37,7 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.ChatActivity;
@@ -197,6 +198,10 @@ public class TONIntroActivity extends GradientHeaderActivity implements Notifica
             }
         };
         super.createView(context);
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isRightLayout()) {
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        }
         FrameLayout frameLayout = new FrameLayout(context);
         this.aboveTitleView = frameLayout;
         frameLayout.setClickable(true);

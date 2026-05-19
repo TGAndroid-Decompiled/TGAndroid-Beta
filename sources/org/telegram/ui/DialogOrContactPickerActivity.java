@@ -33,6 +33,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.AlertsCreator;
@@ -144,7 +145,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setTitle(LocaleController.getString(R.string.BlockUserMultiTitle));
-        if (AndroidUtilities.isTablet()) {
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));

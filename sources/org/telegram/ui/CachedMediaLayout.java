@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -228,7 +229,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             recyclerListView.setPadding(0, 0, 0, CachedMediaLayout.this.bottomPadding);
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public void onItemClick(View view, int i2) throws Resources.NotFoundException {
+                public void onItemClick(View view, int i2) throws Resources.NotFoundException, IOException {
                     BaseAdapter baseAdapter = (BaseAdapter) recyclerListView.getAdapter();
                     ItemInner itemInner = (ItemInner) baseAdapter.itemInners.get(i2);
                     if (view instanceof SharedPhotoVideoCell2) {
@@ -280,21 +281,21 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
                 if (view instanceof SharedPhotoVideoCell2) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) throws Resources.NotFoundException {
+                        public final void onClick(View view2) throws Resources.NotFoundException, IOException {
                             this.f$0.lambda$createView$0(itemInner, baseAdapter, recyclerListView, view, view2);
                         }
                     });
                 } else if (((CacheCell) view).container.getChildAt(0) instanceof SharedAudioCell) {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_played, LocaleController.getString(R.string.PlayFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) throws Resources.NotFoundException {
+                        public final void onClick(View view2) throws Resources.NotFoundException, IOException {
                             this.f$0.lambda$createView$1(itemInner, view, view2);
                         }
                     });
                 } else {
                     ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_view_file, LocaleController.getString(R.string.CacheOpenFile), false, null).setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) throws Resources.NotFoundException {
+                        public final void onClick(View view2) throws Resources.NotFoundException, IOException {
                             this.f$0.lambda$createView$2(itemInner, view, view2);
                         }
                     });
@@ -325,7 +326,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             return true;
         }
 
-        public void lambda$createView$0(ItemInner itemInner, BaseAdapter baseAdapter, RecyclerListView recyclerListView, View view, View view2) throws Resources.NotFoundException {
+        public void lambda$createView$0(ItemInner itemInner, BaseAdapter baseAdapter, RecyclerListView recyclerListView, View view, View view2) throws Resources.NotFoundException, IOException {
             CachedMediaLayout.this.openPhoto(itemInner, (MediaAdapter) baseAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
             ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
             if (actionBarPopupWindow != null) {
@@ -333,7 +334,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             }
         }
 
-        public void lambda$createView$1(ItemInner itemInner, View view, View view2) throws Resources.NotFoundException {
+        public void lambda$createView$1(ItemInner itemInner, View view, View view2) throws Resources.NotFoundException, IOException {
             CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
             ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
             if (actionBarPopupWindow != null) {
@@ -341,7 +342,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             }
         }
 
-        public void lambda$createView$2(ItemInner itemInner, View view, View view2) throws Resources.NotFoundException {
+        public void lambda$createView$2(ItemInner itemInner, View view, View view2) throws Resources.NotFoundException, IOException {
             CachedMediaLayout.this.openItem(itemInner.file, (CacheCell) view);
             ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
             if (actionBarPopupWindow != null) {
@@ -398,7 +399,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         this.delegate.clear();
     }
 
-    public void openPhoto(ItemInner itemInner, MediaAdapter mediaAdapter, RecyclerListView recyclerListView, SharedPhotoVideoCell2 sharedPhotoVideoCell2) throws Resources.NotFoundException {
+    public void openPhoto(ItemInner itemInner, MediaAdapter mediaAdapter, RecyclerListView recyclerListView, SharedPhotoVideoCell2 sharedPhotoVideoCell2) throws Resources.NotFoundException, IOException {
         PhotoViewer.getInstance().setParentActivity(this.parentFragment);
         if (this.placeProvider == null) {
             this.placeProvider = new BasePlaceProvider(this, null);
@@ -409,7 +410,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
         }
     }
 
-    public void openItem(CacheModel.FileInfo fileInfo, CacheCell cacheCell) throws Resources.NotFoundException {
+    public void openItem(CacheModel.FileInfo fileInfo, CacheCell cacheCell) throws Resources.NotFoundException, IOException {
         RecyclerListView recyclerListView = (RecyclerListView) this.viewPagerFixed.getCurrentView();
         if (cacheCell.type == 2) {
             if (!(recyclerListView.getAdapter() instanceof DocumentsAdapter)) {
@@ -889,7 +890,7 @@ public abstract class CachedMediaLayout extends FrameLayout implements NestedSiz
             cacheCell.type = 3;
             SharedAudioCell sharedAudioCell = new SharedAudioCell(viewGroup.getContext(), 0, null) {
                 @Override
-                public void didPressedButton() throws Resources.NotFoundException {
+                public void didPressedButton() throws Resources.NotFoundException, IOException {
                     CachedMediaLayout.this.openItem((CacheModel.FileInfo) cacheCell.getTag(), cacheCell);
                 }
             };

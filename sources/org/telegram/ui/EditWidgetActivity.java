@@ -41,6 +41,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.ChatActionCell;
@@ -356,7 +357,8 @@ public class EditWidgetActivity extends BaseFragment {
     public View createView(final Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
-        if (AndroidUtilities.isTablet()) {
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         if (this.widgetType == 0) {

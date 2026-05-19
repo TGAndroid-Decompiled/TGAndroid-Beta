@@ -1,9 +1,13 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
@@ -23,7 +27,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
     private String titleOverlay;
     private Runnable titleOverlayAction;
     private int titleOverlayId;
-    protected ViewPagerFixed viewPager;
+    protected ViewPagerActivityPagerLayout viewPager;
     protected final SparseArray fragmentsArr = new SparseArray();
     private int initialFragmentPosition = -1;
     private float visibilityByParent = 0.0f;
@@ -147,11 +151,11 @@ public abstract class ViewPagerActivity extends BaseFragment {
     }
 
     public BaseFragment getCurrentVisibleFragment() {
-        ViewPagerFixed viewPagerFixed = this.viewPager;
-        if (viewPagerFixed == null) {
+        ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
+        if (viewPagerActivityPagerLayout == null) {
             return null;
         }
-        FragmentState fragmentState = (FragmentState) this.fragmentsArr.get(viewPagerFixed.getCurrentPosition());
+        FragmentState fragmentState = (FragmentState) this.fragmentsArr.get(viewPagerActivityPagerLayout.getCurrentPosition());
         if (fragmentState != null) {
             return fragmentState.fragment;
         }
@@ -160,9 +164,9 @@ public abstract class ViewPagerActivity extends BaseFragment {
 
     @Override
     public void clearViews() {
-        ViewPagerFixed viewPagerFixed = this.viewPager;
-        if (viewPagerFixed != null) {
-            this.initialFragmentPosition = viewPagerFixed.getCurrentPosition();
+        ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
+        if (viewPagerActivityPagerLayout != null) {
+            this.initialFragmentPosition = viewPagerActivityPagerLayout.getCurrentPosition();
         }
         int size = this.fragmentsArr.size();
         for (int i = 0; i < size; i++) {
@@ -391,7 +395,10 @@ public abstract class ViewPagerActivity extends BaseFragment {
         }
     }
 
-    private class ViewPagerActivityPagerLayout extends ViewPagerFixed {
+    public class ViewPagerActivityPagerLayout extends ViewPagerFixed {
+        private final Path clipPath;
+        private boolean tabletLayout;
+
         @Override
         protected long getManualScrollDuration() {
             return 320L;
@@ -399,6 +406,32 @@ public abstract class ViewPagerActivity extends BaseFragment {
 
         public ViewPagerActivityPagerLayout(Context context) {
             super(context);
+            this.clipPath = new Path();
+        }
+
+        public void setTabletLayout(boolean z) {
+            if (this.tabletLayout == z) {
+                return;
+            }
+            this.tabletLayout = z;
+            invalidate();
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            if (this.tabletLayout) {
+                this.clipPath.rewind();
+                float fDpf2 = AndroidUtilities.dpf2(24.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
+                this.clipPath.addRoundRect(rectF, fDpf2, fDpf2, Path.Direction.CW);
+                canvas.save();
+                canvas.clipPath(this.clipPath);
+            }
+            super.dispatchDraw(canvas);
+            if (this.tabletLayout) {
+                canvas.restore();
+            }
         }
 
         @Override
@@ -435,6 +468,16 @@ public abstract class ViewPagerActivity extends BaseFragment {
         @Override
         protected boolean canScrollForward(MotionEvent motionEvent) {
             return ViewPagerActivity.this.canScrollForward(motionEvent);
+        }
+
+        @Override
+        public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+            super.setLayoutParams(layoutParams);
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
         }
     }
 

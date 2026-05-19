@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.res.Resources;
 
-public final class ChatActivity$$ExternalSyntheticLambda318 implements Runnable {
+public final class ChatActivity$$ExternalSyntheticLambda272 implements Runnable {
     public final ChatActivity f$0;
 
     @Override

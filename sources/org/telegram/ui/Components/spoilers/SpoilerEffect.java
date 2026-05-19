@@ -37,6 +37,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.Easings;
@@ -272,7 +273,7 @@ public class SpoilerEffect extends Drawable {
         paint.setColorFilter(this.colorFilter);
         canvas.drawRect(bounds, paint);
         if (LiteMode.isEnabled(128)) {
-            invalidateSelf();
+            Choreographer60FpsContent.getInstance().postInvalidateDrawable(this);
             SpoilerEffectBitmapFactory.getInstance().checkUpdate(bounds);
         }
     }

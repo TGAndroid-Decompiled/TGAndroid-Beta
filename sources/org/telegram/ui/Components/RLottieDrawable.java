@@ -19,10 +19,13 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.DispatchQueuePool;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
@@ -122,7 +125,13 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     public Runnable whenCacheDone;
     protected final int width;
     protected static final Handler uiHandler = new Handler(Looper.getMainLooper());
-    private static final DispatchQueuePool loadFrameRunnableQueue = new DispatchQueuePool(4);
+    private static final AtomicInteger threadId = new AtomicInteger();
+    private static final Executor loadFrameRunnableQueue = Executors.newFixedThreadPool(4, new ThreadFactory() {
+        @Override
+        public final Thread newThread(Runnable runnable) {
+            return RLottieDrawable.lambda$static$0(runnable);
+        }
+    });
 
     public static native long create(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3);
 
@@ -143,6 +152,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     @Override
     public int getOpacity() {
         return -2;
+    }
+
+    public static Thread lambda$static$0(Runnable runnable) {
+        return new Thread(runnable, "LottieThread-" + threadId.getAndIncrement());
     }
 
     public void onChoreographerFrame(long j) {
@@ -251,20 +264,20 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             DispatchQueuePoolBackground.execute(new Runnable() {
                 @Override
                 public final void run() {
-                    RLottieDrawable.lambda$recycleNativePtr$0(j, j2);
+                    RLottieDrawable.lambda$recycleNativePtr$1(j, j2);
                 }
             });
         } else {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    RLottieDrawable.lambda$recycleNativePtr$1(j, j2);
+                    RLottieDrawable.lambda$recycleNativePtr$2(j, j2);
                 }
             });
         }
     }
 
-    public static void lambda$recycleNativePtr$0(long j, long j2) {
+    public static void lambda$recycleNativePtr$1(long j, long j2) {
         if (j != 0) {
             destroy(j);
         }
@@ -273,7 +286,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         }
     }
 
-    public static void lambda$recycleNativePtr$1(long j, long j2) {
+    public static void lambda$recycleNativePtr$2(long j, long j2) {
         if (j != 0) {
             destroy(j);
         }
@@ -673,24 +686,24 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setBaseDice$3(res);
+                    this.f$0.lambda$setBaseDice$4(res);
                 }
             });
         }
         return true;
     }
 
-    public void lambda$setBaseDice$3(String str) {
+    public void lambda$setBaseDice$4(String str) {
         this.nativePtr = createWithJson(str, "dice", this.metaData, null);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setBaseDice$2();
+                this.f$0.lambda$setBaseDice$3();
             }
         });
     }
 
-    public void lambda$setBaseDice$2() {
+    public void lambda$setBaseDice$3() {
         this.loadingInBackground = false;
         if (!this.secondLoadingInBackground && this.destroyAfterLoading) {
             recycle(true);
@@ -719,19 +732,19 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setDiceNumber$6(res);
+                    this.f$0.lambda$setDiceNumber$7(res);
                 }
             });
         }
         return true;
     }
 
-    public void lambda$setDiceNumber$6(String str) {
+    public void lambda$setDiceNumber$7(String str) {
         if (this.destroyAfterLoading) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setDiceNumber$4();
+                    this.f$0.lambda$setDiceNumber$5();
                 }
             });
             return;
@@ -741,12 +754,12 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setDiceNumber$5(iArr);
+                this.f$0.lambda$setDiceNumber$6(iArr);
             }
         });
     }
 
-    public void lambda$setDiceNumber$4() {
+    public void lambda$setDiceNumber$5() {
         this.secondLoadingInBackground = false;
         if (this.loadingInBackground || !this.destroyAfterLoading) {
             return;
@@ -754,7 +767,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         recycle(true);
     }
 
-    public void lambda$setDiceNumber$5(int[] iArr) {
+    public void lambda$setDiceNumber$6(int[] iArr) {
         this.secondLoadingInBackground = false;
         if (this.destroyAfterLoading) {
             recycle(true);
@@ -1121,7 +1134,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         if (this.shouldLimitFps && Thread.currentThread() == ApplicationLoader.applicationHandler.getLooper().getThread()) {
             DispatchQueuePoolBackground.execute(this.loadFrameTask, this.frameWaitSync != null);
         } else {
-            loadFrameRunnableQueue.lambda$execute$0(this.loadFrameTask);
+            loadFrameRunnableQueue.execute(this.loadFrameTask);
         }
         return true;
     }

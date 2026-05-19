@@ -37,6 +37,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.ChatbotsActivity;
 import org.telegram.ui.Business.OpeningHoursActivity;
@@ -176,6 +177,10 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         universalRecyclerView.setSections();
         this.listView.setClipToPadding(false);
         this.actionBar.setAdaptiveBackground(this.listView);
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isRightLayout()) {
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {

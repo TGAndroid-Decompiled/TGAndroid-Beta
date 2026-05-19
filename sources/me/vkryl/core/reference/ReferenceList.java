@@ -135,6 +135,26 @@ public final class ReferenceList implements Iterable, ReferenceCreator {
         }
     }
 
+    public final void clear() {
+        synchronized (this.items) {
+            try {
+                if (this.isLocked) {
+                    for (Reference reference : this.items) {
+                        if (!this.itemsToRemove.contains(reference)) {
+                            this.itemsToRemove.add(reference);
+                        }
+                        ReferenceUtils.removeReference(this.itemsToAdd, reference.get());
+                    }
+                } else {
+                    this.items.clear();
+                    checkFull();
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+    }
+
     public final boolean isEmpty() {
         synchronized (this.items) {
             try {

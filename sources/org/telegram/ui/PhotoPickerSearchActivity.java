@@ -30,6 +30,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.EditTextBoldCursor;
@@ -95,7 +96,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         int i2 = Theme.key_dialogButtonSelector;
         actionBar2.setItemsBackgroundColor(Theme.getColor(i2), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        if (AndroidUtilities.isTablet()) {
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));

@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda280;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda340;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
@@ -2352,11 +2353,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return adapterPosition == ChatAttachAlertPollLayout.this.addAnswerRow || (ChatAttachAlertPollLayout.this.quizOnly == 0 && adapterPosition == ChatAttachAlertPollLayout.this.poll2vQuizRow) || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAnonymousRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vMultipleRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAllowAddingRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAllowRevotingRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vShuffleRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationTimeRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationHideResultsRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitByCountryRow.row || adapterPosition == ChatAttachAlertPollLayout.this.poll2vSubscribersOnlyRow.row || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitByCountryListRow;
         }
 
-        public void lambda$onCreateViewHolder$0(View view) throws Resources.NotFoundException {
+        public void lambda$onCreateViewHolder$0(View view) throws Resources.NotFoundException, IOException {
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(-2);
         }
 
-        public void lambda$onCreateViewHolder$1(View view) throws Resources.NotFoundException {
+        public void lambda$onCreateViewHolder$1(View view) throws Resources.NotFoundException, IOException {
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(-3);
         }
 
@@ -2442,7 +2443,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell.setTextRight(98);
                         pollEditTextCell.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) throws Resources.NotFoundException {
+                            public final void onClick(View view) throws Resources.NotFoundException, IOException {
                                 this.f$0.lambda$onCreateViewHolder$0(view);
                             }
                         });
@@ -2608,7 +2609,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell2.setTextRight(140);
                         pollEditTextCell2.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) throws Resources.NotFoundException {
+                            public final void onClick(View view) throws Resources.NotFoundException, IOException {
                                 this.f$0.lambda$onCreateViewHolder$3(pollEditTextCell2, view);
                             }
                         });
@@ -2708,7 +2709,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell3.setTextRight(98);
                         pollEditTextCell3.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) throws Resources.NotFoundException {
+                            public final void onClick(View view) throws Resources.NotFoundException, IOException {
                                 this.f$0.lambda$onCreateViewHolder$1(view);
                             }
                         });
@@ -2778,7 +2779,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             ChatAttachAlertPollLayout.this.deletePollAnswerView(view, (PollEditTextCell) view.getParent(), true);
         }
 
-        public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) throws Resources.NotFoundException {
+        public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) throws Resources.NotFoundException, IOException {
             int adapterPosition;
             RecyclerView.ViewHolder viewHolderFindContainingViewHolder = ChatAttachAlertPollLayout.this.listView.findContainingViewHolder(pollEditTextCell);
             if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition() - ChatAttachAlertPollLayout.this.answerStartRow) < 0 || adapterPosition >= ChatAttachAlertPollLayout.this.answers.length) {
@@ -2933,7 +2934,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return MessagesController.getInstance(getCurrentAccount());
     }
 
-    private void openEditOrReplaceMenu(final int i) throws Resources.NotFoundException {
+    private void openEditOrReplaceMenu(final int i) throws Resources.NotFoundException, IOException {
         ChatAttachAlert chatAttachAlert;
         BaseFragment baseFragment;
         PollAttachedMedia pollAttachedMedia = this.attachedMedia.get(i);
@@ -3295,7 +3296,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             }
         });
         ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.resourcesProvider);
-        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda280(scrimOptions));
+        itemOptionsAdd.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda340(scrimOptions));
         itemOptionsAdd.setMinWidth(AndroidUtilities.dp(185.0f));
         itemOptionsAdd.setupSelectors();
         scrimOptions.setItemOptions(itemOptionsAdd);
@@ -3308,7 +3309,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         lambda$openAttachMenuForOptions$21(i, null);
     }
 
-    public void openAttachOrReplaceMenuForOptions(int i) throws Resources.NotFoundException {
+    public void openAttachOrReplaceMenuForOptions(int i) throws Resources.NotFoundException, IOException {
         if (this.attachedMedia.get(i) != null) {
             openEditOrReplaceMenu(i);
         } else {

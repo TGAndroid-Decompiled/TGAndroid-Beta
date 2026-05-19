@@ -39,6 +39,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.HeaderCell;
@@ -252,16 +253,21 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
     @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        int i = 1;
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsAndSounds));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
                     NotificationsSettingsActivity.this.finishFragment();
                 }
             }
         });
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && iNavigationLayout.isRightLayout()) {
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        }
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -272,7 +278,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         this.listView.setItemAnimator(null);
         this.listView.setLayoutAnimation(null);
         RecyclerListView recyclerListView2 = this.listView;
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, i, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
@@ -288,18 +294,18 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         recyclerListView3.setAdapter(listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view, int i) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+            public boolean hasDoubleTap(View view, int i2) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i2);
             }
 
             @Override
-            public void onDoubleTap(View view, int i, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+            public void onDoubleTap(View view, int i2, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i2, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) {
-                this.f$0.lambda$createView$10(view, i, f, f2);
+            public final void onItemClick(View view, int i2, float f, float f2) {
+                this.f$0.lambda$createView$10(view, i2, f, f2);
             }
         });
         return this.fragmentView;

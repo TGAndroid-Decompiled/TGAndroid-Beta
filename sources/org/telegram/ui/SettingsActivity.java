@@ -94,6 +94,7 @@ import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SettingsSearchCell;
@@ -346,7 +347,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                 if (i == -1) {
                     SettingsActivity.this.finishFragment();
                 } else if (i == 2) {
-                    SettingsActivity.this.presentFragment(new LogoutActivity());
+                    SettingsActivity.this.presentSettingFragment(new LogoutActivity());
                 }
             }
         });
@@ -874,6 +875,22 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
     }
 
+    public void presentSettingFragment(BaseFragment baseFragment) {
+        LaunchActivity launchActivity;
+        if (AndroidUtilities.isTablet() && (launchActivity = LaunchActivity.instance) != null && launchActivity.getRightActionBarLayout() != null) {
+            INavigationLayout rightActionBarLayout = LaunchActivity.instance.getRightActionBarLayout();
+            if (!rightActionBarLayout.getFragmentStack().isEmpty()) {
+                while (rightActionBarLayout.getFragmentStack().size() - 1 > 0) {
+                    rightActionBarLayout.removeFragmentFromStack((BaseFragment) rightActionBarLayout.getFragmentStack().get(0));
+                }
+                rightActionBarLayout.closeLastFragment(false);
+            }
+            rightActionBarLayout.presentFragment(new INavigationLayout.NavigationParams(baseFragment).setNoAnimation(true).forceRightLayout());
+            return;
+        }
+        presentFragment(baseFragment);
+    }
+
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
         Object obj = uItem.object;
         if (obj instanceof TLRPC.TL_attachMenuBot) {
@@ -915,43 +932,43 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         }
         switch (uItem.id) {
             case 1:
-                presentFragment(new UserInfoActivity());
+                presentSettingFragment(new UserInfoActivity());
                 break;
             case 2:
-                presentFragment(new ThemeActivity(0));
+                presentSettingFragment(new ThemeActivity(0));
                 break;
             case 3:
-                presentFragment(new PrivacySettingsActivity());
+                presentSettingFragment(new PrivacySettingsActivity());
                 break;
             case 5:
-                presentFragment(new NotificationsSettingsActivity());
+                presentSettingFragment(new NotificationsSettingsActivity());
                 break;
             case 6:
-                presentFragment(new DataSettingsActivity());
+                presentSettingFragment(new DataSettingsActivity());
                 break;
             case 7:
-                presentFragment(new FiltersSetupActivity());
+                presentSettingFragment(new FiltersSetupActivity());
                 break;
             case 8:
-                presentFragment(new SessionsActivity(0));
+                presentSettingFragment(new SessionsActivity(0));
                 break;
             case 9:
-                presentFragment(new LiteModeSettingsActivity());
+                presentSettingFragment(new LiteModeSettingsActivity());
                 break;
             case 10:
-                presentFragment(new LanguageSelectActivity());
+                presentSettingFragment(new LanguageSelectActivity());
                 break;
             case 11:
-                presentFragment(new PremiumPreviewFragment("settings"));
+                presentSettingFragment(new PremiumPreviewFragment("settings"));
                 break;
             case 12:
-                presentFragment(new StarsIntroActivity());
+                presentSettingFragment(new StarsIntroActivity());
                 break;
             case 13:
-                presentFragment(new TONIntroActivity());
+                presentSettingFragment(new TONIntroActivity());
                 break;
             case 15:
-                presentFragment(new PremiumPreviewFragment(1, "settings"));
+                presentSettingFragment(new PremiumPreviewFragment(1, "settings"));
                 break;
             case 16:
                 UserSelectorBottomSheet.open(0L, BirthdayController.getInstance(UserConfig.selectedAccount).getState());

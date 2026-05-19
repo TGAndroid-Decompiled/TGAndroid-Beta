@@ -116,8 +116,8 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
         long jCurrentTimeMillis = System.currentTimeMillis();
         long j = jCurrentTimeMillis - this.lastUpdateTime;
         this.lastUpdateTime = jCurrentTimeMillis;
-        if (j > 16) {
-            j = 16;
+        if (j > 50) {
+            j = 50;
         }
         float f = this.progress + (j / 500.0f);
         this.progress = f;
@@ -125,7 +125,7 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
             this.progress = 0.0f;
             this.increment = !this.increment;
         }
-        invalidateSelf();
+        invalidateLimited();
     }
 
     @Override

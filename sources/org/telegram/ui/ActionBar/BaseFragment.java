@@ -241,7 +241,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1331getWindowView();
+        View mo1330getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -551,13 +551,14 @@ public abstract class BaseFragment {
     }
 
     public ActionBar createActionBar(Context context) {
+        INavigationLayout iNavigationLayout;
         ActionBar actionBar = new ActionBar(context, getResourceProvider());
         actionBar.setBackgroundColor(getThemedColor(Theme.key_actionBarDefault));
         actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSelector), false);
         actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), true);
         actionBar.setItemsColor(getThemedColor(Theme.key_actionBarDefaultIcon), false);
         actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), true);
-        if (this.inPreviewMode || this.inBubbleMode) {
+        if (this.inPreviewMode || this.inBubbleMode || ((iNavigationLayout = this.parentLayout) != null && iNavigationLayout.isLayersLayout())) {
             actionBar.setOccupyStatusBar(false);
         }
         return actionBar;
@@ -1297,8 +1298,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1331getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1331getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1330getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1330getWindowView());
                 }
             }
         }
@@ -1309,7 +1310,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1331getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1330getWindowView());
                 }
             }
         }
@@ -1319,7 +1320,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1331getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1330getWindowView()) {
                     return true;
                 }
             }

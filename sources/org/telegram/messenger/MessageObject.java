@@ -5824,6 +5824,11 @@ public class MessageObject {
         return getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaDice;
     }
 
+    public boolean isStakeableDice() {
+        TLRPC.TL_messageMediaDice tL_messageMediaDice = (TLRPC.TL_messageMediaDice) getMedia(this.messageOwner, TLRPC.TL_messageMediaDice.class);
+        return tL_messageMediaDice != null && TextUtils.equals("🎲", tL_messageMediaDice.emoticon);
+    }
+
     public boolean isStakedDice() {
         TLRPC.MessageMedia media = getMedia(this.messageOwner);
         return (media instanceof TLRPC.TL_messageMediaDice) && ((TLRPC.TL_messageMediaDice) media).game_outcome != null;
