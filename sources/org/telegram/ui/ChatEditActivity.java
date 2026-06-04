@@ -9,6 +9,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.exoplayer2.util.Consumer;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -222,7 +224,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
 
         @Override
-        public void openPhotoForEdit(String str, String str2, boolean z) {
+        public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, IOException {
             ChatEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
         }
 
@@ -421,7 +423,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatEditActivity.createView(android.content.Context):android.view.View");
     }
 
-    public void lambda$createView$3(View view) {
+    public void lambda$createView$3(View view) throws Resources.NotFoundException, IOException {
         if (this.imageUpdater.isUploadingImage()) {
             return;
         }
@@ -1699,7 +1701,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 

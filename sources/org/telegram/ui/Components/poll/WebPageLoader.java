@@ -57,9 +57,9 @@ public class WebPageLoader {
     }
 
     public void apply(LongSparseArray longSparseArray) {
+        TLRPC.WebPage webPage;
         for (Map.Entry entry : this.pages.entrySet()) {
-            TLRPC.WebPage webPage = (TLRPC.WebPage) longSparseArray.get(((TLRPC.WebPage) entry.getValue()).id);
-            if (webPage != null) {
+            if (entry.getValue() != null && (webPage = (TLRPC.WebPage) longSparseArray.get(((TLRPC.WebPage) entry.getValue()).id)) != null) {
                 entry.setValue(webPage);
             }
         }

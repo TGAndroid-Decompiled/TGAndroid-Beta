@@ -43,6 +43,7 @@ import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda301;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda278;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -1963,13 +1964,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public void lambda$requestWebView$21(final TLRPC.UserFull userFull) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 this.f$0.lambda$requestWebView$20(userFull);
             }
         });
     }
 
-    public void lambda$requestWebView$20(TLRPC.UserFull userFull) {
+    public void lambda$requestWebView$20(TLRPC.UserFull userFull) throws IOException {
         TL_bots.BotInfo botInfo;
         TL_bots.botAppSettings botappsettings;
         if (userFull == null || (botInfo = userFull.bot_info) == null || (botappsettings = botInfo.app_settings) == null) {
@@ -2092,7 +2093,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fileItems.clear();
         if (botDownloads.hasFiles()) {
             final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda301(itemOptionsMakeOptions));
+            itemOptionsMakeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda278(itemOptionsMakeOptions));
             itemOptionsMakeSwipeback.addGap();
             Iterator it2 = botDownloads.getFiles().iterator();
             while (it2.hasNext()) {
@@ -2310,7 +2311,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    private void applyAppBotSettings(TL_bots.botAppSettings botappsettings, boolean z) {
+    private void applyAppBotSettings(TL_bots.botAppSettings botappsettings, boolean z) throws IOException {
         if (botappsettings == null) {
             return;
         }

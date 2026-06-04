@@ -36,7 +36,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CollapseTextCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda254;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda256;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -451,7 +451,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 public Function compose(Function function) {
                     return Function$CC.$default$compose(this, function);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda254()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda256()));
             Action action = new Action(2, arrayList2);
             this.banOrRestrict = action;
             action.setFilter(this.banFilter);
@@ -988,7 +988,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             public final boolean test(Object obj) {
                 return this.f$0.lambda$performDelete$11((MessageObject) obj);
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda254()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda256()));
         final ArrayList<Integer> arrayList2 = (ArrayList) Collection.EL.stream(this.messages).filter(new Predicate() {
             public Predicate and(Predicate predicate) {
                 return Predicate$CC.$default$and(this, predicate);
@@ -1006,7 +1006,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             public final boolean test(Object obj) {
                 return this.f$0.lambda$performDelete$12((MessageObject) obj);
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda254()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda256()));
         if (this.isReactionOnlyMode) {
             if (!this.restrictUserDeleteAllReactions) {
                 this.deleteAll.forEach(new Utilities.IndexedConsumer() {
@@ -1127,7 +1127,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
             public final boolean test(Object obj) {
                 return DeleteMessagesBottomSheet.lambda$performDelete$16(tLObject, (MessageObject) obj);
             }
-        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda254()));
+        }).map(new DeleteMessagesBottomSheet$$ExternalSyntheticLambda11()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda256()));
         if (this.isReactionOnlyMode && (tLObject instanceof TLRPC.User) && arrayList.size() == 1) {
             TLRPC.TL_messages_reportReaction tL_messages_reportReaction = new TLRPC.TL_messages_reportReaction();
             tL_messages_reportReaction.peer = MessagesController.getInputPeer(this.inChat);

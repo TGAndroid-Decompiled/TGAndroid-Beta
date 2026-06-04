@@ -90,6 +90,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Objects;
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -14727,7 +14728,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
     }
 
     @Override
-    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
+    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException, IOException {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;
