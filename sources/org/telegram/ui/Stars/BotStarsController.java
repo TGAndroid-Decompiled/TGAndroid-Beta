@@ -18,6 +18,7 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
@@ -205,7 +206,7 @@ public class BotStarsController {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsUpdated, Long.valueOf(j));
     }
 
-    public void onUpdate(TLRPC.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
+    public void onUpdate(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
         if (tL_updateStarsRevenueStatus == null) {
             return;
         }

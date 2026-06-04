@@ -959,10 +959,17 @@ public class ChatbotsActivity extends BaseFragment {
             BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
             getMessagesController().clearFullUsers();
             finishFragment();
-            if (!z || user == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
+            if (!z || user == null) {
+                if (user == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
+                    return;
+                }
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotUpdated, UserObject.getUserName(user))).show();
                 return;
             }
-            BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotDone, UserObject.getUserName(user))).show();
+            BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
+            if (safeLastFragment2 != null) {
+                BulletinFactory.of(safeLastFragment2).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.BusinessBotDone, UserObject.getUserName(user))).show();
+            }
         }
     }
 

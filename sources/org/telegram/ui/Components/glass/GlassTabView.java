@@ -72,6 +72,11 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
     private boolean usePremiumCounter;
     private float visualWidth;
 
+    private enum TabAnimationType {
+        LOTTIE,
+        STATIC
+    }
+
     @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
@@ -281,12 +286,18 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         if (tabAnimation == null) {
             return;
         }
-        int i = value ? tabAnimation.iconToFilled : tabAnimation.iconToOutline;
+        int i = tabAnimation.iconStatic;
+        if (i != -1) {
+            this.imageView.setImageResource(i);
+            updateColors();
+            return;
+        }
+        int i2 = value ? tabAnimation.iconToFilled : tabAnimation.iconToOutline;
         if (tabAnimation.endFrameMid != -1) {
             boolean z3 = this.lastIsSelected != value;
-            if (this.lastIconAnimationRaw != i) {
-                this.lastIconAnimationRaw = i;
-                this.imageView.setAnimation(i, 24, 24);
+            if (this.lastIconAnimationRaw != i2) {
+                this.lastIconAnimationRaw = i2;
+                this.imageView.setAnimation(i2, 24, 24);
                 z3 = true;
             }
             if (z3) {
@@ -300,11 +311,11 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
                         animatedDrawable.setCurrentFrame(0, false);
                     }
                     int currentFrame = animatedDrawable.getCurrentFrame();
-                    int i2 = this.tabAnimation.endFrameMid;
-                    if (currentFrame <= i2) {
+                    int i3 = this.tabAnimation.endFrameMid;
+                    if (currentFrame <= i3) {
                         animatedDrawable.start();
                     } else {
-                        animatedDrawable.setCurrentFrame(i2);
+                        animatedDrawable.setCurrentFrame(i3);
                     }
                 } else {
                     int currentFrame2 = animatedDrawable.getCurrentFrame();
@@ -322,9 +333,9 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             return;
         }
         if (tabAnimation.iconToFilled != tabAnimation.iconToOutline) {
-            if (this.lastIconAnimationRaw != i) {
-                this.lastIconAnimationRaw = i;
-                this.imageView.setAnimation(i, 24, 24);
+            if (this.lastIconAnimationRaw != i2) {
+                this.lastIconAnimationRaw = i2;
+                this.imageView.setAnimation(i2, 24, 24);
                 this.imageView.getAnimatedDrawable().setPlayInDirectionOfCustomEndFrame(false);
                 if (z) {
                     this.imageView.getAnimatedDrawable().setCurrentFrame(0);
@@ -505,11 +516,13 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
         SYMBOLS(R.raw.tab_symbols, R.raw.tab_symbols_reverse),
         REPLIES(R.raw.tab_reply, R.raw.tab_reply_reverse),
         WALLET(R.raw.tab_wallet, R.raw.tab_wallet_reverse),
+        LINK(TabAnimationType.STATIC, R.drawable.tabs_link_24),
         BOOSTS(R.raw.boosts, 25, 49),
         MONETIZATION(R.raw.monetize, 19, 45);
 
         public final int endFrameEnd;
         public final int endFrameMid;
+        public final int iconStatic;
         public final int iconToFilled;
         public final int iconToOutline;
 
@@ -518,6 +531,21 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             this.iconToOutline = i;
             this.endFrameMid = i2;
             this.endFrameEnd = i3;
+            this.iconStatic = -1;
+        }
+
+        TabAnimation(TabAnimationType tabAnimationType, int i) {
+            if (tabAnimationType == TabAnimationType.LOTTIE) {
+                this.iconToFilled = i;
+                this.iconToOutline = i;
+                this.iconStatic = -1;
+            } else {
+                this.iconStatic = i;
+                this.iconToFilled = -1;
+                this.iconToOutline = -1;
+            }
+            this.endFrameMid = -1;
+            this.endFrameEnd = -1;
         }
 
         TabAnimation(int i) {
@@ -525,6 +553,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             this.iconToOutline = i;
             this.endFrameMid = -1;
             this.endFrameEnd = -1;
+            this.iconStatic = -1;
         }
 
         TabAnimation(int i, int i2) {
@@ -532,6 +561,7 @@ public class GlassTabView extends FrameLayout implements MainTabsLayout.Tab, Fac
             this.iconToOutline = i2;
             this.endFrameMid = -1;
             this.endFrameEnd = -1;
+            this.iconStatic = -1;
         }
     }
 

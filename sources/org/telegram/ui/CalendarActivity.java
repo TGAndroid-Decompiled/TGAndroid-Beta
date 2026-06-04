@@ -28,7 +28,6 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.time.YearMonth;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
@@ -865,7 +864,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) throws Resources.NotFoundException, IOException, NumberFormatException {
+            public boolean onSingleTapUp(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
                 PeriodDay dayAtCoord;
                 if (((BaseFragment) CalendarActivity.this).parentLayout == null) {
                     return false;
@@ -1057,7 +1056,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                     if (baseFragment instanceof ChatActivity) {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                            public final void run() throws Resources.NotFoundException, NumberFormatException {
                                 this.f$0.lambda$onLongPress$0(baseFragment, periodDay);
                             }
                         }, 300L);
@@ -1066,7 +1065,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
                 CalendarActivity.this.finishPreviewFragment();
             }
 
-            public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) throws Resources.NotFoundException, IOException, NumberFormatException {
+            public void lambda$onLongPress$0(BaseFragment baseFragment, PeriodDay periodDay) throws Resources.NotFoundException, NumberFormatException {
                 CalendarActivity.this.finishFragment();
                 ((ChatActivity) baseFragment).jumpToDate(periodDay.date);
             }

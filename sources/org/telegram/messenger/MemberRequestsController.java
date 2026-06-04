@@ -5,6 +5,7 @@ import android.util.LongSparseArray;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
 
 public class MemberRequestsController extends BaseController {
     private static final MemberRequestsController[] instances = new MemberRequestsController[4];
@@ -80,7 +81,7 @@ public class MemberRequestsController extends BaseController {
         requestDelegate.run(tLObject, tL_error);
     }
 
-    public void onPendingRequestsUpdated(TLRPC.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
+    public void onPendingRequestsUpdated(TL_update.TL_updatePendingJoinRequests tL_updatePendingJoinRequests) {
         long j = -MessageObject.getPeerId(tL_updatePendingJoinRequests.peer);
         this.firstImportersCache.put(j, null);
         TLRPC.ChatFull chatFull = getMessagesController().getChatFull(j);

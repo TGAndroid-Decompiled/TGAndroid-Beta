@@ -17,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -97,40 +98,49 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
 
     public void set(final BaseFragment baseFragment, final int i) {
         final ArrayList<UnconfirmedAuthController.UnconfirmedAuth> arrayList = MessagesController.getInstance(i).getUnconfirmedAuthController().auths;
-        this.titleTextView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
         this.yesButton.setText(LocaleController.getString(R.string.UnconfirmedAuthConfirm));
+        final boolean z = false;
         this.yesButton.setLoading(false, false);
         this.noButton.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
         this.noButton.setLoading(false, false);
         if (arrayList != null && arrayList.size() == 1) {
-            String str = "" + arrayList.get(0).device;
-            if (!TextUtils.isEmpty(arrayList.get(0).location) && !str.isEmpty()) {
+            UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth = arrayList.get(0);
+            this.titleTextView.setText(LocaleController.getString(unconfirmedAuth.bot ? R.string.UnconfirmedAuthTitleBot : R.string.UnconfirmedAuthTitle));
+            String str = "" + unconfirmedAuth.device;
+            if (!TextUtils.isEmpty(unconfirmedAuth.location) && !str.isEmpty()) {
                 str = str + ", ";
             }
-            this.messageTextView.setText(LocaleController.formatString(R.string.UnconfirmedAuthSingle, str + arrayList.get(0).location));
+            String str2 = str + unconfirmedAuth.location;
+            if (unconfirmedAuth.bot) {
+                this.messageTextView.setText(LocaleController.formatString(R.string.UnconfirmedAuthSingleBot, "@" + DialogObject.getShortName(unconfirmedAuth.bot_id), str2));
+                z = true;
+            } else {
+                this.messageTextView.setText(LocaleController.formatString(R.string.UnconfirmedAuthSingle, str2));
+            }
         } else if (arrayList != null && arrayList.size() > 1) {
-            String str2 = arrayList.get(0).location;
+            this.titleTextView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
+            String str3 = arrayList.get(0).location;
             int i2 = 1;
             while (true) {
                 if (i2 >= arrayList.size()) {
                     break;
                 }
-                if (!TextUtils.equals(str2, arrayList.get(i2).location)) {
-                    str2 = null;
+                if (!TextUtils.equals(str3, arrayList.get(i2).location)) {
+                    str3 = null;
                     break;
                 }
                 i2++;
             }
-            if (str2 == null) {
+            if (str3 == null) {
                 this.messageTextView.setText(LocaleController.formatPluralString("UnconfirmedAuthMultiple", arrayList.size(), new Object[0]));
             } else {
-                this.messageTextView.setText(LocaleController.formatPluralString("UnconfirmedAuthMultipleFrom", arrayList.size(), str2));
+                this.messageTextView.setText(LocaleController.formatPluralString("UnconfirmedAuthMultipleFrom", arrayList.size(), str3));
             }
         }
         this.yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                UnconfirmedAuthHintCell.lambda$set$2(baseFragment, i, arrayList, view);
+                UnconfirmedAuthHintCell.lambda$set$2(baseFragment, z, i, arrayList, view);
             }
         });
         this.noButton.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +151,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         });
     }
 
-    public static void lambda$set$2(final BaseFragment baseFragment, int i, ArrayList arrayList, View view) {
+    public static void lambda$set$2(final BaseFragment baseFragment, boolean z, int i, ArrayList arrayList, View view) {
         String string = LocaleController.getString(R.string.UnconfirmedAuthConfirmedMessage);
         int i2 = Theme.key_undo_cancelColor;
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(string, i2, 0, new Runnable() {
@@ -157,7 +167,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
         coloredImageSpan.setWidth(AndroidUtilities.dp(12.0f));
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
         AndroidUtilities.replaceCharSequence(">", spannableStringBuilderReplaceSingleTag, spannableString);
-        BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.UnconfirmedAuthConfirmed), spannableStringBuilderReplaceSingleTag).show();
+        BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(z ? R.string.UnconfirmedAuthConfirmedBot : R.string.UnconfirmedAuthConfirmed), spannableStringBuilderReplaceSingleTag).show();
         MessagesController.getInstance(i).getUnconfirmedAuthController().confirm(arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {

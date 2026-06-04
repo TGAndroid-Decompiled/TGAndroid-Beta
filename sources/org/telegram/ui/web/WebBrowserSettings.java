@@ -2,16 +2,12 @@ package org.telegram.ui.web;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -24,23 +20,28 @@ import android.widget.TextView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.RadioColorCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -50,7 +51,6 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.web.BrowserHistory;
-import org.telegram.ui.web.WebMetadataCache;
 
 public class WebBrowserSettings extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     private Drawable addIcon;
@@ -68,6 +68,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     private Utilities.Callback whenHistoryClicked;
 
     @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
     protected boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
@@ -79,20 +84,20 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     @Override
     public boolean onFragmentCreate() {
         loadSizes();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webViewResolved);
+        getNotificationCenter().addObserver(this, NotificationCenter.webBrowserSettingsUpdate);
         return super.onFragmentCreate();
     }
 
     @Override
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.webViewResolved);
+        getNotificationCenter().removeObserver(this, NotificationCenter.webBrowserSettingsUpdate);
     }
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         UniversalRecyclerView universalRecyclerView;
-        if (i != NotificationCenter.webViewResolved || (universalRecyclerView = this.listView) == null) {
+        if (i != NotificationCenter.webBrowserSettingsUpdate || (universalRecyclerView = this.listView) == null) {
             return;
         }
         universalRecyclerView.adapter.update(true);
@@ -198,8 +203,76 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     @Override
-    protected void fillItems(java.util.ArrayList r8, org.telegram.ui.Components.UniversalAdapter r9) throws org.json.JSONException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebBrowserSettings.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
+    protected void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        this.enableRow = -1;
+        this.clearCookiesRow = -1;
+        this.clearCacheRow = -1;
+        this.historyRow = -1;
+        this.clearHistoryRow = -1;
+        this.clearListRow = -1;
+        this.searchRow = -1;
+        boolean zIsWebBrowserInAppEnabled = getMessagesController().isWebBrowserInAppEnabled();
+        this.enableRow = arrayList.size();
+        arrayList.add(UItem.asRippleCheck(1, LocaleController.getString(R.string.BrowserSettingsEnable)).setChecked(zIsWebBrowserInAppEnabled));
+        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BrowserSettingsEnableInfo)));
+        if (!zIsWebBrowserInAppEnabled) {
+            getMessagesController().isWebBrowserUseCustomTabs();
+            arrayList.add(UItem.asCheck(17, LocaleController.getString(R.string.WebBrowserShowCloseButton)).setChecked(getMessagesController().isWebBrowserUseCustomTabs()));
+            arrayList.add(UItem.asShadow(LocaleController.getString(R.string.WebBrowserShowCloseButtonInfo)));
+            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BrowserSettingsAlwaysOpenInTitle2)));
+            this.neverOpenRow = arrayList.size();
+            arrayList.add(UItem.asButton(16, this.addIcon, LocaleController.getString(R.string.BrowserSettingsNeverOpenInAdd)).accent());
+            List<TL_account.WebDomainException> webBrowserExceptionsList = getMessagesController().getWebBrowserExceptionsList(false);
+            for (TL_account.WebDomainException webDomainException : webBrowserExceptionsList) {
+                arrayList.add(WebsiteView.Factory.as(webDomainException.domain, webDomainException.title, webDomainException.favicon));
+            }
+            arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BrowserSettingsAlwaysOpenInInfo2)));
+            if (webBrowserExceptionsList.isEmpty()) {
+                return;
+            }
+            this.clearListRow = arrayList.size();
+            arrayList.add(UItem.asButton(5, LocaleController.getString(R.string.BrowserSettingsNeverOpenInClearList2)).red());
+            arrayList.add(UItem.asShadow(null));
+            return;
+        }
+        this.clearCookiesRow = arrayList.size();
+        int i = R.drawable.menu_clear_cookies;
+        String string = LocaleController.getString(R.string.BrowserSettingsCookiesClear);
+        long j = this.cookiesSize;
+        arrayList.add(UItem.asButton(3, i, string, j > 0 ? AndroidUtilities.formatFileSize(j) : ""));
+        this.clearCacheRow = arrayList.size();
+        int i2 = R.drawable.menu_clear_cache;
+        String string2 = LocaleController.getString(R.string.BrowserSettingsCacheClear);
+        long j2 = this.cacheSize;
+        arrayList.add(UItem.asButton(2, i2, string2, j2 > 0 ? AndroidUtilities.formatFileSize(j2) : ""));
+        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BrowserSettingsCookiesInfo)));
+        if (this.historySize > 0) {
+            this.historyRow = arrayList.size();
+            arrayList.add(UItem.asButton(9, R.drawable.menu_clear_recent, LocaleController.getString(R.string.BrowserSettingsHistoryShow)));
+            this.clearHistoryRow = arrayList.size();
+            arrayList.add(UItem.asButton(7, i2, LocaleController.getString(R.string.BrowserSettingsHistoryClear), LocaleController.formatPluralStringComma("BrowserSettingsHistoryPages", (int) this.historySize, ',')));
+            arrayList.add(UItem.asShadow(null));
+        }
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BrowserSettingsNeverOpenInTitle2)));
+        this.neverOpenRow = arrayList.size();
+        arrayList.add(UItem.asButton(15, this.addIcon, LocaleController.getString(R.string.BrowserSettingsNeverOpenInAdd)).accent());
+        List<TL_account.WebDomainException> webBrowserExceptionsList2 = getMessagesController().getWebBrowserExceptionsList(true);
+        for (TL_account.WebDomainException webDomainException2 : webBrowserExceptionsList2) {
+            arrayList.add(WebsiteView.Factory.as(webDomainException2.domain, webDomainException2.title, webDomainException2.favicon));
+        }
+        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BrowserSettingsNeverOpenInInfo2)));
+        if (!webBrowserExceptionsList2.isEmpty()) {
+            this.clearListRow = arrayList.size();
+            arrayList.add(UItem.asButton(5, LocaleController.getString(R.string.BrowserSettingsNeverOpenInClearList2)).red());
+            arrayList.add(UItem.asShadow(null));
+        }
+        this.searchRow = arrayList.size();
+        arrayList.add(UItem.asButton(6, R.drawable.msg_search, LocaleController.getString(R.string.SearchEngine), SearchEngine.getCurrent().name));
+        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BrowserSettingsSearchEngineInfo)));
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            arrayList.add(UItem.asCheck(12, "adaptable colors").setChecked(SharedConfig.adaptableColorInBrowser));
+            arrayList.add(UItem.asCheck(13, "only local IV").setChecked(SharedConfig.onlyLocalInstantView));
+        }
     }
 
     @Override
@@ -215,22 +288,29 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             ((TextCheckCell) view).setChecked(SharedConfig.onlyLocalInstantView);
             return;
         }
+        if (i2 == 17) {
+            boolean z = !getMessagesController().isWebBrowserUseCustomTabs();
+            getMessagesController().toggleWebBrowserUseCustomTabs(z);
+            ((TextCheckCell) view).setChecked(z);
+            this.listView.adapter.update(true);
+            return;
+        }
         if (i2 == 1) {
-            SharedConfig.toggleInappBrowser();
+            getMessagesController().toggleWebBrowserInAppEnabled();
+            boolean zIsWebBrowserInAppEnabled = getMessagesController().isWebBrowserInAppEnabled();
             TextCheckCell textCheckCell = (TextCheckCell) view;
-            textCheckCell.setChecked(SharedConfig.inappBrowser);
-            boolean z = SharedConfig.inappBrowser;
-            textCheckCell.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+            textCheckCell.setChecked(zIsWebBrowserInAppEnabled);
+            textCheckCell.setBackgroundColorAnimated(zIsWebBrowserInAppEnabled, Theme.getColor(zIsWebBrowserInAppEnabled ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
             this.listView.adapter.update(true);
             return;
         }
         if (i2 == 10) {
-            SharedConfig.toggleCustomTabs(true);
+            getMessagesController().toggleWebBrowserUseCustomTabs(true);
             this.listView.adapter.update(true);
             return;
         }
         if (i2 == 11) {
-            SharedConfig.toggleCustomTabs(false);
+            getMessagesController().toggleWebBrowserUseCustomTabs(false);
             this.listView.adapter.update(true);
             return;
         }
@@ -290,132 +370,73 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             return;
         }
         if (i2 == 5) {
-            RestrictedDomainsList.getInstance().restrictedDomains.clear();
-            RestrictedDomainsList.getInstance().scheduleSave();
-            this.listView.adapter.update(true);
+            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.WebBrowserDeleteAllExceptionsTitle)).setMessage(LocaleController.getString(R.string.WebBrowserDeleteAllExceptionsMessage)).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i5) {
+                    this.f$0.lambda$onClick$7(alertDialog, i5);
+                }
+            }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             return;
         }
         if (uItem.instanceOf(WebsiteView.Factory.class)) {
             WebsiteView websiteView = (WebsiteView) view;
-            final ArrayList arrayList = websiteView.domains;
-            ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
+            final String str2 = websiteView.domain;
+            ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).setDimAlpha(40).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onClick$7(arrayList);
+                    this.f$0.lambda$onClick$8(str2);
                 }
             }).show();
             return;
         }
         int i5 = uItem.id;
-        if (i5 == 6) {
-            if (getParentActivity() == null) {
-                return;
+        if (i5 != 6) {
+            if (i5 == 15 || i5 == 16) {
+                final boolean zIsWebBrowserInAppEnabled2 = getMessagesController().isWebBrowserInAppEnabled();
+                if (getMessagesController().isWebBrowserExceptionsLimitReached(zIsWebBrowserInAppEnabled2)) {
+                    AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.WebBrowserExceptionsLimitTitle), LocaleController.getString(R.string.WebBrowserExceptionsLimitMessage));
+                    return;
+                } else {
+                    AlertsCreator.showAddBrowserException(getContext(), getResourceProvider(), zIsWebBrowserInAppEnabled2, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            this.f$0.lambda$onClick$10(zIsWebBrowserInAppEnabled2, (String) obj);
+                        }
+                    });
+                    return;
+                }
             }
-            final AtomicReference atomicReference = new AtomicReference();
-            LinearLayout linearLayout = new LinearLayout(getContext());
-            linearLayout.setOrientation(1);
-            ArrayList searchEngines = SearchEngine.getSearchEngines();
-            int size = searchEngines.size();
-            CharSequence[] charSequenceArr = new CharSequence[size];
-            final int i6 = 0;
-            while (i6 < size) {
-                charSequenceArr[i6] = ((SearchEngine) searchEngines.get(i6)).name;
-                RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-                radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
-                radioColorCell.setTextAndValue(charSequenceArr[i6], i6 == SharedConfig.searchEngineType);
-                radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
-                linearLayout.addView(radioColorCell);
-                radioColorCell.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public final void onClick(View view2) {
-                        WebBrowserSettings.lambda$onClick$8(i6, view, atomicReference, view2);
-                    }
-                });
-                i6++;
-            }
-            AlertDialog alertDialogCreate = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
-            atomicReference.set(alertDialogCreate);
-            showDialog(alertDialogCreate);
             return;
         }
-        if (i5 == 4) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
-            builder.setTitle(LocaleController.getString(R.string.BrowserSettingsAddTitle));
-            LinearLayout linearLayout2 = new LinearLayout(getContext());
-            linearLayout2.setOrientation(1);
-            TextView textView = new TextView(getContext());
-            int i7 = Theme.key_dialogTextBlack;
-            textView.setTextColor(Theme.getColor(i7, getResourceProvider()));
-            textView.setTextSize(1, 16.0f);
-            textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
-            linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-            final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
-                @Override
-                protected void onMeasure(int i8, int i9) {
-                    super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-                }
-            };
-            final Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onClick$11(editTextBoldCursor, alertDialogArr);
-                }
-            };
-            editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
-                    if (i8 != 6) {
-                        return false;
-                    }
-                    runnable.run();
-                    return true;
-                }
-            });
-            editTextBoldCursor.setTextSize(1, 18.0f);
-            editTextBoldCursor.setText("");
-            editTextBoldCursor.setTextColor(Theme.getColor(i7, getResourceProvider()));
-            editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, getResourceProvider()));
-            editTextBoldCursor.setHintText(LocaleController.getString(R.string.BrowserSettingsAddHint));
-            editTextBoldCursor.setSingleLine(true);
-            editTextBoldCursor.setFocusable(true);
-            editTextBoldCursor.setInputType(16384);
-            editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, getResourceProvider()), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, getResourceProvider()), Theme.getColor(Theme.key_text_RedRegular, getResourceProvider()));
-            editTextBoldCursor.setImeOptions(6);
-            editTextBoldCursor.setBackgroundDrawable(null);
-            editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-            linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-            builder.setView(linearLayout2);
-            builder.setWidth(AndroidUtilities.dp(292.0f));
-            builder.setPositiveButton(LocaleController.getString(R.string.Done), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i8) {
-                    runnable.run();
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
-                @Override
-                public final void onClick(AlertDialog alertDialog, int i8) {
-                    alertDialog.dismiss();
-                }
-            });
-            AlertDialog alertDialogCreate2 = builder.create();
-            final AlertDialog[] alertDialogArr = {alertDialogCreate2};
-            alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    AndroidUtilities.hideKeyboard(editTextBoldCursor);
-                }
-            });
-            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    WebBrowserSettings.lambda$onClick$15(editTextBoldCursor, dialogInterface);
-                }
-            });
-            alertDialogArr[0].setDismissDialogByButtons(false);
-            alertDialogArr[0].show();
+        if (getParentActivity() == null) {
+            return;
         }
+        final AtomicReference atomicReference = new AtomicReference();
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        linearLayout.setOrientation(1);
+        ArrayList searchEngines = SearchEngine.getSearchEngines();
+        int size = searchEngines.size();
+        CharSequence[] charSequenceArr = new CharSequence[size];
+        final int i6 = 0;
+        while (i6 < size) {
+            charSequenceArr[i6] = ((SearchEngine) searchEngines.get(i6)).name;
+            RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
+            radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+            radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+            radioColorCell.setTextAndValue(charSequenceArr[i6], i6 == SharedConfig.searchEngineType);
+            radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
+            linearLayout.addView(radioColorCell);
+            radioColorCell.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    WebBrowserSettings.lambda$onClick$9(i6, view, atomicReference, view2);
+                }
+            });
+            i6++;
+        }
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+        atomicReference.set(alertDialogCreate);
+        showDialog(alertDialogCreate);
     }
 
     public void lambda$onClick$3(AlertDialog alertDialog, int i) {
@@ -480,79 +501,30 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
     }
 
-    public void lambda$onClick$7(ArrayList arrayList) {
-        RestrictedDomainsList.getInstance().setRestricted(false, (String[]) arrayList.toArray(new String[0]));
+    public void lambda$onClick$7(AlertDialog alertDialog, int i) {
+        getMessagesController().clearAllWebBrowserExceptions();
         this.listView.adapter.update(true);
     }
 
-    public static void lambda$onClick$8(int i, View view, AtomicReference atomicReference, View view2) {
+    public void lambda$onClick$8(String str) {
+        getMessagesController().removeWebBrowserException(str);
+        this.listView.adapter.update(true);
+    }
+
+    public static void lambda$onClick$9(int i, View view, AtomicReference atomicReference, View view2) {
         SharedConfig.setSearchEngineType(i);
         ((TextCell) view).setValue(SearchEngine.getCurrent().name, true);
         ((Dialog) atomicReference.get()).dismiss();
     }
 
-    public void lambda$onClick$11(EditTextBoldCursor editTextBoldCursor, final AlertDialog[] alertDialogArr) {
-        String string = editTextBoldCursor.getText().toString();
-        Uri uri = Uri.parse(string);
-        if (uri == null || uri.getHost() == null) {
-            uri = Uri.parse("https://" + string);
-        }
-        if (uri == null || uri.getHost() == null) {
-            AndroidUtilities.shakeView(editTextBoldCursor);
-            return;
-        }
-        final String lowerCase = uri.getHost().toLowerCase();
-        if (lowerCase.startsWith("www.")) {
-            lowerCase = lowerCase.substring(4);
-        }
-        RestrictedDomainsList.getInstance().setRestricted(true, lowerCase);
-        WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(lowerCase);
-        if (webMetadata != null && !TextUtils.isEmpty(webMetadata.sitename) && webMetadata.favicon != null) {
-            AlertDialog alertDialog = alertDialogArr[0];
-            if (alertDialog != null) {
-                alertDialog.dismiss();
-            }
-            this.listView.adapter.update(true);
-            return;
-        }
-        final AlertDialog alertDialog2 = new AlertDialog(getContext(), 3);
-        final Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$onClick$9(alertDialogArr, alertDialog2);
-            }
-        };
-        AndroidUtilities.runOnUIThread(runnable, 5000L);
-        alertDialog2.showDelayed(300L);
-        WebMetadataCache.retrieveFaviconAndSitename("https://" + string + "/", new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$onClick$10(runnable, alertDialog2, lowerCase, (String) obj, (Bitmap) obj2);
-            }
-        });
-    }
-
-    public void lambda$onClick$9(AlertDialog[] alertDialogArr, AlertDialog alertDialog) {
-        alertDialogArr[0].dismiss();
-        alertDialog.dismissUnless(800L);
+    public void lambda$onClick$10(boolean z, String str) {
+        getMessagesController().addWebBrowserException(str, z);
         this.listView.adapter.update(true);
     }
 
-    public void lambda$onClick$10(Runnable runnable, AlertDialog alertDialog, String str, String str2, Bitmap bitmap) {
-        AndroidUtilities.cancelRunOnUIThread(runnable);
-        alertDialog.dismissUnless(800L);
-        if (WebMetadataCache.getInstance().get(str) != null) {
-            this.listView.adapter.update(true);
-        }
-    }
-
-    public static void lambda$onClick$15(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
-        editTextBoldCursor.requestFocus();
-        AndroidUtilities.showKeyboard(editTextBoldCursor);
-    }
-
     public static class WebsiteView extends FrameLayout {
-        private ArrayList domains;
+        private AnimatedEmojiDrawable animatedEmojiDrawable;
+        private String domain;
         public final ImageView imageView;
         private boolean needDivider;
         public final ImageView optionsView;
@@ -563,12 +535,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             super(context);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            addView(imageView, LayoutHelper.createFrame(28, 28.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
+            addView(imageView, LayoutHelper.createFrame(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             textView.setTextSize(1, 16.0f);
-            textView.setTypeface(AndroidUtilities.bold());
             textView.setMaxLines(1);
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
             textView.setEllipsize(truncateAt);
@@ -591,22 +562,13 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             this.optionsView = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             imageView2.setImageResource(R.drawable.ic_ab_other);
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.SRC_IN));
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3), PorterDuff.Mode.SRC_IN));
             addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
         }
 
-        public void set(CharSequence charSequence, ArrayList arrayList, Bitmap bitmap, boolean z) {
+        public void set(CharSequence charSequence, String str, long j, boolean z) {
             this.titleView.setText(charSequence);
-            StringBuilder sb = new StringBuilder();
-            Iterator it = arrayList.iterator();
-            while (it.hasNext()) {
-                String str = (String) it.next();
-                if (sb.length() > 0) {
-                    sb.append(", ");
-                }
-                sb.append(str);
-            }
-            this.subtitleView.setText(sb);
+            this.subtitleView.setText(str);
             if (TextUtils.isEmpty(charSequence)) {
                 this.subtitleView.setTranslationY(-AndroidUtilities.dp(14.0f));
                 this.subtitleView.setScaleX(1.3f);
@@ -616,13 +578,21 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 this.subtitleView.setScaleX(1.0f);
                 this.subtitleView.setScaleY(1.0f);
             }
-            this.domains = arrayList;
+            this.domain = str;
             if (TextUtils.isEmpty(charSequence)) {
-                charSequence = (arrayList.isEmpty() || TextUtils.isEmpty((CharSequence) arrayList.get(0))) ? "" : (String) arrayList.get(0);
+                charSequence = (str.isEmpty() || TextUtils.isEmpty(str)) ? "" : str;
             }
             String string = charSequence.toString();
-            if (bitmap != null) {
-                this.imageView.setImageBitmap(bitmap);
+            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+            if (animatedEmojiDrawable != null) {
+                animatedEmojiDrawable.removeView(this.imageView);
+                this.animatedEmojiDrawable = null;
+            }
+            if (j != 0) {
+                AnimatedEmojiDrawable animatedEmojiDrawableMake = AnimatedEmojiDrawable.make(UserConfig.selectedAccount, 1, j);
+                this.animatedEmojiDrawable = animatedEmojiDrawableMake;
+                animatedEmojiDrawableMake.addView(this.imageView);
+                this.imageView.setImageDrawable(this.animatedEmojiDrawable);
             } else {
                 CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(string) {
                     private final Text text;
@@ -654,17 +624,16 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                 combinedDrawable.setCustomSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
                 this.imageView.setImageDrawable(combinedDrawable);
             }
-            if (this.needDivider != z) {
-                invalidate();
-            }
             this.needDivider = z;
-            setWillNotDraw(!z);
+            invalidate();
         }
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
+            if (this.needDivider) {
+                canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
+            }
         }
 
         @Override
@@ -684,18 +653,14 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
 
             @Override
             public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                WebsiteView websiteView = (WebsiteView) view;
-                CharSequence charSequence = uItem.text;
-                ArrayList arrayList = (ArrayList) uItem.object2;
-                Object obj = uItem.object;
-                websiteView.set(charSequence, arrayList, obj instanceof Bitmap ? (Bitmap) obj : null, z);
+                ((WebsiteView) view).set(uItem.textValue, (String) uItem.text, uItem.longValue, z);
             }
 
-            public static UItem as(ArrayList arrayList, String str, Bitmap bitmap) {
+            public static UItem as(String str, String str2, long j) {
                 UItem uItemOfFactory = UItem.ofFactory(Factory.class);
                 uItemOfFactory.text = str;
-                uItemOfFactory.object = bitmap;
-                uItemOfFactory.object2 = arrayList;
+                uItemOfFactory.textValue = str2;
+                uItemOfFactory.longValue = j;
                 return uItemOfFactory;
             }
         }
@@ -749,5 +714,13 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             file.delete();
         }
         return true;
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        super.onInsets(i, i2, i3, i4);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        universalRecyclerView.setPadding(0, universalRecyclerView.getPaddingTop(), 0, i4);
+        this.listView.setClipToPadding(false);
     }
 }

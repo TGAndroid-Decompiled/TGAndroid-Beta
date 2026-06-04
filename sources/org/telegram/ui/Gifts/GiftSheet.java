@@ -65,8 +65,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.messenger.utils.DrawableUtils;
-import org.telegram.messenger.utils.FrameTickScheduler;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -77,7 +77,7 @@ import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda250;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda254;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -850,7 +850,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 public final boolean test(Object obj) {
                     return this.f$0.lambda$fillItems$24((TL_stars.StarGift) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda250()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda254()));
         }
         if (this.dialogId < 0) {
             arrayList2 = (ArrayList) Collection.EL.stream(arrayList2).filter(new Predicate() {
@@ -870,7 +870,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 public final boolean test(Object obj) {
                     return GiftSheet.lambda$fillItems$25((TL_stars.StarGift) obj);
                 }
-            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda250()));
+            }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda254()));
         }
         if (this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || (giftsList3 = this.myGifts) == null) {
             z2 = false;
@@ -2204,7 +2204,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
             this.particlesAllowed = z;
             if (z) {
-                int frameSparseness = FrameTickScheduler.getFrameSparseness(15);
+                Choreographer60FpsContent choreographer60FpsContent = Choreographer60FpsContent.getInstance();
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -2212,9 +2212,9 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     }
                 };
                 this.invalidateRunnable = runnable;
-                FrameTickScheduler.subscribe(runnable, frameSparseness, 0);
+                choreographer60FpsContent.addFrameCallback(runnable, 15);
             } else {
-                FrameTickScheduler.unsubscribe(this.invalidateRunnable);
+                Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateRunnable);
             }
             invalidateSelf();
         }

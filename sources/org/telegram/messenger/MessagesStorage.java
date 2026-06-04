@@ -52,7 +52,7 @@ public class MessagesStorage extends BaseController {
     public static final int FORUM_TYPE_CHAT = 1;
     public static final int FORUM_TYPE_CHAT_TABS = 2;
     public static final int FORUM_TYPE_DIRECT = 4;
-    public static final int LAST_DB_VERSION = 173;
+    public static final int LAST_DB_VERSION = 174;
     public static final int SENT_FILE_TYPE_AUDIO = 1;
     public static final int SENT_FILE_TYPE_AUDIO_ENCRYPTED = 4;
     public static final int SENT_FILE_TYPE_PHOTO = 0;
@@ -401,7 +401,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (iIntValue < 173) {
+                if (iIntValue < 174) {
                     try {
                         updateDbToLastVersion(iIntValue);
                     } catch (Exception e4) {
@@ -640,6 +640,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reaction_mentions_topics_did ON reaction_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE emoji_groups(type INTEGER PRIMARY KEY, data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE app_config(data BLOB)").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE web_browser_settings(data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE effects(data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, custom_params BLOB, PRIMARY KEY (dialog_id, story_id));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE stories_counter (dialog_id INTEGER PRIMARY KEY, count INTEGER, max_read INTEGER);").stepThis().dispose();
@@ -670,7 +671,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_did ON poll_votes_mentions(dialog_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE poll_votes_mentions_topics(message_id INTEGER, state INTEGER, dialog_id INTEGER, topic_id INTEGER, PRIMARY KEY(message_id, dialog_id, topic_id))").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_topics_did ON poll_votes_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 173").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 174").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -684,7 +685,7 @@ public class MessagesStorage extends BaseController {
                 this.f$0.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 173");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 174");
         int iMigrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -7549,12 +7550,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(225);
+                messageMedia.bytes = Utilities.intToBytes(227);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(225);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(227);
             message.flags |= 512;
         }
     }

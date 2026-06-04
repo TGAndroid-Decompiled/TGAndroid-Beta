@@ -1126,57 +1126,53 @@ public class ManageLinksActivity extends BaseFragment implements NotificationCen
                     }
                 }
             }
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(pluralString);
             if (tL_chatInviteExported.permanent && !tL_chatInviteExported.revoked) {
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(pluralString);
                 DotDividerSpan dotDividerSpan = new DotDividerSpan();
                 dotDividerSpan.setTopPadding(AndroidUtilities.dp(1.5f));
                 spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dotDividerSpan, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
                 spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.Permanent));
-                this.subtitleView.setText(spannableStringBuilder2);
-                return;
-            }
-            if (tL_chatInviteExported.expired || tL_chatInviteExported.revoked) {
+            } else if (tL_chatInviteExported.expired || tL_chatInviteExported.revoked) {
                 if (tL_chatInviteExported.revoked && tL_chatInviteExported.usage == 0) {
-                    pluralString = LocaleController.getString(tL_chatInviteExported.subscription_pricing != null ? R.string.NoOneSubscribed : R.string.NoOneJoined);
+                    String string = LocaleController.getString(tL_chatInviteExported.subscription_pricing != null ? R.string.NoOneSubscribed : R.string.NoOneJoined);
+                    spannableStringBuilder2.clear();
+                    spannableStringBuilder2.append((CharSequence) string);
                 }
-                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(pluralString);
                 DotDividerSpan dotDividerSpan2 = new DotDividerSpan();
                 dotDividerSpan2.setTopPadding(AndroidUtilities.dp(1.5f));
-                spannableStringBuilder3.append((CharSequence) "  .  ").setSpan(dotDividerSpan2, spannableStringBuilder3.length() - 3, spannableStringBuilder3.length() - 2, 0);
+                spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dotDividerSpan2, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
                 boolean z = tL_chatInviteExported.revoked;
                 if (z || (i2 = tL_chatInviteExported.usage_limit) <= 0 || tL_chatInviteExported.usage < i2) {
-                    spannableStringBuilder3.append((CharSequence) LocaleController.getString(z ? R.string.Revoked : R.string.Expired));
+                    spannableStringBuilder2.append((CharSequence) LocaleController.getString(z ? R.string.Revoked : R.string.Expired));
                 } else {
-                    spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.LinkLimitReached));
+                    spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LinkLimitReached));
                 }
-                this.subtitleView.setText(spannableStringBuilder3);
-                return;
-            }
-            if (tL_chatInviteExported.expire_date > 0) {
-                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(pluralString);
+            } else if (tL_chatInviteExported.expire_date > 0) {
                 DotDividerSpan dotDividerSpan3 = new DotDividerSpan();
                 dotDividerSpan3.setTopPadding(AndroidUtilities.dp(1.5f));
-                spannableStringBuilder4.append((CharSequence) "  .  ").setSpan(dotDividerSpan3, spannableStringBuilder4.length() - 3, spannableStringBuilder4.length() - 2, 0);
+                spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dotDividerSpan3, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
                 long jCurrentTimeMillis = (tL_chatInviteExported.expire_date * 1000) - (System.currentTimeMillis() + (ManageLinksActivity.this.timeDif * 1000));
                 if (jCurrentTimeMillis < 0) {
                     jCurrentTimeMillis = 0;
                 }
                 if (jCurrentTimeMillis > 86400000) {
-                    spannableStringBuilder4.append((CharSequence) LocaleController.formatPluralString("DaysLeft", (int) (jCurrentTimeMillis / 86400000), new Object[0]));
+                    spannableStringBuilder2.append((CharSequence) LocaleController.formatPluralString("DaysLeft", (int) (jCurrentTimeMillis / 86400000), new Object[0]));
                 } else {
                     long j = jCurrentTimeMillis / 1000;
                     int i6 = (int) (j % 60);
                     long j2 = j / 60;
-                    int i7 = (int) (j2 % 60);
-                    int i8 = (int) (j2 / 60);
                     Locale locale = Locale.ENGLISH;
-                    spannableStringBuilder4.append((CharSequence) String.format(locale, "%02d", Integer.valueOf(i8))).append((CharSequence) String.format(locale, ":%02d", Integer.valueOf(i7))).append((CharSequence) String.format(locale, ":%02d", Integer.valueOf(i6)));
+                    spannableStringBuilder2.append((CharSequence) String.format(locale, "%02d", Integer.valueOf((int) (j2 / 60)))).append((CharSequence) String.format(locale, ":%02d", Integer.valueOf((int) (j2 % 60)))).append((CharSequence) String.format(locale, ":%02d", Integer.valueOf(i6)));
                     this.timerRunning = true;
                 }
-                this.subtitleView.setText(spannableStringBuilder4);
-                return;
             }
-            this.subtitleView.setText(pluralString);
+            if (tL_chatInviteExported.request_needed) {
+                DotDividerSpan dotDividerSpan4 = new DotDividerSpan();
+                dotDividerSpan4.setTopPadding(AndroidUtilities.dp(1.5f));
+                spannableStringBuilder2.append((CharSequence) "  .  ").setSpan(dotDividerSpan4, spannableStringBuilder2.length() - 3, spannableStringBuilder2.length() - 2, 0);
+                spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.ApprovalRequired));
+            }
+            this.subtitleView.setText(spannableStringBuilder2);
         }
     }
 

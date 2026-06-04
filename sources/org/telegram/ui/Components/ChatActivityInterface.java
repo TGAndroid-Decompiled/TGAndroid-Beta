@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.ChatObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.Theme;
 
 public interface ChatActivityInterface {
 
@@ -52,8 +51,6 @@ public interface ChatActivityInterface {
     ChatObject.Call getGroupCall();
 
     long getMergeDialogId();
-
-    Theme.ResourcesProvider getResourceProvider();
 
     long getTopicId();
 

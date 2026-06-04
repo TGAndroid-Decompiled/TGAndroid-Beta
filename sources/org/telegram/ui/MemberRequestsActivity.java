@@ -63,6 +63,7 @@ public class MemberRequestsActivity extends BaseFragment {
         actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.Search));
         actionBarMenuItemSearchListener.setVisibility(8);
         FrameLayout rootLayout = this.delegate.getRootLayout();
+        this.actionBar.setAdaptiveBackground(this.delegate.getRecyclerView(), false);
         this.delegate.lambda$new$8();
         this.fragmentView = rootLayout;
         return rootLayout;

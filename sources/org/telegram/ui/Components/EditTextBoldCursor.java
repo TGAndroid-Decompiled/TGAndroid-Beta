@@ -44,6 +44,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
+import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
@@ -109,7 +110,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private int ignoreBottomCount;
     public boolean ignoreClipTop;
     private int ignoreTopCount;
-    private Runnable invalidateRunnable;
+    private final Choreographer60FpsContent.FrameCallback invalidateCallback;
     private boolean isTextWatchersSuppressed;
     private float lastLineActiveness;
     int lastOffset;
@@ -153,6 +154,10 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     protected Theme.ResourcesProvider getResourcesProvider() {
         return null;
+    }
+
+    public void lambda$new$0(long j) {
+        invalidate();
     }
 
     public void setHintText2(CharSequence charSequence, boolean z) {
@@ -213,13 +218,10 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public EditTextBoldCursor(Context context) {
         super(context);
-        this.invalidateRunnable = new Runnable() {
+        this.invalidateCallback = new Choreographer60FpsContent.FrameCallback() {
             @Override
-            public void run() {
-                EditTextBoldCursor.this.invalidate();
-                if (EditTextBoldCursor.this.attachedToWindow != null) {
-                    AndroidUtilities.runOnUIThread(this, 500L);
-                }
+            public final void doFrame(long j) {
+                this.f$0.lambda$new$0(j);
             }
         };
         this.rect = new Rect();
@@ -885,7 +887,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                             callback2.run(canvas, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$drawHint$0(canvas);
+                                    this.f$0.lambda$drawHint$1(canvas);
                                 }
                             });
                         } else {
@@ -899,7 +901,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         }
     }
 
-    public void lambda$drawHint$0(Canvas canvas) {
+    public void lambda$drawHint$1(Canvas canvas) {
         this.hintLayout.draw(canvas);
     }
 
@@ -981,14 +983,14 @@ public class EditTextBoldCursor extends EditTextEffects {
             FileLog.e(e);
         }
         this.attachedToWindow = getRootView();
-        AndroidUtilities.runOnUIThread(this.invalidateRunnable);
+        Choreographer60FpsContent.getInstance().addFrameCallback(this.invalidateCallback, 2);
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = null;
-        AndroidUtilities.cancelRunOnUIThread(this.invalidateRunnable);
+        Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateCallback);
     }
 
     public void setBlurredBackgroundDrawableViewFactory(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
@@ -1021,7 +1023,7 @@ public class EditTextBoldCursor extends EditTextEffects {
             this.floatingToolbarPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public final boolean onPreDraw() {
-                    return this.f$0.lambda$startActionMode$1();
+                    return this.f$0.lambda$startActionMode$2();
                 }
             };
             FloatingActionMode floatingActionMode2 = this.floatingActionMode;
@@ -1036,7 +1038,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         return super.startActionMode(callback);
     }
 
-    public boolean lambda$startActionMode$1() {
+    public boolean lambda$startActionMode$2() {
         FloatingActionMode floatingActionMode = this.floatingActionMode;
         if (floatingActionMode == null) {
             return true;
@@ -1134,10 +1136,5 @@ public class EditTextBoldCursor extends EditTextEffects {
             this.ellipsizePaint.setShader(linearGradient);
             this.ellipsizeMatrix = new Matrix();
         }
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
     }
 }

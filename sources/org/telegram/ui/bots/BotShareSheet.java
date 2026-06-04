@@ -40,6 +40,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -786,6 +787,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             @Override
             public void onDiceFinished() {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$onDiceFinished(this);
+            }
+
+            @Override
+            public boolean openArticlePhoto(ChatMessageCell chatMessageCell2, TL_iv.PageBlock pageBlock) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell2, pageBlock);
             }
 
             @Override

@@ -370,7 +370,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.ProxySettings));
         INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
+        if (iNavigationLayout != null && iNavigationLayout.isLayersLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(false);

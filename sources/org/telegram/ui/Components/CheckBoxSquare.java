@@ -143,11 +143,11 @@ public class CheckBoxSquare extends View {
         float fDp = AndroidUtilities.dp(1.0f) * f;
         this.rectF.set(fDp, fDp, AndroidUtilities.dp(18.0f) - fDp, AndroidUtilities.dp(18.0f) - fDp);
         this.drawBitmap.eraseColor(0);
-        this.drawCanvas.drawRoundRect(this.rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.checkboxSquare_backgroundPaint);
+        this.drawCanvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Theme.checkboxSquare_backgroundPaint);
         if (f2 != 1.0f) {
             float fMin = Math.min(AndroidUtilities.dp(7.0f), (AndroidUtilities.dp(7.0f) * f2) + fDp);
-            this.rectF.set(AndroidUtilities.dp(2.0f) + fMin, AndroidUtilities.dp(2.0f) + fMin, AndroidUtilities.dp(16.0f) - fMin, AndroidUtilities.dp(16.0f) - fMin);
-            this.drawCanvas.drawRect(this.rectF, Theme.checkboxSquare_eraserPaint);
+            this.rectF.set(AndroidUtilities.dp(1.33f) + fMin, AndroidUtilities.dp(1.33f) + fMin, AndroidUtilities.dp(16.66f) - fMin, AndroidUtilities.dp(16.66f) - fMin);
+            this.drawCanvas.drawRoundRect(this.rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), Theme.checkboxSquare_eraserPaint);
         }
         if (this.progress > 0.5f) {
             Theme.checkboxSquare_checkPaint.setColor(getThemedColor(this.key3));

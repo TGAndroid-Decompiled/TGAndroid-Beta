@@ -5,7 +5,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -51,6 +50,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
     private final ArrayList currentSearchFilters;
     public final EditTextBoldCursor editText;
     public boolean isSectionBackground;
+    private boolean isWhiteBackground;
     private final AnimationNotificationsLocker notificationsLocker;
     private Runnable onCloseSearch;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -88,7 +88,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
             }
 
             @Override
-            public boolean onKeyDown(int i, KeyEvent keyEvent) throws Resources.NotFoundException {
+            public boolean onKeyDown(int i, KeyEvent keyEvent) {
                 if (i == 67 && FragmentSearchField.this.editText.length() == 0 && FragmentSearchField.this.hasRemovableFilters()) {
                     if (FragmentSearchField.this.hasRemovableFilters()) {
                         FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) FragmentSearchField.this.currentSearchFilters.get(FragmentSearchField.this.currentSearchFilters.size() - 1);
@@ -124,7 +124,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
             }
 
             @Override
-            public void afterTextChanged(Editable editable) throws Resources.NotFoundException {
+            public void afterTextChanged(Editable editable) {
                 if (!FragmentSearchField.this.currentSearchFilters.isEmpty() && editable.length() > 0 && FragmentSearchField.this.selectedFilterIndex >= 0) {
                     FragmentSearchField.this.selectedFilterIndex = -1;
                     FragmentSearchField.this.onFiltersChanged();
@@ -272,6 +272,11 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         updateColors();
     }
 
+    public void setWhiteBackground() {
+        this.isWhiteBackground = true;
+        updateColors();
+    }
+
     @Override
     public void updateColors() {
         Drawable drawableCreateRoundRectDrawable;
@@ -280,7 +285,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         if (this.isSectionBackground) {
             drawableCreateRoundRectDrawable = Theme.createRoundRectDrawableShadowed(AndroidUtilities.dp(20.0f), getThemedColor(Theme.key_windowBackgroundWhite));
         } else {
-            drawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), getThemedColor(Theme.key_windowBackgroundWhiteBlackText, zIsDark ? 0.07f : 0.05f));
+            drawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), this.isWhiteBackground ? getThemedColor(Theme.key_windowBackgroundWhite) : getThemedColor(Theme.key_windowBackgroundWhiteBlackText, zIsDark ? 0.07f : 0.05f));
         }
         this.bg = drawableCreateRoundRectDrawable;
         ImageView imageView = this.searchIcon;
@@ -372,7 +377,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         onFiltersChanged();
     }
 
-    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
         if (mediaFilterData.removable) {
             this.currentSearchFilters.remove(mediaFilterData);
             int i = this.selectedFilterIndex;
@@ -410,7 +415,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         onFiltersChanged();
     }
 
-    public void onFiltersChanged() throws Resources.NotFoundException {
+    public void onFiltersChanged() {
         final ActionBarMenuItem.SearchFilterView searchFilterView;
         boolean zIsEmpty = this.currentSearchFilters.isEmpty();
         this.animatorSearchIconVisible.setValue(zIsEmpty, true);
@@ -486,7 +491,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
             searchFilterView.setData(mediaFilterData);
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException {
+                public final void onClick(View view) {
                     this.f$0.lambda$onFiltersChanged$1(searchFilterView, view);
                 }
             });
@@ -502,7 +507,7 @@ public class FragmentSearchField extends FrameLayout implements FactorAnimator.T
         this.searchFilterLayout.setTag(!zIsEmpty ? 1 : null);
     }
 
-    public void lambda$onFiltersChanged$1(ActionBarMenuItem.SearchFilterView searchFilterView, View view) throws Resources.NotFoundException {
+    public void lambda$onFiltersChanged$1(ActionBarMenuItem.SearchFilterView searchFilterView, View view) {
         int iIndexOf = this.currentSearchFilters.indexOf(searchFilterView.getFilter());
         if (this.selectedFilterIndex != iIndexOf) {
             this.selectedFilterIndex = iIndexOf;

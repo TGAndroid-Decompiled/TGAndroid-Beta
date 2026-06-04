@@ -23,6 +23,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
@@ -234,10 +235,10 @@ public class CreateGroupCallSheet extends BottomSheetWithRecyclerListView {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
-            Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCall.class).iterator();
+            Iterator it = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCall.class).iterator();
             TLRPC.GroupCall groupCall = null;
             while (it.hasNext()) {
-                groupCall = ((TLRPC.TL_updateGroupCall) it.next()).call;
+                groupCall = ((TL_update.TL_updateGroupCall) it.next()).call;
             }
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override

@@ -177,7 +177,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                 canvas.save();
                 canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 premiumGradientTools.paint.setAlpha(PremiumFeatureBottomSheet.this.gradientAlpha);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f) - 1, AndroidUtilities.dp(12.0f) - 1, premiumGradientTools.paint);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(24.0f) - 1, AndroidUtilities.dp(24.0f) - 1, premiumGradientTools.paint);
                 canvas.restore();
                 super.dispatchDraw(canvas);
             }

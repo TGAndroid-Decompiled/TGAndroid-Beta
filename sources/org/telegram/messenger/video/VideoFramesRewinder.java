@@ -17,7 +17,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoFramesRewinder;
-import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.AnimatedFileNative;
 
 public class VideoFramesRewinder {
     private Frame currentFrame;
@@ -86,7 +86,7 @@ public class VideoFramesRewinder {
             release();
         } else {
             this.stop.set(false);
-            this.ptr = AnimatedFileDrawable.createDecoder(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
+            this.ptr = AnimatedFileNative.createDecoder(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
         }
     }
 
@@ -204,7 +204,7 @@ public class VideoFramesRewinder {
             this.destroyAfterPrepare = true;
             return;
         }
-        AnimatedFileDrawable.destroyDecoder(this.ptr);
+        AnimatedFileNative.destroyDecoder(this.ptr);
         this.ptr = 0L;
         this.destroyAfterPrepare = false;
         clearCurrent();

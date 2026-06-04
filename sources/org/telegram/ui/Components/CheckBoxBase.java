@@ -59,6 +59,9 @@ public class CheckBoxBase {
     }
 
     public void setAlpha(float f) {
+        if (this.alpha == f) {
+            return;
+        }
         this.alpha = f;
         invalidate();
     }
@@ -69,6 +72,7 @@ public class CheckBoxBase {
         }
         this.cutCheck = z;
         this.checkPaint.setXfermode(z ? new PorterDuffXfermode(PorterDuff.Mode.CLEAR) : null);
+        invalidate();
     }
 
     public static Paint lambda$new$0(Void r0) {
@@ -112,11 +116,19 @@ public class CheckBoxBase {
     }
 
     public void setSize(float f) {
+        if (this.size == f) {
+            return;
+        }
         this.size = f;
+        invalidate();
     }
 
     public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
+        if (this.resourcesProvider == resourcesProvider) {
+            return;
+        }
         this.resourcesProvider = resourcesProvider;
+        invalidate();
     }
 
     public void onAttachedToWindow() {
@@ -128,23 +140,41 @@ public class CheckBoxBase {
     }
 
     public void setBounds(int i, int i2, int i3, int i4) {
+        int i5 = i3 + i;
+        int i6 = i4 + i2;
         Rect rect = this.bounds;
+        if (rect.left == i && rect.top == i2 && rect.right == i5 && rect.bottom == i6) {
+            return;
+        }
         rect.left = i;
         rect.top = i2;
-        rect.right = i + i3;
-        rect.bottom = i2 + i4;
+        rect.right = i5;
+        rect.bottom = i6;
+        invalidate();
     }
 
     public void setCustomRadius(float f) {
+        if (this.customRadius == f) {
+            return;
+        }
         this.customRadius = f;
+        invalidate();
     }
 
     public void setCustomRadiusFactor(float f) {
+        if (this.customRadiusFactor == f) {
+            return;
+        }
         this.customRadiusFactor = f;
+        invalidate();
     }
 
     public void setDrawUnchecked(boolean z) {
+        if (this.drawUnchecked == z) {
+            return;
+        }
         this.drawUnchecked = z;
+        invalidate();
     }
 
     public boolean getDrawUnchecked() {
@@ -172,7 +202,11 @@ public class CheckBoxBase {
     }
 
     private void invalidate() {
-        if (this.parentView.getParent() != null) {
+        View view = this.parentView;
+        if (view == null) {
+            return;
+        }
+        if (view.getParent() != null) {
             ((View) this.parentView.getParent()).invalidate();
         }
         this.parentView.invalidate();
@@ -191,28 +225,31 @@ public class CheckBoxBase {
     }
 
     public void setEnabled(boolean z) {
+        if (this.enabled == z) {
+            return;
+        }
         this.enabled = z;
+        invalidate();
     }
 
     public void setBackgroundType(int i) {
+        if (this.backgroundType == i) {
+            return;
+        }
         this.backgroundType = i;
         if (i == 12 || i == 13) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-            return;
-        }
-        if (i == 4 || i == 5) {
+        } else if (i == 4 || i == 5) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
             if (i == 5) {
                 this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-                return;
             }
-            return;
-        }
-        if (i == 3) {
+        } else if (i == 3) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         } else if (i != 0) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
         }
+        invalidate();
     }
 
     public void cancelCheckAnimator() {
@@ -244,6 +281,9 @@ public class CheckBoxBase {
     }
 
     public void setColor(int i, int i2, int i3) {
+        if (this.backgroundColorKey == i && this.background2ColorKey == i2 && this.checkColorKey == i3) {
+            return;
+        }
         this.backgroundColorKey = i;
         this.background2ColorKey = i2;
         this.checkColorKey = i3;
@@ -251,33 +291,61 @@ public class CheckBoxBase {
     }
 
     public void setStrokeBackgroundColor(int i) {
+        if (this.strokeBackgroundKey == i) {
+            return;
+        }
         this.strokeBackgroundKey = i;
         invalidate();
     }
 
     public void setBackgroundColor(int i) {
+        if (this.backgroundColor == i) {
+            return;
+        }
         this.backgroundColor = i;
         invalidate();
     }
 
     public void setBackgroundDrawable(Theme.MessageDrawable messageDrawable) {
+        if (this.messageDrawable == messageDrawable) {
+            return;
+        }
         this.messageDrawable = messageDrawable;
+        invalidate();
     }
 
     public void setUseDefaultCheck(boolean z) {
+        if (this.useDefaultCheck == z) {
+            return;
+        }
         this.useDefaultCheck = z;
+        invalidate();
     }
 
     public void setBackgroundAlpha(float f) {
+        if (this.backgroundAlpha == f) {
+            return;
+        }
         this.backgroundAlpha = f;
+        invalidate();
     }
 
     public void setNum(int i) {
+        String str;
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
-        } else if (this.checkAnimator == null) {
-            this.checkedText = null;
+            str = "" + (i + 1);
+        } else {
+            str = this.checkAnimator != null ? this.checkedText : null;
         }
+        String str2 = this.checkedText;
+        if (str2 == null) {
+            if (str == null) {
+                return;
+            }
+        } else if (str2.equals(str)) {
+            return;
+        }
+        this.checkedText = str;
         invalidate();
     }
 
@@ -287,8 +355,12 @@ public class CheckBoxBase {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
-            invalidate();
+            String str = "" + (i + 1);
+            String str2 = this.checkedText;
+            if (str2 == null || !str2.equals(str)) {
+                this.checkedText = str;
+                invalidate();
+            }
         }
         if (z == this.isChecked) {
             return;
@@ -307,7 +379,11 @@ public class CheckBoxBase {
     }
 
     public void setCirclePaintProvider(GenericProvider genericProvider) {
+        if (this.circlePaintProvider == genericProvider) {
+            return;
+        }
         this.circlePaintProvider = genericProvider;
+        invalidate();
     }
 
     private int getThemedColor(int i) {

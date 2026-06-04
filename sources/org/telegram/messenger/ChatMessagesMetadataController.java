@@ -1,12 +1,12 @@
 package org.telegram.messenger;
 
 import android.content.res.Resources;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Stories.StoriesStorage;
 
@@ -115,14 +115,14 @@ public class ChatMessagesMetadataController {
             storyItem.id = i;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$loadStoriesForMessages$1(messageObject, j, storyItem);
                 }
             });
         }
     }
 
-    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) throws Resources.NotFoundException, NumberFormatException {
         boolean zIsExpiredStory = messageObject.isExpiredStory();
         StoriesStorage.applyStory(this.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
         final ArrayList arrayList = new ArrayList();
@@ -169,8 +169,8 @@ public class ChatMessagesMetadataController {
         if (tL_error == null) {
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             for (int i = 0; i < updates.updates.size(); i++) {
-                if (updates.updates.get(i) instanceof TLRPC.TL_updateMessageReactions) {
-                    ((TLRPC.TL_updateMessageReactions) updates.updates.get(i)).updateUnreadState = false;
+                if (updates.updates.get(i) instanceof TL_update.TL_updateMessageReactions) {
+                    ((TL_update.TL_updateMessageReactions) updates.updates.get(i)).updateUnreadState = false;
                 }
             }
             this.chatActivity.getMessagesController().processUpdates(updates, false);

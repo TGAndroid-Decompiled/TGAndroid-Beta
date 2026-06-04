@@ -35,7 +35,6 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -52,8 +51,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.WindowVisibilityManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -86,6 +87,7 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
 public class MessageSendPreview extends Dialog implements NotificationCenter.NotificationCenterDelegate {
+    private WindowVisibilityManager.Controller activityVisibilityController;
     private final RecyclerView.Adapter adapter;
     public boolean allowRelayout;
     private ChatActivityEnterView.SendButton anchorSendButton;
@@ -175,9 +177,13 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.cellDelta = new Rect();
         this.context = context;
         this.resourcesProvider = resourcesProvider;
+        this.activityVisibilityController = LaunchActivity.obtainActivityVisibilityController();
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
+                if (MessageSendPreview.this.activityVisibilityController != null) {
+                    MessageSendPreview.this.activityVisibilityController.setHidden(MessageSendPreview.this.openProgress == 1.0f && MessageSendPreview.this.blurBitmapPaint != null);
+                }
                 if (MessageSendPreview.this.openProgress > 0.0f && MessageSendPreview.this.blurBitmapPaint != null) {
                     MessageSendPreview.this.blurMatrix.reset();
                     float width = getWidth() / MessageSendPreview.this.blurBitmap.getWidth();
@@ -305,7 +311,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (MessageSendPreview.this.openInProgress && ((view == MessageSendPreview.this.mainMessageCell && MessageSendPreview.this.mainMessageCell != null && MessageSendPreview.this.mainMessageCell.getCurrentPosition() == null) || view == MessageSendPreview.this.sendButton)) {
                     return false;
                 }
@@ -1004,6 +1010,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell, pageBlock);
+                    }
+
+                    @Override
                     public void setShouldNotRepeatSticker(MessageObject messageObject) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject);
                     }
@@ -1167,7 +1178,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(final android.graphics.Canvas r30) throws java.io.IOException {
+        protected void dispatchDraw(final android.graphics.Canvas r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1831,7 +1842,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         });
         this.windowView.invalidate();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
+        afterDismiss();
     }
 
     public void lambda$dismissInto$8() {
@@ -1868,7 +1879,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             spoilerEffect2.detach(this.windowView);
         }
         super.dismiss();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
+        afterDismiss();
     }
 
     @Override
@@ -1892,7 +1903,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         });
         this.windowView.invalidate();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
+        afterDismiss();
     }
 
     public void lambda$dismiss$10() {
@@ -1911,6 +1922,15 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
 
     public void lambda$dismiss$9() {
         super.dismiss();
+    }
+
+    private void afterDismiss() {
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.availableEffectsUpdate);
+        WindowVisibilityManager.Controller controller = this.activityVisibilityController;
+        if (controller != null) {
+            controller.destroy();
+            this.activityVisibilityController = null;
+        }
     }
 
     private void animateOpenTo(final boolean z, final Runnable runnable) {

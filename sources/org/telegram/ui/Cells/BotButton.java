@@ -3,6 +3,8 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
@@ -37,9 +39,37 @@ class BotButton {
     public float width;
     public float x;
     public int y;
+    private final Path path = new Path();
+    private final Paint paint = new Paint(1);
+    private final float[] radii = new float[8];
 
     public BotButton(Runnable runnable) {
         this.invalidateRunnable = runnable;
+    }
+
+    public boolean draw(android.graphics.Canvas r20, android.graphics.RectF r21, boolean r22, boolean r23, org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.BotButton.draw(android.graphics.Canvas, android.graphics.RectF, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):boolean");
+    }
+
+    static class AnonymousClass2 {
+        static final int[] $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor;
+
+        static {
+            int[] iArr = new int[BotInlineKeyboard.BackgroundColor.values().length];
+            $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor = iArr;
+            try {
+                iArr[BotInlineKeyboard.BackgroundColor.DANGER.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor[BotInlineKeyboard.BackgroundColor.SUCCESS.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor[BotInlineKeyboard.BackgroundColor.PRIMARY.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+        }
     }
 
     public void setPressed(boolean z) {

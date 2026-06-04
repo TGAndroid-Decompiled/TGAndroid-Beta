@@ -64,6 +64,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -2266,11 +2267,11 @@ public class StarsController {
             });
             TLRPC.Updates updates = tL_payments_paymentResult.updates;
             TLRPC.Update update = updates.update;
-            long j2 = update instanceof TLRPC.TL_updateChannel ? -((TLRPC.TL_updateChannel) update).channel_id : 0L;
+            long j2 = update instanceof TL_update.TL_updateChannel ? -((TL_update.TL_updateChannel) update).channel_id : 0L;
             if (updates.updates != null) {
                 for (int i = 0; i < tL_payments_paymentResult.updates.updates.size(); i++) {
-                    if (tL_payments_paymentResult.updates.updates.get(i) instanceof TLRPC.TL_updateChannel) {
-                        j2 = -((TLRPC.TL_updateChannel) tL_payments_paymentResult.updates.updates.get(i)).channel_id;
+                    if (tL_payments_paymentResult.updates.updates.get(i) instanceof TL_update.TL_updateChannel) {
+                        j2 = -((TL_update.TL_updateChannel) tL_payments_paymentResult.updates.updates.get(i)).channel_id;
                     }
                 }
             }

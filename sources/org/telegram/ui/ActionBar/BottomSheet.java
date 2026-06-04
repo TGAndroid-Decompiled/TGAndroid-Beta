@@ -49,6 +49,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
+import org.telegram.messenger.utils.WindowVisibilityManager;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -62,7 +63,6 @@ import org.telegram.ui.LaunchActivity;
 public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     private static final boolean AVOID_SYSTEM_CUTOUT_FULLSCREEN = false;
     private boolean allowCustomAnimation;
-    private boolean allowDrawContent;
     protected boolean allowNestedScroll;
     private boolean applyBottomPadding;
     private boolean applyTopPadding;
@@ -157,6 +157,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     protected boolean useLightStatusBar;
     protected boolean useSmoothKeyboard;
     protected boolean waitingKeyboard;
+    private WindowVisibilityManager windowVisibilityManager;
 
     public static class BottomSheetDelegate implements BottomSheetDelegateInterface {
         @Override
@@ -1056,7 +1057,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     public BottomSheet(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         this.currentAccount = UserConfig.selectedAccount;
-        this.allowDrawContent = true;
         this.useHardwareLayer = true;
         this.backDrawable = new SheetBackDrawable();
         this.useLightStatusBar = true;
@@ -1074,7 +1074,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.applyTopPadding = true;
         this.applyBottomPadding = true;
         this.itemViews = new ArrayList<>();
-        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda14(this);
+        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda7(this);
         this.navigationBarAlpha = 0.0f;
         this.navBarColorKey = Theme.key_windowBackgroundGray;
         this.pauseAllHeavyOperations = true;
@@ -1106,12 +1106,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             @Override
             public boolean drawChild(Canvas canvas, View view, long j) {
                 try {
-                    if (BottomSheet.this.allowDrawContent) {
-                        if (super.drawChild(canvas, view, j)) {
-                            return true;
-                        }
-                    }
-                    return false;
+                    return super.drawChild(canvas, view, j);
                 } catch (Exception e) {
                     FileLog.e(e);
                     return true;
@@ -1548,14 +1543,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return this.backgroundPaddingTop;
     }
 
-    public void setAllowDrawContent(boolean z) {
-        if (this.allowDrawContent != z) {
-            this.allowDrawContent = z;
-            this.container.setBackground(z ? this.backDrawable : null);
-            this.container.invalidate();
-        }
-    }
-
     protected boolean canDismissWithSwipe() {
         return this.canDismissWithSwipe;
     }
@@ -1947,7 +1934,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo1330getWindowView() {
+    public View mo1355getWindowView() {
         return this.container;
     }
 
@@ -2239,7 +2226,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true);
-            AndroidUtilities.setLightNavigationBar(mo1330getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1355getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(this, this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
@@ -2307,6 +2294,10 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (baseFragment == null || !baseFragment.isSupportEdgeToEdge()) {
             this.attachedFragment = baseFragment;
+            SheetBackDrawable sheetBackDrawable = this.backDrawable;
+            if (sheetBackDrawable != null) {
+                sheetBackDrawable.bgPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
+            }
         }
     }
 
@@ -2323,6 +2314,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         } else {
             dismiss();
         }
+    }
+
+    public WindowVisibilityManager.Controller obtainWindowVisibilityController() {
+        if (this.windowVisibilityManager == null) {
+            this.windowVisibilityManager = new WindowVisibilityManager(getWindow());
+        }
+        return this.windowVisibilityManager.obtainController();
     }
 
     public Theme.ResourcesProvider getResourcesProvider() {

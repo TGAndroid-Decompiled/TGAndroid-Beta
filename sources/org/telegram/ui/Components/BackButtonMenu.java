@@ -30,7 +30,7 @@ public abstract class BackButtonMenu {
         TLRPC.User user;
     }
 
-    public static org.telegram.ui.ActionBar.ActionBarPopupWindow show(final org.telegram.ui.ActionBar.BaseFragment r28, android.view.View r29, long r30, long r32, org.telegram.ui.ActionBar.Theme.ResourcesProvider r34) {
+    public static org.telegram.ui.ActionBar.ActionBarPopupWindow show(final org.telegram.ui.ActionBar.BaseFragment r32, android.view.View r33, long r34, long r36, org.telegram.ui.ActionBar.Theme.ResourcesProvider r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BackButtonMenu.show(org.telegram.ui.ActionBar.BaseFragment, android.view.View, long, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.ActionBar.ActionBarPopupWindow");
     }
 

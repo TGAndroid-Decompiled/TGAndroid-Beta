@@ -61,7 +61,6 @@ public class SharedConfig {
     private static int chatSwipeAction = 0;
     private static boolean configLoaded = false;
     public static ProxyInfo currentProxy = null;
-    public static boolean customTabs = false;
     public static int dayNightThemeSwitchHintCount = 0;
     public static int dayNightWallpaperSwitchHint = 0;
     public static boolean debugVideoQualities = false;
@@ -88,7 +87,6 @@ public class SharedConfig {
     public static boolean hasCameraCache = false;
     public static boolean hasEmailLogin = false;
     private static HashSet<String> hevcEncoderWhitelist = null;
-    public static boolean inappBrowser = false;
     public static boolean inappCamera = false;
     public static boolean isFloatingDebugActive = false;
     public static boolean isWaitingForPasscodeEnter = false;
@@ -319,8 +317,6 @@ public class SharedConfig {
         raiseToListen = true;
         nextMediaTap = true;
         recordViaSco = false;
-        customTabs = true;
-        inappBrowser = true;
         adaptableColorInBrowser = true;
         onlyLocalInstantView = false;
         directShare = true;
@@ -528,7 +524,7 @@ public class SharedConfig {
     public static void updateTabletConfig() {
         if (fontSizeIsDefault) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-            int i = sharedPreferences.getInt("fons_size", AndroidUtilities.isTablet() ? 18 : 16);
+            int i = sharedPreferences.getInt("fons_size", (!AndroidUtilities.isTablet() || AndroidUtilities.isFold()) ? 16 : 18);
             fontSize = i;
             ivFontSize = sharedPreferences.getInt("iv_font_size", i);
         }
@@ -1052,20 +1048,6 @@ public class SharedConfig {
 
     public static boolean enabledRaiseTo(boolean z) {
         return raiseToListen && (!z || raiseToSpeak);
-    }
-
-    public static void toggleCustomTabs(boolean z) {
-        customTabs = z;
-        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
-        editorEdit.putBoolean("custom_tabs", customTabs);
-        editorEdit.apply();
-    }
-
-    public static void toggleInappBrowser() {
-        inappBrowser = !inappBrowser;
-        SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
-        editorEdit.putBoolean("inapp_browser", inappBrowser);
-        editorEdit.apply();
     }
 
     public static void toggleBrowserAdaptableColors() {

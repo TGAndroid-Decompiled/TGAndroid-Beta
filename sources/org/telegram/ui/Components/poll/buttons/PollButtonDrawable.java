@@ -3,14 +3,17 @@ package org.telegram.ui.Components.poll.buttons;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import java.util.List;
 import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
@@ -18,12 +21,15 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
+import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarsListDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.PorterDuffColorFilterState;
 import org.telegram.ui.Components.RadialProgress2;
 
 public class PollButtonDrawable extends Drawable implements DownloadController.FileDownloadProgressListener {
@@ -37,6 +43,8 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
     private boolean hasMediaPadding;
     private final ImageReceiver imageReceiver;
     private boolean isVideo;
+    private boolean isWebPage;
+    private boolean isWebPageWithPreview;
     private int lastIcon;
     private final AvatarsListDrawable lastVotersDrawable;
     private MessageObject messageObject;
@@ -45,6 +53,9 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
     private final RadialProgress2 radialProgress;
     private int recentVotersCount;
     private final AnimatedTextView.AnimatedTextDrawable votersCountDrawable;
+    private final Paint webPageBgPaint;
+    private Drawable webPageDrawable;
+    private final PorterDuffColorFilterState webPageLinkColorFilter;
 
     @Override
     public int getOpacity() {
@@ -70,6 +81,8 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
     public PollButtonDrawable(int i, View view) {
         Paint paint = new Paint(1);
         this.darkenPaint = paint;
+        this.webPageBgPaint = new Paint(1);
+        this.webPageLinkColorFilter = new PorterDuffColorFilterState();
         this.currentAccount = i;
         this.parent = view;
         this.animatorShowVoters = new BoolAnimator(view, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
@@ -82,7 +95,7 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.imageReceiver = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(5.0f));
-        paint.setColor(1610612736);
+        paint.setColor(1073741824);
         RadialProgress2 radialProgress2 = new RadialProgress2(view);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(18.0f));
@@ -144,18 +157,36 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
         return this.imageReceiver;
     }
 
+    private void applyPhotoToImageReceiver(TLRPC.Photo photo, Object obj) {
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 40);
+        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true);
+        this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, photo), "36_36", ImageLocation.getForObject(closestPhotoSizeWithSize, photo), "36_36_b", null, closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.size : 0L, null, obj, 1);
+    }
+
     private boolean setMediaImpl(TLRPC.MessageMedia messageMedia, Object obj, String str) {
         TLRPC.GeoPoint geoPoint;
         if (messageMedia != null && !(messageMedia instanceof TLRPC.TL_messageMediaEmpty)) {
+            this.isWebPageWithPreview = false;
+            this.isWebPage = false;
             this.isVideo = false;
             this.attachPath = str;
+            if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
+                TLRPC.WebPage webPage = ((TLRPC.TL_messageMediaWebPage) messageMedia).webpage;
+                this.isWebPage = true;
+                TLRPC.Photo photo = webPage.photo;
+                if (photo != null) {
+                    this.isWebPageWithPreview = true;
+                    applyPhotoToImageReceiver(photo, obj);
+                } else {
+                    this.imageReceiver.clearImage();
+                }
+                return true;
+            }
             if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
-                TLRPC.Photo photo = ((TLRPC.TL_messageMediaPhoto) messageMedia).photo;
-                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 40);
-                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true);
+                TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = (TLRPC.TL_messageMediaPhoto) messageMedia;
                 this.needDrawProgress = true;
                 this.attachFileName = !TextUtils.isEmpty(str) ? str : MessageObject.getFileName(messageMedia);
-                this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, photo), "36_36", ImageLocation.getForObject(closestPhotoSizeWithSize, photo), "36_36_b", null, closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.size : 0L, null, obj, 1);
+                applyPhotoToImageReceiver(tL_messageMediaPhoto.photo, obj);
                 return true;
             }
             if (messageMedia instanceof TLRPC.TL_messageMediaDocument) {
@@ -166,11 +197,11 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
                 }
                 this.attachFileName = !TextUtils.isEmpty(str) ? str : MessageObject.getFileName(messageMedia);
                 if (MessageObject.isVideoDocument(tL_messageMediaDocument.document)) {
-                    TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
-                    TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize3, true);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 40);
+                    TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(36.0f), false, closestPhotoSizeWithSize, true);
                     this.isVideo = true;
                     this.needDrawProgress = true;
-                    this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, document), "36_36", ImageLocation.getForObject(closestPhotoSizeWithSize3, document), "36_36_b", null, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj, 1);
+                    this.imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, document), "36_36", ImageLocation.getForObject(closestPhotoSizeWithSize, document), "36_36_b", null, closestPhotoSizeWithSize2 != null ? closestPhotoSizeWithSize2.size : 0L, null, obj, 1);
                     return true;
                 }
                 boolean z = MessageObject.isStickerDocument(document) || MessageObject.isVideoSticker(document);
@@ -210,6 +241,7 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
     }
 
     public void draw(Canvas canvas, Paint paint) {
+        int color;
         Rect bounds = getBounds();
         int iDp = AndroidUtilities.dp(this.hasMediaPadding ? 56.33f : 19.0f);
         if (this.animatorShowVoters.getFloatValue() > 0.0f) {
@@ -234,9 +266,31 @@ public class PollButtonDrawable extends Drawable implements DownloadController.F
             rectF.set(rect);
             this.radialProgress.setProgressRect(rectF.left, rectF.top, rectF.right, rectF.bottom);
             this.imageReceiver.setImageCoords(rect);
-            this.imageReceiver.draw(canvas);
-            if (this.isVideo) {
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.darkenPaint);
+            if (!this.isWebPage || this.isWebPageWithPreview) {
+                this.imageReceiver.draw(canvas);
+            }
+            if (this.isVideo || this.isWebPage) {
+                if (this.isWebPage && !this.isWebPageWithPreview) {
+                    this.webPageBgPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(this.messageObject.isOutOwner() ? Theme.key_chat_messageTextOut : Theme.key_chat_messageTextIn), 16));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.webPageBgPaint);
+                } else {
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.darkenPaint);
+                }
+            }
+            if (this.isWebPage) {
+                if (this.webPageDrawable == null) {
+                    this.webPageDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
+                }
+                Drawable drawable = this.webPageDrawable;
+                PorterDuffColorFilterState porterDuffColorFilterState = this.webPageLinkColorFilter;
+                if (this.isWebPageWithPreview) {
+                    color = -1;
+                } else {
+                    color = Theme.getColor(this.messageObject.isOutOwner() ? Theme.key_chat_outTimeText : Theme.key_chat_inTimeText);
+                }
+                drawable.setColorFilter(porterDuffColorFilterState.get(color, PorterDuff.Mode.SRC_IN));
+                DrawableUtils.setBounds(this.webPageDrawable, rectF.centerX(), rectF.centerY(), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
+                this.webPageDrawable.draw(canvas);
             }
             checkIcon(true);
             if (this.needDrawProgress) {

@@ -94,6 +94,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -2563,12 +2564,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         break;
                     }
                     TLRPC.Update update = updates.updates.get(i);
-                    if (update instanceof TLRPC.TL_updateNewMessage) {
-                        messageArr[0] = ((TLRPC.TL_updateNewMessage) update).message;
+                    if (update instanceof TL_update.TL_updateNewMessage) {
+                        messageArr[0] = ((TL_update.TL_updateNewMessage) update).message;
                         break;
                     } else {
-                        if (update instanceof TLRPC.TL_updateNewChannelMessage) {
-                            messageArr[0] = ((TLRPC.TL_updateNewChannelMessage) update).message;
+                        if (update instanceof TL_update.TL_updateNewChannelMessage) {
+                            messageArr[0] = ((TL_update.TL_updateNewChannelMessage) update).message;
                             break;
                         }
                         i++;

@@ -114,7 +114,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             this.actionBar.setTitle(LocaleController.getString(R.string.AutoDownloadOnRoamingData));
         }
         INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
+        if (iNavigationLayout != null && iNavigationLayout.isLayersLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);

@@ -18,7 +18,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
 public class DrawerLayoutContainer extends FrameLayout {
-    public boolean allowDrawContent;
     private final Paint backgroundPaint;
     private int behindKeyboardColor;
     private boolean firstLayout;
@@ -47,7 +46,6 @@ public class DrawerLayoutContainer extends FrameLayout {
     public DrawerLayoutContainer(Context context) {
         super(context);
         this.backgroundPaint = new Paint();
-        this.allowDrawContent = true;
         this.firstLayout = true;
         this.internalNavbarPaint = new Paint(1);
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
@@ -94,13 +92,6 @@ public class DrawerLayoutContainer extends FrameLayout {
 
     public void setParentActionBarLayout(INavigationLayout iNavigationLayout) {
         this.parentActionBarLayout = iNavigationLayout;
-    }
-
-    public void setAllowDrawContent(boolean z) {
-        if (this.allowDrawContent != z) {
-            this.allowDrawContent = z;
-            invalidate();
-        }
     }
 
     @Override
@@ -176,14 +167,6 @@ public class DrawerLayoutContainer extends FrameLayout {
     public void setBehindKeyboardColor(int i) {
         this.behindKeyboardColor = i;
         invalidate();
-    }
-
-    @Override
-    protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (this.allowDrawContent) {
-            return super.drawChild(canvas, view, j);
-        }
-        return false;
     }
 
     @Override

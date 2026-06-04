@@ -1140,7 +1140,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r20) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException {
+        public boolean onTouchEvent(android.view.MotionEvent r20) throws java.lang.IllegalArgumentException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -1223,12 +1223,12 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         class PreviewGroupCell {
-            private Theme.MessageDrawable.PathDrawParams backgroundCacheParams;
+            private final Theme.MessageDrawable.PathDrawParams backgroundCacheParams;
             private float bottom;
             private Text buttonText;
-            private Paint buttonTextBgPaint;
+            private final Paint buttonTextBgPaint;
             private long buttonTextPrice;
-            private RectF buttonTextRect;
+            private final RectF buttonTextRect;
             final int gap;
             private GroupCalculator group;
             private float groupHeight;
@@ -1240,7 +1240,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             private long lastMediaUpdate;
             private float left;
             public ArrayList media;
-            private Theme.MessageDrawable messageBackground;
+            private final Theme.MessageDrawable messageBackground;
             final int padding;
             private float previousGroupHeight;
             private float previousGroupWidth;

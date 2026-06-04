@@ -34,6 +34,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.webrtc.VideoFrame;
@@ -291,11 +292,11 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(updates.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(updates.chats, false);
-            Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCall.class).iterator();
+            Iterator it = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCall.class).iterator();
             while (it.hasNext()) {
-                this.call = ((TLRPC.TL_updateGroupCall) it.next()).call;
+                this.call = ((TL_update.TL_updateGroupCall) it.next()).call;
             }
-            final ArrayList arrayListFindUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateGroupCallMessage.class);
+            final ArrayList arrayListFindUpdatesAndRemove = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCallMessage.class);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -305,9 +306,9 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
             TLRPC.GroupCall groupCall = this.call;
             boolean z = groupCall != null && groupCall.rtmp_stream;
-            Iterator it2 = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCallParticipants.class).iterator();
+            Iterator it2 = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCallParticipants.class).iterator();
             while (it2.hasNext()) {
-                TLRPC.TL_updateGroupCallParticipants tL_updateGroupCallParticipants = (TLRPC.TL_updateGroupCallParticipants) it2.next();
+                TL_update.TL_updateGroupCallParticipants tL_updateGroupCallParticipants = (TL_update.TL_updateGroupCallParticipants) it2.next();
                 if (tL_updateGroupCallParticipants.call.id == getCallId() && !z) {
                     int i = 0;
                     while (true) {
@@ -325,10 +326,10 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
                     }
                 }
             }
-            Iterator it3 = MessagesController.findUpdates(updates, TLRPC.TL_updateGroupCallConnection.class).iterator();
+            Iterator it3 = MessagesController.findUpdates(updates, TL_update.TL_updateGroupCallConnection.class).iterator();
             TLRPC.TL_dataJSON tL_dataJSON = null;
             while (it3.hasNext()) {
-                tL_dataJSON = ((TLRPC.TL_updateGroupCallConnection) it3.next()).params;
+                tL_dataJSON = ((TL_update.TL_updateGroupCallConnection) it3.next()).params;
             }
             FileLog.d("[LivePlayer] joined call " + this.inputCall.id);
             this.joined = true;
@@ -404,7 +405,7 @@ public class LivePlayer implements NotificationCenter.NotificationCenterDelegate
     public void lambda$init$1(ArrayList arrayList) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            TLRPC.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TLRPC.TL_updateGroupCallMessage) it.next();
+            TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) it.next();
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryMessageUpdate, Long.valueOf(tL_updateGroupCallMessage.call.id), tL_updateGroupCallMessage, Boolean.TRUE);
         }
     }

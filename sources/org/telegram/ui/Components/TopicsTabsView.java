@@ -632,7 +632,7 @@ public class TopicsTabsView extends FrameLayout implements NotificationCenter.No
         if (this.topicBottom) {
             this.topTabsContainer.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.sideMenuBackgroundMarginBottom) + AndroidUtilities.lerp(AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.BOTTOM)));
         } else {
-            this.topTabsContainer.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.TOP)));
+            this.topTabsContainer.setTranslationY(this.sideMenuBackgroundMarginTop + AndroidUtilities.lerp(-AndroidUtilities.dp(43.0f), 0, getTabsVisibility(Position.TOP)));
         }
     }
 

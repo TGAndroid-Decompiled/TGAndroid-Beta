@@ -465,7 +465,7 @@ public class FileLoadOperation {
         this.ext = ImageLoader.getHttpUrlExtension(webFile.url, mimeTypePart);
     }
 
-    public FileLoadOperation(TLRPC.Document document, Object obj) {
+    public FileLoadOperation(TLRPC.Document document, Object obj) throws IOException {
         int iLastIndexOf;
         this.FULL_LOGS = false;
         this.downloadChunkSize = 32768;
@@ -779,7 +779,7 @@ public class FileLoadOperation {
         return this.cacheFileFinal;
     }
 
-    protected File getCurrentFile() {
+    protected File getCurrentFile() throws InterruptedException {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         final File[] fileArr = new File[1];
         Utilities.stageQueue.postRunnable(new Runnable() {
@@ -959,7 +959,7 @@ public class FileLoadOperation {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.start(org.telegram.messenger.FileLoadOperationStream, long, boolean):boolean");
     }
 
-    public void lambda$start$9(boolean z, long j, FileLoadOperationStream fileLoadOperationStream, boolean z2) {
+    public void lambda$start$9(boolean z, long j, FileLoadOperationStream fileLoadOperationStream, boolean z2) throws IOException {
         if (this.streamListeners == null) {
             this.streamListeners = new ArrayList<>();
         }
@@ -1018,11 +1018,11 @@ public class FileLoadOperation {
         this.uiRequestTokens.remove(Integer.valueOf(i));
     }
 
-    public void lambda$start$10() {
+    public void lambda$start$10() throws IOException {
         startDownloadRequest(-1);
     }
 
-    public void lambda$start$11(boolean[] zArr) {
+    public void lambda$start$11(boolean[] zArr) throws IOException {
         boolean z = this.isPreloadVideoOperation && zArr[0];
         int i = this.preloadPrefixSize;
         boolean z2 = i > 0 && this.downloadedBytes >= ((long) i) && canFinishPreload();
@@ -1070,7 +1070,7 @@ public class FileLoadOperation {
                     if (this.state == 1) {
                         Utilities.stageQueue.postRunnable(new Runnable() {
                             @Override
-                            public final void run() {
+                            public final void run() throws IOException {
                                 this.f$0.lambda$setIsPreloadVideoOperation$12(z);
                             }
                         });
@@ -1085,7 +1085,7 @@ public class FileLoadOperation {
         }
     }
 
-    public void lambda$setIsPreloadVideoOperation$12(boolean z) {
+    public void lambda$setIsPreloadVideoOperation$12(boolean z) throws IOException {
         this.requestedBytesCount = 0L;
         clearOperation(null, true, true);
         this.isPreloadVideoOperation = z;
@@ -1118,7 +1118,7 @@ public class FileLoadOperation {
             this.state = 5;
             cancelRequests(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IOException {
                     this.f$0.lambda$cancelOnStage$14();
                 }
             });
@@ -1178,7 +1178,7 @@ public class FileLoadOperation {
         }
     }
 
-    public void lambda$cancelOnStage$14() {
+    public void lambda$cancelOnStage$14() throws IOException {
         if (this.state == 5) {
             onFail(false, 1);
         }
@@ -1384,7 +1384,7 @@ public class FileLoadOperation {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.lambda$onFinishLoadingFile$20(java.io.File, java.io.File, java.io.File, java.io.File, boolean):void");
     }
 
-    public void lambda$onFinishLoadingFile$17(boolean z) {
+    public void lambda$onFinishLoadingFile$17(boolean z) throws IOException {
         try {
             onFinishLoadingFile(z, 0, false);
         } catch (Exception unused) {
@@ -1392,7 +1392,7 @@ public class FileLoadOperation {
         }
     }
 
-    public void lambda$onFinishLoadingFile$18() {
+    public void lambda$onFinishLoadingFile$18() throws IOException {
         onFail(false, 0);
     }
 
@@ -1492,13 +1492,13 @@ public class FileLoadOperation {
         tL_upload_getCdnFileHashes.offset = j;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_getCdnFileHashes, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws IOException {
                 this.f$0.lambda$requestFileOffsets$21(tLObject, tL_error);
             }
         }, null, null, 0, this.datacenterId, 1, true);
     }
 
-    public void lambda$requestFileOffsets$21(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$requestFileOffsets$21(TLObject tLObject, TLRPC.TL_error tL_error) throws IOException {
         if (tL_error != null) {
             onFail(false, 0);
             return;
@@ -1555,7 +1555,7 @@ public class FileLoadOperation {
         return this.isStory && this.priority < 3;
     }
 
-    protected void onFail(boolean z, final int i) {
+    protected void onFail(boolean z, final int i) throws IOException {
         cleanup();
         this.state = i == 1 ? 4 : 2;
         if (this.delegate != null && BuildVars.LOGS_ENABLED) {
@@ -1712,7 +1712,7 @@ public class FileLoadOperation {
         FileRefController.getInstance(this.currentAccount).requestReference(this.parentObject, this.location, this, requestInfo);
     }
 
-    protected void startDownloadRequest(int r30) {
+    protected void startDownloadRequest(int r30) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.startDownloadRequest(int):void");
     }
 
@@ -1838,7 +1838,7 @@ public class FileLoadOperation {
             tL_upload_reuploadCdnFile.request_token = ((TLRPC.TL_upload_cdnFileReuploadNeeded) tLObject2).request_token;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_upload_reuploadCdnFile, new RequestDelegate() {
                 @Override
-                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error3) {
+                public final void run(TLObject tLObject3, TLRPC.TL_error tL_error3) throws IOException {
                     this.f$0.lambda$startDownloadRequest$28(i2, requestInfo, tLObject3, tL_error3);
                 }
             }, null, null, 0, this.datacenterId, 1, true);
@@ -1878,7 +1878,7 @@ public class FileLoadOperation {
         }
     }
 
-    public void lambda$startDownloadRequest$28(int i, RequestInfo requestInfo, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$startDownloadRequest$28(int i, RequestInfo requestInfo, TLObject tLObject, TLRPC.TL_error tL_error) throws IOException {
         this.reuploadingCdn = false;
         if (tLObject instanceof Vector) {
             Vector vector = (Vector) tLObject;

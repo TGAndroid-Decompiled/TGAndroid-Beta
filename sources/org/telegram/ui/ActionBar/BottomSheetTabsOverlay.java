@@ -39,7 +39,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
 import com.google.zxing.common.detector.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -120,7 +119,7 @@ public class BottomSheetTabsOverlay extends View {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo1330getWindowView();
+        SheetView mo1355getWindowView();
 
         boolean hadDialog();
 
@@ -548,10 +547,10 @@ public class BottomSheetTabsOverlay extends View {
     }
 
     public static void lambda$dismissSheet$3(Sheet sheet) {
-        if (sheet == null || sheet.mo1330getWindowView() == null) {
+        if (sheet == null || sheet.mo1355getWindowView() == null) {
             return;
         }
-        sheet.mo1330getWindowView().setDrawingFromOverlay(true);
+        sheet.mo1355getWindowView().setDrawingFromOverlay(true);
     }
 
     public void lambda$dismissSheet$4(ValueAnimator valueAnimator) {
@@ -596,7 +595,7 @@ public class BottomSheetTabsOverlay extends View {
                 canvas.translate(0.0f, -this.val$tab.viewScroll);
                 view.draw(canvas);
             }
-            this.val$sheet.mo1330getWindowView().setDrawingFromOverlay(false);
+            this.val$sheet.mo1355getWindowView().setDrawingFromOverlay(false);
             this.val$sheet.release();
             BottomSheetTabsOverlay.this.dismissingSheet = null;
             BottomSheetTabsOverlay.this.invalidate();
@@ -604,7 +603,7 @@ public class BottomSheetTabsOverlay extends View {
 
         public static void lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData webTabData, Sheet sheet, Bitmap bitmap) {
             webTabData.previewBitmap = bitmap;
-            sheet.mo1330getWindowView().setDrawingFromOverlay(false);
+            sheet.mo1355getWindowView().setDrawingFromOverlay(false);
             sheet.release();
         }
     }
@@ -991,10 +990,10 @@ public class BottomSheetTabsOverlay extends View {
             rectF.offset(i - iArr[0], r1[1] - iArr[1]);
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight() - this.navigationBarInset);
-            SheetView sheetViewMo1330getWindowView = this.dismissingSheet.mo1330getWindowView();
+            SheetView sheetViewMo1355getWindowView = this.dismissingSheet.mo1355getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float fDrawInto = sheetViewMo1330getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float fDrawInto = sheetViewMo1355getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, fDrawInto, fDrawInto, Path.Direction.CW);
@@ -1017,12 +1016,12 @@ public class BottomSheetTabsOverlay extends View {
         return drawable == this.closeAllButtonBackground || super.verifyDrawable(drawable);
     }
 
-    private void drawTabsPreview(android.graphics.Canvas r38) throws java.io.IOException {
+    private void drawTabsPreview(android.graphics.Canvas r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BottomSheetTabsOverlay.drawTabsPreview(android.graphics.Canvas):void");
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) throws IOException {
+    protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         drawDismissingTab(canvas);
         drawTabsPreview(canvas);

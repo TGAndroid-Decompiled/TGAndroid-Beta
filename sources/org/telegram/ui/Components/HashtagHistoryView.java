@@ -1,13 +1,8 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -21,27 +16,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 
-public abstract class HashtagHistoryView extends FrameLayout {
-    private UniversalAdapter adapter;
-    private AnimatorSet animation;
-    private int currentAccount;
-    private ImageView emptyImage;
-    private TextView emptyText;
-    public FrameLayout emptyView;
+public class HashtagHistoryView extends FrameLayout {
+    private final UniversalAdapter adapter;
+    private final int currentAccount;
+    private final ImageView emptyImage;
+    private final TextView emptyText;
+    public final FrameLayout emptyView;
     private ArrayList history;
-    private UniversalRecyclerView recyclerView;
-    private Theme.ResourcesProvider resourcesProvider;
-
-    protected abstract void onClick(String str);
-
-    protected void onScrolled(RecyclerView recyclerView, int i, int i2) {
-    }
+    private Utilities.Callback onClickListener;
+    private final UniversalRecyclerView recyclerView;
+    private final Theme.ResourcesProvider resourcesProvider;
 
     public HashtagHistoryView(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
         this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
-        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
@@ -59,75 +48,33 @@ public abstract class HashtagHistoryView extends FrameLayout {
             }
         }, resourcesProvider);
         this.recyclerView = universalRecyclerView;
-        universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                super.onScrolled(recyclerView, i2, i3);
-                HashtagHistoryView.this.onScrolled(recyclerView, i2, i3);
-            }
-        });
-        this.adapter = (UniversalAdapter) this.recyclerView.getAdapter();
-        addView(this.recyclerView, -1, -1);
-        this.emptyView = new FrameLayout(context);
+        universalRecyclerView.setClipToPadding(false);
+        UniversalAdapter universalAdapter = (UniversalAdapter) universalRecyclerView.getAdapter();
+        this.adapter = universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        addView(universalRecyclerView, -1, -1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.emptyView = frameLayout;
         ImageView imageView = new ImageView(context);
         this.emptyImage = imageView;
         int i2 = Theme.key_windowBackgroundWhiteGrayIcon;
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.emptyImage.setScaleType(ImageView.ScaleType.CENTER);
-        this.emptyImage.setImageResource(R.drawable.large_hashtags);
-        this.emptyView.addView(this.emptyImage, LayoutHelper.createFrame(56, 56, 49));
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.large_hashtags);
+        frameLayout.addView(imageView, LayoutHelper.createFrame(56, 56, 49));
         TextView textView = new TextView(context);
         this.emptyText = textView;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
-        this.emptyText.setText(LocaleController.getString(R.string.HashtagSearchPlaceholder));
-        this.emptyText.setGravity(17);
-        this.emptyView.addView(this.emptyText, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
-        addView(this.emptyView, LayoutHelper.createFrame(210, -2, 17));
-        this.recyclerView.setEmptyView(this.emptyView);
+        textView.setText(LocaleController.getString(R.string.HashtagSearchPlaceholder));
+        textView.setGravity(17);
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
+        addView(frameLayout, LayoutHelper.createFrame(210, -2, 17));
+        universalRecyclerView.setEmptyView(frameLayout);
     }
 
-    public void show(final boolean z) {
-        if (z == isShowing()) {
-            return;
-        }
-        AnimatorSet animatorSet = this.animation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.animation = null;
-        }
-        if (z) {
-            setVisibility(0);
-        }
-        setTag(z ? 1 : null);
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.animation = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HashtagHistoryView, Float>) View.ALPHA, z ? 1.0f : 0.0f));
-        this.animation.setInterpolator(CubicBezierInterpolator.EASE_IN);
-        this.animation.setDuration(180L);
-        this.animation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (animator.equals(HashtagHistoryView.this.animation)) {
-                    HashtagHistoryView.this.animation = null;
-                    if (z) {
-                        return;
-                    }
-                    HashtagHistoryView.this.setVisibility(8);
-                }
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (animator.equals(HashtagHistoryView.this.animation)) {
-                    HashtagHistoryView.this.animation = null;
-                }
-            }
-        });
-        this.animation.start();
-    }
-
-    public boolean isShowing() {
-        return getTag() != null;
+    public void setTopBottomPadding(int i, int i2) {
+        this.recyclerView.setPadding(0, i, 0, i2);
+        this.emptyView.setTranslationY((i - i2) / 2.0f);
     }
 
     public void update() {
@@ -156,8 +103,19 @@ public abstract class HashtagHistoryView extends FrameLayout {
             HashtagSearchController.getInstance(this.currentAccount).clearHistory();
             update();
         } else {
-            onClick((String) this.history.get(i2 - 1));
+            Utilities.Callback callback = this.onClickListener;
+            if (callback != null) {
+                callback.run((String) this.history.get(i2 - 1));
+            }
         }
+    }
+
+    public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
+        this.onClickListener = callback;
+    }
+
+    public void setOnScrollListener(RecyclerView.OnScrollListener onScrollListener) {
+        this.recyclerView.addOnScrollListener(onScrollListener);
     }
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {

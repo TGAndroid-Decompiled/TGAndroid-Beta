@@ -26,6 +26,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
@@ -144,7 +145,7 @@ public class ChatThemeController extends BaseController {
             ConnectionsManager connectionsManager = getConnectionsManager();
             DispatchQueue dispatchQueue = chatThemeQueue;
             Objects.requireNonNull(dispatchQueue);
-            connectionsManager.sendRequestTyped(getchatthemes, new ChatThemeController$$ExternalSyntheticLambda10(dispatchQueue), new Utilities.Callback2() {
+            connectionsManager.sendRequestTyped(getchatthemes, new ChatThemeController$$ExternalSyntheticLambda8(dispatchQueue), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$requestAllChatThemes$3(resultCallback, z, (TL_account.Themes) obj, (TLRPC.TL_error) obj2);
@@ -602,7 +603,7 @@ public class ChatThemeController extends BaseController {
         getSharedPreferences().edit().clear().apply();
     }
 
-    public void processUpdate(TLRPC.TL_updatePeerWallpaper tL_updatePeerWallpaper) {
+    public void processUpdate(TL_update.TL_updatePeerWallpaper tL_updatePeerWallpaper) {
         if (tL_updatePeerWallpaper.peer instanceof TLRPC.TL_peerUser) {
             final TLRPC.UserFull userFull = getMessagesController().getUserFull(tL_updatePeerWallpaper.peer.user_id);
             if (userFull == null || wallpaperEquals(userFull.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
@@ -876,8 +877,8 @@ public class ChatThemeController extends BaseController {
                 if (i >= updates.updates.size()) {
                     break;
                 }
-                if (updates.updates.get(i) instanceof TLRPC.TL_updateNewMessage) {
-                    TLRPC.MessageAction messageAction = ((TLRPC.TL_updateNewMessage) updates.updates.get(i)).message.action;
+                if (updates.updates.get(i) instanceof TL_update.TL_updateNewMessage) {
+                    TLRPC.MessageAction messageAction = ((TL_update.TL_updateNewMessage) updates.updates.get(i)).message.action;
                     if (messageAction instanceof TLRPC.TL_messageActionSetChatWallPaper) {
                         if (z) {
                             TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) messageAction;
@@ -996,7 +997,7 @@ public class ChatThemeController extends BaseController {
             ConnectionsManager connectionsManager = getConnectionsManager();
             DispatchQueue dispatchQueue = chatThemeQueue;
             Objects.requireNonNull(dispatchQueue);
-            connectionsManager.sendRequestTyped(tl_getUniqueGiftChatThemes, new ChatThemeController$$ExternalSyntheticLambda10(dispatchQueue), new Utilities.Callback2() {
+            connectionsManager.sendRequestTyped(tl_getUniqueGiftChatThemes, new ChatThemeController$$ExternalSyntheticLambda8(dispatchQueue), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
                     this.f$0.lambda$requestNextChatThemes$21(resultCallback, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);

@@ -82,7 +82,7 @@ public class LogoutActivity extends BaseFragment {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setTitle(LocaleController.getString(R.string.LogOutTitle));
         INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
+        if (iNavigationLayout != null && iNavigationLayout.isLayersLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);

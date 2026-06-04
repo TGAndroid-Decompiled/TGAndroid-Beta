@@ -4,18 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.ProfileActivity;
 
-public class JoinToSendSettingsView extends LinearLayout {
+public abstract class JoinToSendSettingsView extends LinearLayout {
     private final int MAXSPEC;
     private TLRPC.Chat currentChat;
     public boolean isJoinRequest;
@@ -28,9 +35,7 @@ public class JoinToSendSettingsView extends LinearLayout {
     private ValueAnimator toggleAnimator;
     private float toggleValue;
 
-    public boolean onJoinRequestToggle(boolean z, Runnable runnable) {
-        return true;
-    }
+    public abstract boolean onJoinRequestToggle(boolean z, Runnable runnable);
 
     public boolean onJoinToSendToggle(boolean z, Runnable runnable) {
         return true;
@@ -179,6 +184,7 @@ public class JoinToSendSettingsView extends LinearLayout {
     }
 
     public void showJoinToSend(boolean z) {
+        this.joinHeaderCell.setVisibility(z ? 0 : 8);
         this.joinToSendCell.setVisibility(z ? 0 : 8);
         if (!z) {
             this.isJoinToSend = true;
@@ -186,6 +192,46 @@ public class JoinToSendSettingsView extends LinearLayout {
             updateToggleValue(1.0f);
         }
         requestLayout();
+    }
+
+    public void setFullInfo(final BaseFragment baseFragment, final TLRPC.ChatFull chatFull) {
+        int i;
+        int i2;
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.currentChat);
+        boolean zIsPublic = ChatObject.isPublic(this.currentChat);
+        if (chatFull != null && chatFull.guard_bot_id != 0) {
+            String str = "@" + DialogObject.getPublicUsername(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(chatFull.guard_bot_id)));
+            TextInfoPrivacyCell textInfoPrivacyCell = this.joinRequestInfoCell;
+            if (zIsChannelAndNotMegaGroup) {
+                i2 = R.string.ChannelSettingsJoinRequestInfoManagedBy;
+            } else if (zIsPublic) {
+                i2 = R.string.GroupPublicSettingsJoinRequestInfoManagedBy;
+            } else {
+                i2 = R.string.GroupPrivateSettingsJoinRequestInfoManagedBy;
+            }
+            textInfoPrivacyCell.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i2, str), Theme.getColor(Theme.key_telegram_color_text), new Runnable() {
+                @Override
+                public final void run() {
+                    JoinToSendSettingsView.lambda$setFullInfo$6(chatFull, baseFragment);
+                }
+            }));
+            return;
+        }
+        TextInfoPrivacyCell textInfoPrivacyCell2 = this.joinRequestInfoCell;
+        if (zIsChannelAndNotMegaGroup) {
+            i = R.string.ChannelSettingsJoinRequestInfo2;
+        } else if (zIsPublic) {
+            i = R.string.GroupPublicSettingsJoinRequestInfo2;
+        } else {
+            i = R.string.GroupPrivateSettingsJoinRequestInfo2;
+        }
+        textInfoPrivacyCell2.setText(LocaleController.getString(i));
+    }
+
+    public static void lambda$setFullInfo$6(TLRPC.ChatFull chatFull, BaseFragment baseFragment) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", chatFull.guard_bot_id);
+        baseFragment.presentFragment(new ProfileActivity(bundle));
     }
 
     public void lambda$new$3(boolean z) {
@@ -209,7 +255,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$setJoinToSend$6(valueAnimator2);
+                this.f$0.lambda$setJoinToSend$7(valueAnimator2);
             }
         });
         this.toggleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -226,7 +272,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.start();
     }
 
-    public void lambda$setJoinToSend$6(ValueAnimator valueAnimator) {
+    public void lambda$setJoinToSend$7(ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.toggleValue = fFloatValue;
         updateToggleValue(fFloatValue);
@@ -234,34 +280,36 @@ public class JoinToSendSettingsView extends LinearLayout {
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        HeaderCell headerCell = this.joinHeaderCell;
-        int i5 = i3 - i;
-        int measuredHeight = headerCell.getMeasuredHeight();
-        headerCell.layout(0, 0, i5, measuredHeight);
+        int measuredHeight;
         if (this.joinToSendCell.getVisibility() == 0) {
+            HeaderCell headerCell = this.joinHeaderCell;
+            int i5 = i3 - i;
+            int measuredHeight2 = headerCell.getMeasuredHeight();
+            headerCell.layout(0, 0, i5, measuredHeight2);
             TextCheckCell textCheckCell = this.joinToSendCell;
-            int measuredHeight2 = textCheckCell.getMeasuredHeight() + measuredHeight;
-            textCheckCell.layout(0, measuredHeight, i5, measuredHeight2);
-            measuredHeight = measuredHeight2;
+            measuredHeight = textCheckCell.getMeasuredHeight() + measuredHeight2;
+            textCheckCell.layout(0, measuredHeight2, i5, measuredHeight);
+        } else {
+            measuredHeight = 0;
         }
         TextCheckCell textCheckCell2 = this.joinRequestCell;
+        int i6 = i3 - i;
         int measuredHeight3 = textCheckCell2.getMeasuredHeight() + measuredHeight;
-        textCheckCell2.layout(0, measuredHeight, i5, measuredHeight3);
+        textCheckCell2.layout(0, measuredHeight, i6, measuredHeight3);
         TextInfoPrivacyCell textInfoPrivacyCell = this.joinToSendInfoCell;
-        textInfoPrivacyCell.layout(0, measuredHeight3, i5, textInfoPrivacyCell.getMeasuredHeight() + measuredHeight3);
+        textInfoPrivacyCell.layout(0, measuredHeight3, i6, textInfoPrivacyCell.getMeasuredHeight() + measuredHeight3);
         TextInfoPrivacyCell textInfoPrivacyCell2 = this.joinRequestInfoCell;
-        textInfoPrivacyCell2.layout(0, measuredHeight3, i5, textInfoPrivacyCell2.getMeasuredHeight() + measuredHeight3);
+        textInfoPrivacyCell2.layout(0, measuredHeight3, i6, textInfoPrivacyCell2.getMeasuredHeight() + measuredHeight3);
     }
 
     private int calcHeight() {
         float measuredHeight;
-        float measuredHeight2 = this.joinHeaderCell.getMeasuredHeight();
         if (this.joinToSendCell.getVisibility() == 0) {
-            measuredHeight = this.joinToSendCell.getMeasuredHeight() + (this.joinRequestCell.getMeasuredHeight() * this.toggleValue);
+            measuredHeight = this.joinHeaderCell.getMeasuredHeight() + this.joinToSendCell.getMeasuredHeight() + (this.joinRequestCell.getMeasuredHeight() * this.toggleValue);
         } else {
             measuredHeight = this.joinRequestCell.getMeasuredHeight();
         }
-        return (int) (measuredHeight2 + measuredHeight + AndroidUtilities.lerp(this.joinToSendInfoCell.getMeasuredHeight(), this.joinRequestInfoCell.getMeasuredHeight(), this.toggleValue));
+        return (int) (measuredHeight + AndroidUtilities.lerp(this.joinToSendInfoCell.getMeasuredHeight(), this.joinRequestInfoCell.getMeasuredHeight(), this.toggleValue));
     }
 
     @Override

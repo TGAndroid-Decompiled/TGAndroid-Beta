@@ -1470,25 +1470,31 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase2.executeFast("PRAGMA user_version = 172").stepThis().dispose();
             i5 = 172;
         }
-        if (i5 != 172) {
+        if (i5 == 172) {
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes_4_dialogs ON messages_holes(uid, end);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes_4_topics ON messages_holes_topics(uid, topic_id, end);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_4_saved_dialogs ON saved_dialogs(date);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_4_dialogs ON dialogs(date);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_4_saved_dialogs ON saved_dialogs(last_mid);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_4_dialogs ON dialogs(last_mid);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_4_saved_dialogs ON saved_dialogs(folder_id);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_4_dialogs ON dialogs(folder_id);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_4_saved_dialogs ON saved_dialogs(flags);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_4_dialogs ON dialogs(flags);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS uid_end_messages_holes;").stepThis().dispose();
+            sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS date_idx_dialogs;").stepThis().dispose();
+            sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS last_mid_idx_dialogs;").stepThis().dispose();
+            sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS folder_id_idx_dialogs;").stepThis().dispose();
+            sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS flags_idx_dialogs;").stepThis().dispose();
+            sQLiteDatabase2.executeFast("PRAGMA user_version = 173").stepThis().dispose();
+            i5 = 173;
+        }
+        if (i5 != 173) {
             return i5;
         }
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes_4_dialogs ON messages_holes(uid, end);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_end_messages_holes_4_topics ON messages_holes_topics(uid, topic_id, end);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_4_saved_dialogs ON saved_dialogs(date);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS date_idx_4_dialogs ON dialogs(date);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_4_saved_dialogs ON saved_dialogs(last_mid);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS last_mid_idx_4_dialogs ON dialogs(last_mid);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_4_saved_dialogs ON saved_dialogs(folder_id);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS folder_id_idx_4_dialogs ON dialogs(folder_id);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_4_saved_dialogs ON saved_dialogs(flags);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS flags_idx_4_dialogs ON dialogs(flags);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS uid_end_messages_holes;").stepThis().dispose();
-        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS date_idx_dialogs;").stepThis().dispose();
-        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS last_mid_idx_dialogs;").stepThis().dispose();
-        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS folder_id_idx_dialogs;").stepThis().dispose();
-        sQLiteDatabase2.executeFast("DROP INDEX IF EXISTS flags_idx_dialogs;").stepThis().dispose();
-        return 173;
+        sQLiteDatabase2.executeFast("CREATE TABLE web_browser_settings(data BLOB)").stepThis().dispose();
+        sQLiteDatabase2.executeFast("PRAGMA user_version = 174").stepThis().dispose();
+        return 174;
     }
 
     private static void executeNoException(SQLiteDatabase sQLiteDatabase, String str) {

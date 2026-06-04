@@ -149,6 +149,7 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -790,7 +791,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);
@@ -1360,6 +1361,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).checkPromoInfo(true);
         ConnectionsManager.getInstance(this.currentAccount).updateDcSettings();
         MessagesController.getInstance(this.currentAccount).loadAppConfig();
+        MessagesController.getInstance(this.currentAccount).lambda$removeWebBrowserException$488();
         MessagesController.getInstance(this.currentAccount).checkPeerColors(false);
         if (tL_auth_authorization.future_auth_token != null) {
             AuthTokensHelper.saveLogInToken(tL_auth_authorization);
@@ -10744,9 +10746,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            Iterator it = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateSentPhoneCode.class).iterator();
+            Iterator it = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateSentPhoneCode.class).iterator();
             while (it.hasNext()) {
-                final TLRPC.TL_updateSentPhoneCode tL_updateSentPhoneCode = (TLRPC.TL_updateSentPhoneCode) it.next();
+                final TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode = (TL_update.TL_updateSentPhoneCode) it.next();
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -10764,7 +10766,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             });
         }
 
-        public void lambda$setParams$17(TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, TLRPC.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
+        public void lambda$setParams$17(TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode, TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
             LoginActivity.this.paid = true;
             LoginActivity loginActivity = (LoginActivity) LaunchActivity.findFragment(LoginActivity.class);
             if (loginActivity == null) {

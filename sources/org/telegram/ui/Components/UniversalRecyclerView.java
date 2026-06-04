@@ -286,6 +286,22 @@ public class UniversalRecyclerView extends RecyclerListView {
         return findViewByPosition(i2);
     }
 
+    public View findViewByItemObject(Object obj) {
+        int i = 0;
+        while (true) {
+            if (i >= this.adapter.getItemCount()) {
+                i = -1;
+                break;
+            }
+            UItem item = this.adapter.getItem(i);
+            if (item != null && item.object == obj) {
+                break;
+            }
+            i++;
+        }
+        return findViewByPosition(i);
+    }
+
     public int findPositionByItemId(int i) {
         for (int i2 = 0; i2 < this.adapter.getItemCount(); i2++) {
             UItem item = this.adapter.getItem(i2);

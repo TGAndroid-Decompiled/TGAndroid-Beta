@@ -22,6 +22,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonBuilder;
 import org.telegram.tgnet.json.TLJsonParser;
 import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_update;
 
 public class GroupCallMessagesController extends BaseController {
     private static volatile GroupCallMessagesController[] Instance = new GroupCallMessagesController[4];
@@ -38,7 +39,7 @@ public class GroupCallMessagesController extends BaseController {
 
     private static native byte[] groupCallMessageEncryptImpl(long j, byte[] bArr);
 
-    public void processUpdate(TLRPC.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
+    public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
         final long j = tL_updateGroupCallMessage.call.id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallMessage.message.from_id);
         long j2 = tL_updateGroupCallMessage.message.id;
@@ -54,7 +55,7 @@ public class GroupCallMessagesController extends BaseController {
         });
     }
 
-    public void processUpdate(TLRPC.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
+    public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
         final long j = tL_updateGroupCallEncryptedMessage.call.id;
         final long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallEncryptedMessage.from_id);
         final byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;

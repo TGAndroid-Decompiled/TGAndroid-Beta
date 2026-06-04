@@ -36,6 +36,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -51,7 +52,7 @@ import androidx.core.graphics.ColorUtils;
 import com.google.common.primitives.Longs;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -68,6 +69,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BackupAgent;
 import org.telegram.messenger.BetaUpdate;
+import org.telegram.messenger.BotGuardHelper;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
@@ -102,6 +104,7 @@ import org.telegram.messenger.pip.activity.IPipActivity;
 import org.telegram.messenger.pip.activity.IPipActivityHandler;
 import org.telegram.messenger.pip.activity.IPipActivityListener;
 import org.telegram.messenger.utils.FrameMetricsOverlayView;
+import org.telegram.messenger.utils.WindowVisibilityManager;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ConnectionsManager;
@@ -219,6 +222,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private ArrayList importingStickersEmoji;
     private String importingStickersSoftware;
     private final int instanceId;
+    private boolean isInPictureInPictureMode;
     private boolean isNavigationBarColorFrozen;
     private boolean isStarted;
     private RelativeLayout launchLayout;
@@ -251,6 +255,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private final PipActivityController pipActivityController;
     private final IPipActivityHandler pipActivityHandler;
     private Dialog proxyErrorDialog;
+    private int reasonsToHideDecorView;
+    private int reasonsToHideMainContent;
     private SparseIntArray requestedPermissions;
     private int requsetPermissionsPointer;
     public ActionBarLayout rightActionBarLayout;
@@ -316,6 +322,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.batteryReceiver = new LiteMode.BatteryReceiver();
         this.firstAppUpdateCheck = true;
         this.instanceId = System.identityHashCode(this);
+        this.reasonsToHideMainContent = 0;
+        this.reasonsToHideDecorView = 0;
     }
 
     public Dialog getVisibleDialog() {
@@ -404,24 +412,33 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setContentView(this.frameLayout);
         this.rootAnimatedInsetsListener = new WindowAnimatedInsetsProvider(this.frameLayout);
         this.pipActivityController.addPipListener(new IPipActivityListener() {
-            @Override
-            public void onCompleteExitFromPip(boolean z) {
-                IPipActivityListener.CC.$default$onCompleteExitFromPip(this, z);
-            }
+            final ActivityVisibilityController activityVisibilityController;
 
             @Override
             public void onStartEnterToPip() {
                 IPipActivityListener.CC.$default$onStartEnterToPip(this);
             }
 
+            {
+                this.activityVisibilityController = LaunchActivity.this.createActivityVisibilityController(false);
+            }
+
             @Override
             public void onCompleteEnterToPip() {
-                LaunchActivity.this.frameLayout.setVisibility(8);
+                LaunchActivity.this.isInPictureInPictureMode = true;
+                this.activityVisibilityController.hide();
+                LaunchActivity.this.checkDecorViewVisibility();
             }
 
             @Override
             public void onStartExitFromPip(boolean z) {
-                LaunchActivity.this.frameLayout.setVisibility(0);
+                this.activityVisibilityController.show();
+            }
+
+            @Override
+            public void onCompleteExitFromPip(boolean z) {
+                LaunchActivity.this.isInPictureInPictureMode = false;
+                LaunchActivity.this.checkDecorViewVisibility();
             }
         });
         ((ViewGroup) getWindow().getDecorView()).addView(this.pipActivityController.getPipContentView());
@@ -504,6 +521,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.tlSchemeParseException);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.memoryLeakFoundException);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.guardBotDecisionResult);
         Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -1291,7 +1309,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.layersActionBarLayout.rebuildLogout();
             this.rightActionBarLayout.rebuildLogout();
         }
-        lambda$runLinkRequest$99(new IntroActivity().setOnLogout());
+        lambda$runLinkRequest$100(new IntroActivity().setOnLogout());
     }
 
     public void clearFragments() {
@@ -1338,6 +1356,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersImportComplete);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatSwitchedForum);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.guardBotDecisionResult);
         }
         int i2 = UserConfig.selectedAccount;
         this.currentAccount = i2;
@@ -1359,6 +1378,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserShowLimitReachedDialog);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatSwitchedForum);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.guardBotDecisionResult);
     }
 
     private void checkLayout() {
@@ -1583,7 +1603,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return handleIntent(intent, z, z2, z3, null, true, false);
     }
 
-    private boolean handleIntent(android.content.Intent r118, boolean r119, boolean r120, boolean r121, org.telegram.messenger.browser.Browser.Progress r122, boolean r123, boolean r124) throws java.lang.Throwable {
+    private boolean handleIntent(android.content.Intent r120, boolean r121, boolean r122, boolean r123, org.telegram.messenger.browser.Browser.Progress r124, boolean r125, boolean r126) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean, boolean):boolean");
     }
 
@@ -1625,7 +1645,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$handleIntent$11(AlertDialog alertDialog, TLRPC.TL_error tL_error, String str, Bundle bundle, TLObject tLObject, TL_account.sendConfirmPhoneCode sendconfirmphonecode) {
         alertDialog.dismiss();
         if (tL_error == null) {
-            lambda$runLinkRequest$99(new LoginActivity().cancelAccountDeletion(str, bundle, (TLRPC.TL_auth_sentCode) tLObject));
+            lambda$runLinkRequest$100(new LoginActivity().cancelAccountDeletion(str, bundle, (TLRPC.TL_auth_sentCode) tLObject));
         } else {
             AlertsCreator.processError(this.currentAccount, tL_error, getActionBarLayout().getLastFragment(), sendconfirmphonecode, new Object[0]);
         }
@@ -1684,7 +1704,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 LaunchActivity.lambda$handleIntent$16(iArr, dialogId, messageMedia, i2, z, i3, j);
             }
         });
-        lambda$runLinkRequest$99(locationActivity);
+        lambda$runLinkRequest$100(locationActivity);
     }
 
     public static void lambda$handleIntent$16(int[] iArr, long j, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j2) {
@@ -1801,7 +1821,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }).setNegativeButton(getString(R.string.Cancel), null).show();
             return;
         }
-        lambda$runLinkRequest$99(loginActivityChangeEmail);
+        lambda$runLinkRequest$100(loginActivityChangeEmail);
     }
 
     public void lambda$openEmailSettings$28() {
@@ -1819,7 +1839,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$openEmailSettings$29(LoginActivity loginActivity, AlertDialog alertDialog, int i) {
-        lambda$runLinkRequest$99(loginActivity);
+        lambda$runLinkRequest$100(loginActivity);
     }
 
     public static int getTimestampFromLink(Uri uri) {
@@ -1955,30 +1975,30 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runCommentRequest$31(final int i, final TLRPC.Chat chat, final Long l, final Integer num, final Integer num2, final Runnable runnable, final String str, final Integer num3, final byte[] bArr, final int i2, final int i3, final TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$runCommentRequest$30(tLObject, i, chat, l, num, num2, runnable, str, num3, bArr, i2, i3, tL_messages_getDiscussionMessage, runnable2);
             }
         });
     }
 
-    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r18, int r19, org.telegram.tgnet.TLRPC.Chat r20, java.lang.Long r21, java.lang.Integer r22, java.lang.Integer r23, java.lang.Runnable r24, java.lang.String r25, java.lang.Integer r26, byte[] r27, int r28, int r29, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r30, java.lang.Runnable r31) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r18, int r19, org.telegram.tgnet.TLRPC.Chat r20, java.lang.Long r21, java.lang.Integer r22, java.lang.Integer r23, java.lang.Runnable r24, java.lang.String r25, java.lang.Integer r26, byte[] r27, int r28, int r29, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r30, java.lang.Runnable r31) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$30(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, java.lang.Integer, byte[], int, int, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
     }
 
-    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final byte[] r25, final int r26, final java.util.ArrayList r27, final int r28) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final byte[] r25, final int r26, final java.util.ArrayList r27, final int r28) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, java.lang.Integer, byte[], int, java.util.ArrayList, int):void");
     }
 
     public void lambda$openTopicRequest$33(final int i, final TLRPC.Chat chat, final int i2, final int i3, final Runnable runnable, final String str, final Integer num, final byte[] bArr, final int i4, final ArrayList arrayList, final int i5, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$openTopicRequest$32(tL_error, tLObject, i, chat, i2, i3, runnable, str, num, bArr, i4, arrayList, i5);
             }
         });
     }
 
-    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, byte[] bArr, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, byte[] bArr, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, NumberFormatException {
         if (tL_error == null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
             LongSparseArray longSparseArray = new LongSparseArray();
@@ -2260,7 +2280,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             MessagesController.getInstance(i).putUser(user, false);
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", user.id);
-            lambda$runLinkRequest$99(new ChatActivity(bundle));
+            lambda$runLinkRequest$100(new ChatActivity(bundle));
         } else {
             StringBuilder sb = new StringBuilder();
             sb.append("cant import contact token. token=");
@@ -2452,7 +2472,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         }
                     });
                 }
-                lambda$runLinkRequest$99(paymentFormActivity);
+                lambda$runLinkRequest$100(paymentFormActivity);
             }
         }
         try {
@@ -2483,7 +2503,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$81(final java.lang.Runnable r68, final boolean r69, final int r70, final int r71, final java.lang.String r72, final java.lang.String r73, final boolean r74, final java.lang.String r75, final java.lang.String r76, final int r77, final java.lang.String r78, final java.lang.String r79, final java.lang.String r80, final java.lang.String r81, final java.lang.String r82, final java.lang.String r83, final java.lang.String r84, final java.lang.String r85, final java.lang.String r86, final java.lang.String r87, final java.lang.String r88, final java.lang.String r89, final boolean r90, final java.lang.Integer r91, final java.lang.Long r92, final java.lang.Long r93, final java.lang.Integer r94, final java.util.HashMap r95, final java.lang.String r96, final java.lang.String r97, final java.lang.String r98, final java.lang.String r99, final org.telegram.tgnet.TLRPC.TL_wallPaper r100, final java.lang.String r101, final java.lang.String r102, final java.lang.String r103, final int r104, final int r105, final java.lang.String r106, final java.lang.String r107, final java.lang.String r108, final org.telegram.messenger.browser.Browser.Progress r109, final boolean r110, final int r111, final java.lang.String r112, final java.lang.String r113, final boolean r114, final java.lang.String r115, final boolean r116, final boolean r117, final boolean r118, final boolean r119, final boolean r120, final java.lang.String r121, final java.lang.Integer r122, final boolean r123, final byte[] r124, final java.lang.String r125, int[] r126, final java.lang.Long r127) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void lambda$runLinkRequest$81(final java.lang.Runnable r68, final boolean r69, final int r70, final int r71, final java.lang.String r72, final java.lang.String r73, final boolean r74, final java.lang.String r75, final java.lang.String r76, final int r77, final java.lang.String r78, final java.lang.String r79, final java.lang.String r80, final java.lang.String r81, final java.lang.String r82, final java.lang.String r83, final java.lang.String r84, final java.lang.String r85, final java.lang.String r86, final java.lang.String r87, final java.lang.String r88, final java.lang.String r89, final boolean r90, final java.lang.Integer r91, final java.lang.Long r92, final java.lang.Long r93, final java.lang.Integer r94, final java.util.HashMap r95, final java.lang.String r96, final java.lang.String r97, final java.lang.String r98, final java.lang.String r99, final org.telegram.tgnet.TLRPC.TL_wallPaper r100, final java.lang.String r101, final java.lang.String r102, final java.lang.String r103, final int r104, final int r105, final java.lang.String r106, final java.lang.String r107, final java.lang.String r108, final org.telegram.messenger.browser.Browser.Progress r109, final boolean r110, final int r111, final java.lang.String r112, final java.lang.String r113, final boolean r114, final java.lang.String r115, final boolean r116, final boolean r117, final boolean r118, final boolean r119, final boolean r120, final java.lang.String r121, final java.lang.Integer r122, final boolean r123, final byte[] r124, final java.lang.String r125, int[] r126, final java.lang.Long r127) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runLinkRequest$81(java.lang.Runnable, boolean, int, int, java.lang.String, java.lang.String, boolean, java.lang.String, java.lang.String, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.Integer, java.lang.Long, java.lang.Long, java.lang.Integer, java.util.HashMap, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$TL_wallPaper, java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, org.telegram.messenger.browser.Browser$Progress, boolean, int, java.lang.String, java.lang.String, boolean, java.lang.String, boolean, boolean, boolean, boolean, boolean, java.lang.String, java.lang.Integer, boolean, byte[], java.lang.String, int[], java.lang.Long):void");
     }
 
@@ -2572,7 +2592,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putLong("chat_id", -l.longValue());
         }
         bundle.putInt("open_story_album_id", i);
-        lambda$runLinkRequest$99(new ProfileActivity(bundle));
+        lambda$runLinkRequest$100(new ProfileActivity(bundle));
     }
 
     public void lambda$runLinkRequest$71(final int i, final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final boolean z, final Integer num, final Long l, final Long l2, final Integer num2, final String str13, final HashMap map, final String str14, final String str15, final String str16, final String str17, final TLRPC.TL_wallPaper tL_wallPaper, final String str18, final String str19, final String str20, final String str21, final boolean z2, final String str22, final int i2, final int i3, final String str23, final String str24, final String str25, final Browser.Progress progress, final boolean z3, final int i4, final boolean z4, final int i5, final int i6, final String str26, final String str27, final boolean z5, final String str28, final boolean z6, final boolean z7, final boolean z8, final boolean z9, final boolean z10, final String str29, final Integer num3, final boolean z11, final byte[] bArr, final Long l3, final String str30, final String str31, final TLRPC.User user, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -3047,19 +3067,40 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j, chat.title))).show(true);
     }
 
-    public void lambda$runLinkRequest$89(final int i, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        if (tL_error == null) {
-            MessagesController.getInstance(i).processUpdates((TLRPC.Updates) tLObject, false);
+    public void lambda$runLinkRequest$90(final Runnable runnable, final int i, TLRPC.ChatInviteJoinResult chatInviteJoinResult, final TLRPC.TL_error tL_error) {
+        final TLRPC.Updates updates;
+        if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+            TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+            MessagesController.getInstance(this.currentAccount).processUpdates(updates2, false);
+            updates = updates2;
+        } else {
+            if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                final TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$runLinkRequest$88(tL_chatInviteJoinResultWebView);
+                    }
+                });
+            }
+            updates = null;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$88(runnable, tL_error, tLObject, i);
+                this.f$0.lambda$runLinkRequest$89(runnable, tL_error, updates, i);
             }
         });
     }
 
-    public void lambda$runLinkRequest$88(Runnable runnable, TLRPC.TL_error tL_error, TLObject tLObject, int i) {
+    public void lambda$runLinkRequest$88(TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView) {
+        MessagesController.getInstance(this.currentAccount).putUsers(tL_chatInviteJoinResultWebView.users, false);
+        BotGuardHelper botGuardHelper = BotGuardHelper.getInstance(this.currentAccount);
+        long j = tL_chatInviteJoinResultWebView.bot_id;
+        botGuardHelper.openGuardBotWebApp(j, j, tL_chatInviteJoinResultWebView.webview);
+    }
+
+    public void lambda$runLinkRequest$89(Runnable runnable, TLRPC.TL_error tL_error, TLRPC.Updates updates, int i) {
         if (isFinishing()) {
             return;
         }
@@ -3069,28 +3110,24 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             FileLog.e(e);
         }
         if (tL_error == null) {
-            if (this.actionBarLayout != null) {
-                TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                if (updates.chats.isEmpty()) {
-                    return;
-                }
-                TLRPC.Chat chat = updates.chats.get(0);
-                chat.left = false;
-                chat.kicked = false;
-                MessagesController.getInstance(i).putUsers(updates.users, false);
-                MessagesController.getInstance(i).putChats(updates.chats, false);
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", chat.id);
-                if (!this.mainFragmentsStack.isEmpty()) {
-                    if (!MessagesController.getInstance(i).checkCanOpenChat(bundle, (BaseFragment) this.mainFragmentsStack.get(r0.size() - 1))) {
-                        return;
-                    }
-                }
-                ChatActivity chatActivity = new ChatActivity(bundle);
-                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                getActionBarLayout().presentFragment(chatActivity, false, true, true, false);
+            if (this.actionBarLayout == null || updates == null || updates.chats.isEmpty()) {
                 return;
             }
+            TLRPC.Chat chat = updates.chats.get(0);
+            chat.left = false;
+            chat.kicked = false;
+            MessagesController.getInstance(i).putUsers(updates.users, false);
+            MessagesController.getInstance(i).putChats(updates.chats, false);
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", chat.id);
+            if (!this.mainFragmentsStack.isEmpty()) {
+                if (!MessagesController.getInstance(i).checkCanOpenChat(bundle, (BaseFragment) this.mainFragmentsStack.get(r0.size() - 1))) {
+                    return;
+                }
+            }
+            ChatActivity chatActivity = new ChatActivity(bundle);
+            NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+            getActionBarLayout().presentFragment(chatActivity, false, true, true, false);
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -3106,7 +3143,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         showAlertDialog(builder);
     }
 
-    public boolean lambda$runLinkRequest$90(boolean z, int i, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i2, int i3, TopicsFragment topicsFragment) {
+    public boolean lambda$runLinkRequest$91(boolean z, int i, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i2, int i3, TopicsFragment topicsFragment) {
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
@@ -3126,35 +3163,35 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return true;
     }
 
-    public void lambda$runLinkRequest$94(int[] iArr, final int i, final Runnable runnable, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final String str3, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$95(int[] iArr, final int i, final Runnable runnable, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final String str3, TLObject tLObject, final TLRPC.TL_error tL_error) {
         final TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
         if (authorizationform != null) {
             iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TL_account.getPassword(), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject2, TLRPC.TL_error tL_error2) {
-                    this.f$0.lambda$runLinkRequest$92(runnable, i, authorizationform, getauthorizationform, str, str2, str3, tLObject2, tL_error2);
+                    this.f$0.lambda$runLinkRequest$93(runnable, i, authorizationform, getauthorizationform, str, str2, str3, tLObject2, tL_error2);
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$runLinkRequest$93(runnable, tL_error);
+                    this.f$0.lambda$runLinkRequest$94(runnable, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$runLinkRequest$92(final Runnable runnable, final int i, final TL_account.authorizationForm authorizationform, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final String str3, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$93(final Runnable runnable, final int i, final TL_account.authorizationForm authorizationform, final TL_account.getAuthorizationForm getauthorizationform, final String str, final String str2, final String str3, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$91(runnable, tLObject, i, authorizationform, getauthorizationform, str, str2, str3);
+                this.f$0.lambda$runLinkRequest$92(runnable, tLObject, i, authorizationform, getauthorizationform, str, str2, str3);
             }
         });
     }
 
-    public void lambda$runLinkRequest$91(Runnable runnable, TLObject tLObject, int i, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
+    public void lambda$runLinkRequest$92(Runnable runnable, TLObject tLObject, int i, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3162,11 +3199,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (tLObject != null) {
             MessagesController.getInstance(i).putUsers(authorizationform.users, false);
-            lambda$runLinkRequest$99(new PassportActivity(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, str3, authorizationform, (TL_account.Password) tLObject));
+            lambda$runLinkRequest$100(new PassportActivity(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, str3, authorizationform, (TL_account.Password) tLObject));
         }
     }
 
-    public void lambda$runLinkRequest$93(Runnable runnable, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$94(Runnable runnable, TLRPC.TL_error tL_error) {
         try {
             runnable.run();
             if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
@@ -3179,16 +3216,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$96(final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$97(final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$95(runnable, tLObject);
+                this.f$0.lambda$runLinkRequest$96(runnable, tLObject);
             }
         });
     }
 
-    public void lambda$runLinkRequest$95(Runnable runnable, TLObject tLObject) {
+    public void lambda$runLinkRequest$96(Runnable runnable, TLObject tLObject) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3200,16 +3237,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$98(final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$99(final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$97(runnable, tLObject, tL_error);
+                this.f$0.lambda$runLinkRequest$98(runnable, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$runLinkRequest$97(Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$98(Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3228,16 +3265,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$101(final Runnable runnable, final TLRPC.TL_wallPaper tL_wallPaper, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$102(final Runnable runnable, final TLRPC.TL_wallPaper tL_wallPaper, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$100(runnable, tLObject, tL_wallPaper, tL_error);
+                this.f$0.lambda$runLinkRequest$101(runnable, tLObject, tL_wallPaper, tL_error);
             }
         });
     }
 
-    public void lambda$runLinkRequest$100(Runnable runnable, TLObject tLObject, TLRPC.TL_wallPaper tL_wallPaper, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$101(Runnable runnable, TLObject tLObject, TLRPC.TL_wallPaper tL_wallPaper, TLRPC.TL_error tL_error) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3255,13 +3292,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(tL_wallPaper2, null, true, false);
             TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
             themePreviewActivity.setInitialModes(wallPaperSettings2.blur, wallPaperSettings2.motion, wallPaperSettings2.intensity);
-            lambda$runLinkRequest$99(themePreviewActivity);
+            lambda$runLinkRequest$100(themePreviewActivity);
             return;
         }
         showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.ErrorOccurred) + "\n" + tL_error.text));
     }
 
-    public void lambda$runLinkRequest$102(Browser.Progress progress) {
+    public void lambda$runLinkRequest$103(Browser.Progress progress) {
         this.loadingThemeFileName = null;
         this.loadingThemeWallpaperName = null;
         this.loadingThemeWallpaper = null;
@@ -3273,29 +3310,29 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$104(final AlertDialog alertDialog, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$105(final AlertDialog alertDialog, final Runnable runnable, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$103(tLObject, alertDialog, runnable, tL_error);
+                this.f$0.lambda$runLinkRequest$104(tLObject, alertDialog, runnable, tL_error);
             }
         });
     }
 
-    public void lambda$runLinkRequest$103(org.telegram.tgnet.TLObject r6, org.telegram.ui.ActionBar.AlertDialog r7, java.lang.Runnable r8, org.telegram.tgnet.TLRPC.TL_error r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runLinkRequest$103(org.telegram.tgnet.TLObject, org.telegram.ui.ActionBar.AlertDialog, java.lang.Runnable, org.telegram.tgnet.TLRPC$TL_error):void");
+    public void lambda$runLinkRequest$104(org.telegram.tgnet.TLObject r6, org.telegram.ui.ActionBar.AlertDialog r7, java.lang.Runnable r8, org.telegram.tgnet.TLRPC.TL_error r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runLinkRequest$104(org.telegram.tgnet.TLObject, org.telegram.ui.ActionBar.AlertDialog, java.lang.Runnable, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 
-    public void lambda$runLinkRequest$106(final int[] iArr, final int i, final Runnable runnable, final Integer num, final Integer num2, final Long l, final Integer num3, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$107(final int[] iArr, final int i, final Runnable runnable, final Integer num, final Integer num2, final Long l, final Integer num3, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$105(tLObject, iArr, i, runnable, num, num2, l, num3);
+                this.f$0.lambda$runLinkRequest$106(tLObject, iArr, i, runnable, num, num2, l, num3);
             }
         });
     }
 
-    public void lambda$runLinkRequest$105(TLObject tLObject, int[] iArr, int i, Runnable runnable, Integer num, Integer num2, Long l, Integer num3) {
+    public void lambda$runLinkRequest$106(TLObject tLObject, int[] iArr, int i, Runnable runnable, Integer num, Integer num2, Long l, Integer num3) {
         if (tLObject instanceof TLRPC.TL_messages_chats) {
             TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
             if (!tL_messages_chats.chats.isEmpty()) {
@@ -3312,7 +3349,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         showAlertDialog(AlertsCreator.createNoAccessAlert(this, LocaleController.getString(R.string.DialogNotAvailable), LocaleController.getString(R.string.LinkNotFound), null));
     }
 
-    public static void lambda$runLinkRequest$107(Runnable runnable) {
+    public static void lambda$runLinkRequest$108(Runnable runnable) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3320,7 +3357,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$110(final Bundle bundle, final Long l, int[] iArr, final Runnable runnable, final boolean z, final Browser.Progress progress, final Long l2, final Integer num, final Integer num2, final byte[] bArr, final BaseFragment baseFragment, final int i) {
+    public void lambda$runLinkRequest$111(final Bundle bundle, final Long l, int[] iArr, final Runnable runnable, final boolean z, final Browser.Progress progress, final Long l2, final Integer num, final Integer num2, final byte[] bArr, final BaseFragment baseFragment, final int i) {
         if (getActionBarLayout().presentFragment(new ChatActivity(bundle))) {
             return;
         }
@@ -3331,21 +3368,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         iArr[0] = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getChannels, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$runLinkRequest$109(runnable, z, l, progress, l2, num, num2, bArr, baseFragment, i, bundle, tLObject, tL_error);
+                this.f$0.lambda$runLinkRequest$110(runnable, z, l, progress, l2, num, num2, bArr, baseFragment, i, bundle, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$runLinkRequest$109(final Runnable runnable, final boolean z, final Long l, final Browser.Progress progress, final Long l2, final Integer num, final Integer num2, final byte[] bArr, final BaseFragment baseFragment, final int i, final Bundle bundle, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$110(final Runnable runnable, final boolean z, final Long l, final Browser.Progress progress, final Long l2, final Integer num, final Integer num2, final byte[] bArr, final BaseFragment baseFragment, final int i, final Bundle bundle, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$108(runnable, tLObject, z, l, progress, l2, num, num2, bArr, baseFragment, i, bundle);
+                this.f$0.lambda$runLinkRequest$109(runnable, tLObject, z, l, progress, l2, num, num2, bArr, baseFragment, i, bundle);
             }
         });
     }
 
-    public void lambda$runLinkRequest$108(Runnable runnable, TLObject tLObject, boolean z, Long l, Browser.Progress progress, Long l2, Integer num, Integer num2, byte[] bArr, BaseFragment baseFragment, int i, Bundle bundle) {
+    public void lambda$runLinkRequest$109(Runnable runnable, TLObject tLObject, boolean z, Long l, Browser.Progress progress, Long l2, Integer num, Integer num2, byte[] bArr, BaseFragment baseFragment, int i, Bundle bundle) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3375,16 +3412,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         showAlertDialog(AlertsCreator.createNoAccessAlert(this, LocaleController.getString(R.string.DialogNotAvailable), LocaleController.getString(R.string.LinkNotFound), null));
     }
 
-    public void lambda$runLinkRequest$112(final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$runLinkRequest$113(final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$runLinkRequest$111(tLObject);
+                this.f$0.lambda$runLinkRequest$112(tLObject);
             }
         });
     }
 
-    public void lambda$runLinkRequest$111(TLObject tLObject) {
+    public void lambda$runLinkRequest$112(TLObject tLObject) {
         if (tLObject instanceof TL_account.resolvedBusinessChatLinks) {
             TL_account.resolvedBusinessChatLinks resolvedbusinesschatlinks = (TL_account.resolvedBusinessChatLinks) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(resolvedbusinesschatlinks.users, false);
@@ -3405,14 +3442,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         showAlertDialog(AlertsCreator.createSimpleAlert(this, LocaleController.getString(R.string.BusinessLink), LocaleController.getString(R.string.BusinessLinkInvalid)));
     }
 
-    public static void lambda$runLinkRequest$113(int i, int[] iArr, Runnable runnable, DialogInterface dialogInterface) {
+    public static void lambda$runLinkRequest$114(int i, int[] iArr, Runnable runnable, DialogInterface dialogInterface) {
         ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
         if (runnable != null) {
             runnable.run();
         }
     }
 
-    public static void lambda$runLinkRequest$114(int i, int[] iArr, Runnable runnable) {
+    public static void lambda$runLinkRequest$115(int i, int[] iArr, Runnable runnable) {
         ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
         if (runnable != null) {
             runnable.run();
@@ -3428,12 +3465,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_getBotApp, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$processWebAppBot$119(progress, i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, map, str14, str15, str16, str17, tL_wallPaper, str18, str19, str20, str21, z2, str22, i2, i3, str23, str24, str25, z3, i4, z4, i5, i6, z5, str28, z8, z9, z10, z11, z12, str29, z13, runnable, user, str27, z7, z6, tLObject, tL_error);
+                this.f$0.lambda$processWebAppBot$120(progress, i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, map, str14, str15, str16, str17, tL_wallPaper, str18, str19, str20, str21, z2, str22, i2, i3, str23, str24, str25, z3, i4, z4, i5, i6, z5, str28, z8, z9, z10, z11, z12, str29, z13, runnable, user, str27, z7, z6, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$processWebAppBot$119(final Browser.Progress progress, final int i, final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final boolean z, final Integer num, final Long l, final Long l2, final Integer num2, final String str13, final HashMap map, final String str14, final String str15, final String str16, final String str17, final TLRPC.TL_wallPaper tL_wallPaper, final String str18, final String str19, final String str20, final String str21, final boolean z2, final String str22, final int i2, final int i3, final String str23, final String str24, final String str25, final boolean z3, final int i4, final boolean z4, final int i5, final int i6, final boolean z5, final String str26, final boolean z6, final boolean z7, final boolean z8, final boolean z9, final boolean z10, final String str27, final boolean z11, final Runnable runnable, final TLRPC.User user, final String str28, final boolean z12, final boolean z13, TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$processWebAppBot$120(final Browser.Progress progress, final int i, final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final boolean z, final Integer num, final Long l, final Long l2, final Integer num2, final String str13, final HashMap map, final String str14, final String str15, final String str16, final String str17, final TLRPC.TL_wallPaper tL_wallPaper, final String str18, final String str19, final String str20, final String str21, final boolean z2, final String str22, final int i2, final int i3, final String str23, final String str24, final String str25, final boolean z3, final int i4, final boolean z4, final int i5, final int i6, final boolean z5, final String str26, final boolean z6, final boolean z7, final boolean z8, final boolean z9, final boolean z10, final String str27, final boolean z11, final Runnable runnable, final TLRPC.User user, final String str28, final boolean z12, final boolean z13, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (progress != null) {
             progress.end();
         }
@@ -3441,7 +3478,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processWebAppBot$115(i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, map, str14, str15, str16, str17, tL_wallPaper, str18, str19, str20, str21, z2, str22, i2, i3, str23, str24, str25, progress, z3, i4, z4, i5, i6, z5, str26, z6, z7, z8, z9, z10, str27, z11);
+                    this.f$0.lambda$processWebAppBot$116(i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, map, str14, str15, str16, str17, tL_wallPaper, str18, str19, str20, str21, z2, str22, i2, i3, str23, str24, str25, progress, z3, i4, z4, i5, i6, z5, str26, z6, z7, z8, z9, z10, str27, z11);
                 }
             });
         } else {
@@ -3449,17 +3486,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processWebAppBot$118(runnable, i, user, tL_messages_botApp, str28, z6, z7, z8, z3, z12, z13, progress);
+                    this.f$0.lambda$processWebAppBot$119(runnable, i, user, tL_messages_botApp, str28, z6, z7, z8, z3, z12, z13, progress);
                 }
             });
         }
     }
 
-    public void lambda$processWebAppBot$115(int i, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, String str12, boolean z, Integer num, Long l, Long l2, Integer num2, String str13, HashMap map, String str14, String str15, String str16, String str17, TLRPC.TL_wallPaper tL_wallPaper, String str18, String str19, String str20, String str21, boolean z2, String str22, int i2, int i3, String str23, String str24, String str25, Browser.Progress progress, boolean z3, int i4, boolean z4, int i5, int i6, boolean z5, String str26, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, String str27, boolean z11) {
+    public void lambda$processWebAppBot$116(int i, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, String str12, boolean z, Integer num, Long l, Long l2, Integer num2, String str13, HashMap map, String str14, String str15, String str16, String str17, TLRPC.TL_wallPaper tL_wallPaper, String str18, String str19, String str20, String str21, boolean z2, String str22, int i2, int i3, String str23, String str24, String str25, Browser.Progress progress, boolean z3, int i4, boolean z4, int i5, int i6, boolean z5, String str26, boolean z6, boolean z7, boolean z8, boolean z9, boolean z10, String str27, boolean z11) {
         runLinkRequest(i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, str12, z, num, l, l2, num2, str13, map, str14, str15, str16, str17, tL_wallPaper, str18, str19, str20, str21, z2, str22, i2, i3, str23, str24, str25, null, null, progress, z3, i4, z4, i5, i6, null, null, z5, str26, z6, z7, z8, z9, z10, str27, null, z11, null);
     }
 
-    public void lambda$processWebAppBot$118(Runnable runnable, final int i, final TLRPC.User user, final TLRPC.TL_messages_botApp tL_messages_botApp, final String str, final boolean z, final boolean z2, final boolean z3, final boolean z4, boolean z5, boolean z6, Browser.Progress progress) {
+    public void lambda$processWebAppBot$119(Runnable runnable, final int i, final TLRPC.User user, final TLRPC.TL_messages_botApp tL_messages_botApp, final String str, final boolean z, final boolean z2, final boolean z3, final boolean z4, boolean z5, boolean z6, Browser.Progress progress) {
         BaseFragment baseFragment;
         runnable.run();
         final AtomicBoolean atomicBoolean = new AtomicBoolean();
@@ -3474,7 +3511,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processWebAppBot$116(baseFragment2, i, user, tL_messages_botApp, atomicBoolean, str, z, z2, z3, z4);
+                this.f$0.lambda$processWebAppBot$117(baseFragment2, i, user, tL_messages_botApp, atomicBoolean, str, z, z2, z3, z4);
             }
         };
         if (z5) {
@@ -3495,7 +3532,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$processWebAppBot$116(BaseFragment baseFragment, int i, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z, boolean z2, boolean z3, boolean z4) {
+    public void lambda$processWebAppBot$117(BaseFragment baseFragment, int i, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z, boolean z2, boolean z3, boolean z4) {
         if (baseFragment == null || !isActive || isFinishing() || isDestroyed()) {
             return;
         }
@@ -3547,7 +3584,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$processAttachedMenuBotFromShortcut$120((TLRPC.User) obj);
+                this.f$0.lambda$processAttachedMenuBotFromShortcut$121((TLRPC.User) obj);
             }
         };
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
@@ -3557,27 +3594,27 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processAttachedMenuBotFromShortcut$122(j, callback);
+                    this.f$0.lambda$processAttachedMenuBotFromShortcut$123(j, callback);
                 }
             });
         }
     }
 
-    public void lambda$processAttachedMenuBotFromShortcut$120(TLRPC.User user) {
+    public void lambda$processAttachedMenuBotFromShortcut$121(TLRPC.User user) {
         MessagesController.getInstance(this.currentAccount).openApp(user, 0);
     }
 
-    public void lambda$processAttachedMenuBotFromShortcut$122(long j, final Utilities.Callback callback) {
+    public void lambda$processAttachedMenuBotFromShortcut$123(long j, final Utilities.Callback callback) {
         final TLRPC.User user = MessagesStorage.getInstance(this.currentAccount).getUser(j);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processAttachedMenuBotFromShortcut$121(user, callback);
+                this.f$0.lambda$processAttachedMenuBotFromShortcut$122(user, callback);
             }
         });
     }
 
-    public void lambda$processAttachedMenuBotFromShortcut$121(TLRPC.User user, Utilities.Callback callback) {
+    public void lambda$processAttachedMenuBotFromShortcut$122(TLRPC.User user, Utilities.Callback callback) {
         MessagesController.getInstance(this.currentAccount).putUser(user, true);
         callback.run(user);
     }
@@ -3594,17 +3631,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         boostsController.getBoostsStats(l.longValue(), new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                this.f$0.lambda$processBoostDialog$124(progress, runnable, boostsController, l, chatMessageCell, (TL_stories.TL_premium_boostsStatus) obj);
+                this.f$0.lambda$processBoostDialog$125(progress, runnable, boostsController, l, chatMessageCell, (TL_stories.TL_premium_boostsStatus) obj);
             }
         });
     }
 
-    public void lambda$processBoostDialog$124(final Browser.Progress progress, final Runnable runnable, ChannelBoostsController channelBoostsController, final Long l, final ChatMessageCell chatMessageCell, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
+    public void lambda$processBoostDialog$125(final Browser.Progress progress, final Runnable runnable, ChannelBoostsController channelBoostsController, final Long l, final ChatMessageCell chatMessageCell, final TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         if (tL_premium_boostsStatus != null) {
             channelBoostsController.userCanBoostChannel(l.longValue(), tL_premium_boostsStatus, new com.google.android.exoplayer2.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    this.f$0.lambda$processBoostDialog$123(progress, l, tL_premium_boostsStatus, chatMessageCell, runnable, (ChannelBoostsController.CanApplyBoost) obj);
+                    this.f$0.lambda$processBoostDialog$124(progress, l, tL_premium_boostsStatus, chatMessageCell, runnable, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
             return;
@@ -3617,7 +3654,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$processBoostDialog$123(Browser.Progress progress, Long l, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChatMessageCell chatMessageCell, Runnable runnable, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$processBoostDialog$124(Browser.Progress progress, Long l, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, ChatMessageCell chatMessageCell, Runnable runnable, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         RightSlidingDialogContainer rightSlidingDialogContainer;
         if (progress != null) {
             progress.end();
@@ -3655,21 +3692,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_getAttachMenuBot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$processAttachMenuBot$131(i, str3, str, user, str2, j, tLObject, tL_error);
+                this.f$0.lambda$processAttachMenuBot$132(i, str3, str, user, str2, j, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$processAttachMenuBot$131(final int i, final String str, final String str2, final TLRPC.User user, final String str3, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$processAttachMenuBot$132(final int i, final String str, final String str2, final TLRPC.User user, final String str3, final long j, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processAttachMenuBot$130(tLObject, i, str, str2, user, str3, j);
+                this.f$0.lambda$processAttachMenuBot$131(tLObject, i, str, str2, user, str3, j);
             }
         });
     }
 
-    public void lambda$processAttachMenuBot$130(TLObject tLObject, final int i, String str, String str2, final TLRPC.User user, final String str3, final long j) {
+    public void lambda$processAttachMenuBot$131(TLObject tLObject, final int i, String str, String str2, final TLRPC.User user, final String str3, final long j) {
         DialogsActivity dialogsActivity;
         final TLRPC.User user2 = user;
         if (tLObject instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -3716,7 +3753,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
                     @Override
                     public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
-                        return this.f$0.lambda$processAttachMenuBot$125(user2, str3, i, dialogsActivity3, arrayList4, charSequence, z, z2, i2, i3, topicsFragment);
+                        return this.f$0.lambda$processAttachMenuBot$126(user2, str3, i, dialogsActivity3, arrayList4, charSequence, z, z2, i2, i3, topicsFragment);
                     }
 
                     @Override
@@ -3735,7 +3772,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 com.google.android.exoplayer2.util.Consumer consumer = new com.google.android.exoplayer2.util.Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        this.f$0.lambda$processAttachMenuBot$129(i, j, dialogsActivity3, baseFragment2, user, str3, (Boolean) obj);
+                        this.f$0.lambda$processAttachMenuBot$130(i, j, dialogsActivity3, baseFragment2, user, str3, (Boolean) obj);
                     }
                 };
                 if (!tL_attachMenuBot.request_write_access) {
@@ -3754,7 +3791,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                 }
                 this.visibleDialogs.clear();
-                lambda$runLinkRequest$99(dialogsActivity);
+                lambda$runLinkRequest$100(dialogsActivity);
                 return;
             }
             if (baseFragment2 instanceof ChatActivity) {
@@ -3774,7 +3811,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         BulletinFactory.of((BaseFragment) arrayList4.get(arrayList4.size() - 1)).createErrorBulletin(LocaleController.getString(R.string.BotCantAddToAttachMenu)).show();
     }
 
-    public boolean lambda$processAttachMenuBot$125(TLRPC.User user, String str, int i, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
+    public boolean lambda$processAttachMenuBot$126(TLRPC.User user, String str, int i, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, int i3, TopicsFragment topicsFragment) {
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
@@ -3796,7 +3833,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return true;
     }
 
-    public void lambda$processAttachMenuBot$129(final int i, long j, final DialogsActivity dialogsActivity, final BaseFragment baseFragment, final TLRPC.User user, final String str, Boolean bool) {
+    public void lambda$processAttachMenuBot$130(final int i, long j, final DialogsActivity dialogsActivity, final BaseFragment baseFragment, final TLRPC.User user, final String str, Boolean bool) {
         TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
         tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(j);
         tL_messages_toggleBotInAttachMenu.enabled = true;
@@ -3804,32 +3841,32 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$processAttachMenuBot$128(i, dialogsActivity, baseFragment, user, str, tLObject, tL_error);
+                this.f$0.lambda$processAttachMenuBot$129(i, dialogsActivity, baseFragment, user, str, tLObject, tL_error);
             }
         }, 66);
     }
 
-    public void lambda$processAttachMenuBot$128(final int i, final DialogsActivity dialogsActivity, final BaseFragment baseFragment, final TLRPC.User user, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$processAttachMenuBot$129(final int i, final DialogsActivity dialogsActivity, final BaseFragment baseFragment, final TLRPC.User user, final String str, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$processAttachMenuBot$127(tLObject, i, dialogsActivity, baseFragment, user, str);
+                this.f$0.lambda$processAttachMenuBot$128(tLObject, i, dialogsActivity, baseFragment, user, str);
             }
         });
     }
 
-    public void lambda$processAttachMenuBot$127(TLObject tLObject, int i, final DialogsActivity dialogsActivity, final BaseFragment baseFragment, final TLRPC.User user, final String str) {
+    public void lambda$processAttachMenuBot$128(TLObject tLObject, int i, final DialogsActivity dialogsActivity, final BaseFragment baseFragment, final TLRPC.User user, final String str) {
         if (tLObject instanceof TLRPC.TL_boolTrue) {
             MediaDataController.getInstance(i).loadAttachMenuBots(false, true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$processAttachMenuBot$126(dialogsActivity, baseFragment, user, str);
+                    this.f$0.lambda$processAttachMenuBot$127(dialogsActivity, baseFragment, user, str);
                 }
             });
         }
     }
 
-    public void lambda$processAttachMenuBot$126(DialogsActivity dialogsActivity, BaseFragment baseFragment, TLRPC.User user, String str) {
+    public void lambda$processAttachMenuBot$127(DialogsActivity dialogsActivity, BaseFragment baseFragment, TLRPC.User user, String str) {
         if (dialogsActivity != null) {
             if (baseFragment != null) {
                 baseFragment.dismissCurrentDialog();
@@ -3840,7 +3877,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
             }
             this.visibleDialogs.clear();
-            lambda$runLinkRequest$99(dialogsActivity);
+            lambda$runLinkRequest$100(dialogsActivity);
             return;
         }
         if (baseFragment instanceof ChatActivity) {
@@ -3852,7 +3889,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (num == null) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j);
-            lambda$runLinkRequest$99(TopicsFragment.getTopicsOrChat(this, bundle));
+            lambda$runLinkRequest$100(TopicsFragment.getTopicsOrChat(this, bundle));
             if (runnable != null) {
                 runnable.run();
                 return;
@@ -3865,21 +3902,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$openForumFromLink$133(num, num2, bArr, j, runnable, str, i, i2, tLObject, tL_error);
+                this.f$0.lambda$openForumFromLink$134(num, num2, bArr, j, runnable, str, i, i2, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$openForumFromLink$133(final Integer num, final Integer num2, final byte[] bArr, final long j, final Runnable runnable, final String str, final int i, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openForumFromLink$134(final Integer num, final Integer num2, final byte[] bArr, final long j, final Runnable runnable, final String str, final int i, final int i2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openForumFromLink$132(tLObject, num, num2, bArr, j, runnable, str, i, i2);
+                this.f$0.lambda$openForumFromLink$133(tLObject, num, num2, bArr, j, runnable, str, i, i2);
             }
         });
     }
 
-    public void lambda$openForumFromLink$132(TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j, Runnable runnable, String str, int i, int i2) {
+    public void lambda$openForumFromLink$133(TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j, Runnable runnable, String str, int i, int i2) {
         TLRPC.Message message;
         if (tLObject instanceof TLRPC.messages_Messages) {
             ArrayList<TLRPC.Message> arrayList = ((TLRPC.messages_Messages) tLObject).messages;
@@ -3902,7 +3939,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", -j);
-        lambda$runLinkRequest$99(TopicsFragment.getTopicsOrChat(this, bundle));
+        lambda$runLinkRequest$100(TopicsFragment.getTopicsOrChat(this, bundle));
         if (runnable != null) {
             runnable.run();
         }
@@ -3922,7 +3959,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     ApplicationLoader.applicationLoaderInstance.checkUpdate(z, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$checkAppUpdate$134(progress, z2, update);
+                            this.f$0.lambda$checkAppUpdate$135(progress, z2, update);
                         }
                     });
                     return;
@@ -3940,7 +3977,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     final int iSendRequest = ConnectionsManager.getInstance(i).sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$checkAppUpdate$138(i, progress, tLObject, tL_error);
+                            this.f$0.lambda$checkAppUpdate$139(i, progress, tLObject, tL_error);
                         }
                     });
                     if (progress != null) {
@@ -3948,7 +3985,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         progress.onCancel(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$checkAppUpdate$139(iSendRequest);
+                                this.f$0.lambda$checkAppUpdate$140(iSendRequest);
                             }
                         });
                     }
@@ -3957,7 +3994,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkAppUpdate$134(Browser.Progress progress, boolean z, BetaUpdate betaUpdate) {
+    public void lambda$checkAppUpdate$135(Browser.Progress progress, boolean z, BetaUpdate betaUpdate) {
         BaseFragment lastFragment;
         BetaUpdate update = ApplicationLoader.applicationLoaderInstance.getUpdate();
         if (progress != null) {
@@ -3974,7 +4011,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkAppUpdate$138(final int i, final Browser.Progress progress, TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$checkAppUpdate$139(final int i, final Browser.Progress progress, TLObject tLObject, final TLRPC.TL_error tL_error) {
         SharedConfig.lastUpdateCheckTime = System.currentTimeMillis();
         SharedConfig.saveConfig();
         if (tLObject instanceof TLRPC.TL_help_appUpdate) {
@@ -3982,27 +4019,27 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() throws PackageManager.NameNotFoundException {
-                    this.f$0.lambda$checkAppUpdate$135(tL_help_appUpdate, i, progress);
+                    this.f$0.lambda$checkAppUpdate$136(tL_help_appUpdate, i, progress);
                 }
             });
         } else if (tLObject instanceof TLRPC.TL_help_noAppUpdate) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.lambda$checkAppUpdate$136(progress);
+                    LaunchActivity.lambda$checkAppUpdate$137(progress);
                 }
             });
         } else if (tL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.lambda$checkAppUpdate$137(progress, tL_error);
+                    LaunchActivity.lambda$checkAppUpdate$138(progress, tL_error);
                 }
             });
         }
     }
 
-    public void lambda$checkAppUpdate$135(TLRPC.TL_help_appUpdate tL_help_appUpdate, int i, Browser.Progress progress) throws PackageManager.NameNotFoundException {
+    public void lambda$checkAppUpdate$136(TLRPC.TL_help_appUpdate tL_help_appUpdate, int i, Browser.Progress progress) throws PackageManager.NameNotFoundException {
         BaseFragment lastFragment;
         TLRPC.TL_help_appUpdate tL_help_appUpdate2 = SharedConfig.pendingAppUpdate;
         if (tL_help_appUpdate2 == null || !tL_help_appUpdate2.version.equals(tL_help_appUpdate.version)) {
@@ -4025,7 +4062,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$checkAppUpdate$136(Browser.Progress progress) {
+    public static void lambda$checkAppUpdate$137(Browser.Progress progress) {
         if (progress != null) {
             progress.end();
             BaseFragment lastFragment = getLastFragment();
@@ -4035,7 +4072,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$checkAppUpdate$137(Browser.Progress progress, TLRPC.TL_error tL_error) {
+    public static void lambda$checkAppUpdate$138(Browser.Progress progress, TLRPC.TL_error tL_error) {
         if (progress != null) {
             progress.end();
             BaseFragment lastFragment = getLastFragment();
@@ -4045,7 +4082,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkAppUpdate$139(int i) {
+    public void lambda$checkAppUpdate$140(int i) {
         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
     }
 
@@ -4056,7 +4093,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             alertDialogShow.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$showAlertDialog$140(alertDialogShow, dialogInterface);
+                    this.f$0.lambda$showAlertDialog$141(alertDialogShow, dialogInterface);
                 }
             });
             this.visibleDialogs.add(alertDialogShow);
@@ -4067,7 +4104,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$showAlertDialog$140(AlertDialog alertDialog, DialogInterface dialogInterface) {
+    public void lambda$showAlertDialog$141(AlertDialog alertDialog, DialogInterface dialogInterface) {
         if (alertDialog != null) {
             if (alertDialog == this.localeDialog) {
                 ActionBarLayout actionBarLayout = this.actionBarLayout;
@@ -4139,16 +4176,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r47, final java.util.ArrayList r48, final java.lang.CharSequence r49, final boolean r50, boolean r51, int r52, final int r53, org.telegram.ui.TopicsFragment r54) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r47, final java.util.ArrayList r48, final java.lang.CharSequence r49, final boolean r50, boolean r51, int r52, final int r53, org.telegram.ui.TopicsFragment r54) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
-    public void lambda$didSelectDialogs$141(int i, DialogsActivity dialogsActivity, boolean z, ArrayList arrayList, Uri uri, AlertDialog alertDialog, long j) throws NumberFormatException {
+    public void lambda$didSelectDialogs$142(int i, DialogsActivity dialogsActivity, boolean z, ArrayList arrayList, Uri uri, AlertDialog alertDialog, long j) throws NumberFormatException {
         if (j != 0) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("scrollToTopOnResume", true);
@@ -4178,7 +4215,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$didSelectDialogs$142(ChatActivity chatActivity, ArrayList arrayList, int i, int i2, CharSequence charSequence, int i3, boolean z, TLRPC.User user, boolean z2, int i4, long j, boolean z3, long j2) {
+    public void lambda$didSelectDialogs$143(ChatActivity chatActivity, ArrayList arrayList, int i, int i2, CharSequence charSequence, int i3, boolean z, TLRPC.User user, boolean z2, int i4, long j, boolean z3, long j2) {
         MessageObject messageObject;
         TLRPC.TL_forumTopic tL_forumTopicFindTopic;
         if (chatActivity != null) {
@@ -4293,6 +4330,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersImportComplete);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserShowLimitReachedDialog);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.guardBotDecisionResult);
         }
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.needShowAlert);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
@@ -4324,16 +4362,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         BulletinFactory.of(lastFragment).createSimpleBulletin(new BatteryDrawable(batteryLevel / 100.0f, -1, lastFragment.getThemedColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString(R.string.LowPowerEnabledTitle), LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel))), LocaleController.getString(R.string.Disable), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onPowerSaver$143();
+                this.f$0.lambda$onPowerSaver$144();
             }
         }).setDuration(5000).show();
     }
 
-    public void lambda$onPowerSaver$143() {
-        lambda$runLinkRequest$99(new LiteModeSettingsActivity());
+    public void lambda$onPowerSaver$144() {
+        lambda$runLinkRequest$100(new LiteModeSettingsActivity());
     }
 
-    public void lambda$runLinkRequest$99(BaseFragment baseFragment) {
+    public void lambda$runLinkRequest$100(BaseFragment baseFragment) {
         getActionBarLayout().presentFragment(baseFragment);
     }
 
@@ -4379,7 +4417,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onActivityResult$144();
+                            this.f$0.lambda$onActivityResult$145();
                         }
                     }, 200L);
                     return;
@@ -4435,7 +4473,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onActivityResultReceived, Integer.valueOf(i), Integer.valueOf(i2), intent);
     }
 
-    public void lambda$onActivityResult$144() {
+    public void lambda$onActivityResult$145() {
         GroupCallPip.clearForce();
         GroupCallPip.updateVisibility(this);
     }
@@ -4445,7 +4483,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4491,7 +4529,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$onPause$145(i);
+                LaunchActivity.lambda$onPause$146(i);
             }
         });
         onPasscodePause();
@@ -4525,7 +4563,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         SpoilerEffect2.pause(true);
     }
 
-    public static void lambda$onPause$145(int i) {
+    public static void lambda$onPause$146(int i) {
         ApplicationLoader.mainInterfacePausedStageQueue = true;
         ApplicationLoader.mainInterfacePausedStageQueueTime = 0L;
         if (VoIPService.getSharedInstance() == null) {
@@ -4697,7 +4735,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() throws Resources.NotFoundException {
+    protected void onResume() {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
@@ -4722,7 +4760,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$onResume$146();
+                LaunchActivity.lambda$onResume$147();
             }
         });
         checkFreeDiscSpace(0);
@@ -4800,7 +4838,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$onResume$146() {
+    public static void lambda$onResume$147() {
         ApplicationLoader.mainInterfacePausedStageQueue = false;
         ApplicationLoader.mainInterfacePausedStageQueueTime = System.currentTimeMillis();
     }
@@ -4918,7 +4956,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
-    public void lambda$didReceivedNotification$147(int i, AlertDialog alertDialog, int i2) {
+    public void lambda$didReceivedNotification$148(int i, AlertDialog alertDialog, int i2) {
         if (this.mainFragmentsStack.isEmpty()) {
             return;
         }
@@ -4927,11 +4965,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         messagesController.openByUserName("spambot", (BaseFragment) arrayList.get(arrayList.size() - 1), 1);
     }
 
-    public void lambda$didReceivedNotification$148(AlertDialog alertDialog, int i) {
+    public void lambda$didReceivedNotification$149(AlertDialog alertDialog, int i) {
         MessagesController.getInstance(this.currentAccount).performLogout(2);
     }
 
-    public void lambda$didReceivedNotification$150(final HashMap map, final int i, AlertDialog alertDialog, int i2) {
+    public void lambda$didReceivedNotification$151(final HashMap map, final int i, AlertDialog alertDialog, int i2) {
         if (this.mainFragmentsStack.isEmpty()) {
             return;
         }
@@ -4940,14 +4978,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             locationActivity.setDelegate(new LocationActivity.LocationActivityDelegate() {
                 @Override
                 public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
-                    LaunchActivity.lambda$didReceivedNotification$149(map, i, messageMedia, i3, z, i4, j);
+                    LaunchActivity.lambda$didReceivedNotification$150(map, i, messageMedia, i3, z, i4, j);
                 }
             });
-            lambda$runLinkRequest$99(locationActivity);
+            lambda$runLinkRequest$100(locationActivity);
         }
     }
 
-    public static void lambda$didReceivedNotification$149(HashMap map, int i, TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3, long j) {
+    public static void lambda$didReceivedNotification$150(HashMap map, int i, TLRPC.MessageMedia messageMedia, int i2, boolean z, int i3, long j) {
         Iterator it = map.entrySet().iterator();
         while (it.hasNext()) {
             MessageObject messageObject = (MessageObject) ((Map.Entry) it.next()).getValue();
@@ -4955,39 +4993,39 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$didReceivedNotification$151(int i, HashMap map, boolean z, boolean z2, AlertDialog alertDialog, int i2) {
-        ContactsController.getInstance(i).syncPhoneBookByAlert(map, z, z2, false);
-    }
-
     public static void lambda$didReceivedNotification$152(int i, HashMap map, boolean z, boolean z2, AlertDialog alertDialog, int i2) {
-        ContactsController.getInstance(i).syncPhoneBookByAlert(map, z, z2, true);
+        ContactsController.getInstance(i).syncPhoneBookByAlert(map, z, z2, false);
     }
 
     public static void lambda$didReceivedNotification$153(int i, HashMap map, boolean z, boolean z2, AlertDialog alertDialog, int i2) {
         ContactsController.getInstance(i).syncPhoneBookByAlert(map, z, z2, true);
     }
 
-    public void lambda$didReceivedNotification$154(ValueAnimator valueAnimator) {
+    public static void lambda$didReceivedNotification$154(int i, HashMap map, boolean z, boolean z2, AlertDialog alertDialog, int i2) {
+        ContactsController.getInstance(i).syncPhoneBookByAlert(map, z, z2, true);
+    }
+
+    public void lambda$didReceivedNotification$155(ValueAnimator valueAnimator) {
         this.frameLayout.invalidate();
     }
 
-    public void lambda$didReceivedNotification$155() {
+    public void lambda$didReceivedNotification$156() {
         if (this.isNavigationBarColorFrozen) {
             this.isNavigationBarColorFrozen = false;
             checkSystemBarColors(false, true);
         }
     }
 
-    public void lambda$didReceivedNotification$157(final Theme.ThemeInfo themeInfo, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$didReceivedNotification$158(final Theme.ThemeInfo themeInfo, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$156(tLObject, themeInfo);
+                this.f$0.lambda$didReceivedNotification$157(tLObject, themeInfo);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$156(TLObject tLObject, Theme.ThemeInfo themeInfo) {
+    public void lambda$didReceivedNotification$157(TLObject tLObject, Theme.ThemeInfo themeInfo) {
         if (tLObject instanceof TLRPC.TL_wallPaper) {
             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject;
             this.loadingThemeInfo = themeInfo;
@@ -4999,17 +5037,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         onThemeLoadFinish();
     }
 
-    public void lambda$didReceivedNotification$159(Theme.ThemeInfo themeInfo, File file) {
+    public void lambda$didReceivedNotification$160(Theme.ThemeInfo themeInfo, File file) {
         themeInfo.createBackground(file, themeInfo.pathToWallpaper);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$158();
+                this.f$0.lambda$didReceivedNotification$159();
             }
         });
     }
 
-    public void lambda$didReceivedNotification$158() {
+    public void lambda$didReceivedNotification$159() {
         if (this.loadingTheme == null) {
             return;
         }
@@ -5017,35 +5055,42 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         TLRPC.TL_theme tL_theme = this.loadingTheme;
         Theme.ThemeInfo themeInfoApplyThemeFile = Theme.applyThemeFile(file, tL_theme.title, tL_theme, true);
         if (themeInfoApplyThemeFile != null) {
-            lambda$runLinkRequest$99(new ThemePreviewActivity(themeInfoApplyThemeFile, true, 0, false, false));
+            lambda$runLinkRequest$100(new ThemePreviewActivity(themeInfoApplyThemeFile, true, 0, false, false));
         }
         onThemeLoadFinish();
     }
 
-    public void lambda$didReceivedNotification$162(DialogInterface dialogInterface) {
+    public void lambda$didReceivedNotification$163(DialogInterface dialogInterface) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$161();
+                this.f$0.lambda$didReceivedNotification$162();
             }
         }, 30000L);
     }
 
-    public void lambda$didReceivedNotification$161() {
+    public void lambda$didReceivedNotification$162() {
         this.tlErrorAlertDialog = null;
     }
 
-    public void lambda$didReceivedNotification$164(DialogInterface dialogInterface) {
+    public void lambda$didReceivedNotification$165(DialogInterface dialogInterface) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didReceivedNotification$163();
+                this.f$0.lambda$didReceivedNotification$164();
             }
         }, 30000L);
     }
 
-    public void lambda$didReceivedNotification$163() {
+    public void lambda$didReceivedNotification$164() {
         this.memoryLeakErrorAlertDialog = null;
+    }
+
+    public void lambda$didReceivedNotification$166(Bulletin bulletin) {
+        if (this.finished || !isResumed) {
+            return;
+        }
+        bulletin.show();
     }
 
     private void invalidateCachedViews(View view) {
@@ -5137,7 +5182,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         themeInfo.prevAccentId = themeInfo.currentAccentId;
         themeInfo.setCurrentAccentId(themeAccentCreateNewAccent.id);
         themeAccentCreateNewAccent.pattern = tL_wallPaper;
-        lambda$runLinkRequest$99(new ThemePreviewActivity(themeInfo, i != themeInfo.lastAccentId, 0, false, false));
+        lambda$runLinkRequest$100(new ThemePreviewActivity(themeInfo, i != themeInfo.lastAccentId, 0, false, false));
     }
 
     private void onThemeLoadFinish() {
@@ -5164,13 +5209,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$checkFreeDiscSpace$167(i);
+                    this.f$0.lambda$checkFreeDiscSpace$169(i);
                 }
             }, 2000L);
         }
     }
 
-    public void lambda$checkFreeDiscSpace$167(int i) {
+    public void lambda$checkFreeDiscSpace$169(int i) {
         File directory;
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
@@ -5186,7 +5231,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$checkFreeDiscSpace$166();
+                                this.f$0.lambda$checkFreeDiscSpace$168();
                             }
                         });
                     }
@@ -5196,7 +5241,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkFreeDiscSpace$166() {
+    public void lambda$checkFreeDiscSpace$168() {
         if (this.checkFreeDiscSpaceShown) {
             return;
         }
@@ -5205,7 +5250,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             dialogCreateFreeSpaceDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$checkFreeDiscSpace$165(dialogInterface);
+                    this.f$0.lambda$checkFreeDiscSpace$167(dialogInterface);
                 }
             });
             this.checkFreeDiscSpaceShown = true;
@@ -5214,7 +5259,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$checkFreeDiscSpace$165(DialogInterface dialogInterface) {
+    public void lambda$checkFreeDiscSpace$167(DialogInterface dialogInterface) {
         this.checkFreeDiscSpaceShown = false;
     }
 
@@ -5257,7 +5302,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 languageCellArr[i2].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        LaunchActivity.lambda$showLanguageAlertInternal$168(localeInfoArr2, languageCellArr, view);
+                        LaunchActivity.lambda$showLanguageAlertInternal$170(localeInfoArr2, languageCellArr, view);
                     }
                 });
                 i2++;
@@ -5270,7 +5315,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             languageCell2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    this.f$0.lambda$showLanguageAlertInternal$169(view);
+                    this.f$0.lambda$showLanguageAlertInternal$171(view);
                 }
             });
             linearLayout.addView(languageCell2, LayoutHelper.createLinear(-1, 50));
@@ -5278,7 +5323,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             builder.setNegativeButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog, int i4) {
-                    this.f$0.lambda$showLanguageAlertInternal$170(localeInfoArr2, alertDialog, i4);
+                    this.f$0.lambda$showLanguageAlertInternal$172(localeInfoArr2, alertDialog, i4);
                 }
             });
             this.localeDialog = showAlertDialog(builder);
@@ -5288,7 +5333,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$showLanguageAlertInternal$168(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
+    public static void lambda$showLanguageAlertInternal$170(LocaleController.LocaleInfo[] localeInfoArr, LanguageCell[] languageCellArr, View view) {
         Integer num = (Integer) view.getTag();
         localeInfoArr[0] = ((LanguageCell) view).getCurrentLocale();
         int i = 0;
@@ -5298,9 +5343,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$showLanguageAlertInternal$169(View view) {
+    public void lambda$showLanguageAlertInternal$171(View view) {
         this.localeDialog = null;
-        lambda$runLinkRequest$99(new LanguageSelectActivity());
+        lambda$runLinkRequest$100(new LanguageSelectActivity());
         for (int i = 0; i < this.visibleDialogs.size(); i++) {
             if (((Dialog) this.visibleDialogs.get(i)).isShowing()) {
                 ((Dialog) this.visibleDialogs.get(i)).dismiss();
@@ -5309,7 +5354,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.visibleDialogs.clear();
     }
 
-    public void lambda$showLanguageAlertInternal$170(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
+    public void lambda$showLanguageAlertInternal$172(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
         LocaleController.getInstance().applyLanguage(localeInfoArr[0], true, false, this.currentAccount);
         rebuildAllFragments(true);
     }
@@ -5389,7 +5434,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                this.f$0.lambda$showLanguageAlert$172(localeInfoArr, str2, tLObject, tL_error);
+                                this.f$0.lambda$showLanguageAlert$174(localeInfoArr, str2, tLObject, tL_error);
                             }
                         }, 8);
                         TLRPC.TL_langpack_getStrings tL_langpack_getStrings2 = new TLRPC.TL_langpack_getStrings();
@@ -5401,7 +5446,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_langpack_getStrings2, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                this.f$0.lambda$showLanguageAlert$174(localeInfoArr, str2, tLObject, tL_error);
+                                this.f$0.lambda$showLanguageAlert$176(localeInfoArr, str2, tLObject, tL_error);
                             }
                         }, 8);
                     }
@@ -5410,31 +5455,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 FileLog.e(e);
             }
         }
-    }
-
-    public void lambda$showLanguageAlert$172(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        final HashMap map = new HashMap();
-        if (tLObject instanceof Vector) {
-            Vector vector = (Vector) tLObject;
-            for (int i = 0; i < vector.objects.size(); i++) {
-                TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(i);
-                map.put(langPackString.key, langPackString.value);
-            }
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$showLanguageAlert$171(map, localeInfoArr, str);
-            }
-        });
-    }
-
-    public void lambda$showLanguageAlert$171(HashMap map, LocaleController.LocaleInfo[] localeInfoArr, String str) {
-        this.systemLocaleStrings = map;
-        if (this.englishLocaleStrings == null || map == null) {
-            return;
-        }
-        showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
     }
 
     public void lambda$showLanguageAlert$174(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -5455,6 +5475,31 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$showLanguageAlert$173(HashMap map, LocaleController.LocaleInfo[] localeInfoArr, String str) {
+        this.systemLocaleStrings = map;
+        if (this.englishLocaleStrings == null || map == null) {
+            return;
+        }
+        showLanguageAlertInternal(localeInfoArr[1], localeInfoArr[0], str);
+    }
+
+    public void lambda$showLanguageAlert$176(final LocaleController.LocaleInfo[] localeInfoArr, final String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+        final HashMap map = new HashMap();
+        if (tLObject instanceof Vector) {
+            Vector vector = (Vector) tLObject;
+            for (int i = 0; i < vector.objects.size(); i++) {
+                TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(i);
+                map.put(langPackString.key, langPackString.value);
+            }
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showLanguageAlert$175(map, localeInfoArr, str);
+            }
+        });
+    }
+
+    public void lambda$showLanguageAlert$175(HashMap map, LocaleController.LocaleInfo[] localeInfoArr, String str) {
         this.englishLocaleStrings = map;
         if (map == null || this.systemLocaleStrings == null) {
             return;
@@ -5566,13 +5611,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.actionBarLayout.setTitleOverlayText(str, i2, (connectionState == 1 || connectionState == 4) ? new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$updateCurrentConnectionState$175();
+                this.f$0.lambda$updateCurrentConnectionState$177();
             }
         } : null);
     }
 
-    public void lambda$updateCurrentConnectionState$175() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$updateCurrentConnectionState$175():void");
+    public void lambda$updateCurrentConnectionState$177() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$updateCurrentConnectionState$177():void");
     }
 
     public void hideVisibleActionMode() {
@@ -6155,7 +6200,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         valueAnimatorOfArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateNavigationBarColor$176(valueAnimator2);
+                this.f$0.lambda$animateNavigationBarColor$178(valueAnimator2);
             }
         });
         this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
@@ -6169,7 +6214,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.navBarAnimator.start();
     }
 
-    public void lambda$animateNavigationBarColor$176(ValueAnimator valueAnimator) {
+    public void lambda$animateNavigationBarColor$178(ValueAnimator valueAnimator) {
         setNavigationBarColor(((Integer) valueAnimator.getAnimatedValue()).intValue());
     }
 
@@ -6271,21 +6316,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getStoriesByID, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$openStory$178(i, j, z, tLObject, tL_error);
+                this.f$0.lambda$openStory$180(i, j, z, tLObject, tL_error);
             }
         });
     }
 
-    public void lambda$openStory$178(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$openStory$180(final int i, final long j, final boolean z, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openStory$177(tLObject, i, j, z);
+                this.f$0.lambda$openStory$179(tLObject, i, j, z);
             }
         });
     }
 
-    public void lambda$openStory$177(TLObject tLObject, int i, long j, boolean z) {
+    public void lambda$openStory$179(TLObject tLObject, int i, long j, boolean z) {
         StoriesListPlaceProvider storiesListPlaceProviderOf;
         TL_stories.StoryItem storyItem;
         if (tLObject instanceof TL_stories.TL_stories_stories) {
@@ -6380,7 +6425,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$openStories$179(iArr, array);
+                    this.f$0.lambda$openStories$181(iArr, array);
                 }
             };
             for (int i3 = 0; i3 < arrayList3.size(); i3++) {
@@ -6396,7 +6441,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories_getPeerStories, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            LaunchActivity.lambda$openStories$181(messagesController, jLongValue, runnable, tLObject, tL_error);
+                            LaunchActivity.lambda$openStories$183(messagesController, jLongValue, runnable, tLObject, tL_error);
                         }
                     });
                 }
@@ -6426,7 +6471,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, storiesListPlaceProvider, false);
     }
 
-    public void lambda$openStories$179(int[] iArr, long[] jArr) {
+    public void lambda$openStories$181(int[] iArr, long[] jArr) {
         int i = iArr[0] - 1;
         iArr[0] = i;
         if (i == 0) {
@@ -6435,16 +6480,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$openStories$181(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$openStories$183(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$openStories$180(tLObject, messagesController, j, runnable);
+                LaunchActivity.lambda$openStories$182(tLObject, messagesController, j, runnable);
             }
         });
     }
 
-    public static void lambda$openStories$180(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
+    public static void lambda$openStories$182(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
         if (tLObject instanceof TL_stories.TL_stories_peerStories) {
             TL_stories.TL_stories_peerStories tL_stories_peerStories = (TL_stories.TL_stories_peerStories) tLObject;
             messagesController.putUsers(tL_stories_peerStories.users, false);
@@ -6514,5 +6559,75 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     public PipActivityController getPipController() {
         return this.pipActivityController;
+    }
+
+    public void updateReasonsToHideMainContent(boolean z, boolean z2) {
+        int i = this.reasonsToHideMainContent + (z ? 1 : -1);
+        this.reasonsToHideMainContent = i;
+        if (z2) {
+            this.reasonsToHideDecorView += z ? 1 : -1;
+        }
+        FrameLayout frameLayout = this.frameLayout;
+        if (frameLayout != null) {
+            frameLayout.setVisibility(i > 0 ? 8 : 0);
+        }
+        checkDecorViewVisibility();
+    }
+
+    public void checkDecorViewVisibility() {
+        Window window = getWindow();
+        if (window != null) {
+            window.getDecorView().setVisibility((this.reasonsToHideDecorView <= 0 || this.isInPictureInPictureMode) ? 0 : 8);
+        }
+    }
+
+    public ActivityVisibilityController createActivityVisibilityController(boolean z) {
+        return new ActivityVisibilityController(z);
+    }
+
+    public static WindowVisibilityManager.Controller obtainActivityVisibilityController() {
+        LaunchActivity launchActivity = instance;
+        if (launchActivity != null) {
+            return launchActivity.createActivityVisibilityController(true);
+        }
+        return null;
+    }
+
+    public static class ActivityVisibilityController implements WindowVisibilityManager.Controller {
+        private final WeakReference activity;
+        private boolean destroyed;
+        private boolean hidden;
+        private final boolean withDecorView;
+
+        private ActivityVisibilityController(LaunchActivity launchActivity, boolean z) {
+            this.activity = new WeakReference(launchActivity);
+            this.withDecorView = z;
+        }
+
+        @Override
+        public void setHidden(boolean z) {
+            if (this.hidden == z || this.destroyed) {
+                return;
+            }
+            this.hidden = z;
+            LaunchActivity launchActivity = (LaunchActivity) this.activity.get();
+            if (launchActivity != null) {
+                launchActivity.updateReasonsToHideMainContent(z, this.withDecorView);
+            }
+        }
+
+        @Override
+        public void destroy() {
+            setHidden(false);
+            this.destroyed = true;
+        }
+
+        public void show() {
+            setHidden(false);
+        }
+
+        public void hide() {
+            setHidden(true);
+        }
     }
 }

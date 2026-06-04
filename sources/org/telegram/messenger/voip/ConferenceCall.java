@@ -24,6 +24,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_update;
 
 public class ConferenceCall {
     public static final int PERMISSION_ADD = 1;
@@ -351,10 +352,10 @@ public class ConferenceCall {
         if (!(tLObject instanceof TLRPC.Updates)) {
             return false;
         }
-        Iterator it = MessagesController.findUpdatesAndRemove((TLRPC.Updates) tLObject, TLRPC.TL_updateGroupCallChainBlocks.class).iterator();
+        Iterator it = MessagesController.findUpdatesAndRemove((TLRPC.Updates) tLObject, TL_update.TL_updateGroupCallChainBlocks.class).iterator();
         boolean z = false;
         while (it.hasNext()) {
-            if (applyUpdate(num, (TLRPC.TL_updateGroupCallChainBlocks) it.next(), false, l)) {
+            if (applyUpdate(num, (TL_update.TL_updateGroupCallChainBlocks) it.next(), false, l)) {
                 z = true;
             }
         }
@@ -472,7 +473,7 @@ public class ConferenceCall {
         }
     }
 
-    public boolean applyUpdate(Integer num, TLRPC.TL_updateGroupCallChainBlocks tL_updateGroupCallChainBlocks, boolean z, Long l) {
+    public boolean applyUpdate(Integer num, TL_update.TL_updateGroupCallChainBlocks tL_updateGroupCallChainBlocks, boolean z, Long l) {
         if (this.destroyed) {
             FileLog.d("[tde2e] conference.applyUpdate but destroyed!");
             return false;

@@ -45,6 +45,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_chatlists;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
@@ -707,16 +708,16 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 ArrayList<TLRPC.Update> arrayList = updates.updates;
                 if (arrayList.isEmpty()) {
                     TLRPC.Update update = updates.update;
-                    if (update instanceof TLRPC.TL_updateDialogFilter) {
-                        i = ((TLRPC.TL_updateDialogFilter) update).id;
+                    if (update instanceof TL_update.TL_updateDialogFilter) {
+                        i = ((TL_update.TL_updateDialogFilter) update).id;
                     }
                 } else {
                     while (true) {
                         if (i2 >= arrayList.size()) {
                             break;
                         }
-                        if (arrayList.get(i2) instanceof TLRPC.TL_updateDialogFilter) {
-                            i = ((TLRPC.TL_updateDialogFilter) arrayList.get(i2)).id;
+                        if (arrayList.get(i2) instanceof TL_update.TL_updateDialogFilter) {
+                            i = ((TL_update.TL_updateDialogFilter) arrayList.get(i2)).id;
                             break;
                         }
                         i2++;

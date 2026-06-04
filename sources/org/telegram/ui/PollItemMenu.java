@@ -34,7 +34,6 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -54,6 +53,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -74,6 +74,7 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
+import org.telegram.ui.Components.poll.PollUtils;
 import org.telegram.ui.Components.poll.RecentVotersCell;
 
 public class PollItemMenu extends Dialog {
@@ -372,7 +373,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) throws IOException {
+                protected void onDraw(Canvas canvas) {
                     canvas.save();
                     int pollIndex = getPollIndex(bArr);
                     float pollButtonTop = getPollButtonTop(pollIndex);
@@ -403,7 +404,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     this.resultsPollButtonOffset = (-AndroidUtilities.dp(7.0f)) * PollItemMenu.this.openProgress;
@@ -830,6 +831,11 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean openArticlePhoto(ChatMessageCell chatMessageCell3, TL_iv.PageBlock pageBlock) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell3, pageBlock);
+                }
+
+                @Override
                 public void setShouldNotRepeatSticker(MessageObject messageObject2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject2);
                 }
@@ -868,7 +874,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -1295,6 +1301,11 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean openArticlePhoto(ChatMessageCell chatMessageCell7, TL_iv.PageBlock pageBlock) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell7, pageBlock);
+                }
+
+                @Override
                 public void setShouldNotRepeatSticker(MessageObject messageObject3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject3);
                 }
@@ -1386,7 +1397,7 @@ public class PollItemMenu extends Dialog {
                 final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                 itemOptionsMakeSwipeback.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
                 itemOptionsMakeSwipeback.setBlurBackgroundForSwipeback(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
-                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda379(itemOptionsMakeOptions));
+                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda301(itemOptionsMakeOptions));
                 itemOptionsMakeSwipeback.addGap();
                 arrayList = arrayList3;
                 z2 = z4;
@@ -1421,7 +1432,7 @@ public class PollItemMenu extends Dialog {
                             this.f$0.lambda$setCell$3(z6, baseFragment, arrayList4, pollAnswer2);
                         }
                     });
-                } else {
+                } else if (PollUtils.getVoteRestrictedFlags(this.messageObject) == 0) {
                     final boolean z7 = z2;
                     final TLRPC.PollAnswer pollAnswer3 = pollAnswer;
                     final ArrayList arrayList5 = arrayList;

@@ -14,7 +14,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Property;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -22,12 +21,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.utils.TextWatcherImpl;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
@@ -130,15 +129,16 @@ public abstract class UsersAlertBase extends BottomSheet {
         int i5 = this.backgroundPaddingLeft;
         viewGroup.setPadding(i5, 0, i5, 0);
         this.frameLayout = new FrameLayout(context);
-        SearchField searchField = new SearchField(context);
+        SearchField searchField = new SearchField(context, resourcesProvider);
         this.searchView = searchField;
-        this.frameLayout.addView(searchField, LayoutHelper.createFrame(-1, -1, 51));
+        searchField.setWhiteBackground();
+        this.searchView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+        this.frameLayout.addView(this.searchView, LayoutHelper.createFrame(-1, 48.0f, 51, 7.0f, 7.0f, 7.0f, 7.0f));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
         flickerLoadingView.setViewType(6);
         this.flickerLoadingView.showDate(false);
         this.flickerLoadingView.setUseHeaderOffset(true);
-        this.flickerLoadingView.setColors(this.keyInviteMembersBackground, this.keySearchBackground, this.keyActionBarUnscrolled);
         StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.flickerLoadingView, 1);
         this.emptyView = stickerEmptyView;
         stickerEmptyView.addView(this.flickerLoadingView, 0, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 2.0f, 0.0f, 0.0f));
@@ -197,8 +197,7 @@ public abstract class UsersAlertBase extends BottomSheet {
         layoutParams.topMargin = AndroidUtilities.dp(58.0f);
         View view = new View(context);
         this.shadow = view;
-        view.setBackgroundColor(Theme.getColor(Theme.key_dialogShadowLine));
-        this.shadow.setAlpha(0.0f);
+        view.setAlpha(0.0f);
         this.shadow.setTag(1);
         this.containerView.addView(this.shadow, layoutParams);
         this.containerView.addView(this.frameLayout, LayoutHelper.createFrame(-1, 58, 51));
@@ -217,92 +216,29 @@ public abstract class UsersAlertBase extends BottomSheet {
         return new ContainerView(context);
     }
 
-    protected class SearchField extends FrameLayout {
-        private final ImageView clearSearchImageView;
-        private final CloseProgressDrawable2 progressDrawable;
-        private final View searchBackground;
+    protected class SearchField extends FragmentSearchField {
         protected EditTextBoldCursor searchEditText;
-        private final ImageView searchIconImageView;
 
-        public SearchField(Context context) {
-            super(context);
-            View view = new View(context);
-            this.searchBackground = view;
-            view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), Theme.getColor(UsersAlertBase.this.keySearchBackground, ((BottomSheet) UsersAlertBase.this).resourcesProvider)));
-            addView(view, LayoutHelper.createFrame(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
-            ImageView imageView = new ImageView(context);
-            this.searchIconImageView = imageView;
-            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-            imageView.setScaleType(scaleType);
-            imageView.setImageResource(R.drawable.smiles_inputsearch);
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(UsersAlertBase.this.keySearchPlaceholder, ((BottomSheet) UsersAlertBase.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            addView(imageView, LayoutHelper.createFrame(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
-            ImageView imageView2 = new ImageView(context);
-            this.clearSearchImageView = imageView2;
-            imageView2.setScaleType(scaleType);
-            CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2() {
-                @Override
-                protected int getCurrentColor() {
-                    return Theme.getColor(UsersAlertBase.this.keySearchPlaceholder);
-                }
-            };
-            this.progressDrawable = closeProgressDrawable2;
-            imageView2.setImageDrawable(closeProgressDrawable2);
-            closeProgressDrawable2.setSide(AndroidUtilities.dp(7.0f));
-            imageView2.setScaleX(0.1f);
-            imageView2.setScaleY(0.1f);
-            imageView2.setAlpha(0.0f);
-            addView(imageView2, LayoutHelper.createFrame(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
-            imageView2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view2) {
-                    this.f$0.lambda$new$0(view2);
-                }
-            });
-            EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
-                @Override
-                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                    MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
-                    motionEventObtain.setLocation(motionEventObtain.getRawX(), motionEventObtain.getRawY() - UsersAlertBase.this.listView.getMeasuredHeight());
-                    if (motionEventObtain.getAction() == 1) {
-                        motionEventObtain.setAction(3);
-                    }
-                    UsersAlertBase.this.listView.dispatchTouchEvent(motionEventObtain);
-                    motionEventObtain.recycle();
-                    return super.dispatchTouchEvent(motionEvent);
-                }
-            };
+        public SearchField(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context, resourcesProvider);
+            EditTextBoldCursor editTextBoldCursor = this.editText;
             this.searchEditText = editTextBoldCursor;
-            editTextBoldCursor.setTextSize(1, 16.0f);
-            this.searchEditText.setHintTextColor(Theme.getColor(UsersAlertBase.this.keySearchPlaceholder));
-            this.searchEditText.setTextColor(Theme.getColor(UsersAlertBase.this.keySearchText));
-            this.searchEditText.setBackgroundDrawable(null);
-            this.searchEditText.setPadding(0, 0, 0, 0);
-            this.searchEditText.setMaxLines(1);
-            this.searchEditText.setLines(1);
-            this.searchEditText.setSingleLine(true);
-            this.searchEditText.setImeOptions(268435459);
+            editTextBoldCursor.setImeOptions(268435459);
             this.searchEditText.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));
-            this.searchEditText.setCursorColor(Theme.getColor(UsersAlertBase.this.keySearchText));
-            this.searchEditText.setCursorSize(AndroidUtilities.dp(20.0f));
-            this.searchEditText.setCursorWidth(1.5f);
-            addView(this.searchEditText, LayoutHelper.createFrame(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-            this.searchEditText.addTextChangedListener(new TextWatcher() {
+            this.searchEditText.addTextChangedListener(new TextWatcherImpl() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    TextWatcherImpl.CC.$default$beforeTextChanged(this, charSequence, i, i2, i3);
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    TextWatcherImpl.CC.$default$onTextChanged(this, charSequence, i, i2, i3);
                 }
 
                 @Override
                 public void afterTextChanged(Editable editable) {
                     RecyclerListView recyclerListView;
-                    boolean z = SearchField.this.searchEditText.length() > 0;
-                    if (z != (SearchField.this.clearSearchImageView.getAlpha() != 0.0f)) {
-                        SearchField.this.clearSearchImageView.animate().alpha(z ? 1.0f : 0.0f).setDuration(150L).scaleX(z ? 1.0f : 0.1f).scaleY(z ? 1.0f : 0.1f).start();
-                    }
                     String string = SearchField.this.searchEditText.getText().toString();
                     int itemCount = UsersAlertBase.this.listView.getAdapter() == null ? 0 : UsersAlertBase.this.listView.getAdapter().getItemCount();
                     UsersAlertBase.this.search(string);
@@ -325,17 +261,12 @@ public abstract class UsersAlertBase extends BottomSheet {
             this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                    return this.f$0.lambda$new$1(textView, i, keyEvent);
+                    return this.f$0.lambda$new$0(textView, i, keyEvent);
                 }
             });
         }
 
-        public void lambda$new$0(View view) {
-            this.searchEditText.setText("");
-            AndroidUtilities.showKeyboard(this.searchEditText);
-        }
-
-        public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
+        public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
             if (keyEvent == null) {
                 return false;
             }
@@ -353,7 +284,6 @@ public abstract class UsersAlertBase extends BottomSheet {
         }
 
         public void closeSearch() {
-            this.clearSearchImageView.callOnClick();
             AndroidUtilities.hideKeyboard(this.searchEditText);
         }
     }
@@ -366,7 +296,6 @@ public abstract class UsersAlertBase extends BottomSheet {
         this.colorProgress = f;
         this.backgroundColor = AndroidUtilities.getOffsetColor(Theme.getColor(this.keyInviteMembersBackground, this.resourcesProvider), Theme.getColor(this.keyListViewBackground, this.resourcesProvider), f, 1.0f);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(this.backgroundColor, PorterDuff.Mode.MULTIPLY));
-        this.frameLayout.setBackgroundColor(this.backgroundColor);
         fixNavigationBar(this.backgroundColor);
         int i = this.backgroundColor;
         this.navBarColor = i;
@@ -644,7 +573,6 @@ public abstract class UsersAlertBase extends BottomSheet {
             }
             if (iMin2 > 0) {
                 Theme.dialogs_onlineCirclePaint.setColor(UsersAlertBase.this.backgroundColor);
-                canvas.drawRect(((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, (AndroidUtilities.statusBarHeight - iMin2) - getTranslationY(), getMeasuredWidth() - ((BottomSheet) UsersAlertBase.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight - getTranslationY(), Theme.dialogs_onlineCirclePaint);
             }
             updateLightStatusBar(iMin2 > AndroidUtilities.statusBarHeight / 2);
             canvas.restore();

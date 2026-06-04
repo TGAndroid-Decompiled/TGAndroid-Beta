@@ -70,6 +70,7 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.IMessageCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -100,7 +101,7 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.recorder.HintView2;
 
-public class ChatActionCell extends BaseCell implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate {
+public class ChatActionCell extends BaseCell implements DownloadController.FileDownloadProgressListener, NotificationCenter.NotificationCenterDelegate, IMessageCell {
     private static Map monthsToEmoticon;
     private int TAG;
     private SpannableStringBuilder accessibilityText;
@@ -342,6 +343,57 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         void onTopicClick(ChatActionCell chatActionCell);
     }
 
+    @Override
+    public boolean drawPinnedBottom() {
+        return IMessageCell.CC.$default$drawPinnedBottom(this);
+    }
+
+    @Override
+    public boolean drawPinnedTop() {
+        return IMessageCell.CC.$default$drawPinnedTop(this);
+    }
+
+    @Override
+    public ImageReceiver getAvatarImage() {
+        return IMessageCell.CC.$default$getAvatarImage(this);
+    }
+
+    @Override
+    public float getCheckBoxTranslation() {
+        return IMessageCell.CC.$default$getCheckBoxTranslation(this);
+    }
+
+    @Override
+    public MessageObject.GroupedMessagePosition getCurrentPosition() {
+        return IMessageCell.CC.$default$getCurrentPosition(this);
+    }
+
+    @Override
+    public float getDeltaBottom() {
+        return 0.0f;
+    }
+
+    public float getDeltaLeft() {
+        return 0.0f;
+    }
+
+    public float getDeltaRight() {
+        return 0.0f;
+    }
+
+    public float getDeltaTop() {
+        return 0.0f;
+    }
+
+    public int getLayoutHeight() {
+        return getMeasuredHeight();
+    }
+
+    @Override
+    public float getSlidingOffsetX() {
+        return IMessageCell.CC.$default$getSlidingOffsetX(this);
+    }
+
     public boolean isFloating() {
         return false;
     }
@@ -356,6 +408,21 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     @Override
     public void onProgressUpload(String str, long j, long j2, boolean z) {
+    }
+
+    @Override
+    public void setAnimationRunning(boolean z, boolean z2) {
+        IMessageCell.CC.$default$setAnimationRunning(this, z, z2);
+    }
+
+    @Override
+    public boolean shouldDrawAlphaLayer() {
+        return IMessageCell.CC.$default$shouldDrawAlphaLayer(this);
+    }
+
+    @Override
+    public boolean willRemovedAfterAnimation() {
+        return IMessageCell.CC.$default$willRemovedAfterAnimation(this);
     }
 
     static {
@@ -673,8 +740,21 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
     }
 
+    @Override
     public MessageObject getMessageObject() {
         return this.currentMessageObject;
+    }
+
+    public ReactionsLayoutInBubble getReactionsLayout() {
+        return this.reactionsLayoutInBubble;
+    }
+
+    @Override
+    public void didPressReactionFromLayout(TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+        ChatActionCellDelegate chatActionCellDelegate = this.delegate;
+        if (chatActionCellDelegate != null) {
+            chatActionCellDelegate.didPressReaction(this, reactionCount, z, f, f2);
+        }
     }
 
     public ImageReceiver getPhotoImage() {

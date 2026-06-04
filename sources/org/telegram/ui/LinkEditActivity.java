@@ -38,7 +38,6 @@ public class LinkEditActivity extends BaseFragment {
     private TextCheckCell approveCell;
     private TextInfoPrivacyCell approveHintCell;
     private FrameLayout buttonLayout;
-    private TextView buttonTextView;
     private Callback callback;
     private final long chatId;
     private TextView createTextView;
@@ -93,11 +92,46 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r34) {
+    public android.view.View createView(final android.content.Context r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LinkEditActivity.createView(android.content.Context):android.view.View");
     }
 
-    public void lambda$createView$0(View view) {
+    public void lambda$createView$0(boolean z, int i, int i2) {
+        chooseDate(i);
+    }
+
+    public void lambda$createView$1(Context context, View view) {
+        AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
+            @Override
+            public final void didSelectDate(boolean z, int i, int i2) {
+                this.f$0.lambda$createView$0(z, i, i2);
+            }
+        });
+    }
+
+    public void lambda$createView$2(int i) {
+        if (i < this.dispalyedDates.size()) {
+            this.timeEditText.setText(LocaleController.formatDateAudio(((Integer) this.dispalyedDates.get(i)).intValue() + getConnectionsManager().getCurrentTime(), false));
+        } else {
+            this.timeEditText.setText("");
+        }
+    }
+
+    public void lambda$createView$3(int i) {
+        this.usesEditText.clearFocus();
+        this.ignoreSet = true;
+        if (i < this.dispalyedUses.size()) {
+            this.usesEditText.setText(((Integer) this.dispalyedUses.get(i)).toString());
+        } else {
+            this.usesEditText.setText("");
+        }
+        this.ignoreSet = false;
+    }
+
+    public void lambda$createView$4(boolean z, View view) {
+        if (z) {
+            return;
+        }
         TextCheckCell textCheckCell = this.subCell;
         if (textCheckCell != null && textCheckCell.isChecked()) {
             TextCheckCell textCheckCell2 = this.subCell;
@@ -108,9 +142,7 @@ public class LinkEditActivity extends BaseFragment {
         }
         TextCheckCell textCheckCell3 = (TextCheckCell) view;
         boolean zIsChecked = textCheckCell3.isChecked();
-        boolean z = !zIsChecked;
-        textCheckCell3.setBackgroundColorAnimated(z, Theme.getColor(!zIsChecked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
-        textCheckCell3.setChecked(z);
+        textCheckCell3.setChecked(!zIsChecked);
         setUsesVisible(zIsChecked);
         this.firstLayout = true;
         if (this.subCell != null) {
@@ -124,7 +156,7 @@ public class LinkEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$createView$3(Runnable[] runnableArr, View view) {
+    public void lambda$createView$7(Runnable[] runnableArr, View view) {
         if (this.inviteToEdit != null) {
             return;
         }
@@ -146,7 +178,7 @@ public class LinkEditActivity extends BaseFragment {
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$createView$1();
+                    this.f$0.lambda$createView$5();
                 }
             };
             runnableArr[0] = runnable;
@@ -154,61 +186,29 @@ public class LinkEditActivity extends BaseFragment {
             return;
         }
         this.approveCell.setCheckBoxIcon(0);
-        this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescription));
+        this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescription2));
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$createView$2();
+                this.f$0.lambda$createView$6();
             }
         };
         runnableArr[0] = runnable2;
         AndroidUtilities.runOnUIThread(runnable2);
     }
 
-    public void lambda$createView$1() {
+    public void lambda$createView$5() {
         this.subEditPriceCell.editText.requestFocus();
         AndroidUtilities.showKeyboard(this.subEditPriceCell.editText);
     }
 
-    public void lambda$createView$2() {
+    public void lambda$createView$6() {
         this.subEditPriceCell.editText.clearFocus();
         AndroidUtilities.hideKeyboard(this.subEditPriceCell.editText);
     }
 
-    public void lambda$createView$4() {
+    public void lambda$createView$8() {
         Browser.openUrl(getContext(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
-    }
-
-    public void lambda$createView$5(boolean z, int i, int i2) {
-        chooseDate(i);
-    }
-
-    public void lambda$createView$6(Context context, View view) {
-        AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
-            @Override
-            public final void didSelectDate(boolean z, int i, int i2) {
-                this.f$0.lambda$createView$5(z, i, i2);
-            }
-        });
-    }
-
-    public void lambda$createView$7(int i) {
-        if (i < this.dispalyedDates.size()) {
-            this.timeEditText.setText(LocaleController.formatDateAudio(((Integer) this.dispalyedDates.get(i)).intValue() + getConnectionsManager().getCurrentTime(), false));
-        } else {
-            this.timeEditText.setText("");
-        }
-    }
-
-    public void lambda$createView$8(int i) {
-        this.usesEditText.clearFocus();
-        this.ignoreSet = true;
-        if (i < this.dispalyedUses.size()) {
-            this.usesEditText.setText(((Integer) this.dispalyedUses.get(i)).toString());
-        } else {
-            this.usesEditText.setText("");
-        }
-        this.ignoreSet = false;
     }
 
     public void lambda$createView$10(View view) {
@@ -580,7 +580,7 @@ public class LinkEditActivity extends BaseFragment {
         }
         TextCheckCell textCheckCell = this.approveCell;
         if (textCheckCell != null) {
-            textCheckCell.setBackgroundColor(Theme.getColor(tL_chatInviteExported.request_needed ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+            textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.approveCell.setChecked(tL_chatInviteExported.request_needed);
         }
         setUsesVisible(!tL_chatInviteExported.request_needed);
@@ -678,7 +678,6 @@ public class LinkEditActivity extends BaseFragment {
         TextInfoPrivacyCell textInfoPrivacyCell = this.dividerUses;
         if (textInfoPrivacyCell != null) {
             textInfoPrivacyCell.getContext();
-            this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
             EditText editText = this.usesEditText;
             int i = Theme.key_windowBackgroundWhiteBlackText;
             editText.setTextColor(Theme.getColor(i));
@@ -687,12 +686,11 @@ public class LinkEditActivity extends BaseFragment {
             editText2.setHintTextColor(Theme.getColor(i2));
             this.timeEditText.setTextColor(Theme.getColor(i));
             this.timeEditText.setHintTextColor(Theme.getColor(i2));
-            this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             TextSettingsCell textSettingsCell = this.revokeLink;
             if (textSettingsCell != null) {
                 textSettingsCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
             }
-            this.createTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle));
+            this.createTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.nameEditText.setTextColor(Theme.getColor(i));
             this.nameEditText.setHintTextColor(Theme.getColor(i2));
         }

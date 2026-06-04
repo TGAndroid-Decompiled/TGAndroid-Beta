@@ -50,7 +50,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.PhotoFilterView;
-import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.RLottieNative;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class StoryEntry {
@@ -213,7 +213,7 @@ public class StoryEntry {
             if ("video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type)) {
                 return true;
             }
-            if (MessageObject.isAnimatedStickerDocument(document, true) && RLottieDrawable.getFramesCount(str, null) > 1) {
+            if (MessageObject.isAnimatedStickerDocument(document, true) && RLottieNative.getFramesCount(str, null) > 1) {
                 return true;
             }
         }

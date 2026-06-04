@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
@@ -20,6 +21,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
+import android.view.View;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import java.io.BufferedReader;
@@ -52,6 +54,7 @@ import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.QuickRepliesController;
@@ -62,17 +65,22 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.Forum.ForumUtilities;
+import org.telegram.ui.Components.LatexInliner;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.TranscribeButton;
+import org.telegram.ui.Components.URLSpanBrowser;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.URLSpanNoUnderlineBold;
+import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.WebPlayerView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.MultiLayoutTypingAnimator;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.StoriesController;
@@ -97,6 +105,7 @@ public class MessageObject {
     public static final int TYPE_ACTION_PHOTO = 11;
     public static final int TYPE_ACTION_WALLPAPER = 22;
     public static final int TYPE_ANIMATED_STICKER = 15;
+    public static final int TYPE_ARTICLE = 36;
     public static final int TYPE_CONTACT = 12;
     public static final int TYPE_DATE = 10;
     public static final int TYPE_EMOJIS = 19;
@@ -303,6 +312,7 @@ public class MessageObject {
     public TLRPC.TL_forumTopic replyToForumTopic;
     public boolean resendAsIs;
     public boolean revealingMediaSpoilers;
+    public RichMessageLayout richLayout;
     public boolean scheduled;
     public boolean scheduledSent;
     public int searchType;
@@ -938,7 +948,7 @@ public class MessageObject {
         return (hashSet == null ? 0 : hashSet.size()) == (hashSet2 == null ? 0 : hashSet2.size()) && hashSet != null && hashSet.equals(hashSet2);
     }
 
-    public static class TextLayoutBlock {
+    public static class TextLayoutBlock implements MultiLayoutTypingAnimator.Block {
         public static final int FLAG_NOT_RTL = 2;
         public static final int FLAG_RTL = 1;
         public int charactersEnd;
@@ -973,6 +983,16 @@ public class MessageObject {
         public StaticLayout textLayout;
         public AtomicReference<Layout> spoilersPatchedTextLayout = new AtomicReference<>();
         public List<SpoilerEffect> spoilers = new ArrayList();
+
+        @Override
+        public View getParentView() {
+            return null;
+        }
+
+        @Override
+        public Layout getLayout() {
+            return this.textLayout;
+        }
 
         public int heightCollapsed() {
             return this.quoteCollapse ? this.collapsedHeight : this.height;
@@ -1339,6 +1359,14 @@ public class MessageObject {
             }
             return false;
         }
+    }
+
+    public int getLastLineWidth() {
+        RichMessageLayout richMessageLayout = this.richLayout;
+        if (richMessageLayout != null) {
+            return richMessageLayout.getLastLineWidth();
+        }
+        return this.lastLineWidth;
     }
 
     public MessageObject(int i, TL_stories.StoryItem storyItem) {
@@ -2715,10 +2743,10 @@ public class MessageObject {
         return false;
     }
 
-    private MessageObject getMessageObjectForBlock(TLRPC.WebPage webPage, TLRPC.PageBlock pageBlock) {
+    private MessageObject getMessageObjectForBlock(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
         TLRPC.TL_message tL_message;
-        if (pageBlock instanceof TLRPC.TL_pageBlockPhoto) {
-            TLRPC.Photo photoWithId = getPhotoWithId(webPage, ((TLRPC.TL_pageBlockPhoto) pageBlock).photo_id);
+        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+            TLRPC.Photo photoWithId = getPhotoWithId(webPage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
             if (photoWithId == webPage.photo) {
                 return this;
             }
@@ -2726,15 +2754,15 @@ public class MessageObject {
             TLRPC.TL_messageMediaPhoto tL_messageMediaPhoto = new TLRPC.TL_messageMediaPhoto();
             tL_message.media = tL_messageMediaPhoto;
             tL_messageMediaPhoto.photo = photoWithId;
-        } else if (pageBlock instanceof TLRPC.TL_pageBlockVideo) {
-            TLRPC.TL_pageBlockVideo tL_pageBlockVideo = (TLRPC.TL_pageBlockVideo) pageBlock;
-            if (getDocumentWithId(webPage, tL_pageBlockVideo.video_id) == webPage.document) {
+        } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            if (getDocumentWithId(webPage, pageblockvideo.video_id) == webPage.document) {
                 return this;
             }
             TLRPC.TL_message tL_message2 = new TLRPC.TL_message();
             TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
             tL_message2.media = tL_messageMediaDocument;
-            tL_messageMediaDocument.document = getDocumentWithId(webPage, tL_pageBlockVideo.video_id);
+            tL_messageMediaDocument.document = getDocumentWithId(webPage, pageblockvideo.video_id);
             tL_message = tL_message2;
         } else {
             tL_message = null;
@@ -2750,9 +2778,9 @@ public class MessageObject {
         return new MessageObject(this.currentAccount, tL_message, false, true);
     }
 
-    public ArrayList<MessageObject> getWebPagePhotos(ArrayList<MessageObject> arrayList, ArrayList<TLRPC.PageBlock> arrayList2) {
+    public ArrayList<MessageObject> getWebPagePhotos(ArrayList<MessageObject> arrayList, ArrayList<TL_iv.PageBlock> arrayList2) {
         TLRPC.WebPage webPage;
-        TLRPC.Page page;
+        TL_iv.Page page;
         if (arrayList == null) {
             arrayList = new ArrayList<>();
         }
@@ -2763,16 +2791,16 @@ public class MessageObject {
             arrayList2 = page.blocks;
         }
         for (int i = 0; i < arrayList2.size(); i++) {
-            TLRPC.PageBlock pageBlock = arrayList2.get(i);
-            if (pageBlock instanceof TLRPC.TL_pageBlockSlideshow) {
-                TLRPC.TL_pageBlockSlideshow tL_pageBlockSlideshow = (TLRPC.TL_pageBlockSlideshow) pageBlock;
-                for (int i2 = 0; i2 < tL_pageBlockSlideshow.items.size(); i2++) {
-                    arrayList.add(getMessageObjectForBlock(webPage, tL_pageBlockSlideshow.items.get(i2)));
+            TL_iv.PageBlock pageBlock = arrayList2.get(i);
+            if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                TL_iv.pageBlockSlideshow pageblockslideshow = (TL_iv.pageBlockSlideshow) pageBlock;
+                for (int i2 = 0; i2 < pageblockslideshow.items.size(); i2++) {
+                    arrayList.add(getMessageObjectForBlock(webPage, pageblockslideshow.items.get(i2)));
                 }
-            } else if (pageBlock instanceof TLRPC.TL_pageBlockCollage) {
-                TLRPC.TL_pageBlockCollage tL_pageBlockCollage = (TLRPC.TL_pageBlockCollage) pageBlock;
-                for (int i3 = 0; i3 < tL_pageBlockCollage.items.size(); i3++) {
-                    arrayList.add(getMessageObjectForBlock(webPage, tL_pageBlockCollage.items.get(i3)));
+            } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
+                TL_iv.pageBlockCollage pageblockcollage = (TL_iv.pageBlockCollage) pageBlock;
+                for (int i3 = 0; i3 < pageblockcollage.items.size(); i3++) {
+                    arrayList.add(getMessageObjectForBlock(webPage, pageblockcollage.items.get(i3)));
                 }
             }
         }
@@ -2979,6 +3007,271 @@ public class MessageObject {
         return replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
     }
 
+    public static CharSequence formatRichMessage(TL_iv.RichMessage richMessage, boolean z) {
+        return formatRichMessage(richMessage, z, false, 1024);
+    }
+
+    public static CharSequence formatRichMessage(TL_iv.RichMessage richMessage, boolean z, boolean z2, int i) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (richMessage != null) {
+            int i2 = 0;
+            while (true) {
+                if (i2 >= richMessage.blocks.size()) {
+                    break;
+                }
+                TL_iv.PageBlock pageBlock = richMessage.blocks.get(i2);
+                if (i2 > 0) {
+                    spannableStringBuilder.append((CharSequence) "  ");
+                }
+                formatRichBlock(pageBlock, z, z2, i, spannableStringBuilder, richMessage);
+                if (spannableStringBuilder.length() >= i) {
+                    spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                    spannableStringBuilder.append((CharSequence) "…");
+                    break;
+                }
+                i2++;
+            }
+        }
+        return spannableStringBuilder;
+    }
+
+    public static CharSequence formatRichBlock(TL_iv.PageBlock pageBlock, boolean z, boolean z2, int i, SpannableStringBuilder spannableStringBuilder, TL_iv.RichMessage richMessage) {
+        TLRPC.Document document;
+        if ((pageBlock instanceof TL_iv.pageBlockTitle) || (pageBlock instanceof TL_iv.pageBlockHeader) || (pageBlock instanceof TL_iv.pageBlockSubheader) || (pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6) || (pageBlock instanceof TL_iv.pageBlockBlockquote) || (pageBlock instanceof TL_iv.pageBlockPullquote)) {
+            formatRichText(pageBlock.text, z, z2, i, spannableStringBuilder, 1);
+        } else if ((pageBlock instanceof TL_iv.pageBlockParagraph) || (pageBlock instanceof TL_iv.pageBlockFooter) || (pageBlock instanceof TL_iv.pageBlockKicker)) {
+            formatRichText(pageBlock.text, z, z2, i, spannableStringBuilder, 0);
+        } else {
+            int i2 = 0;
+            if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
+                TL_iv.pageBlockBlockquoteBlocks pageblockblockquoteblocks = (TL_iv.pageBlockBlockquoteBlocks) pageBlock;
+                while (i2 < pageblockblockquoteblocks.blocks.size()) {
+                    if (i2 > 0) {
+                        spannableStringBuilder.append("  ");
+                    }
+                    formatRichBlock(pageblockblockquoteblocks.blocks.get(i2), z, z2, i, spannableStringBuilder, richMessage);
+                    if (spannableStringBuilder.length() >= i) {
+                        spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                        spannableStringBuilder.append("…");
+                        return spannableStringBuilder;
+                    }
+                    i2++;
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockDetails) {
+                formatRichText(((TL_iv.pageBlockDetails) pageBlock).title, z, z2, i, spannableStringBuilder, 0);
+            } else if (pageBlock instanceof TL_iv.pageBlockAuthorDate) {
+                formatRichText(((TL_iv.pageBlockAuthorDate) pageBlock).author, z, z2, i, spannableStringBuilder, 0);
+            } else if (pageBlock instanceof TL_iv.pageBlockMath) {
+                spannableStringBuilder.append((CharSequence) LatexInliner.inlineLatex(((TL_iv.pageBlockMath) pageBlock).source));
+            } else if (pageBlock instanceof TL_iv.pageBlockMap) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Map));
+                TL_iv.PageCaption pageCaption = pageBlock.caption;
+                if (pageCaption != null && !(pageCaption.text instanceof TL_iv.textEmpty)) {
+                    spannableStringBuilder.append("  ");
+                    formatRichText(pageBlock.caption.text, z, z2, i, spannableStringBuilder, 0);
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockPreformatted) {
+                formatRichText(pageBlock.text, z, z2, i, spannableStringBuilder, 4);
+            } else if (pageBlock instanceof TL_iv.pageBlockList) {
+                TL_iv.pageBlockList pageblocklist = (TL_iv.pageBlockList) pageBlock;
+                for (int i3 = 0; i3 < pageblocklist.items.size(); i3++) {
+                    TL_iv.PageListItem pageListItem = pageblocklist.items.get(i3);
+                    if (pageListItem instanceof TL_iv.TL_pageListItemText) {
+                        TL_iv.TL_pageListItemText tL_pageListItemText = (TL_iv.TL_pageListItemText) pageListItem;
+                        spannableStringBuilder.append("• ");
+                        if (tL_pageListItemText.checkbox) {
+                            spannableStringBuilder.append(tL_pageListItemText.checked ? "✅ " : "⬛️ ");
+                        }
+                        formatRichText(tL_pageListItemText.text, z, z2, i, spannableStringBuilder, 0);
+                    } else if (pageListItem instanceof TL_iv.TL_pageListItemBlocks) {
+                        TL_iv.TL_pageListItemBlocks tL_pageListItemBlocks = (TL_iv.TL_pageListItemBlocks) pageListItem;
+                        spannableStringBuilder.append("• ");
+                        if (tL_pageListItemBlocks.checkbox) {
+                            spannableStringBuilder.append(tL_pageListItemBlocks.checked ? "✅ " : "⬛️ ");
+                        }
+                        int i4 = 0;
+                        while (i4 < tL_pageListItemBlocks.blocks.size()) {
+                            if (i4 > 0) {
+                                spannableStringBuilder.append("\n");
+                            }
+                            int i5 = i4;
+                            TL_iv.TL_pageListItemBlocks tL_pageListItemBlocks2 = tL_pageListItemBlocks;
+                            formatRichBlock(tL_pageListItemBlocks.blocks.get(i4), z, z2, i, spannableStringBuilder, richMessage);
+                            if (spannableStringBuilder.length() >= i) {
+                                spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                                spannableStringBuilder.append("…");
+                                return spannableStringBuilder;
+                            }
+                            i4 = i5 + 1;
+                            tL_pageListItemBlocks = tL_pageListItemBlocks2;
+                        }
+                    }
+                    if (spannableStringBuilder.length() >= i) {
+                        spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                        spannableStringBuilder.append("…");
+                        return spannableStringBuilder;
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
+                TL_iv.pageBlockOrderedList pageblockorderedlist = (TL_iv.pageBlockOrderedList) pageBlock;
+                for (int i6 = 0; i6 < pageblockorderedlist.items.size(); i6++) {
+                    TL_iv.PageListOrderedItem pageListOrderedItem = pageblockorderedlist.items.get(i6);
+                    if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemText) {
+                        TL_iv.TL_pageListOrderedItemText tL_pageListOrderedItemText = (TL_iv.TL_pageListOrderedItemText) pageListOrderedItem;
+                        spannableStringBuilder.append((CharSequence) tL_pageListOrderedItemText.num);
+                        spannableStringBuilder.append(". ");
+                        if (tL_pageListOrderedItemText.checkbox) {
+                            spannableStringBuilder.append(tL_pageListOrderedItemText.checked ? "✅ " : "⬛️ ");
+                        }
+                        formatRichText(tL_pageListOrderedItemText.text, z, z2, i, spannableStringBuilder, 0);
+                    } else if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemBlocks) {
+                        TL_iv.TL_pageListOrderedItemBlocks tL_pageListOrderedItemBlocks = (TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem;
+                        spannableStringBuilder.append((CharSequence) tL_pageListOrderedItemBlocks.num);
+                        spannableStringBuilder.append(". ");
+                        if (tL_pageListOrderedItemBlocks.checkbox) {
+                            spannableStringBuilder.append(tL_pageListOrderedItemBlocks.checked ? "✅ " : "⬛️ ");
+                        }
+                        int i7 = 0;
+                        while (i7 < tL_pageListOrderedItemBlocks.blocks.size()) {
+                            if (i7 > 0) {
+                                spannableStringBuilder.append("\n");
+                            }
+                            int i8 = i7;
+                            TL_iv.TL_pageListOrderedItemBlocks tL_pageListOrderedItemBlocks2 = tL_pageListOrderedItemBlocks;
+                            formatRichBlock(tL_pageListOrderedItemBlocks.blocks.get(i7), z, z2, i, spannableStringBuilder, richMessage);
+                            if (spannableStringBuilder.length() >= i) {
+                                spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                                spannableStringBuilder.append("…");
+                                return spannableStringBuilder;
+                            }
+                            i7 = i8 + 1;
+                            tL_pageListOrderedItemBlocks = tL_pageListOrderedItemBlocks2;
+                        }
+                    }
+                    if (spannableStringBuilder.length() >= i) {
+                        spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                        spannableStringBuilder.append("…");
+                        return spannableStringBuilder;
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockTable) {
+                TL_iv.RichText richText = ((TL_iv.pageBlockTable) pageBlock).title;
+                if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
+                    formatRichText(richText, z, z2, i, spannableStringBuilder, 1);
+                } else {
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AccDescrIVTable));
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockAudio) {
+                TL_iv.pageBlockAudio pageblockaudio = (TL_iv.pageBlockAudio) pageBlock;
+                while (true) {
+                    if (i2 >= richMessage.documents.size()) {
+                        document = null;
+                        break;
+                    }
+                    if (richMessage.documents.get(i2).id == pageblockaudio.audio_id) {
+                        document = richMessage.documents.get(i2);
+                        break;
+                    }
+                    i2++;
+                }
+                if (document != null) {
+                    TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio = (TLRPC.TL_documentAttributeAudio) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeAudio.class);
+                    TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = (TLRPC.TL_documentAttributeFilename) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeFilename.class);
+                    if (tL_documentAttributeAudio != null) {
+                        if (!TextUtils.isEmpty(tL_documentAttributeAudio.title) && !TextUtils.isEmpty(tL_documentAttributeAudio.performer)) {
+                            spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeAudio.performer).append(" – ").append((CharSequence) tL_documentAttributeAudio.title);
+                        } else if (!TextUtils.isEmpty(tL_documentAttributeAudio.title)) {
+                            spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeAudio.title);
+                        } else if (tL_documentAttributeFilename != null && tL_documentAttributeFilename.file_name != null) {
+                            spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeFilename.file_name);
+                        }
+                    } else if (tL_documentAttributeFilename != null && tL_documentAttributeFilename.file_name != null) {
+                        spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeFilename.file_name);
+                    }
+                }
+            } else if (pageBlock instanceof TL_iv.pageBlockCover) {
+                formatRichBlock(((TL_iv.pageBlockCover) pageBlock).cover, z, z2, i, spannableStringBuilder, richMessage);
+            } else if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AttachPhoto));
+            } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AttachVideo));
+            } else if (pageBlock instanceof TL_iv.pageBlockCollage) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AccDescrCollage));
+            } else if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AccDescrIVSlideshow));
+            } else if (pageBlock instanceof TL_iv.pageBlockUnsupported) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.UnsupportedAttachment));
+            }
+        }
+        return spannableStringBuilder;
+    }
+
+    public static CharSequence formatRichText(TL_iv.RichText richText, boolean z, boolean z2, int i, SpannableStringBuilder spannableStringBuilder, int i2) {
+        if (richText == null) {
+            return spannableStringBuilder;
+        }
+        int length = spannableStringBuilder.length();
+        if (richText instanceof TL_iv.textPlain) {
+            spannableStringBuilder.append((CharSequence) ((TL_iv.textPlain) richText).text);
+        } else if (richText instanceof TL_iv.textBold) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 1);
+        } else if (richText instanceof TL_iv.textItalic) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 2);
+        } else if (richText instanceof TL_iv.textUnderline) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 16);
+        } else if (richText instanceof TL_iv.textStrike) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 8);
+        } else if (richText instanceof TL_iv.textFixed) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 4);
+        } else if (richText instanceof TL_iv.textSpoiler) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 256);
+        } else if (richText instanceof TL_iv.textUrl) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2);
+            if (spannableStringBuilder.length() > length) {
+                TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                textStyleRun.flags = i2;
+                spannableStringBuilder.setSpan(new URLSpanBrowser(richText.url, textStyleRun), length, spannableStringBuilder.length(), 33);
+            }
+        } else if (richText instanceof TL_iv.textEmail) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2);
+            if (spannableStringBuilder.length() > length) {
+                TextStyleSpan.TextStyleRun textStyleRun2 = new TextStyleSpan.TextStyleRun();
+                textStyleRun2.flags = i2;
+                spannableStringBuilder.setSpan(new URLSpanReplacement("mailto:" + richText.email, textStyleRun2), length, spannableStringBuilder.length(), 33);
+            }
+        } else if (richText instanceof TL_iv.textMath) {
+            spannableStringBuilder.append((CharSequence) LatexInliner.inlineLatex(((TL_iv.textMath) richText).source));
+        } else if (richText instanceof TL_iv.textPhone) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2);
+            if (spannableStringBuilder.length() > length) {
+                TL_iv.textPhone textphone = (TL_iv.textPhone) richText;
+                String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(textphone.phone);
+                if (textphone.phone.startsWith("+")) {
+                    strStripExceptNumbers = "+" + strStripExceptNumbers;
+                }
+                TextStyleSpan.TextStyleRun textStyleRun3 = new TextStyleSpan.TextStyleRun();
+                textStyleRun3.flags = i2;
+                spannableStringBuilder.setSpan(new URLSpanNoUnderline("tel:" + strStripExceptNumbers, textStyleRun3), length, spannableStringBuilder.length(), 33);
+            }
+        } else if (richText instanceof TL_iv.textConcat) {
+            Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
+            while (it.hasNext()) {
+                formatRichText(it.next(), z, z2, i, spannableStringBuilder, i2);
+                if (spannableStringBuilder.length() >= i) {
+                    spannableStringBuilder.delete(i, spannableStringBuilder.length());
+                    spannableStringBuilder.append("…");
+                    return spannableStringBuilder;
+                }
+            }
+        }
+        if (spannableStringBuilder.length() > length && i2 != 0) {
+            TextStyleSpan.TextStyleRun textStyleRun4 = new TextStyleSpan.TextStyleRun();
+            textStyleRun4.flags = i2;
+            spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun4), length, spannableStringBuilder.length(), 33);
+        }
+        return spannableStringBuilder;
+    }
+
     public static TLRPC.TL_textWithEntities removeLinks(TLRPC.TL_textWithEntities tL_textWithEntities) {
         TLRPC.TL_textWithEntities tL_textWithEntities2 = new TLRPC.TL_textWithEntities();
         tL_textWithEntities2.text = tL_textWithEntities.text;
@@ -3060,7 +3353,7 @@ public class MessageObject {
         CharSequence charSequence;
         TextPaint textPaint;
         int i = this.type;
-        if ((i == 0 || i == 19) && this.messageOwner.peer_id != null && (charSequence = this.messageText) != null && (charSequence.length() != 0 || this.isBotPendingDraft)) {
+        if ((i == 0 || i == 19 || i == 36) && this.messageOwner.peer_id != null && (charSequence = this.messageText) != null && (charSequence.length() != 0 || this.isBotPendingDraft)) {
             if (this.layoutCreated) {
                 int minTabletSide = AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : AndroidUtilities.displaySize.x;
                 TextPaint textPaint2 = Theme.chat_msgTextPaint;
@@ -4169,6 +4462,19 @@ public class MessageObject {
         return z;
     }
 
+    private int getParentWidth() {
+        int i;
+        if (this.preview && (i = this.parentWidth) > 0) {
+            return i;
+        }
+        if (AndroidUtilities.isTablet()) {
+            return AndroidUtilities.getMinTabletSide();
+        }
+        Point point = AndroidUtilities.displaySize;
+        int i2 = point.x;
+        return i2 > point.y ? i2 - AndroidUtilities.dp(50.0f) : i2;
+    }
+
     public int getMaxMessageTextWidth() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.getMaxMessageTextWidth():int");
     }
@@ -4249,6 +4555,10 @@ public class MessageObject {
     }
 
     public int textHeightCached() {
+        RichMessageLayout richMessageLayout = this.richLayout;
+        if (richMessageLayout != null) {
+            return richMessageLayout.getHeight();
+        }
         Integer num = this.cachedTextHeight;
         if (num != null) {
             return num.intValue();
@@ -4266,6 +4576,10 @@ public class MessageObject {
     }
 
     public int textHeight() {
+        RichMessageLayout richMessageLayout = this.richLayout;
+        if (richMessageLayout != null) {
+            return richMessageLayout.getHeight();
+        }
         if (this.textLayoutBlocks == null) {
             return 0;
         }
@@ -5766,11 +6080,6 @@ public class MessageObject {
 
     public int getApproximateHeight(boolean r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.getApproximateHeight(boolean):int");
-    }
-
-    private int getParentWidth() {
-        int i;
-        return (!this.preview || (i = this.parentWidth) <= 0) ? AndroidUtilities.displaySize.x : i;
     }
 
     public static String getEmoji(TLRPC.Document document) {

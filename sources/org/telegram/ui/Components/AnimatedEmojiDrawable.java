@@ -15,6 +15,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import j$.util.Objects;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,16 +26,21 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.utils.FrameTickScheduler;
+import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -573,6 +579,10 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.sizedp = 56;
             return;
         }
+        if (i == 27) {
+            this.sizedp = 50;
+            return;
+        }
         if (i == 24) {
             this.sizedp = 140;
             return;
@@ -645,8 +655,163 @@ public class AnimatedEmojiDrawable extends Drawable {
         initDocument(false);
     }
 
-    private void initDocument(boolean r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiDrawable.initDocument(boolean):void");
+    private void initDocument(boolean z) {
+        int i;
+        SvgHelper.SvgDrawable svgThumb;
+        ImageLocation forDocument;
+        String str;
+        int i2;
+        Drawable emojiDrawable;
+        ImageLocation forDocument2;
+        int iDp;
+        TLRPC.Document document = this.document;
+        if (document != null) {
+            if (this.imageReceiver == null || this.imageReceiverEmojiThumb || z) {
+                int i3 = this.cacheType;
+                if ((i3 == 20 || i3 == 21) && (document instanceof TLRPC.TL_documentEmpty)) {
+                    return;
+                }
+                this.imageReceiverEmojiThumb = false;
+                createImageReceiver();
+                if (this.colorFilterToSet != null && canOverrideColor()) {
+                    this.imageReceiver.setColorFilter(this.colorFilterToSet);
+                }
+                int i4 = this.cacheType;
+                if (i4 != 0) {
+                    if (i4 == 12) {
+                        i4 = 2;
+                    }
+                    this.imageReceiver.setUniqKeyPrefix(i4 + "_");
+                }
+                this.imageReceiver.setVideoThumbIsSame(true);
+                boolean z2 = (SharedConfig.getDevicePerformanceClass() == 0 && this.cacheType == 5) || (((i = this.cacheType) == 2 || i == 25) && !liteModeKeyboard) || (i == 3 && !liteModeReactions);
+                int i5 = this.cacheType;
+                if (i5 == 13 || i5 == 16) {
+                    z2 = true;
+                }
+                if (i5 == 24 || i5 == 27) {
+                    z2 = false;
+                }
+                String str2 = this.sizedp + "_" + this.sizedp;
+                if (this.cacheType == 12) {
+                    str2 = str2 + "_d_nostream";
+                }
+                int i6 = this.cacheType;
+                if (i6 != 17 && i6 != 15 && i6 != 14 && i6 != 8 && ((i6 != 1 || SharedConfig.getDevicePerformanceClass() < 2) && this.cacheType != 12)) {
+                    str2 = str2 + "_pcache";
+                }
+                int i7 = this.cacheType;
+                if (i7 != 17 && i7 != 0 && i7 != 26 && i7 != 1 && i7 != 14 && i7 != 15 && i7 != 19 && i7 != 20 && i7 != 21) {
+                    str2 = str2 + "_compress";
+                }
+                if (this.cacheType == 8) {
+                    str2 = str2 + "firstframe";
+                }
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.document.thumbs, 90);
+                if ("video/webm".equals(this.document.mime_type)) {
+                    forDocument = ImageLocation.getForDocument(this.document);
+                    str2 = str2 + "_g";
+                    svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f, true);
+                } else if ("application/x-tgsticker".equals(this.document.mime_type)) {
+                    StringBuilder sb = new StringBuilder();
+                    if (this.cacheType != 0) {
+                        str = this.cacheType + "_";
+                    } else {
+                        str = "";
+                    }
+                    sb.append(str);
+                    sb.append(this.documentId);
+                    sb.append("@");
+                    sb.append(str2);
+                    String string = sb.toString();
+                    if (SharedConfig.getDevicePerformanceClass() != 0 || (i2 = this.cacheType) == 2 || i2 == 25 || i2 == 22 || !ImageLoader.getInstance().hasLottieMemCache(string)) {
+                        SvgHelper.SvgDrawable svgThumb2 = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, this.cacheType == 22 ? 0.8f : 0.2f);
+                        if (svgThumb2 != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                            svgThumb2.overrideWidthAndHeight(512, 512);
+                        }
+                        svgThumb = svgThumb2;
+                    } else {
+                        svgThumb = null;
+                    }
+                    forDocument = ImageLocation.getForDocument(this.document);
+                } else {
+                    svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f, true);
+                    if (svgThumb != null && MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                        svgThumb.overrideWidthAndHeight(512, 512);
+                    }
+                    forDocument = null;
+                }
+                int i8 = this.cacheType;
+                if ((i8 != 20 && i8 != 21) || (emojiDrawable = Emoji.getEmojiDrawable(MessageObject.findAnimatedEmojiEmoticon(this.document, null))) == null) {
+                    emojiDrawable = svgThumb;
+                }
+                if (this.absolutePath != null) {
+                    this.imageReceiver.setImageBitmap(new AnimatedFileDrawable(new File(this.absolutePath), true, 0L, 0, null, null, null, 0L, this.currentAccount, true, 512, 512, null));
+                } else {
+                    int i9 = this.cacheType;
+                    if (i9 == 8) {
+                        ImageReceiver imageReceiver = this.imageReceiver;
+                        TLRPC.Document document2 = this.document;
+                        imageReceiver.setImage(null, null, forDocument, str2, null, null, emojiDrawable, document2.size, null, document2, 1);
+                    } else if (z2 || (!liteModeKeyboard && i9 != 14)) {
+                        forDocument2 = i9 == 16 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
+                        if ("video/webm".equals(this.document.mime_type)) {
+                            ImageReceiver imageReceiver2 = this.imageReceiver;
+                            ImageLocation forDocument3 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                            String str3 = this.sizedp + "_" + this.sizedp;
+                            TLRPC.Document document3 = this.document;
+                            imageReceiver2.setImage(null, null, forDocument3, str3, forDocument2, null, emojiDrawable, document3.size, null, document3, 1);
+                        } else if (MessageObject.isAnimatedStickerDocument(this.document, true)) {
+                            TLRPC.Document document4 = this.document;
+                            this.imageReceiver.setImage(forDocument, str2 + "_firstframe", forDocument2, null, emojiDrawable, document4.size, null, document4, 1);
+                        } else {
+                            ImageReceiver imageReceiver3 = this.imageReceiver;
+                            ImageLocation forDocument4 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                            String str4 = this.sizedp + "_" + this.sizedp;
+                            TLRPC.Document document5 = this.document;
+                            imageReceiver3.setImage(forDocument4, str4, forDocument2, null, emojiDrawable, document5.size, null, document5, 1);
+                        }
+                    } else {
+                        forDocument2 = i9 == 17 ? ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document) : null;
+                        ImageReceiver imageReceiver4 = this.imageReceiver;
+                        ImageLocation forDocument5 = ImageLocation.getForDocument(closestPhotoSizeWithSize, this.document);
+                        String str5 = this.sizedp + "_" + this.sizedp;
+                        TLRPC.Document document6 = this.document;
+                        imageReceiver4.setImage(forDocument, str2, forDocument5, str5, forDocument2, null, emojiDrawable, document6.size, null, document6, 1);
+                    }
+                }
+                updateAutoRepeat(this.imageReceiver);
+                int i10 = this.cacheType;
+                if (i10 == 13 || i10 == 16 || i10 == 3 || i10 == 5 || i10 == 4 || i10 == 24) {
+                    this.imageReceiver.setLayerNum(7);
+                }
+                int i11 = this.cacheType;
+                if (i11 == 9 || i11 == 21 || i11 == 27) {
+                    this.imageReceiver.setLayerNum(6656);
+                }
+                this.imageReceiver.setAspectFit(true);
+                int i12 = this.cacheType;
+                if (i12 == 12 || i12 == 26 || i12 == 18 || i12 == 8 || i12 == 6 || i12 == 5 || (i12 == 25 && disabledToggleableAnimations)) {
+                    this.imageReceiver.setAllowStartAnimation(false);
+                    this.imageReceiver.setAllowStartLottieAnimation(false);
+                    this.imageReceiver.setAutoRepeat(0);
+                } else {
+                    this.imageReceiver.setAllowStartLottieAnimation(true);
+                    this.imageReceiver.setAllowStartAnimation(true);
+                    this.imageReceiver.setAutoRepeat(1);
+                }
+                this.imageReceiver.setAllowDecodeSingleFrame(true);
+                int i13 = this.cacheType;
+                if (i13 == 5 || i13 == 6 || i13 == 27) {
+                    iDp = AndroidUtilities.dp(6.0f);
+                } else {
+                    iDp = i13 == 24 ? AndroidUtilities.dp(14.0f) : 0;
+                }
+                this.imageReceiver.setRoundRadius(iDp);
+                updateAttachState();
+                invalidate();
+            }
+        }
     }
 
     public static void toggleAnimations(int i, boolean z) {
@@ -881,23 +1046,23 @@ public class AnimatedEmojiDrawable extends Drawable {
 
     public static void lambda$static$2() {
         AndroidUtilities.cancelRunOnUIThread(cleanup);
-        for (int i = 0; i < globalEmojiCache.size(); i++) {
-            try {
-                LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.valueAt(i);
-                int i2 = 0;
-                while (i2 < longSparseArray.size()) {
-                    if (!((AnimatedEmojiDrawable) longSparseArray.valueAt(i2)).attached) {
-                        longSparseArray.removeAt(i2);
-                        i2--;
+        try {
+            if (globalEmojiCache != null) {
+                for (int i = 0; i < globalEmojiCache.size(); i++) {
+                    LongSparseArray longSparseArray = (LongSparseArray) globalEmojiCache.valueAt(i);
+                    int i2 = 0;
+                    while (i2 < longSparseArray.size()) {
+                        if (!((AnimatedEmojiDrawable) longSparseArray.valueAt(i2)).attached) {
+                            longSparseArray.removeAt(i2);
+                            i2--;
+                        }
+                        i2++;
                     }
-                    i2++;
                 }
-            } catch (Exception e) {
-                if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                    FileLog.e(e);
-                    return;
-                }
-                return;
+            }
+        } catch (Exception e) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                FileLog.e(e);
             }
         }
     }
@@ -1200,9 +1365,9 @@ public class AnimatedEmojiDrawable extends Drawable {
                 StarsReactionsSheet.Particles particles = this.particles;
                 Integer num = this.lastColor;
                 particles.draw(canvas, Theme.multAlpha(num == null ? -1 : num.intValue(), f2));
-                FrameTickScheduler.subscribe(this.invalidateRunnable, 15);
+                Choreographer60FpsContent.getInstance().addFrameCallback(this.invalidateRunnable, 15);
             } else {
-                FrameTickScheduler.unsubscribe(this.invalidateRunnable);
+                Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateRunnable);
             }
             Drawable drawable = this.drawables[1];
             if (drawable != null && f < 1.0f) {

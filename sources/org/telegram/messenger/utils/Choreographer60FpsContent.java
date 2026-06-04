@@ -1,11 +1,11 @@
 package org.telegram.messenger.utils;
 
 import android.graphics.drawable.Drawable;
+import android.os.Looper;
 import android.util.SparseArray;
 import android.view.Choreographer;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 import me.vkryl.core.reference.ReferenceList;
 
 public final class Choreographer60FpsContent implements Choreographer.FrameCallback {
@@ -25,6 +25,7 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
     }
 
     public static Choreographer60FpsContent getInstance() {
+        checkMainThread();
         if (sInstance == null) {
             sInstance = new Choreographer60FpsContent();
         }
@@ -32,33 +33,47 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
     }
 
     public void postInvalidateDrawable(Drawable drawable) {
+        checkMainThread();
         this.mDrawablesToInvalidate.add(drawable);
     }
 
     public void postInvalidateDrawable30fps(Drawable drawable) {
+        checkMainThread();
         this.mDrawablesToInvalidate30fps.add(drawable);
     }
 
-    public void addFrameCallback(FrameCallback frameCallback) {
-        addFrameCallback(frameCallback, 60);
+    public void addFrameCallback(Runnable runnable, int i) {
+        checkMainThread();
+        if (runnable == null) {
+            return;
+        }
+        int iMax = Math.max(1, Math.min(i, 60));
+        removeFrameCallback(runnable);
+        getOrCreateGroup(iMax).runnableCallbacks.add(runnable);
     }
 
     public void addFrameCallback(FrameCallback frameCallback, int i) {
+        checkMainThread();
         int iMax = Math.max(1, Math.min(i, 60));
         removeFrameCallback(frameCallback);
         getOrCreateGroup(iMax).callbacks.add(frameCallback);
     }
 
+    public void removeFrameCallback(Runnable runnable) {
+        checkMainThread();
+        if (runnable == null) {
+            return;
+        }
+        for (int i = 0; i < this.mGroups.size() && !((CallbackGroup) this.mGroups.valueAt(i)).runnableCallbacks.remove(runnable); i++) {
+        }
+    }
+
     public void removeFrameCallback(FrameCallback frameCallback) {
-        for (int i = 0; i < this.mGroups.size(); i++) {
-            CallbackGroup callbackGroup = (CallbackGroup) this.mGroups.valueAt(i);
-            if (callbackGroup.callbacks.remove(frameCallback)) {
-                if (callbackGroup.callbacks.isEmpty()) {
-                    this.mGroups.removeAt(i);
-                    return;
-                }
-                return;
-            }
+        checkMainThread();
+        if (frameCallback == null) {
+            return;
+        }
+        for (int i = 0; i < this.mGroups.size() && !((CallbackGroup) this.mGroups.valueAt(i)).callbacks.remove(frameCallback); i++) {
         }
     }
 
@@ -83,7 +98,7 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
             this.mAccumulatedNs = j3;
             this.mLastVsyncNs = j;
             if (j3 >= 16666666) {
-                this.mAccumulatedNs = j3 - 16666666;
+                this.mAccumulatedNs = j3 % 16666666;
                 dispatchFrame(j);
             }
         }
@@ -106,13 +121,20 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
 
     private static final class CallbackGroup {
         long accumulatedNs;
-        final CopyOnWriteArrayList callbacks = new CopyOnWriteArrayList();
         final long intervalNs;
         final int stride;
+        final ReferenceList callbacks = new ReferenceList();
+        final ReferenceList runnableCallbacks = new ReferenceList();
 
         CallbackGroup(long j, int i) {
             this.intervalNs = j;
             this.stride = i;
+        }
+    }
+
+    private static void checkMainThread() {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            throw new IllegalStateException("Choreographer60FpsContent must be used on the main thread");
         }
     }
 }

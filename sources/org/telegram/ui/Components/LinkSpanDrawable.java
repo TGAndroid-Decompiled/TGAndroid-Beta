@@ -243,6 +243,10 @@ public class LinkSpanDrawable {
             this.mParent = view;
         }
 
+        public void setParent(View view) {
+            this.mParent = view;
+        }
+
         public void setAdditionalInvalidate(Runnable runnable) {
             this.additionalInvalidate = runnable;
         }

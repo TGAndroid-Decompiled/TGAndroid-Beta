@@ -11,7 +11,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_messageReactions$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.Vector$$ExternalSyntheticLambda3;
 import org.telegram.tgnet.tl.TL_stats;
@@ -1986,7 +1985,7 @@ public class TL_stories {
                 this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_storyItem$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2099,7 +2098,7 @@ public class TL_stories {
                 this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_storyItem$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2206,7 +2205,7 @@ public class TL_stories {
                 this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_storyItem$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2302,7 +2301,7 @@ public class TL_stories {
                 this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_storyItem$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2392,7 +2391,7 @@ public class TL_stories {
                 this.media_areas = Vector.deserialize(inputSerializedData, new TL_stories$TL_storyItem$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -2475,7 +2474,7 @@ public class TL_stories {
             }
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.privacy = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+                this.privacy = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.views = StoryViews.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);

@@ -55,7 +55,7 @@ import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
 import org.telegram.ui.Components.Paint.Views.LocationMarker;
-import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.RLottieNative;
 
 public class TextureRenderer {
     private static final String FRAGMENT_EXTERNAL_MASK_SHADER = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nvarying vec2 MTextureCoord;\nuniform samplerExternalOES sTexture;\nuniform sampler2D sMask;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord) * texture2D(sMask, MTextureCoord).a;\n}\n";
@@ -367,7 +367,7 @@ public class TextureRenderer {
             if (bitmap2 == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
                 return;
             }
-            RLottieDrawable.getFrame(j4, (int) mediaEntity.currentFrame, bitmap2, true);
+            RLottieNative.getFrame(j4, (int) mediaEntity.currentFrame, bitmap2, true);
             applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
             GLES20.glBindTexture(3553, this.stickerTexture[0]);
             GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
@@ -840,7 +840,7 @@ public class TextureRenderer {
             mediaEntity.bitmap = Bitmap.createBitmap(i5, i, Bitmap.Config.ARGB_8888);
             int[] iArr = new int[3];
             mediaEntity.metadata = iArr;
-            mediaEntity.ptr = RLottieDrawable.create(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, iArr, false, null, false, 0);
+            mediaEntity.ptr = RLottieNative.create(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, iArr, false, null, false, 0);
             mediaEntity.framesPerDraw = mediaEntity.metadata[1] / this.videoFps;
             return;
         }
@@ -1214,7 +1214,7 @@ public class TextureRenderer {
                 VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i);
                 long j = mediaEntity.ptr;
                 if (j != 0) {
-                    RLottieDrawable.destroy(j);
+                    RLottieNative.destroy(j);
                 }
                 AnimatedFileDrawable animatedFileDrawable = mediaEntity.animatedFileDrawable;
                 if (animatedFileDrawable != null) {

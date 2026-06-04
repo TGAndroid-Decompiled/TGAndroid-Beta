@@ -6,7 +6,6 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 import androidx.core.math.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
@@ -74,27 +73,29 @@ public class ReplyMessageLine {
 
     public ReplyMessageLine(View view) {
         this.parentView = view;
-        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View view2) {
-                if (ReplyMessageLine.this.emoji != null) {
-                    ReplyMessageLine.this.emoji.attach();
+        if (view != null) {
+            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View view2) {
+                    if (ReplyMessageLine.this.emoji != null) {
+                        ReplyMessageLine.this.emoji.attach();
+                    }
+                    if (ReplyMessageLine.this.sticker != null) {
+                        ReplyMessageLine.this.sticker.attach();
+                    }
                 }
-                if (ReplyMessageLine.this.sticker != null) {
-                    ReplyMessageLine.this.sticker.attach();
-                }
-            }
 
-            @Override
-            public void onViewDetachedFromWindow(View view2) {
-                if (ReplyMessageLine.this.emoji != null) {
-                    ReplyMessageLine.this.emoji.detach();
+                @Override
+                public void onViewDetachedFromWindow(View view2) {
+                    if (ReplyMessageLine.this.emoji != null) {
+                        ReplyMessageLine.this.emoji.detach();
+                    }
+                    if (ReplyMessageLine.this.sticker != null) {
+                        ReplyMessageLine.this.sticker.attach();
+                    }
                 }
-                if (ReplyMessageLine.this.sticker != null) {
-                    ReplyMessageLine.this.sticker.attach();
-                }
-            }
-        });
+            });
+        }
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.backgroundColorAnimated = new AnimatedColor(view, 0L, 400L, cubicBezierInterpolator);
         this.color1Animated = new AnimatedColor(view, 0L, 400L, cubicBezierInterpolator);
@@ -120,7 +121,7 @@ public class ReplyMessageLine {
         this.backgroundColor = i;
     }
 
-    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) throws IOException {
+    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) {
         if (resourcesProvider != null) {
             resourcesProvider.isDark();
         } else {
@@ -204,7 +205,7 @@ public class ReplyMessageLine {
         long j = tL_peerColorCollectible.background_emoji_id;
         this.emojiDocumentId = j;
         this.stickerDocumentId = tL_peerColorCollectible.gift_emoji_id;
-        if (j != 0 && this.emoji == null) {
+        if (j != 0 && this.emoji == null && this.parentView != null) {
             this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
             View view = this.parentView;
             if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
@@ -216,7 +217,7 @@ public class ReplyMessageLine {
             this.emojiLoaded = false;
         }
         this.emojiColor = this.nameColor;
-        if (this.stickerDocumentId != 0 && this.sticker == null) {
+        if (this.stickerDocumentId != 0 && this.sticker == null && this.parentView != null) {
             this.sticker = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
             View view2 = this.parentView;
             if (!(view2 instanceof ChatMessageCell) ? view2.isAttachedToWindow() : ((ChatMessageCell) view2).isCellAttachedToWindow()) {
@@ -245,7 +246,7 @@ public class ReplyMessageLine {
         this.hasColor2 = false;
         this.hasColor3 = false;
         this.backgroundColor = Theme.multAlpha(Theme.getColor(i, resourcesProvider), 0.1f);
-        if (this.emojiDocumentId != 0 && this.emoji == null) {
+        if (this.emojiDocumentId != 0 && this.emoji == null && this.parentView != null) {
             this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.parentView, false, AndroidUtilities.dp(20.0f), 13);
             View view = this.parentView;
             if (!(view instanceof ChatMessageCell) ? view.isAttachedToWindow() : ((ChatMessageCell) view).isCellAttachedToWindow()) {
@@ -341,7 +342,10 @@ public class ReplyMessageLine {
             this.lineClipPath.rewind();
             this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), direction);
             canvas.clipPath(this.lineClipPath);
-            this.parentView.invalidate();
+            View view = this.parentView;
+            if (view != null) {
+                view.invalidate();
+            }
             z = true;
         }
         canvas.drawPaint(this.color1Paint);
@@ -420,6 +424,10 @@ public class ReplyMessageLine {
             this.s = f3;
             this.a = f4;
         }
+    }
+
+    public void drawBackground(Canvas canvas, RectF rectF, float f) {
+        drawBackground(canvas, rectF, f, false, false);
     }
 
     public ReplyMessageLine offsetEmoji(float f, float f2) {
@@ -532,7 +540,11 @@ public class ReplyMessageLine {
             this.backgroundLoadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
             this.backgroundLoadingDrawable.setAlpha((int) (f4 * 255.0f));
             this.backgroundLoadingDrawable.draw(canvas);
-            this.parentView.invalidate();
+            View view = this.parentView;
+            if (view != null) {
+                view.invalidate();
+                return;
+            }
             return;
         }
         LoadingDrawable loadingDrawable3 = this.backgroundLoadingDrawable;

@@ -146,7 +146,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setTitle(LocaleController.getString(R.string.BlockUserMultiTitle));
         INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
+        if (iNavigationLayout != null && iNavigationLayout.isLayersLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));

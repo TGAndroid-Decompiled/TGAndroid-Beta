@@ -958,10 +958,6 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         }
     }
 
-    public boolean blurWasDrawn() {
-        return SharedConfig.chatBlurEnabled() && (DRAW_USING_RENDERNODE() || this.currentBitmap != null);
-    }
-
     private void drawListWithCallbacks(Canvas canvas, boolean z) {
         if (!invalidateOptimized()) {
             drawList(canvas, z, null);

@@ -63,7 +63,6 @@ public class EditTextCaption extends EditTextBoldCursor {
     private Text rightText;
     private int selectionEnd;
     private int selectionStart;
-    private int triesCount;
     private int userNameLength;
     private int xOffset;
     private int yOffset;
@@ -86,7 +85,6 @@ public class EditTextCaption extends EditTextBoldCursor {
 
     public EditTextCaption(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.triesCount = 0;
         this.selectionStart = -1;
         this.selectionEnd = -1;
         this.resourcesProvider = resourcesProvider;

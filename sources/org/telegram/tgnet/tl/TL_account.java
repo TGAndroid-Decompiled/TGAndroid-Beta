@@ -1,5 +1,6 @@
 package org.telegram.tgnet.tl;
 
+import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda111;
 import org.telegram.tgnet.InputSerializedData;
@@ -12,7 +13,6 @@ import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLa
 import org.telegram.tgnet.TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.TLRPC$TL_secureRequiredTypeOneOf$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 
@@ -174,7 +174,7 @@ public class TL_account {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.rules = Vector.deserialize(inputSerializedData, new TLRPC$TL_updatePrivacy$$ExternalSyntheticLambda0(), z);
+            this.rules = Vector.deserialize(inputSerializedData, new TL_account$privacyRules$$ExternalSyntheticLambda0(), z);
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
         }
@@ -3056,14 +3056,17 @@ public class TL_account {
     }
 
     public static class TL_connectedBot extends TLObject {
-        public static final int constructor = -849058964;
+        public static final int constructor = 54448129;
         public long bot_id;
+        public int date;
+        public String device;
         public int flags;
+        public String location;
         public TL_businessBotRecipients recipients;
         public TL_businessBotRights rights;
 
         public static TL_connectedBot TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            return (TL_connectedBot) TLObject.TLdeserialize(TL_connectedBot.class, i != -849058964 ? null : new TL_connectedBot(), inputSerializedData, i, z);
+            return (TL_connectedBot) TLObject.TLdeserialize(TL_connectedBot.class, i != 54448129 ? null : new TL_connectedBot(), inputSerializedData, i, z);
         }
 
         @Override
@@ -3072,15 +3075,48 @@ public class TL_account {
             this.bot_id = inputSerializedData.readInt64(z);
             this.recipients = TL_businessBotRecipients.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.rights = TL_businessBotRights.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.device = inputSerializedData.readString(z);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.date = inputSerializedData.readInt32(z);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                this.location = inputSerializedData.readString(z);
+            }
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(-849058964);
+            outputSerializedData.writeInt32(54448129);
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeInt64(this.bot_id);
             this.recipients.serializeToStream(outputSerializedData);
             this.rights.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeString(this.device);
+            }
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt32(this.date);
+            }
+            if (TLObject.hasFlag(this.flags, 4)) {
+                outputSerializedData.writeString(this.location);
+            }
+        }
+    }
+
+    public static class confirmBotConnection extends TLMethod<TLRPC.Bool> {
+        public static final int constructor = 1743593320;
+        public TLRPC.InputUser bot_id;
+
+        @Override
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            this.bot_id.serializeToStream(outputSerializedData);
         }
     }
 
@@ -4373,6 +4409,210 @@ public class TL_account {
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeInt64(this.from_auth_key_id);
             }
+        }
+    }
+
+    public static abstract class WebBrowserSettings extends TLObject {
+        public static WebBrowserSettings TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (WebBrowserSettings) TLObject.TLdeserialize(WebBrowserSettings.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static WebBrowserSettings fromConstructor(int i) {
+            if (i == -1021538482) {
+                return new TL_webBrowserSettingsNotModified();
+            }
+            if (i != 2045480115) {
+                return null;
+            }
+            return new TL_webBrowserSettings();
+        }
+    }
+
+    public static class TL_webBrowserSettingsNotModified extends WebBrowserSettings {
+        public static final int constructor = -1021538482;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1021538482);
+        }
+    }
+
+    public static class TL_webBrowserSettings extends WebBrowserSettings {
+        public static final int constructor = 2045480115;
+        public boolean display_close_button;
+        public int flags;
+        public long hash;
+        public boolean open_external_browser;
+        public ArrayList<WebDomainException> external_exceptions = new ArrayList<>();
+        public ArrayList<WebDomainException> inapp_exceptions = new ArrayList<>();
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.open_external_browser = TLObject.hasFlag(int32, 1);
+            this.display_close_button = TLObject.hasFlag(this.flags, 2);
+            this.external_exceptions = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_account.WebDomainException.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.inapp_exceptions = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_account.WebDomainException.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+            this.hash = inputSerializedData.readInt64(z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2045480115);
+            int flag = TLObject.setFlag(this.flags, 1, this.open_external_browser);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.display_close_button);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            Vector.serialize(outputSerializedData, this.external_exceptions);
+            Vector.serialize(outputSerializedData, this.inapp_exceptions);
+            outputSerializedData.writeInt64(this.hash);
+        }
+    }
+
+    public static class WebDomainException extends TLObject {
+        public static final int constructor = -1824741993;
+        public String domain;
+        public long favicon;
+        public int flags;
+        public String title;
+        public String url;
+
+        public static WebDomainException TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (WebDomainException) TLObject.TLdeserialize(WebDomainException.class, i != -1824741993 ? null : new WebDomainException(), inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.domain = inputSerializedData.readString(z);
+            this.url = inputSerializedData.readString(z);
+            this.title = inputSerializedData.readString(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.favicon = inputSerializedData.readInt64(z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1824741993);
+            outputSerializedData.writeInt32(this.flags);
+            outputSerializedData.writeString(this.domain);
+            outputSerializedData.writeString(this.url);
+            outputSerializedData.writeString(this.title);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeInt64(this.favicon);
+            }
+        }
+
+        public static boolean equalsByDomain(WebDomainException webDomainException, WebDomainException webDomainException2) {
+            if (webDomainException == webDomainException2) {
+                return true;
+            }
+            if (webDomainException == null || webDomainException2 == null) {
+                return false;
+            }
+            return TextUtils.equals(webDomainException.domain.toLowerCase(), webDomainException2.domain.toLowerCase());
+        }
+    }
+
+    public static class getWebBrowserSettings extends TLMethod<WebBrowserSettings> {
+        public static final int constructor = 1449482088;
+        public long hash;
+
+        @Override
+        public WebBrowserSettings deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return WebBrowserSettings.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1449482088);
+            outputSerializedData.writeInt64(this.hash);
+        }
+    }
+
+    public static class updateWebBrowserSettings extends TLMethod<WebBrowserSettings> {
+        public static final int constructor = -1696627970;
+        public boolean display_close_button;
+        public int flags;
+        public boolean open_external_browser;
+
+        @Override
+        public WebBrowserSettings deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return WebBrowserSettings.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.open_external_browser = TLObject.hasFlag(int32, 1);
+            this.display_close_button = TLObject.hasFlag(this.flags, 2);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1696627970);
+            int flag = TLObject.setFlag(this.flags, 1, this.open_external_browser);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.display_close_button);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+        }
+    }
+
+    public static class toggleWebBrowserSettingsException extends TLMethod<TLRPC.Updates> {
+        public static final int constructor = 1626161705;
+        public boolean delete;
+        public int flags;
+        public boolean open_external_browser;
+        public String url;
+
+        @Override
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1626161705);
+            int flag = TLObject.setFlag(this.flags, 2, this.delete);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                outputSerializedData.writeBool(this.open_external_browser);
+            }
+            outputSerializedData.writeString(this.url);
+        }
+    }
+
+    public static class deleteWebBrowserSettingsExceptions extends TLMethod<WebBrowserSettings> {
+        public static final int constructor = -2036304291;
+
+        @Override
+        public WebBrowserSettings deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return WebBrowserSettings.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-2036304291);
         }
     }
 }

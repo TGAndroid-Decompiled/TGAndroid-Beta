@@ -6,9 +6,6 @@ public interface IPipActivityListener {
         public static void $default$onCompleteEnterToPip(IPipActivityListener iPipActivityListener) {
         }
 
-        public static void $default$onCompleteExitFromPip(IPipActivityListener iPipActivityListener, boolean z) {
-        }
-
         public static void $default$onStartEnterToPip(IPipActivityListener iPipActivityListener) {
         }
 

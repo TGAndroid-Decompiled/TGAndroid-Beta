@@ -63,6 +63,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -2305,8 +2306,8 @@ public class StoriesController {
                         }
                         i = i3;
                     }
-                    if (updates.updates.get(i2) instanceof TLRPC.TL_updateStoryID) {
-                        TLRPC.TL_updateStoryID tL_updateStoryID = (TLRPC.TL_updateStoryID) updates.updates.get(i2);
+                    if (updates.updates.get(i2) instanceof TL_update.TL_updateStoryID) {
+                        TL_update.TL_updateStoryID tL_updateStoryID = (TL_update.TL_updateStoryID) updates.updates.get(i2);
                         if (tL_storyItem == null) {
                             tL_storyItem = new TL_stories.TL_storyItem();
                             int currentTime = ConnectionsManager.getInstance(StoriesController.this.currentAccount).getCurrentTime();
@@ -5355,7 +5356,7 @@ public class StoriesController {
     }
 
     public void checkUnsupportedStory(final long j, final int i) {
-        final String str = "225:" + j + ":" + i;
+        final String str = "227:" + j + ":" + i;
         if (this.requestingUnsupportedStories.contains(str) || this.unsupportedStoriesChecked.contains(str)) {
             return;
         }

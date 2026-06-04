@@ -64,6 +64,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -1431,7 +1432,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
     public void lambda$deleteAllMessages$15(boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_affectedFoundMessages tL_messages_affectedFoundMessages = (TLRPC.TL_messages_affectedFoundMessages) tLObject;
-            TLRPC.TL_updateDeleteMessages tL_updateDeleteMessages = new TLRPC.TL_updateDeleteMessages();
+            TL_update.TL_updateDeleteMessages tL_updateDeleteMessages = new TL_update.TL_updateDeleteMessages();
             tL_updateDeleteMessages.messages = tL_messages_affectedFoundMessages.messages;
             tL_updateDeleteMessages.pts = tL_messages_affectedFoundMessages.pts;
             tL_updateDeleteMessages.pts_count = tL_messages_affectedFoundMessages.pts_count;
@@ -2188,10 +2189,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 MessagesController.getInstance(i).putUsers(updates.users, false);
                 MessagesController.getInstance(i).putChats(updates.chats, false);
-                Iterator it = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateGroupCall.class).iterator();
+                Iterator it = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class).iterator();
                 TLRPC.GroupCall groupCall = null;
                 while (it.hasNext()) {
-                    groupCall = ((TLRPC.TL_updateGroupCall) it.next()).call;
+                    groupCall = ((TL_update.TL_updateGroupCall) it.next()).call;
                 }
                 if (LaunchActivity.instance == null || groupCall == null) {
                     return;
@@ -2250,10 +2251,10 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(i).putUsers(updates.users, false);
             MessagesController.getInstance(i).putChats(updates.chats, false);
-            Iterator it = MessagesController.findUpdatesAndRemove(updates, TLRPC.TL_updateGroupCall.class).iterator();
+            Iterator it = MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCall.class).iterator();
             TLRPC.GroupCall groupCall = null;
             while (it.hasNext()) {
-                groupCall = ((TLRPC.TL_updateGroupCall) it.next()).call;
+                groupCall = ((TL_update.TL_updateGroupCall) it.next()).call;
             }
             alertDialog.dismiss();
             if (groupCall != null) {

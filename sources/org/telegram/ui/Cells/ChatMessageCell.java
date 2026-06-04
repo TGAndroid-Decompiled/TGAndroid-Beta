@@ -60,7 +60,6 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -96,6 +95,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
@@ -103,12 +103,13 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.WebFile;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.messenger.utils.CountdownTimer;
-import org.telegram.messenger.utils.FrameTickScheduler;
 import org.telegram.messenger.video.OldVideoPlayerRewinder;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
@@ -185,7 +186,7 @@ import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 
-public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate, ImageReceiver.ImageReceiverDelegate, DownloadController.FileDownloadProgressListener, TextSelectionHelper.SelectableView, NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
+public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate, ImageReceiver.ImageReceiverDelegate, DownloadController.FileDownloadProgressListener, TextSelectionHelper.SelectableView, NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target, IMessageCell {
     private static float[] radii = new float[8];
     private final boolean ALPHA_PROPERTY_WORKAROUND;
     public Property ANIMATION_OFFSET_X;
@@ -257,7 +258,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean boostCounterPressed;
     private int boostCounterSelectorColor;
     private BoostCounterSpan boostCounterSpan;
-    private Paint botButtonPaint;
     private Path botButtonPath;
     private float[] botButtonRadii;
     private ArrayList botButtons;
@@ -379,7 +379,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private Runnable diceFinishCallback;
     private long diceStakeOutcome;
     private boolean disallowLongPress;
-    public boolean doNotDraw;
     public byte[] doNotDrawPollId;
     public int doNotDrawTaskId;
     private final Runnable doUpdateRelativeDatesRunnable;
@@ -468,6 +467,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean firstInChatToSet;
     private int firstVisibleBlockNum;
     public int firstVisiblePollButton;
+    private int firstVisibleRichBlock;
     private boolean fitPhotoImage;
     private FlagSecureReason flagSecure;
     private boolean flipImage;
@@ -628,6 +628,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private int lastViewsCount;
     private int lastVisibleBlockNum;
     public int lastVisiblePollButton;
+    private int lastVisibleRichBlock;
     private WebFile lastWebFile;
     private int lastWidth;
     public int layoutHeight;
@@ -1506,6 +1507,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
         void onDiceFinished();
 
+        boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock);
+
         void setShouldNotRepeatSticker(MessageObject messageObject);
 
         boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell, boolean z);
@@ -1780,6 +1783,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             public static void $default$onDiceFinished(ChatMessageCellDelegate chatMessageCellDelegate) {
             }
 
+            public static boolean $default$openArticlePhoto(ChatMessageCellDelegate chatMessageCellDelegate, ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
+                return false;
+            }
+
             public static void $default$setShouldNotRepeatSticker(ChatMessageCellDelegate chatMessageCellDelegate, MessageObject messageObject) {
             }
 
@@ -1843,13 +1850,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         public PollButton() {
         }
 
-        static int access$2312(PollButton pollButton, int i) {
+        static int access$2412(PollButton pollButton, int i) {
             int i2 = pollButton.percent + i;
             pollButton.percent = i2;
             return i2;
         }
 
-        static float access$3124(PollButton pollButton, float f) {
+        static float access$3224(PollButton pollButton, float f) {
             float f2 = pollButton.decimal - f;
             pollButton.decimal = f2;
             return f2;
@@ -1899,7 +1906,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.rect = new RectF();
         }
 
-        static float access$4324(InstantViewButton instantViewButton, float f) {
+        static float access$4424(InstantViewButton instantViewButton, float f) {
             float f2 = instantViewButton.textX - f;
             instantViewButton.textX = f2;
             return f2;
@@ -1939,6 +1946,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.giveawayMessageCell = new GiveawayMessageCell(this);
         this.giveawayResultsMessageCell = new GiveawayResultsMessageCell(this);
         this.scrollRect = new Rect();
+        this.firstVisibleRichBlock = -1;
+        this.lastVisibleRichBlock = -1;
         this.pollPhotoImageRadius = new int[4];
         this.drawnContactButtonsFlag = 0;
         this.imageBackgroundGradientRotation = 45;
@@ -2537,6 +2546,18 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
+    private boolean checkRichLayoutMotionEvent(MotionEvent motionEvent) {
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject == null || messageObject.richLayout == null || messageObject.type != 36) {
+            return false;
+        }
+        motionEvent.offsetLocation(-this.textX, -this.textY);
+        this.currentMessageObject.richLayout.setChatMessageCellDelegate(this, this.delegate);
+        boolean zOnTouchEvent = this.currentMessageObject.richLayout.onTouchEvent(motionEvent);
+        motionEvent.offsetLocation(this.textX, this.textY);
+        return zOnTouchEvent;
+    }
+
     private boolean checkTextBlockMotionEvent(android.view.MotionEvent r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.checkTextBlockMotionEvent(android.view.MotionEvent):boolean");
     }
@@ -2654,7 +2675,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.useTranscribeButton && (!this.isPlayingRound || getVideoTranscriptionProgress() > 0.0f || this.wasTranscriptionOpen) && (transcribeButton = this.transcribeButton) != null && transcribeButton.onTouch(motionEvent.getAction(), getEventX(motionEvent), getEventY(motionEvent));
     }
 
-    private boolean checkLinkPreviewMotionEvent(MotionEvent motionEvent) throws Resources.NotFoundException, IOException, NumberFormatException {
+    private boolean checkLinkPreviewMotionEvent(MotionEvent motionEvent) throws Resources.NotFoundException, NumberFormatException {
         int i;
         MessageObject messageObject;
         TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent;
@@ -3655,7 +3676,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.checkRoundSeekbar(android.view.MotionEvent):boolean");
     }
 
-    private boolean checkPhotoImageMotionEvent(android.view.MotionEvent r9) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    private boolean checkPhotoImageMotionEvent(android.view.MotionEvent r9) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.checkPhotoImageMotionEvent(android.view.MotionEvent):boolean");
     }
 
@@ -4128,7 +4149,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r20) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    public boolean onTouchEvent(android.view.MotionEvent r20) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
@@ -4190,7 +4211,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return false;
         }
         ArrayList<MessageObject.TextLayoutBlock> arrayList = this.currentMessageObject.textLayoutBlocks;
-        if ((arrayList == null || arrayList.isEmpty()) && !hasCaptionLayout()) {
+        boolean z = (arrayList == null || arrayList.isEmpty()) ? false : true;
+        RichMessageLayout richMessageLayout = this.currentMessageObject.richLayout;
+        boolean z2 = (richMessageLayout == null || richMessageLayout.textBlocks.isEmpty()) ? false : true;
+        if (!z && !hasCaptionLayout() && !z2) {
             return false;
         }
         if ((!this.drawSelectionBackground && this.currentMessagesGroup == null) || (this.currentMessagesGroup != null && !this.delegate.hasSelectedMessages())) {
@@ -4226,6 +4250,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject != null && !messageObject.preview && this.factCheckTextLayout != null && getEventY(motionEvent) >= this.factCheckY) {
             textSelectionHelper.setIsDescription(false);
             textSelectionHelper.setIsFactCheck(true);
+            textSelectionHelper.setIsRich(false);
             MessageObject.GroupedMessages groupedMessages2 = this.currentMessagesGroup;
             if (groupedMessages2 != null && !groupedMessages2.isDocuments) {
                 iMax = (int) this.captionX;
@@ -4246,12 +4271,14 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         } else if (hasCaptionLayout()) {
             textSelectionHelper.setIsDescription(false);
             textSelectionHelper.setIsFactCheck(false);
+            textSelectionHelper.setIsRich(false);
             textSelectionHelper.setMaybeTextCord((int) this.captionX, (int) this.captionY);
         } else {
             MessageObject messageObject2 = this.currentMessageObject;
             if (messageObject2 != null && !messageObject2.preview && this.descriptionLayout != null && (!this.linkPreviewAbove ? getEventY(motionEvent) > this.descriptionY : getEventY(motionEvent) < this.textY)) {
                 textSelectionHelper.setIsDescription(true);
                 textSelectionHelper.setIsFactCheck(false);
+                textSelectionHelper.setIsRich(false);
                 if (this.hasGamePreview) {
                     iDp2 = this.unmovedTextX - AndroidUtilities.dp(10.0f);
                 } else {
@@ -4265,9 +4292,15 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     iDp2 = i + iDp;
                 }
                 textSelectionHelper.setMaybeTextCord(iDp2 + AndroidUtilities.dp(10.0f) + this.descriptionX, this.descriptionY);
+            } else if (z2) {
+                textSelectionHelper.setIsDescription(false);
+                textSelectionHelper.setIsFactCheck(false);
+                textSelectionHelper.setIsRich(true);
+                textSelectionHelper.setMaybeTextCord(this.textX, this.textY);
             } else {
                 textSelectionHelper.setIsDescription(false);
                 textSelectionHelper.setIsFactCheck(false);
+                textSelectionHelper.setIsRich(false);
                 textSelectionHelper.setMaybeTextCord(this.textX, this.textY);
             }
         }
@@ -4521,7 +4554,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 this.seekBar.updateTimestamps(this.currentMessageObject, null);
                 z = false;
             }
-            if (this.documentAttachType == 3) {
+            int i = this.documentAttachType;
+            if (i == 5) {
+                z = true;
+            }
+            if (i == 3) {
                 long j2 = this.overridenDuration;
                 if (j2 >= 0) {
                     d = j2;
@@ -4615,6 +4652,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     public void setVisiblePart(int i, int i2, int i3, float f, float f2, int i4, int i5, int i6, int i7, int i8) {
+        RichMessageLayout richMessageLayout;
         MessageObject messageObject;
         this.childPosition = i;
         this.visibleHeight = i2;
@@ -4650,7 +4688,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             int i14 = 0;
             while (i10 < this.currentMessageObject.textLayoutBlocks.size()) {
                 float fTextYOffset = this.currentMessageObject.textLayoutBlocks.get(i10).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams);
-                float fHeight = r12.padTop + fTextYOffset + r12.height(this.transitionParams) + r12.padBottom;
+                float fHeight = r14.padTop + fTextYOffset + r14.height(this.transitionParams) + r14.padBottom;
                 float f3 = i9;
                 if (!intersect(fTextYOffset, fHeight, f3, i9 + i2)) {
                     if (fTextYOffset > f3) {
@@ -4685,22 +4723,50 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 }
             }
         }
-        if (!this.pollButtons.isEmpty()) {
-            int i16 = -1;
+        MessageObject messageObject3 = this.currentMessageObject;
+        if (messageObject3 != null && (richMessageLayout = messageObject3.richLayout) != null) {
+            int i16 = i - this.textY;
             int i17 = -1;
-            for (int i18 = 0; i18 < this.pollButtons.size(); i18++) {
-                PollButton pollButton = (PollButton) this.pollButtons.get(i18);
-                int i19 = pollButton.y + this.namesOffset;
-                if (intersect(i19, i19 + pollButton.height, this.childPosition, r9 + this.visibleHeight)) {
-                    if (i17 == -1) {
-                        i17 = i18;
+            int i18 = -1;
+            for (int i19 = 0; i19 < richMessageLayout.blocks.size(); i19++) {
+                RichMessageLayout.RichBlock richBlock = richMessageLayout.blocks.get(i19);
+                if (richBlock.currVisible || richBlock.prevVisible) {
+                    float f4 = richBlock.currY;
+                    float f5 = i16 + i2;
+                    if (!intersect(f4, richBlock.getHeight() + f4, i16, f5)) {
+                        if (f4 > f5) {
+                            break;
+                        }
+                    } else {
+                        if (i17 == -1) {
+                            i17 = i19;
+                        }
+                        i18 = i19;
                     }
-                    i16 = i18;
                 }
             }
-            if (this.lastVisiblePollButton != i16 || this.firstVisiblePollButton != i17) {
-                this.lastVisiblePollButton = i16;
-                this.firstVisiblePollButton = i17;
+            if (this.firstVisibleRichBlock != i17 || this.lastVisibleRichBlock != i18) {
+                this.firstVisibleRichBlock = i17;
+                this.lastVisibleRichBlock = i18;
+                invalidate();
+            }
+        }
+        if (!this.pollButtons.isEmpty()) {
+            int i20 = -1;
+            int i21 = -1;
+            for (int i22 = 0; i22 < this.pollButtons.size(); i22++) {
+                PollButton pollButton = (PollButton) this.pollButtons.get(i22);
+                int i23 = pollButton.y + this.namesOffset;
+                if (intersect(i23, i23 + pollButton.height, this.childPosition, r10 + this.visibleHeight)) {
+                    if (i21 == -1) {
+                        i21 = i22;
+                    }
+                    i20 = i22;
+                }
+            }
+            if (this.lastVisiblePollButton != i20 || this.firstVisiblePollButton != i21) {
+                this.lastVisiblePollButton = i20;
+                this.firstVisiblePollButton = i21;
                 invalidate();
             }
         }
@@ -4710,8 +4776,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
         }
         ReactionsLayoutInBubble reactionsLayoutInBubble = this.reactionsLayoutInBubble;
-        int i20 = reactionsLayoutInBubble.y;
-        boolean zIntersect = intersect(i20, i20 + reactionsLayoutInBubble.height, this.childPosition, r5 + this.visibleHeight);
+        int i24 = reactionsLayoutInBubble.y;
+        boolean zIntersect = intersect(i24, i24 + reactionsLayoutInBubble.height, this.childPosition, r6 + this.visibleHeight);
         if (this.reactionsVisible != zIntersect) {
             this.reactionsVisible = zIntersect;
             invalidate();
@@ -4754,7 +4820,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void didClickedImage() throws Resources.NotFoundException, IOException, NumberFormatException {
+    private void didClickedImage() throws Resources.NotFoundException, NumberFormatException {
         MessageObject messageObject;
         ChatMessageCellDelegate chatMessageCellDelegate;
         TLRPC.WebPage webPage;
@@ -4945,6 +5011,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
 
     public void updateAnimatedEmojis() {
         MessageObject messageObject;
+        RichMessageLayout richMessageLayout;
         ArrayList<MessageObject.TextLayoutBlock> arrayList;
         if (!this.imageReceiversAttachState || (messageObject = this.currentMessageObject) == null) {
             return;
@@ -4957,6 +5024,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
             this.animatedEmojiStack = AnimatedEmojiSpan.update(cacheTypeForEnterView, this, chatMessageCellDelegate == null || !chatMessageCellDelegate.canDrawOutboundsContent(), this.animatedEmojiStack, this.currentMessageObject.textLayoutBlocks);
         }
+        MessageObject messageObject2 = this.currentMessageObject;
+        if (messageObject2.type != 36 || (richMessageLayout = messageObject2.richLayout) == null) {
+            return;
+        }
+        ChatMessageCellDelegate chatMessageCellDelegate2 = this.delegate;
+        richMessageLayout.invalidateAnimatedEmojiInParent = chatMessageCellDelegate2 == null || !chatMessageCellDelegate2.canDrawOutboundsContent();
+        this.currentMessageObject.richLayout.updateAnimatedEmojis(cacheTypeForEnterView);
     }
 
     private boolean isUserDataChanged() {
@@ -5076,6 +5150,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             countdownTimer.stop();
             this.pollCountDownTimer = null;
         }
+        RichMessageLayout richMessageLayout = this.currentMessageObject.richLayout;
+        if (richMessageLayout != null) {
+            richMessageLayout.detach(this);
+        }
+        if (this.transitionParams.animateOutRichLayout != null) {
+            this.transitionParams.animateOutRichLayout.detach(this);
+        }
         Iterator it = this.pollButtons.iterator();
         while (it.hasNext()) {
             ((PollButton) it.next()).detach();
@@ -5161,11 +5242,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (channelRecommendationsCell != null) {
             channelRecommendationsCell.onDetachedFromWindow();
         }
-        FrameTickScheduler.unsubscribe(this.invalidateOutboundsRunnable);
+        Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateOutboundsRunnable);
     }
 
     @Override
-    protected void onAttachedToWindow() throws Resources.NotFoundException, IOException, NumberFormatException {
+    protected void onAttachedToWindow() throws Resources.NotFoundException, NumberFormatException {
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startSpoilers);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopSpoilers);
@@ -5175,6 +5256,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject != null) {
             messageObject.animateComments = false;
+            RichMessageLayout richMessageLayout = messageObject.richLayout;
+            if (richMessageLayout != null) {
+                richMessageLayout.attach(this);
+            }
+        }
+        if (this.transitionParams.animateOutRichLayout != null) {
+            this.transitionParams.animateOutRichLayout.attach(this);
         }
         AvatarsDrawable avatarsDrawable = this.groupCallParticipantsAvatars;
         if (avatarsDrawable != null) {
@@ -5496,7 +5584,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContent(org.telegram.messenger.MessageObject r90, org.telegram.messenger.MessageObject.GroupedMessages r91, boolean r92, boolean r93, boolean r94, boolean r95) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    private void setMessageContent(org.telegram.messenger.MessageObject r90, org.telegram.messenger.MessageObject.GroupedMessages r91, boolean r92, boolean r93, boolean r94, boolean r95) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContent(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean, boolean, boolean, boolean):void");
     }
 
@@ -5541,7 +5629,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageContentIfPoll(org.telegram.messenger.MessageObject r57, boolean r58) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    private void setMessageContentIfPoll(org.telegram.messenger.MessageObject r57, boolean r58) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageContentIfPoll(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -6439,7 +6527,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         setMessageObject(messageObject, groupedMessages, z, z2, z3, false);
     }
 
-    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, NumberFormatException {
         if (this.attachedToWindow && !this.frozen) {
             setMessageContent(messageObject, groupedMessages, z, z2, z3, z4);
             return;
@@ -6716,7 +6804,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         instantViewButton.buttonWidth = f;
         if (instantViewButton.layout.getLineCount() > 0) {
             instantViewButton.textX = ((float) (instantViewButton.buttonWidth - Math.ceil(instantViewButton.layout.getLineWidth(0)))) / 2.0f;
-            InstantViewButton.access$4324(instantViewButton, (int) instantViewButton.layout.getLineLeft(0));
+            InstantViewButton.access$4424(instantViewButton, (int) instantViewButton.layout.getLineLeft(0));
         }
         return instantViewButton;
     }
@@ -6826,7 +6914,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.updatePollAnimations(long):void");
     }
 
-    public void drawContent(final android.graphics.Canvas r39, boolean r40) throws java.io.IOException {
+    public void drawContent(final android.graphics.Canvas r43, boolean r44) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawContent(android.graphics.Canvas, boolean):void");
     }
 
@@ -6852,17 +6940,17 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void startRevealMedia() throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void startRevealMedia() throws Resources.NotFoundException, NumberFormatException {
         startRevealMedia(this.photoImage.getImageX() + (this.photoImage.getImageWidth() / 2.0f), this.photoImage.getImageY() + (this.photoImage.getImageHeight() / 2.0f));
     }
 
-    public void startRevealMedia(float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void startRevealMedia(float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         float fSqrt = (float) Math.sqrt(Math.pow(this.photoImage.getImageWidth(), 2.0d) + Math.pow(this.photoImage.getImageHeight(), 2.0d));
         this.mediaSpoilerRevealMaxRadius = fSqrt;
         startRevealMedia(f, f2, fSqrt);
     }
 
-    private void startRevealMedia(float f, float f2, float f3) throws Resources.NotFoundException, IOException, NumberFormatException {
+    private void startRevealMedia(float f, float f2, float f3) throws Resources.NotFoundException, NumberFormatException {
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject.isMediaSpoilersRevealed || this.mediaSpoilerRevealProgress != 0.0f) {
             return;
@@ -7010,7 +7098,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     this.onceFire.setAllowDecodeSingleFrame(true);
                     this.onceFire.setAutoRepeat(1);
                     this.onceFire.start();
-                    this.onceFire.scaleByCanvas = true;
                 }
                 RLottieDrawable rLottieDrawable2 = this.onceFire;
                 RectF rectF3 = this.radialProgress.progressRect;
@@ -7479,29 +7566,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void drawBotButtons(android.graphics.Canvas r23, java.util.ArrayList r24, int r25) {
+    private void drawBotButtons(android.graphics.Canvas r19, java.util.ArrayList r20, int r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawBotButtons(android.graphics.Canvas, java.util.ArrayList, int):void");
-    }
-
-    static class AnonymousClass12 {
-        static final int[] $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor;
-
-        static {
-            int[] iArr = new int[BotInlineKeyboard.BackgroundColor.values().length];
-            $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor = iArr;
-            try {
-                iArr[BotInlineKeyboard.BackgroundColor.DANGER.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor[BotInlineKeyboard.BackgroundColor.SUCCESS.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$org$telegram$messenger$BotInlineKeyboard$BackgroundColor[BotInlineKeyboard.BackgroundColor.PRIMARY.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-        }
     }
 
     private boolean allowDrawPhotoImage() {
@@ -7590,7 +7656,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void drawMessageText(Canvas canvas) throws IOException {
+    public void drawMessageText(Canvas canvas) {
         float f;
         float fTextHeight;
         MessageObject messageObject = this.currentMessageObject;
@@ -7680,7 +7746,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         drawMessageText(f12, f, canvas, messageObject6.textLayoutBlocks, messageObject6.textXOffset, true, 1.0f, true, false, false);
     }
 
-    public void drawMessageText(Canvas canvas, ArrayList arrayList, boolean z, float f, boolean z2) throws IOException {
+    public void drawMessageText(Canvas canvas, ArrayList arrayList, boolean z, float f, boolean z2) {
         float f2;
         float f3 = this.textY;
         TransitionParams transitionParams = this.transitionParams;
@@ -7696,11 +7762,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         drawMessageText(f6, f2, canvas, arrayList, messageObject == null ? 0.0f : messageObject.textXOffset, z, f, false, z2, false);
     }
 
-    public void drawMessageText(float f, float f2, Canvas canvas, ArrayList arrayList, float f3, boolean z, float f4, boolean z2, boolean z3, boolean z4) throws IOException {
+    public void drawMessageText(float f, float f2, Canvas canvas, ArrayList arrayList, float f3, boolean z, float f4, boolean z2, boolean z3, boolean z4) {
         drawMessageText(f, f2, canvas, arrayList, f3, z, f4, z2, z3, z4, false);
     }
 
-    public void drawMessageText(float r46, float r47, android.graphics.Canvas r48, java.util.ArrayList r49, float r50, boolean r51, float r52, boolean r53, boolean r54, boolean r55, boolean r56) throws java.io.IOException {
+    public void drawMessageText(float r46, float r47, android.graphics.Canvas r48, java.util.ArrayList r49, float r50, boolean r51, float r52, boolean r53, boolean r54, boolean r55, boolean r56) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawMessageText(float, float, android.graphics.Canvas, java.util.ArrayList, float, boolean, float, boolean, boolean, boolean, boolean):void");
     }
 
@@ -8619,7 +8685,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r62) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r62) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 
@@ -8779,6 +8845,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return (this.reactionsLayoutInBubble.isEmpty || !this.currentMessageObject.shouldDrawReactionsInLayout()) ? iDp : iDp + this.reactionsLayoutInBubble.totalHeight;
     }
 
+    @Override
     public ImageReceiver getAvatarImage() {
         if (this.isAvatarVisible) {
             return this.avatarImage;
@@ -8786,10 +8853,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return null;
     }
 
+    @Override
     public float getCheckBoxTranslation() {
         return this.checkBoxTranslation;
     }
 
+    @Override
     public boolean shouldDrawAlphaLayer() {
         MessageObject.GroupedMessages groupedMessages = this.currentMessagesGroup;
         return (groupedMessages == null || !groupedMessages.transitionParams.backgroundChangeBounds) && getAlpha() != 1.0f;
@@ -9083,11 +9152,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    protected void onDraw(Canvas canvas) throws IOException {
+    protected void onDraw(Canvas canvas) {
         drawInternal(canvas);
     }
 
-    public void drawInternal(android.graphics.Canvas r17) throws java.io.IOException {
+    public void drawInternal(android.graphics.Canvas r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawInternal(android.graphics.Canvas):void");
     }
 
@@ -9264,7 +9333,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.bottomActionPadding;
     }
 
-    public void drawOutboundsContent(android.graphics.Canvas r19) throws java.io.IOException {
+    public void drawOutboundsContent(android.graphics.Canvas r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOutboundsContent(android.graphics.Canvas):void");
     }
 
@@ -9934,7 +10003,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return (messageObject == null || messageObject.preview || messageObject.isSponsored() || ((groupedMessagePosition = this.currentPosition) != null && ((groupedMessages = this.currentMessagesGroup) == null || !groupedMessages.isDocuments || (groupedMessagePosition.flags & 8) != 0)) || this.transitionParams.animateBackgroundBoundsInner || (this.enterTransitionInProgress && this.currentMessageObject.isVoice())) ? false : true;
     }
 
-    public void drawCaptionLayout(Canvas canvas, boolean z, float f) throws IOException {
+    public void drawCaptionLayout(Canvas canvas, boolean z, float f) {
         if (this.animatedEmojiStack != null && !(canvas instanceof SizeNotifierFrameLayout.SimplerCanvas) && (this.captionLayout != null || this.transitionParams.animateOutCaptionLayout != null)) {
             this.animatedEmojiStack.clearPositions();
         }
@@ -10040,7 +10109,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return true;
     }
 
-    private void drawCaptionLayout(Canvas canvas, MessageObject.TextLayoutBlocks textLayoutBlocks, boolean z, boolean z2, float f) throws IOException {
+    private void drawCaptionLayout(Canvas canvas, MessageObject.TextLayoutBlocks textLayoutBlocks, boolean z, boolean z2, float f) {
         float f2;
         int iSaveLayerAlpha;
         Rect rect;
@@ -10367,7 +10436,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.shouldDrawTimeOnMedia():boolean");
     }
 
-    public void drawTime(android.graphics.Canvas r17, float r18, boolean r19) throws java.io.IOException {
+    public void drawTime(android.graphics.Canvas r17, float r18, boolean r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawTime(android.graphics.Canvas, float, boolean):void");
     }
 
@@ -10658,7 +10727,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    public void drawOverlays(android.graphics.Canvas r80) throws java.io.IOException {
+    public void drawOverlays(android.graphics.Canvas r80) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawOverlays(android.graphics.Canvas):void");
     }
 
@@ -10770,9 +10839,22 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.TAG;
     }
 
+    @Override
     public MessageObject getMessageObject() {
         MessageObject messageObject = this.messageObjectToSet;
         return messageObject != null ? messageObject : this.currentMessageObject;
+    }
+
+    public ReactionsLayoutInBubble getReactionsLayout() {
+        return this.reactionsLayoutInBubble;
+    }
+
+    @Override
+    public void didPressReactionFromLayout(TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+        ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
+        if (chatMessageCellDelegate != null) {
+            chatMessageCellDelegate.didPressReaction(this, reactionCount, z, f, f2);
+        }
     }
 
     public TLRPC.Document getStreamingMedia() {
@@ -10783,6 +10865,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return null;
     }
 
+    @Override
     public boolean drawPinnedBottom() {
         MessageObject.GroupedMessages groupedMessages = this.currentMessagesGroup;
         if (groupedMessages != null && groupedMessages.isDocuments) {
@@ -10810,6 +10893,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return 1.0f - transitionParams.animateChangeProgress;
     }
 
+    @Override
     public boolean drawPinnedTop() {
         MessageObject.GroupedMessages groupedMessages = this.currentMessagesGroup;
         if (groupedMessages != null && groupedMessages.isDocuments) {
@@ -10854,6 +10938,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.currentMessagesGroup;
     }
 
+    @Override
     public MessageObject.GroupedMessagePosition getCurrentPosition() {
         return this.currentPosition;
     }
@@ -10863,7 +10948,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     @Override
-    public boolean performAccessibilityAction(int i, Bundle bundle) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public boolean performAccessibilityAction(int i, Bundle bundle) throws Resources.NotFoundException, NumberFormatException {
         ChatMessageCellDelegate chatMessageCellDelegate;
         ChatMessageCellDelegate chatMessageCellDelegate2 = this.delegate;
         if (chatMessageCellDelegate2 != null && chatMessageCellDelegate2.onAccessibilityAction(i, bundle)) {
@@ -10910,6 +10995,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return super.performAccessibilityAction(i, bundle);
     }
 
+    @Override
     public void setAnimationRunning(boolean z, boolean z2) {
         this.animationRunning = z;
         if (z) {
@@ -11008,7 +11094,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         invalidate();
     }
 
-    public int computeHeight(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public int computeHeight(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z) throws Resources.NotFoundException, NumberFormatException {
         this.photoImage.setIgnoreImageSet(true);
         this.avatarImage.setIgnoreImageSet(true);
         this.replyImageReceiver.setIgnoreImageSet(true);
@@ -11043,7 +11129,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.totalHeight + this.keyboardHeight;
     }
 
-    public int computeWidth(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public int computeWidth(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages) throws Resources.NotFoundException, NumberFormatException {
         this.photoImage.setIgnoreImageSet(true);
         this.avatarImage.setIgnoreImageSet(true);
         this.replyImageReceiver.setIgnoreImageSet(true);
@@ -11144,10 +11230,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return f2 + (AndroidUtilities.dp(71 - (needDrawAvatar() ? 48 : 0)) * this.sideMenuAlpha);
     }
 
+    @Override
     public float getSlidingOffsetX() {
         return this.slidingOffsetX;
     }
 
+    @Override
     public boolean willRemovedAfterAnimation() {
         return this.willRemoved;
     }
@@ -11995,7 +12083,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
 
         @Override
-        public boolean performAction(int r10, int r11, android.os.Bundle r12) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+        public boolean performAction(int r10, int r11, android.os.Bundle r12) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.MessageAccessibilityNodeProvider.performAction(int, int, android.os.Bundle):boolean");
         }
 
@@ -12132,6 +12220,23 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return this.transitionParams;
     }
 
+    public float getDeltaTop() {
+        return this.transitionParams.deltaTop;
+    }
+
+    public float getDeltaLeft() {
+        return this.transitionParams.deltaLeft;
+    }
+
+    public float getDeltaRight() {
+        return this.transitionParams.deltaRight;
+    }
+
+    @Override
+    public float getDeltaBottom() {
+        return this.transitionParams.deltaBottom;
+    }
+
     public int getTopMediaOffset() {
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject == null || messageObject.type != 14) {
@@ -12234,6 +12339,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         private AnimatedEmojiSpan.EmojiGroupedSpans animateOutAnimateEmoji;
         private AnimatedEmojiSpan.EmojiGroupedSpans animateOutAnimateEmojiReply;
         private MessageObject.TextLayoutBlocks animateOutCaptionLayout;
+        private RichMessageLayout animateOutRichLayout;
         private ArrayList animateOutTextBlocks;
         private float animateOutTextXOffset;
         private boolean animatePinned;
@@ -12248,6 +12354,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         private StaticLayout animateReplyTextLayout;
         public float animateReplyTextOffset;
         public boolean animateReplyY;
+        public boolean animateRichLayout;
         public boolean animateRoundVideoDotY;
         private boolean animateShouldDrawMenuDrawable;
         private boolean animateShouldDrawTimeOnMedia;
@@ -12323,6 +12430,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         public int lastDrawingPollAddOptionHeight;
         public boolean lastDrawingRecommendationsExpanded;
         public float lastDrawingReplyTextHeight;
+        public RichMessageLayout lastDrawingRichLayout;
         public boolean lastDrawingSideMenuEnabled;
         public boolean lastDrawingSmallImage;
         public boolean lastDrawingSummarized;
@@ -12415,6 +12523,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.lastDrawingTextBlocks = chatMessageCell.currentMessageObject != null ? ChatMessageCell.this.currentMessageObject.textLayoutBlocks : null;
             this.lastDrawingTextWidth = ChatMessageCell.this.currentMessageObject != null ? ChatMessageCell.this.currentMessageObject.textWidth : 0;
             this.lastDrawingEdited = ChatMessageCell.this.edited;
+            this.lastDrawingRichLayout = ChatMessageCell.this.currentMessageObject != null ? ChatMessageCell.this.currentMessageObject.richLayout : null;
             this.lastDrawingCaptionX = ChatMessageCell.this.captionX;
             ChatMessageCell chatMessageCell2 = ChatMessageCell.this;
             this.lastDrawingCaptionY = chatMessageCell2.captionY;
@@ -12561,11 +12670,17 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.animateRadius = false;
             this.animateChangeProgress = 1.0f;
             this.animateMessageText = false;
+            this.animateRichLayout = false;
             this.animateDrawingSideMenuEnabled = false;
             this.animateDrawNameLayout = false;
             this.animateDrawAvatar = false;
             this.animateDrawTopic = false;
             this.animateOutTextBlocks = null;
+            RichMessageLayout richMessageLayout = this.animateOutRichLayout;
+            if (richMessageLayout != null) {
+                richMessageLayout.detach(ChatMessageCell.this);
+            }
+            this.animateOutRichLayout = null;
             this.animateEditedLayout = null;
             this.animateTimeLayout = null;
             this.animateEditedEnter = false;
@@ -12908,7 +13023,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         for (int i2 = 0; i2 < size && i > 0; i2++) {
             PollButton pollButton = (PollButton) arrayList.get(i2);
             if (pollButton.percent > 0) {
-                PollButton.access$2312(pollButton, 1);
+                PollButton.access$2412(pollButton, 1);
                 i--;
             }
         }

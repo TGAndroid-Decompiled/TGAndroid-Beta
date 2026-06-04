@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.BlendMode;
@@ -93,6 +92,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -740,7 +740,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, IOException {
+        public void onItemClick(int i) throws IOException {
             File file;
             Theme.ThemeAccent accent;
             String url;
@@ -4516,6 +4516,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void onDiceFinished() {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$onDiceFinished(this);
+                    }
+
+                    @Override
+                    public boolean openArticlePhoto(ChatMessageCell chatMessageCell2, TL_iv.PageBlock pageBlock) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell2, pageBlock);
                     }
 
                     @Override

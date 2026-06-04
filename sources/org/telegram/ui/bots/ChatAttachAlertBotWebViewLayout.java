@@ -672,7 +672,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         if (!this.webViewContainer.isBackButtonVisible()) {
             AndroidUtilities.updateImageViewImageAnimated(this.parentAlert.actionBar.getBackButton(), R.drawable.ic_ab_back);
         }
-        this.parentAlert.actionBar.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
+        this.parentAlert.actionBar.setBackground(null);
         if (this.webViewContainer.hasUserPermissions()) {
             this.webViewContainer.destroyWebView();
             this.needReload = true;

@@ -89,6 +89,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asCustomShadow(int i, View view) {
+        UItem uItem = new UItem(-4, false);
+        uItem.id = i;
+        uItem.view = view;
+        uItem.intValue = -1;
+        return uItem;
+    }
+
     public static UItem asCustomShadow(View view) {
         UItem uItem = new UItem(-4, false);
         uItem.view = view;

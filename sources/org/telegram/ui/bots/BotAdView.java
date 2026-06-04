@@ -1,7 +1,6 @@
 package org.telegram.ui.bots;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
@@ -170,7 +169,7 @@ public class BotAdView extends FrameLayout {
         this.textView.setText(charSequenceReplaceEmoji2);
         this.textView.setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
             @Override
-            public final void run(ClickableSpan clickableSpan) throws Resources.NotFoundException {
+            public final void run(ClickableSpan clickableSpan) {
                 this.f$0.lambda$set$1(chatActivity, messageObject, clickableSpan);
             }
         });
@@ -194,7 +193,7 @@ public class BotAdView extends FrameLayout {
         });
     }
 
-    public void lambda$set$1(ChatActivity chatActivity, MessageObject messageObject, ClickableSpan clickableSpan) throws Resources.NotFoundException {
+    public void lambda$set$1(ChatActivity chatActivity, MessageObject messageObject, ClickableSpan clickableSpan) {
         if (chatActivity != null) {
             chatActivity.logSponsoredClicked(messageObject, false, false);
         }

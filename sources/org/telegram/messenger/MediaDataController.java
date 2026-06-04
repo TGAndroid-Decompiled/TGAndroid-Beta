@@ -56,6 +56,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
@@ -4281,7 +4282,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = stickerSet4.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda161(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda162(delayedAction));
             if (frameLayout != null) {
                 Bulletin.make(frameLayout, stickerSetBulletinLayout, 2750).show();
             } else {
@@ -4390,7 +4391,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = arrayList.get(i8).set.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda161(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda162(delayedAction));
         }
         Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
     }
@@ -8413,7 +8414,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void updateBotInfo(final long j, final TLRPC.TL_updateBotCommands tL_updateBotCommands) {
+    public void updateBotInfo(final long j, final TL_update.TL_updateBotCommands tL_updateBotCommands) {
         TL_bots.BotInfo botInfo = this.botInfos.get(tL_updateBotCommands.bot_id + "_" + j);
         if (botInfo != null) {
             botInfo.commands = tL_updateBotCommands.commands;
@@ -8427,7 +8428,7 @@ public class MediaDataController extends BaseController {
         });
     }
 
-    public void lambda$updateBotInfo$202(TLRPC.TL_updateBotCommands tL_updateBotCommands, long j) {
+    public void lambda$updateBotInfo$202(TL_update.TL_updateBotCommands tL_updateBotCommands, long j) {
         try {
             TL_bots.BotInfo botInfoLoadBotInfoInternal = loadBotInfoInternal(tL_updateBotCommands.bot_id, j);
             if (botInfoLoadBotInfoInternal != null) {

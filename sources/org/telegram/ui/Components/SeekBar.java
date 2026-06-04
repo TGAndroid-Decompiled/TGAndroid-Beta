@@ -107,6 +107,10 @@ public class SeekBar {
         this.currentRadius = AndroidUtilities.dp(6.0f);
     }
 
+    public void setParent(View view) {
+        this.parentView = view;
+    }
+
     public void setDelegate(SeekBarDelegate seekBarDelegate) {
         this.delegate = seekBarDelegate;
     }

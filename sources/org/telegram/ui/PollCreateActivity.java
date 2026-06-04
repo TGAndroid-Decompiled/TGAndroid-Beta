@@ -377,7 +377,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
             this.actionBar.setTitle(LocaleController.getString(R.string.NewPoll));
         }
         INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && !iNavigationLayout.isRightLayout()) {
+        if (iNavigationLayout != null && iNavigationLayout.isLayersLayout()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);

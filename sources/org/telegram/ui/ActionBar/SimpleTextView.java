@@ -190,11 +190,15 @@ public class SimpleTextView extends View implements Drawable.Callback {
     }
 
     public void setTextSize(int i) {
-        float fDp = AndroidUtilities.dp(i);
-        if (fDp == this.textPaint.getTextSize()) {
+        setTextSizePx(AndroidUtilities.dp(i));
+    }
+
+    public void setTextSizePx(int i) {
+        float f = i;
+        if (f == this.textPaint.getTextSize()) {
             return;
         }
-        this.textPaint.setTextSize(fDp);
+        this.textPaint.setTextSize(f);
         if (recreateLayoutMaybe()) {
             return;
         }
@@ -1241,6 +1245,10 @@ public class SimpleTextView extends View implements Drawable.Callback {
 
     public float getExactWidth() {
         return (getPaint().measureText(getText().toString()) + getSideDrawablesSize()) - ((this.leftDrawable == null && this.rightDrawable == null && this.rightDrawable2 == null) ? 0 : this.drawablePadding);
+    }
+
+    public float getExactWidthIncludeDrawables() {
+        return getExactWidth() + (this.leftDrawable != null ? r1.getIntrinsicWidth() : 0) + (this.rightDrawable != null ? r1.getIntrinsicWidth() : 0) + (this.rightDrawable2 != null ? r1.getIntrinsicWidth() : 0);
     }
 
     private void drawLayout(Canvas canvas) {

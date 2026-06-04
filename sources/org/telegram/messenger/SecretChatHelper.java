@@ -24,6 +24,7 @@ import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 
@@ -191,7 +192,7 @@ public class SecretChatHelper extends BaseController {
         }
     }
 
-    protected void processUpdateEncryption(TLRPC.TL_updateEncryption tL_updateEncryption, ConcurrentHashMap<Long, TLRPC.User> concurrentHashMap) {
+    protected void processUpdateEncryption(TL_update.TL_updateEncryption tL_updateEncryption, ConcurrentHashMap<Long, TLRPC.User> concurrentHashMap) {
         byte[] bArr;
         final TLRPC.EncryptedChat encryptedChat = tL_updateEncryption.chat;
         final long jMakeEncryptedDialogId = DialogObject.makeEncryptedDialogId(encryptedChat.id);

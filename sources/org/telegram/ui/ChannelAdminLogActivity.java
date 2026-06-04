@@ -97,6 +97,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -962,7 +963,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public View createView(Context context) throws Resources.NotFoundException, IOException {
+    public View createView(Context context) {
         if (this.chatMessageCellsCache.isEmpty()) {
             for (int i = 0; i < 8; i++) {
                 this.chatMessageCellsCache.add(new ChatMessageCell(context, this.currentAccount));
@@ -975,7 +976,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.actionBar.setCastShadows(false);
         this.actionBar.setBackground(null);
         this.actionBar.setOccupyStatusBar(!AndroidUtilities.isTablet());
-        this.actionBar.setBackButtonDrawable(new BackDrawable(false).setTranslationX(-AndroidUtilities.dp(3.0f)));
+        this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i2) {
@@ -986,8 +987,9 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         });
         ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false);
         this.avatarContainer = chatAvatarContainer;
-        chatAvatarContainer.setOccupyStatusBar(!AndroidUtilities.isTablet());
-        this.actionBar.addView(this.avatarContainer, 0, LayoutHelper.createFrame(-2, -1.0f, 51, 47.0f, 0.0f, 40.0f, 0.0f));
+        chatAvatarContainer.setGlassMode();
+        this.avatarContainer.setOccupyStatusBar(!AndroidUtilities.isTablet());
+        this.actionBar.addView(this.avatarContainer, 0, LayoutHelper.createFrame(-2, -1.0f, 51, 54.0f, 0.0f, 52.0f, 0.0f));
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchCollapse() {
@@ -1015,8 +1017,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         });
         this.searchItem = actionBarMenuItemSearchListener;
         actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.actionBar.getBackButton().setTranslationX(AndroidUtilities.dp(6.0f));
-        this.actionBar.menu.setTranslationX(-AndroidUtilities.dp(9.0f));
+        this.searchItem.setSearchPaddingStart(12);
         this.avatarContainer.setEnabled(false);
         this.avatarContainer.setTitle(this.currentChat.title);
         this.avatarContainer.setSubtitle(LocaleController.getString(R.string.EventLogAllEvents));
@@ -1120,8 +1121,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.navbarContentDrawableFactory.setSourceRootView(viewPositionWatcher, this.contentView);
         this.contentView.setOccupyStatusBar(!AndroidUtilities.isTablet());
         this.contentView.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion());
-        ActionBar actionBar = this.actionBar;
-        actionBar.setGlassDrawable(this.glassBackgroundDrawableFactory.create(actionBar).setColorProvider(BlurredBackgroundProviderImpl.topPanelChatActivity(this.resourceProvider)).setRadius(AndroidUtilities.dp(26.0f)).setPadding(AndroidUtilities.dp(7.0f)));
+        this.actionBar.setupGlass(this.glassBackgroundDrawableFactory, BlurredBackgroundProviderImpl.topPanelChatActivity(this.resourceProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.emptyViewContainer = frameLayout;
         frameLayout.setVisibility(4);
@@ -2764,6 +2764,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell, pageBlock);
+            }
+
+            @Override
             public void setShouldNotRepeatSticker(MessageObject messageObject) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject);
             }
@@ -3019,7 +3024,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float, boolean):void");
             }
 
@@ -3138,7 +3143,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) throws Resources.NotFoundException, IOException {
+            public void didClickImage(ChatActionCell chatActionCell) {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 if (messageObject.type == 22) {
                     ChannelAdminLogActivity.this.presentFragment(new ChannelColorActivity(getDialogId()).setOnApplied(ChannelAdminLogActivity.this));
@@ -4010,7 +4015,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         Objects.requireNonNull(chatActivityFragmentView);
         if (downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(new IBlur3Capture() {
             @Override
-            public final void capture(Canvas canvas, RectF rectF) throws IOException {
+            public final void capture(Canvas canvas, RectF rectF) {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
 
@@ -4091,7 +4096,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             super(context);
         }
 
-        public void drawList(Canvas canvas, RectF rectF) throws IOException {
+        public void drawList(Canvas canvas, RectF rectF) {
             long jUptimeMillis = SystemClock.uptimeMillis();
             if (ChannelAdminLogActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();

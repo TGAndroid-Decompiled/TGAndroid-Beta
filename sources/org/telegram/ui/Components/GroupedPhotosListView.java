@@ -14,6 +14,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 
 public class GroupedPhotosListView extends View implements GestureDetector.OnGestureListener {
     private boolean animateAllLine;
@@ -237,7 +238,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                 freeReceiver.setImageCoords(i6, this.itemY, this.itemWidth, this.itemHeight);
                 if (this.currentObjects.get(0) instanceof MessageObject) {
                     parentObject2 = this.currentObjects.get(iMax);
-                } else if (this.currentObjects.get(0) instanceof TLRPC.PageBlock) {
+                } else if (this.currentObjects.get(0) instanceof TL_iv.PageBlock) {
                     parentObject2 = this.delegate.getParentObject();
                 } else {
                     parentObject2 = "avatar_" + this.delegate.getAvatarsDialogId();
@@ -260,7 +261,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                 freeReceiver2.setImageCoords(i9, this.itemY, this.itemWidth, this.itemHeight);
                 if (this.currentObjects.get(0) instanceof MessageObject) {
                     parentObject = this.currentObjects.get(iMin);
-                } else if (this.currentObjects.get(0) instanceof TLRPC.PageBlock) {
+                } else if (this.currentObjects.get(0) instanceof TL_iv.PageBlock) {
                     parentObject = this.delegate.getParentObject();
                 } else {
                     parentObject = "avatar_" + this.delegate.getAvatarsDialogId();
@@ -315,7 +316,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
                     this.animateAllLine = true;
                     this.delegate.setCurrentIndex(iIndexOf);
                 } else if (pageBlockArr != null && !pageBlockArr.isEmpty()) {
-                    int iIndexOf2 = pageBlockArr.indexOf((TLRPC.PageBlock) this.currentObjects.get(param));
+                    int iIndexOf2 = pageBlockArr.indexOf((TL_iv.PageBlock) this.currentObjects.get(param));
                     if (currentIndex == iIndexOf2) {
                         return true;
                     }
@@ -371,7 +372,7 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
             if (imagesArr != null && !imagesArr.isEmpty()) {
                 iIndexOf = imagesArr.indexOf((MessageObject) obj);
             } else if (pageBlockArr != null && !pageBlockArr.isEmpty()) {
-                iIndexOf = pageBlockArr.indexOf((TLRPC.PageBlock) obj);
+                iIndexOf = pageBlockArr.indexOf((TL_iv.PageBlock) obj);
             } else if (imagesArrLocations != null && !imagesArrLocations.isEmpty()) {
                 iIndexOf = imagesArrLocations.indexOf((ImageLocation) obj);
             }

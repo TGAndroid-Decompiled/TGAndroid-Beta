@@ -3,6 +3,7 @@ package org.telegram.ui.Business;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -49,9 +50,15 @@ public class BusinessChatbotController {
         this.currentAccount = i;
     }
 
+    public TL_account.connectedBots getValue() {
+        return this.value;
+    }
+
     public void load(Utilities.Callback callback) {
         boolean z;
-        this.callbacks.add(callback);
+        if (callback != null) {
+            this.callbacks.add(callback);
+        }
         if (this.loading) {
             return;
         }
@@ -64,12 +71,7 @@ public class BusinessChatbotController {
                 }
             });
         } else if (z) {
-            for (int i = 0; i < this.callbacks.size(); i++) {
-                if (this.callbacks.get(i) != null) {
-                    ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
-                }
-            }
-            this.callbacks.clear();
+            notifyUpdate();
         }
     }
 
@@ -91,12 +93,17 @@ public class BusinessChatbotController {
         }
         this.lastTime = System.currentTimeMillis();
         this.loaded = true;
+        notifyUpdate();
+    }
+
+    public void notifyUpdate() {
         for (int i = 0; i < this.callbacks.size(); i++) {
             if (this.callbacks.get(i) != null) {
                 ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
             }
         }
         this.callbacks.clear();
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
     }
 
     public void invalidate(boolean z) {

@@ -57,7 +57,7 @@ public class MemberRequestCell extends FrameLayout {
         addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 48, z3 ? 12.0f : 74.0f, 36.0f, z3 ? 74.0f : 12.0f, 0.0f));
         int iDp = AndroidUtilities.dp(17.0f);
         TextView textView = new TextView(getContext());
-        textView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
+        textView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 16.0f));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
         textView.setPadding(iDp, 0, iDp, 0);
@@ -75,7 +75,7 @@ public class MemberRequestCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-2, 32.0f, z4 ? 5 : 3, z4 ? 0.0f : 73.0f, 62.0f, z4 ? 73.0f : 0.0f, 0.0f));
         float fMeasureText = textView.getPaint().measureText(textView.getText().toString()) + (iDp * 2);
         TextView textView2 = new TextView(getContext());
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), 0, Theme.getColor(Theme.key_listSelector), -16777216));
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_listSelector), -16777216));
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
         textView2.setPadding(iDp, 0, iDp, 0);

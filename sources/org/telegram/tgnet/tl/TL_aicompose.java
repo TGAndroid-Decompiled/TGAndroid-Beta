@@ -58,6 +58,23 @@ public class TL_aicompose {
             }
             return false;
         }
+
+        public static InputAiComposeTone TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            return (InputAiComposeTone) TLObject.TLdeserialize(InputAiComposeTone.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static InputAiComposeTone fromConstructor(int i) {
+            if (i == 125026432) {
+                return new inputAiComposeToneID();
+            }
+            if (i == 530584407) {
+                return new inputAiComposeToneSlug();
+            }
+            if (i != 535407039) {
+                return null;
+            }
+            return new inputAiComposeToneDefault();
+        }
     }
 
     public static class inputAiComposeToneDefault extends InputAiComposeTone {
@@ -68,6 +85,11 @@ public class TL_aicompose {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(535407039);
             outputSerializedData.writeString(this.tone);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.tone = inputSerializedData.readString(z);
         }
     }
 
@@ -82,6 +104,12 @@ public class TL_aicompose {
             outputSerializedData.writeInt64(this.id);
             outputSerializedData.writeInt64(this.access_hash);
         }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.id = inputSerializedData.readInt64(z);
+            this.access_hash = inputSerializedData.readInt64(z);
+        }
     }
 
     public static class inputAiComposeToneSlug extends InputAiComposeTone {
@@ -92,6 +120,11 @@ public class TL_aicompose {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(530584407);
             outputSerializedData.writeString(this.slug);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.slug = inputSerializedData.readString(z);
         }
     }
 

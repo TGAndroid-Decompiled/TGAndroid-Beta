@@ -39,6 +39,7 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.BusinessChatbotController;
 import org.telegram.ui.Business.ChatbotsActivity;
 import org.telegram.ui.Business.OpeningHoursActivity;
 import org.telegram.ui.Cells.EditTextCell;
@@ -86,6 +87,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
     public int usernameRow;
     private boolean valueSet;
     private int bioInfoHash = Integer.MIN_VALUE;
+    private ArrayList bots = new ArrayList();
     private final ArrayList accountNumbers = new ArrayList();
     private AdminedChannelsFetcher channels = new AdminedChannelsFetcher(this.currentAccount, true);
     private boolean wasSaved = false;
@@ -111,7 +113,9 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
         getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
+        getNotificationCenter().addObserver(this, NotificationCenter.updatedChatbot);
         getContactsController().loadPrivacySettings();
+        BusinessChatbotController.getInstance(this.currentAccount).load(null);
         return super.onFragmentCreate();
     }
 
@@ -120,6 +124,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
         getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
+        getNotificationCenter().removeObserver(this, NotificationCenter.updatedChatbot);
         super.onFragmentDestroy();
         if (this.wasSaved) {
             return;
@@ -308,8 +313,25 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             IconBackgroundColors iconBackgroundColors9 = IconBackgroundColors.RED;
             arrayList.add(SettingsActivity.SettingCell.Factory.of(5, iconBackgroundColors9.top, iconBackgroundColors9.bottom, R.drawable.filled_location, LocaleController.getString(R.string.EditProfileLocation)));
         }
-        IconBackgroundColors iconBackgroundColors10 = IconBackgroundColors.PURPLE;
-        arrayList.add(SettingsActivity.SettingCell.Factory.of(6, iconBackgroundColors10.top, iconBackgroundColors10.bottom, R.drawable.premium_ai_editor, TextCell.applyNewSpan(LocaleController.getString(R.string.EditProfileChatAutomation))));
+        ArrayList arrayList2 = this.bots;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            Iterator it = this.bots.iterator();
+            while (it.hasNext()) {
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TL_account.TL_connectedBot) it.next()).bot_id));
+                if (user != null) {
+                    if (sb.length() > 0) {
+                        sb.append(", ");
+                    }
+                    sb.append(UserObject.getUserName(user));
+                }
+            }
+            IconBackgroundColors iconBackgroundColors10 = IconBackgroundColors.PURPLE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(6, iconBackgroundColors10.top, iconBackgroundColors10.bottom, R.drawable.premium_ai_editor, LocaleController.getString(R.string.EditProfileChatAutomation), sb));
+        } else {
+            IconBackgroundColors iconBackgroundColors11 = IconBackgroundColors.PURPLE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(6, iconBackgroundColors11.top, iconBackgroundColors11.bottom, R.drawable.premium_ai_editor, TextCell.applyNewSpan(LocaleController.getString(R.string.EditProfileChatAutomation))));
+        }
         arrayList.add(UItem.asShadow(-3, LocaleController.getString(R.string.EditProfileChatAutomationInfo)));
         boolean z = UserConfig.getActivatedAccountsCount() < 4;
         if (z) {
@@ -478,6 +500,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
+        ArrayList<TL_account.TL_connectedBot> arrayList;
         if (i == NotificationCenter.userInfoDidLoad) {
             setValue();
             return;
@@ -495,6 +518,19 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             UniversalRecyclerView universalRecyclerView2 = this.listView;
             if (universalRecyclerView2 != null) {
                 universalRecyclerView2.adapter.update(true);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.updatedChatbot) {
+            TL_account.connectedBots value = BusinessChatbotController.getInstance(this.currentAccount).getValue();
+            if (value == null || (arrayList = value.connected_bots) == null) {
+                arrayList = new ArrayList<>();
+            }
+            this.bots = arrayList;
+            UniversalRecyclerView universalRecyclerView3 = this.listView;
+            if (universalRecyclerView3 != null) {
+                universalRecyclerView3.adapter.update(true);
             }
         }
     }

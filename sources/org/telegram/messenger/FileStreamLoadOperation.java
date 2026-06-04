@@ -59,7 +59,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     }
 
     @Override
-    public long open(DataSpec dataSpec) {
+    public long open(DataSpec dataSpec) throws InterruptedException {
         this.uri = dataSpec.uri;
         transferInitializing(dataSpec);
         int iIntValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();

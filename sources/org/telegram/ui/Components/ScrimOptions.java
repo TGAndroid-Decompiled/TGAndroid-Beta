@@ -367,6 +367,44 @@ public class ScrimOptions extends Dialog {
         callback2.run(bitmapApplyColorMatrix, bitmapApplyColorMatrix2);
     }
 
+    public static void makeGlobalBlurBitmaps(final View view, final Utilities.Callback2 callback2) {
+        if (view == null) {
+            makeGlobalBlurBitmaps(callback2);
+        } else {
+            AndroidUtilities.makeGlobalBlurBitmap(new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ScrimOptions.lambda$makeGlobalBlurBitmaps$8(view, callback2, (Bitmap) obj);
+                }
+            }, 15.0f);
+        }
+    }
+
+    public static void lambda$makeGlobalBlurBitmaps$8(View view, Utilities.Callback2 callback2, Bitmap bitmap) {
+        if (view.getWidth() > 0 && view.getHeight() > 0) {
+            view.getLocationOnScreen(new int[2]);
+            int iClamp = Utilities.clamp((int) ((r0[0] / AndroidUtilities.displaySize.x) * bitmap.getWidth()), bitmap.getWidth(), 0);
+            int iClamp2 = Utilities.clamp((int) ((r0[1] / ((AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight)) * bitmap.getHeight()), bitmap.getHeight(), 0);
+            int iClamp3 = Utilities.clamp((int) ((view.getWidth() / AndroidUtilities.displaySize.x) * bitmap.getWidth()), bitmap.getWidth() - iClamp, 0);
+            int iClamp4 = Utilities.clamp((int) ((view.getHeight() / ((AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight)) * bitmap.getHeight()), bitmap.getHeight() - iClamp2, 0);
+            if ((iClamp != 0 || iClamp2 != 0 || iClamp3 != bitmap.getWidth() || iClamp4 != bitmap.getHeight()) && iClamp3 > 0 && iClamp4 > 0) {
+                bitmap = Bitmap.createBitmap(bitmap, iClamp, iClamp2, iClamp3, iClamp4);
+            }
+        }
+        ColorMatrix colorMatrix = new ColorMatrix();
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? 0.04f : 0.25f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.isCurrentThemeDark() ? -0.04f : -0.07f);
+        Bitmap bitmapApplyColorMatrix = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix);
+        bitmapApplyColorMatrix.setHasAlpha(false);
+        ColorMatrix colorMatrix2 = new ColorMatrix();
+        colorMatrix2.setSaturation(Theme.isCurrentThemeDark() ? 2.0f : 3.0f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, Theme.isCurrentThemeDark() ? -0.2f : -0.07f);
+        Bitmap bitmapApplyColorMatrix2 = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix2);
+        bitmapApplyColorMatrix2.setHasAlpha(false);
+        bitmap.recycle();
+        callback2.run(bitmapApplyColorMatrix, bitmapApplyColorMatrix2);
+    }
+
     public void checkBitmapMatrix() {
         Blur3Utils.checkBitmapSourceMatrixScale(this.iBlur3SourceBitmap, this.windowView);
         View view = this.optionsView;

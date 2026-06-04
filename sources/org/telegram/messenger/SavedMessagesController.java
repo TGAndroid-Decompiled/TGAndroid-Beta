@@ -18,6 +18,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -739,8 +740,8 @@ public class SavedMessagesController {
     }
 
     private boolean processUpdateInternal(TLRPC.Update update) {
-        if (update instanceof TLRPC.TL_updateSavedDialogPinned) {
-            TLRPC.TL_updateSavedDialogPinned tL_updateSavedDialogPinned = (TLRPC.TL_updateSavedDialogPinned) update;
+        if (update instanceof TL_update.TL_updateSavedDialogPinned) {
+            TL_update.TL_updateSavedDialogPinned tL_updateSavedDialogPinned = (TL_update.TL_updateSavedDialogPinned) update;
             TLRPC.DialogPeer dialogPeer = tL_updateSavedDialogPinned.peer;
             if (!(dialogPeer instanceof TLRPC.TL_dialogPeer)) {
                 return false;
@@ -750,10 +751,10 @@ public class SavedMessagesController {
             arrayList.add(Long.valueOf(peerDialogId));
             return updatePinned(arrayList, tL_updateSavedDialogPinned.pinned, false);
         }
-        if (!(update instanceof TLRPC.TL_updatePinnedSavedDialogs)) {
+        if (!(update instanceof TL_update.TL_updatePinnedSavedDialogs)) {
             return false;
         }
-        TLRPC.TL_updatePinnedSavedDialogs tL_updatePinnedSavedDialogs = (TLRPC.TL_updatePinnedSavedDialogs) update;
+        TL_update.TL_updatePinnedSavedDialogs tL_updatePinnedSavedDialogs = (TL_update.TL_updatePinnedSavedDialogs) update;
         ArrayList<Long> arrayList2 = new ArrayList<>(tL_updatePinnedSavedDialogs.order.size());
         for (int i = 0; i < tL_updatePinnedSavedDialogs.order.size(); i++) {
             TLRPC.DialogPeer dialogPeer2 = tL_updatePinnedSavedDialogs.order.get(i);

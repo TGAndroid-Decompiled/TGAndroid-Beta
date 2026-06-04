@@ -9,6 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
 import org.telegram.ui.LaunchActivity;
@@ -25,6 +26,12 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     public MemberRequestsBottomSheet(BaseFragment baseFragment, long j) {
         super(baseFragment.getParentActivity(), false, baseFragment.getCurrentAccount(), baseFragment.getResourceProvider());
         this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+        int i = Theme.key_windowBackgroundGray;
+        setBackgroundColor(getThemedColor(i));
+        this.keyListViewBackground = i;
+        this.keyInviteMembersBackground = i;
+        setColorProgress(0.0f);
+        fixNavigationBar(getThemedColor(i));
         this.needSnapToTop = false;
         this.isEmptyViewVisible = false;
         MemberRequestsDelegate memberRequestsDelegate = new MemberRequestsDelegate(baseFragment, this.container, j, false) {
@@ -49,6 +56,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
         this.listViewAdapter = adapter;
         this.searchListViewAdapter = adapter;
         this.listView.setAdapter(adapter);
+        this.listView.setSections();
         memberRequestsDelegate.setRecyclerView(this.listView);
         int iIndexOfChild = ((ViewGroup) this.listView.getParent()).indexOfChild(this.listView);
         FlickerLoadingView loadingView = memberRequestsDelegate.getLoadingView();

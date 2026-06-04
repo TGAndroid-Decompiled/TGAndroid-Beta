@@ -9,7 +9,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_contacts_found$$ExternalSyntheticLambda0;
-import org.telegram.tgnet.TLRPC$TL_updateGroupCallParticipants$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
 
@@ -56,7 +55,7 @@ public class TL_phone {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.call = TLRPC.GroupCall.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.participants = Vector.deserialize(inputSerializedData, new TLRPC$TL_updateGroupCallParticipants$$ExternalSyntheticLambda0(), z);
+            this.participants = Vector.deserialize(inputSerializedData, new TL_phone$groupCall$$ExternalSyntheticLambda0(), z);
             this.participants_next_offset = inputSerializedData.readString(z);
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
@@ -441,7 +440,7 @@ public class TL_phone {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.count = inputSerializedData.readInt32(z);
-            this.participants = Vector.deserialize(inputSerializedData, new TLRPC$TL_updateGroupCallParticipants$$ExternalSyntheticLambda0(), z);
+            this.participants = Vector.deserialize(inputSerializedData, new TL_phone$groupCall$$ExternalSyntheticLambda0(), z);
             this.next_offset = inputSerializedData.readString(z);
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);

@@ -862,6 +862,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         getNotificationCenter().addObserver(this, NotificationCenter.contentSettingsLoaded);
         getNotificationCenter().addObserver(this, NotificationCenter.themeUploadedToServer);
         getNotificationCenter().addObserver(this, NotificationCenter.themeUploadError);
+        getNotificationCenter().addObserver(this, NotificationCenter.webBrowserSettingsUpdate);
         if (this.currentType == 0) {
             Theme.loadRemoteThemes(this.currentAccount, true);
             Theme.checkCurrentRemoteTheme(true);
@@ -885,6 +886,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         getNotificationCenter().removeObserver(this, NotificationCenter.contentSettingsLoaded);
         getNotificationCenter().removeObserver(this, NotificationCenter.themeUploadedToServer);
         getNotificationCenter().removeObserver(this, NotificationCenter.themeUploadError);
+        getNotificationCenter().removeObserver(this, NotificationCenter.webBrowserSettingsUpdate);
         Theme.saveAutoNightThemeConfig();
     }
 
@@ -893,6 +895,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         int i3;
         AlertDialog alertDialog;
         int i4;
+        int i5;
         if (i == NotificationCenter.locationPermissionGranted) {
             updateSunTime(null, true);
             return;
@@ -905,12 +908,20 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             updateMenuItem();
             return;
         }
-        if (i == NotificationCenter.themeAccentListUpdated) {
+        if (i == NotificationCenter.webBrowserSettingsUpdate) {
             ListAdapter listAdapter = this.listAdapter;
-            if (listAdapter == null || (i4 = this.themeAccentListRow) == -1) {
+            if (listAdapter == null || (i5 = this.browserRow) == -1) {
                 return;
             }
-            listAdapter.notifyItemChanged(i4, new Object());
+            listAdapter.notifyItemChanged(i5);
+            return;
+        }
+        if (i == NotificationCenter.themeAccentListUpdated) {
+            ListAdapter listAdapter2 = this.listAdapter;
+            if (listAdapter2 == null || (i4 = this.themeAccentListRow) == -1) {
+                return;
+            }
+            listAdapter2.notifyItemChanged(i4, new Object());
             return;
         }
         if (i == NotificationCenter.themeListUpdated) {
@@ -969,9 +980,9 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             return;
         }
         if (i == NotificationCenter.emojiPreviewThemesChanged) {
-            int i5 = this.themeListRow2;
-            if (i5 >= 0) {
-                this.listAdapter.notifyItemChanged(i5);
+            int i6 = this.themeListRow2;
+            if (i6 >= 0) {
+                this.listAdapter.notifyItemChanged(i6);
                 return;
             }
             return;
@@ -1431,8 +1442,8 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         }
         if (i == this.browserRow) {
             if ((LocaleController.isRTL && f <= AndroidUtilities.dp(76.0f)) || (!LocaleController.isRTL && f >= view.getMeasuredWidth() - AndroidUtilities.dp(76.0f))) {
-                SharedConfig.toggleInappBrowser();
-                ((NotificationsCheckCell) view).setChecked(SharedConfig.inappBrowser);
+                getMessagesController().toggleWebBrowserInAppEnabled();
+                ((NotificationsCheckCell) view).setChecked(getMessagesController().isWebBrowserInAppEnabled());
                 return;
             } else {
                 presentFragment(new WebBrowserSettings(null));
@@ -2259,7 +2270,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeListUpdated, new Object[0]);
         }
 
-        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) throws IOException {
+        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
             Theme.ThemeInfo currentNightTheme = ThemeActivity.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme();
             if (i != themeAccentsListAdapter.getItemCount() - 1) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
@@ -2472,7 +2483,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setAdapter(themeAccentsListAdapter);
                     tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
-                        public final void onItemClick(View view2, int i3) throws IOException {
+                        public final void onItemClick(View view2, int i3) {
                             this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view2, i3);
                         }
                     });
@@ -2828,7 +2839,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                         NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
                         if (i != ThemeActivity.this.nightThemeRow) {
                             if (i == ThemeActivity.this.browserRow) {
-                                notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString(R.string.InappBrowser), LocaleController.getString(R.string.InappBrowserInfo), R.drawable.msg2_language, SharedConfig.inappBrowser, 0, false, true);
+                                notificationsCheckCell.setTextAndValueAndIconAndCheck(LocaleController.getString(R.string.InappBrowser), LocaleController.getString(R.string.InappBrowserInfo), R.drawable.msg2_language, ThemeActivity.this.getMessagesController().isWebBrowserInAppEnabled(), 0, false, true);
                                 break;
                             }
                         } else {

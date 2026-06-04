@@ -99,6 +99,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -1001,13 +1002,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             }
             return;
         }
-        Iterator it = MessagesController.findUpdates(updates, TLRPC.TL_updateNewMessage.class).iterator();
+        Iterator it = MessagesController.findUpdates(updates, TL_update.TL_updateNewMessage.class).iterator();
         while (true) {
             if (!it.hasNext()) {
                 messageObject = null;
                 break;
             }
-            TLRPC.TL_updateNewMessage tL_updateNewMessage = (TLRPC.TL_updateNewMessage) it.next();
+            TL_update.TL_updateNewMessage tL_updateNewMessage = (TL_update.TL_updateNewMessage) it.next();
             TLRPC.Message message = tL_updateNewMessage.message;
             if (message != null && (message.action instanceof TLRPC.TL_messageActionStarGiftUnique)) {
                 messageObject = new MessageObject(this.currentAccount, tL_updateNewMessage.message, false, false);
@@ -6289,13 +6290,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             return 0;
         }
         TLRPC.Update update = updates.update;
-        if (update instanceof TLRPC.TL_updateNewMessage) {
-            message = ((TLRPC.TL_updateNewMessage) update).message;
+        if (update instanceof TL_update.TL_updateNewMessage) {
+            message = ((TL_update.TL_updateNewMessage) update).message;
         } else if (updates.updates != null) {
             for (int i = 0; i < updates.updates.size(); i++) {
                 TLRPC.Update update2 = updates.updates.get(i);
-                if (update2 instanceof TLRPC.TL_updateNewMessage) {
-                    message = ((TLRPC.TL_updateNewMessage) update2).message;
+                if (update2 instanceof TL_update.TL_updateNewMessage) {
+                    message = ((TL_update.TL_updateNewMessage) update2).message;
                     break;
                 }
             }

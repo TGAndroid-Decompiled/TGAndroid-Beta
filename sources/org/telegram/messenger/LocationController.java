@@ -22,6 +22,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.PermissionRequest;
 
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {
@@ -432,10 +433,10 @@ public class LocationController extends BaseController implements NotificationCe
         boolean z = false;
         for (int i = 0; i < updates.updates.size(); i++) {
             TLRPC.Update update = updates.updates.get(i);
-            if (update instanceof TLRPC.TL_updateEditMessage) {
-                sharingLocationInfo.messageObject.messageOwner = ((TLRPC.TL_updateEditMessage) update).message;
-            } else if (update instanceof TLRPC.TL_updateEditChannelMessage) {
-                sharingLocationInfo.messageObject.messageOwner = ((TLRPC.TL_updateEditChannelMessage) update).message;
+            if (update instanceof TL_update.TL_updateEditMessage) {
+                sharingLocationInfo.messageObject.messageOwner = ((TL_update.TL_updateEditMessage) update).message;
+            } else if (update instanceof TL_update.TL_updateEditChannelMessage) {
+                sharingLocationInfo.messageObject.messageOwner = ((TL_update.TL_updateEditChannelMessage) update).message;
             }
             z = true;
         }

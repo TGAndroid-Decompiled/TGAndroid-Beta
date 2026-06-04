@@ -1637,7 +1637,7 @@ public class ItemOptions {
             if (ItemOptions.this.blur) {
                 this.blurPaint = new Paint(3);
                 ItemOptions.this.scrimView.setAlpha(0.0f);
-                ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
+                ScrimOptions.makeGlobalBlurBitmaps(ItemOptions.this.pointContainer, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
                         this.f$0.lambda$new$0((Bitmap) obj, (Bitmap) obj2);

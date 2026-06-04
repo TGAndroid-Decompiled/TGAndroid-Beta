@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -57,7 +56,6 @@ import androidx.dynamicanimation.animation.SpringForce;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,6 +74,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.WindowVisibilityManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -99,6 +98,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 public class SecretMediaViewer implements NotificationCenter.NotificationCenterDelegate, GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
     private static volatile SecretMediaViewer Instance;
     private ActionBar actionBar;
+    private WindowVisibilityManager.Controller activityVisibilityController;
     private int[] animateFromRadius;
     private float animateToClipBottom;
     private float animateToClipBottomOrigin;
@@ -278,7 +278,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         return false;
     }
 
-    static int access$1510(SecretMediaViewer secretMediaViewer) {
+    static int access$1610(SecretMediaViewer secretMediaViewer) {
         int i = secretMediaViewer.playerRetryPlayCount;
         secretMediaViewer.playerRetryPlayCount = i - 1;
         return i;
@@ -416,8 +416,8 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
         @Override
         public void setAlpha(int i) {
-            if (SecretMediaViewer.this.parentActivity instanceof LaunchActivity) {
-                ((LaunchActivity) SecretMediaViewer.this.parentActivity).drawerLayoutContainer.setAllowDrawContent((SecretMediaViewer.this.isPhotoVisible && i == 255) ? false : true);
+            if (SecretMediaViewer.this.activityVisibilityController != null) {
+                SecretMediaViewer.this.activityVisibilityController.setHidden(SecretMediaViewer.this.isPhotoVisible && i == 255);
             }
             super.setAlpha(i);
         }
@@ -647,7 +647,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         @Override
         public void onError(VideoPlayer videoPlayer, Exception exc) {
             if (SecretMediaViewer.this.playerRetryPlayCount > 0) {
-                SecretMediaViewer.access$1510(SecretMediaViewer.this);
+                SecretMediaViewer.access$1610(SecretMediaViewer.this);
                 final File file = this.val$file;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -1041,7 +1041,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         });
     }
 
-    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) throws Resources.NotFoundException, IOException {
+    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
         boolean z3;
         TLRPC.Message message;
         CharSequence charSequenceCloneSpans = AnimatedEmojiSpan.cloneSpans(charSequence, 3);
@@ -1423,6 +1423,12 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.animateToScale = 1.0f;
         this.animateToRadius = true;
         this.zoomAnimation = true;
+        WindowVisibilityManager.Controller controller = this.activityVisibilityController;
+        if (controller != null) {
+            controller.destroy();
+            this.activityVisibilityController = null;
+        }
+        this.activityVisibilityController = LaunchActivity.obtainActivityVisibilityController();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagesDeleted);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateMessageMedia);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didCreatedNewDeleteTask);
@@ -1717,6 +1723,11 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         if (runnable != null) {
             runnable.run();
             this.onClose = null;
+        }
+        WindowVisibilityManager.Controller controller = this.activityVisibilityController;
+        if (controller != null) {
+            controller.destroy();
+            this.activityVisibilityController = null;
         }
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagesDeleted);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateMessageMedia);

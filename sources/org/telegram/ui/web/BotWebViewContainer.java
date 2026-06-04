@@ -1395,7 +1395,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
             OAuthSheet.handle(false, this.currentAccount, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, null, false, this);
         } else if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
-            AlertsCreator.showOpenUrlAlert(getContext(), str, false, true, true, false, 0L, null, null);
+            AlertsCreator.showOpenUrlAlert(getContext(), str, false, true, true, false, 0L, (Browser.Progress) null, (Theme.ResourcesProvider) null);
         }
     }
 
@@ -3834,7 +3834,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 BaseFragment safeLastFragment;
                 MyWebView.this.d("onCreateWindow isDialog=" + z + " isUserGesture=" + z2 + " resultMsg=" + message);
                 String url = MyWebView.this.getUrl();
-                if (SharedConfig.inappBrowser) {
+                if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserInAppEnabled()) {
                     if (MyWebView.this.botWebViewContainer == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
                         return false;
                     }

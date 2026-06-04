@@ -89,7 +89,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -4947,7 +4946,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws Resources.NotFoundException, IOException {
+                            public final void run() {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -4959,7 +4958,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws Resources.NotFoundException, IOException {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -5032,7 +5031,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() throws Resources.NotFoundException, IOException {
+                    public void run() {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -6846,7 +6845,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$99(new PremiumPreviewFragment(null));
+            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$100(new PremiumPreviewFragment(null));
         }
     }
 
@@ -10603,7 +10602,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     ChatActivityEnterView.this.stickersExpanded = true;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 1);
                     ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-                    chatActivityEnterView.stickersExpandedHeight = ((((chatActivityEnterView.sizeNotifierLayout.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(11.0f)) - ActionBar.getCurrentActionBarHeight()) - ChatActivityEnterView.this.getHeight();
+                    chatActivityEnterView.stickersExpandedHeight = ((((chatActivityEnterView.sizeNotifierLayout.getHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - ActionBar.getCurrentActionBarHeight()) - ChatActivityEnterView.this.getHeight();
                     if (ChatActivityEnterView.this.searchingType == 2) {
                         ChatActivityEnterView chatActivityEnterView2 = ChatActivityEnterView.this;
                         int i = chatActivityEnterView2.stickersExpandedHeight;
@@ -10832,7 +10831,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws Resources.NotFoundException, IOException {
+        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) {
             if (ChatActivityEnterView.this.parentFragment == null) {
                 return;
             }
@@ -10905,6 +10904,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 @Override
                 public boolean canScrollAway() {
                     return false;
+                }
+
+                @Override
+                public boolean canSetTimer() {
+                    return PhotoViewer.PhotoViewerProvider.CC.$default$canSetTimer(this);
                 }
 
                 @Override
@@ -12597,7 +12601,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         Point point = AndroidUtilities.displaySize;
         int i = point.x > point.y ? this.keyboardHeightLand : this.keyboardHeight;
-        int iDp = ((((this.originalViewHeight - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(11.0f)) - ActionBar.getCurrentActionBarHeight()) - getHeight();
+        int iDp = ((((this.originalViewHeight - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - ActionBar.getCurrentActionBarHeight()) - getHeight();
         if (this.searchingType == 2) {
             iDp = Math.min(iDp, AndroidUtilities.dp(175.0f) + i);
         }
@@ -12736,7 +12740,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 }
                 int height = this.sizeNotifierLayout.getHeight();
                 this.originalViewHeight = height;
-                int iDp = ((((height - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(11.0f)) - ActionBar.getCurrentActionBarHeight()) - getHeight();
+                int iDp = ((((height - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(6.0f)) - ActionBar.getCurrentActionBarHeight()) - getHeight();
                 this.stickersExpandedHeight = iDp;
                 if (this.searchingType == 2) {
                     this.stickersExpandedHeight = Math.min(iDp, AndroidUtilities.dp(175.0f) + i);

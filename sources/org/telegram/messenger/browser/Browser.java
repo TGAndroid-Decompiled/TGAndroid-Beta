@@ -23,7 +23,6 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.support.customtabs.CustomTabsCallback;
 import org.telegram.messenger.support.customtabs.CustomTabsClient;
@@ -90,7 +89,7 @@ public abstract class Browser {
                 @Override
                 public void onServiceConnected(CustomTabsClient customTabsClient2) {
                     CustomTabsClient unused = Browser.customTabsClient = customTabsClient2;
-                    if (!SharedConfig.customTabs || Browser.customTabsClient == null) {
+                    if (!MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() || Browser.customTabsClient == null) {
                         return;
                     }
                     try {

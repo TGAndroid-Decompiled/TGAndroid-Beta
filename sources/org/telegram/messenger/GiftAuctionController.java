@@ -17,6 +17,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Gifts.AuctionBidSheet;
 import org.telegram.ui.Stars.StarsController;
 
@@ -411,7 +412,7 @@ public class GiftAuctionController extends BaseController {
         callback2.run(getAuction(j), tL_error);
     }
 
-    public void processUpdate(TLRPC.TL_updateStarGiftAuctionState tL_updateStarGiftAuctionState) {
+    public void processUpdate(TL_update.TL_updateStarGiftAuctionState tL_updateStarGiftAuctionState) {
         AuctionInternal auctionInternal = this.auctions.get(tL_updateStarGiftAuctionState.gift_id);
         if (auctionInternal == null || auctionInternal.internalState == null || !auctionInternal.internalState.applyAuctionState(tL_updateStarGiftAuctionState.state)) {
             return;
@@ -420,7 +421,7 @@ public class GiftAuctionController extends BaseController {
         performAuctionUpdate(auctionInternal.giftId);
     }
 
-    public void processUpdate(TLRPC.TL_updateStarGiftAuctionUserState tL_updateStarGiftAuctionUserState) {
+    public void processUpdate(TL_update.TL_updateStarGiftAuctionUserState tL_updateStarGiftAuctionUserState) {
         AuctionInternal auctionInternal = this.auctions.get(tL_updateStarGiftAuctionUserState.gift_id);
         if (auctionInternal == null || auctionInternal.internalState == null || !auctionInternal.internalState.applyUserState(tL_updateStarGiftAuctionUserState.user_state)) {
             return;

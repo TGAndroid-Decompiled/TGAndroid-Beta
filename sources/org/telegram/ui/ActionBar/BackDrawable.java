@@ -16,7 +16,6 @@ public class BackDrawable extends Drawable {
     private float finalRotation;
     private long lastFrameTime;
     private boolean reverseAngle;
-    private float translationX;
     private Paint paint = new Paint(1);
     private Paint prevPaint = new Paint(1);
     private DecelerateInterpolator interpolator = new DecelerateInterpolator();
@@ -85,26 +84,20 @@ public class BackDrawable extends Drawable {
         this.animationTime = f;
     }
 
-    public BackDrawable setTranslationX(float f) {
-        this.translationX = f;
-        return this;
-    }
-
     @Override
     public void draw(Canvas canvas) {
-        float f;
         if (this.currentRotation != this.finalRotation) {
             if (this.lastFrameTime != 0) {
-                int iCurrentTimeMillis = (int) (this.currentAnimationTime + (System.currentTimeMillis() - this.lastFrameTime));
+                int iCurrentTimeMillis = this.currentAnimationTime + ((int) (System.currentTimeMillis() - this.lastFrameTime));
                 this.currentAnimationTime = iCurrentTimeMillis;
-                float f2 = iCurrentTimeMillis;
-                float f3 = this.animationTime;
-                if (f2 >= f3) {
+                float f = iCurrentTimeMillis;
+                float f2 = this.animationTime;
+                if (f >= f2) {
                     this.currentRotation = this.finalRotation;
                 } else if (this.currentRotation < this.finalRotation) {
-                    this.currentRotation = this.interpolator.getInterpolation(f2 / f3) * this.finalRotation;
+                    this.currentRotation = this.interpolator.getInterpolation(f / f2) * this.finalRotation;
                 } else {
-                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(f2 / f3);
+                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(f / f2);
                 }
             }
             this.lastFrameTime = System.currentTimeMillis();
@@ -112,24 +105,24 @@ public class BackDrawable extends Drawable {
         }
         this.paint.setColor(ColorUtils.blendARGB(this.color, this.rotatedColor, this.currentRotation));
         canvas.save();
-        canvas.translate((getIntrinsicWidth() / 2) + this.translationX, getIntrinsicHeight() / 2);
+        canvas.translate(getIntrinsicWidth() / 2.0f, getIntrinsicHeight() / 2.0f);
         int i = this.arrowRotation;
         if (i != 0) {
             canvas.rotate(i);
         }
-        float f4 = this.currentRotation;
+        float f3 = this.currentRotation;
+        canvas.translate(-AndroidUtilities.dp(0.66f), 0.0f);
         if (this.alwaysClose) {
-            canvas.rotate((f4 * (this.reverseAngle ? -180 : 180)) + 135.0f);
-            f = 1.0f;
+            canvas.rotate((this.currentRotation * (this.reverseAngle ? -180 : 180)) + 135.0f);
+            f3 = 1.0f;
         } else {
-            canvas.rotate((this.reverseAngle ? -225 : 135) * f4);
-            f = f4;
+            canvas.rotate(this.currentRotation * (this.reverseAngle ? -225 : 135));
         }
-        float f5 = 1.0f - f;
-        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f)), 0.0f, AndroidUtilities.dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f5), 0.0f, this.paint);
+        float f4 = 1.0f - f3;
+        canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.lerp(-6.75f, -8.0f, f3)), 0.0f, AndroidUtilities.dp(8.0f) - ((this.paint.getStrokeWidth() / 2.0f) * f4), 0.0f, this.paint);
         float fDp = AndroidUtilities.dp(-0.25f);
-        float fDp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f)) - ((this.paint.getStrokeWidth() / 4.0f) * f5);
-        float fDp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f));
+        float fDp2 = AndroidUtilities.dp(AndroidUtilities.lerp(7.0f, 8.0f, f3)) - ((this.paint.getStrokeWidth() / 4.0f) * f4);
+        float fDp3 = AndroidUtilities.dp(AndroidUtilities.lerp(-7.25f, 0.0f, f3));
         canvas.drawLine(fDp3, -fDp, 0.0f, -fDp2, this.paint);
         canvas.drawLine(fDp3, fDp, 0.0f, fDp2, this.paint);
         canvas.restore();

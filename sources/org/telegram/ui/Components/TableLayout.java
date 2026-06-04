@@ -8,6 +8,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,8 +23,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.TextSelectionHelper;
 
 public class TableLayout extends View {
@@ -74,7 +74,13 @@ public class TableLayout extends View {
     private TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
 
     public interface TableLayoutDelegate {
-        ArticleViewer.DrawingText createTextLayout(TLRPC.TL_pageTableCell tL_pageTableCell, int i);
+
+        public abstract class CC {
+            public static void $default$onLayoutChild(TableLayoutDelegate tableLayoutDelegate, CellText cellText, int i, int i2) {
+            }
+        }
+
+        CellText createTextLayout(TL_iv.pageTableCell pagetablecell, int i);
 
         Paint getHeaderPaint();
 
@@ -82,15 +88,40 @@ public class TableLayout extends View {
 
         Paint getStripPaint();
 
-        void onLayoutChild(ArticleViewer.DrawingText drawingText, int i, int i2);
+        void onLayoutChild(CellText cellText, int i, int i2);
     }
 
     static boolean canStretch(int i) {
         return (i & 2) != 0;
     }
 
+    public interface CellText extends TextSelectionHelper.TextLayoutBlock {
+        void attach(View view);
+
+        void detach(View view);
+
+        void draw(Canvas canvas, View view);
+
+        CharSequence getText();
+
+        void setRow(int i);
+
+        void setX(int i);
+
+        void setY(int i);
+
+        public abstract class CC {
+            public static CharSequence $default$getText(CellText cellText) {
+                if (cellText.getLayout() == null) {
+                    return null;
+                }
+                return cellText.getLayout().getText();
+            }
+        }
+    }
+
     public class Child {
-        private TLRPC.TL_pageTableCell cell;
+        private TL_iv.pageTableCell cell;
         private int fixedHeight;
         private int index;
         private LayoutParams layoutParams;
@@ -99,7 +130,7 @@ public class TableLayout extends View {
         public int rowspan;
         private int selectionIndex = -1;
         public int textHeight;
-        public ArticleViewer.DrawingText textLayout;
+        public CellText textLayout;
         public int textLeft;
         public int textWidth;
         public int textX;
@@ -133,20 +164,21 @@ public class TableLayout extends View {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.TableLayout.Child.measure(int, int, boolean):void");
         }
 
-        public void setTextLayout(ArticleViewer.DrawingText drawingText) {
-            this.textLayout = drawingText;
+        public void setTextLayout(CellText cellText) {
+            this.textLayout = cellText;
+            Layout layout = cellText != null ? cellText.getLayout() : null;
             int i = 0;
-            if (drawingText != null) {
+            if (layout != null) {
                 this.textWidth = 0;
                 this.textLeft = 0;
-                int lineCount = drawingText.getLineCount();
+                int lineCount = layout.getLineCount();
                 while (i < lineCount) {
-                    float lineLeft = drawingText.getLineLeft(i);
+                    float lineLeft = layout.getLineLeft(i);
                     this.textLeft = i == 0 ? (int) Math.ceil(lineLeft) : Math.min(this.textLeft, (int) Math.ceil(lineLeft));
-                    this.textWidth = (int) Math.ceil(Math.max(drawingText.getLineWidth(i), this.textWidth));
+                    this.textWidth = (int) Math.ceil(Math.max(layout.getLineWidth(i), this.textWidth));
                     i++;
                 }
-                this.textHeight = drawingText.getHeight();
+                this.textHeight = layout.getHeight();
                 return;
             }
             this.textLeft = 0;
@@ -170,10 +202,10 @@ public class TableLayout extends View {
         public void setFixedHeight(int i) {
             int i2 = this.fixedHeight;
             this.measuredHeight = i2;
-            TLRPC.TL_pageTableCell tL_pageTableCell = this.cell;
-            if (tL_pageTableCell.valign_middle) {
+            TL_iv.pageTableCell pagetablecell = this.cell;
+            if (pagetablecell.valign_middle) {
                 this.textY = (i2 - this.textHeight) / 2;
-            } else if (tL_pageTableCell.valign_bottom) {
+            } else if (pagetablecell.valign_bottom) {
                 this.textY = (i2 - this.textHeight) - TableLayout.this.itemPaddingTop;
             }
         }
@@ -189,7 +221,7 @@ public class TableLayout extends View {
             boolean z2 = true;
             boolean z3 = this.x + this.measuredWidth == TableLayout.this.getMeasuredWidth();
             boolean z4 = this.y + this.measuredHeight == TableLayout.this.getMeasuredHeight();
-            int iDp = AndroidUtilities.dp(3.0f);
+            int iDp = AndroidUtilities.dp(8.0f);
             if (this.cell.header || (TableLayout.this.isStriped && this.layoutParams.rowSpec.span.min % 2 == 0)) {
                 if (this.x != 0 || this.y != 0) {
                     float[] fArr = TableLayout.this.radii;
@@ -253,7 +285,7 @@ public class TableLayout extends View {
             if (this.textLayout != null) {
                 canvas.save();
                 canvas.translate(getTextX(), getTextY());
-                if (this.selectionIndex >= 0) {
+                if (this.selectionIndex >= 0 && TableLayout.this.textSelectionHelper != null) {
                     TableLayout.this.textSelectionHelper.draw(canvas, (TextSelectionHelper.ArticleSelectableView) TableLayout.this.getParent().getParent(), this.selectionIndex);
                 }
                 this.textLayout.draw(canvas, view);
@@ -370,12 +402,12 @@ public class TableLayout extends View {
         invalidateStructure();
     }
 
-    public void addChild(TLRPC.TL_pageTableCell tL_pageTableCell, int i, int i2, int i3) {
+    public void addChild(TL_iv.pageTableCell pagetablecell, int i, int i2, int i3) {
         int i4 = i3 == 0 ? 1 : i3;
         Child child = new Child(this.childrens.size());
-        child.cell = tL_pageTableCell;
+        child.cell = pagetablecell;
         LayoutParams layoutParams = new LayoutParams();
-        int i5 = tL_pageTableCell.rowspan;
+        int i5 = pagetablecell.rowspan;
         if (i5 == 0) {
             i5 = 1;
         }
@@ -386,7 +418,7 @@ public class TableLayout extends View {
         child.layoutParams = layoutParams;
         child.rowspan = i2;
         this.childrens.add(child);
-        if (tL_pageTableCell.rowspan > 1) {
+        if (pagetablecell.rowspan > 1) {
             this.rowSpans.add(new PointF(i2, r1 + i2));
         }
         invalidateStructure();
@@ -517,8 +549,8 @@ public class TableLayout extends View {
             accessibilityNodeInfoCompat.setBoundsInParent(this.tmpRect);
             accessibilityNodeInfoCompat.setClassName("android.widget.TextView");
             accessibilityNodeInfoCompat.setEnabled(true);
-            ArticleViewer.DrawingText drawingText = childAt.textLayout;
-            CharSequence text = drawingText != null ? drawingText.getText() : null;
+            CellText cellText = childAt.textLayout;
+            CharSequence text = cellText != null ? cellText.getText() : null;
             if (text == null || text.length() == 0) {
                 text = " ";
             }

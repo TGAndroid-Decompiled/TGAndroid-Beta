@@ -177,7 +177,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 this.f$0.lambda$onFragmentCreate$0();
             }
         });
-        this.devicesActivityPreload.lambda$loadSessions$17(false);
+        this.devicesActivityPreload.lambda$loadSessions$24(false);
         SessionsActivity sessionsActivity2 = new SessionsActivity(1);
         this.webSessionsActivityPreload = sessionsActivity2;
         sessionsActivity2.setDelegate(new SessionsActivity.Delegate() {
@@ -186,7 +186,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 this.f$0.lambda$onFragmentCreate$1();
             }
         });
-        this.webSessionsActivityPreload.lambda$loadSessions$17(false);
+        this.webSessionsActivityPreload.lambda$loadSessions$24(false);
         return true;
     }
 
@@ -1530,7 +1530,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         if (PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount == 0) {
                             str6 = "";
                             PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount = PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount();
-                            textCell.setTextAndValueAndIcon(LocaleController.getString("SessionsTitle", R.string.SessionsTitle), str6, true, R.drawable.msg2_devices, false);
+                            textCell.setTextAndValueAndIcon(LocaleController.getString(R.string.SessionsTitle), str6, true, R.drawable.msg2_devices, false);
                         } else {
                             str5 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount));
                         }
@@ -1540,7 +1540,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     str6 = str5;
                     z = false;
                     PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount = PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount();
-                    textCell.setTextAndValueAndIcon(LocaleController.getString("SessionsTitle", R.string.SessionsTitle), str6, true, R.drawable.msg2_devices, false);
+                    textCell.setTextAndValueAndIcon(LocaleController.getString(R.string.SessionsTitle), str6, true, R.drawable.msg2_devices, false);
                 } else {
                     if (i == PrivacySettingsActivity.this.emailLoginRow) {
                         if (PrivacySettingsActivity.this.currentPassword == null) {

@@ -1164,7 +1164,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
         View view6 = this.customView;
         if (view6 != null && this.checkFocusable && canTextInput(view6)) {
-            layoutParams3.softInputMode = 4;
+            layoutParams3.flags &= -131073;
+            layoutParams3.softInputMode = 16;
         } else {
             layoutParams3.flags |= 131072;
         }
