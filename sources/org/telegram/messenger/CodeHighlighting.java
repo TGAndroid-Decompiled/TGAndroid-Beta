@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
@@ -114,10 +115,11 @@ public class CodeHighlighting {
     }
 
     public static class LockedSpannableString extends SpannableString {
-        private boolean ready;
+        public boolean ready;
 
         public LockedSpannableString(CharSequence charSequence) {
             super(charSequence);
+            this.ready = false;
         }
 
         public void unlock() {
@@ -156,6 +158,45 @@ public class CodeHighlighting {
                 return super.getSpanFlags(obj);
             }
             return 0;
+        }
+    }
+
+    public static class LockedWithFallbackSpannableString extends LockedSpannableString {
+        public SpannableStringBuilder fallback;
+
+        public LockedWithFallbackSpannableString(CharSequence charSequence, SpannableStringBuilder spannableStringBuilder) {
+            super(charSequence);
+            this.fallback = spannableStringBuilder;
+        }
+
+        @Override
+        public <T> T[] getSpans(int i, int i2, Class<T> cls) {
+            SpannableStringBuilder spannableStringBuilder;
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? (T[]) super.getSpans(i, i2, cls) : (T[]) spannableStringBuilder.getSpans(i, i2, cls);
+        }
+
+        @Override
+        public int nextSpanTransition(int i, int i2, Class cls) {
+            SpannableStringBuilder spannableStringBuilder;
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? super.nextSpanTransition(i, i2, cls) : spannableStringBuilder.nextSpanTransition(i, i2, cls);
+        }
+
+        @Override
+        public int getSpanStart(Object obj) {
+            SpannableStringBuilder spannableStringBuilder;
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? super.getSpanStart(obj) : spannableStringBuilder.getSpanStart(obj);
+        }
+
+        @Override
+        public int getSpanEnd(Object obj) {
+            SpannableStringBuilder spannableStringBuilder;
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? super.getSpanEnd(obj) : spannableStringBuilder.getSpanEnd(obj);
+        }
+
+        @Override
+        public int getSpanFlags(Object obj) {
+            SpannableStringBuilder spannableStringBuilder;
+            return (this.ready || (spannableStringBuilder = this.fallback) == null) ? super.getSpanFlags(obj) : spannableStringBuilder.getSpanFlags(obj);
         }
     }
 

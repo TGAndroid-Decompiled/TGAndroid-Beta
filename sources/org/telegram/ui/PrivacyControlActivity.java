@@ -594,6 +594,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
+                public void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressShowMore(this, chatMessageCell2);
+                }
+
+                @Override
                 public void didPressSideButton(ChatMessageCell chatMessageCell2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSideButton(this, chatMessageCell2);
                 }

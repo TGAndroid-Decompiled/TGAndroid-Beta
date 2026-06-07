@@ -45,6 +45,7 @@ public class ManageChatUserCell extends FrameLayout {
     private final SimpleTextView statusTextView;
     private final StoriesUtilities.AvatarStoryParams storyAvatarParams;
     private TL_stories.StoryItem storyItem;
+    private boolean subtitleUsername;
 
     public interface ManageChatUserCellDelegate {
         boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell, boolean z);
@@ -238,6 +239,10 @@ public class ManageChatUserCell extends FrameLayout {
 
     public void setIsAdmin(boolean z) {
         this.isAdmin = z;
+    }
+
+    public void setUsernameSubtitle() {
+        this.subtitleUsername = true;
     }
 
     public void setNameColor(int i) {

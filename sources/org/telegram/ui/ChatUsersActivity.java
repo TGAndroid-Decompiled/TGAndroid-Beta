@@ -467,12 +467,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.flickerLoadingView = flickerLoadingView;
         flickerLoadingView.setViewType(6);
         this.flickerLoadingView.showDate(false);
-        this.flickerLoadingView.setUseHeaderOffset(true);
+        this.flickerLoadingView.setUseHeaderOffset(false);
         FlickerLoadingView flickerLoadingView2 = this.flickerLoadingView;
         int i4 = Theme.key_actionBarDefaultSubmenuBackground;
         int i5 = Theme.key_listSelector;
         flickerLoadingView2.setColors(i4, i5, i5);
-        frameLayout3.addView(this.flickerLoadingView);
+        frameLayout3.addView(this.flickerLoadingView, LayoutHelper.createFrame(-1, -1.0f, 0, 12.0f, 30.0f, 12.0f, 0.0f));
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressBar = radialProgressView;
         frameLayout3.addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));
@@ -2450,6 +2450,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             FrameLayout frameLayout;
             if (i == 0) {
                 ManageChatUserCell manageChatUserCell = new ManageChatUserCell(this.mContext, 2, 2, ChatUsersActivity.this.selectType == 0);
+                manageChatUserCell.setUsernameSubtitle();
                 manageChatUserCell.setDelegate(new ManageChatUserCell.ManageChatUserCellDelegate() {
                     @Override
                     public final boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell2, boolean z) {
@@ -2614,8 +2615,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     flickerLoadingView.setIsSingleCell(true);
                     flickerLoadingView.setViewType(6);
                     flickerLoadingView.showDate(false);
+                    flickerLoadingView.setUseHeaderOffset(false);
                     flickerLoadingView.setPaddingLeft(AndroidUtilities.dp(5.0f));
-                    flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
+                    RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-1, -1);
+                    int iDp = AndroidUtilities.dp(12.0f);
+                    ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = iDp;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = iDp;
+                    ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(30.0f);
+                    flickerLoadingView.setLayoutParams(layoutParams);
                     textInfoPrivacyCell = flickerLoadingView;
                     break;
                 case 12:

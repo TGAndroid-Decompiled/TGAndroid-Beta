@@ -262,14 +262,14 @@ public abstract class VoIPHelper {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException {
+    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) {
         if (activity == null) {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     VoIPHelper.lambda$joinConference$4(activity, i, inputGroupCall, z, groupCall, hashSet);
                 }
             });
@@ -313,7 +313,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException {
+    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
         lastCallTime = 0L;
         joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
     }

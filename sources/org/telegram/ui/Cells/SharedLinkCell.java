@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.text.Layout;
+import android.text.SpannableString;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.SparseArray;
@@ -22,7 +23,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CheckBox2;
@@ -218,8 +221,67 @@ public class SharedLinkCell extends FrameLayout {
         textPaint3.setTextSize(AndroidUtilities.dp(13.0f));
     }
 
+    private void gatherLink(String str) {
+        if (str == null || str.isEmpty()) {
+            return;
+        }
+        String strTrim = str.trim();
+        if (strTrim.startsWith("#")) {
+            return;
+        }
+        if (!AndroidUtilities.charSequenceContains(strTrim, "://") && strTrim.toString().toLowerCase().indexOf("http") != 0 && strTrim.toString().toLowerCase().indexOf("mailto") != 0) {
+            strTrim = "http://" + strTrim;
+        }
+        this.links.add(SpannableString.valueOf(strTrim));
+    }
+
+    private void gatherRichMessageLinks(TL_iv.RichText richText) {
+        if (richText instanceof TL_iv.textUrl) {
+            gatherLink(richText.url);
+            return;
+        }
+        if (richText instanceof TL_iv.textAutoUrl) {
+            gatherLink(RichMessageLayout.getString(richText));
+            return;
+        }
+        if (richText instanceof TL_iv.textEmail) {
+            gatherLink("mailto:" + ((TL_iv.textEmail) richText).email);
+            return;
+        }
+        if (richText instanceof TL_iv.textAutoEmail) {
+            gatherLink("mailto:" + RichMessageLayout.getString(richText));
+            return;
+        }
+        if (richText instanceof TL_iv.textConcat) {
+            for (int i = 0; i < richText.texts.size(); i++) {
+                gatherRichMessageLinks(richText.texts.get(i));
+            }
+            return;
+        }
+        if ((richText instanceof TL_iv.textBold) || (richText instanceof TL_iv.textItalic) || (richText instanceof TL_iv.textUnderline) || (richText instanceof TL_iv.textStrike) || (richText instanceof TL_iv.textFixed) || (richText instanceof TL_iv.textSubscript) || (richText instanceof TL_iv.textSuperscript) || (richText instanceof TL_iv.textMarked) || (richText instanceof TL_iv.textAnchor)) {
+            gatherRichMessageLinks(richText.text);
+        }
+    }
+
+    private void gatherRichMessageLinks(TL_iv.PageBlock pageBlock) {
+        if ((pageBlock instanceof TL_iv.pageBlockParagraph) || (pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6) || (pageBlock instanceof TL_iv.pageBlockPreformatted) || (pageBlock instanceof TL_iv.pageBlockFooter) || (pageBlock instanceof TL_iv.pageBlockBlockquote) || (pageBlock instanceof TL_iv.pageBlockPullquote)) {
+            gatherRichMessageLinks(pageBlock.text);
+        } else if (pageBlock instanceof TL_iv.pageBlockCover) {
+            gatherRichMessageLinks(((TL_iv.pageBlockCover) pageBlock).cover);
+        } else if (pageBlock instanceof TL_iv.pageBlockBlockquoteBlocks) {
+            gatherRichMessageLinks(((TL_iv.pageBlockBlockquoteBlocks) pageBlock).blocks);
+        }
+    }
+
+    private void gatherRichMessageLinks(ArrayList arrayList) {
+        Iterator it = arrayList.iterator();
+        while (it.hasNext()) {
+            gatherRichMessageLinks((TL_iv.PageBlock) it.next());
+        }
+    }
+
     @Override
-    protected void onMeasure(int r31, int r32) {
+    protected void onMeasure(int r30, int r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onMeasure(int, int):void");
     }
 

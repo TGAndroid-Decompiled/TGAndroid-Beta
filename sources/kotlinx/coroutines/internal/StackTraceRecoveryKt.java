@@ -15,28 +15,28 @@ public abstract class StackTraceRecoveryKt {
     }
 
     static {
-        Object objM307constructorimpl;
-        Object objM307constructorimpl2;
+        Object objM300constructorimpl;
+        Object objM300constructorimpl2;
         try {
             Result.Companion companion = Result.Companion;
-            objM307constructorimpl = Result.m307constructorimpl(BaseContinuationImpl.class.getCanonicalName());
+            objM300constructorimpl = Result.m300constructorimpl(BaseContinuationImpl.class.getCanonicalName());
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            objM307constructorimpl = Result.m307constructorimpl(ResultKt.createFailure(th));
+            objM300constructorimpl = Result.m300constructorimpl(ResultKt.createFailure(th));
         }
-        if (Result.m309exceptionOrNullimpl(objM307constructorimpl) != null) {
-            objM307constructorimpl = "kotlin.coroutines.jvm.internal.BaseContinuationImpl";
+        if (Result.m302exceptionOrNullimpl(objM300constructorimpl) != null) {
+            objM300constructorimpl = "kotlin.coroutines.jvm.internal.BaseContinuationImpl";
         }
-        baseContinuationImplClassName = (String) objM307constructorimpl;
+        baseContinuationImplClassName = (String) objM300constructorimpl;
         try {
-            objM307constructorimpl2 = Result.m307constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
+            objM300constructorimpl2 = Result.m300constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
         } catch (Throwable th2) {
             Result.Companion companion3 = Result.Companion;
-            objM307constructorimpl2 = Result.m307constructorimpl(ResultKt.createFailure(th2));
+            objM300constructorimpl2 = Result.m300constructorimpl(ResultKt.createFailure(th2));
         }
-        if (Result.m309exceptionOrNullimpl(objM307constructorimpl2) != null) {
-            objM307constructorimpl2 = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
+        if (Result.m302exceptionOrNullimpl(objM300constructorimpl2) != null) {
+            objM300constructorimpl2 = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
         }
-        stackTraceRecoveryClassName = (String) objM307constructorimpl2;
+        stackTraceRecoveryClassName = (String) objM300constructorimpl2;
     }
 }

@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_help_premiumPromo$$ExternalSyntheticLambda0;
@@ -2563,6 +2564,24 @@ public class TL_iv {
             outputSerializedData.writeInt32(1869903447);
             this.text.serializeToStream(outputSerializedData);
             this.credit.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class getRichMessage extends TLMethod<TLRPC.messages_Messages> {
+        public static final int constructor = 1343580623;
+        public int id;
+        public TLRPC.InputPeer peer;
+
+        @Override
+        public TLRPC.messages_Messages deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TLRPC.messages_Messages.TLdeserialize(inputSerializedData, i, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1343580623);
+            this.peer.serializeToStream(outputSerializedData);
+            outputSerializedData.writeInt32(this.id);
         }
     }
 }

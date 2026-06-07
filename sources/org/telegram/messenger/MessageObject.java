@@ -313,6 +313,7 @@ public class MessageObject {
     public boolean resendAsIs;
     public boolean revealingMediaSpoilers;
     public RichMessageLayout richLayout;
+    public int richMessageMediaType;
     public boolean scheduled;
     public boolean scheduledSent;
     public int searchType;
@@ -3543,6 +3544,7 @@ public class MessageObject {
         ArrayList<TLRPC.PhotoSize> arrayList;
         ArrayList<TLRPC.PhotoSize> arrayList2;
         ArrayList<TLRPC.PhotoSize> arrayList3;
+        TL_iv.RichMessage richMessage;
         ArrayList<TLRPC.PhotoSize> arrayList4;
         ArrayList<TLRPC.PhotoSize> arrayList5;
         ArrayList<TLRPC.PhotoSize> arrayList6;
@@ -3550,6 +3552,7 @@ public class MessageObject {
         ArrayList<TLRPC.PhotoSize> arrayList8;
         ArrayList<TLRPC.PhotoSize> arrayList9;
         ArrayList<TLRPC.PhotoSize> arrayList10;
+        ArrayList<TLRPC.PhotoSize> arrayList11;
         if (hasExtendedMediaPreview()) {
             TLRPC.TL_messageExtendedMediaPreview tL_messageExtendedMediaPreview = (TLRPC.TL_messageExtendedMediaPreview) this.messageOwner.media.extended_media.get(0);
             if (!z) {
@@ -3572,8 +3575,8 @@ public class MessageObject {
                 if (!z) {
                     this.photoThumbs = new ArrayList<>(photo.sizes);
                 } else {
-                    ArrayList<TLRPC.PhotoSize> arrayList11 = this.photoThumbs;
-                    if (arrayList11 != null && !arrayList11.isEmpty()) {
+                    ArrayList<TLRPC.PhotoSize> arrayList12 = this.photoThumbs;
+                    if (arrayList12 != null && !arrayList12.isEmpty()) {
                         for (int i = 0; i < this.photoThumbs.size(); i++) {
                             TLRPC.PhotoSize photoSize = this.photoThumbs.get(i);
                             int i2 = 0;
@@ -3590,8 +3593,8 @@ public class MessageObject {
                         }
                     }
                 }
-                if (photo.dc_id != 0 && (arrayList10 = this.photoThumbs) != null) {
-                    int size = arrayList10.size();
+                if (photo.dc_id != 0 && (arrayList11 = this.photoThumbs) != null) {
+                    int size = arrayList11.size();
                     for (int i3 = 0; i3 < size; i3++) {
                         TLRPC.FileLocation fileLocation = this.photoThumbs.get(i3).location;
                         if (fileLocation != null) {
@@ -3608,9 +3611,9 @@ public class MessageObject {
         if (this.emojiAnimatedSticker != null || this.emojiAnimatedStickerId != null) {
             if (TextUtils.isEmpty(this.emojiAnimatedStickerColor) && isDocumentHasThumb(this.emojiAnimatedSticker)) {
                 if (!z || (arrayList = this.photoThumbs) == null) {
-                    ArrayList<TLRPC.PhotoSize> arrayList12 = new ArrayList<>();
-                    this.photoThumbs = arrayList12;
-                    arrayList12.addAll(this.emojiAnimatedSticker.thumbs);
+                    ArrayList<TLRPC.PhotoSize> arrayList13 = new ArrayList<>();
+                    this.photoThumbs = arrayList13;
+                    arrayList13.addAll(this.emojiAnimatedSticker.thumbs);
                 } else if (!arrayList.isEmpty()) {
                     updatePhotoSizeLocations(this.photoThumbs, this.emojiAnimatedSticker.thumbs);
                 }
@@ -3622,11 +3625,11 @@ public class MessageObject {
         if (getMedia(message) != null && !(getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaEmpty)) {
             if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaPhoto) {
                 TLRPC.Photo photo2 = getMedia(this.messageOwner).photo;
-                if (!z || ((arrayList9 = this.photoThumbs) != null && arrayList9.size() != photo2.sizes.size())) {
+                if (!z || ((arrayList10 = this.photoThumbs) != null && arrayList10.size() != photo2.sizes.size())) {
                     this.photoThumbs = new ArrayList<>(photo2.sizes);
                 } else {
-                    ArrayList<TLRPC.PhotoSize> arrayList13 = this.photoThumbs;
-                    if (arrayList13 != null && !arrayList13.isEmpty()) {
+                    ArrayList<TLRPC.PhotoSize> arrayList14 = this.photoThumbs;
+                    if (arrayList14 != null && !arrayList14.isEmpty()) {
                         for (int i4 = 0; i4 < this.photoThumbs.size(); i4++) {
                             TLRPC.PhotoSize photoSize3 = this.photoThumbs.get(i4);
                             if (photoSize3 != null) {
@@ -3657,11 +3660,11 @@ public class MessageObject {
             if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaDocument) {
                 TLRPC.Photo photo3 = ((TLRPC.TL_messageMediaDocument) getMedia(this.messageOwner)).video_cover;
                 if (photo3 != null) {
-                    if (!z || ((arrayList8 = this.photoThumbs) != null && arrayList8.size() != photo3.sizes.size())) {
+                    if (!z || ((arrayList9 = this.photoThumbs) != null && arrayList9.size() != photo3.sizes.size())) {
                         this.photoThumbs = new ArrayList<>(photo3.sizes);
                     } else {
-                        ArrayList<TLRPC.PhotoSize> arrayList14 = this.photoThumbs;
-                        if (arrayList14 != null && !arrayList14.isEmpty()) {
+                        ArrayList<TLRPC.PhotoSize> arrayList15 = this.photoThumbs;
+                        if (arrayList15 != null && !arrayList15.isEmpty()) {
                             for (int i6 = 0; i6 < this.photoThumbs.size(); i6++) {
                                 TLRPC.PhotoSize photoSize5 = this.photoThumbs.get(i6);
                                 if (photoSize5 != null) {
@@ -3691,11 +3694,11 @@ public class MessageObject {
                 }
                 TLRPC.Document document = getDocument();
                 if (isDocumentHasThumb(document)) {
-                    if (!z || (arrayList7 = this.photoThumbs) == null) {
-                        ArrayList<TLRPC.PhotoSize> arrayList15 = new ArrayList<>();
-                        this.photoThumbs = arrayList15;
-                        arrayList15.addAll(document.thumbs);
-                    } else if (!arrayList7.isEmpty()) {
+                    if (!z || (arrayList8 = this.photoThumbs) == null) {
+                        ArrayList<TLRPC.PhotoSize> arrayList16 = new ArrayList<>();
+                        this.photoThumbs = arrayList16;
+                        arrayList16.addAll(document.thumbs);
+                    } else if (!arrayList8.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs, document.thumbs);
                     }
                     this.photoThumbsObject = document;
@@ -3707,12 +3710,12 @@ public class MessageObject {
                 TLRPC.Document document2 = getMedia(this.messageOwner).game.document;
                 if (document2 != null && isDocumentHasThumb(document2)) {
                     if (!z) {
-                        ArrayList<TLRPC.PhotoSize> arrayList16 = new ArrayList<>();
-                        this.photoThumbs = arrayList16;
-                        arrayList16.addAll(document2.thumbs);
+                        ArrayList<TLRPC.PhotoSize> arrayList17 = new ArrayList<>();
+                        this.photoThumbs = arrayList17;
+                        arrayList17.addAll(document2.thumbs);
                     } else {
-                        ArrayList<TLRPC.PhotoSize> arrayList17 = this.photoThumbs;
-                        if (arrayList17 != null && !arrayList17.isEmpty()) {
+                        ArrayList<TLRPC.PhotoSize> arrayList18 = this.photoThumbs;
+                        if (arrayList18 != null && !arrayList18.isEmpty()) {
                             updatePhotoSizeLocations(this.photoThumbs, document2.thumbs);
                         }
                     }
@@ -3720,17 +3723,17 @@ public class MessageObject {
                 }
                 TLRPC.Photo photo4 = getMedia(this.messageOwner).game.photo;
                 if (photo4 != null) {
-                    if (!z || (arrayList6 = this.photoThumbs2) == null) {
+                    if (!z || (arrayList7 = this.photoThumbs2) == null) {
                         this.photoThumbs2 = new ArrayList<>(photo4.sizes);
-                    } else if (!arrayList6.isEmpty()) {
+                    } else if (!arrayList7.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs2, photo4.sizes);
                     }
                     this.photoThumbsObject2 = photo4;
                 }
-                if (this.photoThumbs != null || (arrayList5 = this.photoThumbs2) == null) {
+                if (this.photoThumbs != null || (arrayList6 = this.photoThumbs2) == null) {
                     return;
                 }
-                this.photoThumbs = arrayList5;
+                this.photoThumbs = arrayList6;
                 this.photoThumbs2 = null;
                 this.photoThumbsObject = this.photoThumbsObject2;
                 this.photoThumbsObject2 = null;
@@ -3740,9 +3743,9 @@ public class MessageObject {
                 TLRPC.Photo photo5 = getMedia(this.messageOwner).webpage.photo;
                 TLRPC.Document document3 = getMedia(this.messageOwner).webpage.document;
                 if (photo5 != null) {
-                    if (!z || (arrayList4 = this.photoThumbs) == null) {
+                    if (!z || (arrayList5 = this.photoThumbs) == null) {
                         this.photoThumbs = new ArrayList<>(photo5.sizes);
-                    } else if (!arrayList4.isEmpty()) {
+                    } else if (!arrayList5.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs, photo5.sizes);
                     }
                     this.photoThumbsObject = photo5;
@@ -3752,16 +3755,52 @@ public class MessageObject {
                     return;
                 }
                 if (!z) {
-                    ArrayList<TLRPC.PhotoSize> arrayList18 = new ArrayList<>();
-                    this.photoThumbs = arrayList18;
-                    arrayList18.addAll(document3.thumbs);
+                    ArrayList<TLRPC.PhotoSize> arrayList19 = new ArrayList<>();
+                    this.photoThumbs = arrayList19;
+                    arrayList19.addAll(document3.thumbs);
                 } else {
-                    ArrayList<TLRPC.PhotoSize> arrayList19 = this.photoThumbs;
-                    if (arrayList19 != null && !arrayList19.isEmpty()) {
+                    ArrayList<TLRPC.PhotoSize> arrayList20 = this.photoThumbs;
+                    if (arrayList20 != null && !arrayList20.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs, document3.thumbs);
                     }
                 }
                 this.photoThumbsObject = document3;
+                return;
+            }
+            return;
+        }
+        TLRPC.Message message2 = this.messageOwner;
+        if (message2 != null && (richMessage = message2.rich_message) != null) {
+            TLRPC.Document documentFindVideo = findVideo(richMessage);
+            TLRPC.Photo photoFindPhoto = findPhoto(this.messageOwner.rich_message);
+            if (documentFindVideo != null) {
+                if (isDocumentHasThumb(documentFindVideo)) {
+                    if (!z) {
+                        ArrayList<TLRPC.PhotoSize> arrayList21 = new ArrayList<>();
+                        this.photoThumbs = arrayList21;
+                        arrayList21.addAll(documentFindVideo.thumbs);
+                    } else {
+                        ArrayList<TLRPC.PhotoSize> arrayList22 = this.photoThumbs;
+                        if (arrayList22 != null && !arrayList22.isEmpty()) {
+                            updatePhotoSizeLocations(this.photoThumbs, documentFindVideo.thumbs);
+                        }
+                    }
+                    this.photoThumbsObject = documentFindVideo;
+                    return;
+                }
+                return;
+            }
+            if (photoFindPhoto != null) {
+                if (!z || (arrayList4 = this.photoThumbs) == null) {
+                    this.photoThumbs = new ArrayList<>(photoFindPhoto.sizes);
+                } else if (!arrayList4.isEmpty()) {
+                    updatePhotoSizeLocations(this.photoThumbs, photoFindPhoto.sizes);
+                }
+                this.photoThumbsObject = photoFindPhoto;
+                if (this.strippedThumb == null) {
+                    createStrippedThumb();
+                    return;
+                }
                 return;
             }
             return;
@@ -3783,12 +3822,12 @@ public class MessageObject {
                 return;
             }
             if (!z) {
-                ArrayList<TLRPC.PhotoSize> arrayList20 = new ArrayList<>();
-                this.photoThumbs = arrayList20;
-                arrayList20.addAll(document4.thumbs);
+                ArrayList<TLRPC.PhotoSize> arrayList23 = new ArrayList<>();
+                this.photoThumbs = arrayList23;
+                arrayList23.addAll(document4.thumbs);
             } else {
-                ArrayList<TLRPC.PhotoSize> arrayList21 = this.photoThumbs;
-                if (arrayList21 != null && !arrayList21.isEmpty()) {
+                ArrayList<TLRPC.PhotoSize> arrayList24 = this.photoThumbs;
+                if (arrayList24 != null && !arrayList24.isEmpty()) {
                     updatePhotoSizeLocations(this.photoThumbs, document4.thumbs);
                 }
             }
@@ -5707,6 +5746,10 @@ public class MessageObject {
     public static TLRPC.Document getDocument(TLRPC.Message message) {
         TLRPC.MessageMedia messageMedia;
         TLRPC.Document document;
+        TL_iv.RichMessage richMessage;
+        if (message != null && (richMessage = message.rich_message) != null) {
+            return findVideo(richMessage);
+        }
         if (getMedia(message) instanceof TLRPC.TL_messageMediaWebPage) {
             return getMedia(message).webpage.document;
         }
@@ -5730,12 +5773,98 @@ public class MessageObject {
         return null;
     }
 
+    public TLRPC.Photo getPhoto() {
+        return getPhoto(this.messageOwner);
+    }
+
     public static TLRPC.Photo getPhoto(TLRPC.Message message) {
+        TL_iv.RichMessage richMessage;
+        if (message != null && (richMessage = message.rich_message) != null) {
+            return findPhoto(richMessage);
+        }
         if (getMedia(message) instanceof TLRPC.TL_messageMediaWebPage) {
             return getMedia(message).webpage.photo;
         }
         if (getMedia(message) != null) {
             return getMedia(message).photo;
+        }
+        return null;
+    }
+
+    public static TLRPC.Document findVideo(TL_iv.RichMessage richMessage) {
+        if (richMessage == null) {
+            return null;
+        }
+        return findVideo(richMessage.blocks, richMessage);
+    }
+
+    public static TLRPC.Document findVideo(ArrayList<TL_iv.PageBlock> arrayList, TL_iv.RichMessage richMessage) {
+        if (arrayList != null && richMessage != null) {
+            Iterator<TL_iv.PageBlock> it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_iv.PageBlock next = it.next();
+                if (next instanceof TL_iv.pageBlockVideo) {
+                    return AndroidUtilities.findDocument(richMessage.documents, ((TL_iv.pageBlockVideo) next).video_id);
+                }
+                if (next instanceof TL_iv.pageBlockCollage) {
+                    return findVideo(((TL_iv.pageBlockCollage) next).items, richMessage);
+                }
+                if (next instanceof TL_iv.pageBlockSlideshow) {
+                    return findVideo(((TL_iv.pageBlockSlideshow) next).items, richMessage);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC.Document findAudio(TL_iv.RichMessage richMessage) {
+        if (richMessage == null) {
+            return null;
+        }
+        return findAudio(richMessage.blocks, richMessage);
+    }
+
+    public static TLRPC.Document findAudio(ArrayList<TL_iv.PageBlock> arrayList, TL_iv.RichMessage richMessage) {
+        if (arrayList != null && richMessage != null) {
+            Iterator<TL_iv.PageBlock> it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_iv.PageBlock next = it.next();
+                if (next instanceof TL_iv.pageBlockAudio) {
+                    return AndroidUtilities.findDocument(richMessage.documents, ((TL_iv.pageBlockAudio) next).audio_id);
+                }
+                if (next instanceof TL_iv.pageBlockCollage) {
+                    return findAudio(((TL_iv.pageBlockCollage) next).items, richMessage);
+                }
+                if (next instanceof TL_iv.pageBlockSlideshow) {
+                    return findAudio(((TL_iv.pageBlockSlideshow) next).items, richMessage);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC.Photo findPhoto(TL_iv.RichMessage richMessage) {
+        if (richMessage == null) {
+            return null;
+        }
+        return findPhoto(richMessage.blocks, richMessage);
+    }
+
+    public static TLRPC.Photo findPhoto(ArrayList<TL_iv.PageBlock> arrayList, TL_iv.RichMessage richMessage) {
+        if (arrayList != null && richMessage != null) {
+            Iterator<TL_iv.PageBlock> it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_iv.PageBlock next = it.next();
+                if (next instanceof TL_iv.pageBlockPhoto) {
+                    return AndroidUtilities.findPhoto(richMessage.photos, ((TL_iv.pageBlockPhoto) next).photo_id);
+                }
+                if (next instanceof TL_iv.pageBlockCollage) {
+                    return findPhoto(((TL_iv.pageBlockCollage) next).items, richMessage);
+                }
+                if (next instanceof TL_iv.pageBlockSlideshow) {
+                    return findPhoto(((TL_iv.pageBlockSlideshow) next).items, richMessage);
+                }
+            }
         }
         return null;
     }
@@ -5787,6 +5916,10 @@ public class MessageObject {
     public static boolean isPhoto(TLRPC.Message message) {
         TLRPC.MessageAction messageAction;
         TLRPC.Photo photo;
+        TL_iv.RichMessage richMessage;
+        if (message != null && (richMessage = message.rich_message) != null) {
+            return findPhoto(richMessage) != null;
+        }
         if (getMedia(message) instanceof TLRPC.TL_messageMediaWebPage) {
             return (getMedia(message).webpage.photo instanceof TLRPC.TL_photo) && !(getMedia(message).webpage.document instanceof TLRPC.TL_document);
         }
@@ -5815,6 +5948,10 @@ public class MessageObject {
     }
 
     public static boolean isVideoMessage(TLRPC.Message message) {
+        TL_iv.RichMessage richMessage;
+        if (message != null && (richMessage = message.rich_message) != null) {
+            return isVideoDocument(findVideo(richMessage));
+        }
         if (getMedia(message) != null && isVideoSticker(getMedia(message).document)) {
             return false;
         }
@@ -6694,6 +6831,9 @@ public class MessageObject {
         TLRPC.TL_chatAdminRights tL_chatAdminRights2;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
         TLRPC.TL_chatAdminRights tL_chatAdminRights3;
+        if (message != null && message.rich_message != null) {
+            return false;
+        }
         if (z && message.date < ConnectionsManager.getInstance(i).getCurrentTime() - 60) {
             return false;
         }

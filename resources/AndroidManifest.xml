@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="69009"
+    android:versionCode="69139"
     android:versionName="12.8.0"
     android:installLocation="auto"
     android:compileSdkVersion="35"
@@ -537,13 +537,6 @@
             android:excludeFromRecents="true"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
         <receiver
-            android:name="org.telegram.messenger.AutoMessageHeardReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="org.telegram.messenger.ACTION_MESSAGE_HEARD"/>
-            </intent-filter>
-        </receiver>
-        <receiver
             android:name="org.telegram.messenger.CopyCodeReceiver"
             android:exported="false">
             <intent-filter>
@@ -811,24 +804,6 @@
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true"/>
-        <meta-data
-            android:name="com.google.android.gms.car.notification.SmallIcon"
-            android:resource="@drawable/ic_player"/>
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc"/>
-        <service
-            android:name="org.telegram.messenger.car.TelegramCarAppService"
-            android:exported="true"
-            android:foregroundServiceType="connectedDevice">
-            <intent-filter>
-                <action android:name="androidx.car.app.CarAppService"/>
-                <category android:name="androidx.car.app.category.MESSAGING"/>
-            </intent-filter>
-        </service>
-        <meta-data
-            android:name="androidx.car.app.minCarApiLevel"
-            android:value="5"/>
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="face,barcode"/>

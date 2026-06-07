@@ -6346,9 +6346,9 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         this.currentDeleteTaskRunnable = null;
         LongSparseArray longSparseArray = this.currentDeletingTaskMids;
-        final LongSparseArray longSparseArrayClone = longSparseArray != null ? longSparseArray.m39clone() : null;
+        final LongSparseArray longSparseArrayClone = longSparseArray != null ? longSparseArray.m32clone() : null;
         LongSparseArray longSparseArray2 = this.currentDeletingTaskMediaMids;
-        final LongSparseArray longSparseArrayClone2 = longSparseArray2 != null ? longSparseArray2.m39clone() : null;
+        final LongSparseArray longSparseArrayClone2 = longSparseArray2 != null ? longSparseArray2.m32clone() : null;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -18970,8 +18970,8 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isWebBrowserUseCustomTabs() {
-        TL_account.TL_webBrowserSettings tL_webBrowserSettings = this.webBrowserSettings;
-        return tL_webBrowserSettings == null || tL_webBrowserSettings.display_close_button;
+        TL_account.TL_webBrowserSettings tL_webBrowserSettings;
+        return !isWebBrowserInAppEnabled() && ((tL_webBrowserSettings = this.webBrowserSettings) == null || tL_webBrowserSettings.display_close_button);
     }
 
     public boolean isWebBrowserInAppEnabled() {
@@ -19265,9 +19265,14 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private static boolean hasWebBrowserException(ArrayList<TL_account.WebDomainException> arrayList, String str) {
+        String lowerCase = str.toLowerCase();
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
-            if (TextUtils.equals(arrayList.get(i).domain.toLowerCase(), str.toLowerCase())) {
+            String lowerCase2 = arrayList.get(i).domain.toLowerCase();
+            if (TextUtils.equals(lowerCase2, lowerCase)) {
+                return true;
+            }
+            if (lowerCase.endsWith("." + lowerCase2)) {
                 return true;
             }
         }

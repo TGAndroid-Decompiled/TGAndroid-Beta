@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.BlendMode;
@@ -741,7 +740,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, IOException {
+        public void onItemClick(int i) throws IOException {
             File file;
             Theme.ThemeAccent accent;
             String url;
@@ -4302,6 +4301,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressShowMore(this, chatMessageCell2);
                     }
 
                     @Override

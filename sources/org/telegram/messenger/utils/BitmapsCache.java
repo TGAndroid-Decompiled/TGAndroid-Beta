@@ -260,7 +260,7 @@ public class BitmapsCache {
         }
     }
 
-    public int getFrame(Bitmap bitmap, Metadata metadata) {
+    public int getFrame(Bitmap bitmap, Metadata metadata) throws IOException {
         int frame = getFrame(this.frameIndex, bitmap);
         metadata.frame = this.frameIndex;
         if (this.cacheCreated && !this.frameOffsets.isEmpty()) {
@@ -273,7 +273,7 @@ public class BitmapsCache {
         return frame;
     }
 
-    public int getFrame(int r8, android.graphics.Bitmap r9) {
+    public int getFrame(int r8, android.graphics.Bitmap r9) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.utils.BitmapsCache.getFrame(int, android.graphics.Bitmap):int");
     }
 

@@ -29,24 +29,24 @@ public class ConflatedBufferedChannel extends BufferedChannel {
     }
 
     @Override
-    public Object mo347trySendJP2dKIU(Object obj) {
-        return m358trySendImplMj0NB7M(obj, false);
+    public Object mo340trySendJP2dKIU(Object obj) {
+        return m351trySendImplMj0NB7M(obj, false);
     }
 
-    private final Object m358trySendImplMj0NB7M(Object obj, boolean z) {
-        return this.onBufferOverflow == BufferOverflow.DROP_LATEST ? m357trySendDropLatestMj0NB7M(obj, z) : m348trySendDropOldestJP2dKIU(obj);
+    private final Object m351trySendImplMj0NB7M(Object obj, boolean z) {
+        return this.onBufferOverflow == BufferOverflow.DROP_LATEST ? m350trySendDropLatestMj0NB7M(obj, z) : m341trySendDropOldestJP2dKIU(obj);
     }
 
-    private final Object m357trySendDropLatestMj0NB7M(Object obj, boolean z) {
+    private final Object m350trySendDropLatestMj0NB7M(Object obj, boolean z) {
         Function1 function1;
         UndeliveredElementException undeliveredElementExceptionCallUndeliveredElementCatchingException$default;
-        Object objMo347trySendJP2dKIU = super.mo347trySendJP2dKIU(obj);
-        if (ChannelResult.m353isSuccessimpl(objMo347trySendJP2dKIU) || ChannelResult.m352isClosedimpl(objMo347trySendJP2dKIU)) {
-            return objMo347trySendJP2dKIU;
+        Object objMo340trySendJP2dKIU = super.mo340trySendJP2dKIU(obj);
+        if (ChannelResult.m346isSuccessimpl(objMo340trySendJP2dKIU) || ChannelResult.m345isClosedimpl(objMo340trySendJP2dKIU)) {
+            return objMo340trySendJP2dKIU;
         }
         if (z && (function1 = this.onUndeliveredElement) != null && (undeliveredElementExceptionCallUndeliveredElementCatchingException$default = OnUndeliveredElementKt.callUndeliveredElementCatchingException$default(function1, obj, null, 2, null)) != null) {
             throw undeliveredElementExceptionCallUndeliveredElementCatchingException$default;
         }
-        return ChannelResult.Companion.m356successJP2dKIU(Unit.INSTANCE);
+        return ChannelResult.Companion.m349successJP2dKIU(Unit.INSTANCE);
     }
 }

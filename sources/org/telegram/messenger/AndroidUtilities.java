@@ -6454,4 +6454,30 @@ public class AndroidUtilities {
         }
         return null;
     }
+
+    public static TLRPC.Photo findPhoto(List<TLRPC.Photo> list, long j) {
+        if (list == null) {
+            return null;
+        }
+        for (int i = 0; i < list.size(); i++) {
+            TLRPC.Photo photo = list.get(i);
+            if (photo != null && photo.id == j) {
+                return photo;
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC.Document findDocument(List<TLRPC.Document> list, long j) {
+        if (list == null) {
+            return null;
+        }
+        for (int i = 0; i < list.size(); i++) {
+            TLRPC.Document document = list.get(i);
+            if (document != null && document.id == j) {
+                return document;
+            }
+        }
+        return null;
+    }
 }

@@ -90,7 +90,6 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -4996,8 +4995,14 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 if (this.pages[0].adapter.currentPage == null) {
                     return;
                 }
-                url = this.pages[0].adapter.currentPage.url;
-                file = this.pages[0].adapter.currentPage.cached_page != null ? this.pages[0].adapter.currentPage.cached_page.local : null;
+                String str = this.pages[0].adapter.currentPage.url;
+                if (this.pages[0].adapter.currentPage.cached_page != null) {
+                    url = str;
+                    file = this.pages[0].adapter.currentPage.cached_page.local;
+                } else {
+                    url = str;
+                    file = null;
+                }
             }
             Activity activity2 = this.parentActivity;
             if (activity2 == null || activity2.isFinishing()) {
@@ -5024,8 +5029,8 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                     this.f$0.lambda$setParentActivity$36(hostAuthority2, hostAuthority, (Boolean) obj);
                 }
             };
-            if (this.pages[0].isWeb() && MessagesController.getInstance(this.currentAccount).isWebBrowserOpenInApp(hostAuthority2)) {
-                AlertsCreator.showOpenExternalBrowserAlert(activity, getResourcesProvider(), url, true, new Utilities.Callback2() {
+            if (this.pages[0].isWeb() && MessagesController.getInstance(this.currentAccount).isWebBrowserOpenInApp(hostAuthority2) && !MessagesController.getInstance(this.currentAccount).isWebBrowserExceptionsLimitReached(true)) {
+                AlertsCreator.showOpenExternalBrowserAlert(activity, getResourcesProvider(), url, true, true, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
                         ArticleViewer.lambda$setParentActivity$37(callback, runnable, (Boolean) obj, (Boolean) obj2);
@@ -14728,7 +14733,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
     }
 
     @Override
-    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException, IOException {
+    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;
@@ -16175,7 +16180,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        public WindowView mo1355getWindowView() {
+        public WindowView mo1343getWindowView() {
             return this.windowView;
         }
 
@@ -16570,7 +16575,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1355getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1343getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

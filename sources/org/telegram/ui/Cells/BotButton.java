@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
@@ -41,13 +42,14 @@ class BotButton {
     public int y;
     private final Path path = new Path();
     private final Paint paint = new Paint(1);
+    private final RectF loadingRect = new RectF();
     private final float[] radii = new float[8];
 
     public BotButton(Runnable runnable) {
         this.invalidateRunnable = runnable;
     }
 
-    public boolean draw(android.graphics.Canvas r20, android.graphics.RectF r21, boolean r22, boolean r23, org.telegram.ui.ActionBar.Theme.ResourcesProvider r24) {
+    public boolean draw(android.graphics.Canvas r18, android.graphics.RectF r19, boolean r20, boolean r21, org.telegram.ui.ActionBar.Theme.ResourcesProvider r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.BotButton.draw(android.graphics.Canvas, android.graphics.RectF, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):boolean");
     }
 

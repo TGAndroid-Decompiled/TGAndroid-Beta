@@ -148,7 +148,7 @@ public class Attributes implements Iterable, Cloneable {
         return (((this.size * 31) + Arrays.hashCode(this.keys)) * 31) + Arrays.hashCode(this.vals);
     }
 
-    public Attributes m296clone() {
+    public Attributes m289clone() {
         try {
             Attributes attributes = (Attributes) super.clone();
             attributes.size = this.size;

@@ -7861,14 +7861,14 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 bundle.putLong("chat_id", -j);
             }
             this.parentActivity.lambda$runLinkRequest$100(new ChatActivity(bundle));
-            lambda$new$0();
+            dismiss();
             return;
         }
         if (i == 8) {
             this.parentActivity.switchToAccount(this.currentAccount, true);
             BaseFragment baseFragment = (BaseFragment) this.parentActivity.getActionBarLayout().getFragmentStack().get(this.parentActivity.getActionBarLayout().getFragmentStack().size() - 1);
             if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).getDialogId() == j) {
-                lambda$new$0();
+                dismiss();
                 return;
             }
             Bundle bundle2 = new Bundle();
@@ -7878,7 +7878,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 bundle2.putLong("chat_id", -j);
             }
             this.parentActivity.lambda$runLinkRequest$100(new ChatActivity(bundle2));
-            lambda$new$0();
+            dismiss();
             return;
         }
         if (i == 7) {
@@ -8894,7 +8894,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
 
     public void onUserLeaveHint() {
         if (isRtmpStream() && AndroidUtilities.checkInlinePermissions(this.parentActivity) && !RTMPStreamPipOverlay.isVisible()) {
-            lambda$new$0();
+            dismiss();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

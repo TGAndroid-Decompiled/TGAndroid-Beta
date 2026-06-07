@@ -15,7 +15,7 @@ public class ButtonBounce {
     private final float overshoot;
     private float pressedT;
     private long releaseDelay;
-    private View view;
+    public View view;
 
     public ButtonBounce(View view) {
         this(view, 1.0f, 5.0f);

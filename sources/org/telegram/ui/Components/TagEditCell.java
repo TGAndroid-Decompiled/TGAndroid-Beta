@@ -394,6 +394,11 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
+            public void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressShowMore(this, chatMessageCell2);
+            }
+
+            @Override
             public void didPressSideButton(ChatMessageCell chatMessageCell2) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSideButton(this, chatMessageCell2);
             }
@@ -1132,6 +1137,11 @@ public class TagEditCell extends LinearLayout {
                 @Override
                 public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell2);
+                }
+
+                @Override
+                public void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressShowMore(this, chatMessageCell2);
                 }
 
                 @Override

@@ -274,7 +274,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         setMessageObject(this.currentMessageObject, this.currentParentColumnsCount, true);
     }
 
-    private void setMessageObject(org.telegram.messenger.MessageObject r23, int r24, boolean r25) {
+    private void setMessageObject(org.telegram.messenger.MessageObject r21, int r22, boolean r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedPhotoVideoCell2.setMessageObject(org.telegram.messenger.MessageObject, int, boolean):void");
     }
 
