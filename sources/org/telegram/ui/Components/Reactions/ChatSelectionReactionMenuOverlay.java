@@ -202,7 +202,19 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     }
 
     private boolean isMessageTypeAllowed(MessageObject messageObject) {
-        return (messageObject == null || messageObject.needDrawBluredPreview() || ((!MessageObject.isPhoto(messageObject.messageOwner) || MessageObject.getMedia(messageObject.messageOwner).webpage != null) && (messageObject.getDocument() == null || (!MessageObject.isVideoDocument(messageObject.getDocument()) && !MessageObject.isGifDocument(messageObject.getDocument()))))) ? false : true;
+        TLRPC.Message message;
+        if (messageObject != null && (message = messageObject.messageOwner) != null && message.rich_message != null) {
+            return true;
+        }
+        if (messageObject != null && !messageObject.needDrawBluredPreview()) {
+            if (MessageObject.isPhoto(messageObject.messageOwner) && MessageObject.getMedia(messageObject.messageOwner).webpage == null) {
+                return true;
+            }
+            if (messageObject.getDocument() != null && (MessageObject.isVideoDocument(messageObject.getDocument()) || MessageObject.isGifDocument(messageObject.getDocument()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void setSelectedMessages(List<MessageObject> list) {
