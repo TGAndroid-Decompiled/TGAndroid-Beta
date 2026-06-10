@@ -3079,16 +3079,18 @@ public class MessageObject {
                     TL_iv.PageListItem pageListItem = pageblocklist.items.get(i3);
                     if (pageListItem instanceof TL_iv.TL_pageListItemText) {
                         TL_iv.TL_pageListItemText tL_pageListItemText = (TL_iv.TL_pageListItemText) pageListItem;
-                        spannableStringBuilder.append("• ");
                         if (tL_pageListItemText.checkbox) {
-                            spannableStringBuilder.append(tL_pageListItemText.checked ? "✅ " : "⬛️ ");
+                            spannableStringBuilder.append(tL_pageListItemText.checked ? "✅ " : "☑️ ");
+                        } else {
+                            spannableStringBuilder.append("• ");
                         }
                         formatRichText(tL_pageListItemText.text, z, z2, i, spannableStringBuilder, 0);
                     } else if (pageListItem instanceof TL_iv.TL_pageListItemBlocks) {
                         TL_iv.TL_pageListItemBlocks tL_pageListItemBlocks = (TL_iv.TL_pageListItemBlocks) pageListItem;
-                        spannableStringBuilder.append("• ");
                         if (tL_pageListItemBlocks.checkbox) {
-                            spannableStringBuilder.append(tL_pageListItemBlocks.checked ? "✅ " : "⬛️ ");
+                            spannableStringBuilder.append(tL_pageListItemBlocks.checked ? "✅ " : "☑️ ");
+                        } else {
+                            spannableStringBuilder.append("• ");
                         }
                         int i4 = 0;
                         while (i4 < tL_pageListItemBlocks.blocks.size()) {
@@ -3122,7 +3124,7 @@ public class MessageObject {
                         spannableStringBuilder.append((CharSequence) tL_pageListOrderedItemText.num);
                         spannableStringBuilder.append(". ");
                         if (tL_pageListOrderedItemText.checkbox) {
-                            spannableStringBuilder.append(tL_pageListOrderedItemText.checked ? "✅ " : "⬛️ ");
+                            spannableStringBuilder.append(tL_pageListOrderedItemText.checked ? "✅ " : "☑️ ");
                         }
                         formatRichText(tL_pageListOrderedItemText.text, z, z2, i, spannableStringBuilder, 0);
                     } else if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemBlocks) {
@@ -3130,7 +3132,7 @@ public class MessageObject {
                         spannableStringBuilder.append((CharSequence) tL_pageListOrderedItemBlocks.num);
                         spannableStringBuilder.append(". ");
                         if (tL_pageListOrderedItemBlocks.checkbox) {
-                            spannableStringBuilder.append(tL_pageListOrderedItemBlocks.checked ? "✅ " : "⬛️ ");
+                            spannableStringBuilder.append(tL_pageListOrderedItemBlocks.checked ? "✅ " : "☑️ ");
                         }
                         int i7 = 0;
                         while (i7 < tL_pageListOrderedItemBlocks.blocks.size()) {
@@ -4562,19 +4564,20 @@ public class MessageObject {
     }
 
     public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z) {
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 24) {
-            StaticLayout.Builder alignment = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+        int i2 = i <= 0 ? 1 : i;
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 >= 24) {
+            StaticLayout.Builder alignment = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
             if (z) {
                 alignment.setIncludePad(false);
-                if (i2 >= 28) {
+                if (i3 >= 28) {
                     alignment.setUseLineSpacingFromFallbacks(false);
                 }
             }
             StaticLayout staticLayoutBuild = alignment.build();
-            for (int i3 = 0; i3 < staticLayoutBuild.getLineCount(); i3++) {
-                if (staticLayoutBuild.getLineRight(i3) > i) {
-                    StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            for (int i4 = 0; i4 < staticLayoutBuild.getLineCount(); i4++) {
+                if (staticLayoutBuild.getLineRight(i4) > i2) {
+                    StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
                     if (z) {
                         alignment2.setIncludePad(false);
                         if (Build.VERSION.SDK_INT >= 28) {
@@ -4586,7 +4589,7 @@ public class MessageObject {
             }
             return staticLayoutBuild;
         }
-        return new StaticLayout(charSequence, textPaint, i, Layout.Alignment.ALIGN_NORMAL, f, f2, false);
+        return new StaticLayout(charSequence, textPaint, i2, Layout.Alignment.ALIGN_NORMAL, f, f2, false);
     }
 
     public void generateLayout(org.telegram.tgnet.TLRPC.User r35) {
