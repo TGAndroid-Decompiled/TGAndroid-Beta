@@ -7539,7 +7539,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                         break;
                     case 9:
                         BlockPhotoCell blockPhotoCell = (BlockPhotoCell) viewHolder.itemView;
-                        blockPhotoCell.setBlock((TL_iv.pageBlockPhoto) pageBlock2, this.currentPage.cached_page, null, z, i2 == 0);
+                        blockPhotoCell.setBlock((TL_iv.pageBlockPhoto) pageBlock2, this.currentPage, null, z, i2 == 0);
                         blockPhotoCell.setParentBlock(pageBlock);
                         break;
                     case 10:
@@ -7582,7 +7582,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                         ((BlockMapCell) viewHolder.itemView).setBlock((TL_iv.pageBlockMap) pageBlock2, i2 == 0, i2 == i3 - 1);
                         break;
                     case 23:
-                        ((BlockRelatedArticlesCell) viewHolder.itemView).setBlock((TL_pageBlockRelatedArticlesChild) pageBlock2, this.currentPage.cached_page);
+                        ((BlockRelatedArticlesCell) viewHolder.itemView).setBlock((TL_pageBlockRelatedArticlesChild) pageBlock2, this.currentPage);
                         break;
                     case 24:
                         ((BlockDetailsCell) viewHolder.itemView).setBlock((TL_iv.pageBlockDetails) pageBlock2);

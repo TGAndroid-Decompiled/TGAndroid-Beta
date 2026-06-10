@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="69139"
-    android:versionName="12.8.0"
+    android:versionCode="69149"
+    android:versionName="12.8.1"
     android:installLocation="auto"
     android:compileSdkVersion="35"
     android:compileSdkVersionCodename="15"
@@ -536,6 +536,13 @@
             android:taskAffinity="org.telegram.messenger.beta.voip_feedback"
             android:excludeFromRecents="true"
             android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"/>
+        <receiver
+            android:name="org.telegram.messenger.AutoMessageHeardReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="org.telegram.messenger.ACTION_MESSAGE_HEARD"/>
+            </intent-filter>
+        </receiver>
         <receiver
             android:name="org.telegram.messenger.CopyCodeReceiver"
             android:exported="false">

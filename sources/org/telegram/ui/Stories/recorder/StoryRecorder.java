@@ -646,7 +646,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         frameLayout.setBackgroundColor(i);
     }
 
-    public void openBot(long j, String str, SourceView sourceView) throws Resources.NotFoundException {
+    public void openBot(long j, String str, SourceView sourceView) throws Resources.NotFoundException, IOException {
         this.botId = j;
         this.botLang = str;
         this.botEdit = null;
@@ -655,7 +655,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.botLang = str;
     }
 
-    public void openBotEntry(long j, String str, StoryEntry storyEntry, SourceView sourceView) throws Resources.NotFoundException {
+    public void openBotEntry(long j, String str, StoryEntry storyEntry, SourceView sourceView) throws Resources.NotFoundException, IOException {
         WindowView windowView;
         if (this.isShown || storyEntry == null) {
             return;
@@ -713,11 +713,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         addNotificationObservers();
     }
 
-    public void open(SourceView sourceView) throws Resources.NotFoundException {
+    public void open(SourceView sourceView) throws Resources.NotFoundException, IOException {
         open(sourceView, true);
     }
 
-    public void open(SourceView sourceView, boolean z) throws Resources.NotFoundException {
+    public void open(SourceView sourceView, boolean z) throws Resources.NotFoundException, IOException {
         StoriesController.StoryLimit storyLimitCheckStoryLimit;
         WindowView windowView;
         if (this.isShown) {
@@ -775,7 +775,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.botEdit = null;
     }
 
-    public void openEdit(SourceView sourceView, StoryEntry storyEntry, long j, final boolean z) throws Resources.NotFoundException {
+    public void openEdit(SourceView sourceView, StoryEntry storyEntry, long j, final boolean z) throws Resources.NotFoundException, IOException {
         WindowView windowView;
         if (this.isShown) {
             return;
@@ -841,7 +841,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.previewButtons.appear(true, true);
     }
 
-    public void openForward(SourceView sourceView, StoryEntry storyEntry, long j, final boolean z) throws Resources.NotFoundException {
+    public void openForward(SourceView sourceView, StoryEntry storyEntry, long j, final boolean z) throws Resources.NotFoundException, IOException {
         WindowView windowView;
         if (this.isShown) {
             return;
@@ -976,7 +976,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (Build.VERSION.SDK_INT >= 33 && (onBackInvokedDispatcherFindOnBackInvokedDispatcher = this.windowView.findOnBackInvokedDispatcher()) != null) {
             onBackInvokedDispatcherFindOnBackInvokedDispatcher.registerOnBackInvokedCallback(0, new OnBackInvokedCallback() {
                 @Override
-                public final void onBackInvoked() throws Resources.NotFoundException {
+                public final void onBackInvoked() throws Resources.NotFoundException, IOException {
                     this.f$0.onBackPressed();
                 }
             });
@@ -1437,7 +1437,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) throws Resources.NotFoundException {
+        public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) throws Resources.NotFoundException, IOException {
             if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
                 StoryRecorder.this.onBackPressed();
                 return true;
@@ -2440,7 +2440,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.backButton.setBackground(Theme.createSelectorDrawable(553648127));
         this.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws Resources.NotFoundException {
+            public final void onClick(View view2) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$initViews$14(view2);
             }
         });
@@ -3071,7 +3071,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$initViews$14(View view) throws Resources.NotFoundException {
+    public void lambda$initViews$14(View view) throws Resources.NotFoundException, IOException {
         if (this.awaitingPlayer) {
             return;
         }
@@ -3394,13 +3394,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$initViews$40();
             }
         }, 400L);
     }
 
-    public void lambda$initViews$40() throws Resources.NotFoundException {
+    public void lambda$initViews$40() throws Resources.NotFoundException, IOException {
         PreviewView previewView;
         if (!this.outputEntry.isEditingCover && this.privacySheet != null && (previewView = this.previewView) != null) {
             previewView.getCoverBitmap(new Utilities.Callback() {
@@ -3568,7 +3568,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             }
             this.privacySheet.setCover(this.outputEntry.coverBitmap, new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$processDone$49();
                 }
             });
@@ -3688,7 +3688,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         storyPrivacyBottomSheet.setCover(bitmap);
     }
 
-    public void lambda$processDone$49() throws Resources.NotFoundException {
+    public void lambda$processDone$49() throws Resources.NotFoundException, IOException {
         StoryPrivacyBottomSheet storyPrivacyBottomSheet = this.privacySheet;
         if (storyPrivacyBottomSheet != null) {
             storyPrivacyBottomSheet.lambda$new$0();
@@ -3911,13 +3911,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.switchingStory = true;
         applyPaintSwitching(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$switchTo$59(i);
             }
         });
     }
 
-    public void lambda$switchTo$59(int i) throws Resources.NotFoundException {
+    public void lambda$switchTo$59(int i) throws Resources.NotFoundException, IOException {
         applyPaintMessage();
         this.switchingStory = false;
         File file = this.outputEntry.draftThumbFile;
@@ -4266,7 +4266,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void onCheckClick() throws Resources.NotFoundException {
+        public void onCheckClick() throws Resources.NotFoundException, IOException {
             ArrayList<StoryEntry> content = StoryRecorder.this.collageLayoutView.getContent();
             int i = 0;
             if (content.size() == 1) {
@@ -4291,15 +4291,15 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.AnonymousClass15.takePicture(org.telegram.messenger.Utilities$Callback):void");
         }
 
-        public void lambda$takePicture$1(org.telegram.messenger.Utilities.Callback r7, java.lang.Integer r8) throws android.content.res.Resources.NotFoundException {
+        public void lambda$takePicture$1(org.telegram.messenger.Utilities.Callback r7, java.lang.Integer r8) throws android.content.res.Resources.NotFoundException, java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.AnonymousClass15.lambda$takePicture$1(org.telegram.messenger.Utilities$Callback, java.lang.Integer):void");
         }
 
-        public void lambda$takePicture$0() throws Resources.NotFoundException {
+        public void lambda$takePicture$0() throws Resources.NotFoundException, IOException {
             StoryRecorder.this.navigateTo(1, true);
         }
 
-        public void lambda$takePicture$2() throws Resources.NotFoundException {
+        public void lambda$takePicture$2() throws Resources.NotFoundException, IOException {
             StoryRecorder.this.navigateTo(1, true);
         }
 
@@ -4451,13 +4451,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             }
             StoryRecorder.this.navigateToPreviewWithPlayerAwait(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$startRecording$4();
                 }
             }, 0L);
         }
 
-        public void lambda$startRecording$4() throws Resources.NotFoundException {
+        public void lambda$startRecording$4() throws Resources.NotFoundException, IOException {
             StoryRecorder.this.navigateTo(1, true);
         }
 
@@ -4749,7 +4749,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.zoomControlHideRunnable = null;
     }
 
-    public boolean onBackPressed() throws android.content.res.Resources.NotFoundException {
+    public boolean onBackPressed() throws android.content.res.Resources.NotFoundException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.onBackPressed():boolean");
     }
 
@@ -4828,7 +4828,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         runnable.run();
     }
 
-    public void navigateTo(final int i, boolean z) throws Resources.NotFoundException {
+    public void navigateTo(final int i, boolean z) throws Resources.NotFoundException, IOException {
         StoryEntry storyEntry;
         StoryEntry storyEntry2;
         StoryEntry storyEntry3;
@@ -5049,13 +5049,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         });
         this.galleryListView.setOnSelectListener(new Utilities.Callback2() {
             @Override
-            public final void run(Object obj, Object obj2) throws Resources.NotFoundException {
+            public final void run(Object obj, Object obj2) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$createGalleryListView$72(z, obj, (Bitmap) obj2);
             }
         });
         this.galleryListView.setOnSelectMultipleListener(new Utilities.Callback3() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3) throws Resources.NotFoundException {
+            public final void run(Object obj, Object obj2, Object obj3) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$createGalleryListView$73((Boolean) obj, (ArrayList) obj2, (ArrayList) obj3);
             }
         });
@@ -5124,7 +5124,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.lastGallerySelectedAlbum = null;
     }
 
-    public void lambda$createGalleryListView$72(boolean z, Object obj, Bitmap bitmap) throws Resources.NotFoundException {
+    public void lambda$createGalleryListView$72(boolean z, Object obj, Bitmap bitmap) throws Resources.NotFoundException, IOException {
         if (obj == null || this.galleryListViewOpening != null || this.scrollingY || !isGalleryOpen()) {
             return;
         }
@@ -5206,7 +5206,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$createGalleryListView$73(Boolean bool, ArrayList arrayList, ArrayList arrayList2) throws Resources.NotFoundException {
+    public void lambda$createGalleryListView$73(Boolean bool, ArrayList arrayList, ArrayList arrayList2) throws Resources.NotFoundException, IOException {
         if (this.currentPage == 0 && arrayList != null && !arrayList.isEmpty() && this.galleryListViewOpening == null && !this.scrollingY && isGalleryOpen()) {
             this.entries = null;
             this.selectedEntries = null;
@@ -5440,7 +5440,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.galleryListView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    private void onNavigateStart(int i, int i2) throws Resources.NotFoundException {
+    private void onNavigateStart(int i, int i2) throws Resources.NotFoundException, IOException {
         StoryEntry storyEntry;
         StoryEntry storyEntry2;
         StoryEntry storyEntry3;
@@ -7426,7 +7426,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (storyEntry != null && !storyEntry.isEdit && !storyEntry.isShare) {
             builder.setNeutralButton(LocaleController.getString(storyEntry.isDraft ? R.string.StoryKeepDraft : R.string.StorySaveDraft), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+                public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$showDismissEntry$102(alertDialog, i);
                 }
             });
@@ -7434,7 +7434,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         StoryEntry storyEntry2 = this.outputEntry;
         builder.setPositiveButton(LocaleController.getString((storyEntry2 == null || !storyEntry2.isDraft || storyEntry2.isEdit) ? R.string.Discard : R.string.StoryDeleteDraft), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$showDismissEntry$103(alertDialog, i);
             }
         });
@@ -7449,7 +7449,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$showDismissEntry$102(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+    public void lambda$showDismissEntry$102(AlertDialog alertDialog, int i) throws Resources.NotFoundException, IOException {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry == null) {
             return;
@@ -7474,7 +7474,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         navigateTo(0, true);
     }
 
-    public void lambda$showDismissEntry$103(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
+    public void lambda$showDismissEntry$103(AlertDialog alertDialog, int i) throws Resources.NotFoundException, IOException {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry != null && !storyEntry.isEdit && ((!storyEntry.isRepost || storyEntry.isRepostMessage) && storyEntry.isDraft)) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().delete(this.outputEntry);
