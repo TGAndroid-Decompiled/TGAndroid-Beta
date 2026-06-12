@@ -8,7 +8,6 @@ import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -486,7 +485,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws IOException {
                     StickersAlert.lambda$editSticker$0(pathToAttach, arrayList, baseFragment, chatActivity, document, z, tL_messages_stickerSet);
                 }
             }, 300L);
@@ -495,13 +494,13 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         final boolean z2 = z;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() throws IOException {
                 StickersAlert.lambda$editSticker$1(baseFragment, tL_messages_stickerSet, document, chatActivity, z2);
             }
         }, 300L);
     }
 
-    public static void lambda$editSticker$0(File file, ArrayList arrayList, BaseFragment baseFragment, ChatActivity chatActivity, TLRPC.Document document, boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) throws Resources.NotFoundException, IOException {
+    public static void lambda$editSticker$0(File file, ArrayList arrayList, BaseFragment baseFragment, ChatActivity chatActivity, TLRPC.Document document, boolean z, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) throws IOException {
         arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L));
         PhotoViewer.getInstance().setParentActivity(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 11, false, new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -519,7 +518,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(z ? tL_messages_stickerSet : null);
     }
 
-    public static void lambda$editSticker$1(BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLRPC.Document document, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, IOException {
+    public static void lambda$editSticker$1(BaseFragment baseFragment, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, TLRPC.Document document, ChatActivity chatActivity, boolean z) throws IOException {
         File fileMakeCacheFile = StoryEntry.makeCacheFile(baseFragment.getCurrentAccount(), "webp");
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         int i = devicePerformanceClass != 0 ? devicePerformanceClass != 2 ? 2560 : 3840 : 1280;

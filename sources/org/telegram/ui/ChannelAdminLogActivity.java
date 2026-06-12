@@ -963,7 +963,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public View createView(Context context) throws Resources.NotFoundException, IOException {
+    public View createView(Context context) throws IOException {
         if (this.chatMessageCellsCache.isEmpty()) {
             for (int i = 0; i < 8; i++) {
                 this.chatMessageCellsCache.add(new ChatMessageCell(context, this.currentAccount));
@@ -3029,7 +3029,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) throws java.io.IOException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float, boolean):void");
             }
 
@@ -3148,7 +3148,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) throws Resources.NotFoundException, IOException {
+            public void didClickImage(ChatActionCell chatActionCell) throws IOException {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 if (messageObject.type == 22) {
                     ChannelAdminLogActivity.this.presentFragment(new ChannelColorActivity(getDialogId()).setOnApplied(ChannelAdminLogActivity.this));

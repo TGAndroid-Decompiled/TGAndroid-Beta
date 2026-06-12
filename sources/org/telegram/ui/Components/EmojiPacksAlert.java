@@ -1228,7 +1228,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         if (!z) {
             z2 = z3;
         }
-        AndroidUtilities.setLightStatusBar(getWindow(), z2);
+        AndroidUtilities.setLightStatusBar(this, z2);
     }
 
     public void updateInstallment() {

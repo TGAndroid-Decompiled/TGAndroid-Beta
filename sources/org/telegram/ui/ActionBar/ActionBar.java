@@ -888,12 +888,12 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             if (i2 == 0) {
                 i2 = this.actionBarColor;
             }
-            if (i2 == 0) {
+            if (i2 == 0 || this.glassMode) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             } else if (ColorUtils.calculateLuminance(i2) < 0.699999988079071d) {
-                AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
+                AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
             } else {
-                AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
+                AndroidUtilities.setLightStatusBar((Activity) getContext(), true);
             }
             AnimatorSet animatorSet = this.actionModeAnimation;
             if (animatorSet != null) {
@@ -917,10 +917,6 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                 @Override
                 public void onAnimationStart(Animator animator) {
                     ActionBar.this.actionMode.setVisibility(0);
-                    ActionBar actionBar = ActionBar.this;
-                    if (actionBar.occupyStatusBar) {
-                        View unused = actionBar.actionModeTop;
-                    }
                 }
 
                 @Override
@@ -994,12 +990,12 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         if (i3 == 0) {
             i3 = this.actionBarColor;
         }
-        if (i3 == 0) {
+        if (i3 == 0 || this.glassMode) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         } else if (ColorUtils.calculateLuminance(i3) < 0.699999988079071d) {
-            AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
+            AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
         } else {
-            AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
+            AndroidUtilities.setLightStatusBar((Activity) getContext(), true);
         }
         this.actionMode.setVisibility(0);
         SimpleTextView simpleTextView2 = this.titleTextView[0];
@@ -1096,12 +1092,12 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             arrayList.add(ObjectAnimator.ofFloat(actionBarMenu2, (Property<ActionBarMenu, Float>) View.ALPHA, 1.0f));
         }
         int i2 = this.actionBarColor;
-        if (i2 == 0) {
+        if (i2 == 0 || this.glassMode) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         } else if (ColorUtils.calculateLuminance(i2) < 0.699999988079071d) {
-            AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
+            AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
         } else {
-            AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
+            AndroidUtilities.setLightStatusBar((Activity) getContext(), true);
         }
         AnimatorSet animatorSet = this.actionModeAnimation;
         if (animatorSet != null) {
@@ -1129,10 +1125,6 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                 }
                 ActionBar.this.actionModeAnimation = null;
                 ActionBar.this.actionMode.setVisibility(4);
-                ActionBar actionBar = ActionBar.this;
-                if (actionBar.occupyStatusBar) {
-                    View unused = actionBar.actionModeTop;
-                }
                 if (ActionBar.this.actionModeExtraView != null) {
                     ActionBar.this.actionModeExtraView.setVisibility(4);
                 }
@@ -1804,12 +1796,12 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             if (i == 0) {
                 i = this.actionBarColor;
             }
-            if (i == 0) {
+            if (i == 0 || this.glassMode) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             } else if (ColorUtils.calculateLuminance(i) < 0.699999988079071d) {
-                AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
+                AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
             } else {
-                AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
+                AndroidUtilities.setLightStatusBar((Activity) getContext(), true);
             }
         }
         Drawable drawable = this.lastRightDrawable;
@@ -1825,12 +1817,12 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         updateAttachState();
         if (this.actionModeVisible) {
             int i = this.actionBarColor;
-            if (i == 0 || this.actionModeColor == 0) {
+            if (i == 0 || this.actionModeColor == 0 || this.glassMode) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             } else if (ColorUtils.calculateLuminance(i) < 0.699999988079071d) {
-                AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
+                AndroidUtilities.setLightStatusBar((Activity) getContext(), false);
             } else {
-                AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), true);
+                AndroidUtilities.setLightStatusBar((Activity) getContext(), true);
             }
         }
         Drawable drawable = this.lastRightDrawable;

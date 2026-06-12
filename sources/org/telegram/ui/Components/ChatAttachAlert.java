@@ -1741,7 +1741,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.optionsItem.setBackground(Theme.createSelectorDrawable(getThemedColor(i), 3));
         this.optionsItem.addSubItem(1, R.drawable.msg_addbot, LocaleController.getString(R.string.StickerCreateEmpty)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException, IOException {
+            public final void onClick(View view) throws IOException {
                 this.f$0.lambda$new$6(resourcesProvider, view);
             }
         });
@@ -3337,7 +3337,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         lambda$new$0();
     }
 
-    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) throws IOException {
         this.optionsItem.toggleSubMenu();
         PhotoViewer.getInstance().setParentActivity(this.baseFragment, resourcesProvider);
         PhotoViewer.getInstance().setParentAlert(this);
@@ -4280,8 +4280,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        if (this.baseFragment != null) {
-            AndroidUtilities.setLightStatusBar(getWindow(), this.baseFragment.isLightStatusBar());
+        BaseFragment baseFragment = this.baseFragment;
+        if (baseFragment != null) {
+            AndroidUtilities.setLightStatusBar(this, baseFragment.isLightStatusBar());
         }
     }
 
@@ -5699,11 +5700,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         } else if (this.typeButtonsAvailable && this.frameLayout2.getTag() == null) {
             this.buttonsRecyclerViewWrapper.setVisibility(0);
         }
-        if (getWindow() != null && this.baseFragment != null) {
+        BaseFragment baseFragment = this.baseFragment;
+        if (baseFragment != null) {
             if (z) {
-                AndroidUtilities.setLightStatusBar(getWindow(), isLightStatusBar());
+                AndroidUtilities.setLightStatusBar(this, isLightStatusBar());
             } else {
-                AndroidUtilities.setLightStatusBar(getWindow(), this.baseFragment.isLightStatusBar());
+                AndroidUtilities.setLightStatusBar(this, baseFragment.isLightStatusBar());
             }
         }
         if (z2) {
@@ -6526,7 +6528,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         });
         if (lastFragment != null) {
-            AndroidUtilities.setLightStatusBar(getWindow(), lastFragment.isLightStatusBar());
+            AndroidUtilities.setLightStatusBar(this, lastFragment.isLightStatusBar());
         }
         this.captionLimitBulletinShown = false;
         super.lambda$new$0();

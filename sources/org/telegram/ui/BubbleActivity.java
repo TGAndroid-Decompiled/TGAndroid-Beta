@@ -2,7 +2,6 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.ViewGroup;
@@ -77,7 +76,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onCreate(Bundle bundle) throws Resources.NotFoundException, IOException, NumberFormatException {
+    protected void onCreate(Bundle bundle) throws IOException, NumberFormatException {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);

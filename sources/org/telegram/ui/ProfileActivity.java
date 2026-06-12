@@ -17,7 +17,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ConfigurationInfo;
 import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -747,7 +746,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return i2;
     }
 
-    public static void access$39900(ProfileActivity profileActivity, View view) {
+    public static void access$39300(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -1949,7 +1948,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, IOException {
+            public void openPhotoForEdit(String str, String str2, boolean z) throws IOException {
                 ProfileActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -2624,7 +2623,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public View createView(final Context context) throws Resources.NotFoundException, IOException {
+    public View createView(final Context context) throws IOException {
         int i;
         TLRPC.UserFull userFull;
         TLRPC.ChatFull chatFull;
@@ -2940,7 +2939,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public boolean onTouchEvent(android.view.MotionEvent r9) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+            public boolean onTouchEvent(android.view.MotionEvent r9) throws java.io.IOException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.AnonymousClass11.onTouchEvent(android.view.MotionEvent):boolean");
             }
 
@@ -3189,7 +3188,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.avatarContainer.addView(this.avatarImage, LayoutHelper.createFrame(-1, -1.0f));
         this.avatarImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException, IOException {
+            public final void onClick(View view) throws IOException {
                 this.f$0.lambda$createView$37(view);
             }
         });
@@ -3511,7 +3510,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void lambda$new$4() throws Resources.NotFoundException, IOException {
+            protected void lambda$new$4() throws IOException {
                 ProfileActivity.this.openAvatar(false);
             }
         };
@@ -3679,7 +3678,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     rectF.set(0.0f, 0.0f, ProfileActivity.this.avatarsViewPager.getMeasuredWidth(), ProfileActivity.this.avatarsViewPager.getMeasuredHeight() + AndroidUtilities.dp(30.0f));
                     canvas.saveLayerAlpha(rectF, (int) (255.0f * f3), 31);
                     ProfileActivity.this.avatarContainer2.draw(canvas);
-                    ((BaseFragment) ProfileActivity.this).actionBar.getOccupyStatusBar();
                     canvas.save();
                     canvas.translate(((BaseFragment) ProfileActivity.this).actionBar.getX(), ((BaseFragment) ProfileActivity.this).actionBar.getY());
                     ((BaseFragment) ProfileActivity.this).actionBar.draw(canvas);
@@ -3824,7 +3822,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, IOException {
+        public void onItemClick(int i) throws IOException {
             long jMakeEncryptedDialogId;
             SharedMediaLayout.ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner;
             if (ProfileActivity.this.getParentActivity() == null) {
@@ -6555,7 +6553,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$37(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$37(View view) throws IOException {
         TLRPC.Document documentFindDocument;
         Bulletin bulletinCreateContainsEmojiBulletin;
         if (this.avatarBig != null) {
@@ -6600,7 +6598,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new EmojiPacksAlert(this, getParentActivity(), this.resourcesProvider, arrayList));
     }
 
-    public boolean lambda$createView$38(View view) throws Resources.NotFoundException, IOException {
+    public boolean lambda$createView$38(View view) throws IOException {
         if (this.avatarBig == null && !this.isTopic) {
             openAvatar();
         }
@@ -7426,11 +7424,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return this.isFragmentOpened;
     }
 
-    private void openAvatar() throws Resources.NotFoundException, IOException {
+    private void openAvatar() throws IOException {
         openAvatar(false);
     }
 
-    public void openAvatar(boolean r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public void openAvatar(boolean r14) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.openAvatar(boolean):void");
     }
 
@@ -11279,7 +11277,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws IOException {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.onActivityResult(i, i2, intent);

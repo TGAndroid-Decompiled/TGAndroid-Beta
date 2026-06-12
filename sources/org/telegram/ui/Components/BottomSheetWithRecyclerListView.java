@@ -584,9 +584,12 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null && actionBar.getTag() != null) {
-            AndroidUtilities.setLightStatusBar(getWindow(), isLightStatusBar());
-        } else if (this.baseFragment != null) {
-            AndroidUtilities.setLightStatusBar(getWindow(), this.baseFragment.isLightStatusBar());
+            AndroidUtilities.setLightStatusBar(this, isLightStatusBar());
+            return;
+        }
+        BaseFragment baseFragment = this.baseFragment;
+        if (baseFragment != null) {
+            AndroidUtilities.setLightStatusBar(this, baseFragment.isLightStatusBar());
         }
     }
 

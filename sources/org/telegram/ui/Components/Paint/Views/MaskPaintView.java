@@ -329,7 +329,7 @@ public abstract class MaskPaintView extends FrameLayout {
         int i5 = i3 - i;
         int i6 = i4 - i2;
         if (!this.inBubbleMode) {
-            int i7 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
+            int i7 = AndroidUtilities.REPLACING_TAG_TYPE_LINK;
         }
         int iCeil = (int) Math.ceil((i5 - this.renderView.getMeasuredWidth()) / 2.0f);
         int measuredHeight = (i6 - this.renderView.getMeasuredHeight()) / 2;

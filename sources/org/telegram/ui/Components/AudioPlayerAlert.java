@@ -32,7 +32,6 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
-import android.view.Window;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
@@ -2198,9 +2197,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         int translationY = (int) (((this.scrollOffsetY - this.backgroundPaddingTop) - iDp3) + this.listView.getTranslationY());
         boolean z2 = (this.backgroundPaddingTop + translationY < ActionBar.getCurrentActionBarHeight() ? 1.0f - Math.min(1.0f, ((float) ((ActionBar.getCurrentActionBarHeight() - translationY) - this.backgroundPaddingTop)) / ((float) (iDp3 + AndroidUtilities.dp(4.0f)))) : 1.0f) <= 0.5f && ColorUtils.calculateLuminance(getThemedColor(Theme.key_dialogBackground)) > 0.699999988079071d;
         if (z2 != this.wasLight) {
-            Window window = getWindow();
             this.wasLight = z2;
-            AndroidUtilities.setLightStatusBar(window, z2);
+            AndroidUtilities.setLightStatusBar(this, z2);
         }
     }
 

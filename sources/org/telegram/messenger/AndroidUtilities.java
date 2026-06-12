@@ -208,13 +208,11 @@ public class AndroidUtilities {
     public static Pattern BAD_CHARS_MESSAGE_LONG_PATTERN = null;
     public static Pattern BAD_CHARS_MESSAGE_PATTERN = null;
     public static Pattern BAD_CHARS_PATTERN = null;
-    public static final int DARK_STATUS_BAR_OVERLAY = 855638016;
     public static final int FLAG_TAG_ALL = 11;
     public static final int FLAG_TAG_BOLD = 2;
     public static final int FLAG_TAG_BR = 1;
     public static final int FLAG_TAG_COLOR = 4;
     public static final int FLAG_TAG_URL = 8;
-    public static final int LIGHT_STATUS_BAR_OVERLAY = 251658240;
     public static Pattern LONG_BAD_CHARS_PATTERN = null;
     public static Pattern REMOVE_MULTIPLE_DIACRITICS = null;
     public static final int REPLACING_TAG_TYPE_BOLD = 1;
@@ -4945,16 +4943,26 @@ public class AndroidUtilities {
         return Color.argb(255, (Color.red(i) / 2) + (Color.red(i2) / 2), (Color.green(i) / 2) + (Color.green(i2) / 2), (Color.blue(i) / 2) + (Color.blue(i2) / 2));
     }
 
-    public static void setLightStatusBar(Window window, boolean z) {
-        setLightStatusBar(window, z, false);
+    public static void setLightStatusBar(Activity activity, boolean z) {
+        if (activity != null) {
+            setLightStatusBar(activity.getWindow(), z);
+        }
     }
 
-    public static void setLightStatusBar(Window window, boolean z, boolean z2) {
-        if (Build.VERSION.SDK_INT >= 23) {
+    public static void setLightStatusBar(Dialog dialog, boolean z) {
+        if (dialog != null) {
+            setLightStatusBar(dialog.getWindow(), z);
+        }
+    }
+
+    public static void setLightStatusBar(Window window, boolean z) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 23) {
             changeSetSystemUiVisibility(window.getDecorView(), 8192, z);
-            if (window.getStatusBarColor() != 0) {
-                window.setStatusBarColor(0);
+            if (i >= 35 || window.getStatusBarColor() == 0) {
+                return;
             }
+            window.setStatusBarColor(0);
         }
     }
 

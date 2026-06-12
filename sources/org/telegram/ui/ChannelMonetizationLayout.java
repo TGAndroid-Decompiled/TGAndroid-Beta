@@ -2175,7 +2175,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
     public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
         if (view == this.listView && this.transactionsLayout.isAttachedToWindow()) {
             ((View) this.transactionsLayout.getParent()).getTop();
-            int i4 = AndroidUtilities.LIGHT_STATUS_BAR_OVERLAY;
+            int i4 = AndroidUtilities.REPLACING_TAG_TYPE_LINK;
             ActionBar.getCurrentActionBarHeight();
             int bottom = ((View) this.transactionsLayout.getParent()).getBottom();
             if (i2 >= 0) {

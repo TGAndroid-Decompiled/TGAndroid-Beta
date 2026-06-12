@@ -361,7 +361,7 @@ public abstract class CropEditor extends FrameLayout {
             this.previewMatrix.preScale(CropEditor.this.previewView.getWidth() / CropEditor.this.entry.resultWidth, CropEditor.this.previewView.getHeight() / CropEditor.this.entry.resultHeight);
             this.previewMatrix.preConcat(CropEditor.this.entry.matrix);
             this.previewMatrix.preTranslate(CropEditor.this.previewView.getContentWidth() / 2.0f, CropEditor.this.previewView.getContentHeight() / 2.0f);
-            this.cropMatrix.preTranslate(AndroidUtilities.dp(16.0f) + (getContainerWidth() / 2.0f), (!(getContext() instanceof BubbleActivity) ? AndroidUtilities.statusBarHeight : 0) + ((getContainerHeight() + AndroidUtilities.dp(32.0f)) / 2.0f));
+            this.cropMatrix.preTranslate(AndroidUtilities.dp(16.0f) + (getContainerWidth() / 2.0f), (!(getContext() instanceof BubbleActivity) ? AndroidUtilities.statusBarHeight : 0.0f) + ((getContainerHeight() + AndroidUtilities.dp(32.0f)) / 2.0f));
             if (z) {
                 AndroidUtilities.lerp(this.previewMatrix, this.identityMatrix, CropEditor.this.appearProgress, this.clipMatrix);
                 this.clipMatrix.preRotate(-CropEditor.this.entry.orientation);
@@ -422,7 +422,7 @@ public abstract class CropEditor extends FrameLayout {
         }
 
         private float getContainerHeight() {
-            return ((getHeight() - (!(getContext() instanceof BubbleActivity) ? AndroidUtilities.statusBarHeight : 0)) - CropEditor.this.cropView.bottomPadding) - AndroidUtilities.dp(32.0f);
+            return ((getHeight() - (!(getContext() instanceof BubbleActivity) ? AndroidUtilities.statusBarHeight : 0.0f)) - CropEditor.this.cropView.bottomPadding) - AndroidUtilities.dp(32.0f);
         }
 
         private void applyCrop(android.graphics.Matrix r12, boolean r13) {

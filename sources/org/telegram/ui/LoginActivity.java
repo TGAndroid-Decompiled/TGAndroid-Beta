@@ -791,7 +791,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws IOException {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);
@@ -1293,7 +1293,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     private void needFinishActivity(final boolean z, boolean z2, int i) {
         if (getParentActivity() != null) {
-            AndroidUtilities.setLightStatusBar(getParentActivity().getWindow(), false);
+            AndroidUtilities.setLightStatusBar(getParentActivity(), false);
         }
         clearCurrentState();
         if (getParentActivity() instanceof LaunchActivity) {

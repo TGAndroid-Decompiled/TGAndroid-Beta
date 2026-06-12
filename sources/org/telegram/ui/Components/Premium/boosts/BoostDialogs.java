@@ -383,7 +383,7 @@ public abstract class BoostDialogs {
         BottomSheet bottomSheetShow = builder.show();
         bottomSheetShow.setBackgroundColor(scheduleDatePickerColors.backgroundColor);
         bottomSheetShow.fixNavigationBar(scheduleDatePickerColors.backgroundColor);
-        AndroidUtilities.setLightStatusBar(bottomSheetShow.getWindow(), ColorUtils.calculateLuminance(scheduleDatePickerColors.backgroundColor) > 0.699999988079071d);
+        AndroidUtilities.setLightStatusBar(bottomSheetShow, ColorUtils.calculateLuminance(scheduleDatePickerColors.backgroundColor) > 0.699999988079071d);
     }
 
     public static String lambda$showDatePicker$4(long j, Calendar calendar, int i, int i2) {

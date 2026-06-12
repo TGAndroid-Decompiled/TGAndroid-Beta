@@ -62,7 +62,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        AndroidUtilities.setLightStatusBar(getWindow(), isLightStatusBar());
+        AndroidUtilities.setLightStatusBar(this, isLightStatusBar());
         checkScreenOrientation();
         ViewPagerFixed viewPagerFixed = new ViewPagerFixed(getContext()) {
             private boolean isKeyboardVisible;

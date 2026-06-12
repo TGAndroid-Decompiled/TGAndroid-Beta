@@ -1145,7 +1145,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 baseFragment = null;
             }
         }
-        boolean z5 = baseFragment != null && baseFragment.hasForceLightStatusBar();
+        if (baseFragment != null) {
+            baseFragment.hasForceLightStatusBar();
+        }
         int i = Build.VERSION.SDK_INT;
         if (i >= 23) {
             if (z2) {
@@ -1172,7 +1174,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 } else {
                     zIsLightStatusBar = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_actionBarDefault, null, true)) > 0.699999988079071d;
                 }
-                AndroidUtilities.setLightStatusBar(getWindow(), zIsLightStatusBar, z5);
+                AndroidUtilities.setLightStatusBar(this, zIsLightStatusBar);
             }
             if (i >= 26 && z3 && (!z || baseFragment == null || !baseFragment.isInPreviewMode())) {
                 int color = (baseFragment == null || !z) ? Theme.getColor(Theme.key_windowBackgroundGray, null, true) : baseFragment.getNavigationBarColor();

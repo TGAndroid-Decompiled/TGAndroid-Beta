@@ -14734,7 +14734,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
     }
 
     @Override
-    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException, IOException {
+    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws IOException {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;

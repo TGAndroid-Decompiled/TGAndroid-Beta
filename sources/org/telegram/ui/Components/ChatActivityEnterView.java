@@ -3969,7 +3969,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         dialog.getWindow().getDecorView().setSystemUiVisibility(1792);
         dialog.getWindow().setStatusBarColor(0);
         dialog.getWindow().setNavigationBarColor(0);
-        AndroidUtilities.setLightStatusBar(dialog.getWindow(), Theme.getColor(Theme.key_actionBarDefault, null, true) == -1);
+        AndroidUtilities.setLightStatusBar(dialog, Theme.getColor(Theme.key_actionBarDefault, null, true) == -1);
         int i = Build.VERSION.SDK_INT;
         if (i >= 26) {
             AndroidUtilities.setLightNavigationBar(dialog, AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundGray, null, true)) >= 0.721f);
@@ -4947,7 +4947,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws Resources.NotFoundException, IOException {
+                            public final void run() throws IOException {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -4959,7 +4959,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws Resources.NotFoundException, IOException {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws IOException {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -5032,7 +5032,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() throws Resources.NotFoundException, IOException {
+                    public void run() throws IOException {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -10835,7 +10835,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws Resources.NotFoundException, IOException {
+        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws IOException {
             if (ChatActivityEnterView.this.parentFragment == null) {
                 return;
             }

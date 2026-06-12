@@ -8969,7 +8969,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.shareTopView = shareTopView;
             shareTopView.setLayoutClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                public final void onClick(View view) throws IOException {
                     this.f$0.lambda$attachShareTopView$125(view);
                 }
             });
@@ -9008,7 +9008,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateShareTopViewRecipients();
     }
 
-    public void lambda$attachShareTopView$125(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$attachShareTopView$125(View view) throws IOException {
         if (hasSharedMediaEntries()) {
             openSharedMediaEditor();
         }
@@ -9034,7 +9034,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         shareTopView.setRecipients(this.currentAccount, this.selectedDialogs);
     }
 
-    private void openSharedMediaEditor() throws Resources.NotFoundException, IOException {
+    private void openSharedMediaEditor() throws IOException {
         ArrayList arrayList = this.sharedMediaEntries;
         if (arrayList == null || arrayList.isEmpty() || getParentActivity() == null) {
             return;

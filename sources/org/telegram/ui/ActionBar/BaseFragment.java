@@ -633,7 +633,7 @@ public abstract class BaseFragment {
             actionBar.setEnabled(false);
         }
         if (hasForceLightStatusBar() && !AndroidUtilities.isTablet() && getParentLayout().getLastFragment() == this && getParentActivity() != null && !this.finishing) {
-            AndroidUtilities.setLightStatusBar(getParentActivity().getWindow(), Theme.getColor(Theme.key_actionBarDefault) == -1);
+            AndroidUtilities.setLightStatusBar(getParentActivity(), Theme.getColor(Theme.key_actionBarDefault) == -1);
         }
         ArrayList<AttachedSheet> arrayList = this.sheetsStack;
         if (arrayList != null) {
@@ -1131,7 +1131,7 @@ public abstract class BaseFragment {
             } else {
                 AndroidUtilities.setLightNavigationBar((Dialog) this.val$bottomSheet[0], true);
             }
-            AndroidUtilities.setLightStatusBar(getWindow(), this.val$fragment.isLightStatusBar());
+            AndroidUtilities.setLightStatusBar(this, this.val$fragment.isLightStatusBar());
             this.val$fragment.onBottomSheetCreated();
         }
 

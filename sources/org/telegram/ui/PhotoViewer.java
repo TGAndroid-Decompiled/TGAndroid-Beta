@@ -1377,7 +1377,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void onShowPress(MotionEvent motionEvent) {
     }
 
-    public static void access$18500(PhotoViewer photoViewer) throws Resources.NotFoundException, IOException {
+    public static void access$18500(PhotoViewer photoViewer) throws IOException {
         photoViewer.updateCaptionTranslated();
     }
 
@@ -1921,7 +1921,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.classGuid;
     }
 
-    public void setCaption(CharSequence charSequence) throws Resources.NotFoundException, IOException {
+    public void setCaption(CharSequence charSequence) throws IOException {
         this.hasCaptionForAllMedia = true;
         this.captionForAllMedia = charSequence;
         setCurrentCaption(null, charSequence, false, false);
@@ -4248,19 +4248,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void setParentActivity(Activity activity) throws Resources.NotFoundException, IOException {
+    public void setParentActivity(Activity activity) throws IOException {
         setParentActivity(activity, null, null);
     }
 
-    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException, IOException {
+    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) throws IOException {
         setParentActivity(activity, null, resourcesProvider);
     }
 
-    public void setParentActivity(BaseFragment baseFragment) throws Resources.NotFoundException, IOException {
+    public void setParentActivity(BaseFragment baseFragment) throws IOException {
         setParentActivity(baseFragment, (Theme.ResourcesProvider) null);
     }
 
-    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException, IOException {
+    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws IOException {
         setParentActivity(null, baseFragment, resourcesProvider);
     }
 
@@ -4268,7 +4268,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.parentActivity;
     }
 
-    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException, IOException {
+    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws IOException {
         boolean z;
         boolean z2 = true;
         WindowVisibilityManager.Controller controller = this.activityVisibilityController;
@@ -11506,7 +11506,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                public void onAnimationEnd(Animator animator2) throws Resources.NotFoundException, IOException {
+                public void onAnimationEnd(Animator animator2) throws IOException {
                     if (PhotoViewer.this.videoConvertSupported && PhotoViewer.this.isCurrentVideo) {
                         PhotoViewer.this.updateVideoInfo();
                     }
@@ -12681,11 +12681,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) throws Resources.NotFoundException, IOException {
+    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) throws IOException {
         setIsAboutToSwitchToIndex(i, z, z2, false);
     }
 
-    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean, boolean):void");
     }
 
@@ -12731,7 +12731,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void updateCaptionTranslated() throws Resources.NotFoundException, IOException {
+    public void updateCaptionTranslated() throws IOException {
         int i;
         MessageObject messageObject;
         TLRPC.Message message;
@@ -13167,7 +13167,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         setIndexToImage(this.centerImage, this.currentIndex, null);
     }
 
-    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) throws Resources.NotFoundException, IOException {
+    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) throws IOException {
         int i;
         boolean z3;
         TLRPC.Message message;

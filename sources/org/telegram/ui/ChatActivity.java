@@ -5891,7 +5891,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, this.mentionContainer.getListView(), 0, this.mentionsOnItemClickListener, this.mentionContainer.getAdapter().isStickers() ? this.contentPreviewViewerDelegate : null, this.themeDelegate);
     }
 
-    public void lambda$createView$42(View view, int i) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$createView$42(View view, int i) throws IOException, NumberFormatException {
         AnimatedEmojiSpan animatedEmojiSpan;
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
@@ -6616,7 +6616,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createView$58(ChatActivityEnterTopView.EditViewButton editViewButton, boolean[] zArr, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$58(ChatActivityEnterTopView.EditViewButton editViewButton, boolean[] zArr, View view) throws IOException {
         MessageObject messageObject = this.editingMessageObject;
         if (messageObject != null && messageObject.canEditMedia() && this.editingMessageObjectReqId == 0) {
             if (editViewButton.isEditButton()) {
@@ -9411,7 +9411,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         UndoView undoView = new UndoView(getContext(), this, true, this.themeDelegate) {
             @Override
-            public void didPressUrl(CharacterStyle characterStyle) throws Resources.NotFoundException, IOException {
+            public void didPressUrl(CharacterStyle characterStyle) throws IOException {
                 ChatActivity.this.didPressMessageUrl(characterStyle, false, null, null);
             }
 
@@ -13485,7 +13485,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateMessagesVisiblePart(boolean):void");
     }
 
-    public void lambda$updateMessagesVisiblePart$153(MessageObject messageObject) throws Resources.NotFoundException, IOException {
+    public void lambda$updateMessagesVisiblePart$153(MessageObject messageObject) throws IOException {
         if (messageObject.isVideo()) {
             openPhotoViewerForMessage(null, messageObject);
         } else {
@@ -15193,7 +15193,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    private void openEditingMessageInPhotoEditor() throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    private void openEditingMessageInPhotoEditor() throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.openEditingMessageInPhotoEditor():void");
     }
 
@@ -15201,7 +15201,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.getPlaceForPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.PhotoViewer$PlaceProviderObject");
     }
 
-    public boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) throws Resources.NotFoundException, IOException {
+    public boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) throws IOException {
         MessageObject messageObject;
         TLRPC.Message message;
         TL_iv.RichMessage richMessage;
@@ -20222,7 +20222,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void onConfigurationChanged(Configuration configuration) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void onConfigurationChanged(Configuration configuration) throws IOException, NumberFormatException {
         MessageObject playingMessageObject;
         fixLayout();
         Dialog dialog = this.visibleDialog;
@@ -20843,7 +20843,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processSelectedOption(((Integer) arrayList.get(i)).intValue());
     }
 
-    public Boolean lambda$createMenu$286(View view, URLSpan uRLSpan) throws Resources.NotFoundException, IOException {
+    public Boolean lambda$createMenu$286(View view, URLSpan uRLSpan) throws IOException {
         didPressMessageUrl(uRLSpan, false, this.selectedObject, view instanceof ChatMessageCell ? (ChatMessageCell) view : null);
         return Boolean.TRUE;
     }
@@ -24059,7 +24059,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.openClickableLink(android.text.style.CharacterStyle, java.lang.String, boolean, org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$openClickableLink$387(java.lang.String r8, android.text.style.CharacterStyle r9, org.telegram.messenger.MessageObject r10, org.telegram.ui.Cells.ChatMessageCell r11, int r12, android.content.DialogInterface r13, int r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public void lambda$openClickableLink$387(java.lang.String r8, android.text.style.CharacterStyle r9, org.telegram.messenger.MessageObject r10, org.telegram.ui.Cells.ChatMessageCell r11, int r12, android.content.DialogInterface r13, int r14) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$openClickableLink$387(java.lang.String, android.text.style.CharacterStyle, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, int, android.content.DialogInterface, int):void");
     }
 
@@ -24439,7 +24439,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().sendRequest(tL_messages_clickSponsoredMessage, null);
     }
 
-    public void didPressMessageUrl(CharacterStyle characterStyle, boolean z, MessageObject messageObject, ChatMessageCell chatMessageCell) throws Resources.NotFoundException, IOException {
+    public void didPressMessageUrl(CharacterStyle characterStyle, boolean z, MessageObject messageObject, ChatMessageCell chatMessageCell) throws IOException {
         TLRPC.WebPage webPage;
         MessageObject messageObject2;
         MessageObject messageObject3;
@@ -24625,7 +24625,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processExternalUrl(2, url2, characterStyle, chatMessageCell, Browser.urlMustNotHaveConfirmation(url2) ? false : z2, false);
     }
 
-    void openPhotoViewerForMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) throws Resources.NotFoundException, IOException {
+    void openPhotoViewerForMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) throws IOException {
         ChatMessageCell chatMessageCell2;
         AnimatedFileDrawable animation;
         Bitmap animatedBitmap;
@@ -25083,7 +25083,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) throws Resources.NotFoundException, IOException {
+            public void didClickImage(ChatActionCell chatActionCell) throws IOException {
                 TLRPC.VideoSize closestVideoSizeWithSize;
                 TLRPC.VideoSize emojiMarkup;
                 String str;
@@ -27735,7 +27735,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) throws Resources.NotFoundException, IOException {
+        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) throws IOException {
             ChatActivity.this.didPressMessageUrl(characterStyle, z, chatMessageCell.getMessageObject(), chatMessageCell);
         }
 
@@ -28060,7 +28060,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) throws Resources.NotFoundException, IOException {
+        public void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) throws IOException {
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
                 Browser.Progress progressMakeProgressForPaidMedia = ChatActivity.this.makeProgressForPaidMedia(chatMessageCell);
@@ -28109,7 +28109,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressPollMedia(final ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, final TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i) throws Resources.NotFoundException, IOException {
+        public void didPressPollMedia(final ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, final TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i) throws IOException {
             int i2;
             int size;
             TLRPC.Document document;
@@ -30087,7 +30087,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         int i24 = Theme.key_chat_recordVoiceCancel;
         arrayList.add(new ThemeDescription(chatActivityEnterView, 0, null, null, null, null, i24));
-        arrayList.add(new ThemeDescription(this.chatActivityEnterView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{ChatActivityEnterView.class}, new String[]{"recordedAudioTimeTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_messagePanelVoiceDuration));
         arrayList.add(new ThemeDescription(this.chatActivityEnterView, 0, null, null, null, null, i24));
         arrayList.add(new ThemeDescription(this.chatActivityEnterView, ThemeDescription.FLAG_IMAGECOLOR, new Class[]{ChatActivityEnterView.class}, new String[]{"cancelBotButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_chat_messagePanelCancelInlineBot));
         arrayList.add(new ThemeDescription(this.chatActivityEnterView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{ChatActivityEnterView.class}, new String[]{"cancelBotButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i21));
@@ -30847,7 +30846,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return Theme.isCurrentThemeDark();
         }
 
-        ThemeDelegate() throws android.content.res.Resources.NotFoundException, java.io.IOException {
+        ThemeDelegate() throws java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ThemeDelegate.<init>(org.telegram.ui.ChatActivity):void");
         }
 
@@ -30981,7 +30980,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ThemeDelegate.setCurrentTheme(org.telegram.ui.ActionBar.EmojiThemes, org.telegram.tgnet.TLRPC$WallPaper, boolean, java.lang.Boolean, boolean):void");
         }
 
-        public void lambda$setCurrentTheme$1(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z) throws Resources.NotFoundException, IOException {
+        public void lambda$setCurrentTheme$1(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z) throws IOException {
             setupChatTheme(emojiThemes, wallPaper, z, true);
             initServiceMessageColors(this.backgroundDrawable);
             ChatActivityFragmentView chatActivityFragmentView = ChatActivity.this.contentView;
@@ -31011,7 +31010,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             updateServiceMessageColor(1.0f);
         }
 
-        private void setupChatTheme(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z, boolean z2) throws Resources.NotFoundException, IOException {
+        private void setupChatTheme(EmojiThemes emojiThemes, TLRPC.WallPaper wallPaper, boolean z, boolean z2) throws IOException {
             Theme.ThemeInfo theme;
             Theme.ThemeInfo theme2;
             if (ChatActivity.this.parentThemeDelegate != null) {
@@ -31948,7 +31947,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             final boolean z6 = z4;
             itemOptionsMakeOptions.add((!z3 || z4) ? R.drawable.msg_openin : R.drawable.menu_website, LocaleController.getString((!z3 || z4) ? R.string.Open : R.string.OpenInTelegramBrowser2), new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws IOException {
                     this.f$0.lambda$didLongPressLink$406(str, characterStyle, messageObject, chatMessageCell, z5, z6);
                 }
             });
@@ -32027,7 +32026,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions3);
     }
 
-    public void lambda$didLongPressLink$406(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws Resources.NotFoundException, IOException {
+    public void lambda$didLongPressLink$406(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) throws IOException {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
         } else if (z && !z2) {

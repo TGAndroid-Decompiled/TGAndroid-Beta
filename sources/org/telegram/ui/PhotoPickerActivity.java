@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Paint;
@@ -556,7 +555,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.listView.setGlowColor(Theme.getColor(this.dialogBackgroundKey));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) throws Resources.NotFoundException, IOException {
+            public final void onItemClick(View view, int i4) throws IOException {
                 this.f$0.lambda$createView$1(view, i4);
             }
         });
@@ -948,7 +947,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$createView$1(View view, int i) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$1(View view, int i) throws IOException {
         ArrayList<MediaController.PhotoEntry> arrayList;
         int i2;
         if (this.selectedAlbum == null && this.searchResult.isEmpty()) {
