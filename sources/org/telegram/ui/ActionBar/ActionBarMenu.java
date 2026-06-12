@@ -23,7 +23,6 @@ public class ActionBarMenu extends LinearLayout {
     protected boolean isActionMode;
     private Runnable onLayoutListener;
     protected ActionBar parentActionBar;
-    private View widthAnchorView;
 
     public ActionBarMenu(Context context, ActionBar actionBar) {
         super(context);
@@ -629,31 +628,22 @@ public class ActionBarMenu extends LinearLayout {
         super.onMeasure(i, i2);
     }
 
-    public void setWidthAnchorView(View view) {
-        this.widthAnchorView = view;
-    }
-
     public int getItemsWidth() {
         int childCount = getChildCount();
-        float x = Float.POSITIVE_INFINITY;
-        float width = Float.NEGATIVE_INFINITY;
+        float fMin = Float.POSITIVE_INFINITY;
+        float fMax = Float.NEGATIVE_INFINITY;
         boolean z = false;
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
             if ((childAt instanceof ActionBarMenuItem) && childAt.getVisibility() == 0) {
-                float x2 = childAt.getX();
-                x = Math.min(x, x2);
-                width = Math.max(width, childAt.getWidth() + x2);
+                float x = childAt.getX();
+                fMin = Math.min(fMin, x);
+                fMax = Math.max(fMax, childAt.getWidth() + x);
                 z = true;
             }
         }
-        View view = this.widthAnchorView;
-        if (view != null) {
-            x = view.getX();
-            width = getWidth() + AndroidUtilities.dp(5.0f);
-        }
         if (z) {
-            return (int) (width - x);
+            return (int) (fMax - fMin);
         }
         return 0;
     }
@@ -664,6 +654,10 @@ public class ActionBarMenu extends LinearLayout {
         Runnable runnable = this.onLayoutListener;
         if (runnable != null) {
             runnable.run();
+        }
+        ActionBar actionBar = this.parentActionBar;
+        if (actionBar != null) {
+            actionBar.checkMenuItemsWidth();
         }
     }
 

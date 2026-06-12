@@ -2,7 +2,6 @@ package org.telegram.ui.Components.chat;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
@@ -35,6 +34,17 @@ public class WallpaperBitmapProvider {
         @Override
         public final Object get(Bitmap bitmap) {
             return Integer.valueOf(WallpaperBitmapProvider.averageBottomColor(bitmap));
+        }
+
+        @Override
+        public boolean isValid(Object obj) {
+            return BitmapMemoizedMetadata.Provider.CC.$default$isValid(this, obj);
+        }
+    });
+    private final BitmapMemoizedMetadata statusBarColorFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
+        @Override
+        public final Object get(Bitmap bitmap) {
+            return Integer.valueOf(WallpaperBitmapProvider.averageTopColor(bitmap));
         }
 
         @Override
@@ -91,6 +101,19 @@ public class WallpaperBitmapProvider {
         return 0;
     }
 
+    public int getStatusBarColor(BlurredBackgroundSource blurredBackgroundSource) {
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
+            return ((BlurredBackgroundSourceColor) blurredBackgroundSource).getColor();
+        }
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceBitmap) {
+            return ((Integer) this.statusBarColorFromBitmap.get(((BlurredBackgroundSourceBitmap) blurredBackgroundSource).getBitmap())).intValue();
+        }
+        if (blurredBackgroundSource instanceof BlurredBackgroundSourceWrapped) {
+            return getStatusBarColor(((BlurredBackgroundSourceWrapped) blurredBackgroundSource).getSource());
+        }
+        return 0;
+    }
+
     public static Bitmap blurBitmap(Bitmap bitmap) {
         if (bitmap == null || bitmap.isRecycled()) {
             return null;
@@ -100,34 +123,18 @@ public class WallpaperBitmapProvider {
         return bitmapStackBlurBitmapWithScaleFactor;
     }
 
+    public static int averageTopColor(Bitmap bitmap) {
+        if (bitmap == null || bitmap.isRecycled()) {
+            return 0;
+        }
+        return Utilities.averageBitmapColor(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight() / 10);
+    }
+
     public static int averageBottomColor(Bitmap bitmap) {
         if (bitmap == null || bitmap.isRecycled()) {
             return 0;
         }
         int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
-        int i = (int) (height * 0.1f);
-        int i2 = height - i;
-        int i3 = width * i;
-        int[] iArr = new int[i3];
-        bitmap.getPixels(iArr, 0, width, 0, i2, width, i);
-        long j = 0;
-        long j2 = 0;
-        long j3 = 0;
-        long j4 = 0;
-        int i4 = 0;
-        for (int i5 = 0; i5 < i3; i5++) {
-            int i6 = iArr[i5];
-            j4 += (i6 >>> 24) & 255;
-            j3 += (i6 >> 16) & 255;
-            j2 += (i6 >> 8) & 255;
-            j += i6 & 255;
-            i4++;
-        }
-        if (i4 == 0) {
-            return 0;
-        }
-        long j5 = i4;
-        return Color.argb((int) (j4 / j5), (int) (j3 / j5), (int) (j2 / j5), (int) (j / j5));
+        return Utilities.averageBitmapColor(bitmap, 0, (height * 9) / 10, bitmap.getWidth(), height);
     }
 }

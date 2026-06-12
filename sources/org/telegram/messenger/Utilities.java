@@ -89,6 +89,13 @@ public class Utilities {
         void accept(T t, int i);
     }
 
+    public enum libyuv_ScaleFilter {
+        None,
+        Linear,
+        Bilinear,
+        Box
+    }
+
     public static native void aesCbcEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i, int i2, int i3);
 
     private static native void aesCbcEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, int i, int i2, int i3, int i4);
@@ -102,6 +109,8 @@ public class Utilities {
     private static native void aesIgeEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, boolean z, int i, int i2);
 
     public static native boolean applySoftLight(Bitmap bitmap, Bitmap bitmap2, int i);
+
+    public static native int averageBitmapColor(Bitmap bitmap, int i, int i2, int i3, int i4);
 
     public static native void blurBitmap(Object obj, int i, int i2, int i3, int i4, int i5);
 
@@ -120,6 +129,8 @@ public class Utilities {
     public static native long getDirSize(String str, int i, boolean z);
 
     public static native long getLastUsageFileTime(String str);
+
+    private static native boolean nLibyuvARGBSaleBitmap(Bitmap bitmap, Bitmap bitmap2, int i);
 
     public static native int needInvert(Object obj, int i, int i2, int i3, int i4);
 
@@ -650,5 +661,9 @@ public class Utilities {
 
     public static int divCeil(int i, int i2) {
         return ((i + i2) - 1) / i2;
+    }
+
+    public static boolean libyuvARGBSaleBitmap(Bitmap bitmap, Bitmap bitmap2, libyuv_ScaleFilter libyuv_scalefilter) {
+        return nLibyuvARGBSaleBitmap(bitmap, bitmap2, libyuv_scalefilter.ordinal());
     }
 }

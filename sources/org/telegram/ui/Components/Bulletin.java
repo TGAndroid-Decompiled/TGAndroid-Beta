@@ -52,7 +52,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -79,8 +78,6 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ViewPagerActivity;
 
 public class Bulletin {
-    private static final WeakHashMap delegates = new WeakHashMap();
-    private static final WeakHashMap fragmentDelegates = new WeakHashMap();
     private static Bulletin visibleBulletin;
     private boolean allowBlurAnimation;
     private SpringAnimation bottomOffsetSpring;
@@ -887,31 +884,42 @@ public class Bulletin {
     }
 
     public static void addDelegate(BaseFragment baseFragment, Delegate delegate) {
-        fragmentDelegates.put(baseFragment, delegate);
+        if (baseFragment != null) {
+            baseFragment.setBulletinDelegate(delegate);
+        }
     }
 
     public static void addDelegate(FrameLayout frameLayout, Delegate delegate) {
-        delegates.put(frameLayout, delegate);
+        if (frameLayout != null) {
+            frameLayout.setTag(R.id.bulletin_delegate_tag, delegate);
+        }
     }
 
     public static Delegate findDelegate(BaseFragment baseFragment, FrameLayout frameLayout) {
-        Delegate delegate = (Delegate) fragmentDelegates.get(baseFragment);
-        if (delegate != null) {
-            return delegate;
+        Delegate bulletinDelegate;
+        if (baseFragment != null && (bulletinDelegate = baseFragment.getBulletinDelegate()) != null) {
+            return bulletinDelegate;
         }
-        Delegate delegate2 = (Delegate) delegates.get(frameLayout);
-        if (delegate2 != null) {
-            return delegate2;
+        if (frameLayout == null) {
+            return null;
+        }
+        Object tag = frameLayout.getTag(R.id.bulletin_delegate_tag);
+        if (tag instanceof Delegate) {
+            return (Delegate) tag;
         }
         return null;
     }
 
     public static void removeDelegate(BaseFragment baseFragment) {
-        fragmentDelegates.remove(baseFragment);
+        if (baseFragment != null) {
+            baseFragment.setBulletinDelegate(null);
+        }
     }
 
     public static void removeDelegate(FrameLayout frameLayout) {
-        delegates.remove(frameLayout);
+        if (frameLayout != null) {
+            frameLayout.setTag(R.id.bulletin_delegate_tag, null);
+        }
     }
 
     public static abstract class Layout extends FrameLayout {

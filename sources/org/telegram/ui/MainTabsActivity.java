@@ -180,38 +180,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             this.iBlur3SourceTabGlass = null;
         }
         this.iBlur3SourceColor = new BlurredBackgroundSourceColor();
-    }
-
-    @Override
-    protected FrameLayout createContentView(Context context) {
-        return new FrameLayout(context) {
-            @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                super.onLayout(z, i, i2, i3, i4);
-                MainTabsActivity.this.checkUi_tabsPosition();
-                MainTabsActivity.this.checkUi_fadeView();
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                MainTabsActivity.this.blur3_invalidateBlur();
-            }
-        };
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        updateLayout();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        blur3_updateColors();
-        checkContactsTabBadge();
-        checkUnreadCount(true);
         Bulletin.Delegate delegate = new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
@@ -255,6 +223,38 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         };
         Bulletin.addDelegate(this, delegate);
         Bulletin.addDelegate(this.contentView, delegate);
+    }
+
+    @Override
+    protected FrameLayout createContentView(Context context) {
+        return new FrameLayout(context) {
+            @Override
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
+                MainTabsActivity.this.checkUi_tabsPosition();
+                MainTabsActivity.this.checkUi_fadeView();
+            }
+
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                MainTabsActivity.this.blur3_invalidateBlur();
+            }
+        };
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        updateLayout();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        blur3_updateColors();
+        checkContactsTabBadge();
+        checkUnreadCount(true);
         showAccountChangeHint();
     }
 
@@ -277,8 +277,6 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     @Override
     public void onPause() {
         super.onPause();
-        Bulletin.removeDelegate(this);
-        Bulletin.removeDelegate(this.contentView);
         HintView2 hintView2 = this.accountSwitchHint;
         if (hintView2 != null) {
             hintView2.hide();
@@ -969,6 +967,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     @Override
     public void onFragmentDestroy() {
+        Bulletin.removeDelegate(this);
+        Bulletin.removeDelegate(this.contentView);
         NotificationCenter.ObserversGroup observersGroup = this.observersGroup;
         if (observersGroup != null) {
             observersGroup.removeAllObservers();

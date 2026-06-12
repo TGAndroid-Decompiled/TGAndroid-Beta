@@ -207,7 +207,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
 
         @Override
-        public void onClick(android.view.View r14) {
+        public void onClick(android.view.View r14) throws java.io.IOException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass2.onClick(android.view.View):void");
         }
 

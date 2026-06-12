@@ -83,6 +83,8 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     private boolean allowOverlayTitle;
     private final BoolAnimator animatorAvatarContainerHasAvatar;
     private final FactorAnimator animatorAvatarContainerWidth;
+    private final BoolAnimator animatorHasMenuItems;
+    private final FactorAnimator animatorMenuItemsWidth;
     private boolean attachState;
     private boolean attached;
     private BackupImageView avatarSearchImageView;
@@ -115,6 +117,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     private boolean ignoreLayoutRequest;
     private View.OnTouchListener interceptTouchEventListener;
     private boolean interceptTouches;
+    private boolean isAnimationsAllowed;
     private boolean isCenterTitle;
     private boolean isMenuOffsetSuppressed;
     protected boolean isSearchFieldVisible;
@@ -203,6 +206,8 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorAvatarContainerWidth = new FactorAnimator(0, this, cubicBezierInterpolator, 380L);
         this.animatorAvatarContainerHasAvatar = new BoolAnimator(0, this, cubicBezierInterpolator, 380L);
+        this.animatorMenuItemsWidth = new FactorAnimator(0, this, cubicBezierInterpolator, 320L);
+        this.animatorHasMenuItems = new BoolAnimator(0, this, cubicBezierInterpolator, 320L);
         this.onTop = true;
         this.onTopAnimated = 1.0f;
         this.resourcesProvider = resourcesProvider;
@@ -836,11 +841,11 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     public void showActionMode(boolean z, View view, View view2, View[] viewArr, final boolean[] zArr, View view3, int i) {
-        ActionBarMenu actionBarMenu = this.actionMode;
-        if (actionBarMenu == null || this.actionModeVisible) {
+        if (this.actionMode == null || this.actionModeVisible) {
             return;
         }
         this.actionModeVisible = true;
+        checkMenuItemsWidth();
         if (z) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(ObjectAnimator.ofFloat(this.actionMode, (Property<ActionBarMenu, Float>) View.ALPHA, 0.0f, 1.0f));
@@ -874,9 +879,9 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                         arrayList.add(ObjectAnimator.ofFloat(this.subtitleTextView, (Property<SimpleTextView, Float>) View.ALPHA, 0.0f));
                     }
                 }
-                ActionBarMenu actionBarMenu2 = this.menu;
-                if (actionBarMenu2 != null) {
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenu2, (Property<ActionBarMenu, Float>) View.ALPHA, 0.0f));
+                ActionBarMenu actionBarMenu = this.menu;
+                if (actionBarMenu != null) {
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenu, (Property<ActionBarMenu, Float>) View.ALPHA, 0.0f));
                 }
             }
             int i2 = this.actionModeColor;
@@ -931,9 +936,9 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                     if (ActionBar.this.subtitleTextView != null && !TextUtils.isEmpty(ActionBar.this.subtitle)) {
                         ActionBar.this.subtitleTextView.setVisibility(4);
                     }
-                    ActionBarMenu actionBarMenu3 = ActionBar.this.menu;
-                    if (actionBarMenu3 != null) {
-                        actionBarMenu3.setVisibility(4);
+                    ActionBarMenu actionBarMenu2 = ActionBar.this.menu;
+                    if (actionBarMenu2 != null) {
+                        actionBarMenu2.setVisibility(4);
                     }
                     if (ActionBar.this.actionModeHidingViews != null) {
                         for (int i3 = 0; i3 < ActionBar.this.actionModeHidingViews.length; i3++) {
@@ -964,7 +969,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             }
             return;
         }
-        actionBarMenu.setAlpha(1.0f);
+        this.actionMode.setAlpha(1.0f);
         if (viewArr != null) {
             for (View view5 : viewArr) {
                 if (view5 != null) {
@@ -1004,9 +1009,9 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         if (this.subtitleTextView != null && !TextUtils.isEmpty(this.subtitle)) {
             this.subtitleTextView.setVisibility(4);
         }
-        ActionBarMenu actionBarMenu3 = this.menu;
-        if (actionBarMenu3 != null) {
-            actionBarMenu3.setVisibility(4);
+        ActionBarMenu actionBarMenu2 = this.menu;
+        if (actionBarMenu2 != null) {
+            actionBarMenu2.setVisibility(4);
         }
         if (this.actionModeHidingViews != null) {
             int i4 = 0;
@@ -1046,6 +1051,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         }
         actionBarMenu.hideAllPopupMenus();
         this.actionModeVisible = false;
+        checkMenuItemsWidth();
         ArrayList arrayList = new ArrayList();
         arrayList.add(ObjectAnimator.ofFloat(this.actionMode, (Property<ActionBarMenu, Float>) View.ALPHA, 0.0f));
         if (this.actionModeHidingViews != null) {
@@ -1251,6 +1257,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
 
     public void onSearchFieldVisibilityChanged(final boolean z) {
         this.isSearchFieldVisible = z;
+        checkMenuItemsWidth();
         AnimatorSet animatorSet = this.searchVisibleAnimator;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -1340,7 +1347,11 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     public void lambda$onSearchFieldVisibilityChanged$4(ValueAnimator valueAnimator) {
+        ActionBarMenu actionBarMenu;
         this.searchFieldVisibleAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (this.glassMode && (actionBarMenu = this.menu) != null) {
+            actionBarMenu.setTranslationX(-AndroidUtilities.lerp(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), this.searchFieldVisibleAlpha));
+        }
         Runnable runnable = this.backgroundUpdateListener;
         if (runnable != null) {
             runnable.run();
@@ -1973,34 +1984,51 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         }
     }
 
+    public void checkMenuItemsWidth() {
+        ActionBarMenu actionBarMenu = this.menu;
+        int iMax = Math.max(0, actionBarMenu != null ? (actionBarMenu.getItemsWidth() - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(1.0f) : 0);
+        ActionBarMenu actionBarMenu2 = this.actionMode;
+        int iMax2 = Math.max(0, actionBarMenu2 != null ? (actionBarMenu2.getItemsWidth() - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(1.0f) : 0);
+        AndroidUtilities.dp(46.0f);
+        if (this.actionModeVisible) {
+            iMax = iMax2;
+        }
+        this.animatorHasMenuItems.setValue(iMax > 0, this.isAnimationsAllowed);
+        float f = iMax;
+        if (this.animatorMenuItemsWidth.getToFactor() != f) {
+            if (this.isAnimationsAllowed) {
+                this.animatorMenuItemsWidth.animateTo(f);
+            } else {
+                this.animatorMenuItemsWidth.forceFactor(f);
+            }
+        }
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         int iDp = AndroidUtilities.dp(6.0f);
         int iDp2 = AndroidUtilities.dp(46.0f);
         float actionModeFactor = getActionModeFactor();
-        ActionBarMenu actionBarMenu = this.menu;
-        int iMax = Math.max(0, actionBarMenu != null ? (actionBarMenu.getItemsWidth() - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(1.0f) : 0);
-        ActionBarMenu actionBarMenu2 = this.actionMode;
-        int iLerp = this.hasForcedMenuWidth ? this.forcedMenuWidth : AndroidUtilities.lerp(iMax, Math.max(0, actionBarMenu2 != null ? (actionBarMenu2.getItemsWidth() - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(1.0f) : 0), getActionModeFactor());
+        int factor = this.hasForcedMenuWidth ? this.forcedMenuWidth : (int) this.animatorMenuItemsWidth.getFactor();
         ImageView imageView = this.backButtonImageView;
         boolean z = imageView != null && imageView.getVisibility() == 0;
         int height = (getHeight() - ((getCurrentActionBarHeight() + iDp2) / 2)) - iDp;
         int i = iDp * 2;
         int i2 = height + iDp2 + i;
         if (this.glassDrawable != null) {
-            int i3 = iLerp > 0 ? iLerp + iDp : 0;
-            int i4 = iDp + iDp2;
-            int iLerp2 = AndroidUtilities.lerp(i3, Math.max(i3, i4), this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
-            int iLerp3 = AndroidUtilities.lerp(z ? i4 : 0, i4, this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
-            int width = getWidth() - iLerp2;
-            int i5 = width - iLerp3;
+            int floatValue = (this.hasForcedMenuWidth ? factor > 0 ? iDp : 0 : (int) (iDp * this.animatorHasMenuItems.getFloatValue())) + factor;
+            int i3 = iDp + iDp2;
+            int iLerp = AndroidUtilities.lerp(floatValue, Math.max(floatValue, i3), this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
+            int iLerp2 = AndroidUtilities.lerp(z ? i3 : 0, i3, this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
+            int width = getWidth() - iLerp;
+            int i4 = width - iLerp2;
             if (this.chatAvatarContainer != null) {
-                int iLerp4 = AndroidUtilities.lerp(Math.min(i5, ((int) this.animatorAvatarContainerWidth.getFactor()) + i), i5, Math.max(this.searchFactor, actionModeFactor));
-                iLerp3 = ((width + iLerp3) - iLerp4) / 2;
-                width = iLerp3 + iLerp4;
-                this.chatAvatarContainer.setTranslationX(((iLerp3 - ((ViewGroup.MarginLayoutParams) r3.getLayoutParams()).leftMargin) - this.chatAvatarContainer.getLeftPadding()) + iDp + AndroidUtilities.dp(3.0f));
+                int iLerp3 = AndroidUtilities.lerp(Math.min(i4, ((int) this.animatorAvatarContainerWidth.getFactor()) + i), i4, Math.max(this.searchFactor, actionModeFactor));
+                iLerp2 = ((width + iLerp2) - iLerp3) / 2;
+                width = iLerp2 + iLerp3;
+                this.chatAvatarContainer.setTranslationX(((iLerp2 - ((ViewGroup.MarginLayoutParams) r3.getLayoutParams()).leftMargin) - this.chatAvatarContainer.getLeftPadding()) + iDp + AndroidUtilities.dp(3.0f));
             }
-            this.glassDrawable.setBounds(iLerp3, height, width, i2);
+            this.glassDrawable.setBounds(iLerp2, height, width, i2);
             this.glassDrawable.draw(canvas);
         }
         Drawable drawable = this.glassDrawableBack;
@@ -2009,8 +2037,9 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             this.glassDrawableBack.draw(canvas);
         }
         Drawable drawable2 = this.glassDrawableMenu;
-        if (drawable2 != null && iLerp > 0) {
-            drawable2.setBounds((getWidth() - iLerp) - i, height, getWidth(), i2);
+        if (drawable2 != null && factor > 0) {
+            drawable2.setBounds((getWidth() - Math.max(iDp2, factor)) - i, height, getWidth(), i2);
+            this.glassDrawableMenu.setAlpha(this.hasForcedMenuWidth ? 255 : (int) (this.animatorHasMenuItems.getFloatValue() * 255.0f));
             this.glassDrawableMenu.draw(canvas);
         }
         if (this.blurredBackground && this.actionBarColor != 0) {
@@ -2022,6 +2051,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                 this.contentView.drawBlurRect(canvas, getY(), this.rectTmp, this.blurScrimPaint, true);
             }
         }
+        this.isAnimationsAllowed = true;
         if (this.doNotDrawChild) {
             return;
         }

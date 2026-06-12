@@ -6,6 +6,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 import androidx.core.math.MathUtils;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
@@ -121,7 +122,7 @@ public class ReplyMessageLine {
         this.backgroundColor = i;
     }
 
-    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) {
+    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) throws IOException {
         if (resourcesProvider != null) {
             resourcesProvider.isDark();
         } else {

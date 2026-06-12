@@ -49,6 +49,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -667,7 +668,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         });
         if (this.ATTACH_TO_FRAGMENT) {
             AndroidUtilities.removeFromParent(this.windowView);
-            this.windowView.setTag(-15654349, new Object());
+            this.windowView.setTag(R.id.sheet_attached_to_fragment_tag, new Object());
             lastFragment.getLayoutContainer().addView(this.windowView);
             if (!this.ATTACHED_FRAGMENT_IS_EDGE_TO_EDGE) {
                 AndroidUtilities.requestAdjustResize(lastFragment.getParentActivity(), lastFragment.getClassGuid());

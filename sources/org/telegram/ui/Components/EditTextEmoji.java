@@ -171,7 +171,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         this.allowAnimatedEmoji = z;
         this.resourcesProvider = resourcesProvider;
         this.currentStyle = i;
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         this.parentFragment = baseFragment;
         this.sizeNotifierLayout = sizeNotifierFrameLayout;
         sizeNotifierFrameLayout.addDelegate(this);
@@ -541,9 +540,20 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+    }
+
     public void onDestroy() {
         this.destroyed = true;
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
             emojiView.onDestroy();
