@@ -1140,7 +1140,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r20) throws java.io.IOException, java.lang.IllegalArgumentException {
+        public boolean onTouchEvent(android.view.MotionEvent r20) throws java.lang.IllegalArgumentException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onTouchEvent(android.view.MotionEvent):boolean");
         }
 

@@ -15,7 +15,6 @@ import android.util.Pair;
 import androidx.core.content.FileProvider;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -810,11 +809,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void openPhotoForEdit(String str, String str2, int i, boolean z) throws IOException {
+    public void openPhotoForEdit(String str, String str2, int i, boolean z) {
         openPhotoForEdit(str, str2, new Pair(Integer.valueOf(i), 0), z);
     }
 
-    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) throws IOException {
+    public void openPhotoForEdit(String str, String str2, Pair pair, boolean z) {
         final ArrayList arrayList = new ArrayList();
         MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
         orientation.isVideo = z;
@@ -848,7 +847,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation = true;
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) throws IOException {
+    public void onActivityResult(int i, int i2, Intent intent) {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();

@@ -27,7 +27,6 @@ import j$.util.function.Consumer$CC;
 import j$.util.function.Function$CC;
 import j$.util.stream.Collectors;
 import java.io.File;
-import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +45,6 @@ import java.util.function.Function;
 import java.util.function.IntFunction;
 import java.util.function.ToLongFunction;
 import me.vkryl.core.BitwiseUtils;
-import org.json.JSONException;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
@@ -4378,13 +4376,13 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$didReceivedNotification$46(final Theme.ThemeInfo themeInfo, final Theme.ThemeAccent themeAccent, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException, IOException {
+            public final void run() {
                 this.f$0.lambda$didReceivedNotification$45(tLObject, themeInfo, themeAccent);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$45(TLObject tLObject, Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent) throws JSONException, IOException {
+    public void lambda$didReceivedNotification$45(TLObject tLObject, Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent) {
         if (tLObject instanceof TLRPC.TL_theme) {
             Theme.setThemeUploadInfo(themeInfo, themeAccent, (TLRPC.TL_theme) tLObject, this.currentAccount, false);
             installTheme(themeInfo, themeAccent, themeInfo == Theme.getCurrentNightTheme());
@@ -4397,13 +4395,13 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$didReceivedNotification$48(final Theme.ThemeInfo themeInfo, final Theme.ThemeAccent themeAccent, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException, IOException {
+            public final void run() {
                 this.f$0.lambda$didReceivedNotification$47(tLObject, themeInfo, themeAccent);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$47(TLObject tLObject, Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent) throws JSONException, IOException {
+    public void lambda$didReceivedNotification$47(TLObject tLObject, Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent) {
         if (tLObject instanceof TLRPC.TL_theme) {
             Theme.setThemeUploadInfo(themeInfo, themeAccent, (TLRPC.TL_theme) tLObject, this.currentAccount, false);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeUploadedToServer, themeInfo, themeAccent);
@@ -15059,7 +15057,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
-    public void lambda$processUpdateArray$389(int r47, java.util.ArrayList r48, java.util.ArrayList r49, java.util.ArrayList r50, java.util.ArrayList r51, androidx.collection.LongSparseArray r52, int r53, org.telegram.messenger.support.LongSparseIntArray r54, androidx.collection.LongSparseArray r55, androidx.collection.LongSparseArray r56, java.util.ArrayList r57, androidx.collection.LongSparseArray r58, androidx.collection.LongSparseArray r59, boolean r60, java.util.ArrayList r61, java.util.ArrayList r62, androidx.collection.LongSparseArray r63, androidx.collection.LongSparseArray r64, androidx.collection.LongSparseArray r65, java.util.ArrayList r66) throws org.json.JSONException, java.io.IOException {
+    public void lambda$processUpdateArray$389(int r47, java.util.ArrayList r48, java.util.ArrayList r49, java.util.ArrayList r50, java.util.ArrayList r51, androidx.collection.LongSparseArray r52, int r53, org.telegram.messenger.support.LongSparseIntArray r54, androidx.collection.LongSparseArray r55, androidx.collection.LongSparseArray r56, java.util.ArrayList r57, androidx.collection.LongSparseArray r58, androidx.collection.LongSparseArray r59, boolean r60, java.util.ArrayList r61, java.util.ArrayList r62, androidx.collection.LongSparseArray r63, androidx.collection.LongSparseArray r64, androidx.collection.LongSparseArray r65, java.util.ArrayList r66) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processUpdateArray$389(int, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, androidx.collection.LongSparseArray, int, org.telegram.messenger.support.LongSparseIntArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, boolean, java.util.ArrayList, java.util.ArrayList, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList):void");
     }
 

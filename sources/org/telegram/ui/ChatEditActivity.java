@@ -23,7 +23,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -223,7 +222,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         }
 
         @Override
-        public void openPhotoForEdit(String str, String str2, boolean z) throws IOException {
+        public void openPhotoForEdit(String str, String str2, boolean z) {
             ChatEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
         }
 
@@ -422,7 +421,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatEditActivity.createView(android.content.Context):android.view.View");
     }
 
-    public void lambda$createView$3(View view) throws IOException {
+    public void lambda$createView$3(View view) {
         if (this.imageUpdater.isUploadingImage()) {
             return;
         }
@@ -1700,7 +1699,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 

@@ -1489,12 +1489,19 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase2.executeFast("PRAGMA user_version = 173").stepThis().dispose();
             i5 = 173;
         }
-        if (i5 != 173) {
+        if (i5 == 173) {
+            sQLiteDatabase2.executeFast("CREATE TABLE web_browser_settings(data BLOB)").stepThis().dispose();
+            sQLiteDatabase2.executeFast("PRAGMA user_version = 174").stepThis().dispose();
+            i5 = 174;
+        }
+        if (i5 != 174) {
             return i5;
         }
-        sQLiteDatabase2.executeFast("CREATE TABLE web_browser_settings(data BLOB)").stepThis().dispose();
-        sQLiteDatabase2.executeFast("PRAGMA user_version = 174").stepThis().dispose();
-        return 174;
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_type_date_mid_idx_media_v4 ON media_v4(uid, type, date DESC, mid DESC);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS type_date_mid_uid_idx_media_v4 ON media_v4(type, date DESC, mid DESC, uid);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_topicid_type_date_mid_idx_media_topics ON media_topics(uid, topic_id, type, date DESC, mid DESC);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("PRAGMA user_version = 175").stepThis().dispose();
+        return 175;
     }
 
     private static void executeNoException(SQLiteDatabase sQLiteDatabase, String str) {

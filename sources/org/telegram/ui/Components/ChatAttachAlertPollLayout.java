@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -2377,11 +2376,11 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             return adapterPosition == ChatAttachAlertPollLayout.this.addAnswerRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vQuizRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAnonymousRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vMultipleRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAllowAddingRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vAllowRevotingRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vShuffleRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationTimeRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitDurationHideResultsRow || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitByCountryRow.row || adapterPosition == ChatAttachAlertPollLayout.this.poll2vSubscribersOnlyRow.row || adapterPosition == ChatAttachAlertPollLayout.this.poll2vLimitByCountryListRow;
         }
 
-        public void lambda$onCreateViewHolder$0(View view) throws IOException {
+        public void lambda$onCreateViewHolder$0(View view) {
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(-2);
         }
 
-        public void lambda$onCreateViewHolder$1(View view) throws IOException {
+        public void lambda$onCreateViewHolder$1(View view) {
             ChatAttachAlertPollLayout.this.openAttachOrReplaceMenuForOptions(-3);
         }
 
@@ -2467,7 +2466,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell.setTextRight(98);
                         pollEditTextCell.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) throws IOException {
+                            public final void onClick(View view) {
                                 this.f$0.lambda$onCreateViewHolder$0(view);
                             }
                         });
@@ -2633,7 +2632,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell2.setTextRight(140);
                         pollEditTextCell2.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) throws IOException {
+                            public final void onClick(View view) {
                                 this.f$0.lambda$onCreateViewHolder$3(pollEditTextCell2, view);
                             }
                         });
@@ -2733,7 +2732,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
                         pollEditTextCell3.setTextRight(98);
                         pollEditTextCell3.addAttachView().setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public final void onClick(View view) throws IOException {
+                            public final void onClick(View view) {
                                 this.f$0.lambda$onCreateViewHolder$1(view);
                             }
                         });
@@ -2803,7 +2802,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
             ChatAttachAlertPollLayout.this.deletePollAnswerView(view, (PollEditTextCell) view.getParent(), true);
         }
 
-        public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) throws IOException {
+        public void lambda$onCreateViewHolder$3(PollEditTextCell pollEditTextCell, View view) {
             int adapterPosition;
             RecyclerView.ViewHolder viewHolderFindContainingViewHolder = ChatAttachAlertPollLayout.this.listView.findContainingViewHolder(pollEditTextCell);
             if (viewHolderFindContainingViewHolder == null || (adapterPosition = viewHolderFindContainingViewHolder.getAdapterPosition() - ChatAttachAlertPollLayout.this.answerStartRow) < 0 || adapterPosition >= ChatAttachAlertPollLayout.this.answers.length) {
@@ -2958,7 +2957,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         return MessagesController.getInstance(getCurrentAccount());
     }
 
-    private void openEditOrReplaceMenu(final int i) throws IOException {
+    private void openEditOrReplaceMenu(final int i) {
         ChatAttachAlert chatAttachAlert;
         BaseFragment baseFragment;
         PollAttachedMedia pollAttachedMedia = this.attachedMedia.get(i);
@@ -3354,7 +3353,7 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
         lambda$openAttachMenuForOptions$23(i, null);
     }
 
-    public void openAttachOrReplaceMenuForOptions(int i) throws IOException {
+    public void openAttachOrReplaceMenuForOptions(int i) {
         if (this.attachedMedia.get(i) != null) {
             openEditOrReplaceMenu(i);
         } else {

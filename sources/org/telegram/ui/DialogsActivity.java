@@ -59,7 +59,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -2668,12 +2667,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(View view) throws IOException {
+    public void lambda$createView$11(View view) {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
     }
 
-    public boolean lambda$createView$12(View view) throws IOException {
+    public boolean lambda$createView$12(View view) {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
         return true;
@@ -3247,7 +3246,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$16(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$createView$16(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -6304,7 +6303,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
+    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6376,7 +6375,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, NumberFormatException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -8969,7 +8968,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.shareTopView = shareTopView;
             shareTopView.setLayoutClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws IOException {
+                public final void onClick(View view) {
                     this.f$0.lambda$attachShareTopView$125(view);
                 }
             });
@@ -9008,7 +9007,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateShareTopViewRecipients();
     }
 
-    public void lambda$attachShareTopView$125(View view) throws IOException {
+    public void lambda$attachShareTopView$125(View view) {
         if (hasSharedMediaEntries()) {
             openSharedMediaEditor();
         }
@@ -9034,7 +9033,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         shareTopView.setRecipients(this.currentAccount, this.selectedDialogs);
     }
 
-    private void openSharedMediaEditor() throws IOException {
+    private void openSharedMediaEditor() {
         ArrayList arrayList = this.sharedMediaEntries;
         if (arrayList == null || arrayList.isEmpty() || getParentActivity() == null) {
             return;
@@ -10772,7 +10771,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$createSearchViewPager$150(view, i2, f, f2);
             }
         });
@@ -11065,7 +11064,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$150(View view, int i, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$createSearchViewPager$150(View view, int i, float f, float f2) throws Resources.NotFoundException, NumberFormatException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -11495,7 +11494,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return z ? z3 && !z2 : z2;
     }
 
-    private void showItemOptions() throws IOException {
+    private void showItemOptions() {
         boolean zIsCurrentThemeDark;
         ArrayList<TLRPC.TL_attachMenuBot> arrayList;
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.optionsItem);
