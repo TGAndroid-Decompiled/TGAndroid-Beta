@@ -11563,7 +11563,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             ActionBarMenuSubItem actionBarMenuSubItem = this.proxyMenuSubItem;
             if (actionBarMenuSubItem != null) {
-                actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
+                actionBarMenuSubItem.subtextView.setTextColor(getThemedColor(Theme.key_groupcreate_sectionText));
+                this.proxyMenuSubItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         this.f$0.lambda$showItemOptions$167(itemOptionsMakeOptions, view);

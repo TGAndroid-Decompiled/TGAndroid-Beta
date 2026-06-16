@@ -27,14 +27,14 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.TextViewSwitcher;
 
 public class DialogsEmptyCell extends LinearLayout {
-    private int currentAccount;
+    private final int currentAccount;
     private int currentType;
-    private RLottieImageView imageView;
+    private final RLottieImageView imageView;
     private Runnable onUtyanAnimationEndListener;
     private Consumer onUtyanAnimationUpdateListener;
     private int prevIcon;
-    private TextViewSwitcher subtitleView;
-    private TextView titleView;
+    private final TextViewSwitcher subtitleView;
+    private final TextView titleView;
     private boolean utyanAnimationTriggered;
     private ValueAnimator utyanAnimator;
     private float utyanCollapseProgress;
@@ -58,8 +58,8 @@ public class DialogsEmptyCell extends LinearLayout {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(this.imageView, LayoutHelper.createFrame(100, 100.0f, 17, 52.0f, 4.0f, 52.0f, 0.0f));
-        this.imageView.setOnClickListener(new View.OnClickListener() {
+        addView(rLottieImageView, LayoutHelper.createFrame(100, 100.0f, 17, 52.0f, 4.0f, 52.0f, 0.0f));
+        rLottieImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 this.f$0.lambda$new$1(view);
@@ -68,10 +68,10 @@ public class DialogsEmptyCell extends LinearLayout {
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_chats_nameMessage_threeLines));
-        this.titleView.setTextSize(1, 20.0f);
-        this.titleView.setTypeface(AndroidUtilities.bold());
-        this.titleView.setGravity(17);
-        addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 10.0f, 52.0f, 0.0f));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 10.0f, 52.0f, 0.0f));
         TextViewSwitcher textViewSwitcher = new TextViewSwitcher(context);
         this.subtitleView = textViewSwitcher;
         textViewSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
@@ -80,9 +80,9 @@ public class DialogsEmptyCell extends LinearLayout {
                 return DialogsEmptyCell.lambda$new$2(context);
             }
         });
-        this.subtitleView.setInAnimation(context, R.anim.alpha_in);
-        this.subtitleView.setOutAnimation(context, R.anim.alpha_out);
-        addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
+        textViewSwitcher.setInAnimation(context, R.anim.alpha_in);
+        textViewSwitcher.setOutAnimation(context, R.anim.alpha_out);
+        addView(textViewSwitcher, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
     }
 
     public void lambda$new$1(View view) {
@@ -273,7 +273,7 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         int i2 = this.currentType;
         if (i2 == 0 || i2 == 1) {
-            currentActionBarHeight = (int) (currentActionBarHeight - (((int) (ActionBar.getCurrentActionBarHeight() / 2.0f)) * (1.0f - this.utyanCollapseProgress)));
+            currentActionBarHeight -= (int) ((ActionBar.getCurrentActionBarHeight() / 2.0f) * (1.0f - this.utyanCollapseProgress));
         }
         float f = currentActionBarHeight;
         this.imageView.setTranslationY(f);
@@ -285,18 +285,12 @@ public class DialogsEmptyCell extends LinearLayout {
         int size;
         if (getParent() instanceof View) {
             View view = (View) getParent();
-            size = view.getMeasuredHeight();
-            if (view.getPaddingTop() != 0) {
-                size -= AndroidUtilities.statusBarHeight;
-            }
+            size = (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom();
         } else {
             size = View.MeasureSpec.getSize(i);
         }
         if (size == 0) {
             size = (AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight;
-        }
-        if (getParent() instanceof BlurredRecyclerView) {
-            size -= ((BlurredRecyclerView) getParent()).blurTopPadding;
         }
         return (int) (size + ((AndroidUtilities.dp(320.0f) - size) * this.utyanCollapseProgress));
     }

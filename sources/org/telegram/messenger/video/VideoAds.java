@@ -107,6 +107,10 @@ public class VideoAds {
         }
     }
 
+    public static void dropCache() {
+        cached.clear();
+    }
+
     public static VideoAds make(int i, long j, int i2, BulletinFactory bulletinFactory) {
         VideoAdsLocation videoAdsLocation = new VideoAdsLocation(i, j);
         VideoAds videoAds = cached.get(videoAdsLocation);

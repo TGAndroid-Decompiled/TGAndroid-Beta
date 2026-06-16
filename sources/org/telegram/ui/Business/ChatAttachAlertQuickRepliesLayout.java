@@ -150,7 +150,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         this.iBlur3CaptureView = recyclerListView;
         this.occupyStatusBar = true;
         this.occupyNavigationBar = true;
-        NotificationCenter.getInstance(UserConfig.selectedAccount).listenGlobal(recyclerListView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
+        NotificationCenter.getGlobalInstance().listen(recyclerListView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 this.f$0.lambda$new$1((Object[]) obj);

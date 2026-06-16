@@ -387,10 +387,7 @@ public class NotificationCenter {
         boolean needPostpone(int i, int i2, Object[] objArr);
     }
 
-    public static void lambda$listen$6() {
-    }
-
-    public static void lambda$listenGlobal$3() {
+    public static void lambda$listen$3() {
     }
 
     private static class DelayedPost {
@@ -462,9 +459,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            NotificationCenter$$ExternalSyntheticLambda11 notificationCenter$$ExternalSyntheticLambda11 = new NotificationCenter$$ExternalSyntheticLambda11(this);
-            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda11;
-            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda11, 5017L);
+            NotificationCenter$$ExternalSyntheticLambda5 notificationCenter$$ExternalSyntheticLambda5 = new NotificationCenter$$ExternalSyntheticLambda5(this);
+            this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda5;
+            AndroidUtilities.runOnUIThread(notificationCenter$$ExternalSyntheticLambda5, 5017L);
         }
         return this.animationInProgressPointer;
     }
@@ -504,7 +501,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda11(this);
+        this.checkForExpiredNotifications = new NotificationCenter$$ExternalSyntheticLambda5(this);
     }
 
     public void updateAllowedNotifications(int i, int[] iArr) {
@@ -860,65 +857,19 @@ public class NotificationCenter {
         }
     }
 
-    public Runnable listenGlobal(final View view, final int i, final Utilities.Callback<Object[]> callback) {
-        if (view == null || callback == null) {
-            return new Runnable() {
-                @Override
-                public final void run() {
-                    NotificationCenter.lambda$listenGlobal$3();
-                }
-            };
-        }
-        final NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
-            @Override
-            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                NotificationCenter.lambda$listenGlobal$4(i, callback, i2, i3, objArr);
-            }
-        };
-        final View.OnAttachStateChangeListener onAttachStateChangeListener = new View.OnAttachStateChangeListener() {
-            @Override
-            public void onViewAttachedToWindow(View view2) {
-                NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegate, i);
-            }
-
-            @Override
-            public void onViewDetachedFromWindow(View view2) {
-                NotificationCenter.getGlobalInstance().removeObserver(notificationCenterDelegate, i);
-            }
-        };
-        view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-        return new Runnable() {
-            @Override
-            public final void run() {
-                NotificationCenter.lambda$listenGlobal$5(view, onAttachStateChangeListener, notificationCenterDelegate, i);
-            }
-        };
-    }
-
-    public static void lambda$listenGlobal$4(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
-        if (i2 == i) {
-            callback.run(objArr);
-        }
-    }
-
-    public static void lambda$listenGlobal$5(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
-        view.removeOnAttachStateChangeListener(onAttachStateChangeListener);
-        getGlobalInstance().removeObserver(notificationCenterDelegate, i);
-    }
-
     public Runnable listen(final View view, final int i, final Utilities.Callback<Object[]> callback) {
         if (view == null || callback == null) {
             return new Runnable() {
                 @Override
                 public final void run() {
-                    NotificationCenter.lambda$listen$6();
+                    NotificationCenter.lambda$listen$3();
                 }
             };
         }
         final NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                NotificationCenter.lambda$listen$7(i, callback, i2, i3, objArr);
+                NotificationCenter.lambda$listen$4(i, callback, i2, i3, objArr);
             }
         };
         final View.OnAttachStateChangeListener onAttachStateChangeListener = new View.OnAttachStateChangeListener() {
@@ -936,79 +887,29 @@ public class NotificationCenter {
         return new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$listen$8(view, onAttachStateChangeListener, notificationCenterDelegate, i);
+                this.f$0.lambda$listen$5(view, onAttachStateChangeListener, notificationCenterDelegate, i);
             }
         };
     }
 
-    public static void lambda$listen$7(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
+    public static void lambda$listen$4(int i, Utilities.Callback callback, int i2, int i3, Object[] objArr) {
         if (i2 == i) {
             callback.run(objArr);
         }
     }
 
-    public void lambda$listen$8(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
+    public void lambda$listen$5(View view, View.OnAttachStateChangeListener onAttachStateChangeListener, NotificationCenterDelegate notificationCenterDelegate, int i) {
         view.removeOnAttachStateChangeListener(onAttachStateChangeListener);
         removeObserver(notificationCenterDelegate, i);
     }
 
     public static void listenEmojiLoading(final View view) {
-        getGlobalInstance().listenGlobal(view, emojiLoaded, new Utilities.Callback() {
+        getGlobalInstance().listen(view, emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 view.invalidate();
             }
         });
-    }
-
-    public void listenOnce(final int i, final Runnable runnable) {
-        final NotificationCenterDelegate[] notificationCenterDelegateArr = {notificationCenterDelegate};
-        NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
-            @Override
-            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                this.f$0.lambda$listenOnce$10(i, notificationCenterDelegateArr, runnable, i2, i3, objArr);
-            }
-        };
-        addObserver(notificationCenterDelegate, i);
-    }
-
-    public void lambda$listenOnce$10(int i, NotificationCenterDelegate[] notificationCenterDelegateArr, Runnable runnable, int i2, int i3, Object[] objArr) {
-        if (i2 != i || notificationCenterDelegateArr[0] == null) {
-            return;
-        }
-        if (runnable != null) {
-            runnable.run();
-        }
-        removeObserver(notificationCenterDelegateArr[0], i);
-        notificationCenterDelegateArr[0] = null;
-    }
-
-    public void listenOnce(final int i, final Utilities.Callback3<Integer, Object[], Runnable> callback3) {
-        final NotificationCenterDelegate[] notificationCenterDelegateArr = {notificationCenterDelegate};
-        NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
-            @Override
-            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                this.f$0.lambda$listenOnce$12(i, notificationCenterDelegateArr, callback3, i2, i3, objArr);
-            }
-        };
-        addObserver(notificationCenterDelegate, i);
-    }
-
-    public void lambda$listenOnce$12(final int i, final NotificationCenterDelegate[] notificationCenterDelegateArr, Utilities.Callback3 callback3, int i2, int i3, Object[] objArr) {
-        if (i2 != i || notificationCenterDelegateArr[0] == null || callback3 == null) {
-            return;
-        }
-        callback3.run(Integer.valueOf(i3), objArr, new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$listenOnce$11(notificationCenterDelegateArr, i);
-            }
-        });
-    }
-
-    public void lambda$listenOnce$11(NotificationCenterDelegate[] notificationCenterDelegateArr, int i) {
-        removeObserver(notificationCenterDelegateArr[0], i);
-        notificationCenterDelegateArr[0] = null;
     }
 
     private class UniqArrayList<T> extends ArrayList<T> {

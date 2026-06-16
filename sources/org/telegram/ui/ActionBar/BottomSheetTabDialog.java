@@ -42,12 +42,12 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo1343getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo1341getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.navigationBarPaint = paint;
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView sheetViewMo1343getWindowView = sheet.mo1343getWindowView();
-        this.sheetView = sheetViewMo1343getWindowView;
+        BottomSheetTabsOverlay.SheetView sheetViewMo1341getWindowView = sheet.mo1341getWindowView();
+        this.sheetView = sheetViewMo1341getWindowView;
         View view = new View(getContext()) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
@@ -62,7 +62,7 @@ public class BottomSheetTabDialog extends Dialog {
         };
         this.navigationBar = view;
         paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        WindowView windowView = new WindowView(sheetViewMo1343getWindowView);
+        WindowView windowView = new WindowView(sheetViewMo1341getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
         windowView.addView(view, LayoutHelper.createFrame(-1, -2, 80));

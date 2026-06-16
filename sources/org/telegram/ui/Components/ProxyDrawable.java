@@ -38,6 +38,7 @@ public class ProxyDrawable extends Drawable {
         this.radOffset = 0;
         this.emptyDrawable = context.getResources().getDrawable(R.drawable.outline_shield_plain_24).mutate();
         this.fullDrawable = context.getResources().getDrawable(R.drawable.outline_shield_check).mutate();
+        paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
         paint.setStrokeCap(Paint.Cap.ROUND);

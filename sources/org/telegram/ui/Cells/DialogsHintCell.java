@@ -8,14 +8,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -69,12 +67,8 @@ public class DialogsHintCell extends FrameLayout {
         linksTextView.setEllipsize(truncateAt);
         linksTextView.setMaxLines(5);
         linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 48));
-        NotificationCenter.getGlobalInstance().listenGlobal(this, NotificationCenter.emojiLoaded, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-                this.f$0.lambda$new$0((Object[]) obj);
-            }
-        });
+        NotificationCenter.listenEmojiLoading(textViewEmojis);
+        NotificationCenter.listenEmojiLoading(linksTextView);
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.parentView = linearLayout2;
         linearLayout2.setOrientation(0);
@@ -103,17 +97,6 @@ public class DialogsHintCell extends FrameLayout {
         setClipToPadding(false);
         setClipChildren(false);
         updateColors();
-    }
-
-    public void lambda$new$0(Object[] objArr) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.titleView;
-        if (textViewEmojis != null) {
-            textViewEmojis.invalidate();
-        }
-        LinkSpanDrawable.LinksTextView linksTextView = this.messageView;
-        if (linksTextView != null) {
-            linksTextView.invalidate();
-        }
     }
 
     public void updateColors() {
@@ -202,12 +185,12 @@ public class DialogsHintCell extends FrameLayout {
         super.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$setOnClickListener$1(onClickListener, view);
+                this.f$0.lambda$setOnClickListener$0(onClickListener, view);
             }
         });
     }
 
-    public void lambda$setOnClickListener$1(View.OnClickListener onClickListener, View view) {
+    public void lambda$setOnClickListener$0(View.OnClickListener onClickListener, View view) {
         if (getAlpha() <= 0.5f || onClickListener == null) {
             return;
         }

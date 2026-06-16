@@ -1498,8 +1498,6 @@ public class DatabaseMigrationHelper {
             return i5;
         }
         sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_type_date_mid_idx_media_v4 ON media_v4(uid, type, date DESC, mid DESC);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS type_date_mid_uid_idx_media_v4 ON media_v4(type, date DESC, mid DESC, uid);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS uid_topicid_type_date_mid_idx_media_topics ON media_topics(uid, topic_id, type, date DESC, mid DESC);").stepThis().dispose();
         sQLiteDatabase2.executeFast("PRAGMA user_version = 175").stepThis().dispose();
         return 175;
     }
