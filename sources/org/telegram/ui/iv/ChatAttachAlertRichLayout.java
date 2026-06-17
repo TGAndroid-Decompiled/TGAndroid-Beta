@@ -31,14 +31,11 @@ import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.Iterator;
 import java.util.Set;
-import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
@@ -1865,37 +1862,20 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) throws IllegalAccessException, SecurityException, IllegalArgumentException {
-        MessageObject messageObject;
-        MessageObject messageObject2;
-        long j2;
-        int quickReplyId;
-        if (!hasAnyText() || hasPendingUploads()) {
+    public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
+        if (!hasAnyText() || hasPendingUploads() || flattenRowsToBlocks().isEmpty()) {
             return false;
         }
-        ArrayList arrayListFlattenRowsToBlocks = flattenRowsToBlocks();
-        if (arrayListFlattenRowsToBlocks.isEmpty()) {
-            return false;
-        }
-        ArrayList arrayListCollectInputPhotos = collectInputPhotos();
-        ArrayList arrayListCollectInputDocuments = collectInputDocuments();
+        collectInputPhotos();
+        collectInputDocuments();
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
-            MessageObject replyMessage = chatActivity.getReplyMessage();
-            MessageObject threadMessage = chatActivity.getThreadMessage();
-            long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
-            quickReplyId = chatActivity.getQuickReplyId();
-            messageObject = replyMessage;
-            messageObject2 = threadMessage;
-            j2 = sendMonoForumPeerId;
-        } else {
-            messageObject = null;
-            messageObject2 = null;
-            j2 = 0;
-            quickReplyId = 0;
+            chatActivity.getReplyMessage();
+            chatActivity.getThreadMessage();
+            chatActivity.getSendMonoForumPeerId();
+            chatActivity.getQuickReplyId();
         }
-        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectInputPhotos, arrayListCollectInputDocuments, null, false, this.parentAlert.getDialogId(), messageObject, messageObject2, z, i, i2, null, quickReplyId, j, j2, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }

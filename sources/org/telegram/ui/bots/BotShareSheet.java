@@ -1124,6 +1124,9 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
                 }
                 tL_message.flags |= 512;
                 tL_message.media = tL_messageMediaWebPage;
+            } else if (botInlineMessage instanceof TLRPC.TL_botInlineMessageRichMessage) {
+                tL_message.flags2 |= 8192;
+                tL_message.rich_message = ((TLRPC.TL_botInlineMessageRichMessage) botInlineMessage).rich_message;
             }
         }
         if (photo != null) {

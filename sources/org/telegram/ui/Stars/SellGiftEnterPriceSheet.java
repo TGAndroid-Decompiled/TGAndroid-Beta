@@ -107,7 +107,7 @@ public class SellGiftEnterPriceSheet extends BottomSheet {
         outlineTextContainerView.addView(imageView, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.iconTon = imageView2;
-        imageView2.setImageResource(R.drawable.ton);
+        imageView2.setImageResource(R.drawable.mini_gram_72);
         imageView2.setColorFilter(-13397548);
         outlineTextContainerView.addView(imageView2, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context);

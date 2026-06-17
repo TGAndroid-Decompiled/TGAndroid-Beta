@@ -1021,7 +1021,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
         } else {
             if (this.includeTonOption && this.type == 3) {
                 if (this.tonIcon == null) {
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(46.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)), getContext().getResources().getDrawable(R.drawable.ton).mutate());
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(46.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)), getContext().getResources().getDrawable(R.drawable.mini_gram_72).mutate());
                     combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                     this.tonIcon = combinedDrawable;
                 }

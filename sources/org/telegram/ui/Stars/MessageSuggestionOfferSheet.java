@@ -206,7 +206,7 @@ public class MessageSuggestionOfferSheet extends BottomSheet {
         outlineTextContainerView.addView(imageView2, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.iconTon = imageView3;
-        imageView3.setImageResource(R.drawable.ton);
+        imageView3.setImageResource(R.drawable.mini_gram_72);
         imageView3.setColorFilter(-13397548);
         outlineTextContainerView.addView(imageView3, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context);

@@ -1364,14 +1364,14 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         if (spannableString == null) {
             spannableString = new SpannableString("T");
             if (z) {
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_gram_72);
                 coloredImageSpan.setScale(f, f);
                 coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText2);
                 coloredImageSpan.setRelativeSize(textPaint.getFontMetricsInt());
                 coloredImageSpan.spaceScaleX = 0.9f;
                 spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
             } else {
-                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_ton);
+                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.mini_gram_16);
                 coloredImageSpan2.setScale(f, f);
                 coloredImageSpan2.setTranslateY(f2);
                 coloredImageSpan2.spaceScaleX = 0.95f;
@@ -1674,7 +1674,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setTextColor(Theme.getColor(i, resourcesProvider));
         SpannableString spannableString = new SpannableString("💎");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.ton);
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_gram_72);
         coloredImageSpan.setScale(0.9f, 0.9f);
         coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteBlueText2);
         coloredImageSpan.setRelativeSize(textViewEmojis.getPaint().getFontMetricsInt());

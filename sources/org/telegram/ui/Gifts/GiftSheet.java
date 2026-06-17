@@ -1148,7 +1148,8 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             frameLayout.addView(frameLayout3, LayoutHelper.createFrame(20, 20.0f, 51, 2.0f, 2.0f, 2.0f, 2.0f));
             ImageView imageView2 = new ImageView(context);
             this.tonOnlySaleView = imageView2;
-            imageView2.setImageResource(R.drawable.ton_16);
+            imageView2.setImageResource(R.drawable.mini_gram_14);
+            imageView2.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
             imageView2.setVisibility(8);
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             frameLayout.addView(imageView2, LayoutHelper.createFrame(20, 20.0f, 51, 3.0f, 3.0f, 3.0f, 3.0f));
@@ -1486,7 +1487,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             }
         }
 
-        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r26, boolean r27, boolean r28, boolean r29, boolean r30, boolean r31) {
+        public boolean setStarsGift(org.telegram.tgnet.tl.TL_stars.StarGift r25, boolean r26, boolean r27, boolean r28, boolean r29, boolean r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.GiftCell.setStarsGift(org.telegram.tgnet.tl.TL_stars$StarGift, boolean, boolean, boolean, boolean, boolean):boolean");
         }
 
@@ -1592,7 +1593,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 int iBlendOver = Theme.blendOver(stargiftattributebackdrop.center_color | (-16777216), Theme.multAlpha(stargiftattributebackdrop.pattern_color | (-16777216), 0.55f));
                 this.priceBackground.setBackground(new StarsBackground(1895825407, iBlendOver));
                 this.priceView.setTextColor(-1);
-                this.tonOnlySaleView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), iBlendOver));
+                this.tonOnlySaleView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), iBlendOver));
                 this.tonOnlySaleView.setColorFilter(-1);
                 ((FrameLayout.LayoutParams) this.priceLayout.getLayoutParams()).gravity = 49;
                 ((ViewGroup.MarginLayoutParams) this.priceLayout.getLayoutParams()).topMargin = AndroidUtilities.dp(79.0f);
@@ -1628,7 +1629,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 }
                 this.priceView.setTextColor(z3 ? -1 : Theme.isCurrentThemeDark() ? -1333971 : -4229632);
                 this.priceBackground.setBackground(new StarsBackground(z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
-                this.tonOnlySaleView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
+                this.tonOnlySaleView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), z3 ? 1090519039 : Theme.isCurrentThemeDark() ? 518759725 : 1088989954));
                 this.tonOnlySaleView.setColorFilter(z3 ? -1 : Theme.isCurrentThemeDark() ? -1333971 : -4229632);
                 ((FrameLayout.LayoutParams) this.priceLayout.getLayoutParams()).gravity = 49;
                 ((ViewGroup.MarginLayoutParams) this.priceLayout.getLayoutParams()).topMargin = AndroidUtilities.dp(103.0f);

@@ -795,7 +795,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         if (ApplicationLoader.isBetaBuild() || ApplicationLoader.isStandaloneBuild() || ApplicationLoader.isHuaweiStoreBuild() || (StarsController.getInstance(this.currentAccount, true).balanceAvailable() && (StarsController.getInstance(this.currentAccount, true).hasTransactions() || StarsController.getInstance(this.currentAccount, true).getBalance().positive()))) {
             StarsController tonInstance = StarsController.getTonInstance(this.currentAccount);
             long j = tonInstance.getBalance().amount;
-            int i3 = R.drawable.settings_ton;
+            int i3 = R.drawable.settings_gram_24;
             String string = LocaleController.getString(R.string.MyTON);
             if (tonInstance.balanceAvailable() && j > 0) {
                 starsAmount = StarsIntroActivity.formatStarsAmount(tonInstance.getBalance(), 0.85f, ' ');
