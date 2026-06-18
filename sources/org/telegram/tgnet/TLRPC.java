@@ -64829,19 +64829,27 @@ public class TLRPC {
         }
     }
 
-    public static class TL_contacts_search extends TLObject {
-        public static final int constructor = 301470424;
+    public static class TL_contacts_search extends TLMethod<TL_contacts_found> {
+        public static final int constructor = 99978511;
+        public boolean bots;
+        public boolean broadcasts;
+        public int flags;
         public int limit;
         public String q;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i, boolean z) {
+        public TL_contacts_found deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
             return TL_contacts_found.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(301470424);
+            outputSerializedData.writeInt32(99978511);
+            int flag = TLObject.setFlag(this.flags, 1, this.broadcasts);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.bots);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
             outputSerializedData.writeString(this.q);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -77311,16 +77319,16 @@ public class TLRPC {
         public InputPeer peer;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peer = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.id = inputSerializedData.readInt32(z);
-        }
-
-        @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1979852936);
             this.peer.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.id);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = InputPeer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.id = inputSerializedData.readInt32(z);
         }
     }
 }

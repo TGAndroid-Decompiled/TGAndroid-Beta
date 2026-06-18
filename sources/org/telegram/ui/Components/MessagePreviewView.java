@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -317,7 +318,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) {
+            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
                 if (view instanceof ChatMessageCell) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) view;
                     boolean zDrawChild = super.drawChild(canvas, view, j);

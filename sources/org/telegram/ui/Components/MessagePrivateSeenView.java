@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -52,6 +53,7 @@ public class MessagePrivateSeenView extends FrameLayout {
     float minWidth;
     private final TextView premiumTextView;
     private final Theme.ResourcesProvider resourcesProvider;
+    private final int sent_date;
     private final int type;
     private final LinearLayout valueLayout;
     private final TextView valueTextView;
@@ -71,12 +73,17 @@ public class MessagePrivateSeenView extends FrameLayout {
         this.dialogId = messageObject.getDialogId();
         this.messageId = messageObject.getId();
         TLRPC.Message message = messageObject.messageOwner;
+        this.sent_date = message == null ? 0 : message.date;
         this.edit_date = message == null ? 0 : message.edit_date;
         this.fwd_date = (message == null || (messageFwdHeader = message.fwd_from) == null) ? 0 : messageFwdHeader.date;
         ImageView imageView = new ImageView(context);
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         if (i == 1) {
-            i2 = R.drawable.menu_edited_stamp;
+            if (AppGlobalConfig.getInstance(i3).messagePrimaryEditedDate.get()) {
+                i2 = R.drawable.outline_message_time_24;
+            } else {
+                i2 = R.drawable.menu_edited_stamp;
+            }
         } else if (i == 2) {
             i2 = R.drawable.menu_forward_stamp;
         } else if (messageObject.isVoice()) {
@@ -117,12 +124,19 @@ public class MessagePrivateSeenView extends FrameLayout {
     }
 
     public void request() {
+        String pmEditedDate;
         int i = this.type;
         if (i == 1) {
             this.valueLayout.setAlpha(1.0f);
             this.loadingView.setAlpha(0.0f);
             this.premiumTextView.setVisibility(8);
-            this.valueTextView.setText(LocaleController.formatPmEditedDate(this.edit_date));
+            TextView textView = this.valueTextView;
+            if (AppGlobalConfig.getInstance(this.currentAccount).messagePrimaryEditedDate.get()) {
+                pmEditedDate = LocaleController.formatPmSentDate(this.sent_date);
+            } else {
+                pmEditedDate = LocaleController.formatPmEditedDate(this.edit_date);
+            }
+            textView.setText(pmEditedDate);
             return;
         }
         if (i == 2) {

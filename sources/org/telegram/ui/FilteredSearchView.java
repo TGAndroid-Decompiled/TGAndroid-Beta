@@ -23,6 +23,7 @@ import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -253,7 +254,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.recyclerListView = recyclerListView;
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) {
+            public final void onItemClick(View view, int i) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$new$1(view, i);
             }
         });
@@ -324,7 +325,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         checkUi_floatingDateView();
     }
 
-    public void lambda$new$1(View view, int i) {
+    public void lambda$new$1(View view, int i) throws Resources.NotFoundException, IOException {
         if (view instanceof SharedDocumentCell) {
             onItemClick(i, view, ((SharedDocumentCell) view).getMessage(), 0);
             return;
@@ -957,12 +958,12 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 SharedPhotoVideoCell sharedPhotoVideoCell = new SharedPhotoVideoCell(this.mContext, 1);
                 sharedPhotoVideoCell.setDelegate(new SharedPhotoVideoCell.SharedPhotoVideoCellDelegate() {
                     @Override
-                    public void didClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) {
+                    public void didClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) throws Resources.NotFoundException, IOException {
                         FilteredSearchView.this.onItemClick(i2, sharedPhotoVideoCell2, messageObject, i3);
                     }
 
                     @Override
-                    public boolean didLongClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) {
+                    public boolean didLongClickItem(SharedPhotoVideoCell sharedPhotoVideoCell2, int i2, MessageObject messageObject, int i3) throws Resources.NotFoundException, IOException {
                         if (!FilteredSearchView.this.uiCallback.actionModeShowing()) {
                             return FilteredSearchView.this.onItemLongClick(messageObject, sharedPhotoVideoCell2, i3);
                         }
@@ -1047,7 +1048,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         this.useFromUserAsAvatar = z;
     }
 
-    public void onItemClick(int i, View view, MessageObject messageObject, int i2) {
+    public void onItemClick(int i, View view, MessageObject messageObject, int i2) throws Resources.NotFoundException, IOException {
         if (messageObject == null) {
             return;
         }

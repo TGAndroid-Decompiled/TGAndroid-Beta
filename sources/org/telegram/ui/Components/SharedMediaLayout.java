@@ -51,6 +51,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
@@ -2223,7 +2224,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
     }
 
-    public void lambda$new$28(MediaPage mediaPage, final Context context, final long j, final Theme.ResourcesProvider resourcesProvider, View view, int i, final float f, final float f2) {
+    public void lambda$new$28(MediaPage mediaPage, final Context context, final long j, final Theme.ResourcesProvider resourcesProvider, View view, int i, final float f, final float f2) throws Resources.NotFoundException, IOException {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         long peerId;
         int i2 = mediaPage.selectedType;
@@ -5749,7 +5750,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         closeActionMode(false);
     }
 
-    private void onItemClick(int i, View view, MessageObject messageObject, int i2, int i3) {
+    private void onItemClick(int i, View view, MessageObject messageObject, int i2, int i3) throws Resources.NotFoundException, IOException {
         if (messageObject == null || this.photoVideoChangeColumnsAnimation) {
             return;
         }
@@ -7168,7 +7169,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
 
                 @Override
-                public void didPressPollMedia(final ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, final TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i2) {
+                public void didPressPollMedia(final ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, final TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i2) throws Resources.NotFoundException, IOException {
                     int size;
                     TLRPC.Document document;
                     TLRPC.PollResults pollResults;

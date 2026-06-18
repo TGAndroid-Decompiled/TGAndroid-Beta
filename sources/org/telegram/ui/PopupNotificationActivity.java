@@ -20,6 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
@@ -124,7 +125,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onCreate(Bundle bundle) throws Resources.NotFoundException {
+    protected void onCreate(Bundle bundle) throws Resources.NotFoundException, IOException {
         super.onCreate(bundle);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);

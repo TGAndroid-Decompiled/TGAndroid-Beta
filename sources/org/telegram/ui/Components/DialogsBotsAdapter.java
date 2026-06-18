@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -67,7 +68,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         this.searchMessagesRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$8();
+                this.f$0.lambda$new$7();
             }
         };
         this.first = true;
@@ -323,11 +324,12 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         this.loadingBots = true;
         final TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
         tL_contacts_search.limit = 30;
+        tL_contacts_search.bots = true;
         tL_contacts_search.q = this.query;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_search, new RequestDelegate() {
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_contacts_search, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$searchMessages$7(tL_contacts_search, tLObject, tL_error);
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$searchMessages$6(tL_contacts_search, (TLRPC.TL_contacts_found) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -377,25 +379,14 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         }
     }
 
-    public void lambda$searchMessages$7(final TLRPC.TL_contacts_search tL_contacts_search, final TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$searchMessages$6(tL_contacts_search, tLObject);
-            }
-        });
-    }
-
-    public void lambda$searchMessages$6(TLRPC.TL_contacts_search tL_contacts_search, TLObject tLObject) {
-        TLRPC.TL_contacts_found tL_contacts_found;
+    public void lambda$searchMessages$6(TLRPC.TL_contacts_search tL_contacts_search, TLRPC.TL_contacts_found tL_contacts_found, TLRPC.TL_error tL_error) {
         TLRPC.User user;
         TLRPC.User user2;
         if (!TextUtils.equals(tL_contacts_search.q, this.query) || TextUtils.isEmpty(this.query)) {
             return;
         }
         this.loadingBots = false;
-        if (tLObject instanceof TLRPC.TL_contacts_found) {
-            tL_contacts_found = (TLRPC.TL_contacts_found) tLObject;
+        if (tL_contacts_found != null) {
             MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tL_contacts_found.users, tL_contacts_found.chats, true, true);
             MessagesController.getInstance(this.currentAccount).putUsers(tL_contacts_found.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tL_contacts_found.chats, false);
@@ -432,7 +423,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
         update(true);
     }
 
-    public void lambda$new$8() {
+    public void lambda$new$7() {
         searchMessages(false);
     }
 

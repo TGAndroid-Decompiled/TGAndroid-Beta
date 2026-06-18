@@ -20,6 +20,7 @@ public class AppGlobalConfig {
     public final ConfigBoolean disableBlurInLightTheme;
     public final ConfigInt groupCallMessageLengthLimit;
     public final ConfigTime groupCallMessageTtl;
+    public final ConfigBoolean messagePrimaryEditedDate;
     public final ConfigTime messageTypingDraftTtl;
     public final ConfigString musicSearchUsername;
     public final ConfigBoolean needAgeVideoVerification;
@@ -109,6 +110,7 @@ public class AppGlobalConfig {
         this.aicomposeTonePromptLengthMax = ofInt("aicompose_tone_prompt_length_max", 1024);
         this.aicomposeToneSavedLimitDefault = ofInt("aicompose_tone_saved_limit_default", 5);
         this.aicomposeToneSavedLimitPremium = ofInt("aicompose_tone_saved_limit_premium", 20);
+        this.messagePrimaryEditedDate = ofBoolean("message_primary_edited_date", false);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
@@ -397,5 +399,9 @@ public class AppGlobalConfig {
         ConfigTime configTime = new ConfigTime(str, timeUnit, j);
         this.map.put(str, configTime.handler);
         return configTime;
+    }
+
+    public static AppGlobalConfig getInstance(int i) {
+        return MessagesController.getInstance(i).config;
     }
 }
