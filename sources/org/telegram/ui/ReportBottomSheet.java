@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
@@ -52,6 +53,7 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class ReportBottomSheet extends BottomSheet {
     private final Paint backgroundPaint;
     private final long dialogId;
+    private final boolean ephemeral;
     private Listener listener;
     private final ArrayList messageIds;
     private final boolean sponsored;
@@ -76,21 +78,22 @@ public class ReportBottomSheet extends BottomSheet {
         void onReported();
     }
 
-    public ReportBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, long j, ArrayList arrayList) {
-        this(false, context, resourcesProvider, j, z, arrayList, null);
+    private ReportBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, long j, ArrayList arrayList) {
+        this(false, context, resourcesProvider, j, z, z2, arrayList, null);
     }
 
-    public ReportBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, long j, byte[] bArr) {
-        this(true, context, resourcesProvider, j, false, null, bArr);
+    private ReportBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, long j, byte[] bArr) {
+        this(true, context, resourcesProvider, j, false, false, null, bArr);
     }
 
-    public ReportBottomSheet(boolean z, final Context context, Theme.ResourcesProvider resourcesProvider, long j, boolean z2, ArrayList arrayList, byte[] bArr) {
+    private ReportBottomSheet(boolean z, final Context context, Theme.ResourcesProvider resourcesProvider, long j, boolean z2, boolean z3, ArrayList arrayList, byte[] bArr) {
         super(context, true, resourcesProvider);
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
         this.sponsored = z;
         this.messageIds = arrayList;
         this.stories = z2;
+        this.ephemeral = z3;
         this.sponsoredId = bArr;
         this.dialogId = j;
         int i = Theme.key_dialogBackground;
@@ -106,8 +109,8 @@ public class ReportBottomSheet extends BottomSheet {
             }
 
             @Override
-            public void onTabAnimationUpdate(boolean z3) {
-                super.onTabAnimationUpdate(z3);
+            public void onTabAnimationUpdate(boolean z4) {
+                super.onTabAnimationUpdate(z4);
                 ((BottomSheet) ReportBottomSheet.this).containerView.invalidate();
             }
 
@@ -155,7 +158,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
-    public ReportBottomSheet setReportChooseOption(final TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption) {
+    private ReportBottomSheet setReportChooseOption(final TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption) {
         final View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
         if (view instanceof Page) {
@@ -178,7 +181,7 @@ public class ReportBottomSheet extends BottomSheet {
         ((Page) viewArr[0]).setOption(tL_channels_sponsoredMessageReportResultChooseOption);
     }
 
-    public ReportBottomSheet setReportChooseOption(final TLRPC.TL_reportResultChooseOption tL_reportResultChooseOption) {
+    private ReportBottomSheet setReportChooseOption(final TLRPC.TL_reportResultChooseOption tL_reportResultChooseOption) {
         final View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
         if (view instanceof Page) {
@@ -201,7 +204,7 @@ public class ReportBottomSheet extends BottomSheet {
         ((Page) viewArr[0]).setOption(tL_reportResultChooseOption);
     }
 
-    public ReportBottomSheet setReportChooseOption(final TLRPC.TL_reportResultAddComment tL_reportResultAddComment) {
+    private ReportBottomSheet setReportChooseOption(final TLRPC.TL_reportResultAddComment tL_reportResultAddComment) {
         final View[] viewPages = this.viewPager.getViewPages();
         View view = viewPages[0];
         if (view instanceof Page) {
@@ -224,7 +227,7 @@ public class ReportBottomSheet extends BottomSheet {
         ((Page) viewArr[0]).setOption(tL_reportResultAddComment);
     }
 
-    public ReportBottomSheet setListener(Listener listener) {
+    private ReportBottomSheet setListener(Listener listener) {
         this.listener = listener;
         return this;
     }
@@ -271,12 +274,22 @@ public class ReportBottomSheet extends BottomSheet {
                 tL_stories_report.message = str != null ? str : "";
                 tL_stories_report.option = bArr;
                 tL_messages_report = tL_stories_report;
+            } else if (this.ephemeral) {
+                TLRPC.TL_ephemeral_reportMessage tL_ephemeral_reportMessage = new TLRPC.TL_ephemeral_reportMessage();
+                tL_ephemeral_reportMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                ArrayList arrayList2 = this.messageIds;
+                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                    tL_ephemeral_reportMessage.id = ((Integer) this.messageIds.get(0)).intValue();
+                }
+                tL_ephemeral_reportMessage.message = str != null ? str : "";
+                tL_ephemeral_reportMessage.option = bArr;
+                tL_messages_report = tL_ephemeral_reportMessage;
             } else {
                 TLRPC.TL_messages_report tL_messages_report2 = new TLRPC.TL_messages_report();
                 tL_messages_report2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
-                ArrayList arrayList2 = this.messageIds;
-                if (arrayList2 != null) {
-                    tL_messages_report2.id.addAll(arrayList2);
+                ArrayList arrayList3 = this.messageIds;
+                if (arrayList3 != null) {
+                    tL_messages_report2.id.addAll(arrayList3);
                 }
                 tL_messages_report2.message = str != null ? str : "";
                 tL_messages_report2.option = bArr;
@@ -839,7 +852,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, dialogId, false, new ArrayList(), null, null, new byte[0], null, null);
+        open(currentAccount, context, dialogId, false, false, new ArrayList(), null, null, new byte[0], null, null);
     }
 
     public static void openChat(BaseFragment baseFragment, long j) {
@@ -851,7 +864,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, j, false, new ArrayList(), null, null, new byte[0], null, null);
+        open(currentAccount, context, j, false, false, new ArrayList(), null, null, new byte[0], null, null);
     }
 
     public static void openMessage(BaseFragment baseFragment, MessageObject messageObject) {
@@ -863,7 +876,7 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, messageObject.getDialogId(), false, new ArrayList(Collections.singleton(Integer.valueOf(messageObject.getId()))), BulletinFactory.of(baseFragment), baseFragment.getResourceProvider(), new byte[0], null, null);
+        open(currentAccount, context, messageObject.getDialogId(), false, messageObject.isEphemeral(), new ArrayList(Collections.singleton(Integer.valueOf(messageObject.isEphemeral() ? messageObject.getEphemeralId() : messageObject.getId()))), BulletinFactory.of(baseFragment), baseFragment.getResourceProvider(), new byte[0], null, null);
     }
 
     public static void continueReport(ChatActivity chatActivity, byte[] bArr, String str, ArrayList arrayList, Utilities.Callback callback) {
@@ -876,15 +889,16 @@ public class ReportBottomSheet extends BottomSheet {
         if (context == null) {
             return;
         }
-        open(currentAccount, context, dialogId, false, arrayList, BulletinFactory.of(chatActivity), chatActivity.getResourceProvider(), bArr, str, callback);
+        open(currentAccount, context, dialogId, false, false, arrayList, BulletinFactory.of(chatActivity), chatActivity.getResourceProvider(), bArr, str, callback);
     }
 
     public static void openStory(int i, Context context, TL_stories.StoryItem storyItem, BulletinFactory bulletinFactory, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback) {
-        open(i, context, storyItem.dialogId, true, new ArrayList(Collections.singleton(Integer.valueOf(storyItem.id))), bulletinFactory, resourcesProvider, new byte[0], null, callback);
+        open(i, context, storyItem.dialogId, true, false, new ArrayList(Collections.singleton(Integer.valueOf(storyItem.id))), bulletinFactory, resourcesProvider, new byte[0], null, callback);
     }
 
-    public static void open(int i, final Context context, final long j, final boolean z, final ArrayList arrayList, final BulletinFactory bulletinFactory, final Theme.ResourcesProvider resourcesProvider, byte[] bArr, String str, final Utilities.Callback callback) {
+    private static void open(int i, final Context context, final long j, final boolean z, final boolean z2, final ArrayList arrayList, final BulletinFactory bulletinFactory, final Theme.ResourcesProvider resourcesProvider, byte[] bArr, String str, final Utilities.Callback callback) {
         TLRPC.TL_messages_report tL_messages_report;
+        TLRPC.TL_messages_report tL_messages_report2;
         if (context == null || arrayList == null) {
             return;
         }
@@ -895,30 +909,47 @@ public class ReportBottomSheet extends BottomSheet {
             tL_stories_report.id.addAll(arrayList);
             tL_stories_report.option = bArr;
             tL_stories_report.message = TextUtils.isEmpty(str) ? "" : str;
-            tL_messages_report = tL_stories_report;
+            tL_messages_report2 = tL_stories_report;
         } else {
-            TLRPC.TL_messages_report tL_messages_report2 = new TLRPC.TL_messages_report();
-            tL_messages_report2.peer = MessagesController.getInstance(i).getInputPeer(j);
-            tL_messages_report2.id.addAll(arrayList);
-            tL_messages_report2.option = bArr;
-            tL_messages_report2.message = TextUtils.isEmpty(str) ? "" : str;
-            tL_messages_report = tL_messages_report2;
+            if (z2) {
+                TLRPC.TL_ephemeral_reportMessage tL_ephemeral_reportMessage = new TLRPC.TL_ephemeral_reportMessage();
+                tL_ephemeral_reportMessage.peer = MessagesController.getInstance(i).getInputPeer(j);
+                if (!arrayList.isEmpty()) {
+                    tL_ephemeral_reportMessage.id = ((Integer) arrayList.get(0)).intValue();
+                }
+                tL_ephemeral_reportMessage.message = TextUtils.isEmpty(str) ? "" : str;
+                tL_ephemeral_reportMessage.option = bArr;
+                tL_messages_report = tL_ephemeral_reportMessage;
+                ConnectionsManager.getInstance(i).sendRequest(tL_messages_report, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                        ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, z2, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
+                    }
+                });
+            }
+            TLRPC.TL_messages_report tL_messages_report3 = new TLRPC.TL_messages_report();
+            tL_messages_report3.peer = MessagesController.getInstance(i).getInputPeer(j);
+            tL_messages_report3.id.addAll(arrayList);
+            tL_messages_report3.option = bArr;
+            tL_messages_report3.message = TextUtils.isEmpty(str) ? "" : str;
+            tL_messages_report2 = tL_messages_report3;
         }
+        tL_messages_report = tL_messages_report2;
         ConnectionsManager.getInstance(i).sendRequest(tL_messages_report, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
+                ReportBottomSheet.lambda$open$9(context, resourcesProvider, z, z2, j, arrayList, zArr, callback, bulletinFactory, tLObject, tL_error);
             }
         });
     }
 
-    public static void lambda$open$9(final Context context, final Theme.ResourcesProvider resourcesProvider, final boolean z, final long j, final ArrayList arrayList, final boolean[] zArr, final Utilities.Callback callback, final BulletinFactory bulletinFactory, final TLObject tLObject, TLRPC.TL_error tL_error) {
+    public static void lambda$open$9(final Context context, final Theme.ResourcesProvider resourcesProvider, final boolean z, final boolean z2, final long j, final ArrayList arrayList, final boolean[] zArr, final Utilities.Callback callback, final BulletinFactory bulletinFactory, final TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             if ((tLObject instanceof TLRPC.TL_reportResultChooseOption) || (tLObject instanceof TLRPC.TL_reportResultAddComment)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ReportBottomSheet.lambda$open$6(context, resourcesProvider, z, j, arrayList, tLObject, zArr, callback, bulletinFactory);
+                        ReportBottomSheet.lambda$open$6(context, resourcesProvider, z, z2, j, arrayList, tLObject, zArr, callback, bulletinFactory);
                     }
                 });
             } else if (tLObject instanceof TLRPC.TL_reportResultReported) {
@@ -932,8 +963,8 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
-    public static void lambda$open$6(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, long j, ArrayList arrayList, TLObject tLObject, final boolean[] zArr, final Utilities.Callback callback, BulletinFactory bulletinFactory) {
-        ReportBottomSheet reportBottomSheet = new ReportBottomSheet(context, resourcesProvider, z, j, arrayList);
+    public static void lambda$open$6(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2, long j, ArrayList arrayList, TLObject tLObject, final boolean[] zArr, final Utilities.Callback callback, BulletinFactory bulletinFactory) {
+        ReportBottomSheet reportBottomSheet = new ReportBottomSheet(context, resourcesProvider, z, z2, j, arrayList);
         if (tLObject instanceof TLRPC.TL_reportResultChooseOption) {
             reportBottomSheet.setReportChooseOption((TLRPC.TL_reportResultChooseOption) tLObject);
         } else if (tLObject instanceof TLRPC.TL_reportResultAddComment) {
@@ -1066,7 +1097,7 @@ public class ReportBottomSheet extends BottomSheet {
             } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                         ReportBottomSheet.lambda$openSponsored$12(chatActivity, context, resourcesProvider, messageObject);
                     }
                 }, 200L);
@@ -1075,7 +1106,7 @@ public class ReportBottomSheet extends BottomSheet {
                 if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() {
+                        public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                             ReportBottomSheet.lambda$openSponsored$13(chatActivity, i, messageObject);
                         }
                     }, 200L);
@@ -1089,7 +1120,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 ReportBottomSheet.lambda$openSponsored$15(chatActivity, context, resourcesProvider, messageObject);
             }
         }, 200L);
@@ -1120,13 +1151,13 @@ public class ReportBottomSheet extends BottomSheet {
             final MessageObject messageObject = this.val$message;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     ReportBottomSheet.AnonymousClass4.lambda$onReported$1(chatActivity, context, resourcesProvider, messageObject);
                 }
             }, 200L);
         }
 
-        public static void lambda$onReported$1(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
+        public static void lambda$onReported$1(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
                 @Override
                 public final void run() {
@@ -1143,13 +1174,13 @@ public class ReportBottomSheet extends BottomSheet {
             final MessageObject messageObject = this.val$message;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     ReportBottomSheet.AnonymousClass4.lambda$onHidden$2(chatActivity, messageObject);
                 }
             }, 200L);
         }
 
-        public static void lambda$onHidden$2(ChatActivity chatActivity, MessageObject messageObject) {
+        public static void lambda$onHidden$2(ChatActivity chatActivity, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             BulletinFactory.of(chatActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             chatActivity.removeFromSponsored(messageObject);
             chatActivity.removeMessageWithThanos(messageObject);
@@ -1161,7 +1192,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
-    public static void lambda$openSponsored$12(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
+    public static void lambda$openSponsored$12(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
@@ -1172,14 +1203,14 @@ public class ReportBottomSheet extends BottomSheet {
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$13(ChatActivity chatActivity, int i, MessageObject messageObject) {
+    public static void lambda$openSponsored$13(ChatActivity chatActivity, int i, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
         MessagesController.getInstance(i).disableAds(false);
         chatActivity.removeFromSponsored(messageObject);
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$15(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
+    public static void lambda$openSponsored$15(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {

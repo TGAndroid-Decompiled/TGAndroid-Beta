@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -315,7 +316,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
+        public void sendEmoji(TLRPC.Document document) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             if (SuggestEmojiView.this.enterView == null) {
                 return;
             }

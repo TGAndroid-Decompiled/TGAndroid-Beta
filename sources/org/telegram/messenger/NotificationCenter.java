@@ -78,6 +78,8 @@ public class NotificationCenter {
     public static final int closeSearchByActiveAction = 283;
     public static final int commentsRead = 12;
     public static final int commonChatsLoaded = 239;
+    public static final int communityPendingRequestsUpdate = 345;
+    public static final int communitySwitchedCollapsed = 346;
     public static final int conferenceEmojiUpdated = 242;
     public static final int configLoaded = 179;
     public static final int contactsDidLoad = 25;
@@ -327,7 +329,7 @@ public class NotificationCenter {
     public static final int timezonesUpdated = 214;
     public static final int tlSchemeParseException = 339;
     public static final int topicsDidLoaded = 317;
-    private static int totalEvents = 345;
+    private static int totalEvents = 347;
     public static final int translationModelDownloaded = 335;
     public static final int translationModelDownloading = 334;
     public static final int twoStepPasswordChanged = 52;

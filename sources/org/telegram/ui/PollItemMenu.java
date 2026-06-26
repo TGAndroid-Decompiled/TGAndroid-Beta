@@ -34,7 +34,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -374,7 +374,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) throws IOException {
+                protected void onDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     canvas.save();
                     int pollIndex = getPollIndex(bArr);
                     float pollButtonTop = getPollButtonTop(pollIndex);
@@ -405,7 +405,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     this.resultsPollButtonOffset = (-AndroidUtilities.dp(7.0f)) * PollItemMenu.this.openProgress;
@@ -880,7 +880,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) throws IOException {
+                public void drawOverlays(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -1408,7 +1408,7 @@ public class PollItemMenu extends Dialog {
                 final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                 itemOptionsMakeSwipeback.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
                 itemOptionsMakeSwipeback.setBlurBackgroundForSwipeback(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
-                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda350(itemOptionsMakeOptions));
+                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda392(itemOptionsMakeOptions));
                 itemOptionsMakeSwipeback.addGap();
                 arrayList = arrayList3;
                 z2 = z4;

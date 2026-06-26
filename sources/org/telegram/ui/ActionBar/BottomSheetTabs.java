@@ -26,6 +26,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -145,7 +146,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
         new Utilities.Callback() {
             @Override
-            public final void run(Object obj) throws Resources.NotFoundException {
+            public final void run(Object obj) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$openTab$0(webTabData, (BaseFragment) obj);
             }
         }.run(lastFragment);
@@ -164,7 +165,7 @@ public class BottomSheetTabs extends FrameLayout {
         }
     }
 
-    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) throws Resources.NotFoundException {
+    public void lambda$openTab$0(WebTabData webTabData, BaseFragment baseFragment) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         if (baseFragment == null) {
             return;
         }
@@ -653,7 +654,7 @@ public class BottomSheetTabs extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         getTabs();
         ArrayList<TabDrawable> tabDrawables2 = getTabDrawables();
         if (this.bottomTabsProgress <= 0.0f) {
@@ -931,7 +932,7 @@ public class BottomSheetTabs extends FrameLayout {
             this.expandProgress = f;
         }
 
-        public void draw(Canvas canvas, RectF rectF, float f, float f2, float f3) {
+        public void draw(Canvas canvas, RectF rectF, float f, float f2, float f3) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             int iBlendARGB = ColorUtils.blendARGB(this.backgroundColor, this.tabColor, this.expandProgress);
             this.backgroundPaint.setColor(iBlendARGB);
             float f4 = f2 * 255.0f;

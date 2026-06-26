@@ -15,9 +15,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TextStyleSpan;
 
@@ -31,6 +34,7 @@ public class CodeHighlighting {
     public static final int MATCH_OPERATOR = 2;
     public static final int MATCH_STRING = 4;
     private static HashMap<String, TokenPattern[]> compiledPatterns;
+    private static HashSet<String> languages;
     private static final ConcurrentHashMap<String, Highlighting> processedHighlighting = new ConcurrentHashMap<>();
 
     public static int getTextSizeDecrement(int i) {
@@ -233,6 +237,80 @@ public class CodeHighlighting {
         return highlighting.result;
     }
 
+    public static void highlightEditable(CharSequence charSequence, final String str, final Utilities.Callback<SpannableString> callback) {
+        if (callback == null) {
+            return;
+        }
+        if (charSequence == null) {
+            charSequence = "";
+        }
+        final SpannableString spannableString = new SpannableString(charSequence);
+        if (TextUtils.isEmpty(str) || spannableString.length() == 0) {
+            callback.run(spannableString);
+        } else {
+            final String string = spannableString.toString();
+            Utilities.searchQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() throws Throwable {
+                    CodeHighlighting.lambda$highlightEditable$1(string, str, spannableString, callback);
+                }
+            });
+        }
+    }
+
+    public static void lambda$highlightEditable$1(String str, String str2, final SpannableString spannableString, final Utilities.Callback callback) throws Throwable {
+        if (compiledPatterns == null) {
+            parse();
+        }
+        final ArrayList arrayList = new ArrayList();
+        try {
+            HashMap<String, TokenPattern[]> map = compiledPatterns;
+            colorize(spannableString, 0, spannableString.length(), tokenize(str, map == null ? null : map.get(str2), 0).toArray(), -1, arrayList);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                CodeHighlighting.lambda$highlightEditable$0(arrayList, spannableString, callback);
+            }
+        });
+    }
+
+    public static void lambda$highlightEditable$0(ArrayList arrayList, SpannableString spannableString, Utilities.Callback callback) {
+        for (int i = 0; i < arrayList.size(); i++) {
+            CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);
+            spannableString.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
+        }
+        callback.run(spannableString);
+    }
+
+    public static void prepare() {
+        if (compiledPatterns != null) {
+            return;
+        }
+        Utilities.searchQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() throws Throwable {
+                CodeHighlighting.lambda$prepare$2();
+            }
+        });
+    }
+
+    public static void lambda$prepare$2() throws Throwable {
+        if (compiledPatterns == null) {
+            parse();
+        }
+    }
+
+    public static Set<String> getLanguages() {
+        HashSet<String> hashSet = languages;
+        if (hashSet == null) {
+            return null;
+        }
+        return hashSet;
+    }
+
     public static void highlight(final Spannable spannable, final int i, final int i2, final String str, int i3, TextStyleSpan.TextStyleRun textStyleRun, boolean z) {
         if (spannable == null) {
             return;
@@ -240,12 +318,12 @@ public class CodeHighlighting {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                CodeHighlighting.lambda$highlight$2(spannable, i, i2, str);
+                CodeHighlighting.lambda$highlight$5(spannable, i, i2, str);
             }
         });
     }
 
-    public static void lambda$highlight$2(final Spannable spannable, int i, int i2, String str) throws Throwable {
+    public static void lambda$highlight$5(final Spannable spannable, int i, int i2, String str) throws Throwable {
         if (compiledPatterns == null) {
             parse();
         }
@@ -276,7 +354,7 @@ public class CodeHighlighting {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    CodeHighlighting.lambda$highlight$0(spannable);
+                    CodeHighlighting.lambda$highlight$3(spannable);
                 }
             });
             return;
@@ -284,17 +362,17 @@ public class CodeHighlighting {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CodeHighlighting.lambda$highlight$1(arrayList, spannable);
+                CodeHighlighting.lambda$highlight$4(arrayList, spannable);
             }
         });
     }
 
-    public static void lambda$highlight$0(Spannable spannable) {
+    public static void lambda$highlight$3(Spannable spannable) {
         ((LockedSpannableString) spannable).unlock();
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
     }
 
-    public static void lambda$highlight$1(ArrayList arrayList, Spannable spannable) {
+    public static void lambda$highlight$4(ArrayList arrayList, Spannable spannable) {
         long jCurrentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < arrayList.size(); i++) {
             CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);

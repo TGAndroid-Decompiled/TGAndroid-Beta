@@ -17,7 +17,7 @@ public class Vector<T extends TLObject> extends TLObject {
         T deserialize(InputSerializedData inputSerializedData, int i, boolean z);
     }
 
-    public static boolean validateSize(int i, int i2, int i3) {
+    private static boolean validateSize(int i, int i2, int i3) {
         return i >= 0 && i2 > 0 && ((long) i) * ((long) i2) <= ((long) i3);
     }
 
@@ -122,18 +122,6 @@ public class Vector<T extends TLObject> extends TLObject {
         Vector<Int> vector = new Vector<>(new Vector$$ExternalSyntheticLambda5());
         vector.readParams(inputSerializedData, z);
         return vector;
-    }
-
-    public ArrayList<java.lang.Long> toLongArray() {
-        ArrayList<java.lang.Long> arrayList = new ArrayList<>();
-        Iterator<T> it = this.objects.iterator();
-        while (it.hasNext()) {
-            T next = it.next();
-            if (next instanceof Long) {
-                arrayList.add(java.lang.Long.valueOf(((Long) next).value));
-            }
-        }
-        return arrayList;
     }
 
     public static <T extends TLObject> void serialize(OutputSerializedData outputSerializedData, ArrayList<T> arrayList) {

@@ -49,6 +49,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.cast.framework.CastContext;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -93,7 +94,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CastSync;
 import org.telegram.ui.Cells.AudioPlayerCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda350;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda392;
 import org.telegram.ui.ChooseQualityLayout$QualityIcon;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.AudioPlayerAlert;
@@ -225,7 +226,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return savedMusicList != null && savedMusicList.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
     }
 
-    public AudioPlayerAlert(final Context context, final Theme.ResourcesProvider resourcesProvider) {
+    public AudioPlayerAlert(final Context context, final Theme.ResourcesProvider resourcesProvider) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         boolean z;
         int i;
         boolean z2;
@@ -786,7 +787,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.repeatButton.setShowedFromBottom(true);
         this.repeatButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i6) {
+            public final void onItemClick(int i6) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$new$6(i6);
             }
         });
@@ -945,7 +946,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             boolean ignoreLayout;
 
             @Override
-            protected void onLayout(boolean z3, int i9, int i10, int i11, int i12) {
+            protected void onLayout(boolean z3, int i9, int i10, int i11, int i12) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 super.onLayout(z3, i9, i10, i11, i12);
                 if (AudioPlayerAlert.this.searchOpenPosition == -1 || AudioPlayerAlert.this.actionBar.isSearchFieldVisible()) {
                     if (AudioPlayerAlert.this.scrollToSong) {
@@ -1203,7 +1204,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 }
 
                 @Override
-                public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i11) {
+                public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i11) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     if (viewHolder != null) {
                         AudioPlayerAlert.this.listView.hideSelector(false);
                     }
@@ -1360,7 +1361,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.repeatButton.toggleSubMenu();
     }
 
-    public void lambda$new$6(int i) {
+    public void lambda$new$6(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         if (i == 1 || i == 2) {
             boolean z = SharedConfig.playOrderReversed;
             if ((z && i == 1) || (SharedConfig.shuffleMusic && i == 2)) {
@@ -2243,7 +2244,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return this.TAG;
     }
 
-    public void updateRepeatButton() {
+    public void updateRepeatButton() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         int i = SharedConfig.repeatMode;
         if (i != 0 && i != 1) {
             if (i == 2) {
@@ -2765,7 +2766,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ArrayList arrayList = new ArrayList();
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
-            public final void didSetColor() {
+            public final void didSetColor() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$getThemeDescriptions$22();
             }
 
@@ -2862,7 +2863,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$22() {
+    public void lambda$getThemeDescriptions$22() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         this.searchItem.getSearchField().setCursorColor(getThemedColor(Theme.key_player_actionBarTitle));
         ActionBarMenuItem actionBarMenuItem = this.repeatButton;
         actionBarMenuItem.setIconColor(getThemedColor(((Integer) actionBarMenuItem.getTag()).intValue()));
@@ -3113,7 +3114,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             TLRPC.Document document = messageObject.getDocument();
             long j = document != null ? document.id : 0L;
             final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda350(itemOptionsMakeOptions));
+            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda392(itemOptionsMakeOptions));
             itemOptionsMakeSwipeback.addGap();
             itemOptionsMakeSwipeback.addIf(!savedMusicIds.ids.contains(Long.valueOf(j)), R.drawable.left_status_profile, LocaleController.getString(R.string.AudioSaveToMyProfile), new Runnable() {
                 @Override
@@ -3415,7 +3416,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         lambda$new$0();
     }
 
-    public boolean lambda$forward$48(ArrayList arrayList, TLRPC.TL_document tL_document, MessageObject messageObject, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
+    public boolean lambda$forward$48(ArrayList arrayList, TLRPC.TL_document tL_document, MessageObject messageObject, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         String pluralStringComma;
         int i3;
         if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || charSequence != null || arrayList == null) {

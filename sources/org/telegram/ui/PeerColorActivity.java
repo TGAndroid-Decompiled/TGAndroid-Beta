@@ -57,6 +57,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.TLRPC;
@@ -1309,7 +1310,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.updateThemeColors():void");
     }
 
-    public PeerColorActivity(long j) throws IOException {
+    public PeerColorActivity(long j) {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.forceDark = zIsCurrentThemeDark;
@@ -2199,12 +2200,12 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            this.drawable.setBounds(rtl(AndroidUtilities.dp(64.0f) / 2) - (this.drawable.getIntrinsicWidth() / 2), (getMeasuredHeight() / 2) - (this.drawable.getIntrinsicHeight() / 2), rtl(AndroidUtilities.dp(64.0f) / 2) + (this.drawable.getIntrinsicWidth() / 2), (getMeasuredHeight() / 2) + (this.drawable.getIntrinsicHeight() / 2));
+            DrawableUtils.setBounds(this.drawable, rtl(AndroidUtilities.dp(28.0f)), getMeasuredHeight() / 2.0f, 17);
             this.drawable.draw(canvas);
             Text text = this.buttonText;
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(171.0f);
-            text.ellipsize(measuredWidth - (this.lock != null ? r3.getIntrinsicWidth() + AndroidUtilities.dp(8.0f) : 0));
-            float measuredWidth2 = LocaleController.isRTL ? (getMeasuredWidth() - this.buttonText.getWidth()) - AndroidUtilities.dp(71.0f) : AndroidUtilities.dp(71.0f);
+            text.ellipsize(measuredWidth - (this.lock != null ? r2.getIntrinsicWidth() + AndroidUtilities.dp(8.0f) : 0));
+            float measuredWidth2 = LocaleController.isRTL ? (getMeasuredWidth() - this.buttonText.getWidth()) - AndroidUtilities.dp(58.0f) : AndroidUtilities.dp(58.0f);
             this.buttonText.draw(canvas, measuredWidth2, getMeasuredHeight() / 2.0f);
             if (this.lock != null) {
                 int width = (int) (measuredWidth2 + this.buttonText.getWidth() + AndroidUtilities.dp(6.0f));
@@ -2230,7 +2231,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 this.color1Drawable.stroke(AndroidUtilities.dpf2(3.0f), Theme.getColor(i, this.resourcesProvider));
                 this.color1Drawable.draw(canvas);
             } else if (this.userText != null && !z) {
-                float measuredWidth3 = (int) ((getMeasuredWidth() - AndroidUtilities.dp(116.0f)) - Math.min(this.buttonText.getWidth() + (this.lock == null ? 0 : r3.getIntrinsicWidth() + AndroidUtilities.dp(12.0f)), getMeasuredWidth() - AndroidUtilities.dp(164.0f)));
+                float measuredWidth3 = (int) ((getMeasuredWidth() - AndroidUtilities.dp(116.0f)) - Math.min(this.buttonText.getWidth() + (this.lock == null ? 0 : r6.getIntrinsicWidth() + AndroidUtilities.dp(12.0f)), getMeasuredWidth() - AndroidUtilities.dp(164.0f)));
                 int iMin = (int) Math.min(this.userText.getWidth(), measuredWidth3);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(LocaleController.isRTL ? AndroidUtilities.dp(15.0f) : (getMeasuredWidth() - AndroidUtilities.dp(33.0f)) - iMin, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2.0f, LocaleController.isRTL ? AndroidUtilities.dp(33.0f) + iMin : getMeasuredWidth() - AndroidUtilities.dp(15.0f), (getMeasuredHeight() + AndroidUtilities.dp(22.0f)) / 2.0f);
@@ -2243,7 +2244,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 if (paint == null) {
                     paint = Theme.dividerPaint;
                 }
-                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(64.0f) : 0), getMeasuredHeight() - 1, paint);
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(58.0f) : 0), getMeasuredHeight() - 1, paint);
             }
         }
     }

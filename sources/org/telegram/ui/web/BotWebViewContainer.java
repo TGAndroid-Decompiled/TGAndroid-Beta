@@ -63,6 +63,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.IDN;
 import java.net.URL;
@@ -2091,7 +2092,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
 
         @Override
-        public void onBecomeFullyVisible() throws Resources.NotFoundException {
+        public void onBecomeFullyVisible() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super.onBecomeFullyVisible();
             if (this.shownToast) {
                 return;
@@ -3141,11 +3142,12 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) throws IOException {
+                HttpURLConnection httpURLConnection;
                 int i;
                 MyWebView myWebView = MyWebView.this;
                 StringBuilder sb = new StringBuilder();
                 sb.append("shouldInterceptRequest ");
-                HttpURLConnection httpURLConnection = null;
+                HttpURLConnection httpURLConnection2 = null;
                 sb.append(webResourceRequest == null ? null : webResourceRequest.getUrl());
                 myWebView.d(sb.toString());
                 if (webResourceRequest != null && BotWebViewContainer.isTonsite(webResourceRequest.getUrl())) {
@@ -3155,75 +3157,75 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
                 if (!this.val$bot && MyWebView.this.opener != null && this.firstRequest) {
                     try {
-                        HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(webResourceRequest.getUrl().toString()).openConnection();
-                        try {
-                            httpURLConnection2.setRequestMethod(webResourceRequest.getMethod());
-                            if (webResourceRequest.getRequestHeaders() != null) {
-                                for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
-                                    httpURLConnection2.setRequestProperty(entry.getKey(), entry.getValue());
-                                }
+                        httpURLConnection = (HttpURLConnection) new URL(webResourceRequest.getUrl().toString()).openConnection();
+                    } catch (Exception e) {
+                        e = e;
+                    }
+                    try {
+                        httpURLConnection.setRequestMethod(webResourceRequest.getMethod());
+                        if (webResourceRequest.getRequestHeaders() != null) {
+                            for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
+                                httpURLConnection.setRequestProperty(entry.getKey(), entry.getValue());
                             }
-                            httpURLConnection2.connect();
-                            HashMap map = new HashMap();
-                            Iterator<Map.Entry<String, List<String>>> it = httpURLConnection2.getHeaderFields().entrySet().iterator();
-                            while (true) {
-                                if (!it.hasNext()) {
-                                    break;
-                                }
-                                Map.Entry<String, List<String>> next = it.next();
-                                String key = next.getKey();
-                                if (key != null) {
-                                    map.put(key, TextUtils.join(", ", next.getValue()));
-                                    if (!MyWebView.this.dangerousUrl && ("cross-origin-resource-policy".equals(key.toLowerCase()) || "cross-origin-embedder-policy".equals(key.toLowerCase()))) {
-                                        Iterator<String> it2 = next.getValue().iterator();
-                                        while (true) {
-                                            if (!it2.hasNext()) {
-                                                break;
-                                            }
-                                            String next2 = it2.next();
-                                            if (next2 != null && !"unsafe-none".equals(next2.toLowerCase()) && !"same-site".equals(next2.toLowerCase())) {
-                                                MyWebView.this.d("<!> dangerous header CORS policy: " + key + ": " + next2 + " from " + webResourceRequest.getMethod() + " " + webResourceRequest.getUrl());
-                                                MyWebView.this.dangerousUrl = true;
-                                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                                    @Override
-                                                    public final void run() {
-                                                        this.f$0.lambda$shouldInterceptRequest$0();
-                                                    }
-                                                });
-                                                break;
-                                            }
+                        }
+                        httpURLConnection.connect();
+                        HashMap map = new HashMap();
+                        Iterator<Map.Entry<String, List<String>>> it = httpURLConnection.getHeaderFields().entrySet().iterator();
+                        while (true) {
+                            if (!it.hasNext()) {
+                                break;
+                            }
+                            Map.Entry<String, List<String>> next = it.next();
+                            String key = next.getKey();
+                            if (key != null) {
+                                map.put(key, TextUtils.join(", ", next.getValue()));
+                                if (!MyWebView.this.dangerousUrl && ("cross-origin-resource-policy".equals(key.toLowerCase()) || "cross-origin-embedder-policy".equals(key.toLowerCase()))) {
+                                    Iterator<String> it2 = next.getValue().iterator();
+                                    while (true) {
+                                        if (!it2.hasNext()) {
+                                            break;
+                                        }
+                                        String next2 = it2.next();
+                                        if (next2 != null && !"unsafe-none".equals(next2.toLowerCase()) && !"same-site".equals(next2.toLowerCase())) {
+                                            MyWebView.this.d("<!> dangerous header CORS policy: " + key + ": " + next2 + " from " + webResourceRequest.getMethod() + " " + webResourceRequest.getUrl());
+                                            MyWebView.this.dangerousUrl = true;
+                                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                                @Override
+                                                public final void run() {
+                                                    this.f$0.lambda$shouldInterceptRequest$0();
+                                                }
+                                            });
+                                            break;
                                         }
                                     }
                                 }
                             }
-                            String contentType = httpURLConnection2.getContentType();
-                            String contentEncoding = httpURLConnection2.getContentEncoding();
-                            if (contentType.indexOf("; ") >= 0) {
-                                String[] strArrSplit = contentType.split("; ");
-                                if (!TextUtils.isEmpty(strArrSplit[0])) {
-                                    contentType = strArrSplit[0];
-                                }
-                                for (i = 1; i < strArrSplit.length; i++) {
-                                    if (strArrSplit[i].startsWith("charset=")) {
-                                        contentEncoding = strArrSplit[i].substring(8);
-                                    }
-                                }
-                            }
-                            String str = contentEncoding;
-                            this.firstRequest = false;
-                            return new WebResourceResponse(contentType, str, httpURLConnection2.getResponseCode(), httpURLConnection2.getResponseMessage(), map, httpURLConnection2.getInputStream());
-                        } catch (Exception e) {
-                            e = e;
-                            httpURLConnection = httpURLConnection2;
-                            FileLog.e(e);
-                            if (httpURLConnection != null) {
-                                httpURLConnection.disconnect();
-                            }
-                            this.firstRequest = false;
-                            return super.shouldInterceptRequest(webView, webResourceRequest);
                         }
+                        String contentType = httpURLConnection.getContentType();
+                        String contentEncoding = httpURLConnection.getContentEncoding();
+                        if (contentType.indexOf("; ") >= 0) {
+                            String[] strArrSplit = contentType.split("; ");
+                            if (!TextUtils.isEmpty(strArrSplit[0])) {
+                                contentType = strArrSplit[0];
+                            }
+                            for (i = 1; i < strArrSplit.length; i++) {
+                                if (strArrSplit[i].startsWith("charset=")) {
+                                    contentEncoding = strArrSplit[i].substring(8);
+                                }
+                            }
+                        }
+                        String str = contentEncoding;
+                        this.firstRequest = false;
+                        return new WebResourceResponse(contentType, str, httpURLConnection.getResponseCode(), httpURLConnection.getResponseMessage(), map, httpURLConnection.getInputStream());
                     } catch (Exception e2) {
                         e = e2;
+                        httpURLConnection2 = httpURLConnection;
+                        FileLog.e(e);
+                        if (httpURLConnection2 != null) {
+                            httpURLConnection2.disconnect();
+                        }
+                        this.firstRequest = false;
+                        return super.shouldInterceptRequest(webView, webResourceRequest);
                     }
                 }
                 this.firstRequest = false;

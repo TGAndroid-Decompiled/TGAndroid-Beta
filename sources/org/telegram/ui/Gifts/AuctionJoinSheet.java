@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
@@ -336,7 +337,7 @@ public class AuctionJoinSheet extends BottomSheetWithRecyclerListView implements
                 }
 
                 @Override
-                protected void dispatchDraw(Canvas canvas) {
+                protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     canvas.save();
                     canvas.clipPath(this.path);
                     super.dispatchDraw(canvas);

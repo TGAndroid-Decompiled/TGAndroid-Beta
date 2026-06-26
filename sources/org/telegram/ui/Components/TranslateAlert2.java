@@ -43,6 +43,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.TranslateController;
 import org.telegram.messenger.Utilities;
@@ -51,11 +52,13 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RecyclerListView;
@@ -81,10 +84,15 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     private ArrayList reqMessageEntities;
     private int reqMessageId;
     private TLRPC.InputPeer reqPeer;
+    private TL_iv.RichMessage reqRichMessage;
     private boolean reqSum;
     private CharSequence reqText;
+    private RichMessageLayout.PreviewView richLoadingPreviewView;
+    private RichMessageLayout.PreviewView richPreviewView;
     private AnimatedFloat sheetTopAnimated;
     private boolean sheetTopNotAnimate;
+    private TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+    private TextSelectionHelper.TextSelectionOverlay textSelectionOverlay;
     private LinkSpanDrawable.LinksTextView textView;
     private FrameLayout textViewContainer;
     private String toLanguage;
@@ -95,10 +103,10 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, Theme.ResourcesProvider resourcesProvider) {
-        this(context, str, str2, charSequence, arrayList, null, 0, false, resourcesProvider);
+        this(context, str, str2, charSequence, arrayList, null, 0, false, null, resourcesProvider);
     }
 
-    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    private TranslateAlert2(Context context, String str, String str2, CharSequence charSequence, ArrayList arrayList, TLRPC.InputPeer inputPeer, int i, boolean z, TL_iv.RichMessage richMessage, Theme.ResourcesProvider resourcesProvider) {
         super(context, false, resourcesProvider);
         this.firstTranslation = true;
         this.backgroundPaddingLeft = 0;
@@ -107,6 +115,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.reqPeer = inputPeer;
         this.reqMessageId = i;
         this.reqSum = z;
+        this.reqRichMessage = richMessage;
         this.fromLanguage = str;
         this.toLanguage = str2;
         ContainerView containerView = new ContainerView(context);
@@ -150,6 +159,16 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         } catch (Exception unused) {
         }
         this.textViewContainer.addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
+        if (this.reqRichMessage != null) {
+            RichMessageLayout.PreviewView previewView = new RichMessageLayout.PreviewView(context, this.currentAccount, resourcesProvider);
+            this.richLoadingPreviewView = previewView;
+            previewView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
+            this.richLoadingPreviewView.set(this.reqRichMessage);
+            this.richLoadingPreviewView.setTranslationLoading(true);
+            RichMessageLayout.PreviewView previewView2 = new RichMessageLayout.PreviewView(context, this.currentAccount, resourcesProvider);
+            this.richPreviewView = previewView2;
+            previewView2.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
+        }
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             protected boolean onRequestFocusInDescendants(int i3, Rect rect) {
@@ -178,7 +197,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.layoutManager = linearLayoutManager;
         recyclerListView2.setLayoutManager(linearLayoutManager);
         RecyclerListView recyclerListView3 = this.listView;
-        PaddedAdapter paddedAdapter = new PaddedAdapter(context, this.loadingTextView);
+        PaddedAdapter paddedAdapter = new PaddedAdapter(context, this.reqRichMessage != null ? this.richLoadingPreviewView : this.loadingTextView);
         this.adapter = paddedAdapter;
         recyclerListView3.setAdapter(paddedAdapter);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -215,6 +234,19 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         defaultItemAnimator.setInterpolator(new LinearInterpolator());
         this.listView.setItemAnimator(defaultItemAnimator);
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -2, 80));
+        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = new TextSelectionHelper.ArticleTextSelectionHelper();
+        this.textSelectionHelper = articleTextSelectionHelper;
+        articleTextSelectionHelper.setParentView(this.listView);
+        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper2 = this.textSelectionHelper;
+        articleTextSelectionHelper2.layoutManager = this.layoutManager;
+        TextSelectionHelper.TextSelectionOverlay overlayView = articleTextSelectionHelper2.getOverlayView(context);
+        this.textSelectionOverlay = overlayView;
+        AndroidUtilities.removeFromParent(overlayView);
+        this.containerView.addView(this.textSelectionOverlay, LayoutHelper.createFrame(-1, -1, 119));
+        RichMessageLayout.PreviewView previewView3 = this.richPreviewView;
+        if (previewView3 != null) {
+            previewView3.setTextSelectionHelper(this.textSelectionHelper);
+        }
         HeaderView headerView = new HeaderView(context);
         this.headerView = headerView;
         this.containerView.addView(headerView, LayoutHelper.createFrame(-1, 78, 55));
@@ -279,6 +311,20 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         if ("nb".equals(str)) {
             str = "no";
         }
+        if (this.reqRichMessage != null && this.reqPeer != null) {
+            TLRPC.TL_messages_translateRichMessage tL_messages_translateRichMessage = new TLRPC.TL_messages_translateRichMessage();
+            tL_messages_translateRichMessage.flags = 1 | tL_messages_translateRichMessage.flags;
+            tL_messages_translateRichMessage.peer = this.reqPeer;
+            tL_messages_translateRichMessage.id.add(Integer.valueOf(this.reqMessageId));
+            tL_messages_translateRichMessage.to_lang = TranslateController.normalizeLanguage(str);
+            this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateRichMessage, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    this.f$0.lambda$translate$2(tLObject, tL_error);
+                }
+            }));
+            return;
+        }
         final TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
         CharSequence charSequence = this.reqText;
         tL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
@@ -295,7 +341,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_summarizeText, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    this.f$0.lambda$translate$1(tL_textWithEntities, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                    this.f$0.lambda$translate$3(tL_textWithEntities, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
                 }
             }));
             return;
@@ -314,12 +360,49 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.reqId = Integer.valueOf(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_translateText, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$translate$3(tL_textWithEntities, tLObject, tL_error);
+                this.f$0.lambda$translate$5(tL_textWithEntities, tLObject, tL_error);
             }
         }));
     }
 
-    public void lambda$translate$1(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
+    public void lambda$translate$2(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$translate$1(tLObject);
+            }
+        });
+    }
+
+    public void lambda$translate$1(TLObject tLObject) {
+        this.reqId = null;
+        if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
+            TLRPC.TL_messages_translatedRichMessage tL_messages_translatedRichMessage = (TLRPC.TL_messages_translatedRichMessage) tLObject;
+            if (!tL_messages_translatedRichMessage.result.isEmpty() && tL_messages_translatedRichMessage.result.get(0) != null) {
+                this.firstTranslation = false;
+                TL_iv.RichMessage richMessage = tL_messages_translatedRichMessage.result.get(0);
+                RichMessageLayout.PreviewView previewView = this.richPreviewView;
+                if (previewView != null) {
+                    previewView.set(richMessage);
+                    this.adapter.updateMainView(this.richPreviewView);
+                    return;
+                }
+                return;
+            }
+        }
+        if (this.firstTranslation) {
+            lambda$new$0();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.TranslationFailedAlert2));
+            return;
+        }
+        BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createErrorBulletin(LocaleController.getString(R.string.TranslationFailedAlert2)).show();
+        AnimatedTextView animatedTextView = this.headerView.toLanguageTextView;
+        String str = this.prevToLanguage;
+        this.toLanguage = str;
+        animatedTextView.setText(languageName(str));
+    }
+
+    public void lambda$translate$3(TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, TLRPC.TL_error tL_error) {
         this.reqId = null;
         if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
             translateAlt();
@@ -347,16 +430,16 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         this.adapter.updateMainView(this.textViewContainer);
     }
 
-    public void lambda$translate$3(final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$translate$5(final TLRPC.TL_textWithEntities tL_textWithEntities, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$translate$2(tL_error, tLObject, tL_textWithEntities);
+                this.f$0.lambda$translate$4(tL_error, tLObject, tL_textWithEntities);
             }
         });
     }
 
-    public void lambda$translate$2(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
+    public void lambda$translate$4(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
         this.reqId = null;
         if (tL_error != null && "TRANSLATIONS_DISABLED_ALT".equalsIgnoreCase(tL_error.text)) {
             translateAlt();
@@ -404,12 +487,12 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         alternativeTranslate(string, str, "nb".equals(str2) ? "no" : str2, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$translateAlt$4((String) obj, (Boolean) obj2);
+                this.f$0.lambda$translateAlt$6((String) obj, (Boolean) obj2);
             }
         });
     }
 
-    public void lambda$translateAlt$4(String str, Boolean bool) {
+    public void lambda$translateAlt$6(String str, Boolean bool) {
         if (str != null) {
             this.firstTranslation = false;
             this.textView.setText(preprocessText(str));
@@ -488,7 +571,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
                 alternativeTranslateInternal((String) arrayListCut.get(i2), str2, str3, new Utilities.Callback2() {
                     @Override
                     public final void run(Object obj, Object obj2) {
-                        TranslateAlert2.lambda$alternativeTranslate$7(zArr, arrayList, i2, callback2, (String) obj, (Boolean) obj2);
+                        TranslateAlert2.lambda$alternativeTranslate$9(zArr, arrayList, i2, callback2, (String) obj, (Boolean) obj2);
                     }
                 });
             }
@@ -497,7 +580,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
         alternativeTranslateInternal(strEncode, str2, str3, callback2);
     }
 
-    public static void lambda$alternativeTranslate$7(boolean[] zArr, ArrayList arrayList, int i, Utilities.Callback2 callback2, String str, Boolean bool) {
+    public static void lambda$alternativeTranslate$9(boolean[] zArr, ArrayList arrayList, int i, Utilities.Callback2 callback2, String str, Boolean bool) {
         if (zArr[0]) {
             return;
         }
@@ -1097,12 +1180,12 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             if (TextUtils.equals(TranslateAlert2.this.toLanguage, localeInfo.pluralLangCode)) {
                 return;
             }
-            if (TranslateAlert2.this.adapter.mMainView == TranslateAlert2.this.textViewContainer) {
+            if (TranslateAlert2.this.adapter.mMainView == TranslateAlert2.this.textViewContainer || TranslateAlert2.this.adapter.mMainView == TranslateAlert2.this.richPreviewView) {
                 TranslateAlert2 translateAlert2 = TranslateAlert2.this;
                 translateAlert2.prevToLanguage = translateAlert2.toLanguage;
             }
             this.toLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.toLanguage = localeInfo.pluralLangCode)));
-            TranslateAlert2.this.adapter.updateMainView(TranslateAlert2.this.loadingTextView);
+            TranslateAlert2.this.adapter.updateMainView(TranslateAlert2.this.reqRichMessage != null ? TranslateAlert2.this.richLoadingPreviewView : TranslateAlert2.this.loadingTextView);
             TranslateAlert2.setToLanguage(TranslateAlert2.this.toLanguage);
             TranslateAlert2.this.translate();
         }
@@ -1396,7 +1479,7 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
     }
 
     public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, boolean z, String str, String str2, CharSequence charSequence, ArrayList arrayList, boolean z2, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
-        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, inputPeer, i2, z, null) {
+        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, charSequence, arrayList, inputPeer, i2, z, null, null) {
             @Override
             public void lambda$new$0() {
                 super.lambda$new$0();
@@ -1407,6 +1490,33 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             }
         };
         translateAlert2.setNoforwards(z2);
+        translateAlert2.setFragment(baseFragment);
+        translateAlert2.setOnLinkPress(callbackReturn);
+        if (baseFragment != null) {
+            if (baseFragment.getParentActivity() != null) {
+                baseFragment.showDialog(translateAlert2);
+            }
+        } else {
+            translateAlert2.show();
+        }
+        return translateAlert2;
+    }
+
+    public static TranslateAlert2 showAlert(Context context, BaseFragment baseFragment, int i, TLRPC.InputPeer inputPeer, int i2, String str, String str2, TL_iv.RichMessage richMessage, boolean z, Utilities.CallbackReturn callbackReturn, final Runnable runnable) {
+        if (context == null) {
+            return null;
+        }
+        TranslateAlert2 translateAlert2 = new TranslateAlert2(context, str, str2, null, null, inputPeer, i2, false, richMessage, null) {
+            @Override
+            public void lambda$new$0() {
+                super.lambda$new$0();
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+        };
+        translateAlert2.setNoforwards(z);
         translateAlert2.setFragment(baseFragment);
         translateAlert2.setOnLinkPress(callbackReturn);
         if (baseFragment != null) {

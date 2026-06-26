@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
@@ -91,7 +90,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.currentAccount = i;
         RecyclerListView recyclerListView = new RecyclerListView(getContext()) {
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 super.onLayout(z, i2, i3, i4, i5);
                 SearchDownloadsContainer.this.checkItemsFloodWait();
             }
@@ -121,7 +120,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         recyclerListView.setItemAnimator(defaultItemAnimator);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) throws Resources.NotFoundException, IOException {
+            public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$new$0(i, view, i2);
             }
         });
@@ -145,7 +144,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         FileLoader.getInstance(i).getCurrentLoadingFiles(this.currentLoadingFiles);
     }
 
-    public void lambda$new$0(int i, View view, int i2) throws Resources.NotFoundException, IOException {
+    public void lambda$new$0(int i, View view, int i2) {
         MessageObject message = this.adapter.getMessage(i2);
         if (message == null) {
             return;
@@ -732,7 +731,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             if (i != 0) {
                 SearchDownloadsContainer.this.recyclerListView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);

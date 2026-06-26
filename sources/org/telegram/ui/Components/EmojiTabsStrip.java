@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -735,7 +736,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         super.onMeasure(i, i2);
     }
 
-    public void updateColors() {
+    public void updateColors() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         EmojiTabButton emojiTabButton = this.recentTab;
         if (emojiTabButton != null) {
             emojiTabButton.updateColor();
@@ -746,7 +747,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         select(i, true);
     }
 
-    public void select(int i, boolean z) {
+    public void select(int i, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         int i2;
         boolean z2 = z && !this.first;
         EmojiTabButton emojiTabButton = this.toggleEmojiStickersTab;
@@ -968,7 +969,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             return null;
         }
 
-        public EmojiTabButton(Context context, int i, int i2, boolean z, boolean z2) {
+        public EmojiTabButton(Context context, int i, int i2, boolean z, boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super(context);
             this.shown = true;
             setFocusable(true);
@@ -996,7 +997,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             updateColor();
         }
 
-        public EmojiTabButton(Context context, int i, boolean z, boolean z2) {
+        public EmojiTabButton(Context context, int i, boolean z, boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super(context);
             this.shown = true;
             setFocusable(true);
@@ -1015,7 +1016,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             addView(this.imageView);
         }
 
-        public EmojiTabButton(Context context, TLRPC.Document document, boolean z, boolean z2, boolean z3) {
+        public EmojiTabButton(Context context, TLRPC.Document document, boolean z, boolean z2, boolean z3) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super(context);
             this.shown = true;
             setFocusable(true);
@@ -1077,7 +1078,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             updateColor();
         }
 
-        public EmojiTabButton(Context context, long j, boolean z, boolean z2, boolean z3) {
+        public EmojiTabButton(Context context, long j, boolean z, boolean z2, boolean z3) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super(context);
             this.shown = true;
             setFocusable(true);
@@ -1490,7 +1491,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             updateLockImageReceiver();
         }
 
-        public void updateSelect(final boolean z, boolean z2) {
+        public void updateSelect(final boolean z, boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             BackupImageView backupImageView = this.imageView;
             if ((backupImageView == null || backupImageView.getImageReceiver().getImageDrawable() != null || EmojiTabsStrip.this.isGlassDesign) && this.selected != z) {
                 this.selected = z;
@@ -1507,7 +1508,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
                     this.selectAnimator = valueAnimatorOfFloat;
                     valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                             this.f$0.lambda$updateSelect$1(valueAnimator2);
                         }
                     });
@@ -1539,12 +1540,12 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             }
         }
 
-        public void lambda$updateSelect$1(ValueAnimator valueAnimator) {
+        public void lambda$updateSelect$1(ValueAnimator valueAnimator) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             this.selectT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             updateColor();
         }
 
-        public void updateColor() {
+        public void updateColor() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             Theme.setSelectorDrawableColor(getBackground(), EmojiTabsStrip.this.selectorColor(), false);
             if (EmojiTabsStrip.this.isGlassDesign) {
                 setColor(EmojiTabsStrip.this.getGlassIconColor(AndroidUtilities.lerp(0.4f, 0.8f, this.selectT)));

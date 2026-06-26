@@ -243,7 +243,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo1341getWindowView();
+        View mo1337getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -372,6 +372,50 @@ public abstract class BaseFragment {
         this.inTransitionAnimation = false;
         this.arguments = bundle;
         this.classGuid = ConnectionsManager.generateClassGuid();
+        Bulletin.addDelegate(this, new Bulletin.Delegate() {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+            }
+
+            @Override
+            public int getTopOffset(int i) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+            }
+
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+
+            @Override
+            public int getBottomOffset(int i) {
+                if (BaseFragment.this.isSupportEdgeToEdge()) {
+                    return AndroidUtilities.navigationBarHeight;
+                }
+                return 0;
+            }
+        });
     }
 
     public void setCurrentAccount(int i) {
@@ -1059,10 +1103,10 @@ public abstract class BaseFragment {
         iNavigationLayoutArr[0].setIsSheet(true);
         LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
         baseFragment.onTransitionAnimationStart(true, false);
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, bottomSheetArr);
-        final BottomSheet[] bottomSheetArr = {anonymousClass1};
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, bottomSheetArr);
+        final BottomSheet[] bottomSheetArr = {anonymousClass2};
         if (bottomSheetParams != null) {
-            anonymousClass1.setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
+            anonymousClass2.setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
             bottomSheetArr[0].transitionFromRight(bottomSheetParams.transitionFromLeft);
         }
         baseFragment.setParentDialog(bottomSheetArr[0]);
@@ -1075,7 +1119,7 @@ public abstract class BaseFragment {
         return bottomSheetArr[0];
     }
 
-    class AnonymousClass1 extends BottomSheet {
+    class AnonymousClass2 extends BottomSheet {
         final INavigationLayout[] val$actionBarLayout;
         final BottomSheet[] val$bottomSheet;
         final BaseFragment val$fragment;
@@ -1086,7 +1130,7 @@ public abstract class BaseFragment {
             return false;
         }
 
-        AnonymousClass1(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, final BottomSheetParams bottomSheetParams, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment, BottomSheet[] bottomSheetArr) {
+        AnonymousClass2(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, final BottomSheetParams bottomSheetParams, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment, BottomSheet[] bottomSheetArr) {
             super(context, z, resourcesProvider);
             this.val$params = bottomSheetParams;
             this.val$actionBarLayout = iNavigationLayoutArr;
@@ -1106,7 +1150,7 @@ public abstract class BaseFragment {
             setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    BaseFragment.AnonymousClass1.lambda$new$0(baseFragment, bottomSheetParams, dialogInterface);
+                    BaseFragment.AnonymousClass2.lambda$new$0(baseFragment, bottomSheetParams, dialogInterface);
                 }
             });
         }
@@ -1300,8 +1344,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1341getWindowView());
-                    layoutContainer.addView(attachedSheet.mo1341getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1337getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1337getWindowView());
                 }
             }
         }
@@ -1312,7 +1356,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo1341getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1337getWindowView());
                 }
             }
         }
@@ -1322,7 +1366,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack != null) {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
-                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1341getWindowView()) {
+                if ((attachedSheet instanceof StoryViewer) && view == attachedSheet.mo1337getWindowView()) {
                     return true;
                 }
             }

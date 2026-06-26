@@ -40,6 +40,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.FloatingActionMode;
+import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper$$ExternalSyntheticApiModelOutline6;
 import org.telegram.ui.Components.AlertsCreator;
@@ -47,8 +48,9 @@ import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.LaunchActivity;
 
-public class EditTextCaption extends EditTextBoldCursor {
+public class EditTextCaption extends EditTextBoldCursor implements FloatingToolbar.StyleDelegate {
     private static final int ACCESSIBILITY_ACTION_SHARE = 268435456;
+    private static final int[] STYLE_FLAGS = {1, 2, 4, 8, 16, 256, 16384, 32768};
     public boolean adaptiveCreateLinkDialog;
     private boolean allowTextEntitiesIntersection;
     private String caption;
@@ -132,6 +134,13 @@ public class EditTextCaption extends EditTextBoldCursor {
         this.delegate = editTextCaptionDelegate;
     }
 
+    protected void notifySpansChanged() {
+        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
+        if (editTextCaptionDelegate != null) {
+            editTextCaptionDelegate.onSpansChanged();
+        }
+    }
+
     public void setAllowTextEntitiesIntersection(boolean z) {
         this.allowTextEntitiesIntersection = z;
     }
@@ -175,6 +184,38 @@ public class EditTextCaption extends EditTextBoldCursor {
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
         textStyleRun.flags |= 16;
         applyTextStyleToSelection(new TextStyleSpan(textStyleRun));
+    }
+
+    public void toggleStyleForSelection(int i) {
+        if (getText() == null) {
+            return;
+        }
+        int selectionStart = getSelectionStart();
+        int selectionEnd = getSelectionEnd();
+        if (selectionStart < 0 || selectionEnd < 0) {
+            return;
+        }
+        if (selectionStart > selectionEnd) {
+            selectionEnd = selectionStart;
+            selectionStart = selectionEnd;
+        }
+        if (selectionStart >= selectionEnd) {
+            return;
+        }
+        if ((getCurrentStyle(selectionStart, selectionEnd) & i) == 0) {
+            int i2 = 4;
+            if (i == 4) {
+                i2 = 49435;
+            } else if (i == 16384) {
+                i2 = 32772;
+            } else if (i == 32768) {
+                i2 = 16388;
+            }
+            removeStyle(i2, selectionStart, selectionEnd);
+            addStyle(i, selectionStart, selectionEnd);
+            return;
+        }
+        removeStyle(i, selectionStart, selectionEnd);
     }
 
     public void makeSelectedQuote() {
@@ -491,6 +532,108 @@ public class EditTextCaption extends EditTextBoldCursor {
     public void setSelectionOverride(int i, int i2) {
         this.selectionStart = i;
         this.selectionEnd = i2;
+    }
+
+    private static int spanStyleFlags(TextStyleSpan textStyleSpan) {
+        int styleFlags = textStyleSpan.getStyleFlags();
+        return (styleFlags & 512) != 0 ? styleFlags | 256 : styleFlags;
+    }
+
+    @Override
+    public int getCurrentStyle(int i, int i2) {
+        Editable text = getText();
+        if (text == null) {
+            return 0;
+        }
+        int iMax = Math.max(0, i);
+        int iMin = Math.min(i2, text.length());
+        if (iMax < 0 || iMin < 0 || iMax >= iMin) {
+            return 0;
+        }
+        TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) text.getSpans(iMax, iMin, TextStyleSpan.class);
+        int i3 = 0;
+        for (int i4 : STYLE_FLAGS) {
+            int i5 = iMax;
+            boolean z = true;
+            while (z && i5 < iMin) {
+                z = false;
+                for (int i6 = 0; i6 < textStyleSpanArr.length; i6++) {
+                    if ((spanStyleFlags(textStyleSpanArr[i6]) & i4) != 0) {
+                        int spanStart = text.getSpanStart(textStyleSpanArr[i6]);
+                        int spanEnd = text.getSpanEnd(textStyleSpanArr[i6]);
+                        if (spanStart <= i5 && spanEnd > i5) {
+                            i5 = spanEnd;
+                            z = true;
+                        }
+                    }
+                }
+            }
+            if (i5 >= iMin) {
+                i3 |= i4;
+            }
+        }
+        return i3;
+    }
+
+    @Override
+    public void addStyle(int i, int i2, int i3) {
+        int iMin;
+        Editable text = getText();
+        if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
+            return;
+        }
+        TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+        textStyleRun.flags = i;
+        MediaDataController.addStyleToText(new TextStyleSpan(textStyleRun), i2, iMin, text, true);
+        if ((i & 256) != 0) {
+            invalidateSpoilers();
+        }
+        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
+        if (editTextCaptionDelegate != null) {
+            editTextCaptionDelegate.onSpansChanged();
+        }
+    }
+
+    @Override
+    public void removeStyle(int i, int i2, int i3) {
+        Editable text = getText();
+        if (text == null || i2 < 0 || i3 < 0 || i2 >= i3) {
+            return;
+        }
+        int iMin = Math.min(i3, text.length());
+        int i4 = i & 256;
+        if (i4 != 0) {
+            i |= 512;
+        }
+        for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) text.getSpans(i2, iMin, TextStyleSpan.class)) {
+            int styleFlags = textStyleSpan.getStyleFlags();
+            if ((styleFlags & i) != 0) {
+                int spanStart = text.getSpanStart(textStyleSpan);
+                int spanEnd = text.getSpanEnd(textStyleSpan);
+                text.removeSpan(textStyleSpan);
+                if (spanStart < i2) {
+                    text.setSpan(new TextStyleSpan(new TextStyleSpan.TextStyleRun(textStyleSpan.getTextStyleRun())), spanStart, i2, 33);
+                }
+                if (spanEnd > iMin) {
+                    text.setSpan(new TextStyleSpan(new TextStyleSpan.TextStyleRun(textStyleSpan.getTextStyleRun())), iMin, spanEnd, 33);
+                }
+                int iMax = Math.max(spanStart, i2);
+                int iMin2 = Math.min(spanEnd, iMin);
+                int i5 = styleFlags & (~i);
+                if (i5 != 0 && iMax < iMin2) {
+                    TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun(textStyleSpan.getTextStyleRun());
+                    textStyleRun.flags = i5;
+                    text.setSpan(new TextStyleSpan(textStyleRun), iMax, iMin2, 33);
+                }
+            }
+        }
+        if (i4 != 0) {
+            invalidateSpoilers();
+        }
+        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
+        if (editTextCaptionDelegate != null) {
+            editTextCaptionDelegate.onSpansChanged();
+        }
     }
 
     private void applyTextStyleToSelection(TextStyleSpan textStyleSpan) {

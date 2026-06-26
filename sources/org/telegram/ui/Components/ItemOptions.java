@@ -91,8 +91,14 @@ public class ItemOptions {
     private Runnable dismissListener;
     public boolean dismissWithButtons;
     private boolean dontDismiss;
+    private boolean dontFocus;
     private boolean drawScrim;
     private int fixedWidthDp;
+    private View.OnLayoutChangeListener followLayoutListener;
+    private final int[] followLoc;
+    private boolean followScrim;
+    private ViewTreeObserver.OnScrollChangedListener followScrollListener;
+    private View followingView;
     private boolean forceBottom;
     private boolean forceTop;
     private int foregroundIndex;
@@ -212,6 +218,7 @@ public class ItemOptions {
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
+        this.followLoc = new int[2];
         this.hoverLoc = new int[2];
         if (baseFragment.getContext() == null) {
             return;
@@ -239,6 +246,7 @@ public class ItemOptions {
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
+        this.followLoc = new int[2];
         this.hoverLoc = new int[2];
         if (viewGroup == null || viewGroup.getContext() == null) {
             return;
@@ -265,6 +273,7 @@ public class ItemOptions {
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
+        this.followLoc = new int[2];
         this.hoverLoc = new int[2];
         this.context = actionBarPopupWindowLayout.getContext();
         LinearLayout linearLayout = new LinearLayout(this.context);
@@ -442,25 +451,37 @@ public class ItemOptions {
     }
 
     public ItemOptions addChecked(boolean z, CharSequence charSequence, Runnable runnable) {
-        return addChecked(z, charSequence, runnable, null);
+        return addChecked(z, charSequence, runnable, (Runnable) null);
     }
 
-    public ItemOptions addChecked(boolean z, CharSequence charSequence, final Runnable runnable, final Runnable runnable2) {
+    public ItemOptions addChecked(boolean z, int i, CharSequence charSequence, Runnable runnable) {
+        return addChecked(z, i, charSequence, runnable, null);
+    }
+
+    public ItemOptions addChecked(boolean z, CharSequence charSequence, Runnable runnable, Runnable runnable2) {
+        return addChecked(z, 0, charSequence, runnable, runnable2);
+    }
+
+    public ItemOptions addChecked(boolean z, int i, CharSequence charSequence, final Runnable runnable, final Runnable runnable2) {
         if (this.context == null) {
             return this;
         }
-        int i = Theme.key_actionBarDefaultSubmenuItem;
-        int i2 = Theme.key_actionBarDefaultSubmenuItemIcon;
-        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, true, false, false, this.resourcesProvider);
+        int i2 = Theme.key_actionBarDefaultSubmenuItem;
+        int i3 = Theme.key_actionBarDefaultSubmenuItemIcon;
+        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, i != 0 ? 2 : 1, false, false, this.resourcesProvider);
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        actionBarMenuSubItem.setText(charSequence);
+        if (i != 0) {
+            actionBarMenuSubItem.setTextAndIcon(charSequence, i);
+        } else {
+            actionBarMenuSubItem.setText(charSequence);
+        }
         actionBarMenuSubItem.setChecked(z);
         Integer num = this.textColor;
-        int iIntValue = num != null ? num.intValue() : Theme.getColor(i, this.resourcesProvider);
+        int iIntValue = num != null ? num.intValue() : Theme.getColor(i2, this.resourcesProvider);
         Integer num2 = this.iconColor;
-        actionBarMenuSubItem.setColors(iIntValue, num2 != null ? num2.intValue() : Theme.getColor(i2, this.resourcesProvider));
+        actionBarMenuSubItem.setColors(iIntValue, num2 != null ? num2.intValue() : Theme.getColor(i3, this.resourcesProvider));
         Integer num3 = this.selectorColor;
-        actionBarMenuSubItem.setSelectorColor(num3 != null ? num3.intValue() : Theme.multAlpha(Theme.getColor(i, this.resourcesProvider), 0.12f));
+        actionBarMenuSubItem.setSelectorColor(num3 != null ? num3.intValue() : Theme.multAlpha(Theme.getColor(i2, this.resourcesProvider), 0.12f));
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -475,9 +496,9 @@ public class ItemOptions {
                 }
             });
         }
-        int i3 = this.minWidthDp;
-        if (i3 > 0) {
-            actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(i3));
+        int i4 = this.minWidthDp;
+        if (i4 > 0) {
+            actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(i4));
             addView(actionBarMenuSubItem, LayoutHelper.createLinear(this.minWidthDp, -2));
         } else {
             addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
@@ -1057,6 +1078,11 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions dontFocus() {
+        this.dontFocus = true;
+        return this;
+    }
+
     public ItemOptions needsFocus() {
         this.needsFocus = true;
         return this;
@@ -1286,6 +1312,85 @@ public class ItemOptions {
         }
     }
 
+    public ItemOptions followScrimView() {
+        this.followScrim = true;
+        if (isShown()) {
+            installFollowListeners();
+        }
+        return this;
+    }
+
+    private void installFollowListeners() {
+        removeFollowListeners();
+        View view = this.scrimView;
+        if (view == null) {
+            return;
+        }
+        this.followingView = view;
+        view.getLocationOnScreen(this.followLoc);
+        this.followScrollListener = new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public final void onScrollChanged() {
+                this.f$0.lambda$installFollowListeners$16();
+            }
+        };
+        this.followingView.getViewTreeObserver().addOnScrollChangedListener(this.followScrollListener);
+        View.OnLayoutChangeListener onLayoutChangeListener = new View.OnLayoutChangeListener() {
+            @Override
+            public final void onLayoutChange(View view2, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+                this.f$0.lambda$installFollowListeners$17(view2, i, i2, i3, i4, i5, i6, i7, i8);
+            }
+        };
+        this.followLayoutListener = onLayoutChangeListener;
+        this.followingView.addOnLayoutChangeListener(onLayoutChangeListener);
+    }
+
+    public void lambda$installFollowListeners$16() {
+        ActionBarPopupWindow actionBarPopupWindow;
+        if (this.followingView == null || (actionBarPopupWindow = this.actionBarPopupWindow) == null || !actionBarPopupWindow.isShowing()) {
+            return;
+        }
+        int[] iArr = new int[2];
+        this.followingView.getLocationOnScreen(iArr);
+        int i = iArr[0];
+        int[] iArr2 = this.followLoc;
+        if (i == iArr2[0] && iArr[1] == iArr2[1]) {
+            return;
+        }
+        iArr2[0] = i;
+        iArr2[1] = iArr[1];
+        reposition();
+    }
+
+    public void lambda$installFollowListeners$17(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        if (isShown()) {
+            reposition();
+        }
+    }
+
+    public void removeFollowListeners() {
+        View view = this.followingView;
+        if (view != null) {
+            if (this.followScrollListener != null) {
+                ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+                if (viewTreeObserver.isAlive()) {
+                    viewTreeObserver.removeOnScrollChangedListener(this.followScrollListener);
+                }
+            }
+            View.OnLayoutChangeListener onLayoutChangeListener = this.followLayoutListener;
+            if (onLayoutChangeListener != null) {
+                this.followingView.removeOnLayoutChangeListener(onLayoutChangeListener);
+            }
+        }
+        this.followScrollListener = null;
+        this.followLayoutListener = null;
+        this.followingView = null;
+    }
+
+    public void reposition() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ItemOptions.reposition():void");
+    }
+
     public ItemOptions setBackgroundColor(int i) {
         int i2 = 0;
         while (i2 < this.layout.getChildCount()) {
@@ -1379,7 +1484,7 @@ public class ItemOptions {
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ItemOptions.lambda$dismissDim$16(dimView, valueAnimator2);
+                ItemOptions.lambda$dismissDim$18(dimView, valueAnimator2);
             }
         });
         this.dimAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1406,7 +1511,7 @@ public class ItemOptions {
         this.dimAnimator.start();
     }
 
-    public static void lambda$dismissDim$16(DimView dimView, ValueAnimator valueAnimator) {
+    public static void lambda$dismissDim$18(DimView dimView, ValueAnimator valueAnimator) {
         dimView.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -1453,14 +1558,14 @@ public class ItemOptions {
         View.OnTouchListener onTouchListener = new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view3, MotionEvent motionEvent) {
-                return ItemOptions.lambda$installHoverReleaseListener$17(weakReference, view3, motionEvent);
+                return ItemOptions.lambda$installHoverReleaseListener$19(weakReference, view3, motionEvent);
             }
         };
         this.hoverReleaseListener = onTouchListener;
         view2.setOnTouchListener(onTouchListener);
     }
 
-    public static boolean lambda$installHoverReleaseListener$17(WeakReference weakReference, View view, MotionEvent motionEvent) {
+    public static boolean lambda$installHoverReleaseListener$19(WeakReference weakReference, View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         ItemOptions itemOptions = (ItemOptions) weakReference.get();
         if (itemOptions == null || (actionBarPopupWindow = itemOptions.actionBarPopupWindow) == null || !actionBarPopupWindow.isShowing()) {
@@ -1867,7 +1972,7 @@ public class ItemOptions {
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ItemOptions.lambda$addAlbumsItemOptions$19(zContains, hashSet, i2, callback, storyAlbum, view);
+                    ItemOptions.lambda$addAlbumsItemOptions$21(zContains, hashSet, i2, callback, storyAlbum, view);
                 }
             });
             linearLayout.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, -2));
@@ -1875,7 +1980,7 @@ public class ItemOptions {
         }
     }
 
-    public static void lambda$addAlbumsItemOptions$19(boolean z, HashSet hashSet, int i, Utilities.Callback callback, StoriesController.StoryAlbum storyAlbum, View view) {
+    public static void lambda$addAlbumsItemOptions$21(boolean z, HashSet hashSet, int i, Utilities.Callback callback, StoriesController.StoryAlbum storyAlbum, View view) {
         if (z) {
             hashSet.remove(Integer.valueOf(i));
         } else {

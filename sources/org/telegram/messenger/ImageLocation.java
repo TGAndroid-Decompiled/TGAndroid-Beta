@@ -338,41 +338,23 @@ public class ImageLocation {
     }
 
     public static String getStrippedKey(Object obj, Object obj2, Object obj3) {
-        if ((obj instanceof TLRPC.WebPage) || ((obj instanceof MessageObject) && ((MessageObject) obj).type == 29)) {
-            if (obj2 instanceof ImageLocation) {
-                ImageLocation imageLocation = (ImageLocation) obj2;
-                Object obj4 = imageLocation.document;
-                if (obj4 == null && (obj4 = imageLocation.photoSize) == null) {
-                    TLRPC.Photo photo = imageLocation.photo;
-                    if (photo != null) {
-                        obj2 = photo;
-                    }
-                } else {
-                    obj2 = obj4;
-                }
-            }
-            if (obj2 == null) {
-                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + obj3;
-            }
-            if (obj2 instanceof TLRPC.Document) {
-                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC.Document) obj2).id;
-            }
-            if (obj2 instanceof TLRPC.Photo) {
-                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + ((TLRPC.Photo) obj2).id;
-            }
-            if (obj2 instanceof TLRPC.PhotoSize) {
-                TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) obj2;
-                if (photoSize.location != null) {
-                    return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + photoSize.location.local_id + "_" + photoSize.location.volume_id;
-                }
-                return "stripped" + FileRefController.getKeyForParentObject(obj);
-            }
-            if (obj2 instanceof TLRPC.FileLocation) {
-                TLRPC.FileLocation fileLocation = (TLRPC.FileLocation) obj2;
-                return "stripped" + FileRefController.getKeyForParentObject(obj) + "_" + fileLocation.local_id + "_" + fileLocation.volume_id;
-            }
+        TLRPC.Message message;
+        String strippedKeyInternal = getStrippedKeyInternal(obj, obj2, obj3);
+        if (BuildVars.LOGS_ENABLED && (obj instanceof MessageObject) && (message = ((MessageObject) obj).messageOwner) != null && message.rich_message != null) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[richmedia] strippedKey=");
+            sb.append(strippedKeyInternal);
+            sb.append(" fullObject=");
+            sb.append(obj2 == null ? "null" : obj2.getClass().getSimpleName());
+            sb.append(" stripped=");
+            sb.append(obj3 != null ? obj3.getClass().getSimpleName() : "null");
+            FileLog.d(sb.toString());
         }
-        return "stripped" + FileRefController.getKeyForParentObject(obj);
+        return strippedKeyInternal;
+    }
+
+    private static java.lang.String getStrippedKeyInternal(java.lang.Object r4, java.lang.Object r5, java.lang.Object r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLocation.getStrippedKeyInternal(java.lang.Object, java.lang.Object, java.lang.Object):java.lang.String");
     }
 
     public String getKey(Object obj, Object obj2, boolean z) {

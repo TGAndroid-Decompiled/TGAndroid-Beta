@@ -61,6 +61,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -88,7 +89,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda78;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda84;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -139,7 +140,8 @@ public abstract class Theme {
     public static Paint DEBUG_GREEN_STROKE;
     public static Paint DEBUG_RED;
     public static Paint DEBUG_RED_STROKE;
-    public static Paint PAINT_CLEAR;
+    public static final Paint PAINT_CLEAR;
+    private static final Paint PAINT_FILLING;
     private static Method StateListDrawable_getStateDrawableMethod;
     private static SensorEventListener ambientSensorListener;
     private static HashMap animatedOutVisualizerDrawables;
@@ -199,6 +201,7 @@ public abstract class Theme {
     public static Paint chat_docBackPaint;
     public static TextPaint chat_docNamePaint;
     public static TextPaint chat_durationPaint;
+    public static TextPaint chat_ephemeralPaint;
     public static TextPaint chat_explanationTextPaint;
     public static Drawable chat_flameIcon;
     public static TextPaint chat_forwardNamePaint;
@@ -348,6 +351,7 @@ public abstract class Theme {
     public static ScamDrawable dialogs_fakeDrawable;
     public static Drawable dialogs_forum_arrowDrawable;
     public static Drawable dialogs_halfCheckDrawable;
+    public static Drawable dialogs_hiddenDrawable;
     public static RLottieDrawable dialogs_hidePsaDrawable;
     public static boolean dialogs_hidePsaDrawableRecolored;
     public static Drawable dialogs_holidayDrawable;
@@ -380,6 +384,7 @@ public abstract class Theme {
     public static ScamDrawable dialogs_scamDrawable;
     public static TextPaint dialogs_searchNameEncryptedPaint;
     public static TextPaint dialogs_searchNamePaint;
+    public static RLottieDrawable dialogs_swipeCommunityUngroup;
     public static RLottieDrawable dialogs_swipeDeleteDrawable;
     public static RLottieDrawable dialogs_swipeMuteDrawable;
     public static RLottieDrawable dialogs_swipePinDrawable;
@@ -2189,7 +2194,7 @@ public abstract class Theme {
         ThemeAccent() {
         }
 
-        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) throws java.io.IOException {
+        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.ThemeAccent.fillAccentColors(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
         }
 
@@ -2828,7 +2833,7 @@ public abstract class Theme {
             return this.defaultAccentCount != 0;
         }
 
-        public boolean isDark() throws IOException {
+        public boolean isDark() {
             int i = this.isDark;
             if (i != -1) {
                 return i == 1;
@@ -3413,7 +3418,7 @@ public abstract class Theme {
         editorEdit.commit();
     }
 
-    private static Drawable getStateDrawable(Drawable drawable, int i) {
+    private static Drawable getStateDrawable(Drawable drawable, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         if (Build.VERSION.SDK_INT >= 29 && (drawable instanceof StateListDrawable)) {
             return ((StateListDrawable) drawable).getStateDrawable(i);
         }
@@ -3588,11 +3593,11 @@ public abstract class Theme {
         return shapeDrawable;
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) throws Resources.NotFoundException {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2) {
         return createCircleDrawableWithIcon(i, i2, 0);
     }
 
-    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) throws Resources.NotFoundException {
+    public static CombinedDrawable createCircleDrawableWithIcon(int i, int i2, int i3) {
         return createCircleDrawableWithIcon(i, i2 != 0 ? ApplicationLoader.applicationContext.getResources().getDrawable(i2).mutate() : null, i3);
     }
 
@@ -4546,7 +4551,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda78(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda84(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4592,7 +4597,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda78(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda84(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4707,7 +4712,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda78(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda84(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -5071,7 +5076,7 @@ public abstract class Theme {
         return currentTheme == currentNightTheme;
     }
 
-    public static boolean isCurrentThemeDark() throws IOException {
+    public static boolean isCurrentThemeDark() {
         return currentTheme.isDark();
     }
 
@@ -5385,13 +5390,13 @@ public abstract class Theme {
     public static void lambda$checkCurrentRemoteTheme$7(final ThemeAccent themeAccent, final ThemeInfo themeInfo, final TLRPC.TL_theme tL_theme, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws JSONException, Resources.NotFoundException, IOException {
+            public final void run() throws JSONException, IOException {
                 Theme.lambda$checkCurrentRemoteTheme$6(tLObject, themeAccent, themeInfo, tL_theme);
             }
         });
     }
 
-    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, android.content.res.Resources.NotFoundException, java.io.IOException {
+    public static void lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject r7, org.telegram.ui.ActionBar.Theme.ThemeAccent r8, org.telegram.ui.ActionBar.Theme.ThemeInfo r9, org.telegram.tgnet.TLRPC.TL_theme r10) throws org.json.JSONException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.lambda$checkCurrentRemoteTheme$6(org.telegram.tgnet.TLObject, org.telegram.ui.ActionBar.Theme$ThemeAccent, org.telegram.ui.ActionBar.Theme$ThemeInfo, org.telegram.tgnet.TLRPC$TL_theme):void");
     }
 
@@ -5824,6 +5829,7 @@ public abstract class Theme {
             dialogs_swipeDeleteDrawable = new RLottieDrawable(R.raw.swipe_delete, "swipe_delete", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
             dialogs_swipeUnpinDrawable = new RLottieDrawable(R.raw.swipe_unpin, "swipe_unpin", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
             dialogs_swipePinDrawable = new RLottieDrawable(R.raw.swipe_pin, "swipe_pin", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            dialogs_swipeCommunityUngroup = new RLottieDrawable(R.raw.swipe_community_ungroup, "swipe_community_ungroup", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             applyCommonTheme();
         }
     }
@@ -5969,6 +5975,7 @@ public abstract class Theme {
             dialogs_reorderDrawable = resources.getDrawable(R.drawable.list_reorder).mutate();
             dialogs_muteDrawable = resources.getDrawable(R.drawable.list_mute).mutate();
             dialogs_unmuteDrawable = resources.getDrawable(R.drawable.list_unmute).mutate();
+            dialogs_hiddenDrawable = resources.getDrawable(R.drawable.mini_ephemeral_hidden_16).mutate();
             dialogs_verifiedDrawable = resources.getDrawable(R.drawable.verified_area).mutate();
             dialogs_scamDrawable = new ScamDrawable(11, 0);
             dialogs_fakeDrawable = new ScamDrawable(11, 1);
@@ -6084,6 +6091,7 @@ public abstract class Theme {
         int i9 = key_chats_muteIcon;
         setDrawableColorByKey(drawable3, i9);
         setDrawableColorByKey(dialogs_unmuteDrawable, i9);
+        setDrawableColorByKey(dialogs_hiddenDrawable, i9);
         setDrawableColorByKey(dialogs_mentionDrawable, i5);
         setDrawableColorByKey(dialogs_reactionsMentionDrawable, key_dialogReactionMentionBackground);
         setDrawableColorByKey(dialogs_pollMentionDrawable, key_color_purple);
@@ -6100,7 +6108,7 @@ public abstract class Theme {
         setDrawableColorByKey(dialogs_fakeDrawable, i10);
     }
 
-    public static void reloadAllResources(Context context) throws Resources.NotFoundException, IOException {
+    public static void reloadAllResources(Context context) {
         destroyResources();
         if (chat_msgInDrawable != null) {
             chat_msgInDrawable = null;
@@ -6157,6 +6165,7 @@ public abstract class Theme {
                     chat_msgTextCode3Paint = textPaint7;
                     textPaint7.setTypeface(typeface);
                     chat_msgCodeBgPaint = new TextPaint(1);
+                    chat_ephemeralPaint = new TextPaint(1);
                 }
                 float[] fArr = {0.68f, 0.46f, 0.34f, 0.28f, 0.22f, 0.19f};
                 int i = 0;
@@ -6179,6 +6188,7 @@ public abstract class Theme {
                         float f = (((SharedConfig.fontSize * 2) + 10) / 3.0f) - 1.0f;
                         chat_quoteTextPaint.setTextSize(AndroidUtilities.dp(f));
                         chat_explanationTextPaint.setTextSize(AndroidUtilities.dp(r0));
+                        chat_ephemeralPaint.setTextSize(AndroidUtilities.dp(12.0f));
                         chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f));
                         chat_titleLabelTextPaint.setTextSize(AndroidUtilities.dp(r0 - 2.0f));
                         chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(r0));
@@ -6259,6 +6269,7 @@ public abstract class Theme {
             chat_shipmentPaint = new TextPaint(1);
             chat_timePaint = new TextPaint(1);
             chat_adminPaint = new TextPaint(1);
+            chat_ephemeralPaint = new TextPaint(1);
             TextPaint textPaint10 = new TextPaint(1);
             chat_namePaint = textPaint10;
             textPaint10.setTypeface(AndroidUtilities.bold());
@@ -6330,7 +6341,7 @@ public abstract class Theme {
         }
     }
 
-    public static void createChatResources(Context context, boolean z) throws Resources.NotFoundException, IOException {
+    public static void createChatResources(Context context, boolean z) {
         TextPaint textPaint;
         createCommonChatResources();
         if (!z && chat_msgInDrawable == null) {
@@ -6606,6 +6617,7 @@ public abstract class Theme {
         chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f));
         chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(r0));
         chat_adminPaint.setTextSize(AndroidUtilities.dp(f));
+        chat_ephemeralPaint.setTextSize(AndroidUtilities.dp(12.0f));
         chat_timePaint.setTextSize(AndroidUtilities.dp(12.0f));
         chat_gamePaint.setTextSize(AndroidUtilities.dp(13.0f));
         chat_shipmentPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -6624,7 +6636,7 @@ public abstract class Theme {
         chat_commentTextPaint.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void applyChatTheme(boolean z, boolean z2) throws IOException {
+    public static void applyChatTheme(boolean z, boolean z2) {
         if (chat_msgTextPaint == null || chat_msgInDrawable == null || z) {
             return;
         }
@@ -6794,7 +6806,7 @@ public abstract class Theme {
         applyChatMessageSelectedBackgroundColor();
     }
 
-    public static void applyChatServiceMessageColor() throws IOException {
+    public static void applyChatServiceMessageColor() {
         Drawable drawable = wallpaper;
         if (drawable != null) {
             applyChatServiceMessageColor(null, null, drawable);
@@ -6856,7 +6868,7 @@ public abstract class Theme {
         bitmapShader.setLocalMatrix(matrix);
     }
 
-    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) throws IOException {
+    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) {
         int iValueAt;
         int i;
         int iValueAt2;
@@ -7338,7 +7350,7 @@ public abstract class Theme {
         }
     }
 
-    public static boolean setSelectorDrawableColor(Drawable drawable, int i, boolean z) {
+    public static boolean setSelectorDrawableColor(Drawable drawable, int i, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         Drawable stateDrawable;
         boolean z2;
         if (drawable instanceof StateListDrawable) {
@@ -7461,13 +7473,13 @@ public abstract class Theme {
         final Drawable drawableLoadWallpaperInternal = loadWallpaperInternal(overrideWallpaperInfo, file, i, z, document, z2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 Theme.lambda$loadWallpaper$11(drawableLoadWallpaperInternal);
             }
         });
     }
 
-    public static void lambda$loadWallpaper$11(Drawable drawable) throws IOException {
+    public static void lambda$loadWallpaper$11(Drawable drawable) {
         wallpaperLoadTask = null;
         createCommonChatResources();
         if (!disallowChangeServiceMessageColor) {
@@ -7875,5 +7887,11 @@ public abstract class Theme {
             saveAutoNightThemeConfig();
             cancelAutoNightThemeCallbacks();
         }
+    }
+
+    public static Paint fillingPaint(int i) {
+        Paint paint = PAINT_FILLING;
+        paint.setColor(i);
+        return paint;
     }
 }

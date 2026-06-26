@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
+import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -92,6 +93,10 @@ public class TextStyleSpan extends MetricAffectingSpan {
         this(textStyleRun, 0, 0);
     }
 
+    public TextStyleSpan(TextStyleRun textStyleRun, int i) {
+        this(textStyleRun, i, 0);
+    }
+
     public TextStyleSpan(TextStyleRun textStyleRun, int i, int i2) {
         this.style = textStyleRun;
         if (i > 0) {
@@ -120,12 +125,25 @@ public class TextStyleSpan extends MetricAffectingSpan {
         }
     }
 
+    private void applySubSuper(TextPaint textPaint) {
+        if (BitwiseUtils.hasFlag(this.style.flags, 49152)) {
+            float textSize = textPaint.getTextSize();
+            textPaint.setTextSize(0.75f * textSize);
+            if (BitwiseUtils.hasFlag(this.style.flags, 32768)) {
+                textPaint.baselineShift -= (int) (textSize * 0.35f);
+            } else if (BitwiseUtils.hasFlag(this.style.flags, 16384)) {
+                textPaint.baselineShift += (int) (textSize * 0.12f);
+            }
+        }
+    }
+
     @Override
     public void updateMeasureState(TextPaint textPaint) {
         int i = this.textSize;
         if (i != 0) {
             textPaint.setTextSize(i);
         }
+        applySubSuper(textPaint);
         textPaint.setFlags(textPaint.getFlags() | 128);
         this.style.applyStyle(textPaint);
     }
@@ -136,6 +154,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
         if (i != 0) {
             textPaint.setTextSize(i);
         }
+        applySubSuper(textPaint);
         int i2 = this.color;
         if (i2 != 0) {
             textPaint.setColor(i2);

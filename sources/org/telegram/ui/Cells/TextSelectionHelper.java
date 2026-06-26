@@ -3,6 +3,7 @@ package org.telegram.ui.Cells;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
@@ -15,7 +16,6 @@ import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.ActionMode;
@@ -34,6 +34,7 @@ import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.zxing.common.detector.MathUtils;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -178,7 +179,7 @@ public abstract class TextSelectionHelper {
     };
     final Runnable startSelectionRunnable = new Runnable() {
         @Override
-        public void run() {
+        public void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             TextSelectionHelper textSelectionHelper = TextSelectionHelper.this;
             SelectableView selectableView = textSelectionHelper.maybeSelectedView;
             if (selectableView == null || textSelectionHelper.textSelectionOverlay == null) {
@@ -368,6 +369,7 @@ public abstract class TextSelectionHelper {
     public static class LayoutBlock {
         public int charOffset;
         public Layout layout;
+        public Rect selectionBounds;
         public float xOffset;
         public float yOffset;
     }
@@ -396,27 +398,16 @@ public abstract class TextSelectionHelper {
         CharSequence getText();
     }
 
-    public interface TextLayoutBlock {
-
-        public abstract class CC {
-            public static CharSequence $default$getPrefix(TextLayoutBlock textLayoutBlock) {
-                return null;
-            }
-        }
-
-        Layout getLayout();
-
-        CharSequence getPrefix();
-
-        int getRow();
-
-        int getX();
-
-        int getY();
-    }
-
     protected boolean canCopy() {
         return true;
+    }
+
+    protected boolean canCut() {
+        return false;
+    }
+
+    protected boolean canPaste() {
+        return false;
     }
 
     protected boolean canShowQuote() {
@@ -439,10 +430,20 @@ public abstract class TextSelectionHelper {
 
     protected abstract CharSequence getText(SelectableView selectableView, boolean z);
 
+    protected boolean onCopyOverride() {
+        return false;
+    }
+
+    protected void onCutAction() {
+    }
+
     protected void onExitSelectionMode(boolean z) {
     }
 
     protected void onOffsetChanged() {
+    }
+
+    protected void onPasteAction() {
     }
 
     protected void onQuoteClick(MessageObject messageObject, int i, int i2, CharSequence charSequence) {
@@ -698,6 +699,16 @@ public abstract class TextSelectionHelper {
         copyText();
     }
 
+    public void lambda$showActions$4(View view) {
+        onCutAction();
+        hideActions();
+    }
+
+    public void lambda$showActions$5(View view) {
+        onPasteAction();
+        hideActions();
+    }
+
     protected boolean canShowActions() {
         return this.selectedView != null;
     }
@@ -762,6 +773,7 @@ public abstract class TextSelectionHelper {
         TextSelectionOverlay textSelectionOverlay = this.textSelectionOverlay;
         if (textSelectionOverlay != null) {
             textSelectionOverlay.setVisibility(8);
+            this.textSelectionOverlay.clearGestureExclusionRects();
         }
         this.handleViewProgress = 0.0f;
         Callback callback = this.callback;
@@ -802,6 +814,20 @@ public abstract class TextSelectionHelper {
         AndroidUtilities.runOnUIThread(this.showActionsRunnable);
     }
 
+    public void finishOneTouchSelection() {
+        if (isInSelectionMode()) {
+            this.movingHandle = false;
+            this.movingDirectionSettling = false;
+            this.isOneTouch = false;
+            TextSelectionOverlay textSelectionOverlay = this.textSelectionOverlay;
+            if (textSelectionOverlay != null) {
+                textSelectionOverlay.invalidate();
+            }
+            AndroidUtilities.cancelRunOnUIThread(this.showActionsRunnable);
+            AndroidUtilities.runOnUIThread(this.showActionsRunnable);
+        }
+    }
+
     public static boolean isInterruptedCharacter(char c) {
         return Character.isLetter(c) || Character.isDigit(c) || c == '_';
     }
@@ -814,6 +840,7 @@ public abstract class TextSelectionHelper {
         boolean applyPaddingAsOffset;
         float cancelPressedX;
         float cancelPressedY;
+        private final ArrayList gestureExclusionRects;
         Paint handleViewPaint;
         Path path;
         long pressedTime;
@@ -825,7 +852,33 @@ public abstract class TextSelectionHelper {
             this.handleViewPaint = new Paint(1);
             this.pressedTime = 0L;
             this.path = new Path();
+            this.gestureExclusionRects = new ArrayList();
             this.handleViewPaint.setStyle(Paint.Style.FILL);
+        }
+
+        public void clearGestureExclusionRects() {
+            if (Build.VERSION.SDK_INT < 29 || this.gestureExclusionRects.isEmpty()) {
+                return;
+            }
+            this.gestureExclusionRects.clear();
+            setSystemGestureExclusionRects(this.gestureExclusionRects);
+        }
+
+        private void addGestureExclusionRect(RectF rectF) {
+            if (rectF.isEmpty()) {
+                return;
+            }
+            this.gestureExclusionRects.add(new Rect((int) Math.floor(rectF.left), (int) Math.floor(rectF.top), (int) Math.ceil(rectF.right), (int) Math.ceil(rectF.bottom)));
+        }
+
+        private void updateGestureExclusionRects() {
+            if (Build.VERSION.SDK_INT < 29) {
+                return;
+            }
+            this.gestureExclusionRects.clear();
+            addGestureExclusionRect(TextSelectionHelper.this.startArea);
+            addGestureExclusionRect(TextSelectionHelper.this.endArea);
+            setSystemGestureExclusionRects(this.gestureExclusionRects);
         }
 
         private void requestParentDisallowIntercept(boolean z) {
@@ -991,6 +1044,8 @@ public abstract class TextSelectionHelper {
             menu.add(0, R.id.menu_quote, 1, LocaleController.getString(R.string.Quote));
             menu.add(0, 16908319, 2, 17039373);
             menu.add(0, 3, 3, LocaleController.getString(R.string.TranslateMessage));
+            menu.add(0, 16908320, 4, 17039363);
+            menu.add(0, 16908322, 5, 17039371);
             return true;
         }
 
@@ -1003,6 +1058,7 @@ public abstract class TextSelectionHelper {
             }
             TextSelectionHelper textSelectionHelper = TextSelectionHelper.this;
             SelectableView selectableView = textSelectionHelper.selectedView;
+            boolean z = false;
             if (selectableView != null) {
                 CharSequence text = textSelectionHelper.getText(selectableView, false);
                 if (!TextSelectionHelper.this.canCopy()) {
@@ -1015,6 +1071,17 @@ public abstract class TextSelectionHelper {
                         menu.getItem(2).setVisible(true);
                     }
                 }
+            }
+            MenuItem menuItemFindItem2 = menu.findItem(16908320);
+            if (menuItemFindItem2 != null) {
+                menuItemFindItem2.setVisible(TextSelectionHelper.this.canCut());
+            }
+            MenuItem menuItemFindItem3 = menu.findItem(16908322);
+            if (menuItemFindItem3 != null) {
+                if (TextSelectionHelper.this.canPaste() && TextSelectionHelper.this.clipboardHasContent()) {
+                    z = true;
+                }
+                menuItemFindItem3.setVisible(z);
             }
             if (TextSelectionHelper.this.onTranslateListener != null && LanguageDetector.hasSupport() && TextSelectionHelper.this.getSelectedText() != null) {
                 LanguageDetector.detectLanguage(TextSelectionHelper.this.getSelectedText().toString(), new LanguageDetector.StringCallback() {
@@ -1094,6 +1161,16 @@ public abstract class TextSelectionHelper {
                 TextSelectionHelper.this.hideActions();
                 return true;
             }
+            if (itemId == 16908320) {
+                TextSelectionHelper.this.onCutAction();
+                TextSelectionHelper.this.hideActions();
+                return true;
+            }
+            if (itemId == 16908322) {
+                TextSelectionHelper.this.onPasteAction();
+                TextSelectionHelper.this.hideActions();
+                return true;
+            }
             TextSelectionHelper.this.clear();
             return true;
         }
@@ -1168,15 +1245,35 @@ public abstract class TextSelectionHelper {
     }
 
     public void copyText() {
-        CharSequence selectedText;
-        if (isInSelectionMode() && (selectedText = getSelectedText()) != null) {
-            AndroidUtilities.addToClipboard(selectedText);
+        if (isInSelectionMode()) {
+            if (!onCopyOverride()) {
+                CharSequence selectedText = getSelectedText();
+                if (selectedText == null) {
+                    return;
+                } else {
+                    AndroidUtilities.addToClipboard(selectedText);
+                }
+            }
             hideActions();
             clear(true);
             Callback callback = this.callback;
             if (callback != null) {
                 callback.onTextCopied();
             }
+        }
+    }
+
+    protected boolean clipboardHasContent() {
+        ClipboardManager clipboardManager;
+        try {
+            TextSelectionOverlay textSelectionOverlay = this.textSelectionOverlay;
+            Context context = textSelectionOverlay != null ? textSelectionOverlay.getContext() : ApplicationLoader.applicationContext;
+            if (context == null || (clipboardManager = (ClipboardManager) context.getSystemService("clipboard")) == null) {
+                return false;
+            }
+            return clipboardManager.hasPrimaryClip();
+        } catch (Exception unused) {
+            return false;
         }
     }
 
@@ -2182,7 +2279,9 @@ public abstract class TextSelectionHelper {
 
         @Override
         protected void fillLayoutForOffset(int i, LayoutBlock layoutBlock, boolean z) {
+            int i2;
             this.arrayList.clear();
+            layoutBlock.selectionBounds = null;
             ArticleSelectableView articleSelectableView = (ArticleSelectableView) (z ? this.maybeSelectedView : this.selectedView);
             if (articleSelectableView == null) {
                 layoutBlock.layout = null;
@@ -2190,15 +2289,16 @@ public abstract class TextSelectionHelper {
             }
             articleSelectableView.fillTextLayoutBlocks(this.arrayList);
             if (z) {
-                layoutBlock.layout = ((TextLayoutBlock) this.arrayList.get(this.maybeTextIndex)).getLayout();
+                i2 = this.maybeTextIndex;
             } else {
-                int i2 = this.startPeek ? this.startViewChildPosition : this.endViewChildPosition;
-                if (i2 < 0 || i2 >= this.arrayList.size()) {
-                    layoutBlock.layout = null;
-                    return;
-                }
-                layoutBlock.layout = ((TextLayoutBlock) this.arrayList.get(i2)).getLayout();
+                i2 = this.startPeek ? this.startViewChildPosition : this.endViewChildPosition;
             }
+            if (i2 < 0 || i2 >= this.arrayList.size()) {
+                layoutBlock.layout = null;
+                return;
+            }
+            layoutBlock.layout = ((TextLayoutBlock) this.arrayList.get(i2)).getLayout();
+            layoutBlock.selectionBounds = ((TextLayoutBlock) this.arrayList.get(i2)).getSelectionBounds();
             layoutBlock.yOffset = 0.0f;
             layoutBlock.xOffset = 0.0f;
         }
@@ -2426,7 +2526,7 @@ public abstract class TextSelectionHelper {
             this.childCountByPosition.put(adapterPosition, size);
             for (int i2 = 0; i2 < size; i2++) {
                 int i3 = (i2 << 16) + adapterPosition;
-                this.textByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getLayout().getText());
+                this.textByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getText());
                 this.prefixTextByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getPrefix());
             }
         }
@@ -2437,7 +2537,6 @@ public abstract class TextSelectionHelper {
 
         public boolean selectRangeOf(ArticleSelectableView articleSelectableView, int i, int i2, int i3) {
             int adapterPosition = getAdapterPosition(articleSelectableView);
-            Log.d("RICHED", "helper.selectRangeOf pos=" + adapterPosition + " childPos=" + i + " start=" + i2 + " end=" + i3);
             if (adapterPosition < 0 || i2 == i3) {
                 return false;
             }
@@ -2479,12 +2578,15 @@ public abstract class TextSelectionHelper {
             return true;
         }
 
+        public boolean extendSelectionTo(ArticleSelectableView articleSelectableView, int i) {
+            return extendSelectionTo(articleSelectableView, 0, i);
+        }
+
         public boolean extendSelectionTo(ArticleSelectableView articleSelectableView, int i, int i2) {
             int i3;
             int i4;
             int i5;
             int adapterPosition = getAdapterPosition(articleSelectableView);
-            Log.d("RICHED", "helper.extendSelectionTo pos=" + adapterPosition + " childPos=" + i + " off=" + i2 + " anchor=(" + this.anchorViewPosition + "," + this.anchorChildPosition + "," + this.anchorOffset + ")");
             if (adapterPosition < 0) {
                 return false;
             }
@@ -2499,7 +2601,8 @@ public abstract class TextSelectionHelper {
                 i4 = this.anchorChildPosition;
                 i5 = this.anchorOffset;
             } else {
-                adapterPosition = this.anchorViewPosition;
+                int i6 = this.anchorViewPosition;
+                adapterPosition = i6;
                 i3 = adapterPosition;
                 i4 = i;
                 i = this.anchorChildPosition;
@@ -2561,6 +2664,56 @@ public abstract class TextSelectionHelper {
             return selectAllBlocksRangeInternal(i, i2, length, articleSelectableView);
         }
 
+        public boolean selectAllBlocksRange(int i, int i2, int i3, int i4) {
+            ArticleSelectableView articleSelectableView;
+            if (i < 0 || i2 < i || i3 < 0) {
+                return false;
+            }
+            if (this.parentView != null) {
+                for (int i5 = 0; i5 < this.parentView.getChildCount(); i5++) {
+                    KeyEvent.Callback childAt = this.parentView.getChildAt(i5);
+                    if (childAt instanceof ArticleSelectableView) {
+                        articleSelectableView = (ArticleSelectableView) childAt;
+                        if (getAdapterPosition(articleSelectableView) == i2) {
+                            break;
+                        }
+                    }
+                }
+                articleSelectableView = null;
+            } else {
+                articleSelectableView = null;
+            }
+            this.selectedView = articleSelectableView;
+            this.selectionStart = 0;
+            this.selectionEnd = i4;
+            this.startViewPosition = i;
+            this.endViewPosition = i2;
+            this.startViewChildPosition = 0;
+            this.endViewChildPosition = i3;
+            this.startViewOffset = 0;
+            this.endViewOffset = i4;
+            SparseIntArray sparseIntArray = this.childCountByPosition;
+            sparseIntArray.put(i, Math.max(1, sparseIntArray.get(i)));
+            SparseIntArray sparseIntArray2 = this.childCountByPosition;
+            sparseIntArray2.put(i2, Math.max(i3 + 1, sparseIntArray2.get(i2)));
+            this.anchorViewPosition = i;
+            this.anchorChildPosition = 0;
+            this.anchorOffset = 0;
+            TextSelectionOverlay textSelectionOverlay = this.textSelectionOverlay;
+            if (textSelectionOverlay != null) {
+                textSelectionOverlay.setVisibility(0);
+            }
+            showHandleViews();
+            invalidate();
+            AndroidUtilities.cancelRunOnUIThread(this.showActionsRunnable);
+            AndroidUtilities.runOnUIThread(this.showActionsRunnable);
+            Callback callback = this.callback;
+            if (callback != null) {
+                callback.onStateChanged(true);
+            }
+            return true;
+        }
+
         private boolean selectAllBlocksRangeInternal(int i, int i2, int i3, ArticleSelectableView articleSelectableView) {
             this.selectedView = articleSelectableView;
             this.selectionStart = 0;
@@ -2605,6 +2758,17 @@ public abstract class TextSelectionHelper {
             sparseIntArray.put(i, Math.max(1, sparseIntArray.get(i)));
         }
 
+        public void cacheChildText(int i, int i2, CharSequence charSequence) {
+            SparseArray sparseArray = this.textByPosition;
+            int i3 = (i2 << 16) + i;
+            if (charSequence == null) {
+                charSequence = "";
+            }
+            sparseArray.put(i3, charSequence);
+            SparseIntArray sparseIntArray = this.childCountByPosition;
+            sparseIntArray.put(i, Math.max(i2 + 1, sparseIntArray.get(i)));
+        }
+
         private void populateTextCacheForView(ArticleSelectableView articleSelectableView, int i) {
             this.arrayList.clear();
             articleSelectableView.fillTextLayoutBlocks(this.arrayList);
@@ -2612,7 +2776,7 @@ public abstract class TextSelectionHelper {
             this.childCountByPosition.put(i, size);
             for (int i2 = 0; i2 < size; i2++) {
                 int i3 = (i2 << 16) + i;
-                this.textByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getLayout().getText());
+                this.textByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getText());
                 this.prefixTextByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getPrefix());
             }
         }
@@ -2759,7 +2923,7 @@ public abstract class TextSelectionHelper {
             this.childCountByPosition.put(adapterPosition, size);
             for (int i7 = 0; i7 < size; i7++) {
                 int i8 = (i7 << 16) + adapterPosition;
-                this.textByPosition.put(i8, ((TextLayoutBlock) this.arrayList.get(i7)).getLayout().getText());
+                this.textByPosition.put(i8, ((TextLayoutBlock) this.arrayList.get(i7)).getText());
                 this.prefixTextByPosition.put(i8, ((TextLayoutBlock) this.arrayList.get(i7)).getPrefix());
             }
         }
@@ -3083,6 +3247,40 @@ public abstract class TextSelectionHelper {
                 return i >= iFindFirstVisibleItemPosition && this.endViewPosition <= iFindLastVisibleItemPosition;
             }
             return true;
+        }
+    }
+
+    public interface TextLayoutBlock {
+        Layout getLayout();
+
+        CharSequence getPrefix();
+
+        int getRow();
+
+        Rect getSelectionBounds();
+
+        CharSequence getText();
+
+        int getX();
+
+        int getY();
+
+        public abstract class CC {
+            public static CharSequence $default$getPrefix(TextLayoutBlock textLayoutBlock) {
+                return null;
+            }
+
+            public static Rect $default$getSelectionBounds(TextLayoutBlock textLayoutBlock) {
+                return null;
+            }
+
+            public static CharSequence $default$getText(TextLayoutBlock textLayoutBlock) {
+                Layout layout = textLayoutBlock.getLayout();
+                if (layout == null) {
+                    return null;
+                }
+                return layout.getText();
+            }
         }
     }
 

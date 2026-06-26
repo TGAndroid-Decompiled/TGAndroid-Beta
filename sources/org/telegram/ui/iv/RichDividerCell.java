@@ -3,9 +3,7 @@ package org.telegram.ui.iv;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
+import android.graphics.RectF;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ public class RichDividerCell extends View implements Theme.Colorable, TextSelect
     private final Paint paint;
     private final Theme.ResourcesProvider resourcesProvider;
     private final Paint selectionPaint;
-    private Layout stubLayout;
-    private final TextPaint stubPaint;
 
     public interface Delegate {
         TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
@@ -34,10 +30,7 @@ public class RichDividerCell extends View implements Theme.Colorable, TextSelect
         super(context);
         this.paint = new Paint(1);
         this.selectionPaint = new Paint(1);
-        TextPaint textPaint = new TextPaint();
-        this.stubPaint = textPaint;
         this.resourcesProvider = resourcesProvider;
-        textPaint.setTextSize(1.0f);
         updateColors();
     }
 
@@ -58,47 +51,13 @@ public class RichDividerCell extends View implements Theme.Colorable, TextSelect
 
     @Override
     public void fillTextLayoutBlocks(ArrayList arrayList) {
-        if (this.stubLayout == null) {
-            this.stubLayout = new StaticLayout("•", this.stubPaint, Math.max(1, getMeasuredWidth()), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        final Layout layout = this.stubLayout;
-        arrayList.add(new TextSelectionHelper.TextLayoutBlock() {
-            @Override
-            public CharSequence getPrefix() {
-                return TextSelectionHelper.TextLayoutBlock.CC.$default$getPrefix(this);
-            }
-
-            @Override
-            public int getRow() {
-                return 0;
-            }
-
-            @Override
-            public int getX() {
-                return 0;
-            }
-
-            @Override
-            public int getY() {
-                return 0;
-            }
-
-            @Override
-            public Layout getLayout() {
-                return layout;
-            }
-        });
+        int iMax = Math.max(1, getMeasuredWidth() / 3);
+        arrayList.add(RichBlockSelection.of(iMax - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), (iMax * 2) + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f)));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(24.0f));
-    }
-
-    @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        this.stubLayout = null;
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(18.0f));
     }
 
     private boolean isCellSelected() {
@@ -110,11 +69,14 @@ public class RichDividerCell extends View implements Theme.Colorable, TextSelect
 
     @Override
     protected void onDraw(Canvas canvas) {
+        int measuredWidth = getMeasuredWidth() / 3;
+        this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_chat_inReplyMessageText, this.resourcesProvider), 0.2f));
         if (isCellSelected()) {
-            canvas.drawRoundRect(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.selectionPaint);
+            canvas.drawRoundRect(measuredWidth - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), (measuredWidth * 2) + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.selectionPaint);
         }
-        int measuredHeight = getMeasuredHeight() / 2;
-        canvas.drawRect(AndroidUtilities.dp(16.0f), measuredHeight - 1, getMeasuredWidth() - AndroidUtilities.dp(16.0f), measuredHeight + 1, this.paint);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(measuredWidth, AndroidUtilities.dp(8.0f), measuredWidth * 2, AndroidUtilities.dp(10.0f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), this.paint);
     }
 
     public static final class Factory extends UItem.UItemFactory {

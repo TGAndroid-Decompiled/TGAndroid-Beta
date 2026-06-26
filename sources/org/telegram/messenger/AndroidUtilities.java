@@ -3516,6 +3516,19 @@ public class AndroidUtilities {
         return (i < 31 || !OneUIUtilities.hasBuiltInClipboardToasts()) && i < 32;
     }
 
+    public static boolean addToClipboard(CharSequence charSequence, String str) {
+        if (str == null) {
+            return addToClipboard(charSequence);
+        }
+        try {
+            ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newHtmlText("label", charSequence, str));
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
     public static boolean addToClipboard(CharSequence charSequence) {
         try {
             ClipboardManager clipboardManager = (ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard");

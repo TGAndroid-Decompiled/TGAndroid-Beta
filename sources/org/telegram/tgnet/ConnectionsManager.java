@@ -347,7 +347,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 227, BuildVars.APP_ID, str3, str8, str2, str4, str7, string, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, zIsPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 228, BuildVars.APP_ID, str3, str8, str2, str4, str7, string, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, zIsPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -428,6 +428,35 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
+    public int sendRequestTypedAndProcessUpdates(TLMethod<TLRPC.Updates> tLMethod, Executor executor, Utilities.Callback2<TLRPC.Updates, TLRPC.TL_error> callback2) {
+        return sendRequestTypedAndProcessUpdates(tLMethod, executor, callback2, Integer.MAX_VALUE, 0);
+    }
+
+    public int sendRequestTypedAndProcessUpdates(TLMethod<TLRPC.Updates> tLMethod, final Executor executor, final Utilities.Callback2<TLRPC.Updates, TLRPC.TL_error> callback2, int i, int i2) {
+        return sendRequestTyped(tLMethod, null, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$sendRequestTypedAndProcessUpdates$5(executor, callback2, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+            }
+        }, i, i2);
+    }
+
+    public void lambda$sendRequestTypedAndProcessUpdates$5(Executor executor, final Utilities.Callback2 callback2, final TLRPC.Updates updates, final TLRPC.TL_error tL_error) {
+        if (updates != null) {
+            getMessagesController().processUpdates(updates, false);
+        }
+        if (executor != null) {
+            executor.execute(new Runnable() {
+                @Override
+                public final void run() {
+                    callback2.run(updates, tL_error);
+                }
+            });
+        } else {
+            callback2.run(updates, tL_error);
+        }
+    }
+
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate) {
         return sendRequest(tLObject, requestDelegate, (QuickAckDelegate) null, 0);
     }
@@ -454,7 +483,7 @@ public class ConnectionsManager extends BaseController {
 
     public int sendRequestSync(TLObject tLObject, RequestDelegate requestDelegate, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z) {
         int andIncrement = this.lastRequestToken.getAndIncrement();
-        lambda$sendRequest$4(tLObject, requestDelegate, null, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, andIncrement);
+        lambda$sendRequest$6(tLObject, requestDelegate, null, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, andIncrement);
         return andIncrement;
     }
 
@@ -463,17 +492,17 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$sendRequest$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, andIncrement);
+                this.f$0.lambda$sendRequest$6(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, andIncrement);
             }
         });
         return andIncrement;
     }
 
-    public void lambda$sendRequest$4(final org.telegram.tgnet.TLObject r18, final org.telegram.tgnet.RequestDelegate r19, final org.telegram.tgnet.RequestDelegateTimestamp r20, final org.telegram.tgnet.QuickAckDelegate r21, final org.telegram.tgnet.WriteToSocketDelegate r22, final int r23, final int r24, final int r25, final boolean r26, final int r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$sendRequest$4(org.telegram.tgnet.TLObject, org.telegram.tgnet.RequestDelegate, org.telegram.tgnet.RequestDelegateTimestamp, org.telegram.tgnet.QuickAckDelegate, org.telegram.tgnet.WriteToSocketDelegate, int, int, int, boolean, int):void");
+    public void lambda$sendRequest$6(final org.telegram.tgnet.TLObject r18, final org.telegram.tgnet.RequestDelegate r19, final org.telegram.tgnet.RequestDelegateTimestamp r20, final org.telegram.tgnet.QuickAckDelegate r21, final org.telegram.tgnet.WriteToSocketDelegate r22, final int r23, final int r24, final int r25, final boolean r26, final int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$sendRequest$6(org.telegram.tgnet.TLObject, org.telegram.tgnet.RequestDelegate, org.telegram.tgnet.RequestDelegateTimestamp, org.telegram.tgnet.QuickAckDelegate, org.telegram.tgnet.WriteToSocketDelegate, int, int, int, boolean, int):void");
     }
 
-    public void lambda$sendRequestInternal$6(TLObject tLObject, int i, long j, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i2, int i3, boolean z, int i4, long j2, int i5, String str, int i6, final long j3, long j4, int i7) throws Exception {
+    public void lambda$sendRequestInternal$8(TLObject tLObject, int i, long j, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i2, int i3, boolean z, int i4, long j2, int i5, String str, int i6, final long j3, long j4, int i7) throws Exception {
         TLObject tLObjectDeserializeResponse;
         TLRPC.TL_error tL_error;
         int iLimit;
@@ -544,7 +573,7 @@ public class ConnectionsManager extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$sendRequestInternal$5(requestDelegate, tLObject2, tL_error3, requestDelegateTimestamp, j3);
+                    this.f$0.lambda$sendRequestInternal$7(requestDelegate, tLObject2, tL_error3, requestDelegateTimestamp, j3);
                 }
             });
         } catch (Exception e2) {
@@ -552,7 +581,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public void lambda$sendRequestInternal$5(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
+    public void lambda$sendRequestInternal$7(RequestDelegate requestDelegate, TLObject tLObject, TLRPC.TL_error tL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
         if (requestDelegate != null) {
             requestDelegate.run(tLObject, tL_error);
         } else if (requestDelegateTimestamp != null) {
@@ -651,24 +680,24 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$cancelRequest$8(runnable, i, z);
+                this.f$0.lambda$cancelRequest$10(runnable, i, z);
             }
         });
     }
 
-    public void lambda$cancelRequest$8(final Runnable runnable, int i, boolean z) {
+    public void lambda$cancelRequest$10(final Runnable runnable, int i, boolean z) {
         if (runnable != null) {
             listenCancel(i, new Runnable() {
                 @Override
                 public final void run() {
-                    ConnectionsManager.lambda$cancelRequest$7(runnable);
+                    ConnectionsManager.lambda$cancelRequest$9(runnable);
                 }
             });
         }
         native_cancelRequest(this.currentAccount, i, z);
     }
 
-    public static void lambda$cancelRequest$7(Runnable runnable) {
+    public static void lambda$cancelRequest$9(Runnable runnable) {
         Utilities.stageQueue.postRunnable(runnable);
     }
 
@@ -680,12 +709,12 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$cancelRequestsForGuid$9(i);
+                this.f$0.lambda$cancelRequestsForGuid$11(i);
             }
         });
     }
 
-    public void lambda$cancelRequestsForGuid$9(int i) {
+    public void lambda$cancelRequestsForGuid$11(int i) {
         native_cancelRequestsForGuid(this.currentAccount, i);
     }
 
@@ -845,7 +874,7 @@ public class ConnectionsManager extends BaseController {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ConnectionsManager.lambda$onUnparsedMessageReceived$10(i, tLObjectTLdeserialize);
+                        ConnectionsManager.lambda$onUnparsedMessageReceived$12(i, tLObjectTLdeserialize);
                     }
                 });
                 return;
@@ -858,11 +887,11 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onUnparsedMessageReceived$10(int i, TLObject tLObject) {
+    public static void lambda$onUnparsedMessageReceived$12(int i, TLObject tLObject) {
         AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
     }
 
-    public static void lambda$onUpdate$11(int i) {
+    public static void lambda$onUpdate$13(int i) {
         AccountInstance.getInstance(i).getMessagesController().updateTimerProc();
     }
 
@@ -870,12 +899,12 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onUpdate$11(i);
+                ConnectionsManager.lambda$onUpdate$13(i);
             }
         });
     }
 
-    public static void lambda$onSessionCreated$12(int i) {
+    public static void lambda$onSessionCreated$14(int i) {
         AccountInstance.getInstance(i).getMessagesController().getDifference();
     }
 
@@ -883,7 +912,7 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onSessionCreated$12(i);
+                ConnectionsManager.lambda$onSessionCreated$14(i);
             }
         });
     }
@@ -892,12 +921,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onConnectionStateChanged$13(i2, i);
+                ConnectionsManager.lambda$onConnectionStateChanged$15(i2, i);
             }
         });
     }
 
-    public static void lambda$onConnectionStateChanged$13(int i, int i2) {
+    public static void lambda$onConnectionStateChanged$15(int i, int i2) {
         getInstance(i).connectionState = i2;
         AccountInstance.getInstance(i).getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateConnectionState, new Object[0]);
     }
@@ -906,12 +935,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onLogout$14(i);
+                ConnectionsManager.lambda$onLogout$16(i);
             }
         });
     }
 
-    public static void lambda$onLogout$14(int i) {
+    public static void lambda$onLogout$16(int i) {
         AccountInstance accountInstance = AccountInstance.getInstance(i);
         if (accountInstance.getUserConfig().getClientUserId() != 0) {
             accountInstance.getUserConfig().clearConfig();
@@ -941,22 +970,22 @@ public class ConnectionsManager extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$16(i, i2);
+                ConnectionsManager.lambda$onRequestNewServerIpAndPort$18(i, i2);
             }
         });
     }
 
-    public static void lambda$onRequestNewServerIpAndPort$16(final int i, final int i2) {
+    public static void lambda$onRequestNewServerIpAndPort$18(final int i, final int i2) {
         final boolean zIsNetworkOnline = ApplicationLoader.isNetworkOnline();
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$15(i, zIsNetworkOnline, i2);
+                ConnectionsManager.lambda$onRequestNewServerIpAndPort$17(i, zIsNetworkOnline, i2);
             }
         });
     }
 
-    public static void lambda$onRequestNewServerIpAndPort$15(int i, boolean z, int i2) {
+    public static void lambda$onRequestNewServerIpAndPort$17(int i, boolean z, int i2) {
         FileLog.d("13. currentTask == " + currentTask);
         if (currentTask != null || ((i == 0 && Math.abs(lastDnsRequestTime - System.currentTimeMillis()) < 10000) || !z)) {
             if (BuildVars.LOGS_ENABLED) {
@@ -995,7 +1024,7 @@ public class ConnectionsManager extends BaseController {
         currentTask = firebaseTask;
     }
 
-    public static void lambda$onProxyError$17() {
+    public static void lambda$onProxyError$19() {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowAlert, 3);
     }
 
@@ -1003,7 +1032,7 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onProxyError$17();
+                ConnectionsManager.lambda$onProxyError$19();
             }
         });
     }
@@ -1012,12 +1041,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$getHostByName$18(str, j);
+                ConnectionsManager.lambda$getHostByName$20(str, j);
             }
         });
     }
 
-    public static void lambda$getHostByName$18(String str, long j) {
+    public static void lambda$getHostByName$20(String str, long j) {
         ResolvedDomain resolvedDomain = dnsCache.get(str);
         if (resolvedDomain != null && SystemClock.elapsedRealtime() - resolvedDomain.ttl < 300000) {
             native_onHostNameResolved(str, j, resolvedDomain.getAddress());
@@ -1055,7 +1084,7 @@ public class ConnectionsManager extends BaseController {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ConnectionsManager.lambda$onUpdateConfig$19(i, tL_configTLdeserialize);
+                        ConnectionsManager.lambda$onUpdateConfig$21(i, tL_configTLdeserialize);
                     }
                 });
             }
@@ -1064,7 +1093,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onUpdateConfig$19(int i, TLRPC.TL_config tL_config) {
+    public static void lambda$onUpdateConfig$21(int i, TLRPC.TL_config tL_config) {
         AccountInstance.getInstance(i).getMessagesController().updateConfig(tL_config);
     }
 
@@ -1112,12 +1141,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setIsUpdating$20(z);
+                this.f$0.lambda$setIsUpdating$22(z);
             }
         });
     }
 
-    public void lambda$setIsUpdating$20(boolean z) {
+    public void lambda$setIsUpdating$22(boolean z) {
         if (this.isUpdating == z) {
             return;
         }
@@ -1535,49 +1564,49 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$22(i, z, i2);
+                ConnectionsManager.lambda$onPremiumFloodWait$24(i, z, i2);
             }
         });
     }
 
-    public static void lambda$onPremiumFloodWait$22(final int i, final boolean z, final int i2) {
+    public static void lambda$onPremiumFloodWait$24(final int i, final boolean z, final int i2) {
         if (UserConfig.selectedAccount != i) {
             return;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$21(z, i, i2);
+                ConnectionsManager.lambda$onPremiumFloodWait$23(z, i, i2);
             }
         });
     }
 
-    public static void lambda$onPremiumFloodWait$21(boolean r2, int r3, int r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$onPremiumFloodWait$21(boolean, int, int):void");
+    public static void lambda$onPremiumFloodWait$23(boolean r2, int r3, int r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.lambda$onPremiumFloodWait$23(boolean, int, int):void");
     }
 
     public static void onIntegrityCheckClassic(final int i, final int i2, final String str, final String str2) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() throws NumberFormatException {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$25(i, str, str2, i2);
+                ConnectionsManager.lambda$onIntegrityCheckClassic$27(i, str, str2, i2);
             }
         });
     }
 
-    public static void lambda$onIntegrityCheckClassic$25(final int i, String str, final String str2, final int i2) throws NumberFormatException {
+    public static void lambda$onIntegrityCheckClassic$27(final int i, String str, final String str2, final int i2) throws NumberFormatException {
         final long jCurrentTimeMillis = System.currentTimeMillis();
         FileLog.d("account" + i + ": server requests integrity classic check with project = " + str + " nonce = " + str2);
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$23(i, jCurrentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$25(i, jCurrentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$24(i, jCurrentTimeMillis, i2, str2, exc);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$26(i, jCurrentTimeMillis, i2, str2, exc);
                 }
             });
         } catch (Exception unused) {
@@ -1586,7 +1615,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$23(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
+    public static void lambda$onIntegrityCheckClassic$25(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
             FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");
@@ -1601,7 +1630,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$24(int i, long j, int i2, String str, Exception exc) {
+    public static void lambda$onIntegrityCheckClassic$26(int i, long j, int i2, String str, Exception exc) {
         FileLog.e("account" + i + ": integrity check failed to give a token in " + (System.currentTimeMillis() - j) + "ms", exc);
         StringBuilder sb = new StringBuilder();
         sb.append("PLAYINTEGRITY_FAILED_EXCEPTION_");

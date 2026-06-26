@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -1088,7 +1089,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.listView.scrollToPosition(this.listAdapter.getItemCount() - 1);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     this.f$0.lambda$createView$15();
                 }
             }, 200L);
@@ -1651,7 +1652,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return this.sensitiveContentRow;
     }
 
-    public void lambda$createView$15() {
+    public void lambda$createView$15() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {
@@ -1814,7 +1815,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
 
     public static void lambda$verifyAge$17(int i, BotWebViewSheet botWebViewSheet, Utilities.Callback callback, Boolean bool, Double d, String str, Double d2) {
         boolean zBooleanValue = d != null ? d.doubleValue() >= ((double) i) : bool.booleanValue();
-        botWebViewSheet.lambda$openOptions$40();
+        botWebViewSheet.lambda$openOptions$41();
         callback.run(Boolean.valueOf(zBooleanValue));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!zBooleanValue || safeLastFragment == null) {
@@ -2270,7 +2271,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeListUpdated, new Object[0]);
         }
 
-        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) throws IOException {
+        public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
             Theme.ThemeInfo currentNightTheme = ThemeActivity.this.currentType == 1 ? Theme.getCurrentNightTheme() : Theme.getCurrentTheme();
             if (i != themeAccentsListAdapter.getItemCount() - 1) {
                 Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) themeAccentsListAdapter.themeAccents.get(i);
@@ -2483,7 +2484,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     tintRecyclerListView.setAdapter(themeAccentsListAdapter);
                     tintRecyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
-                        public final void onItemClick(View view2, int i3) throws IOException {
+                        public final void onItemClick(View view2, int i3) {
                             this.f$0.lambda$onCreateViewHolder$2(themeAccentsListAdapter, tintRecyclerListView, view2, i3);
                         }
                     });

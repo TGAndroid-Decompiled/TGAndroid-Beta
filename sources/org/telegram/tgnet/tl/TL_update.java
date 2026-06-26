@@ -2,7 +2,7 @@ package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda111;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda113;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
@@ -19,6 +19,8 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 
 public class TL_update {
+    private TL_update() {
+    }
 
     public static class TL_updateStarsRevenueStatus extends TLRPC.Update {
         public static final int constructor = -1518030823;
@@ -2467,7 +2469,7 @@ public class TL_update {
             this.type = inputSerializedData.readString(z);
             this.message = inputSerializedData.readString(z);
             this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
-            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda111(), z);
+            this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda113(), z);
         }
 
         @Override
@@ -2825,7 +2827,7 @@ public class TL_update {
     public static class TL_updateBotCommands extends TLRPC.Update {
         public static final int constructor = 1299263278;
         public long bot_id;
-        public ArrayList<TLRPC.TL_botCommand> commands = new ArrayList<>();
+        public ArrayList<TLRPC.BotCommand> commands = new ArrayList<>();
         public TLRPC.Peer peer;
 
         @Override
@@ -3075,6 +3077,57 @@ public class TL_update {
                 outputSerializedData.writeBool(this.open_external_browser);
             }
             this.exception.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateNewEphemeralMessage extends TLRPC.Update {
+        public static final int constructor = 549239713;
+        public TLRPC.EphemeralMessage message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(549239713);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateDeleteEphemeralMessages extends TLRPC.Update {
+        public static final int constructor = 1457257720;
+        public ArrayList<Integer> ids = new ArrayList<>();
+        public TLRPC.Peer peer;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.ids = Vector.deserializeInt(inputSerializedData, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1457257720);
+            this.peer.serializeToStream(outputSerializedData);
+            Vector.serializeInt(outputSerializedData, this.ids);
+        }
+    }
+
+    public static class TL_updateEditEphemeralMessage extends TLRPC.Update {
+        public static final int constructor = 1270583041;
+        public TLRPC.EphemeralMessage message;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.message = TLRPC.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1270583041);
+            this.message.serializeToStream(outputSerializedData);
         }
     }
 }

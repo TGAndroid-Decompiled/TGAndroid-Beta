@@ -41,6 +41,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -424,7 +425,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1341getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1337getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -2639,7 +2640,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.backgroundView.setVisibility(8);
     }
 
-    public void setThemeAnimationValue(float f) throws NoSuchFieldException, IOException, SecurityException {
+    public void setThemeAnimationValue(float f) throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
         this.themeAnimationValue = f;
         int size = this.themeAnimatorDescriptions.size();
         for (int i = 0; i < size; i++) {
@@ -2751,7 +2752,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         final int size = themeAnimationSettings.onlyTopFragment ? 1 : this.fragmentsStack.size();
         final Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws NoSuchFieldException, IOException, SecurityException {
+            public final void run() throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$animateThemedValues$7(size, themeAnimationSettings, runnable);
             }
         };
@@ -2778,7 +2779,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         runnable2.run();
     }
 
-    public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) throws NoSuchFieldException, IOException, SecurityException {
+    public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
         BaseFragment lastFragment;
         Runnable runnable2;
         boolean z = false;
@@ -3311,6 +3312,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     private void dispatchApplyWindowInsetsInternal(View view, WindowInsetsCompat windowInsetsCompat) {
         if (this.isLayersLayout) {
+            if ((view instanceof LayoutContainer) && ((LayoutContainer) view).isSupportEdgeToEdge) {
+                int i = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom;
+                View view2 = getParent() instanceof View ? (View) getParent() : null;
+                ViewCompat.dispatchApplyWindowInsets(view, new WindowInsetsCompat.Builder(WindowInsetsCompat.CONSUMED).setInsets(WindowInsetsCompat.Type.ime(), Insets.of(0, 0, 0, Math.max(0, i - (view2 != null ? Math.max(0, view2.getHeight() - getBottom()) : 0)))).build());
+                return;
+            }
             ViewCompat.dispatchApplyWindowInsets(view, WindowInsetsCompat.CONSUMED);
             return;
         }
@@ -3318,10 +3325,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         Insets insets2 = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.displayCutout());
         if (view instanceof BottomSheetTabs) {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            int i = marginLayoutParams.bottomMargin;
-            int i2 = insets.bottom;
-            if (i != i2) {
-                marginLayoutParams.bottomMargin = i2;
+            int i2 = marginLayoutParams.bottomMargin;
+            int i3 = insets.bottom;
+            if (i2 != i3) {
+                marginLayoutParams.bottomMargin = i3;
                 view.requestLayout();
                 return;
             }
@@ -3331,16 +3338,16 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
             LayoutContainer layoutContainer = (LayoutContainer) view;
             int bottomTabsHeight = getBottomTabsHeight(false);
-            int i3 = bottomTabsHeight > 0 ? insets.bottom + bottomTabsHeight : 0;
+            int i4 = bottomTabsHeight > 0 ? insets.bottom + bottomTabsHeight : 0;
             if (layoutContainer.isSupportEdgeToEdge) {
-                if (marginLayoutParams2.bottomMargin != i3) {
-                    marginLayoutParams2.bottomMargin = i3;
+                if (marginLayoutParams2.bottomMargin != i4) {
+                    marginLayoutParams2.bottomMargin = i4;
                     view.requestLayout();
                 }
                 ViewCompat.dispatchApplyWindowInsets(view, windowInsetsCompat.inset(0, 0, 0, marginLayoutParams2.bottomMargin));
                 return;
             }
-            int iMax = Math.max(i3, insets2.bottom);
+            int iMax = Math.max(i4, insets2.bottom);
             if (marginLayoutParams2.bottomMargin != iMax) {
                 marginLayoutParams2.bottomMargin = iMax;
                 view.requestLayout();

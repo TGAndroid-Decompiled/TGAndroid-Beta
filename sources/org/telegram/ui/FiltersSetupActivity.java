@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -623,7 +624,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.listView.scrollToPosition(this.adapter.getItemCount() - 1);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     this.f$0.lambda$createView$6();
                 }
             }, 200L);
@@ -720,7 +721,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         return this.folderTagsPosition;
     }
 
-    public void lambda$createView$6() {
+    public void lambda$createView$6() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {
@@ -1257,7 +1258,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             if (i != 0) {
                 FiltersSetupActivity.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);

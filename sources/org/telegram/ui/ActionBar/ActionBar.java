@@ -113,6 +113,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     private Drawable glassDrawableBack;
     private Drawable glassDrawableMenu;
     private boolean glassMode;
+    private boolean glassOnlyBack;
     private boolean hasForcedMenuWidth;
     private boolean ignoreLayoutRequest;
     private View.OnTouchListener interceptTouchEventListener;
@@ -225,6 +226,10 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             return;
         }
         runnable.run();
+    }
+
+    public void setGlassOnlyBack() {
+        this.glassOnlyBack = true;
     }
 
     public void setChatAvatarContainer(ChatAvatarContainer chatAvatarContainer) {
@@ -2007,7 +2012,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
         int height = (getHeight() - ((getCurrentActionBarHeight() + iDp2) / 2)) - iDp;
         int i = iDp * 2;
         int i2 = height + iDp2 + i;
-        if (this.glassDrawable != null) {
+        if (this.glassDrawable != null && !this.glassOnlyBack) {
             int floatValue = (this.hasForcedMenuWidth ? factor > 0 ? iDp : 0 : (int) (iDp * this.animatorHasMenuItems.getFloatValue())) + factor;
             int i3 = iDp + iDp2;
             int iLerp = AndroidUtilities.lerp(floatValue, Math.max(floatValue, i3), this.chatAvatarContainer == null ? 0.0f : 1.0f - this.animatorAvatarContainerHasAvatar.getFloatValue());
@@ -2029,7 +2034,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
             this.glassDrawableBack.draw(canvas);
         }
         Drawable drawable2 = this.glassDrawableMenu;
-        if (drawable2 != null && factor > 0) {
+        if (drawable2 != null && factor > 0 && !this.glassOnlyBack) {
             drawable2.setBounds((getWidth() - Math.max(iDp2, factor)) - i, height, getWidth(), i2);
             this.glassDrawableMenu.setAlpha(this.hasForcedMenuWidth ? 255 : (int) (this.animatorHasMenuItems.getFloatValue() * 255.0f));
             this.glassDrawableMenu.draw(canvas);
@@ -2264,9 +2269,18 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
                     }
                 }
             }
-            int color = this.adaptive_topColorKey == -1 ? 0 : Theme.getColor(this.adaptive_lowerColorKey, this.resourcesProvider);
-            int i = this.adaptive_topColorKey;
-            setBackgroundColor(ColorUtils.blendARGB(color, i != -1 ? Theme.getColor(i, this.resourcesProvider) : 0, this.onTopAnimated));
+            float f = this.onTopAnimated;
+            int i = this.adaptive_lowerColorKey;
+            int color = i == -1 ? 0 : Theme.getColor(i, this.resourcesProvider);
+            int i2 = this.adaptive_topColorKey;
+            int color2 = i2 == -1 ? 0 : Theme.getColor(i2, this.resourcesProvider);
+            if (color2 == 0) {
+                color2 = ColorUtils.setAlphaComponent(color, 0);
+            }
+            if (color == 0) {
+                color = ColorUtils.setAlphaComponent(color2, 0);
+            }
+            setBackgroundColor(ColorUtils.blendARGB(color, color2, f));
             setShadowAlpha((int) ((1.0f - this.onTopAnimated) * 255.0f));
             if (this.blurredBackground) {
                 invalidate();

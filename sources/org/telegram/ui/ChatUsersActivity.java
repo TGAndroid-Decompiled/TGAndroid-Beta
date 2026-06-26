@@ -132,6 +132,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int initialSlowmode;
     private long initialStarsPrice;
     private boolean isChannel;
+    private boolean isCommunity;
     private boolean isEnabledNotRestrictBoosters;
     private boolean isForum;
     private LinearLayoutManager layoutManager;
@@ -141,6 +142,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     private int loadingProgressRow;
     private int loadingUserCellRow;
     private boolean loadingUsers;
+    private int manageLinkedPeersRow;
     private int manageTopicsRow;
     private int membersHeaderRow;
     private boolean needOpenSearch;
@@ -294,6 +296,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             tL_chatBannedRights2.invite_users = tL_chatBannedRights.invite_users;
             tL_chatBannedRights2.manage_topics = tL_chatBannedRights.manage_topics;
             tL_chatBannedRights2.change_info = tL_chatBannedRights.change_info;
+            tL_chatBannedRights2.manage_linked_peers = tL_chatBannedRights.manage_linked_peers;
             boolean z3 = tL_chatBannedRights.send_photos;
             tL_chatBannedRights2.send_photos = z3;
             boolean z4 = tL_chatBannedRights.send_videos;
@@ -317,7 +320,8 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             }
         }
         this.initialBannedRights = ChatObject.getBannedRightsString(this.defaultBannedRights);
-        if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup) {
+        this.isCommunity = ChatObject.isCommunity(this.currentChat);
+        if (ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup && !this.isCommunity) {
             z = true;
         }
         this.isChannel = z;
@@ -1983,7 +1987,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     private void loadChatParticipants(int i, int i2, boolean z) {
+        TLRPC.ChatFull chatFull;
         LongSparseArray longSparseArray;
+        TLRPC.ChatParticipants chatParticipants;
         int i3 = 0;
         if (!ChatObject.isChannel(this.currentChat)) {
             this.loadingUsers = false;
@@ -1995,9 +2001,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             this.botsMap.clear();
             int i4 = this.type;
             if (i4 == 1) {
-                TLRPC.ChatFull chatFull = this.info;
-                if (chatFull != null) {
-                    int size = chatFull.participants.participants.size();
+                TLRPC.ChatFull chatFull2 = this.info;
+                if (chatFull2 != null && (chatParticipants = chatFull2.participants) != null) {
+                    int size = chatParticipants.participants.size();
                     while (i3 < size) {
                         TLRPC.ChatParticipant chatParticipant = this.info.participants.participants.get(i3);
                         if ((chatParticipant instanceof TLRPC.TL_chatParticipantCreator) || (chatParticipant instanceof TLRPC.TL_chatParticipantAdmin)) {
@@ -2007,7 +2013,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                         i3++;
                     }
                 }
-            } else if (i4 == 2 && this.info != null) {
+            } else if (i4 == 2 && (chatFull = this.info) != null && chatFull.participants != null) {
                 long j = getUserConfig().clientUserId;
                 int size2 = this.info.participants.participants.size();
                 while (i3 < size2) {
@@ -2732,7 +2738,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             if (i == ChatUsersActivity.this.removedUsersRow) {
                 return 6;
             }
-            if (i == ChatUsersActivity.this.changeInfoRow || i == ChatUsersActivity.this.addUsersRow || i == ChatUsersActivity.this.pinMessagesRow || i == ChatUsersActivity.this.editTagRow || i == ChatUsersActivity.this.sendMessagesRow || i == ChatUsersActivity.this.sendStickersRow || i == ChatUsersActivity.this.embedLinksRow || i == ChatUsersActivity.this.manageTopicsRow || i == ChatUsersActivity.this.dontRestrictBoostersRow) {
+            if (i == ChatUsersActivity.this.changeInfoRow || i == ChatUsersActivity.this.addUsersRow || i == ChatUsersActivity.this.manageLinkedPeersRow || i == ChatUsersActivity.this.pinMessagesRow || i == ChatUsersActivity.this.editTagRow || i == ChatUsersActivity.this.sendMessagesRow || i == ChatUsersActivity.this.sendStickersRow || i == ChatUsersActivity.this.embedLinksRow || i == ChatUsersActivity.this.manageTopicsRow || i == ChatUsersActivity.this.dontRestrictBoostersRow) {
                 return 7;
             }
             if (i == ChatUsersActivity.this.membersHeaderRow || i == ChatUsersActivity.this.contactsHeaderRow || i == ChatUsersActivity.this.botHeaderRow || i == ChatUsersActivity.this.loadingHeaderRow) {
@@ -2910,7 +2916,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
 
         public void fillPositions(SparseIntArray sparseIntArray) {
-            int i;
             sparseIntArray.clear();
             put(1, ChatUsersActivity.this.recentActionsRow, sparseIntArray);
             put(2, ChatUsersActivity.this.addNewRow, sparseIntArray);
@@ -2931,14 +2936,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             put(17, ChatUsersActivity.this.sendPollsRow, sparseIntArray);
             put(18, ChatUsersActivity.this.embedLinksRow, sparseIntArray);
             put(19, ChatUsersActivity.this.addUsersRow, sparseIntArray);
-            put(20, ChatUsersActivity.this.pinMessagesRow, sparseIntArray);
-            put(21, ChatUsersActivity.this.editTagRow, sparseIntArray);
-            put(22, ChatUsersActivity.this.sendReactionsRow, sparseIntArray);
+            put(20, ChatUsersActivity.this.manageLinkedPeersRow, sparseIntArray);
+            put(21, ChatUsersActivity.this.pinMessagesRow, sparseIntArray);
+            put(22, ChatUsersActivity.this.editTagRow, sparseIntArray);
+            int i = 23;
+            put(23, ChatUsersActivity.this.sendReactionsRow, sparseIntArray);
             if (ChatUsersActivity.this.isForum) {
-                i = 23;
-                put(23, ChatUsersActivity.this.manageTopicsRow, sparseIntArray);
-            } else {
-                i = 22;
+                i = 24;
+                put(24, ChatUsersActivity.this.manageTopicsRow, sparseIntArray);
             }
             put(i + 1, ChatUsersActivity.this.changeInfoRow, sparseIntArray);
             put(i + 2, ChatUsersActivity.this.removedUsersRow, sparseIntArray);

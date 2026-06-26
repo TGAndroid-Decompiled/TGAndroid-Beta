@@ -229,6 +229,11 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         update(0);
     }
 
+    public void setSubLabel(CharSequence charSequence) {
+        this.subLabel = charSequence;
+        update(0);
+    }
+
     public void setOpenBotButton(boolean z) {
         if (this.openBot == z) {
             return;

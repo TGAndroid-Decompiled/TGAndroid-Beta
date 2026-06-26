@@ -15,6 +15,7 @@ public class AppGlobalConfig {
     public final ConfigInt aicomposeToneTitleLengthMax;
     public final ConfigInt botsCreateLimitDefault;
     public final ConfigInt botsCreateLimitPremium;
+    public final ConfigInt communityPeersLimit;
     public final ConfigInt contactNoteLengthLimit;
     public final ConfigBoolean disableBlurInDarkTheme;
     public final ConfigBoolean disableBlurInLightTheme;
@@ -35,6 +36,11 @@ public class AppGlobalConfig {
     public final ConfigInt pollCountriesMax;
     public final ConfigInt pollQuestionLengthMax;
     public final ConfigInt pollSolutionLengthMax;
+    public final ConfigInt richMessageLengthLimit;
+    public final ConfigInt richMessageMaxBlocks;
+    public final ConfigInt richMessageMaxDepth;
+    public final ConfigInt richMessageMaxMedia;
+    public final ConfigInt richMessageMaxTableCols;
     public final ConfigBoolean settingsDisplayPasskeys;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
@@ -111,6 +117,12 @@ public class AppGlobalConfig {
         this.aicomposeToneSavedLimitDefault = ofInt("aicompose_tone_saved_limit_default", 5);
         this.aicomposeToneSavedLimitPremium = ofInt("aicompose_tone_saved_limit_premium", 20);
         this.messagePrimaryEditedDate = ofBoolean("message_primary_edited_date", false);
+        this.richMessageLengthLimit = ofInt("rich_message_length_limit", 32768);
+        this.richMessageMaxBlocks = ofInt("rich_message_max_blocks", 500);
+        this.richMessageMaxDepth = ofInt("rich_message_max_depth", 16);
+        this.richMessageMaxMedia = ofInt("rich_message_max_media", 50);
+        this.richMessageMaxTableCols = ofInt("rich_message_max_table_cols", 20);
+        this.communityPeersLimit = ofInt("community_peers_limit", 100);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

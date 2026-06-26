@@ -17,13 +17,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
 import org.telegram.tgnet.tl.TL_stories;
@@ -40,6 +41,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     private boolean allowForwardAsStories;
     private Drawable arrowDrawable;
     private boolean collapsedView;
+    public final long communityId;
     private int currentAccount;
     private int currentCount;
     private int dialogsCount;
@@ -111,6 +113,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         this.hasHints = i2 == 0 && i == 0 && !z;
         this.selectedDialogs = arrayList;
         this.currentAccount = i3;
+        this.communityId = dialogsActivity != null ? dialogsActivity.getCommunityId() : 0L;
         if (i2 == 0) {
             this.preloader = new DialogsPreloader();
         }
@@ -196,6 +199,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     private class ItemInternal extends AdapterWithDiffUtils.Item {
+        private TLRPC.Chat chat;
         TL_chatlists.TL_chatlists_chatlistUpdates chatlistUpdates;
         TLRPC.TL_contact contact;
         TLRPC.Dialog dialog;
@@ -205,6 +209,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         private boolean pinned;
         TLRPC.RecentMeUrl recentMeUrl;
         private final int stableId;
+        private String title;
 
         public ItemInternal(TL_chatlists.TL_chatlists_chatlistUpdates tL_chatlists_chatlistUpdates) {
             super(17, true);
@@ -212,6 +217,22 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             int i = DialogsAdapter.this.stableIdPointer;
             DialogsAdapter.this.stableIdPointer = i + 1;
             this.stableId = i;
+        }
+
+        public ItemInternal(int i, String str) {
+            super(i, false);
+            int i2 = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i2 + 1;
+            this.stableId = i2;
+            this.title = str;
+        }
+
+        public ItemInternal(int i, TLRPC.Chat chat) {
+            super(i, false);
+            this.chat = chat;
+            int i2 = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i2 + 1;
+            this.stableId = i2;
         }
 
         public ItemInternal(int i, TLRPC.Dialog dialog) {
@@ -331,16 +352,25 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         }
     }
 
-    public TLObject getItem(int i) {
+    public Object getItem(int i) {
         if (i >= 0 && i < this.itemInternals.size()) {
-            if (((ItemInternal) this.itemInternals.get(i)).dialog != null) {
-                return ((ItemInternal) this.itemInternals.get(i)).dialog;
+            ItemInternal itemInternal = (ItemInternal) this.itemInternals.get(i);
+            if (itemInternal.title != null) {
+                return itemInternal.title;
             }
-            if (((ItemInternal) this.itemInternals.get(i)).contact != null) {
-                return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((ItemInternal) this.itemInternals.get(i)).contact.user_id));
+            if (itemInternal.chat != null) {
+                return itemInternal.chat;
             }
-            if (((ItemInternal) this.itemInternals.get(i)).recentMeUrl != null) {
-                return ((ItemInternal) this.itemInternals.get(i)).recentMeUrl;
+            TLRPC.Dialog dialog = itemInternal.dialog;
+            if (dialog != null) {
+                return dialog;
+            }
+            if (itemInternal.contact != null) {
+                return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(itemInternal.contact.user_id));
+            }
+            TLRPC.RecentMeUrl recentMeUrl = itemInternal.recentMeUrl;
+            if (recentMeUrl != null) {
+                return recentMeUrl;
             }
         }
         return null;
@@ -511,7 +541,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) throws android.content.res.Resources.NotFoundException {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r24, int r25) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
@@ -815,6 +845,46 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         @Override
         protected void onMeasure(int r12, int r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.LastEmptyView.onMeasure(int, int):void");
+        }
+    }
+
+    private void updateItemListForCommunity() {
+        ArrayList<MessagesController.CommunityPeerDialog> arrayList;
+        String string;
+        this.itemInternals.clear();
+        updateHasHints();
+        MessagesController.CommunityPeersDialog communityPeersDialogBuildCommunityPeers = MessagesController.getInstance(this.currentAccount).buildCommunityPeers(this.communityId);
+        this.dialogsCount = communityPeersDialogBuildCommunityPeers.getDialogsCount();
+        this.isEmpty = false;
+        for (int i = 0; i < 4; i++) {
+            if (i == 0) {
+                arrayList = communityPeersDialogBuildCommunityPeers.chatsYouAreIn;
+                string = LocaleController.getString(R.string.CommunitySectionChatsYouAreIn);
+            } else if (i == 1) {
+                arrayList = communityPeersDialogBuildCommunityPeers.chatsYouCanView;
+                string = LocaleController.getString(R.string.CommunitySectionChatsYouCanView);
+            } else if (i == 2) {
+                arrayList = communityPeersDialogBuildCommunityPeers.chatsYouCanJoin;
+                string = LocaleController.getString(R.string.CommunitySectionChatsYouCanRequestToJoin);
+            } else {
+                arrayList = communityPeersDialogBuildCommunityPeers.chatsOther;
+                string = LocaleController.getString(R.string.CommunitySectionHiddenChats);
+            }
+            if (!arrayList.isEmpty()) {
+                this.itemInternals.add(new ItemInternal(22, string));
+                for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                    MessagesController.CommunityPeerDialog communityPeerDialog = arrayList.get(i2);
+                    TLRPC.Dialog dialog = communityPeerDialog.dialog;
+                    if (dialog != null) {
+                        this.itemInternals.add(new ItemInternal(0, dialog));
+                    } else {
+                        TLRPC.Chat chat = communityPeerDialog.chat;
+                        if (chat != null) {
+                            this.itemInternals.add(new ItemInternal(23, chat));
+                        }
+                    }
+                }
+            }
         }
     }
 

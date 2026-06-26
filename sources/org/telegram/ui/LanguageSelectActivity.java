@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Collection;
 import j$.util.function.Predicate$CC;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -167,7 +168,7 @@ public class LanguageSelectActivity extends BaseFragment implements Notification
         this.listView.setAdapter(this.listAdapter);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 LanguageSelectActivity.this.listView.invalidate();
                 LanguageSelectActivity.this.listView.updateSelector();
             }

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.ViewPager;
+import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -96,7 +97,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         this.delegatePageListener = onPageChangeListener;
     }
 
-    public void notifyDataSetChanged() {
+    public void notifyDataSetChanged() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         this.tabsContainer.removeAllViews();
         this.tabCount = this.pager.getAdapter().getCount();
         for (int i = 0; i < this.tabCount; i++) {
@@ -142,7 +143,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             }
 
             @Override
-            public void setSelected(boolean z) {
+            public void setSelected(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 super.setSelected(z);
                 Drawable background = getBackground();
                 if (background != null) {
@@ -173,7 +174,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
-    private void addTab(final int i, CharSequence charSequence) {
+    private void addTab(final int i, CharSequence charSequence) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         TextTab textTab = new TextTab(getContext(), i);
         textTab.setTextSize(1, 14.0f);
         textTab.setTypeface(AndroidUtilities.bold());
@@ -347,7 +348,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         }
         post(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.notifyDataSetChanged();
             }
         });
@@ -454,7 +455,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         }
 
         @Override
-        public void setSelected(boolean z) {
+        public void setSelected(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super.setSelected(z);
             Drawable background = getBackground();
             if (background != null) {

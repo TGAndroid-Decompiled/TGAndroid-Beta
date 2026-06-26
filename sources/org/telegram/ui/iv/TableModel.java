@@ -198,6 +198,50 @@ public class TableModel {
         pagetablecell.flags = z ? pagetablecell.flags | 1 : pagetablecell.flags & (-2);
     }
 
+    public static int alignOf(TL_iv.pageTableCell pagetablecell) {
+        if (pagetablecell == null) {
+            return 0;
+        }
+        if (pagetablecell.align_right) {
+            return 2;
+        }
+        return pagetablecell.align_center ? 1 : 0;
+    }
+
+    public static int valignOf(TL_iv.pageTableCell pagetablecell) {
+        if (pagetablecell == null) {
+            return 0;
+        }
+        if (pagetablecell.valign_bottom) {
+            return 2;
+        }
+        return pagetablecell.valign_middle ? 1 : 0;
+    }
+
+    public static void setAlign(TL_iv.pageTableCell pagetablecell, int i) {
+        if (pagetablecell == null) {
+            return;
+        }
+        boolean z = i == 1;
+        pagetablecell.align_center = z;
+        boolean z2 = i == 2;
+        pagetablecell.align_right = z2;
+        pagetablecell.flags = z ? pagetablecell.flags | 8 : pagetablecell.flags & (-9);
+        pagetablecell.flags = z2 ? pagetablecell.flags | 16 : pagetablecell.flags & (-17);
+    }
+
+    public static void setVAlign(TL_iv.pageTableCell pagetablecell, int i) {
+        if (pagetablecell == null) {
+            return;
+        }
+        boolean z = i == 1;
+        pagetablecell.valign_middle = z;
+        boolean z2 = i == 2;
+        pagetablecell.valign_bottom = z2;
+        pagetablecell.flags = z ? pagetablecell.flags | 32 : pagetablecell.flags & (-33);
+        pagetablecell.flags = z2 ? pagetablecell.flags | 64 : pagetablecell.flags & (-65);
+    }
+
     public void addRow() {
         TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
         pagetablerow.cells = new ArrayList<>();
@@ -227,6 +271,92 @@ public class TableModel {
             }
         }
         rebuildFromBlock();
+    }
+
+    public boolean insertRowAt(int i) {
+        int i2 = this.rowCount;
+        if (i2 == 0 || this.colCount == 0) {
+            addRow();
+            return true;
+        }
+        if (i < 0) {
+            i = 0;
+        }
+        if (i <= i2) {
+            i2 = i;
+        }
+        IdentityHashMap identityHashMap = new IdentityHashMap();
+        boolean[] zArr = new boolean[this.colCount];
+        Iterator it = this.anchorsRowMajor.iterator();
+        while (it.hasNext()) {
+            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+            int iAnchorRowOf = anchorRowOf(pagetablecell);
+            int iAnchorColOf = anchorColOf(pagetablecell);
+            int iSpanRow = spanRow(pagetablecell);
+            int iSpanCol = spanCol(pagetablecell);
+            int i3 = iAnchorRowOf >= i2 ? iAnchorRowOf + 1 : iAnchorRowOf;
+            if (iAnchorRowOf < i2 && iAnchorRowOf + iSpanRow > i2) {
+                iSpanRow++;
+                for (int i4 = iAnchorColOf; i4 < iAnchorColOf + iSpanCol && i4 < this.colCount; i4++) {
+                    zArr[i4] = true;
+                }
+            }
+            identityHashMap.put(pagetablecell, new int[]{i3, iAnchorColOf, iSpanRow, iSpanCol});
+        }
+        for (int i5 = 0; i5 < this.colCount; i5++) {
+            if (!zArr[i5]) {
+                identityHashMap.put(newEmptyCell(), new int[]{i2, i5, 1, 1});
+            }
+        }
+        rewriteBlockRows(identityHashMap, this.rowCount + 1);
+        rebuildFromBlock();
+        return true;
+    }
+
+    public boolean insertColumnAt(int i) {
+        int i2;
+        if (this.rowCount == 0 || (i2 = this.colCount) == 0) {
+            addColumn();
+            return true;
+        }
+        int i3 = 0;
+        if (i < 0) {
+            i = 0;
+        }
+        if (i <= i2) {
+            i2 = i;
+        }
+        IdentityHashMap identityHashMap = new IdentityHashMap();
+        boolean[] zArr = new boolean[this.rowCount];
+        Iterator it = this.anchorsRowMajor.iterator();
+        while (it.hasNext()) {
+            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
+            int iAnchorRowOf = anchorRowOf(pagetablecell);
+            int iAnchorColOf = anchorColOf(pagetablecell);
+            int iSpanRow = spanRow(pagetablecell);
+            int iSpanCol = spanCol(pagetablecell);
+            int i4 = iAnchorColOf >= i2 ? iAnchorColOf + 1 : iAnchorColOf;
+            if (iAnchorColOf < i2 && iAnchorColOf + iSpanCol > i2) {
+                iSpanCol++;
+                for (int i5 = iAnchorRowOf; i5 < iAnchorRowOf + iSpanRow && i5 < this.rowCount; i5++) {
+                    zArr[i5] = true;
+                }
+            }
+            identityHashMap.put(pagetablecell, new int[]{iAnchorRowOf, i4, iSpanRow, iSpanCol});
+        }
+        while (true) {
+            int i6 = this.rowCount;
+            if (i3 < i6) {
+                if (!zArr[i3]) {
+                    identityHashMap.put(newEmptyCell(), new int[]{i3, i2, 1, 1});
+                }
+                i3++;
+            } else {
+                rewriteBlockRows(identityHashMap, i6);
+                rebuildFromBlock();
+                return true;
+            }
+        }
     }
 
     public boolean mergeCells(Set set) {
@@ -545,13 +675,18 @@ public class TableModel {
 
     public static String readPlainText(TL_iv.pageTableCell pagetablecell) {
         TL_iv.RichText richText;
-        if (pagetablecell != null && (richText = pagetablecell.text) != null) {
-            if (richText instanceof TL_iv.textPlain) {
-                return ((TL_iv.textPlain) richText).text;
-            }
-            boolean z = richText instanceof TL_iv.textEmpty;
+        if (pagetablecell == null || (richText = pagetablecell.text) == null) {
+            return "";
         }
-        return "";
+        return RichTextStyle.plainOf(richText);
+    }
+
+    public static CharSequence readStyledText(TL_iv.pageTableCell pagetablecell) {
+        TL_iv.RichText richText;
+        if (pagetablecell == null || (richText = pagetablecell.text) == null) {
+            return "";
+        }
+        return RichTextStyle.toSpannable(richText);
     }
 
     public static void applyPlainText(TL_iv.pageTableCell pagetablecell, String str) {
@@ -561,6 +696,15 @@ public class TableModel {
         }
         textplain.text = str;
         pagetablecell.text = textplain;
+        int i = pagetablecell.flags;
+        int i2 = i | 128;
+        pagetablecell.flags = i2;
+        pagetablecell.flags = pagetablecell.colspan > 1 ? i | 130 : i2 & (-3);
+        pagetablecell.flags = pagetablecell.rowspan > 1 ? pagetablecell.flags | 4 : pagetablecell.flags & (-5);
+    }
+
+    public static void applyStyledText(TL_iv.pageTableCell pagetablecell, CharSequence charSequence) {
+        pagetablecell.text = RichTextStyle.fromSpannable(charSequence);
         int i = pagetablecell.flags;
         int i2 = i | 128;
         pagetablecell.flags = i2;

@@ -186,17 +186,6 @@ public abstract class MarkdownParser {
         return null;
     }
 
-    public static boolean isMarkdown(ArrayList arrayList) {
-        if (arrayList != null && !arrayList.isEmpty()) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                if (!(arrayList.get(i) instanceof TL_iv.pageBlockParagraph) || !(((TL_iv.PageBlock) arrayList.get(i)).text instanceof TL_iv.textPlain)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     public static class SingleDollarLatexInlineProcessor extends InlineProcessor {
         private static final Pattern RE = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
 

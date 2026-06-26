@@ -334,12 +334,13 @@ public abstract class EditTextEffects extends EditText {
         if (this.clipToPadding && getScrollY() != 0) {
             canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY);
         }
+        int paddingLeft = getPaddingLeft();
         if (!this.spoilers.isEmpty()) {
             this.path.rewind();
             Iterator<SpoilerEffect> it = this.spoilers.iterator();
             while (it.hasNext()) {
                 Rect bounds = it.next().getBounds();
-                this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+                this.path.addRect(bounds.left + paddingLeft, bounds.top, bounds.right + paddingLeft, bounds.bottom, Path.Direction.CW);
             }
             canvas.clipPath(this.path, Region.Op.DIFFERENCE);
         }
@@ -390,6 +391,7 @@ public abstract class EditTextEffects extends EditText {
         this.rect.set(0, (int) ((getScrollY() - super.getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY));
         canvas.save();
         canvas.clipRect(this.rect);
+        canvas.translate(paddingLeft, 0.0f);
         for (SpoilerEffect spoilerEffect : this.spoilers) {
             Rect bounds2 = spoilerEffect.getBounds();
             Rect rect = this.rect;

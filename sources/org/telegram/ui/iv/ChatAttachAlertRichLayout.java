@@ -1,117 +1,102 @@
 package org.telegram.ui.iv;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.media.MediaMetadataRetriever;
 import android.os.Build;
 import android.text.Editable;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewParent;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.recyclerview.widget.RecyclerView;
-import java.text.BreakIterator;
+import j$.util.Objects;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
-import java.util.Iterator;
-import java.util.Set;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlert;
+import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
-import org.telegram.ui.Components.ColoredImageSpan;
+import org.telegram.ui.Components.EmojiView;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Components.UItem;
-import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Components.TrendingStickersLayout;
+import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.iv.RichDividerCell;
-import org.telegram.ui.iv.RichMapCell;
-import org.telegram.ui.iv.RichMathCell;
-import org.telegram.ui.iv.RichMediaCell;
-import org.telegram.ui.iv.RichMediaUploader;
-import org.telegram.ui.iv.RichTableCell;
-import org.telegram.ui.iv.RichTextCell;
+import org.telegram.ui.iv.RichCommandSuggestions;
+import org.telegram.ui.iv.RichEditorListView;
+import org.telegram.ui.iv.RichEditorToolbar;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 
 public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout {
-    private RichTableCell activeCellSelectionTable;
-    private final RichTextCell.Delegate cellDelegate;
-    private ActionBarPopupWindow.ActionBarPopupWindowLayout cellPopupLayout;
-    private LinearLayout cellPopupRow;
-    private ActionBarPopupWindow cellPopupWindow;
-    private final RichTableCell.CellSelectionListener cellSelectionListener;
+    private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 256, 4, 16384, 32768};
+    private boolean attachButtonsShown;
+    private int attachRaise;
+    private RichCommandSuggestions commandSuggestions;
     private final int currentAccount;
     private int currentItemTop;
-    private TextView delColAction;
-    private TextView delRowAction;
-    private final RichDividerCell.Delegate dividerDelegate;
-    private TextView headerAction;
+    private int emojiPadding;
+    private EmojiView emojiView;
+    private boolean emojiViewVisible;
     private boolean ignoreLayout;
-    private final UniversalRecyclerView listView;
-    private boolean longPressConsumed;
-    private Runnable longPressRunnable;
-    private final RichMapCell.Delegate mapDelegate;
-    private final RichMathCell.Delegate mathDelegate;
-    private final RichMediaCell.Delegate mediaDelegate;
-    private TextView mergeAction;
-    private final TextView newBlockButton;
-    private final LinearLayout newBlockButtonContainer;
-    private boolean pressMoved;
-    private View pressTarget;
-    private float pressX;
-    private float pressY;
-    private int restoreFocusCell;
-    private int restoreFocusChildPosition;
-    private int restoreFocusOffset;
-    private final ArrayList rows;
+    private boolean keyboardVisible;
+    private final Runnable limitCheckRunnable;
+    private final RichEditorListView listView;
+    private MessageSendPreview messageSendPreview;
     private boolean sendButtonShown;
-    private final RichTableCell.Delegate tableDelegate;
-    private final TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
-    private final TextSelectionHelper.TextSelectionOverlay textSelectionOverlay;
-    private TextView unmergeAction;
-    private final IdentityHashMap uploaders;
+    private RichEditorToolbar toolbar;
+    private final RichEditorToolbar.Delegate toolbarDelegate;
 
-    private static boolean isArrowKey(int i) {
-        return i == 21 || i == 22 || i == 19 || i == 20;
-    }
-
-    public static void lambda$new$0(View view) {
+    @Override
+    public boolean disableBottomFade() {
+        return true;
     }
 
     @Override
     public int needsActionBar() {
-        return 1;
+        return 0;
     }
 
     @Override
@@ -120,177 +105,24 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
     public ChatAttachAlertRichLayout(ChatAttachAlert chatAttachAlert, Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
-        ArrayList arrayList = new ArrayList();
-        this.rows = arrayList;
-        this.restoreFocusCell = -1;
-        this.restoreFocusOffset = -1;
-        this.restoreFocusChildPosition = 0;
-        this.dividerDelegate = new RichDividerCell.Delegate() {
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2();
+        this.toolbarDelegate = anonymousClass2;
+        this.attachButtonsShown = true;
+        this.limitCheckRunnable = new Runnable() {
             @Override
-            public final TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
-                return this.f$0.getTextSelectionHelper();
+            public final void run() {
+                this.f$0.updateSendButtonEnabled();
             }
         };
-        this.mediaDelegate = new RichMediaCell.Delegate() {
-            @Override
-            public void onMediaPick(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.openMediaPicker(blockRow);
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
-                return ChatAttachAlertRichLayout.this.textSelectionHelper;
-            }
-        };
-        this.mapDelegate = new RichMapCell.Delegate() {
-            @Override
-            public void onPickLocation(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.lambda$transformRow$8(blockRow);
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
-                return ChatAttachAlertRichLayout.this.textSelectionHelper;
-            }
-        };
-        this.mathDelegate = new RichMathCell.Delegate() {
-            @Override
-            public void onEditMath(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.lambda$transformRow$7(blockRow);
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
-                return ChatAttachAlertRichLayout.this.textSelectionHelper;
-            }
-        };
-        this.tableDelegate = new RichTableCell.Delegate() {
-            @Override
-            public void onTextChanged(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.updateSendButton(true);
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
-                return ChatAttachAlertRichLayout.this.textSelectionHelper;
-            }
-
-            @Override
-            public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
-                ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.makeFocusable(richEditText, z);
-            }
-        };
-        this.cellSelectionListener = new RichTableCell.CellSelectionListener() {
-            @Override
-            public void onCellSelectionChanged(RichTableCell richTableCell) {
-                if (richTableCell != ChatAttachAlertRichLayout.this.activeCellSelectionTable || richTableCell.hasCellSelection()) {
-                    ChatAttachAlertRichLayout.this.updateCellActionBar();
-                } else {
-                    ChatAttachAlertRichLayout.this.exitCellSelectionMode();
-                }
-            }
-        };
-        this.cellDelegate = new RichTextCell.Delegate() {
-            @Override
-            public void onEnter(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.onCellEnter(blockRow);
-            }
-
-            @Override
-            public void onBackspace(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.onCellBackspace(blockRow);
-            }
-
-            @Override
-            public boolean onBackspaceAtStart(BlockRow blockRow) {
-                return ChatAttachAlertRichLayout.this.onCellBackspaceAtStart(blockRow);
-            }
-
-            @Override
-            public void onTextChanged(BlockRow blockRow) {
-                ChatAttachAlertRichLayout.this.updateSendButton(true);
-            }
-
-            @Override
-            public void onTransform(BlockRow blockRow, TL_iv.PageBlock pageBlock, int i2, int i3) {
-                ChatAttachAlertRichLayout.this.transformRow(blockRow, pageBlock, i2, i3);
-            }
-
-            @Override
-            public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
-                return ChatAttachAlertRichLayout.this.textSelectionHelper;
-            }
-
-            @Override
-            public boolean onIndent(BlockRow blockRow, boolean z) {
-                return ChatAttachAlertRichLayout.this.onCellIndent(blockRow, z);
-            }
-
-            @Override
-            public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
-                ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.makeFocusable(richEditText, z);
-            }
-        };
-        this.uploaders = new IdentityHashMap();
         this.currentAccount = i;
-        arrayList.add(new BlockRow(new TL_iv.pageBlockHeading1()));
-        arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph()));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.newBlockButtonContainer = linearLayout;
-        linearLayout.setOrientation(0);
-        linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(6.0f));
-        TextView textView = new TextView(context);
-        this.newBlockButton = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ Add");
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.poll_add_plus);
-        coloredImageSpan.spaceScaleX = 0.9f;
-        coloredImageSpan.translate(0.0f, AndroidUtilities.dpf2(0.4f));
-        spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
-        textView.setText(spannableStringBuilder);
-        textView.setBackground(Theme.createRadSelectorDrawable(getThemedColor(Theme.key_listSelector), 10, 10));
-        ScaleStateListAnimator.apply(textView);
-        linearLayout.addView(textView);
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                ChatAttachAlertRichLayout.lambda$new$0(view);
-            }
-        });
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, i, 0, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, new Utilities.Callback5() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                this.f$0.onItemClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
-            }
-        }, null, resourcesProvider) {
-            @Override
-            protected void onLayoutUpdate() {
-                if (ChatAttachAlertRichLayout.this.getCurrentItemTop() != ChatAttachAlertRichLayout.this.currentItemTop) {
-                    ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.updateLayout(ChatAttachAlertRichLayout.this, true, 0);
-                }
-            }
-        };
-        this.listView = universalRecyclerView;
-        universalRecyclerView.adapter.setApplyBackground(false);
-        universalRecyclerView.setClipToPadding(false);
-        universalRecyclerView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
-        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = new TextSelectionHelper.ArticleTextSelectionHelper();
-        this.textSelectionHelper = articleTextSelectionHelper;
-        articleTextSelectionHelper.setParentView(universalRecyclerView);
-        articleTextSelectionHelper.layoutManager = universalRecyclerView.layoutManager;
-        TextSelectionHelper.TextSelectionOverlay overlayView = articleTextSelectionHelper.getOverlayView(context);
-        this.textSelectionOverlay = overlayView;
-        AndroidUtilities.removeFromParent(overlayView);
-        addView(overlayView, LayoutHelper.createFrame(-1, -1.0f));
+        this.occupyStatusBar = true;
+        this.occupyNavigationBar = true;
+        RichEditorListView richEditorListView = new RichEditorListView(context, i, resourcesProvider, new AnonymousClass1(resourcesProvider));
+        this.listView = richEditorListView;
+        richEditorListView.setAllowTapAboveContent(false);
+        addView(richEditorListView, LayoutHelper.createFrame(-1, -1, 119));
+        addView(richEditorListView.getOverlayView(), LayoutHelper.createFrame(-1, -1, 119));
+        richEditorListView.seedEmptyArticle();
         setFocusable(true);
         setFocusableInTouchMode(true);
         if (Build.VERSION.SDK_INT >= 26) {
@@ -298,828 +130,670 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
         setBackground(null);
         setForeground(null);
-        articleTextSelectionHelper.setCallback(new AnonymousClass2());
-        universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        RichEditorToolbar richEditorToolbar = new RichEditorToolbar(context, anonymousClass2);
+        this.toolbar = richEditorToolbar;
+        richEditorToolbar.setBackVisible(false);
+        this.toolbar.setTopGradientVisible(false);
+        addView(this.toolbar, LayoutHelper.createFrame(-1, -1, 119));
+        updateHistoryButtons();
+        updateToolbarBlockType();
+        updateAttachButtons(false);
+        getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.updateLayout(ChatAttachAlertRichLayout.this, true, i3);
-                ChatAttachAlertRichLayout.this.textSelectionHelper.onParentScrolled();
-                if (ChatAttachAlertRichLayout.this.cellPopupWindow == null || !ChatAttachAlertRichLayout.this.cellPopupWindow.isShowing() || ChatAttachAlertRichLayout.this.activeCellSelectionTable == null) {
-                    return;
-                }
-                ChatAttachAlertRichLayout.this.showOrUpdateCellPopup();
-            }
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
-                if (i2 == 0) {
-                    ChatAttachAlertRichLayout.this.textSelectionHelper.stopScrolling();
-                }
+            public final void onGlobalFocusChanged(View view, View view2) {
+                this.f$0.lambda$new$0(view, view2);
             }
         });
-        buildCellPopup(context);
     }
 
-    class AnonymousClass2 extends TextSelectionHelper.Callback {
+    class AnonymousClass1 implements RichEditorListView.Delegate {
+        final Theme.ResourcesProvider val$resourcesProvider;
+
+        AnonymousClass1(Theme.ResourcesProvider resourcesProvider) {
+            this.val$resourcesProvider = resourcesProvider;
+        }
+
+        @Override
+        public ItemOptions makeMenu(View view) {
+            return ItemOptions.makeOptions(ChatAttachAlertRichLayout.this, this.val$resourcesProvider, view, false, false, true);
+        }
+
+        @Override
+        public void onSelectionChanged() {
+            ChatAttachAlertRichLayout.this.updateFormattingPanel();
+            ChatAttachAlertRichLayout.this.updateToolbarBlockType();
+        }
+
+        @Override
+        public void onContentChanged() {
+            ChatAttachAlertRichLayout.this.updateSendButtonLoading();
+            ChatAttachAlertRichLayout.this.scheduleLimitCheck();
+        }
+
+        @Override
+        public void onHistoryChanged() {
+            ChatAttachAlertRichLayout.this.updateHistoryButtons();
+        }
+
+        @Override
+        public void onOpenAttachRequest(int i, int i2) {
+            ChatAttachAlertRichLayout.this.openAttach(i, i2);
+        }
+
+        @Override
+        public void onOpenLocationRequest(BlockRow blockRow) {
+            ChatAttachAlertRichLayout.this.openLocationPicker(blockRow);
+        }
+
+        @Override
+        public void onSlashSuggest(RichTextCell richTextCell, String str) {
+            if (ChatAttachAlertRichLayout.this.commandSuggestions == null) {
+                ChatAttachAlertRichLayout chatAttachAlertRichLayout = ChatAttachAlertRichLayout.this;
+                final Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
+                chatAttachAlertRichLayout.commandSuggestions = new RichCommandSuggestions(new RichCommandSuggestions.MenuFactory() {
+                    @Override
+                    public final ItemOptions make(View view) {
+                        return this.f$0.lambda$onSlashSuggest$0(resourcesProvider, view);
+                    }
+                }, this.val$resourcesProvider);
+            }
+            ChatAttachAlertRichLayout.this.commandSuggestions.update(richTextCell, str);
+        }
+
+        public ItemOptions lambda$onSlashSuggest$0(Theme.ResourcesProvider resourcesProvider, View view) {
+            return ItemOptions.makeOptions(ChatAttachAlertRichLayout.this, resourcesProvider, view, false, false, true);
+        }
+
+        @Override
+        public void onListScrolled(int i) {
+            ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.updateLayout(ChatAttachAlertRichLayout.this, true, i);
+            ChatAttachAlertRichLayout.this.updateToolbarTopOffset();
+        }
+
+        @Override
+        public void onListLayoutUpdated() {
+            if (ChatAttachAlertRichLayout.this.getCurrentItemTop() != ChatAttachAlertRichLayout.this.currentItemTop) {
+                ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.updateLayout(ChatAttachAlertRichLayout.this, true, 0);
+            }
+            ChatAttachAlertRichLayout.this.updateToolbarTopOffset();
+        }
+
+        @Override
+        public void makeEditTextFocusable(RichEditText richEditText, boolean z) {
+            ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.makeFocusable(richEditText, z);
+        }
+
+        @Override
+        public void onReorderStart() {
+            if (ChatAttachAlertRichLayout.this.toolbar != null) {
+                ChatAttachAlertRichLayout.this.toolbar.onReorderStart();
+            }
+        }
+
+        @Override
+        public boolean onReorderMove(float f, float f2) {
+            return ChatAttachAlertRichLayout.this.toolbar != null && ChatAttachAlertRichLayout.this.toolbar.onReorderMove(f, f2);
+        }
+
+        @Override
+        public void onReorderEnd() {
+            if (ChatAttachAlertRichLayout.this.toolbar != null) {
+                ChatAttachAlertRichLayout.this.toolbar.onReorderEnd();
+            }
+        }
+    }
+
+    public void lambda$new$0(View view, View view2) {
+        updateToolbarBlockType();
+    }
+
+    class AnonymousClass2 implements RichEditorToolbar.Delegate {
+        @Override
+        public void onBack() {
+        }
+
         AnonymousClass2() {
         }
 
         @Override
-        public void onStateChanged(boolean z) {
-            Log.d("RICHED", "helper.onStateChanged isSelected=" + z);
-            if (z) {
-                if (ChatAttachAlertRichLayout.this.activeCellSelectionTable != null) {
-                    ChatAttachAlertRichLayout.this.exitCellSelectionMode();
-                }
-                ChatAttachAlertRichLayout chatAttachAlertRichLayout = ChatAttachAlertRichLayout.this;
-                chatAttachAlertRichLayout.restoreFocusCell = chatAttachAlertRichLayout.textSelectionHelper.getAnchorCell();
-                ChatAttachAlertRichLayout chatAttachAlertRichLayout2 = ChatAttachAlertRichLayout.this;
-                chatAttachAlertRichLayout2.restoreFocusOffset = chatAttachAlertRichLayout2.textSelectionHelper.getAnchorOffset();
-                ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                chatAttachAlertRichLayout3.restoreFocusChildPosition = chatAttachAlertRichLayout3.textSelectionHelper.getAnchorChildPosition();
-                ChatAttachAlertRichLayout.this.setEditTextsLocked(true);
-                ChatAttachAlertRichLayout.this.requestFocus();
-                Log.d("RICHED", "RichLayout requestFocus -> hasFocus=" + ChatAttachAlertRichLayout.this.hasFocus() + " isFocused=" + ChatAttachAlertRichLayout.this.isFocused() + " restore=(" + ChatAttachAlertRichLayout.this.restoreFocusCell + "," + ChatAttachAlertRichLayout.this.restoreFocusChildPosition + "," + ChatAttachAlertRichLayout.this.restoreFocusOffset + ")");
-                return;
-            }
-            final int i = ChatAttachAlertRichLayout.this.restoreFocusCell;
-            final int i2 = ChatAttachAlertRichLayout.this.restoreFocusOffset;
-            final int i3 = ChatAttachAlertRichLayout.this.restoreFocusChildPosition;
-            ChatAttachAlertRichLayout.this.restoreFocusCell = -1;
-            ChatAttachAlertRichLayout.this.restoreFocusOffset = -1;
-            ChatAttachAlertRichLayout.this.restoreFocusChildPosition = 0;
-            ChatAttachAlertRichLayout.this.setEditTextsLocked(false);
-            if (i >= 0) {
-                ChatAttachAlertRichLayout.this.post(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$onStateChanged$0(i, i3, i2);
-                    }
-                });
-            }
+        public Theme.ResourcesProvider getResourcesProvider() {
+            return ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).resourcesProvider;
         }
 
-        public void lambda$onStateChanged$0(int i, int i2, int i3) {
-            ChatAttachAlertRichLayout.this.restoreFocusAt(i, i2, i3);
+        @Override
+        public void onUndo() {
+            ChatAttachAlertRichLayout.this.listView.undo();
         }
-    }
 
-    private void buildCellPopup(Context context) {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context);
-        this.cellPopupLayout = actionBarPopupWindowLayout;
-        actionBarPopupWindowLayout.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-        this.cellPopupLayout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.menu_copy));
-        this.cellPopupLayout.setAnimationEnabled(false);
-        this.cellPopupLayout.setShownFromBottom(false);
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.cellPopupRow = linearLayout;
-        linearLayout.setOrientation(0);
-        this.headerAction = makePopupItem(context, "Mark Header", new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$buildCellPopup$1(view);
-            }
-        });
-        this.mergeAction = makePopupItem(context, "Merge", new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$buildCellPopup$2(view);
-            }
-        });
-        this.unmergeAction = makePopupItem(context, "Unmerge", new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$buildCellPopup$3(view);
-            }
-        });
-        this.delRowAction = makePopupItem(context, "Delete Row", new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$buildCellPopup$4(view);
-            }
-        });
-        this.delColAction = makePopupItem(context, "Delete Column", new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                this.f$0.lambda$buildCellPopup$5(view);
-            }
-        });
-        this.cellPopupRow.addView(this.headerAction, LayoutHelper.createLinear(-2, 48));
-        this.cellPopupRow.addView(this.mergeAction, LayoutHelper.createLinear(-2, 48));
-        this.cellPopupRow.addView(this.unmergeAction, LayoutHelper.createLinear(-2, 48));
-        this.cellPopupRow.addView(this.delRowAction, LayoutHelper.createLinear(-2, 48));
-        this.cellPopupRow.addView(this.delColAction, LayoutHelper.createLinear(-2, 48));
-        this.cellPopupLayout.addView((View) this.cellPopupRow, LayoutHelper.createLinear(-2, 48));
-        this.cellPopupLayout.setBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
-        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.cellPopupLayout, -2, -2);
-        this.cellPopupWindow = actionBarPopupWindow;
-        actionBarPopupWindow.setAnimationEnabled(false);
-        this.cellPopupWindow.setAnimationStyle(R.style.PopupContextAnimation);
-        this.cellPopupWindow.setOutsideTouchable(true);
-    }
+        @Override
+        public void onRedo() {
+            ChatAttachAlertRichLayout.this.listView.redo();
+        }
 
-    public void lambda$buildCellPopup$1(View view) {
-        handleCellActionHeader();
-    }
+        @Override
+        public void onEmoji() {
+            ChatAttachAlertRichLayout.this.toggleEmojiPopup();
+        }
 
-    public void lambda$buildCellPopup$2(View view) {
-        handleCellActionMerge();
-    }
+        public void lambda$onAi$0(TL_iv.RichMessage richMessage) {
+            ChatAttachAlertRichLayout.this.listView.addRichMessage(richMessage);
+        }
 
-    public void lambda$buildCellPopup$3(View view) {
-        handleCellActionUnmerge();
-    }
-
-    public void lambda$buildCellPopup$4(View view) {
-        handleCellActionDeleteRow();
-    }
-
-    public void lambda$buildCellPopup$5(View view) {
-        handleCellActionDeleteCol();
-    }
-
-    private TextView makePopupItem(Context context, String str, View.OnClickListener onClickListener) {
-        TextView textView = new TextView(context);
-        textView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 2));
-        textView.setGravity(16);
-        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
-        textView.setText(str);
-        textView.setOnClickListener(onClickListener);
-        return textView;
-    }
-
-    private void handleCellActionHeader() {
-        if (this.activeCellSelectionTable == null) {
-            return;
-        }
-        this.activeCellSelectionTable.applyHeaderToggle(!r0.allSelectedHeader());
-        exitCellSelectionMode();
-        updateSendButton(true);
-    }
-
-    private void handleCellActionMerge() {
-        RichTableCell richTableCell = this.activeCellSelectionTable;
-        if (richTableCell != null && richTableCell.applyMergeFromSelection()) {
-            updateCellActionBar();
-            updateSendButton(true);
-        }
-    }
-
-    private void handleCellActionUnmerge() {
-        RichTableCell richTableCell = this.activeCellSelectionTable;
-        if (richTableCell != null && richTableCell.applyUnmergeFromSelection()) {
-            updateCellActionBar();
-            updateSendButton(true);
-        }
-    }
-
-    private void handleCellActionDeleteRow() {
-        RichTableCell richTableCell = this.activeCellSelectionTable;
-        if (richTableCell == null) {
-            return;
-        }
-        richTableCell.applyDeleteRowsFromSelection();
-        finalizeAfterTableStructureChange(richTableCell);
-    }
-
-    private void handleCellActionDeleteCol() {
-        RichTableCell richTableCell = this.activeCellSelectionTable;
-        if (richTableCell == null) {
-            return;
-        }
-        richTableCell.applyDeleteColumnsFromSelection();
-        finalizeAfterTableStructureChange(richTableCell);
-    }
-
-    private void finalizeAfterTableStructureChange(RichTableCell richTableCell) {
-        BlockRow row;
-        int iIndexOf;
-        exitCellSelectionMode();
-        if (richTableCell.isEmpty() && (row = richTableCell.getRow()) != null && (iIndexOf = this.rows.indexOf(row)) >= 0) {
-            this.rows.remove(iIndexOf);
-            if (this.rows.isEmpty()) {
-                this.rows.add(new BlockRow(new TL_iv.pageBlockParagraph()));
-            }
-            this.listView.adapter.update(true);
-        }
-        updateSendButton(true);
-    }
-
-    public TextSelectionHelper.ArticleTextSelectionHelper getTextSelectionHelper() {
-        return this.textSelectionHelper;
-    }
-
-    private void enterCellSelectionMode(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell) {
-        RichTableCell richTableCell2 = this.activeCellSelectionTable;
-        if (richTableCell2 != null && richTableCell2 != richTableCell) {
-            richTableCell2.clearCellSelection();
-        }
-        this.activeCellSelectionTable = richTableCell;
-        richTableCell.setCellSelectionListener(this.cellSelectionListener);
-        if (this.textSelectionHelper.isInSelectionMode()) {
-            this.textSelectionHelper.clear();
-        }
-        setEditTextsLocked(true);
-        richTableCell.addCellToSelection(pagetablecell);
-        updateCellActionBar();
-    }
-
-    public void exitCellSelectionMode() {
-        RichTableCell richTableCell = this.activeCellSelectionTable;
-        if (richTableCell != null) {
-            richTableCell.clearCellSelection();
-            this.activeCellSelectionTable = null;
-        }
-        setEditTextsLocked(false);
-        updateCellActionBar();
-    }
-
-    public void updateCellActionBar() {
-        if (this.cellPopupWindow == null) {
-            return;
-        }
-        RichTableCell richTableCell = this.activeCellSelectionTable;
-        if (richTableCell == null || !richTableCell.hasCellSelection()) {
-            if (this.cellPopupWindow.isShowing()) {
-                this.cellPopupWindow.dismiss();
-                return;
-            }
-            return;
-        }
-        Set<TL_iv.pageTableCell> selectedCells = this.activeCellSelectionTable.getSelectedCells();
-        int size = selectedCells.size();
-        boolean z = size >= 2 && computeCanMerge(this.activeCellSelectionTable, selectedCells);
-        boolean z2 = size == 1 && computeHasSpan(selectedCells.iterator().next());
-        boolean zComputeSpansFullRows = computeSpansFullRows(this.activeCellSelectionTable, selectedCells);
-        boolean zComputeSpansFullColumns = computeSpansFullColumns(this.activeCellSelectionTable, selectedCells);
-        this.headerAction.setVisibility(0);
-        this.headerAction.setText(this.activeCellSelectionTable.allSelectedHeader() ? "Unmark Header" : "Mark Header");
-        this.mergeAction.setVisibility(z ? 0 : 8);
-        this.unmergeAction.setVisibility(z2 ? 0 : 8);
-        this.delRowAction.setVisibility(zComputeSpansFullRows ? 0 : 8);
-        this.delColAction.setVisibility(zComputeSpansFullColumns ? 0 : 8);
-        showOrUpdateCellPopup();
-    }
-
-    public void showOrUpdateCellPopup() {
-        if (this.cellPopupWindow == null || this.activeCellSelectionTable == null) {
-            return;
-        }
-        this.cellPopupRow.measure(View.MeasureSpec.makeMeasureSpec(0, 0), View.MeasureSpec.makeMeasureSpec(0, 0));
-        this.cellPopupLayout.measure(View.MeasureSpec.makeMeasureSpec(0, 0), View.MeasureSpec.makeMeasureSpec(0, 0));
-        int[] iArrComputeCellPopupTopLeft = computeCellPopupTopLeft(this.cellPopupLayout.getMeasuredWidth(), this.cellPopupLayout.getMeasuredHeight());
-        if (this.cellPopupWindow.isShowing()) {
-            this.cellPopupWindow.update(iArrComputeCellPopupTopLeft[0], iArrComputeCellPopupTopLeft[1], -1, -1);
-        } else {
-            this.cellPopupWindow.showAtLocation(this, 0, iArrComputeCellPopupTopLeft[0], iArrComputeCellPopupTopLeft[1]);
-            this.cellPopupWindow.startAnimation();
-        }
-    }
-
-    private int[] computeCellPopupTopLeft(int i, int i2) {
-        int[] iArr = new int[2];
-        Iterator<TL_iv.pageTableCell> it = this.activeCellSelectionTable.getSelectedCells().iterator();
-        int width = Integer.MIN_VALUE;
-        int i3 = Integer.MAX_VALUE;
-        int i4 = Integer.MAX_VALUE;
-        while (it.hasNext()) {
-            RichTableCellHost richTableCellHostHostForAnchor = this.activeCellSelectionTable.getGrid().hostForAnchor(it.next());
-            if (richTableCellHostHostForAnchor != null) {
-                richTableCellHostHostForAnchor.getLocationOnScreen(iArr);
-                int i5 = iArr[1];
-                if (i5 < i3) {
-                    i3 = i5;
-                }
-                int i6 = iArr[0];
-                if (i6 < i4) {
-                    i4 = i6;
-                }
-                if (i6 + richTableCellHostHostForAnchor.getWidth() > width) {
-                    width = iArr[0] + richTableCellHostHostForAnchor.getWidth();
-                }
-            }
-        }
-        if (i3 == Integer.MAX_VALUE) {
-            this.activeCellSelectionTable.getLocationOnScreen(iArr);
-            i3 = iArr[1];
-            i4 = iArr[0];
-            width = i4 + this.activeCellSelectionTable.getWidth();
-        }
-        int iDp = ((i4 + width) / 2) - (i / 2);
-        int iDp2 = (i3 - i2) - AndroidUtilities.dp(8.0f);
-        int i7 = AndroidUtilities.displaySize.x;
-        if (iDp < AndroidUtilities.dp(8.0f)) {
-            iDp = AndroidUtilities.dp(8.0f);
-        }
-        if (iDp + i > i7 - AndroidUtilities.dp(8.0f)) {
-            iDp = (i7 - AndroidUtilities.dp(8.0f)) - i;
-        }
-        if (iDp2 < AndroidUtilities.dp(8.0f)) {
-            iDp2 = AndroidUtilities.dp(8.0f);
-        }
-        return new int[]{iDp, iDp2};
-    }
-
-    private static boolean computeHasSpan(TL_iv.pageTableCell pagetablecell) {
-        return TableModel.spanCol(pagetablecell) > 1 || TableModel.spanRow(pagetablecell) > 1;
-    }
-
-    private static boolean computeCanMerge(RichTableCell richTableCell, Set set) {
-        TableModel model = richTableCell.getModel();
-        if (model == null) {
-            return false;
-        }
-        Iterator it = set.iterator();
-        int iMax = -1;
-        int iMax2 = -1;
-        int iMin = Integer.MAX_VALUE;
-        int iMin2 = Integer.MAX_VALUE;
-        while (it.hasNext()) {
-            TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) it.next();
-            int iAnchorRowOf = model.anchorRowOf(pagetablecell);
-            int iAnchorColOf = model.anchorColOf(pagetablecell);
-            int iSpanRow = TableModel.spanRow(pagetablecell);
-            int iSpanCol = TableModel.spanCol(pagetablecell);
-            iMin2 = Math.min(iMin2, iAnchorRowOf);
-            iMin = Math.min(iMin, iAnchorColOf);
-            iMax2 = Math.max(iMax2, (iAnchorRowOf + iSpanRow) - 1);
-            iMax = Math.max(iMax, (iAnchorColOf + iSpanCol) - 1);
-        }
-        HashSet hashSet = new HashSet();
-        while (iMin2 <= iMax2) {
-            for (int i = iMin; i <= iMax; i++) {
-                if (iMin2 < 0 || i < 0 || iMin2 >= model.rowCount || i >= model.colCount) {
-                    return false;
-                }
-                hashSet.add(model.grid[iMin2][i]);
-            }
-            iMin2++;
-        }
-        return hashSet.equals(new HashSet(set));
-    }
-
-    private static boolean computeSpansFullRows(RichTableCell richTableCell, Set set) {
-        TableModel model = richTableCell.getModel();
-        if (model == null) {
-            return false;
-        }
-        HashSet hashSet = new HashSet();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            hashSet.add(Integer.valueOf(model.anchorRowOf((TL_iv.pageTableCell) it.next())));
-        }
-        if (hashSet.isEmpty()) {
-            return false;
-        }
-        Iterator it2 = hashSet.iterator();
-        while (it2.hasNext()) {
-            int iIntValue = ((Integer) it2.next()).intValue();
-            for (int i = 0; i < model.colCount; i++) {
-                if (model.anchorR[iIntValue][i] != iIntValue || !set.contains(model.grid[iIntValue][i])) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    private static boolean computeSpansFullColumns(RichTableCell richTableCell, Set set) {
-        TableModel model = richTableCell.getModel();
-        if (model == null) {
-            return false;
-        }
-        HashSet hashSet = new HashSet();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            hashSet.add(Integer.valueOf(model.anchorColOf((TL_iv.pageTableCell) it.next())));
-        }
-        if (hashSet.isEmpty()) {
-            return false;
-        }
-        Iterator it2 = hashSet.iterator();
-        while (it2.hasNext()) {
-            int iIntValue = ((Integer) it2.next()).intValue();
-            for (int i = 0; i < model.rowCount; i++) {
-                if (model.anchorC[i][iIntValue] != iIntValue || !set.contains(model.grid[i][iIntValue])) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    public boolean onCellBackspaceAtStart(final BlockRow blockRow) {
-        int iIndexOf = this.rows.indexOf(blockRow);
-        if (iIndexOf <= 0) {
-            return false;
-        }
-        int i = iIndexOf - 1;
-        if (!(((BlockRow) this.rows.get(i)).block instanceof TL_iv.pageBlockDivider)) {
-            return false;
-        }
-        this.rows.remove(i);
-        renumberAllRuns();
-        this.listView.adapter.update(true);
-        this.listView.post(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$onCellBackspaceAtStart$6(blockRow);
-            }
-        });
-        return true;
-    }
-
-    public void transformRow(final org.telegram.ui.iv.BlockRow r3, org.telegram.tgnet.tl.TL_iv.PageBlock r4, int r5, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.transformRow(org.telegram.ui.iv.BlockRow, org.telegram.tgnet.tl.TL_iv$PageBlock, int, int):void");
-    }
-
-    public void lambda$transformRow$9(BlockRow blockRow) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (viewFindViewByItemObject instanceof RichTextCell) {
-            RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
-            richTextCell.requestEditFocus();
-            richTextCell.getEditText().setSelection(richTextCell.getEditText().length());
-            return;
-        }
-        if (viewFindViewByItemObject instanceof RichTableCell) {
-            RichTableCell richTableCell = (RichTableCell) viewFindViewByItemObject;
-            if (richTableCell.getGrid().getChildCount() > 0) {
-                View childAt = richTableCell.getGrid().getChildAt(0);
-                if (childAt instanceof RichTableCellHost) {
-                    ((RichTableCellHost) childAt).editText.requestEditFocus();
-                }
-            }
-        }
-    }
-
-    private static boolean isNonText(TL_iv.PageBlock pageBlock) {
-        return (pageBlock instanceof TL_iv.pageBlockDivider) || (pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockVideo) || (pageBlock instanceof TL_iv.pageBlockMath) || (pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockTable);
-    }
-
-    private static boolean isMedia(TL_iv.PageBlock pageBlock) {
-        return (pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockVideo);
-    }
-
-    private boolean hasAnyText() {
-        MediaUploadState mediaUploadState;
-        for (int i = 0; i < this.rows.size(); i++) {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            if (!RichTextCell.readPlainText(blockRow.block).isEmpty()) {
-                return true;
-            }
-            if (isMedia(blockRow.block) && (mediaUploadState = blockRow.media) != null && (mediaUploadState.isReady() || blockRow.media.isPending())) {
-                return true;
-            }
-            TL_iv.PageBlock pageBlock = blockRow.block;
-            if ((pageBlock instanceof TL_iv.pageBlockMath) && !TextUtils.isEmpty(((TL_iv.pageBlockMath) pageBlock).source)) {
-                return true;
-            }
-            TL_iv.PageBlock pageBlock2 = blockRow.block;
-            if ((pageBlock2 instanceof TL_iv.pageBlockMap) && ((TL_iv.pageBlockMap) pageBlock2).geo != null) {
-                return true;
-            }
-            if ((pageBlock2 instanceof TL_iv.pageBlockTable) && tableHasText((TL_iv.pageBlockTable) pageBlock2)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean tableHasText(TL_iv.pageBlockTable pageblocktable) {
-        if (pageblocktable.rows == null) {
-            return false;
-        }
-        for (int i = 0; i < pageblocktable.rows.size(); i++) {
-            TL_iv.pageTableRow pagetablerow = pageblocktable.rows.get(i);
-            for (int i2 = 0; i2 < pagetablerow.cells.size(); i2++) {
-                if (!TableModel.readPlainText(pagetablerow.cells.get(i2)).isEmpty()) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean hasPendingUploads() {
-        for (int i = 0; i < this.rows.size(); i++) {
-            MediaUploadState mediaUploadState = ((BlockRow) this.rows.get(i)).media;
-            if (mediaUploadState != null && mediaUploadState.isPending()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void updateSendButton(boolean z) {
-        boolean zHasAnyText = hasAnyText();
-        if (zHasAnyText == this.sendButtonShown) {
-            return;
-        }
-        this.sendButtonShown = zHasAnyText;
-        this.parentAlert.showSendButtonOnly(zHasAnyText, z);
-    }
-
-    public void fillItems(java.util.ArrayList r5, org.telegram.ui.Components.UniversalAdapter r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
-    }
-
-    public void onItemClick(UItem uItem, View view, int i, float f, float f2) {
-        if (view instanceof RichTextCell) {
-            ((RichTextCell) view).requestEditFocus();
-        }
-    }
-
-    public void onCellEnter(final BlockRow blockRow) {
-        int iIndexOf = this.rows.indexOf(blockRow);
-        if (iIndexOf < 0) {
-            return;
-        }
-        if (RichTextCell.readPlainText(blockRow.block).isEmpty() && blockRow.level > 0) {
-            cascadeOutdent(iIndexOf);
-            renumberAllRuns();
-            this.listView.adapter.update(false);
-            this.listView.post(new Runnable() {
+        @Override
+        public void onAi() {
+            new RichAIComposeSheet(ChatAttachAlertRichLayout.this.getContext(), ChatAttachAlertRichLayout.this.currentAccount, ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).resourcesProvider, new Utilities.Callback() {
                 @Override
-                public final void run() {
-                    this.f$0.lambda$onCellEnter$10(blockRow);
+                public final void run(Object obj) {
+                    this.f$0.lambda$onAi$0((TL_iv.RichMessage) obj);
                 }
-            });
-            return;
+            }).show();
         }
-        TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-        int i = blockRow.num;
-        if (i > 0) {
-            i++;
+
+        @Override
+        public void onAttach() {
+            ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
+            ChatAttachAlertRichLayout.this.openAttach(74, 0);
         }
-        final BlockRow blockRow2 = new BlockRow(pageblockparagraph, blockRow.level, i);
-        this.rows.add(iIndexOf + 1, blockRow2);
-        renumberAllRuns();
-        this.listView.adapter.update(true);
-        this.listView.post(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$onCellEnter$11(blockRow2);
-            }
-        });
+
+        @Override
+        public void onSend() {
+            ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
+        }
+
+        @Override
+        public boolean onSendLongClick(View view) {
+            return ChatAttachAlertRichLayout.this.showSendPreview(view);
+        }
+
+        @Override
+        public void onBlockButton(int i, View view) {
+            ChatAttachAlertRichLayout.this.onBlockButtonClicked(i, view);
+        }
+
+        @Override
+        public void onFormatting(int i) {
+            ChatAttachAlertRichLayout.this.listView.onFormattingClicked(i);
+        }
+
+        @Override
+        public void onLink() {
+            ChatAttachAlertRichLayout.this.listView.onLinkClicked();
+        }
+
+        @Override
+        public void onDate() {
+            ChatAttachAlertRichLayout.this.listView.onDateClicked();
+        }
+
+        @Override
+        public void onMath() {
+            ChatAttachAlertRichLayout.this.listView.onMathClicked();
+        }
     }
 
-    public void onCellBackspace(final BlockRow blockRow) {
-        int iIndexOf = this.rows.indexOf(blockRow);
-        if (iIndexOf < 0) {
+    public void updateToolbarTopOffset() {
+        if (this.toolbar == null) {
             return;
         }
-        if (blockRow.level > 0) {
-            cascadeOutdent(iIndexOf);
-            renumberAllRuns();
-            this.listView.adapter.update(false);
-            this.listView.post(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onCellBackspace$12(blockRow);
-                }
-            });
-            return;
-        }
-        if (iIndexOf <= 0) {
-            return;
-        }
-        final BlockRow blockRow2 = (BlockRow) this.rows.get(iIndexOf - 1);
-        this.rows.remove(iIndexOf);
-        renumberAllRuns();
-        this.listView.adapter.update(true);
-        this.listView.post(new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$onCellBackspace$13(blockRow2);
-            }
-        });
+        this.toolbar.setTopButtonsOffset(Math.max((AndroidUtilities.statusBarHeight + ((ActionBar.getCurrentActionBarHeight() - AndroidUtilities.dp(44.0f)) / 2)) - AndroidUtilities.dp(8.0f), firstItemTopRaw()));
     }
 
-    public boolean onCellIndent(BlockRow blockRow, boolean z) {
-        int iIndexOf = this.rows.indexOf(blockRow);
-        StringBuilder sb = new StringBuilder();
-        sb.append("onCellIndent idx=");
-        sb.append(iIndexOf);
-        sb.append(" outdent=");
-        sb.append(z);
-        sb.append(" level=");
-        sb.append(blockRow != null ? blockRow.level : -99);
-        sb.append(" num=");
-        sb.append(blockRow != null ? blockRow.num : -99);
-        Log.d("RICHED", sb.toString());
-        if (iIndexOf < 0) {
-            return false;
+    private int firstItemTopRaw() {
+        if (this.listView.getChildCount() <= 0) {
+            return this.listView.getPaddingTop();
         }
-        int iCaptureCaret = captureCaret(blockRow);
-        if (!indentRow(iIndexOf, z, false)) {
-            return false;
+        int y = Integer.MAX_VALUE;
+        for (int i = 0; i < this.listView.getChildCount(); i++) {
+            View childAt = this.listView.getChildAt(i);
+            if (this.listView.getChildAdapterPosition(childAt) >= 0 && childAt.getY() < y) {
+                y = (int) childAt.getY();
+            }
         }
-        renumberAllRuns();
-        this.listView.adapter.update(false);
-        restoreCaret(blockRow, iCaptureCaret);
-        return true;
+        return y == Integer.MAX_VALUE ? this.listView.getPaddingTop() : y;
     }
 
-    private boolean rangeIndent(int i, int i2, boolean z) {
-        boolean z2;
-        if (i < 0 || i2 < i || i2 >= this.rows.size()) {
-            return false;
+    public void updateHistoryButtons() {
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        if (richEditorToolbar != null) {
+            richEditorToolbar.setHistoryEnabled(this.listView.canUndo(), this.listView.canRedo());
         }
-        Log.d("RICHED", "rangeIndent sCell=" + i + " eCell=" + i2 + " outdent=" + z);
-        if (z) {
-            z2 = false;
-            while (i2 >= i) {
-                if (indentRow(i2, true, true)) {
-                    z2 = true;
-                }
-                i2--;
-            }
-        } else {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            if (blockRow.level >= 1 && (i == 0 || ((BlockRow) this.rows.get(i - 1)).level < blockRow.level)) {
-                Log.d("RICHED", "  rangeIndent reject: orphan on first row");
-                return false;
-            }
-            z2 = false;
-            while (i <= i2) {
-                if (indentRow(i, false, true)) {
-                    z2 = true;
-                }
-                i++;
-            }
-        }
-        if (z2) {
-            renumberAllRuns();
-            this.listView.adapter.update(false);
-        }
-        return z2;
     }
 
-    private boolean indentRow(int i, boolean z, boolean z2) {
-        if (i < 0 || i >= this.rows.size()) {
-            return false;
-        }
-        BlockRow blockRow = (BlockRow) this.rows.get(i);
-        if (z) {
-            if (blockRow.level <= 0) {
-                return false;
-            }
-            cascadeOutdent(i);
+    private boolean checkDiscard() {
+        RichEditorListView richEditorListView = this.listView;
+        if (richEditorListView == null || !richEditorListView.hasAnyText()) {
             return true;
         }
-        if (blockRow.level == 0) {
-            if (!(blockRow.block instanceof TL_iv.pageBlockParagraph)) {
-                return false;
-            }
-            blockRow.level = 1;
-            if (i > 0) {
-                blockRow.num = ((BlockRow) this.rows.get(i - 1)).num > 0 ? 1 : 0;
-            } else {
-                blockRow.num = 0;
-            }
-            return true;
-        }
-        if (!z2 && (i == 0 || ((BlockRow) this.rows.get(i - 1)).level < blockRow.level)) {
-            return false;
-        }
-        blockRow.level++;
-        return true;
-    }
-
-    private void cascadeOutdent(int i) {
-        BlockRow blockRow;
-        int i2;
-        BlockRow blockRow2 = (BlockRow) this.rows.get(i);
-        int i3 = blockRow2.level;
-        if (i3 <= 0) {
-            return;
-        }
-        int i4 = i3 - 1;
-        blockRow2.level = i4;
-        if (i4 == 0) {
-            blockRow2.num = 0;
-        }
-        while (true) {
-            i++;
-            if (i >= this.rows.size() || (i2 = (blockRow = (BlockRow) this.rows.get(i)).level) <= i3) {
-                return;
-            } else {
-                blockRow.level = i2 - 1;
-            }
-        }
-    }
-
-    private int captureCaret(BlockRow blockRow) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (!(viewFindViewByItemObject instanceof RichTextCell)) {
-            return -1;
-        }
-        RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
-        if (richTextCell.getEditText().isFocused()) {
-            return richTextCell.getEditText().getSelectionEnd();
-        }
-        return -1;
-    }
-
-    private void restoreCaret(final BlockRow blockRow, final int i) {
-        if (i < 0) {
-            return;
-        }
-        this.listView.post(new Runnable() {
+        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.ArticleSaveDraftTitle)).setMessage(LocaleController.getString(R.string.ArticleSaveDraftMessage)).setNegativeButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void run() {
-                this.f$0.lambda$restoreCaret$14(blockRow, i);
+            public final void onClick(AlertDialog alertDialog, int i) {
+                this.f$0.lambda$checkDiscard$1(alertDialog, i);
             }
-        });
+        }).setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                this.f$0.lambda$checkDiscard$2(alertDialog, i);
+            }
+        }).makeRed(-2).show();
+        return false;
     }
 
-    public void lambda$restoreCaret$14(BlockRow blockRow, int i) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (viewFindViewByItemObject instanceof RichTextCell) {
-            RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
-            richTextCell.requestEditFocus();
-            richTextCell.getEditText().setSelection(Math.max(0, Math.min(i, richTextCell.getEditText().length())));
-        }
+    public void lambda$checkDiscard$1(AlertDialog alertDialog, int i) {
+        this.parentAlert.lambda$new$0();
     }
 
-    public void lambda$tryPlainArrowAcrossCells$17(BlockRow blockRow) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (viewFindViewByItemObject instanceof RichTextCell) {
-            ((RichTextCell) viewFindViewByItemObject).requestEditFocus();
-        }
+    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        persistDraft();
+        this.parentAlert.lambda$new$0();
     }
 
-    public void restoreFocusAt(int i, int i2, int i3) {
-        RichTableCell richTableCell;
-        TableModel model;
-        if (i < 0) {
-            return;
-        }
-        View viewFindViewByPosition = this.listView.layoutManager.findViewByPosition(i);
-        if (viewFindViewByPosition instanceof RichTextCell) {
-            RichTextCell richTextCell = (RichTextCell) viewFindViewByPosition;
-            richTextCell.requestEditFocus();
-            richTextCell.getEditText().setSelection(Math.max(0, Math.min(i3, richTextCell.getEditText().length())));
-        } else {
-            if (!(viewFindViewByPosition instanceof RichTableCell) || (model = (richTableCell = (RichTableCell) viewFindViewByPosition).getModel()) == null) {
-                return;
-            }
-            if (i2 < 0 || i2 >= model.anchors().size()) {
-                i2 = 0;
-            }
-            RichTableCellHost richTableCellHostHostForAnchor = richTableCell.getGrid().hostForAnchor((TL_iv.pageTableCell) model.anchors().get(i2));
-            if (richTableCellHostHostForAnchor == null) {
-                return;
-            }
-            richTableCellHostHostForAnchor.editText.requestEditFocus();
-            richTableCellHostHostForAnchor.editText.setSelection(Math.max(0, Math.min(i3, richTableCellHostHostForAnchor.editText.length())));
-        }
-    }
-
-    private void renumberAllRuns() {
-        for (int i = 0; i < this.rows.size(); i++) {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            int i2 = blockRow.level;
-            if (i2 > 0 && blockRow.num > 0) {
-                int i3 = 1;
-                for (int i4 = i - 1; i4 >= 0; i4--) {
-                    BlockRow blockRow2 = (BlockRow) this.rows.get(i4);
-                    int i5 = blockRow2.level;
-                    if (i5 < i2) {
-                        break;
-                    }
-                    if (i5 == i2) {
-                        if (blockRow2.num <= 0) {
-                            break;
-                        } else {
-                            i3++;
-                        }
-                    }
+    private void persistDraft() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        BaseFragment baseFragment = this.parentAlert.baseFragment;
+        if (baseFragment instanceof ChatActivity) {
+            ChatActivity chatActivity = (ChatActivity) baseFragment;
+            if (this.listView.canUndo()) {
+                TL_iv.RichMessage richMessageBuildDraftRichMessage = this.listView.buildDraftRichMessage();
+                AccountInstance.getInstance(this.currentAccount).getMediaDataController().saveDraft(chatActivity.getDialogId(), chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessageBuildDraftRichMessage);
+                if (chatActivity.getChatActivityEnterView() != null) {
+                    chatActivity.getChatActivityEnterView().setRichDraftPreview(richMessageBuildDraftRichMessage);
                 }
-                blockRow.num = i3;
             }
         }
     }
 
     @Override
+    public boolean onDismissWithTouchOutside() {
+        if (checkDiscard()) {
+            return super.onDismissWithTouchOutside();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onDismiss() {
+        RichEditorListView richEditorListView = this.listView;
+        if (richEditorListView != null) {
+            richEditorListView.clearContent();
+        }
+        return super.onDismiss();
+    }
+
+    public void onBlockButtonClicked(int r3, android.view.View r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.onBlockButtonClicked(int, android.view.View):void");
+    }
+
+    public void lambda$onBlockButtonClicked$3(TL_iv.pageBlockMath pageblockmath, String str) {
+        if (pageblockmath != null) {
+            pageblockmath.source = str;
+            this.listView.adapter.update(false);
+        } else {
+            TL_iv.pageBlockMath pageblockmath2 = new TL_iv.pageBlockMath();
+            pageblockmath2.source = str;
+            this.listView.addBlock(pageblockmath2);
+        }
+    }
+
+    private void showTextTypeMenu(final BlockRow blockRow, View view) {
+        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((ViewGroup) this, this.resourcesProvider, view, true).dontFocus();
+        final ItemOptions itemOptionsMakeSwipeback = itemOptionsDontFocus.makeSwipeback();
+        itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
+            @Override
+            public final void run() {
+                itemOptionsDontFocus.closeSwipeback();
+            }
+        });
+        itemOptionsMakeSwipeback.addGap();
+        TL_iv.pageBlockHeading1 pageblockheading1 = new TL_iv.pageBlockHeading1();
+        int i = R.drawable.iv_h1;
+        addHeadingItem(itemOptionsMakeSwipeback, blockRow, pageblockheading1, i, LocaleController.getString(R.string.ArticleHeading1), SharedConfig.fontSize + 2, itemOptionsDontFocus);
+        addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading2(), R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), SharedConfig.fontSize + 1, itemOptionsDontFocus);
+        addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading3(), R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), SharedConfig.fontSize, itemOptionsDontFocus);
+        addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading4(), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), SharedConfig.fontSize - 1, itemOptionsDontFocus);
+        addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading5(), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), SharedConfig.fontSize - 2, itemOptionsDontFocus);
+        addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading6(), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), SharedConfig.fontSize - 3, itemOptionsDontFocus);
+        itemOptionsDontFocus.addChecked(blockRow != null && RichEditorListView.isHeading(blockRow.block), i, LocaleController.getString(R.string.ArticleHeading), new Runnable() {
+            @Override
+            public final void run() {
+                itemOptionsDontFocus.openSwipeback(itemOptionsMakeSwipeback);
+            }
+        });
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockParagraph), R.drawable.iv_text, LocaleController.getString(R.string.ArticleText), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showTextTypeMenu$6(blockRow);
+            }
+        });
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockBlockquote), R.drawable.iv_quote, LocaleController.getString(R.string.ArticleQuote), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showTextTypeMenu$7(blockRow);
+            }
+        });
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockPullquote), R.drawable.iv_pullquote, LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showTextTypeMenu$8(blockRow);
+            }
+        });
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockPreformatted), R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showTextTypeMenu$9(blockRow);
+            }
+        });
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockFooter), R.drawable.iv_footer, LocaleController.getString(R.string.ArticleFooter), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showTextTypeMenu$10(blockRow);
+            }
+        });
+        itemOptionsDontFocus.show();
+    }
+
+    public void lambda$showTextTypeMenu$6(BlockRow blockRow) {
+        this.listView.turnInto(blockRow, new TL_iv.pageBlockParagraph(), 0, 0, false, false);
+    }
+
+    public void lambda$showTextTypeMenu$7(BlockRow blockRow) {
+        this.listView.turnInto(blockRow, RichEditorListView.newBlockquote(), 0, 0, false, false);
+    }
+
+    public void lambda$showTextTypeMenu$8(BlockRow blockRow) {
+        this.listView.turnInto(blockRow, RichEditorListView.newPullquote(), 0, 0, false, false);
+    }
+
+    public void lambda$showTextTypeMenu$9(BlockRow blockRow) {
+        this.listView.turnInto(blockRow, new TL_iv.pageBlockPreformatted(), 0, 0, false, false);
+    }
+
+    public void lambda$showTextTypeMenu$10(BlockRow blockRow) {
+        this.listView.turnInto(blockRow, new TL_iv.pageBlockFooter(), 0, 0, false, false);
+    }
+
+    private void addHeadingItem(ItemOptions itemOptions, final BlockRow blockRow, final TL_iv.PageBlock pageBlock, int i, String str, int i2, final ItemOptions itemOptions2) {
+        itemOptions.addChecked(blockRow != null && blockRow.block.getClass() == pageBlock.getClass(), i, str, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$addHeadingItem$11(blockRow, pageBlock, itemOptions2);
+            }
+        });
+        itemOptions.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
+        itemOptions.getLast().textView.setTextSize(1, i2);
+    }
+
+    public void lambda$addHeadingItem$11(BlockRow blockRow, TL_iv.PageBlock pageBlock, ItemOptions itemOptions) {
+        this.listView.turnInto(blockRow, pageBlock, 0, 0, false, false);
+        itemOptions.dismiss();
+    }
+
+    private void showListMenu(final BlockRow blockRow, View view) {
+        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions(this, this.resourcesProvider, view).dontFocus();
+        boolean z = false;
+        ItemOptions itemOptionsAddChecked = itemOptionsDontFocus.addChecked(blockRow == null || !blockRow.isInList(), R.drawable.field_carret_empty, LocaleController.getString(R.string.ArticleNone), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showListMenu$12(blockRow);
+            }
+        }).addChecked((blockRow == null || !blockRow.isInList() || blockRow.isChecklist() || blockRow.isOrdered()) ? false : true, R.drawable.iv_list, LocaleController.getString(R.string.ArticleListBulleted), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showListMenu$13(blockRow);
+            }
+        }).addChecked(blockRow != null && blockRow.isInList() && !blockRow.isChecklist() && blockRow.isOrdered(), R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleListNumbered), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showListMenu$14(blockRow);
+            }
+        }).addChecked(blockRow != null && blockRow.isInList() && blockRow.isChecklist() && !blockRow.isOrdered(), R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListTodo), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showListMenu$15(blockRow);
+            }
+        });
+        boolean z2 = blockRow != null && (blockRow.block instanceof TL_iv.pageBlockDetails);
+        int i = R.drawable.iv_details;
+        String string = LocaleController.getString(R.string.ArticleToggleBlock);
+        RichEditorListView richEditorListView = this.listView;
+        Objects.requireNonNull(richEditorListView);
+        itemOptionsAddChecked.addChecked(z2, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda24(richEditorListView));
+        int iIndexOf = blockRow != null ? this.listView.rows.indexOf(blockRow) : -1;
+        boolean z3 = blockRow != null && blockRow.isInList();
+        boolean z4 = z3 && this.listView.canIndentRow(iIndexOf);
+        if (z3 && this.listView.canOutdentRow(iIndexOf) && ((BlockRow) this.listView.rows.get(iIndexOf)).level > 1) {
+            z = true;
+        }
+        if (z4 || z) {
+            itemOptionsDontFocus.addGap();
+            if (z4) {
+                itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$showListMenu$16(blockRow, itemOptionsDontFocus);
+                    }
+                });
+            }
+            if (z) {
+                itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$showListMenu$17(blockRow, itemOptionsDontFocus);
+                    }
+                });
+            }
+        }
+        itemOptionsDontFocus.forceTop(true).show();
+    }
+
+    public void lambda$showListMenu$12(BlockRow blockRow) {
+        this.listView.turnIntoList(blockRow, 0);
+    }
+
+    public void lambda$showListMenu$13(BlockRow blockRow) {
+        this.listView.turnIntoList(blockRow, 1);
+    }
+
+    public void lambda$showListMenu$14(BlockRow blockRow) {
+        this.listView.turnIntoList(blockRow, 2);
+    }
+
+    public void lambda$showListMenu$15(BlockRow blockRow) {
+        this.listView.turnIntoList(blockRow, 3);
+    }
+
+    public void lambda$showListMenu$16(BlockRow blockRow, ItemOptions itemOptions) {
+        this.listView.onCellIndent(blockRow, false);
+        itemOptions.dismiss();
+    }
+
+    public void lambda$showListMenu$17(BlockRow blockRow, ItemOptions itemOptions) {
+        this.listView.onCellIndent(blockRow, true);
+        itemOptions.dismiss();
+    }
+
+    public void updateFormattingPanel() {
+        if (this.toolbar == null) {
+            return;
+        }
+        boolean z = this.listView.isInSelectionMode() && this.listView.selectionHasInlineFormattable();
+        this.toolbar.showFormattingPanel(z, true);
+        if (z) {
+            updateFormattingButtons();
+        }
+    }
+
+    private void updateFormattingButtons() {
+        int i;
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
+        if (this.toolbar == null || textSelectionHelper == null || !textSelectionHelper.isInSelectionMode()) {
+            return;
+        }
+        if (this.listView.isTableSelection()) {
+            updateFormattingButtonsTable();
+            return;
+        }
+        if (this.listView.isCaptionSelection()) {
+            updateFormattingButtonsCaption();
+            return;
+        }
+        int startCell = textSelectionHelper.getStartCell();
+        int endCell = textSelectionHelper.getEndCell();
+        int startOffset = textSelectionHelper.getStartOffset();
+        int endOffset = textSelectionHelper.getEndOffset();
+        boolean z = startCell >= 0 && endCell >= 0 && endCell >= startCell && endCell < this.listView.itemRows.size();
+        if (z) {
+            int[] iArr = STYLE_FLAGS;
+            int length = iArr.length;
+            int i2 = 0;
+            int i3 = 0;
+            while (i2 < length) {
+                int i4 = iArr[i2];
+                int i5 = i2;
+                if (this.listView.isStyleFullyApplied(i4, startCell, startOffset, endCell, endOffset)) {
+                    i3 |= i4;
+                }
+                i2 = i5 + 1;
+            }
+            i = i3;
+        } else {
+            i = 0;
+        }
+        this.toolbar.setFormattingState(i, z && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset), z && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset), z && startCell == endCell);
+    }
+
+    private void updateFormattingButtonsTable() {
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
+        int startCell = textSelectionHelper.getStartCell();
+        int startChildPosition = textSelectionHelper.getStartChildPosition();
+        int endChildPosition = textSelectionHelper.getEndChildPosition();
+        int startOffset = textSelectionHelper.getStartOffset();
+        int endOffset = textSelectionHelper.getEndOffset();
+        int[] iArr = STYLE_FLAGS;
+        int length = iArr.length;
+        int i = 0;
+        int i2 = 0;
+        while (i2 < length) {
+            int i3 = iArr[i2];
+            int i4 = i;
+            int i5 = i2;
+            i = this.listView.isStyleFullyAppliedTable(i3, startCell, startChildPosition, startOffset, endChildPosition, endOffset) ? i4 | i3 : i4;
+            i2 = i5 + 1;
+        }
+        int i6 = i;
+        boolean z = startChildPosition == endChildPosition;
+        RichEditText richEditTextTableEditText = z ? this.listView.tableEditText(startCell, startChildPosition) : null;
+        int iMax = Math.max(0, Math.min(startOffset, endOffset));
+        int iMax2 = richEditTextTableEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextTableEditText.length()));
+        this.toolbar.setFormattingState(i6, richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2), richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2), z);
+    }
+
+    private void updateFormattingButtonsCaption() {
+        int i;
+        TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
+        RichEditText richEditTextCaptionEditText = this.listView.captionEditText(textSelectionHelper.getStartCell());
+        int startOffset = textSelectionHelper.getStartOffset();
+        int endOffset = textSelectionHelper.getEndOffset();
+        boolean z = false;
+        int iMax = richEditTextCaptionEditText == null ? 0 : Math.max(0, Math.min(Math.min(startOffset, endOffset), richEditTextCaptionEditText.length()));
+        int iMax2 = richEditTextCaptionEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextCaptionEditText.length()));
+        if (richEditTextCaptionEditText == null || iMax >= iMax2) {
+            i = 0;
+        } else {
+            i = 0;
+            for (int i2 : STYLE_FLAGS) {
+                if ((richEditTextCaptionEditText.getCurrentStyle(iMax, iMax2) & i2) != 0) {
+                    i |= i2;
+                }
+            }
+        }
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        boolean z2 = richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextCaptionEditText.getText(), iMax, iMax2);
+        if (richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextCaptionEditText.getText(), iMax, iMax2)) {
+            z = true;
+        }
+        richEditorToolbar.setFormattingState(i, z2, z, true);
+    }
+
+    public void updateToolbarBlockType() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.updateToolbarBlockType():void");
+    }
+
+    public TextSelectionHelper.ArticleTextSelectionHelper getTextSelectionHelper() {
+        return this.listView.getTextSelectionHelper();
+    }
+
+    private void updateSendButton(boolean z) {
+        updateAttachButtons(z);
+    }
+
+    private void updateAttachButtons(boolean z) {
+        boolean zHasAnyText = this.listView.hasAnyText();
+        this.parentAlert.setTypeButtonsHidden(zHasAnyText, z);
+        this.attachRaise = zHasAnyText ? 0 : this.parentAlert.getTypeButtonsHeight();
+        syncBottomOffset(z);
+        if (this.attachButtonsShown == zHasAnyText) {
+            this.attachButtonsShown = !zHasAnyText;
+            requestLayout();
+        }
+    }
+
+    private int bottomNavInset() {
+        if (this.keyboardVisible || this.emojiPadding > 0) {
+            return 0;
+        }
+        return AndroidUtilities.navigationBarHeight;
+    }
+
+    private void syncBottomOffset(boolean z) {
+        if (this.toolbar == null) {
+            return;
+        }
+        int iBottomNavInset = bottomNavInset() + this.attachRaise;
+        int i = this.emojiPadding;
+        int i2 = -(iBottomNavInset + i);
+        if (z && i == 0) {
+            this.toolbar.getBottomContainer().animate().translationY(i2).setDuration(180L).start();
+        } else {
+            this.toolbar.getBottomContainer().animate().cancel();
+            this.toolbar.getBottomContainer().setTranslationY(i2 - this.parentAlert.currentPanTranslationY);
+        }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (this.emojiViewVisible) {
+            hideEmojiPopup();
+            return false;
+        }
+        if (this.listView.deselectIfAny()) {
+            return false;
+        }
+        if (checkDiscard()) {
+            return super.onBackPressed();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean shouldHideBottomButtons() {
+        return !this.listView.hasAnyText();
+    }
+
+    @Override
     public int getListTopPadding() {
-        return this.listView.getPaddingTop();
+        return (this.listView.getPaddingTop() - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight();
     }
 
     @Override
     public int getCurrentItemTop() {
         if (this.listView.getChildCount() <= 0) {
-            UniversalRecyclerView universalRecyclerView = this.listView;
-            int paddingTop = universalRecyclerView.getPaddingTop();
+            RichEditorListView richEditorListView = this.listView;
+            int paddingTop = richEditorListView.getPaddingTop();
             this.currentItemTop = paddingTop;
-            universalRecyclerView.setTopGlowOffset(paddingTop);
+            richEditorListView.setTopGlowOffset(paddingTop);
             return Integer.MAX_VALUE;
         }
-        boolean z = false;
         int y = Integer.MAX_VALUE;
+        boolean z = false;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
             int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
@@ -1133,13 +807,14 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         if (y == Integer.MAX_VALUE) {
             return Integer.MAX_VALUE;
         }
+        this.listView.setTopGlowOffset(Math.max(0, y));
+        int i2 = y - AndroidUtilities.statusBarHeight;
         int iDp = AndroidUtilities.dp(7.0f);
-        if (y < AndroidUtilities.dp(7.0f) || !z) {
-            y = iDp;
+        if (i2 < AndroidUtilities.dp(7.0f) || !z) {
+            i2 = iDp;
         }
-        this.listView.setTopGlowOffset(y);
-        this.currentItemTop = y;
-        return y;
+        this.currentItemTop = i2;
+        return i2;
     }
 
     @Override
@@ -1173,688 +848,77 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
+    public void onPanTransitionStart(boolean z, int i) {
+        super.onPanTransitionStart(z, i);
+        this.keyboardVisible = z;
+        syncBottomOffset(false);
+        if (z && this.emojiViewVisible) {
+            hideEmojiPopup();
+        }
+        updateToolbarTopOffset();
+    }
+
+    @Override
+    public void onContainerTranslationUpdated(float f) {
+        super.onContainerTranslationUpdated(f);
+        syncBottomOffset(false);
+    }
+
+    @Override
+    public void onPanTransitionEnd() {
+        super.onPanTransitionEnd();
+        this.keyboardVisible = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f);
+        syncBottomOffset(false);
+        updateToolbarTopOffset();
+    }
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        RichTableCell richTableCell;
-        if (this.textSelectionHelper.isInSelectionMode() && this.textSelectionOverlay.onTouchEvent(motionEvent)) {
+        if (this.listView.textSelectionHelper.isInSelectionMode() && this.listView.textSelectionOverlay.onTouchEvent(motionEvent)) {
             return true;
         }
-        if (this.textSelectionOverlay.checkOnTap(motionEvent)) {
+        if (motionEvent.getAction() == 0 && this.emojiViewVisible && motionEvent.getY() < (getHeight() - AndroidUtilities.dp(60.0f)) - this.emojiPadding) {
+            hideEmojiPopup();
+        }
+        if ((motionEvent.getAction() != 0 || (motionEvent.getY() > AndroidUtilities.dp(60.0f) && motionEvent.getY() < (getHeight() - AndroidUtilities.dp(60.0f)) - this.emojiPadding)) && this.listView.textSelectionOverlay.checkOnTap(motionEvent)) {
             motionEvent.setAction(3);
         }
-        int action = motionEvent.getAction();
-        if (action == 0) {
-            this.pressX = motionEvent.getX();
-            float y = motionEvent.getY();
-            this.pressY = y;
-            this.pressMoved = false;
-            this.longPressConsumed = false;
-            View viewFindCellUnder = findCellUnder((int) this.pressX, (int) y);
-            this.pressTarget = viewFindCellUnder;
-            if (viewFindCellUnder instanceof TextSelectionHelper.ArticleSelectableView) {
-                Runnable runnable = this.longPressRunnable;
-                if (runnable != null) {
-                    removeCallbacks(runnable);
-                }
-                Runnable runnable2 = new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$dispatchTouchEvent$15();
-                    }
-                };
-                this.longPressRunnable = runnable2;
-                postDelayed(runnable2, ViewConfiguration.getLongPressTimeout());
-            }
-        } else if (action == 1) {
-            Runnable runnable3 = this.longPressRunnable;
-            if (runnable3 != null) {
-                removeCallbacks(runnable3);
-                this.longPressRunnable = null;
-            }
-            if (!this.pressMoved && !this.longPressConsumed && (richTableCell = this.activeCellSelectionTable) != null) {
-                View view = this.pressTarget;
-                if (view == richTableCell) {
-                    RichTableCell richTableCell2 = (RichTableCell) view;
-                    TL_iv.pageTableCell pagetablecellFindCellAt = richTableCell2.findCellAt((int) ((motionEvent.getX() - richTableCell2.getLeft()) - this.listView.getLeft()), (int) ((motionEvent.getY() - richTableCell2.getTop()) - this.listView.getTop()));
-                    if (pagetablecellFindCellAt != null) {
-                        richTableCell2.toggleCellSelection(pagetablecellFindCellAt);
-                        this.pressTarget = null;
-                        return true;
-                    }
-                } else if (view != null && view != richTableCell) {
-                    exitCellSelectionMode();
-                }
-            }
-            this.pressTarget = null;
-            this.longPressConsumed = false;
-        } else if (action == 2) {
-            float x = motionEvent.getX() - this.pressX;
-            float y2 = motionEvent.getY() - this.pressY;
-            if ((x * x) + (y2 * y2) > AndroidUtilities.dp(8.0f) * AndroidUtilities.dp(8.0f)) {
-                this.pressMoved = true;
-                Runnable runnable4 = this.longPressRunnable;
-                if (runnable4 != null) {
-                    removeCallbacks(runnable4);
-                    this.longPressRunnable = null;
-                }
-            }
-        } else if (action == 3) {
-            Runnable runnable5 = this.longPressRunnable;
-            if (runnable5 != null) {
-                removeCallbacks(runnable5);
-                this.longPressRunnable = null;
-            }
-            this.pressTarget = null;
+        if ((!this.emojiViewVisible || motionEvent.getY() < (getHeight() - AndroidUtilities.dp(60.0f)) - this.emojiPadding) && this.listView.handleSelectionTouch(motionEvent)) {
+            return true;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public void lambda$dispatchTouchEvent$15() {
-        if (this.pressTarget == null || this.textSelectionHelper.isInSelectionMode()) {
-            return;
-        }
-        View view = this.pressTarget;
-        if (view instanceof RichTextCell) {
-            RichTextCell richTextCell = (RichTextCell) view;
-            this.textSelectionHelper.setMaybeView((int) ((this.pressX - richTextCell.getLeft()) - this.listView.getLeft()), (int) ((this.pressY - richTextCell.getTop()) - this.listView.getTop()), richTextCell);
-            this.textSelectionHelper.trySelect(richTextCell);
-            this.longPressConsumed = true;
-            return;
-        }
-        if (view instanceof RichTableCell) {
-            RichTableCell richTableCell = (RichTableCell) view;
-            int left = (int) ((this.pressX - richTableCell.getLeft()) - this.listView.getLeft());
-            int top = (int) ((this.pressY - richTableCell.getTop()) - this.listView.getTop());
-            if (richTableCell.isPressOnText(left, top)) {
-                this.textSelectionHelper.setMaybeView(left, top, richTableCell);
-                this.textSelectionHelper.trySelect(richTableCell);
-            } else {
-                TL_iv.pageTableCell pagetablecellFindCellAt = richTableCell.findCellAt(left, top);
-                if (pagetablecellFindCellAt != null) {
-                    enterCellSelectionMode(richTableCell, pagetablecellFindCellAt);
-                }
-            }
-            this.longPressConsumed = true;
-            return;
-        }
-        if (view instanceof RichDividerCell) {
-            this.textSelectionHelper.selectRangeOf((RichDividerCell) view, 0, 1);
-            this.longPressConsumed = true;
-        }
-    }
-
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        RichTableCell richTableCellFindTableCellAncestor;
-        int unicodeChar;
-        if (keyEvent.getAction() == 0) {
-            int keyCode = keyEvent.getKeyCode();
-            boolean zIsShiftPressed = keyEvent.isShiftPressed();
-            boolean zIsCtrlPressed = keyEvent.isCtrlPressed();
-            boolean zIsAltPressed = keyEvent.isAltPressed();
-            boolean zIsInSelectionMode = this.textSelectionHelper.isInSelectionMode();
-            Log.d("RICHED", "dispatchKeyEvent code=" + keyCode + " shift=" + zIsShiftPressed + " ctrl=" + zIsCtrlPressed + " alt=" + zIsAltPressed + " helperActive=" + zIsInSelectionMode + " isFocused=" + isFocused() + " hasFocus=" + hasFocus());
-            if (keyCode == 111 && zIsInSelectionMode) {
-                Log.d("RICHED", "ESC -> helper.clear()");
-                this.textSelectionHelper.clear();
-                return true;
-            }
-            if (zIsInSelectionMode) {
-                if (zIsCtrlPressed && !zIsShiftPressed && keyCode == 31) {
-                    Log.d("RICHED", "Ctrl+C copy");
-                    copyHelperSelection();
-                    return true;
-                }
-                if (zIsCtrlPressed && !zIsShiftPressed && keyCode == 52) {
-                    Log.d("RICHED", "Ctrl+X cut");
-                    cutHelperSelection();
-                    return true;
-                }
-                if (zIsCtrlPressed && keyCode == 50) {
-                    Log.d("RICHED", "Ctrl+V paste");
-                    pasteAtHelperSelection();
-                    return true;
-                }
-                if (keyCode == 67 || keyCode == 112) {
-                    Log.d("RICHED", "DEL/BACKSPACE -> deleteHelperSelection");
-                    deleteHelperSelection();
-                    return true;
-                }
-                if (keyCode == 66) {
-                    Log.d("RICHED", "ENTER -> replace with newline");
-                    replaceHelperSelectionWith("\n");
-                    return true;
-                }
-                if (!zIsCtrlPressed && !zIsAltPressed && (unicodeChar = keyEvent.getUnicodeChar(keyEvent.getMetaState())) >= 32) {
-                    Log.d("RICHED", "printable uc=" + unicodeChar + " -> replace");
-                    replaceHelperSelectionWith(String.valueOf((char) unicodeChar));
-                    return true;
-                }
-            }
-            if (zIsInSelectionMode && zIsShiftPressed && isArrowKey(keyCode)) {
-                Log.d("RICHED", "shift+arrow code=" + keyCode + " -> tryExtendSelectionAcrossCells");
-                if (tryExtendSelectionAcrossCells(keyCode, zIsCtrlPressed || zIsAltPressed)) {
-                    return true;
-                }
-            }
-            if (zIsInSelectionMode && !zIsShiftPressed && !zIsCtrlPressed && !zIsAltPressed && isArrowKey(keyCode)) {
-                boolean z = keyCode == 22 || keyCode == 20;
-                this.restoreFocusCell = z ? this.textSelectionHelper.getEndCell() : this.textSelectionHelper.getStartCell();
-                this.restoreFocusOffset = z ? this.textSelectionHelper.getEndOffset() : this.textSelectionHelper.getStartOffset();
-                this.restoreFocusChildPosition = z ? this.textSelectionHelper.getEndChildPosition() : this.textSelectionHelper.getStartChildPosition();
-                Log.d("RICHED", "plain arrow collapse toEnd=" + z + " -> cell=" + this.restoreFocusCell + " child=" + this.restoreFocusChildPosition + " off=" + this.restoreFocusOffset);
-                this.textSelectionHelper.clear();
-                return true;
-            }
-            if (zIsCtrlPressed && keyCode == 29) {
-                Log.d("RICHED", "ctrl+a -> tryEscalateSelectAll");
-                if (tryEscalateSelectAll()) {
-                    return true;
-                }
-            }
-            if (!zIsInSelectionMode && !zIsShiftPressed && !zIsCtrlPressed && !zIsAltPressed && ((keyCode == 20 || keyCode == 19) && tryPlainArrowAcrossCells(keyCode))) {
-                return true;
-            }
-            if (!zIsInSelectionMode && !zIsCtrlPressed && !zIsAltPressed && keyCode == 61) {
-                View viewFindFocus = findFocus();
-                StringBuilder sb = new StringBuilder();
-                sb.append("outer-pre TAB shift=");
-                sb.append(zIsShiftPressed);
-                sb.append(" focused=");
-                sb.append(viewFindFocus != null ? viewFindFocus.getClass().getSimpleName() : "null");
-                Log.d("RICHED", sb.toString());
-                if ((viewFindFocus instanceof RichEditText) && (richTableCellFindTableCellAncestor = findTableCellAncestor(viewFindFocus)) != null) {
-                    RichTableCellHost richTableCellHostFindHostContaining = richTableCellFindTableCellAncestor.findHostContaining(viewFindFocus);
-                    StringBuilder sb2 = new StringBuilder();
-                    sb2.append("outer-pre TAB table=");
-                    sb2.append(true);
-                    sb2.append(" host=");
-                    sb2.append(richTableCellHostFindHostContaining != null);
-                    Log.d("RICHED", sb2.toString());
-                    if (richTableCellHostFindHostContaining != null && richTableCellFindTableCellAncestor.moveFocusByTab(richTableCellHostFindHostContaining, zIsShiftPressed)) {
-                        return true;
-                    }
-                }
-            }
-            if (keyCode == 61 && isFocused()) {
-                if (zIsInSelectionMode) {
-                    int startCell = this.textSelectionHelper.getStartCell();
-                    int endCell = this.textSelectionHelper.getEndCell();
-                    Log.d("RICHED", "outer TAB shift=" + zIsShiftPressed + " helper s=" + startCell + " e=" + endCell);
-                    if (startCell >= 0 && endCell >= startCell) {
-                        if (startCell == endCell) {
-                            onCellIndent((BlockRow) this.rows.get(startCell), zIsShiftPressed);
-                        } else {
-                            rangeIndent(startCell, endCell, zIsShiftPressed);
-                        }
-                    }
-                } else {
-                    BlockRow blockRowFindFocusedRow = findFocusedRow();
-                    StringBuilder sb3 = new StringBuilder();
-                    sb3.append("outer TAB shift=");
-                    sb3.append(zIsShiftPressed);
-                    sb3.append(" focused row=");
-                    sb3.append(blockRowFindFocusedRow != null ? this.rows.indexOf(blockRowFindFocusedRow) : -1);
-                    Log.d("RICHED", sb3.toString());
-                    if (blockRowFindFocusedRow != null) {
-                        onCellIndent(blockRowFindFocusedRow, zIsShiftPressed);
-                    }
-                }
-                return true;
-            }
+        if (this.listView.handleKeyEvent(keyEvent)) {
+            return true;
         }
         return super.dispatchKeyEvent(keyEvent);
     }
 
-    private boolean tryPlainArrowAcrossCells(int i) {
-        int iIndexOf;
-        int iFindNextTextRow;
-        BlockRow blockRowFindFocusedRow = findFocusedRow();
-        if (blockRowFindFocusedRow == null || (iIndexOf = this.rows.indexOf(blockRowFindFocusedRow)) < 0) {
-            return false;
-        }
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRowFindFocusedRow);
-        if (!(viewFindViewByItemObject instanceof RichTextCell)) {
-            return false;
-        }
-        RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
-        Layout layout = richTextCell.getEditText().getLayout();
-        if (layout == null) {
-            return false;
-        }
-        int lineForOffset = layout.getLineForOffset(richTextCell.getEditText().getSelectionEnd());
-        if (i != 20) {
-            if (lineForOffset > 0 || (iFindNextTextRow = findNextTextRow(iIndexOf - 1, -1)) < 0) {
-                return false;
-            }
-            final BlockRow blockRow = (BlockRow) this.rows.get(iFindNextTextRow);
-            this.listView.post(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$18(blockRow);
-                }
-            });
-            return true;
-        }
-        if (lineForOffset < layout.getLineCount() - 1) {
-            return false;
-        }
-        int iFindNextTextRow2 = findNextTextRow(iIndexOf + 1, 1);
-        if (iFindNextTextRow2 < 0) {
-            final BlockRow blockRow2 = new BlockRow(new TL_iv.pageBlockParagraph());
-            this.rows.add(blockRow2);
-            this.listView.adapter.update(true);
-            this.listView.post(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$16(blockRow2);
-                }
-            });
-        } else {
-            final BlockRow blockRow3 = (BlockRow) this.rows.get(iFindNextTextRow2);
-            this.listView.post(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$17(blockRow3);
-                }
-            });
-        }
-        return true;
-    }
-
-    public void lambda$tryPlainArrowAcrossCells$18(BlockRow blockRow) {
-        lambda$tryPlainArrowAcrossCells$17(blockRow);
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (viewFindViewByItemObject instanceof RichTextCell) {
-            RichEditText editText = ((RichTextCell) viewFindViewByItemObject).getEditText();
-            editText.setSelection(editText.length());
-        }
-    }
-
-    private RichTableCell findTableCellAncestor(View view) {
-        for (ViewParent parent = view == null ? null : view.getParent(); parent != null; parent = parent.getParent()) {
-            if (parent instanceof RichTableCell) {
-                return (RichTableCell) parent;
-            }
-        }
-        return null;
-    }
-
-    private int findNextTextRow(int i, int i2) {
-        while (i >= 0 && i < this.rows.size()) {
-            if (!isNonText(((BlockRow) this.rows.get(i)).block)) {
-                return i;
-            }
-            i += i2;
-        }
-        return -1;
-    }
-
-    private BlockRow findFocusedRow() {
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (childAt instanceof RichTextCell) {
-                RichTextCell richTextCell = (RichTextCell) childAt;
-                if (richTextCell.getEditText().isFocused()) {
-                    return richTextCell.getRow();
-                }
-            }
-        }
-        return null;
-    }
-
-    private RichTextCell cellAt(int i) {
-        if (i < 0) {
-            return null;
-        }
-        View viewFindViewByPosition = this.listView.layoutManager.findViewByPosition(i);
-        if (viewFindViewByPosition instanceof RichTextCell) {
-            return (RichTextCell) viewFindViewByPosition;
-        }
-        return null;
-    }
-
-    private View selectableAt(int i) {
-        if (i < 0) {
-            return null;
-        }
-        return this.listView.layoutManager.findViewByPosition(i);
-    }
-
-    private int prevTextOffset(int i) {
-        Layout layout;
-        View viewSelectableAt = selectableAt(i);
-        if (!(viewSelectableAt instanceof RichTextCell) || (layout = ((RichTextCell) viewSelectableAt).getEditText().getLayout()) == null) {
-            return 0;
-        }
-        return layout.getText().length();
-    }
-
-    private boolean tryExtendSelectionAcrossCells(int r17, boolean r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.tryExtendSelectionAcrossCells(int, boolean):boolean");
-    }
-
-    public void lambda$tryExtendSelectionAcrossCells$19(int i, int i2, int i3) {
-        KeyEvent.Callback callbackSelectableAt = selectableAt(i);
-        if (callbackSelectableAt instanceof TextSelectionHelper.ArticleSelectableView) {
-            this.textSelectionHelper.extendSelectionTo((TextSelectionHelper.ArticleSelectableView) callbackSelectableAt, i2, i3);
-        }
-    }
-
-    private int findTableAnchorBelow(TableModel tableModel, int i) {
-        if (i < 0 || i >= tableModel.anchors().size()) {
-            return -1;
-        }
-        TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) tableModel.anchors().get(i);
-        int iAnchorRowOf = tableModel.anchorRowOf(pagetablecell);
-        int iAnchorColOf = tableModel.anchorColOf(pagetablecell);
-        int iMax = iAnchorRowOf + Math.max(1, TableModel.spanRow(pagetablecell));
-        if (iMax >= tableModel.rowCount) {
-            return -1;
-        }
-        return tableModel.flatIndexOfAnchor(tableModel.grid[iMax][Math.min(iAnchorColOf, tableModel.colCount - 1)]);
-    }
-
-    private int findTableAnchorAbove(TableModel tableModel, int i) {
-        if (i < 0 || i >= tableModel.anchors().size()) {
-            return -1;
-        }
-        TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) tableModel.anchors().get(i);
-        int iAnchorRowOf = tableModel.anchorRowOf(pagetablecell);
-        int iAnchorColOf = tableModel.anchorColOf(pagetablecell);
-        int i2 = iAnchorRowOf - 1;
-        if (i2 < 0) {
-            return -1;
-        }
-        return tableModel.flatIndexOfAnchor(tableModel.grid[i2][Math.min(iAnchorColOf, tableModel.colCount - 1)]);
-    }
-
-    private static int wordRight(CharSequence charSequence, int i) {
-        BreakIterator wordInstance = BreakIterator.getWordInstance();
-        wordInstance.setText(charSequence.toString());
-        int iFollowing = wordInstance.following(Math.min(i, charSequence.length()));
-        return iFollowing == -1 ? charSequence.length() : iFollowing;
-    }
-
-    private static int wordLeft(CharSequence charSequence, int i) {
-        BreakIterator wordInstance = BreakIterator.getWordInstance();
-        wordInstance.setText(charSequence.toString());
-        int iPreceding = wordInstance.preceding(Math.max(0, Math.min(i, charSequence.length())));
-        if (iPreceding == -1) {
-            return 0;
-        }
-        return iPreceding;
-    }
-
-    private boolean tryEscalateSelectAll() {
-        if (this.rows.isEmpty()) {
-            return false;
-        }
-        for (int i = 0; i < this.rows.size(); i++) {
-            this.textSelectionHelper.cacheText(i, RichTextCell.readPlainText(((BlockRow) this.rows.get(i)).block), null);
-        }
-        this.textSelectionHelper.selectAllBlocksRange(0, this.rows.size() - 1);
-        Log.d("RICHED", "selectAllBlocksRange [0.." + (this.rows.size() - 1) + "] done");
-        return true;
-    }
-
-    private void copyHelperSelection() {
-        CharSequence selectedTextPublic = this.textSelectionHelper.getSelectedTextPublic();
-        if (selectedTextPublic == null || selectedTextPublic.length() == 0) {
-            return;
-        }
-        AndroidUtilities.addToClipboard(selectedTextPublic);
-    }
-
-    private void cutHelperSelection() {
-        CharSequence selectedTextPublic = this.textSelectionHelper.getSelectedTextPublic();
-        if (selectedTextPublic != null && selectedTextPublic.length() > 0) {
-            AndroidUtilities.addToClipboard(selectedTextPublic);
-        }
-        deleteHelperSelection();
-    }
-
-    private void pasteAtHelperSelection() {
-        ClipData primaryClip;
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        if (clipboardManager == null || !clipboardManager.hasPrimaryClip() || (primaryClip = clipboardManager.getPrimaryClip()) == null || primaryClip.getItemCount() == 0) {
-            return;
-        }
-        CharSequence charSequenceCoerceToText = primaryClip.getItemAt(0).coerceToText(getContext());
-        if (charSequenceCoerceToText == null) {
-            charSequenceCoerceToText = "";
-        }
-        applyEditRange(this.textSelectionHelper.getStartCell(), this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndCell(), this.textSelectionHelper.getEndOffset(), charSequenceCoerceToText.toString().split("\n", -1));
-    }
-
-    private void deleteHelperSelection() {
-        applyEditRange(this.textSelectionHelper.getStartCell(), this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndCell(), this.textSelectionHelper.getEndOffset(), new String[]{""});
-    }
-
-    private void replaceHelperSelectionWith(String str) {
-        applyEditRange(this.textSelectionHelper.getStartCell(), this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndCell(), this.textSelectionHelper.getEndOffset(), str.split("\n", -1));
-    }
-
-    private void applyEditRange(final int i, int i2, int i3, int i4, String[] strArr) {
-        final int length;
-        if (i < 0 || i3 < 0 || i >= this.rows.size() || i3 >= this.rows.size()) {
-            return;
-        }
-        BlockRow blockRow = (BlockRow) this.rows.get(i);
-        BlockRow blockRow2 = (BlockRow) this.rows.get(i3);
-        TL_iv.PageBlock pageBlock = blockRow.block;
-        boolean z = pageBlock instanceof TL_iv.pageBlockTable;
-        boolean z2 = blockRow2.block instanceof TL_iv.pageBlockTable;
-        if (z || z2) {
-            if (z && z2 && i == i3) {
-                applyEditInsideTable(blockRow, this.textSelectionHelper.getStartChildPosition(), i2, this.textSelectionHelper.getEndChildPosition(), i4, strArr);
-                return;
-            }
-            return;
-        }
-        String plainText = RichTextCell.readPlainText(pageBlock);
-        String plainText2 = i == i3 ? plainText : RichTextCell.readPlainText(blockRow2.block);
-        int iMax = Math.max(0, Math.min(i2, plainText.length()));
-        int iMax2 = Math.max(0, Math.min(i4, plainText2.length()));
-        String strSubstring = plainText.substring(0, iMax);
-        String strSubstring2 = plainText2.substring(iMax2);
-        if (strArr.length <= 1) {
-            String str = strArr.length == 0 ? "" : strArr[0];
-            RichTextCell.applyTextToBlock(blockRow.block, strSubstring + str + strSubstring2);
-            if (i3 > i) {
-                while (i3 > i) {
-                    this.rows.remove(i3);
-                    i3--;
-                }
-            }
-            length = strSubstring.length() + str.length();
-        } else {
-            RichTextCell.applyTextToBlock(blockRow.block, strSubstring + strArr[0]);
-            if (i3 > i) {
-                while (i3 > i) {
-                    this.rows.remove(i3);
-                    i3--;
-                }
-            }
-            for (int i5 = 1; i5 < strArr.length - 1; i5++) {
-                TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                applyPlainText(pageblockparagraph, strArr[i5]);
-                ArrayList arrayList = this.rows;
-                int i6 = i + i5;
-                int i7 = blockRow.level;
-                int i8 = blockRow.num;
-                if (i8 > 0) {
-                    i8 += i5;
-                }
-                arrayList.add(i6, new BlockRow(pageblockparagraph, i7, i8));
-            }
-            String str2 = strArr[strArr.length - 1];
-            TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
-            applyPlainText(pageblockparagraph2, str2 + strSubstring2);
-            ArrayList arrayList2 = this.rows;
-            int length2 = (strArr.length + i) - 1;
-            int i9 = blockRow.level;
-            int length3 = blockRow.num;
-            if (length3 > 0) {
-                length3 = (length3 + strArr.length) - 1;
-            }
-            arrayList2.add(length2, new BlockRow(pageblockparagraph2, i9, length3));
-            i = (i + strArr.length) - 1;
-            length = str2.length();
-        }
-        renumberAllRuns();
-        this.textSelectionHelper.clear();
-        this.listView.adapter.update(true);
-        updateSendButton(true);
-        this.listView.post(new Runnable() {
+    @Override
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+        this.parentAlert.actionBar.setTitle("");
+        this.listView.adapter.update(false);
+        updateAttachButtons(false);
+        post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$applyEditRange$20(i, length);
+                this.f$0.updateToolbarTopOffset();
             }
         });
     }
 
-    public void lambda$applyEditRange$20(int i, int i2) {
-        RichTextCell richTextCellCellAt = cellAt(i);
-        if (richTextCellCellAt != null) {
-            richTextCellCellAt.requestEditFocus();
-            richTextCellCellAt.getEditText().setSelection(Math.min(i2, richTextCellCellAt.getEditText().length()));
-        }
-    }
-
-    private static void applyPlainText(TL_iv.PageBlock pageBlock, String str) {
-        TL_iv.textPlain textplain = new TL_iv.textPlain();
-        textplain.text = str;
-        if (pageBlock instanceof TL_iv.pageBlockParagraph) {
-            ((TL_iv.pageBlockParagraph) pageBlock).text = textplain;
-        }
-    }
-
-    private void applyEditInsideTable(BlockRow blockRow, int i, int i2, int i3, int i4, String[] strArr) {
-        final RichTableCell richTableCell;
-        TableModel model;
-        final int length;
-        int i5 = i;
-        int i6 = i3;
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if ((viewFindViewByItemObject instanceof RichTableCell) && (model = (richTableCell = (RichTableCell) viewFindViewByItemObject).getModel()) != null) {
-            int size = model.anchors().size();
-            if (i5 < 0 || i5 >= size || i6 < 0 || i6 >= size) {
-                return;
-            }
-            int i7 = i2;
-            int i8 = i4;
-            if (i5 > i6 || (i5 == i6 && i7 > i8)) {
-                i6 = i5;
-                i5 = i6;
-                i8 = i7;
-                i7 = i8;
-            }
-            StringBuilder sb = new StringBuilder();
-            for (int i9 = 0; i9 < strArr.length; i9++) {
-                if (i9 > 0) {
-                    sb.append('\n');
-                }
-                sb.append(strArr[i9]);
-            }
-            String string = sb.toString();
-            final TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) model.anchors().get(i5);
-            TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) model.anchors().get(i6);
-            if (i5 == i6) {
-                String plainText = TableModel.readPlainText(pagetablecell);
-                int iMax = Math.max(0, Math.min(i7, plainText.length()));
-                String str = plainText.substring(0, iMax) + string + plainText.substring(Math.max(0, Math.min(i8, plainText.length())));
-                TableModel.applyPlainText(pagetablecell, str);
-                RichTableCellHost richTableCellHostHostForAnchor = richTableCell.getGrid().hostForAnchor(pagetablecell);
-                if (richTableCellHostHostForAnchor != null) {
-                    richTableCellHostHostForAnchor.editText.setTextSilently(str);
-                }
-                length = iMax + string.length();
-            } else {
-                String plainText2 = TableModel.readPlainText(pagetablecell);
-                int iMax2 = Math.max(0, Math.min(i7, plainText2.length()));
-                String str2 = plainText2.substring(0, iMax2) + string;
-                TableModel.applyPlainText(pagetablecell, str2);
-                RichTableCellHost richTableCellHostHostForAnchor2 = richTableCell.getGrid().hostForAnchor(pagetablecell);
-                if (richTableCellHostHostForAnchor2 != null) {
-                    richTableCellHostHostForAnchor2.editText.setTextSilently(str2);
-                }
-                while (true) {
-                    i5++;
-                    if (i5 >= i6) {
-                        break;
-                    }
-                    TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) model.anchors().get(i5);
-                    TableModel.applyPlainText(pagetablecell3, "");
-                    RichTableCellHost richTableCellHostHostForAnchor3 = richTableCell.getGrid().hostForAnchor(pagetablecell3);
-                    if (richTableCellHostHostForAnchor3 != null) {
-                        richTableCellHostHostForAnchor3.editText.setTextSilently("");
-                    }
-                }
-                String plainText3 = TableModel.readPlainText(pagetablecell2);
-                String strSubstring = plainText3.substring(Math.max(0, Math.min(i8, plainText3.length())));
-                TableModel.applyPlainText(pagetablecell2, strSubstring);
-                RichTableCellHost richTableCellHostHostForAnchor4 = richTableCell.getGrid().hostForAnchor(pagetablecell2);
-                if (richTableCellHostHostForAnchor4 != null) {
-                    richTableCellHostHostForAnchor4.editText.setTextSilently(strSubstring);
-                }
-                length = iMax2 + string.length();
-            }
-            this.textSelectionHelper.clear();
-            updateSendButton(true);
-            this.listView.post(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertRichLayout.lambda$applyEditInsideTable$21(richTableCell, pagetablecell, length);
-                }
-            });
-        }
-    }
-
-    public static void lambda$applyEditInsideTable$21(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell, int i) {
-        RichTableCellHost richTableCellHostHostForAnchor = richTableCell.getGrid().hostForAnchor(pagetablecell);
-        if (richTableCellHostHostForAnchor == null) {
-            return;
-        }
-        richTableCellHostHostForAnchor.editText.requestEditFocus();
-        richTableCellHostHostForAnchor.editText.setSelection(Math.max(0, Math.min(i, richTableCellHostHostForAnchor.editText.length())));
-    }
-
-    public void setEditTextsLocked(boolean z) {
-        for (int i = 0; i < this.listView.getChildCount(); i++) {
-            View childAt = this.listView.getChildAt(i);
-            if (childAt instanceof RichTextCell) {
-                ((RichTextCell) childAt).setLocked(z);
-            } else if (childAt instanceof RichTableCell) {
-                ((RichTableCell) childAt).setLocked(z);
-            } else if (childAt instanceof RichDividerCell) {
-                childAt.invalidate();
-            }
-        }
-    }
-
-    private View findCellUnder(int i, int i2) {
-        int top = i2 - this.listView.getTop();
-        for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
-            View childAt = this.listView.getChildAt(i3);
-            if (top >= childAt.getTop() && top < childAt.getBottom() && i >= childAt.getLeft() && i < childAt.getRight()) {
-                return childAt;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
-        try {
-            this.parentAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
-        } catch (Exception unused) {
-        }
-        this.parentAlert.actionBar.setTitle("Article");
-        this.listView.adapter.update(false);
-    }
-
     @Override
     public void onHide() {
+        RichCommandSuggestions richCommandSuggestions = this.commandSuggestions;
+        if (richCommandSuggestions != null) {
+            richCommandSuggestions.hide();
+        }
+        if (this.emojiViewVisible) {
+            hideEmojiPopup();
+        }
         if (this.sendButtonShown) {
             this.sendButtonShown = false;
             this.parentAlert.showSendButtonOnly(false, true);
@@ -1863,11 +927,18 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
-        if (!hasAnyText() || hasPendingUploads() || flattenRowsToBlocks().isEmpty()) {
+        if (!this.listView.hasAnyText() || this.listView.hasPendingUploads()) {
             return false;
         }
-        collectInputPhotos();
-        collectInputDocuments();
+        if (!this.listView.isWithinLimits()) {
+            updateSendButtonEnabled();
+            return false;
+        }
+        if (this.listView.flattenRowsToBlocks().isEmpty()) {
+            return false;
+        }
+        this.listView.collectPhotos();
+        this.listView.collectDocuments();
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
@@ -1880,174 +951,160 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         return true;
     }
 
-    private ArrayList collectInputPhotos() {
-        MediaUploadState mediaUploadState;
-        TLRPC.Photo photo;
-        ArrayList arrayList = new ArrayList();
-        HashSet hashSet = new HashSet();
-        for (int i = 0; i < this.rows.size(); i++) {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            if ((blockRow.block instanceof TL_iv.pageBlockPhoto) && (mediaUploadState = blockRow.media) != null && mediaUploadState.isReady() && (photo = blockRow.media.photo) != null && hashSet.add(Long.valueOf(photo.id))) {
-                TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.id = photo.id;
-                tL_inputPhoto.access_hash = photo.access_hash;
-                byte[] bArr = photo.file_reference;
-                if (bArr == null) {
-                    bArr = new byte[0];
-                }
-                tL_inputPhoto.file_reference = bArr;
-                arrayList.add(tL_inputPhoto);
+    public boolean showSendPreview(View view) {
+        boolean z = false;
+        if (!this.listView.hasAnyText() || this.listView.hasPendingUploads()) {
+            return false;
+        }
+        if (!this.listView.isWithinLimits()) {
+            updateSendButtonEnabled();
+            return false;
+        }
+        ArrayList<TL_iv.PageBlock> arrayListFlattenRowsToBlocks = this.listView.flattenRowsToBlocks();
+        if (arrayListFlattenRowsToBlocks.isEmpty()) {
+            return false;
+        }
+        BaseFragment baseFragment = this.parentAlert.baseFragment;
+        ChatActivity chatActivity = baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null;
+        MessageSendPreview messageSendPreview = this.messageSendPreview;
+        if (messageSendPreview != null) {
+            messageSendPreview.dismiss(false);
+            this.messageSendPreview = null;
+        }
+        MessageSendPreview messageSendPreview2 = new MessageSendPreview(getContext(), this.resourcesProvider);
+        this.messageSendPreview = messageSendPreview2;
+        messageSendPreview2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                this.f$0.lambda$showSendPreview$18(dialogInterface);
             }
+        });
+        final long dialogId = this.parentAlert.getDialogId();
+        MessageObject replyMessage = chatActivity != null ? chatActivity.getReplyMessage() : null;
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+        tL_message.id = 0;
+        tL_message.out = true;
+        tL_message.peer_id = MessagesController.getInstance(this.currentAccount).getPeer(dialogId);
+        tL_message.from_id = MessagesController.getInstance(this.currentAccount).getPeer(UserConfig.getInstance(this.currentAccount).getClientUserId());
+        tL_message.flags2 |= 8192;
+        TL_iv.RichMessage richMessage = new TL_iv.RichMessage();
+        tL_message.rich_message = richMessage;
+        richMessage.blocks = arrayListFlattenRowsToBlocks;
+        richMessage.photos = this.listView.collectPhotos();
+        tL_message.rich_message.documents = this.listView.collectDocuments();
+        if (replyMessage != null && !replyMessage.isTopicMainMessage) {
+            TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
+            tL_messageReplyHeader.flags |= 16;
+            tL_messageReplyHeader.reply_to_msg_id = replyMessage.getId();
+            tL_message.reply_to = tL_messageReplyHeader;
         }
-        return arrayList;
-    }
-
-    private ArrayList collectInputDocuments() {
-        MediaUploadState mediaUploadState;
-        TLRPC.Document document;
+        MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, false, false);
+        if (replyMessage != null && !replyMessage.isTopicMainMessage) {
+            messageObject.replyMessageObject = replyMessage;
+        }
+        messageObject.sendPreview = true;
+        messageObject.isOutOwnerCached = Boolean.TRUE;
+        messageObject.generateLayout(null);
+        messageObject.notime = true;
         ArrayList arrayList = new ArrayList();
-        HashSet hashSet = new HashSet();
-        for (int i = 0; i < this.rows.size(); i++) {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            if ((blockRow.block instanceof TL_iv.pageBlockVideo) && (mediaUploadState = blockRow.media) != null && mediaUploadState.isReady() && (document = blockRow.media.document) != null && hashSet.add(Long.valueOf(document.id))) {
-                TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputDocument.id = document.id;
-                tL_inputDocument.access_hash = document.access_hash;
-                byte[] bArr = document.file_reference;
-                if (bArr == null) {
-                    bArr = new byte[0];
-                }
-                tL_inputDocument.file_reference = bArr;
-                arrayList.add(tL_inputDocument);
+        arrayList.add(messageObject);
+        this.messageSendPreview.setMessageObjects(arrayList);
+        ChatActivityEnterView.SendButton sendButton = this.toolbar.getSendButton();
+        sendButton.setScaleX(1.0f);
+        sendButton.setScaleY(1.0f);
+        ChatActivityEnterView.SendButton sendButton2 = this.messageSendPreview.setSendButton(sendButton, true, new View.OnClickListener() {
+            @Override
+            public final void onClick(View view2) {
+                this.f$0.lambda$showSendPreview$19(view2);
             }
+        });
+        if (sendButton2 != null) {
+            sendButton2.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(Theme.key_featuredStickers_addButton))));
+            this.messageSendPreview.setSendButtonWidth(AndroidUtilities.dp(44.0f));
         }
-        return arrayList;
-    }
-
-    private ArrayList flattenRowsToBlocks() {
-        Log.d("RICHED", "=== flattenRowsToBlocks rows.size=" + this.rows.size());
-        for (int i = 0; i < this.rows.size(); i++) {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            Log.d("RICHED", "  row[" + i + "] level=" + blockRow.level + " num=" + blockRow.num + " block=" + blockRow.block.getClass().getSimpleName() + " text='" + RichTextCell.readPlainText(blockRow.block) + "'");
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.resourcesProvider, sendButton);
+        if (chatActivity != null && UserObject.isUserSelf(chatActivity.getCurrentUser())) {
+            z = true;
         }
-        ArrayList arrayList = new ArrayList();
-        int size = 0;
-        while (size < this.rows.size()) {
-            BlockRow blockRow2 = (BlockRow) this.rows.get(size);
-            int i2 = blockRow2.level;
-            if (i2 <= 0) {
-                TL_iv.PageBlock pageBlock = blockRow2.block;
-                if (pageBlock instanceof TL_iv.pageBlockDivider) {
-                    arrayList.add(pageBlock);
-                } else if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-                    MediaUploadState mediaUploadState = blockRow2.media;
-                    if (mediaUploadState != null && mediaUploadState.isReady()) {
-                        TL_iv.pageBlockPhoto pageblockphoto = (TL_iv.pageBlockPhoto) blockRow2.block;
-                        if (pageblockphoto.photo_id != 0) {
-                            if (pageblockphoto.caption == null) {
-                                pageblockphoto.caption = new TL_iv.PageCaption();
-                                ((TL_iv.pageBlockPhoto) blockRow2.block).caption.text = new TL_iv.textEmpty();
-                                ((TL_iv.pageBlockPhoto) blockRow2.block).caption.credit = new TL_iv.textEmpty();
-                            }
-                            arrayList.add(blockRow2.block);
-                        }
-                    }
-                } else if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    MediaUploadState mediaUploadState2 = blockRow2.media;
-                    if (mediaUploadState2 != null && mediaUploadState2.isReady()) {
-                        TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) blockRow2.block;
-                        if (pageblockvideo.video_id != 0) {
-                            if (pageblockvideo.caption == null) {
-                                pageblockvideo.caption = new TL_iv.PageCaption();
-                                ((TL_iv.pageBlockVideo) blockRow2.block).caption.text = new TL_iv.textEmpty();
-                                ((TL_iv.pageBlockVideo) blockRow2.block).caption.credit = new TL_iv.textEmpty();
-                            }
-                            arrayList.add(blockRow2.block);
-                        }
-                    }
-                } else if (pageBlock instanceof TL_iv.pageBlockMap) {
-                    TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) pageBlock;
-                    if (pageblockmap.geo != null) {
-                        if (pageblockmap.caption == null) {
-                            TL_iv.PageCaption pageCaption = new TL_iv.PageCaption();
-                            pageblockmap.caption = pageCaption;
-                            pageCaption.text = new TL_iv.textEmpty();
-                            pageblockmap.caption.credit = new TL_iv.textEmpty();
-                        }
-                        arrayList.add(pageblockmap);
-                    }
-                } else if (pageBlock instanceof TL_iv.pageBlockMath) {
-                    if (!TextUtils.isEmpty(((TL_iv.pageBlockMath) pageBlock).source)) {
-                        arrayList.add(blockRow2.block);
-                    }
-                } else if (pageBlock instanceof TL_iv.pageBlockTable) {
-                    TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
-                    TableModel.normalizeForSend(pageblocktable);
-                    if (tableHasText(pageblocktable)) {
-                        arrayList.add(pageblocktable);
-                    }
-                } else if (!RichTextCell.readPlainText(pageBlock).isEmpty()) {
-                    arrayList.add(blockRow2.block);
+        if (chatActivity != null && chatActivity.canScheduleMessage()) {
+            itemOptionsMakeOptions.add(R.drawable.msg_calendar2, LocaleController.getString(z ? R.string.SetReminder : R.string.ScheduleMessage), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$showSendPreview$20(dialogId);
                 }
-                size++;
-            } else {
-                int[] iArr = {size};
-                TL_iv.PageBlock pageBlockBuildListBlock = buildListBlock(size, i2, blockRow2.num > 0, iArr);
-                if (pageBlockBuildListBlock != null) {
-                    arrayList.add(pageBlockBuildListBlock);
-                }
-                size = iArr[0];
-                if (size <= 0) {
-                    size = this.rows.size();
-                }
-            }
-        }
-        return arrayList;
-    }
-
-    private org.telegram.tgnet.tl.TL_iv.PageBlock buildListBlock(int r17, int r18, boolean r19, int[] r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.buildListBlock(int, int, boolean, int[]):org.telegram.tgnet.tl.TL_iv$PageBlock");
-    }
-
-    public void invalidateMediaCellForRow(BlockRow blockRow) {
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (viewFindViewByItemObject != null) {
-            viewFindViewByItemObject.invalidate();
-        }
-    }
-
-    public void lambda$transformRow$7(final BlockRow blockRow) {
-        if (blockRow != null) {
-            TL_iv.PageBlock pageBlock = blockRow.block;
-            if (pageBlock instanceof TL_iv.pageBlockMath) {
-                final TL_iv.pageBlockMath pageblockmath = (TL_iv.pageBlockMath) pageBlock;
-                Context context = getContext();
-                String str = pageblockmath.source;
-                if (str == null) {
-                    str = "";
-                }
-                showEditLatexSheet(context, str, new Utilities.Callback() {
+            });
+            if (!z && dialogId > 0) {
+                itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
-                    public final void run(Object obj) {
-                        this.f$0.lambda$openMathEditor$22(pageblockmath, blockRow, (String) obj);
+                    public final void run() {
+                        this.f$0.lambda$showSendPreview$21();
                     }
-                }, this.resourcesProvider);
+                });
             }
         }
-    }
-
-    public void lambda$openMathEditor$22(TL_iv.pageBlockMath pageblockmath, BlockRow blockRow, String str) {
-        pageblockmath.source = str;
-        View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
-        if (viewFindViewByItemObject instanceof RichMathCell) {
-            ((RichMathCell) viewFindViewByItemObject).rebuild();
-        } else {
-            this.listView.adapter.update(false);
+        if (!z) {
+            itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$showSendPreview$22();
+                }
+            });
         }
-        updateSendButton(true);
+        itemOptionsMakeOptions.setupSelectors();
+        this.messageSendPreview.setItemOptions(itemOptionsMakeOptions);
+        this.messageSendPreview.show();
+        try {
+            view.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        return true;
     }
 
-    public void lambda$transformRow$8(final BlockRow blockRow) {
+    public void lambda$showSendPreview$18(DialogInterface dialogInterface) {
+        this.messageSendPreview = null;
+    }
+
+    public void lambda$showSendPreview$19(View view) {
+        sendSelectedItems(true, 0, 0, 0L, false);
+        MessageSendPreview messageSendPreview = this.messageSendPreview;
+        if (messageSendPreview != null) {
+            messageSendPreview.dismiss(true);
+            this.messageSendPreview = null;
+        }
+    }
+
+    public void lambda$showSendPreview$20(long j) {
+        AlertsCreator.createScheduleDatePickerDialog(this.parentAlert.baseFragment.getParentActivity(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
+            @Override
+            public void didSelectDate(boolean z, int i, int i2) {
+                ChatAttachAlertRichLayout.this.sendSelectedItems(z, i, i2, 0L, false);
+                if (ChatAttachAlertRichLayout.this.messageSendPreview != null) {
+                    ChatAttachAlertRichLayout.this.messageSendPreview.dismissInstant();
+                    ChatAttachAlertRichLayout.this.messageSendPreview = null;
+                }
+            }
+        }, this.resourcesProvider);
+    }
+
+    public void lambda$showSendPreview$21() {
+        sendSelectedItems(true, 2147483646, 0, 0L, false);
+        MessageSendPreview messageSendPreview = this.messageSendPreview;
+        if (messageSendPreview != null) {
+            messageSendPreview.dismiss(false);
+            this.messageSendPreview = null;
+        }
+    }
+
+    public void lambda$showSendPreview$22() {
+        sendSelectedItems(false, 0, 0, 0L, false);
+        MessageSendPreview messageSendPreview = this.messageSendPreview;
+        if (messageSendPreview != null) {
+            messageSendPreview.dismiss(true);
+            this.messageSendPreview = null;
+        }
+    }
+
+    public void openLocationPicker(final BlockRow blockRow) {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment != null && blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(baseFragment)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this.parentAlert.baseFragment, false, false, false, null);
@@ -2109,16 +1166,23 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void lambda$openLocationPicker$24(final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
-        TLRPC.GeoPoint geoPoint;
-        if (messageMedia == null || (geoPoint = messageMedia.geo) == null) {
+        if (messageMedia == null || messageMedia.geo == null) {
             return;
         }
+        RichEditorHistory richEditorHistory = this.listView.history;
+        if (richEditorHistory != null) {
+            richEditorHistory.flush();
+        }
         TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) blockRow.block;
-        pageblockmap.geo = geoPoint;
+        pageblockmap.geo = messageMedia.geo;
         pageblockmap.zoom = 15;
         if (pageblockmap.w <= 0 || pageblockmap.h <= 0) {
             pageblockmap.w = 600;
             pageblockmap.h = 400;
+        }
+        RichEditorHistory richEditorHistory2 = this.listView.history;
+        if (richEditorHistory2 != null) {
+            richEditorHistory2.record();
         }
         updateSendButton(true);
         chatAttachAlert.dismiss(true);
@@ -2133,39 +1197,29 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     public void lambda$openLocationPicker$23(BlockRow blockRow) {
         View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichMapCell) {
-            ((RichMapCell) viewFindViewByItemObject).bind(blockRow, this.mapDelegate);
+            ((RichMapCell) viewFindViewByItemObject).bind(blockRow, this.listView.getMapDelegate());
         } else {
             this.listView.adapter.update(false);
         }
     }
 
-    public void openMediaPicker(final BlockRow blockRow) {
+    public void openAttach(int i, int i2) {
         if (this.parentAlert.baseFragment == null) {
             return;
         }
-        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this.parentAlert.baseFragment, false, false, false, null);
-        chatAttachAlert.setMaxSelectedPhotos(1, false);
-        chatAttachAlert.setStoryMediaPicker();
-        chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
+        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this.parentAlert.baseFragment, false, false, true, this.resourcesProvider);
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
             public void didSelectBot(TLRPC.User user) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
-            }
-
-            @Override
-            public void doOnIdle(Runnable runnable) {
-                runnable.run();
             }
 
             @Override
             public boolean needEnterComment() {
-                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
+                return false;
             }
 
             @Override
             public void onCameraOpened() {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
             }
 
             @Override
@@ -2184,237 +1238,417 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, i2, j, z2, j2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
 
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
-                String str;
-                HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
-                ArrayList<Object> selectedPhotosOrder = chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
-                if (!selectedPhotos.isEmpty() && !selectedPhotosOrder.isEmpty()) {
-                    Object obj = selectedPhotos.get(selectedPhotosOrder.get(0));
-                    if (obj instanceof MediaController.PhotoEntry) {
-                        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                        StringBuilder sb = new StringBuilder();
-                        sb.append("picker.didPressed isVideo=");
-                        sb.append(photoEntry.isVideo);
-                        sb.append(" path=");
-                        sb.append(photoEntry.path);
-                        sb.append(" imagePath=");
-                        sb.append(photoEntry.imagePath);
-                        sb.append(" thumbPath=");
-                        sb.append(photoEntry.thumbPath);
-                        sb.append(" w=");
-                        sb.append(photoEntry.width);
-                        sb.append(" h=");
-                        sb.append(photoEntry.height);
-                        sb.append(" dur=");
-                        sb.append(photoEntry.duration);
-                        sb.append(" editedInfo=");
-                        sb.append(photoEntry.editedInfo != null);
-                        Log.d("RICHED", sb.toString());
-                        if (photoEntry.isVideo || (str = photoEntry.imagePath) == null) {
-                            str = photoEntry.path;
+            public void didPressedButton(int i3, boolean z, boolean z2, int i4, int i5, long j, boolean z3, boolean z4, long j2) {
+                if (i3 == 7 || i3 == 8) {
+                    HashMap<Object, Object> selectedPhotos = chatAttachAlert.getPhotoLayout().getSelectedPhotos();
+                    ArrayList<Object> selectedPhotosOrder = chatAttachAlert.getPhotoLayout().getSelectedPhotosOrder();
+                    BlockRow blockRow = ChatAttachAlertRichLayout.this.listView.pendingMediaRow;
+                    ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
+                    int i6 = 0;
+                    while (true) {
+                        if (i6 >= selectedPhotosOrder.size()) {
+                            break;
                         }
-                        if (str != null) {
-                            Log.d("RICHED", "  startMediaUpload uploadPath=" + str + " imageId=" + photoEntry.imageId);
-                            if (photoEntry.isVideo) {
-                                ChatAttachAlertRichLayout.this.startMediaUpload(blockRow, str, photoEntry.thumbPath, photoEntry.imageId, true, photoEntry.width, photoEntry.height, photoEntry.duration);
-                            } else {
-                                ChatAttachAlertRichLayout.this.startMediaUpload(blockRow, str, photoEntry.thumbPath, photoEntry.imageId, false, 0, 0, 0);
-                            }
+                        Object obj = selectedPhotos.get(selectedPhotosOrder.get(i6));
+                        if (!(obj instanceof MediaController.PhotoEntry)) {
+                            i6++;
+                        } else if (blockRow != null) {
+                            ChatAttachAlertRichLayout.this.listView.addMediaToRow(blockRow, (MediaController.PhotoEntry) obj);
+                        } else {
+                            ChatAttachAlertRichLayout.this.listView.attachMedia((MediaController.PhotoEntry) obj);
                         }
                     }
                 }
+                ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
                 chatAttachAlert.dismiss(true);
+            }
+
+            @Override
+            public void doOnIdle(Runnable runnable) {
+                NotificationCenter.getInstance(ChatAttachAlertRichLayout.this.currentAccount).doOnIdle(runnable);
+            }
+        });
+        chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
+        chatAttachAlert.setMaxSelectedPhotos(1, true);
+        chatAttachAlert.enablePollAttachMode(i);
+        chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
+            @Override
+            public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
+                this.f$0.lambda$openAttach$25(chatAttachAlert, messageMedia, i3, z, i4, j);
+            }
+        });
+        chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
+            @Override
+            public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
+                this.f$0.lambda$openAttach$26(chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
         });
         chatAttachAlert.init();
+        if (i2 != 0) {
+            chatAttachAlert.openAttachLayoutForType(i2);
+        }
+        chatAttachAlert.setFocusable(true);
         chatAttachAlert.show();
     }
 
-    public void startMediaUpload(final BlockRow blockRow, String str, String str2, int i, boolean z, int i2, int i3, int i4) {
-        String str3;
-        RichMediaUploader richMediaUploader = (RichMediaUploader) this.uploaders.remove(blockRow);
-        if (richMediaUploader != null) {
-            richMediaUploader.cancel();
+    public void lambda$openAttach$25(ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+        if (messageMedia == null || messageMedia.geo == null) {
+            chatAttachAlert.dismiss(true);
+            return;
         }
-        if (blockRow.media == null) {
-            blockRow.media = new MediaUploadState();
-        }
-        MediaUploadState mediaUploadState = blockRow.media;
-        mediaUploadState.state = 1;
-        mediaUploadState.isVideo = z;
-        mediaUploadState.localPath = str;
-        mediaUploadState.thumbPath = str2;
-        mediaUploadState.imageId = i;
-        if (z) {
-            mediaUploadState.localThumbBitmap = extractFirstFrame(str);
-            StringBuilder sb = new StringBuilder();
-            sb.append("extractFirstFrame bitmap=");
-            if (blockRow.media.localThumbBitmap != null) {
-                str3 = blockRow.media.localThumbBitmap.getWidth() + "x" + blockRow.media.localThumbBitmap.getHeight();
-            } else {
-                str3 = "null";
-            }
-            sb.append(str3);
-            Log.d("RICHED", sb.toString());
-        }
-        Log.d("RICHED", "startMediaUpload row=" + System.identityHashCode(blockRow) + " isVideo=" + z + " path=" + str + " thumb=" + str2 + " imageId=" + i + " w=" + i2 + " h=" + i3 + " dur=" + i4);
-        MediaUploadState mediaUploadState2 = blockRow.media;
-        mediaUploadState2.progress = 0.0f;
-        mediaUploadState2.photo = null;
-        mediaUploadState2.document = null;
-        if (z) {
-            mediaUploadState2.width = i2;
-            mediaUploadState2.height = i3;
-            mediaUploadState2.duration = i4;
-        }
-        if (z && !(blockRow.block instanceof TL_iv.pageBlockVideo)) {
-            blockRow.block = new TL_iv.pageBlockVideo();
-        } else if (!z && !(blockRow.block instanceof TL_iv.pageBlockPhoto)) {
-            blockRow.block = new TL_iv.pageBlockPhoto();
-        }
-        RichMediaUploader richMediaUploader2 = new RichMediaUploader(this.currentAccount, str, z, i2, i3, i4, new RichMediaUploader.Listener() {
-            @Override
-            public void onWidthHeightResolved(int i5, int i6) {
-                BlockRow blockRow2 = blockRow;
-                MediaUploadState mediaUploadState3 = blockRow2.media;
-                mediaUploadState3.width = i5;
-                mediaUploadState3.height = i6;
-                ChatAttachAlertRichLayout.this.invalidateMediaCellForRow(blockRow2);
-                ChatAttachAlertRichLayout.this.listView.adapter.update(false);
-            }
+        TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
+        pageblockmap.geo = messageMedia.geo;
+        pageblockmap.zoom = 15;
+        pageblockmap.w = 600;
+        pageblockmap.h = 400;
+        this.listView.addBlock(pageblockmap);
+        updateSendButton(true);
+        chatAttachAlert.dismiss(true);
+    }
 
-            @Override
-            public void onProgress(float f) {
-                BlockRow blockRow2 = blockRow;
-                blockRow2.media.progress = f;
-                ChatAttachAlertRichLayout.this.invalidateMediaCellForRow(blockRow2);
-            }
+    public void lambda$openAttach$26(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        if (arrayList != null && !arrayList.isEmpty()) {
+            this.listView.attachAudio((MessageObject) arrayList.get(0));
+        }
+        chatAttachAlert.dismiss(true);
+    }
 
-            @Override
-            public void onPhotoUploaded(TLRPC.Photo photo) {
-                BlockRow blockRow2 = blockRow;
-                MediaUploadState mediaUploadState3 = blockRow2.media;
-                mediaUploadState3.photo = photo;
-                mediaUploadState3.state = 2;
-                TL_iv.PageBlock pageBlock = blockRow2.block;
-                if (pageBlock instanceof TL_iv.pageBlockPhoto) {
-                    ((TL_iv.pageBlockPhoto) pageBlock).photo_id = photo.id;
-                }
-                ChatAttachAlertRichLayout.this.uploaders.remove(blockRow);
-                ChatAttachAlertRichLayout.this.invalidateMediaCellForRow(blockRow);
-                ChatAttachAlertRichLayout.this.updateSendButton(true);
-            }
+    public void onExternalMediaPicked(Intent intent) {
+        if (intent == null || intent.getData() == null) {
+            return;
+        }
+        this.listView.attachExternalMedia(intent.getData());
+    }
 
-            @Override
-            public void onVideoUploaded(TLRPC.Document document) {
-                BlockRow blockRow2 = blockRow;
-                MediaUploadState mediaUploadState3 = blockRow2.media;
-                mediaUploadState3.document = document;
-                mediaUploadState3.state = 2;
-                TL_iv.PageBlock pageBlock = blockRow2.block;
-                if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    ((TL_iv.pageBlockVideo) pageBlock).video_id = document.id;
-                }
-                ChatAttachAlertRichLayout.this.uploaders.remove(blockRow);
-                ChatAttachAlertRichLayout.this.invalidateMediaCellForRow(blockRow);
-                ChatAttachAlertRichLayout.this.updateSendButton(true);
-            }
-
-            @Override
-            public void onError() {
-                blockRow.media.state = 3;
-                ChatAttachAlertRichLayout.this.uploaders.remove(blockRow);
-                ChatAttachAlertRichLayout.this.invalidateMediaCellForRow(blockRow);
-                ChatAttachAlertRichLayout.this.updateSendButton(true);
-            }
-        });
-        this.uploaders.put(blockRow, richMediaUploader2);
-        richMediaUploader2.start();
-        invalidateMediaCellForRow(blockRow);
-        this.listView.adapter.update(false);
+    public void updateSendButtonLoading() {
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        if (richEditorToolbar != null) {
+            richEditorToolbar.setSendLoading(this.listView.hasPendingUploads());
+        }
         updateSendButton(true);
     }
 
-    private static Bitmap extractFirstFrame(String str) {
-        Throwable th;
-        MediaMetadataRetriever mediaMetadataRetriever;
-        try {
-            mediaMetadataRetriever = new MediaMetadataRetriever();
-            try {
-                mediaMetadataRetriever.setDataSource(str);
-                Bitmap frameAtTime = mediaMetadataRetriever.getFrameAtTime(0L, 2);
-                try {
-                    mediaMetadataRetriever.release();
-                } catch (Throwable unused) {
+    public void scheduleLimitCheck() {
+        AndroidUtilities.cancelRunOnUIThread(this.limitCheckRunnable);
+        AndroidUtilities.runOnUIThread(this.limitCheckRunnable, 1000L);
+    }
+
+    public void updateSendButtonEnabled() {
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        if (richEditorToolbar != null) {
+            richEditorToolbar.setSendEnabled(this.listView.isWithinLimits());
+        }
+    }
+
+    private int getEmojiPanelHeight() {
+        int iMeasureKeyboardHeight = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight();
+        if (iMeasureKeyboardHeight <= 0) {
+            SharedPreferences globalEmojiSettings = MessagesController.getGlobalEmojiSettings();
+            Point point = AndroidUtilities.displaySize;
+            iMeasureKeyboardHeight = globalEmojiSettings.getInt(point.x > point.y ? "kbd_height_land3" : "kbd_height", AndroidUtilities.dp(200.0f));
+        }
+        return iMeasureKeyboardHeight <= 0 ? AndroidUtilities.dp(200.0f) : iMeasureKeyboardHeight;
+    }
+
+    private void createEmojiView() {
+        if (this.emojiView != null) {
+            return;
+        }
+        EmojiView emojiView = new EmojiView(this.parentAlert.baseFragment, true, false, false, getContext(), true, null, this.parentAlert.sizeNotifierFrameLayout, true, this.resourcesProvider, false);
+        this.emojiView = emojiView;
+        emojiView.setVisibility(8);
+        EmojiView emojiView2 = this.emojiView;
+        emojiView2.fixBottomTabContainerTranslation = false;
+        emojiView2.setBottomInset(AndroidUtilities.navigationBarHeight);
+        this.emojiView.setDelegate(new EmojiView.EmojiViewDelegate() {
+            @Override
+            public boolean canAddCaptionToGif(TLRPC.Document document) {
+                return EmojiView.EmojiViewDelegate.CC.$default$canAddCaptionToGif(this, document);
+            }
+
+            @Override
+            public boolean canSchedule() {
+                return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
+            }
+
+            @Override
+            public long getDialogId() {
+                return EmojiView.EmojiViewDelegate.CC.$default$getDialogId(this);
+            }
+
+            @Override
+            public float getProgressToSearchOpened() {
+                return EmojiView.EmojiViewDelegate.CC.$default$getProgressToSearchOpened(this);
+            }
+
+            @Override
+            public int getThreadId() {
+                return EmojiView.EmojiViewDelegate.CC.$default$getThreadId(this);
+            }
+
+            @Override
+            public void invalidateEnterView() {
+                EmojiView.EmojiViewDelegate.CC.$default$invalidateEnterView(this);
+            }
+
+            @Override
+            public boolean isExpanded() {
+                return EmojiView.EmojiViewDelegate.CC.$default$isExpanded(this);
+            }
+
+            @Override
+            public boolean isInScheduleMode() {
+                return EmojiView.EmojiViewDelegate.CC.$default$isInScheduleMode(this);
+            }
+
+            @Override
+            public boolean isSearchOpened() {
+                return EmojiView.EmojiViewDelegate.CC.$default$isSearchOpened(this);
+            }
+
+            @Override
+            public boolean isUserSelf() {
+                return EmojiView.EmojiViewDelegate.CC.$default$isUserSelf(this);
+            }
+
+            @Override
+            public void onAnimatedEmojiUnlockClick() {
+                EmojiView.EmojiViewDelegate.CC.$default$onAnimatedEmojiUnlockClick(this);
+            }
+
+            @Override
+            public void onClearEmojiRecent() {
+                EmojiView.EmojiViewDelegate.CC.$default$onClearEmojiRecent(this);
+            }
+
+            @Override
+            public void onEmojiSettingsClick(ArrayList arrayList) {
+                EmojiView.EmojiViewDelegate.CC.$default$onEmojiSettingsClick(this, arrayList);
+            }
+
+            @Override
+            public void onGifSelected(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+                EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view, obj, str, obj2, z, i, i2);
+            }
+
+            @Override
+            public void onGifSelectedForAddCaption(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
+                EmojiView.EmojiViewDelegate.CC.$default$onGifSelectedForAddCaption(this, view, obj, str, obj2, z, i, i2);
+            }
+
+            @Override
+            public void onSearchOpenClose(int i) {
+                EmojiView.EmojiViewDelegate.CC.$default$onSearchOpenClose(this, i);
+            }
+
+            @Override
+            public void onShowStickerSet(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+                EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, stickerSet, inputStickerSet, z);
+            }
+
+            @Override
+            public void onStickerSelected(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i, int i2) {
+                EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view, document, str, obj, sendAnimationData, z, i, i2);
+            }
+
+            @Override
+            public void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered) {
+                EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, stickerSetCovered);
+            }
+
+            @Override
+            public void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered) {
+                EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, stickerSetCovered);
+            }
+
+            @Override
+            public void onStickersGroupClick(long j) {
+                EmojiView.EmojiViewDelegate.CC.$default$onStickersGroupClick(this, j);
+            }
+
+            @Override
+            public void onStickersSettingsClick() {
+                EmojiView.EmojiViewDelegate.CC.$default$onStickersSettingsClick(this);
+            }
+
+            @Override
+            public void onTabOpened(int i) {
+                EmojiView.EmojiViewDelegate.CC.$default$onTabOpened(this, i);
+            }
+
+            @Override
+            public void showTrendingStickersAlert(TrendingStickersLayout trendingStickersLayout) {
+                EmojiView.EmojiViewDelegate.CC.$default$showTrendingStickersAlert(this, trendingStickersLayout);
+            }
+
+            @Override
+            public boolean onBackspace() {
+                RichEditText richEditTextFindFocusedEditText = ChatAttachAlertRichLayout.this.listView.findFocusedEditText();
+                if (richEditTextFindFocusedEditText == null || richEditTextFindFocusedEditText.length() == 0) {
+                    return false;
                 }
-                return frameAtTime;
-            } catch (Throwable th2) {
-                th = th2;
+                richEditTextFindFocusedEditText.dispatchKeyEvent(new KeyEvent(0, 67));
+                return true;
+            }
+
+            @Override
+            public void onEmojiSelected(String str) {
+                RichEditText richEditTextFindFocusedEditText = ChatAttachAlertRichLayout.this.listView.findFocusedEditText();
+                if (richEditTextFindFocusedEditText == null) {
+                    return;
+                }
+                int iMax = Math.max(0, richEditTextFindFocusedEditText.getSelectionEnd());
                 try {
-                    Log.e("RICHED", "extractFirstFrame failed for " + str, th);
-                    if (mediaMetadataRetriever != null) {
-                        try {
-                            mediaMetadataRetriever.release();
-                        } catch (Throwable unused2) {
-                        }
-                    }
-                    return null;
-                } catch (Throwable th3) {
-                    if (mediaMetadataRetriever != null) {
-                        try {
-                            mediaMetadataRetriever.release();
-                        } catch (Throwable unused3) {
-                        }
-                    }
-                    throw th3;
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji((CharSequence) str, richEditTextFindFocusedEditText.getPaint().getFontMetricsInt(), false, (int[]) null);
+                    richEditTextFindFocusedEditText.setText(richEditTextFindFocusedEditText.getText().insert(iMax, charSequenceReplaceEmoji));
+                    int length = iMax + charSequenceReplaceEmoji.length();
+                    richEditTextFindFocusedEditText.setSelection(length, length);
+                } catch (Exception unused) {
                 }
             }
-        } catch (Throwable th4) {
-            th = th4;
-            mediaMetadataRetriever = null;
+
+            @Override
+            public void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z) {
+                AnimatedEmojiSpan animatedEmojiSpan;
+                RichEditText richEditTextFindFocusedEditText = ChatAttachAlertRichLayout.this.listView.findFocusedEditText();
+                if (richEditTextFindFocusedEditText == null) {
+                    return;
+                }
+                int iMax = Math.max(0, richEditTextFindFocusedEditText.getSelectionEnd());
+                try {
+                    if (str == null) {
+                        str = "😀";
+                    }
+                    SpannableString spannableString = new SpannableString(str);
+                    if (document != null) {
+                        animatedEmojiSpan = new AnimatedEmojiSpan(document, richEditTextFindFocusedEditText.getPaint().getFontMetricsInt());
+                    } else {
+                        animatedEmojiSpan = new AnimatedEmojiSpan(j, richEditTextFindFocusedEditText.getPaint().getFontMetricsInt());
+                    }
+                    animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+                    spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
+                    richEditTextFindFocusedEditText.setText(richEditTextFindFocusedEditText.getText().insert(iMax, spannableString));
+                    int length = iMax + spannableString.length();
+                    richEditTextFindFocusedEditText.setSelection(length, length);
+                } catch (Exception unused) {
+                }
+            }
+        });
+        addView(this.emojiView, LayoutHelper.createFrame(-1, getEmojiPanelHeight(), 87));
+    }
+
+    public void toggleEmojiPopup() {
+        if (this.emojiViewVisible) {
+            hideEmojiPopup();
+            RichEditText richEditTextFindFocusedEditText = this.listView.findFocusedEditText();
+            if (richEditTextFindFocusedEditText != null) {
+                richEditTextFindFocusedEditText.requestEditFocus();
+                AndroidUtilities.showKeyboard(richEditTextFindFocusedEditText);
+                return;
+            }
+            return;
         }
+        showEmojiPopup();
+    }
+
+    private void showEmojiPopup() {
+        createEmojiView();
+        int emojiPanelHeight = getEmojiPanelHeight();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.emojiView.getLayoutParams();
+        layoutParams.height = emojiPanelHeight;
+        this.emojiView.setLayoutParams(layoutParams);
+        this.emojiView.setVisibility(0);
+        this.emojiViewVisible = true;
+        this.emojiPadding = emojiPanelHeight;
+        RichEditText richEditTextFindFocusedEditText = this.listView.findFocusedEditText();
+        if (richEditTextFindFocusedEditText != null) {
+            AndroidUtilities.hideKeyboard(richEditTextFindFocusedEditText);
+        }
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        if (richEditorToolbar != null) {
+            richEditorToolbar.setEmojiOpened(true);
+        }
+        syncBottomOffset(false);
+        requestLayout();
+    }
+
+    private void hideEmojiPopup() {
+        EmojiView emojiView = this.emojiView;
+        if (emojiView != null) {
+            emojiView.setVisibility(8);
+        }
+        this.emojiViewVisible = false;
+        this.emojiPadding = 0;
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        if (richEditorToolbar != null) {
+            richEditorToolbar.setEmojiOpened(false);
+        }
+        syncBottomOffset(false);
+        requestLayout();
     }
 
     @Override
     public void onDestroy() {
-        Iterator it = this.uploaders.values().iterator();
-        while (it.hasNext()) {
-            ((RichMediaUploader) it.next()).cancel();
+        MessageSendPreview messageSendPreview = this.messageSendPreview;
+        if (messageSendPreview != null) {
+            messageSendPreview.dismissInstant();
+            this.messageSendPreview = null;
         }
-        this.uploaders.clear();
+        RichCommandSuggestions richCommandSuggestions = this.commandSuggestions;
+        if (richCommandSuggestions != null) {
+            richCommandSuggestions.hide();
+        }
+        RichEditorListView richEditorListView = this.listView;
+        if (richEditorListView != null) {
+            richEditorListView.clearContent();
+        }
+        EmojiView emojiView = this.emojiView;
+        if (emojiView != null) {
+            emojiView.onDestroy();
+        }
     }
 
     public static void showEditLatexSheet(Context context, String str, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
         BottomSheet.Builder builder = new BottomSheet.Builder(context, true, resourcesProvider);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        final String[] strArr = {str};
+        final String[] strArr = {str == null ? "" : str};
         final ImageView imageView = new ImageView(context);
         imageView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        imageView.setBackground(Theme.createRoundRectDrawable(8, Theme.getColor(Theme.key_dialogBackgroundGray, resourcesProvider)));
-        linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 49, 0, 2, 0, 8));
+        imageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 0.05f)));
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.addView(imageView, new FrameLayout.LayoutParams(-2, -2, 17));
+        final HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context);
+        horizontalScrollView.setHorizontalScrollBarEnabled(false);
+        horizontalScrollView.setClipToPadding(false);
+        horizontalScrollView.setFillViewport(true);
+        horizontalScrollView.setVisibility(8);
+        horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
+        linearLayout.addView(horizontalScrollView, LayoutHelper.createLinear(-1, -2, 49, 12, 2, 12, 0));
+        final ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
         final boolean[] zArr = {false};
         final int[] iArr = {6};
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$25(zArr, strArr, imageView, resourcesProvider, iArr);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$27(strArr, horizontalScrollView, round, zArr, imageView, resourcesProvider, iArr);
             }
         };
         new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$26(runnable);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$28(runnable);
             }
         };
-        EditTextCell editTextCell = new EditTextCell(context, "LaTeX Equation", true, false, -1, resourcesProvider);
+        final EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.ArticleLatexEquation), true, false, -1, resourcesProvider);
         editTextCell.editText.setImeOptions(6);
-        editTextCell.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)));
+        editTextCell.editText.setMaxLines(5);
+        editTextCell.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(24.0f), Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider)));
         editTextCell.setText(strArr[0]);
         editTextCell.editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -2431,22 +1665,35 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 runnable.run();
             }
         });
-        linearLayout.addView(editTextCell, LayoutHelper.createLinear(-1, -2, 55, 12, 0, 12, 0));
-        ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        linearLayout.addView(editTextCell, LayoutHelper.createLinear(-1, -2, 55, 12, 8, 12, 0));
         round.setText(LocaleController.getString(R.string.Done));
-        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 55, 12, 8, 12, 12));
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 55, 12, 12, 12, 12));
         runnable.run();
         builder.setCustomView(linearLayout);
         final BottomSheet bottomSheetShow = builder.show();
+        int i = Theme.key_windowBackgroundGray;
+        bottomSheetShow.setBackgroundColor(Theme.getColor(i, resourcesProvider));
+        bottomSheetShow.fixNavigationBar(Theme.getColor(i, resourcesProvider));
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$27(callback, strArr, bottomSheetShow, view);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$29(round, callback, strArr, bottomSheetShow, view);
             }
         });
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$30(editTextCell);
+            }
+        }, 200L);
     }
 
-    public static void lambda$showEditLatexSheet$25(boolean[] zArr, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, int[] iArr) {
+    public static void lambda$showEditLatexSheet$27(String[] strArr, HorizontalScrollView horizontalScrollView, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, int[] iArr) {
+        if (TextUtils.isEmpty(strArr[0].trim())) {
+            horizontalScrollView.setVisibility(8);
+            buttonWithCounterView.setEnabled(false);
+            return;
+        }
         boolean z = zArr[0];
         zArr[0] = false;
         try {
@@ -2459,13 +1706,16 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), PorterDuff.Mode.SRC_IN));
                 imageView.setImageBitmap(bitmapCreateBitmap);
+                horizontalScrollView.setVisibility(0);
             } else {
                 zArr[0] = true;
+                horizontalScrollView.setVisibility(8);
             }
         } catch (Exception e) {
             FileLog.e(e);
             zArr[0] = true;
         }
+        buttonWithCounterView.setEnabled(!zArr[0]);
         if (zArr[0]) {
             imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), PorterDuff.Mode.SRC_IN));
             if (!z) {
@@ -2474,29 +1724,38 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 AndroidUtilities.shakeViewSpring(imageView, i);
             }
             try {
-                JLatexMathDrawable jLatexMathDrawableBuild2 = JLatexMathDrawable.builder("Error").textSize(AndroidUtilities.dp(26.0f)).build();
+                JLatexMathDrawable jLatexMathDrawableBuild2 = JLatexMathDrawable.builder(LocaleController.getString(R.string.ArticleLatexError)).textSize(AndroidUtilities.dp(26.0f)).build();
                 int intrinsicWidth2 = jLatexMathDrawableBuild2.getIntrinsicWidth();
                 int intrinsicHeight2 = jLatexMathDrawableBuild2.getIntrinsicHeight();
-                if (intrinsicWidth2 <= 0 || intrinsicHeight2 <= 0) {
-                    return;
+                if (intrinsicWidth2 > 0 && intrinsicHeight2 > 0) {
+                    Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ALPHA_8);
+                    jLatexMathDrawableBuild2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
+                    jLatexMathDrawableBuild2.draw(new Canvas(bitmapCreateBitmap2));
+                    imageView.setImageBitmap(bitmapCreateBitmap2);
+                    horizontalScrollView.setVisibility(0);
+                } else {
+                    horizontalScrollView.setVisibility(8);
                 }
-                Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ALPHA_8);
-                jLatexMathDrawableBuild2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
-                jLatexMathDrawableBuild2.draw(new Canvas(bitmapCreateBitmap2));
-                imageView.setImageBitmap(bitmapCreateBitmap2);
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
         }
     }
 
-    public static void lambda$showEditLatexSheet$26(Runnable runnable) {
+    public static void lambda$showEditLatexSheet$28(Runnable runnable) {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         AndroidUtilities.runOnUIThread(runnable, 1000L);
     }
 
-    public static void lambda$showEditLatexSheet$27(Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
-        callback.run(strArr[0]);
-        bottomSheet.lambda$new$0();
+    public static void lambda$showEditLatexSheet$29(ButtonWithCounterView buttonWithCounterView, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+        if (buttonWithCounterView.isEnabled()) {
+            callback.run(strArr[0]);
+            bottomSheet.lambda$new$0();
+        }
+    }
+
+    public static void lambda$showEditLatexSheet$30(EditTextCell editTextCell) {
+        editTextCell.editText.requestFocus();
+        AndroidUtilities.showKeyboard(editTextCell.editText);
     }
 }

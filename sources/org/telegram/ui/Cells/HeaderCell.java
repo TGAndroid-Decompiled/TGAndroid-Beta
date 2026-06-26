@@ -30,19 +30,19 @@ public class HeaderCell extends FrameLayout {
     private SimpleTextView textView2;
 
     public HeaderCell(Context context) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 20, 6, false, null);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 18, 7, false, null);
     }
 
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 20, 6, false, resourcesProvider);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 18, 7, false, resourcesProvider);
     }
 
     public HeaderCell(Context context, int i) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 6, false, null);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 7, false, null);
     }
 
     public HeaderCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 6, false, resourcesProvider);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 7, false, resourcesProvider);
     }
 
     public HeaderCell(Context context, int i, int i2, int i3, boolean z) {
@@ -67,7 +67,7 @@ public class HeaderCell extends FrameLayout {
         if (z2) {
             AnimatedTextView animatedTextView = new AnimatedTextView(getContext());
             this.animatedTextView = animatedTextView;
-            animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
+            animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.animatedTextView.setTypeface(AndroidUtilities.bold());
             this.animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.animatedTextView.setTextColor(getThemedColor(i));
@@ -78,7 +78,7 @@ public class HeaderCell extends FrameLayout {
         } else {
             TextView textView = new TextView(getContext());
             this.textView = textView;
-            textView.setTextSize(1, 15.0f);
+            textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.bold());
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);

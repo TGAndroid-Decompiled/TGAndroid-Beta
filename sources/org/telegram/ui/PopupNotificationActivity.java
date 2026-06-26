@@ -20,7 +20,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
@@ -125,7 +125,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onCreate(Bundle bundle) throws Resources.NotFoundException, IOException {
+    protected void onCreate(Bundle bundle) throws Resources.NotFoundException {
         super.onCreate(bundle);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
@@ -1213,7 +1213,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    public void onBackPressed() throws Resources.NotFoundException {
+    public void onBackPressed() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         if (this.chatActivityEnterView.isPopupShowing()) {
             this.chatActivityEnterView.hidePopup(true);
         } else {
@@ -1235,7 +1235,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     @Override
-    protected void onPause() throws Resources.NotFoundException {
+    protected void onPause() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         super.onPause();
         overridePendingTransition(0, 0);
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;

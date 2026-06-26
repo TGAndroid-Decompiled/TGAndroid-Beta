@@ -22,6 +22,7 @@ import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.NotificationsCheckCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
+import org.telegram.ui.Cells.RadioButtonCell;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextCheckCell;
@@ -176,12 +177,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         if (reorderSectionId < 0 || reorderSectionId != reorderSectionId2) {
             return;
         }
-        UItem uItem = (UItem) this.items.get(i);
-        UItem uItem2 = (UItem) this.items.get(i2);
         boolean zHasDivider = hasDivider(i);
         boolean zHasDivider2 = hasDivider(i2);
-        this.items.set(i, uItem2);
-        this.items.set(i2, uItem);
+        this.items.add(i2, (UItem) this.items.remove(i));
         notifyItemMoved(i, i2);
         if (hasDivider(i2) != zHasDivider) {
             notifyItemChanged(i2, 3);
@@ -325,6 +323,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             case 41:
             case 42:
             case 43:
+            case 44:
                 return true;
             case -2:
             case -1:
@@ -528,6 +527,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 case 43:
                     fullscreenCustomFrameLayout = new TextSettingsCell(this.context, this.resourcesProvider);
                     break;
+                case 44:
+                    fullscreenCustomFrameLayout = new RadioButtonCell(this.context);
+                    break;
             }
         }
         if (shouldApplyBackground(i)) {
@@ -653,7 +655,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         UItem.UItemFactory uItemFactoryFindFactory;
         int itemViewType = viewHolder.getItemViewType();
         UItem item = getItem(viewHolder.getAdapterPosition());
-        if (itemViewType < UItem.factoryViewTypeStartsWith ? itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 30 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 29 || itemViewType == 25 || itemViewType == 27 || itemViewType == 32 || itemViewType == 33 || itemViewType == 35 || itemViewType == 36 || itemViewType == 37 || itemViewType == 41 || itemViewType == 39 || itemViewType == 40 || itemViewType == 38 : (uItemFactoryFindFactory = UItem.findFactory(itemViewType)) != null && uItemFactoryFindFactory.isClickable()) {
+        if (itemViewType < UItem.factoryViewTypeStartsWith ? itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 30 || itemViewType == 4 || itemViewType == 10 || itemViewType == 44 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 29 || itemViewType == 25 || itemViewType == 27 || itemViewType == 32 || itemViewType == 33 || itemViewType == 35 || itemViewType == 36 || itemViewType == 37 || itemViewType == 41 || itemViewType == 39 || itemViewType == 40 || itemViewType == 38 : (uItemFactoryFindFactory = UItem.findFactory(itemViewType)) != null && uItemFactoryFindFactory.isClickable()) {
             if (item == null || item.enabled) {
                 return true;
             }

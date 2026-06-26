@@ -23,6 +23,7 @@ import androidx.core.content.pm.ShortcutManagerCompat;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -56,6 +57,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
@@ -4282,7 +4284,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = stickerSet4.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda162(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda163(delayedAction));
             if (frameLayout != null) {
                 Bulletin.make(frameLayout, stickerSetBulletinLayout, 2750).show();
             } else {
@@ -4391,7 +4393,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = arrayList.get(i8).set.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda162(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda163(delayedAction));
         }
         Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
     }
@@ -6701,7 +6703,7 @@ public class MediaDataController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replyMessagesDidLoad, Long.valueOf(j), arrayList, null);
     }
 
-    public void lambda$loadReplyMessagesForMessages$177(org.telegram.messenger.Timer.Task r24, androidx.collection.LongSparseArray r25, final java.util.concurrent.atomic.AtomicInteger r26, final java.lang.Runnable r27, int r28, final org.telegram.messenger.Timer r29, final androidx.collection.LongSparseArray r30, androidx.collection.LongSparseArray r31, final boolean r32, final long r33) {
+    public void lambda$loadReplyMessagesForMessages$177(org.telegram.messenger.Timer.Task r25, androidx.collection.LongSparseArray r26, final java.util.concurrent.atomic.AtomicInteger r27, final java.lang.Runnable r28, int r29, final org.telegram.messenger.Timer r30, final androidx.collection.LongSparseArray r31, androidx.collection.LongSparseArray r32, final boolean r33, final long r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$loadReplyMessagesForMessages$177(org.telegram.messenger.Timer$Task, androidx.collection.LongSparseArray, java.util.concurrent.atomic.AtomicInteger, java.lang.Runnable, int, org.telegram.messenger.Timer, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, boolean, long):void");
     }
 
@@ -7754,14 +7756,19 @@ public class MediaDataController extends BaseController {
     }
 
     public void saveDraft(long j, long j2, CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, TLRPC.Message message, ChatActivity.ReplyQuote replyQuote, TLRPC.SuggestedPost suggestedPost, long j3, boolean z, boolean z2) {
+        saveDraft(j, j2, charSequence, arrayList, message, replyQuote, suggestedPost, j3, z, z2, null);
+    }
+
+    public void saveDraft(long j, long j2, CharSequence charSequence, ArrayList<TLRPC.MessageEntity> arrayList, TLRPC.Message message, ChatActivity.ReplyQuote replyQuote, TLRPC.SuggestedPost suggestedPost, long j3, boolean z, boolean z2, TL_iv.RichMessage richMessage) {
         TLRPC.DraftMessage tL_draftMessage;
         TLRPC.InputReplyTo inputReplyTo;
         TLRPC.Message message2 = (getMessagesController().isForum(j) && j2 == 0) ? null : message;
-        if (!TextUtils.isEmpty(charSequence) || message2 != null) {
+        if (!TextUtils.isEmpty(charSequence) || message2 != null || richMessage != null) {
             tL_draftMessage = new TLRPC.TL_draftMessage();
         } else {
             tL_draftMessage = new TLRPC.TL_draftMessageEmpty();
         }
+        tL_draftMessage.rich_message = richMessage;
         tL_draftMessage.date = (int) (System.currentTimeMillis() / 1000);
         tL_draftMessage.message = charSequence == null ? "" : charSequence.toString();
         tL_draftMessage.no_webpage = z;
@@ -7827,10 +7834,10 @@ public class MediaDataController extends BaseController {
         TLRPC.DraftMessage draftMessage = longSparseArray == null ? null : (TLRPC.DraftMessage) longSparseArray.get(j2);
         if (!z2) {
             if (draftMessage != null) {
-                if (draftMessage.message.equals(tL_draftMessage.message) && replyToEquals(draftMessage.reply_to, tL_draftMessage.reply_to) && suggestedPostEquals(draftMessage.suggested_post, tL_draftMessage.suggested_post) && draftMessage.no_webpage == tL_draftMessage.no_webpage && draftMessage.effect == tL_draftMessage.effect) {
+                if (draftMessage.message.equals(tL_draftMessage.message) && replyToEquals(draftMessage.reply_to, tL_draftMessage.reply_to) && suggestedPostEquals(draftMessage.suggested_post, tL_draftMessage.suggested_post) && richMessageEquals(draftMessage.rich_message, tL_draftMessage.rich_message) && draftMessage.no_webpage == tL_draftMessage.no_webpage && draftMessage.effect == tL_draftMessage.effect) {
                     return;
                 }
-            } else if (TextUtils.isEmpty(tL_draftMessage.message) && (((inputReplyTo = tL_draftMessage.reply_to) == null || inputReplyTo.reply_to_msg_id == 0) && tL_draftMessage.effect == 0 && tL_draftMessage.suggested_post == null)) {
+            } else if (TextUtils.isEmpty(tL_draftMessage.message) && (((inputReplyTo = tL_draftMessage.reply_to) == null || inputReplyTo.reply_to_msg_id == 0) && tL_draftMessage.effect == 0 && tL_draftMessage.rich_message == null && tL_draftMessage.suggested_post == null)) {
                 return;
             }
         }
@@ -7848,6 +7855,10 @@ public class MediaDataController extends BaseController {
                 tL_messages_saveDraft.reply_to = tL_draftMessage.reply_to;
                 tL_messages_saveDraft.suggested_post = tL_draftMessage.suggested_post;
                 tL_messages_saveDraft.entities = tL_draftMessage.entities;
+                TL_iv.RichMessage richMessage2 = tL_draftMessage.rich_message;
+                if (richMessage2 != null) {
+                    tL_messages_saveDraft.rich_message = toInputRichMessage(richMessage2);
+                }
                 if ((tL_draftMessage.flags & 128) != 0) {
                     tL_messages_saveDraft.effect = tL_draftMessage.effect;
                     tL_messages_saveDraft.flags |= 128;
@@ -7869,6 +7880,67 @@ public class MediaDataController extends BaseController {
             return true;
         }
         return (suggestedPost == null) == (suggestedPost2 == null) && !AmountUtils$Amount.equals(suggestedPost.price, suggestedPost2.price) && suggestedPost.schedule_date == suggestedPost2.schedule_date && suggestedPost.accepted == suggestedPost2.accepted && suggestedPost.rejected == suggestedPost2.rejected;
+    }
+
+    private static boolean richMessageEquals(TL_iv.RichMessage richMessage, TL_iv.RichMessage richMessage2) {
+        if (richMessage == richMessage2) {
+            return true;
+        }
+        if ((richMessage == null) != (richMessage2 == null)) {
+            return false;
+        }
+        try {
+            SerializedData serializedData = new SerializedData(richMessage.getObjectSize());
+            SerializedData serializedData2 = new SerializedData(richMessage2.getObjectSize());
+            richMessage.serializeToStream(serializedData);
+            richMessage2.serializeToStream(serializedData2);
+            return Arrays.equals(serializedData.toByteArray(), serializedData2.toByteArray());
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    private TL_iv.TL_inputRichMessage toInputRichMessage(TL_iv.RichMessage richMessage) {
+        TL_iv.TL_inputRichMessage tL_inputRichMessage = new TL_iv.TL_inputRichMessage();
+        tL_inputRichMessage.rtl = richMessage.rtl;
+        tL_inputRichMessage.blocks = new ArrayList<>(richMessage.blocks.size());
+        for (int i = 0; i < richMessage.blocks.size(); i++) {
+            tL_inputRichMessage.blocks.add(SendMessagesHelper.toInputPageBlock(richMessage.blocks.get(i)));
+        }
+        ArrayList<TLRPC.Photo> arrayList = richMessage.photos;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            for (int i2 = 0; i2 < richMessage.photos.size(); i2++) {
+                TLRPC.Photo photo = richMessage.photos.get(i2);
+                TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
+                tL_inputPhoto.id = photo.id;
+                tL_inputPhoto.access_hash = photo.access_hash;
+                byte[] bArr = photo.file_reference;
+                if (bArr == null) {
+                    bArr = new byte[0];
+                }
+                tL_inputPhoto.file_reference = bArr;
+                tL_inputRichMessage.photos.add(tL_inputPhoto);
+            }
+            tL_inputRichMessage.flags |= 4;
+        }
+        ArrayList<TLRPC.Document> arrayList2 = richMessage.documents;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            for (int i3 = 0; i3 < richMessage.documents.size(); i3++) {
+                TLRPC.Document document = richMessage.documents.get(i3);
+                TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                tL_inputDocument.id = document.id;
+                tL_inputDocument.access_hash = document.access_hash;
+                byte[] bArr2 = document.file_reference;
+                if (bArr2 == null) {
+                    bArr2 = new byte[0];
+                }
+                tL_inputDocument.file_reference = bArr2;
+                tL_inputRichMessage.documents.add(tL_inputDocument);
+            }
+            tL_inputRichMessage.flags |= 8;
+        }
+        return tL_inputRichMessage;
     }
 
     private static boolean replyToEquals(TLRPC.InputReplyTo inputReplyTo, TLRPC.InputReplyTo inputReplyTo2) {

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import me.vkryl.core.BitwiseUtils;
+import org.telegram.tgnet.Vector;
 
 public class TLObject {
     public static final int FLAG_0 = 1;
@@ -80,5 +81,15 @@ public class TLObject {
         }
         t.readParams(inputSerializedData, z);
         return t;
+    }
+
+    public static <T extends TLObject> T deepCopy(T t, Vector.TLDeserializer<T> tLDeserializer) {
+        if (t == null) {
+            return null;
+        }
+        SerializedData serializedData = new SerializedData(t.getObjectSize());
+        t.serializeToStream(serializedData);
+        SerializedData serializedData2 = new SerializedData(serializedData.toByteArray());
+        return (T) tLDeserializer.deserialize(serializedData2, serializedData2.readInt32(false), false);
     }
 }

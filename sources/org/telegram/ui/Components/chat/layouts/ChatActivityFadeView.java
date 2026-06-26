@@ -4,18 +4,35 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
+import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 
-public class ChatActivityFadeView extends View {
+public class ChatActivityFadeView extends View implements Theme.Colorable {
+    private int colorKey;
+    private BlurredBackgroundDrawableViewFactory factory;
     private BlurredBackgroundWithFadeDrawable fadeDrawableBottom;
     private BlurredBackgroundWithFadeDrawable fadeDrawableTop;
     private int fadeZoneBottom;
     private int fadeZoneTop;
+    private BlurredBackgroundSourceColor sourceColor;
 
     public ChatActivityFadeView(Context context) {
         super(context);
+    }
+
+    public void setupColorKey(int i) {
+        this.colorKey = i;
+        if (this.sourceColor == null) {
+            BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
+            this.sourceColor = blurredBackgroundSourceColor;
+            blurredBackgroundSourceColor.setColor(Theme.getColor(i));
+            BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(this.sourceColor);
+            this.factory = blurredBackgroundDrawableViewFactory;
+            setup(blurredBackgroundDrawableViewFactory);
+        }
     }
 
     public void setup(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
@@ -29,6 +46,10 @@ public class ChatActivityFadeView extends View {
         BlurredBackgroundWithFadeDrawable blurredBackgroundWithFadeDrawable2 = new BlurredBackgroundWithFadeDrawable(blurredBackgroundDrawableViewFactory.create(this).setColorProvider(blurredBackgroundColorProvider));
         this.fadeDrawableBottom = blurredBackgroundWithFadeDrawable2;
         blurredBackgroundWithFadeDrawable2.setFadeHeight(AndroidUtilities.dp(30.0f), true);
+    }
+
+    public void setFadeHeightTop(int i, boolean z) {
+        this.fadeDrawableTop.setFadeHeight(-i, z);
     }
 
     public void setFadeHeightTop(int i) {
@@ -83,5 +104,16 @@ public class ChatActivityFadeView extends View {
         super.onDraw(canvas);
         this.fadeDrawableTop.draw(canvas);
         this.fadeDrawableBottom.draw(canvas);
+    }
+
+    @Override
+    public void updateColors() {
+        int i;
+        BlurredBackgroundSourceColor blurredBackgroundSourceColor = this.sourceColor;
+        if (blurredBackgroundSourceColor == null || (i = this.colorKey) == -1) {
+            return;
+        }
+        blurredBackgroundSourceColor.setColor(Theme.getColor(i));
+        invalidate();
     }
 }

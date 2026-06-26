@@ -22,11 +22,11 @@ public class BotGuardHelper extends BaseController {
         this.queryIdToBotId = new LongSparseLongArray();
     }
 
-    public void openGuardBotWebApp(long j, long j2, TLRPC.TL_webViewResultUrl tL_webViewResultUrl) {
-        openGuardBotWebApp(j, j2, tL_webViewResultUrl, false);
+    public void openGuardBotWebApp(long j, long j2, long j3) {
+        openGuardBotWebApp(j, j2, j3, false);
     }
 
-    private void openGuardBotWebApp(final long j, final long j2, final TLRPC.TL_webViewResultUrl tL_webViewResultUrl, boolean z) {
+    private void openGuardBotWebApp(final long j, final long j2, final long j3, boolean z) {
         BaseFragment lastFragment;
         if (LaunchActivity.instance == null || (lastFragment = LaunchActivity.getLastFragment()) == null) {
             return;
@@ -34,13 +34,13 @@ public class BotGuardHelper extends BaseController {
         TLRPC.User user = getMessagesController().getUser(Long.valueOf(j2));
         if (!z) {
             if (SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j2) || getMessagesController().whitelistedBots.contains(Long.valueOf(j2))) {
-                openGuardBotWebApp(j, j2, tL_webViewResultUrl, true);
+                openGuardBotWebApp(j, j2, j3, true);
                 return;
             } else {
                 AlertsCreator.createBotLaunchAlert(lastFragment, user, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$openGuardBotWebApp$0(j, j2, tL_webViewResultUrl);
+                        this.f$0.lambda$openGuardBotWebApp$0(j, j2, j3);
                     }
                 }, new Runnable() {
                     @Override
@@ -51,10 +51,10 @@ public class BotGuardHelper extends BaseController {
                 return;
             }
         }
-        this.queryIdToBotId.put(tL_webViewResultUrl.query_id, j2);
+        this.queryIdToBotId.put(j3, j2);
         BaseFragment lastFragment2 = LaunchActivity.getLastFragment();
         WebViewRequestProps webViewRequestPropsOf = WebViewRequestProps.of(this.currentAccount, j, j2, null, null, 5, 0, 0L, false, null, false, null, null, 0, false, false);
-        webViewRequestPropsOf.applyResponse(tL_webViewResultUrl);
+        webViewRequestPropsOf.queryId = j3;
         BotWebViewSheet botWebViewSheet = new BotWebViewSheet(LaunchActivity.instance, null);
         botWebViewSheet.setDefaultFullsize(false);
         botWebViewSheet.setNeedsContext(true);
@@ -63,8 +63,8 @@ public class BotGuardHelper extends BaseController {
         botWebViewSheet.show();
     }
 
-    public void lambda$openGuardBotWebApp$0(long j, long j2, TLRPC.TL_webViewResultUrl tL_webViewResultUrl) {
-        openGuardBotWebApp(j, j2, tL_webViewResultUrl, true);
+    public void lambda$openGuardBotWebApp$0(long j, long j2, long j3) {
+        openGuardBotWebApp(j, j2, j3, true);
         SharedPrefsHelper.setWebViewConfirmShown(this.currentAccount, j2, true);
     }
 
@@ -76,7 +76,7 @@ public class BotGuardHelper extends BaseController {
             while (it.hasNext()) {
                 BotWebViewSheet botWebViewSheet = (BotWebViewSheet) it.next();
                 if (botWebViewSheet.isGuardBotTab(j, j2)) {
-                    botWebViewSheet.lambda$openOptions$40();
+                    botWebViewSheet.lambda$openOptions$41();
                     return;
                 }
             }

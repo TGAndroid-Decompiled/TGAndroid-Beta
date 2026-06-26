@@ -13,6 +13,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
 public class RadioButtonCell extends FrameLayout {
+    public int itemId;
     private boolean needDivider;
     private RadioButton radioButton;
     private TextView textView;

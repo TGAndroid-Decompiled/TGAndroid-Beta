@@ -25,15 +25,15 @@ public class VideoFramesRewinder {
     int h;
     private boolean isPreparing;
     private long lastSeek;
+    private AnimatedFileNative mDecoder;
     private int maxFrameSide;
     private int maxFramesCount;
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    private long ptr;
     int w;
     private final Paint paint = new Paint(2);
-    private final int[] meta = new int[6];
+    private final int[] meta = new int[7];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
     private final TreeSet<Frame> frames = new TreeSet<>(new Comparator() {
         @Override
@@ -68,7 +68,7 @@ public class VideoFramesRewinder {
     public void draw(Canvas canvas, int i, int i2) {
         this.w = i;
         this.h = i2;
-        if (this.ptr == 0 || this.currentFrame == null) {
+        if (this.mDecoder == null || this.currentFrame == null) {
             return;
         }
         canvas.save();
@@ -78,7 +78,7 @@ public class VideoFramesRewinder {
     }
 
     public boolean isReady() {
-        return this.ptr != 0;
+        return this.mDecoder != null;
     }
 
     public void setup(File file) {
@@ -86,7 +86,7 @@ public class VideoFramesRewinder {
             release();
         } else {
             this.stop.set(false);
-            this.ptr = AnimatedFileNative.createDecoder(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
+            this.mDecoder = AnimatedFileNative.createDecoderFrom(file.getAbsolutePath(), this.meta, UserConfig.selectedAccount, 0L, null, true);
         }
     }
 
@@ -148,7 +148,7 @@ public class VideoFramesRewinder {
     }
 
     public void seek(long j, float f) {
-        if (this.ptr == 0) {
+        if (this.mDecoder == null) {
             return;
         }
         this.lastSeek = j;
@@ -204,8 +204,11 @@ public class VideoFramesRewinder {
             this.destroyAfterPrepare = true;
             return;
         }
-        AnimatedFileNative.destroyDecoder(this.ptr);
-        this.ptr = 0L;
+        AnimatedFileNative animatedFileNative = this.mDecoder;
+        if (animatedFileNative != null) {
+            animatedFileNative.recycle();
+            this.mDecoder = null;
+        }
         this.destroyAfterPrepare = false;
         clearCurrent();
         this.until.set(0L);

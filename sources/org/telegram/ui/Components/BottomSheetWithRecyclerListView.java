@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -28,6 +29,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected boolean actionBarIgnoreTouchEvents;
     protected AnimatedFloat actionBarSlideProgress;
     private ActionBarType actionBarType;
+    protected int additionalTitleX;
     private BaseFragment baseFragment;
     protected boolean centerTitle;
     protected boolean clipToActionBar;
@@ -404,7 +406,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     protected RecyclerListView createRecyclerView(Context context) {
         return new RecyclerListView(context, this.resourcesProvider) {
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 BottomSheetWithRecyclerListView.this.applyScrolledPosition();
                 super.onLayout(z, i, i2, i3, i4);
             }

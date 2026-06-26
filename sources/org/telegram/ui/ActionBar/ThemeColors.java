@@ -96,7 +96,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_windowBackgroundWhiteBlackText] = -15065823;
         iArr[Theme.key_windowBackgroundWhiteHintText] = -5723992;
         iArr[Theme.key_windowBackgroundWhiteValueText] = -14054705;
-        iArr[Theme.key_windowBackgroundWhiteLinkText] = -14255946;
+        iArr[Theme.key_windowBackgroundWhiteLinkText] = -14054705;
         iArr[Theme.key_windowBackgroundWhiteLinkSelection] = 862104035;
         iArr[Theme.key_windowBackgroundWhiteBlueHeader] = -14054705;
         iArr[Theme.key_windowBackgroundWhiteInputField] = -2368549;
@@ -455,7 +455,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_secretChatStatusText] = -8421505;
         iArr[Theme.key_chat_fieldOverlayText] = -14054705;
         iArr[Theme.key_chat_stickersHintPanel] = -1;
-        iArr[Theme.key_chat_replyPanelIcons] = -11032346;
+        iArr[Theme.key_chat_replyPanelIcons] = -14509328;
         iArr[Theme.key_chat_replyPanelClose] = -7432805;
         iArr[Theme.key_chat_replyPanelName] = -14054705;
         iArr[Theme.key_chat_replyPanelLine] = -1513240;

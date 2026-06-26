@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -356,14 +357,16 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.first = true;
         this.bitmapCache = new Bitmap[7];
         AndroidUtilities.fixGoogleMapsBug();
-        final ChatActivity chatActivity = (ChatActivity) this.parentAlert.baseFragment;
-        this.dialogId = chatActivity.getDialogId();
         ChatAttachAlert chatAttachAlert2 = this.parentAlert;
-        if (chatAttachAlert2.isStoryLocationPicker) {
+        BaseFragment baseFragment = chatAttachAlert2.baseFragment;
+        ChatActivity chatActivity = baseFragment instanceof ChatActivity ? (ChatActivity) baseFragment : null;
+        this.dialogId = chatAttachAlert2.getDialogId();
+        ChatAttachAlert chatAttachAlert3 = this.parentAlert;
+        if (chatAttachAlert3.isStoryLocationPicker) {
             this.locationType = 7;
-        } else if (chatAttachAlert2.isBizLocationPicker) {
+        } else if (chatAttachAlert3.isBizLocationPicker) {
             this.locationType = 8;
-        } else if (z && chatActivity.getCurrentEncryptedChat() == null && !chatActivity.isInScheduleMode() && !UserObject.isUserSelf(chatActivity.getCurrentUser())) {
+        } else if (z && chatActivity != null && chatActivity.getCurrentEncryptedChat() == null && !chatActivity.isInScheduleMode() && !UserObject.isUserSelf(chatActivity.getCurrentUser())) {
             this.locationType = 1;
         } else {
             this.locationType = 0;
@@ -614,7 +617,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.emptyView.addView(this.emptySubtitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 6, 0, 0));
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             @Override
-            protected void onLayout(boolean z2, int i7, int i8, int i9, int i10) {
+            protected void onLayout(boolean z2, int i7, int i8, int i9, int i10) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 super.onLayout(z2, i7, i8, i9, i10);
                 ChatAttachAlertLocationLayout.this.updateClipView();
             }
@@ -627,13 +630,14 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         RecyclerListView recyclerListView2 = this.listView;
         int i7 = this.locationType;
         long j = this.dialogId;
-        ChatAttachAlert chatAttachAlert3 = this.parentAlert;
-        LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i7, j, true, resourcesProvider, chatAttachAlert3.isStoryLocationPicker, false, chatAttachAlert3.isBizLocationPicker);
+        ChatAttachAlert chatAttachAlert4 = this.parentAlert;
+        final ChatActivity chatActivity2 = chatActivity;
+        LocationActivityAdapter locationActivityAdapter2 = new LocationActivityAdapter(context, i7, j, true, resourcesProvider, chatAttachAlert4.isStoryLocationPicker, false, chatAttachAlert4.isBizLocationPicker);
         this.adapter = locationActivityAdapter2;
         recyclerListView2.setAdapter(locationActivityAdapter2);
         LocationActivityAdapter locationActivityAdapter3 = this.adapter;
-        ChatAttachAlert chatAttachAlert4 = this.parentAlert;
-        locationActivityAdapter3.isPollAttach = chatAttachAlert4 != null && chatAttachAlert4.isPollAttach;
+        ChatAttachAlert chatAttachAlert5 = this.parentAlert;
+        locationActivityAdapter3.isPollAttach = chatAttachAlert5 != null && (chatAttachAlert5.isPollAttach || chatAttachAlert5.isLocationPicker);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
         defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -702,7 +706,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i8) {
-                this.f$0.lambda$new$9(chatActivity, resourcesProvider, view2, i8);
+                this.f$0.lambda$new$9(chatActivity2, resourcesProvider, view2, i8);
             }
         });
         this.adapter.setDelegate(this.dialogId, new BaseLocationAdapter.BaseLocationAdapterDelegate() {
@@ -744,8 +748,8 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.searchListView.setClipToPadding(false);
         this.searchListView.setVisibility(8);
         this.searchListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
-        ChatAttachAlert chatAttachAlert5 = this.parentAlert;
-        LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert5.isStoryLocationPicker, chatAttachAlert5.isBizLocationPicker) {
+        ChatAttachAlert chatAttachAlert6 = this.parentAlert;
+        LocationActivitySearchAdapter locationActivitySearchAdapter2 = new LocationActivitySearchAdapter(context, resourcesProvider, chatAttachAlert6.isStoryLocationPicker, chatAttachAlert6.isBizLocationPicker) {
             @Override
             public void notifyDataSetChanged() {
                 if (ChatAttachAlertLocationLayout.this.searchItem != null) {
@@ -778,7 +782,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         this.searchListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i8) {
-                this.f$0.lambda$new$19(chatActivity, resourcesProvider, view2, i8);
+                this.f$0.lambda$new$19(chatActivity2, resourcesProvider, view2, i8);
             }
         });
         updateEmptyView();
@@ -905,7 +909,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     public void lambda$new$6(ChatActivity chatActivity, final TLRPC.TL_messageMediaGeo tL_messageMediaGeo, Theme.ResourcesProvider resourcesProvider, final Long l) {
-        if (chatActivity.isInScheduleMode()) {
+        if (chatActivity != null && chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
@@ -924,7 +928,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     public void lambda$new$8(ChatActivity chatActivity, final Object obj, Theme.ResourcesProvider resourcesProvider, Long l) {
-        if (chatActivity.isInScheduleMode()) {
+        if (chatActivity != null && chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i, int i2) {
@@ -1076,7 +1080,7 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
         if (item == null || this.delegate == null) {
             return;
         }
-        if (chatActivity.isInScheduleMode()) {
+        if (chatActivity != null && chatActivity.isInScheduleMode()) {
             AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
                 @Override
                 public final void didSelectDate(boolean z, int i2, int i3) {

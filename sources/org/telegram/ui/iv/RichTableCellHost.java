@@ -1,6 +1,7 @@
 package org.telegram.ui.iv;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
@@ -16,14 +17,34 @@ public class RichTableCellHost extends FrameLayout {
         RichEditText richEditText = new RichEditText(context, resourcesProvider);
         this.editText = richEditText;
         richEditText.setTextSize(1, 16.0f);
-        richEditText.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.0f));
+        richEditText.setAllowNewlines(true);
+        richEditText.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(9.0f));
         addView(richEditText, LayoutHelper.createFrame(-1, -2, 51));
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.editText.getVisibility() == 0 && motionEvent.getActionMasked() != 3) {
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            boolean z = x >= ((float) this.editText.getLeft()) && x < ((float) this.editText.getRight());
+            boolean z2 = y < ((float) this.editText.getTop()) || y >= ((float) this.editText.getBottom());
+            if (z && z2 && this.editText.getHeight() > 0) {
+                float fMax = Math.max(0.0f, Math.min(y - this.editText.getTop(), this.editText.getHeight() - 1));
+                MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                motionEventObtain.setLocation(x - this.editText.getLeft(), fMax);
+                boolean zOnTouchEvent = this.editText.onTouchEvent(motionEventObtain);
+                motionEventObtain.recycle();
+                return zOnTouchEvent;
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     public void bind(TL_iv.pageTableCell pagetablecell) {
         this.cell = pagetablecell;
         applyAlignment();
-        this.editText.setTextSilently(TableModel.readPlainText(pagetablecell));
+        this.editText.setTextSilently(TableModel.readStyledText(pagetablecell));
     }
 
     public void refreshFromCell() {

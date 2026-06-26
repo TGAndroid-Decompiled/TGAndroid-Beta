@@ -3735,76 +3735,74 @@ public class StoriesController {
 
         public void lambda$saveCache$8(ArrayList arrayList, MessagesStorage messagesStorage, ArrayList arrayList2) {
             SQLitePreparedStatement sQLitePreparedStatement;
-            SQLiteDatabase database;
-            SQLitePreparedStatement sQLitePreparedStatementExecuteFast;
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} saveCache {" + StoriesController.storyItemMessageIds(arrayList) + "}");
-            SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = null;
+            SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
             try {
-                database = messagesStorage.getDatabase();
-                sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO profile_stories VALUES(?, ?, ?, ?, ?, ?)");
-            } catch (Throwable th) {
-                th = th;
+                SQLiteDatabase database = messagesStorage.getDatabase();
+                SQLitePreparedStatement sQLitePreparedStatementExecuteFast2 = database.executeFast("REPLACE INTO profile_stories VALUES(?, ?, ?, ?, ?, ?)");
+                try {
+                    database.executeFast(String.format(Locale.US, "DELETE FROM profile_stories_albums_links WHERE dialog_id = %d AND album_id = %d", Long.valueOf(this.dialogId), Integer.valueOf(this.albumId))).stepThis().dispose();
+                    sQLitePreparedStatementExecuteFast = database.executeFast("REPLACE INTO profile_stories_albums_links VALUES(?, ?, ?, ?)");
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        TL_stories.StoryItem storyItem = ((MessageObject) arrayList.get(i)).storyItem;
+                        if (storyItem != null) {
+                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
+                            storyItem.serializeToStream(nativeByteBuffer);
+                            sQLitePreparedStatementExecuteFast2.requery();
+                            sQLitePreparedStatementExecuteFast2.bindLong(1, this.dialogId);
+                            sQLitePreparedStatementExecuteFast2.bindInteger(2, storyItem.id);
+                            sQLitePreparedStatementExecuteFast2.bindByteBuffer(3, nativeByteBuffer);
+                            sQLitePreparedStatementExecuteFast2.bindInteger(4, this.type);
+                            sQLitePreparedStatementExecuteFast2.bindInteger(5, this.seenStories.contains(Integer.valueOf(storyItem.id)) ? 1 : 0);
+                            sQLitePreparedStatementExecuteFast2.bindInteger(6, arrayList2.indexOf(Integer.valueOf(storyItem.id)) + 1);
+                            sQLitePreparedStatementExecuteFast2.step();
+                            nativeByteBuffer.reuse();
+                            sQLitePreparedStatementExecuteFast.requery();
+                            sQLitePreparedStatementExecuteFast.bindLong(1, this.dialogId);
+                            sQLitePreparedStatementExecuteFast.bindInteger(2, this.albumId);
+                            sQLitePreparedStatementExecuteFast.bindInteger(3, storyItem.id);
+                            sQLitePreparedStatementExecuteFast.bindInteger(4, i);
+                            sQLitePreparedStatementExecuteFast.step();
+                        }
+                    }
+                    if (sQLitePreparedStatementExecuteFast2 != null) {
+                        sQLitePreparedStatementExecuteFast2.dispose();
+                    }
+                } catch (Throwable th) {
+                    th = th;
+                    sQLitePreparedStatement = sQLitePreparedStatementExecuteFast;
+                    sQLitePreparedStatementExecuteFast = sQLitePreparedStatementExecuteFast2;
+                    try {
+                        messagesStorage.checkSQLException(th);
+                        if (sQLitePreparedStatementExecuteFast != null) {
+                            sQLitePreparedStatementExecuteFast.dispose();
+                        }
+                        if (sQLitePreparedStatement != null) {
+                            sQLitePreparedStatementExecuteFast = sQLitePreparedStatement;
+                            sQLitePreparedStatementExecuteFast.dispose();
+                        }
+                        AndroidUtilities.runOnUIThread(new Runnable() {
+                            @Override
+                            public final void run() {
+                                this.f$0.lambda$saveCache$7();
+                            }
+                        });
+                    } catch (Throwable th2) {
+                        if (sQLitePreparedStatementExecuteFast != null) {
+                            sQLitePreparedStatementExecuteFast.dispose();
+                        }
+                        if (sQLitePreparedStatement != null) {
+                            sQLitePreparedStatement.dispose();
+                        }
+                        throw th2;
+                    }
+                }
+            } catch (Throwable th3) {
+                th = th3;
                 sQLitePreparedStatement = null;
             }
-            try {
-                database.executeFast(String.format(Locale.US, "DELETE FROM profile_stories_albums_links WHERE dialog_id = %d AND album_id = %d", Long.valueOf(this.dialogId), Integer.valueOf(this.albumId))).stepThis().dispose();
-                sQLitePreparedStatementExecuteFast2 = database.executeFast("REPLACE INTO profile_stories_albums_links VALUES(?, ?, ?, ?)");
-                for (int i = 0; i < arrayList.size(); i++) {
-                    TL_stories.StoryItem storyItem = ((MessageObject) arrayList.get(i)).storyItem;
-                    if (storyItem != null) {
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyItem.getObjectSize());
-                        storyItem.serializeToStream(nativeByteBuffer);
-                        sQLitePreparedStatementExecuteFast.requery();
-                        sQLitePreparedStatementExecuteFast.bindLong(1, this.dialogId);
-                        sQLitePreparedStatementExecuteFast.bindInteger(2, storyItem.id);
-                        sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
-                        sQLitePreparedStatementExecuteFast.bindInteger(4, this.type);
-                        sQLitePreparedStatementExecuteFast.bindInteger(5, this.seenStories.contains(Integer.valueOf(storyItem.id)) ? 1 : 0);
-                        sQLitePreparedStatementExecuteFast.bindInteger(6, arrayList2.indexOf(Integer.valueOf(storyItem.id)) + 1);
-                        sQLitePreparedStatementExecuteFast.step();
-                        nativeByteBuffer.reuse();
-                        sQLitePreparedStatementExecuteFast2.requery();
-                        sQLitePreparedStatementExecuteFast2.bindLong(1, this.dialogId);
-                        sQLitePreparedStatementExecuteFast2.bindInteger(2, this.albumId);
-                        sQLitePreparedStatementExecuteFast2.bindInteger(3, storyItem.id);
-                        sQLitePreparedStatementExecuteFast2.bindInteger(4, i);
-                        sQLitePreparedStatementExecuteFast2.step();
-                    }
-                }
-                if (sQLitePreparedStatementExecuteFast != null) {
-                    sQLitePreparedStatementExecuteFast.dispose();
-                }
-            } catch (Throwable th2) {
-                th = th2;
-                sQLitePreparedStatement = sQLitePreparedStatementExecuteFast2;
-                sQLitePreparedStatementExecuteFast2 = sQLitePreparedStatementExecuteFast;
-                try {
-                    messagesStorage.checkSQLException(th);
-                    if (sQLitePreparedStatementExecuteFast2 != null) {
-                        sQLitePreparedStatementExecuteFast2.dispose();
-                    }
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatementExecuteFast2 = sQLitePreparedStatement;
-                        sQLitePreparedStatementExecuteFast2.dispose();
-                    }
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            this.f$0.lambda$saveCache$7();
-                        }
-                    });
-                } catch (Throwable th3) {
-                    if (sQLitePreparedStatementExecuteFast2 != null) {
-                        sQLitePreparedStatementExecuteFast2.dispose();
-                    }
-                    if (sQLitePreparedStatement != null) {
-                        sQLitePreparedStatement.dispose();
-                    }
-                    throw th3;
-                }
-            }
-            if (sQLitePreparedStatementExecuteFast2 != null) {
-                sQLitePreparedStatementExecuteFast2.dispose();
+            if (sQLitePreparedStatementExecuteFast != null) {
+                sQLitePreparedStatementExecuteFast.dispose();
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -5356,7 +5354,7 @@ public class StoriesController {
     }
 
     public void checkUnsupportedStory(final long j, final int i) {
-        final String str = "227:" + j + ":" + i;
+        final String str = "228:" + j + ":" + i;
         if (this.requestingUnsupportedStories.contains(str) || this.unsupportedStoriesChecked.contains(str)) {
             return;
         }

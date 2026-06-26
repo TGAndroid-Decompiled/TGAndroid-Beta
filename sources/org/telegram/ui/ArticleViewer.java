@@ -90,8 +90,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -108,6 +108,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotGuardHelper;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.DownloadController;
@@ -565,6 +566,11 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         private int boundRight = -1;
         private int lastLineBoundRight = -1;
         public int emojiCacheType = 0;
+
+        @Override
+        public Rect getSelectionBounds() {
+            return TextSelectionHelper.TextLayoutBlock.CC.$default$getSelectionBounds(this);
+        }
 
         public DrawingText(IArticleViewer iArticleViewer) {
             this.parent = iArticleViewer;
@@ -4385,7 +4391,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             }
 
             @Override
-            public void onZoomStarted(MessageObject messageObject) {
+            public void onZoomStarted(MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 PageLayout pageLayout2 = ArticleViewer.this.pages[0];
                 if (pageLayout2 != null) {
                     pageLayout2.listView.cancelClickRunnables(true);
@@ -5613,7 +5619,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         return open(null, null, null, str, progress);
     }
 
-    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws Resources.NotFoundException, PackageManager.NameNotFoundException {
+    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, PackageManager.NameNotFoundException, SecurityException, IllegalArgumentException, InvocationTargetException {
         final TLRPC.WebPage webPage2;
         String strSubstring;
         boolean z;
@@ -6289,7 +6295,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
 
     public static void lambda$joinChannel$62(int i, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, TLRPC.Chat chat) {
         MessagesController.getInstance(i).putUsers(tL_chatInviteJoinResultWebView.users, false);
-        BotGuardHelper.getInstance(i).openGuardBotWebApp(-chat.id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.webview);
+        BotGuardHelper.getInstance(i).openGuardBotWebApp(-chat.id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
     }
 
     public static void lambda$joinChannel$64(int i, TLRPC.Chat chat) {
@@ -6469,11 +6475,36 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         public static boolean isVideo(TL_iv.RichMessage richMessage, TL_iv.PageBlock pageBlock) {
-            TLRPC.Document documentWithId;
-            if (!(pageBlock instanceof TL_iv.pageBlockVideo) || (documentWithId = getDocumentWithId(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) == null) {
+            String str;
+            if (!(pageBlock instanceof TL_iv.pageBlockVideo)) {
                 return false;
             }
-            return MessageObject.isVideoDocument(documentWithId);
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            TLRPC.Document documentWithId = getDocumentWithId(richMessage, pageblockvideo.video_id);
+            if (BuildVars.LOGS_ENABLED) {
+                StringBuilder sb = new StringBuilder();
+                if (documentWithId != null) {
+                    Iterator<TLRPC.DocumentAttribute> it = documentWithId.attributes.iterator();
+                    while (it.hasNext()) {
+                        sb.append(it.next().getClass().getSimpleName());
+                        sb.append(",");
+                    }
+                }
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("[richmedia] WebPageUtils.isVideo video_id=");
+                sb2.append(pageblockvideo.video_id);
+                if (documentWithId == null) {
+                    str = " doc=NOT_FOUND documents.size=" + richMessage.documents.size();
+                } else {
+                    str = " doc=" + documentWithId.id + " mime=" + documentWithId.mime_type + " attrs=[" + ((Object) sb) + "] isVideoDocument=" + MessageObject.isVideoDocument(documentWithId) + " isGifDocument=" + MessageObject.isGifDocument(documentWithId);
+                }
+                sb2.append(str);
+                FileLog.d(sb2.toString());
+            }
+            if (documentWithId != null) {
+                return MessageObject.isVideoDocument(documentWithId);
+            }
+            return false;
         }
 
         public static boolean isVideo(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
@@ -14734,7 +14765,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
     }
 
     @Override
-    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException, IOException {
+    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;
@@ -15158,7 +15189,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 }
 
                 @Override
-                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                     super.onLayout(z, i2, i3, i4, i5);
                     PageLayout.this.overrideProgress = -1.0f;
                 }
@@ -16050,7 +16081,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             super.onLayout(z, i, i2, i3, i4);
             int childCount = getChildCount();
             for (int i5 = 0; i5 < childCount; i5++) {
@@ -16181,7 +16212,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        public WindowView mo1341getWindowView() {
+        public WindowView mo1337getWindowView() {
             return this.windowView;
         }
 
@@ -16231,7 +16262,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             return !this.dismissing && !this.released && this.openProgress > 0.5f && (windowView = this.windowView) != null && windowView.isAttachedToWindow() && this.windowView.isVisible() && this.backProgress < 1.0f;
         }
 
-        public void attachInternal(BaseFragment baseFragment) throws Resources.NotFoundException {
+        public void attachInternal(BaseFragment baseFragment) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             this.released = false;
             this.fragment = baseFragment;
             this.resourcesProvider = baseFragment.getResourceProvider();
@@ -16262,7 +16293,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             ArticleViewer.activeSheets.add(ArticleViewer.this);
         }
 
-        public void show() throws Resources.NotFoundException {
+        public void show() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             if (this.dismissing) {
                 return;
             }
@@ -16576,7 +16607,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1341getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1337getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

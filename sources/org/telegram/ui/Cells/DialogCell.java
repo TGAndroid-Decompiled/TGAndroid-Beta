@@ -99,8 +99,9 @@ import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.community.CommunityArrowDrawable;
 
-public class DialogCell extends BaseCell implements StoriesListPlaceProvider.AvatarOverlaysView {
+public class DialogCell extends BaseCell implements StoriesListPlaceProvider.AvatarOverlaysView, Theme.Colorable {
     private int[] adaptiveEmojiColor;
     private ColorFilter[] adaptiveEmojiColorFilter;
     public int addForumHeightForTags;
@@ -147,6 +148,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int clockDrawLeft;
     public float collapseOffset;
     public boolean collapsed;
+    private CommunityArrowDrawable communityArrowDrawable;
+    private Drawable communityCardsDrawable;
     private float cornerProgress;
     private StaticLayout countAnimationInLayout;
     private boolean countAnimationIncrement;
@@ -186,6 +189,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean drawCheck1;
     private boolean drawCheck2;
     private boolean drawClock;
+    private boolean drawCommunityAvatar;
     private boolean drawCount;
     private boolean drawCount2;
     private boolean drawError;
@@ -231,10 +235,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public int heightThreeLines;
     public boolean inPreviewMode;
     private float innerProgress;
+    public boolean insideCommunityList;
     private BounceInterpolator interpolator;
     public boolean isDialogCell;
     public boolean isForChannelSubscriberCell;
     private boolean isForum;
+    public boolean isHiddenInCommunity;
     public boolean isMonoForumTopicDialog;
     public boolean isSavedDialog;
     public boolean isSavedDialogCell;
@@ -437,11 +443,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return false;
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
     public void setMoving(boolean z) {
         this.moving = z;
     }
@@ -527,6 +528,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.visibleOnScreen = z;
         if (z) {
             invalidate();
+        }
+    }
+
+    @Override
+    public void updateColors() {
+        Drawable drawable = this.communityCardsDrawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         }
     }
 
@@ -662,7 +671,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.parentFragment = dialogsActivity;
         Theme.createDialogsResources(context);
         this.drawMonoforumAvatar = false;
-        this.avatarImage.setRoundRadius(AndroidUtilities.dp(28.0f));
+        this.drawCommunityAvatar = false;
+        this.avatarImage.setRoundRadius(AndroidUtilities.dp(26.0f));
         while (true) {
             ImageReceiver[] imageReceiverArr = this.thumbImage;
             if (i2 < imageReceiverArr.length) {
@@ -698,6 +708,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             getParent().requestLayout();
         }
         super.requestLayout();
+    }
+
+    public void setCustomMessageWithoutRebuild(String str) {
+        this.customMessage = str;
     }
 
     public void setCustomMessage(String str) {
@@ -1368,7 +1382,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return update(i, true);
     }
 
-    public boolean update(int r45, boolean r46) {
+    public boolean update(int r44, boolean r45) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.update(int, boolean):boolean");
     }
 
@@ -2455,6 +2469,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     public boolean isDialogFolder() {
         return this.currentDialogFolderId > 0;
+    }
+
+    public boolean isDialogCommunity() {
+        return ChatObject.isCommunity(this.chat);
     }
 
     public MessageObject getMessage() {

@@ -282,6 +282,14 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return uItem;
     }
 
+    public static UItem asRadio2(int i, CharSequence charSequence, CharSequence charSequence2) {
+        UItem uItem = new UItem(44, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.textValue = charSequence2;
+        return uItem;
+    }
+
     public static UItem asButtonCheck(int i, CharSequence charSequence, CharSequence charSequence2) {
         UItem uItem = new UItem(5, false);
         uItem.id = i;
@@ -444,6 +452,15 @@ public class UItem extends AdapterWithDiffUtils.Item {
         UItem uItem = new UItem(39, false);
         uItem.id = i;
         uItem.text = charSequence;
+        uItem.intValue = 1;
+        return uItem;
+    }
+
+    public static UItem asSwitchNoIcon(int i, CharSequence charSequence) {
+        UItem uItem = new UItem(39, false);
+        uItem.id = i;
+        uItem.text = charSequence;
+        uItem.intValue = 0;
         return uItem;
     }
 

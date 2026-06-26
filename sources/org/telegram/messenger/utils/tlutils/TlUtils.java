@@ -22,6 +22,9 @@ public abstract class TlUtils {
         if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
             return ((TLRPC.TL_messages_sendMedia) tLObject).peer;
         }
+        if (tLObject instanceof TLRPC.TL_ephemeral_sendMessage) {
+            return ((TLRPC.TL_ephemeral_sendMessage) tLObject).peer;
+        }
         if (tLObject instanceof TLRPC.TL_messages_sendInlineBotResult) {
             return ((TLRPC.TL_messages_sendInlineBotResult) tLObject).peer;
         }
@@ -41,6 +44,9 @@ public abstract class TlUtils {
         if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
             return ((TLRPC.TL_messages_sendMedia) tLObject).reply_to;
         }
+        if (tLObject instanceof TLRPC.TL_ephemeral_sendMessage) {
+            return ((TLRPC.TL_ephemeral_sendMessage) tLObject).reply_to;
+        }
         if (tLObject instanceof TLRPC.TL_messages_sendInlineBotResult) {
             return ((TLRPC.TL_messages_sendInlineBotResult) tLObject).reply_to;
         }
@@ -59,6 +65,9 @@ public abstract class TlUtils {
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
             return ((TLRPC.TL_messages_sendMedia) tLObject).message;
+        }
+        if (tLObject instanceof TLRPC.TL_ephemeral_sendMessage) {
+            return ((TLRPC.TL_ephemeral_sendMessage) tLObject).message;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMultiMedia) {
             Iterator<TLRPC.TL_inputSingleMedia> it = ((TLRPC.TL_messages_sendMultiMedia) tLObject).multi_media.iterator();
@@ -83,6 +92,12 @@ public abstract class TlUtils {
             TLRPC.TL_messages_sendMedia tL_messages_sendMedia = (TLRPC.TL_messages_sendMedia) tLObject;
             tL_messages_sendMedia.reply_to = inputReplyTo;
             tL_messages_sendMedia.flags |= 1;
+            return;
+        }
+        if (tLObject instanceof TLRPC.TL_ephemeral_sendMessage) {
+            TLRPC.TL_ephemeral_sendMessage tL_ephemeral_sendMessage = (TLRPC.TL_ephemeral_sendMessage) tLObject;
+            tL_ephemeral_sendMessage.reply_to = inputReplyTo;
+            tL_ephemeral_sendMessage.flags |= 32;
             return;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendInlineBotResult) {
@@ -129,6 +144,9 @@ public abstract class TlUtils {
         }
         if (tLObject instanceof TLRPC.TL_messages_sendMedia) {
             return ((TLRPC.TL_messages_sendMedia) tLObject).random_id;
+        }
+        if (tLObject instanceof TLRPC.TL_ephemeral_sendMessage) {
+            return ((TLRPC.TL_ephemeral_sendMessage) tLObject).random_id;
         }
         if (tLObject instanceof TLRPC.TL_messages_sendInlineBotResult) {
             return ((TLRPC.TL_messages_sendInlineBotResult) tLObject).random_id;

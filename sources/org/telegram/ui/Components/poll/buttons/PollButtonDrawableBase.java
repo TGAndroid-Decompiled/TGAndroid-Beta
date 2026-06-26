@@ -4,6 +4,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.StateSet;
+import java.lang.reflect.InvocationTargetException;
 import org.telegram.ui.ActionBar.Theme;
 
 public abstract class PollButtonDrawableBase extends Drawable {
@@ -41,7 +42,7 @@ public abstract class PollButtonDrawableBase extends Drawable {
         return drawable == this || drawable == this.selectorDrawable;
     }
 
-    public final void setSelectorsColor(int i) {
+    public final void setSelectorsColor(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         if (this.selectorDrawableColor != i) {
             onSelectorColorChanged(i);
             this.selectorDrawableColor = i;
@@ -75,7 +76,7 @@ public abstract class PollButtonDrawableBase extends Drawable {
         return this.alpha;
     }
 
-    protected void onSelectorColorChanged(int i) {
+    protected void onSelectorColorChanged(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         Theme.setSelectorDrawableColor(this.selectorDrawable, i, false);
     }
 }

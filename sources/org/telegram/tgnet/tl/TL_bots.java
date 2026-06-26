@@ -272,7 +272,7 @@ public class TL_bots {
 
     public static abstract class BotInfo extends TLObject {
         public botAppSettings app_settings;
-        public ArrayList<TLRPC.TL_botCommand> commands = new ArrayList<>();
+        public ArrayList<TLRPC.BotCommand> commands = new ArrayList<>();
         public String description;
         public TLRPC.Document description_document;
         public TLRPC.Photo description_photo;
@@ -285,40 +285,32 @@ public class TL_bots {
         public int version;
 
         public static BotInfo TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            TLObject tL_botInfo_layer192;
+            return (BotInfo) TLObject.TLdeserialize(BotInfo.class, fromConstructor(i), inputSerializedData, i, z);
+        }
+
+        private static BotInfo fromConstructor(int i) {
             switch (i) {
                 case -2109505932:
-                    tL_botInfo_layer192 = new TL_botInfo_layer192();
-                    break;
+                    return new TL_botInfo_layer192();
                 case -1892676777:
-                    tL_botInfo_layer192 = new TL_botInfo_layer185();
-                    break;
+                    return new TL_botInfo_layer185();
                 case -1729618630:
-                    tL_botInfo_layer192 = new TL_botInfo_layer131();
-                    break;
+                    return new TL_botInfo_layer131();
                 case -1154598962:
-                    tL_botInfo_layer192 = new TL_botInfoEmpty_layer48();
-                    break;
+                    return new TL_botInfoEmpty_layer48();
                 case -468280483:
-                    tL_botInfo_layer192 = new TL_botInfo_layer140();
-                    break;
+                    return new TL_botInfo_layer140();
                 case 164583517:
-                    tL_botInfo_layer192 = new TL_botInfo_layer48();
-                    break;
+                    return new TL_botInfo_layer48();
                 case 460632885:
-                    tL_botInfo_layer192 = new TL_botInfo_layer139();
-                    break;
+                    return new TL_botInfo_layer139();
                 case 912290611:
-                    tL_botInfo_layer192 = new TL_botInfo_layer195();
-                    break;
+                    return new TL_botInfo_layer195();
                 case 1300890265:
-                    tL_botInfo_layer192 = new TL_botInfo();
-                    break;
+                    return new TL_botInfo();
                 default:
-                    tL_botInfo_layer192 = null;
-                    break;
+                    return null;
             }
-            return (BotInfo) TLObject.TLdeserialize(BotInfo.class, tL_botInfo_layer192, inputSerializedData, i, z);
         }
     }
 

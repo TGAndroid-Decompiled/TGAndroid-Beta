@@ -96,6 +96,14 @@ public final class FloatingToolbar {
     private Utilities.Callback0Return quoteShowCallback;
     private final Theme.ResourcesProvider resourcesProvider;
 
+    public interface StyleDelegate {
+        void addStyle(int i, int i2, int i3);
+
+        int getCurrentStyle(int i, int i2);
+
+        void removeStyle(int i, int i2, int i3);
+    }
+
     public static boolean lambda$static$0(MenuItem menuItem) {
         return false;
     }

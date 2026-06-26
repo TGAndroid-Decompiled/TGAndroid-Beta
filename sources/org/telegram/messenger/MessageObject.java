@@ -90,6 +90,8 @@ public class MessageObject {
     public static final int ENTITIES_ONLY_HASHTAGS = 1;
     private static final int LINES_PER_BLOCK = 10;
     private static final int LINES_PER_BLOCK_WITH_EMOJI = 5;
+    private static final int MESSAGE_ID_EPHEMERAL_BITS_MASK = 1610612736;
+    private static final int MESSAGE_ID_RESERVED_BITS_MASK = 1879048192;
     public static final int MESSAGE_SEND_STATE_EDITING = 3;
     public static final int MESSAGE_SEND_STATE_SENDING = 1;
     public static final int MESSAGE_SEND_STATE_SEND_ERROR = 2;
@@ -106,6 +108,7 @@ public class MessageObject {
     public static final int TYPE_ACTION_WALLPAPER = 22;
     public static final int TYPE_ANIMATED_STICKER = 15;
     public static final int TYPE_ARTICLE = 36;
+    public static final int TYPE_COMMUNITY_CHANGED = 37;
     public static final int TYPE_CONTACT = 12;
     public static final int TYPE_DATE = 10;
     public static final int TYPE_EMOJIS = 19;
@@ -380,6 +383,14 @@ public class MessageObject {
     }
 
     public static void addPhoneLinks(CharSequence charSequence) {
+    }
+
+    public static int ephemeralMessageIdPack(int i) {
+        return (i & (-1879048193)) | 1610612736;
+    }
+
+    public static boolean isEphemeralMessageId(int i) {
+        return (i & 1879048192) == 1610612736;
     }
 
     public void checkForScam() {
@@ -1103,7 +1114,7 @@ public class MessageObject {
             }
         }
 
-        private static String capitalizeLanguage(String str) {
+        public static String capitalizeLanguage(String str) {
             if (str == null) {
                 return null;
             }
@@ -1114,29 +1125,14 @@ public class MessageObject {
                     return "ActionScript";
                 case "aspnet":
                     return "ASP.NET";
+                case "bbcode":
+                    return "BBCode";
                 case "csharp":
                 case "cs":
                     return "C#";
-                case "docker":
-                case "dockerfile":
-                case "kotlin":
-                case "pascal":
-                case "arduino":
-                case "c":
-                case "go":
-                case "lua":
-                case "dart":
-                case "fift":
-                case "java":
-                case "rust":
-                case "swift":
-                    return capitalizeFirst(str);
-                case "python":
-                case "py":
-                    return "Python";
-                case "typescript":
-                case "ts":
-                    return "TypeScript";
+                case "fsharp":
+                    return "F#";
+                case "matlab":
                 case "r":
                 case "tl":
                 case "asm":
@@ -1145,6 +1141,8 @@ public class MessageObject {
                 case "ini":
                 case "jsx":
                 case "php":
+                case "qml":
+                case "sql":
                 case "tsx":
                 case "xml":
                 case "yml":
@@ -1155,12 +1153,20 @@ public class MessageObject {
                 case "json":
                 case "less":
                 case "nasm":
+                case "sass":
                 case "scss":
                 case "wasm":
                 case "yaml":
                 case "cobol":
                 case "json5":
+                case "jsonp":
                     return str.toUpperCase();
+                case "python":
+                case "py":
+                    return "Python";
+                case "typescript":
+                case "ts":
+                    return "TypeScript";
                 case "js":
                 case "javascript":
                     return "JavaScript";
@@ -1180,10 +1186,16 @@ public class MessageObject {
                 case "objc":
                 case "objectivec":
                     return "Objective-C";
+                case "vbnet":
+                    return "VB.NET";
                 case "autohotkey":
                     return "AutoHotKey";
+                case "visual-basic":
+                    return "Visual Basic";
+                case "gdscript":
+                    return "GDScript";
                 default:
-                    return str;
+                    return capitalizeFirst(str);
             }
         }
 
@@ -1931,59 +1943,8 @@ public class MessageObject {
         return updateTranslation(false);
     }
 
-    public boolean updateTranslation(boolean z) {
-        MessageObject messageObject = this.replyMessageObject;
-        boolean z2 = (messageObject == null || messageObject == this || !messageObject.updateTranslation(z)) ? false : true;
-        TranslateController translateController = MessagesController.getInstance(this.currentAccount).getTranslateController();
-        TLRPC.Message message = this.messageOwner;
-        TLRPC.TL_textWithEntities tL_textWithEntities = null;
-        TLRPC.TL_textWithEntities tL_textWithEntities2 = message != null ? message.voiceTranscriptionOpen ? message.translatedVoiceTranscription : message.translatedText : null;
-        TLRPC.TL_textWithEntities tL_textWithEntities3 = (message == null || !message.summarizedOpen) ? null : message.summaryText;
-        if (message != null && message.summarizedOpen) {
-            tL_textWithEntities = message.translatedSummaryText;
-        }
-        if (tL_textWithEntities != null && message != null && message.summarizedOpen && TranslateController.isSummarizable(this) && TranslateController.isTranslatable(this) && translateController.isTranslatingDialog(getDialogId()) && !translateController.isTranslateDialogHidden(getDialogId()) && TextUtils.equals(translateController.getDialogTranslateTo(getDialogId()), this.messageOwner.translatedSummaryLanguage)) {
-            if (this.summarized && this.translated) {
-                return z2;
-            }
-            this.summarized = true;
-            this.translated = true;
-            applyNewText(tL_textWithEntities.text);
-            generateCaption();
-            return true;
-        }
-        TLRPC.Message message2 = this.messageOwner;
-        if (message2 != null && message2.summarizedOpen && TranslateController.isSummarizable(this) && tL_textWithEntities3 != null) {
-            if (this.summarized && !this.translated) {
-                return z2;
-            }
-            this.summarized = true;
-            this.translated = false;
-            applyNewText(tL_textWithEntities3.text);
-            generateCaption();
-            return true;
-        }
-        if (this.messageOwner != null && TranslateController.isTranslatable(this) && translateController.isTranslatingDialog(getDialogId()) && !translateController.isTranslateDialogHidden(getDialogId()) && ((tL_textWithEntities2 != null || this.messageOwner.translatedPoll != null) && TextUtils.equals(translateController.getDialogTranslateTo(getDialogId()), this.messageOwner.translatedToLanguage))) {
-            if (this.translated && !this.summarized) {
-                return z2;
-            }
-            this.translated = true;
-            this.summarized = false;
-            if (tL_textWithEntities2 != null) {
-                applyNewText(tL_textWithEntities2.text);
-                generateCaption();
-            }
-            return true;
-        }
-        TLRPC.Message message3 = this.messageOwner;
-        if (message3 == null || !(z || this.translated || this.summarized)) {
-            return z2;
-        }
-        this.translated = false;
-        this.summarized = false;
-        applyNewText(message3.message);
-        generateCaption();
-        return true;
+    public boolean updateTranslation(boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateTranslation(boolean):boolean");
     }
 
     public void applyNewText() {
@@ -4564,32 +4525,45 @@ public class MessageObject {
     }
 
     public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z) {
+        return makeStaticLayout(charSequence, textPaint, i, f, f2, z, Layout.Alignment.ALIGN_NORMAL);
+    }
+
+    public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z, Layout.Alignment alignment) {
         int i2 = i <= 0 ? 1 : i;
         int i3 = Build.VERSION.SDK_INT;
         if (i3 >= 24) {
-            StaticLayout.Builder alignment = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(alignment);
             if (z) {
-                alignment.setIncludePad(false);
+                alignment2.setIncludePad(false);
                 if (i3 >= 28) {
-                    alignment.setUseLineSpacingFromFallbacks(false);
+                    alignment2.setUseLineSpacingFromFallbacks(false);
                 }
             }
-            StaticLayout staticLayoutBuild = alignment.build();
+            StaticLayout staticLayoutBuild = alignment2.build();
             for (int i4 = 0; i4 < staticLayoutBuild.getLineCount(); i4++) {
                 if (staticLayoutBuild.getLineRight(i4) > i2) {
-                    StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                    StaticLayout.Builder alignment3 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(alignment);
                     if (z) {
-                        alignment2.setIncludePad(false);
+                        alignment3.setIncludePad(false);
                         if (Build.VERSION.SDK_INT >= 28) {
-                            alignment2.setUseLineSpacingFromFallbacks(false);
+                            alignment3.setUseLineSpacingFromFallbacks(false);
                         }
                     }
-                    return alignment2.build();
+                    return alignment3.build();
                 }
             }
             return staticLayoutBuild;
         }
-        return new StaticLayout(charSequence, textPaint, i2, Layout.Alignment.ALIGN_NORMAL, f, f2, false);
+        return new StaticLayout(charSequence, textPaint, i2, alignment, f, f2, false);
+    }
+
+    public TL_iv.RichMessage getDisplayRichMessage() {
+        TL_iv.RichMessage richMessage;
+        TLRPC.Message message = this.messageOwner;
+        if (message == null) {
+            return null;
+        }
+        return (!this.translated || (richMessage = message.translatedRichMessage) == null) ? message.rich_message : richMessage;
     }
 
     public void generateLayout(org.telegram.tgnet.TLRPC.User r35) {
@@ -6762,7 +6736,7 @@ public class MessageObject {
     }
 
     public boolean canEditMessage(TLRPC.Chat chat) {
-        return canEditMessage(this.currentAccount, this.messageOwner, chat, this.scheduled);
+        return !isEphemeral() && canEditMessage(this.currentAccount, this.messageOwner, chat, this.scheduled);
     }
 
     public boolean canEditMessageScheduleTime(TLRPC.Chat chat) {
@@ -6771,17 +6745,22 @@ public class MessageObject {
 
     public boolean canForwardMessage() {
         int i;
-        return (isQuickReply() || (i = this.type) == 30 || i == 31 || i == 32 || i == 33 || i == 35 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
+        return (isQuickReply() || isEphemeral() || (i = this.type) == 30 || i == 31 || i == 32 || i == 33 || i == 35 || (this.messageOwner instanceof TLRPC.TL_message_secret) || needDrawBluredPreview() || isLiveLocation() || this.type == 16 || isSponsored() || this.messageOwner.noforwards) ? false : true;
     }
 
     public boolean canEditMedia() {
-        if (isSecretMedia()) {
-            return false;
+        if (!isSecretMedia() && !isEphemeral()) {
+            if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaPhoto) {
+                return true;
+            }
+            if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaDocument) {
+                return (isVoice() || isSticker() || isAnimatedSticker() || isRoundVideo()) ? false : true;
+            }
+            if (isMediaEmpty()) {
+                return true;
+            }
         }
-        if (getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaPhoto) {
-            return true;
-        }
-        return getMedia(this.messageOwner) instanceof TLRPC.TL_messageMediaDocument ? (isVoice() || isSticker() || isAnimatedSticker() || isRoundVideo()) ? false : true : isMediaEmpty();
+        return false;
     }
 
     public boolean canEditMessageAnytime(TLRPC.Chat chat) {
@@ -6834,50 +6813,49 @@ public class MessageObject {
         TLRPC.TL_chatAdminRights tL_chatAdminRights2;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
         TLRPC.TL_chatAdminRights tL_chatAdminRights3;
-        if (message != null && message.rich_message != null) {
-            return false;
-        }
         if (z && message.date < ConnectionsManager.getInstance(i).getCurrentTime() - 60) {
             return false;
         }
-        if (chat != null && ((chat.left || chat.kicked) && (!chat.megagroup || !chat.has_link))) {
-            return false;
-        }
-        TLRPC.MessageMedia media = getMedia(message);
-        if (message != null && message.peer_id != null && ((media == null || (!isRoundVideoDocument(media.document) && !isStickerDocument(media.document) && !isAnimatedStickerDocument(media.document, true) && !isLocationMessage(message))) && (((messageAction = message.action) == null || (messageAction instanceof TLRPC.TL_messageActionEmpty)) && !isForwardedMessage(message) && message.via_bot_id == 0 && message.id >= 0 && !message.paid_suggested_post_stars && !message.paid_suggested_post_ton))) {
-            TLRPC.Peer peer = message.from_id;
-            if (peer instanceof TLRPC.TL_peerUser) {
-                long j = peer.user_id;
-                if (j == message.peer_id.user_id && j == UserConfig.getInstance(i).getClientUserId() && !isLiveLocationMessage(message) && !(media instanceof TLRPC.TL_messageMediaContact)) {
-                    return true;
-                }
-            }
-            if (chat == null && message.peer_id.channel_id != 0 && (chat = MessagesController.getInstance(i).getChat(Long.valueOf(message.peer_id.channel_id))) == null) {
-                return false;
-            }
-            if (media != null && !(media instanceof TLRPC.TL_messageMediaEmpty) && !(media instanceof TLRPC.TL_messageMediaPhoto) && !(media instanceof TLRPC.TL_messageMediaDocument) && !(media instanceof TLRPC.TL_messageMediaWebPage) && !(media instanceof TLRPC.TL_messageMediaPaidMedia) && !(media instanceof TLRPC.TL_messageMediaToDo)) {
-                return false;
-            }
-            if (ChatObject.isChannel(chat) && !chat.megagroup && (chat.creator || ((tL_chatAdminRights3 = chat.admin_rights) != null && tL_chatAdminRights3.edit_messages))) {
+        if ((chat == null || ((!chat.left && !chat.kicked) || (chat.megagroup && chat.has_link))) && message != null && message.peer_id != null && (((messageAction = message.action) == null || (messageAction instanceof TLRPC.TL_messageActionEmpty)) && !isForwardedMessage(message) && message.via_bot_id == 0 && message.id >= 0)) {
+            if (message.rich_message != null) {
                 return true;
             }
-            if (message.out && chat != null && chat.megagroup && (chat.creator || (((tL_chatAdminRights2 = chat.admin_rights) != null && tL_chatAdminRights2.pin_messages) || ((tL_chatBannedRights = chat.default_banned_rights) != null && !tL_chatBannedRights.pin_messages)))) {
-                return true;
-            }
-            if (!z && Math.abs(message.date - ConnectionsManager.getInstance(i).getCurrentTime()) > MessagesController.getInstance(i).maxEditTime) {
-                return false;
-            }
-            if (message.peer_id.channel_id == 0) {
-                if (!message.out) {
-                    TLRPC.Peer peer2 = message.from_id;
-                    if (!(peer2 instanceof TLRPC.TL_peerUser) || peer2.user_id != UserConfig.getInstance(i).getClientUserId()) {
-                        return false;
+            TLRPC.MessageMedia media = getMedia(message);
+            if ((media == null || (!isRoundVideoDocument(media.document) && !isStickerDocument(media.document) && !isAnimatedStickerDocument(media.document, true) && !isLocationMessage(message))) && !message.paid_suggested_post_stars && !message.paid_suggested_post_ton) {
+                TLRPC.Peer peer = message.from_id;
+                if (peer instanceof TLRPC.TL_peerUser) {
+                    long j = peer.user_id;
+                    if (j == message.peer_id.user_id && j == UserConfig.getInstance(i).getClientUserId() && !isLiveLocationMessage(message) && !(media instanceof TLRPC.TL_messageMediaContact)) {
+                        return true;
                     }
                 }
-                return (media instanceof TLRPC.TL_messageMediaPhoto) || !(!(media instanceof TLRPC.TL_messageMediaDocument) || isStickerMessage(message) || isAnimatedStickerMessage(message)) || (media instanceof TLRPC.TL_messageMediaEmpty) || (media instanceof TLRPC.TL_messageMediaWebPage) || (media instanceof TLRPC.TL_messageMediaPaidMedia) || (media instanceof TLRPC.TL_messageMediaToDo) || media == null;
-            }
-            if (((chat != null && chat.megagroup && message.out) || (chat != null && !chat.megagroup && ((chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && (tL_chatAdminRights.edit_messages || (message.out && tL_chatAdminRights.post_messages)))) && message.post))) && ((media instanceof TLRPC.TL_messageMediaPhoto) || (((media instanceof TLRPC.TL_messageMediaDocument) && !isStickerMessage(message) && !isAnimatedStickerMessage(message)) || (media instanceof TLRPC.TL_messageMediaEmpty) || (media instanceof TLRPC.TL_messageMediaWebPage) || (media instanceof TLRPC.TL_messageMediaPaidMedia) || (media instanceof TLRPC.TL_messageMediaToDo) || media == null))) {
-                return true;
+                if (chat == null && message.peer_id.channel_id != 0 && (chat = MessagesController.getInstance(i).getChat(Long.valueOf(message.peer_id.channel_id))) == null) {
+                    return false;
+                }
+                if (media != null && !(media instanceof TLRPC.TL_messageMediaEmpty) && !(media instanceof TLRPC.TL_messageMediaPhoto) && !(media instanceof TLRPC.TL_messageMediaDocument) && !(media instanceof TLRPC.TL_messageMediaWebPage) && !(media instanceof TLRPC.TL_messageMediaPaidMedia) && !(media instanceof TLRPC.TL_messageMediaToDo)) {
+                    return false;
+                }
+                if (ChatObject.isChannel(chat) && !chat.megagroup && (chat.creator || ((tL_chatAdminRights3 = chat.admin_rights) != null && tL_chatAdminRights3.edit_messages))) {
+                    return true;
+                }
+                if (message.out && chat != null && chat.megagroup && (chat.creator || (((tL_chatAdminRights2 = chat.admin_rights) != null && tL_chatAdminRights2.pin_messages) || ((tL_chatBannedRights = chat.default_banned_rights) != null && !tL_chatBannedRights.pin_messages)))) {
+                    return true;
+                }
+                if (!z && Math.abs(message.date - ConnectionsManager.getInstance(i).getCurrentTime()) > MessagesController.getInstance(i).maxEditTime) {
+                    return false;
+                }
+                if (message.peer_id.channel_id == 0) {
+                    if (!message.out) {
+                        TLRPC.Peer peer2 = message.from_id;
+                        if (!(peer2 instanceof TLRPC.TL_peerUser) || peer2.user_id != UserConfig.getInstance(i).getClientUserId()) {
+                            return false;
+                        }
+                    }
+                    return (media instanceof TLRPC.TL_messageMediaPhoto) || !(!(media instanceof TLRPC.TL_messageMediaDocument) || isStickerMessage(message) || isAnimatedStickerMessage(message)) || (media instanceof TLRPC.TL_messageMediaEmpty) || (media instanceof TLRPC.TL_messageMediaWebPage) || (media instanceof TLRPC.TL_messageMediaPaidMedia) || (media instanceof TLRPC.TL_messageMediaToDo) || media == null;
+                }
+                if (((chat != null && chat.megagroup && message.out) || (chat != null && !chat.megagroup && ((chat.creator || ((tL_chatAdminRights = chat.admin_rights) != null && (tL_chatAdminRights.edit_messages || (message.out && tL_chatAdminRights.post_messages)))) && message.post))) && ((media instanceof TLRPC.TL_messageMediaPhoto) || (((media instanceof TLRPC.TL_messageMediaDocument) && !isStickerMessage(message) && !isAnimatedStickerMessage(message)) || (media instanceof TLRPC.TL_messageMediaEmpty) || (media instanceof TLRPC.TL_messageMediaWebPage) || (media instanceof TLRPC.TL_messageMediaPaidMedia) || (media instanceof TLRPC.TL_messageMediaToDo) || media == null))) {
+                    return true;
+                }
             }
         }
         return false;
@@ -6885,7 +6863,7 @@ public class MessageObject {
 
     public boolean canDeleteMessage(boolean z, TLRPC.Chat chat) {
         TLRPC.Message message;
-        return (isStory() && (message = this.messageOwner) != null && message.dialog_id == UserConfig.getInstance(this.currentAccount).getClientUserId()) || (this.eventId == 0 && this.sponsoredId == null && canDeleteMessage(this.currentAccount, z, this.messageOwner, chat));
+        return (isStory() && (message = this.messageOwner) != null && message.dialog_id == UserConfig.getInstance(this.currentAccount).getClientUserId()) || (this.eventId == 0 && this.sponsoredId == null && canDeleteMessage(this.currentAccount, z, this.messageOwner, chat)) || isEphemeral();
     }
 
     public static boolean canDeleteMessage(int i, boolean z, TLRPC.Message message, TLRPC.Chat chat) {
@@ -7426,7 +7404,7 @@ public class MessageObject {
     }
 
     public boolean isReactionsAvailable() {
-        return (isEditing() || isSponsored() || !isSent() || isExpiredStory() || !canSetReaction()) ? false : true;
+        return (isEditing() || isSponsored() || !isSent() || isEphemeral() || isExpiredStory() || !canSetReaction()) ? false : true;
     }
 
     public boolean isPaidReactionChosen() {
@@ -8507,6 +8485,33 @@ public class MessageObject {
             return messageCaption;
         }
         return null;
+    }
+
+    public boolean isEphemeral() {
+        return isEphemeral(this.messageOwner);
+    }
+
+    public int getEphemeralId() {
+        if (isEphemeral()) {
+            return ephemeralMessageIdUnpack(getId());
+        }
+        return 0;
+    }
+
+    public long getEphemeralReceiverBotId() {
+        TLRPC.Message message = this.messageOwner;
+        if (message != null) {
+            return message.ephemeralReceiverBotId;
+        }
+        return 0L;
+    }
+
+    public static boolean isEphemeral(TLRPC.Message message) {
+        return message != null && (isEphemeralMessageId(message.id) || message.ephemeralReceiverBotId != 0);
+    }
+
+    public static int ephemeralMessageIdUnpack(int i) {
+        return isEphemeralMessageId(i) ? i & (-1879048193) : i;
     }
 
     public boolean needResendWhenEdit() {

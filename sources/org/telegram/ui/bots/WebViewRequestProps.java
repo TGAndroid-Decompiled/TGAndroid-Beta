@@ -19,6 +19,7 @@ public class WebViewRequestProps {
     public boolean fullscreen;
     public long monoforumTopicId;
     public long peerId;
+    public long queryId;
     public int replyToMsgId;
     public TLObject response;
     public long responseTime;

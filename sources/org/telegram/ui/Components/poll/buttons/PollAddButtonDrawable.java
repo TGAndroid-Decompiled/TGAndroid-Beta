@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import java.lang.reflect.InvocationTargetException;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -32,7 +33,7 @@ public class PollAddButtonDrawable extends PollButtonDrawableBase implements Fac
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
 
-    public PollAddButtonDrawable(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public PollAddButtonDrawable(Context context, Theme.ResourcesProvider resourcesProvider) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         super(resourcesProvider);
         this.animatorIsEnabled = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 320L);
         this.pressedState = new int[]{16842910, 16842919};

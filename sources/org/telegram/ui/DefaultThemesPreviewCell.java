@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -51,7 +52,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     int themeIndex;
     private Boolean wasPortrait;
 
-    public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) {
+    public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         LinearLayoutManager linearLayoutManager;
         super(context);
         this.layoutManager = null;
@@ -207,7 +208,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         }
 
         @Override
-        public void onClick(android.view.View r14) throws java.io.IOException {
+        public void onClick(android.view.View r14) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DefaultThemesPreviewCell.AnonymousClass2.onClick(android.view.View):void");
         }
 
@@ -399,7 +400,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         this.adapter.setSelectedItem(this.selectedPosition);
     }
 
-    public void updateColors() {
+    public void updateColors() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         int i = this.currentType;
         if (i == 0 || i == -1) {
             RLottieDrawable rLottieDrawable = this.darkThemeDrawable;
@@ -422,7 +423,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     }
 
     @Override
-    public void setBackgroundColor(int i) {
+    public void setBackgroundColor(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         super.setBackgroundColor(i);
         updateColors();
     }

@@ -10,11 +10,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
+import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.iv.RichEditor;
 
 public class UniversalRecyclerView extends RecyclerListView {
     public final UniversalAdapter adapter;
@@ -22,9 +24,27 @@ public class UniversalRecyclerView extends RecyclerListView {
     public ItemTouchHelper itemTouchHelper;
     public LinearLayoutManager layoutManager;
     private boolean reorderingAllowed;
+    private boolean reorderingLongPressEnabled;
     private boolean reorderingOnOtherAxis;
+    private RecyclerView.ViewHolder reorderingViewHolder;
+
+    protected boolean isReorderRemoving() {
+        return false;
+    }
 
     protected void onLayoutUpdate() {
+    }
+
+    protected void onReorderEnd(RecyclerView.ViewHolder viewHolder) {
+    }
+
+    protected void onReorderMoved(RecyclerView.ViewHolder viewHolder) {
+    }
+
+    protected void onReorderRemove(RecyclerView.ViewHolder viewHolder) {
+    }
+
+    protected void onReorderStart(RecyclerView.ViewHolder viewHolder) {
     }
 
     protected void swappedElements() {
@@ -48,6 +68,7 @@ public class UniversalRecyclerView extends RecyclerListView {
 
     public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, final Utilities.Callback5 callback5, final Utilities.Callback5Return callback5Return, Theme.ResourcesProvider resourcesProvider, int i3, int i4) {
         super(context, resourcesProvider);
+        this.reorderingLongPressEnabled = true;
         boolean z2 = false;
         if (i3 == -1) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, i4, z2) {
@@ -239,6 +260,10 @@ public class UniversalRecyclerView extends RecyclerListView {
         this.adapter.listenReorder(callback2);
     }
 
+    public void setReorderLongPressEnabled(boolean z) {
+        this.reorderingLongPressEnabled = z;
+    }
+
     public boolean isReorderAllowed() {
         return this.reorderingAllowed;
     }
@@ -314,6 +339,10 @@ public class UniversalRecyclerView extends RecyclerListView {
 
     private class TouchHelperCallback extends ItemTouchHelper.Callback {
         @Override
+        public void onMoved(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, int i, RecyclerView.ViewHolder viewHolder2, int i2, int i3, int i4) {
+        }
+
+        @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
         }
 
@@ -322,7 +351,7 @@ public class UniversalRecyclerView extends RecyclerListView {
 
         @Override
         public boolean isLongPressDragEnabled() {
-            return UniversalRecyclerView.this.reorderingAllowed;
+            return UniversalRecyclerView.this.reorderingAllowed && UniversalRecyclerView.this.reorderingLongPressEnabled;
         }
 
         @Override
@@ -341,25 +370,55 @@ public class UniversalRecyclerView extends RecyclerListView {
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             if (viewHolder != null) {
                 UniversalRecyclerView.this.hideSelector(false);
             }
             if (i == 0) {
                 UniversalRecyclerView.this.adapter.reorderDone();
+                if (UniversalRecyclerView.this.reorderingViewHolder != null) {
+                    UniversalRecyclerView universalRecyclerView = UniversalRecyclerView.this;
+                    universalRecyclerView.onReorderEnd(universalRecyclerView.reorderingViewHolder);
+                    UniversalRecyclerView.this.reorderingViewHolder = null;
+                }
             } else {
                 UniversalRecyclerView.this.cancelClickRunnables(false);
                 if (viewHolder != null) {
                     viewHolder.itemView.setPressed(true);
+                    if (viewHolder.itemView.getBackground() instanceof RichEditor.DraggingDrawable) {
+                        ((RichEditor.DraggingDrawable) viewHolder.itemView.getBackground()).setDragging(true);
+                    }
+                    if (i == 2) {
+                        UniversalRecyclerView.this.reorderingViewHolder = viewHolder;
+                        UniversalRecyclerView.this.onReorderStart(viewHolder);
+                    }
                 }
             }
             super.onSelectedChanged(viewHolder, i);
         }
 
         @Override
+        public void onChildDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float f, float f2, int i, boolean z) {
+            if (i == 2 && !z && UniversalRecyclerView.this.isReorderRemoving()) {
+                return;
+            }
+            super.onChildDraw(canvas, recyclerView, viewHolder, f, f2, i, z);
+            if (i == 2 && z) {
+                UniversalRecyclerView.this.onReorderMoved(viewHolder);
+            }
+        }
+
+        @Override
         public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
             super.clearView(recyclerView, viewHolder);
             viewHolder.itemView.setPressed(false);
+            if (viewHolder.itemView.getBackground() instanceof RichEditor.DraggingDrawable) {
+                ((RichEditor.DraggingDrawable) viewHolder.itemView.getBackground()).setDragging(false);
+            }
+            if (UniversalRecyclerView.this.isReorderRemoving()) {
+                UniversalRecyclerView.this.onReorderRemove(viewHolder);
+                viewHolder.itemView.animate().scaleX(0.5f).scaleY(0.5f).setDuration(200L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            }
         }
     }
 

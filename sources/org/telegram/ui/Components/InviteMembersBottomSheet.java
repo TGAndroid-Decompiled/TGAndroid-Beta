@@ -24,6 +24,7 @@ import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -698,7 +699,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
     }
 
     @Override
-    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
+    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.y = this.scrollOffsetY;
@@ -823,7 +824,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            public void onAnimationUpdate(ValueAnimator valueAnimator) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                                 InviteMembersBottomSheet.this.listView.updateSelector();
                             }
                         });

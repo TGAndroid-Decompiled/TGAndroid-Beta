@@ -17,6 +17,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
+import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -127,18 +128,18 @@ public class GroupCallUserCell extends FrameLayout {
         this.muteButton.playAnimation();
     }
 
-    public void lambda$new$2() {
+    public void lambda$new$2() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         applyParticipantChanges(true, true);
     }
 
-    public void lambda$new$3() {
+    public void lambda$new$3() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         this.isSpeaking = false;
         applyParticipantChanges(true, true);
         this.avatarWavesDrawable.setAmplitude(0.0d);
         this.updateRunnableScheduled = false;
     }
 
-    public void lambda$new$4() {
+    public void lambda$new$4() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         applyParticipantChanges(true, true);
         this.updateVoiceRunnableScheduled = false;
     }
@@ -284,19 +285,19 @@ public class GroupCallUserCell extends FrameLayout {
         this.grayIconColor = Theme.key_voipgroup_mutedIcon;
         this.checkRaiseRunnable = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$new$2();
             }
         };
         this.updateRunnable = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$new$3();
             }
         };
         this.updateVoiceRunnable = new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 this.f$0.lambda$new$4();
             }
         };
@@ -709,11 +710,11 @@ public class GroupCallUserCell extends FrameLayout {
         invalidate();
     }
 
-    private void applyParticipantChanges(boolean r20, boolean r21) {
+    private void applyParticipantChanges(boolean r20, boolean r21) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.applyParticipantChanges(boolean, boolean):void");
     }
 
-    public void lambda$applyParticipantChanges$6(int i, int i2, ValueAnimator valueAnimator) {
+    public void lambda$applyParticipantChanges$6(int i, int i2, ValueAnimator valueAnimator) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         int offsetColor = AndroidUtilities.getOffsetColor(i, i2, valueAnimator.getAnimatedFraction(), 1.0f);
         this.muteButton.setColorFilter(new PorterDuffColorFilter(offsetColor, PorterDuff.Mode.MULTIPLY));
         Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), offsetColor & 620756991, true);

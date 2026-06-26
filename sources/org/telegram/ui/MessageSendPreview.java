@@ -35,7 +35,7 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -106,6 +106,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
     private final FrameLayout containerView;
     public final Context context;
     public final int currentAccount;
+    private boolean customSendButtonWidth;
     private ChatMessageCell destCell;
     private float destClipBottom;
     private float destClipTop;
@@ -268,7 +269,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (AndroidUtilities.dp(MessageSendPreview.this.messageObjects.isEmpty() ? -6.0f : 48.0f) + (MessageSendPreview.this.optionsView == null ? 0 : MessageSendPreview.this.optionsView.getMeasuredHeight()))) - AndroidUtilities.dp(8.0f)) - MessageSendPreview.this.insets.top), Integer.MIN_VALUE));
-                int iMax = Math.max(MessageSendPreview.this.sendButtonWidth, -((MessageSendPreview.this.sendButtonInitialPosition[0] + AndroidUtilities.dp(7.0f)) - getMeasuredWidth()));
+                int iMax = Math.max(MessageSendPreview.this.getSendButtonWidth() + AndroidUtilities.dp(12.0f), -((MessageSendPreview.this.sendButtonInitialPosition[0] + AndroidUtilities.dp(7.0f)) - getMeasuredWidth()));
                 float fMax = Math.max(1, getMeasuredWidth() - iMax) / Math.max(1, ((getMeasuredWidth() - iMax) - AndroidUtilities.dp(8.0f)) + Math.max(0, MessageSendPreview.this.messageObjectsWidth - ((getMeasuredWidth() - iMax) - AndroidUtilities.dp((MessageSendPreview.this.groupedMessagesMap.isEmpty() ? 0 : 40) + 8))));
                 setPivotX(getMeasuredWidth());
                 setPivotY(getMeasuredHeight());
@@ -277,7 +278,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 for (int i6 = 0; i6 < getChildCount(); i6++) {
                     View childAt = getChildAt(i6);
                     if (childAt.getTop() != 0 && (childAt instanceof MessageCell)) {
@@ -312,7 +313,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
+            public boolean drawChild(Canvas canvas, View view, long j) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 if (MessageSendPreview.this.openInProgress && ((view == MessageSendPreview.this.mainMessageCell && MessageSendPreview.this.mainMessageCell != null && MessageSendPreview.this.mainMessageCell.getCurrentPosition() == null) || view == MessageSendPreview.this.sendButton)) {
                     return false;
                 }
@@ -1158,6 +1159,8 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             int width = this.anchorSendButton.getWidth();
             ChatActivityEnterView.SendButton sendButton2 = this.anchorSendButton;
             iArr[0] = i + ((width - sendButton2.width(sendButton2.getHeight())) - AndroidUtilities.dp(6.0f));
+            this.sendButton.setScaleX(this.anchorSendButton.getScaleX());
+            this.sendButton.setScaleY(this.anchorSendButton.getScaleY());
         }
     }
 
@@ -1184,7 +1187,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(final android.graphics.Canvas r30) throws java.io.IOException {
+        protected void dispatchDraw(final android.graphics.Canvas r30) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1454,7 +1457,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.drawEditTextBackground = callback;
     }
 
-    public void setSendButton(final ChatActivityEnterView.SendButton sendButton, final boolean z, View.OnClickListener onClickListener) {
+    public ChatActivityEnterView.SendButton setSendButton(final ChatActivityEnterView.SendButton sendButton, final boolean z, View.OnClickListener onClickListener) {
         this.anchorSendButton = sendButton;
         sendButton.getLocationOnScreen(this.sendButtonInitialPosition);
         ChatActivityEnterView.SendButton sendButton2 = new ChatActivityEnterView.SendButton(getContext(), sendButton.resId, this.resourcesProvider) {
@@ -1484,13 +1487,25 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
         };
         this.sendButton = sendButton2;
-        this.anchorSendButton.copyTo(sendButton2);
+        sendButton2.setScaleX(this.anchorSendButton.getScaleX());
+        this.sendButton.setScaleY(this.anchorSendButton.getScaleY());
+        this.anchorSendButton.copyTo(this.sendButton);
         this.sendButton.open.set(sendButton.open.get(), true);
         this.sendButton.setOnClickListener(onClickListener);
         this.containerView.addView(this.sendButton, new ViewGroup.LayoutParams(sendButton.getWidth(), sendButton.getHeight()));
         this.sendButtonWidth = this.anchorSendButton.width(sendButton.getHeight());
         int[] iArr = this.sendButtonInitialPosition;
         iArr[0] = iArr[0] + ((this.anchorSendButton.getWidth() - this.anchorSendButton.width(sendButton.getHeight())) - AndroidUtilities.dp(6.0f));
+        return this.sendButton;
+    }
+
+    public void setSendButtonWidth(int i) {
+        this.customSendButtonWidth = true;
+        this.sendButtonWidth = i;
+    }
+
+    public int getSendButtonWidth() {
+        return this.customSendButtonWidth ? this.sendButtonWidth : this.anchorSendButton.width();
     }
 
     public void setItemOptions(ItemOptions itemOptions) {
@@ -1669,10 +1684,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
         int[] iArr = new int[2];
         this.anchorSendButton.getLocationOnScreen(iArr);
-        int width = iArr[0] + ((this.anchorSendButton.getWidth() - this.anchorSendButton.width()) - AndroidUtilities.dp(6.0f));
-        iArr[0] = width;
+        iArr[0] = iArr[0] + ((this.anchorSendButton.getWidth() - this.anchorSendButton.width()) - AndroidUtilities.dp(6.0f));
+        this.sendButton.setScaleX(this.anchorSendButton.getScaleX());
+        this.sendButton.setScaleY(this.anchorSendButton.getScaleY());
         int[] iArr2 = this.sendButtonInitialPosition;
-        iArr2[0] = width;
+        iArr2[0] = iArr[0];
         iArr2[1] = iArr[1];
         int measuredHeight = (this.chatListView.getMeasuredHeight() - this.sendButton.getHeight()) + (this.effectSelector != null ? AndroidUtilities.dp(320.0f) : 0);
         int iDp = this.insets.top + AndroidUtilities.dp(8.0f);
@@ -1689,8 +1705,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         if (iArr[1] + this.anchorSendButton.getHeight() + measuredHeight2 > measuredHeight3) {
             iArr[1] = (measuredHeight3 - measuredHeight2) - this.anchorSendButton.getHeight();
         }
-        this.sendButton.setX((iArr[0] - (r3.getWidth() - this.sendButton.width())) + AndroidUtilities.dp(6.0f));
+        this.sendButton.setX((iArr[0] - (r2.getWidth() - this.sendButton.width())) + AndroidUtilities.dp(6.0f));
         this.sendButton.setY(iArr[1]);
+        if (this.customSendButtonWidth) {
+            iArr[0] = iArr[0] - (this.sendButtonWidth - this.anchorSendButton.width());
+        }
         this.chatListView.setX((iArr[0] + AndroidUtilities.dp(7.0f)) - this.chatListView.getMeasuredWidth());
         if (this.layoutDone) {
             this.chatListView.animate().translationY(((iArr[1] + this.sendButton.getHeight()) - this.chatListView.getMeasuredHeight()) - this.chatListView.getTop()).setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR).setDuration(250L).start();

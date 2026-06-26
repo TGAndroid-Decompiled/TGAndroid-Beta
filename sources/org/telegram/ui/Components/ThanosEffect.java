@@ -15,7 +15,7 @@ import android.view.Choreographer;
 import android.view.TextureView;
 import android.view.View;
 import com.google.zxing.common.detector.MathUtils;
-import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -877,7 +877,7 @@ public class ThanosEffect extends TextureView {
                 this.bitmap = bitmap;
             }
 
-            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r37, final java.util.ArrayList r38, java.lang.Runnable r39) throws java.io.IOException {
+            public Animation(org.telegram.ui.Components.ThanosEffect.DrawingThread r37, final java.util.ArrayList r38, java.lang.Runnable r39) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, java.util.ArrayList, java.lang.Runnable):void");
             }
 
@@ -891,7 +891,7 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            private void drawChildElement(View view, ChatActivity chatActivity, Canvas canvas, float f, ChatMessageCell chatMessageCell, int i, float f2, float f3) throws IOException {
+            private void drawChildElement(View view, ChatActivity chatActivity, Canvas canvas, float f, ChatMessageCell chatMessageCell, int i, float f2, float f3) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 canvas.save();
                 float alpha = chatMessageCell.shouldDrawAlphaLayer() ? chatMessageCell.getAlpha() : 1.0f;
                 canvas.translate(f2, f3);
@@ -946,7 +946,7 @@ public class ThanosEffect extends TextureView {
                 }
             }
 
-            public Animation(android.view.View r9, float r10, java.lang.Runnable r11) throws java.io.IOException {
+            public Animation(android.view.View r9, float r10, java.lang.Runnable r11) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ThanosEffect.DrawingThread.Animation.<init>(org.telegram.ui.Components.ThanosEffect$DrawingThread, android.view.View, float, java.lang.Runnable):void");
             }
 

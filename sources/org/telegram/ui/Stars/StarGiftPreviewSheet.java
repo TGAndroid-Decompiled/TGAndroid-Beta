@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Comparator$CC;
 import j$.util.List;
 import j$.util.Objects;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.ToDoubleFunction;
@@ -400,7 +401,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 canvas.save();
                 canvas.clipPath(this.path);
                 super.dispatchDraw(canvas);
@@ -896,7 +897,7 @@ public class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
     protected RecyclerListView createRecyclerView(Context context) {
         return new RecyclerListView(context, this.resourcesProvider) {
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 StarGiftPreviewSheet.this.applyScrolledPosition();
                 super.onLayout(z, i, i2, i3, i4);
                 StarGiftPreviewSheet.this.invalidateMergedVisibleBlurredPositionsAndSourcesImpl(2);

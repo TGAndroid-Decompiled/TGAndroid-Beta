@@ -14,11 +14,13 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
     BlurredBackgroundDrawable backgroundDrawable;
     private final Path clipPath;
     private final RectF clipRectF;
+    private int defaultRadiusDp;
 
     public DialogsActivityTopPanelLayout(Context context) {
         super(context);
         this.clipPath = new Path();
         this.clipRectF = new RectF();
+        this.defaultRadiusDp = 24;
         setOrientation(1);
         updateColors();
     }
@@ -50,15 +52,19 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
         float totalHeight = getMetadata().getTotalHeight();
         float totalVisibility = getMetadata().getTotalVisibility();
         this.clipRectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + totalHeight);
-        float fMin = Math.min(AndroidUtilities.dp(24.0f), Math.min(this.clipRectF.width(), this.clipRectF.height()) / 2.0f);
+        float fMin = Math.min(AndroidUtilities.dp(this.defaultRadiusDp), Math.min(this.clipRectF.width(), this.clipRectF.height()) / 2.0f);
         this.clipPath.rewind();
         this.clipPath.addRoundRect(this.clipRectF, fMin, fMin, Path.Direction.CW);
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.setAlpha((int) (totalVisibility * 255.0f));
             this.backgroundDrawable.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(14.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), ((getPaddingTop() + getPaddingBottom()) + ((int) totalHeight)) - AndroidUtilities.dp(14.0f));
-            this.backgroundDrawable.setRadius(Math.min(AndroidUtilities.dp(24.0f), totalHeight / 2.0f));
+            this.backgroundDrawable.setRadius(Math.min(AndroidUtilities.dp(this.defaultRadiusDp), totalHeight / 2.0f));
         }
+    }
+
+    public void setDefaultRadiusDp(int i) {
+        this.defaultRadiusDp = i;
     }
 
     public void updateColors() {

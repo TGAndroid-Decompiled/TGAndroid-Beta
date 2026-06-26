@@ -105,6 +105,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private long searchResultBotContextSwitchUserId;
     private TLRPC.TL_inlineBotWebView searchResultBotWebViewSwitch;
     private ArrayList searchResultCommands;
+    private ArrayList searchResultCommandsEphemeral;
     private ArrayList searchResultCommandsHelp;
     private ArrayList searchResultCommandsUsers;
     private ArrayList searchResultHashtags;
@@ -983,6 +984,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 this.searchResultUsernames = null;
                 this.searchResultUsernamesMap = null;
                 this.searchResultCommands = null;
+                this.searchResultCommandsEphemeral = null;
                 this.quickReplies = null;
                 this.searchResultSuggestions = null;
                 this.searchResultCommandsHelp = null;
@@ -1134,6 +1136,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.searchResultUsernames = null;
         this.searchResultUsernamesMap = null;
         this.searchResultCommands = null;
+        this.searchResultCommandsEphemeral = null;
         this.quickReplies = null;
         this.searchResultCommandsHelp = null;
         this.searchResultCommandsUsers = null;
@@ -1304,6 +1307,8 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     }
 
     public Object getItem(int i) {
+        String str;
+        TLRPC.User user = null;
         if (this.hintHashtag != null) {
             if (i < 2) {
                 return null;
@@ -1377,14 +1382,32 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 ArrayList arrayList9 = this.searchResultCommandsUsers;
                 if (arrayList9 != null && (this.botsCount != 1 || (this.info instanceof TLRPC.TL_channelFull))) {
                     if (arrayList9.get(i) != null) {
-                        return String.format("%s@%s", this.searchResultCommands.get(i), this.searchResultCommandsUsers.get(i) != null ? UserObject.getPublicUsername((TLRPC.User) this.searchResultCommandsUsers.get(i)) : "");
+                        user = (TLRPC.User) this.searchResultCommandsUsers.get(i);
+                        str = String.format("%s@%s", this.searchResultCommands.get(i), user != null ? UserObject.getPublicUsername(user) : "");
+                    } else {
+                        str = String.format("%s", this.searchResultCommands.get(i));
                     }
-                    return String.format("%s", this.searchResultCommands.get(i));
+                } else {
+                    str = (String) this.searchResultCommands.get(i);
                 }
-                return this.searchResultCommands.get(i);
+                ArrayList arrayList10 = this.searchResultCommandsEphemeral;
+                if (arrayList10 == null || !((Boolean) arrayList10.get(i)).booleanValue()) {
+                    return str;
+                }
+                return new EphemeralCommand(str, user != null ? user.id : 0L);
             }
         }
         return null;
+    }
+
+    public static class EphemeralCommand {
+        public final long botUserId;
+        public final String command;
+
+        public EphemeralCommand(String str, long j) {
+            this.command = str;
+            this.botUserId = j;
+        }
     }
 
     public boolean isLongClickEnabled() {
@@ -1572,13 +1595,15 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     ArrayList arrayList5 = this.searchResultCommands;
                     if (arrayList5 != null && i >= 0 && i < arrayList5.size()) {
                         ArrayList arrayList6 = this.searchResultCommandsHelp;
-                        TLRPC.User user = null;
+                        Boolean bool = null;
                         String str = (arrayList6 == null || i < 0 || i >= arrayList6.size()) ? null : (String) this.searchResultCommandsHelp.get(i);
                         ArrayList arrayList7 = this.searchResultCommandsUsers;
-                        if (arrayList7 != null && i >= 0 && i < arrayList7.size()) {
-                            user = (TLRPC.User) this.searchResultCommandsUsers.get(i);
+                        TLRPC.User user = (arrayList7 == null || i < 0 || i >= arrayList7.size()) ? null : (TLRPC.User) this.searchResultCommandsUsers.get(i);
+                        ArrayList arrayList8 = this.searchResultCommandsEphemeral;
+                        if (arrayList8 != null && i >= 0 && i < arrayList8.size()) {
+                            bool = (Boolean) this.searchResultCommandsEphemeral.get(i);
                         }
-                        mentionCell.setBotCommand((String) this.searchResultCommands.get(i), str, user);
+                        mentionCell.setBotCommand((String) this.searchResultCommands.get(i), str, user, bool.booleanValue());
                     }
                 }
             }

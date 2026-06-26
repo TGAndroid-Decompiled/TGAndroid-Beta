@@ -49,7 +49,7 @@ public abstract class BotWebViewAttachedSheet implements NotificationCenter.Noti
         if (botInfo.privacy_policy_url != null) {
             return true;
         }
-        Iterator<TLRPC.TL_botCommand> it = botInfo.commands.iterator();
+        Iterator<TLRPC.BotCommand> it = botInfo.commands.iterator();
         while (it.hasNext()) {
             if ("privacy".equals(it.next().command)) {
                 return true;

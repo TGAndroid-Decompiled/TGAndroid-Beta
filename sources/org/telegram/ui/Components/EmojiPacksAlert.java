@@ -325,7 +325,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
+        public void sendEmoji(TLRPC.Document document) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
             if (EmojiPacksAlert.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiPacksAlert.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -478,7 +478,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
                 super.onLayout(z, i2, i3, i4, i5);
                 EmojiPacksAlert.this.contentView.updateEmojiDrawables();
             }

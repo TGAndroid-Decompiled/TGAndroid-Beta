@@ -251,7 +251,32 @@ public class WebRtcAudioTrack {
     }
 
     private boolean stopPlayout() {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.voiceengine.WebRtcAudioTrack.stopPlayout():boolean");
+        try {
+            this.threadChecker.checkIsOnValidThread();
+            Logging.d("WebRtcAudioTrack", "stopPlayout");
+            assertTrue(this.audioThread != null);
+            logUnderrunCount();
+            this.audioThread.stopThread();
+            Logging.d("WebRtcAudioTrack", "Stopping the AudioTrackThread...");
+            this.audioThread.interrupt();
+            if (!ThreadUtils.joinUninterruptibly(this.audioThread, 2000L)) {
+                Logging.e("WebRtcAudioTrack", "Join of AudioTrackThread timed out.");
+                WebRtcAudioUtils.logAudioState("WebRtcAudioTrack");
+            }
+            Logging.d("WebRtcAudioTrack", "AudioTrackThread has now been stopped.");
+        } finally {
+            try {
+                releaseAudioResources();
+                return true;
+            } finally {
+            }
+        }
+        try {
+            releaseAudioResources();
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+        return true;
     }
 
     private int getStreamMaxVolume() {
