@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -81,7 +80,7 @@ public abstract class ChatActivityContainer extends FrameLayout {
         }
     }
 
-    public void onResume() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void onResume() throws Resources.NotFoundException {
         this.isActive = true;
         if (this.fragmentView != null) {
             this.chatActivity.onResume();

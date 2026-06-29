@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
@@ -1097,7 +1096,7 @@ public class ReportBottomSheet extends BottomSheet {
             } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    public final void run() {
                         ReportBottomSheet.lambda$openSponsored$12(chatActivity, context, resourcesProvider, messageObject);
                     }
                 }, 200L);
@@ -1106,7 +1105,7 @@ public class ReportBottomSheet extends BottomSheet {
                 if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
-                        public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                        public final void run() {
                             ReportBottomSheet.lambda$openSponsored$13(chatActivity, i, messageObject);
                         }
                     }, 200L);
@@ -1120,7 +1119,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() {
                 ReportBottomSheet.lambda$openSponsored$15(chatActivity, context, resourcesProvider, messageObject);
             }
         }, 200L);
@@ -1151,13 +1150,13 @@ public class ReportBottomSheet extends BottomSheet {
             final MessageObject messageObject = this.val$message;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run() {
                     ReportBottomSheet.AnonymousClass4.lambda$onReported$1(chatActivity, context, resourcesProvider, messageObject);
                 }
             }, 200L);
         }
 
-        public static void lambda$onReported$1(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public static void lambda$onReported$1(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
             BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
                 @Override
                 public final void run() {
@@ -1174,13 +1173,13 @@ public class ReportBottomSheet extends BottomSheet {
             final MessageObject messageObject = this.val$message;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run() {
                     ReportBottomSheet.AnonymousClass4.lambda$onHidden$2(chatActivity, messageObject);
                 }
             }, 200L);
         }
 
-        public static void lambda$onHidden$2(ChatActivity chatActivity, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public static void lambda$onHidden$2(ChatActivity chatActivity, MessageObject messageObject) {
             BulletinFactory.of(chatActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             chatActivity.removeFromSponsored(messageObject);
             chatActivity.removeMessageWithThanos(messageObject);
@@ -1192,7 +1191,7 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
-    public static void lambda$openSponsored$12(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public static void lambda$openSponsored$12(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
@@ -1203,14 +1202,14 @@ public class ReportBottomSheet extends BottomSheet {
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$13(ChatActivity chatActivity, int i, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public static void lambda$openSponsored$13(ChatActivity chatActivity, int i, MessageObject messageObject) {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
         MessagesController.getInstance(i).disableAds(false);
         chatActivity.removeFromSponsored(messageObject);
         chatActivity.removeMessageWithThanos(messageObject);
     }
 
-    public static void lambda$openSponsored$15(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public static void lambda$openSponsored$15(ChatActivity chatActivity, final Context context, Theme.ResourcesProvider resourcesProvider, MessageObject messageObject) {
         BulletinFactory.of(chatActivity).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {

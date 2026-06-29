@@ -1750,7 +1750,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 this.rankInfoRow = i17 + 2;
             }
             TLRPC.Chat chat = this.currentChat;
-            if (chat != null && chat.creator && this.currentType == 0 && hasAllAdminRights() && !this.currentUser.bot) {
+            if (chat != null && chat.creator && this.currentType == 0 && hasAllAdminRights() && !this.currentUser.bot && !this.isCommunity) {
                 int i18 = this.rightsShadowRow;
                 if (i18 == -1) {
                     int i19 = this.rowCount;

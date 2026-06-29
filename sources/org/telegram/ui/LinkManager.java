@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -145,7 +143,7 @@ public class LinkManager {
         return Uri.parse(scheme + "://" + schemeSpecificPart);
     }
 
-    private boolean handleTg(Uri uri) throws Resources.NotFoundException, IOException {
+    private boolean handleTg(Uri uri) throws Resources.NotFoundException {
         Uri uriNormalizeTgUri = normalizeTgUri(uri);
         List<String> pathSegments = uriNormalizeTgUri.getPathSegments();
         if (pathSegments == null) {
@@ -738,7 +736,7 @@ public class LinkManager {
         }
 
         @Override
-        public void onBecomeFullyVisible() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onBecomeFullyVisible() throws Resources.NotFoundException {
             super.onBecomeFullyVisible();
             if (this.shownToast) {
                 return;

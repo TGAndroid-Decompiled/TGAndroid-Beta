@@ -100,6 +100,7 @@ import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.community.CommunityArrowDrawable;
+import org.telegram.ui.community.CommunitySheet;
 
 public class DialogCell extends BaseCell implements StoriesListPlaceProvider.AvatarOverlaysView, Theme.Colorable {
     private int[] adaptiveEmojiColor;
@@ -167,6 +168,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private Path counterPath;
     private RectF counterPathRect;
     private int currentAccount;
+    private long currentDialogCommunityId;
     private int currentDialogFolderDialogsCount;
     private int currentDialogFolderId;
     private long currentDialogId;
@@ -236,6 +238,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public boolean inPreviewMode;
     private float innerProgress;
     public boolean insideCommunityList;
+    public boolean insideCommunityListNoDialog;
     private BounceInterpolator interpolator;
     public boolean isDialogCell;
     public boolean isForChannelSubscriberCell;
@@ -610,6 +613,24 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.chekBoxPaddingTop = 42.0f;
         StoriesUtilities.AvatarStoryParams avatarStoryParams = new StoriesUtilities.AvatarStoryParams(0 == true ? 1 : 0) {
             @Override
+            public boolean isAvatarClickable(long j, TLRPC.Chat chat) {
+                return (chat == null || chat.linked_community_id == 0 || DialogCell.this.insideCommunityList) ? false : true;
+            }
+
+            @Override
+            public boolean onAvatarClick(View view, long j) {
+                TLRPC.Chat chat;
+                if (j < 0 && DialogCell.this.parentFragment != null) {
+                    DialogCell dialogCell = DialogCell.this;
+                    if (!dialogCell.insideCommunityList && (chat = MessagesController.getInstance(dialogCell.currentAccount).getChat(Long.valueOf(-j))) != null && chat.linked_community_id != 0) {
+                        DialogCell.this.parentFragment.showDialog(new CommunitySheet(DialogCell.this.parentFragment, chat.linked_community_id));
+                        return true;
+                    }
+                }
+                return super.onAvatarClick(view, j);
+            }
+
+            @Override
             public void openStory(long j, Runnable runnable) {
                 DialogCell dialogCell = DialogCell.this;
                 if (dialogCell.delegate == null) {
@@ -736,6 +757,11 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.currentDialogId = dialog.id;
         this.lastDialogChangedTime = System.currentTimeMillis();
         this.isDialogCell = true;
+        if (dialog instanceof TLRPC.TL_dialogCommunity) {
+            this.currentDialogCommunityId = dialog.community_id;
+        } else {
+            this.currentDialogCommunityId = 0L;
+        }
         if (dialog instanceof TLRPC.TL_dialogFolder) {
             this.currentDialogFolderId = ((TLRPC.TL_dialogFolder) dialog).folder.id;
             PullForegroundDrawable pullForegroundDrawable = this.archivedChatsDrawable;
@@ -1147,6 +1173,52 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return Emoji.replaceEmoji(spannableStringBuilder, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt(), false);
     }
 
+    private CharSequence formatCommunityDialogNames() {
+        TLRPC.User user;
+        String strEscape;
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        ArrayList<TLRPC.Dialog> dialogsByCommunity = messagesController.getDialogsByCommunity(-this.currentDialogId);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        int size = dialogsByCommunity.size();
+        for (int i = 0; i < size; i++) {
+            TLRPC.Dialog dialog = dialogsByCommunity.get(i);
+            if (!messagesController.isHiddenByUndo(dialog.id)) {
+                TLRPC.Chat chat = null;
+                if (DialogObject.isEncryptedDialog(dialog.id)) {
+                    TLRPC.EncryptedChat encryptedChat = messagesController.getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(dialog.id)));
+                    user = encryptedChat != null ? messagesController.getUser(Long.valueOf(encryptedChat.user_id)) : null;
+                } else if (DialogObject.isUserDialog(dialog.id)) {
+                    user = messagesController.getUser(Long.valueOf(dialog.id));
+                } else {
+                    chat = messagesController.getChat(Long.valueOf(-dialog.id));
+                    user = null;
+                }
+                if (chat != null) {
+                    strEscape = chat.title.replace('\n', ' ');
+                } else if (user == null) {
+                    continue;
+                } else if (UserObject.isDeleted(user)) {
+                    strEscape = LocaleController.getString(R.string.HiddenName);
+                } else {
+                    strEscape = AndroidUtilities.escape(ContactsController.formatName(user.first_name, user.last_name).replace('\n', ' '));
+                }
+                if (spannableStringBuilder.length() > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                int length = spannableStringBuilder.length();
+                int length2 = strEscape.length() + length;
+                spannableStringBuilder.append((CharSequence) strEscape);
+                if (dialog.unread_count > 0) {
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold(), 0, Theme.getColor(Theme.key_chats_nameArchived, this.resourcesProvider)), length, length2, 33);
+                }
+                if (spannableStringBuilder.length() > 150) {
+                    break;
+                }
+            }
+        }
+        return Emoji.replaceEmoji(spannableStringBuilder, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt(), false);
+    }
+
     public boolean hasTags() {
         DialogCellTags dialogCellTags = this.tags;
         return (dialogCellTags == null || dialogCellTags.isEmpty()) ? false : true;
@@ -1234,7 +1306,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     public boolean isForumCell() {
         TLRPC.Chat chat;
-        return (isDialogFolder() || (chat = this.chat) == null || (!chat.forum && (!ChatObject.isMonoForum(chat) || !ChatObject.canManageMonoForum(this.currentAccount, this.chat))) || this.isTopic) ? false : true;
+        return (isDialogFolder() || this.insideCommunityListNoDialog || (chat = this.chat) == null || (!chat.forum && (!ChatObject.isMonoForum(chat) || !ChatObject.canManageMonoForum(this.currentAccount, this.chat))) || this.isTopic) ? false : true;
     }
 
     private void drawCheckStatus(Canvas canvas, boolean z, boolean z2, boolean z3, boolean z4, float f) {

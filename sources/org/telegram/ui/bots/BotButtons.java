@@ -9,7 +9,6 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -141,7 +140,7 @@ public abstract class BotButtons extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    protected void dispatchDraw(Canvas canvas) {
         float f;
         float f2;
         float f3;

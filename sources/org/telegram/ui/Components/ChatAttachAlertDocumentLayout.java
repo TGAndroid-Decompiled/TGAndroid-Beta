@@ -31,7 +31,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -448,7 +447,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.filtersView = filtersView;
         filtersView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onItemClick(View view, int i4) {
                 this.f$0.lambda$new$3(view, i4);
             }
         });
@@ -584,7 +583,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         return onItemClick(view, item);
     }
 
-    public void lambda$new$3(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$3(View view, int i) {
         this.filtersView.cancelClickRunnables(true);
         this.searchAdapter.addSearchFilter(this.filtersView.getFilterAt(i));
     }

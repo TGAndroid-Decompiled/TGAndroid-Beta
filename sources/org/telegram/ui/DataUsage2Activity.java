@@ -25,7 +25,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -480,7 +479,7 @@ public class DataUsage2Activity extends BaseFragment {
             }
         }
 
-        public void scrollTo(final int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void scrollTo(final int i) {
             highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
@@ -532,7 +531,7 @@ public class DataUsage2Activity extends BaseFragment {
                 }
 
                 @Override
-                protected void onSectionDown(int i, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                protected void onSectionDown(int i, boolean z) {
                     final int i2;
                     if (z) {
                         if (i < 0 || i >= ListView.this.segments.length) {

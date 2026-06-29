@@ -35,7 +35,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -1165,7 +1164,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i == 0) {
                 ChangeUsernameActivity.this.sendReorder();
             } else {

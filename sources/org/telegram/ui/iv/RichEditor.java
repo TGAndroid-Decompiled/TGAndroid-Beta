@@ -39,7 +39,6 @@ import android.widget.LinearLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -2255,7 +2254,7 @@ public class RichEditor extends BaseFragment {
         }
     }
 
-    private void persistDraft() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void persistDraft() throws Resources.NotFoundException {
         if (this.chatActivity != null && this.editingMessageObject == null && this.listView.canUndo()) {
             TL_iv.RichMessage richMessageBuildDraftRichMessage = this.sent ? null : this.listView.buildDraftRichMessage();
             getMediaDataController().saveDraft(this.chatActivity.getDialogId(), this.chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessageBuildDraftRichMessage);
@@ -2697,7 +2696,7 @@ public class RichEditor extends BaseFragment {
     }
 
     @Override
-    public void onFragmentDestroy() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void onFragmentDestroy() throws Resources.NotFoundException {
         SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate;
         persistDraft();
         Runnable runnable = this.pendingSend;

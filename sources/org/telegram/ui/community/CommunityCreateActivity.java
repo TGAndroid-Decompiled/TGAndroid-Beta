@@ -177,7 +177,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             AlertsCreator.createSimpleTextInputAlert(getContext(), this, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), this.resourceProvider, new MessagesStorage.StringCallback() {
                 @Override
                 public final void run(String str) {
-                    this.f$0.createNewCommunity(str);
+                    this.f$0.lambda$onClick$2(str);
                 }
             });
         }
@@ -187,47 +187,60 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             showDialog(new CommunityAddOptionsSheet(getContext(), chat, getMessagesController().getChat(Long.valueOf(-this.dialogId)), new Utilities.Callback() {
                 @Override
                 public final void run(Object obj2) {
-                    this.f$0.lambda$onClick$1(chat, (Boolean) obj2);
+                    this.f$0.lambda$onClick$3(chat, (Boolean) obj2);
                 }
             }));
         }
     }
 
-    public void lambda$onClick$1(TLRPC.Chat chat, Boolean bool) {
+    public void lambda$onClick$2(final String str) {
+        showDialog(new CommunityAddOptionsSheet(getContext(), null, getMessagesController().getChat(Long.valueOf(-this.dialogId)), new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                this.f$0.lambda$onClick$1(str, (Boolean) obj);
+            }
+        }));
+    }
+
+    public void lambda$onClick$1(String str, Boolean bool) {
+        createNewCommunity(str, bool.booleanValue());
+    }
+
+    public void lambda$onClick$3(TLRPC.Chat chat, Boolean bool) {
         linkToCommunity(chat.id, bool.booleanValue());
     }
 
-    public void createNewCommunity(final String str) {
+    private void createNewCommunity(final String str, final boolean z) {
         if (!ChatObject.isChannel(this.currentChat)) {
             final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
             alertDialog.showDelayed(250L);
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    this.f$0.lambda$createNewCommunity$2(alertDialog, str, j);
+                    this.f$0.lambda$createNewCommunity$4(alertDialog, str, z, j);
                 }
             });
             return;
         }
-        getMessagesController().createCommunity(str, this.dialogId, new Utilities.Callback2() {
+        getMessagesController().createCommunity(str, this.dialogId, z, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$createNewCommunity$3((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$createNewCommunity$5((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$createNewCommunity$2(AlertDialog alertDialog, String str, long j) {
+    public void lambda$createNewCommunity$4(AlertDialog alertDialog, String str, boolean z, long j) {
         alertDialog.dismiss();
         if (j == 0) {
             return;
         }
         this.dialogId = -j;
         this.currentChat = getMessagesController().getChat(Long.valueOf(j));
-        createNewCommunity(str);
+        createNewCommunity(str, z);
     }
 
-    public void lambda$createNewCommunity$3(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public void lambda$createNewCommunity$5(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             BulletinFactory.of(this).showForError(tL_error);
         } else {
@@ -242,7 +255,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j2) {
-                    this.f$0.lambda$linkToCommunity$4(alertDialog, j, z, j2);
+                    this.f$0.lambda$linkToCommunity$6(alertDialog, j, z, j2);
                 }
             });
             return;
@@ -250,7 +263,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         CommunityUtils.linkToCommunityWithoutConvert(this, this.currentAccount, -this.dialogId, j, z);
     }
 
-    public void lambda$linkToCommunity$4(AlertDialog alertDialog, long j, boolean z, long j2) {
+    public void lambda$linkToCommunity$6(AlertDialog alertDialog, long j, boolean z, long j2) {
         alertDialog.dismiss();
         if (j2 == 0) {
             return;

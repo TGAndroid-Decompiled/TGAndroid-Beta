@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Iterator;
-import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -26,9 +25,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -45,6 +42,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.IconBackgroundColors;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.JoinGroupAlert;
@@ -55,6 +53,7 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.chat.layouts.ChatActivityFadeView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.community.CommunitySheet;
 import org.telegram.ui.community.CommunityUtils;
 import org.telegram.ui.community.cells.CommunityPendingRequestCell;
@@ -220,9 +219,10 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
 
     public void fillItemsCommunity(ArrayList arrayList, UniversalAdapter universalAdapter) {
         String pluralString;
-        ArrayList<TL_communities.CommunityPeer> arrayList2;
         arrayList.add(UItem.asSpace(99, Math.min(AndroidUtilities.statusBarHeight + AndroidUtilities.dp(176.0f), (int) (AndroidUtilities.displaySize.y * 0.25f))));
         arrayList.add(UItem.asSpace(0, AndroidUtilities.dp(56.0f)));
+        arrayList.add(UItem.asSwitchNoIcon(101, LocaleController.getString(R.string.CommunityShowAsOneChat)).setChecked(this.collapsedInDialogs));
+        arrayList.add(UItem.asShadow(2, LocaleController.getString(R.string.CommunityShowAsOneChatInfo)));
         if (this.pendingRequestsList.isSingle()) {
             arrayList.add(UItem.asHeader(3, LocaleController.getString(R.string.CommunityPendingRequest)));
             this.pendingRequestsList.fillItems(arrayList);
@@ -240,11 +240,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             arrayList.add(CommunityRequestsCell.Factory.of(100, iconBackgroundColors, i, pluralString, unreadCount > 0 ? Integer.toString(unreadCount) : null, true));
             arrayList.add(UItem.asSpace(5, AndroidUtilities.dp(14.33f)));
         }
-        TLRPC.ChatFull chatFull = this.chatInfo;
-        if (chatFull == null || (arrayList2 = chatFull.linked_peers) == null) {
-            return;
-        }
-        CommunityUtils.fillLinkedPeers(this.currentAccount, arrayList, arrayList2, true);
+        CommunityUtils.fillLinkedPeers(this.currentAccount, arrayList, this.communityId, true);
     }
 
     public void fillItemsRequests(ArrayList arrayList, UniversalAdapter universalAdapter) {
@@ -302,6 +298,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     }
 
     public void onClickCommunity(UItem uItem, View view, int i, float f, float f2) {
+        TLRPC.Chat currentChat;
         if (checkPendingRequestClick(uItem)) {
             return;
         }
@@ -325,14 +322,34 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         Object obj = uItem.object;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            if (ChatObject.isInChat(chat) || ChatObject.isPublic(chat)) {
+            CommunityChatType communityChatType = CommunityUtils.getCommunityChatType(this.currentAccount, chat);
+            if (communityChatType == CommunityChatType.YouAreIn || communityChatType == CommunityChatType.YouCanView) {
+                BaseFragment baseFragment = this.parentFragment;
+                if ((baseFragment instanceof ChatActivity) && (currentChat = ((ChatActivity) baseFragment).getCurrentChat()) != null && currentChat.id == chat.id) {
+                    lambda$new$0();
+                    return;
+                }
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", chat.id);
-                this.parentFragment.presentFragment(new ChatActivity(bundle));
+                if (ChatObject.isForum(chat)) {
+                    if (ChatObject.areTabsEnabled(chat)) {
+                        ChatActivity chatActivity = new ChatActivity(bundle);
+                        ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(-chat.id, MessagesController.getInstance(this.currentAccount).getForumLastTopicId(chat.id)));
+                        this.parentFragment.presentFragment(chatActivity);
+                    } else {
+                        this.parentFragment.presentFragment(new TopicsFragment(bundle));
+                    }
+                } else {
+                    this.parentFragment.presentFragment(new ChatActivity(bundle));
+                }
                 lambda$new$0();
                 return;
             }
-            new JoinGroupAlert(getContext(), chat, null, this.parentFragment, this.resourcesProvider).show();
+            if (communityChatType == CommunityChatType.YouCanSendJoinRequest) {
+                new JoinGroupAlert(getContext(), chat, null, this.parentFragment, this.resourcesProvider).setBulletinFactory(BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider)).show();
+            } else if (communityChatType == CommunityChatType.HiddenUnavailable) {
+                BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createSimpleBulletin(R.raw.e_hand_2, LocaleController.getString(R.string.CommunityHiddenGroupUnavailable)).show();
+            }
         }
     }
 
@@ -545,7 +562,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             }
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), ((BottomSheet) CommunitySheet.this).resourcesProvider);
             buttonWithCounterView.setRound();
-            if (ChatObject.canUserDoAdminAction(CommunitySheet.this.currentChat, 27)) {
+            if (ChatObject.canAddChatToCommunity(CommunitySheet.this.currentChat)) {
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.filled_add_album);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CommunityAddAChatToCommunity));
@@ -575,7 +592,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     }
 
     public void onAddChatToCommunityButtonClick() {
-        if (!ChatObject.canUserDoAdminAction(this.currentChat, 27)) {
+        if (!ChatObject.canAddChatToCommunity(this.currentChat)) {
             lambda$new$0();
         } else {
             loadChatsToAddToCommunity();
@@ -587,34 +604,28 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             return;
         }
         this.addChatToCommunityButton.setLoading(true);
-        TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
-        tL_channels_getAdminedPublicChannels.for_community_peer = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_channels_getAdminedPublicChannels, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+        MessagesController.getInstance(this.currentAccount).fetchChatsToAddToCommunity(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$loadChatsToAddToCommunity$6((TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$loadChatsToAddToCommunity$6((ArrayList) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$loadChatsToAddToCommunity$6(TLRPC.messages_Chats messages_chats, TLRPC.TL_error tL_error) {
+    public void lambda$loadChatsToAddToCommunity$6(ArrayList arrayList, TLRPC.TL_error tL_error) {
         this.addChatToCommunityButton.setLoading(false);
         if (tL_error != null) {
             BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
             return;
         }
-        if (messages_chats != null) {
-            MessagesController.getInstance(this.currentAccount).putChats(messages_chats.chats, true);
-            this.chatsToAddToCommunity = new ArrayList();
-            Iterator<TLRPC.Chat> it = messages_chats.chats.iterator();
-            while (it.hasNext()) {
-                TLRPC.Chat next = it.next();
-                if (!ChatObject.isChannelAndNotMegaGroup(next) && !ChatObject.isMonoForum(next)) {
-                    this.chatsToAddToCommunity.add(next);
-                }
+        if (arrayList != null) {
+            this.chatsToAddToCommunity = arrayList;
+            if (arrayList.isEmpty()) {
+                BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createSimpleBulletin(R.raw.info, LocaleController.getString(R.string.CommunityNoChatsToAdd)).show();
+            } else {
+                this.chatsPage.listView.adapter.update(false);
+                this.viewPager.scrollToPosition(2);
             }
-            this.chatsPage.listView.adapter.update(false);
-            this.viewPager.scrollToPosition(2);
         }
     }
 

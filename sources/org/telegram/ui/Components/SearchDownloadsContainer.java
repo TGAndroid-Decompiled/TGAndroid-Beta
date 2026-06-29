@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
@@ -90,7 +89,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         this.currentAccount = i;
         RecyclerListView recyclerListView = new RecyclerListView(getContext()) {
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 super.onLayout(z, i2, i3, i4, i5);
                 SearchDownloadsContainer.this.checkItemsFloodWait();
             }
@@ -731,7 +730,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i != 0) {
                 SearchDownloadsContainer.this.recyclerListView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);

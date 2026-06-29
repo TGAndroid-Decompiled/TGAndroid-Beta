@@ -17,7 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -75,7 +74,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
     };
     RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
         @Override
-        public final void onItemClick(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public final void onItemClick(View view, int i) {
             this.f$0.lambda$new$0(view, i);
         }
     };
@@ -86,7 +85,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         }
     };
 
-    public void lambda$new$0(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$0(View view, int i) {
         if (view instanceof GroupCreateUserCell) {
             GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) view;
             TLRPC.Chat chat = (TLRPC.Chat) groupCreateUserCell.getObject();
@@ -285,7 +284,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         finishFragment();
     }
 
-    private void onSelectedCountChange() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void onSelectedCountChange() {
         RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition;
         if (this.selectedIds.isEmpty() && this.buttonAnimation != -1 && this.buttonLayout.getVisibility() == 0) {
             this.buttonAnimation = -1;

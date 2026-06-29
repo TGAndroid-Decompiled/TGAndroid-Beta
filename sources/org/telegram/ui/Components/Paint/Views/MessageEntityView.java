@@ -25,7 +25,6 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
@@ -371,7 +370,7 @@ public abstract class MessageEntityView extends EntityView {
             private final ArrayList drawingGroups = new ArrayList(10);
 
             @Override
-            protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void dispatchDraw(Canvas canvas) {
                 canvas.save();
                 this.selectorRect.setEmpty();
                 drawChatBackgroundElements(canvas);
@@ -380,7 +379,7 @@ public abstract class MessageEntityView extends EntityView {
                 canvas.restore();
             }
 
-            private void drawChatForegroundElements(android.graphics.Canvas r17) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+            private void drawChatForegroundElements(android.graphics.Canvas r17) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChatForegroundElements(android.graphics.Canvas):void");
             }
 
@@ -455,7 +454,7 @@ public abstract class MessageEntityView extends EntityView {
                     }
 
                     @Override
-                    protected void onDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    protected void onDraw(Canvas canvas) {
                         AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
                         PreviewView.TextureViewHolder textureViewHolder2 = textureViewHolder;
                         if ((textureViewHolder2 != null && textureViewHolder2.active && textureViewHolder2.textureViewActive) || MessageEntityView.this.clipVideoMessageForBitmap) {
@@ -523,7 +522,7 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws InterruptedException, Resources.NotFoundException {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i4) throws Resources.NotFoundException {
                 MessageObject.GroupedMessagePosition position;
                 MessageObject messageObject3 = (MessageObject) MessageEntityView.this.messageObjects.get((MessageEntityView.this.messageObjects.size() - 1) - i4);
                 View view = viewHolder.itemView;

@@ -56,9 +56,7 @@ import com.google.android.exoplayer2.util.Consumer;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -503,7 +501,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.muteIconViewAlpha = 1.0f;
         this.updateStealthModeTimer = new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$new$43();
             }
         };
@@ -1837,7 +1835,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1847,7 +1845,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1959,7 +1957,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1969,7 +1967,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -2987,7 +2985,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition();
     }
 
-    private void createPremiumBlockedText() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void createPremiumBlockedText() throws Resources.NotFoundException {
         if (this.premiumBlockedText != null) {
             return;
         }
@@ -3350,7 +3348,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    private void createEnterView() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void createEnterView() throws Resources.NotFoundException {
         AnonymousClass19 anonymousClass19 = new AnonymousClass19(AndroidUtilities.findActivity(getContext()), this, null, true, new WrappedResourceProvider(this.resourcesProvider) {
             @Override
             public void appendColors() {
@@ -3421,7 +3419,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public boolean sendMessage() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public boolean sendMessage() throws Resources.NotFoundException {
             int length;
             if (this.sendButtonContainer.getAlpha() < 0.5f) {
                 openKeyboard();
@@ -3814,7 +3812,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public boolean setDefaultSendAs(long j, long j2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public boolean setDefaultSendAs(long j, long j2) throws Resources.NotFoundException {
             TL_stories.StoryItem storyItem = PeerStoriesView.this.currentStory.storyItem;
             if (storyItem != null && (storyItem.media instanceof TLRPC.TL_messageMediaVideoStream)) {
                 TL_phone.saveDefaultSendAs savedefaultsendas = new TL_phone.saveDefaultSendAs();
@@ -4421,7 +4419,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4431,7 +4429,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, IOException {
+    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
@@ -4576,13 +4574,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         });
     }
 
-    public void setDay(long j, ArrayList arrayList, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setDay(long j, ArrayList arrayList, int i) throws Resources.NotFoundException {
         this.dialogId = j;
         this.day = arrayList;
         bindInternal(i);
     }
 
-    public void setDialogId(long j, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setDialogId(long j, int i) throws Resources.NotFoundException {
         if (this.dialogId != j) {
             this.currentStory.clear();
         }
@@ -4642,7 +4640,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.headerView.titleView.setRightDrawable((Drawable) null);
     }
 
-    private void bindInternal(int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void bindInternal(int i) throws Resources.NotFoundException {
         this.deletedPeer = false;
         this.forceUpdateOffsets = true;
         this.userCanSeeViews = false;
@@ -4878,7 +4876,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void preloadMainImage(long j) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void preloadMainImage(long j) throws Resources.NotFoundException {
         if (this.dialogId == j && this.day == null) {
             return;
         }
@@ -5282,7 +5280,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         LivePlayer livePlayer;
         if (i != NotificationCenter.storiesUpdated) {
             boolean z = false;
@@ -5409,11 +5407,11 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void lambda$new$43() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$43() throws Resources.NotFoundException {
         checkStealthMode(true);
     }
 
-    public void checkStealthMode(boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void checkStealthMode(boolean z) throws Resources.NotFoundException {
         if (this.chatActivityEnterView != null && this.isVisible && this.attachedToWindow) {
             AndroidUtilities.cancelRunOnUIThread(this.updateStealthModeTimer);
             TL_stories.TL_storiesStealthMode stealthMode = this.storiesController.getStealthMode();
@@ -5474,7 +5472,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         updatePosition(false);
     }
 
-    private void updatePosition(boolean r45) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    private void updatePosition(boolean r45) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.PeerStoriesView.updatePosition(boolean):void");
     }
 
@@ -5520,14 +5518,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
         }).addIf(this.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$updatePosition$47();
             }
         }).setGravity(5).forceTop(true).show();
         return true;
     }
 
-    public void lambda$updatePosition$47() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$updatePosition$47() throws Resources.NotFoundException {
         this.messageStars = 0L;
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5586,13 +5584,13 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         int i = this.currentAccount;
         HighlightMessageSheet.open(context, i, clientUserId, DialogObject.getShortName(i, this.dialogId), textWithEntities, getMessageMinPrice(), this.messageStars, new Utilities.Callback() {
             @Override
-            public final void run(Object obj) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run(Object obj) throws Resources.NotFoundException {
                 this.f$0.lambda$onHighlightLiveMessage$52((Long) obj);
             }
         }, new DarkThemeResourceProvider());
     }
 
-    public void lambda$onHighlightLiveMessage$52(Long l) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$onHighlightLiveMessage$52(Long l) throws Resources.NotFoundException {
         this.messageStars = l.longValue();
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
@@ -5910,7 +5908,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return this.selectedPosition;
     }
 
-    public boolean closeKeyboardOrEmoji() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean closeKeyboardOrEmoji() throws Resources.NotFoundException {
         if (this.likesReactionShowing) {
             if (this.likesReactionLayout.getReactionsWindow() != null) {
                 if (this.realKeyboardHeight > 0) {
@@ -6122,7 +6120,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void reset() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void reset() throws Resources.NotFoundException {
         this.headerView.backupImageView.getImageReceiver().setVisible(true, true);
         if (this.changeBoundAnimator != null) {
             this.chatActivityEnterView.reset();
@@ -6216,7 +6214,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this.storyContainer, null, null, null, null);
     }
 
-    public void setIsVisible(boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setIsVisible(boolean z) throws Resources.NotFoundException {
         if (this.isVisible == z) {
             return;
         }
@@ -6854,7 +6852,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
     }
 
     @Override
-    protected void onMeasure(int i, int i2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    protected void onMeasure(int i, int i2) throws Resources.NotFoundException {
         int size;
         ReactionsContainerLayout reactionsContainerLayout;
         MentionsContainerView mentionsContainerView;
@@ -7374,7 +7372,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             AlertsCreator.ensurePaidMessageConfirmation(PeerStoriesView.this.currentAccount, PeerStoriesView.this.dialogId, 1, new Utilities.Callback() {
                 @Override
-                public final void run(Object obj) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run(Object obj) throws Resources.NotFoundException {
                     this.f$0.lambda$onReactionClickedInternal$2(z, visibleReaction, view, (Long) obj);
                 }
             });
@@ -7384,7 +7382,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             onReactionClickedInternal(view, visibleReaction, z, z2, false);
         }
 
-        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void lambda$onReactionClickedInternal$2(boolean z, ReactionsLayoutInBubble.VisibleReaction visibleReaction, View view, Long l) throws Resources.NotFoundException {
             ReactionsEffectOverlay reactionsEffectOverlay;
             TLRPC.Document documentFindDocument;
             if (z && visibleReaction.emojicon != null) {
@@ -7659,7 +7657,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public boolean needEnterText() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean needEnterText() throws Resources.NotFoundException {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView == null) {
             return false;

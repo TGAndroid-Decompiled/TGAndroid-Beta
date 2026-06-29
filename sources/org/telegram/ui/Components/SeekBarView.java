@@ -23,7 +23,6 @@ import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -219,7 +218,7 @@ public class SeekBarView extends FrameLayout {
         this.innerPaint1.setColor(i);
     }
 
-    public void setOuterColor(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setOuterColor(int i) {
         this.outerPaint1.setColor(i);
         Drawable drawable = this.hoverDrawable;
         if (drawable != null) {

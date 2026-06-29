@@ -34,7 +34,6 @@ import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.zxing.common.detector.MathUtils;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -179,7 +178,7 @@ public abstract class TextSelectionHelper {
     };
     final Runnable startSelectionRunnable = new Runnable() {
         @Override
-        public void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void run() {
             TextSelectionHelper textSelectionHelper = TextSelectionHelper.this;
             SelectableView selectableView = textSelectionHelper.maybeSelectedView;
             if (selectableView == null || textSelectionHelper.textSelectionOverlay == null) {

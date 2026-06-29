@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -853,7 +852,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             int top;
             int i5 = i3 - i;
             int i6 = i4 - i2;

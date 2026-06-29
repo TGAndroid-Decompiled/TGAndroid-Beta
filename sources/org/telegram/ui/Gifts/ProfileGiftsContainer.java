@@ -30,7 +30,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -237,7 +236,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
             }, resourcesProvider, 3, 1) {
                 @Override
-                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                     super.onLayout(z, i2, i3, i4, i5);
                     profileGiftsContainer.updateTabsY();
                 }
@@ -359,7 +358,7 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                 }
 
                 @Override
-                public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i2) {
                     if (i2 != 0) {
                         if (Page.this.listView != null) {
                             Page.this.listView.cancelClickRunnables(false);

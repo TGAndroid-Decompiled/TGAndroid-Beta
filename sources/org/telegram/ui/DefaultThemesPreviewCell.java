@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -52,7 +51,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     int themeIndex;
     private Boolean wasPortrait;
 
-    public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public DefaultThemesPreviewCell(Context context, final BaseFragment baseFragment, int i) {
         LinearLayoutManager linearLayoutManager;
         super(context);
         this.layoutManager = null;
@@ -400,7 +399,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
         this.adapter.setSelectedItem(this.selectedPosition);
     }
 
-    public void updateColors() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void updateColors() {
         int i = this.currentType;
         if (i == 0 || i == -1) {
             RLottieDrawable rLottieDrawable = this.darkThemeDrawable;
@@ -423,7 +422,7 @@ public class DefaultThemesPreviewCell extends LinearLayout {
     }
 
     @Override
-    public void setBackgroundColor(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setBackgroundColor(int i) {
         super.setBackgroundColor(i);
         updateColors();
     }

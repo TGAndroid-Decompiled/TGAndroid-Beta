@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -318,7 +317,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (view instanceof ChatMessageCell) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) view;
                     boolean zDrawChild = super.drawChild(canvas, view, j);
@@ -363,7 +362,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 if (Page.this.firstLayout) {
                     if (Page.this.currentTab != 0) {
                         scrollToPosition(0);
@@ -1642,7 +1641,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) throws Resources.NotFoundException {
                         Page page2 = Page.this;
                         if (page2.currentTab != 2 || MessagePreviewView.this.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
                             return;

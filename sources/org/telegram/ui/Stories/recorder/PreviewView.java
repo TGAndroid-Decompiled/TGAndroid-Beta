@@ -2092,7 +2092,7 @@ public abstract class PreviewView extends FrameLayout {
         return getBackgroundDrawableFromTheme(i, str, z, false);
     }
 
-    public static Drawable getBackgroundDrawableFromTheme(int i, String str, boolean z, boolean z2) throws InterruptedException {
+    public static Drawable getBackgroundDrawableFromTheme(int i, String str, boolean z, boolean z2) {
         EmojiThemes theme = ChatThemeController.getInstance(i).getTheme(ThemeKey.ofEmoticon(str));
         if (theme == null) {
             return Theme.getCachedWallpaper();

@@ -25,7 +25,6 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import j$.util.Objects;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
@@ -38,6 +37,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -371,7 +371,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
         }).setPositiveButton(LocaleController.getString(R.string.Save), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$checkDiscard$2(alertDialog, i);
             }
         }).makeRed(-2).show();
@@ -382,12 +382,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.parentAlert.lambda$new$0();
     }
 
-    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         persistDraft();
         this.parentAlert.lambda$new$0();
     }
 
-    private void persistDraft() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void persistDraft() throws Resources.NotFoundException {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
@@ -927,6 +927,10 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
+        MessageObject messageObject;
+        MessageObject messageObject2;
+        long j2;
+        int quickReplyId;
         if (!this.listView.hasAnyText() || this.listView.hasPendingUploads()) {
             return false;
         }
@@ -934,19 +938,29 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             updateSendButtonEnabled();
             return false;
         }
-        if (this.listView.flattenRowsToBlocks().isEmpty()) {
+        ArrayList arrayListFlattenRowsToBlocks = this.listView.flattenRowsToBlocks();
+        if (arrayListFlattenRowsToBlocks.isEmpty()) {
             return false;
         }
-        this.listView.collectPhotos();
-        this.listView.collectDocuments();
+        ArrayList arrayListCollectPhotos = this.listView.collectPhotos();
+        ArrayList arrayListCollectDocuments = this.listView.collectDocuments();
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
-            chatActivity.getReplyMessage();
-            chatActivity.getThreadMessage();
-            chatActivity.getSendMonoForumPeerId();
-            chatActivity.getQuickReplyId();
+            MessageObject replyMessage = chatActivity.getReplyMessage();
+            MessageObject threadMessage = chatActivity.getThreadMessage();
+            long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
+            quickReplyId = chatActivity.getQuickReplyId();
+            messageObject = replyMessage;
+            messageObject2 = threadMessage;
+            j2 = sendMonoForumPeerId;
+        } else {
+            messageObject = null;
+            messageObject2 = null;
+            j2 = 0;
+            quickReplyId = 0;
         }
+        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject, messageObject2, z, i, i2, null, quickReplyId, j, j2, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }

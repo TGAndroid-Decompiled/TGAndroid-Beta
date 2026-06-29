@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AccountInstance;
@@ -227,7 +226,7 @@ public class PollCreateActivity extends BaseFragment implements NotificationCent
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i != 0) {
                 PollCreateActivity.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);

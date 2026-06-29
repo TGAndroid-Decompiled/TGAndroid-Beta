@@ -41,7 +41,6 @@ import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -678,7 +677,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         this.recyclerListView = new TopicsRecyclerView(context) {
             @Override
-            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
                 super.onLayout(z, i5, i6, i7, i8);
                 TopicsFragment.this.checkForLoadMore();
             }
@@ -1460,7 +1459,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ForumUtilities.openTopic(this, this.chatId, tL_forumTopic, 0);
     }
 
-    public boolean lambda$createView$4(View view, int i, float f, float f2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean lambda$createView$4(View view, int i, float f, float f2) {
         if (this.openedForSelect || getParentLayout() == null || getParentLayout().isInPreviewMode()) {
             return false;
         }
@@ -1842,7 +1841,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             if ((TopicsFragment.this.dialogRemoveFinished == 0 && TopicsFragment.this.dialogInsertFinished == 0 && TopicsFragment.this.dialogChangeFinished == 0) || TopicsFragment.this.itemAnimator.isRunning()) {
                 return;
@@ -2522,7 +2521,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i != 0) {
                 TopicsFragment.this.recyclerListView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);

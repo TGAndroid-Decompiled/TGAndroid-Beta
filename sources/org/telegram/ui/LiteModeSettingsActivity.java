@@ -27,7 +27,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -231,7 +230,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         }
     }
 
-    private void highlightRow(final int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void highlightRow(final int i) {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {

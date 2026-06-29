@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -370,7 +369,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder != null) {
                 UniversalRecyclerView.this.hideSelector(false);
             }

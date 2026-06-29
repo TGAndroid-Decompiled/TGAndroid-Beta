@@ -35,7 +35,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -1089,7 +1088,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.listView.scrollToPosition(this.listAdapter.getItemCount() - 1);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run() {
                     this.f$0.lambda$createView$15();
                 }
             }, 200L);
@@ -1652,7 +1651,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         return this.sensitiveContentRow;
     }
 
-    public void lambda$createView$15() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createView$15() {
         this.listView.highlightRow(new RecyclerListView.IntReturnCallback() {
             @Override
             public final int run() {

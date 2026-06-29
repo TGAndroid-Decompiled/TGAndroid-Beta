@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.Theme;
@@ -190,7 +189,7 @@ public class ThemeDescription {
         return themeDescriptionDelegate;
     }
 
-    public void setColor(int i, boolean z) throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setColor(int i, boolean z) throws NoSuchFieldException, IOException, SecurityException {
         setColor(i, z, true);
     }
 
@@ -202,11 +201,11 @@ public class ThemeDescription {
         return (tag instanceof Integer) && ((Integer) tag).intValue() == i;
     }
 
-    public void setColor(int r6, boolean r7, boolean r8) throws java.lang.IllegalAccessException, java.lang.NoSuchFieldException, java.lang.NoSuchMethodException, java.io.IOException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    public void setColor(int r6, boolean r7, boolean r8) throws java.lang.NoSuchFieldException, java.io.IOException, java.lang.SecurityException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ThemeDescription.setColor(int, boolean, boolean):void");
     }
 
-    private void processViewColor(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void processViewColor(View view, int i) {
         boolean z;
         Object background;
         TypefaceSpan[] typefaceSpanArr;
@@ -502,11 +501,11 @@ public class ThemeDescription {
         }
     }
 
-    public void setDefaultColor() throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setDefaultColor() throws NoSuchFieldException, IOException, SecurityException {
         setColor(Theme.getDefaultColor(this.currentKey), true);
     }
 
-    public void setPreviousColor() throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setPreviousColor() throws NoSuchFieldException, IOException, SecurityException {
         setColor(this.previousColor, this.previousIsDefault[0]);
     }
 

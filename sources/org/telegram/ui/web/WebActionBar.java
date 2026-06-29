@@ -26,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -604,7 +603,7 @@ public abstract class WebActionBar extends FrameLayout {
         setColors(i, -1.0f, z);
     }
 
-    public void setColors(final int i, float f, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setColors(final int i, float f, boolean z) {
         boolean[] zArr = this.colorSet;
         if (zArr[2] && this.backgroundColor == i) {
             return;
@@ -664,20 +663,20 @@ public abstract class WebActionBar extends FrameLayout {
         this.colorAnimator = valueAnimatorOfFloat;
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 this.f$0.lambda$setColors$8(i, f2, f3, valueAnimator2);
             }
         });
         this.colorAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animator) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onAnimationEnd(Animator animator) {
                 WebActionBar.this.setColors(i, f3, false);
             }
         });
         this.colorAnimator.start();
     }
 
-    public void lambda$setColors$8(int i, float f, float f2, ValueAnimator valueAnimator) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$setColors$8(int i, float f, float f2, ValueAnimator valueAnimator) {
         float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         setColors(ColorUtils.blendARGB(this.fromBackgroundColor, i, fFloatValue), AndroidUtilities.lerp(f, f2, fFloatValue), false);
     }

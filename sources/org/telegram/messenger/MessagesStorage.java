@@ -1041,7 +1041,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$loadPendingTasks$32(long j, long j2, int i) {
-        getMessagesController().lambda$checkDeletingTask$83(j, j2, i);
+        getMessagesController().lambda$checkDeletingTask$84(j, j2, i);
     }
 
     public void saveChannelPts(final long j, final int i) {
@@ -1938,7 +1938,7 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    private void calcUnreadCounters(boolean r29) throws java.lang.Throwable {
+    private void calcUnreadCounters(boolean r30) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.calcUnreadCounters(boolean):void");
     }
 
@@ -3511,6 +3511,12 @@ public class MessagesStorage extends BaseController {
         }
         this.mainUnreadCount = this.pendingMainUnreadCount;
         this.archiveUnreadCount = this.pendingArchiveUnreadCount;
+    }
+
+    private boolean isChatCollapsedInCommunity(TLRPC.Chat chat) {
+        TLRPC.Chat chat2;
+        long j = chat.linked_community_id;
+        return (j == 0 || (chat2 = getChat(j)) == null || !chat2.collapsed_in_dialogs) ? false : true;
     }
 
     private void updateDialogsWithReadMessagesInternal(ArrayList<Integer> arrayList, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) {
@@ -6158,88 +6164,89 @@ public class MessagesStorage extends BaseController {
     }
 
     private void putChatsInternal(List<TLRPC.Chat> list) {
-        TLRPC.Chat chat;
         if (list == null || list.isEmpty()) {
             return;
         }
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = this.database.executeFast("REPLACE INTO chats VALUES(?, ?, ?)");
         for (int i = 0; i < list.size(); i++) {
-            TLRPC.Chat chat2 = list.get(i);
-            if (chat2.min || (ChatObject.isCommunity(chat2) && !BitwiseUtils.hasFlag(chat2.flags2, 1048576))) {
-                SQLiteCursor sQLiteCursorQueryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM chats WHERE uid = %d", Long.valueOf(chat2.id)), new Object[0]);
+            TLRPC.Chat chat = list.get(i);
+            if (chat.min) {
+                SQLiteCursor sQLiteCursorQueryFinalized = this.database.queryFinalized(String.format(Locale.US, "SELECT data FROM chats WHERE uid = %d", Long.valueOf(chat.id)), new Object[0]);
                 if (sQLiteCursorQueryFinalized.next()) {
                     try {
-                        chat = (TLRPC.Chat) sQLiteCursorQueryFinalized.tlObjectValue(0, new MessagesStorage$$ExternalSyntheticLambda210(), false);
+                        NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
+                        if (nativeByteBufferByteBufferValue != null) {
+                            TLRPC.Chat chatTLdeserialize = TLRPC.Chat.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
+                            nativeByteBufferByteBufferValue.reuse();
+                            if (chatTLdeserialize != null) {
+                                chatTLdeserialize.title = chat.title;
+                                chatTLdeserialize.photo = chat.photo;
+                                chatTLdeserialize.broadcast = chat.broadcast;
+                                chatTLdeserialize.verified = chat.verified;
+                                chatTLdeserialize.megagroup = chat.megagroup;
+                                chatTLdeserialize.call_not_empty = chat.call_not_empty;
+                                chatTLdeserialize.call_active = chat.call_active;
+                                chatTLdeserialize.monoforum = chat.monoforum;
+                                chatTLdeserialize.broadcast_messages_allowed = chat.broadcast_messages_allowed;
+                                if ((chat.flags2 & 262144) != 0) {
+                                    chatTLdeserialize.linked_monoforum_id = chat.linked_monoforum_id;
+                                    chatTLdeserialize.flags2 |= 262144;
+                                }
+                                if (BitwiseUtils.hasFlag(chat.flags2, 1048576)) {
+                                    chatTLdeserialize.linked_community_id = chat.linked_community_id;
+                                    chatTLdeserialize.flags2 |= 1048576;
+                                }
+                                TLRPC.TL_chatBannedRights tL_chatBannedRights = chat.default_banned_rights;
+                                if (tL_chatBannedRights != null) {
+                                    chatTLdeserialize.default_banned_rights = tL_chatBannedRights;
+                                    chatTLdeserialize.flags |= 262144;
+                                }
+                                TLRPC.TL_chatAdminRights tL_chatAdminRights = chat.admin_rights;
+                                if (tL_chatAdminRights != null) {
+                                    chatTLdeserialize.admin_rights = tL_chatAdminRights;
+                                    chatTLdeserialize.flags |= 16384;
+                                }
+                                TLRPC.TL_chatBannedRights tL_chatBannedRights2 = chat.banned_rights;
+                                if (tL_chatBannedRights2 != null) {
+                                    chatTLdeserialize.banned_rights = tL_chatBannedRights2;
+                                    chatTLdeserialize.flags |= 32768;
+                                }
+                                String str = chat.username;
+                                if (str != null) {
+                                    chatTLdeserialize.username = str;
+                                    chatTLdeserialize.flags |= 64;
+                                } else {
+                                    chatTLdeserialize.username = null;
+                                    chatTLdeserialize.flags &= -65;
+                                }
+                                int i2 = chat.participants_count;
+                                if (i2 > 0) {
+                                    chatTLdeserialize.participants_count = i2;
+                                }
+                                chat = chatTLdeserialize;
+                            }
+                        }
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
-                    sQLiteCursorQueryFinalized.dispose();
-                } else {
-                    chat = null;
-                    sQLiteCursorQueryFinalized.dispose();
                 }
-            } else {
-                chat = null;
-            }
-            if (chat2.min && chat != null) {
-                chat.title = chat2.title;
-                chat.photo = chat2.photo;
-                chat.broadcast = chat2.broadcast;
-                chat.verified = chat2.verified;
-                chat.megagroup = chat2.megagroup;
-                chat.call_not_empty = chat2.call_not_empty;
-                chat.call_active = chat2.call_active;
-                chat.monoforum = chat2.monoforum;
-                chat.broadcast_messages_allowed = chat2.broadcast_messages_allowed;
-                if ((chat2.flags2 & 262144) != 0) {
-                    chat.linked_monoforum_id = chat2.linked_monoforum_id;
-                    chat.flags2 |= 262144;
-                }
-                if (BitwiseUtils.hasFlag(chat2.flags, 1048576)) {
-                    chat.linked_community_id = chat2.linked_community_id;
-                    chat.flags2 |= 1048576;
-                }
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = chat2.default_banned_rights;
-                if (tL_chatBannedRights != null) {
-                    chat.default_banned_rights = tL_chatBannedRights;
-                    chat.flags |= 262144;
-                }
-                TLRPC.TL_chatAdminRights tL_chatAdminRights = chat2.admin_rights;
-                if (tL_chatAdminRights != null) {
-                    chat.admin_rights = tL_chatAdminRights;
-                    chat.flags |= 16384;
-                }
-                TLRPC.TL_chatBannedRights tL_chatBannedRights2 = chat2.banned_rights;
-                if (tL_chatBannedRights2 != null) {
-                    chat.banned_rights = tL_chatBannedRights2;
-                    chat.flags |= 32768;
-                }
-                String str = chat2.username;
-                if (str != null) {
-                    chat.username = str;
-                    chat.flags |= 64;
-                } else {
-                    chat.username = null;
-                    chat.flags &= -65;
-                }
-                int i2 = chat2.participants_count;
-                if (i2 > 0) {
-                    chat.participants_count = i2;
-                }
-                chat2 = chat;
+                sQLiteCursorQueryFinalized.dispose();
             }
             sQLitePreparedStatementExecuteFast.requery();
-            chat2.flags |= 131072;
-            sQLitePreparedStatementExecuteFast.bindLong(1, chat2.id);
-            String str2 = chat2.title;
+            chat.flags |= 131072;
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chat.getObjectSize());
+            chat.serializeToStream(nativeByteBuffer);
+            sQLitePreparedStatementExecuteFast.bindLong(1, chat.id);
+            String str2 = chat.title;
             if (str2 != null) {
                 sQLitePreparedStatementExecuteFast.bindString(2, str2.toLowerCase());
             } else {
                 sQLitePreparedStatementExecuteFast.bindString(2, "");
             }
-            sQLitePreparedStatementExecuteFast.bindTlObject(3, chat2);
+            sQLitePreparedStatementExecuteFast.bindByteBuffer(3, nativeByteBuffer);
             sQLitePreparedStatementExecuteFast.step();
-            isForumCacheInvalidate(-chat2.id);
+            nativeByteBuffer.reuse();
+            isForumCacheInvalidate(-chat.id);
         }
         sQLitePreparedStatementExecuteFast.dispose();
     }
@@ -6947,6 +6954,14 @@ public class MessagesStorage extends BaseController {
             return;
         }
         sQLitePreparedStatementExecuteFast.dispose();
+    }
+
+    public void deleteEphemeralMessages(long j, int i) {
+        LongSparseArray longSparseArray = new LongSparseArray(1);
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(Integer.valueOf(i));
+        longSparseArray.put(j, arrayList);
+        deleteEphemeralMessages(longSparseArray, false);
     }
 
     public void deleteEphemeralMessages(final LongSparseArray longSparseArray, final boolean z) {

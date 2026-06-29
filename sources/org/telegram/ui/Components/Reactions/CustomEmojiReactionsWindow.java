@@ -24,7 +24,6 @@ import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import j$.util.Objects;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -310,7 +309,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void onInputFocus() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void onInputFocus() throws Resources.NotFoundException {
             if (CustomEmojiReactionsWindow.this.wasFocused) {
                 return;
             }

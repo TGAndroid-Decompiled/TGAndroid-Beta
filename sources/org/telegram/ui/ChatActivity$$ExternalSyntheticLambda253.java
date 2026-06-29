@@ -1,7 +1,6 @@
 package org.telegram.ui;
 
 import android.content.res.Resources;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 
@@ -13,7 +12,7 @@ public final class ChatActivity$$ExternalSyntheticLambda253 implements Utilities
     }
 
     @Override
-    public final void run(Object obj) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public final void run(Object obj) throws Resources.NotFoundException {
         this.f$0.showFieldPanelForSuggestionParams((MessageSuggestionParams) obj);
     }
 }

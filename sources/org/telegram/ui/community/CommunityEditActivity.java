@@ -79,8 +79,10 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     private View avatarOverlay;
     private RadialProgressView avatarProgressView;
     private boolean canAllManageLinkedPeers;
+    private boolean canAllManageLinkedPeersOriginal;
     private CommunityHeaderView communityHeaderView;
     private long communityId;
+    private String communityNameOriginal;
     private FrameLayout containerView;
     private TLRPC.Chat currentChat;
     private TextView doneItem;
@@ -197,9 +199,11 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         this.communityId = this.arguments.getLong("community_id", 0L);
         TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.communityId));
         this.currentChat = chat;
-        this.canAllManageLinkedPeers = chat != null && ((tL_chatBannedRights = chat.default_banned_rights) == null || !tL_chatBannedRights.manage_linked_peers);
+        boolean z = chat != null && ((tL_chatBannedRights = chat.default_banned_rights) == null || !tL_chatBannedRights.manage_linked_peers);
+        this.canAllManageLinkedPeersOriginal = z;
+        this.canAllManageLinkedPeers = z;
         this.info = getMessagesController().getChatFull(this.communityId);
-        ImageUpdater imageUpdater = new ImageUpdater(true, 1, true);
+        ImageUpdater imageUpdater = new ImageUpdater(true, 3, true);
         this.imageUpdater = imageUpdater;
         imageUpdater.parentFragment = this;
         imageUpdater.setDelegate(this);
@@ -257,7 +261,8 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         this.communityHeaderView = communityHeaderView;
         communityHeaderView.avatarView.setForUserOrChat(this.currentChat, this.avatarDrawable);
         this.avatarImage = this.communityHeaderView.avatarView;
-        final String name = DialogObject.getName(this.currentChat);
+        String name = DialogObject.getName(this.currentChat);
+        this.communityNameOriginal = name;
         EditTextCell editTextCell = new EditTextCell(context, this.resourceProvider);
         this.editTextCell = editTextCell;
         editTextCell.textView.setText(name);
@@ -275,7 +280,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
 
             @Override
             public void afterTextChanged(Editable editable) {
-                CommunityEditActivity.this.animatorDoneVisible.setValue(!TextUtils.equals(editable, name), true);
+                CommunityEditActivity.this.checkSaveButtonVisible();
             }
         });
         TextView textView = new TextView(context) {
@@ -293,7 +298,6 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         this.doneItem.setText(LocaleController.getString(R.string.Save));
         this.doneItem.setTypeface(AndroidUtilities.bold());
         this.doneItem.setTextSize(1, 14.0f);
-        this.doneItem.setVisibility(4);
         this.doneItem.setGravity(17);
         this.doneItem.setVisibility(8);
         this.doneItem.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
@@ -436,13 +440,8 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         if (radioButtonCell2 != null) {
             radioButtonCell2.setChecked(z, true);
         }
-        TLRPC.Chat chat = this.currentChat;
-        if (chat.default_banned_rights == null) {
-            chat.default_banned_rights = new TLRPC.TL_chatBannedRights();
-        }
-        this.currentChat.default_banned_rights.manage_linked_peers = !z;
-        getMessagesController().setDefaultBannedRole(this.communityId, this.currentChat.default_banned_rights, false, this);
         this.canAllManageLinkedPeers = z;
+        checkSaveButtonVisible();
     }
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -517,10 +516,18 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
 
     private void processDone() {
         TLRPC.Chat chat = this.currentChat;
-        if (chat == null || chat.title.equals(this.editTextCell.getText())) {
+        if (chat != null && !chat.title.equals(this.editTextCell.getText())) {
+            getMessagesController().changeChatTitle(this.currentChat.id, this.editTextCell.getText());
+        }
+        TLRPC.Chat chat2 = this.currentChat;
+        if (chat2 == null || this.canAllManageLinkedPeers == this.canAllManageLinkedPeersOriginal) {
             return;
         }
-        getMessagesController().changeChatTitle(this.currentChat.id, this.editTextCell.getText());
+        if (chat2.default_banned_rights == null) {
+            chat2.default_banned_rights = new TLRPC.TL_chatBannedRights();
+        }
+        this.currentChat.default_banned_rights.manage_linked_peers = !this.canAllManageLinkedPeers;
+        getMessagesController().setDefaultBannedRole(this.communityId, this.currentChat.default_banned_rights, false, this);
     }
 
     @Override
@@ -796,5 +803,9 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
         });
         this.avatarAnimation.start();
+    }
+
+    public void checkSaveButtonVisible() {
+        this.animatorDoneVisible.setValue((this.canAllManageLinkedPeersOriginal == this.canAllManageLinkedPeers && TextUtils.equals(this.editTextCell.getText(), this.communityNameOriginal)) ? false : true, true);
     }
 }

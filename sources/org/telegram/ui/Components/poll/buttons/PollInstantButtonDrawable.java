@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import java.lang.reflect.InvocationTargetException;
 import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.utils.DrawableUtils;
@@ -19,7 +18,7 @@ public class PollInstantButtonDrawable extends PollButtonDrawableBase {
     private float offsetY;
     private final RadialProgress radialProgress;
 
-    public PollInstantButtonDrawable(View view, Theme.ResourcesProvider resourcesProvider) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public PollInstantButtonDrawable(View view, Theme.ResourcesProvider resourcesProvider) {
         super(resourcesProvider);
         RadialProgress radialProgress = new RadialProgress(view);
         this.radialProgress = radialProgress;

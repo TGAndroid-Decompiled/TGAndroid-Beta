@@ -44,7 +44,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -958,7 +957,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             });
             this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
-                public void onScrolled(RecyclerView recyclerView, int i, int i2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                     int childAdapterPosition;
                     SearchField searchField;
                     ((BottomSheet) EmojiBottomSheet.this).containerView.invalidate();

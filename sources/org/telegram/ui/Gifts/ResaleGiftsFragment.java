@@ -24,7 +24,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -1115,7 +1114,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             private boolean shownToast = false;
 
             @Override
-            public void onBecomeFullyVisible() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onBecomeFullyVisible() throws Resources.NotFoundException {
                 super.onBecomeFullyVisible();
                 if (this.shownToast) {
                     return;

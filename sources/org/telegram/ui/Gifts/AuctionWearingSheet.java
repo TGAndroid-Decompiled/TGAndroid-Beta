@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -207,7 +206,7 @@ public class AuctionWearingSheet extends BottomSheetWithRecyclerListView impleme
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void dispatchDraw(Canvas canvas) {
                 canvas.save();
                 canvas.clipPath(this.path);
                 super.dispatchDraw(canvas);

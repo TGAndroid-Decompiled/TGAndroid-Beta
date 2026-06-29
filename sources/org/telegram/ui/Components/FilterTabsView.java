@@ -33,7 +33,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -900,7 +899,7 @@ public abstract class FilterTabsView extends FrameLayout {
         }
     }
 
-    public boolean lambda$new$1(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean lambda$new$1(View view, int i) {
         if (this.delegate.canPerformActions() && !this.isEditing) {
             if (this.delegate.didSelectTab((TabView) view, i == this.currentPosition)) {
                 this.listView.hideSelector(true);
@@ -1500,7 +1499,7 @@ public abstract class FilterTabsView extends FrameLayout {
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i != 0) {
                 FilterTabsView.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);

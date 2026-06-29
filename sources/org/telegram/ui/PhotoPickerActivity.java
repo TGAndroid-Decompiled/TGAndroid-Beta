@@ -37,7 +37,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -592,7 +591,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             }
 
             @Override
-            public void onStartStopSelection(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onStartStopSelection(boolean z) {
                 PhotoPickerActivity.this.alertOnlyOnce = z ? 1 : 0;
                 if (z) {
                     ((BaseFragment) PhotoPickerActivity.this).parentLayout.getView().requestDisallowInterceptTouchEvent(true);

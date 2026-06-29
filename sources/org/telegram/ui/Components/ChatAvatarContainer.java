@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
@@ -23,6 +22,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.content.ContextCompat;
 import java.util.concurrent.atomic.AtomicReference;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
@@ -54,11 +55,12 @@ import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.TopicsFragment;
 
-public class ChatAvatarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.Target, NotificationCenter.NotificationCenterDelegate {
     private ActionBar actionBar;
     public boolean allowDrawStories;
     public boolean allowShorterStatus;
     private AnimatedTextView animatedSubtitleTextView;
+    private final BoolAnimator animatorTimeVisible;
     private AvatarDrawable avatarDrawable;
     public BackupImageView avatarImageView;
     private int avatarSizeInDp;
@@ -117,6 +119,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
 
     protected boolean onAvatarClick() {
         return false;
+    }
+
+    @Override
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+        FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
     }
 
     protected void openSearch() {
@@ -384,7 +391,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         TLRPC.Chat currentChat = this.parentFragment.getCurrentChat();
         if (currentChat != null && !ChatObject.canUserDoAdminAction(currentChat, 13)) {
-            if (this.timeItem.getTag() != null) {
+            if (this.animatorTimeVisible.getValue()) {
                 this.parentFragment.showTimerHint();
             }
             return false;
@@ -626,11 +633,11 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         ImageView imageView = this.communityItem;
         if (imageView != null) {
-            imageView.layout(this.leftPadding + AndroidUtilities.dp(36.0f), AndroidUtilities.dp(34.33f) + currentActionBarHeight, this.leftPadding + AndroidUtilities.dp(36.0f) + this.communityItem.getWidth(), AndroidUtilities.dp(34.33f) + currentActionBarHeight + this.communityItem.getHeight());
+            imageView.layout(this.leftPadding + AndroidUtilities.dp(29.0f), AndroidUtilities.dp(27.33f) + currentActionBarHeight, this.leftPadding + AndroidUtilities.dp(29.0f) + this.communityItem.getMeasuredWidth(), AndroidUtilities.dp(27.33f) + currentActionBarHeight + this.communityItem.getMeasuredHeight());
         }
         ImageView imageView2 = this.timeItem;
         if (imageView2 != null) {
-            imageView2.layout(this.leftPadding + AndroidUtilities.dp(19.333f), AndroidUtilities.dp(-8.0f) + currentActionBarHeight, this.leftPadding + AndroidUtilities.dp(53.333f), AndroidUtilities.dp(26.0f) + currentActionBarHeight);
+            imageView2.layout(this.leftPadding + AndroidUtilities.dp(19.333f), currentActionBarHeight - AndroidUtilities.dp(8.0f), this.leftPadding + AndroidUtilities.dp(19.333f) + this.timeItem.getMeasuredWidth(), (currentActionBarHeight - AndroidUtilities.dp(8.0f)) + this.timeItem.getMeasuredHeight());
         }
         ImageView imageView3 = this.starBgItem;
         if (imageView3 != null) {
@@ -674,61 +681,25 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void showTimeItem(boolean z) {
-        ImageView imageView = this.timeItem;
-        if (imageView != null && imageView.getTag() == null && this.avatarImageView.getVisibility() == 0) {
-            this.timeItem.clearAnimation();
-            this.timeItem.setVisibility(0);
-            this.timeItem.setTag(1);
-            if (z) {
-                this.timeItem.animate().setDuration(180L).alpha(0.85f).scaleX(0.85f).scaleY(1.0f).setListener(null).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        this.f$0.lambda$showTimeItem$6(valueAnimator);
-                    }
-                }).start();
-                return;
-            }
-            this.timeItem.setAlpha(1.0f);
-            this.timeItem.setScaleY(0.85f);
-            this.timeItem.setScaleX(0.85f);
+    @Override
+    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+        ImageView imageView;
+        if (i != 0 || (imageView = this.timeItem) == null) {
+            return;
         }
+        imageView.setAlpha(f);
+        float f3 = 0.85f * f;
+        this.timeItem.setScaleX(f3);
+        this.timeItem.setScaleY(f3);
+        this.timeItem.setVisibility(f > 0.0f ? 0 : 8);
     }
 
-    public void lambda$showTimeItem$6(ValueAnimator valueAnimator) {
-        invalidate();
+    public void showTimeItem(boolean z) {
+        this.animatorTimeVisible.setValue(true, z);
     }
 
     public void hideTimeItem(boolean z) {
-        ImageView imageView = this.timeItem;
-        if (imageView == null || imageView.getTag() == null) {
-            return;
-        }
-        this.timeItem.clearAnimation();
-        this.timeItem.setTag(null);
-        if (z) {
-            this.timeItem.animate().setDuration(180L).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ChatAvatarContainer.this.timeItem.setVisibility(8);
-                    super.onAnimationEnd(animator);
-                }
-            }).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$hideTimeItem$7(valueAnimator);
-                }
-            }).start();
-            return;
-        }
-        this.timeItem.setVisibility(8);
-        this.timeItem.setAlpha(0.0f);
-        this.timeItem.setScaleY(0.0f);
-        this.timeItem.setScaleX(0.0f);
-    }
-
-    public void lambda$hideTimeItem$7(ValueAnimator valueAnimator) {
-        invalidate();
+        this.animatorTimeVisible.setValue(false, z);
     }
 
     public void setTime(int i, boolean z) {
@@ -770,25 +741,25 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         this.starBgItem.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.1f : 0.0f).scaleY(z ? 1.1f : 0.0f).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setStars$8(z);
+                this.f$0.lambda$setStars$6(z);
             }
         }).start();
         this.starFgItem.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.0f).scaleY(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$setStars$9(z);
+                this.f$0.lambda$setStars$7(z);
             }
         }).start();
     }
 
-    public void lambda$setStars$8(boolean z) {
+    public void lambda$setStars$6(boolean z) {
         if (z) {
             return;
         }
         this.starBgItem.setVisibility(4);
     }
 
-    public void lambda$setStars$9(boolean z) {
+    public void lambda$setStars$7(boolean z) {
         if (z) {
             return;
         }

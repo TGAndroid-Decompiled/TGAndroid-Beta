@@ -57,7 +57,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -1162,7 +1161,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.emptyViewContainer.addView(this.emptyLayoutView, LayoutHelper.createFrame(-2, -2.0f, 17, 20.0f, 0.0f, 20.0f, 0.0f));
         ChatListRecyclerView chatListRecyclerView = new ChatListRecyclerView(context) {
             @Override
-            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
                 ChannelAdminLogActivity.this.applyScrolledPosition();
                 super.onLayout(z, i3, i4, i5, i6);
             }
@@ -3012,7 +3011,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) throws InterruptedException, Resources.NotFoundException {
+            public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) throws Resources.NotFoundException {
                 MessageObject messageObject = chatMessageCell.getMessageObject().replyMessageObject;
                 if (messageObject.getDialogId() == (-ChannelAdminLogActivity.this.currentChat.id)) {
                     for (int i2 = 0; i2 < ChannelAdminLogActivity.this.filteredMessages.size(); i2++) {
@@ -3281,7 +3280,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
@@ -3722,7 +3721,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         return arrayList;
     }
 
-    public void scrollToMessage(org.telegram.messenger.MessageObject r13, boolean r14) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+    public void scrollToMessage(org.telegram.messenger.MessageObject r13, boolean r14) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.scrollToMessage(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -3733,7 +3732,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws InterruptedException, Resources.NotFoundException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$startMessageUnselect$25();
             }
         };
@@ -3741,7 +3740,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         AndroidUtilities.runOnUIThread(runnable2, this.highlightMessageQuote != null ? 2500L : 1000L);
     }
 
-    public void lambda$startMessageUnselect$25() throws InterruptedException, Resources.NotFoundException {
+    public void lambda$startMessageUnselect$25() throws Resources.NotFoundException {
         this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuote = null;
@@ -3765,11 +3764,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         this.highlightMessageQuote = null;
     }
 
-    public void updateVisibleRows() throws InterruptedException, Resources.NotFoundException {
+    public void updateVisibleRows() throws Resources.NotFoundException {
         updateVisibleRows(false);
     }
 
-    private void updateVisibleRows(boolean z) throws InterruptedException, Resources.NotFoundException {
+    private void updateVisibleRows(boolean z) throws Resources.NotFoundException {
         String str;
         ChatListRecyclerView chatListRecyclerView = this.chatListView;
         if (chatListRecyclerView == null) {
@@ -3930,7 +3929,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void onEndAnimation() throws InterruptedException, Resources.NotFoundException {
+        public void onEndAnimation() throws Resources.NotFoundException {
             if (this.scrollTo != null) {
                 int iIndexOf = ChannelAdminLogActivity.this.chatAdapter.messagesStartRow + ChannelAdminLogActivity.this.filteredMessages.indexOf(this.scrollTo);
                 if (iIndexOf >= 0) {

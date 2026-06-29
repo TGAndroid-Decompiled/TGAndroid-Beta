@@ -90,7 +90,6 @@ import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -1869,7 +1868,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this(activity, sizeNotifierFrameLayout, chatActivity, z, null);
     }
 
-    public ChatActivityEnterView(final Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, final ChatActivity chatActivity, boolean z, final Theme.ResourcesProvider resourcesProvider) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public ChatActivityEnterView(final Activity activity, SizeNotifierFrameLayout sizeNotifierFrameLayout, final ChatActivity chatActivity, boolean z, final Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
         int i;
         String str;
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate;
@@ -1936,7 +1935,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             private int lastKnownPage = -1;
 
             @Override
-            public void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void run() throws Resources.NotFoundException {
                 int currentPage;
                 if (ChatActivityEnterView.this.emojiView == null || (currentPage = ChatActivityEnterView.this.emojiView.getCurrentPage()) == this.lastKnownPage) {
                     return;
@@ -2270,7 +2269,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         chatActivityEnterViewAnimatedIconView3.setBackground(Theme.createInsetRoundRectDrawable(getThemedColor(i4), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(3.0f)));
         this.emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$new$1(view);
             }
         });
@@ -2674,7 +2673,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void lambda$new$1(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$1(View view) throws Resources.NotFoundException {
         AdjustPanLayoutHelper adjustPanLayoutHelper = this.adjustPanLayoutHelper;
         if (adjustPanLayoutHelper == null || !adjustPanLayoutHelper.animationInProgress()) {
             if (this.emojiButtonRestricted) {
@@ -2706,7 +2705,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 this.waitingForKeyboardOpenAfterAnimation = true;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$new$0();
                     }
                 }, 200L);
@@ -2716,7 +2715,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void lambda$new$0() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$0() throws Resources.NotFoundException {
         this.waitingForKeyboardOpenAfterAnimation = false;
         openKeyboardInternal();
     }
@@ -2724,13 +2723,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     public void lambda$new$3(Theme.ResourcesProvider resourcesProvider, View view) {
         new AlertDialog.Builder(getContext(), resourcesProvider).setTitle(LocaleController.getString(R.string.ArticleDeleteDraftTitle)).setMessage(LocaleController.getString(R.string.ArticleDeleteDraftMessage)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Delete), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                 this.f$0.lambda$new$2(alertDialog, i);
             }
         }).makeRed(-1).show();
     }
 
-    public void lambda$new$2(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$2(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         clearRichDraft();
     }
 
@@ -2755,7 +2754,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }).setOnSend(dialogId, this.editingMessageObject != null, new Utilities.Callback4() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4) throws Resources.NotFoundException {
                 this.f$0.lambda$new$6(dialogId, resourcesProvider, (CharSequence) obj, (Integer) obj2, (Integer) obj3, (Boolean) obj4);
             }
         }).show();
@@ -2766,7 +2765,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditText.setSelection(charSequence.length(), charSequence.length());
     }
 
-    public void lambda$new$6(long j, Theme.ResourcesProvider resourcesProvider, CharSequence charSequence, Integer num, Integer num2, Boolean bool) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$new$6(long j, Theme.ResourcesProvider resourcesProvider, CharSequence charSequence, Integer num, Integer num2, Boolean bool) throws Resources.NotFoundException {
         this.messageEditText.setText(charSequence);
         if (this.editingMessageObject != null) {
             doneEditingMessage();
@@ -3467,7 +3466,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setSuggestionButtonVisible(final boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setSuggestionButtonVisible(final boolean z, boolean z2) throws Resources.NotFoundException {
         if (this.suggestButtonVisible == z && z2) {
             return;
         }
@@ -3559,13 +3558,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.attachLayout.addView(this.botButton, 0, LayoutHelper.createLinear(44, 44));
         this.botButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$createBotButton$20(view);
             }
         });
     }
 
-    public void lambda$createBotButton$20(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createBotButton$20(View view) throws Resources.NotFoundException {
         if (this.searchingType != 0) {
             setSearchingTypeInternal(0, false);
             this.emojiView.closeSearch(false);
@@ -3659,14 +3658,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.sendButtonContainer.addView(this.expandStickersButton, LayoutHelper.createFrame(44, 44, 85));
         this.expandStickersButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$createExpandStickersButton$21(view);
             }
         });
         this.expandStickersButton.setContentDescription(LocaleController.getString("AccDescrExpandPanel", R.string.AccDescrExpandPanel));
     }
 
-    public void lambda$createExpandStickersButton$21(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createExpandStickersButton$21(View view) throws Resources.NotFoundException {
         EmojiView emojiView;
         EditTextCaption editTextCaption;
         if (this.expandStickersButton.getVisibility() == 0 && this.expandStickersButton.getAlpha() == 1.0f && !this.waitingForKeyboardOpen) {
@@ -3722,7 +3721,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.recordedAudioPanel.addView(this.recordDeleteImageView, LayoutHelper.createFrame(44, 44.0f));
         this.recordDeleteImageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$createRecordAudioPanel$22(view);
             }
         });
@@ -3771,14 +3770,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         updateFieldRight(this.lastAttachVisible);
     }
 
-    public void lambda$createRecordAudioPanel$22(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createRecordAudioPanel$22(View view) throws Resources.NotFoundException {
         AnimatorSet animatorSet = this.runningAnimationAudio;
         if (animatorSet == null || !animatorSet.isRunning()) {
             resetRecordedState();
         }
     }
 
-    private void resetRecordedState() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void resetRecordedState() throws Resources.NotFoundException {
         RecordedAudioPlayerView recordedAudioPlayerView = this.audioTimelineView;
         if (recordedAudioPlayerView != null) {
             recordedAudioPlayerView.setPlaying(false);
@@ -3820,7 +3819,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.senderSelectView = senderSelectView;
         senderSelectView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$createSenderSelectView$29(view);
             }
         });
@@ -3828,7 +3827,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditTextContainer.addView(this.senderSelectView, LayoutHelper.createFrame(36, 36.0f, 83, 4.66f, 4.0f, 4.66f, 4.0f));
     }
 
-    public void lambda$createSenderSelectView$29(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createSenderSelectView$29(View view) throws Resources.NotFoundException {
         final TLRPC.ChatFull chatFull;
         int i;
         int iDp;
@@ -4185,7 +4184,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.botCommandsMenuButton = botCommandsMenuView;
         botCommandsMenuView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view) throws Resources.NotFoundException {
                 this.f$0.lambda$createBotCommandsMenuButton$30(view);
             }
         });
@@ -4194,7 +4193,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.botCommandsMenuButton.setExpanded(true, false);
     }
 
-    public void lambda$createBotCommandsMenuButton$30(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createBotCommandsMenuButton$30(View view) throws Resources.NotFoundException {
         boolean zIsOpened = this.botCommandsMenuButton.isOpened();
         this.botCommandsMenuButton.setOpened(!zIsOpened);
         try {
@@ -4885,7 +4884,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             if (!ChatActivityEnterView.this.stickersDragging && ChatActivityEnterView.this.stickersExpansionAnim == null) {
                 ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
                 if (!chatActivityEnterView.sendPlainEnabled && !chatActivityEnterView.isEditingMessage()) {
@@ -4914,7 +4913,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         ChatActivityEnterView.this.waitingForKeyboardOpenAfterAnimation = true;
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                            public final void run() throws Resources.NotFoundException {
                                 this.f$0.lambda$onTouchEvent$3();
                             }
                         }, 200L);
@@ -4936,7 +4935,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             ChatActivityEnterView.this.showRestrictedHint();
         }
 
-        public void lambda$onTouchEvent$3() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void lambda$onTouchEvent$3() throws Resources.NotFoundException {
             ChatActivityEnterView.this.waitingForKeyboardOpenAfterAnimation = false;
             ChatActivityEnterView.this.openKeyboardInternal();
         }
@@ -5154,7 +5153,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return string == null || !string.startsWith("com.samsung");
     }
 
-    private void createMessageEditText() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void createMessageEditText() throws Resources.NotFoundException {
         if (this.messageEditText != null) {
             return;
         }
@@ -5165,7 +5164,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             float touchY;
 
             @Override
-            protected void onDraw(Canvas canvas) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onDraw(Canvas canvas) throws Resources.NotFoundException {
                 super.onDraw(canvas);
                 if (getLayout() == null || !this.firstDraw) {
                     return;
@@ -5303,7 +5302,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditTextContainer.addView(this.richDraftPreview, 2, LayoutHelper.createFrame(-1, -2.0f, 80, 48.0f, 0.0f, (this.isChat ? 50 : 2) - 4, 1.5f));
         this.messageEditText.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public boolean onKey(android.view.View r5, int r6, android.view.KeyEvent r7) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+            public boolean onKey(android.view.View r5, int r6, android.view.KeyEvent r7) throws android.content.res.Resources.NotFoundException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass50.onKey(android.view.View, int, android.view.KeyEvent):boolean");
             }
         });
@@ -5382,7 +5381,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) throws Resources.NotFoundException {
             int currentPage;
             if (this.ignorePrevTextChange) {
                 return;
@@ -5443,7 +5442,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void afterTextChanged(android.text.Editable r11) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+        public void afterTextChanged(android.text.Editable r11) throws android.content.res.Resources.NotFoundException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass52.afterTextChanged(android.text.Editable):void");
         }
 
@@ -5615,7 +5614,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setCaption(String str) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setCaption(String str) throws Resources.NotFoundException {
         EditTextCaption editTextCaption = this.messageEditText;
         if (editTextCaption != null) {
             editTextCaption.setCaption(str);
@@ -5623,7 +5622,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setSlowModeTimer(int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setSlowModeTimer(int i) throws Resources.NotFoundException {
         this.slowModeTimer = i;
         updateSlowModeText();
     }
@@ -5635,7 +5634,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return null;
     }
 
-    public void updateSlowModeText() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void updateSlowModeText() throws Resources.NotFoundException {
         int i;
         boolean zIsUploadingMessageIdDialog;
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
@@ -5669,7 +5668,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.updateSlowModeText();
                 }
             };
@@ -5694,16 +5693,16 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         checkUi_TopViewVisibility();
     }
 
-    public void setForceShowSendButton(boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setForceShowSendButton(boolean z, boolean z2) throws Resources.NotFoundException {
         this.forceShowSendButton = z;
         checkSendButton(z2);
     }
 
-    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3) throws Resources.NotFoundException {
         setAllowStickersAndGifs(z, z2, z3, false);
     }
 
-    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3, boolean z4) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setAllowStickersAndGifs(boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException {
         if ((this.allowStickers != z2 || this.allowGifs != z3) && this.emojiView != null) {
             if (this.emojiViewVisible && !z4) {
                 this.removeEmojiViewAfterAnimation = true;
@@ -6182,7 +6181,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setChatInfo(TLRPC.ChatFull chatFull) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setChatInfo(TLRPC.ChatFull chatFull) throws Resources.NotFoundException {
         this.info = chatFull;
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
@@ -6410,11 +6409,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.messageEditText.setHintText(LocaleController.getString(R.string.TypeMessage));
     }
 
-    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote) throws Resources.NotFoundException {
         setReplyingMessageObject(messageObject, replyQuote, null);
     }
 
-    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setReplyingMessageObject(MessageObject messageObject, ChatActivity.ReplyQuote replyQuote, MessageObject messageObject2) throws Resources.NotFoundException {
         MessageObject messageObject3;
         ChatActivity chatActivity = this.parentFragment;
         boolean z = (chatActivity == null || !chatActivity.isForumInViewAsMessagesMode() || this.replyingTopMessage == messageObject2) ? false : true;
@@ -6446,7 +6445,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         updateFieldHint(z);
     }
 
-    public void checkIsEphemeralMessage(boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void checkIsEphemeralMessage(boolean z) throws Resources.NotFoundException {
         MessageObject messageObject;
         boolean z2 = this.dialog_id < 0 && this.isChat && this.editingMessageObject == null && (EphemeralMessagesHelper.getInstance(this.currentAccount).isEphemeralCommand(getEditText() != null ? getEditText().toString() : null, this.lastBotInfo) || ((messageObject = this.replyingMessageObject) != null && messageObject.isEphemeral()));
         boolean z3 = this.animatorEphemeralMessageVisibility.getValue() != z2;
@@ -6735,7 +6734,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     protected boolean sendMessageInternal(final boolean z, final int i, final int i2, final long j, final boolean z2) {
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$sendMessageInternal$60(z, z2, i, i2, j);
             }
         };
@@ -6777,7 +6776,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return false;
     }
 
-    public void lambda$sendMessageInternal$60(final boolean z, boolean z2, final int i, final int i2, final long j) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$sendMessageInternal$60(final boolean z, boolean z2, final int i, final int i2, final long j) throws Resources.NotFoundException {
         ChatActivityEnterViewDelegate chatActivityEnterViewDelegate;
         long j2;
         TLRPC.Chat currentChat;
@@ -7081,7 +7080,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         BulletinFactory.of(this.parentFragment).createSuccessBulletin(LocaleController.getString(R.string.BusinessLinkSaved)).show();
     }
 
-    public void doneEditingMessage() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void doneEditingMessage() throws Resources.NotFoundException {
         MessagePreviewParams messagePreviewParams;
         MessageSuggestionParams messageSuggestionParamsOf;
         int i;
@@ -7127,7 +7126,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 this.waitingForKeyboardOpenAfterAnimation = true;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$doneEditingMessage$65();
                     }
                 }, 200L);
@@ -7250,12 +7249,12 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         setEditingMessageObject(null, null, false);
     }
 
-    public void lambda$doneEditingMessage$65() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$doneEditingMessage$65() throws Resources.NotFoundException {
         this.waitingForKeyboardOpenAfterAnimation = false;
         openKeyboardInternal();
     }
 
-    public boolean processSendingText(java.lang.CharSequence r25, boolean r26, int r27, int r28, long r29) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    public boolean processSendingText(java.lang.CharSequence r25, boolean r26, int r27, int r28, long r29) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.processSendingText(java.lang.CharSequence, boolean, int, int, long):boolean");
     }
 
@@ -7293,7 +7292,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return isInScheduleMode() || this.animatorEphemeralMessageVisibility.getValue();
     }
 
-    public void checkSendButton(boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void checkSendButton(boolean z) throws Resources.NotFoundException {
         int themedColor;
         int i;
         ImageView imageView;
@@ -9345,7 +9344,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         SendMessagesHelper.getInstance(this.currentAccount).sendMessage(sendMessageParamsOf);
     }
 
-    public void setEditingBusinessLink(TL_account.TL_businessChatLink tL_businessChatLink) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setEditingBusinessLink(TL_account.TL_businessChatLink tL_businessChatLink) throws Resources.NotFoundException {
         String str;
         this.editingBusinessLink = tL_businessChatLink;
         updateFieldHint(false);
@@ -9449,11 +9448,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return messageObject2;
     }
 
-    public void setEditingMessageObject(final org.telegram.messenger.MessageObject r18, final org.telegram.messenger.MessageObject.GroupedMessages r19, boolean r20) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    public void setEditingMessageObject(final org.telegram.messenger.MessageObject r18, final org.telegram.messenger.MessageObject.GroupedMessages r19, boolean r20) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setEditingMessageObject(org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject$GroupedMessages, boolean):void");
     }
 
-    public void lambda$setEditingMessageObject$69(View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$setEditingMessageObject$69(View view) throws Resources.NotFoundException {
         doneEditingMessage();
     }
 
@@ -9496,7 +9495,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         messageSendPreview.setItemOptions(itemOptionsMakeOptions);
         messageSendPreview.setSendButton(this.doneButton, false, new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onClick(View view2) throws Resources.NotFoundException {
                 this.f$0.lambda$setEditingMessageObject$71(groupedMessages, messageObject, messageSendPreview, view2);
             }
         });
@@ -9516,7 +9515,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         messageSendPreview.scrollTo(!this.captionAbove);
     }
 
-    public void lambda$setEditingMessageObject$71(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$setEditingMessageObject$71(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, MessageSendPreview messageSendPreview, View view) throws Resources.NotFoundException {
         if (groupedMessages != null) {
             Iterator<MessageObject> it = groupedMessages.messages.iterator();
             while (it.hasNext()) {
@@ -9681,7 +9680,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.sendButton;
     }
 
-    public void setBlockedByStreaming(boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setBlockedByStreaming(boolean z, boolean z2) throws Resources.NotFoundException {
         boolean z3 = this.animatorIsBlockedByStreaming.getValue() != z;
         this.animatorIsBlockedByStreaming.setValue(z, z2);
         if (z3) {
@@ -10024,14 +10023,14 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         richEditor.animateFrom(this.parentFragment);
         richEditor.setOnSent(new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$openRichEditor$76();
             }
         });
         this.parentFragment.presentFragment(richEditor);
     }
 
-    public void lambda$openRichEditor$76() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$openRichEditor$76() throws Resources.NotFoundException {
         EditTextCaption editTextCaption = this.messageEditText;
         if (editTextCaption != null) {
             editTextCaption.setText("");
@@ -10043,7 +10042,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.richDraftActive;
     }
 
-    public void setRichDraftPreview(TL_iv.RichMessage richMessage) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setRichDraftPreview(TL_iv.RichMessage richMessage) throws Resources.NotFoundException {
         RichMessageLayout.PreviewView previewView = this.richDraftPreview;
         if (previewView == null) {
             return;
@@ -10087,7 +10086,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         showRichButton(z);
     }
 
-    private void sendRichDraft(boolean z, int i, int i2, long j) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void sendRichDraft(boolean z, int i, int i2, long j) throws Resources.NotFoundException {
         TL_iv.RichMessage richMessage = this.richDraftMessage;
         if (richMessage == null) {
             return;
@@ -10113,7 +10112,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         checkSendButton(true);
     }
 
-    public void clearRichDraft() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void clearRichDraft() throws Resources.NotFoundException {
         if (this.parentFragment != null) {
             MediaDataController.getInstance(this.currentAccount).saveDraft(this.parentFragment.getDialogId(), this.parentFragment.getDraftThreadId(), "", null, null, null, null, 0L, false, true, null);
         }
@@ -10380,19 +10379,19 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         updateBotButton(z3);
     }
 
-    public void setButtons(MessageObject messageObject) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setButtons(MessageObject messageObject) throws Resources.NotFoundException {
         setButtons(messageObject, true);
     }
 
-    public void setButtons(MessageObject messageObject, boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setButtons(MessageObject messageObject, boolean z) throws Resources.NotFoundException {
         setButtons(messageObject, true, z);
     }
 
-    public void setButtons(org.telegram.messenger.MessageObject r5, boolean r6, boolean r7) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    public void setButtons(org.telegram.messenger.MessageObject r5, boolean r6, boolean r7) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.setButtons(org.telegram.messenger.MessageObject, boolean, boolean):void");
     }
 
-    public void lambda$setButtons$82(TLRPC.KeyboardButton keyboardButton) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$setButtons$82(TLRPC.KeyboardButton keyboardButton) throws Resources.NotFoundException {
         ChatActivity chatActivity;
         boolean z = this.replyingMessageObject != null && (chatActivity = this.parentFragment) != null && chatActivity.isTopic && chatActivity.getTopicId() == ((long) this.replyingMessageObject.getId());
         MessageObject messageObject = ((this.replyingMessageObject == null || z) && !BotForumHelper.isBotForum(this.currentAccount, this.dialog_id)) ? DialogObject.isChatDialog(this.dialog_id) ? this.botButtonsMessageObject : null : this.replyingMessageObject;
@@ -10473,7 +10472,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     final TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j2));
                     final Runnable runnable = new Runnable() {
                         @Override
-                        public void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                        public void run() throws Resources.NotFoundException {
                             if (ChatActivityEnterView.this.sizeNotifierLayout.measureKeyboardHeight() <= AndroidUtilities.dp(20.0f) && !ChatActivityEnterView.this.isPopupShowing()) {
                                 if (ChatActivityEnterView.this.parentFragment == null) {
                                     return;
@@ -10768,7 +10767,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onBecomeFullyVisible() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onBecomeFullyVisible() throws Resources.NotFoundException {
             super.onBecomeFullyVisible();
             if (this.shownToast) {
                 return;
@@ -11635,7 +11634,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onStickersGroupClick(long j) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onStickersGroupClick(long j) throws Resources.NotFoundException {
             if (ChatActivityEnterView.this.parentFragment != null) {
                 if (AndroidUtilities.isTablet()) {
                     ChatActivityEnterView.this.hidePopup(false);
@@ -11820,19 +11819,19 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.emojiView.addRecentSticker(document);
     }
 
-    public void showEmojiView() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void showEmojiView() throws Resources.NotFoundException {
         showPopup(1, 0);
     }
 
-    public void showPopup(int i, int i2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void showPopup(int i, int i2) throws Resources.NotFoundException {
         showPopup(i, i2, true, true);
     }
 
-    private void showPopup(int i, int i2, boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void showPopup(int i, int i2, boolean z) throws Resources.NotFoundException {
         showPopup(i, i2, z, true);
     }
 
-    public void showPopup(final int i, int i2, boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void showPopup(final int i, int i2, boolean z, boolean z2) throws Resources.NotFoundException {
         int measuredHeight;
         int measuredHeight2;
         if (i == 2) {
@@ -12195,15 +12194,15 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public boolean hidePopup(boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean hidePopup(boolean z) throws Resources.NotFoundException {
         return hidePopup(z, false);
     }
 
-    public boolean hidePopup(boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean hidePopup(boolean z, boolean z2) throws Resources.NotFoundException {
         return hidePopup(z, z2, true);
     }
 
-    public boolean hidePopup(boolean z, boolean z2, boolean z3) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean hidePopup(boolean z, boolean z2, boolean z3) throws Resources.NotFoundException {
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
         if (!isPopupShowing()) {
             return false;
@@ -12296,7 +12295,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return emojiView != null && emojiView.getCurrentPage() == 0;
     }
 
-    public void openKeyboardInternal() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void openKeyboardInternal() throws Resources.NotFoundException {
         ChatActivity chatActivity;
         if ((hasBotWebView() && botCommandsMenuIsShowing()) || BaseFragment.hasSheets(this.parentFragment)) {
             return;
@@ -12410,7 +12409,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     @Override
-    public void onSizeChanged(int i, boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void onSizeChanged(int i, boolean z) throws Resources.NotFoundException {
         MessageObject messageObject;
         EditTextCaption editTextCaption;
         TLRPC.TL_replyKeyboardMarkup tL_replyKeyboardMarkup;
@@ -12570,7 +12569,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         TLRPC.ChatFull chatFull;
         TLRPC.Chat chat;
         double d;
@@ -13136,7 +13135,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                     }
                     animatorSet2.addListener(new AnimatorListenerAdapter() {
                         @Override
-                        public void onAnimationEnd(Animator animator2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                        public void onAnimationEnd(Animator animator2) throws Resources.NotFoundException {
                             ChatActivityEnterView.this.closeAnimationInProgress = false;
                             ChatActivityEnterView.this.stickersExpansionAnim = null;
                             if (ChatActivityEnterView.this.emojiView != null) {
@@ -13310,7 +13309,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         float xOffset;
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException {
             if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
                 setPressed(false);
             }
@@ -13342,7 +13341,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             return true;
         }
 
-        public void onCancelButtonPressed() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onCancelButtonPressed() throws Resources.NotFoundException {
             long topicId = 0;
             if (!ChatActivityEnterView.this.hasRecordVideo || !ChatActivityEnterView.this.isInVideoMode()) {
                 ChatActivityEnterView.this.delegate.needStartRecordAudio(0);
@@ -13872,11 +13871,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
     }
 
-    public void setBotInfo(LongSparseArray longSparseArray) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setBotInfo(LongSparseArray longSparseArray) throws Resources.NotFoundException {
         setBotInfo(longSparseArray, true);
     }
 
-    public void setBotInfo(LongSparseArray longSparseArray, boolean z) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setBotInfo(LongSparseArray longSparseArray, boolean z) throws Resources.NotFoundException {
         this.lastBotInfo = longSparseArray;
         if (longSparseArray.size() == 1 && ((TL_bots.BotInfo) longSparseArray.valueAt(0)).user_id == this.dialog_id) {
             TL_bots.BotInfo botInfo = (TL_bots.BotInfo) longSparseArray.valueAt(0);
@@ -14109,7 +14108,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.stickersExpandedHeight;
     }
 
-    public void reset() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void reset() throws Resources.NotFoundException {
         setStickersExpanded(false, true, false);
         showPopup(0, 0, false);
         if (getEditField() != null && !TextUtils.isEmpty(getEditField().getText())) {
@@ -14866,7 +14865,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return this.currentIslandTotalHeight;
     }
 
-    public void setLiveComment(boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setLiveComment(boolean z, boolean z2) throws Resources.NotFoundException {
         if (this.isLiveComment == z) {
             return;
         }

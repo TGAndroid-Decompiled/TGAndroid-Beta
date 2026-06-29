@@ -59,8 +59,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -419,6 +417,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private PacmanAnimation pacmanAnimation;
     private Paint paint;
     float panTranslationY;
+    private DialogsActivity parentForwardDialogFragment;
     private ActionBarMenuItem passcodeItem;
     private CharSequence pendingSharedCaption;
     private AlertDialog permissionDialog;
@@ -570,7 +569,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return true;
     }
 
-    public static void access$23000(DialogsActivity dialogsActivity) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public static void access$23000(DialogsActivity dialogsActivity) throws Resources.NotFoundException {
         dialogsActivity.updateSelectedCount();
     }
 
@@ -1509,7 +1508,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             this.lastListPadding = getPaddingTop();
             this.lastTop = i2;
@@ -1565,7 +1564,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             if (this.fastScrollAnimationRunning || DialogsActivity.this.waitingForScrollFinished || DialogsActivity.this.rightFragmentTransitionInProgress) {
                 return false;
             }
@@ -1894,7 +1893,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder == null) {
                 DialogsActivity.this.slidingView = null;
                 return;
@@ -2075,7 +2074,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (viewHolder != null) {
                 this.parentPage.listView.hideSelector(false);
             }
@@ -2651,7 +2650,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r42) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    public android.view.View createView(final android.content.Context r42) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -2935,7 +2934,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onItemClick(int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onItemClick(int i) {
             if ((i == 201 || i == 200 || i == 202 || i == 203) && DialogsActivity.this.searchViewPager != null) {
                 DialogsActivity.this.searchViewPager.onActionBarItemClick(i);
                 return;
@@ -3017,7 +3016,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 FiltersListBottomSheet filtersListBottomSheet = new FiltersListBottomSheet(dialogsActivity2, dialogsActivity2.selectedDialogs);
                 filtersListBottomSheet.setDelegate(new FiltersListBottomSheet.FiltersListBottomSheetDelegate() {
                     @Override
-                    public final void didSelectFilter(MessagesController.DialogFilter dialogFilter, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    public final void didSelectFilter(MessagesController.DialogFilter dialogFilter, boolean z) {
                         this.f$0.lambda$onItemClick$2(dialogFilter, z);
                     }
                 });
@@ -3068,7 +3067,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.passcodeItem.setAlpha(0.0f);
         }
 
-        public void lambda$onItemClick$2(MessagesController.DialogFilter dialogFilter, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void lambda$onItemClick$2(MessagesController.DialogFilter dialogFilter, boolean z) {
             boolean z2;
             ArrayList arrayList;
             ArrayList arrayList2;
@@ -3277,7 +3276,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$16(ViewPage viewPage, View view, int i, float f, float f2) throws IllegalAccessException, InterruptedException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createView$16(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -3354,12 +3353,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.fragmentView.invalidate();
     }
 
-    public void lambda$createView$18(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createView$18(View view, int i) {
         this.filtersView.cancelClickRunnables(true);
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$19(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$19(View view) throws Resources.NotFoundException {
         openStoriesRecorder();
     }
 
@@ -3637,7 +3636,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             final DialogsActivity dialogsActivity = DialogsActivity.this;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run() throws Resources.NotFoundException {
                     DialogsActivity.access$23000(dialogsActivity);
                 }
             }, 100L);
@@ -5005,7 +5004,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.actionModeCloseView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_actionBarActionModeDefaultSelector)));
             this.actionModeCloseView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void onClick(View view) {
                     this.f$0.lambda$createActionMode$76(view);
                 }
             });
@@ -5052,11 +5051,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateCounters(false);
     }
 
-    public void lambda$createActionMode$76(View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createActionMode$76(View view) {
         hideActionMode(true);
     }
 
-    public boolean lambda$createActionMode$78(View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean lambda$createActionMode$78(View view) {
         performSelectedDialogsAction(this.selectedDialogs, 104, true, true);
         return true;
     }
@@ -5115,30 +5114,34 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             viewPageArr[i2].listView.stopScroll();
             i2++;
         }
-        if (viewPageArr[z ? 1 : 0].selectedType < 0 || this.viewPages[z ? 1 : 0].selectedType >= getMessagesController().getDialogFilters().size()) {
+        char c = (!z || viewPageArr.length <= 1) ? (char) 0 : (char) 1;
+        if (viewPageArr[c].selectedType < 0 || this.viewPages[c].selectedType >= getMessagesController().getDialogFilters().size()) {
             return;
         }
-        MessagesController.DialogFilter dialogFilter = getMessagesController().getDialogFilters().get(this.viewPages[z ? 1 : 0].selectedType);
+        MessagesController.DialogFilter dialogFilter = getMessagesController().getDialogFilters().get(this.viewPages[c].selectedType);
         if (dialogFilter.isDefault()) {
-            this.viewPages[z ? 1 : 0].dialogsType = this.initialDialogsType;
-            this.viewPages[z ? 1 : 0].listView.updatePullState();
+            this.viewPages[c].dialogsType = this.initialDialogsType;
+            this.viewPages[c].listView.updatePullState();
         } else {
-            if (this.viewPages[!z ? 1 : 0].dialogsType == 7) {
-                this.viewPages[z ? 1 : 0].dialogsType = 8;
+            if (this.viewPages[c ^ 1].dialogsType == 7) {
+                this.viewPages[c].dialogsType = 8;
             } else {
-                this.viewPages[z ? 1 : 0].dialogsType = 7;
+                this.viewPages[c].dialogsType = 7;
             }
-            this.viewPages[z ? 1 : 0].listView.setScrollEnabled(true);
-            getMessagesController().selectDialogFilter(dialogFilter, this.viewPages[z ? 1 : 0].dialogsType == 8 ? 1 : 0);
+            this.viewPages[c].listView.setScrollEnabled(true);
+            getMessagesController().selectDialogFilter(dialogFilter, this.viewPages[c].dialogsType == 8 ? 1 : 0);
         }
-        this.viewPages[1].isLocked = dialogFilter.locked;
-        this.viewPages[z ? 1 : 0].dialogsAdapter.setDialogsType(this.viewPages[z ? 1 : 0].dialogsType);
-        LinearLayoutManager linearLayoutManager = this.viewPages[z ? 1 : 0].layoutManager;
-        if (this.viewPages[z ? 1 : 0].dialogsType == 0 && hasHiddenArchive() && this.viewPages[z ? 1 : 0].archivePullViewState == 2) {
+        ViewPage[] viewPageArr2 = this.viewPages;
+        if (viewPageArr2.length > 1) {
+            viewPageArr2[1].isLocked = dialogFilter.locked;
+        }
+        this.viewPages[c].dialogsAdapter.setDialogsType(this.viewPages[c].dialogsType);
+        LinearLayoutManager linearLayoutManager = this.viewPages[c].layoutManager;
+        if (this.viewPages[c].dialogsType == 0 && hasHiddenArchive() && this.viewPages[c].archivePullViewState == 2) {
             i = 1;
         }
         linearLayoutManager.scrollToPositionWithOffset(i, (int) this.scrollYOffset);
-        checkListLoad(this.viewPages[z ? 1 : 0]);
+        checkListLoad(this.viewPages[c]);
     }
 
     public void showScrollbars(boolean z) {
@@ -5536,7 +5539,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
             @Override
             public int getBottomOffset(int i4) {
-                return DialogsActivity.this.calculateListViewPaddingBottom();
+                return DialogsActivity.this.communityId != 0 ? DialogsActivity.this.navigationBarHeight + AndroidUtilities.dp(60.0f) : DialogsActivity.this.calculateListViewPaddingBottom();
             }
         });
         if (this.searchIsShowed) {
@@ -5728,7 +5731,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean onBackPressed(boolean z) throws IllegalAccessException, NoSuchMethodException, Resources.NotFoundException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean onBackPressed(boolean z) throws Resources.NotFoundException {
         if (hasShownSheet()) {
             if (z) {
                 closeSheet();
@@ -6370,7 +6373,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r19, int r20, androidx.recyclerview.widget.RecyclerView.Adapter r21, float r22, float r23) throws java.lang.IllegalAccessException, java.lang.InterruptedException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    private void onItemClick(android.view.View r21, int r22, androidx.recyclerview.widget.RecyclerView.Adapter r23, float r24, float r25) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6442,7 +6445,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws IllegalAccessException, InterruptedException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -6614,7 +6617,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.showChatPreview(org.telegram.ui.Cells.DialogCell):boolean");
     }
 
-    public void lambda$showChatPreview$94(boolean z, ArrayList arrayList, MessagesController.DialogFilter dialogFilter, long j, View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$showChatPreview$94(boolean z, ArrayList arrayList, MessagesController.DialogFilter dialogFilter, long j, View view) {
         if (!z) {
             if (!arrayList.isEmpty()) {
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -6739,7 +6742,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         finishPreviewFragment();
     }
 
-    public void lambda$showChatPreview$102(ArrayList arrayList, View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$showChatPreview$102(ArrayList arrayList, View view) {
         performSelectedDialogsAction(arrayList, 102, false, false);
         finishPreviewFragment();
     }
@@ -6889,6 +6892,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     @Override
     public void onTransitionAnimationEnd(boolean z, boolean z2) {
         View view;
+        DialogsActivity dialogsActivity;
         RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
         if (rightSlidingDialogContainer != null && rightSlidingDialogContainer.hasFragment()) {
             this.rightSlidingDialogContainer.getFragment().onTransitionAnimationEnd(z, z2);
@@ -6907,6 +6911,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 }
             }
         }
+        if (!z && (dialogsActivity = this.parentForwardDialogFragment) != null) {
+            dialogsActivity.removeSelfFromStack();
+        }
         checkUi_mainTabsVisible();
     }
 
@@ -6923,7 +6930,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         animatorSet.start();
     }
 
-    public void hideActionMode(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void hideActionMode(boolean z) {
         DialogsActivity dialogsActivity;
         ?? r0;
         boolean z2;
@@ -7091,11 +7098,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return dialog.pinned;
     }
 
-    public void performSelectedDialogsAction(ArrayList arrayList, int i, boolean z, boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void performSelectedDialogsAction(ArrayList arrayList, int i, boolean z, boolean z2) {
         performSelectedDialogsAction(arrayList, i, z, z2, null);
     }
 
-    private void performSelectedDialogsAction(final java.util.ArrayList r31, final int r32, boolean r33, final boolean r34, final java.util.HashSet r35) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+    private void performSelectedDialogsAction(final java.util.ArrayList r31, final int r32, boolean r33, final boolean r34, final java.util.HashSet r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.performSelectedDialogsAction(java.util.ArrayList, int, boolean, boolean, java.util.HashSet):void");
     }
 
@@ -7103,11 +7110,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMessagesController().addDialogToFolder(arrayList, (this.folderId == 0 && this.communityId == 0) ? 0 : 1, -1, null, 0L);
     }
 
-    public void lambda$performSelectedDialogsAction$106(ArrayList arrayList, int i, boolean z, HashSet hashSet) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$106(ArrayList arrayList, int i, boolean z, HashSet hashSet) {
         performSelectedDialogsAction(arrayList, i, false, z, hashSet);
     }
 
-    public void lambda$performSelectedDialogsAction$108(ArrayList arrayList, final int i, final HashSet hashSet, final boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$108(ArrayList arrayList, final int i, final HashSet hashSet, final boolean z) {
         if (arrayList.isEmpty()) {
             return;
         }
@@ -7116,7 +7123,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (undoView != null) {
             undoView.showWithAction(arrayList2, i == 102 ? 27 : 26, (Object) null, (Object) null, new Runnable() {
                 @Override
-                public final void run() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public final void run() {
                     this.f$0.lambda$performSelectedDialogsAction$107(i, arrayList2, z, hashSet);
                 }
             }, (Runnable) null);
@@ -7124,7 +7131,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(i == 103);
     }
 
-    public void lambda$performSelectedDialogsAction$107(int i, ArrayList arrayList, boolean z, HashSet hashSet) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$107(int i, ArrayList arrayList, boolean z, HashSet hashSet) {
         if (i == 102) {
             getMessagesController().setDialogsInTransaction(true);
             performSelectedDialogsAction(arrayList, i, false, false, z ? hashSet : null);
@@ -7141,7 +7148,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         performSelectedDialogsAction(arrayList, i, false, false);
     }
 
-    public void lambda$performSelectedDialogsAction$109(ArrayList arrayList, boolean z, boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$109(ArrayList arrayList, boolean z, boolean z2) {
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
             Long l = (Long) arrayList.get(i);
@@ -7157,12 +7164,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         hideActionMode(false);
     }
 
-    public void lambda$performSelectedDialogsAction$110(AlertDialog alertDialog, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$110(AlertDialog alertDialog, int i) {
         getMessagesController().hidePromoDialog();
         hideActionMode(false);
     }
 
-    public void lambda$performSelectedDialogsAction$112(final int i, final TLRPC.Chat chat, final long j, final boolean z, final boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$112(final int i, final TLRPC.Chat chat, final long j, final boolean z, final boolean z2) {
         int i2;
         int i3;
         int i4;
@@ -7241,11 +7248,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$performSelectedDialogsAction$113(DialogInterface dialogInterface) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$113(DialogInterface dialogInterface) {
         hideActionMode(true);
     }
 
-    public void lambda$performSelectedDialogsAction$114(DialogInterface dialogInterface) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$performSelectedDialogsAction$114(DialogInterface dialogInterface) {
         hideActionMode(true);
     }
 
@@ -7597,7 +7604,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return false;
     }
 
-    private void showOrUpdateActionMode(long j, View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void showOrUpdateActionMode(long j, View view) {
         addOrRemoveSelectedDialog(j, view);
         boolean z = true;
         if (this.actionBar.isActionModeShowed()) {
@@ -7931,7 +7938,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         this.doneItemAnimator.start();
     }
 
-    public void updateSelectedCount() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void updateSelectedCount() throws Resources.NotFoundException {
         ShareTopView shareTopView;
         if (this.commentView != null) {
             this.animatorForwardButtonVisible.setValue(!this.selectedDialogs.isEmpty(), true);
@@ -10553,7 +10560,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             z = false;
         }
         boolean zHasOnlySelfStories = !isArchive() && getStoriesController().hasOnlySelfStories();
-        if (isArchive()) {
+        if (this.communityId != 0) {
+            z2 = false;
+        } else if (isArchive()) {
             z2 = !getStoriesController().getHiddenList().isEmpty();
         } else {
             z2 = !zHasOnlySelfStories && getStoriesController().hasStories();
@@ -10884,7 +10893,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws IllegalAccessException, InterruptedException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException {
                 this.f$0.lambda$createSearchViewPager$153(view, i2, f, f2);
             }
         });
@@ -10958,7 +10967,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void didPressedOnSubDialog(long j) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void didPressedOnSubDialog(long j) throws Resources.NotFoundException {
             if (DialogsActivity.this.onlySelect) {
                 if (DialogsActivity.this.validateSlowModeDialog(j)) {
                     if (!DialogsActivity.this.selectedDialogs.isEmpty()) {
@@ -11177,7 +11186,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$153(View view, int i, float f, float f2) throws IllegalAccessException, InterruptedException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$createSearchViewPager$153(View view, int i, float f, float f2) throws Resources.NotFoundException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -11476,7 +11485,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
+    private void openStoriesRecorder() throws Resources.NotFoundException {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -11624,7 +11633,20 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         this.f$0.lambda$showItemOptions$160();
                     }
                 });
+                itemOptionsMakeOptions.addGap();
             }
+            itemOptionsMakeOptions.addChecked(this.community.collapsed_in_dialogs, LocaleController.getString(R.string.CommunityMenuShowAsOneChat), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$showItemOptions$161();
+                }
+            });
+            itemOptionsMakeOptions.addChecked(!this.community.collapsed_in_dialogs, LocaleController.getString(R.string.CommunityMenuShowAsSeparateChats), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$showItemOptions$162();
+                }
+            });
             itemOptionsMakeOptions.show();
             itemOptionsMakeOptions.setTranslationY(-AndroidUtilities.dp(64.0f));
             return;
@@ -11727,6 +11749,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         Bundle bundle = new Bundle();
         bundle.putLong("community_id", this.communityId);
         presentFragment(new CommunityEditActivity(bundle));
+    }
+
+    public void lambda$showItemOptions$161() {
+        if (this.community.collapsed_in_dialogs) {
+            return;
+        }
+        getMessagesController().toggleCommunityCollapsedInDialogs(this.communityId, true);
+        finishFragment();
+    }
+
+    public void lambda$showItemOptions$162() {
+        if (this.community.collapsed_in_dialogs) {
+            getMessagesController().toggleCommunityCollapsedInDialogs(this.communityId, false);
+            finishFragment();
+        }
     }
 
     public void lambda$showItemOptions$163() {
@@ -12100,7 +12137,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             return (int) (this.windowInsetsStateHolder.getAnimatedMaxBottomInset() + AndroidUtilities.dp(9.0f) + this.chatInputViewsContainer.getInputBubbleHeight() + AndroidUtilities.dp(7.0f) + AndroidUtilities.dp(2.0f));
         }
         if (this.communityId != 0) {
-            return this.navigationBarHeight + AndroidUtilities.dp(80.0f);
+            return this.navigationBarHeight + AndroidUtilities.dp(72.0f);
         }
         return this.navigationBarHeight + this.additionNavigationBarHeight;
     }

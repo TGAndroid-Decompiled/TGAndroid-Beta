@@ -40,7 +40,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -841,7 +840,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 }
 
                 @Override
-                public boolean onSingleTapUp(MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public boolean onSingleTapUp(MotionEvent motionEvent) {
                     if (RecyclerListView.this.currentChildView != null) {
                         if (RecyclerListView.this.onItemClickListenerExtended == null || !RecyclerListView.this.onItemClickListenerExtended.hasDoubleTap(RecyclerListView.this.currentChildView, RecyclerListView.this.currentChildPosition)) {
                             onPressItem(RecyclerListView.this.currentChildView, motionEvent);
@@ -853,7 +852,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                 }
 
                 @Override
-                public boolean onSingleTapConfirmed(MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
                     if (this.doubleTapView == null || RecyclerListView.this.onItemClickListenerExtended == null || !RecyclerListView.this.onItemClickListenerExtended.hasDoubleTap(this.doubleTapView, RecyclerListView.this.currentChildPosition)) {
                         return false;
                     }
@@ -872,7 +871,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
                     return true;
                 }
 
-                private void onPressItem(final View view, MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                private void onPressItem(final View view, MotionEvent motionEvent) {
                     if (view != null) {
                         if (RecyclerListView.this.onItemClickListener == null && RecyclerListView.this.onItemClickListenerExtended == null) {
                             return;
@@ -971,7 +970,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
 
         @Override
-        public boolean onInterceptTouchEvent(androidx.recyclerview.widget.RecyclerView r19, android.view.MotionEvent r20) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+        public boolean onInterceptTouchEvent(androidx.recyclerview.widget.RecyclerView r19, android.view.MotionEvent r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.RecyclerListViewItemClickListener.onInterceptTouchEvent(androidx.recyclerview.widget.RecyclerView, android.view.MotionEvent):boolean");
         }
 
@@ -985,7 +984,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
 
         @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onRequestDisallowInterceptTouchEvent(boolean z) {
             RecyclerListView.this.cancelClickRunnables(true);
         }
     }
@@ -1025,7 +1024,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         view.setPressed(z);
     }
 
-    public void removeSelection(View view, MotionEvent motionEvent) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void removeSelection(View view, MotionEvent motionEvent) {
         if (view == null || this.selectorRect.isEmpty()) {
             return;
         }
@@ -1047,7 +1046,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         updateSelectorState();
     }
 
-    public void cancelClickRunnables(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void cancelClickRunnables(boolean z) {
         Runnable runnable = this.selectChildRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -1191,7 +1190,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
         super.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
                 RecyclerListView.this.checkStopHeavyOperations(i);
                 if (i != 0 && RecyclerListView.this.currentChildView != null) {
                     if (RecyclerListView.this.selectChildRunnable != null) {
@@ -1225,7 +1224,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 if (RecyclerListView.this.onScrollListener != null) {
                     RecyclerListView.this.onScrollListener.onScrolled(recyclerView, i, i2);
                 }
@@ -1321,7 +1320,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         FastScroll fastScroll = this.fastScroll;
         if (fastScroll != null) {
@@ -1579,7 +1578,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
     }
 
-    public void setListSelectorColor(Integer num) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setListSelectorColor(Integer num) {
         int iIntValue;
         Drawable drawable = this.selectorDrawable;
         if (num == null) {
@@ -1722,15 +1721,15 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         this.scrollEnabled = z;
     }
 
-    public void highlightRow(IntReturnCallback intReturnCallback) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void highlightRow(IntReturnCallback intReturnCallback) {
         highlightRowInternal(intReturnCallback, 700, true);
     }
 
-    public void highlightRow(IntReturnCallback intReturnCallback, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void highlightRow(IntReturnCallback intReturnCallback, int i) {
         highlightRowInternal(intReturnCallback, i, true);
     }
 
-    public void removeHighlightRow() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void removeHighlightRow() {
         int i;
         Runnable runnable = this.removeHighlighSelectionRunnable;
         if (runnable != null) {
@@ -1767,7 +1766,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         }
     }
 
-    public void highlightRowInternal(IntReturnCallback intReturnCallback, int i, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void highlightRowInternal(IntReturnCallback intReturnCallback, int i, boolean z) {
         Runnable runnable = this.removeHighlighSelectionRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -2034,11 +2033,11 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         invalidate();
     }
 
-    public void positionSelector(int i, View view) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void positionSelector(int i, View view) {
         positionSelector(i, view, false, -1.0f, -1.0f, false);
     }
 
-    public void updateSelector() throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void updateSelector() {
         View view;
         int i = this.selectorPosition;
         if (i == -1 || (view = this.selectorView) == null) {
@@ -2048,7 +2047,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         invalidate();
     }
 
-    private void positionSelector(int i, View view, boolean z, float f, float f2, boolean z2) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private void positionSelector(int i, View view, boolean z, float f, float f2, boolean z2) {
         Runnable runnable = this.removeHighlighSelectionRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -2092,7 +2091,7 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
         this.allowItemsInteractionDuringAnimation = z;
     }
 
-    public void hideSelector(boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void hideSelector(boolean z) {
         View view = this.currentChildView;
         if (view != null) {
             onChildPressed(view, 0.0f, 0.0f, false);

@@ -13,7 +13,6 @@ import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -45,111 +44,55 @@ import org.telegram.ui.community.sheet.CommunityAddOptionsSheet;
 import org.telegram.ui.community.sheet.CommunityChatsToAddSheet;
 
 public abstract class CommunityUtils {
-    public static ArrayList updateCommunityCollapsedDialogs(int i, ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList(arrayList.size());
-        LongSparseArray longSparseArray = new LongSparseArray();
-        int size = arrayList.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i2);
-            long j = dialog.id;
-            if (j >= 0) {
-                arrayList2.add(dialog);
-            } else {
-                long j2 = -j;
-                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(j2));
-                if (ChatObject.isCommunity(chat)) {
-                    if (!longSparseArray.containsKey(j2)) {
-                        longSparseArray.put(j2, dialog);
-                        arrayList2.add(dialog);
-                    }
-                } else if (ChatObject.isChatCollapsedInCommunity(i, chat)) {
-                    long j3 = chat.linked_community_id;
-                    if (!longSparseArray.containsKey(j3)) {
-                        long j4 = -j3;
-                        TLRPC.Dialog tL_dialogCommunity = (TLRPC.Dialog) MessagesController.getInstance(i).dialogs_dict.get(j4);
-                        if (tL_dialogCommunity == null) {
-                            tL_dialogCommunity = new TLRPC.TL_dialogCommunity();
-                            tL_dialogCommunity.community_id = j3;
-                            tL_dialogCommunity.notify_settings = new TLRPC.TL_peerNotifySettings();
-                            DialogObject.initDialog(tL_dialogCommunity);
-                            MessagesController.getInstance(i).dialogs_dict.put(j4, tL_dialogCommunity);
-                        }
-                        longSparseArray.put(j3, tL_dialogCommunity);
-                        arrayList2.add(tL_dialogCommunity);
-                    }
-                } else {
-                    arrayList2.add(dialog);
-                }
-            }
-        }
-        return arrayList2;
-    }
-
-    public static void fillLinkedPeers(int i, ArrayList arrayList, ArrayList arrayList2, boolean z) {
+    public static void fillLinkedPeers(int i, ArrayList arrayList, long j, boolean z) {
         boolean z2;
-        ArrayList arrayList3 = new ArrayList();
-        ArrayList arrayList4 = new ArrayList();
-        ArrayList arrayList5 = new ArrayList();
-        ArrayList arrayList6 = new ArrayList();
-        Iterator it = arrayList2.iterator();
-        while (it.hasNext()) {
-            TL_communities.CommunityPeer communityPeer = (TL_communities.CommunityPeer) it.next();
-            TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-DialogObject.getPeerDialogId(communityPeer.peer)));
-            if (chat != null) {
-                if (ChatObject.isInChat(chat)) {
-                    arrayList3.add(chat);
-                } else if (ChatObject.isPublic(chat) || communityPeer.can_view_history) {
-                    arrayList4.add(chat);
-                } else if (ChatObject.isCommunityPeerHidden(communityPeer)) {
-                    arrayList6.add(chat);
-                } else {
-                    arrayList5.add(chat);
-                }
-            }
+        MessagesController.CommunityPeersDialog communityPeersDialogBuildCommunityPeers = MessagesController.getInstance(i).buildCommunityPeers(j);
+        if (communityPeersDialogBuildCommunityPeers == null) {
+            return;
         }
-        if (arrayList3.isEmpty()) {
+        if (communityPeersDialogBuildCommunityPeers.chatsYouAreIn.isEmpty()) {
             z2 = false;
         } else {
             arrayList.add(UItem.asHeader(21, LocaleController.getString(R.string.CommunitySectionChatsYouAreIn)));
-            Iterator it2 = arrayList3.iterator();
-            while (it2.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell((TLRPC.Chat) it2.next()));
+            Iterator<MessagesController.CommunityPeerDialog> it = communityPeersDialogBuildCommunityPeers.chatsYouAreIn.iterator();
+            while (it.hasNext()) {
+                arrayList.add(DialogCellFactory.asCell(it.next().chat));
             }
             z2 = z;
         }
-        if (!arrayList4.isEmpty()) {
+        if (!communityPeersDialogBuildCommunityPeers.chatsYouCanView.isEmpty()) {
             if (z2) {
                 arrayList.add(UItem.asSpace(22, AndroidUtilities.dp(12.0f)));
             }
             arrayList.add(UItem.asHeader(23, LocaleController.getString(R.string.CommunitySectionChatsYouCanView)));
-            Iterator it3 = arrayList4.iterator();
-            while (it3.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell((TLRPC.Chat) it3.next()));
+            Iterator<MessagesController.CommunityPeerDialog> it2 = communityPeersDialogBuildCommunityPeers.chatsYouCanView.iterator();
+            while (it2.hasNext()) {
+                arrayList.add(DialogCellFactory.asCell(it2.next().chat));
             }
             z2 = z;
         }
-        if (arrayList5.isEmpty()) {
+        if (communityPeersDialogBuildCommunityPeers.chatsYouCanJoin.isEmpty()) {
             z = z2;
         } else {
             if (z2) {
                 arrayList.add(UItem.asSpace(24, AndroidUtilities.dp(12.0f)));
             }
             arrayList.add(UItem.asHeader(25, LocaleController.getString(R.string.CommunitySectionChatsYouCanRequestToJoin)));
-            Iterator it4 = arrayList5.iterator();
-            while (it4.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell((TLRPC.Chat) it4.next()));
+            Iterator<MessagesController.CommunityPeerDialog> it3 = communityPeersDialogBuildCommunityPeers.chatsYouCanJoin.iterator();
+            while (it3.hasNext()) {
+                arrayList.add(DialogCellFactory.asCell(it3.next().chat));
             }
         }
-        if (arrayList6.isEmpty()) {
+        if (communityPeersDialogBuildCommunityPeers.chatsOther.isEmpty()) {
             return;
         }
         if (z) {
             arrayList.add(UItem.asSpace(26, AndroidUtilities.dp(12.0f)));
         }
         arrayList.add(UItem.asHeader(27, LocaleController.getString(R.string.CommunitySectionHiddenChats)));
-        Iterator it5 = arrayList6.iterator();
-        while (it5.hasNext()) {
-            arrayList.add(DialogCellFactory.asCell((TLRPC.Chat) it5.next()));
+        Iterator<MessagesController.CommunityPeerDialog> it4 = communityPeersDialogBuildCommunityPeers.chatsOther.iterator();
+        while (it4.hasNext()) {
+            arrayList.add(DialogCellFactory.asCell(it4.next().chat));
         }
     }
 
@@ -503,27 +446,25 @@ public abstract class CommunityUtils {
         if (alertDialogArr[0] != null) {
             return;
         }
-        TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
-        tL_channels_getAdminedPublicChannels.for_community_peer = true;
-        final int iSendRequestTyped = ConnectionsManager.getInstance(i).sendRequestTyped(tL_channels_getAdminedPublicChannels, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+        final int iFetchChatsToAddToCommunity = MessagesController.getInstance(i).fetchChatsToAddToCommunity(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                CommunityUtils.lambda$showChatsToAddToCommunity$0(alertDialogArr, baseFragment, i, chat, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                CommunityUtils.lambda$showChatsToAddToCommunity$0(alertDialogArr, baseFragment, i, chat, (ArrayList) obj, (TLRPC.TL_error) obj2);
             }
         });
-        ConnectionsManager.getInstance(i).bindRequestToGuid(iSendRequestTyped, baseFragment.getClassGuid());
+        ConnectionsManager.getInstance(i).bindRequestToGuid(iFetchChatsToAddToCommunity, baseFragment.getClassGuid());
         AlertDialog alertDialog = new AlertDialog(baseFragment.getContext(), 3);
         alertDialogArr[0] = alertDialog;
         alertDialog.showDelayed(500L);
         alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                CommunityUtils.lambda$showChatsToAddToCommunity$1(i, iSendRequestTyped, alertDialogArr, dialogInterface);
+                CommunityUtils.lambda$showChatsToAddToCommunity$1(i, iFetchChatsToAddToCommunity, alertDialogArr, dialogInterface);
             }
         });
     }
 
-    public static void lambda$showChatsToAddToCommunity$0(AlertDialog[] alertDialogArr, BaseFragment baseFragment, int i, TLRPC.Chat chat, TLRPC.messages_Chats messages_chats, TLRPC.TL_error tL_error) {
+    public static void lambda$showChatsToAddToCommunity$0(AlertDialog[] alertDialogArr, BaseFragment baseFragment, int i, TLRPC.Chat chat, ArrayList arrayList, TLRPC.TL_error tL_error) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog != null) {
             alertDialog.dismiss();
@@ -531,9 +472,12 @@ public abstract class CommunityUtils {
         }
         if (tL_error != null) {
             BulletinFactory.of(baseFragment).showForError(tL_error);
-        } else if (messages_chats != null) {
-            MessagesController.getInstance(i).putChats(messages_chats.chats, true);
-            showChatsToAddSheet(baseFragment, i, chat, messages_chats.chats);
+        } else if (arrayList != null) {
+            if (arrayList.isEmpty()) {
+                BulletinFactory.of(baseFragment).createSimpleBulletin(R.raw.info, LocaleController.getString(R.string.CommunityNoChatsToAdd)).show();
+            } else {
+                showChatsToAddSheet(baseFragment, i, chat, arrayList);
+            }
         }
     }
 
@@ -651,7 +595,7 @@ public abstract class CommunityUtils {
             baseFragment.finishFragment();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException, Resources.NotFoundException {
+                public final void run() throws Resources.NotFoundException {
                     CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity);
                 }
             }, 250L);
@@ -663,7 +607,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity) throws InterruptedException, Resources.NotFoundException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity) throws Resources.NotFoundException {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();
@@ -683,6 +627,37 @@ public abstract class CommunityUtils {
             string = LocaleController.getString(R.string.CommunityCommunityPending);
         }
         bulletinFactory.createSimpleBulletin(i2, string, i3).show();
+    }
+
+    public static CommunityChatType getCommunityChatType(int i, TLRPC.Chat chat) {
+        TLRPC.ChatFull chatFull;
+        ArrayList<TL_communities.CommunityPeer> arrayList;
+        if (chat != null && chat.linked_community_id != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(chat.linked_community_id)) != null && (arrayList = chatFull.linked_peers) != null) {
+            Iterator<TL_communities.CommunityPeer> it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_communities.CommunityPeer next = it.next();
+                if (DialogObject.getPeerDialogId(next.peer) == (-chat.id)) {
+                    return getCommunityChatType(chat, next);
+                }
+            }
+        }
+        return null;
+    }
+
+    public static CommunityChatType getCommunityChatType(TLRPC.Chat chat, TL_communities.CommunityPeer communityPeer) {
+        if (chat == null || communityPeer == null) {
+            return null;
+        }
+        if (ChatObject.isInChat(chat)) {
+            return CommunityChatType.YouAreIn;
+        }
+        if (ChatObject.isPublic(chat) || communityPeer.can_view_history) {
+            return CommunityChatType.YouCanView;
+        }
+        if (ChatObject.isCommunityPeerHidden(communityPeer)) {
+            return CommunityChatType.HiddenUnavailable;
+        }
+        return CommunityChatType.YouCanSendJoinRequest;
     }
 
     public static class DialogCellFactory extends UItem.UItemFactory {
@@ -713,6 +688,7 @@ public abstract class CommunityUtils {
             TLRPC.Chat chat = (TLRPC.Chat) uItem.object;
             dialogCell.isHiddenInCommunity = ChatObject.isChatHiddenInCommunity(UserConfig.selectedAccount, chat);
             TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.id);
+            dialogCell.insideCommunityListNoDialog = dialog == null;
             if (dialog != null) {
                 dialogCell.setCustomMessageWithoutRebuild(null);
                 dialogCell.setDialog(dialog, 0, 0);

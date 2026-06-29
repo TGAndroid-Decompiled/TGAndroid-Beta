@@ -437,7 +437,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) throws InterruptedException, Resources.NotFoundException {
+    public void didReceivedNotification(int i, int i2, Object... objArr) throws Resources.NotFoundException {
         MessageObject messageObject;
         if (i == NotificationCenter.startSpoilers) {
             setSpoilersSuppressed(false);
@@ -709,11 +709,11 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.overrideText = i2;
     }
 
-    public void setMessageObject(MessageObject messageObject) throws InterruptedException, Resources.NotFoundException {
+    public void setMessageObject(MessageObject messageObject) throws Resources.NotFoundException {
         setMessageObject(messageObject, false);
     }
 
-    public void setMessageObject(org.telegram.messenger.MessageObject r33, boolean r34) throws java.lang.InterruptedException, android.content.res.Resources.NotFoundException {
+    public void setMessageObject(org.telegram.messenger.MessageObject r33, boolean r34) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.setMessageObject(org.telegram.messenger.MessageObject, boolean):void");
     }
 
@@ -831,7 +831,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    protected void onAttachedToWindow() throws InterruptedException, Resources.NotFoundException {
+    protected void onAttachedToWindow() throws Resources.NotFoundException {
         ChatActionCellDelegate chatActionCellDelegate;
         super.onAttachedToWindow();
         this.attachedToWindow = true;

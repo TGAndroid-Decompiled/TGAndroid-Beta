@@ -116,12 +116,12 @@ public class AppGlobalConfig {
         this.aicomposeTonePromptLengthMax = ofInt("aicompose_tone_prompt_length_max", 1024);
         this.aicomposeToneSavedLimitDefault = ofInt("aicompose_tone_saved_limit_default", 5);
         this.aicomposeToneSavedLimitPremium = ofInt("aicompose_tone_saved_limit_premium", 20);
-        this.messagePrimaryEditedDate = ofBoolean("message_primary_edited_date", false);
         this.richMessageLengthLimit = ofInt("rich_message_length_limit", 32768);
         this.richMessageMaxBlocks = ofInt("rich_message_max_blocks", 500);
         this.richMessageMaxDepth = ofInt("rich_message_max_depth", 16);
         this.richMessageMaxMedia = ofInt("rich_message_max_media", 50);
         this.richMessageMaxTableCols = ofInt("rich_message_max_table_cols", 20);
+        this.messagePrimaryEditedDate = ofBoolean("message_primary_edited_date", false);
         this.communityPeersLimit = ofInt("community_peers_limit", 100);
     }
 

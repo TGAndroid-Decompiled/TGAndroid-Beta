@@ -79,7 +79,7 @@ public class ChatObject {
     }
 
     private static boolean isBannableAction(int i) {
-        if (i != 0 && i != 1 && i != 3 && i != 26) {
+        if (i != 0 && i != 1 && i != 3 && i != 26 && i != 27) {
             switch (i) {
                 default:
                     switch (i) {
@@ -1469,6 +1469,9 @@ public class ChatObject {
         if (i == 26) {
             return tL_chatBannedRights.send_reactions;
         }
+        if (i == 27) {
+            return tL_chatBannedRights.manage_linked_peers;
+        }
         switch (i) {
             case 6:
                 break;
@@ -1577,6 +1580,10 @@ public class ChatObject {
         return (chat == null || chat2 == null || (!chat.creator && !canUserDoAdminAction(chat2, 27))) ? false : true;
     }
 
+    public static boolean canAddChatToCommunity(TLRPC.Chat chat) {
+        return canUserDoAction(chat, 27);
+    }
+
     public static boolean canUserDoAdminAction(TLRPC.Chat chat, int i) {
         boolean z;
         if (chat == null) {
@@ -1675,25 +1682,33 @@ public class ChatObject {
         return false;
     }
 
+    private static boolean isForbidden(TLRPC.Chat chat) {
+        return (chat instanceof TLRPC.TL_chatForbidden) || (chat instanceof TLRPC.TL_channelForbidden) || (chat instanceof TLRPC.TL_communityForbidden);
+    }
+
     public static boolean isLeftFromChat(TLRPC.Chat chat) {
-        return chat == null || (chat instanceof TLRPC.TL_chatEmpty) || (chat instanceof TLRPC.TL_chatForbidden) || (chat instanceof TLRPC.TL_channelForbidden) || chat.left || chat.deactivated;
+        return chat == null || (chat instanceof TLRPC.TL_chatEmpty) || isForbidden(chat) || chat.left || chat.deactivated;
     }
 
     public static boolean isKickedFromChat(TLRPC.Chat chat) {
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        return chat == null || (chat instanceof TLRPC.TL_chatEmpty) || (chat instanceof TLRPC.TL_chatForbidden) || (chat instanceof TLRPC.TL_channelForbidden) || chat.kicked || chat.deactivated || ((tL_chatBannedRights = chat.banned_rights) != null && tL_chatBannedRights.view_messages);
+        return chat == null || (chat instanceof TLRPC.TL_chatEmpty) || isForbidden(chat) || chat.kicked || chat.deactivated || ((tL_chatBannedRights = chat.banned_rights) != null && tL_chatBannedRights.view_messages);
     }
 
     public static boolean isNotInChat(TLRPC.Chat chat) {
-        return chat == null || (chat instanceof TLRPC.TL_chatEmpty) || (chat instanceof TLRPC.TL_chatForbidden) || (chat instanceof TLRPC.TL_channelForbidden) || chat.left || chat.kicked || chat.deactivated;
+        return chat == null || (chat instanceof TLRPC.TL_chatEmpty) || isForbidden(chat) || chat.left || chat.kicked || chat.deactivated;
     }
 
     public static boolean isInChat(TLRPC.Chat chat) {
-        return (chat == null || (chat instanceof TLRPC.TL_chatEmpty) || (chat instanceof TLRPC.TL_chatForbidden) || (chat instanceof TLRPC.TL_channelForbidden) || chat.left || chat.kicked || chat.deactivated) ? false : true;
+        return (chat == null || (chat instanceof TLRPC.TL_chatEmpty) || isForbidden(chat) || chat.left || chat.kicked || chat.deactivated) ? false : true;
     }
 
     public static boolean canSendAsPeers(TLRPC.Chat chat) {
         return isChannel(chat) && ((!chat.megagroup && chat.signatures && hasAdminRights(chat) && canWriteToChat(chat)) || (chat.megagroup && (isPublic(chat) || chat.has_geo || chat.has_link)));
+    }
+
+    public static boolean isChatHiddenInCommunity(int i, long j) {
+        return isChatHiddenInCommunity(i, MessagesController.getInstance(i).getChat(Long.valueOf(j)));
     }
 
     public static boolean isChatHiddenInCommunity(int i, TLRPC.Chat chat) {
@@ -1713,6 +1728,15 @@ public class ChatObject {
 
     public static boolean isCommunityPeerHidden(TL_communities.CommunityPeer communityPeer) {
         return (communityPeer == null || !BitwiseUtils.hasFlag(communityPeer.flags, 1) || communityPeer.visible) ? false : true;
+    }
+
+    public static boolean isChatCollapsedInCommunity(LongSparseArray longSparseArray, TLRPC.Chat chat) {
+        TLRPC.Chat chat2;
+        if (chat == null) {
+            return false;
+        }
+        long j = chat.linked_community_id;
+        return (j == 0 || longSparseArray == null || (chat2 = (TLRPC.Chat) longSparseArray.get(j)) == null || !chat2.collapsed_in_dialogs) ? false : true;
     }
 
     public static boolean isChatCollapsedInCommunity(int i, TLRPC.Chat chat) {

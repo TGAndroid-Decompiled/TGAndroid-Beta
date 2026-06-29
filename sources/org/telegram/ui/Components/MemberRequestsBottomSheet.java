@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -122,7 +121,7 @@ public abstract class MemberRequestsBottomSheet extends UsersAlertBase {
     }
 
     @Override
-    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) throws Resources.NotFoundException {
         BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.yOffset = this.scrollOffsetY;

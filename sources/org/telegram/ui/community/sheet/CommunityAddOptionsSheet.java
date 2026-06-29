@@ -2,6 +2,8 @@ package org.telegram.ui.community.sheet;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -11,6 +13,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.RadioButtonCell;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
@@ -22,12 +25,14 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
     private UniversalAdapter adapter;
+    private FrameLayout cell;
     private TLRPC.Chat chat;
     private TLRPC.ChatFull chatFull;
     private boolean isHidden;
+    private ProfileSearchCell searchCell;
     private int visibleRow;
 
-    public CommunityAddOptionsSheet(Context context, TLRPC.Chat chat, TLRPC.Chat chat2, final Utilities.Callback callback) {
+    public CommunityAddOptionsSheet(Context context, final TLRPC.Chat chat, TLRPC.Chat chat2, final Utilities.Callback callback) {
         super(context, null, false, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         this.chat = chat2;
         this.chatFull = chat2 != null ? MessagesController.getInstance(this.currentAccount).getChatFull(chat2.id) : null;
@@ -35,6 +40,16 @@ public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
         this.headerMoveTop = AndroidUtilities.dp(12.0f);
         this.actionBar.setTitle(getTitle());
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.cell = frameLayout;
+        frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
+        this.cell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        ProfileSearchCell profileSearchCell = new ProfileSearchCell(context);
+        this.searchCell = profileSearchCell;
+        if (chat2 != null) {
+            profileSearchCell.setData(chat2, null, chat2.title, LocaleController.formatPluralStringSpaced("Members", chat2.participants_count), false, false);
+        }
+        this.cell.addView(this.searchCell, LayoutHelper.createFrame(-1, -2.0f));
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i, 0, i, AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(64.0f));
@@ -47,12 +62,16 @@ public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
             }
         });
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
-        buttonWithCounterView.setText(LocaleController.getString(ChatObject.canUserDoAdminAction(chat, 27) ? R.string.CommunityAddToCommunityButton : R.string.CommunityAddToCommunityRequestButton));
+        if (chat != null) {
+            buttonWithCounterView.setText(LocaleController.getString(ChatObject.canAddChatToCommunity(chat) ? R.string.CommunityAddToCommunityButton : R.string.CommunityAddToCommunityRequestButton));
+        } else {
+            buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
+        }
         buttonWithCounterView.setRound();
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$new$1(callback, view);
+                this.f$0.lambda$new$1(callback, chat, view);
             }
         });
         this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
@@ -68,8 +87,8 @@ public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void lambda$new$1(Utilities.Callback callback, View view) {
-        apply(callback, this.isHidden, true);
+    public void lambda$new$1(Utilities.Callback callback, TLRPC.Chat chat, View view) {
+        apply(callback, this.isHidden, (chat == null || ChatObject.canAddChatToCommunity(chat)) ? false : true);
     }
 
     private void apply(final Utilities.Callback callback, final boolean z, boolean z2) {
@@ -132,25 +151,9 @@ public class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
         return this.adapter;
     }
 
-    private static class SpaceView extends View {
-        public SpaceView(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(3.0f), 1073741824));
-        }
-    }
-
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asSpace(0, AndroidUtilities.dp(12.0f)));
-        arrayList.add(UItem.asCustom(1, new SpaceView(getContext())));
-        UItem uItemAsProfileCell = UItem.asProfileCell(this.chat);
-        uItemAsProfileCell.enabled = false;
-        uItemAsProfileCell.hideDivider = true;
-        arrayList.add(uItemAsProfileCell);
-        arrayList.add(UItem.asCustom(8, new SpaceView(getContext())));
+        arrayList.add(UItem.asCustom(1, this.cell));
         arrayList.add(UItem.asSpace(2, AndroidUtilities.dp(12.0f)));
         arrayList.add(UItem.asHeader(3, LocaleController.getString(R.string.CommunityChatVisibilitySection)));
         this.visibleRow = arrayList.size();

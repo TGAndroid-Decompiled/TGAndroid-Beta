@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.widget.NestedScrollView;
-import java.lang.reflect.InvocationTargetException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotGuardHelper;
 import org.telegram.messenger.ChatObject;
@@ -35,6 +34,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.Bulletin;
 
 public class JoinGroupAlert extends BottomSheet {
+    private BulletinFactory bulletinFactory;
     private TLRPC.ChatInvite chatInvite;
     private TLRPC.Chat currentChat;
     private final BaseFragment fragment;
@@ -347,7 +347,7 @@ public class JoinGroupAlert extends BottomSheet {
     }
 
     public void lambda$new$2(boolean z, DialogInterface dialogInterface) {
-        showBulletin(getContext(), this.fragment, z);
+        showBulletin(getContext(), this.fragment, this.bulletinFactory, z);
     }
 
     public void lambda$new$7(final long j, final boolean z, final TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite, TLObject tLObject, final TLRPC.TL_error tL_error) {
@@ -396,7 +396,7 @@ public class JoinGroupAlert extends BottomSheet {
     }
 
     public void lambda$new$5(boolean z, DialogInterface dialogInterface) {
-        showBulletin(getContext(), this.fragment, z);
+        showBulletin(getContext(), this.fragment, this.bulletinFactory, z);
     }
 
     public void lambda$new$12(final long j, final int i, View view) {
@@ -468,11 +468,20 @@ public class JoinGroupAlert extends BottomSheet {
         }
     }
 
+    public JoinGroupAlert setBulletinFactory(BulletinFactory bulletinFactory) {
+        this.bulletinFactory = bulletinFactory;
+        return this;
+    }
+
     private Drawable getVerifiedCrossfadeDrawable() {
         return new CombinedDrawable(Theme.dialogs_verifiedDrawable, Theme.dialogs_verifiedCheckDrawable);
     }
 
     public static void showBulletin(Context context, BaseFragment baseFragment, boolean z) {
+        showBulletin(context, baseFragment, BulletinFactory.of(baseFragment), z);
+    }
+
+    public static void showBulletin(Context context, BaseFragment baseFragment, BulletinFactory bulletinFactory, boolean z) {
         String string;
         if (context == null) {
             if (baseFragment != null) {
@@ -480,6 +489,9 @@ public class JoinGroupAlert extends BottomSheet {
                 return;
             }
             return;
+        }
+        if (bulletinFactory == null) {
+            bulletinFactory = BulletinFactory.of(baseFragment);
         }
         Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(context, baseFragment.getResourceProvider());
         twoLineLottieLayout.imageView.setAnimation(R.raw.timer_3, 28, 28);
@@ -490,7 +502,7 @@ public class JoinGroupAlert extends BottomSheet {
             string = LocaleController.getString(R.string.RequestToJoinGroupSentDescription);
         }
         twoLineLottieLayout.subtitleTextView.setText(string);
-        Bulletin.make(baseFragment, twoLineLottieLayout, 2750).show();
+        bulletinFactory.create(twoLineLottieLayout, 2750).show();
     }
 
     private CharSequence ellipsize(TextView textView, TLRPC.ChatInvite chatInvite, int i) {
@@ -528,7 +540,7 @@ public class JoinGroupAlert extends BottomSheet {
         }
 
         @Override
-        public void onBecomeFullyVisible() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onBecomeFullyVisible() throws Resources.NotFoundException {
             super.onBecomeFullyVisible();
             if (this.shownToast || !this.val$showJoined) {
                 return;

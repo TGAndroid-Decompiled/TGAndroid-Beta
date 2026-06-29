@@ -86,9 +86,7 @@ public class AnimatedFileNative {
     }
 
     private void checkNotDestroyed() {
-        if (this.mRecycled.get()) {
-            throw new IllegalStateException("Called method on a destroyed AnimatedFileNative instance");
-        }
+        this.mRecycled.get();
     }
 
     private static long createDecoder(String str, int[] iArr, int i, long j, AnimatedFileDrawableStream animatedFileDrawableStream, boolean z) {

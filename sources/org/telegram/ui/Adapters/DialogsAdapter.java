@@ -1,14 +1,19 @@
 package org.telegram.ui.Adapters;
 
 import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,7 +33,24 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.DialogMeUrlCell;
+import org.telegram.ui.Cells.DialogsEmptyCell;
+import org.telegram.ui.Cells.DialogsHintCell;
+import org.telegram.ui.Cells.DialogsRequestedEmptyCell;
+import org.telegram.ui.Cells.GraySectionCell;
+import org.telegram.ui.Cells.HeaderCell;
+import org.telegram.ui.Cells.ProfileSearchCell;
+import org.telegram.ui.Cells.RequestPeerRequirementsCell;
+import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.TextCell;
+import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.Components.ArchiveHelp;
+import org.telegram.ui.Components.CombinedDrawable;
+import org.telegram.ui.Components.FlickerLoadingView;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.PullForegroundDrawable;
 import org.telegram.ui.Components.RecyclerListView;
@@ -525,8 +547,227 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     @Override
-    public androidx.recyclerview.widget.RecyclerView.ViewHolder onCreateViewHolder(android.view.ViewGroup r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsAdapter.onCreateViewHolder(android.view.ViewGroup, int):androidx.recyclerview.widget.RecyclerView$ViewHolder");
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        ?? flickerLoadingView;
+        switch (i) {
+            case 0:
+            case 21:
+                int i2 = this.dialogsType;
+                if (i2 == 2 || i2 == 15) {
+                    flickerLoadingView = new ProfileSearchCell(this.mContext);
+                } else {
+                    DialogCell dialogCell = new DialogCell(this.parentFragment, this.mContext, true, false, this.currentAccount, null);
+                    if (showOpenBotButton()) {
+                        dialogCell.allowBotOpenButton(true, new Utilities.Callback() {
+                            @Override
+                            public final void run(Object obj) {
+                                this.f$0.onOpenBot((TLRPC.User) obj);
+                            }
+                        });
+                    }
+                    dialogCell.setArchivedPullAnimation(this.pullForegroundDrawable);
+                    dialogCell.setPreloader(this.preloader);
+                    dialogCell.setDialogCellDelegate(this);
+                    dialogCell.setIsTransitionSupport(this.isTransitionSupport);
+                    if (i == 21) {
+                        dialogCell.setIsShareToStoryCell();
+                    }
+                    if (this.communityId != 0) {
+                        dialogCell.insideCommunityList = true;
+                    }
+                    flickerLoadingView = dialogCell;
+                }
+                if (this.dialogsType == 15) {
+                    flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
+                }
+                break;
+            case 1:
+            case 13:
+                flickerLoadingView = new FlickerLoadingView(this.mContext);
+                flickerLoadingView.setIsSingleCell(true);
+                int i3 = i == 13 ? 18 : 7;
+                flickerLoadingView.setViewType(i3);
+                if (i3 == 18) {
+                    flickerLoadingView.setIgnoreHeightCheck(true);
+                }
+                if (i == 13) {
+                    flickerLoadingView.setItemsCount((int) ((AndroidUtilities.displaySize.y * 0.5f) / AndroidUtilities.dp(64.0f)));
+                    break;
+                }
+                break;
+            case 2:
+                flickerLoadingView = new HeaderCell(this.mContext);
+                flickerLoadingView.setText(LocaleController.getString(R.string.RecentlyViewed));
+                TextView textView = new TextView(this.mContext);
+                textView.setTextSize(1, 15.0f);
+                textView.setTypeface(AndroidUtilities.bold());
+                textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader));
+                textView.setText(LocaleController.getString(R.string.RecentlyViewedHide));
+                textView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
+                flickerLoadingView.addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 17.0f, 15.0f, 17.0f, 0.0f));
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        this.f$0.lambda$onCreateViewHolder$3(view);
+                    }
+                });
+                break;
+            case 3:
+                flickerLoadingView = new FrameLayout(this.mContext) {
+                    @Override
+                    protected void onMeasure(int i4, int i5) {
+                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(12.0f), 1073741824));
+                    }
+                };
+                flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                View view = new View(this.mContext);
+                view.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                flickerLoadingView.addView(view, LayoutHelper.createFrame(-1, -1.0f));
+                break;
+            case 4:
+                flickerLoadingView = new DialogMeUrlCell(this.mContext);
+                break;
+            case 5:
+                flickerLoadingView = new DialogsEmptyCell(this.mContext);
+                break;
+            case 6:
+                flickerLoadingView = new UserCell(this.mContext, 8, 0, false);
+                break;
+            case 7:
+                flickerLoadingView = new HeaderCell(this.mContext);
+                DialogsActivity dialogsActivity = this.parentFragment;
+                if (dialogsActivity == null || !dialogsActivity.isReplyTo) {
+                    flickerLoadingView.setPadding(0, 0, 0, AndroidUtilities.dp(12.0f));
+                    break;
+                }
+                break;
+            case 8:
+                flickerLoadingView = new ShadowSectionCell(this.mContext);
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                combinedDrawable.setFullsize(true);
+                flickerLoadingView.setBackgroundDrawable(combinedDrawable);
+                break;
+            case 9:
+            case 12:
+            default:
+                flickerLoadingView = new TextCell(this.mContext);
+                if (this.dialogsType == 15) {
+                    flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    break;
+                }
+                break;
+            case 10:
+                flickerLoadingView = new LastEmptyView(this.mContext);
+                break;
+            case 11:
+                flickerLoadingView = new TextInfoPrivacyCell(this.mContext) {
+                    private long lastUpdateTime;
+                    private float moveProgress;
+                    private int movement;
+                    private int originalX;
+                    private int originalY;
+
+                    @Override
+                    protected void afterTextDraw() {
+                        if (DialogsAdapter.this.arrowDrawable != null) {
+                            Rect bounds = DialogsAdapter.this.arrowDrawable.getBounds();
+                            Drawable drawable = DialogsAdapter.this.arrowDrawable;
+                            int i4 = this.originalX;
+                            drawable.setBounds(i4, this.originalY, bounds.width() + i4, this.originalY + bounds.height());
+                        }
+                    }
+
+                    @Override
+                    protected void onTextDraw() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+                        if (DialogsAdapter.this.arrowDrawable != null) {
+                            Rect bounds = DialogsAdapter.this.arrowDrawable.getBounds();
+                            int iDp = (int) (this.moveProgress * AndroidUtilities.dp(3.0f));
+                            this.originalX = bounds.left;
+                            this.originalY = bounds.top;
+                            DialogsAdapter.this.arrowDrawable.setBounds(this.originalX + iDp, this.originalY + AndroidUtilities.dp(1.0f), this.originalX + iDp + bounds.width(), this.originalY + AndroidUtilities.dp(1.0f) + bounds.height());
+                            long jElapsedRealtime = SystemClock.elapsedRealtime();
+                            long j = jElapsedRealtime - this.lastUpdateTime;
+                            if (j > 17) {
+                                j = 17;
+                            }
+                            this.lastUpdateTime = jElapsedRealtime;
+                            if (this.movement == 0) {
+                                float f = this.moveProgress + (j / 664.0f);
+                                this.moveProgress = f;
+                                if (f >= 1.0f) {
+                                    this.movement = 1;
+                                    this.moveProgress = 1.0f;
+                                }
+                            } else {
+                                float f2 = this.moveProgress - (j / 664.0f);
+                                this.moveProgress = f2;
+                                if (f2 <= 0.0f) {
+                                    this.movement = 0;
+                                    this.moveProgress = 0.0f;
+                                }
+                            }
+                            getTextView().invalidate();
+                        }
+                    }
+                };
+                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                combinedDrawable2.setFullsize(true);
+                flickerLoadingView.setBackgroundDrawable(combinedDrawable2);
+                break;
+            case 14:
+                flickerLoadingView = new HeaderCell(this.mContext, Theme.key_graySectionText, 16, 0, false);
+                flickerLoadingView.setHeight(32);
+                flickerLoadingView.setClickable(false);
+                break;
+            case 15:
+                flickerLoadingView = new RequestPeerRequirementsCell(this.mContext);
+                break;
+            case 16:
+                flickerLoadingView = new DialogsRequestedEmptyCell(this.mContext) {
+                    @Override
+                    protected void onButtonClick() {
+                        DialogsAdapter.this.onCreateGroupForThisClick();
+                    }
+                };
+                break;
+            case 17:
+                flickerLoadingView = new DialogsHintCell(this.mContext);
+                break;
+            case 18:
+                flickerLoadingView = new View(this.mContext) {
+                    @Override
+                    protected void onMeasure(int i4, int i5) {
+                        super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(81.0f), 1073741824));
+                    }
+                };
+                break;
+            case 19:
+                flickerLoadingView = new LastEmptyView(this.mContext);
+                flickerLoadingView.addView(new ArchiveHelp(this.mContext, this.currentAccount, null, new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.onArchiveSettingsClick();
+                    }
+                }, null), LayoutHelper.createFrame(-1, -1.0f, 17, 0.0f, -40.0f, 0.0f, 0.0f));
+                break;
+            case 20:
+                flickerLoadingView = new GraySectionCell(this.mContext);
+                break;
+            case 22:
+                flickerLoadingView = new HeaderCell(this.mContext);
+                break;
+            case 23:
+                DialogCell dialogCell2 = new DialogCell(this.parentFragment, this.mContext, true, false, this.currentAccount, null);
+                if (this.communityId != 0) {
+                    dialogCell2.insideCommunityList = true;
+                    dialogCell2.insideCommunityListNoDialog = true;
+                }
+                flickerLoadingView = dialogCell2;
+                break;
+        }
+        flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, (i == 5 || i == 19) ? -1 : -2));
+        return new RecyclerListView.Holder(flickerLoadingView);
     }
 
     public int dialogsEmptyType() {

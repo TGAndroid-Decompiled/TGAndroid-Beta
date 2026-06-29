@@ -59,7 +59,6 @@ import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Map;
 import j$.util.Map$Entry$CC;
 import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -3287,7 +3286,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void dispatchDraw(Canvas canvas) {
             float f;
             float f2;
             int i;

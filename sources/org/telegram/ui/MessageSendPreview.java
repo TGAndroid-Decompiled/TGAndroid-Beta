@@ -35,7 +35,6 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -278,7 +277,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 for (int i6 = 0; i6 < getChildCount(); i6++) {
                     View childAt = getChildAt(i6);
                     if (childAt.getTop() != 0 && (childAt instanceof MessageCell)) {
@@ -313,7 +312,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (MessageSendPreview.this.openInProgress && ((view == MessageSendPreview.this.mainMessageCell && MessageSendPreview.this.mainMessageCell != null && MessageSendPreview.this.mainMessageCell.getCurrentPosition() == null) || view == MessageSendPreview.this.sendButton)) {
                     return false;
                 }
@@ -1187,7 +1186,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         }
 
         @Override
-        protected void dispatchDraw(final android.graphics.Canvas r30) throws java.lang.IllegalAccessException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+        protected void dispatchDraw(final android.graphics.Canvas r30) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MessageSendPreview.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 

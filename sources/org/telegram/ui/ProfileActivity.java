@@ -94,8 +94,6 @@ import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -308,6 +306,7 @@ import org.telegram.ui.bots.BotLocation;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.ChannelAffiliateProgramsFragment;
 import org.telegram.ui.bots.SetupEmojiStatusSheet;
+import org.telegram.ui.community.CommunityArrowDrawable;
 import org.telegram.ui.community.CommunitySheet;
 import org.telegram.ui.community.cells.CommunityLinkView;
 
@@ -408,6 +407,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int collectibleHintBackgroundColor;
     private Boolean collectibleHintVisible;
     private TLRPC.TL_emojiStatusCollectible collectibleStatus;
+    private CommunityArrowDrawable communityArrowDrawable;
+    private ImageView communityItem;
     private NestedFrameLayout contentView;
     public boolean createdBirthdayFetcher;
     private boolean creatingChat;
@@ -2648,8 +2649,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ChatAvatarContainer avatarContainer;
         TLRPC.UserFull userFull2;
         TLRPC.ChatParticipants chatParticipants;
-        Button2 button2;
-        CharSequence charSequence;
         ChatActivity chatActivity;
         ChatActivity.ThemeDelegate themeDelegate;
         float f2 = 16.0f;
@@ -2671,7 +2670,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             sharedMediaLayout.onDestroy();
         }
         long j = this.dialogId;
-        CharSequence charSequence2 = "c";
         if (j == 0) {
             j = this.userId;
             if (j == 0) {
@@ -2693,36 +2691,32 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 int i8 = Theme.key_windowBackgroundWhite;
                 blurredBackgroundSourceColor.setColor(getThemedColor(i8));
                 BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
-                Button2 button22 = new Button2(context);
-                BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(button22, new BlurredBackgroundColorProviderThemed(this.resourcesProvider, i8));
+                Button2 button2 = new Button2(context);
+                BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(button2, new BlurredBackgroundColorProviderThemed(this.resourcesProvider, i8));
                 blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(8.0f));
                 blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(22.0f));
-                button22.setBackground(blurredBackgroundDrawableCreate);
+                button2.setBackground(blurredBackgroundDrawableCreate);
                 this.bottomButtonContainer[i6] = new FrameLayout(context);
                 this.bottomButton[i6] = new ButtonWithCounterView(context, this.resourcesProvider);
                 this.bottomButton[i6].setRoundRadius(AndroidUtilities.dp(19.0f));
                 this.bottomButton[i6].setUseWrapContent(true);
                 this.bottomButton[i6].setPadding(AndroidUtilities.dp(f2), r82, AndroidUtilities.dp(f2), r82);
                 if (i6 == 0) {
-                    charSequence = charSequence2;
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
                     this.bottomButtonPostText = spannableStringBuilder;
                     spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_premium_camera), r82, 1, 33);
-                    button2 = button22;
                     this.bottomButtonPostText.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.StoriesAddPost));
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(charSequence);
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
                     this.bottomButtonPostTextAlbum = spannableStringBuilder2;
                     spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_add_album), r82, 1, 33);
                     this.bottomButtonPostTextAlbum.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.StoriesAlbumBottomButtonAddStories));
                     this.bottomButton[i6].setText(this.bottomButtonPostText, r82);
                 } else {
-                    button2 = button22;
-                    charSequence = charSequence2;
                     this.bottomButton[i6].setText(LocaleController.getString(R.string.StorySave), r82);
                 }
                 button2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                    public final void onClick(View view) throws Resources.NotFoundException {
                         this.f$0.lambda$createView$11(i6, view);
                     }
                 });
@@ -2735,7 +2729,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     this.bottomButtonContainer[i6].setTranslationY(AndroidUtilities.dp(72.0f));
                 }
                 i6++;
-                charSequence2 = charSequence;
                 f2 = 16.0f;
                 r82 = 0;
             }
@@ -2753,7 +2746,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         SharedMediaLayout.SharedMediaPreloader sharedMediaPreloader = this.sharedMediaPreloader;
         TLRPC.UserFull userFull3 = this.userInfo;
         final long j2 = j;
-        AnonymousClass9 anonymousClass9 = new AnonymousClass9(context, j2, sharedMediaPreloader, userFull3 != null ? userFull3.common_chats_count : 0, this.sortedUsers, this.chatInfo, userFull3, i, this.initialStoryAlbum, this, this, 1, this.resourcesProvider, this.iBlur3FactoryLiquidGlass);
+        AnonymousClass9 anonymousClass9 = new AnonymousClass9(context, j, sharedMediaPreloader, userFull3 != null ? userFull3.common_chats_count : 0, this.sortedUsers, this.chatInfo, userFull3, i, this.initialStoryAlbum, this, this, 1, this.resourcesProvider, this.iBlur3FactoryLiquidGlass);
         this.sharedMediaLayout = anonymousClass9;
         anonymousClass9.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
         this.sharedMediaLayout.initBlurCapture((ViewGroup) this.fragmentView);
@@ -2951,7 +2944,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onLayout(boolean z2, int i10, int i11, int i12, int i13) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z2, int i10, int i11, int i12, int i13) {
                 super.onLayout(z2, i10, i11, i12, i13);
                 ProfileActivity.this.updateBottomButtonY();
             }
@@ -3232,25 +3225,38 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         ImageView imageView2 = new ImageView(context2);
         this.timeItem = imageView2;
         imageView2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
-        this.timeItem.setScaleType(ImageView.ScaleType.CENTER);
-        this.timeItem.setAlpha(0.0f);
         ImageView imageView3 = this.timeItem;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView3.setScaleType(scaleType);
+        this.timeItem.setAlpha(0.0f);
+        this.timeItem.setScaleX(0.85f);
+        this.timeItem.setScaleY(0.85f);
+        ImageView imageView4 = this.timeItem;
         TimerDrawable timerDrawable = new TimerDrawable(context2, null);
         this.timerDrawable = timerDrawable;
-        imageView3.setImageDrawable(timerDrawable);
+        imageView4.setImageDrawable(timerDrawable);
         this.timeItem.setTranslationY(-1.0f);
         frameLayout.addView(this.timeItem, LayoutHelper.createFrame(34, 34, 51));
-        ImageView imageView4 = new ImageView(context2);
-        this.starBgItem = imageView4;
-        imageView4.setImageResource(R.drawable.star_small_outline);
+        ImageView imageView5 = new ImageView(context2);
+        this.communityItem = imageView5;
+        imageView5.setScaleType(scaleType);
+        this.communityItem.setAlpha(0.0f);
+        ImageView imageView6 = this.communityItem;
+        CommunityArrowDrawable communityArrowDrawableWithCircle = new CommunityArrowDrawable().withCircle();
+        this.communityArrowDrawable = communityArrowDrawableWithCircle;
+        imageView6.setImageDrawable(communityArrowDrawableWithCircle);
+        frameLayout.addView(this.communityItem, LayoutHelper.createFrame(16, 16, 51));
+        ImageView imageView7 = new ImageView(context2);
+        this.starBgItem = imageView7;
+        imageView7.setImageResource(R.drawable.star_small_outline);
         this.starBgItem.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefault), PorterDuff.Mode.SRC_IN));
         this.starBgItem.setAlpha(0.0f);
         this.starBgItem.setScaleY(0.0f);
         this.starBgItem.setScaleX(0.0f);
         frameLayout.addView(this.starBgItem, LayoutHelper.createFrame(20, 20, 51));
-        ImageView imageView5 = new ImageView(context2);
-        this.starFgItem = imageView5;
-        imageView5.setImageResource(R.drawable.star_small_inner);
+        ImageView imageView8 = new ImageView(context2);
+        this.starFgItem = imageView8;
+        imageView8.setImageResource(R.drawable.star_small_inner);
         this.starFgItem.setAlpha(0.0f);
         this.starFgItem.setScaleY(0.0f);
         this.starFgItem.setScaleX(0.0f);
@@ -3579,8 +3585,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.writeButton.setContentDescription(LocaleController.getString(R.string.ViewDiscussion));
         }
         RLottieImageView rLottieImageView2 = this.writeButton;
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        rLottieImageView2.setScaleType(scaleType);
+        ImageView.ScaleType scaleType2 = ImageView.ScaleType.CENTER;
+        rLottieImageView2.setScaleType(scaleType2);
         frameLayout.addView(this.writeButton, LayoutHelper.createFrame(60, 60.0f, 53, 0.0f, 0.0f, 16.0f, 0.0f));
         this.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -3714,7 +3720,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void onZoomStarted(MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onZoomStarted(MessageObject messageObject) {
                 ProfileActivity.this.listView.cancelClickRunnables(true);
                 SharedMediaLayout sharedMediaLayout2 = ProfileActivity.this.sharedMediaLayout;
                 if (sharedMediaLayout2 != null && sharedMediaLayout2.getCurrentListView() != null) {
@@ -3771,9 +3777,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         ProfileActionsView profileActionsView4 = this.actionsView;
         if (profileActionsView4 != null && profileActionsView4.hasCall()) {
-            ImageView imageView6 = new ImageView(context2);
-            this.callToActionItem = imageView6;
-            imageView6.setScaleType(scaleType);
+            ImageView imageView9 = new ImageView(context2);
+            this.callToActionItem = imageView9;
+            imageView9.setScaleType(scaleType2);
             this.callToActionItem.setImageResource(R.drawable.call);
             this.callToActionItem.setVisibility(i4);
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(AndroidUtilities.dp(48.0f), ActionBar.getCurrentActionBarHeight());
@@ -4668,7 +4674,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$11(int i, View view) throws Resources.NotFoundException {
         int i2;
         Bulletin bulletinShow;
         if (i == 0 && !this.sharedMediaLayout.isActionModeShown()) {
@@ -5038,7 +5044,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         showDialog(new AudioPlayerAlert(getContext(), getResourceProvider()));
     }
 
-    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$13(AlertDialog alertDialog, Boolean bool) throws Resources.NotFoundException {
         alertDialog.dismiss();
         if (bool.booleanValue()) {
             StoryRecorder.getInstance(getParentActivity(), getCurrentAccount()).selectedPeerId(getDialogId()).open(null);
@@ -5118,7 +5124,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 alertDialog.showDelayed(200L);
                 MessagesController.getInstance(this.currentAccount).getStoriesController().canSendStoryFor(getDialogId(), new com.google.android.exoplayer2.util.Consumer() {
                     @Override
-                    public final void accept(Object obj) throws Resources.NotFoundException, IOException {
+                    public final void accept(Object obj) throws Resources.NotFoundException {
                         this.f$0.lambda$createView$13(alertDialog, (Boolean) obj);
                     }
                 }, true, this.resourcesProvider);
@@ -8795,7 +8801,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         float fDp = (AndroidUtilities.dp(42.0f) * ((this.avatarScale * 100.0f) / 42.0f)) - AndroidUtilities.dp(42.0f);
         this.timeItem.setTranslationX(this.avatarContainer.getX() + AndroidUtilities.dp(16.0f) + fDp);
-        this.timeItem.setTranslationY(this.avatarContainer.getY() + AndroidUtilities.dp(15.0f) + fDp);
+        this.timeItem.setTranslationY(this.avatarContainer.getY() + AndroidUtilities.dp(-10.0f) + fDp);
+        this.communityItem.setTranslationX(this.avatarContainer.getX() + AndroidUtilities.dp(28.0f) + fDp);
+        this.communityItem.setTranslationY(this.avatarContainer.getY() + AndroidUtilities.dp(26.5f) + fDp);
         this.starBgItem.setTranslationX(this.avatarContainer.getX() + AndroidUtilities.dp(28.0f) + fDp);
         this.starBgItem.setTranslationY(this.avatarContainer.getY() + AndroidUtilities.dp(24.0f) + fDp);
         this.starFgItem.setTranslationX(this.avatarContainer.getX() + AndroidUtilities.dp(28.0f) + fDp);
@@ -8905,7 +8913,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void needLayout(boolean r28) {
+    public void needLayout(boolean r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.needLayout(boolean):void");
     }
 
@@ -9678,6 +9686,21 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         this.autoDeleteItemDrawable.setTime(i);
         this.autoDeletePopupWrapper.lambda$updateItems$7(i);
+    }
+
+    private void updateCommunityArrowItem() {
+        TLRPC.Chat currentChat;
+        if (this.communityItem == null) {
+            return;
+        }
+        ChatActivityInterface chatActivityInterface = this.previousTransitionFragment;
+        if ((chatActivityInterface instanceof ChatActivity) && (currentChat = ((ChatActivity) chatActivityInterface).getCurrentChat()) != null && currentChat.linked_community_id != 0) {
+            this.communityItem.setTag(1);
+            this.communityItem.setVisibility(0);
+        } else {
+            this.communityItem.setTag(null);
+            this.communityItem.setVisibility(8);
+        }
     }
 
     private void updateTimeItem() {
@@ -10504,7 +10527,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.musicView.updatePosition(fDp - fMin, fMin - AndroidUtilities.dp(74.0f));
     }
 
-    public void updateProfileData(boolean r30) {
+    public void updateProfileData(boolean r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.updateProfileData(boolean):void");
     }
 

@@ -455,6 +455,8 @@ public class AvatarConstructorFragment extends BaseFragment {
         int i3 = this.imageUpdater.setForType;
         if (i3 == 1) {
             this.buttonText = LocaleController.getString(R.string.SetChannelPhoto);
+        } else if (i3 == 3) {
+            this.buttonText = LocaleController.getString(R.string.SetCommunityPhoto);
         } else if (i3 == 2) {
             this.buttonText = LocaleController.getString(R.string.SetGroupPhoto);
         } else {

@@ -25,7 +25,6 @@ import android.widget.ScrollView;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -1083,7 +1082,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             }
 
             @Override
-            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
                 if (i == 0) {
                     ChatEditTypeActivity.this.ignoreScroll = false;
                     UsernamesListView.this.sendReorder();

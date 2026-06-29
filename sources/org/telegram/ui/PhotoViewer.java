@@ -6272,17 +6272,17 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
         }
 
-        public void lambda$onItemClick$11(AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void lambda$onItemClick$11(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
             ArrayList arrayList = new ArrayList(1);
             arrayList.add(PhotoViewer.this.currentMessageObject);
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public void lambda$onItemClick$12(ArrayList arrayList, AlertDialog alertDialog, int i) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void lambda$onItemClick$12(ArrayList arrayList, AlertDialog alertDialog, int i) throws Resources.NotFoundException {
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$14(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public boolean lambda$onItemClick$14(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -6444,7 +6444,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onItemClick(int r36) throws java.lang.IllegalAccessException, android.content.res.Resources.NotFoundException, java.lang.NoSuchMethodException, java.lang.SecurityException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException {
+        public void onItemClick(int r36) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.AnonymousClass18.onItemClick(int):void");
         }
 
@@ -8441,7 +8441,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return captionView != null && (captionView.keyboardNotifier.keyboardVisible() || captionView.editText.isPopupShowing());
     }
 
-    public void showShareAlert(ArrayList arrayList) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void showShareAlert(ArrayList arrayList) throws Resources.NotFoundException {
         boolean z;
         VideoPlayer videoPlayer;
         MessageObject messageObject;
@@ -8476,7 +8476,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         anonymousClass42.getWindow().setSoftInputMode(48);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$showShareAlert$89(anonymousClass42);
             }
         }, 250L);
@@ -8532,7 +8532,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void lambda$showShareAlert$89(ShareAlert shareAlert) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$showShareAlert$89(ShareAlert shareAlert) throws Resources.NotFoundException {
         if (shareAlert == null || shareAlert.getWindow() == null) {
             return;
         }
@@ -17550,7 +17550,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void lambda$openAdsMenu$163(int i, Theme.ResourcesProvider resourcesProvider) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$openAdsMenu$163(int i, Theme.ResourcesProvider resourcesProvider) {
         if (UserConfig.getInstance(i).isPremium()) {
             BulletinFactory.of(this.containerView, resourcesProvider).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             MessagesController.getInstance(i).disableAds(true);
@@ -17570,7 +17570,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         RevenueSharingAdsInfoBottomSheet.showAlert(this.activityContext, this.parentFragment, false, resourcesProvider);
     }
 
-    public void lambda$openAdsMenu$165(int i, Theme.ResourcesProvider resourcesProvider) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$openAdsMenu$165(int i, Theme.ResourcesProvider resourcesProvider) {
         if (UserConfig.getInstance(i).isPremium()) {
             BulletinFactory.of(this.containerView, resourcesProvider).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
             MessagesController.getInstance(i).disableAds(true);

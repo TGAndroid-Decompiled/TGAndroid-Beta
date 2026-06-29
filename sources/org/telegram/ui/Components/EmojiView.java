@@ -63,7 +63,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -695,7 +694,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
 
         @Override
-        public void sendEmoji(TLRPC.Document document) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void sendEmoji(TLRPC.Document document) throws Resources.NotFoundException {
             if (EmojiView.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiView.this.fragment).sendAnimatedEmoji(document, true, 0);
             }
@@ -1673,7 +1672,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
 
         @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onTransitionAnimationEnd(boolean z, boolean z2) throws Resources.NotFoundException {
             ChatActivityEnterView chatActivityEnterView;
             super.onTransitionAnimationEnd(z, z2);
             if (!z || (chatActivityEnterView = this.chatActivityEnterView) == null) {
@@ -2255,7 +2254,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     }
 
                     @Override
-                    protected void onLayout(boolean z10, int i12, int i13, int i14, int i15) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                    protected void onLayout(boolean z10, int i12, int i13, int i14, int i15) {
                         if (EmojiView.this.firstGifAttach && EmojiView.this.gifAdapter.getItemCount() > 1) {
                             this.ignoreLayout = true;
                             EmojiView.this.gifLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -2424,7 +2423,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                 }
 
                 @Override
-                protected void onLayout(boolean z10, int i12, int i13, int i14, int i15) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                protected void onLayout(boolean z10, int i12, int i13, int i14, int i15) {
                     if (EmojiView.this.firstStickersAttach && EmojiView.this.stickersGridAdapter.getItemCount() > 0) {
                         this.ignoreLayout = true;
                         EmojiView.this.stickersLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -2948,7 +2947,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         return ContentPreviewViewer.getInstance().onTouch(motionEvent, this.emojiGridView, getMeasuredHeight(), null, this.contentPreviewViewerDelegate, resourcesProvider);
     }
 
-    public boolean lambda$new$2(View view, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public boolean lambda$new$2(View view, int i) {
         String str;
         int iDp;
         if (view instanceof ImageViewEmoji) {
@@ -3517,7 +3516,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             if (EmojiView.this.needEmojiSearch && EmojiView.this.firstEmojiAttach) {
                 this.ignoreLayout = true;
                 EmojiView.this.emojiLayoutManager.scrollToPositionWithOffset(0, 0);

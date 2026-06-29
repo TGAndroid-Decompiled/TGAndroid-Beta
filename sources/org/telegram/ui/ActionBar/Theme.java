@@ -61,7 +61,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -89,7 +88,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda84;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda102;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -3418,7 +3417,7 @@ public abstract class Theme {
         editorEdit.commit();
     }
 
-    private static Drawable getStateDrawable(Drawable drawable, int i) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private static Drawable getStateDrawable(Drawable drawable, int i) {
         if (Build.VERSION.SDK_INT >= 29 && (drawable instanceof StateListDrawable)) {
             return ((StateListDrawable) drawable).getStateDrawable(i);
         }
@@ -4551,7 +4550,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda84(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda102(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4597,7 +4596,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda84(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda102(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4712,7 +4711,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda84(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda102(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -7350,7 +7349,7 @@ public abstract class Theme {
         }
     }
 
-    public static boolean setSelectorDrawableColor(Drawable drawable, int i, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public static boolean setSelectorDrawableColor(Drawable drawable, int i, boolean z) {
         Drawable stateDrawable;
         boolean z2;
         if (drawable instanceof StateListDrawable) {

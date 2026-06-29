@@ -13,9 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.TextView;
@@ -199,7 +197,10 @@ public abstract class StoriesUtilities {
         avatarStoryParams.showProgress = zIsLoading;
         if (avatarStoryParams.currentState == 0 && avatarStoryParams.progressToSate == 1.0f) {
             imageReceiver.setImageCoords(avatarStoryParams.originalAvatarRect);
+            canvas.save();
+            canvas.scale(scale, scale, avatarStoryParams.originalAvatarRect.centerX(), avatarStoryParams.originalAvatarRect.centerY());
             imageReceiver.draw(canvas);
+            canvas.restore();
             return;
         }
         int iSave = canvas.save();
@@ -1181,6 +1182,14 @@ public abstract class StoriesUtilities {
         public int unreadState;
         public boolean useArcProgress;
 
+        public boolean isAvatarClickable(long j, TLRPC.Chat chat) {
+            return false;
+        }
+
+        public boolean onAvatarClick(View view, long j) {
+            return false;
+        }
+
         public void onLongPress() {
         }
 
@@ -1226,87 +1235,8 @@ public abstract class StoriesUtilities {
             this.globalAngle += 1.152f;
         }
 
-        public boolean checkOnTouchEvent(MotionEvent motionEvent, final View view) {
-            TLRPC.User user;
-            TLRPC.TL_recentStory tL_recentStory;
-            TLRPC.TL_recentStory tL_recentStory2;
-            this.child = view;
-            StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController();
-            boolean zHasHiddenStories = false;
-            if (motionEvent.getAction() == 0 && this.originalAvatarRect.contains(motionEvent.getX(), motionEvent.getY())) {
-                TLRPC.Chat chat = null;
-                if (this.dialogId > 0) {
-                    user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(this.dialogId));
-                } else {
-                    user = null;
-                    chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-this.dialogId));
-                }
-                if (this.drawHiddenStoriesAsSegments) {
-                    zHasHiddenStories = storiesController.hasHiddenStories();
-                } else if (this.dialogId <= 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (chat != null && !chat.stories_unavailable && (tL_recentStory = chat.stories_max_id) != null && tL_recentStory.max_id > 0) : MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(this.dialogId) || (user != null && !user.stories_unavailable && (tL_recentStory2 = user.stories_max_id) != null && tL_recentStory2.max_id > 0)) {
-                    zHasHiddenStories = true;
-                }
-                if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && zHasHiddenStories) {
-                    ButtonBounce buttonBounce = this.buttonBounce;
-                    if (buttonBounce == null) {
-                        this.buttonBounce = new ButtonBounce(view, 1.5f, 5.0f);
-                    } else {
-                        buttonBounce.setView(view);
-                    }
-                    view.getParent().requestDisallowInterceptTouchEvent(true);
-                    this.buttonBounce.setPressed(true);
-                    this.pressed = true;
-                    this.startX = motionEvent.getX();
-                    this.startY = motionEvent.getY();
-                    if (this.allowLongress) {
-                        Runnable runnable = this.longPressRunnable;
-                        if (runnable != null) {
-                            AndroidUtilities.cancelRunOnUIThread(runnable);
-                        }
-                        Runnable runnable2 = new Runnable() {
-                            @Override
-                            public final void run() {
-                                this.f$0.lambda$checkOnTouchEvent$0(view);
-                            }
-                        };
-                        this.longPressRunnable = runnable2;
-                        AndroidUtilities.runOnUIThread(runnable2, ViewConfiguration.getLongPressTimeout());
-                    }
-                }
-            } else if (motionEvent.getAction() == 2 && this.pressed) {
-                if (Math.abs(this.startX - motionEvent.getX()) > AndroidUtilities.touchSlop || Math.abs(this.startY - motionEvent.getY()) > AndroidUtilities.touchSlop) {
-                    ButtonBounce buttonBounce2 = this.buttonBounce;
-                    if (buttonBounce2 != null) {
-                        buttonBounce2.setView(view);
-                        this.buttonBounce.setPressed(false);
-                    }
-                    Runnable runnable3 = this.longPressRunnable;
-                    if (runnable3 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(runnable3);
-                    }
-                    view.getParent().requestDisallowInterceptTouchEvent(false);
-                    this.pressed = false;
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                ButtonBounce buttonBounce3 = this.buttonBounce;
-                if (buttonBounce3 != null) {
-                    buttonBounce3.setView(view);
-                    this.buttonBounce.setPressed(false);
-                }
-                if (this.pressed && motionEvent.getAction() == 1) {
-                    processOpenStory(view);
-                }
-                ViewParent parent = view.getParent();
-                if (parent instanceof ViewGroup) {
-                    ((ViewGroup) parent).requestDisallowInterceptTouchEvent(false);
-                }
-                this.pressed = false;
-                Runnable runnable4 = this.longPressRunnable;
-                if (runnable4 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable4);
-                }
-            }
-            return this.pressed;
+        public boolean checkOnTouchEvent(android.view.MotionEvent r12, final android.view.View r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams.checkOnTouchEvent(android.view.MotionEvent, android.view.View):boolean");
         }
 
         public void lambda$checkOnTouchEvent$0(View view) {
@@ -1329,6 +1259,9 @@ public abstract class StoriesUtilities {
         private void processOpenStory(View view) {
             TLRPC.TL_recentStory tL_recentStory;
             TLRPC.TL_recentStory tL_recentStory2;
+            if (onAvatarClick(view, this.dialogId)) {
+                return;
+            }
             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
             StoriesController storiesController = messagesController.getStoriesController();
             if (this.drawHiddenStoriesAsSegments) {

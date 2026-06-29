@@ -48,7 +48,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -868,7 +867,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
 
             @Override
-            protected void onLayout(boolean z3, int i3, int i4, int i5, int i6) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onLayout(boolean z3, int i3, int i4, int i5, int i6) {
                 super.onLayout(z3, i3, i4, i5, i6);
                 PhotoViewer.getInstance().checkCurrentImageVisibility();
             }
@@ -1014,7 +1013,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
 
             @Override
-            public void onStartStopSelection(boolean z3) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onStartStopSelection(boolean z3) {
                 ChatAttachAlertPhotoLayout.this.alertOnlyOnce = z3 ? 1 : 0;
                 ChatAttachAlertPhotoLayout.this.gridView.hideSelector(true);
             }

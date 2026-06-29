@@ -91,7 +91,6 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import j$.util.Objects;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -4391,7 +4390,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             }
 
             @Override
-            public void onZoomStarted(MessageObject messageObject) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public void onZoomStarted(MessageObject messageObject) {
                 PageLayout pageLayout2 = ArticleViewer.this.pages[0];
                 if (pageLayout2 != null) {
                     pageLayout2.listView.cancelClickRunnables(true);
@@ -5619,7 +5618,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         return open(null, null, null, str, progress);
     }
 
-    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, PackageManager.NameNotFoundException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    private boolean open(final MessageObject messageObject, TLRPC.WebPage webPage, String str, String str2, Browser.Progress progress) throws Resources.NotFoundException, PackageManager.NameNotFoundException {
         final TLRPC.WebPage webPage2;
         String strSubstring;
         boolean z;
@@ -15189,7 +15188,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 }
 
                 @Override
-                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                     super.onLayout(z, i2, i3, i4, i5);
                     PageLayout.this.overrideProgress = -1.0f;
                 }
@@ -16081,7 +16080,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             int childCount = getChildCount();
             for (int i5 = 0; i5 < childCount; i5++) {
@@ -16212,7 +16211,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        public WindowView mo1337getWindowView() {
+        public WindowView mo1359getWindowView() {
             return this.windowView;
         }
 
@@ -16262,7 +16261,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             return !this.dismissing && !this.released && this.openProgress > 0.5f && (windowView = this.windowView) != null && windowView.isAttachedToWindow() && this.windowView.isVisible() && this.backProgress < 1.0f;
         }
 
-        public void attachInternal(BaseFragment baseFragment) throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void attachInternal(BaseFragment baseFragment) throws Resources.NotFoundException {
             this.released = false;
             this.fragment = baseFragment;
             this.resourcesProvider = baseFragment.getResourceProvider();
@@ -16293,7 +16292,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             ArticleViewer.activeSheets.add(ArticleViewer.this);
         }
 
-        public void show() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void show() throws Resources.NotFoundException {
             if (this.dismissing) {
                 return;
             }
@@ -16607,7 +16606,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1337getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1359getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

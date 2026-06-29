@@ -41,7 +41,6 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -425,7 +424,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1337getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1359getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -2640,7 +2639,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.backgroundView.setVisibility(8);
     }
 
-    public void setThemeAnimationValue(float f) throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void setThemeAnimationValue(float f) throws NoSuchFieldException, IOException, SecurityException {
         this.themeAnimationValue = f;
         int size = this.themeAnimatorDescriptions.size();
         for (int i = 0; i < size; i++) {
@@ -2752,7 +2751,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         final int size = themeAnimationSettings.onlyTopFragment ? 1 : this.fragmentsStack.size();
         final Runnable runnable2 = new Runnable() {
             @Override
-            public final void run() throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            public final void run() throws NoSuchFieldException, IOException, SecurityException {
                 this.f$0.lambda$animateThemedValues$7(size, themeAnimationSettings, runnable);
             }
         };
@@ -2779,7 +2778,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         runnable2.run();
     }
 
-    public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) throws IllegalAccessException, NoSuchFieldException, NoSuchMethodException, IOException, SecurityException, IllegalArgumentException, InvocationTargetException {
+    public void lambda$animateThemedValues$7(int i, final INavigationLayout.ThemeAnimationSettings themeAnimationSettings, Runnable runnable) throws NoSuchFieldException, IOException, SecurityException {
         BaseFragment lastFragment;
         Runnable runnable2;
         boolean z = false;

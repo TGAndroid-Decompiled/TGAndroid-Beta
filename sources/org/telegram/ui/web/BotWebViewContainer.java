@@ -63,7 +63,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.IDN;
 import java.net.URL;
@@ -2092,7 +2091,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
 
         @Override
-        public void onBecomeFullyVisible() throws IllegalAccessException, Resources.NotFoundException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+        public void onBecomeFullyVisible() throws Resources.NotFoundException {
             super.onBecomeFullyVisible();
             if (this.shownToast) {
                 return;

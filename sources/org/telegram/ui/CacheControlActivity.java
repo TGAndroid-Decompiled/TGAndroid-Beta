@@ -30,7 +30,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -2109,7 +2108,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
 
             @Override
-            protected void onSectionDown(int i, boolean z) throws IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+            protected void onSectionDown(int i, boolean z) {
                 if (!z) {
                     CacheControlActivity.this.listView.removeHighlightRow();
                     return;
