@@ -17,6 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
@@ -588,6 +589,7 @@ public abstract class CommunityUtils {
             }
         }
         size = -1;
+        final boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(j, baseFragment.getCurrentAccount());
         if (size != -1) {
             for (int size2 = list.size() - 2; size2 > size; size2--) {
                 parentLayout.removeFragmentFromStack((BaseFragment) list.get(size2));
@@ -596,7 +598,7 @@ public abstract class CommunityUtils {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() throws Resources.NotFoundException {
-                    CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity);
+                    CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
             return;
@@ -604,29 +606,35 @@ public abstract class CommunityUtils {
         if (!(baseFragment instanceof DialogsActivity)) {
             baseFragment.finishFragment();
         }
-        showCommunityLinkSuccessToast(BulletinFactory.global(), i);
+        showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity) throws Resources.NotFoundException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();
         }
-        showCommunityLinkSuccessToast(BulletinFactory.of(chatActivity), i);
+        showCommunityLinkSuccessToast(BulletinFactory.of(chatActivity), i, z);
     }
 
-    public static void showCommunityLinkSuccessToast(BulletinFactory bulletinFactory, int i) {
+    public static void showCommunityLinkSuccessToast(BulletinFactory bulletinFactory, int i, boolean z) {
         String string;
-        int i2 = i == 2 ? R.raw.timer_toast : R.raw.contact_check;
-        int i3 = i == 2 ? 24 : 36;
+        int i2;
+        int i3 = i == 2 ? R.raw.timer_toast : R.raw.contact_check;
+        int i4 = i == 2 ? 24 : 36;
         if (i == 0) {
             string = LocaleController.getString(R.string.CommunityCommunityCreated);
         } else if (i == 1) {
-            string = LocaleController.getString(R.string.CommunityCommunityJoined);
+            if (z) {
+                i2 = R.string.CommunityCommunityJoinedChannel;
+            } else {
+                i2 = R.string.CommunityCommunityJoinedGroup;
+            }
+            string = LocaleController.getString(i2);
         } else {
             string = LocaleController.getString(R.string.CommunityCommunityPending);
         }
-        bulletinFactory.createSimpleBulletin(i2, string, i3).show();
+        bulletinFactory.createSimpleBulletin(i3, string, i4).show();
     }
 
     public static CommunityChatType getCommunityChatType(int i, TLRPC.Chat chat) {
@@ -658,6 +666,68 @@ public abstract class CommunityUtils {
             return CommunityChatType.HiddenUnavailable;
         }
         return CommunityChatType.YouCanSendJoinRequest;
+    }
+
+    public static CharSequence buildServiceMessageText(MessageObject messageObject, String str, String str2, boolean z) {
+        int i;
+        String string;
+        int i2;
+        int i3;
+        int i4;
+        int i5;
+        int i6;
+        TLRPC.Message message = messageObject.messageOwner;
+        TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
+        boolean z2 = DialogObject.getPeerDialogId(message.peer_id) == DialogObject.getPeerDialogId(message.from_id);
+        boolean z3 = tL_messageActionChangeCommunity.community_id == 0;
+        if (z2) {
+            if (z3) {
+                if (z) {
+                    i6 = R.string.CommunityServiceMessageChannelRemovedUnknown;
+                } else {
+                    i6 = R.string.CommunityServiceMessageGroupRemovedUnknown;
+                }
+                return AndroidUtilities.replaceTags(LocaleController.getString(i6));
+            }
+            if (z) {
+                i5 = R.string.CommunityServiceMessageChannelAddedUnknown;
+            } else {
+                i5 = R.string.CommunityServiceMessageGroupAddedUnknown;
+            }
+            return AndroidUtilities.replaceTags(LocaleController.formatString(i5, str));
+        }
+        if (messageObject.isOut()) {
+            if (z3) {
+                if (z) {
+                    i4 = R.string.CommunityServiceMessageChannelYouRemoved;
+                } else {
+                    i4 = R.string.CommunityServiceMessageGroupYouRemoved;
+                }
+                string = LocaleController.getString(i4);
+            } else {
+                if (z) {
+                    i3 = R.string.CommunityServiceMessageChannelYouAdded;
+                } else {
+                    i3 = R.string.CommunityServiceMessageGroupYouAdded;
+                }
+                string = LocaleController.formatString(i3, str);
+            }
+        } else if (z3) {
+            if (z) {
+                i2 = R.string.CommunityServiceMessageChannelRemoved;
+            } else {
+                i2 = R.string.CommunityServiceMessageGroupRemoved;
+            }
+            string = LocaleController.formatString(i2, str2);
+        } else {
+            if (z) {
+                i = R.string.CommunityServiceMessageChannelAdded;
+            } else {
+                i = R.string.CommunityServiceMessageGroupAdded;
+            }
+            string = LocaleController.formatString(i, str2, str);
+        }
+        return AndroidUtilities.replaceTags(string);
     }
 
     public static class DialogCellFactory extends UItem.UItemFactory {

@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -35,11 +36,13 @@ public class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
     }
 
     public CommunityInviteOnlySheet(Context context, TLRPC.Chat chat, TLRPC.User user, final Runnable runnable) {
+        int i;
+        int i2;
         super(context, null, false, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         this.headerMoveTop = AndroidUtilities.dp(30.0f);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i, 0, i, AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(130.0f));
+        int i3 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i3, 0, i3, AndroidUtilities.navigationBarHeight + AndroidUtilities.dp(130.0f));
         this.recyclerListView.setClipToPadding(false);
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider);
         this.cancelButton = buttonWithCounterView;
@@ -52,9 +55,15 @@ public class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
                 this.f$0.lambda$new$0(view);
             }
         });
+        boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, this.resourcesProvider);
         this.messageButton = buttonWithCounterView2;
-        buttonWithCounterView2.setText(LocaleController.getString(R.string.CommunityInviteOnlyGroupMessageOwner));
+        if (zIsChannelAndNotMegaGroup) {
+            i = R.string.CommunityInviteOnlyChannelMessageOwner;
+        } else {
+            i = R.string.CommunityInviteOnlyGroupMessageOwner;
+        }
+        buttonWithCounterView2.setText(LocaleController.getString(i));
         this.messageButton.setRound();
         this.messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,13 +77,18 @@ public class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
         this.cell.avatarImage.setForUserOrChat(chat, new AvatarDrawable(chat));
         this.cell.titleView.setText(DialogObject.getName(chat));
         TextView textView = this.cell.titleView;
-        int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(getThemedColor(i2));
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(getThemedColor(i4));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
         spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.mini_ephemeral_hidden_14), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CommunityInviteOnlyGroupInfo));
-        this.cell.textView.setTextColor(getThemedColor(i2));
+        if (zIsChannelAndNotMegaGroup) {
+            i2 = R.string.CommunityInviteOnlyChannelInfo;
+        } else {
+            i2 = R.string.CommunityInviteOnlyGroupInfo;
+        }
+        spannableStringBuilder.append((CharSequence) LocaleController.getString(i2));
+        this.cell.textView.setTextColor(getThemedColor(i4));
         this.cell.textView.setText(spannableStringBuilder);
         this.containerView.addView(this.messageButton, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
         this.containerView.addView(this.cancelButton, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));

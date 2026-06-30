@@ -38,6 +38,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -1014,6 +1015,10 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
+        MessageObject messageObject;
+        MessageObject messageObject2;
+        long j2;
+        int quickReplyId;
         if (!MessagesController.getInstance(this.currentAccount).richEditorAllowed()) {
             if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
                 new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.currentAccount, 43, true).show();
@@ -1027,19 +1032,29 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             updateSendButtonEnabled();
             return false;
         }
-        if (this.listView.flattenRowsToBlocks().isEmpty()) {
+        ArrayList arrayListFlattenRowsToBlocks = this.listView.flattenRowsToBlocks();
+        if (arrayListFlattenRowsToBlocks.isEmpty()) {
             return false;
         }
-        this.listView.collectPhotos();
-        this.listView.collectDocuments();
+        ArrayList arrayListCollectPhotos = this.listView.collectPhotos();
+        ArrayList arrayListCollectDocuments = this.listView.collectDocuments();
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
-            chatActivity.getReplyMessage();
-            chatActivity.getThreadMessage();
-            chatActivity.getSendMonoForumPeerId();
-            chatActivity.getQuickReplyId();
+            MessageObject replyMessage = chatActivity.getReplyMessage();
+            MessageObject threadMessage = chatActivity.getThreadMessage();
+            long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
+            quickReplyId = chatActivity.getQuickReplyId();
+            messageObject = replyMessage;
+            messageObject2 = threadMessage;
+            j2 = sendMonoForumPeerId;
+        } else {
+            messageObject = null;
+            messageObject2 = null;
+            j2 = 0;
+            quickReplyId = 0;
         }
+        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject, messageObject2, z, i, i2, null, quickReplyId, j, j2, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }

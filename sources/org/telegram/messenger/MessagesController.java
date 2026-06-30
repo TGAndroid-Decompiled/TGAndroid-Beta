@@ -16414,7 +16414,11 @@ public class MessagesController extends BaseController implements NotificationCe
                 long j2 = dialog.id;
                 if (j2 < 0) {
                     TLRPC.Chat chat2 = getChat(Long.valueOf(-j2));
-                    if (ChatObject.isChatCollapsedInCommunity(this.currentAccount, chat2)) {
+                    if (ChatObject.isCommunity(chat2)) {
+                        this.allDialogs.remove(i);
+                        i--;
+                        size--;
+                    } else if (ChatObject.isChatCollapsedInCommunity(this.currentAccount, chat2)) {
                         long j3 = chat2.linked_community_id;
                         LongSparseIntArray longSparseIntArray = this.dialogsCommunityLastMessageDate;
                         longSparseIntArray.put(j3, Math.max(longSparseIntArray.get(j3), dialog.last_message_date));

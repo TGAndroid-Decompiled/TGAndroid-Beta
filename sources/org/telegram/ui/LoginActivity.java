@@ -153,6 +153,7 @@ import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.CheckBoxCell;
@@ -10801,6 +10802,25 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.button.setLoading(false);
         }
 
+        private void closeAllPaymentFormActivities() {
+            INavigationLayout parentLayout = LoginActivity.this.getParentLayout();
+            if (parentLayout == null || parentLayout.getFragmentStack() == null) {
+                return;
+            }
+            List fragmentStack = parentLayout.getFragmentStack();
+            BaseFragment baseFragment = fragmentStack.isEmpty() ? null : (BaseFragment) fragmentStack.get(fragmentStack.size() - 1);
+            Iterator it = new ArrayList(fragmentStack).iterator();
+            while (it.hasNext()) {
+                BaseFragment baseFragment2 = (BaseFragment) it.next();
+                if ((baseFragment2 instanceof PaymentFormActivity) && baseFragment2 != baseFragment) {
+                    baseFragment2.removeSelfFromStack();
+                }
+            }
+            if (baseFragment instanceof PaymentFormActivity) {
+                parentLayout.closeLastFragment(true);
+            }
+        }
+
         private void startPoll(String str, String str2, long j) {
             if (this.polling) {
                 return;
@@ -10842,6 +10862,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (tLObject instanceof TLRPC.auth_SentCode) {
                 this.polling = false;
                 this.button.setLoading(false);
+                closeAllPaymentFormActivities();
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$18(this.params, (TLRPC.auth_SentCode) tLObject);
                 return;
             }

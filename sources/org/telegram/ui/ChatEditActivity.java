@@ -927,7 +927,14 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$createView$48(View view) {
-        AlertsCreator.showSimpleConfirmAlert(this, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), LocaleController.getString(R.string.CommunityMenuRemoveFromCommunityConfirm), LocaleController.getString(R.string.Remove), true, new Runnable() {
+        int i;
+        String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
+        if (this.isChannel) {
+            i = R.string.CommunityMenuRemoveChannelFromCommunityConfirm;
+        } else {
+            i = R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
+        }
+        AlertsCreator.showSimpleConfirmAlert(this, string, LocaleController.getString(i), LocaleController.getString(R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$createView$47();

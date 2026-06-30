@@ -430,11 +430,12 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
 
     public void onClickCommunity(UItem uItem, View view, int i, float f, float f2) {
         TLRPC.Chat currentChat;
+        int i2;
         if (checkPendingRequestClick(uItem)) {
             return;
         }
-        int i2 = uItem.id;
-        if (i2 == 101) {
+        int i3 = uItem.id;
+        if (i3 == 101) {
             this.collapsedInDialogs = !this.collapsedInDialogs;
             MessagesController.getInstance(this.currentAccount).toggleCommunityCollapsedInDialogs(this.communityId, this.collapsedInDialogs);
             if (view instanceof TextCheckCell2) {
@@ -445,7 +446,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
                 return;
             }
         }
-        if (i2 == 100) {
+        if (i3 == 100) {
             this.viewPager.scrollToPosition(1);
             this.pendingRequestsList.markAsViewed();
             return;
@@ -453,6 +454,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         Object obj = uItem.object;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
+            boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             CommunityChatType communityChatType = CommunityUtils.getCommunityChatType(this.currentAccount, chat);
             if (communityChatType == CommunityChatType.YouAreIn || communityChatType == CommunityChatType.YouCanView) {
                 BaseFragment baseFragment = this.parentFragment;
@@ -478,8 +480,17 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             }
             if (communityChatType == CommunityChatType.YouCanSendJoinRequest) {
                 new JoinGroupAlert(getContext(), chat, null, this.parentFragment, this.resourcesProvider).setBulletinFactory(BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider)).show();
-            } else if (communityChatType == CommunityChatType.HiddenUnavailable) {
-                BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createSimpleBulletin(R.raw.e_hand_2, LocaleController.getString(R.string.CommunityHiddenGroupUnavailable)).show();
+                return;
+            }
+            if (communityChatType == CommunityChatType.HiddenUnavailable) {
+                BulletinFactory bulletinFactoryOf = BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider);
+                int i4 = R.raw.e_hand_2;
+                if (zIsChannelAndNotMegaGroup) {
+                    i2 = R.string.CommunityHiddenChannelUnavailable;
+                } else {
+                    i2 = R.string.CommunityHiddenGroupUnavailable;
+                }
+                bulletinFactoryOf.createSimpleBulletin(i4, LocaleController.getString(i2)).show();
             }
         }
     }
@@ -511,7 +522,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     }
 
     public void lambda$onLongClickCommunity$5(final long j) {
-        AlertsCreator.showSimpleConfirmAlert(getContext(), this.resourcesProvider, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), LocaleController.getString(R.string.CommunityMenuRemoveFromCommunityConfirm), LocaleController.getString(R.string.Remove), true, new Runnable() {
+        AlertsCreator.showSimpleConfirmAlert(getContext(), this.resourcesProvider, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), LocaleController.getString(R.string.CommunityMenuRemoveGroupFromCommunityConfirm), LocaleController.getString(R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onLongClickCommunity$4(j);
@@ -1121,6 +1132,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
 
     private void linkToCommunity(TLRPC.Chat chat, final long j, final boolean z) {
         long j2 = -chat.id;
+        final boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (!ChatObject.isChannel(chat)) {
             final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
             alertDialog.showDelayed(250L);
@@ -1135,7 +1147,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).linkCommunity(j2, j, z, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$linkToCommunity$9((TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$linkToCommunity$9(zIsChannelAndNotMegaGroup, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
@@ -1148,21 +1160,21 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         linkToCommunity(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j2)), j, z);
     }
 
-    public void lambda$linkToCommunity$9(TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public void lambda$linkToCommunity$9(boolean z, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             if (TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-                onLinkSuccess(2);
+                onLinkSuccess(2, z);
                 return;
             } else {
                 BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
                 return;
             }
         }
-        onLinkSuccess(1);
+        onLinkSuccess(1, z);
     }
 
-    private void onLinkSuccess(int i) {
-        CommunityUtils.showCommunityLinkSuccessToast(BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider), i);
+    private void onLinkSuccess(int i, boolean z) {
+        CommunityUtils.showCommunityLinkSuccessToast(BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider), i, z);
         this.viewPager.scrollToPosition(0);
     }
 
