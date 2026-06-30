@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -25,6 +26,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
@@ -93,7 +95,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     private final AlertDialog[] progressDialog;
     private PhotoViewer.PhotoViewerProvider provider;
 
-    public static void lambda$openSetPhotoAlert$7(DialogInterface dialogInterface) {
+    public static void lambda$openSetPhotoAlert$8(DialogInterface dialogInterface) {
     }
 
     @Override
@@ -187,7 +189,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) {
+            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                 CommunityEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -215,6 +217,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     public View createView(Context context) {
         setHasOwnBackground(true);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
+        this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -338,7 +341,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                 this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -419,7 +422,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
     }
 
-    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) {
+    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.community.CommunityEditActivity.onClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
     }
 
@@ -517,7 +520,12 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     private void processDone() {
         TLRPC.Chat chat = this.currentChat;
         if (chat != null && !chat.title.equals(this.editTextCell.getText())) {
-            getMessagesController().changeChatTitle(this.currentChat.id, this.editTextCell.getText());
+            getMessagesController().changeChatTitle(this.currentChat.id, this.editTextCell.getText(), new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$processDone$6();
+                }
+            });
         }
         TLRPC.Chat chat2 = this.currentChat;
         if (chat2 == null || this.canAllManageLinkedPeers == this.canAllManageLinkedPeersOriginal) {
@@ -528,6 +536,10 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
         this.currentChat.default_banned_rights.manage_linked_peers = !this.canAllManageLinkedPeers;
         getMessagesController().setDefaultBannedRole(this.communityId, this.currentChat.default_banned_rights, false, this);
+    }
+
+    public void lambda$processDone$6() {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_CHAT));
     }
 
     @Override
@@ -561,7 +573,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 
@@ -594,17 +606,17 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openSetPhotoAlert$6();
+                this.f$0.lambda$openSetPhotoAlert$7();
             }
         }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                CommunityEditActivity.lambda$openSetPhotoAlert$7(dialogInterface);
+                CommunityEditActivity.lambda$openSetPhotoAlert$8(dialogInterface);
             }
         }, 0);
     }
 
-    public void lambda$openSetPhotoAlert$6() {
+    public void lambda$openSetPhotoAlert$7() {
         this.avatar = null;
         MessagesController.getInstance(this.currentAccount).changeChatAvatar(this.communityId, null, null, null, null, 0.0d, null, null, null, null);
         showAvatarProgress(false, true);
@@ -634,12 +646,12 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$didUploadPhoto$8(photoSize2, inputFile, inputFile2, videoSize, d, str, photoSize);
+                this.f$0.lambda$didUploadPhoto$9(photoSize2, inputFile, inputFile2, videoSize, d, str, photoSize);
             }
         });
     }
 
-    public void lambda$didUploadPhoto$8(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize2) {
+    public void lambda$didUploadPhoto$9(TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize2) {
         TLRPC.FileLocation fileLocation = photoSize.location;
         this.avatar = fileLocation;
         if (inputFile != null || inputFile2 != null || videoSize != null) {

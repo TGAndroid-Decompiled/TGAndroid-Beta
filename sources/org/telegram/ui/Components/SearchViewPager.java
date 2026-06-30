@@ -262,7 +262,16 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         recyclerListView.addEdgeEffectListener(new SearchViewPager$$ExternalSyntheticLambda1(this));
         FilteredSearchView filteredSearchView = new FilteredSearchView(this.parent);
         this.noMediaFiltersSearchView = filteredSearchView;
-        filteredSearchView.setUiCallback(this);
+        filteredSearchView.recyclerListView.setClipToPadding(false);
+        this.noMediaFiltersSearchView.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
+                super.onScrolled(recyclerView, i6, i7);
+                SearchViewPager.this.onPageScrolled(i6, i7);
+            }
+        });
+        this.noMediaFiltersSearchView.recyclerListView.addEdgeEffectListener(new SearchViewPager$$ExternalSyntheticLambda1(this));
+        this.noMediaFiltersSearchView.setUiCallback(this);
         this.noMediaFiltersSearchView.setVisibility(8);
         this.noMediaFiltersSearchView.setChatPreviewDelegate(chatPreviewDelegate);
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
@@ -1157,6 +1166,11 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
 
     @Override
     public void goToMessage(MessageObject messageObject) {
+        this.parent.presentFragment(createFragmentFromMessage(this.currentAccount, messageObject));
+        showActionMode(false);
+    }
+
+    public static BaseFragment createFragmentFromMessage(int i, MessageObject messageObject) {
         Bundle bundle = new Bundle();
         long dialogId = messageObject.getDialogId();
         if (DialogObject.isEncryptedDialog(dialogId)) {
@@ -1164,7 +1178,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
         } else if (DialogObject.isUserDialog(dialogId)) {
             bundle.putLong("user_id", dialogId);
         } else {
-            TLRPC.Chat chat = AccountInstance.getInstance(this.currentAccount).getMessagesController().getChat(Long.valueOf(-dialogId));
+            TLRPC.Chat chat = AccountInstance.getInstance(i).getMessagesController().getChat(Long.valueOf(-dialogId));
             if (chat != null && chat.migrated_to != null) {
                 bundle.putLong("migrated_to", dialogId);
                 dialogId = -chat.migrated_to.channel_id;
@@ -1172,8 +1186,7 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             bundle.putLong("chat_id", -dialogId);
         }
         bundle.putInt("message_id", messageObject.getId());
-        this.parent.presentFragment(new ChatActivity(bundle));
-        showActionMode(false);
+        return new ChatActivity(bundle);
     }
 
     public int getFolderId() {
@@ -1419,7 +1432,16 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     public void setPagesPadding(int i, int i2, boolean z) {
         this.pagesPaddingTop = i;
         this.pagesPaddingBottom = i2;
-        setPagesPaddings(this.searchContainer, this.searchListView, i, i2, z);
+        this.searchListView.setPadding(0, i, 0, i2, z);
+        this.noMediaFiltersSearchView.setPagesPaddings(this.pagesPaddingTop, this.pagesPaddingBottom, z);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.emptyView.getLayoutParams();
+        int i3 = marginLayoutParams.topMargin;
+        int i4 = this.pagesPaddingTop;
+        if (i3 != i4 || marginLayoutParams.bottomMargin != this.pagesPaddingBottom) {
+            marginLayoutParams.topMargin = i4;
+            marginLayoutParams.bottomMargin = this.pagesPaddingBottom;
+            this.emptyView.requestLayout();
+        }
         setPagesPaddings(this.channelsSearchContainer, this.channelsSearchListView, this.pagesPaddingTop, this.pagesPaddingBottom, z);
         setPagesPaddings(this.botsSearchContainer, this.botsSearchListView, this.pagesPaddingTop, this.pagesPaddingBottom, z);
         setPagesPaddings(this.hashtagSearchContainer, this.hashtagSearchListView, this.pagesPaddingTop, this.pagesPaddingBottom, z);
@@ -1429,15 +1451,15 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             searchDownloadsContainer.setPagesPaddings(this.pagesPaddingTop, this.pagesPaddingBottom, z);
         }
         int size = this.viewsByType.size();
-        for (int i3 = 0; i3 < size; i3++) {
-            View view = (View) this.viewsByType.valueAt(i3);
+        for (int i5 = 0; i5 < size; i5++) {
+            View view = (View) this.viewsByType.valueAt(i5);
             if (view instanceof FilteredSearchView) {
                 ((FilteredSearchView) view).setPagesPaddings(this.pagesPaddingTop, this.pagesPaddingBottom, z);
             }
         }
-        for (int i4 = 0; i4 < getChildCount(); i4++) {
-            if (getChildAt(i4) instanceof FilteredSearchView) {
-                ((FilteredSearchView) getChildAt(i4)).setPagesPaddings(this.pagesPaddingTop, this.pagesPaddingBottom, z);
+        for (int i6 = 0; i6 < getChildCount(); i6++) {
+            if (getChildAt(i6) instanceof FilteredSearchView) {
+                ((FilteredSearchView) getChildAt(i6)).setPagesPaddings(this.pagesPaddingTop, this.pagesPaddingBottom, z);
             }
         }
     }
@@ -1611,6 +1633,10 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
             RecyclerListView recyclerViewFromPage = getRecyclerViewFromPage(view);
             if (recyclerViewFromPage != null) {
                 Blur3Utils.captureRelativeParent(recyclerViewFromPage, canvas, rectF, recyclerViewFromPage, this);
+            }
+            if (view == this.searchContainer && this.noMediaFiltersSearchView.getVisibility() == 0) {
+                RecyclerListView recyclerListView = this.noMediaFiltersSearchView.recyclerListView;
+                Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, this);
             }
         }
     }

@@ -80,6 +80,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     private boolean addToContainer;
     private ActionBarAnimatedSubtitleOverlayContainer additionalSubTitleOverlayContainer;
     private SimpleTextView additionalSubtitleTextView;
+    private int additionalTextLeft;
     private boolean allowOverlayTitle;
     private final BoolAnimator animatorAvatarContainerHasAvatar;
     private final FactorAnimator animatorAvatarContainerWidth;
@@ -1437,6 +1438,10 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     @Override
     public void onViewAdded(View view) {
         super.onViewAdded(view);
+    }
+
+    public void setAdditionalTextLeft(int i) {
+        this.additionalTextLeft = i;
     }
 
     @Override

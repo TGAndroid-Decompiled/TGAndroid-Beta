@@ -263,7 +263,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public final SparseArray<ArrayList<TLRPC.Dialog>> dialogsByFolder;
     public ArrayList<TLRPC.Dialog> dialogsCanAddUsers;
     public ArrayList<TLRPC.Dialog> dialogsChannelsOnly;
-    private final LongSparseArray dialogsCommunityCollapsed;
+    private final LongSparseArray dialogsCommunityFoundCommunities;
     private final LongSparseIntArray dialogsCommunityLastMessageDate;
     private SparseBooleanArray dialogsEndReached;
     public ArrayList<TLRPC.Dialog> dialogsForBlock;
@@ -1883,8 +1883,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.DIALOGS_LOAD_TYPE_CHANNEL = 2;
         this.DIALOGS_LOAD_TYPE_UNKNOWN = 3;
         this.joinedCommunities = new ArrayList<>();
-        this.dialogsCommunityCollapsed = new LongSparseArray();
         this.dialogsCommunityLastMessageDate = new LongSparseIntArray();
+        this.dialogsCommunityFoundCommunities = new LongSparseArray();
         this.sensitiveAgreed = new HashSet<>();
         this.cachedIsUserContactBlocked = new LongSparseArray();
         this.loadingIsUserContactBlocked = new HashSet<>();
@@ -4557,8 +4557,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.groupCallsByChatId.clear();
         this.dialogsByFolder.clear();
         this.dialogsByCommunity.clear();
-        this.dialogsCommunityCollapsed.clear();
         this.dialogsCommunityLastMessageDate.clear();
+        this.dialogsCommunityFoundCommunities.clear();
         this.unreadUnmutedDialogs = 0;
         this.joiningToChannels.clear();
         this.migratedChats.clear();
@@ -13381,6 +13381,10 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void changeChatTitle(long j, String str) {
+        changeChatTitle(j, str, null);
+    }
+
+    public void changeChatTitle(long j, String str, final Runnable runnable) {
         TLRPC.TL_messages_editChatTitle tL_messages_editChatTitle;
         if (ChatObject.isChannel(j, this.currentAccount)) {
             TLRPC.TL_channels_editTitle tL_channels_editTitle = new TLRPC.TL_channels_editTitle();
@@ -13396,16 +13400,19 @@ public class MessagesController extends BaseController implements NotificationCe
         getConnectionsManager().sendRequest(tL_messages_editChatTitle, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                this.f$0.lambda$changeChatTitle$313(tLObject, tL_error);
+                this.f$0.lambda$changeChatTitle$313(runnable, tLObject, tL_error);
             }
         }, 64);
     }
 
-    public void lambda$changeChatTitle$313(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public void lambda$changeChatTitle$313(Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
             return;
         }
         processUpdates((TLRPC.Updates) tLObject, false);
+        if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+        }
     }
 
     public void changeChatAvatar(final long j, final TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, final String str, final TLRPC.FileLocation fileLocation, final TLRPC.FileLocation fileLocation2, final Runnable runnable) {
@@ -14637,7 +14644,7 @@ public class MessagesController extends BaseController implements NotificationCe
                             TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-dialog.id));
                             if (ChatObject.isCommunity(chat)) {
                                 TLRPC.TL_inputDialogPeerCommunity tL_inputDialogPeerCommunity = new TLRPC.TL_inputDialogPeerCommunity();
-                                tL_inputDialogPeerCommunity.community = getMessagesController().getInputChannel(chat.linked_community_id);
+                                tL_inputDialogPeerCommunity.community = getMessagesController().getInputChannel(chat.id);
                                 tL_messages_reorderPinnedDialogs.order.add(tL_inputDialogPeerCommunity);
                                 objectSize = tL_inputDialogPeerCommunity.getObjectSize();
                             } else {
@@ -16383,25 +16390,21 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private void checkCollapsedDialogsInCommunity() {
-        TLRPC.Chat chat;
-        this.dialogsCommunityCollapsed.clear();
         this.dialogsCommunityLastMessageDate.clear();
+        this.dialogsCommunityFoundCommunities.clear();
         int size = this.allDialogs.size();
         int i = 0;
         while (i < size) {
             TLRPC.Dialog dialog = this.allDialogs.get(i);
             if (dialog instanceof TLRPC.TL_dialogCommunity) {
                 long j = dialog.community_id;
-                boolean z = ((TLRPC.Dialog) this.dialogsCommunityCollapsed.get(j)) != null;
-                if (!z && (chat = getChat(Long.valueOf(j))) != null && !chat.collapsed_in_dialogs) {
-                    z = true;
-                }
-                if (z) {
+                TLRPC.Chat chat = getChat(Long.valueOf(j));
+                if ((chat != null && !chat.collapsed_in_dialogs) || this.dialogsCommunityFoundCommunities.get(j) != null) {
                     this.allDialogs.remove(i);
                     i--;
                     size--;
                 } else {
-                    this.dialogsCommunityCollapsed.put(j, dialog);
+                    this.dialogsCommunityFoundCommunities.put(j, dialog);
                 }
             } else {
                 long j2 = dialog.id;
@@ -16409,34 +16412,52 @@ public class MessagesController extends BaseController implements NotificationCe
                     TLRPC.Chat chat2 = getChat(Long.valueOf(-j2));
                     if (ChatObject.isChatCollapsedInCommunity(this.currentAccount, chat2)) {
                         long j3 = chat2.linked_community_id;
-                        TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogsCommunityCollapsed.get(j3);
                         LongSparseIntArray longSparseIntArray = this.dialogsCommunityLastMessageDate;
                         longSparseIntArray.put(j3, Math.max(longSparseIntArray.get(j3), dialog.last_message_date));
-                        if (dialog2 == null) {
-                            TLRPC.TL_dialogCommunity tL_dialogCommunity = new TLRPC.TL_dialogCommunity();
-                            tL_dialogCommunity.community_id = j3;
-                            tL_dialogCommunity.notify_settings = new TLRPC.TL_peerNotifySettings();
-                            tL_dialogCommunity.last_message_date = dialog.last_message_date;
-                            DialogObject.initDialog(tL_dialogCommunity);
-                            this.dialogs_dict.put(-j3, tL_dialogCommunity);
-                            this.dialogsCommunityCollapsed.put(j3, tL_dialogCommunity);
-                            this.allDialogs.add(i, tL_dialogCommunity);
-                            i++;
-                            size++;
-                        }
                     }
                 }
             }
             i++;
         }
         int size2 = this.dialogsCommunityLastMessageDate.size();
+        TLRPC.TL_messages_dialogs tL_messages_dialogs = null;
         for (int i2 = 0; i2 < size2; i2++) {
             long jKeyAt = this.dialogsCommunityLastMessageDate.keyAt(i2);
             int iValueAt = this.dialogsCommunityLastMessageDate.valueAt(i2);
-            TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogsCommunityCollapsed.get(jKeyAt);
-            if (dialog3 != null) {
-                dialog3.last_message_date = iValueAt;
+            TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogsCommunityFoundCommunities.get(jKeyAt);
+            if (dialog2 != null) {
+                dialog2.last_message_date = iValueAt;
+            } else {
+                long j4 = -jKeyAt;
+                TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.get(j4);
+                if (dialog3 instanceof TLRPC.TL_dialogCommunity) {
+                    dialog3.last_message_date = iValueAt;
+                    this.allDialogs.add(dialog3);
+                } else {
+                    TLRPC.TL_dialogCommunity tL_dialogCommunity = new TLRPC.TL_dialogCommunity();
+                    tL_dialogCommunity.community_id = jKeyAt;
+                    if (dialog3 != null) {
+                        tL_dialogCommunity.pinned = dialog3.pinned;
+                        tL_dialogCommunity.pinnedNum = dialog3.pinnedNum;
+                        tL_dialogCommunity.notify_settings = dialog3.notify_settings;
+                    } else {
+                        tL_dialogCommunity.notify_settings = new TLRPC.TL_peerNotifySettings();
+                    }
+                    tL_dialogCommunity.last_message_date = iValueAt;
+                    DialogObject.initDialog(tL_dialogCommunity);
+                    this.dialogs_dict.put(j4, tL_dialogCommunity);
+                    this.allDialogs.add(tL_dialogCommunity);
+                    if (dialog3 == null) {
+                        if (tL_messages_dialogs == null) {
+                            tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
+                        }
+                        tL_messages_dialogs.dialogs.add(tL_dialogCommunity);
+                    }
+                }
             }
+        }
+        if (tL_messages_dialogs != null) {
+            getMessagesStorage().putDialogs(tL_messages_dialogs, 2);
         }
     }
 

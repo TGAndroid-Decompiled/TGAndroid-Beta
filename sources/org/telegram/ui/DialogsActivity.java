@@ -59,6 +59,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -101,6 +102,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.FBool;
 import org.telegram.messenger.utils.GradientProtectionDrawable;
 import org.telegram.messenger.utils.SearchTextWatcher;
 import org.telegram.tgnet.ConnectionsManager;
@@ -211,6 +213,7 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode
 import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.Components.chat.ChatInputViewsContainer;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
+import org.telegram.ui.Components.chat.layouts.ChatActivityFadeView;
 import org.telegram.ui.Components.inset.WindowInsetsStateHolder;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.FilterCreateActivity;
@@ -241,15 +244,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public static boolean switchingTheme;
     private final String ACTION_MODE_SEARCH_DIALOGS_TAG;
     private final int ADDITIONAL_LIST_HEIGHT_DP;
-    private final int ANIMATOR_ID_ACTION_MODE_VISIBLE;
-    private final int ANIMATOR_ID_DONE_BUTTON_VISIBLE;
-    private final int ANIMATOR_ID_FILTER_TABS_VISIBLE;
-    private final int ANIMATOR_ID_FORWARD_BUTTON_VISIBLE;
-    private final int ANIMATOR_ID_SEARCH_BUTTON_VISIBLE;
-    private final int ANIMATOR_ID_SEARCH_FILTER_TABS_VISIBLE;
-    private final int ANIMATOR_ID_SEARCH_VISIBLE;
-    private final int ANIMATOR_ID_SHADOW_VISIBLE;
-    private final int ANIMATOR_ID_SPEED_BUTTON_VISIBLE;
     public final Property SCROLL_Y;
     public final Property SEARCH_TRANSLATION_Y;
     private ValueAnimator actionBarColorAnimator;
@@ -297,7 +291,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private TLRPC.FileLocation avatar;
     private TLRPC.FileLocation avatarBig;
     private ChatAvatarContainer avatarContainer;
-    private BackupImageView avatarImage;
     private int avatarUploadingRequest;
     private boolean backAnimation;
     private BackDrawable backDrawable;
@@ -329,6 +322,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean closeSearchFieldOnHide;
     private ChatActivityEnterView commentView;
     private TLRPC.Chat community;
+    private AvatarDrawable communityAvatarDrawable;
+    private BackupImageView communityAvatarImage;
+    private ChatActivityFadeView communityBottomFadeView;
     private TLRPC.ChatFull communityFull;
     private long communityId;
     private CommunityRequestsCell communityPendingRequests;
@@ -2111,15 +2107,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         super(bundle);
         int i = Build.VERSION.SDK_INT;
         this.ADDITIONAL_LIST_HEIGHT_DP = i >= 31 ? 48 : 0;
-        this.ANIMATOR_ID_SEARCH_VISIBLE = 1;
-        this.ANIMATOR_ID_DONE_BUTTON_VISIBLE = 2;
-        this.ANIMATOR_ID_SPEED_BUTTON_VISIBLE = 3;
-        this.ANIMATOR_ID_SHADOW_VISIBLE = 4;
-        this.ANIMATOR_ID_SEARCH_BUTTON_VISIBLE = 5;
-        this.ANIMATOR_ID_ACTION_MODE_VISIBLE = 6;
-        this.ANIMATOR_ID_FORWARD_BUTTON_VISIBLE = 7;
-        this.ANIMATOR_ID_FILTER_TABS_VISIBLE = 8;
-        this.ANIMATOR_ID_SEARCH_FILTER_TABS_VISIBLE = 9;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorSearchVisible = new BoolAnimator(1, this, cubicBezierInterpolator, 350L);
         this.animatorDoneButtonVisible = new BoolAnimator(2, this, cubicBezierInterpolator, 350L);
@@ -2650,7 +2637,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r42) throws android.content.res.Resources.NotFoundException {
+    public android.view.View createView(final android.content.Context r41) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -2697,12 +2684,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(View view) {
+    public void lambda$createView$11(View view) throws IOException {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
     }
 
-    public boolean lambda$createView$12(View view) {
+    public boolean lambda$createView$12(View view) throws IOException {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
         return true;
@@ -3276,7 +3263,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$16(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$createView$16(ViewPage viewPage, View view, int i, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
         if (view instanceof GraySectionCell) {
             return;
         }
@@ -4039,7 +4026,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public boolean checkAutoscrollToStories(ViewPage viewPage) {
         boolean z = false;
-        if (!this.rightSlidingDialogContainer.hasFragment() && this.communityId == 0) {
+        if (!this.rightSlidingDialogContainer.hasFragment()) {
             int i = (int) (-this.scrollYOffset);
             int maxScrollYOffset = getMaxScrollYOffset();
             int maxScrollYOffsetWithoutSearch = getMaxScrollYOffsetWithoutSearch();
@@ -6038,7 +6025,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (chat != null) {
                 FiltersView.MediaFilterData mediaFilterData = new FiltersView.MediaFilterData(R.drawable.search_users_filled, DialogObject.getShortName(chat), (TLRPC.MessagesFilter) null, 4);
                 mediaFilterData.setUser(this.community);
-                mediaFilterData.setLimitWidth();
                 addSearchFilter(mediaFilterData);
             } else if (this.folderId != 0 && ((rightSlidingDialogContainer = this.rightSlidingDialogContainer) == null || !rightSlidingDialogContainer.hasFragment())) {
                 addSearchFilter(new FiltersView.MediaFilterData(R.drawable.chats_archive, R.string.ArchiveSearchFilter, (TLRPC.MessagesFilter) null, 7));
@@ -6373,7 +6359,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private void onItemClick(android.view.View r21, int r22, androidx.recyclerview.widget.RecyclerView.Adapter r23, float r24, float r25) throws android.content.res.Resources.NotFoundException {
+    private void onItemClick(android.view.View r21, int r22, androidx.recyclerview.widget.RecyclerView.Adapter r23, float r24, float r25) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.onItemClick(android.view.View, int, androidx.recyclerview.widget.RecyclerView$Adapter, float, float):void");
     }
 
@@ -6445,7 +6431,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateVisibleRows(MessagesController.UPDATE_MASK_SELECT_DIALOG);
     }
 
-    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException {
+    public boolean onItemLongClick(RecyclerListView recyclerListView, View view, int i, float f, float f2, int i2, RecyclerView.Adapter adapter) throws Resources.NotFoundException, IOException, NumberFormatException {
         TLRPC.Dialog dialog;
         DialogsSearchAdapter dialogsSearchAdapter;
         DialogsSearchAdapter dialogsSearchAdapter2;
@@ -8333,6 +8319,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 if (filterTabsView5 != null && filterTabsView5.getVisibility() == 0 && (num.intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) != 0) {
                     this.filterTabsView.checkTabsCounter();
                 }
+                if (this.communityId != 0 && ((num.intValue() & MessagesController.UPDATE_MASK_CHAT) != 0 || (num.intValue() & MessagesController.UPDATE_MASK_AVATAR) != 0 || (num.intValue() & MessagesController.UPDATE_MASK_CHAT_AVATAR) != 0 || (num.intValue() & MessagesController.UPDATE_MASK_CHAT_NAME) != 0)) {
+                    TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.communityId));
+                    this.community = chat;
+                    this.actionBar.setTitle(DialogObject.getName(chat));
+                    this.communityAvatarImage.setForUserOrChat(this.community, this.communityAvatarDrawable);
+                }
                 if (this.viewPages != null) {
                     while (i3 < this.viewPages.length) {
                         if ((num.intValue() & MessagesController.UPDATE_MASK_STATUS) != 0) {
@@ -8478,7 +8470,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                     final long jLongValue3 = ((Long) objArr[0]).longValue();
                     final TLRPC.User user = (TLRPC.User) objArr[1];
-                    final TLRPC.Chat chat = (TLRPC.Chat) objArr[2];
+                    final TLRPC.Chat chat2 = (TLRPC.Chat) objArr[2];
                     if (user != null && user.bot) {
                         zBooleanValue2 = ((Boolean) objArr[3]).booleanValue();
                         zBooleanValue = false;
@@ -8490,12 +8482,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$didReceivedNotification$121(chat, jLongValue3, z3, user, zBooleanValue2);
+                            this.f$0.lambda$didReceivedNotification$121(chat2, jLongValue3, z3, user, zBooleanValue2);
                         }
                     };
                     createUndoView();
                     if (this.undoView[0] != null) {
-                        if (!ChatObject.isForum(chat)) {
+                        if (!ChatObject.isForum(chat2)) {
                             UndoView undoView = getUndoView();
                             if (undoView != null) {
                                 undoView.showWithAction(jLongValue3, zBooleanValue ? 1 : 95, runnable);
@@ -9088,7 +9080,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.shareTopView = shareTopView;
             shareTopView.setLayoutClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
                     this.f$0.lambda$attachShareTopView$128(view);
                 }
             });
@@ -9127,7 +9119,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateShareTopViewRecipients();
     }
 
-    public void lambda$attachShareTopView$128(View view) {
+    public void lambda$attachShareTopView$128(View view) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         if (hasSharedMediaEntries()) {
             openSharedMediaEditor();
         }
@@ -9153,7 +9145,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         shareTopView.setRecipients(this.currentAccount, this.selectedDialogs);
     }
 
-    private void openSharedMediaEditor() {
+    private void openSharedMediaEditor() throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
         ArrayList arrayList = this.sharedMediaEntries;
         if (arrayList == null || arrayList.isEmpty() || getParentActivity() == null) {
             return;
@@ -10801,11 +10793,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
-                if (DialogsActivity.this.searchTabsView != null) {
-                    int measuredHeight = ((((BaseFragment) DialogsActivity.this).actionBar.getMeasuredHeight() + AndroidUtilities.dp(DialogsActivity.this.ADDITIONAL_LIST_HEIGHT_DP)) - AndroidUtilities.dp(2.0f)) + (DialogsActivity.this.topPanelLayout != null ? (int) DialogsActivity.this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(7.0f)) : 0);
+                if (DialogsActivity.this.searchTabsView != null || DialogsActivity.this.communityId != 0) {
+                    int iDp = AndroidUtilities.dp(54.0f);
+                    int measuredHeight = (((((BaseFragment) DialogsActivity.this).actionBar.getMeasuredHeight() + AndroidUtilities.dp(DialogsActivity.this.ADDITIONAL_LIST_HEIGHT_DP)) - AndroidUtilities.dp(2.0f)) - (DialogsActivity.this.communityId != 0 ? iDp : 0)) + (DialogsActivity.this.topPanelLayout != null ? (int) DialogsActivity.this.topPanelLayout.getAnimatedHeightWithPadding(AndroidUtilities.dp(7.0f)) : 0);
                     this.gradientDrawable.setColor(Theme.multAlpha(DialogsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), 0.7f));
                     this.gradientDrawable.setInsets(0, measuredHeight, 0, 0);
-                    this.gradientDrawable.setBounds(0, 0, getMeasuredWidth(), measuredHeight + AndroidUtilities.dp(54.0f));
+                    this.gradientDrawable.setBounds(0, 0, getMeasuredWidth(), measuredHeight + iDp);
                     this.gradientDrawable.draw(canvas);
                 }
                 if (DialogsActivity.this.navigationBarHeight > AndroidUtilities.dp(32.0f)) {
@@ -10893,7 +10886,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i2, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
                 this.f$0.lambda$createSearchViewPager$153(view, i2, f, f2);
             }
         });
@@ -11186,7 +11179,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         getMediaDataController().removeWebapp(user.id);
     }
 
-    public void lambda$createSearchViewPager$153(View view, int i, float f, float f2) throws Resources.NotFoundException {
+    public void lambda$createSearchViewPager$153(View view, int i, float f, float f2) throws Resources.NotFoundException, IOException, NumberFormatException {
         Object item = this.searchViewPager.dialogsSearchAdapter.getItem(i);
         if (item instanceof TLRPC.TL_sponsoredPeer) {
             TLRPC.TL_sponsoredPeer tL_sponsoredPeer = (TLRPC.TL_sponsoredPeer) item;
@@ -11616,7 +11609,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return z ? z3 && !z2 : z2;
     }
 
-    private void showItemOptions() {
+    private void showItemOptions() throws IOException {
         boolean zIsCurrentThemeDark;
         ArrayList<TLRPC.TL_attachMenuBot> arrayList;
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.optionsItem);
@@ -11880,6 +11873,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             checkUi_filterTabsVisible();
             checkUi_searchFiltersVisibility();
             checkUi_searchFieldStyle();
+            checkUi_communityAvatarImageVisibility();
             return;
         }
         if (i == 2) {
@@ -11958,6 +11952,26 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             animatedVectorDrawable.reset();
         } else {
             animatedVectorDrawable.setVisible(false, true);
+        }
+    }
+
+    private void checkUi_communityAvatarImageVisibility() {
+        float fNot = FBool.not(this.animatorSearchVisible.getFloatValue());
+        BackupImageView backupImageView = this.communityAvatarImage;
+        if (backupImageView != null) {
+            backupImageView.setScaleX(fNot);
+            this.communityAvatarImage.setScaleY(fNot);
+            this.communityAvatarImage.setAlpha(fNot);
+            this.communityAvatarImage.setVisibility(fNot > 0.0f ? 0 : 8);
+        }
+        if (this.addChatsToCommunityButton != null) {
+            float fLerp = AndroidUtilities.lerp(0.9f, 1.0f, fNot);
+            this.addChatsToCommunityButton.setScaleX(fLerp);
+            this.addChatsToCommunityButton.setScaleY(fLerp);
+            this.addChatsToCommunityButton.setAlpha(fNot);
+            this.addChatsToCommunityButton.setVisibility(fNot > 0.0f ? 0 : 8);
+            this.communityBottomFadeView.setAlpha(fNot);
+            this.communityBottomFadeView.setVisibility(fNot > 0.0f ? 0 : 8);
         }
     }
 

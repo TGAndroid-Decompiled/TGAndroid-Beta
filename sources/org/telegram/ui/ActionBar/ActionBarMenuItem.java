@@ -7,12 +7,12 @@ import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -46,8 +46,12 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
+import me.vkryl.android.animator.BoolAnimator;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -1091,7 +1095,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return true;
     }
 
-    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
+    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
         if (mediaFilterData.removable) {
             this.currentSearchFilters.remove(mediaFilterData);
             int i = this.selectedFilterIndex;
@@ -1111,7 +1115,7 @@ public class ActionBarMenuItem extends FrameLayout {
         onFiltersChanged();
     }
 
-    public void clearSearchFilters() {
+    public void clearSearchFilters() throws Resources.NotFoundException {
         int i = 0;
         while (i < this.currentSearchFilters.size()) {
             if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).removable) {
@@ -1123,7 +1127,7 @@ public class ActionBarMenuItem extends FrameLayout {
         onFiltersChanged();
     }
 
-    public void onFiltersChanged() {
+    public void onFiltersChanged() throws Resources.NotFoundException {
         final SearchFilterView searchFilterView;
         boolean zIsEmpty = this.currentSearchFilters.isEmpty();
         ArrayList arrayList = new ArrayList(this.currentSearchFilters);
@@ -1203,7 +1207,7 @@ public class ActionBarMenuItem extends FrameLayout {
             searchFilterView.setData(mediaFilterData);
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws Resources.NotFoundException {
                     this.f$0.lambda$onFiltersChanged$12(searchFilterView, view);
                 }
             });
@@ -1237,7 +1241,7 @@ public class ActionBarMenuItem extends FrameLayout {
         checkClearButton();
     }
 
-    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) {
+    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) throws Resources.NotFoundException {
         int iIndexOf = this.currentSearchFilters.indexOf(searchFilterView.getFilter());
         if (this.selectedFilterIndex != iIndexOf) {
             this.selectedFilterIndex = iIndexOf;
@@ -1245,7 +1249,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return;
         }
         if (searchFilterView.getFilter().removable) {
-            if (!searchFilterView.selectedForDelete) {
+            if (!searchFilterView.isSelectedForDelete()) {
                 searchFilterView.setSelectedForDelete(true);
                 return;
             }
@@ -1541,7 +1545,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public boolean onKeyDown(int i2, KeyEvent keyEvent) {
+                public boolean onKeyDown(int i2, KeyEvent keyEvent) throws Resources.NotFoundException {
                     if (i2 == 67 && ActionBarMenuItem.this.searchField.length() == 0 && ((ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0 && ActionBarMenuItem.this.searchFieldCaption.length() > 0) || ActionBarMenuItem.this.hasRemovableFilters())) {
                         if (ActionBarMenuItem.this.hasRemovableFilters()) {
                             FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) ActionBarMenuItem.this.currentSearchFilters.get(ActionBarMenuItem.this.currentSearchFilters.size() - 1);
@@ -1617,7 +1621,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) throws Resources.NotFoundException {
                     if (ActionBarMenuItem.this.ignoreOnTextChange) {
                         ActionBarMenuItem.this.ignoreOnTextChange = false;
                         return;
@@ -1704,7 +1708,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.clearButton.setScaleY(0.0f);
             this.clearButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws Resources.NotFoundException {
                     this.f$0.lambda$checkCreateSearchField$14(view);
                 }
             });
@@ -1733,7 +1737,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return false;
     }
 
-    public void lambda$checkCreateSearchField$14(View view) {
+    public void lambda$checkCreateSearchField$14(View view) throws Resources.NotFoundException {
         ActionBarMenuItemSearchListener actionBarMenuItemSearchListener;
         if (this.searchField.length() != 0) {
             this.searchField.setText("");
@@ -2279,28 +2283,37 @@ public class ActionBarMenuItem extends FrameLayout {
         }
     }
 
-    public static class SearchFilterView extends FrameLayout {
+    public static class SearchFilterView extends FrameLayout implements FactorAnimator.Target {
+        private final BoolAnimator animatorIsSelected;
         BackupImageView avatarImageView;
         ImageView closeIconView;
         FiltersView.MediaFilterData data;
+        private boolean glass;
+        private boolean isCommunity;
+        private int mBackgroundColor;
+        private int mBackgroundRadius;
         Runnable removeSelectionRunnable;
         protected final Theme.ResourcesProvider resourcesProvider;
-        ValueAnimator selectAnimator;
-        private boolean selectedForDelete;
-        private float selectedProgress;
-        ShapeDrawable shapeDrawable;
         Drawable thumbDrawable;
         TextView titleView;
         private final boolean whiteBg;
 
-        public SearchFilterView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+        @Override
+        public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+            FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);
+        }
+
+        public void lambda$new$0() {
+            setSelectedForDelete(false);
+        }
+
+        public SearchFilterView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) throws Resources.NotFoundException {
             super(context);
+            this.animatorIsSelected = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
             this.removeSelectionRunnable = new Runnable() {
                 @Override
-                public void run() {
-                    if (SearchFilterView.this.selectedForDelete) {
-                        SearchFilterView.this.setSelectedForDelete(false);
-                    }
+                public final void run() {
+                    this.f$0.lambda$new$0();
                 }
             };
             this.resourcesProvider = resourcesProvider;
@@ -2314,33 +2327,63 @@ public class ActionBarMenuItem extends FrameLayout {
             addView(this.closeIconView, LayoutHelper.createFrame(24, 24.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             this.titleView = textView;
-            textView.setTextSize(1, 14.0f);
-            addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 16, 38.0f, 0.0f, 16.0f, 0.0f));
-            ShapeDrawable shapeDrawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), -12292204);
-            this.shapeDrawable = shapeDrawableCreateRoundRectDrawable;
-            setBackground(shapeDrawableCreateRoundRectDrawable);
+            textView.setSingleLine();
+            this.titleView.setEllipsize(TextUtils.TruncateAt.END);
+            this.titleView.setTextSize(1, 14.0f);
+            addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
+            this.mBackgroundRadius = AndroidUtilities.dp(28.0f);
             updateColors();
         }
 
-        public void updateColors() {
-            int themedColor = getThemedColor(this.whiteBg ? Theme.key_windowBackgroundWhite : Theme.key_groupcreate_spanBackground);
+        public void setGlass() throws Resources.NotFoundException {
+            this.glass = true;
+            updateColors();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            if (this.isCommunity) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(135.0f), Integer.MIN_VALUE), i2);
+            } else {
+                super.onMeasure(i, i2);
+            }
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            float width = getWidth();
+            float height = getHeight();
+            float f = this.mBackgroundRadius;
+            canvas.drawRoundRect(0.0f, 0.0f, width, height, f, f, Theme.fillingPaint(this.mBackgroundColor));
+            super.dispatchDraw(canvas);
+        }
+
+        public void updateColors() throws Resources.NotFoundException {
+            int themedColor;
+            float floatValue = this.animatorIsSelected.getFloatValue();
+            if (this.glass) {
+                themedColor = Theme.multAlpha(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), 0.075f);
+            } else {
+                themedColor = getThemedColor(this.whiteBg ? Theme.key_windowBackgroundWhite : Theme.key_groupcreate_spanBackground);
+            }
             int i = Theme.key_featuredStickers_addButton;
             int themedColor2 = getThemedColor(i);
             int themedColor3 = getThemedColor(Theme.key_windowBackgroundWhiteBlackText);
             int i2 = Theme.key_featuredStickers_buttonText;
             int themedColor4 = getThemedColor(i2);
-            this.shapeDrawable.getPaint().setColor(ColorUtils.blendARGB(themedColor, themedColor2, this.selectedProgress));
-            this.titleView.setTextColor(ColorUtils.blendARGB(themedColor3, themedColor4, this.selectedProgress));
+            this.mBackgroundColor = ColorUtils.blendARGB(themedColor, themedColor2, floatValue);
+            this.titleView.setTextColor(ColorUtils.blendARGB(themedColor3, themedColor4, floatValue));
             this.closeIconView.setColorFilter(themedColor4);
-            this.closeIconView.setAlpha(this.selectedProgress);
-            this.closeIconView.setScaleX(this.selectedProgress * 0.82f);
-            this.closeIconView.setScaleY(this.selectedProgress * 0.82f);
+            this.closeIconView.setAlpha(floatValue);
+            float f = 0.82f * floatValue;
+            this.closeIconView.setScaleX(f);
+            this.closeIconView.setScaleY(f);
             Drawable drawable = this.thumbDrawable;
             if (drawable != null) {
                 Theme.setCombinedDrawableColor(drawable, getThemedColor(i), false);
                 Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(i2), true);
             }
-            this.avatarImageView.setAlpha(1.0f - this.selectedProgress);
+            this.avatarImageView.setAlpha(1.0f - floatValue);
             FiltersView.MediaFilterData mediaFilterData = this.data;
             if (mediaFilterData != null && mediaFilterData.filterType == 7) {
                 setData(mediaFilterData);
@@ -2349,11 +2392,12 @@ public class ActionBarMenuItem extends FrameLayout {
         }
 
         public boolean isSelectedForDelete() {
-            return this.selectedForDelete;
+            return this.animatorIsSelected.getValue();
         }
 
-        public void setData(FiltersView.MediaFilterData mediaFilterData) {
+        public void setData(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
             this.data = mediaFilterData;
+            this.isCommunity = false;
             this.titleView.setText(mediaFilterData.getTitle());
             CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), mediaFilterData.iconResFilled);
             this.thumbDrawable = combinedDrawableCreateCircleDrawableWithIcon;
@@ -2391,8 +2435,13 @@ public class ActionBarMenuItem extends FrameLayout {
                 return;
             }
             if (tLObject instanceof TLRPC.Chat) {
-                this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                this.avatarImageView.getImageReceiver().setForUserOrChat((TLRPC.Chat) tLObject, this.thumbDrawable);
+                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
+                this.isCommunity = ChatObject.isCommunity(chat);
+                ImageReceiver imageReceiver = this.avatarImageView.getImageReceiver();
+                int iDp = AndroidUtilities.dp(this.isCommunity ? 10.0f : 16.0f);
+                this.mBackgroundRadius = iDp;
+                imageReceiver.setRoundRadius(iDp);
+                this.avatarImageView.getImageReceiver().setForUserOrChat(chat, this.thumbDrawable);
             }
         }
 
@@ -2405,41 +2454,15 @@ public class ActionBarMenuItem extends FrameLayout {
             }
         }
 
-        public void setSelectedForDelete(final boolean z) {
-            if (this.selectedForDelete == z) {
+        public void setSelectedForDelete(boolean z) {
+            if (this.animatorIsSelected.getValue() == z) {
                 return;
             }
             AndroidUtilities.cancelRunOnUIThread(this.removeSelectionRunnable);
-            this.selectedForDelete = z;
-            ValueAnimator valueAnimator = this.selectAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.selectAnimator.cancel();
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.selectedProgress, z ? 1.0f : 0.0f);
-            this.selectAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$setSelectedForDelete$0(valueAnimator2);
-                }
-            });
-            this.selectAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    SearchFilterView.this.selectedProgress = z ? 1.0f : 0.0f;
-                    SearchFilterView.this.updateColors();
-                }
-            });
-            this.selectAnimator.setDuration(150L).start();
-            if (this.selectedForDelete) {
+            this.animatorIsSelected.setValue(z, true);
+            if (z) {
                 AndroidUtilities.runOnUIThread(this.removeSelectionRunnable, 2000L);
             }
-        }
-
-        public void lambda$setSelectedForDelete$0(ValueAnimator valueAnimator) {
-            this.selectedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            updateColors();
         }
 
         public FiltersView.MediaFilterData getFilter() {
@@ -2448,6 +2471,14 @@ public class ActionBarMenuItem extends FrameLayout {
 
         protected int getThemedColor(int i) {
             return Theme.getColor(i, this.resourcesProvider);
+        }
+
+        @Override
+        public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) throws Resources.NotFoundException {
+            if (i == 0) {
+                updateColors();
+                invalidate();
+            }
         }
     }
 

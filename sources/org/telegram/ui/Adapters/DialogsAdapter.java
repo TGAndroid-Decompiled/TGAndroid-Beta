@@ -17,6 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -95,6 +96,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     ArrayList oldItems = new ArrayList();
     int stableIdPointer = 10;
     LongSparseIntArray dialogsStableIds = new LongSparseIntArray();
+    HashMap dialogsHeaderStableIds = new HashMap();
     public int lastDialogsEmptyType = -1;
 
     public ViewPager getArchiveHintCellPager() {
@@ -243,18 +245,30 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
         public ItemInternal(int i, String str) {
             super(i, false);
-            int i2 = DialogsAdapter.this.stableIdPointer;
-            DialogsAdapter.this.stableIdPointer = i2 + 1;
-            this.stableId = i2;
+            Integer num = (Integer) DialogsAdapter.this.dialogsHeaderStableIds.get(str);
+            if (num != null) {
+                this.stableId = num.intValue();
+            } else {
+                int i2 = DialogsAdapter.this.stableIdPointer;
+                DialogsAdapter.this.stableIdPointer = i2 + 1;
+                this.stableId = i2;
+                DialogsAdapter.this.dialogsHeaderStableIds.put(str, Integer.valueOf(i2));
+            }
             this.title = str;
         }
 
         public ItemInternal(int i, TLRPC.Chat chat) {
             super(i, false);
             this.chat = chat;
-            int i2 = DialogsAdapter.this.stableIdPointer;
-            DialogsAdapter.this.stableIdPointer = i2 + 1;
-            this.stableId = i2;
+            int i2 = DialogsAdapter.this.dialogsStableIds.get(-chat.id, -1);
+            if (i2 >= 0) {
+                this.stableId = i2;
+                return;
+            }
+            int i3 = DialogsAdapter.this.stableIdPointer;
+            DialogsAdapter.this.stableIdPointer = i3 + 1;
+            this.stableId = i3;
+            DialogsAdapter.this.dialogsStableIds.put(-chat.id, i3);
         }
 
         public ItemInternal(int i, TLRPC.Dialog dialog) {
@@ -370,7 +384,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         }
 
         public int hashCode() {
-            return Objects.hash(this.dialog, this.recentMeUrl, this.contact);
+            return Objects.hash(this.dialog, this.chat, this.recentMeUrl, this.contact, this.title);
         }
     }
 

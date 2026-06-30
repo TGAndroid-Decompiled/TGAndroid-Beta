@@ -92,6 +92,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     public View createView(Context context) {
         setHasOwnBackground(true);
         this.actionBar.setAddToContainer(false);
+        this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {

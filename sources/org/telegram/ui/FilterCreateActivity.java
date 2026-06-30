@@ -1769,7 +1769,9 @@ public class FilterCreateActivity extends BaseFragment {
             }
             TLRPC.Chat chat = FilterCreateActivity.this.getMessagesController().getChat(Long.valueOf(-j));
             if (chat != null) {
-                if (chat.participants_count != 0) {
+                if (ChatObject.isCommunity(chat)) {
+                    string = LocaleController.getString(R.string.Community);
+                } else if (chat.participants_count != 0) {
                     if (ChatObject.isChannelAndNotMegaGroup(chat)) {
                         string = LocaleController.formatPluralStringComma("Subscribers", chat.participants_count);
                     } else {
