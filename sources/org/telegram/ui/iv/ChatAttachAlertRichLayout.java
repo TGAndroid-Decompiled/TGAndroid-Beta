@@ -19,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -37,7 +38,6 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -52,16 +52,20 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.AIEditorAlert;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -70,7 +74,7 @@ import org.telegram.ui.iv.RichEditorListView;
 import org.telegram.ui.iv.RichEditorToolbar;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 
-public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout {
+public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 256, 4, 16384, 32768};
     private boolean attachButtonsShown;
     private int attachRaise;
@@ -78,12 +82,17 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     private final int currentAccount;
     private int currentItemTop;
     private int emojiPadding;
+    private boolean emojiSearchOpened;
+    private RichEditText emojiTargetEditText;
+    private int emojiTargetSelection;
     private EmojiView emojiView;
     private boolean emojiViewVisible;
     private boolean ignoreLayout;
     private boolean keyboardVisible;
+    private int lastAttachRise;
     private final Runnable limitCheckRunnable;
     private final RichEditorListView listView;
+    private ItemOptions menu;
     private MessageSendPreview messageSendPreview;
     private boolean sendButtonShown;
     private RichEditorToolbar toolbar;
@@ -134,6 +143,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.toolbar = richEditorToolbar;
         richEditorToolbar.setBackVisible(false);
         this.toolbar.setTopGradientVisible(false);
+        updateSendButtonLocked();
         addView(this.toolbar, LayoutHelper.createFrame(-1, -1, 119));
         updateHistoryButtons();
         updateToolbarBlockType();
@@ -155,7 +165,8 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
         @Override
         public ItemOptions makeMenu(View view) {
-            return ItemOptions.makeOptions(ChatAttachAlertRichLayout.this, this.val$resourcesProvider, view, false, false, true);
+            ChatAttachAlertRichLayout chatAttachAlertRichLayout = ChatAttachAlertRichLayout.this;
+            return chatAttachAlertRichLayout.menu = ItemOptions.makeOptions(chatAttachAlertRichLayout, this.val$resourcesProvider, view, false, false, true);
         }
 
         @Override
@@ -201,13 +212,15 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         public ItemOptions lambda$onSlashSuggest$0(Theme.ResourcesProvider resourcesProvider, View view) {
-            return ItemOptions.makeOptions(ChatAttachAlertRichLayout.this, resourcesProvider, view, false, false, true);
+            ChatAttachAlertRichLayout chatAttachAlertRichLayout = ChatAttachAlertRichLayout.this;
+            return chatAttachAlertRichLayout.menu = ItemOptions.makeOptions(chatAttachAlertRichLayout, resourcesProvider, view, false, false, true);
         }
 
         @Override
         public void onListScrolled(int i) {
             ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.updateLayout(ChatAttachAlertRichLayout.this, true, i);
             ChatAttachAlertRichLayout.this.updateToolbarTopOffset();
+            ChatAttachAlertRichLayout.this.updateAttachRaise();
         }
 
         @Override
@@ -216,6 +229,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.updateLayout(ChatAttachAlertRichLayout.this, true, 0);
             }
             ChatAttachAlertRichLayout.this.updateToolbarTopOffset();
+            ChatAttachAlertRichLayout.this.updateAttachRaise();
         }
 
         @Override
@@ -329,6 +343,16 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         public void onMath() {
             ChatAttachAlertRichLayout.this.listView.onMathClicked();
         }
+
+        @Override
+        public void onAiStyle() {
+            TL_iv.RichMessage richMessageExtractRichMessage;
+            RichEditorListView.SelectionEdit selectionEditBeginSelectionEdit = ChatAttachAlertRichLayout.this.listView.beginSelectionEdit();
+            if (selectionEditBeginSelectionEdit == null || (richMessageExtractRichMessage = selectionEditBeginSelectionEdit.extractRichMessage()) == null || richMessageExtractRichMessage.blocks.isEmpty()) {
+                return;
+            }
+            new AIEditorAlert(ChatAttachAlertRichLayout.this.getContext(), ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new ChatAttachAlertRichLayout$2$$ExternalSyntheticLambda0(selectionEditBeginSelectionEdit)).show();
+        }
     }
 
     public void updateToolbarTopOffset() {
@@ -387,18 +411,22 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.parentAlert.lambda$new$0();
     }
 
-    private void persistDraft() throws Resources.NotFoundException {
+    private boolean persistDraft() throws Resources.NotFoundException {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
-        if (baseFragment instanceof ChatActivity) {
-            ChatActivity chatActivity = (ChatActivity) baseFragment;
-            if (this.listView.canUndo()) {
-                TL_iv.RichMessage richMessageBuildDraftRichMessage = this.listView.buildDraftRichMessage();
-                AccountInstance.getInstance(this.currentAccount).getMediaDataController().saveDraft(chatActivity.getDialogId(), chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessageBuildDraftRichMessage);
-                if (chatActivity.getChatActivityEnterView() != null) {
-                    chatActivity.getChatActivityEnterView().setRichDraftPreview(richMessageBuildDraftRichMessage);
-                }
-            }
+        if (!(baseFragment instanceof ChatActivity)) {
+            return false;
         }
+        ChatActivity chatActivity = (ChatActivity) baseFragment;
+        if (!this.listView.canUndo()) {
+            return false;
+        }
+        TL_iv.RichMessage richMessageBuildDraftRichMessage = this.listView.buildDraftRichMessage();
+        AccountInstance.getInstance(this.currentAccount).getMediaDataController().saveDraft(chatActivity.getDialogId(), chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessageBuildDraftRichMessage);
+        if (chatActivity.getChatActivityEnterView() == null) {
+            return true;
+        }
+        chatActivity.getChatActivityEnterView().setRichDraftPreview(richMessageBuildDraftRichMessage);
+        return true;
     }
 
     @Override
@@ -434,6 +462,10 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void showTextTypeMenu(final BlockRow blockRow, View view) {
+        ItemOptions itemOptions = this.menu;
+        if (itemOptions != null) {
+            itemOptions.dismiss();
+        }
         final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((ViewGroup) this, this.resourcesProvider, view, true).dontFocus();
         final ItemOptions itemOptionsMakeSwipeback = itemOptionsDontFocus.makeSwipeback();
         itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
@@ -487,7 +519,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 this.f$0.lambda$showTextTypeMenu$10(blockRow);
             }
         });
-        itemOptionsDontFocus.show();
+        this.menu = itemOptionsDontFocus.show();
     }
 
     public void lambda$showTextTypeMenu$6(BlockRow blockRow) {
@@ -527,6 +559,10 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void showListMenu(final BlockRow blockRow, View view) {
+        ItemOptions itemOptions = this.menu;
+        if (itemOptions != null) {
+            itemOptions.dismiss();
+        }
         final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions(this, this.resourcesProvider, view).dontFocus();
         boolean z = false;
         ItemOptions itemOptionsAddChecked = itemOptionsDontFocus.addChecked(blockRow == null || !blockRow.isInList(), R.drawable.field_carret_empty, LocaleController.getString(R.string.ArticleNone), new Runnable() {
@@ -581,7 +617,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 });
             }
         }
-        itemOptionsDontFocus.forceTop(true).show();
+        this.menu = itemOptionsDontFocus.forceTop(true).show();
     }
 
     public void lambda$showListMenu$12(BlockRow blockRow) {
@@ -657,7 +693,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         } else {
             i = 0;
         }
-        this.toolbar.setFormattingState(i, z && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset), z && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset), z && startCell == endCell);
+        this.toolbar.setFormattingState(i, z && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset), z && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset), z && startCell == endCell, !this.listView.isSelectionAllHeadings());
     }
 
     private void updateFormattingButtonsTable() {
@@ -669,21 +705,27 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         int endOffset = textSelectionHelper.getEndOffset();
         int[] iArr = STYLE_FLAGS;
         int length = iArr.length;
+        boolean z = false;
         int i = 0;
         int i2 = 0;
-        while (i2 < length) {
-            int i3 = iArr[i2];
+        while (i < length) {
+            int i3 = iArr[i];
             int i4 = i;
-            int i5 = i2;
-            i = this.listView.isStyleFullyAppliedTable(i3, startCell, startChildPosition, startOffset, endChildPosition, endOffset) ? i4 | i3 : i4;
-            i2 = i5 + 1;
+            if (this.listView.isStyleFullyAppliedTable(i3, startCell, startChildPosition, startOffset, endChildPosition, endOffset)) {
+                i2 |= i3;
+            }
+            i = i4 + 1;
         }
-        int i6 = i;
-        boolean z = startChildPosition == endChildPosition;
-        RichEditText richEditTextTableEditText = z ? this.listView.tableEditText(startCell, startChildPosition) : null;
+        boolean z2 = startChildPosition == endChildPosition;
+        RichEditText richEditTextTableEditText = z2 ? this.listView.tableEditText(startCell, startChildPosition) : null;
         int iMax = Math.max(0, Math.min(startOffset, endOffset));
         int iMax2 = richEditTextTableEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextTableEditText.length()));
-        this.toolbar.setFormattingState(i6, richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2), richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2), z);
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        boolean z3 = richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2);
+        if (richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2)) {
+            z = true;
+        }
+        richEditorToolbar.setFormattingState(i2, z3, z, z2, true);
     }
 
     private void updateFormattingButtonsCaption() {
@@ -692,25 +734,20 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         RichEditText richEditTextCaptionEditText = this.listView.captionEditText(textSelectionHelper.getStartCell());
         int startOffset = textSelectionHelper.getStartOffset();
         int endOffset = textSelectionHelper.getEndOffset();
-        boolean z = false;
         int iMax = richEditTextCaptionEditText == null ? 0 : Math.max(0, Math.min(Math.min(startOffset, endOffset), richEditTextCaptionEditText.length()));
         int iMax2 = richEditTextCaptionEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextCaptionEditText.length()));
         if (richEditTextCaptionEditText == null || iMax >= iMax2) {
             i = 0;
         } else {
-            i = 0;
-            for (int i2 : STYLE_FLAGS) {
-                if ((richEditTextCaptionEditText.getCurrentStyle(iMax, iMax2) & i2) != 0) {
-                    i |= i2;
+            int i2 = 0;
+            for (int i3 : STYLE_FLAGS) {
+                if ((richEditTextCaptionEditText.getCurrentStyle(iMax, iMax2) & i3) != 0) {
+                    i2 |= i3;
                 }
             }
+            i = i2;
         }
-        RichEditorToolbar richEditorToolbar = this.toolbar;
-        boolean z2 = richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextCaptionEditText.getText(), iMax, iMax2);
-        if (richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextCaptionEditText.getText(), iMax, iMax2)) {
-            z = true;
-        }
-        richEditorToolbar.setFormattingState(i, z2, z, true);
+        this.toolbar.setFormattingState(i, richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextCaptionEditText.getText(), iMax, iMax2), richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextCaptionEditText.getText(), iMax, iMax2), true, true);
     }
 
     public void updateToolbarBlockType() {
@@ -726,13 +763,31 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void updateAttachButtons(boolean z) {
-        boolean zHasAnyText = this.listView.hasAnyText();
-        this.parentAlert.setTypeButtonsHidden(zHasAnyText, z);
-        this.attachRaise = zHasAnyText ? 0 : this.parentAlert.getTypeButtonsHeight();
-        syncBottomOffset(z);
-        if (this.attachButtonsShown == zHasAnyText) {
-            this.attachButtonsShown = !zHasAnyText;
+        boolean z2 = this.listView.hasAnyText() || this.emojiViewVisible;
+        this.parentAlert.setTypeButtonsHidden(z2, z);
+        this.attachRaise = attachRaiseTarget(z2);
+        layoutBottomPanels();
+        if (this.attachButtonsShown == z2) {
+            this.attachButtonsShown = !z2;
             requestLayout();
+        }
+    }
+
+    private int attachRaiseTarget(boolean z) {
+        if (!z) {
+            ChatAttachAlert chatAttachAlert = this.parentAlert;
+            if (!chatAttachAlert.pinnedToTop) {
+                return chatAttachAlert.getTypeButtonsHeight();
+            }
+        }
+        return 0;
+    }
+
+    public void updateAttachRaise() {
+        int iAttachRaiseTarget = attachRaiseTarget(this.listView.hasAnyText() || this.emojiViewVisible);
+        if (this.attachRaise != iAttachRaiseTarget) {
+            this.attachRaise = iAttachRaiseTarget;
+            layoutBottomPanels();
         }
     }
 
@@ -743,23 +798,43 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         return AndroidUtilities.navigationBarHeight;
     }
 
-    private void syncBottomOffset(boolean z) {
-        if (this.toolbar == null) {
-            return;
+    private int emojiVisibleHeight() {
+        return this.emojiSearchOpened ? AndroidUtilities.dp(245.0f) : this.emojiPadding;
+    }
+
+    public void layoutBottomPanels() {
+        int iEmojiVisibleHeight = emojiVisibleHeight();
+        EmojiView emojiView = this.emojiView;
+        if (emojiView != null) {
+            if (this.emojiViewVisible) {
+                f = (this.emojiSearchOpened ? -this.parentAlert.currentPanTranslationY : 0.0f) + (this.emojiPadding - iEmojiVisibleHeight);
+            }
+            emojiView.setTranslationY(f);
         }
-        int iBottomNavInset = bottomNavInset() + this.attachRaise;
-        int i = this.emojiPadding;
-        int i2 = -(iBottomNavInset + i);
-        if (z && i == 0) {
-            this.toolbar.getBottomContainer().animate().translationY(i2).setDuration(180L).start();
-        } else {
+        if (this.toolbar != null) {
+            if (!this.emojiViewVisible) {
+                iEmojiVisibleHeight = bottomNavInset();
+            }
+            float f = iEmojiVisibleHeight;
+            if (!this.emojiViewVisible || this.emojiSearchOpened) {
+                f += this.parentAlert.currentPanTranslationY;
+            }
             this.toolbar.getBottomContainer().animate().cancel();
-            this.toolbar.getBottomContainer().setTranslationY(i2 - this.parentAlert.currentPanTranslationY);
+            this.toolbar.getBottomContainer().setTranslationY(-f);
+            if (this.lastAttachRise != this.attachRaise) {
+                ViewPropertyAnimator viewPropertyAnimatorAnimate = this.toolbar.getBottomInnerContainer().animate();
+                this.lastAttachRise = this.attachRaise;
+                viewPropertyAnimatorAnimate.translationY(-r1).setDuration(320L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            }
         }
     }
 
     @Override
     public boolean onBackPressed() {
+        if (this.emojiSearchOpened) {
+            closeEmojiSearch();
+            return false;
+        }
         if (this.emojiViewVisible) {
             hideEmojiPopup();
             return false;
@@ -831,7 +906,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public void onPreMeasure(int r5, int r6) {
+    public void onPreMeasure(int r6, int r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.ChatAttachAlertRichLayout.onPreMeasure(int, int):void");
     }
 
@@ -851,8 +926,8 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     public void onPanTransitionStart(boolean z, int i) {
         super.onPanTransitionStart(z, i);
         this.keyboardVisible = z;
-        syncBottomOffset(false);
-        if (z && this.emojiViewVisible) {
+        layoutBottomPanels();
+        if (z && this.emojiViewVisible && !this.emojiSearchOpened) {
             hideEmojiPopup();
         }
         updateToolbarTopOffset();
@@ -861,40 +936,52 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     @Override
     public void onContainerTranslationUpdated(float f) {
         super.onContainerTranslationUpdated(f);
-        syncBottomOffset(false);
+        layoutBottomPanels();
     }
 
     @Override
     public void onPanTransitionEnd() {
         super.onPanTransitionEnd();
         this.keyboardVisible = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f);
-        syncBottomOffset(false);
+        layoutBottomPanels();
         updateToolbarTopOffset();
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        EmojiView emojiView;
         if (this.listView.textSelectionHelper.isInSelectionMode() && this.listView.textSelectionOverlay.onTouchEvent(motionEvent)) {
             return true;
         }
-        if (motionEvent.getAction() == 0 && this.emojiViewVisible && motionEvent.getY() < (getHeight() - AndroidUtilities.dp(60.0f)) - this.emojiPadding) {
+        int height = (((!this.emojiSearchOpened || (emojiView = this.emojiView) == null) ? getHeight() - this.emojiPadding : (int) emojiView.getY()) - AndroidUtilities.dp(60.0f)) - this.attachRaise;
+        if (motionEvent.getAction() == 0 && this.emojiViewVisible && motionEvent.getY() < height) {
             hideEmojiPopup();
         }
-        if ((motionEvent.getAction() != 0 || (motionEvent.getY() > AndroidUtilities.dp(60.0f) && motionEvent.getY() < (getHeight() - AndroidUtilities.dp(60.0f)) - this.emojiPadding)) && this.listView.textSelectionOverlay.checkOnTap(motionEvent)) {
+        if ((motionEvent.getAction() != 0 || (motionEvent.getY() > AndroidUtilities.dp(60.0f) && motionEvent.getY() < height)) && this.listView.textSelectionOverlay.checkOnTap(motionEvent)) {
             motionEvent.setAction(3);
         }
-        if ((!this.emojiViewVisible || motionEvent.getY() < (getHeight() - AndroidUtilities.dp(60.0f)) - this.emojiPadding) && this.listView.handleSelectionTouch(motionEvent)) {
-            return true;
+        if (motionEvent.getY() >= height || !this.listView.handleSelectionTouch(motionEvent)) {
+            return super.dispatchTouchEvent(motionEvent);
         }
-        return super.dispatchTouchEvent(motionEvent);
+        return true;
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
+            saveDraftWithBulletin();
+            return true;
+        }
         if (this.listView.handleKeyEvent(keyEvent)) {
             return true;
         }
         return super.dispatchKeyEvent(keyEvent);
+    }
+
+    private void saveDraftWithBulletin() {
+        if ((this.parentAlert.baseFragment instanceof ChatActivity) && this.listView.canUndo() && persistDraft()) {
+            BulletinFactory.of(this.toolbar, this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.RichEditorDraftSaved)).show();
+        }
     }
 
     @Override
@@ -927,10 +1014,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
-        MessageObject messageObject;
-        MessageObject messageObject2;
-        long j2;
-        int quickReplyId;
+        if (!MessagesController.getInstance(this.currentAccount).richEditorAllowed()) {
+            if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
+                new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.currentAccount, 43, true).show();
+            }
+            return false;
+        }
         if (!this.listView.hasAnyText() || this.listView.hasPendingUploads()) {
             return false;
         }
@@ -938,34 +1027,28 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             updateSendButtonEnabled();
             return false;
         }
-        ArrayList arrayListFlattenRowsToBlocks = this.listView.flattenRowsToBlocks();
-        if (arrayListFlattenRowsToBlocks.isEmpty()) {
+        if (this.listView.flattenRowsToBlocks().isEmpty()) {
             return false;
         }
-        ArrayList arrayListCollectPhotos = this.listView.collectPhotos();
-        ArrayList arrayListCollectDocuments = this.listView.collectDocuments();
+        this.listView.collectPhotos();
+        this.listView.collectDocuments();
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
-            MessageObject replyMessage = chatActivity.getReplyMessage();
-            MessageObject threadMessage = chatActivity.getThreadMessage();
-            long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
-            quickReplyId = chatActivity.getQuickReplyId();
-            messageObject = replyMessage;
-            messageObject2 = threadMessage;
-            j2 = sendMonoForumPeerId;
-        } else {
-            messageObject = null;
-            messageObject2 = null;
-            j2 = 0;
-            quickReplyId = 0;
+            chatActivity.getReplyMessage();
+            chatActivity.getThreadMessage();
+            chatActivity.getSendMonoForumPeerId();
+            chatActivity.getQuickReplyId();
         }
-        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject, messageObject2, z, i, i2, null, quickReplyId, j, j2, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }
 
     public boolean showSendPreview(View view) {
+        if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
+            new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.currentAccount, 43, true).show();
+            return true;
+        }
         boolean z = false;
         if (!this.listView.hasAnyText() || this.listView.hasPendingUploads()) {
             return false;
@@ -1359,6 +1442,33 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
+    private void updateSendButtonLocked() {
+        RichEditorToolbar richEditorToolbar = this.toolbar;
+        if (richEditorToolbar != null) {
+            richEditorToolbar.getSendButton().setLocked(!MessagesController.getInstance(this.currentAccount).richEditorAllowed());
+        }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+        updateSendButtonLocked();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.currentUserPremiumStatusChanged) {
+            updateSendButtonLocked();
+        }
+    }
+
     private int getEmojiPanelHeight() {
         int iMeasureKeyboardHeight = this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight();
         if (iMeasureKeyboardHeight <= 0) {
@@ -1366,7 +1476,10 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             Point point = AndroidUtilities.displaySize;
             iMeasureKeyboardHeight = globalEmojiSettings.getInt(point.x > point.y ? "kbd_height_land3" : "kbd_height", AndroidUtilities.dp(200.0f));
         }
-        return iMeasureKeyboardHeight <= 0 ? AndroidUtilities.dp(200.0f) : iMeasureKeyboardHeight;
+        if (iMeasureKeyboardHeight <= 0) {
+            iMeasureKeyboardHeight = AndroidUtilities.dp(200.0f);
+        }
+        return iMeasureKeyboardHeight + AndroidUtilities.navigationBarHeight;
     }
 
     private void createEmojiView() {
@@ -1379,6 +1492,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         EmojiView emojiView2 = this.emojiView;
         emojiView2.fixBottomTabContainerTranslation = false;
         emojiView2.setBottomInset(AndroidUtilities.navigationBarHeight);
+        this.emojiView.hideBottomTabContainerBackground();
         this.emojiView.setDelegate(new EmojiView.EmojiViewDelegate() {
             @Override
             public boolean canAddCaptionToGif(TLRPC.Document document) {
@@ -1421,11 +1535,6 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
 
             @Override
-            public boolean isSearchOpened() {
-                return EmojiView.EmojiViewDelegate.CC.$default$isSearchOpened(this);
-            }
-
-            @Override
             public boolean isUserSelf() {
                 return EmojiView.EmojiViewDelegate.CC.$default$isUserSelf(this);
             }
@@ -1453,11 +1562,6 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             @Override
             public void onGifSelectedForAddCaption(View view, Object obj, String str, Object obj2, boolean z, int i, int i2) {
                 EmojiView.EmojiViewDelegate.CC.$default$onGifSelectedForAddCaption(this, view, obj, str, obj2, z, i, i2);
-            }
-
-            @Override
-            public void onSearchOpenClose(int i) {
-                EmojiView.EmojiViewDelegate.CC.$default$onSearchOpenClose(this, i);
             }
 
             @Override
@@ -1501,27 +1605,46 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
 
             @Override
+            public void onSearchOpenClose(int i) {
+                RichEditText focusedEditTextOrNull;
+                if (i != 0 && (focusedEditTextOrNull = ChatAttachAlertRichLayout.this.listView.getFocusedEditTextOrNull()) != null) {
+                    ChatAttachAlertRichLayout.this.emojiTargetEditText = focusedEditTextOrNull;
+                    ChatAttachAlertRichLayout.this.emojiTargetSelection = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
+                }
+                ChatAttachAlertRichLayout.this.emojiSearchOpened = i != 0;
+                ChatAttachAlertRichLayout.this.layoutBottomPanels();
+            }
+
+            @Override
+            public boolean isSearchOpened() {
+                return ChatAttachAlertRichLayout.this.emojiSearchOpened;
+            }
+
+            @Override
             public boolean onBackspace() {
-                RichEditText richEditTextFindFocusedEditText = ChatAttachAlertRichLayout.this.listView.findFocusedEditText();
-                if (richEditTextFindFocusedEditText == null || richEditTextFindFocusedEditText.length() == 0) {
+                RichEditText richEditTextResolveEmojiTarget = ChatAttachAlertRichLayout.this.resolveEmojiTarget();
+                if (richEditTextResolveEmojiTarget == null || richEditTextResolveEmojiTarget.length() == 0) {
                     return false;
                 }
-                richEditTextFindFocusedEditText.dispatchKeyEvent(new KeyEvent(0, 67));
+                richEditTextResolveEmojiTarget.dispatchKeyEvent(new KeyEvent(0, 67));
                 return true;
             }
 
             @Override
             public void onEmojiSelected(String str) {
-                RichEditText richEditTextFindFocusedEditText = ChatAttachAlertRichLayout.this.listView.findFocusedEditText();
-                if (richEditTextFindFocusedEditText == null) {
+                RichEditText richEditTextResolveEmojiTarget = ChatAttachAlertRichLayout.this.resolveEmojiTarget();
+                if (richEditTextResolveEmojiTarget == null) {
                     return;
                 }
-                int iMax = Math.max(0, richEditTextFindFocusedEditText.getSelectionEnd());
+                int iResolveEmojiTargetOffset = ChatAttachAlertRichLayout.this.resolveEmojiTargetOffset(richEditTextResolveEmojiTarget);
                 try {
-                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji((CharSequence) str, richEditTextFindFocusedEditText.getPaint().getFontMetricsInt(), false, (int[]) null);
-                    richEditTextFindFocusedEditText.setText(richEditTextFindFocusedEditText.getText().insert(iMax, charSequenceReplaceEmoji));
-                    int length = iMax + charSequenceReplaceEmoji.length();
-                    richEditTextFindFocusedEditText.setSelection(length, length);
+                    CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji((CharSequence) str, richEditTextResolveEmojiTarget.getPaint().getFontMetricsInt(), false, (int[]) null);
+                    richEditTextResolveEmojiTarget.setText(richEditTextResolveEmojiTarget.getText().insert(iResolveEmojiTargetOffset, charSequenceReplaceEmoji));
+                    int length = iResolveEmojiTargetOffset + charSequenceReplaceEmoji.length();
+                    richEditTextResolveEmojiTarget.setSelection(length, length);
+                    if (richEditTextResolveEmojiTarget == ChatAttachAlertRichLayout.this.emojiTargetEditText) {
+                        ChatAttachAlertRichLayout.this.emojiTargetSelection = length;
+                    }
                 } catch (Exception unused) {
                 }
             }
@@ -1529,26 +1652,29 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             @Override
             public void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z) {
                 AnimatedEmojiSpan animatedEmojiSpan;
-                RichEditText richEditTextFindFocusedEditText = ChatAttachAlertRichLayout.this.listView.findFocusedEditText();
-                if (richEditTextFindFocusedEditText == null) {
+                RichEditText richEditTextResolveEmojiTarget = ChatAttachAlertRichLayout.this.resolveEmojiTarget();
+                if (richEditTextResolveEmojiTarget == null) {
                     return;
                 }
-                int iMax = Math.max(0, richEditTextFindFocusedEditText.getSelectionEnd());
+                int iResolveEmojiTargetOffset = ChatAttachAlertRichLayout.this.resolveEmojiTargetOffset(richEditTextResolveEmojiTarget);
                 try {
                     if (str == null) {
                         str = "😀";
                     }
                     SpannableString spannableString = new SpannableString(str);
                     if (document != null) {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(document, richEditTextFindFocusedEditText.getPaint().getFontMetricsInt());
+                        animatedEmojiSpan = new AnimatedEmojiSpan(document, richEditTextResolveEmojiTarget.getPaint().getFontMetricsInt());
                     } else {
-                        animatedEmojiSpan = new AnimatedEmojiSpan(j, richEditTextFindFocusedEditText.getPaint().getFontMetricsInt());
+                        animatedEmojiSpan = new AnimatedEmojiSpan(j, richEditTextResolveEmojiTarget.getPaint().getFontMetricsInt());
                     }
                     animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
                     spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
-                    richEditTextFindFocusedEditText.setText(richEditTextFindFocusedEditText.getText().insert(iMax, spannableString));
-                    int length = iMax + spannableString.length();
-                    richEditTextFindFocusedEditText.setSelection(length, length);
+                    richEditTextResolveEmojiTarget.setText(richEditTextResolveEmojiTarget.getText().insert(iResolveEmojiTargetOffset, spannableString));
+                    int length = iResolveEmojiTargetOffset + spannableString.length();
+                    richEditTextResolveEmojiTarget.setSelection(length, length);
+                    if (richEditTextResolveEmojiTarget == ChatAttachAlertRichLayout.this.emojiTargetEditText) {
+                        ChatAttachAlertRichLayout.this.emojiTargetSelection = length;
+                    }
                 } catch (Exception unused) {
                 }
             }
@@ -1556,15 +1682,32 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         addView(this.emojiView, LayoutHelper.createFrame(-1, getEmojiPanelHeight(), 87));
     }
 
+    public RichEditText resolveEmojiTarget() {
+        RichEditText focusedEditTextOrNull = this.listView.getFocusedEditTextOrNull();
+        if (focusedEditTextOrNull != null) {
+            this.emojiTargetEditText = focusedEditTextOrNull;
+            this.emojiTargetSelection = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
+            return focusedEditTextOrNull;
+        }
+        RichEditText richEditText = this.emojiTargetEditText;
+        return richEditText != null ? richEditText : this.listView.findFocusedEditText();
+    }
+
+    public int resolveEmojiTargetOffset(RichEditText richEditText) {
+        if (richEditText == this.emojiTargetEditText && this.listView.getFocusedEditTextOrNull() != richEditText) {
+            return Math.min(this.emojiTargetSelection, richEditText.length());
+        }
+        return Math.max(0, richEditText.getSelectionEnd());
+    }
+
     public void toggleEmojiPopup() {
         if (this.emojiViewVisible) {
-            hideEmojiPopup();
             RichEditText richEditTextFindFocusedEditText = this.listView.findFocusedEditText();
             if (richEditTextFindFocusedEditText != null) {
                 richEditTextFindFocusedEditText.requestEditFocus();
                 AndroidUtilities.showKeyboard(richEditTextFindFocusedEditText);
-                return;
             }
+            hideEmojiPopup(true);
             return;
         }
         showEmojiPopup();
@@ -1576,6 +1719,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.emojiView.getLayoutParams();
         layoutParams.height = emojiPanelHeight;
         this.emojiView.setLayoutParams(layoutParams);
+        this.emojiView.setTranslationY(0.0f);
         this.emojiView.setVisibility(0);
         this.emojiViewVisible = true;
         this.emojiPadding = emojiPanelHeight;
@@ -1587,14 +1731,30 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         if (richEditorToolbar != null) {
             richEditorToolbar.setEmojiOpened(true);
         }
-        syncBottomOffset(false);
+        updateAttachButtons(false);
         requestLayout();
     }
 
     private void hideEmojiPopup() {
-        EmojiView emojiView = this.emojiView;
-        if (emojiView != null) {
-            emojiView.setVisibility(8);
+        hideEmojiPopup(false);
+    }
+
+    private void hideEmojiPopup(boolean z) {
+        if (this.emojiSearchOpened) {
+            this.emojiSearchOpened = false;
+            EmojiView emojiView = this.emojiView;
+            if (emojiView != null) {
+                emojiView.closeSearch(false);
+                if (!z) {
+                    this.emojiView.hideSearchKeyboard();
+                }
+            }
+        }
+        this.emojiTargetEditText = null;
+        EmojiView emojiView2 = this.emojiView;
+        if (emojiView2 != null) {
+            emojiView2.setTranslationY(0.0f);
+            this.emojiView.setVisibility(8);
         }
         this.emojiViewVisible = false;
         this.emojiPadding = 0;
@@ -1602,8 +1762,20 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         if (richEditorToolbar != null) {
             richEditorToolbar.setEmojiOpened(false);
         }
-        syncBottomOffset(false);
+        updateAttachButtons(false);
         requestLayout();
+    }
+
+    private void closeEmojiSearch() {
+        if (this.emojiSearchOpened) {
+            this.emojiSearchOpened = false;
+            EmojiView emojiView = this.emojiView;
+            if (emojiView != null) {
+                emojiView.closeSearch(false);
+                this.emojiView.hideSearchKeyboard();
+            }
+            layoutBottomPanels();
+        }
     }
 
     @Override

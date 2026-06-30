@@ -206,7 +206,9 @@ public class StarParticlesView extends View {
         public RectF rect = new RectF();
         public RectF rect2 = new RectF();
         public RectF excludeRect = new RectF();
-        private final Bitmap[] stars = new Bitmap[3];
+        private Bitmap[] stars = new Bitmap[3];
+        public boolean[] svg = new boolean[3];
+        public boolean[] flip = new boolean[3];
         public Paint paint = new Paint();
         public float excludeRadius = 0.0f;
         public float centerOffsetX = 0.0f;
@@ -233,8 +235,6 @@ public class StarParticlesView extends View {
         public boolean roundEffect = true;
         public int type = -1;
         public int colorKey = Theme.key_premiumStartSmallStarsColor;
-        public final boolean[] svg = new boolean[3];
-        public final boolean[] flip = new boolean[3];
         private int lastParticleI = 0;
 
         static int access$208(Drawable drawable) {

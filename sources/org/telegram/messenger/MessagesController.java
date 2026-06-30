@@ -891,6 +891,10 @@ public class MessagesController extends BaseController implements NotificationCe
         }
     }
 
+    public int getMaxMessageLength() {
+        return (getUserConfig().isPremium() ? this.config.messageLengthLimitPremium : this.config.messageLengthLimitDefault).get();
+    }
+
     public boolean starsPurchaseAvailable() {
         return !this.starsLocked;
     }
@@ -17711,6 +17715,14 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public boolean storiesEnabled() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.storiesEnabled():boolean");
+    }
+
+    public boolean richEditorAvailable() {
+        return !TextUtils.equals("disabled", this.config.richMessagePosting.get());
+    }
+
+    public boolean richEditorAllowed() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.richEditorAllowed():boolean");
     }
 
     public boolean storyEntitiesAllowed() {

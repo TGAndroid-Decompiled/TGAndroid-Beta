@@ -302,6 +302,26 @@ public class RichEditText extends EditTextCaption {
         this.ignoreTextChange = false;
     }
 
+    public void deleteToEndSilently(int i) {
+        Editable text = getText();
+        if (text == null || i < 0 || i >= text.length()) {
+            return;
+        }
+        this.ignoreTextChange = true;
+        text.delete(i, text.length());
+        this.ignoreTextChange = false;
+    }
+
+    public void appendSilently(CharSequence charSequence) {
+        Editable text = getText();
+        if (text == null || charSequence == null || charSequence.length() == 0) {
+            return;
+        }
+        this.ignoreTextChange = true;
+        text.append(charSequence);
+        this.ignoreTextChange = false;
+    }
+
     public void setTextColorKey(int i) {
         this.textColorKey = i;
         updateColors();

@@ -489,7 +489,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             }
         }
         try {
-            text.setSpan(new URLSpanReplacement(editTextBoldCursor.getText().toString()), i, i2, 33);
+            text.setSpan(new URLSpanReplacement(editTextBoldCursor.getText().toString().trim()), i, i2, 33);
         } catch (Exception unused) {
         }
         EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;

@@ -16,6 +16,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1231,6 +1232,28 @@ public abstract class TranslateAlert2 extends BottomSheet implements Notificatio
             this.bgPaint = paint;
             paint.setColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
             Theme.applyDefaultShadow(this.bgPaint);
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            if (TranslateAlert2.this.textSelectionHelper != null && TranslateAlert2.this.textSelectionOverlay != null) {
+                if (motionEvent.getAction() == 0 || motionEvent.getAction() == 1) {
+                    Log.d("TA2", "container dispatch act=" + motionEvent.getAction() + " inSel=" + TranslateAlert2.this.textSelectionHelper.isInSelectionMode());
+                }
+                if (!TranslateAlert2.this.textSelectionHelper.isInSelectionMode() || !TranslateAlert2.this.textSelectionOverlay.onTouchEvent(motionEvent)) {
+                    boolean zCheckOnTap = TranslateAlert2.this.textSelectionOverlay.checkOnTap(motionEvent);
+                    if (motionEvent.getAction() == 1) {
+                        Log.d("TA2", "checkOnTap=" + zCheckOnTap);
+                    }
+                    if (zCheckOnTap) {
+                        motionEvent.setAction(3);
+                    }
+                } else {
+                    Log.d("TA2", "overlay consumed (handle)");
+                    return true;
+                }
+            }
+            return super.dispatchTouchEvent(motionEvent);
         }
 
         @Override

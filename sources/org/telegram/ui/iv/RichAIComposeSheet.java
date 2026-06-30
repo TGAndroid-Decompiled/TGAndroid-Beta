@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.Utilities;
@@ -58,7 +60,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         FrameLayout frameLayout = new FrameLayout(context);
         this.topView = frameLayout;
         TextView textView = new TextView(context);
-        textView.setText("Create with AI");
+        textView.setText(LocaleController.getString(R.string.ArticleAICreate));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         int i3 = Theme.key_windowBackgroundWhiteBlackText;
@@ -87,10 +89,10 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         int i4 = Theme.key_windowBackgroundWhite;
         previewView.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i4, resourcesProvider)));
         frameLayout2.addView(previewView, LayoutHelper.createFrame(-1, -2.0f));
-        frameLayout2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
+        frameLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.promptBox = frameLayout3;
-        EditTextCell editTextCell = new EditTextCell(context, "Write a prompt...", true, false, -1, resourcesProvider);
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.ArticleAIPrompt), true, false, MessagesController.getInstance(i).config.aicomposeTonePromptLengthMax.get(), resourcesProvider);
         this.promptCell = editTextCell;
         editTextCell.editText.setImeOptions(6);
         editTextCell.editText.setMaxLines(5);
@@ -116,7 +118,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         frameLayout3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
         this.button = round;
-        round.setText("Generate", false);
+        round.setText(LocaleController.getString(R.string.ArticleAIGenerate), false);
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -135,6 +137,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         RecyclerListView recyclerListView = this.recyclerListView;
         int i5 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i5, 0, i5, AndroidUtilities.dp(72.0f));
+        this.recyclerListView.setClipToPadding(false);
         this.adapter.update(false);
         updateButtonEnabled();
     }
@@ -155,7 +158,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
             public final void run() {
                 this.f$0.lambda$show$2();
             }
-        }, 150L);
+        }, 200L);
     }
 
     public void lambda$show$2() {
@@ -164,7 +167,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected CharSequence getTitle() {
-        return "Create with AI";
+        return LocaleController.getString(R.string.ArticleAICreate);
     }
 
     @Override
@@ -181,10 +184,10 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
 
     public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asCustom(1, this.topView));
+        arrayList.add(UItem.asCustom(3, this.promptBox));
         if (this.result != null) {
             arrayList.add(UItem.asCustom(2, this.previewBox));
         }
-        arrayList.add(UItem.asCustom(3, this.promptBox));
     }
 
     public void updateButtonEnabled() {
@@ -224,6 +227,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
                 this.f$0.lambda$onButtonClick$4(tLObject, tL_error);
             }
         });
+        AndroidUtilities.hideKeyboard(this.promptCell.editText);
     }
 
     public void lambda$onButtonClick$4(final TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -253,7 +257,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         }
         this.result = richMessage;
         this.previewView.set(richMessage);
-        this.button.setText("Add to page", true);
+        this.button.setText(LocaleController.getString(R.string.ArticleAIAddToPage), true);
         updateButtonEnabled();
         UniversalAdapter universalAdapter = this.adapter;
         if (universalAdapter != null) {
@@ -266,7 +270,7 @@ public class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
             return;
         }
         this.result = null;
-        this.button.setText("Generate", true);
+        this.button.setText(LocaleController.getString(R.string.ArticleAIGenerate), true);
         UniversalAdapter universalAdapter = this.adapter;
         if (universalAdapter != null) {
             universalAdapter.update(true);

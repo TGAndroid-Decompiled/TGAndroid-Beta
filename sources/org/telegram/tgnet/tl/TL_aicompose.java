@@ -45,7 +45,7 @@ public class TL_aicompose {
                     return (inputAiComposeTone2 instanceof inputAiComposeToneDefault) && TextUtils.equals(((inputAiComposeToneDefault) inputAiComposeTone).tone, ((inputAiComposeToneDefault) inputAiComposeTone2).tone);
                 }
                 if (!(inputAiComposeTone instanceof inputAiComposeToneID)) {
-                    return (inputAiComposeTone instanceof inputAiComposeToneSlug) && (inputAiComposeTone2 instanceof inputAiComposeToneSlug) && TextUtils.equals(((inputAiComposeToneSlug) inputAiComposeTone).slug, ((inputAiComposeToneSlug) inputAiComposeTone2).slug);
+                    return inputAiComposeTone instanceof inputAiComposeToneSlug ? (inputAiComposeTone2 instanceof inputAiComposeToneSlug) && TextUtils.equals(((inputAiComposeToneSlug) inputAiComposeTone).slug, ((inputAiComposeToneSlug) inputAiComposeTone2).slug) : (inputAiComposeTone instanceof inputAiComposeToneSingleUse) && (inputAiComposeTone2 instanceof inputAiComposeToneSingleUse) && TextUtils.equals(((inputAiComposeToneSingleUse) inputAiComposeTone).custom_prompt, ((inputAiComposeToneSingleUse) inputAiComposeTone2).custom_prompt);
                 }
                 if (inputAiComposeTone2 instanceof inputAiComposeToneID) {
                     inputAiComposeToneID inputaicomposetoneid = (inputAiComposeToneID) inputAiComposeTone;

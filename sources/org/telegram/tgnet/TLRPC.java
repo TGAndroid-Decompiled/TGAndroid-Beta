@@ -3134,7 +3134,7 @@ public class TLRPC {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1921325393);
-            int flag = TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(0, 1, this.proofread), 2, this.translate_to_lang != null), 4, this.tone != null), 8, this.emojify);
+            int flag = TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(TLObject.setFlag(0, 1, this.proofread), 2, this.translate_to_lang != null), 4, this.tone != null), 8, this.emojify), 16, this.text != null);
             outputSerializedData.writeInt32(flag);
             if (TLObject.hasFlag(flag, 16)) {
                 this.text.serializeToStream(outputSerializedData);

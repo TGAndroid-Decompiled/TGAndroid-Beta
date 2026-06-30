@@ -85,17 +85,21 @@ import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ReplyMessageLine;
 import org.telegram.ui.Components.SeekBar;
 import org.telegram.ui.Components.TableLayout;
 import org.telegram.ui.Components.TextPaintImageReceiverSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.TypefaceSpan;
+import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.URLSpanBotCommand;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 import org.telegram.ui.Components.URLSpanReplacement;
 import org.telegram.ui.Components.URLSpanUserMention;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.MultiLayoutTypingAnimator;
@@ -974,12 +978,18 @@ public class RichMessageLayout {
         this.pullquoteIcon.setColorFilter(this.quoteLine.getColor(), PorterDuff.Mode.SRC_IN);
         int intrinsicWidth = this.pullquoteIcon.getIntrinsicWidth();
         int intrinsicHeight = this.pullquoteIcon.getIntrinsicHeight();
+        canvas.save();
         int i2 = (int) fDp;
         this.pullquoteIcon.setBounds(AndroidUtilities.dp(8.0f) + i2, AndroidUtilities.dp(7.0f) + blockTop, i2 + AndroidUtilities.dp(8.0f) + intrinsicWidth, blockTop + AndroidUtilities.dp(7.0f) + intrinsicHeight);
+        canvas.scale(-1.0f, -1.0f, this.pullquoteIcon.getBounds().centerX(), this.pullquoteIcon.getBounds().centerY());
         this.pullquoteIcon.draw(canvas);
+        canvas.restore();
+        canvas.save();
         int i3 = (int) fDp2;
         this.pullquoteIcon.setBounds((i3 - AndroidUtilities.dp(8.0f)) - intrinsicWidth, (height - AndroidUtilities.dp(7.0f)) - intrinsicHeight, i3 - AndroidUtilities.dp(8.0f), height - AndroidUtilities.dp(7.0f));
+        canvas.scale(1.0f, -1.0f, this.pullquoteIcon.getBounds().centerX(), this.pullquoteIcon.getBounds().centerY());
         this.pullquoteIcon.draw(canvas);
+        canvas.restore();
     }
 
     private int getBlockTop(int i) {
@@ -1518,18 +1528,28 @@ public class RichMessageLayout {
                     int spanStart = spannableStringBuilder.getSpanStart(styleSpanArr[i3]);
                     int spanEnd = spannableStringBuilder.getSpanEnd(styleSpanArr[i3]);
                     if (spanStart > i) {
-                        spannableStringBuilder.setSpan(new StyleSpan(this, styleSpan.flags), i, spanStart, 33);
+                        setStyleRange(spannableStringBuilder, i, spanStart, styleSpan.flags);
                     }
                     i = Math.max(i, spanEnd);
                 }
                 if (i < i2) {
-                    spannableStringBuilder.setSpan(new StyleSpan(this, styleSpan.flags), i, i2, 33);
+                    setStyleRange(spannableStringBuilder, i, i2, styleSpan.flags);
                     return;
                 }
                 return;
             }
+            setStyleRange(spannableStringBuilder, i, i2, styleSpan.flags);
+            return;
         }
         spannableStringBuilder.setSpan(obj, i, i2, 33);
+    }
+
+    private void setStyleRange(SpannableStringBuilder spannableStringBuilder, int i, int i2, int i3) {
+        while (i < i2) {
+            int iNextSpanTransition = spannableStringBuilder.nextSpanTransition(i, i2, URLSpan.class);
+            spannableStringBuilder.setSpan(new StyleSpan(this, i3, ((URLSpan[]) spannableStringBuilder.getSpans(i, iNextSpanTransition, URLSpan.class)).length > 0), i, iNextSpanTransition, 33);
+            i = iNextSpanTransition;
+        }
     }
 
     private CharSequence formatTextAndSetSpan(TL_iv.RichText richText, SpannableStringBuilder spannableStringBuilder, int i, Object obj) {
@@ -1751,11 +1771,17 @@ public class RichMessageLayout {
 
     public static class StyleSpan extends MetricAffectingSpan {
         public final int flags;
+        public final boolean metricsOnly;
         public final RichMessageLayout root;
 
         public StyleSpan(RichMessageLayout richMessageLayout, int i) {
+            this(richMessageLayout, i, false);
+        }
+
+        public StyleSpan(RichMessageLayout richMessageLayout, int i, boolean z) {
             this.root = richMessageLayout;
             this.flags = i;
+            this.metricsOnly = z;
         }
 
         public void applyStyle(TextPaint textPaint) {
@@ -1768,9 +1794,11 @@ public class RichMessageLayout {
                 textSize -= AndroidUtilities.dp(4.0f);
             }
             textPaint.setTextSize(textSize);
-            textPaint.setFlags(TLObject.setFlag(TLObject.setFlag(textPaint.getFlags(), 8, TLObject.hasFlag(this.flags, 64)), 16, TLObject.hasFlag(this.flags, 128)));
-            if ((this.flags & 15) != 8) {
-                textPaint.setColor(getTextColor());
+            if (!this.metricsOnly) {
+                textPaint.setFlags(TLObject.setFlag(TLObject.setFlag(textPaint.getFlags(), 8, TLObject.hasFlag(this.flags, 64)), 16, TLObject.hasFlag(this.flags, 128)));
+                if ((this.flags & 15) != 8) {
+                    textPaint.setColor(getTextColor());
+                }
             }
             if (TLObject.hasFlag(this.flags, 4096)) {
                 textPaint.baselineShift -= AndroidUtilities.dp(6.0f);
@@ -6698,6 +6726,7 @@ public class RichMessageLayout {
             this.allowActions = true;
             this.currentAccount = i;
             this.resourcesProvider = resourcesProvider;
+            NotificationCenter.listenEmojiLoading(this);
         }
 
         public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
@@ -6911,6 +6940,47 @@ public class RichMessageLayout {
             RichMessageLayout richMessageLayout = this.layout;
             if (richMessageLayout == null || !richMessageLayout.isPressingLink()) {
                 this.textSelectionHelper.trySelect(this);
+            }
+        }
+
+        public static final class Factory extends UItem.UItemFactory {
+            @Override
+            public boolean isClickable() {
+                return false;
+            }
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public PreviewView createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                PreviewView previewView = new PreviewView(context, i, resourcesProvider);
+                previewView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f));
+                return previewView;
+            }
+
+            @Override
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                PreviewView previewView = (PreviewView) view;
+                previewView.set((TL_iv.RichMessage) uItem.object);
+                previewView.setTranslationLoading(uItem.checked);
+            }
+
+            @Override
+            public boolean equals(UItem uItem, UItem uItem2) {
+                return uItem.id == uItem2.id;
+            }
+
+            @Override
+            public boolean contentsEquals(UItem uItem, UItem uItem2) {
+                return uItem.id == uItem2.id && uItem.object == uItem2.object && uItem.checked == uItem2.checked;
+            }
+
+            public static UItem of(TL_iv.RichMessage richMessage) {
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.object = richMessage;
+                return uItemOfFactory;
             }
         }
 

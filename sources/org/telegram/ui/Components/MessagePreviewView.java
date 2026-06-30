@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -61,6 +60,7 @@ import org.telegram.ui.Cells.IMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
@@ -298,7 +298,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
         }
 
-        public Page(android.content.Context r26, int r27) {
+        public Page(final android.content.Context r26, int r27) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MessagePreviewView.Page.<init>(org.telegram.ui.Components.MessagePreviewView, android.content.Context, int):void");
         }
 
@@ -318,7 +318,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (view instanceof ChatMessageCell) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) view;
                     boolean zDrawChild = super.drawChild(canvas, view, j);
@@ -687,13 +687,23 @@ public abstract class MessagePreviewView extends FrameLayout {
             MessagePreviewView.this.removeForward();
         }
 
-        public void lambda$new$12(ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
-            MessagePreviewView messagePreviewView = MessagePreviewView.this;
-            MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
-            boolean z = messagePreviewParams.hideForwardSendersName;
-            messagePreviewParams.hideForwardSendersName = !z;
-            messagePreviewView.returnSendersNames = false;
-            if (z) {
+        public void lambda$new$14(boolean z, final Context context, ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
+            if (!z) {
+                MessagePreviewView messagePreviewView = MessagePreviewView.this;
+                BulletinFactory.of(messagePreviewView, messagePreviewView.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$new$13(context);
+                    }
+                })).show();
+                return;
+            }
+            MessagePreviewView messagePreviewView2 = MessagePreviewView.this;
+            MessagePreviewParams messagePreviewParams = messagePreviewView2.messagePreviewParams;
+            boolean z2 = messagePreviewParams.hideForwardSendersName;
+            messagePreviewParams.hideForwardSendersName = !z2;
+            messagePreviewView2.returnSendersNames = false;
+            if (z2) {
                 messagePreviewParams.hideCaption = false;
                 if (toggleButton != null) {
                     toggleButton.setState(false, true);
@@ -704,7 +714,23 @@ public abstract class MessagePreviewView extends FrameLayout {
             updateSubtitle(true);
         }
 
-        public void lambda$new$13(ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
+        public void lambda$new$13(final Context context) {
+            MessagePreviewView.this.dismiss(false);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$new$12(context);
+                }
+            });
+        }
+
+        public void lambda$new$12(Context context) {
+            if (AndroidUtilities.isContextSafe(context)) {
+                new PremiumFeatureBottomSheet(context, 43, true, (Theme.ResourcesProvider) MessagePreviewView.this.resourcesProvider).show();
+            }
+        }
+
+        public void lambda$new$15(ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
             MessagePreviewView messagePreviewView = MessagePreviewView.this;
             MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
             boolean z = messagePreviewParams.hideCaption;
@@ -727,15 +753,15 @@ public abstract class MessagePreviewView extends FrameLayout {
             updateSubtitle(true);
         }
 
-        public void lambda$new$14(View view) {
+        public void lambda$new$16(View view) {
             MessagePreviewView.this.dismiss(true);
         }
 
-        public void lambda$new$15(View view) {
+        public void lambda$new$17(View view) {
             MessagePreviewView.this.removeLink();
         }
 
-        public void lambda$new$16(View view) {
+        public void lambda$new$18(View view) {
             TLRPC.Message message;
             TLRPC.MessageMedia messageMedia;
             TLRPC.Message message2;
@@ -761,7 +787,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public void lambda$new$17(View view) {
+        public void lambda$new$19(View view) {
             TLRPC.Message message;
             TLRPC.Message message2;
             MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
@@ -784,7 +810,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     postDelayed(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$checkScroll$18();
+                            this.f$0.lambda$checkScroll$20();
                         }
                     }, 0L);
                 }
@@ -792,7 +818,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public void lambda$checkScroll$18() {
+        public void lambda$checkScroll$20() {
             if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
                 RecyclerListView recyclerListView = this.chatListView;
                 recyclerListView.smoothScrollBy(0, -recyclerListView.computeVerticalScrollOffset(), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
@@ -1042,13 +1068,13 @@ public abstract class MessagePreviewView extends FrameLayout {
                 AndroidUtilities.forEachViews((RecyclerView) this.chatListView, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        this.f$0.lambda$onAttachedToWindow$19((View) obj);
+                        this.f$0.lambda$onAttachedToWindow$21((View) obj);
                     }
                 });
             }
         }
 
-        public void lambda$onAttachedToWindow$19(View view) {
+        public void lambda$onAttachedToWindow$21(View view) {
             this.adapter.onViewAttachedToWindow(this.chatListView.getChildViewHolder(view));
         }
 
@@ -1104,7 +1130,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             MessagePreviewView.this.offsetsAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    this.f$0.lambda$updatePositions$20(i, f, valueAnimator2);
+                    this.f$0.lambda$updatePositions$22(i, f, valueAnimator2);
                 }
             });
             MessagePreviewView.this.offsetsAnimator.setDuration(250L);
@@ -1123,7 +1149,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             setOffset(f, i);
         }
 
-        public void lambda$updatePositions$20(int i, float f, ValueAnimator valueAnimator) {
+        public void lambda$updatePositions$22(int i, float f, ValueAnimator valueAnimator) {
             float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             float f2 = 1.0f - fFloatValue;
             int i2 = (int) ((i * f2) + (this.chatTopOffset * fFloatValue));
@@ -1190,7 +1216,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, IOException, NumberFormatException {
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
                         Page.this.updateLinkHighlight(this);
                     }

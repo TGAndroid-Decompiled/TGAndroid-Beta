@@ -53,6 +53,10 @@ public class UniversalRecyclerView extends RecyclerListView {
         this.doNotDetachViews = true;
     }
 
+    public void doNotDetachViews(boolean z) {
+        this.doNotDetachViews = z;
+    }
+
     public UniversalRecyclerView(BaseFragment baseFragment, Utilities.Callback2 callback2, Utilities.Callback5 callback5, Utilities.Callback5Return callback5Return) {
         this(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), callback2, callback5, callback5Return, baseFragment.getResourceProvider());
     }

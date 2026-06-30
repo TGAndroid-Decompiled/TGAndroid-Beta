@@ -141,6 +141,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     private String currentItemName;
     private TL_account.Password currentPassword;
     private int currentStep;
+    private Utilities.Callback customAnyResultReceiver;
     private Utilities.CallbackReturn customErrorReceiver;
     private Utilities.Callback customResultReceiver;
     private PaymentFormActivityDelegate delegate;
@@ -768,6 +769,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$17(View view) {
         PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
+        paymentFormActivity.setCustomResultReceiver(this.customResultReceiver);
+        paymentFormActivity.setCustomAnyResultReceiver(this.customAnyResultReceiver);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TL_account.Password password) {
@@ -796,6 +799,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$18(View view) {
         PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
+        paymentFormActivity.setCustomResultReceiver(this.customResultReceiver);
+        paymentFormActivity.setCustomAnyResultReceiver(this.customAnyResultReceiver);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TL_account.Password password) {
@@ -824,6 +829,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$19(View view) {
         PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
+        paymentFormActivity.setCustomResultReceiver(this.customResultReceiver);
+        paymentFormActivity.setCustomAnyResultReceiver(this.customAnyResultReceiver);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TL_account.Password password) {
@@ -852,6 +859,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$20(View view) {
         PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 0, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
+        paymentFormActivity.setCustomResultReceiver(this.customResultReceiver);
+        paymentFormActivity.setCustomAnyResultReceiver(this.customAnyResultReceiver);
         paymentFormActivity.setDelegate(new PaymentFormActivityDelegate() {
             @Override
             public void currentPasswordUpdated(TL_account.Password password) {
@@ -1140,20 +1149,24 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard2 = (TLRPC.TL_paymentSavedCredentialsCard) list.get(i - i2);
             this.savedCredentialsCard = tL_paymentSavedCredentialsCard2;
             paymentFormActivityDelegate.didSelectNewCard(null, tL_paymentSavedCredentialsCard2.title, true, null, tL_paymentSavedCredentialsCard2);
-        } else {
-            if (i < list2.size() - 1) {
-                TLRPC.TL_paymentFormMethod tL_paymentFormMethod = this.paymentForm.additional_methods.get((i - list.size()) - i2);
-                PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 2, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
-                paymentFormActivity.setPaymentMethod(tL_paymentFormMethod);
-                paymentFormActivity.setDelegate(paymentFormActivityDelegate);
-                presentFragment(paymentFormActivity);
-                return;
-            }
-            if (i == list2.size() - 1) {
-                PaymentFormActivity paymentFormActivity2 = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 2, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
-                paymentFormActivity2.setDelegate(paymentFormActivityDelegate);
-                presentFragment(paymentFormActivity2);
-            }
+            return;
+        }
+        if (i < list2.size() - 1) {
+            TLRPC.TL_paymentFormMethod tL_paymentFormMethod = this.paymentForm.additional_methods.get((i - list.size()) - i2);
+            PaymentFormActivity paymentFormActivity = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 2, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
+            paymentFormActivity.setCustomResultReceiver(this.customResultReceiver);
+            paymentFormActivity.setCustomAnyResultReceiver(this.customAnyResultReceiver);
+            paymentFormActivity.setPaymentMethod(tL_paymentFormMethod);
+            paymentFormActivity.setDelegate(paymentFormActivityDelegate);
+            presentFragment(paymentFormActivity);
+            return;
+        }
+        if (i == list2.size() - 1) {
+            PaymentFormActivity paymentFormActivity2 = new PaymentFormActivity(this.invoiceInput, this.paymentForm, this.messageObject, this.invoiceSlug, 2, this.requestedInfo, this.shippingOption, this.tipAmount, null, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment, this.allowUnregistered);
+            paymentFormActivity2.setCustomResultReceiver(this.customResultReceiver);
+            paymentFormActivity2.setCustomAnyResultReceiver(this.customAnyResultReceiver);
+            paymentFormActivity2.setDelegate(paymentFormActivityDelegate);
+            presentFragment(paymentFormActivity2);
         }
     }
 
@@ -2478,8 +2491,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void setCustomResultReceiver(Utilities.Callback callback) {
+    public PaymentFormActivity setCustomResultReceiver(Utilities.Callback callback) {
         this.customResultReceiver = callback;
+        return this;
+    }
+
+    public PaymentFormActivity setCustomAnyResultReceiver(Utilities.Callback callback) {
+        this.customAnyResultReceiver = callback;
+        return this;
     }
 
     public void setCustomErrorReceiver(Utilities.CallbackReturn callbackReturn) {
@@ -2753,10 +2772,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
         bottomSheetParams.transitionFromLeft = true;
         bottomSheetParams.allowNestedScroll = false;
-        lastFragment.showAsSheet(new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject), bottomSheetParams);
+        lastFragment.showAsSheet(new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), bottomSheetParams);
     }
 
     public void lambda$sendData$67(TLObject tLObject) {
+        Utilities.Callback callback = this.customAnyResultReceiver;
+        if (callback != null) {
+            callback.run((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
+        }
         setDonePressed(false);
         this.webviewLoading = true;
         showEditDoneProgress(true, true);
@@ -2944,7 +2967,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
         bottomSheetParams.transitionFromLeft = true;
         bottomSheetParams.allowNestedScroll = false;
-        lastFragment.showAsSheet(new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject), bottomSheetParams);
+        lastFragment.showAsSheet(new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject).setCustomResultReceiver(this.customResultReceiver).setCustomAnyResultReceiver(this.customAnyResultReceiver), bottomSheetParams);
     }
 
     public void lambda$sendData$68(TLRPC.TL_error tL_error, TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm) {

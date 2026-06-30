@@ -12,6 +12,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessLinksActivity;
 import org.telegram.ui.Business.QuickRepliesController;
@@ -725,7 +726,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     }
 
     public static abstract class UItemFactory {
-        private ArrayList cache;
+        private ArrayList<View> cache;
         public final int viewType = UItem.access$208();
 
         public void attachedView(RecyclerListView recyclerListView, View view, UItem uItem) {
@@ -759,12 +760,28 @@ public class UItem extends AdapterWithDiffUtils.Item {
             UItem.factories.put(uItemFactory.viewType, uItemFactory);
         }
 
+        public void precache(BaseFragment baseFragment, int i) {
+            precache(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), baseFragment.getResourceProvider(), i);
+        }
+
+        public void precache(Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider, int i3) {
+            if (context == null) {
+                return;
+            }
+            if (this.cache == null) {
+                this.cache = new ArrayList<>();
+            }
+            for (int i4 = 0; i4 < this.cache.size() - i3; i4++) {
+                this.cache.add(createView(context, null, i, i2, resourcesProvider));
+            }
+        }
+
         protected View getCached() {
-            ArrayList arrayList = this.cache;
+            ArrayList<View> arrayList = this.cache;
             if (arrayList == null || arrayList.isEmpty()) {
                 return null;
             }
-            return (View) this.cache.remove(0);
+            return this.cache.remove(0);
         }
 
         public boolean equals(UItem uItem, UItem uItem2) {

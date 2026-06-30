@@ -5452,20 +5452,20 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         prepareSendingText(accountInstance, charSequence, j, 0L, z, i, i2, j2);
     }
 
-    public static void lambda$prepareSendingText$123(final CharSequence charSequence, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i, final int i2, final long j3) {
+    public static void lambda$prepareSendingText$123(final CharSequence charSequence, final AccountInstance accountInstance, final long j, final long j2, final boolean z, final int i, final int i2, final long j3) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$122(charSequence, j, accountInstance, j2, z, i, i2, j3);
+                SendMessagesHelper.lambda$prepareSendingText$122(charSequence, accountInstance, j, j2, z, i, i2, j3);
             }
         });
     }
 
-    public static void lambda$prepareSendingText$124(final CharSequence charSequence, final long j, final AccountInstance accountInstance, final long j2, final boolean z, final int i, final int i2, final long j3) {
+    public static void lambda$prepareSendingText$124(final CharSequence charSequence, final AccountInstance accountInstance, final long j, final long j2, final boolean z, final int i, final int i2, final long j3) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$123(charSequence, j, accountInstance, j2, z, i, i2, j3);
+                SendMessagesHelper.lambda$prepareSendingText$123(charSequence, accountInstance, j, j2, z, i, i2, j3);
             }
         });
     }
@@ -5474,19 +5474,20 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         accountInstance.getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                SendMessagesHelper.lambda$prepareSendingText$124(charSequence, j2, accountInstance, j, z, i, i2, j3);
+                SendMessagesHelper.lambda$prepareSendingText$124(charSequence, accountInstance, j2, j, z, i, i2, j3);
             }
         });
     }
 
-    public static void lambda$prepareSendingText$122(CharSequence charSequence, long j, AccountInstance accountInstance, long j2, boolean z, int i, int i2, long j3) {
+    public static void lambda$prepareSendingText$122(CharSequence charSequence, AccountInstance accountInstance, long j, long j2, boolean z, int i, int i2, long j3) {
         MessageObject messageObject;
         TLRPC.TL_forumTopic tL_forumTopicFindTopic;
         CharSequence trimmedString = getTrimmedString(charSequence);
+        int maxMessageLength = accountInstance.getMessagesController().getMaxMessageLength();
         if (trimmedString == null || trimmedString.length() == 0) {
             return;
         }
-        int iCeil = (int) Math.ceil(trimmedString.length() / 4096.0f);
+        int iCeil = (int) Math.ceil(trimmedString.length() / maxMessageLength);
         if (j == 0 || (tL_forumTopicFindTopic = accountInstance.getMessagesController().getTopicsController().findTopic(-j2, j)) == null || tL_forumTopicFindTopic.topicStartMessage == null) {
             messageObject = null;
         } else {
@@ -5496,7 +5497,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         int i3 = 0;
         while (i3 < iCeil) {
             int i4 = i3 + 1;
-            CharSequence[] charSequenceArr = {trimmedString.subSequence(i3 * 4096, Math.min(i4 * 4096, trimmedString.length()))};
+            CharSequence[] charSequenceArr = {trimmedString.subSequence(i3 * maxMessageLength, Math.min(i4 * maxMessageLength, trimmedString.length()))};
             ArrayList<TLRPC.MessageEntity> entities = accountInstance.getMediaDataController().getEntities(charSequenceArr, true);
             SendMessageParams sendMessageParamsOf = SendMessageParams.of(charSequenceArr[0].toString(), j2, messageObject, messageObject, null, true, null, null, null, z, i, i2, null, false);
             sendMessageParamsOf.entities = entities;

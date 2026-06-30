@@ -21,6 +21,8 @@ public class AppGlobalConfig {
     public final ConfigBoolean disableBlurInLightTheme;
     public final ConfigInt groupCallMessageLengthLimit;
     public final ConfigTime groupCallMessageTtl;
+    public final ConfigInt messageLengthLimitDefault;
+    public final ConfigInt messageLengthLimitPremium;
     public final ConfigBoolean messagePrimaryEditedDate;
     public final ConfigTime messageTypingDraftTtl;
     public final ConfigString musicSearchUsername;
@@ -41,6 +43,7 @@ public class AppGlobalConfig {
     public final ConfigInt richMessageMaxDepth;
     public final ConfigInt richMessageMaxMedia;
     public final ConfigInt richMessageMaxTableCols;
+    public final ConfigString richMessagePosting;
     public final ConfigBoolean settingsDisplayPasskeys;
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
@@ -116,13 +119,16 @@ public class AppGlobalConfig {
         this.aicomposeTonePromptLengthMax = ofInt("aicompose_tone_prompt_length_max", 1024);
         this.aicomposeToneSavedLimitDefault = ofInt("aicompose_tone_saved_limit_default", 5);
         this.aicomposeToneSavedLimitPremium = ofInt("aicompose_tone_saved_limit_premium", 20);
+        this.messagePrimaryEditedDate = ofBoolean("message_primary_edited_date", false);
         this.richMessageLengthLimit = ofInt("rich_message_length_limit", 32768);
         this.richMessageMaxBlocks = ofInt("rich_message_max_blocks", 500);
         this.richMessageMaxDepth = ofInt("rich_message_max_depth", 16);
         this.richMessageMaxMedia = ofInt("rich_message_max_media", 50);
         this.richMessageMaxTableCols = ofInt("rich_message_max_table_cols", 20);
-        this.messagePrimaryEditedDate = ofBoolean("message_primary_edited_date", false);
+        this.richMessagePosting = ofString("rich_message_posting", "premium");
         this.communityPeersLimit = ofInt("community_peers_limit", 100);
+        this.messageLengthLimitDefault = ofInt("message_length_limit_default", 4096);
+        this.messageLengthLimitPremium = ofInt("message_length_limit_premium", 8192);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {
