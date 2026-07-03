@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
@@ -150,7 +151,7 @@ public abstract class VoIPHelper {
         initiateCall(null, chat, str, false, false, z, bool, activity, baseFragment, accountInstance);
     }
 
-    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) throws InterruptedException {
+    private static void initiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, Boolean bool, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance) throws InterruptedException, Resources.NotFoundException {
         String name;
         int i;
         String name2;
@@ -214,7 +215,7 @@ public abstract class VoIPHelper {
                     }
                     new AlertDialog.Builder(activity).setTitle(LocaleController.getString(callerId < 0 ? R.string.VoipOngoingChatAlertTitle : R.string.VoipOngoingAlertTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(i, name, name2))).setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                         @Override
-                        public final void onClick(AlertDialog alertDialog, int i4) throws InterruptedException {
+                        public final void onClick(AlertDialog alertDialog, int i4) throws InterruptedException, Resources.NotFoundException {
                             VoIPHelper.lambda$initiateCall$3(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance, alertDialog, i4);
                         }
                     }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
@@ -236,11 +237,11 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) throws InterruptedException {
+    public static void lambda$initiateCall$3(final TLRPC.User user, final TLRPC.Chat chat, final String str, final boolean z, final boolean z2, final boolean z3, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, AlertDialog alertDialog, int i) throws InterruptedException, Resources.NotFoundException {
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     VoIPHelper.lambda$initiateCall$2(user, chat, str, z, z2, z3, activity, baseFragment, accountInstance);
                 }
             });
@@ -249,12 +250,12 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$initiateCall$2(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) {
+    public static void lambda$initiateCall$2(TLRPC.User user, TLRPC.Chat chat, String str, boolean z, boolean z2, boolean z3, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance) throws Resources.NotFoundException {
         lastCallTime = 0L;
         doInitiateCall(user, chat, str, null, false, z, z2, z3, activity, baseFragment, accountInstance, true, true);
     }
 
-    public static void doInitiateCall(TLRPC.User user, TLRPC.Chat chat, String str, TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3, boolean z4, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance, boolean z5, boolean z6) {
+    public static void doInitiateCall(TLRPC.User user, TLRPC.Chat chat, String str, TLRPC.InputPeer inputPeer, boolean z, boolean z2, boolean z3, boolean z4, Activity activity, BaseFragment baseFragment, AccountInstance accountInstance, boolean z5, boolean z6) throws Resources.NotFoundException {
         doInitiateCall(user, chat, str, inputPeer, z, z2, z3, z4, activity, baseFragment, accountInstance, z5, z6, false);
     }
 
@@ -262,14 +263,14 @@ public abstract class VoIPHelper {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException {
+    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) {
         if (activity == null) {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     VoIPHelper.lambda$joinConference$4(activity, i, inputGroupCall, z, groupCall, hashSet);
                 }
             });
@@ -313,12 +314,12 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException {
+    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
         lastCallTime = 0L;
         joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
     }
 
-    public static void doInitiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final TLRPC.InputPeer inputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6, boolean z7) {
+    public static void doInitiateCall(final TLRPC.User user, final TLRPC.Chat chat, final String str, final TLRPC.InputPeer inputPeer, boolean z, final boolean z2, final boolean z3, final boolean z4, final Activity activity, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z5, boolean z6, boolean z7) throws Resources.NotFoundException {
         ChatObject.Call groupCall;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
@@ -334,7 +335,7 @@ public abstract class VoIPHelper {
                 final TLRPC.InputPeer inputPeer2 = accountInstance.getMessagesController().getInputPeer(MessageObject.getPeerId(peer));
                 JoinCallAlert.checkFewUsers(activity, -chat.id, accountInstance, new MessagesStorage.BooleanCallback() {
                     @Override
-                    public final void run(boolean z8) {
+                    public final void run(boolean z8) throws Resources.NotFoundException {
                         VoIPHelper.lambda$doInitiateCall$5(str, activity, chat, user, inputPeer2, z2, z3, baseFragment, accountInstance, z8);
                     }
                 });
@@ -343,7 +344,7 @@ public abstract class VoIPHelper {
             if (z5 && chat != null) {
                 JoinCallAlert.open(activity, -chat.id, accountInstance, baseFragment, !z4 ? 1 : 0, null, new JoinCallAlert.JoinCallAlertDelegate() {
                     @Override
-                    public final void didSelectChat(TLRPC.InputPeer inputPeer3, boolean z8, boolean z9, boolean z10) {
+                    public final void didSelectChat(TLRPC.InputPeer inputPeer3, boolean z8, boolean z9, boolean z10) throws Resources.NotFoundException {
                         VoIPHelper.lambda$doInitiateCall$6(z4, activity, accountInstance, chat, str, user, z2, z3, baseFragment, inputPeer3, z8, z9, z10);
                     }
                 });
@@ -352,7 +353,7 @@ public abstract class VoIPHelper {
             if (z6 && !z && (inputPeer instanceof TLRPC.TL_inputPeerUser) && ChatObject.shouldSendAnonymously(chat) && (!ChatObject.isChannel(chat) || chat.megagroup)) {
                 new AlertDialog.Builder(activity).setTitle(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelVoiceChat : R.string.VoipGroupVoiceChat)).setMessage(LocaleController.getString(ChatObject.isChannelOrGiga(chat) ? R.string.VoipChannelJoinAnonymouseAlert : R.string.VoipGroupJoinAnonymouseAlert)).setPositiveButton(LocaleController.getString(R.string.VoipChatJoin), new AlertDialog.OnButtonClickListener() {
                     @Override
-                    public final void onClick(AlertDialog alertDialog, int i) {
+                    public final void onClick(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
                         VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z4, activity, baseFragment, accountInstance, false, false);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
@@ -412,11 +413,11 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$doInitiateCall$5(final String str, final Activity activity, final TLRPC.Chat chat, final TLRPC.User user, final TLRPC.InputPeer inputPeer, final boolean z, final boolean z2, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z3) {
+    public static void lambda$doInitiateCall$5(final String str, final Activity activity, final TLRPC.Chat chat, final TLRPC.User user, final TLRPC.InputPeer inputPeer, final boolean z, final boolean z2, final BaseFragment baseFragment, final AccountInstance accountInstance, boolean z3) throws Resources.NotFoundException {
         if (!z3 && str != null) {
             JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, chat) {
                 @Override
-                protected void onJoin() {
+                protected void onJoin() throws Resources.NotFoundException {
                     VoIPHelper.doInitiateCall(user, chat, str, inputPeer, true, z, z2, false, activity, baseFragment, accountInstance, false, false);
                 }
             };
@@ -429,7 +430,7 @@ public abstract class VoIPHelper {
         doInitiateCall(user, chat, str, inputPeer, !z3, z, z2, false, activity, baseFragment, accountInstance, false, false);
     }
 
-    public static void lambda$doInitiateCall$6(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC.Chat chat, final String str, final TLRPC.User user, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC.InputPeer inputPeer, boolean z4, boolean z5, final boolean z6) {
+    public static void lambda$doInitiateCall$6(final boolean z, final Activity activity, final AccountInstance accountInstance, final TLRPC.Chat chat, final String str, final TLRPC.User user, final boolean z2, final boolean z3, final BaseFragment baseFragment, final TLRPC.InputPeer inputPeer, boolean z4, boolean z5, final boolean z6) throws Resources.NotFoundException {
         if (z && z5) {
             GroupCallActivity.create((LaunchActivity) activity, accountInstance, chat, inputPeer, z4, str);
             return;
@@ -437,7 +438,7 @@ public abstract class VoIPHelper {
         if (!z4 && str != null) {
             JoinCallByUrlAlert joinCallByUrlAlert = new JoinCallByUrlAlert(activity, chat) {
                 @Override
-                protected void onJoin() {
+                protected void onJoin() throws Resources.NotFoundException {
                     VoIPHelper.doInitiateCall(user, chat, str, inputPeer, false, z2, z3, z, activity, baseFragment, accountInstance, false, true, z6);
                 }
             };
