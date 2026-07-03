@@ -280,7 +280,7 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
     public boolean isPressOnText(int i, int i2) {
         int lineForVertical;
         Layout layout = this.editText.getLayout();
-        if (layout == null) {
+        if (layout == null || this.editText.length() == 0) {
             return false;
         }
         int left = i - (this.editText.getLeft() + this.editText.getPaddingLeft());
@@ -288,8 +288,13 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
         if (top < 0 || top >= layout.getHeight() || (lineForVertical = layout.getLineForVertical(top)) < 0 || lineForVertical >= layout.getLineCount()) {
             return false;
         }
+        float fDp = AndroidUtilities.dp(24.0f);
         float f = left;
-        return f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical);
+        return f >= Math.max(0.0f, layout.getLineLeft(lineForVertical) - fDp) && f <= Math.min((float) Math.max(0, (this.editText.getWidth() - this.editText.getPaddingLeft()) - this.editText.getPaddingRight()), layout.getLineRight(lineForVertical) + fDp);
+    }
+
+    public boolean isPressOnEmptyEditText(int i, int i2) {
+        return this.editText.length() == 0 && i >= this.editText.getLeft() && i <= this.editText.getLeft() + this.editText.getWidth() && i2 >= this.editText.getTop() && i2 <= this.editText.getTop() + this.editText.getHeight();
     }
 
     @Override

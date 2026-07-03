@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
@@ -130,11 +131,11 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
         communitySheet.fillItemsChatsToAdd(arrayList, universalAdapter);
     }
 
-    public static void access$4800(CommunitySheet communitySheet, UItem uItem, View view, int i, float f, float f2) {
+    public static void access$5000(CommunitySheet communitySheet, UItem uItem, View view, int i, float f, float f2) {
         communitySheet.onClickRequest(uItem, view, i, f, f2);
     }
 
-    public static void access$4900(CommunitySheet communitySheet, ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public static void access$5100(CommunitySheet communitySheet, ArrayList arrayList, UniversalAdapter universalAdapter) {
         communitySheet.fillItemsRequests(arrayList, universalAdapter);
     }
 
@@ -599,7 +600,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
     @Override
     public void lambda$openCrafting$8() {
         if (this.viewPager.getCurrentPosition() > 0) {
-            this.viewPager.scrollToPosition(r0.getCurrentPosition() - 1);
+            this.viewPager.scrollToPosition(0);
         } else {
             super.lambda$openCrafting$8();
         }
@@ -881,12 +882,12 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    CommunitySheet.access$4900(communitySheet, (ArrayList) obj, (UniversalAdapter) obj2);
+                    CommunitySheet.access$5100(communitySheet, (ArrayList) obj, (UniversalAdapter) obj2);
                 }
             }, new Utilities.Callback5() {
                 @Override
                 public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-                    CommunitySheet.access$4800(communitySheet, (UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
+                    CommunitySheet.access$5000(communitySheet, (UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
                 }
             }, null, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
@@ -905,7 +906,9 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             ActionBar actionBar = new ActionBar(context, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.actionBar = actionBar;
             actionBar.setOccupyStatusBar(false);
-            this.actionBar.setTitleColor(CommunitySheet.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            ActionBar actionBar2 = this.actionBar;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            actionBar2.setTitleColor(CommunitySheet.this.getThemedColor(i));
             this.actionBar.setItemsBackgroundColor(CommunitySheet.this.getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
             this.actionBar.setItemsColor(CommunitySheet.this.getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
@@ -913,8 +916,8 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             this.actionBar.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
             this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
                 @Override
-                public void onItemClick(int i) {
-                    if (i == -1) {
+                public void onItemClick(int i2) {
+                    if (i2 == -1) {
                         CommunitySheet.this.communityPage.listView.adapter.update(false);
                         CommunitySheet.this.viewPager.scrollToPosition(0);
                     }
@@ -926,6 +929,7 @@ public class CommunitySheet extends BottomSheet implements NotificationCenter.No
             linearLayout.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
             ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             buttonWithCounterView.setNeutral();
+            buttonWithCounterView.setColor(ColorUtils.blendARGB(CommunitySheet.this.getThemedColor(Theme.key_windowBackgroundWhite), CommunitySheet.this.getThemedColor(i), 0.125f));
             buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
             buttonWithCounterView.setRound();
             buttonWithCounterView.setOnClickListener(new View.OnClickListener() {

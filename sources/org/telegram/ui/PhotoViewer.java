@@ -19,7 +19,6 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Insets;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Outline;
@@ -83,7 +82,6 @@ import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -105,6 +103,9 @@ import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.dynamicanimation.animation.DynamicAnimation;
@@ -4410,11 +4411,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.iBlur3FactoryFrostedLiquidGlass.setLinkedViewsRef(this.glassAttachedViews);
         this.shadowBlurer = new BlurringShader.StoryBlurDrawer(this.blurManager, this.containerView, 6);
         this.windowView.addView(this.containerView, LayoutHelper.createFrame(-1, -1, 51));
-        this.containerView.setFitsSystemWindows(true);
-        this.containerView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        ViewCompat.setOnApplyWindowInsetsListener(this.containerView, new OnApplyWindowInsetsListener() {
             @Override
-            public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                return this.f$0.lambda$setParentActivity$6(view, windowInsets);
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                return this.f$0.lambda$setParentActivity$6(view, windowInsetsCompat);
             }
         });
         this.containerView.setSystemUiVisibility(1792);
@@ -6087,24 +6087,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public WindowInsets lambda$setParentActivity$6(View view, WindowInsets windowInsets) {
+    public WindowInsetsCompat lambda$setParentActivity$6(View view, WindowInsetsCompat windowInsetsCompat) {
         Rect rect = new Rect(this.insets);
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 30) {
-            Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-            this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
-        } else {
-            this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
-        }
-        int i2 = this.insets.top;
+        Insets insetsIgnoringVisibility = windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+        this.insets.set(insetsIgnoringVisibility.left, insetsIgnoringVisibility.top, insetsIgnoringVisibility.right, insetsIgnoringVisibility.bottom);
+        int i = this.insets.top;
         Activity activity = this.parentActivity;
-        if ((activity instanceof LaunchActivity) && ((i2 != 0 || AndroidUtilities.isInMultiwindow) && !this.inBubbleMode && AndroidUtilities.statusBarHeight != i2)) {
-            AndroidUtilities.statusBarHeight = i2;
+        if ((activity instanceof LaunchActivity) && ((i != 0 || AndroidUtilities.isInMultiwindow) && !this.inBubbleMode && AndroidUtilities.statusBarHeight != i)) {
+            AndroidUtilities.statusBarHeight = i;
             ((LaunchActivity) activity).drawerLayoutContainer.requestLayout();
         }
-        if (!rect.equals(windowInsets)) {
-            int i3 = this.animationInProgress;
-            if (i3 == 1 || i3 == 3) {
+        if (!rect.equals(this.insets)) {
+            int i2 = this.animationInProgress;
+            if (i2 == 1 || i2 == 3) {
                 ClippingImageView clippingImageView = this.animatingImageView;
                 clippingImageView.setTranslationX(clippingImageView.getTranslationX() - getLeftInset());
                 this.animationValues[0][2] = this.animatingImageView.getTranslationX();
@@ -6118,22 +6113,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (view2 != null) {
             this.navigationBarHeight = this.insets.bottom;
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view2.getLayoutParams();
-            int i4 = this.navigationBarHeight;
-            marginLayoutParams.height = i4;
-            marginLayoutParams.bottomMargin = (-i4) / 2;
+            int i3 = this.navigationBarHeight;
+            marginLayoutParams.height = i3;
+            marginLayoutParams.bottomMargin = (-i3) / 2;
             this.navigationBar.setLayoutParams(marginLayoutParams);
         }
-        this.containerView.setPadding(windowInsets.getSystemWindowInsetLeft(), 0, windowInsets.getSystemWindowInsetRight(), 0);
+        this.containerView.setPadding(insetsIgnoringVisibility.left, 0, insetsIgnoringVisibility.right, 0);
         if (this.actionBar != null) {
             AndroidUtilities.cancelRunOnUIThread(this.updateContainerFlagsRunnable);
             if (this.isVisible && this.animationInProgress == 0) {
                 AndroidUtilities.runOnUIThread(this.updateContainerFlagsRunnable, 200L);
             }
         }
-        if (i >= 30) {
-            return WindowInsets.CONSUMED;
-        }
-        return windowInsets.consumeSystemWindowInsets();
+        return WindowInsetsCompat.CONSUMED;
     }
 
     class AnonymousClass18 extends ActionBar.ActionBarMenuOnItemClick {

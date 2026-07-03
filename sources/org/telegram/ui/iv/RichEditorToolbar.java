@@ -370,7 +370,7 @@ public class RichEditorToolbar extends FrameLayout {
         LinearLayout linearLayout5 = new LinearLayout(context);
         this.formattingPanelLayout = linearLayout5;
         linearLayout5.setOrientation(0);
-        linearLayout5.setPadding(AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f));
+        linearLayout5.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingScrollView.addView(linearLayout5, new FrameLayout.LayoutParams(-2, -1));
         addFormattingButton(R.drawable.formatting_bold, 1);
         addFormattingButton(R.drawable.formatting_italic, 2);
@@ -383,7 +383,7 @@ public class RichEditorToolbar extends FrameLayout {
         LinearLayout linearLayout6 = new LinearLayout(context);
         this.formattingLayout2 = linearLayout6;
         linearLayout6.setOrientation(0);
-        this.formattingLayout2.setPadding(AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f));
+        this.formattingLayout2.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingLayout2.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
         linearLayout4.addView(this.formattingLayout2, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
         RichEditor.Button button = new RichEditor.Button(context, R.drawable.media_link_24, resourcesProvider);
@@ -395,7 +395,7 @@ public class RichEditorToolbar extends FrameLayout {
                 delegate.onLink();
             }
         });
-        this.formattingLayout2.addView(button, LayoutHelper.createLinear(41, 41));
+        this.formattingLayout2.addView(button, LayoutHelper.createLinear(38, 38, 16));
         RichEditor.Button button2 = new RichEditor.Button(context, R.drawable.msg_calendar2, resourcesProvider);
         this.dateButton = button2;
         button2.setBackgroundColorKey(i2);
@@ -405,11 +405,11 @@ public class RichEditorToolbar extends FrameLayout {
                 delegate.onDate();
             }
         });
-        this.formattingLayout2.addView(button2, LayoutHelper.createLinear(41, 41));
+        this.formattingLayout2.addView(button2, LayoutHelper.createLinear(38, 38, 16));
         LinearLayout linearLayout7 = new LinearLayout(context);
         this.formattingLayout3 = linearLayout7;
         linearLayout7.setOrientation(0);
-        this.formattingLayout3.setPadding(AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f));
+        this.formattingLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingLayout3.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
         linearLayout4.addView(this.formattingLayout3, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
         RichEditor.Button button3 = new RichEditor.Button(context, i5, resourcesProvider);
@@ -421,15 +421,16 @@ public class RichEditorToolbar extends FrameLayout {
                 delegate.onMath();
             }
         });
-        this.formattingLayout3.addView(button3, LayoutHelper.createLinear(41, 41));
+        this.formattingLayout3.addView(button3, LayoutHelper.createLinear(38, 38, 16));
         LinearLayout linearLayout8 = new LinearLayout(context);
         this.formattingLayout1 = linearLayout8;
         linearLayout8.setOrientation(0);
-        this.formattingLayout1.setPadding(AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f), AndroidUtilities.dp(1.5f));
+        this.formattingLayout1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingLayout1.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
         linearLayout4.addView(this.formattingLayout1, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
         RichEditor.Button button4 = new RichEditor.Button(context, R.drawable.input_ai, resourcesProvider);
         this.aiStyleButton = button4;
+        button4.setImageDrawable(new AiButtonDrawable(context));
         button4.setBackgroundColorKey(i2);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -437,7 +438,7 @@ public class RichEditorToolbar extends FrameLayout {
                 delegate.onAiStyle();
             }
         });
-        this.formattingLayout1.addView(button4, LayoutHelper.createLinear(41, 41));
+        this.formattingLayout1.addView(button4, LayoutHelper.createLinear(38, 38, 16));
         ChatActivityEnterView.SendButton sendButton = new ChatActivityEnterView.SendButton(context, R.drawable.send_plane_24, resourcesProvider, true) {
             @Override
             public boolean isOpen() {
@@ -496,7 +497,7 @@ public class RichEditorToolbar extends FrameLayout {
         });
         this.formattingButtons.add(button);
         LinearLayout linearLayout = this.formattingPanelLayout;
-        linearLayout.addView(button, LayoutHelper.createLinear(41, 41, linearLayout.getChildCount() > 0 ? 2.0f : 0.0f, 0.0f, 0.0f, 0.0f));
+        linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() == 0 ? 0 : 2, 0, 0, 0));
     }
 
     public void lambda$addFormattingButton$13(int i, View view) {

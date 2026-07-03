@@ -65,7 +65,6 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.Forum.ForumUtilities;
-import org.telegram.ui.Components.LatexInliner;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
@@ -315,6 +314,7 @@ public class MessageObject {
     public TLRPC.TL_forumTopic replyToForumTopic;
     public boolean resendAsIs;
     public boolean revealingMediaSpoilers;
+    public boolean richCheckboxEcho;
     public RichMessageLayout richLayout;
     public int richMessageMediaType;
     public boolean scheduled;
@@ -2997,6 +2997,28 @@ public class MessageObject {
         return spannableStringBuilder;
     }
 
+    public static boolean isBlueBlock(TL_iv.PageBlock pageBlock) {
+        return (pageBlock instanceof TL_iv.pageBlockTable) || (pageBlock instanceof TL_iv.pageBlockMath) || (pageBlock instanceof TL_iv.pageBlockAudio) || (pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockVideo) || (pageBlock instanceof TL_iv.pageBlockCollage) || (pageBlock instanceof TL_iv.pageBlockSlideshow);
+    }
+
+    public static SpannableStringBuilder span(String str, int i) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("⊞");
+        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.iv_preview_table), 0, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
+    }
+
+    public static SpannableStringBuilder formulaSpan() {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("fx");
+        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.iv_formula), 0, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
+    }
+
+    public static SpannableStringBuilder checkboxSpan(boolean z) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(z ? "✅" : "☑️");
+        spannableStringBuilder.setSpan(new ColoredImageSpan(z ? R.drawable.iv_checkbox_on : R.drawable.iv_checkbox_off), 0, spannableStringBuilder.length(), 33);
+        return spannableStringBuilder;
+    }
+
     public static CharSequence formatRichBlock(TL_iv.PageBlock pageBlock, boolean z, boolean z2, int i, SpannableStringBuilder spannableStringBuilder, TL_iv.RichMessage richMessage) {
         TLRPC.Document document;
         if ((pageBlock instanceof TL_iv.pageBlockTitle) || (pageBlock instanceof TL_iv.pageBlockHeader) || (pageBlock instanceof TL_iv.pageBlockSubheader) || (pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6) || (pageBlock instanceof TL_iv.pageBlockBlockquote) || (pageBlock instanceof TL_iv.pageBlockPullquote)) {
@@ -3024,7 +3046,7 @@ public class MessageObject {
             } else if (pageBlock instanceof TL_iv.pageBlockAuthorDate) {
                 formatRichText(((TL_iv.pageBlockAuthorDate) pageBlock).author, z, z2, i, spannableStringBuilder, 0);
             } else if (pageBlock instanceof TL_iv.pageBlockMath) {
-                spannableStringBuilder.append((CharSequence) LatexInliner.inlineLatex(((TL_iv.pageBlockMath) pageBlock).source));
+                spannableStringBuilder.append((CharSequence) formulaSpan()).append(" ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVFormula));
             } else if (pageBlock instanceof TL_iv.pageBlockMap) {
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Map));
                 TL_iv.PageCaption pageCaption = pageBlock.caption;
@@ -3037,11 +3059,14 @@ public class MessageObject {
             } else if (pageBlock instanceof TL_iv.pageBlockList) {
                 TL_iv.pageBlockList pageblocklist = (TL_iv.pageBlockList) pageBlock;
                 for (int i3 = 0; i3 < pageblocklist.items.size(); i3++) {
+                    if (i3 > 0) {
+                        spannableStringBuilder.append("  ");
+                    }
                     TL_iv.PageListItem pageListItem = pageblocklist.items.get(i3);
                     if (pageListItem instanceof TL_iv.TL_pageListItemText) {
                         TL_iv.TL_pageListItemText tL_pageListItemText = (TL_iv.TL_pageListItemText) pageListItem;
                         if (tL_pageListItemText.checkbox) {
-                            spannableStringBuilder.append(tL_pageListItemText.checked ? "✅ " : "☑️ ");
+                            spannableStringBuilder.append((CharSequence) checkboxSpan(tL_pageListItemText.checked)).append(" ");
                         } else {
                             spannableStringBuilder.append("• ");
                         }
@@ -3049,7 +3074,7 @@ public class MessageObject {
                     } else if (pageListItem instanceof TL_iv.TL_pageListItemBlocks) {
                         TL_iv.TL_pageListItemBlocks tL_pageListItemBlocks = (TL_iv.TL_pageListItemBlocks) pageListItem;
                         if (tL_pageListItemBlocks.checkbox) {
-                            spannableStringBuilder.append(tL_pageListItemBlocks.checked ? "✅ " : "☑️ ");
+                            spannableStringBuilder.append((CharSequence) checkboxSpan(tL_pageListItemBlocks.checked)).append(" ");
                         } else {
                             spannableStringBuilder.append("• ");
                         }
@@ -3079,13 +3104,16 @@ public class MessageObject {
             } else if (pageBlock instanceof TL_iv.pageBlockOrderedList) {
                 TL_iv.pageBlockOrderedList pageblockorderedlist = (TL_iv.pageBlockOrderedList) pageBlock;
                 for (int i6 = 0; i6 < pageblockorderedlist.items.size(); i6++) {
+                    if (i6 > 0) {
+                        spannableStringBuilder.append("  ");
+                    }
                     TL_iv.PageListOrderedItem pageListOrderedItem = pageblockorderedlist.items.get(i6);
                     if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemText) {
                         TL_iv.TL_pageListOrderedItemText tL_pageListOrderedItemText = (TL_iv.TL_pageListOrderedItemText) pageListOrderedItem;
                         spannableStringBuilder.append((CharSequence) tL_pageListOrderedItemText.num);
                         spannableStringBuilder.append(". ");
                         if (tL_pageListOrderedItemText.checkbox) {
-                            spannableStringBuilder.append(tL_pageListOrderedItemText.checked ? "✅ " : "☑️ ");
+                            spannableStringBuilder.append((CharSequence) checkboxSpan(tL_pageListOrderedItemText.checked)).append(" ");
                         }
                         formatRichText(tL_pageListOrderedItemText.text, z, z2, i, spannableStringBuilder, 0);
                     } else if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemBlocks) {
@@ -3093,7 +3121,7 @@ public class MessageObject {
                         spannableStringBuilder.append((CharSequence) tL_pageListOrderedItemBlocks.num);
                         spannableStringBuilder.append(". ");
                         if (tL_pageListOrderedItemBlocks.checkbox) {
-                            spannableStringBuilder.append(tL_pageListOrderedItemBlocks.checked ? "✅ " : "☑️ ");
+                            spannableStringBuilder.append((CharSequence) checkboxSpan(tL_pageListOrderedItemBlocks.checked)).append(" ");
                         }
                         int i7 = 0;
                         while (i7 < tL_pageListOrderedItemBlocks.blocks.size()) {
@@ -3119,6 +3147,7 @@ public class MessageObject {
                     }
                 }
             } else if (pageBlock instanceof TL_iv.pageBlockTable) {
+                spannableStringBuilder.append((CharSequence) span("⊞", R.drawable.iv_preview_table)).append(" ");
                 TL_iv.RichText richText = ((TL_iv.pageBlockTable) pageBlock).title;
                 if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
                     formatRichText(richText, z, z2, i, spannableStringBuilder, 1);
@@ -3204,7 +3233,7 @@ public class MessageObject {
                 spannableStringBuilder.setSpan(new URLSpanReplacement("mailto:" + richText.email, textStyleRun2), length, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
-            spannableStringBuilder.append((CharSequence) LatexInliner.inlineLatex(((TL_iv.textMath) richText).source));
+            spannableStringBuilder.append((CharSequence) formulaSpan());
         } else if (richText instanceof TL_iv.textPhone) {
             formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2);
             if (spannableStringBuilder.length() > length) {

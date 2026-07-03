@@ -474,8 +474,11 @@ public abstract class RichHtml {
         if ((i & 16384) != 0) {
             sb.append("<sub>");
         }
-        if ((i & 32768) != 0) {
+        if ((32768 & i) != 0) {
             sb.append("<sup>");
+        }
+        if ((i & 65536) != 0) {
+            sb.append("<mark>");
         }
         if (str != null) {
             sb.append("<a href=\"");
@@ -495,6 +498,9 @@ public abstract class RichHtml {
         }
         if (str != null) {
             sb.append("</a>");
+        }
+        if ((65536 & i) != 0) {
+            sb.append("</mark>");
         }
         if ((32768 & i) != 0) {
             sb.append("</sup>");
@@ -1100,7 +1106,7 @@ public abstract class RichHtml {
         }
     }
 
-    private static void appendInlineNode(android.text.SpannableStringBuilder r7, org.telegram.ui.iv.RichHtml.Node r8, int r9, java.lang.String r10, long r11) throws java.lang.NumberFormatException {
+    private static void appendInlineNode(android.text.SpannableStringBuilder r8, org.telegram.ui.iv.RichHtml.Node r9, int r10, java.lang.String r11, long r12) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.appendInlineNode(android.text.SpannableStringBuilder, org.telegram.ui.iv.RichHtml$Node, int, java.lang.String, long):void");
     }
 
@@ -1116,7 +1122,7 @@ public abstract class RichHtml {
         }
         if (i != 0) {
             TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-            textStyleRun.flags = i & 49439;
+            textStyleRun.flags = i & 114975;
             spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
         }
         if (str != null) {

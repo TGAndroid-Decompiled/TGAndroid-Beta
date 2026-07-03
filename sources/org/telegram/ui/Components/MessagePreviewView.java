@@ -1216,7 +1216,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, NumberFormatException {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
                         Page.this.updateLinkHighlight(this);
                     }
@@ -1243,6 +1243,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public boolean canPerformReply() {
                         return canPerformActions();
+                    }
+
+                    @Override
+                    public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell2);
                     }
 
                     @Override
@@ -1516,6 +1521,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, boolean z, Runnable runnable) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell2, z, runnable);
+                    }
+
+                    @Override
                     public boolean doNotShowLoadingReply(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
                     }
@@ -1749,6 +1759,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                             @Override
                             public boolean canPerformReply() {
                                 return canPerformActions();
+                            }
+
+                            @Override
+                            public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
+                                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell2);
                             }
 
                             @Override
@@ -2024,6 +2039,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                             @Override
                             public void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
                                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell2);
+                            }
+
+                            @Override
+                            public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, boolean z, Runnable runnable) {
+                                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell2, z, runnable);
                             }
 
                             @Override

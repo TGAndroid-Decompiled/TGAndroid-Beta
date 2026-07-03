@@ -616,6 +616,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell);
+                    }
+
+                    @Override
                     public void didLongPress(ChatMessageCell chatMessageCell, float f, float f2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPress(this, chatMessageCell, f, f2);
                     }
@@ -888,6 +893,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     @Override
                     public void didTogglePollPreview(ChatMessageCell chatMessageCell) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell);
+                    }
+
+                    @Override
+                    public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell, boolean z, Runnable runnable) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell, z, runnable);
                     }
 
                     @Override

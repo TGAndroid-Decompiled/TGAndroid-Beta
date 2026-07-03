@@ -105,7 +105,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.utils.EphemeralMessagesHelper;
+import org.telegram.messenger.utils.FBool;
 import org.telegram.messenger.utils.GradientProtectionDrawable;
 import org.telegram.messenger.utils.RectFMergeBounding;
 import org.telegram.messenger.utils.ViewOutlineProviderImpl;
@@ -331,6 +331,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private int previousScrollOffsetY;
     private ChatAttachAlertQuickRepliesLayout quickRepliesLayout;
     private RectF rect;
+    public boolean restrictEphemeralMessageTypes;
     private ChatAttachRestrictedLayout restrictedLayout;
     private ChatAttachAlertRichLayout richLayout;
     public int[] scrollOffsetY;
@@ -883,37 +884,49 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             checkUi_bottomFade();
             return;
         }
-        if (i != 2) {
-            if (i == 1) {
-                checkUi_bottomFade();
-                return;
-            } else if (i == 3) {
-                checkUi_moveCaptionButtonVisibility();
-                return;
-            } else {
-                if (i == 4) {
-                    checkUi_moveCaptionButtonVisibility();
+        if (i == 2) {
+            checkUi_bottomFade();
+            ChatAttachAlertPollLayout chatAttachAlertPollLayout = this.pollLayout;
+            if (chatAttachAlertPollLayout != null && ((attachAlertLayout = this.nextAttachLayout) == chatAttachAlertPollLayout || this.currentAttachLayout == chatAttachAlertPollLayout)) {
+                updateSelectedPosition(attachAlertLayout == chatAttachAlertPollLayout ? 1 : 0);
+            }
+            ChatAttachAlertPollLayout chatAttachAlertPollLayout2 = this.todoLayout;
+            if (chatAttachAlertPollLayout2 != null) {
+                AttachAlertLayout attachAlertLayout2 = this.nextAttachLayout;
+                if (attachAlertLayout2 == chatAttachAlertPollLayout2 || this.currentAttachLayout == chatAttachAlertPollLayout2) {
+                    updateSelectedPosition(attachAlertLayout2 != chatAttachAlertPollLayout2 ? 0 : 1);
                     return;
                 }
                 return;
             }
+            return;
         }
-        checkUi_bottomFade();
-        ChatAttachAlertPollLayout chatAttachAlertPollLayout = this.pollLayout;
-        if (chatAttachAlertPollLayout != null && ((attachAlertLayout = this.nextAttachLayout) == chatAttachAlertPollLayout || this.currentAttachLayout == chatAttachAlertPollLayout)) {
-            updateSelectedPosition(attachAlertLayout == chatAttachAlertPollLayout ? 1 : 0);
+        if (i == 1) {
+            checkUi_bottomFade();
+            return;
         }
-        ChatAttachAlertPollLayout chatAttachAlertPollLayout2 = this.todoLayout;
-        if (chatAttachAlertPollLayout2 != null) {
-            AttachAlertLayout attachAlertLayout2 = this.nextAttachLayout;
-            if (attachAlertLayout2 == chatAttachAlertPollLayout2 || this.currentAttachLayout == chatAttachAlertPollLayout2) {
-                updateSelectedPosition(attachAlertLayout2 != chatAttachAlertPollLayout2 ? 0 : 1);
+        if (i == 3) {
+            checkUi_moveCaptionButtonVisibility();
+            return;
+        }
+        if (i == 4) {
+            checkUi_moveCaptionButtonVisibility();
+            return;
+        }
+        if (i == 5) {
+            checkUi_moveCaptionButtonVisibility();
+            ChatActivityEnterView.SendButton sendButton = this.writeButton;
+            if (sendButton != null) {
+                sendButton.setEphemeralFactor(f);
+                this.writeButton.setSameWidthFactor(f);
             }
         }
     }
 
     public void checkUi_moveCaptionButtonVisibility() {
-        FragmentFloatingButton.setAnimatedVisibility(this.moveCaptionButton, this.animatorCaptionNotEmpty.getFloatValue() * this.animatorToggleCaptionSupported.getFloatValue());
+        float floatValue = this.animatorCaptionNotEmpty.getFloatValue();
+        float floatValue2 = this.animatorToggleCaptionSupported.getFloatValue();
+        FragmentFloatingButton.setAnimatedVisibility(this.moveCaptionButton, floatValue * floatValue2 * FBool.not(this.animatorEphemeralMessageVisibility.getFloatValue()) * (this.restrictEphemeralMessageTypes ? 0.0f : 1.0f));
     }
 
     public interface ChatAttachViewDelegate {
@@ -4435,6 +4448,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             return true;
         }
         applyCaption();
+        if (this.animatorEphemeralMessageVisibility.getValue()) {
+            setButtonPressed(true);
+            this.delegate.didPressedButton(7, true, z, i, i2, j, z2, false, 0L);
+            return true;
+        }
         int i3 = this.currentAccount;
         long dialogId = getDialogId();
         AttachAlertLayout attachAlertLayout = this.currentAttachLayout;
@@ -5749,7 +5767,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     private void updateActionBarVisibility(final boolean z, boolean z2) {
         AttachAlertLayout attachAlertLayout;
-        this.animatorActionBarVisible.setValue(z, true);
+        this.animatorActionBarVisible.setValue(z, z2);
         if (!(z && this.actionBar.getTag() == null) && (z || this.actionBar.getTag() == null)) {
             return;
         }
@@ -6898,14 +6916,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         setCaptionAbove(!this.captionAbove);
     }
 
-    public void checkIsEphemeralMessage(boolean z) {
-        BaseFragment baseFragment = this.baseFragment;
-        if (baseFragment == null || !(baseFragment instanceof ChatActivity)) {
-            return;
-        }
-        ChatActivity chatActivity = (ChatActivity) baseFragment;
-        EditTextEmoji editTextEmoji = this.captionAbove ? this.topCommentTextView : this.commentTextView;
-        this.animatorEphemeralMessageVisibility.setValue(this.editingMessageObject == null && (EphemeralMessagesHelper.getInstance(this.currentAccount).isEphemeralCommand(editTextEmoji != null ? editTextEmoji.getText().toString() : null, chatActivity.botInfo) || (chatActivity.getReplyMessage() != null && chatActivity.getReplyMessage().isEphemeral())), z);
+    public void checkIsEphemeralMessage(boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.checkIsEphemeralMessage(boolean):void");
     }
 
     public void blur3_InvalidateBlur() {

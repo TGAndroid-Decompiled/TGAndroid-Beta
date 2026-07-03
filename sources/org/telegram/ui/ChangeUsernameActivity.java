@@ -59,7 +59,6 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -1591,25 +1590,5 @@ public class ChangeUsernameActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
         return arrayList;
-    }
-
-    @Override
-    public void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout == null || iNavigationLayout.getDrawerLayoutContainer() == null) {
-            return;
-        }
-        this.parentLayout.getDrawerLayoutContainer().setBehindKeyboardColor(getThemedColor(Theme.key_windowBackgroundGray));
-    }
-
-    @Override
-    public void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout == null || iNavigationLayout.getDrawerLayoutContainer() == null) {
-            return;
-        }
-        this.parentLayout.getDrawerLayoutContainer().setBehindKeyboardColor(Theme.getColor(Theme.key_windowBackgroundWhite));
     }
 }

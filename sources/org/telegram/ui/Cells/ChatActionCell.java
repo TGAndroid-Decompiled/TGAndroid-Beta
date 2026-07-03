@@ -130,7 +130,6 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private boolean canDrawInParent;
     private GiftSheet.CardBackground cardBackground;
     private Path clipPath;
-    private Drawable communityCardDrawable;
     private int currentAccount;
     private MessageObject currentMessageObject;
     private ImageLocation currentVideoLocation;

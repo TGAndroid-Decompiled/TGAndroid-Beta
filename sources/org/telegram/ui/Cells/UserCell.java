@@ -54,7 +54,6 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private ImageView checkBox3;
     private CheckBoxSquare checkBoxBig;
     private ImageView closeView;
-    private Drawable communityCardsDrawable;
     private int currentAccount;
     private int currentDrawable;
     private int currentId;
@@ -87,6 +86,10 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     @Override
     public boolean hasOverlappingRendering() {
         return false;
+    }
+
+    @Override
+    public void updateColors() {
     }
 
     public void openStory(long j, Runnable runnable) {
@@ -562,21 +565,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         if (this.isCommunity && view == this.avatarImageView) {
-            if (this.communityCardsDrawable == null) {
-                this.communityCardsDrawable = getContext().getResources().getDrawable(R.drawable.community_cards).mutate();
-                updateColors();
-            }
-            DrawableUtils.drawCommunityCardDrawable(canvas, this.communityCardsDrawable, view.getX() + (view.getWidth() / 2.0f), view.getY() + (view.getHeight() / 2.0f), view.getHeight());
+            DrawableUtils.drawCommunityCardDrawable(canvas, Theme.dialogs_communityCardsDrawable, view.getX() + (view.getWidth() / 2.0f), view.getY() + (view.getHeight() / 2.0f), view.getHeight());
         }
         return super.drawChild(canvas, view, j);
-    }
-
-    @Override
-    public void updateColors() {
-        Drawable drawable = this.communityCardsDrawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        }
     }
 
     public void setSelfAsSavedMessages(boolean z) {

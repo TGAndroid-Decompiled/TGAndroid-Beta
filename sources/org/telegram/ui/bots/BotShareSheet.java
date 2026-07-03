@@ -395,6 +395,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
+            public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell2);
+            }
+
+            @Override
             public void didLongPress(ChatMessageCell chatMessageCell2, float f, float f2) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPress(this, chatMessageCell2, f, f2);
             }
@@ -667,6 +672,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             @Override
             public void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell2);
+            }
+
+            @Override
+            public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, boolean z, Runnable runnable2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell2, z, runnable2);
             }
 
             @Override

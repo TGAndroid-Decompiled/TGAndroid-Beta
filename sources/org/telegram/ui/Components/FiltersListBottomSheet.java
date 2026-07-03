@@ -126,7 +126,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r13) {
+            protected void onDraw(android.graphics.Canvas r12) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FiltersListBottomSheet.AnonymousClass1.onDraw(android.graphics.Canvas):void");
             }
 

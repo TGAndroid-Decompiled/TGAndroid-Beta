@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import androidx.core.graphics.ColorUtils;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -166,6 +167,7 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourceProvider);
         this.buttonDeclineAllView = buttonWithCounterView;
         buttonWithCounterView.setNeutral();
+        this.buttonDeclineAllView.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhite), getThemedColor(Theme.key_windowBackgroundWhiteBlackText), 0.125f));
         this.buttonDeclineAllView.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         this.buttonDeclineAllView.setRound();
         this.buttonDeclineAllView.setOnClickListener(new View.OnClickListener() {

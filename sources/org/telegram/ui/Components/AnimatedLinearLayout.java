@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.RectF;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import j$.util.Comparator$CC;
@@ -167,7 +166,6 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        Log.i("LIST_DEBUG", "start list: ");
         this.visibleHolders.clear();
         int childCount = getChildCount();
         for (int i5 = 0; i5 < childCount; i5++) {
@@ -177,7 +175,6 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
                 holder.order = i5;
                 if (childAt.getVisibility() == 0 && holder.isVisible) {
                     this.visibleHolders.add(holder);
-                    Log.i("LIST_DEBUG", "show item: " + holder.tag + " " + i5);
                 }
             }
         }

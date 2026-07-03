@@ -2436,6 +2436,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell);
+            }
+
+            @Override
             public void didLongPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, keyboardButton);
             }
@@ -2651,6 +2656,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didTogglePollPreview(ChatMessageCell chatMessageCell) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell);
+            }
+
+            @Override
+            public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell, boolean z, Runnable runnable) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell, z, runnable);
             }
 
             @Override

@@ -1855,11 +1855,13 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
         if (tL_error == null || !"USER_PRIVACY_RESTRICTED".equals(tL_error.text)) {
             return true;
         }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 11, this.currentAccount, getResourceProvider());
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(this.currentUser);
-        limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList, null, null, null);
-        limitReachedBottomSheet.show();
+        if (!ChatObject.isChannel(this.currentChat)) {
+            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 11, this.currentAccount, getResourceProvider());
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(this.currentUser);
+            limitReachedBottomSheet.setRestrictedUsers(this.currentChat, arrayList, null, null, null);
+            limitReachedBottomSheet.show();
+        }
         return false;
     }
 

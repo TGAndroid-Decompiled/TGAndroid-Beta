@@ -2,9 +2,6 @@ package org.telegram.ui.community;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -314,7 +311,6 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
 
     public static class CommunityHeaderView extends FrameLayout implements Theme.Colorable {
         public final BackupImageView avatarView;
-        private final Drawable communityCardsDrawable;
         private final Theme.ResourcesProvider resourcesProvider;
         private final TextView subtitleView;
         private final TextView titleView;
@@ -322,7 +318,6 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         public CommunityHeaderView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.resourcesProvider = resourcesProvider;
-            this.communityCardsDrawable = context.getResources().getDrawable(R.drawable.community_cards).mutate();
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
@@ -345,7 +340,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         @Override
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
-            DrawableUtils.drawCommunityCardDrawable(canvas, this.communityCardsDrawable, this.avatarView.getLeft() + (this.avatarView.getWidth() / 2.0f), this.avatarView.getTop() + (this.avatarView.getHeight() / 2.0f), this.avatarView.getHeight());
+            DrawableUtils.drawCommunityCardDrawable(canvas, Theme.dialogs_communityCardsDrawable, this.avatarView.getLeft() + (this.avatarView.getWidth() / 2.0f), this.avatarView.getTop() + (this.avatarView.getHeight() / 2.0f), this.avatarView.getHeight());
         }
 
         @Override
@@ -355,11 +350,8 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
 
         @Override
         public void updateColors() {
-            TextView textView = this.titleView;
-            int i = Theme.key_windowBackgroundWhiteBlackText;
-            textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+            this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
             this.subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider));
-            this.communityCardsDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         }
 
         public void setTitle(CharSequence charSequence) {

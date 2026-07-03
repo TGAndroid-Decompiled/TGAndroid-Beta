@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -44,7 +45,8 @@ public class RichTableCellHost extends FrameLayout {
     public void bind(TL_iv.pageTableCell pagetablecell) {
         this.cell = pagetablecell;
         applyAlignment();
-        this.editText.setTextSilently(TableModel.readStyledText(pagetablecell));
+        this.editText.setTextSilently(Emoji.replaceEmoji(TableModel.readStyledText(pagetablecell), this.editText.getPaint().getFontMetricsInt(), false));
+        this.editText.invalidateEffects();
     }
 
     public void refreshFromCell() {

@@ -592,7 +592,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         String string = LocaleController.getString(R.string.ArticleToggleBlock);
         RichEditorListView richEditorListView = this.listView;
         Objects.requireNonNull(richEditorListView);
-        itemOptionsAddChecked.addChecked(z2, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda24(richEditorListView));
+        itemOptionsAddChecked.addChecked(z2, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda28(richEditorListView));
         int iIndexOf = blockRow != null ? this.listView.rows.indexOf(blockRow) : -1;
         boolean z3 = blockRow != null && blockRow.isInList();
         boolean z4 = z3 && this.listView.canIndentRow(iIndexOf);
@@ -1814,7 +1814,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void showEditLatexSheet(Context context, String str, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
+    public static void showEditLatexSheet(Context context, final String str, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
         BottomSheet.Builder builder = new BottomSheet.Builder(context, true, resourcesProvider);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -1833,17 +1833,18 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         linearLayout.addView(horizontalScrollView, LayoutHelper.createLinear(-1, -2, 49, 12, 2, 12, 0));
         final ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
         final boolean[] zArr = {false};
+        final boolean[] zArr2 = {false};
         final int[] iArr = {6};
+        final Utilities.Callback2 callback2 = new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$29(strArr, (String) obj, (Utilities.Callback2) obj2);
+            }
+        };
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$27(strArr, horizontalScrollView, round, zArr, imageView, resourcesProvider, iArr);
-            }
-        };
-        new Runnable() {
-            @Override
-            public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$28(runnable);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$31(strArr, horizontalScrollView, round, zArr2, callback2, imageView, resourcesProvider, iArr);
             }
         };
         final EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.ArticleLatexEquation), true, false, -1, resourcesProvider);
@@ -1871,6 +1872,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 55, 12, 12, 12, 12));
         runnable.run();
         builder.setCustomView(linearLayout);
+        builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$32(editTextCell, zArr, zArr2, str, strArr, callback, dialogInterface);
+            }
+        });
         final BottomSheet bottomSheetShow = builder.show();
         int i = Theme.key_windowBackgroundGray;
         bottomSheetShow.setBackgroundColor(Theme.getColor(i, resourcesProvider));
@@ -1878,25 +1885,29 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$29(round, callback, strArr, bottomSheetShow, view);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$33(round, zArr, callback, strArr, bottomSheetShow, view);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$30(editTextCell);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$34(editTextCell);
             }
         }, 200L);
     }
 
-    public static void lambda$showEditLatexSheet$27(String[] strArr, HorizontalScrollView horizontalScrollView, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, int[] iArr) {
-        if (TextUtils.isEmpty(strArr[0].trim())) {
-            horizontalScrollView.setVisibility(8);
-            buttonWithCounterView.setEnabled(false);
-            return;
-        }
-        boolean z = zArr[0];
-        zArr[0] = false;
+    public static void lambda$showEditLatexSheet$29(final String[] strArr, String str, final Utilities.Callback2 callback2) {
+        Utilities.themeQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$28(strArr, callback2);
+            }
+        });
+    }
+
+    public static void lambda$showEditLatexSheet$28(String[] strArr, final Utilities.Callback2 callback2) {
+        final boolean z = true;
+        final Bitmap bitmap = null;
         try {
             JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(strArr[0]).textSize(AndroidUtilities.dp(26.0f)).build();
             int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
@@ -1905,25 +1916,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
                 jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
                 jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), PorterDuff.Mode.SRC_IN));
-                imageView.setImageBitmap(bitmapCreateBitmap);
-                horizontalScrollView.setVisibility(0);
-            } else {
-                zArr[0] = true;
-                horizontalScrollView.setVisibility(8);
+                bitmap = bitmapCreateBitmap;
+                z = false;
             }
         } catch (Exception e) {
             FileLog.e(e);
-            zArr[0] = true;
         }
-        buttonWithCounterView.setEnabled(!zArr[0]);
-        if (zArr[0]) {
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            if (!z) {
-                int i = -iArr[0];
-                iArr[0] = i;
-                AndroidUtilities.shakeViewSpring(imageView, i);
-            }
+        if (z) {
             try {
                 JLatexMathDrawable jLatexMathDrawableBuild2 = JLatexMathDrawable.builder(LocaleController.getString(R.string.ArticleLatexError)).textSize(AndroidUtilities.dp(26.0f)).build();
                 int intrinsicWidth2 = jLatexMathDrawableBuild2.getIntrinsicWidth();
@@ -1932,30 +1931,82 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                     Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ALPHA_8);
                     jLatexMathDrawableBuild2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
                     jLatexMathDrawableBuild2.draw(new Canvas(bitmapCreateBitmap2));
-                    imageView.setImageBitmap(bitmapCreateBitmap2);
-                    horizontalScrollView.setVisibility(0);
-                } else {
-                    horizontalScrollView.setVisibility(8);
+                    bitmap = bitmapCreateBitmap2;
                 }
             } catch (Exception e2) {
                 FileLog.e(e2);
             }
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$27(callback2, bitmap, z);
+            }
+        });
     }
 
-    public static void lambda$showEditLatexSheet$28(Runnable runnable) {
-        AndroidUtilities.cancelRunOnUIThread(runnable);
-        AndroidUtilities.runOnUIThread(runnable, 1000L);
+    public static void lambda$showEditLatexSheet$27(Utilities.Callback2 callback2, Bitmap bitmap, boolean z) {
+        callback2.run(bitmap, Boolean.valueOf(z));
     }
 
-    public static void lambda$showEditLatexSheet$29(ButtonWithCounterView buttonWithCounterView, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+    public static void lambda$showEditLatexSheet$31(final String[] strArr, final HorizontalScrollView horizontalScrollView, final ButtonWithCounterView buttonWithCounterView, final boolean[] zArr, Utilities.Callback2 callback2, final ImageView imageView, final Theme.ResourcesProvider resourcesProvider, final int[] iArr) {
+        if (TextUtils.isEmpty(strArr[0].trim())) {
+            horizontalScrollView.setVisibility(8);
+            buttonWithCounterView.setEnabled(false);
+        } else {
+            final boolean z = zArr[0];
+            final String str = strArr[0];
+            callback2.run(str, new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    ChatAttachAlertRichLayout.lambda$showEditLatexSheet$30(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
+                }
+            });
+        }
+    }
+
+    public static void lambda$showEditLatexSheet$30(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
+        if (TextUtils.equals(str, strArr[0])) {
+            if (bool.booleanValue()) {
+                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), PorterDuff.Mode.SRC_IN));
+                if (!z) {
+                    int i = -iArr[0];
+                    iArr[0] = i;
+                    AndroidUtilities.shakeViewSpring(imageView, i);
+                }
+            } else {
+                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            }
+            if (bitmap != null) {
+                imageView.setImageBitmap(bitmap);
+            }
+            buttonWithCounterView.setEnabled(!bool.booleanValue());
+            horizontalScrollView.setVisibility(bitmap != null ? 0 : 8);
+            zArr[0] = bool.booleanValue();
+        }
+    }
+
+    public static void lambda$showEditLatexSheet$32(EditTextCell editTextCell, boolean[] zArr, boolean[] zArr2, String str, String[] strArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+        editTextCell.editText.clearFocus();
+        AndroidUtilities.hideKeyboard(editTextCell.editText);
+        if (zArr[0] || zArr2[0] || TextUtils.equals(str, strArr[0])) {
+            return;
+        }
+        zArr[0] = true;
+        callback.run(strArr[0]);
+    }
+
+    public static void lambda$showEditLatexSheet$33(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isEnabled()) {
-            callback.run(strArr[0]);
+            if (!zArr[0]) {
+                zArr[0] = true;
+                callback.run(strArr[0]);
+            }
             bottomSheet.lambda$new$0();
         }
     }
 
-    public static void lambda$showEditLatexSheet$30(EditTextCell editTextCell) {
+    public static void lambda$showEditLatexSheet$34(EditTextCell editTextCell) {
         editTextCell.editText.requestFocus();
         AndroidUtilities.showKeyboard(editTextCell.editText);
     }

@@ -66,6 +66,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
@@ -150,7 +151,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     public float collapseOffset;
     public boolean collapsed;
     private CommunityArrowDrawable communityArrowDrawable;
-    private Drawable communityCardsDrawable;
     private float cornerProgress;
     private StaticLayout countAnimationInLayout;
     private boolean countAnimationIncrement;
@@ -446,6 +446,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return false;
     }
 
+    @Override
+    public void updateColors() {
+    }
+
     public void setMoving(boolean z) {
         this.moving = z;
     }
@@ -531,14 +535,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.visibleOnScreen = z;
         if (z) {
             invalidate();
-        }
-    }
-
-    @Override
-    public void updateColors() {
-        Drawable drawable = this.communityCardsDrawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         }
     }
 
@@ -2340,8 +2336,18 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             return formatInternal(i, charSequenceAppend, charSequence);
         }
-        if (message2.rich_message != null) {
-            return formatInternal(i, messageObject2.messageText, charSequence);
+        TL_iv.RichMessage richMessage = message2.rich_message;
+        if (richMessage != null) {
+            boolean zIsBlueBlock = richMessage.blocks.size() == 1 ? MessageObject.isBlueBlock(this.message.messageOwner.rich_message.blocks.get(0)) : false;
+            SpannableStringBuilder internal = formatInternal(i, this.message.messageText, charSequence);
+            if (zIsBlueBlock && !isForumCell()) {
+                try {
+                    internal.setSpan(new ForegroundColorSpanThemable(Theme.key_chats_actionMessage, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, internal.length(), 33);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            return internal;
         }
         if (message2.media != null && !messageObject2.isMediaEmpty()) {
             this.currentMessagePaint = Theme.dialogs_messagePrintingPaint[this.paintIndex];
@@ -2406,15 +2412,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             if (z) {
                 string = applyThumbs(string);
             }
-            SpannableStringBuilder internal = formatInternal(i, string, charSequence);
+            SpannableStringBuilder internal2 = formatInternal(i, string, charSequence);
             if (!isForumCell()) {
                 try {
-                    internal.setSpan(new ForegroundColorSpanThemable(i2, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, internal.length(), 33);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    internal2.setSpan(new ForegroundColorSpanThemable(i2, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, internal2.length(), 33);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
                 }
             }
-            return internal;
+            return internal2;
         }
         MessageObject messageObject4 = this.message;
         CharSequence charSequenceReplaceNewLines = messageObject4.messageOwner.message;

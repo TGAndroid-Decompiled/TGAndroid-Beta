@@ -13,6 +13,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
@@ -29,6 +30,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.view.Window;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -61,6 +63,7 @@ import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BackButtonMenu;
 import org.telegram.ui.Components.Bulletin;
@@ -424,7 +427,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1360getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1352getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -1836,7 +1839,28 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         setInnerTranslationX(0.0f);
         this.containerView.setTranslationY(0.0f);
         if (z5) {
-            viewCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(actionBarPopupWindowLayout == null ? 24.0f : 12.0f)));
+            if (!(baseFragment2 instanceof ChatActivity)) {
+                viewCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(actionBarPopupWindowLayout == null ? 24.0f : 12.0f)));
+            } else if (actionBarPopupWindowLayout != null) {
+                viewCreateView.setOutlineProvider(new ViewOutlineProvider() {
+                    private final Path path = new Path();
+
+                    @Override
+                    public void getOutline(View view, Outline outline) {
+                        float fDp = AndroidUtilities.dp(29.0f);
+                        float fDp2 = AndroidUtilities.dp(12.0f);
+                        this.path.rewind();
+                        this.path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), new float[]{fDp, fDp, fDp, fDp, fDp2, fDp2, fDp2, fDp2}, Path.Direction.CW);
+                        if (Build.VERSION.SDK_INT >= 30) {
+                            outline.setPath(this.path);
+                        } else {
+                            outline.setConvexPath(this.path);
+                        }
+                    }
+                });
+            } else {
+                viewCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(29.0f)));
+            }
             viewCreateView.setClipToOutline(true);
             viewCreateView.setElevation(AndroidUtilities.dp(4.0f));
             if (Build.VERSION.SDK_INT >= 28) {
@@ -3103,7 +3127,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.drawerLayoutContainer = drawerLayoutContainer;
     }
 
-    @Override
     public DrawerLayoutContainer getDrawerLayoutContainer() {
         return this.drawerLayoutContainer;
     }

@@ -5371,7 +5371,7 @@ public class StarsController {
             return;
         }
         long j = message.paid_message_stars;
-        if (j <= 0) {
+        if (j <= 0 || messageObject.isEphemeral()) {
             return;
         }
         final boolean zNeedsUndoButton = needsUndoButton(messageObject, j);

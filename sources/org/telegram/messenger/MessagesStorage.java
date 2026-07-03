@@ -4757,7 +4757,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    private org.telegram.tgnet.TLRPC.ChatFull loadChatInfoInternal(long r22, boolean r24, boolean r25, boolean r26, int r27) throws java.lang.Throwable {
+    private org.telegram.tgnet.TLRPC.ChatFull loadChatInfoInternal(long r25, boolean r27, boolean r28, boolean r29, int r30) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadChatInfoInternal(long, boolean, boolean, boolean, int):org.telegram.tgnet.TLRPC$ChatFull");
     }
 

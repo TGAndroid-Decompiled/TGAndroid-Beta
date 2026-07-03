@@ -58,8 +58,6 @@ public interface INavigationLayout {
 
     int getBottomTabsHeight(boolean z);
 
-    DrawerLayoutContainer getDrawerLayoutContainer();
-
     List getFragmentStack();
 
     BaseFragment getLastFragment();

@@ -153,6 +153,15 @@ public class RichMathCell extends FrameLayout implements Theme.Colorable, TextSe
         canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.selectionPaint);
     }
 
+    public boolean isPressOnMath(int i, int i2) {
+        if (this.bitmap == null) {
+            return false;
+        }
+        int[] iArr = new int[4];
+        selectionRect(iArr);
+        return i >= iArr[0] && i <= iArr[2] && i2 >= iArr[1] && i2 <= iArr[3];
+    }
+
     private boolean isCellSelected() {
         TextSelectionHelper.ArticleTextSelectionHelper selectionHelper;
         int childAdapterPosition;

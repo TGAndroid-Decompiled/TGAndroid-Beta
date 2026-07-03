@@ -27,11 +27,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -2009,6 +2011,30 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         LongSparseArray longSparseArray;
         TLRPC.ChatParticipants chatParticipants;
         int i3 = 0;
+        if (this.isCommunity && this.type == 2) {
+            this.loadingUsers = false;
+            this.participants.clear();
+            this.bots.clear();
+            this.contacts.clear();
+            this.participantsMap.clear();
+            this.contactsMap.clear();
+            this.botsMap.clear();
+            HashMap<String, ArrayList<TLRPC.TL_contact>> map = ContactsController.getInstance(this.currentAccount).usersSectionsDict;
+            Iterator<String> it = ContactsController.getInstance(this.currentAccount).sortedUsersSectionsArray.iterator();
+            while (it.hasNext()) {
+                Iterator<TLRPC.TL_contact> it2 = map.get(it.next()).iterator();
+                while (it2.hasNext()) {
+                    this.participants.add(getMessagesController().getUser(Long.valueOf(it2.next().user_id)));
+                }
+            }
+            updateRows();
+            ListAdapter listAdapter = this.listViewAdapter;
+            if (listAdapter != null) {
+                listAdapter.notifyDataSetChanged();
+                return;
+            }
+            return;
+        }
         if (!ChatObject.isChannel(this.currentChat)) {
             this.loadingUsers = false;
             this.participants.clear();
@@ -2062,14 +2088,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     i3++;
                 }
             }
-            ListAdapter listAdapter = this.listViewAdapter;
-            if (listAdapter != null) {
-                listAdapter.notifyDataSetChanged();
-            }
-            updateRows();
             ListAdapter listAdapter2 = this.listViewAdapter;
             if (listAdapter2 != null) {
                 listAdapter2.notifyDataSetChanged();
+            }
+            updateRows();
+            ListAdapter listAdapter3 = this.listViewAdapter;
+            if (listAdapter3 != null) {
+                listAdapter3.notifyDataSetChanged();
                 return;
             }
             return;
@@ -2079,9 +2105,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (stickerEmptyView != null) {
             stickerEmptyView.showProgress(true, false);
         }
-        ListAdapter listAdapter3 = this.listViewAdapter;
-        if (listAdapter3 != null) {
-            listAdapter3.notifyDataSetChanged();
+        ListAdapter listAdapter4 = this.listViewAdapter;
+        if (listAdapter4 != null) {
+            listAdapter4.notifyDataSetChanged();
         }
         final ArrayList arrayListLoadChatParticipantsRequests = loadChatParticipantsRequests(i, i2, z);
         final ArrayList arrayList = new ArrayList();

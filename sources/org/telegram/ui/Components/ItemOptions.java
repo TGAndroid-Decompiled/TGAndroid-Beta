@@ -79,6 +79,7 @@ public class ItemOptions {
     private boolean allowCenter;
     private boolean allowMoveScrim;
     private int allowMoveScrimGravity;
+    private boolean allowShowingOnTopOfKeyboard;
     private int animateToHeight;
     private int animateToWidth;
     private boolean blur;
@@ -1249,6 +1250,11 @@ public class ItemOptions {
             i2++;
         }
         return null;
+    }
+
+    public ItemOptions allowShowingOnTopOfKeyboard() {
+        this.allowShowingOnTopOfKeyboard = true;
+        return this;
     }
 
     public void setupSelectors() {

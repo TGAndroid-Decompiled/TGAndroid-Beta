@@ -341,6 +341,7 @@ public abstract class Theme {
     public static Drawable dialogs_checkDrawable;
     public static Drawable dialogs_checkReadDrawable;
     public static Drawable dialogs_clockDrawable;
+    public static Drawable dialogs_communityCardsDrawable;
     public static Paint dialogs_countGrayPaint;
     public static Paint dialogs_countPaint;
     public static TextPaint dialogs_countTextPaint;
@@ -5966,6 +5967,7 @@ public abstract class Theme {
             dialogs_lock2Drawable = resources.getDrawable(R.drawable.msg_mini_lock2);
             int i2 = R.drawable.list_check;
             dialogs_checkDrawable = resources.getDrawable(i2).mutate();
+            dialogs_communityCardsDrawable = resources.getDrawable(R.drawable.community_cards).mutate();
             dialogs_playDrawable = resources.getDrawable(R.drawable.minithumb_play).mutate();
             dialogs_checkReadDrawable = resources.getDrawable(i2).mutate();
             dialogs_halfCheckDrawable = resources.getDrawable(R.drawable.list_halfcheck);
@@ -6076,6 +6078,7 @@ public abstract class Theme {
         int i7 = key_chats_pinnedIcon;
         setDrawableColorByKey(drawable, i7);
         setDrawableColorByKey(dialogs_checkDrawable, key_chats_sentCheck);
+        setDrawableColorByKey(dialogs_communityCardsDrawable, key_windowBackgroundWhiteBlackText);
         Drawable drawable2 = dialogs_checkReadDrawable;
         int i8 = key_chats_sentReadCheck;
         setDrawableColorByKey(drawable2, i8);

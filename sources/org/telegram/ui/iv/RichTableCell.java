@@ -18,6 +18,8 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
@@ -43,6 +45,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
     private final ScrollContent scrollContent;
     private final HorizontalScrollView scrollView;
     private final LinkedHashSet selectedCells;
+    private final RichEditText titleEditText;
     private final ArrayList tmpBlocks;
 
     public interface CellSelectionListener {
@@ -65,6 +68,10 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         void onTextWillChange(BlockRow blockRow, int i, int i2);
     }
 
+    public int titleChildPos() {
+        return 0;
+    }
+
     public RichTableCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.tmpBlocks = new ArrayList();
@@ -72,10 +79,27 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         this.focusInvalidator = new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public final void onGlobalFocusChanged(View view, View view2) {
-                this.f$0.lambda$new$0(view, view2);
+                this.f$0.lambda$new$1(view, view2);
             }
         };
         this.resourcesProvider = resourcesProvider;
+        RichEditText richEditText = new RichEditText(context, resourcesProvider);
+        this.titleEditText = richEditText;
+        richEditText.setAllowNewlines(false);
+        richEditText.setInputType(147457);
+        richEditText.setGravity(49);
+        richEditText.setTextSize(1, Math.max(8, SharedConfig.fontSize));
+        richEditText.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        richEditText.setHint("Add title…");
+        richEditText.setCenterEmptyHint(true);
+        richEditText.setListener(new AnonymousClass1());
+        richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
+            @Override
+            public final void onSpansChanged() {
+                this.f$0.lambda$new$0();
+            }
+        });
+        addView(richEditText);
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context) {
             @Override
             protected void onScrollChanged(int i, int i2, int i3, int i4) {
@@ -90,7 +114,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         this.scrollView = horizontalScrollView;
         horizontalScrollView.setClipToPadding(false);
         horizontalScrollView.setPadding(AndroidUtilities.dp(16.0f) - AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        addView(horizontalScrollView, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 6.0f));
+        addView(horizontalScrollView, LayoutHelper.createFrame(-1, -2.0f, 51, 0.0f, 6.0f, 0.0f, 0.0f));
         RichTableCellGrid richTableCellGrid = new RichTableCellGrid(context, resourcesProvider);
         this.grid = richTableCellGrid;
         ScrollContent scrollContent = new ScrollContent(context);
@@ -98,6 +122,111 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         scrollContent.addView(richTableCellGrid);
         horizontalScrollView.addView(scrollContent, new FrameLayout.LayoutParams(-2, -2));
         setWillNotDraw(false);
+    }
+
+    class AnonymousClass1 implements RichEditText.Listener {
+        @Override
+        public boolean onBackspaceAtStart(RichEditText richEditText) {
+            return RichEditText.Listener.CC.$default$onBackspaceAtStart(this, richEditText);
+        }
+
+        @Override
+        public void onBackspaceOnEmpty(RichEditText richEditText) {
+            RichEditText.Listener.CC.$default$onBackspaceOnEmpty(this, richEditText);
+        }
+
+        @Override
+        public void onEnterPressed(RichEditText richEditText) {
+            RichEditText.Listener.CC.$default$onEnterPressed(this, richEditText);
+        }
+
+        @Override
+        public boolean onPaste(RichEditText richEditText) {
+            return RichEditText.Listener.CC.$default$onPaste(this, richEditText);
+        }
+
+        @Override
+        public boolean onTab(RichEditText richEditText, boolean z) {
+            return RichEditText.Listener.CC.$default$onTab(this, richEditText, z);
+        }
+
+        AnonymousClass1() {
+        }
+
+        @Override
+        public void onTextWillChange(RichEditText richEditText, int i, int i2) {
+            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
+                return;
+            }
+            RichTableCell.this.delegate.onTextWillChange(RichTableCell.this.currentRow, i, i2);
+        }
+
+        @Override
+        public void onTextChanged(RichEditText richEditText, Editable editable) {
+            RichTableCell.this.persistTitle();
+            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
+                return;
+            }
+            RichTableCell.this.delegate.onTextChanged(RichTableCell.this.currentRow);
+        }
+
+        @Override
+        public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
+            if (RichTableCell.this.delegate != null) {
+                RichTableCell.this.delegate.onRequestWindowFocusable(richEditText, z);
+            }
+        }
+
+        @Override
+        public void onLockedInsert(RichEditText richEditText, CharSequence charSequence) {
+            if (RichTableCell.this.delegate != null) {
+                RichTableCell.this.delegate.onLockedInsert(charSequence);
+            }
+        }
+
+        @Override
+        public boolean onSelectAll(RichEditText richEditText) {
+            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
+                return false;
+            }
+            return RichTableCell.this.delegate.onSelectAll(RichTableCell.this.currentRow);
+        }
+
+        @Override
+        public void onSelectionChanged(final RichEditText richEditText, final int i, final int i2) {
+            final TextSelectionHelper.ArticleTextSelectionHelper selectionHelper;
+            final int iTitleChildPos;
+            if (RichTableCell.this.hijackingSelection || i == i2 || RichTableCell.this.delegate == null || (selectionHelper = RichTableCell.this.delegate.getSelectionHelper()) == null) {
+                return;
+            }
+            if (!(selectionHelper.isInSelectionMode() && selectionHelper.getSelectedCell() == RichTableCell.this) && (iTitleChildPos = RichTableCell.this.titleChildPos()) >= 0) {
+                RichTableCell.this.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onSelectionChanged$0(richEditText, i2, selectionHelper, iTitleChildPos, i);
+                    }
+                });
+            }
+        }
+
+        public void lambda$onSelectionChanged$0(RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
+            if (richEditText.length() < i || richEditText.getSelectionStart() == richEditText.getSelectionEnd() || !articleTextSelectionHelper.selectRangeOf(RichTableCell.this, i2, i3, i)) {
+                return;
+            }
+            RichTableCell.this.hijackingSelection = true;
+            richEditText.setSelection(i);
+            RichTableCell.this.hijackingSelection = false;
+        }
+    }
+
+    public void lambda$new$0() {
+        BlockRow blockRow;
+        persistTitle();
+        Delegate delegate = this.delegate;
+        if (delegate == null || (blockRow = this.currentRow) == null) {
+            return;
+        }
+        delegate.onSpansChanged(blockRow);
     }
 
     private final class ScrollContent extends ViewGroup {
@@ -135,9 +264,104 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
                 }
             });
             wireCellListeners();
+            bindTitle();
             updateColors();
             this.scrollContent.requestLayout();
         }
+    }
+
+    private void bindTitle() {
+        BlockRow blockRow = this.currentRow;
+        if (blockRow != null) {
+            TL_iv.PageBlock pageBlock = blockRow.block;
+            if (pageBlock instanceof TL_iv.pageBlockTable) {
+                TL_iv.pageBlockTable pageblocktable = (TL_iv.pageBlockTable) pageBlock;
+                if (pageblocktable.title == null) {
+                    pageblocktable.title = new TL_iv.textEmpty();
+                }
+                if (String.valueOf(this.titleEditText.getText()).equals(RichTextStyle.plainOf(pageblocktable.title))) {
+                    return;
+                }
+                this.titleEditText.setTextSilently(Emoji.replaceEmoji(RichTextStyle.toSpannable(pageblocktable.title), this.titleEditText.getPaint().getFontMetricsInt(), false));
+                this.titleEditText.invalidateEffects();
+            }
+        }
+    }
+
+    public void persistTitle() {
+        BlockRow blockRow = this.currentRow;
+        if (blockRow != null) {
+            TL_iv.PageBlock pageBlock = blockRow.block;
+            if (pageBlock instanceof TL_iv.pageBlockTable) {
+                ((TL_iv.pageBlockTable) pageBlock).title = RichTextStyle.fromSpannable(this.titleEditText.getText());
+            }
+        }
+    }
+
+    public int childCount() {
+        TableModel tableModel = this.model;
+        return (tableModel != null ? tableModel.anchors().size() : 0) + 1;
+    }
+
+    public TL_iv.pageTableCell anchorForChildPos(int i) {
+        int i2;
+        TableModel tableModel = this.model;
+        if (tableModel == null || i <= 0 || i - 1 >= tableModel.anchors().size()) {
+            return null;
+        }
+        return (TL_iv.pageTableCell) this.model.anchors().get(i2);
+    }
+
+    public int childPosForAnchor(TL_iv.pageTableCell pagetablecell) {
+        int iFlatIndexOfAnchor;
+        TableModel tableModel = this.model;
+        if (tableModel != null && (iFlatIndexOfAnchor = tableModel.flatIndexOfAnchor(pagetablecell)) >= 0) {
+            return iFlatIndexOfAnchor + 1;
+        }
+        return -1;
+    }
+
+    public RichEditText editTextForChildPos(int i) {
+        RichTableCellHost richTableCellHostHostForAnchor;
+        if (i == 0) {
+            return this.titleEditText;
+        }
+        TL_iv.pageTableCell pagetablecellAnchorForChildPos = anchorForChildPos(i);
+        if (pagetablecellAnchorForChildPos == null || (richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecellAnchorForChildPos)) == null) {
+            return null;
+        }
+        return richTableCellHostHostForAnchor.editText;
+    }
+
+    public RichEditText getTitleEditText() {
+        return this.titleEditText;
+    }
+
+    public int childTextLength(int i) {
+        RichEditText richEditTextEditTextForChildPos = editTextForChildPos(i);
+        if (richEditTextEditTextForChildPos != null) {
+            return richEditTextEditTextForChildPos.length();
+        }
+        return 0;
+    }
+
+    public void persistTitleFromEditor() {
+        persistTitle();
+    }
+
+    public boolean isPressOnTitle(int i, int i2) {
+        int lineForVertical;
+        Layout layout = this.titleEditText.getLayout();
+        if (layout == null) {
+            return false;
+        }
+        int left = i - (this.titleEditText.getLeft() + this.titleEditText.getPaddingLeft());
+        int top = i2 - (this.titleEditText.getTop() + this.titleEditText.getPaddingTop());
+        if (top < 0 || top >= layout.getHeight() || (lineForVertical = layout.getLineForVertical(top)) < 0 || lineForVertical >= layout.getLineCount()) {
+            return false;
+        }
+        float f = left;
+        return f >= layout.getLineLeft(lineForVertical) && f <= layout.getLineRight(lineForVertical);
     }
 
     public Set<TL_iv.pageTableCell> getSelectedCells() {
@@ -273,6 +497,25 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
     }
 
     @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        this.titleEditText.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - (AndroidUtilities.dp(16.0f) * 2)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        int measuredHeight = this.titleEditText.getMeasuredHeight();
+        this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        setMeasuredDimension(size, measuredHeight + AndroidUtilities.dp(2.0f) + this.scrollView.getMeasuredHeight());
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int i5 = i3 - i;
+        int measuredHeight = this.titleEditText.getMeasuredHeight();
+        this.titleEditText.layout(AndroidUtilities.dp(16.0f), 0, Math.max(AndroidUtilities.dp(16.0f), i5 - AndroidUtilities.dp(16.0f)), measuredHeight);
+        int iDp = measuredHeight + AndroidUtilities.dp(2.0f);
+        HorizontalScrollView horizontalScrollView = this.scrollView;
+        horizontalScrollView.layout(0, iDp, i5, horizontalScrollView.getMeasuredHeight() + iDp);
+    }
+
+    @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         getViewTreeObserver().addOnGlobalFocusChangeListener(this.focusInvalidator);
@@ -284,7 +527,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         super.onDetachedFromWindow();
     }
 
-    public void lambda$new$0(View view, View view2) {
+    public void lambda$new$1(View view, View view2) {
         invalidateGridForFocus();
     }
 
@@ -566,16 +809,35 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
     public boolean focusEdgeCell(boolean z) {
         TableModel tableModel = this.model;
-        if (tableModel == null || tableModel.anchors().isEmpty()) {
+        if (tableModel == null) {
             return false;
         }
-        RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor((TL_iv.pageTableCell) this.model.anchors().get(z ? this.model.anchors().size() - 1 : 0));
+        if (!z) {
+            this.titleEditText.requestEditFocus();
+            this.titleEditText.setSelection(0);
+            return true;
+        }
+        if (tableModel.anchors().isEmpty()) {
+            return false;
+        }
+        RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor((TL_iv.pageTableCell) this.model.anchors().get(this.model.anchors().size() - 1));
         if (richTableCellHostHostForAnchor == null) {
             return false;
         }
         richTableCellHostHostForAnchor.editText.requestEditFocus();
         RichEditText richEditText = richTableCellHostHostForAnchor.editText;
-        richEditText.setSelection(z ? richEditText.length() : 0);
+        richEditText.setSelection(richEditText.length());
+        return true;
+    }
+
+    public boolean focusFirstCell() {
+        RichTableCellHost richTableCellHostHostForAnchor;
+        TableModel tableModel = this.model;
+        if (tableModel == null || tableModel.anchors().isEmpty() || (richTableCellHostHostForAnchor = this.grid.hostForAnchor((TL_iv.pageTableCell) this.model.anchors().get(0))) == null) {
+            return false;
+        }
+        richTableCellHostHostForAnchor.editText.requestEditFocus();
+        richTableCellHostHostForAnchor.editText.setSelection(0);
         return true;
     }
 
@@ -592,12 +854,12 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$focusCellAt$1(pagetablecell);
+                this.f$0.lambda$focusCellAt$2(pagetablecell);
             }
         });
     }
 
-    public void lambda$focusCellAt$1(TL_iv.pageTableCell pagetablecell) {
+    public void lambda$focusCellAt$2(TL_iv.pageTableCell pagetablecell) {
         RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecell);
         if (richTableCellHostHostForAnchor == null) {
             return;
@@ -633,6 +895,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
     }
 
     public void setLocked(boolean z) {
+        this.titleEditText.setLocked(z);
         for (int i = 0; i < this.grid.getChildCount(); i++) {
             View childAt = this.grid.getChildAt(i);
             if (childAt instanceof RichTableCellHost) {
@@ -642,6 +905,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
     }
 
     public void hideActionModes() {
+        this.titleEditText.hideActionMode();
         for (int i = 0; i < this.grid.getChildCount(); i++) {
             View childAt = this.grid.getChildAt(i);
             if (childAt instanceof RichTableCellHost) {
@@ -655,18 +919,18 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
             View childAt = this.grid.getChildAt(i);
             if (childAt instanceof RichTableCellHost) {
                 final RichTableCellHost richTableCellHost = (RichTableCellHost) childAt;
-                richTableCellHost.editText.setListener(new AnonymousClass2(richTableCellHost));
+                richTableCellHost.editText.setListener(new AnonymousClass3(richTableCellHost));
                 richTableCellHost.editText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
                     @Override
                     public final void onSpansChanged() {
-                        this.f$0.lambda$wireCellListeners$2(richTableCellHost);
+                        this.f$0.lambda$wireCellListeners$3(richTableCellHost);
                     }
                 });
             }
         }
     }
 
-    class AnonymousClass2 implements RichEditText.Listener {
+    class AnonymousClass3 implements RichEditText.Listener {
         final RichTableCellHost val$host;
 
         @Override
@@ -689,7 +953,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
             return RichEditText.Listener.CC.$default$onPaste(this, richEditText);
         }
 
-        AnonymousClass2(RichTableCellHost richTableCellHost) {
+        AnonymousClass3(RichTableCellHost richTableCellHost) {
             this.val$host = richTableCellHost;
         }
 
@@ -743,22 +1007,18 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         @Override
         public void onSelectionChanged(final RichEditText richEditText, final int i, final int i2) {
             final TextSelectionHelper.ArticleTextSelectionHelper selectionHelper;
+            final int iChildPosForAnchor;
             if (RichTableCell.this.hijackingSelection || i == i2 || RichTableCell.this.delegate == null || (selectionHelper = RichTableCell.this.delegate.getSelectionHelper()) == null) {
                 return;
             }
-            if (selectionHelper.isInSelectionMode() && selectionHelper.getSelectedCell() == RichTableCell.this) {
-                return;
+            if (!(selectionHelper.isInSelectionMode() && selectionHelper.getSelectedCell() == RichTableCell.this) && (iChildPosForAnchor = RichTableCell.this.childPosForAnchor(this.val$host.cell)) >= 0) {
+                RichTableCell.this.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        this.f$0.lambda$onSelectionChanged$0(richEditText, i2, selectionHelper, iChildPosForAnchor, i);
+                    }
+                });
             }
-            final int iFlatIndexOfAnchor = RichTableCell.this.model == null ? 0 : RichTableCell.this.model.flatIndexOfAnchor(this.val$host.cell);
-            if (iFlatIndexOfAnchor < 0) {
-                return;
-            }
-            RichTableCell.this.post(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$onSelectionChanged$0(richEditText, i2, selectionHelper, iFlatIndexOfAnchor, i);
-                }
-            });
         }
 
         public void lambda$onSelectionChanged$0(RichEditText richEditText, int i, TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper, int i2, int i3) {
@@ -771,7 +1031,7 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         }
     }
 
-    public void lambda$wireCellListeners$2(RichTableCellHost richTableCellHost) {
+    public void lambda$wireCellListeners$3(RichTableCellHost richTableCellHost) {
         BlockRow blockRow;
         TL_iv.pageTableCell pagetablecell = richTableCellHost.cell;
         if (pagetablecell != null) {
@@ -818,6 +1078,10 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
     @Override
     public void updateColors() {
+        this.titleEditText.updateColors();
+        int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
+        this.titleEditText.setTextColor(color);
+        this.titleEditText.setHintTextColor(Theme.multAlpha(color, 0.35f));
         for (int i = 0; i < this.grid.getChildCount(); i++) {
             View childAt = this.grid.getChildAt(i);
             if (childAt instanceof RichTableCellHost) {
@@ -830,17 +1094,57 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
     @Override
     public void fillTextLayoutBlocks(ArrayList arrayList) {
         final Layout layout;
-        TableModel tableModel = this.model;
-        if (tableModel == null) {
+        if (this.model == null) {
             return;
         }
-        int size = tableModel.anchors().size();
+        final Layout layout2 = this.titleEditText.getLayout();
+        if (layout2 != null) {
+            final int left = this.titleEditText.getLeft() + this.titleEditText.getPaddingLeft();
+            final int top = this.titleEditText.getTop() + this.titleEditText.getPaddingTop();
+            arrayList.add(new TextSelectionHelper.TextLayoutBlock() {
+                @Override
+                public CharSequence getPrefix() {
+                    return TextSelectionHelper.TextLayoutBlock.CC.$default$getPrefix(this);
+                }
+
+                @Override
+                public int getRow() {
+                    return 0;
+                }
+
+                @Override
+                public Rect getSelectionBounds() {
+                    return TextSelectionHelper.TextLayoutBlock.CC.$default$getSelectionBounds(this);
+                }
+
+                @Override
+                public Layout getLayout() {
+                    return layout2;
+                }
+
+                @Override
+                public int getX() {
+                    return left;
+                }
+
+                @Override
+                public int getY() {
+                    return top;
+                }
+
+                @Override
+                public CharSequence getText() {
+                    return (RichTableCell.this.currentRow == null || !(RichTableCell.this.currentRow.block instanceof TL_iv.pageBlockTable) || ((TL_iv.pageBlockTable) RichTableCell.this.currentRow.block).title == null) ? "" : RichTextStyle.toSpannable(((TL_iv.pageBlockTable) RichTableCell.this.currentRow.block).title);
+                }
+            });
+        }
+        int size = this.model.anchors().size();
         for (int i = 0; i < size; i++) {
             final TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) this.model.anchors().get(i);
             RichTableCellHost richTableCellHostHostForAnchor = this.grid.hostForAnchor(pagetablecell);
             if (richTableCellHostHostForAnchor != null && (layout = richTableCellHostHostForAnchor.editText.getLayout()) != null) {
-                final int left = (((this.scrollView.getLeft() + this.scrollContent.getLeft()) + this.grid.getLeft()) - this.scrollView.getScrollX()) + richTableCellHostHostForAnchor.getLeft() + richTableCellHostHostForAnchor.editText.getLeft() + richTableCellHostHostForAnchor.editText.getPaddingLeft();
-                final int top = this.scrollView.getTop() + this.scrollContent.getTop() + this.grid.getTop() + richTableCellHostHostForAnchor.getTop() + richTableCellHostHostForAnchor.editText.getTop() + richTableCellHostHostForAnchor.editText.getPaddingTop();
+                final int left2 = (((this.scrollView.getLeft() + this.scrollContent.getLeft()) + this.grid.getLeft()) - this.scrollView.getScrollX()) + richTableCellHostHostForAnchor.getLeft() + richTableCellHostHostForAnchor.editText.getLeft() + richTableCellHostHostForAnchor.editText.getPaddingLeft();
+                final int top2 = this.scrollView.getTop() + this.scrollContent.getTop() + this.grid.getTop() + richTableCellHostHostForAnchor.getTop() + richTableCellHostHostForAnchor.editText.getTop() + richTableCellHostHostForAnchor.editText.getPaddingTop();
                 final int iAnchorRowOf = this.model.anchorRowOf(pagetablecell) + 10;
                 arrayList.add(new TextSelectionHelper.TextLayoutBlock() {
                     @Override
@@ -860,12 +1164,12 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
                     @Override
                     public int getX() {
-                        return left;
+                        return left2;
                     }
 
                     @Override
                     public int getY() {
-                        return top;
+                        return top2;
                     }
 
                     @Override
