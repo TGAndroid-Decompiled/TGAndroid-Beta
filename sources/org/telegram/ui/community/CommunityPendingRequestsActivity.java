@@ -16,6 +16,7 @@ import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
@@ -277,8 +278,11 @@ public class CommunityPendingRequestsActivity extends BaseFragment implements Fa
         Object obj = uItem.object;
         if (obj instanceof CommunityPendingRequestCell.Data) {
             final CommunityPendingRequestCell.Data data = (CommunityPendingRequestCell.Data) obj;
-            TLRPC.Chat chat = data.chatToAdd;
-            if (ChatObject.isPublic(chat) || ChatObject.isInChat(chat)) {
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-data.dialogToAdd));
+            TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(data.dialogToAdd));
+            if (user != null) {
+                presentFragment(ChatActivity.of(user.id));
+            } else if (ChatObject.isPublic(chat) || ChatObject.isInChat(chat)) {
                 presentFragment(ChatActivity.of(-chat.id));
             } else {
                 new CommunityInviteOnlySheet(getContext(), chat, data.requestFromUser, new Runnable() {

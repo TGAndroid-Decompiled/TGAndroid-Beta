@@ -42,6 +42,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     private CommunityHeaderView communityHeaderView;
     private FrameLayout containerView;
     private TLRPC.Chat currentChat;
+    private TLRPC.User currentUser;
     private long dialogId;
     private ArrayList joinedCommunities;
     private UniversalRecyclerView listView;
@@ -64,6 +65,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     public boolean onFragmentCreate() {
         this.dialogId = this.arguments.getLong("dialog_id", 0L);
         this.currentChat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+        this.currentUser = getMessagesController().getUser(Long.valueOf(this.dialogId));
         this.joinedCommunities = getMessagesController().getJoinedCommunities();
         getMessagesController().fetchJoinedCommunities(new Utilities.Callback() {
             @Override
@@ -110,19 +112,28 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         FrameLayout frameLayout = new FrameLayout(context);
         this.containerView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
         CommunityHeaderView communityHeaderView = new CommunityHeaderView(context, this.resourceProvider);
         this.communityHeaderView = communityHeaderView;
         communityHeaderView.setTitle(LocaleController.getString(R.string.CommunityTitle));
         CommunityHeaderView communityHeaderView2 = this.communityHeaderView;
-        if (ChatObject.isChannelAndNotMegaGroup(this.currentChat)) {
+        if (this.currentUser != null) {
+            i = R.string.CommunityDescriptionBot;
+        } else if (ChatObject.isChannelAndNotMegaGroup(this.currentChat)) {
             i = R.string.CommunityDescriptionChannel;
         } else {
             i = R.string.CommunityDescriptionGroup;
         }
         communityHeaderView2.setSubtitle(LocaleController.getString(i));
         this.communityHeaderView.setTag(-33024);
-        this.communityHeaderView.avatarView.setForUserOrChat(chat, new AvatarDrawable(chat));
+        TLRPC.User user = this.currentUser;
+        if (user != null) {
+            this.communityHeaderView.avatarView.setForUserOrChat(user, new AvatarDrawable(this.currentUser));
+        } else {
+            TLRPC.Chat chat = this.currentChat;
+            if (chat != null) {
+                this.communityHeaderView.avatarView.setForUserOrChat(chat, new AvatarDrawable(this.currentChat));
+            }
+        }
         UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
@@ -189,7 +200,8 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
         Object obj = uItem.object;
         if (obj instanceof TLRPC.Chat) {
             final TLRPC.Chat chat = (TLRPC.Chat) obj;
-            showDialog(new CommunityAddOptionsSheet(getContext(), chat, getMessagesController().getChat(Long.valueOf(-this.dialogId)), new Utilities.Callback() {
+            getMessagesController().getChat(Long.valueOf(-this.dialogId));
+            showDialog(new CommunityAddOptionsSheet(getContext(), chat, this.dialogId, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj2) {
                     this.f$0.lambda$onClick$3(chat, (Boolean) obj2);
@@ -199,7 +211,8 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     }
 
     public void lambda$onClick$2(final String str) {
-        showDialog(new CommunityAddOptionsSheet(getContext(), null, getMessagesController().getChat(Long.valueOf(-this.dialogId)), new Utilities.Callback() {
+        getMessagesController().getChat(Long.valueOf(-this.dialogId));
+        showDialog(new CommunityAddOptionsSheet(getContext(), null, this.dialogId, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 this.f$0.lambda$onClick$1(str, (Boolean) obj);
@@ -216,7 +229,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     }
 
     private void createNewCommunity(final String str, final boolean z) {
-        if (!ChatObject.isChannel(this.currentChat)) {
+        if (!ChatObject.isChannel(this.currentChat) && this.currentUser == null) {
             final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
             alertDialog.showDelayed(250L);
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {
@@ -254,7 +267,7 @@ public class CommunityCreateActivity extends BaseFragment implements Notificatio
     }
 
     private void linkToCommunity(final long j, final boolean z) {
-        if (!ChatObject.isChannel(this.currentChat)) {
+        if (!ChatObject.isChannel(this.currentChat) && this.currentUser == null) {
             final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
             alertDialog.showDelayed(250L);
             getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new MessagesStorage.LongCallback() {

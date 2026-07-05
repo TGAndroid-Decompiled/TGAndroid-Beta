@@ -8,7 +8,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -23,7 +22,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
@@ -37,6 +35,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.messenger.utils.GradientProtectionDrawable;
@@ -186,7 +185,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+            public void openPhotoForEdit(String str, String str2, boolean z) {
                 CommunityEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -338,7 +337,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -415,11 +414,11 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
         Iterator<TL_communities.CommunityPeer> it = arrayList2.iterator();
         while (it.hasNext()) {
-            arrayList.add(UItem.asProfileCell(getMessagesStorage().getChat(-DialogObject.getPeerDialogId(it.next().peer))));
+            arrayList.add(UItem.asProfileCell(getMessagesController().getUserOrChat(DialogObject.getPeerDialogId(it.next().peer))));
         }
     }
 
-    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.IllegalArgumentException, java.lang.NegativeArraySizeException {
+    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.community.CommunityEditActivity.onClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
     }
 
@@ -445,32 +444,56 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     }
 
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        boolean zCanRemoveBotFromCommunity;
+        final boolean z;
+        final long j;
+        final boolean z2;
         int i2;
         Object obj = uItem.object;
-        if (!(obj instanceof TLRPC.Chat)) {
+        if (obj instanceof TLRPC.Chat) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
+            long j2 = -chat.id;
+            boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+            zCanRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, this.currentChat);
+            z2 = zIsChannelAndNotMegaGroup;
+            j = j2;
+            z = false;
+        } else {
+            if (!(obj instanceof TLRPC.User)) {
+                return false;
+            }
+            TLRPC.User user = (TLRPC.User) obj;
+            long j3 = user.id;
+            boolean zIsBot = UserObject.isBot(user);
+            zCanRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, this.currentChat);
+            z = zIsBot;
+            j = j3;
+            z2 = false;
+        }
+        CommunityChatType communityChatType = CommunityUtils.getCommunityChatType(this.currentAccount, j);
+        boolean z3 = communityChatType == CommunityChatType.YouAreIn || communityChatType == CommunityChatType.YouCanView;
+        if (!zCanRemoveBotFromCommunity && !z3) {
             return false;
         }
-        TLRPC.Chat chat = (TLRPC.Chat) obj;
-        final long j = -chat.id;
-        final boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-        boolean zCanRemoveChatFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, this.currentChat);
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.containerView, view);
         int i3 = R.drawable.msg_viewintopic;
-        if (zIsChannelAndNotMegaGroup) {
+        if (z) {
+            i2 = R.string.CommunityMenuViewBot;
+        } else if (z2) {
             i2 = R.string.CommunityMenuViewChannel;
         } else {
             i2 = R.string.CommunityMenuViewGroup;
         }
-        itemOptionsMakeOptions.add(i3, LocaleController.getString(i2), new Runnable() {
+        itemOptionsMakeOptions.addIf(z3, i3, LocaleController.getString(i2), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onLongClick$2(j);
             }
         });
-        itemOptionsMakeOptions.addIf(zCanRemoveChatFromCommunity, R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, new Runnable() {
+        itemOptionsMakeOptions.addIf(zCanRemoveBotFromCommunity, R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onLongClick$5(zIsChannelAndNotMegaGroup, j);
+                this.f$0.lambda$onLongClick$5(z, z2, j);
             }
         });
         itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view, true));
@@ -482,10 +505,12 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         presentFragment(ChatActivity.of(j));
     }
 
-    public void lambda$onLongClick$5(boolean z, final long j) {
+    public void lambda$onLongClick$5(boolean z, boolean z2, final long j) {
         int i;
         String string = LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity);
         if (z) {
+            i = R.string.CommunityMenuRemoveBotFromCommunityConfirm;
+        } else if (z2) {
             i = R.string.CommunityMenuRemoveChannelFromCommunityConfirm;
         } else {
             i = R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
@@ -585,7 +610,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException, IllegalArgumentException, NegativeArraySizeException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 

@@ -231,6 +231,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int halfCheckDrawLeft;
     private boolean hasCall;
     private boolean hasNameInMessage;
+    private boolean hasUnmutedCommunityDialogs;
     private boolean hasUnmutedTopics;
     private boolean hasVideoThumb;
     public int heightDefault;
@@ -609,18 +610,28 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.chekBoxPaddingTop = 42.0f;
         StoriesUtilities.AvatarStoryParams avatarStoryParams = new StoriesUtilities.AvatarStoryParams(0 == true ? 1 : 0) {
             @Override
-            public boolean isAvatarClickable(long j, TLRPC.Chat chat) {
-                return (chat == null || chat.linked_community_id == 0 || DialogCell.this.insideCommunityList) ? false : true;
+            public boolean isAvatarClickable(long j, TLRPC.Chat chat, TLRPC.User user) {
+                return (((chat == null || chat.linked_community_id == 0) && (user == null || user.linked_community_id == 0)) || DialogCell.this.insideCommunityList) ? false : true;
             }
 
             @Override
             public boolean onAvatarClick(View view, long j) {
-                TLRPC.Chat chat;
-                if (j < 0 && DialogCell.this.parentFragment != null) {
+                if (DialogCell.this.parentFragment != null) {
                     DialogCell dialogCell = DialogCell.this;
-                    if (!dialogCell.insideCommunityList && (chat = MessagesController.getInstance(dialogCell.currentAccount).getChat(Long.valueOf(-j))) != null && chat.linked_community_id != 0) {
-                        DialogCell.this.parentFragment.showDialog(new CommunitySheet(DialogCell.this.parentFragment, chat.linked_community_id));
-                        return true;
+                    if (!dialogCell.insideCommunityList) {
+                        if (j > 0) {
+                            TLRPC.User user = MessagesController.getInstance(dialogCell.currentAccount).getUser(Long.valueOf(j));
+                            if (user != null && user.linked_community_id != 0) {
+                                DialogCell.this.parentFragment.showDialog(new CommunitySheet(DialogCell.this.parentFragment, user.linked_community_id));
+                                return true;
+                            }
+                        } else {
+                            TLRPC.Chat chat = MessagesController.getInstance(dialogCell.currentAccount).getChat(Long.valueOf(-j));
+                            if (chat != null && chat.linked_community_id != 0) {
+                                DialogCell.this.parentFragment.showDialog(new CommunitySheet(DialogCell.this.parentFragment, chat.linked_community_id));
+                                return true;
+                            }
+                        }
                     }
                 }
                 return super.onAvatarClick(view, j);
@@ -657,6 +668,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.visibleOnScreen = true;
         this.collapseOffset = 0.0f;
         this.hasUnmutedTopics = false;
+        this.hasUnmutedCommunityDialogs = false;
         this.openButtonBounce = new ButtonBounce(this);
         this.openButtonBackgroundPaint = new Paint(1);
         this.openButtonRect = new RectF();
@@ -1450,7 +1462,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return update(i, true);
     }
 
-    public boolean update(int r44, boolean r45) {
+    public boolean update(int r45, boolean r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.update(int, boolean):boolean");
     }
 
@@ -1514,7 +1526,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r58) {
+    protected void onDraw(android.graphics.Canvas r61) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1537,6 +1549,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private boolean isCounterMuted() {
+        if (isDialogCommunity()) {
+            return !this.hasUnmutedCommunityDialogs;
+        }
         if (this.isTopic) {
             return this.topicMuted;
         }

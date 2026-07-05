@@ -68,6 +68,7 @@ public class MessagesStorage extends BaseController {
     private int[][] bots;
     private File cacheFile;
     private int[][] channels;
+    private int[][] communities;
     private int[][] contacts;
     private SQLiteDatabase database;
     private boolean databaseCreated;
@@ -259,6 +260,7 @@ public class MessagesStorage extends BaseController {
         this.bots = new int[][]{new int[2], new int[2]};
         this.channels = new int[][]{new int[2], new int[2]};
         this.groups = new int[][]{new int[2], new int[2]};
+        this.communities = new int[][]{new int[2], new int[2]};
         this.mentionChannels = new int[2];
         this.mentionGroups = new int[2];
         this.dialogsWithMentions = new LongSparseArray();
@@ -1938,7 +1940,7 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    private void calcUnreadCounters(boolean r30) throws java.lang.Throwable {
+    private void calcUnreadCounters(boolean r31) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.calcUnreadCounters(boolean):void");
     }
 
@@ -3513,10 +3515,30 @@ public class MessagesStorage extends BaseController {
         this.archiveUnreadCount = this.pendingArchiveUnreadCount;
     }
 
-    private boolean isChatCollapsedInCommunity(TLRPC.Chat chat) {
-        TLRPC.Chat chat2;
+    private boolean isUserCollapsedInCommunity(LongSparseArray longSparseArray, TLRPC.User user) {
+        long j = user.linked_community_id;
+        if (j == 0) {
+            return false;
+        }
+        TLRPC.Chat chat = (TLRPC.Chat) longSparseArray.get(j);
+        if (chat == null) {
+            chat = getChat(user.linked_community_id);
+            longSparseArray.put(user.linked_community_id, chat);
+        }
+        return chat != null && chat.collapsed_in_dialogs;
+    }
+
+    private boolean isChatCollapsedInCommunity(LongSparseArray longSparseArray, TLRPC.Chat chat) {
         long j = chat.linked_community_id;
-        return (j == 0 || (chat2 = getChat(j)) == null || !chat2.collapsed_in_dialogs) ? false : true;
+        if (j == 0) {
+            return false;
+        }
+        TLRPC.Chat chat2 = (TLRPC.Chat) longSparseArray.get(j);
+        if (chat2 == null) {
+            chat2 = getChat(chat.linked_community_id);
+            longSparseArray.put(chat.linked_community_id, chat2);
+        }
+        return chat2 != null && chat2.collapsed_in_dialogs;
     }
 
     private void updateDialogsWithReadMessagesInternal(ArrayList<Integer> arrayList, LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) {
@@ -7794,12 +7816,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(228);
+                messageMedia.bytes = Utilities.intToBytes(229);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(228);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(229);
             message.flags |= 512;
         }
     }

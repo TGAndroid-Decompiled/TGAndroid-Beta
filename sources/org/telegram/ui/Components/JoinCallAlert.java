@@ -6,7 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -246,7 +245,7 @@ public class JoinCallAlert extends BottomSheet {
         accountInstance.getConnectionsManager().cancelRequest(i, true);
     }
 
-    public static void open(final Context context, final long j, final AccountInstance accountInstance, final BaseFragment baseFragment, final int i, final TLRPC.Peer peer, final JoinCallAlertDelegate joinCallAlertDelegate) throws Resources.NotFoundException {
+    public static void open(final Context context, final long j, final AccountInstance accountInstance, final BaseFragment baseFragment, final int i, final TLRPC.Peer peer, final JoinCallAlertDelegate joinCallAlertDelegate) {
         if (context == null || joinCallAlertDelegate == null) {
             return;
         }
@@ -283,13 +282,13 @@ public class JoinCallAlert extends BottomSheet {
     public static void lambda$open$4(final AlertDialog alertDialog, final AccountInstance accountInstance, final JoinCallAlertDelegate joinCallAlertDelegate, final long j, final Context context, final BaseFragment baseFragment, final int i, final TLRPC.Peer peer, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException {
+            public final void run() {
                 JoinCallAlert.lambda$open$3(alertDialog, tLObject, accountInstance, joinCallAlertDelegate, j, context, baseFragment, i, peer);
             }
         });
     }
 
-    public static void lambda$open$3(AlertDialog alertDialog, TLObject tLObject, AccountInstance accountInstance, JoinCallAlertDelegate joinCallAlertDelegate, long j, Context context, BaseFragment baseFragment, int i, TLRPC.Peer peer) throws Resources.NotFoundException {
+    public static void lambda$open$3(AlertDialog alertDialog, TLObject tLObject, AccountInstance accountInstance, JoinCallAlertDelegate joinCallAlertDelegate, long j, Context context, BaseFragment baseFragment, int i, TLRPC.Peer peer) {
         try {
             alertDialog.dismiss();
         } catch (Exception e) {
@@ -315,7 +314,7 @@ public class JoinCallAlert extends BottomSheet {
         accountInstance.getConnectionsManager().cancelRequest(i, true);
     }
 
-    private static void showAlert(Context context, long j, ArrayList arrayList, BaseFragment baseFragment, int i, TLRPC.Peer peer, JoinCallAlertDelegate joinCallAlertDelegate) throws Resources.NotFoundException {
+    private static void showAlert(Context context, long j, ArrayList arrayList, BaseFragment baseFragment, int i, TLRPC.Peer peer, JoinCallAlertDelegate joinCallAlertDelegate) {
         if (i == 0) {
             CreateGroupCallBottomSheet.show(arrayList, baseFragment, j, joinCallAlertDelegate);
             return;
@@ -331,7 +330,7 @@ public class JoinCallAlert extends BottomSheet {
         joinCallAlert.show();
     }
 
-    private JoinCallAlert(Context context, long j, ArrayList arrayList, int i, TLRPC.Peer peer, final JoinCallAlertDelegate joinCallAlertDelegate) throws Resources.NotFoundException {
+    private JoinCallAlert(Context context, long j, ArrayList arrayList, int i, TLRPC.Peer peer, final JoinCallAlertDelegate joinCallAlertDelegate) {
         int color;
         ViewGroup viewGroup;
         boolean z;

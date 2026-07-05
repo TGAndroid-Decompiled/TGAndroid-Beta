@@ -1580,6 +1580,10 @@ public class ChatObject {
         return (chat == null || chat2 == null || (!chat.creator && !canUserDoAdminAction(chat2, 27))) ? false : true;
     }
 
+    public static boolean canRemoveBotFromCommunity(TLRPC.User user, TLRPC.Chat chat) {
+        return (user == null || chat == null || ((!user.bot || !user.bot_can_edit) && !canUserDoAdminAction(chat, 27))) ? false : true;
+    }
+
     public static boolean canAddChatToCommunity(TLRPC.Chat chat) {
         return canUserDoAction(chat, 27);
     }
@@ -1707,18 +1711,29 @@ public class ChatObject {
         return isChannel(chat) && ((!chat.megagroup && chat.signatures && hasAdminRights(chat) && canWriteToChat(chat)) || (chat.megagroup && (isPublic(chat) || chat.has_geo || chat.has_link)));
     }
 
-    public static boolean isChatHiddenInCommunity(int i, long j) {
-        return isChatHiddenInCommunity(i, MessagesController.getInstance(i).getChat(Long.valueOf(j)));
+    public static boolean isHiddenInCommunity(int i, long j) {
+        if (j > 0) {
+            return isHiddenInCommunity(i, MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+        }
+        return isHiddenInCommunity(i, MessagesController.getInstance(i).getChat(Long.valueOf(-j)));
     }
 
-    public static boolean isChatHiddenInCommunity(int i, TLRPC.Chat chat) {
+    public static boolean isHiddenInCommunity(int i, TLRPC.User user) {
+        return user != null && isHiddenInCommunity(i, user.linked_community_id, user.id);
+    }
+
+    public static boolean isHiddenInCommunity(int i, TLRPC.Chat chat) {
+        return chat != null && isHiddenInCommunity(i, chat.linked_community_id, -chat.id);
+    }
+
+    private static boolean isHiddenInCommunity(int i, long j, long j2) {
         TLRPC.ChatFull chatFull;
         ArrayList<TL_communities.CommunityPeer> arrayList;
-        if (chat != null && chat.linked_community_id != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(chat.linked_community_id)) != null && (arrayList = chatFull.linked_peers) != null) {
+        if (j != 0 && j2 != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(-j2)) != null && (arrayList = chatFull.linked_peers) != null) {
             Iterator<TL_communities.CommunityPeer> it = arrayList.iterator();
             while (it.hasNext()) {
                 TL_communities.CommunityPeer next = it.next();
-                if (DialogObject.getPeerDialogId(next.peer) == (-chat.id) && isCommunityPeerHidden(next)) {
+                if (DialogObject.getPeerDialogId(next.peer) == j2 && isCommunityPeerHidden(next)) {
                     return true;
                 }
             }
@@ -1728,6 +1743,13 @@ public class ChatObject {
 
     public static boolean isCommunityPeerHidden(TL_communities.CommunityPeer communityPeer) {
         return (communityPeer == null || !BitwiseUtils.hasFlag(communityPeer.flags, 1) || communityPeer.visible) ? false : true;
+    }
+
+    public static boolean isCollapsedInCommunity(int i, long j) {
+        if (j > 0) {
+            return isUserCollapsedInCommunity(i, MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+        }
+        return isChatCollapsedInCommunity(i, MessagesController.getInstance(i).getChat(Long.valueOf(-j)));
     }
 
     public static boolean isChatCollapsedInCommunity(LongSparseArray longSparseArray, TLRPC.Chat chat) {
@@ -1742,6 +1764,20 @@ public class ChatObject {
     public static boolean isChatCollapsedInCommunity(int i, TLRPC.Chat chat) {
         TLRPC.Chat chat2;
         return (chat == null || chat.linked_community_id == 0 || (chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_community_id))) == null || !chat2.collapsed_in_dialogs) ? false : true;
+    }
+
+    public static boolean isUserCollapsedInCommunity(LongSparseArray longSparseArray, TLRPC.User user) {
+        TLRPC.Chat chat;
+        if (user == null) {
+            return false;
+        }
+        long j = user.linked_community_id;
+        return (j == 0 || longSparseArray == null || (chat = (TLRPC.Chat) longSparseArray.get(j)) == null || !chat.collapsed_in_dialogs) ? false : true;
+    }
+
+    public static boolean isUserCollapsedInCommunity(int i, TLRPC.User user) {
+        TLRPC.Chat chat;
+        return (user == null || user.linked_community_id == 0 || (chat = MessagesController.getInstance(i).getChat(Long.valueOf(user.linked_community_id))) == null || !chat.collapsed_in_dialogs) ? false : true;
     }
 
     public static boolean isCommunity(TLRPC.Chat chat) {

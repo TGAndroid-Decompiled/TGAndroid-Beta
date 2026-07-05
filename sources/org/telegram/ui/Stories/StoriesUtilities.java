@@ -1182,7 +1182,7 @@ public abstract class StoriesUtilities {
         public int unreadState;
         public boolean useArcProgress;
 
-        public boolean isAvatarClickable(long j, TLRPC.Chat chat) {
+        public boolean isAvatarClickable(long j, TLRPC.Chat chat, TLRPC.User user) {
             return false;
         }
 

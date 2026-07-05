@@ -15,6 +15,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.utils.RenderNodeEffects;
 import org.telegram.tgnet.TLRPC;
@@ -38,6 +39,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
     private final ButtonWithCounterView addButton;
     public final BackupImageView avatarView;
     private BlurredBackgroundDrawable blurredBackgroundDrawable;
+    private final int currentAccount;
     private final ButtonWithCounterView declineButton;
     ClickDelegate delegate;
     long groupDialogId;
@@ -63,10 +65,11 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
     public static void lambda$set$4() {
     }
 
-    public CommunityPendingRequestCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public CommunityPendingRequestCell(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory;
         super(context);
         this.resourcesProvider = resourcesProvider;
+        this.currentAccount = i;
         if (Build.VERSION.SDK_INT >= 31) {
             BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(null);
             this.sourceRenderNode = blurredBackgroundSourceRenderNode;
@@ -246,14 +249,18 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         super.dispatchDraw(canvas);
     }
 
-    public void set(TLRPC.Chat chat, TLRPC.ChatFull chatFull, TLRPC.User user, ClickDelegate clickDelegate, boolean z, boolean z2) {
+    public void set(long j, TLRPC.User user, ClickDelegate clickDelegate, boolean z, boolean z2) {
         int i;
         this.delegate = clickDelegate;
-        this.groupDialogId = -chat.id;
+        this.groupDialogId = j;
         this.userDialogId = user.id;
-        this.titleView.setText(DialogObject.getName(chat));
+        TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+        TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+        this.titleView.setText(DialogObject.getName(j));
         TextView textView = this.subtitleView;
-        if (ChatObject.isChannelAndNotMegaGroup(chat)) {
+        if (user2 != null) {
+            i = R.string.CommunityPendingRequestSuggestedBot;
+        } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
             i = R.string.CommunityPendingRequestSuggestedChannel;
         } else {
             i = R.string.CommunityPendingRequestSuggestedGroup;
@@ -264,10 +271,10 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
                 CommunityPendingRequestCell.lambda$set$4();
             }
         }));
-        if (chatFull != null && chatFull.participants_count > 0) {
+        if (user2 == null && chat != null && chat.participants_count > 0) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
             spannableStringBuilder.setSpan(this.span, 0, 1, 33);
-            spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chatFull.participants_count, ','));
+            spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
             this.membersCountView.setText(spannableStringBuilder);
             this.membersCountView.setVisibility(0);
         } else {
@@ -279,7 +286,11 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
             this.hiddenLabelView.setVisibility(8);
         }
         this.needDivider = z2;
-        this.avatarView.setForUserOrChat(chat, new AvatarDrawable(chat));
+        if (user2 != null) {
+            this.avatarView.setForUserOrChat(user2, new AvatarDrawable(user2));
+        } else {
+            this.avatarView.setForUserOrChat(chat, new AvatarDrawable(chat));
+        }
         this.requesterAvatarView.setForUserOrChat(user, new AvatarDrawable(user));
     }
 
@@ -293,15 +304,13 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
     }
 
     public static class Data {
-        public final TLRPC.Chat chatToAdd;
-        public final TLRPC.ChatFull chatToAddFull;
+        public final long dialogToAdd;
         public final boolean isHidden;
         public final TLRPC.User requestFromUser;
 
-        private Data(TLRPC.Chat chat, TLRPC.User user, TLRPC.ChatFull chatFull, boolean z) {
-            this.chatToAdd = chat;
+        private Data(long j, TLRPC.User user, boolean z) {
+            this.dialogToAdd = j;
             this.requestFromUser = user;
-            this.chatToAddFull = chatFull;
             this.isHidden = z;
         }
     }
@@ -313,7 +322,7 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
 
         @Override
         public CommunityPendingRequestCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            CommunityPendingRequestCell communityPendingRequestCell = new CommunityPendingRequestCell(context, resourcesProvider);
+            CommunityPendingRequestCell communityPendingRequestCell = new CommunityPendingRequestCell(context, resourcesProvider, i);
             communityPendingRequestCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             communityPendingRequestCell.setClickable(false);
             return communityPendingRequestCell;
@@ -323,19 +332,19 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
         public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             CommunityPendingRequestCell communityPendingRequestCell = (CommunityPendingRequestCell) view;
             Data data = (Data) uItem.object;
-            communityPendingRequestCell.set(data.chatToAdd, data.chatToAddFull, data.requestFromUser, (ClickDelegate) uItem.object2, data.isHidden, !uItem.hideDivider);
+            communityPendingRequestCell.set(data.dialogToAdd, data.requestFromUser, (ClickDelegate) uItem.object2, data.isHidden, !uItem.hideDivider);
         }
 
         @Override
         public boolean equals(UItem uItem, UItem uItem2) {
             Data data = (Data) uItem.object;
             Data data2 = (Data) uItem2.object;
-            return DialogObject.getDialogId(data.chatToAdd) == DialogObject.getDialogId(data2.chatToAdd) && DialogObject.getDialogId(data.requestFromUser) == DialogObject.getDialogId(data2.requestFromUser);
+            return data.dialogToAdd == data2.dialogToAdd && DialogObject.getDialogId(data.requestFromUser) == DialogObject.getDialogId(data2.requestFromUser);
         }
 
-        public static UItem asPendingRequest(TLRPC.Chat chat, TLRPC.ChatFull chatFull, TLRPC.User user, boolean z, ClickDelegate clickDelegate, boolean z2) {
+        public static UItem asPendingRequest(long j, TLRPC.User user, boolean z, ClickDelegate clickDelegate, boolean z2) {
             UItem uItemOfFactory = UItem.ofFactory(Factory.class);
-            uItemOfFactory.object = new Data(chat, user, chatFull, z);
+            uItemOfFactory.object = new Data(j, user, z);
             uItemOfFactory.object2 = clickDelegate;
             uItemOfFactory.hideDivider = !z2;
             return uItemOfFactory;

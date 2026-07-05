@@ -62,6 +62,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
     private AnimatedTextView animatedSubtitleTextView;
     private final BoolAnimator animatorTimeVisible;
     private AvatarDrawable avatarDrawable;
+    private boolean avatarImageIsHidden;
     public BackupImageView avatarImageView;
     private int avatarSizeInDp;
     private final AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable botVerificationDrawable;
@@ -677,7 +678,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
     public void setCommunityItemVisible(boolean z) {
         ImageView imageView = this.communityItem;
         if (imageView != null) {
-            imageView.setVisibility(z ? 0 : 8);
+            imageView.setVisibility((!z || this.avatarImageIsHidden) ? 8 : 0);
         }
     }
 

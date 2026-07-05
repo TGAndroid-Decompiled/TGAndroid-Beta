@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -25,6 +24,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -58,7 +58,7 @@ public abstract class CommunityUtils {
             arrayList.add(UItem.asHeader(21, LocaleController.getString(R.string.CommunitySectionChatsYouAreIn)));
             Iterator<MessagesController.CommunityPeerDialog> it = communityPeersDialogBuildCommunityPeers.chatsYouAreIn.iterator();
             while (it.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell(it.next().chat));
+                arrayList.add(DialogCellFactory.asCell(it.next()));
             }
             z2 = z;
         }
@@ -69,7 +69,7 @@ public abstract class CommunityUtils {
             arrayList.add(UItem.asHeader(23, LocaleController.getString(R.string.CommunitySectionChatsYouCanView)));
             Iterator<MessagesController.CommunityPeerDialog> it2 = communityPeersDialogBuildCommunityPeers.chatsYouCanView.iterator();
             while (it2.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell(it2.next().chat));
+                arrayList.add(DialogCellFactory.asCell(it2.next()));
             }
             z2 = z;
         }
@@ -82,7 +82,7 @@ public abstract class CommunityUtils {
             arrayList.add(UItem.asHeader(25, LocaleController.getString(R.string.CommunitySectionChatsYouCanRequestToJoin)));
             Iterator<MessagesController.CommunityPeerDialog> it3 = communityPeersDialogBuildCommunityPeers.chatsYouCanJoin.iterator();
             while (it3.hasNext()) {
-                arrayList.add(DialogCellFactory.asCell(it3.next().chat));
+                arrayList.add(DialogCellFactory.asCell(it3.next()));
             }
         }
         if (communityPeersDialogBuildCommunityPeers.chatsOther.isEmpty()) {
@@ -94,7 +94,7 @@ public abstract class CommunityUtils {
         arrayList.add(UItem.asHeader(27, LocaleController.getString(R.string.CommunitySectionHiddenChats)));
         Iterator<MessagesController.CommunityPeerDialog> it4 = communityPeersDialogBuildCommunityPeers.chatsOther.iterator();
         while (it4.hasNext()) {
-            arrayList.add(DialogCellFactory.asCell(it4.next().chat));
+            arrayList.add(DialogCellFactory.asCell(it4.next()));
         }
     }
 
@@ -108,8 +108,7 @@ public abstract class CommunityUtils {
             TL_communities.CommunityPeerRequest communityPeerRequest = (TL_communities.CommunityPeerRequest) arrayList2.get(i2);
             long peerDialogId = DialogObject.getPeerDialogId(communityPeerRequest.peer);
             if (longSparseArray == null || !longSparseArray.containsKey(peerDialogId)) {
-                long j = -peerDialogId;
-                arrayList.add(CommunityPendingRequestCell.Factory.asPendingRequest(MessagesController.getInstance(i).getChat(Long.valueOf(j)), MessagesController.getInstance(i).getChatFull(j), MessagesController.getInstance(i).getUser(Long.valueOf(communityPeerRequest.requested_by)), !communityPeerRequest.visible, clickDelegate, i2 < size + (-1)));
+                arrayList.add(CommunityPendingRequestCell.Factory.asPendingRequest(peerDialogId, MessagesController.getInstance(i).getUser(Long.valueOf(communityPeerRequest.requested_by)), !communityPeerRequest.visible, clickDelegate, i2 < size + (-1)));
             }
             i2++;
         }
@@ -284,10 +283,10 @@ public abstract class CommunityUtils {
                 }
             };
             Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(this.context, false, this.resourcesProvider);
-            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-            if (chat != null) {
+            TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(j);
+            if (userOrChat != null) {
                 usersLayout.avatarsImageView.setCount(1);
-                usersLayout.avatarsImageView.setObject(0, UserConfig.selectedAccount, chat);
+                usersLayout.avatarsImageView.setObject(0, UserConfig.selectedAccount, userOrChat);
                 i2 = 1;
             } else {
                 i2 = 0;
@@ -311,7 +310,7 @@ public abstract class CommunityUtils {
             if (LocaleController.isRTL) {
                 usersLayout.avatarsImageView.setTranslationX(AndroidUtilities.dp(32 - ((i2 - 1) * 12)));
             }
-            usersLayout.setButton(new Bulletin.UndoButton(this.context, true, false, this.resourcesProvider).setText(LocaleController.getString(R.string.UndoNoCaps)).setUndoAction(new Runnable() {
+            usersLayout.setButton(new Bulletin.UndoButton(this.context, true, true, this.resourcesProvider).setText(LocaleController.getString(R.string.UndoNoCaps)).setUndoAction(new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onResolveJoinRequest$3(j);
@@ -502,7 +501,7 @@ public abstract class CommunityUtils {
     }
 
     public static void lambda$showChatsToAddSheet$3(final BaseFragment baseFragment, final TLRPC.Chat chat, final int i, final TLRPC.Chat chat2) {
-        baseFragment.showDialog(new CommunityAddOptionsSheet(baseFragment.getContext(), chat, chat2, new Utilities.Callback() {
+        baseFragment.showDialog(new CommunityAddOptionsSheet(baseFragment.getContext(), chat, -chat2.id, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 CommunityUtils.lambda$showChatsToAddSheet$2(baseFragment, i, chat2, chat, (Boolean) obj);
@@ -598,7 +597,7 @@ public abstract class CommunityUtils {
             baseFragment.finishFragment();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
@@ -610,7 +609,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, NumberFormatException {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();
@@ -638,23 +637,48 @@ public abstract class CommunityUtils {
         bulletinFactory.createSimpleBulletin(i3, string, i4).show();
     }
 
-    public static CommunityChatType getCommunityChatType(int i, TLRPC.Chat chat) {
+    public static CommunityChatType getCommunityChatType(int i, long j) {
+        long j2;
+        TLRPC.Chat chat;
+        TLRPC.User user;
         TLRPC.ChatFull chatFull;
         ArrayList<TL_communities.CommunityPeer> arrayList;
-        if (chat != null && chat.linked_community_id != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(chat.linked_community_id)) != null && (arrayList = chatFull.linked_peers) != null) {
+        if (j > 0) {
+            user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
+            if (user == null) {
+                return null;
+            }
+            j2 = user.linked_community_id;
+            chat = null;
+        } else {
+            TLRPC.Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+            if (chat2 == null) {
+                return null;
+            }
+            j2 = chat2.linked_community_id;
+            chat = chat2;
+            user = null;
+        }
+        if (j2 != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(j2)) != null && (arrayList = chatFull.linked_peers) != null) {
             Iterator<TL_communities.CommunityPeer> it = arrayList.iterator();
             while (it.hasNext()) {
                 TL_communities.CommunityPeer next = it.next();
-                if (DialogObject.getPeerDialogId(next.peer) == (-chat.id)) {
-                    return getCommunityChatType(chat, next);
+                if (DialogObject.getPeerDialogId(next.peer) == j) {
+                    return getCommunityChatType(chat, user, user != null ? MessagesController.getInstance(i).getDialog(user.id) : null, next);
                 }
             }
         }
         return null;
     }
 
-    public static CommunityChatType getCommunityChatType(TLRPC.Chat chat, TL_communities.CommunityPeer communityPeer) {
-        if (chat == null || communityPeer == null) {
+    public static CommunityChatType getCommunityChatType(TLRPC.Chat chat, TLRPC.User user, TLRPC.Dialog dialog, TL_communities.CommunityPeer communityPeer) {
+        if (communityPeer == null) {
+            return null;
+        }
+        if (user != null) {
+            return dialog != null ? CommunityChatType.YouAreIn : CommunityChatType.YouCanView;
+        }
+        if (chat == null) {
             return null;
         }
         if (ChatObject.isInChat(chat)) {
@@ -669,9 +693,8 @@ public abstract class CommunityUtils {
         return CommunityChatType.YouCanSendJoinRequest;
     }
 
-    public static CharSequence buildServiceMessageText(MessageObject messageObject, String str, String str2, boolean z) {
+    public static CharSequence buildServiceMessageText(MessageObject messageObject, String str, String str2, boolean z, boolean z2) {
         int i;
-        String string;
         int i2;
         int i3;
         int i4;
@@ -679,18 +702,22 @@ public abstract class CommunityUtils {
         int i6;
         TLRPC.Message message = messageObject.messageOwner;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
-        boolean z2 = DialogObject.getPeerDialogId(message.peer_id) == DialogObject.getPeerDialogId(message.from_id);
-        boolean z3 = tL_messageActionChangeCommunity.community_id == 0;
-        if (z2) {
-            if (z3) {
-                if (z) {
+        boolean z3 = DialogObject.getPeerDialogId(message.peer_id) == DialogObject.getPeerDialogId(message.from_id);
+        boolean z4 = tL_messageActionChangeCommunity.community_id == 0;
+        if (z3) {
+            if (z4) {
+                if (z2) {
+                    i6 = R.string.CommunityServiceMessageBotRemovedUnknown;
+                } else if (z) {
                     i6 = R.string.CommunityServiceMessageChannelRemovedUnknown;
                 } else {
                     i6 = R.string.CommunityServiceMessageGroupRemovedUnknown;
                 }
                 return AndroidUtilities.replaceTags(LocaleController.getString(i6));
             }
-            if (z) {
+            if (z2) {
+                i5 = R.string.CommunityServiceMessageBotAddedUnknown;
+            } else if (z) {
                 i5 = R.string.CommunityServiceMessageChannelAddedUnknown;
             } else {
                 i5 = R.string.CommunityServiceMessageGroupAddedUnknown;
@@ -698,37 +725,43 @@ public abstract class CommunityUtils {
             return AndroidUtilities.replaceTags(LocaleController.formatString(i5, str));
         }
         if (messageObject.isOut()) {
-            if (z3) {
-                if (z) {
+            if (z4) {
+                if (z2) {
+                    i4 = R.string.CommunityServiceMessageBotYouRemoved;
+                } else if (z) {
                     i4 = R.string.CommunityServiceMessageChannelYouRemoved;
                 } else {
                     i4 = R.string.CommunityServiceMessageGroupYouRemoved;
                 }
-                string = LocaleController.getString(i4);
-            } else {
-                if (z) {
-                    i3 = R.string.CommunityServiceMessageChannelYouAdded;
-                } else {
-                    i3 = R.string.CommunityServiceMessageGroupYouAdded;
-                }
-                string = LocaleController.formatString(i3, str);
+                return AndroidUtilities.replaceTags(LocaleController.getString(i4));
             }
-        } else if (z3) {
-            if (z) {
+            if (z2) {
+                i3 = R.string.CommunityServiceMessageBotYouAdded;
+            } else if (z) {
+                i3 = R.string.CommunityServiceMessageChannelYouAdded;
+            } else {
+                i3 = R.string.CommunityServiceMessageGroupYouAdded;
+            }
+            return AndroidUtilities.replaceTags(LocaleController.formatString(i3, str));
+        }
+        if (z4) {
+            if (z2) {
+                i2 = R.string.CommunityServiceMessageBotRemoved;
+            } else if (z) {
                 i2 = R.string.CommunityServiceMessageChannelRemoved;
             } else {
                 i2 = R.string.CommunityServiceMessageGroupRemoved;
             }
-            string = LocaleController.formatString(i2, str2);
-        } else {
-            if (z) {
-                i = R.string.CommunityServiceMessageChannelAdded;
-            } else {
-                i = R.string.CommunityServiceMessageGroupAdded;
-            }
-            string = LocaleController.formatString(i, str2, str);
+            return AndroidUtilities.replaceTags(LocaleController.formatString(i2, str2));
         }
-        return AndroidUtilities.replaceTags(string);
+        if (z2) {
+            i = R.string.CommunityServiceMessageBotAdded;
+        } else if (z) {
+            i = R.string.CommunityServiceMessageChannelAdded;
+        } else {
+            i = R.string.CommunityServiceMessageGroupAdded;
+        }
+        return AndroidUtilities.replaceTags(LocaleController.formatString(i, str2, str));
     }
 
     public static class DialogCellFactory extends UItem.UItemFactory {
@@ -756,22 +789,56 @@ public abstract class CommunityUtils {
         @Override
         public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             DialogCell dialogCell = (DialogCell) view;
-            TLRPC.Chat chat = (TLRPC.Chat) uItem.object;
-            dialogCell.isHiddenInCommunity = ChatObject.isChatHiddenInCommunity(UserConfig.selectedAccount, chat);
-            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.id);
-            dialogCell.insideCommunityListNoDialog = dialog == null;
-            if (dialog != null) {
-                dialogCell.setCustomMessageWithoutRebuild(null);
-                dialogCell.setDialog(dialog, 0, 0);
-            } else {
-                dialogCell.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
-                dialogCell.setDialog(-chat.id, null, 0, false, false);
+            Object obj = uItem.object;
+            if (obj instanceof TLRPC.Chat) {
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                dialogCell.isHiddenInCommunity = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
+                TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.id);
+                dialogCell.insideCommunityListNoDialog = dialog == null;
+                if (dialog != null) {
+                    dialogCell.setCustomMessageWithoutRebuild(null);
+                    dialogCell.setDialog(dialog, 0, 0);
+                    return;
+                } else {
+                    dialogCell.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
+                    dialogCell.setDialog(-chat.id, null, 0, false, false);
+                    return;
+                }
             }
+            if (obj instanceof TLRPC.User) {
+                TLRPC.User user = (TLRPC.User) obj;
+                dialogCell.isHiddenInCommunity = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
+                TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.id);
+                dialogCell.insideCommunityListNoDialog = dialog2 == null;
+                if (dialog2 != null) {
+                    dialogCell.setCustomMessageWithoutRebuild(null);
+                    dialogCell.setDialog(dialog2, 0, 0);
+                } else {
+                    dialogCell.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
+                    dialogCell.setDialog(user.id, null, 0, false, false);
+                }
+            }
+        }
+
+        public static UItem asCell(MessagesController.CommunityPeerDialog communityPeerDialog) {
+            TLRPC.User user = communityPeerDialog.user;
+            return user != null ? asCell(user) : asCell(communityPeerDialog.chat);
+        }
+
+        public static UItem asCell(TLRPC.User user) {
+            UItem uItemOfFactory = UItem.ofFactory(DialogCellFactory.class);
+            long j = user != null ? user.id : 0L;
+            uItemOfFactory.longValue = j;
+            uItemOfFactory.id = SessionDetails$$ExternalSyntheticBackport0.m(j);
+            uItemOfFactory.object = user;
+            return uItemOfFactory;
         }
 
         public static UItem asCell(TLRPC.Chat chat) {
             UItem uItemOfFactory = UItem.ofFactory(DialogCellFactory.class);
-            uItemOfFactory.id = chat != null ? SessionDetails$$ExternalSyntheticBackport0.m(chat.id) : 0;
+            long j = chat != null ? -chat.id : 0L;
+            uItemOfFactory.longValue = j;
+            uItemOfFactory.id = SessionDetails$$ExternalSyntheticBackport0.m(j);
             uItemOfFactory.object = chat;
             return uItemOfFactory;
         }

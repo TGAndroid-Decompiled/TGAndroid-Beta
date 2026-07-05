@@ -6745,6 +6745,17 @@ public class RichMessageLayout {
             return (this.checkbox == null || this.checkboxItem == null || this.root.getCell() == null || this.root.getDelegate() == null || !this.root.getDelegate().canToggleRichMessageCheckbox(this.root.getCell())) ? false : true;
         }
 
+        boolean checkboxContains(float f, float f2) {
+            if (this.checkbox != null && canToggleCheckbox()) {
+                RectF rectF = this.checkboxHit;
+                Rect rect = this.padding;
+                if (rectF.contains(f - rect.left, f2 - rect.top)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void toggleCheckbox() {
             if (canToggleCheckbox()) {
                 final boolean z = !getCheckboxChecked();
