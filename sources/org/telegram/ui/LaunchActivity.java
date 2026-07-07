@@ -377,6 +377,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } catch (Throwable unused) {
         }
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
+        getWindow().setFormat(-1);
         FlagSecureReason flagSecureReason = new FlagSecureReason(getWindow(), new FlagSecureReason.FlagSecureCondition() {
             @Override
             public final boolean run() {
@@ -396,20 +397,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
         this.actionBarLayout = new ActionBarLayout(this, true);
-        FrameLayout frameLayout = new FrameLayout(this) {
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                LaunchActivity.this.drawRippleAbove(canvas, this);
-            }
-
-            @Override
-            public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
-                return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
-            }
-        };
-        this.frameLayout = frameLayout;
-        frameLayout.setClipToPadding(false);
+        ActivityContentLayout activityContentLayout = new ActivityContentLayout(this);
+        this.frameLayout = activityContentLayout;
+        activityContentLayout.setClipToPadding(false);
         this.frameLayout.setClipChildren(false);
         setContentView(this.frameLayout);
         this.rootAnimatedInsetsListener = new WindowAnimatedInsetsProvider(this.frameLayout);
@@ -448,9 +438,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ImageView imageView = new ImageView(this);
         this.themeSwitchImageView = imageView;
         imageView.setVisibility(8);
-        AnonymousClass4 anonymousClass4 = new AnonymousClass4(this);
-        this.drawerLayoutContainer = anonymousClass4;
-        anonymousClass4.setClipChildren(false);
+        DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
+        this.drawerLayoutContainer = drawerLayoutContainer;
+        drawerLayoutContainer.setActionBarLayout(this.actionBarLayout);
+        this.drawerLayoutContainer.addOnLayoutChangeListener(new AnonymousClass3());
+        this.drawerLayoutContainer.setClipChildren(false);
         this.drawerLayoutContainer.setClipToPadding(false);
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         ImageView imageView2 = new ImageView(this) {
@@ -464,11 +456,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         this.frameLayout.addView(this.themeSwitchSunView, LayoutHelper.createFrame(48, 48.0f));
         this.themeSwitchSunView.setVisibility(8);
-        FrameLayout frameLayout2 = this.frameLayout;
+        FrameLayout frameLayout = this.frameLayout;
         BottomSheetTabsOverlay bottomSheetTabsOverlay = new BottomSheetTabsOverlay(this);
         this.bottomSheetTabsOverlay = bottomSheetTabsOverlay;
-        frameLayout2.addView(bottomSheetTabsOverlay);
-        FrameLayout frameLayout3 = this.frameLayout;
+        frameLayout.addView(bottomSheetTabsOverlay);
+        FrameLayout frameLayout2 = this.frameLayout;
         FireworksOverlay fireworksOverlay = new FireworksOverlay(this) {
             {
                 setVisibility(8);
@@ -487,7 +479,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         };
         this.fireworksOverlay = fireworksOverlay;
-        frameLayout3.addView(fireworksOverlay);
+        frameLayout2.addView(fireworksOverlay);
         setupActionBarLayout();
         this.drawerLayoutContainer.setParentActionBarLayout(this.actionBarLayout);
         this.actionBarLayout.setDrawerLayoutContainer(this.drawerLayoutContainer);
@@ -796,41 +788,31 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
     }
 
-    class AnonymousClass4 extends DrawerLayoutContainer {
+    class AnonymousClass3 implements View.OnLayoutChangeListener {
         private boolean wasPortrait;
 
-        AnonymousClass4(Context context) {
-            super(context);
+        AnonymousClass3() {
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws Exception {
-            super.onLayout(z, i, i2, i3, i4);
-            boolean z2 = i4 - i2 > i3 - i;
-            if (z2 != this.wasPortrait) {
-                post(new Runnable() {
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            boolean z = i4 - i2 > i3 - i;
+            if (z != this.wasPortrait) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onLayout$0();
+                        this.f$0.lambda$onLayoutChange$0();
                     }
                 });
-                this.wasPortrait = z2;
+                this.wasPortrait = z;
             }
         }
 
-        public void lambda$onLayout$0() {
+        public void lambda$onLayoutChange$0() {
             if (LaunchActivity.this.selectAnimatedEmojiDialog != null) {
                 LaunchActivity.this.selectAnimatedEmojiDialog.dismiss();
                 LaunchActivity.this.selectAnimatedEmojiDialog = null;
             }
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            if (LaunchActivity.this.actionBarLayout.getParent() == this) {
-                LaunchActivity.this.actionBarLayout.parentDraw(this, canvas);
-            }
-            super.dispatchDraw(canvas);
         }
     }
 
@@ -1411,7 +1393,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new AnonymousClass13());
+            this.termsOfServiceView.setDelegate(new AnonymousClass12());
         }
         TLRPC.TL_help_termsOfService tL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tL_help_termsOfService2 != tL_help_termsOfService && (tL_help_termsOfService2 == null || !tL_help_termsOfService2.id.data.equals(tL_help_termsOfService.id.data))) {
@@ -1422,8 +1404,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    class AnonymousClass13 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        AnonymousClass13() {
+    class AnonymousClass12 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        AnonymousClass12() {
         }
 
         @Override
@@ -2898,7 +2880,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass15 implements MessagesController.MessagesLoadedCallback {
+    class AnonymousClass14 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -2906,7 +2888,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        AnonymousClass15(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        AnonymousClass14(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2917,7 +2899,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         @Override
         public void onMessagesLoaded(boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass15.onMessagesLoaded(boolean):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass14.onMessagesLoaded(boolean):void");
         }
 
         public void lambda$onMessagesLoaded$2(String str, final long j, final BaseFragment baseFragment) {
@@ -6560,6 +6542,23 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         public void hide() {
             setHidden(true);
+        }
+    }
+
+    private class ActivityContentLayout extends FrameLayout {
+        public ActivityContentLayout(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            super.dispatchDraw(canvas);
+            LaunchActivity.this.drawRippleAbove(canvas, this);
+        }
+
+        @Override
+        public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
+            return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
         }
     }
 }

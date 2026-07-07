@@ -1493,7 +1493,7 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
             twoStepVerificationActivity.needHideProgress();
             twoStepVerificationActivity.finishFragment();
         }
-        AlertsCreator.showAddUserAlert(tL_error, this, this.isChannel, tL_channels_editCreator);
+        AlertsCreator.showAddUserAlert(tL_error, this, this.isChannel, this.isCommunity, tL_channels_editCreator);
     }
 
     public void lambda$initTransfer$15(AlertDialog alertDialog, int i) {

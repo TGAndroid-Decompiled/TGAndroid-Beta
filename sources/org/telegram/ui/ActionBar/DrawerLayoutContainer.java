@@ -3,13 +3,11 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.core.graphics.Insets;
-import androidx.core.view.DisplayCutoutCompat;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -18,14 +16,13 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
 public class DrawerLayoutContainer extends FrameLayout {
-    private boolean firstLayout;
-    private boolean hasCutout;
-    private int imeHeight;
+    private ActionBarLayout actionBarLayout;
     private boolean inLayout;
     private final Paint internalNavbarPaint;
-    private boolean keyboardVisibility;
     private WindowInsetsCompat lastWindowInsetsCompat;
     private INavigationLayout parentActionBarLayout;
+    private Insets systemAndCutoutAndImeInsets;
+    private Insets systemAndCutoutInsets;
 
     @Override
     public boolean hasOverlappingRendering() {
@@ -43,52 +40,25 @@ public class DrawerLayoutContainer extends FrameLayout {
 
     public DrawerLayoutContainer(Context context) {
         super(context);
-        this.firstLayout = true;
         this.internalNavbarPaint = new Paint(1);
+        Insets insets = Insets.NONE;
+        this.systemAndCutoutInsets = insets;
+        this.systemAndCutoutAndImeInsets = insets;
         ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                return this.f$0.lambda$new$0(view, windowInsetsCompat);
+                return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
             }
         });
         setSystemUiVisibility(1280);
     }
 
-    public WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 30) {
-            boolean zIsVisible = windowInsetsCompat.isVisible(WindowInsetsCompat.Type.ime());
-            int i2 = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom;
-            if (this.keyboardVisibility != zIsVisible || this.imeHeight != i2) {
-                this.keyboardVisibility = zIsVisible;
-                this.imeHeight = i2;
-                requestLayout();
-            }
-        }
-        DrawerLayoutContainer drawerLayoutContainer = (DrawerLayoutContainer) view;
-        if (AndroidUtilities.statusBarHeight != windowInsetsCompat.getSystemWindowInsetTop()) {
-            drawerLayoutContainer.requestLayout();
-        }
-        int systemWindowInsetTop = windowInsetsCompat.getSystemWindowInsetTop();
-        if ((systemWindowInsetTop != 0 || AndroidUtilities.isInMultiwindow || this.firstLayout) && AndroidUtilities.statusBarHeight != systemWindowInsetTop) {
-            AndroidUtilities.statusBarHeight = systemWindowInsetTop;
-        }
-        boolean z = false;
-        this.firstLayout = false;
-        drawerLayoutContainer.setWillNotDraw(windowInsetsCompat.getSystemWindowInsetTop() <= 0 && getBackground() == null);
-        if (i >= 28) {
-            DisplayCutoutCompat displayCutout = windowInsetsCompat.getDisplayCutout();
-            if (displayCutout != null && !displayCutout.getBoundingRects().isEmpty()) {
-                z = true;
-            }
-            this.hasCutout = z;
-        }
-        invalidate();
-        return onApplyWindowInsets(view, windowInsetsCompat);
-    }
-
     public void setParentActionBarLayout(INavigationLayout iNavigationLayout) {
         this.parentActionBarLayout = iNavigationLayout;
+    }
+
+    public void setActionBarLayout(ActionBarLayout actionBarLayout) {
+        this.actionBarLayout = actionBarLayout;
     }
 
     @Override
@@ -128,16 +98,11 @@ public class DrawerLayoutContainer extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         int iMakeMeasureSpec;
-        WindowInsetsCompat rootWindowInsets;
-        if (!BuildVars.USE_LEGACY_SYSTEM_INSETS && (rootWindowInsets = ViewCompat.getRootWindowInsets(this)) != null) {
-            Insets insetsIgnoringVisibility = rootWindowInsets.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars());
-            AndroidUtilities.statusBarHeight = insetsIgnoringVisibility.top;
-            AndroidUtilities.navigationBarHeight = insetsIgnoringVisibility.bottom;
-        }
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
         setMeasuredDimension(size, size2);
-        int i3 = (size2 - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight;
+        Insets insets = this.systemAndCutoutInsets;
+        int i3 = (size2 - insets.top) - insets.bottom;
         if (i3 > 0 && i3 < 4096) {
             AndroidUtilities.displaySize.y = i3;
         }
@@ -162,25 +127,23 @@ public class DrawerLayoutContainer extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        WindowInsetsCompat windowInsetsCompat = this.lastWindowInsetsCompat;
-        if (windowInsetsCompat == null) {
-            return;
+    protected void dispatchDraw(Canvas canvas) {
+        int width = getWidth();
+        int height = getHeight();
+        Insets insets = this.systemAndCutoutInsets;
+        int i = insets.left;
+        int i2 = insets.right;
+        if (i > 0) {
+            canvas.drawRect(0.0f, 0.0f, i, height, Theme.fillingPaint(-16777216));
         }
-        Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime() | WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
-        if (insets.bottom > 0) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - insets.bottom, getMeasuredWidth(), getMeasuredHeight(), this.internalNavbarPaint);
+        if (i2 > 0) {
+            canvas.drawRect(width - i2, 0.0f, width, height, Theme.fillingPaint(-16777216));
         }
-        if (this.hasCutout) {
-            int i = insets.left;
-            if (i != 0) {
-                canvas.drawRect(0.0f, 0.0f, i, getMeasuredHeight(), Theme.fillingPaint(-16777216));
-            }
-            int i2 = insets.right;
-            if (i2 != 0) {
-                canvas.drawRect(i2, 0.0f, getMeasuredWidth(), getMeasuredHeight(), Theme.fillingPaint(-16777216));
-            }
+        ActionBarLayout actionBarLayout = this.actionBarLayout;
+        if (actionBarLayout != null && actionBarLayout.getParent() == this) {
+            this.actionBarLayout.parentDraw(this, canvas);
         }
+        super.dispatchDraw(canvas);
     }
 
     public Paint getInternalNavbarPaint() {
@@ -222,8 +185,17 @@ public class DrawerLayoutContainer extends FrameLayout {
         }
     }
 
-    private WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
         this.lastWindowInsetsCompat = windowInsetsCompat;
+        Insets insetsIgnoringVisibility = windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+        Insets insetsMax = Insets.max(insetsIgnoringVisibility, windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()));
+        if (!this.systemAndCutoutInsets.equals(insetsIgnoringVisibility) || !this.systemAndCutoutAndImeInsets.equals(insetsMax)) {
+            AndroidUtilities.statusBarHeight = insetsIgnoringVisibility.top;
+            AndroidUtilities.navigationBarHeight = insetsIgnoringVisibility.bottom;
+            this.systemAndCutoutInsets = insetsIgnoringVisibility;
+            this.systemAndCutoutAndImeInsets = insetsMax;
+            requestLayout();
+        }
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             dispatchApplyWindowInsetsInternal(getChildAt(i), windowInsetsCompat);

@@ -4700,7 +4700,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject2 != null && messageObject2.textLayoutBlocks != null) {
             int i9 = i - this.textY;
             int i10 = 0;
-            for (int i11 = 0; i11 < this.currentMessageObject.textLayoutBlocks.size() && this.currentMessageObject.textLayoutBlocks.get(i11).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) <= i; i11++) {
+            for (int i11 = 0; i11 < this.currentMessageObject.textLayoutBlocks.size() && this.currentMessageObject.textLayoutBlocks.get(i11).textYOffset(this.currentMessageObject.textLayoutBlocks, this.transitionParams) <= i9; i11++) {
                 i10 = i11;
             }
             int i12 = -1;

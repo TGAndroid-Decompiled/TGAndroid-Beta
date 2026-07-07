@@ -25,7 +25,6 @@ public class BuildVars {
     public static String SAFETYNET_KEY = null;
     public static boolean SUPPORTS_PASSKEYS = false;
     public static boolean USE_CLOUD_STRINGS = true;
-    public static boolean USE_LEGACY_SYSTEM_INSETS;
     private static Boolean betaApp;
 
     static {
@@ -41,7 +40,6 @@ public class BuildVars {
         HUAWEI_APP_ID = "101184875";
         IS_BILLING_UNAVAILABLE = false;
         SUPPORTS_PASSKEYS = true;
-        USE_LEGACY_SYSTEM_INSETS = false;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
             boolean z2 = DEBUG_VERSION;

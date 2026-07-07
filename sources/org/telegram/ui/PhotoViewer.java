@@ -6091,13 +6091,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         Rect rect = new Rect(this.insets);
         Insets insetsIgnoringVisibility = windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
         this.insets.set(insetsIgnoringVisibility.left, insetsIgnoringVisibility.top, insetsIgnoringVisibility.right, insetsIgnoringVisibility.bottom);
-        int i = this.insets.top;
-        Activity activity = this.parentActivity;
-        if ((activity instanceof LaunchActivity) && ((i != 0 || AndroidUtilities.isInMultiwindow) && !this.inBubbleMode && AndroidUtilities.statusBarHeight != i)) {
-            AndroidUtilities.statusBarHeight = i;
-            ((LaunchActivity) activity).drawerLayoutContainer.requestLayout();
-        }
-        if (!rect.equals(this.insets)) {
+        Rect rect2 = this.insets;
+        int i = rect2.top;
+        if (!rect.equals(rect2)) {
             int i2 = this.animationInProgress;
             if (i2 == 1 || i2 == 3) {
                 ClippingImageView clippingImageView = this.animatingImageView;

@@ -753,7 +753,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         return i2;
     }
 
-    public static void access$39600(ProfileActivity profileActivity, View view) {
+    public static void access$39700(ProfileActivity profileActivity, View view) {
         profileActivity.onTextDetailCellImageClicked(view);
     }
 
@@ -5238,6 +5238,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$createView$29(final Context context, long j, final View view, int i, float f, float f2) {
+        TLRPC.User user;
         TLRPC.ChatParticipant chatParticipant;
         ListAdapter listAdapter;
         if (getParentActivity() == null) {
@@ -5245,7 +5246,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         this.listView.stopScroll();
         if (i == this.affiliateRow) {
-            TLRPC.User user = getMessagesController().getUser(Long.valueOf(this.userId));
+            TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(this.userId));
             TLRPC.UserFull userFull = this.userInfo;
             if (userFull != null && userFull.starref_program != null) {
                 final long clientUserId = getUserConfig().getClientUserId();
@@ -5257,7 +5258,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 });
                 return;
             } else {
-                if (user == null || !user.bot_can_edit) {
+                if (user2 == null || !user2.bot_can_edit) {
                     return;
                 }
                 presentFragment(new AffiliateProgramFragment(this.userId));
@@ -5277,14 +5278,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return;
         }
         if (i == this.addToContactsRow) {
-            TLRPC.User user2 = getMessagesController().getUser(Long.valueOf(this.userId));
+            TLRPC.User user3 = getMessagesController().getUser(Long.valueOf(this.userId));
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user2.id);
+            bundle.putLong("user_id", user3.id);
             bundle.putBoolean("addContact", true);
             bundle.putString("phone", this.vcardPhone);
             bundle.putString("first_name_card", this.vcardFirstName);
             bundle.putString("last_name_card", this.vcardLastName);
-            openAddToContact(user2, bundle);
+            openAddToContact(user3, bundle);
             return;
         }
         if (i == this.deleteReactionRow) {
@@ -5402,8 +5403,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (this.currentChat != null) {
                 showDialog(new CommunitySheet(this, this.currentChat.linked_community_id));
                 return;
+            } else {
+                if (this.userId == 0 || (user = getMessagesController().getUser(Long.valueOf(this.userId))) == null) {
+                    return;
+                }
+                showDialog(new CommunitySheet(this, user.linked_community_id));
+                return;
             }
-            return;
         }
         if (i == this.locationRow) {
             if (this.chatInfo.location instanceof TLRPC.TL_channelLocation) {
@@ -9085,6 +9091,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         TLRPC.ChatParticipant chatParticipant;
         ListAdapter listAdapter;
         TLRPC.ChatFull chatFull;
+        TLRPC.User user;
         TLRPC.ChatFull chatFull2;
         TLRPC.ChatFull chatFull3;
         TLRPC.InputGroupCall inputGroupCall;
@@ -9240,6 +9247,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         if (i == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull7 = (TLRPC.ChatFull) objArr[0];
+            if (this.userId != 0 && (user = getMessagesController().getUser(Long.valueOf(this.userId))) != null && chatFull7.id == user.linked_community_id) {
+                updateListAnimated(true);
+            }
             TLRPC.Chat chat3 = this.currentChat;
             if (chat3 != null && chatFull7.id == chat3.linked_community_id) {
                 updateListAnimated(true);

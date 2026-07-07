@@ -19,46 +19,52 @@ public class CommunityBanGroupConfirmCell extends FrameLayout {
     public final TextView titleView;
 
     public CommunityBanGroupConfirmCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, resourcesProvider, true);
+    }
+
+    public CommunityBanGroupConfirmCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(23.0f));
         addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, 19, 21.0f, 6.0f, 0.0f, 6.0f));
-        addView(new View(context, resourcesProvider) {
-            private final Paint pBg;
-            private final Paint pRed;
-            private final Paint pWhite;
-            private final RectF rectF;
-            final Theme.ResourcesProvider val$resourcesProvider;
+        if (z) {
+            addView(new View(context, resourcesProvider) {
+                private final Paint pBg;
+                private final Paint pRed;
+                private final Paint pWhite;
+                private final RectF rectF;
+                final Theme.ResourcesProvider val$resourcesProvider;
 
-            {
-                this.val$resourcesProvider = resourcesProvider;
-                Paint paint = new Paint(1);
-                this.pBg = paint;
-                Paint paint2 = new Paint(1);
-                this.pWhite = paint2;
-                Paint paint3 = new Paint(1);
-                this.pRed = paint3;
-                this.rectF = new RectF();
-                paint2.setColor(-1);
-                paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-                paint3.setColor(Theme.getColor(Theme.key_color_red, resourcesProvider));
-            }
+                {
+                    this.val$resourcesProvider = resourcesProvider;
+                    Paint paint = new Paint(1);
+                    this.pBg = paint;
+                    Paint paint2 = new Paint(1);
+                    this.pWhite = paint2;
+                    Paint paint3 = new Paint(1);
+                    this.pRed = paint3;
+                    this.rectF = new RectF();
+                    paint2.setColor(-1);
+                    paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
+                    paint3.setColor(Theme.getColor(Theme.key_color_red, resourcesProvider));
+                }
 
-            @Override
-            protected void onDraw(Canvas canvas) {
-                super.onDraw(canvas);
-                this.rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                RectF rectF = this.rectF;
-                canvas.drawRoundRect(rectF, rectF.width() / 2.0f, this.rectF.height() / 2.0f, this.pBg);
-                this.rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
-                RectF rectF2 = this.rectF;
-                canvas.drawRoundRect(rectF2, rectF2.width() / 2.0f, this.rectF.height() / 2.0f, this.pRed);
-                this.rectF.inset(AndroidUtilities.dpf2(4.67f), AndroidUtilities.dpf2(9.066f));
-                RectF rectF3 = this.rectF;
-                canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, this.rectF.height() / 2.0f, this.pWhite);
-            }
-        }, LayoutHelper.createFrame(22.66f, 22.66f, 83, 48.66f, 0.0f, 0.0f, 3.6599998f));
+                @Override
+                protected void onDraw(Canvas canvas) {
+                    super.onDraw(canvas);
+                    this.rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    RectF rectF = this.rectF;
+                    canvas.drawRoundRect(rectF, rectF.width() / 2.0f, this.rectF.height() / 2.0f, this.pBg);
+                    this.rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
+                    RectF rectF2 = this.rectF;
+                    canvas.drawRoundRect(rectF2, rectF2.width() / 2.0f, this.rectF.height() / 2.0f, this.pRed);
+                    this.rectF.inset(AndroidUtilities.dpf2(4.67f), AndroidUtilities.dpf2(9.066f));
+                    RectF rectF3 = this.rectF;
+                    canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, this.rectF.height() / 2.0f, this.pWhite);
+                }
+            }, LayoutHelper.createFrame(22.66f, 22.66f, 83, 48.66f, 0.0f, 0.0f, 3.6599998f));
+        }
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setTypeface(AndroidUtilities.bold());

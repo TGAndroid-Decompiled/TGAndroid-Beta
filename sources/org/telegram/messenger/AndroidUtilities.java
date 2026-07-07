@@ -320,6 +320,9 @@ public class AndroidUtilities {
     public static void dumpCanvas(View view) {
     }
 
+    public static void fillStatusBarHeight(Context context, boolean z) {
+    }
+
     public static double fixLocationCoord(double d) {
         return ((long) (d * 1000000.0d)) / 1000000.0d;
     }
@@ -1547,25 +1550,8 @@ public class AndroidUtilities {
         return 1;
     }
 
-    public static void fillStatusBarHeight(Context context, boolean z) {
-        if (context != null) {
-            if ((statusBarHeight <= 0 || z) && BuildVars.USE_LEGACY_SYSTEM_INSETS) {
-                statusBarHeight = getStatusBarHeight(context);
-                navigationBarHeight = getNavigationBarHeight(context);
-            }
-        }
-    }
-
     public static int getStatusBarHeight(Context context) {
         int identifier = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (identifier > 0) {
-            return context.getResources().getDimensionPixelSize(identifier);
-        }
-        return 0;
-    }
-
-    private static int getNavigationBarHeight(Context context) {
-        int identifier = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
         if (identifier > 0) {
             return context.getResources().getDimensionPixelSize(identifier);
         }

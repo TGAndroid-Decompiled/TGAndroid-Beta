@@ -2460,6 +2460,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (getMessagesController().savedViewAsChats) {
             getMessagesController().getSavedMessagesController().preloadDialogs(true);
         }
+        if (this.communityId != 0) {
+            getMessagesController().loadFullChat(this.communityId, 0, true);
+        }
         BirthdayController.getInstance(this.currentAccount).check();
         this.additionNavigationBarHeight = this.hasMainTabs ? AndroidUtilities.dp(72.0f) : 0;
         this.additionFloatingButtonOffset = this.hasMainTabs ? AndroidUtilities.dp(64.0f) : 0;
@@ -7819,12 +7822,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void updateCounters(boolean z) {
-        int i;
         boolean z2;
-        int i2;
+        int i;
         boolean z3;
+        int i2;
         int i3;
-        int i4;
         TLRPC.User user;
         this.canDeletePsaSelected = false;
         this.canUnarchiveCount = 0;
@@ -7841,55 +7843,55 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         int size = this.selectedDialogs.size();
         long clientUserId = getUserConfig().getClientUserId();
         SharedPreferences notificationsSettings = getNotificationsSettings();
+        int i4 = 0;
         int i5 = 0;
         int i6 = 0;
         int i7 = 0;
         int i8 = 0;
         int i9 = 0;
         int i10 = 0;
-        int i11 = 0;
-        while (i5 < size) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) getMessagesController().dialogs_dict.get(((Long) this.selectedDialogs.get(i5)).longValue());
+        while (i4 < size) {
+            TLRPC.Dialog dialog = (TLRPC.Dialog) getMessagesController().dialogs_dict.get(((Long) this.selectedDialogs.get(i4)).longValue());
             if (dialog == null) {
-                i2 = size;
-                i3 = i5;
+                i = size;
+                i2 = i4;
             } else {
                 long j = dialog.id;
                 boolean zIsDialogPinned = isDialogPinned(dialog);
                 if (dialog.unread_count != 0 || dialog.unread_mark) {
-                    i2 = size;
+                    i = size;
                     z3 = true;
                 } else {
-                    i2 = size;
+                    i = size;
                     z3 = false;
                 }
                 if (getMessagesController().isForum(j)) {
-                    i3 = i5;
+                    i2 = i4;
                     this.forumCount++;
                 } else {
-                    i3 = i5;
+                    i2 = i4;
                 }
-                int i12 = i6;
+                int i11 = i5;
                 if (getMessagesController().isDialogMuted(j, 0L)) {
-                    i4 = 1;
+                    i3 = 1;
                     this.canUnmuteCount++;
                 } else {
-                    i4 = 1;
+                    i3 = 1;
                     this.canMuteCount++;
                 }
                 if (z3) {
-                    this.canReadCount += i4;
+                    this.canReadCount += i3;
                 }
-                if (this.folderId == i4 || dialog.folder_id == i4) {
+                if (this.folderId == i3 || dialog.folder_id == i3) {
                     this.canUnarchiveCount++;
                 } else if (j != clientUserId && dialog.community_id == 0 && j != 777000 && !getMessagesController().isPromoDialog(j, false)) {
-                    i9++;
+                    i8++;
                 }
                 if (dialog.community_id != 0) {
-                    i7++;
+                    i6++;
                 }
                 if (!DialogObject.isUserDialog(j) || j == clientUserId || j == 489000 || MessagesController.isSupportUser(getMessagesController().getUser(Long.valueOf(j)))) {
-                    i11++;
+                    i10++;
                 } else {
                     if (notificationsSettings.getBoolean("dialog_bar_report" + j, true)) {
                         this.canReportSpamCount++;
@@ -7900,21 +7902,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     if (getMessagesController().isPromoDialog(dialog.id, true)) {
                         this.canClearCacheCount++;
                         if (getMessagesController().promoDialogType == MessagesController.PROMO_TYPE_PSA) {
-                            i6 = i12 + 1;
+                            i5 = i11 + 1;
                             this.canDeletePsaSelected = true;
                         } else {
-                            i6 = i12;
+                            i5 = i11;
                         }
                     } else {
                         if (zIsDialogPinned) {
-                            i10++;
+                            i9++;
                         } else {
                             this.canPinCount++;
                         }
                         if (chat == null || !chat.megagroup || ChatObject.isPublic(chat)) {
                             this.canClearCacheCount++;
                         }
-                        i6 = i12 + 1;
+                        i5 = i11 + 1;
                     }
                 } else {
                     boolean zIsChatDialog = DialogObject.isChatDialog(dialog.id);
@@ -7935,22 +7937,22 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                         MessagesController.isSupportUser(user);
                     }
                     if (zIsDialogPinned) {
-                        i10++;
+                        i9++;
                     } else {
                         this.canPinCount++;
                     }
                 }
-                i8++;
-                i6 = i12 + 1;
+                i7++;
+                i5 = i11 + 1;
             }
-            i5 = i3 + 1;
-            size = i2;
+            i4 = i2 + 1;
+            size = i;
         }
-        int i13 = size;
-        int i14 = i6;
+        int i12 = size;
+        int i13 = i5;
         ActionBarMenuItem actionBarMenuItem = this.deleteItem;
         if (actionBarMenuItem != null) {
-            if (i14 != i13 || i7 > 0) {
+            if (i13 != i12 || i6 > 0) {
                 actionBarMenuItem.setVisibility(8);
             } else {
                 actionBarMenuItem.setVisibility(0);
@@ -7958,8 +7960,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         ActionBarMenuSubItem actionBarMenuSubItem = this.clearItem;
         if (actionBarMenuSubItem != null) {
-            int i15 = this.canClearCacheCount;
-            if ((i15 != 0 && i15 != i13) || ((i8 != 0 && i8 != i13) || i7 > 0)) {
+            int i14 = this.canClearCacheCount;
+            if ((i14 != 0 && i14 != i12) || ((i7 != 0 && i7 != i12) || i6 > 0)) {
                 actionBarMenuSubItem.setVisibility(8);
             } else {
                 actionBarMenuSubItem.setVisibility(0);
@@ -7972,12 +7974,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         ActionBarMenuSubItem actionBarMenuSubItem2 = this.archiveItem;
         if (actionBarMenuSubItem2 != null && this.archive2Item != null) {
-            if (this.canUnarchiveCount != 0 && i7 == 0 && this.communityId == 0) {
+            if (this.canUnarchiveCount != 0 && i6 == 0 && this.communityId == 0) {
                 String string = LocaleController.getString(R.string.Unarchive);
                 ActionBarMenuSubItem actionBarMenuSubItem3 = this.archiveItem;
-                int i16 = R.drawable.msg_unarchive;
-                actionBarMenuSubItem3.setTextAndIcon(string, i16);
-                this.archive2Item.setIcon(i16);
+                int i15 = R.drawable.msg_unarchive;
+                actionBarMenuSubItem3.setTextAndIcon(string, i15);
+                this.archive2Item.setIcon(i15);
                 this.archive2Item.setContentDescription(string);
                 FilterTabsView filterTabsView = this.filterTabsView;
                 if (filterTabsView != null && filterTabsView.getVisibility() == 0) {
@@ -7987,12 +7989,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     this.archiveItem.setVisibility(0);
                     this.archive2Item.setVisibility(8);
                 }
-            } else if (i9 != 0 && i7 == 0 && this.communityId == 0) {
+            } else if (i8 != 0 && i6 == 0 && this.communityId == 0) {
                 String string2 = LocaleController.getString(R.string.Archive);
                 ActionBarMenuSubItem actionBarMenuSubItem4 = this.archiveItem;
-                int i17 = R.drawable.msg_archive;
-                actionBarMenuSubItem4.setTextAndIcon(string2, i17);
-                this.archive2Item.setIcon(i17);
+                int i16 = R.drawable.msg_archive;
+                actionBarMenuSubItem4.setTextAndIcon(string2, i16);
+                this.archive2Item.setIcon(i16);
                 this.archive2Item.setContentDescription(string2);
                 FilterTabsView filterTabsView2 = this.filterTabsView;
                 if (filterTabsView2 != null && filterTabsView2.getVisibility() == 0) {
@@ -8008,30 +8010,27 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
         }
         ActionBarMenuItem actionBarMenuItem2 = this.pinItem;
-        if (actionBarMenuItem2 == null || this.pin2Item == null) {
-            i = 0;
-        } else if (this.canPinCount + i10 != i13) {
-            actionBarMenuItem2.setVisibility(8);
-            this.pin2Item.setVisibility(8);
-            i = 0;
-        } else {
-            FilterTabsView filterTabsView3 = this.filterTabsView;
-            if (filterTabsView3 != null && filterTabsView3.getVisibility() == 0) {
-                i = 0;
-                this.pin2Item.setVisibility(0);
-                this.pinItem.setVisibility(8);
-            } else {
-                i = 0;
-                this.pinItem.setVisibility(0);
+        if (actionBarMenuItem2 != null && this.pin2Item != null) {
+            if (this.canPinCount + i9 != i12 || this.communityId != 0) {
+                actionBarMenuItem2.setVisibility(8);
                 this.pin2Item.setVisibility(8);
+            } else {
+                FilterTabsView filterTabsView3 = this.filterTabsView;
+                if (filterTabsView3 != null && filterTabsView3.getVisibility() == 0) {
+                    this.pin2Item.setVisibility(0);
+                    this.pinItem.setVisibility(8);
+                } else {
+                    this.pinItem.setVisibility(0);
+                    this.pin2Item.setVisibility(8);
+                }
             }
         }
         ActionBarMenuSubItem actionBarMenuSubItem5 = this.blockItem;
         if (actionBarMenuSubItem5 != null) {
-            if (i11 != 0) {
+            if (i10 != 0) {
                 actionBarMenuSubItem5.setVisibility(8);
             } else {
-                actionBarMenuSubItem5.setVisibility(i);
+                actionBarMenuSubItem5.setVisibility(0);
             }
         }
         if (this.removeFromFolderItem == null) {
@@ -8041,7 +8040,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             boolean z4 = filterTabsView4 == null || filterTabsView4.getVisibility() != 0 || this.filterTabsView.currentTabIsDefault();
             if (!z4) {
                 try {
-                    z4 = i13 >= getDialogsArray(this.currentAccount, this.viewPages[0].dialogsAdapter.getDialogsType(), this.folderId, this.dialogsListFrozen).size();
+                    z4 = i12 >= getDialogsArray(this.currentAccount, this.viewPages[0].dialogsAdapter.getDialogsType(), this.folderId, this.dialogsListFrozen).size();
                 } catch (Exception unused) {
                 }
             }
