@@ -1593,6 +1593,27 @@ public abstract class TextSelectionHelper {
         }
 
         @Override
+        protected boolean onCopyOverride() {
+            SelectableView selectableView;
+            RichMessageLayout richMessageLayout;
+            CharSequence selectedText;
+            String selectionHtml;
+            if (this.isRich && (selectableView = this.selectedView) != null && ((ChatMessageCell) selectableView).getMessageObject() != null && (richMessageLayout = ((ChatMessageCell) this.selectedView).getMessageObject().richLayout) != null && !richMessageLayout.textBlocks.isEmpty() && (selectedText = getSelectedText()) != null && selectedText.length() != 0) {
+                try {
+                    selectionHtml = richMessageLayout.getSelectionHtml(this.selectionStart, this.selectionEnd);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    selectionHtml = null;
+                }
+                if (selectionHtml != null && selectionHtml.length() != 0) {
+                    AndroidUtilities.addToClipboard(selectedText, selectionHtml);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        @Override
         public void onTextSelected(ChatMessageCell chatMessageCell, ChatMessageCell chatMessageCell2) {
             final boolean z = chatMessageCell2 == null || !(chatMessageCell2.getMessageObject() == null || chatMessageCell2.getMessageObject().getId() == chatMessageCell.getMessageObject().getId());
             this.selectedCellId = chatMessageCell.getMessageObject().getId();

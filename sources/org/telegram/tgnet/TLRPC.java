@@ -43,7 +43,7 @@ import org.telegram.ui.Stories.MessageMediaStoryFull;
 import org.telegram.ui.Stories.MessageMediaStoryFull_old;
 
 public class TLRPC {
-    public static final int LAYER = 229;
+    public static final int LAYER = 228;
     public static final int MESSAGE_FLAG_EDITED = 32768;
     public static final int MESSAGE_FLAG_FWD = 4;
     public static final int MESSAGE_FLAG_HAS_BOT_ID = 2048;
@@ -68805,8 +68805,8 @@ public class TLRPC {
                 if (this.params == null) {
                     this.params = new HashMap<>();
                 }
-                this.layer = 229;
-                this.params.put("legacy_layer", "229");
+                this.layer = 228;
+                this.params.put("legacy_layer", "228");
             }
             SparseArray<String> sparseArray = this.pollMediaAttachPaths;
             if (sparseArray == null || sparseArray.size() <= 0 || !(this.media instanceof TL_messageMediaPoll)) {

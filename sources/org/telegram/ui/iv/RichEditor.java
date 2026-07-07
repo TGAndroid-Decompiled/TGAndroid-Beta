@@ -158,6 +158,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     private Runnable onSentCallback;
     private Runnable pendingSend;
     private boolean persistedDraftOnEnd;
+    private Button quoteButton;
     private ImageView redoButton;
     private int reorderSavedPanelType;
     private ChatActivityEnterView.SendButton sendButton;
@@ -441,7 +442,6 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                     canvas.save();
                     this.clipPath.rewind();
                     this.clipPath.addRoundRect(this.rect, fLerp, fLerp, Path.Direction.CW);
-                    canvas.clipPath(this.clipPath);
                     super.dispatchDraw(canvas);
                     canvas.restore();
                     return;
@@ -802,58 +802,68 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         addFormattingButton(context, R.drawable.formatting_marked, 65536);
         addFormattingButton(context, R.drawable.iv_sub, 16384);
         addFormattingButton(context, R.drawable.iv_super, 32768);
-        LinearLayout linearLayout6 = new LinearLayout(context);
-        this.formattingLayout2 = linearLayout6;
-        linearLayout6.setOrientation(0);
-        this.formattingLayout2.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.formattingLayout2.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
-        this.formattingPanel.addView(this.formattingLayout2, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
-        Button button = new Button(context, R.drawable.media_link_24, getResourceProvider());
-        this.linkButton = button;
+        Button button = new Button(context, R.drawable.iv_quote, getResourceProvider());
+        this.quoteButton = button;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$32(view3);
             }
         });
-        this.formattingLayout2.addView(this.linkButton, LayoutHelper.createLinear(38, 38, 16));
-        Button button2 = new Button(context, R.drawable.msg_calendar2, getResourceProvider());
-        this.dateButton = button2;
+        LinearLayout linearLayout6 = this.formattingPanelLayout;
+        linearLayout6.addView(this.quoteButton, LayoutHelper.createLinear(38, 38, 16, linearLayout6.getChildCount() > 0 ? 2 : 0, 0, 0, 0));
+        LinearLayout linearLayout7 = new LinearLayout(context);
+        this.formattingLayout2 = linearLayout7;
+        linearLayout7.setOrientation(0);
+        this.formattingLayout2.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        this.formattingLayout2.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.formattingPanel.addView(this.formattingLayout2, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
+        Button button2 = new Button(context, R.drawable.media_link_24, getResourceProvider());
+        this.linkButton = button2;
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$33(view3);
             }
         });
-        this.formattingLayout2.addView(this.dateButton, LayoutHelper.createLinear(38, 38, 16));
-        LinearLayout linearLayout7 = new LinearLayout(context);
-        this.formattingLayout3 = linearLayout7;
-        linearLayout7.setOrientation(0);
-        this.formattingLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.formattingLayout3.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
-        this.formattingPanel.addView(this.formattingLayout3, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
-        Button button3 = new Button(context, i4, getResourceProvider());
-        this.mathButton = button3;
+        this.formattingLayout2.addView(this.linkButton, LayoutHelper.createLinear(38, 38, 16));
+        Button button3 = new Button(context, R.drawable.msg_calendar2, getResourceProvider());
+        this.dateButton = button3;
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$34(view3);
             }
         });
-        this.formattingLayout3.addView(this.mathButton, LayoutHelper.createLinear(38, 38, 16));
+        this.formattingLayout2.addView(this.dateButton, LayoutHelper.createLinear(38, 38, 16));
         LinearLayout linearLayout8 = new LinearLayout(context);
-        this.formattingLayout1 = linearLayout8;
+        this.formattingLayout3 = linearLayout8;
         linearLayout8.setOrientation(0);
-        this.formattingLayout1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.formattingLayout1.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
-        this.formattingPanel.addView(this.formattingLayout1, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
-        Button button4 = new Button(context, 0, getResourceProvider());
-        this.aiStyleButton = button4;
-        button4.setImageDrawable(new AiButtonDrawable(context));
-        this.aiStyleButton.setOnClickListener(new View.OnClickListener() {
+        this.formattingLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        this.formattingLayout3.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.formattingPanel.addView(this.formattingLayout3, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
+        Button button4 = new Button(context, i4, getResourceProvider());
+        this.mathButton = button4;
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$35(view3);
+            }
+        });
+        this.formattingLayout3.addView(this.mathButton, LayoutHelper.createLinear(38, 38, 16));
+        LinearLayout linearLayout9 = new LinearLayout(context);
+        this.formattingLayout1 = linearLayout9;
+        linearLayout9.setOrientation(0);
+        this.formattingLayout1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
+        this.formattingLayout1.setBackground(withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i))));
+        this.formattingPanel.addView(this.formattingLayout1, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
+        Button button5 = new Button(context, 0, getResourceProvider());
+        this.aiStyleButton = button5;
+        button5.setImageDrawable(new AiButtonDrawable(context));
+        this.aiStyleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                this.f$0.lambda$createView$36(view3);
             }
         });
         this.formattingLayout1.addView(this.aiStyleButton, LayoutHelper.createLinear(38, 38, 16));
@@ -875,7 +885,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$36(view3);
+                this.f$0.lambda$createView$37(view3);
             }
         });
         this.sendButton.setOnLongClickListener(new View.OnLongClickListener() {
@@ -892,7 +902,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.container.getViewTreeObserver().addOnGlobalFocusChangeListener(new ViewTreeObserver.OnGlobalFocusChangeListener() {
             @Override
             public final void onGlobalFocusChanged(View view3, View view4) {
-                this.f$0.lambda$createView$37(view3, view4);
+                this.f$0.lambda$createView$38(view3, view4);
             }
         });
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.container;
@@ -1131,37 +1141,37 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     public void lambda$createView$8(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockHeading1(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading1());
         itemOptions.dismiss();
     }
 
     public void lambda$createView$9(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockHeading2(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading2());
         itemOptions.dismiss();
     }
 
     public void lambda$createView$10(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockHeading3(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading3());
         itemOptions.dismiss();
     }
 
     public void lambda$createView$11(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockHeading4(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading4());
         itemOptions.dismiss();
     }
 
     public void lambda$createView$12(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockHeading5(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading5());
         itemOptions.dismiss();
     }
 
     public void lambda$createView$13(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockHeading6(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockHeading6());
         itemOptions.dismiss();
     }
 
     public void lambda$createView$15(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockParagraph(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockParagraph());
     }
 
     public void lambda$createView$16(BlockRow blockRow) {
@@ -1173,11 +1183,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     public void lambda$createView$18(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockPreformatted(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockPreformatted());
     }
 
     public void lambda$createView$19(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockFooter(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockFooter());
     }
 
     public void lambda$createView$27(View view) {
@@ -1210,33 +1220,31 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 this.f$0.lambda$createView$24(blockRowFindFocusedRow);
             }
         });
-        boolean z2 = blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockDetails);
+        if (blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockDetails)) {
+            z = true;
+        }
         int i = R.drawable.iv_details;
         String string = LocaleController.getString(R.string.ArticleToggleBlock);
         RichEditorListView richEditorListView = this.listView;
         Objects.requireNonNull(richEditorListView);
-        itemOptionsAddChecked.addChecked(z2, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda28(richEditorListView));
-        int iIndexOf = blockRowFindFocusedRow != null ? this.listView.rows.indexOf(blockRowFindFocusedRow) : -1;
-        boolean z3 = blockRowFindFocusedRow != null && blockRowFindFocusedRow.isInList();
-        boolean z4 = z3 && this.listView.canIndentRow(iIndexOf);
-        if (z3 && this.listView.canOutdentRow(iIndexOf) && ((BlockRow) this.listView.rows.get(iIndexOf)).level > 1) {
-            z = true;
-        }
-        if (z4 || z) {
+        itemOptionsAddChecked.addChecked(z, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda28(richEditorListView));
+        boolean zCanIndentSelection = this.listView.canIndentSelection();
+        boolean zCanOutdentSelection = this.listView.canOutdentSelection();
+        if (zCanIndentSelection || zCanOutdentSelection) {
             itemOptionsDontFocus.addGap();
-            if (z4) {
+            if (zCanIndentSelection) {
                 itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$25(blockRowFindFocusedRow, itemOptionsDontFocus);
+                        this.f$0.lambda$createView$25(itemOptionsDontFocus);
                     }
                 });
             }
-            if (z) {
+            if (zCanOutdentSelection) {
                 itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$createView$26(blockRowFindFocusedRow, itemOptionsDontFocus);
+                        this.f$0.lambda$createView$26(itemOptionsDontFocus);
                     }
                 });
             }
@@ -1260,13 +1268,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.listView.turnIntoList(blockRow, 3);
     }
 
-    public void lambda$createView$25(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.onCellIndent(blockRow, false);
+    public void lambda$createView$25(ItemOptions itemOptions) {
+        this.listView.indentSelection(false);
         itemOptions.dismiss();
     }
 
-    public void lambda$createView$26(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.onCellIndent(blockRow, true);
+    public void lambda$createView$26(ItemOptions itemOptions) {
+        this.listView.indentSelection(true);
         itemOptions.dismiss();
     }
 
@@ -1330,26 +1338,31 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     public void lambda$createView$32(View view) {
-        this.listView.onLinkClicked();
+        this.listView.toggleQuoteOnSelection();
+        updateFormattingButtons();
     }
 
     public void lambda$createView$33(View view) {
-        this.listView.onDateClicked();
+        this.listView.onLinkClicked();
     }
 
     public void lambda$createView$34(View view) {
-        this.listView.onMathClicked();
+        this.listView.onDateClicked();
     }
 
     public void lambda$createView$35(View view) {
-        onAiStyleSelection();
+        this.listView.onMathClicked();
     }
 
     public void lambda$createView$36(View view) {
+        onAiStyleSelection();
+    }
+
+    public void lambda$createView$37(View view) {
         sendMessage();
     }
 
-    public void lambda$createView$37(View view, View view2) {
+    public void lambda$createView$38(View view, View view2) {
         updateBlockButtons();
     }
 
@@ -1403,21 +1416,21 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBottomPanel$38();
+                    this.f$0.lambda$updateBottomPanel$39();
                 }
             }).start();
             this.formattingPanel.setVisibility(0);
             this.formattingPanel.animate().alpha(this.bottomPanelType == 1 ? 1.0f : 0.0f).scaleX(this.bottomPanelType == 1 ? 1.0f : 0.8f).scaleY(this.bottomPanelType == 1 ? 1.0f : 0.8f).translationY(this.bottomPanelType == 1 ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBottomPanel$39();
+                    this.f$0.lambda$updateBottomPanel$40();
                 }
             }).start();
             this.trashPanel.setVisibility(0);
             this.trashPanel.animate().alpha(this.bottomPanelType == 2 ? 1.0f : 0.0f).scaleX(this.bottomPanelType == 2 ? 1.0f : 0.8f).scaleY(this.bottomPanelType == 2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updateBottomPanel$40();
+                    this.f$0.lambda$updateBottomPanel$41();
                 }
             }).start();
             return;
@@ -1438,19 +1451,19 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.trashPanel.setScaleY(i == 2 ? 1.0f : 0.8f);
     }
 
-    public void lambda$updateBottomPanel$38() {
+    public void lambda$updateBottomPanel$39() {
         if (this.bottomPanelType != 0) {
             this.bottomPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updateBottomPanel$39() {
+    public void lambda$updateBottomPanel$40() {
         if (this.bottomPanelType != 1) {
             this.formattingPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updateBottomPanel$40() {
+    public void lambda$updateBottomPanel$41() {
         if (this.bottomPanelType != 2) {
             this.trashPanel.setVisibility(8);
         }
@@ -1533,7 +1546,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addFormattingButton$41(i2, view);
+                this.f$0.lambda$addFormattingButton$42(i2, view);
             }
         });
         this.formattingButtons.add(button);
@@ -1541,7 +1554,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() > 0 ? 2 : 0, 0, 0, 0));
     }
 
-    public void lambda$addFormattingButton$41(int i, View view) {
+    public void lambda$addFormattingButton$42(int i, View view) {
         this.listView.onFormattingClicked(i);
     }
 
@@ -1549,6 +1562,10 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
         if (this.formattingButtons.isEmpty() || textSelectionHelper == null || !textSelectionHelper.isInSelectionMode()) {
             return;
+        }
+        Button button = this.quoteButton;
+        if (button != null) {
+            button.setSelected(this.listView.isSelectionQuoted());
         }
         if (this.listView.isTableSelection()) {
             updateFormattingButtonsTable();
@@ -1566,17 +1583,17 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         boolean z2 = startCell >= 0 && endCell >= 0 && endCell >= startCell && endCell < this.listView.itemRows.size();
         Iterator it = this.formattingButtons.iterator();
         while (it.hasNext()) {
-            Button button = (Button) it.next();
-            button.setSelected(z2 && this.listView.isStyleFullyApplied(((Integer) button.getTag()).intValue(), startCell, startOffset, endCell, endOffset));
+            Button button2 = (Button) it.next();
+            button2.setSelected(z2 && this.listView.isStyleFullyApplied(((Integer) button2.getTag()).intValue(), startCell, startOffset, endCell, endOffset));
         }
-        setBoldItalicEnabled(!this.listView.isSelectionAllHeadings());
-        Button button2 = this.linkButton;
-        if (button2 != null) {
-            button2.setSelected(z2 && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset));
-        }
-        Button button3 = this.dateButton;
+        setBoldEnabled(!this.listView.isSelectionAllHeadings());
+        Button button3 = this.linkButton;
         if (button3 != null) {
-            button3.setSelected(z2 && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset));
+            button3.setSelected(z2 && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset));
+        }
+        Button button4 = this.dateButton;
+        if (button4 != null) {
+            button4.setSelected(z2 && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset));
         }
         if (z2 && startCell == endCell) {
             z = true;
@@ -1584,12 +1601,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         setInlineButtonsEnabled(z);
     }
 
-    private void setBoldItalicEnabled(boolean z) {
+    private void setBoldEnabled(boolean z) {
         Iterator it = this.formattingButtons.iterator();
         while (it.hasNext()) {
             Button button = (Button) it.next();
-            int iIntValue = ((Integer) button.getTag()).intValue();
-            if (iIntValue == 1 || iIntValue == 2) {
+            if (((Integer) button.getTag()).intValue() == 1) {
                 button.setEnabled(z);
             }
         }
@@ -1647,7 +1663,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             }
             button3.setSelected(z);
         }
-        setBoldItalicEnabled(true);
+        setBoldEnabled(true);
         setInlineButtonsEnabled(z2);
     }
 
@@ -1683,7 +1699,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             }
             button3.setSelected(z);
         }
-        setBoldItalicEnabled(true);
+        setBoldEnabled(true);
         setInlineButtonsEnabled(true);
     }
 
@@ -1924,6 +1940,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     public void openAttach(int i, int i2) {
+        RichEditorListView richEditorListView = this.listView;
+        richEditorListView.pendingInsertRow = richEditorListView.findFocusedRow();
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, true, getResourceProvider());
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
@@ -1996,13 +2014,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
             @Override
             public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i3, boolean z, int i4, long j) {
-                this.f$0.lambda$openAttach$42(chatAttachAlert, messageMedia, i3, z, i4, j);
+                this.f$0.lambda$openAttach$43(chatAttachAlert, messageMedia, i3, z, i4, j);
             }
         });
         chatAttachAlert.setAudioSelectDelegate(new ChatAttachAlertAudioLayout.AudioSelectDelegate() {
             @Override
             public final void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
-                this.f$0.lambda$openAttach$43(chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
+                this.f$0.lambda$openAttach$44(chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
         });
         chatAttachAlert.init();
@@ -2013,7 +2031,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.show();
     }
 
-    public void lambda$openAttach$42(ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public void lambda$openAttach$43(ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         if (messageMedia == null || messageMedia.geo == null) {
             chatAttachAlert.dismiss(true);
             return;
@@ -2027,7 +2045,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         chatAttachAlert.dismiss(true);
     }
 
-    public void lambda$openAttach$43(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public void lambda$openAttach$44(ChatAttachAlert chatAttachAlert, ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         if (arrayList != null && !arrayList.isEmpty()) {
             this.listView.attachAudio((MessageObject) arrayList.get(0));
         }
@@ -2122,7 +2140,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             chatAttachAlert.setLocationActivityDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
                 @Override
                 public final void didSelectLocation(TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
-                    this.f$0.lambda$openLocationPicker$45(blockRow, chatAttachAlert, messageMedia, i, z, i2, j);
+                    this.f$0.lambda$openLocationPicker$46(blockRow, chatAttachAlert, messageMedia, i, z, i2, j);
                 }
             });
             chatAttachAlert.init();
@@ -2130,7 +2148,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$openLocationPicker$45(final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
+    public void lambda$openLocationPicker$46(final BlockRow blockRow, ChatAttachAlert chatAttachAlert, TLRPC.MessageMedia messageMedia, int i, boolean z, int i2, long j) {
         if (messageMedia == null || messageMedia.geo == null) {
             return;
         }
@@ -2153,12 +2171,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.listView.post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$openLocationPicker$44(blockRow);
+                this.f$0.lambda$openLocationPicker$45(blockRow);
             }
         });
     }
 
-    public void lambda$openLocationPicker$44(BlockRow blockRow) {
+    public void lambda$openLocationPicker$45(BlockRow blockRow) {
         View viewFindViewByItemObject = this.listView.findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichMapCell) {
             ((RichMapCell) viewFindViewByItemObject).bind(blockRow, this.listView.getMapDelegate());
@@ -2223,7 +2241,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         Runnable runnable = new Runnable() {
             @Override
             public final void run() throws IllegalAccessException, SecurityException, IllegalArgumentException {
-                this.f$0.lambda$sendMessage$46(messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, dialogId, replyMessage, threadMessage, z, i, i2, str, quickReplyId, sendMonoForumPeerId);
+                this.f$0.lambda$sendMessage$47(messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, dialogId, replyMessage, threadMessage, z, i, i2, str, quickReplyId, sendMonoForumPeerId);
             }
         };
         Runnable runnable2 = this.onSentCallback;
@@ -2239,7 +2257,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$sendMessage$46(MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, String str, int i3, long j2) throws IllegalAccessException, SecurityException, IllegalArgumentException {
+    public void lambda$sendMessage$47(MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, String str, int i3, long j2) throws IllegalAccessException, SecurityException, IllegalArgumentException {
         if (messageObject != null) {
             SendMessagesHelper.prepareEditingArticle(AccountInstance.getInstance(this.currentAccount), messageObject, arrayList, arrayList2, arrayList3, null, false, this.chatActivity);
         } else {
@@ -2270,7 +2288,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         messageSendPreview2.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                this.f$0.lambda$onSendLongClick$47(dialogInterface);
+                this.f$0.lambda$onSendLongClick$48(dialogInterface);
             }
         });
         final long dialogId = this.chatActivity.getDialogId();
@@ -2308,7 +2326,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         ChatActivityEnterView.SendButton sendButton = this.messageSendPreview.setSendButton(this.sendButton, true, new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                this.f$0.lambda$onSendLongClick$48(view2);
+                this.f$0.lambda$onSendLongClick$49(view2);
             }
         });
         if (sendButton != null) {
@@ -2321,14 +2339,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             itemOptionsMakeOptions.add(R.drawable.msg_calendar2, LocaleController.getString(zIsUserSelf ? R.string.SetReminder : R.string.ScheduleMessage), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSendLongClick$49(dialogId);
+                    this.f$0.lambda$onSendLongClick$50(dialogId);
                 }
             });
             if (!zIsUserSelf && dialogId > 0) {
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onSendLongClick$50();
+                        this.f$0.lambda$onSendLongClick$51();
                     }
                 });
             }
@@ -2337,7 +2355,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onSendLongClick$51();
+                    this.f$0.lambda$onSendLongClick$52();
                 }
             });
         }
@@ -2351,11 +2369,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return true;
     }
 
-    public void lambda$onSendLongClick$47(DialogInterface dialogInterface) {
+    public void lambda$onSendLongClick$48(DialogInterface dialogInterface) {
         this.messageSendPreview = null;
     }
 
-    public void lambda$onSendLongClick$48(View view) {
+    public void lambda$onSendLongClick$49(View view) {
         sendMessage();
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -2364,7 +2382,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$onSendLongClick$49(long j) {
+    public void lambda$onSendLongClick$50(long j) {
         AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public void didSelectDate(boolean z, int i, int i2) {
@@ -2377,7 +2395,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }, getResourceProvider());
     }
 
-    public void lambda$onSendLongClick$50() {
+    public void lambda$onSendLongClick$51() {
         sendMessage(true, 2147483646, 0);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -2386,7 +2404,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$onSendLongClick$51() {
+    public void lambda$onSendLongClick$52() {
         sendMessage(false, 0, 0);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -2510,7 +2528,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                this.f$0.lambda$animateEmojiSearch$52(valueAnimator2);
+                this.f$0.lambda$animateEmojiSearch$53(valueAnimator2);
             }
         });
         this.emojiSearchAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -2518,7 +2536,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.emojiSearchAnimator.start();
     }
 
-    public void lambda$animateEmojiSearch$52(ValueAnimator valueAnimator) {
+    public void lambda$animateEmojiSearch$53(ValueAnimator valueAnimator) {
         this.emojiSearchProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         applyEmojiSearchOffset();
     }

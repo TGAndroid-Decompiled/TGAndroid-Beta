@@ -23,6 +23,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextCaption;
@@ -33,6 +34,7 @@ public class RichEditText extends EditTextCaption {
     private boolean accentHint;
     private boolean allowNewlines;
     private boolean applyingEmptyHint;
+    public TL_iv.PageBlock block;
     private boolean centerEmptyHint;
     private boolean ignoreTextChange;
     private boolean insertingNewline;
@@ -65,7 +67,17 @@ public class RichEditText extends EditTextCaption {
             public static void $default$onEnterPressed(Listener listener, RichEditText richEditText) {
             }
 
+            public static void $default$onLockedInsert(Listener listener, RichEditText richEditText, CharSequence charSequence) {
+            }
+
             public static boolean $default$onPaste(Listener listener, RichEditText richEditText) {
+                return false;
+            }
+
+            public static void $default$onRequestWindowFocusable(Listener listener, RichEditText richEditText, boolean z) {
+            }
+
+            public static boolean $default$onSelectAll(Listener listener, RichEditText richEditText) {
                 return false;
             }
 
@@ -113,6 +125,10 @@ public class RichEditText extends EditTextCaption {
             listener.onLockedInsert(this, charSequence.subSequence(i, i2));
         }
         return spanned.subSequence(i3, i4);
+    }
+
+    public void setBlock(TL_iv.PageBlock pageBlock) {
+        this.block = pageBlock;
     }
 
     public void setAccentHint(boolean z) {
@@ -712,7 +728,7 @@ public class RichEditText extends EditTextCaption {
         if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
             return;
         }
-        RichTextStyle.setStyle(text, i2, iMin, i, true);
+        RichTextStyle.setStyle(text, i2, iMin, i, true, this.block);
         if ((i & 256) != 0) {
             invalidateSpoilers();
         }
@@ -726,7 +742,7 @@ public class RichEditText extends EditTextCaption {
         if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
             return;
         }
-        RichTextStyle.setStyle(text, i2, iMin, i, false);
+        RichTextStyle.setStyle(text, i2, iMin, i, false, this.block);
         if ((i & 256) != 0) {
             invalidateSpoilers();
         }

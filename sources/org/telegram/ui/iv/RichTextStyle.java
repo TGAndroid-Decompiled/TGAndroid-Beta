@@ -22,24 +22,28 @@ public abstract class RichTextStyle {
     private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
     public static CharSequence toSpannable(TL_iv.RichText richText) {
+        return toSpannable(richText, null);
+    }
+
+    public static CharSequence toSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        append(spannableStringBuilder, richText, 0);
+        append(spannableStringBuilder, richText, 0, pageBlock);
         return spannableStringBuilder;
     }
 
-    private static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i) {
+    private static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i, TL_iv.PageBlock pageBlock) {
         if (richText == null || (richText instanceof TL_iv.textEmpty)) {
             return;
         }
         if (richText instanceof TL_iv.textConcat) {
             Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
             while (it.hasNext()) {
-                append(spannableStringBuilder, it.next(), i);
+                append(spannableStringBuilder, it.next(), i, pageBlock);
             }
             return;
         }
         if (richText instanceof TL_iv.textPlain) {
-            appendLeaf(spannableStringBuilder, ((TL_iv.textPlain) richText).text, i);
+            appendLeaf(spannableStringBuilder, ((TL_iv.textPlain) richText).text, i, pageBlock);
             return;
         }
         if (richText instanceof TL_iv.textCustomEmoji) {
@@ -52,7 +56,7 @@ public abstract class RichTextStyle {
             animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
             spannableStringBuilder.setSpan(animatedEmojiSpan, length, spannableStringBuilder.length(), 33);
             if (i != 0) {
-                spannableStringBuilder.setSpan(spanFor(i), length, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length, spannableStringBuilder.length(), 33);
                 return;
             }
             return;
@@ -60,7 +64,7 @@ public abstract class RichTextStyle {
         if (richText instanceof TL_iv.textUrl) {
             TL_iv.textUrl texturl = (TL_iv.textUrl) richText;
             int length2 = spannableStringBuilder.length();
-            append(spannableStringBuilder, texturl.text, i);
+            append(spannableStringBuilder, texturl.text, i, pageBlock);
             if (spannableStringBuilder.length() <= length2 || texturl.url == null) {
                 return;
             }
@@ -70,7 +74,7 @@ public abstract class RichTextStyle {
         if (richText instanceof TL_iv.textDate) {
             TL_iv.textDate textdate = (TL_iv.textDate) richText;
             int length3 = spannableStringBuilder.length();
-            append(spannableStringBuilder, textdate.text, i);
+            append(spannableStringBuilder, textdate.text, i, pageBlock);
             if (spannableStringBuilder.length() > length3) {
                 spannableStringBuilder.setSpan(dateSpan(textdate, spannableStringBuilder.subSequence(length3, spannableStringBuilder.length()).toString()), length3, spannableStringBuilder.length(), 33);
                 return;
@@ -95,25 +99,25 @@ public abstract class RichTextStyle {
             if (spannableStringBuilder.length() <= length4 || i == 0) {
                 return;
             }
-            spannableStringBuilder.setSpan(spanFor(i), length4, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length4, spannableStringBuilder.length(), 33);
             return;
         }
         int iFlagOf = flagOf(richText);
         if (iFlagOf != 0) {
-            append(spannableStringBuilder, richText.text, i | iFlagOf);
+            append(spannableStringBuilder, richText.text, i | iFlagOf, pageBlock);
         } else {
-            appendLeaf(spannableStringBuilder, plainOf(richText), i);
+            appendLeaf(spannableStringBuilder, plainOf(richText), i, pageBlock);
         }
     }
 
-    private static void appendLeaf(SpannableStringBuilder spannableStringBuilder, String str, int i) {
+    private static void appendLeaf(SpannableStringBuilder spannableStringBuilder, String str, int i, TL_iv.PageBlock pageBlock) {
         if (str == null || str.isEmpty()) {
             return;
         }
         int length = spannableStringBuilder.length();
         spannableStringBuilder.append((CharSequence) str);
         if (i != 0) {
-            spannableStringBuilder.setSpan(spanFor(i), length, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length, spannableStringBuilder.length(), 33);
         }
     }
 
@@ -366,6 +370,10 @@ public abstract class RichTextStyle {
     }
 
     public static void setStyle(Spannable spannable, int i, int i2, int i3, boolean z) {
+        setStyle(spannable, i, i2, i3, z, null);
+    }
+
+    public static void setStyle(Spannable spannable, int i, int i2, int i3, boolean z, TL_iv.PageBlock pageBlock) {
         int length = spannable.length();
         int iMax = Math.max(0, Math.min(i, length));
         int iMax2 = Math.max(0, Math.min(i2, length));
@@ -377,15 +385,15 @@ public abstract class RichTextStyle {
             int spanEnd = spannable.getSpanEnd(textStyleSpan);
             int styleFlags = textStyleSpan.getStyleFlags();
             spannable.removeSpan(textStyleSpan);
-            applyRun(spannable, spanStart, iMax, styleFlags);
-            applyRun(spannable, iMax2, spanEnd, styleFlags);
-            applyRun(spannable, Math.max(spanStart, iMax), Math.min(spanEnd, iMax2), z ? styleFlags | i3 : (~i3) & styleFlags);
+            applyRun(spannable, spanStart, iMax, styleFlags, pageBlock);
+            applyRun(spannable, iMax2, spanEnd, styleFlags, pageBlock);
+            applyRun(spannable, Math.max(spanStart, iMax), Math.min(spanEnd, iMax2), z ? styleFlags | i3 : (~i3) & styleFlags, pageBlock);
         }
         if (z) {
             while (iMax < iMax2) {
                 int iNextSpanTransition = spannable.nextSpanTransition(iMax, iMax2, TextStyleSpan.class);
                 if (flagsBetween(spannable, iMax, iNextSpanTransition) == 0) {
-                    applyRun(spannable, iMax, iNextSpanTransition, i3);
+                    applyRun(spannable, iMax, iNextSpanTransition, i3, pageBlock);
                 }
                 iMax = iNextSpanTransition;
             }
@@ -424,11 +432,11 @@ public abstract class RichTextStyle {
         }
     }
 
-    private static void applyRun(Spannable spannable, int i, int i2, int i3) {
+    private static void applyRun(Spannable spannable, int i, int i2, int i3, TL_iv.PageBlock pageBlock) {
         if (i >= i2 || i3 == 0) {
             return;
         }
-        spannable.setSpan(spanFor(i3), i, i2, 33);
+        spannable.setSpan(spanFor(i3, pageBlock), i, i2, 33);
     }
 
     private static int flagsBetween(Spanned spanned, int i, int i2) {
@@ -466,9 +474,10 @@ public abstract class RichTextStyle {
         return run;
     }
 
-    private static TextStyleSpan spanFor(int i) {
+    private static TextStyleSpan spanFor(int i, TL_iv.PageBlock pageBlock) {
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
         textStyleRun.flags = i;
+        textStyleRun.header = (pageBlock instanceof TL_iv.pageBlockTitle) || (pageBlock instanceof TL_iv.pageBlockSubheader) || (pageBlock instanceof TL_iv.pageBlockHeader) || (pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6);
         return new TextStyleSpan(textStyleRun);
     }
 

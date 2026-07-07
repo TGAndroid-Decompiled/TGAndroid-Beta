@@ -992,21 +992,15 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         return spannableStringBuilder;
     }
 
-    private static void appendStyled(TL_iv.RichText richText, SpannableStringBuilder spannableStringBuilder) {
-        if (richText != null) {
-            spannableStringBuilder.append(RichTextStyle.toSpannable(richText));
-        }
-    }
-
     private static void formatStyled(TL_iv.PageBlock pageBlock, SpannableStringBuilder spannableStringBuilder) {
         if ((pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6) || (pageBlock instanceof TL_iv.pageBlockParagraph) || (pageBlock instanceof TL_iv.pageBlockPreformatted) || (pageBlock instanceof TL_iv.pageBlockFooter)) {
-            appendStyled(pageBlock.text, spannableStringBuilder);
+            spannableStringBuilder.append(RichTextStyle.toSpannable(pageBlock.text, pageBlock));
             return;
         }
         if ((pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockAudio) || (pageBlock instanceof TL_iv.pageBlockVideo) || (pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockSlideshow) || (pageBlock instanceof TL_iv.pageBlockCollage)) {
             TL_iv.PageCaption pageCaption = pageBlock.caption;
             if (pageCaption != null) {
-                appendStyled(pageCaption.text, spannableStringBuilder);
+                spannableStringBuilder.append(RichTextStyle.toSpannable(pageCaption.text, null));
                 return;
             }
             return;
@@ -1014,7 +1008,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
         if (pageBlock instanceof TL_iv.pageBlockTable) {
             TL_iv.RichText richText = ((TL_iv.pageBlockTable) pageBlock).title;
             if (richText != null) {
-                appendStyled(richText, spannableStringBuilder);
+                spannableStringBuilder.append(RichTextStyle.toSpannable(richText, null));
                 return;
             }
             return;
@@ -1027,7 +1021,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 }
                 TL_iv.PageListItem pageListItem = pageblocklist.items.get(i);
                 if (pageListItem instanceof TL_iv.TL_pageListItemText) {
-                    appendStyled(((TL_iv.TL_pageListItemText) pageListItem).text, spannableStringBuilder);
+                    spannableStringBuilder.append(RichTextStyle.toSpannable(((TL_iv.TL_pageListItemText) pageListItem).text, null));
                 } else if (pageListItem instanceof TL_iv.TL_pageListItemBlocks) {
                     ArrayList<TL_iv.PageBlock> arrayList = ((TL_iv.TL_pageListItemBlocks) pageListItem).blocks;
                     for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -1048,7 +1042,7 @@ public class AIEditorAlert extends BottomSheetWithRecyclerListView implements No
                 }
                 TL_iv.PageListOrderedItem pageListOrderedItem = pageblockorderedlist.items.get(i3);
                 if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemText) {
-                    appendStyled(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem).text, spannableStringBuilder);
+                    spannableStringBuilder.append(RichTextStyle.toSpannable(((TL_iv.TL_pageListOrderedItemText) pageListOrderedItem).text));
                 } else if (pageListOrderedItem instanceof TL_iv.TL_pageListOrderedItemBlocks) {
                     ArrayList<TL_iv.PageBlock> arrayList2 = ((TL_iv.TL_pageListOrderedItemBlocks) pageListOrderedItem).blocks;
                     for (int i4 = 0; i4 < arrayList2.size(); i4++) {

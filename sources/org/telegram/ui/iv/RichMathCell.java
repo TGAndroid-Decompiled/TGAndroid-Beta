@@ -26,9 +26,8 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 
-public class RichMathCell extends FrameLayout implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
+public class RichMathCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     private Bitmap bitmap;
-    private BlockRow currentRow;
     private Delegate delegate;
     private final ImageView image;
     private int paintColor;
@@ -48,7 +47,7 @@ public class RichMathCell extends FrameLayout implements Theme.Colorable, TextSe
         this.rect = new int[4];
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
-        setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        setBlockPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
         ImageView imageView = new ImageView(context);
         this.image = imageView;
         FrameLayout frameLayout = new FrameLayout(context);
@@ -67,6 +66,7 @@ public class RichMathCell extends FrameLayout implements Theme.Colorable, TextSe
     public void bind(BlockRow blockRow, Delegate delegate) {
         this.currentRow = blockRow;
         this.delegate = delegate;
+        bindBlockInset(blockRow);
         rebuild();
     }
 

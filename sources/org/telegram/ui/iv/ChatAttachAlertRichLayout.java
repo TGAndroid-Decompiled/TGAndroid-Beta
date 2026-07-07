@@ -346,6 +346,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
+        public void onQuote() {
+            ChatAttachAlertRichLayout.this.listView.toggleQuoteOnSelection();
+            ChatAttachAlertRichLayout.this.updateFormattingButtons();
+        }
+
+        @Override
         public void onAiStyle() {
             TL_iv.RichMessage richMessageExtractRichMessage;
             RichEditorListView.SelectionEdit selectionEditBeginSelectionEdit = ChatAttachAlertRichLayout.this.listView.beginSelectionEdit();
@@ -524,7 +530,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void lambda$showTextTypeMenu$6(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockParagraph(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockParagraph());
     }
 
     public void lambda$showTextTypeMenu$7(BlockRow blockRow) {
@@ -536,11 +542,11 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void lambda$showTextTypeMenu$9(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockPreformatted(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockPreformatted());
     }
 
     public void lambda$showTextTypeMenu$10(BlockRow blockRow) {
-        this.listView.turnInto(blockRow, new TL_iv.pageBlockFooter(), 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, new TL_iv.pageBlockFooter());
     }
 
     private void addHeadingItem(ItemOptions itemOptions, final BlockRow blockRow, final TL_iv.PageBlock pageBlock, int i, String str, int i2, final ItemOptions itemOptions2) {
@@ -555,7 +561,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void lambda$addHeadingItem$11(BlockRow blockRow, TL_iv.PageBlock pageBlock, ItemOptions itemOptions) {
-        this.listView.turnInto(blockRow, pageBlock, 0, 0, false, false);
+        this.listView.turnIntoKeepList(blockRow, pageBlock);
         itemOptions.dismiss();
     }
 
@@ -587,33 +593,31 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 this.f$0.lambda$showListMenu$15(blockRow);
             }
         });
-        boolean z2 = blockRow != null && (blockRow.block instanceof TL_iv.pageBlockDetails);
+        if (blockRow != null && (blockRow.block instanceof TL_iv.pageBlockDetails)) {
+            z = true;
+        }
         int i = R.drawable.iv_details;
         String string = LocaleController.getString(R.string.ArticleToggleBlock);
         RichEditorListView richEditorListView = this.listView;
         Objects.requireNonNull(richEditorListView);
-        itemOptionsAddChecked.addChecked(z2, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda28(richEditorListView));
-        int iIndexOf = blockRow != null ? this.listView.rows.indexOf(blockRow) : -1;
-        boolean z3 = blockRow != null && blockRow.isInList();
-        boolean z4 = z3 && this.listView.canIndentRow(iIndexOf);
-        if (z3 && this.listView.canOutdentRow(iIndexOf) && ((BlockRow) this.listView.rows.get(iIndexOf)).level > 1) {
-            z = true;
-        }
-        if (z4 || z) {
+        itemOptionsAddChecked.addChecked(z, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda28(richEditorListView));
+        boolean zCanIndentSelection = this.listView.canIndentSelection();
+        boolean zCanOutdentSelection = this.listView.canOutdentSelection();
+        if (zCanIndentSelection || zCanOutdentSelection) {
             itemOptionsDontFocus.addGap();
-            if (z4) {
+            if (zCanIndentSelection) {
                 itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showListMenu$16(blockRow, itemOptionsDontFocus);
+                        this.f$0.lambda$showListMenu$16(itemOptionsDontFocus);
                     }
                 });
             }
-            if (z) {
+            if (zCanOutdentSelection) {
                 itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$showListMenu$17(blockRow, itemOptionsDontFocus);
+                        this.f$0.lambda$showListMenu$17(itemOptionsDontFocus);
                     }
                 });
             }
@@ -637,13 +641,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.listView.turnIntoList(blockRow, 3);
     }
 
-    public void lambda$showListMenu$16(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.onCellIndent(blockRow, false);
+    public void lambda$showListMenu$16(ItemOptions itemOptions) {
+        this.listView.indentSelection(false);
         itemOptions.dismiss();
     }
 
-    public void lambda$showListMenu$17(BlockRow blockRow, ItemOptions itemOptions) {
-        this.listView.onCellIndent(blockRow, true);
+    public void lambda$showListMenu$17(ItemOptions itemOptions) {
+        this.listView.indentSelection(true);
         itemOptions.dismiss();
     }
 
@@ -658,12 +662,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    private void updateFormattingButtons() {
+    public void updateFormattingButtons() {
         int i;
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper = this.listView.getTextSelectionHelper();
         if (this.toolbar == null || textSelectionHelper == null || !textSelectionHelper.isInSelectionMode()) {
             return;
         }
+        this.toolbar.setQuoteState(this.listView.isSelectionQuoted());
         if (this.listView.isTableSelection()) {
             updateFormattingButtonsTable();
             return;

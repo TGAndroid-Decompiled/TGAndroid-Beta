@@ -33,9 +33,9 @@ import org.telegram.ui.iv.RichEditText;
 import org.telegram.ui.iv.RichEditor;
 import org.telegram.ui.iv.RichTableCellGrid;
 
-public class RichTableCell extends FrameLayout implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
+public class RichTableCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
+    private boolean blockRtl;
     private CellSelectionListener cellSelectionListener;
-    private BlockRow currentRow;
     private Delegate delegate;
     private final ViewTreeObserver.OnGlobalFocusChangeListener focusInvalidator;
     private final RichTableCellGrid grid;
@@ -155,19 +155,23 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
         @Override
         public void onTextWillChange(RichEditText richEditText, int i, int i2) {
-            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
-                return;
+            if (RichTableCell.this.delegate != null) {
+                RichTableCell richTableCell = RichTableCell.this;
+                if (richTableCell.currentRow != null) {
+                    richTableCell.delegate.onTextWillChange(RichTableCell.this.currentRow, i, i2);
+                }
             }
-            RichTableCell.this.delegate.onTextWillChange(RichTableCell.this.currentRow, i, i2);
         }
 
         @Override
         public void onTextChanged(RichEditText richEditText, Editable editable) {
             RichTableCell.this.persistTitle();
-            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
-                return;
+            if (RichTableCell.this.delegate != null) {
+                RichTableCell richTableCell = RichTableCell.this;
+                if (richTableCell.currentRow != null) {
+                    richTableCell.delegate.onTextChanged(RichTableCell.this.currentRow);
+                }
             }
-            RichTableCell.this.delegate.onTextChanged(RichTableCell.this.currentRow);
         }
 
         @Override
@@ -186,10 +190,14 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
         @Override
         public boolean onSelectAll(RichEditText richEditText) {
-            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
+            if (RichTableCell.this.delegate == null) {
                 return false;
             }
-            return RichTableCell.this.delegate.onSelectAll(RichTableCell.this.currentRow);
+            RichTableCell richTableCell = RichTableCell.this;
+            if (richTableCell.currentRow != null) {
+                return richTableCell.delegate.onSelectAll(RichTableCell.this.currentRow);
+            }
+            return false;
         }
 
         @Override
@@ -246,9 +254,16 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
         }
     }
 
+    @Override
+    protected void onBlockInsetChanged(int i) {
+        requestLayout();
+    }
+
     public void bind(BlockRow blockRow, Delegate delegate) {
         this.currentRow = blockRow;
         this.delegate = delegate;
+        this.blockRtl = RichBlockChrome.rtl();
+        bindBlockInset(blockRow);
         TL_iv.PageBlock pageBlock = blockRow.block;
         if (pageBlock instanceof TL_iv.pageBlockTable) {
             TableModel tableModel = new TableModel((TL_iv.pageBlockTable) pageBlock);
@@ -499,20 +514,31 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        this.titleEditText.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - (AndroidUtilities.dp(16.0f) * 2)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        int iMax = Math.max(0, (size - blockInset()) - RichBlockChrome.insetEndFor(this.currentRow));
+        this.titleEditText.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, iMax - (AndroidUtilities.dp(16.0f) * 2)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         int measuredHeight = this.titleEditText.getMeasuredHeight();
-        this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        setMeasuredDimension(size, measuredHeight + AndroidUtilities.dp(2.0f) + this.scrollView.getMeasuredHeight());
+        this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(iMax, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        setMeasuredDimension(size, RichBlockChrome.quoteTopPad(this.currentRow) + RichBlockChrome.quoteBottomPad(this.currentRow) + measuredHeight + AndroidUtilities.dp(2.0f) + this.scrollView.getMeasuredHeight());
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5 = i3 - i;
+        int iBlockInset = blockInset();
+        int iInsetEndFor = RichBlockChrome.insetEndFor(this.currentRow);
+        boolean z2 = this.blockRtl;
+        int i6 = z2 ? iInsetEndFor : iBlockInset;
+        if (!z2) {
+            iBlockInset = iInsetEndFor;
+        }
         int measuredHeight = this.titleEditText.getMeasuredHeight();
-        this.titleEditText.layout(AndroidUtilities.dp(16.0f), 0, Math.max(AndroidUtilities.dp(16.0f), i5 - AndroidUtilities.dp(16.0f)), measuredHeight);
-        int iDp = measuredHeight + AndroidUtilities.dp(2.0f);
+        int iQuoteTopPad = RichBlockChrome.quoteTopPad(this.currentRow);
+        int i7 = i5 - iBlockInset;
+        int i8 = measuredHeight + iQuoteTopPad;
+        this.titleEditText.layout(AndroidUtilities.dp(16.0f) + i6, iQuoteTopPad, Math.max(AndroidUtilities.dp(16.0f) + i6, i7 - AndroidUtilities.dp(16.0f)), i8);
+        int iDp = i8 + AndroidUtilities.dp(2.0f);
         HorizontalScrollView horizontalScrollView = this.scrollView;
-        horizontalScrollView.layout(0, iDp, i5, horizontalScrollView.getMeasuredHeight() + iDp);
+        horizontalScrollView.layout(i6, iDp, i7, horizontalScrollView.getMeasuredHeight() + iDp);
     }
 
     @Override
@@ -959,10 +985,12 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
         @Override
         public void onTextWillChange(RichEditText richEditText, int i, int i2) {
-            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
-                return;
+            if (RichTableCell.this.delegate != null) {
+                RichTableCell richTableCell = RichTableCell.this;
+                if (richTableCell.currentRow != null) {
+                    richTableCell.delegate.onTextWillChange(RichTableCell.this.currentRow, i, i2);
+                }
             }
-            RichTableCell.this.delegate.onTextWillChange(RichTableCell.this.currentRow, i, i2);
         }
 
         @Override
@@ -971,10 +999,12 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
             if (pagetablecell != null) {
                 TableModel.applyStyledText(pagetablecell, editable);
             }
-            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
-                return;
+            if (RichTableCell.this.delegate != null) {
+                RichTableCell richTableCell = RichTableCell.this;
+                if (richTableCell.currentRow != null) {
+                    richTableCell.delegate.onTextChanged(RichTableCell.this.currentRow);
+                }
             }
-            RichTableCell.this.delegate.onTextChanged(RichTableCell.this.currentRow);
         }
 
         @Override
@@ -998,10 +1028,14 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
         @Override
         public boolean onSelectAll(RichEditText richEditText) {
-            if (RichTableCell.this.delegate == null || RichTableCell.this.currentRow == null) {
+            if (RichTableCell.this.delegate == null) {
                 return false;
             }
-            return RichTableCell.this.delegate.onSelectAll(RichTableCell.this.currentRow);
+            RichTableCell richTableCell = RichTableCell.this;
+            if (richTableCell.currentRow != null) {
+                return richTableCell.delegate.onSelectAll(RichTableCell.this.currentRow);
+            }
+            return false;
         }
 
         @Override
@@ -1134,7 +1168,15 @@ public class RichTableCell extends FrameLayout implements Theme.Colorable, TextS
 
                 @Override
                 public CharSequence getText() {
-                    return (RichTableCell.this.currentRow == null || !(RichTableCell.this.currentRow.block instanceof TL_iv.pageBlockTable) || ((TL_iv.pageBlockTable) RichTableCell.this.currentRow.block).title == null) ? "" : RichTextStyle.toSpannable(((TL_iv.pageBlockTable) RichTableCell.this.currentRow.block).title);
+                    TL_iv.RichText richText;
+                    BlockRow blockRow = RichTableCell.this.currentRow;
+                    if (blockRow != null) {
+                        TL_iv.PageBlock pageBlock = blockRow.block;
+                        if ((pageBlock instanceof TL_iv.pageBlockTable) && (richText = ((TL_iv.pageBlockTable) pageBlock).title) != null) {
+                            return RichTextStyle.toSpannable(richText);
+                        }
+                    }
+                    return "";
                 }
             });
         }

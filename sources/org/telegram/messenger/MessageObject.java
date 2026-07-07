@@ -3002,21 +3002,13 @@ public class MessageObject {
     }
 
     public static SpannableStringBuilder span(String str, int i) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("⊞");
-        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.iv_preview_table), 0, spannableStringBuilder.length(), 33);
-        return spannableStringBuilder;
-    }
-
-    public static SpannableStringBuilder formulaSpan() {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("fx");
-        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.iv_formula), 0, spannableStringBuilder.length(), 33);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        spannableStringBuilder.setSpan(new ColoredImageSpan(i), 0, spannableStringBuilder.length(), 33);
         return spannableStringBuilder;
     }
 
     public static SpannableStringBuilder checkboxSpan(boolean z) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(z ? "✅" : "☑️");
-        spannableStringBuilder.setSpan(new ColoredImageSpan(z ? R.drawable.iv_checkbox_on : R.drawable.iv_checkbox_off), 0, spannableStringBuilder.length(), 33);
-        return spannableStringBuilder;
+        return span(z ? "✅" : "☑️", z ? R.drawable.iv_checkbox_on : R.drawable.iv_checkbox_off);
     }
 
     public static CharSequence formatRichBlock(TL_iv.PageBlock pageBlock, boolean z, boolean z2, int i, SpannableStringBuilder spannableStringBuilder, TL_iv.RichMessage richMessage) {
@@ -3046,7 +3038,7 @@ public class MessageObject {
             } else if (pageBlock instanceof TL_iv.pageBlockAuthorDate) {
                 formatRichText(((TL_iv.pageBlockAuthorDate) pageBlock).author, z, z2, i, spannableStringBuilder, 0);
             } else if (pageBlock instanceof TL_iv.pageBlockMath) {
-                spannableStringBuilder.append((CharSequence) formulaSpan()).append(" ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVFormula));
+                spannableStringBuilder.append((CharSequence) span("fx", R.drawable.iv_formula)).append(" ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVFormula));
             } else if (pageBlock instanceof TL_iv.pageBlockMap) {
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Map));
                 TL_iv.PageCaption pageCaption = pageBlock.caption;
@@ -3081,10 +3073,9 @@ public class MessageObject {
                         int i4 = 0;
                         while (i4 < tL_pageListItemBlocks.blocks.size()) {
                             if (i4 > 0) {
-                                spannableStringBuilder.append("\n");
+                                spannableStringBuilder.append("  ");
                             }
                             int i5 = i4;
-                            TL_iv.TL_pageListItemBlocks tL_pageListItemBlocks2 = tL_pageListItemBlocks;
                             formatRichBlock(tL_pageListItemBlocks.blocks.get(i4), z, z2, i, spannableStringBuilder, richMessage);
                             if (spannableStringBuilder.length() >= i) {
                                 spannableStringBuilder.delete(i, spannableStringBuilder.length());
@@ -3092,7 +3083,6 @@ public class MessageObject {
                                 return spannableStringBuilder;
                             }
                             i4 = i5 + 1;
-                            tL_pageListItemBlocks = tL_pageListItemBlocks2;
                         }
                     }
                     if (spannableStringBuilder.length() >= i) {
@@ -3126,10 +3116,9 @@ public class MessageObject {
                         int i7 = 0;
                         while (i7 < tL_pageListOrderedItemBlocks.blocks.size()) {
                             if (i7 > 0) {
-                                spannableStringBuilder.append("\n");
+                                spannableStringBuilder.append("  ");
                             }
                             int i8 = i7;
-                            TL_iv.TL_pageListOrderedItemBlocks tL_pageListOrderedItemBlocks2 = tL_pageListOrderedItemBlocks;
                             formatRichBlock(tL_pageListOrderedItemBlocks.blocks.get(i7), z, z2, i, spannableStringBuilder, richMessage);
                             if (spannableStringBuilder.length() >= i) {
                                 spannableStringBuilder.delete(i, spannableStringBuilder.length());
@@ -3137,7 +3126,6 @@ public class MessageObject {
                                 return spannableStringBuilder;
                             }
                             i7 = i8 + 1;
-                            tL_pageListOrderedItemBlocks = tL_pageListOrderedItemBlocks2;
                         }
                     }
                     if (spannableStringBuilder.length() >= i) {
@@ -3233,7 +3221,7 @@ public class MessageObject {
                 spannableStringBuilder.setSpan(new URLSpanReplacement("mailto:" + richText.email, textStyleRun2), length, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
-            spannableStringBuilder.append((CharSequence) formulaSpan());
+            spannableStringBuilder.append((CharSequence) span("fx", R.drawable.iv_formula)).append(" ").append((CharSequence) LocaleController.getString(R.string.AccDescrIVFormula));
         } else if (richText instanceof TL_iv.textPhone) {
             formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2);
             if (spannableStringBuilder.length() > length) {

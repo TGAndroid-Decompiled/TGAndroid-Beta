@@ -2285,6 +2285,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.deleteRichDraftButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode));
         this.deleteRichDraftButton.setBackground(Theme.createInsetRoundRectDrawable(getThemedColor(i4), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(3.0f)));
         this.deleteRichDraftButton.setVisibility(8);
+        this.deleteRichDraftButton.setContentDescription(LocaleController.getString(R.string.ArticleDeleteDraft));
         this.deleteRichDraftButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -2417,6 +2418,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         this.richButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i3), mode3));
         this.richButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i4), 1, AndroidUtilities.dp(16.0f)));
         this.textFieldContainer.addView(this.richButton, LayoutHelper.createFrame(44, 44.0f, 53, 0.0f, 1.0f, 0.0f, 0.0f));
+        this.richButton.setContentDescription(LocaleController.getString(R.string.ArticleEditor));
         ScaleStateListAnimator.apply(this.richButton);
         this.richButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -2733,6 +2735,10 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
 
     public void lambda$new$2(AlertDialog alertDialog, int i) throws Resources.NotFoundException {
         clearRichDraft();
+        EditTextCaption editTextCaption = this.messageEditText;
+        if (editTextCaption != null) {
+            editTextCaption.setText("");
+        }
     }
 
     public void lambda$new$4(View view) {

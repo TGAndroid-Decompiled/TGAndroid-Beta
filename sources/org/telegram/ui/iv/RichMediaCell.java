@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -15,7 +16,6 @@ import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -45,7 +45,7 @@ import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode
 import org.telegram.ui.iv.RichCaptionController;
 import org.telegram.ui.iv.RichEditor;
 
-public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost {
+public class RichMediaCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost {
     private static Drawable slideDotBigDrawable;
     private static Drawable slideDotDrawable;
     private final ImageView addButton;
@@ -56,10 +56,10 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
     private final RichCaptionController caption;
     private final HashMap circleButtonBg;
     private final ArrayList circleButtons;
+    private final Path clipPath;
     private int collageH;
     private final ArrayList collageRects;
     private int currentPage;
-    private BlockRow currentRow;
     private Delegate delegate;
     private final ArrayList deleteButtons;
     private float downX;
@@ -125,9 +125,10 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
         this.circleButtonBg = new HashMap();
         this.pressedItem = -1;
         this.modeProgress = new AnimatedFloat(this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.clipPath = new Path();
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
-        setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(4.0f));
+        setBlockPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(4.0f));
         RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichCaptionController.Host() {
             @Override
             public BlockRow currentRow() {
@@ -289,9 +290,22 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
         return blockRow != null && (blockRow.block instanceof TL_iv.pageBlockSlideshow);
     }
 
+    @Override
+    protected int nestedContentMargin() {
+        return AndroidUtilities.dp(16.0f);
+    }
+
+    private int captionMargin() {
+        if (RichBlockChrome.insetFor(this.currentRow) > 0) {
+            return nestedContentMargin();
+        }
+        return 0;
+    }
+
     public void bind(BlockRow blockRow, Delegate delegate) {
         this.currentRow = blockRow;
         this.delegate = delegate;
+        bindBlockInset(blockRow);
         if (blockRow != null && !isGalleryRow() && blockRow.media == null) {
             blockRow.media = new MediaUploadState();
         }
@@ -481,12 +495,16 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = getPaddingRight();
+        int iMax = Math.max(0, (size - paddingLeft) - paddingRight);
         float f = this.modeProgress.set(isSlideshow() ? 1.0f : 0.0f);
-        computeGeometry(size);
-        this.imageW = size;
+        computeGeometry(iMax);
+        this.imageW = iMax;
         this.imageH = Math.round(AndroidUtilities.lerp(this.collageH, this.slideH, f));
         buildItemRects(f);
-        setMeasuredDimension(size, getPaddingTop() + this.imageH + this.caption.measure(size) + getPaddingBottom());
+        int iCaptionMargin = captionMargin();
+        setMeasuredDimension(size, getPaddingTop() + this.imageH + this.caption.measure(paddingLeft - iCaptionMargin, paddingRight - iCaptionMargin, size) + getPaddingBottom());
         this.addButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
         this.switchModeButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
         for (int i3 = 0; i3 < this.deleteButtons.size(); i3++) {
@@ -665,32 +683,37 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int paddingLeft = getPaddingLeft();
+        int paddingRight = getPaddingRight();
         int i5 = i3 - i;
-        this.caption.layout(i5, getPaddingTop() + this.imageH);
+        int iMax = Math.max(0, (i5 - paddingLeft) - paddingRight);
+        int i6 = i5 - paddingRight;
+        int iCaptionMargin = captionMargin();
+        this.caption.layout(paddingLeft - iCaptionMargin, paddingRight - iCaptionMargin, i5, getPaddingTop() + this.imageH);
         int iDp = AndroidUtilities.dp(6.0f);
         ImageView imageView = this.addButton;
-        int i6 = i5 - iDp;
-        imageView.layout(i6 - imageView.getMeasuredWidth(), getPaddingTop() + iDp, i6, getPaddingTop() + iDp + this.addButton.getMeasuredHeight());
         int i7 = i6 - iDp;
-        this.switchModeButton.layout((i7 - this.addButton.getMeasuredWidth()) - this.switchModeButton.getMeasuredWidth(), getPaddingTop() + iDp, i7 - this.addButton.getMeasuredWidth(), getPaddingTop() + iDp + this.addButton.getMeasuredHeight());
+        imageView.layout(i7 - imageView.getMeasuredWidth(), getPaddingTop() + iDp, i7, getPaddingTop() + iDp + this.addButton.getMeasuredHeight());
+        int i8 = i7 - iDp;
+        this.switchModeButton.layout((i8 - this.addButton.getMeasuredWidth()) - this.switchModeButton.getMeasuredWidth(), getPaddingTop() + iDp, i8 - this.addButton.getMeasuredWidth(), getPaddingTop() + iDp + this.addButton.getMeasuredHeight());
         List listMedias = medias();
-        for (int i8 = 0; i8 < this.deleteButtons.size(); i8++) {
-            ImageView imageView2 = (ImageView) this.deleteButtons.get(i8);
-            if (i8 >= listMedias.size() || ((MediaUploadState) listMedias.get(i8)).state == 0 || i8 >= this.itemRects.size()) {
+        for (int i9 = 0; i9 < this.deleteButtons.size(); i9++) {
+            ImageView imageView2 = (ImageView) this.deleteButtons.get(i9);
+            if (i9 >= listMedias.size() || ((MediaUploadState) listMedias.get(i9)).state == 0 || i9 >= this.itemRects.size()) {
                 imageView2.setVisibility(8);
             } else {
-                RectF rectF = (RectF) this.itemRects.get(i8);
-                if (rectF.right <= 0.0f || rectF.left >= i5 || rectF.bottom <= getPaddingTop() || rectF.top >= getPaddingTop() + this.imageH) {
+                RectF rectF = (RectF) this.itemRects.get(i9);
+                if (rectF.right <= 0.0f || rectF.left >= iMax || rectF.bottom <= getPaddingTop() || rectF.top >= getPaddingTop() + this.imageH) {
                     imageView2.setVisibility(8);
                 } else {
-                    int i9 = ((int) rectF.left) + iDp;
-                    int i10 = ((int) rectF.top) + iDp;
-                    imageView2.layout(i9, i10, imageView2.getMeasuredWidth() + i9, imageView2.getMeasuredHeight() + i10);
+                    int i10 = ((int) rectF.left) + iDp + paddingLeft;
+                    int i11 = ((int) rectF.top) + iDp;
+                    imageView2.layout(i10, i11, imageView2.getMeasuredWidth() + i10, imageView2.getMeasuredHeight() + i11);
                     float fMax = 1.0f;
                     if (this.glass) {
                         int left = (this.switchModeButton.getVisibility() == 0 ? this.switchModeButton : this.addButton).getLeft() - AndroidUtilities.dp(4.0f);
-                        if (i9 + imageView2.getMeasuredWidth() > left) {
-                            fMax = Math.max(0.0f, 1.0f - ((r3 - left) / imageView2.getMeasuredWidth()));
+                        if (i10 + imageView2.getMeasuredWidth() > left) {
+                            fMax = Math.max(0.0f, 1.0f - ((r4 - left) / imageView2.getMeasuredWidth()));
                         }
                     }
                     imageView2.setAlpha(fMax);
@@ -716,7 +739,7 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
             drawDots(canvas, f);
         }
         if (isCellSelected()) {
-            canvas.drawRect(0.0f, paddingTop, getWidth(), paddingTop + this.imageH, this.selectionPaint);
+            canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.imageH, this.selectionPaint);
         }
         drawGlassButtons(canvas);
         if (this.modeProgress.isInProgress()) {
@@ -724,15 +747,38 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
         }
     }
 
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        if (this.deleteButtons.contains(view) && RichBlockChrome.quoteDepth(this.currentRow) > 0) {
+            canvas.save();
+            this.clipPath.rewind();
+            this.clipPath.addRoundRect(getPaddingLeft(), getPaddingTop(), getPaddingLeft() + Math.max(0, (getWidth() - getPaddingLeft()) - getPaddingRight()), getPaddingTop() + this.imageH, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+            boolean zDrawChild = super.drawChild(canvas, view, j);
+            canvas.restore();
+            return zDrawChild;
+        }
+        return super.drawChild(canvas, view, j);
+    }
+
     private void drawMedia(Canvas canvas) {
         int paddingTop = getPaddingTop();
+        int paddingLeft = getPaddingLeft();
+        int iMax = Math.max(0, (getWidth() - paddingLeft) - getPaddingRight());
         canvas.save();
-        canvas.clipRect(0, paddingTop, getWidth(), this.imageH + paddingTop);
+        canvas.translate(paddingLeft, 0.0f);
+        if (RichBlockChrome.quoteDepth(this.currentRow) > 0) {
+            this.clipPath.rewind();
+            this.clipPath.addRoundRect(0.0f, paddingTop, iMax, this.imageH + paddingTop, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+            canvas.clipPath(this.clipPath);
+        } else {
+            canvas.clipRect(0, paddingTop, iMax, this.imageH + paddingTop);
+        }
         if (this.items.size() == 1 && this.itemRects.size() == 1) {
             RectF rectF = (RectF) this.itemRects.get(0);
-            if (rectF.left > 0.5f || rectF.right < getWidth() - 0.5f) {
+            if (rectF.left > 0.5f || rectF.right < iMax - 0.5f) {
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(0.0f, paddingTop, getWidth(), paddingTop + this.imageH);
+                rectF2.set(0.0f, paddingTop, iMax, paddingTop + this.imageH);
                 ((RichMediaItem) this.items.get(0)).drawBlurBackground(canvas, rectF2);
             }
         }
@@ -791,13 +837,15 @@ public class RichMediaCell extends FrameLayout implements Theme.Colorable, TextS
         int size = this.items.size();
         int i = (int) (f * 255.0f);
         int paddingTop = (getPaddingTop() + this.imageH) - AndroidUtilities.dp(23.0f);
-        int width = (getWidth() - (((AndroidUtilities.dp(7.0f) * size) + ((size - 1) * AndroidUtilities.dp(6.0f))) + AndroidUtilities.dp(4.0f))) / 2;
+        int iDp = (AndroidUtilities.dp(7.0f) * size) + ((size - 1) * AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(4.0f);
+        int paddingLeft = getPaddingLeft();
         int i2 = 0;
+        int iMax = paddingLeft + ((Math.max(0, (getWidth() - paddingLeft) - getPaddingRight()) - iDp) / 2);
         while (i2 < size) {
-            int iDp = AndroidUtilities.dp(4.0f) + width + (AndroidUtilities.dp(13.0f) * i2);
+            int iDp2 = AndroidUtilities.dp(4.0f) + iMax + (AndroidUtilities.dp(13.0f) * i2);
             Drawable drawable = this.currentPage == i2 ? slideDotBigDrawable : slideDotDrawable;
             drawable.setAlpha(i);
-            drawable.setBounds(iDp - AndroidUtilities.dp(5.0f), paddingTop, iDp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f) + paddingTop);
+            drawable.setBounds(iDp2 - AndroidUtilities.dp(5.0f), paddingTop, iDp2 + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f) + paddingTop);
             drawable.draw(canvas);
             i2++;
         }

@@ -56,6 +56,7 @@ public class RichEditorToolbar extends FrameLayout {
     private final RichEditor.Button linkButton;
     private final RichEditor.Button mathButton;
     private int panelType;
+    private final RichEditor.Button quoteButton;
     private final ImageView redoButton;
     private int reorderSavedPanelType;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -90,6 +91,8 @@ public class RichEditorToolbar extends FrameLayout {
         void onLink();
 
         void onMath();
+
+        void onQuote();
 
         void onRedo();
 
@@ -380,65 +383,75 @@ public class RichEditorToolbar extends FrameLayout {
         addFormattingButton(R.drawable.iv_code, 4);
         addFormattingButton(R.drawable.iv_sub, 16384);
         addFormattingButton(R.drawable.iv_super, 32768);
+        RichEditor.Button button = new RichEditor.Button(context, R.drawable.iv_quote, resourcesProvider);
+        this.quoteButton = button;
+        button.setBackgroundColorKey(i2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                delegate.onQuote();
+            }
+        });
+        linearLayout5.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout5.getChildCount() == 0 ? 0 : 2, 0, 0, 0));
         LinearLayout linearLayout6 = new LinearLayout(context);
         this.formattingLayout2 = linearLayout6;
         linearLayout6.setOrientation(0);
         this.formattingLayout2.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingLayout2.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
         linearLayout4.addView(this.formattingLayout2, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
-        RichEditor.Button button = new RichEditor.Button(context, R.drawable.media_link_24, resourcesProvider);
-        this.linkButton = button;
-        button.setBackgroundColorKey(i2);
-        button.setOnClickListener(new View.OnClickListener() {
+        RichEditor.Button button2 = new RichEditor.Button(context, R.drawable.media_link_24, resourcesProvider);
+        this.linkButton = button2;
+        button2.setBackgroundColorKey(i2);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 delegate.onLink();
             }
         });
-        this.formattingLayout2.addView(button, LayoutHelper.createLinear(38, 38, 16));
-        RichEditor.Button button2 = new RichEditor.Button(context, R.drawable.msg_calendar2, resourcesProvider);
-        this.dateButton = button2;
-        button2.setBackgroundColorKey(i2);
-        button2.setOnClickListener(new View.OnClickListener() {
+        this.formattingLayout2.addView(button2, LayoutHelper.createLinear(38, 38, 16));
+        RichEditor.Button button3 = new RichEditor.Button(context, R.drawable.msg_calendar2, resourcesProvider);
+        this.dateButton = button3;
+        button3.setBackgroundColorKey(i2);
+        button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 delegate.onDate();
             }
         });
-        this.formattingLayout2.addView(button2, LayoutHelper.createLinear(38, 38, 16));
+        this.formattingLayout2.addView(button3, LayoutHelper.createLinear(38, 38, 16));
         LinearLayout linearLayout7 = new LinearLayout(context);
         this.formattingLayout3 = linearLayout7;
         linearLayout7.setOrientation(0);
         this.formattingLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingLayout3.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
         linearLayout4.addView(this.formattingLayout3, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
-        RichEditor.Button button3 = new RichEditor.Button(context, i5, resourcesProvider);
-        this.mathButton = button3;
-        button3.setBackgroundColorKey(i2);
-        button3.setOnClickListener(new View.OnClickListener() {
+        RichEditor.Button button4 = new RichEditor.Button(context, i5, resourcesProvider);
+        this.mathButton = button4;
+        button4.setBackgroundColorKey(i2);
+        button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 delegate.onMath();
             }
         });
-        this.formattingLayout3.addView(button3, LayoutHelper.createLinear(38, 38, 16));
+        this.formattingLayout3.addView(button4, LayoutHelper.createLinear(38, 38, 16));
         LinearLayout linearLayout8 = new LinearLayout(context);
         this.formattingLayout1 = linearLayout8;
         linearLayout8.setOrientation(0);
         this.formattingLayout1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.formattingLayout1.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
         linearLayout4.addView(this.formattingLayout1, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
-        RichEditor.Button button4 = new RichEditor.Button(context, R.drawable.input_ai, resourcesProvider);
-        this.aiStyleButton = button4;
-        button4.setImageDrawable(new AiButtonDrawable(context));
-        button4.setBackgroundColorKey(i2);
-        button4.setOnClickListener(new View.OnClickListener() {
+        RichEditor.Button button5 = new RichEditor.Button(context, R.drawable.input_ai, resourcesProvider);
+        this.aiStyleButton = button5;
+        button5.setImageDrawable(new AiButtonDrawable(context));
+        button5.setBackgroundColorKey(i2);
+        button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 delegate.onAiStyle();
             }
         });
-        this.formattingLayout1.addView(button4, LayoutHelper.createLinear(38, 38, 16));
+        this.formattingLayout1.addView(button5, LayoutHelper.createLinear(38, 38, 16));
         ChatActivityEnterView.SendButton sendButton = new ChatActivityEnterView.SendButton(context, R.drawable.send_plane_24, resourcesProvider, true) {
             @Override
             public boolean isOpen() {
@@ -472,7 +485,7 @@ public class RichEditorToolbar extends FrameLayout {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addBlockButton$12(i2, view);
+                this.f$0.lambda$addBlockButton$13(i2, view);
             }
         });
         this.blockButtons.add(button);
@@ -481,7 +494,7 @@ public class RichEditorToolbar extends FrameLayout {
         return button;
     }
 
-    public void lambda$addBlockButton$12(int i, View view) {
+    public void lambda$addBlockButton$13(int i, View view) {
         this.delegate.onBlockButton(i, view);
     }
 
@@ -492,7 +505,7 @@ public class RichEditorToolbar extends FrameLayout {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$addFormattingButton$13(i2, view);
+                this.f$0.lambda$addFormattingButton$14(i2, view);
             }
         });
         this.formattingButtons.add(button);
@@ -500,7 +513,7 @@ public class RichEditorToolbar extends FrameLayout {
         linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() == 0 ? 0 : 2, 0, 0, 0));
     }
 
-    public void lambda$addFormattingButton$13(int i, View view) {
+    public void lambda$addFormattingButton$14(int i, View view) {
         this.delegate.onFormatting(i);
     }
 
@@ -572,6 +585,10 @@ public class RichEditorToolbar extends FrameLayout {
         this.mathButton.setEnabled(z3);
     }
 
+    public void setQuoteState(boolean z) {
+        this.quoteButton.setSelected(z);
+    }
+
     public void showFormattingPanel(boolean z, boolean z2) {
         if (this.panelType == 2) {
             this.reorderSavedPanelType = z ? 1 : 0;
@@ -592,21 +609,21 @@ public class RichEditorToolbar extends FrameLayout {
             duration.setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePanel$14();
+                    this.f$0.lambda$updatePanel$15();
                 }
             }).start();
             this.formattingPanel.setVisibility(0);
             this.formattingPanel.animate().alpha(i == 1 ? 1.0f : 0.0f).scaleX(i == 1 ? 1.0f : 0.8f).scaleY(i == 1 ? 1.0f : 0.8f).translationY(i == 1 ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePanel$15();
+                    this.f$0.lambda$updatePanel$16();
                 }
             }).start();
             this.trashPanel.setVisibility(0);
             this.trashPanel.animate().alpha(i == 2 ? 1.0f : 0.0f).scaleX(i == 2 ? 1.0f : 0.8f).scaleY(i == 2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$updatePanel$16();
+                    this.f$0.lambda$updatePanel$17();
                 }
             }).start();
             return;
@@ -627,19 +644,19 @@ public class RichEditorToolbar extends FrameLayout {
         this.trashPanel.setScaleY(i == 2 ? 1.0f : 0.8f);
     }
 
-    public void lambda$updatePanel$14() {
+    public void lambda$updatePanel$15() {
         if (this.panelType != 0) {
             this.bottomPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updatePanel$15() {
+    public void lambda$updatePanel$16() {
         if (this.panelType != 1) {
             this.formattingPanel.setVisibility(8);
         }
     }
 
-    public void lambda$updatePanel$16() {
+    public void lambda$updatePanel$17() {
         if (this.panelType != 2) {
             this.trashPanel.setVisibility(8);
         }

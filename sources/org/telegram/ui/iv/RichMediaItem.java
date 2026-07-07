@@ -5,9 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
@@ -80,6 +84,9 @@ public class RichMediaItem {
             return "null";
         }
         String str = mediaUploadState.isVideo ? "v" : mediaUploadState.isAudio ? "a" : "p";
+        if (mediaUploadState.localPath != null) {
+            return str + ":local:" + this.media.localPath;
+        }
         long j = 0;
         if (mediaUploadState.isReady()) {
             MediaUploadState mediaUploadState2 = this.media;
@@ -93,19 +100,7 @@ public class RichMediaItem {
                 }
             }
         }
-        StringBuilder sb = new StringBuilder();
-        sb.append(str);
-        sb.append(":");
-        sb.append(this.media.state);
-        sb.append(":");
-        sb.append(j);
-        sb.append(":");
-        String str2 = this.media.localPath;
-        if (str2 == null) {
-            str2 = "";
-        }
-        sb.append(str2);
-        return sb.toString();
+        return str + ":" + this.media.state + ":" + j;
     }
 
     public void detach() {
@@ -158,7 +153,50 @@ public class RichMediaItem {
     }
 
     private void applyImage() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichMediaItem.applyImage():void");
+        TLRPC.Photo photo;
+        TLRPC.Document document;
+        if (this.media == null) {
+            this.loadedKey = null;
+            this.imageReceiver.setImageBitmap((Drawable) null);
+            return;
+        }
+        int i = AndroidUtilities.displaySize.x;
+        String str = i + "_" + i;
+        if ((imageKey() + "@" + str).equals(this.loadedKey)) {
+            return;
+        }
+        BitmapDrawable bitmapDrawable = this.media.localThumbBitmap != null ? new BitmapDrawable(this.parent.getResources(), this.media.localThumbBitmap) : null;
+        MediaUploadState mediaUploadState = this.media;
+        if (mediaUploadState.isVideo) {
+            if (mediaUploadState.localPath != null) {
+                this.imageReceiver.setOrientation(0, 0, false);
+                this.imageReceiver.setImage(ImageLocation.getForVideoPath(this.media.localPath), "g", null, str, null, str, bitmapDrawable, 0L, null, null, 0);
+                return;
+            } else {
+                if (mediaUploadState.isReady() && (document = this.media.document) != null) {
+                    TLRPC.PhotoSize photoSizePickNonStrippedClosest = pickNonStrippedClosest(document.thumbs, AndroidUtilities.getPhotoSize());
+                    TLRPC.PhotoSize photoSizePickStripped = pickStripped(this.media.document.thumbs);
+                    this.imageReceiver.setOrientation(0, 0, false);
+                    this.imageReceiver.setImage(ImageLocation.getForDocument(this.media.document), "g", ImageLocation.getForDocument(photoSizePickNonStrippedClosest, this.media.document), str, ImageLocation.getForDocument(photoSizePickStripped, this.media.document), str, bitmapDrawable, 0L, null, this.media.document, 0);
+                    return;
+                }
+                this.imageReceiver.setImageBitmap((Drawable) null);
+                return;
+            }
+        }
+        if (mediaUploadState.localPath != null) {
+            this.imageReceiver.setOrientation(mediaUploadState.orientation, mediaUploadState.invert, true);
+            this.imageReceiver.setImage(ImageLocation.getForPath(this.media.localPath), str, null, null, null, 0);
+        } else {
+            if (mediaUploadState.isReady() && (photo = this.media.photo) != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
+                TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(this.media.photo.sizes, 100);
+                this.imageReceiver.setOrientation(0, 0, false);
+                this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, this.media.photo), str, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, this.media.photo), str, null, 0L, null, this.media.photo, 0);
+                return;
+            }
+            this.imageReceiver.setImageBitmap((Drawable) null);
+        }
     }
 
     private static TLRPC.PhotoSize pickNonStrippedClosest(ArrayList arrayList, int i) {

@@ -10,7 +10,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.ArrayList;
@@ -36,17 +35,17 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.iv.RichCaptionController;
 import org.telegram.ui.iv.RichEditor;
 
-public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
+public class RichAudioCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
     private boolean attached;
     private final TextPaint audioTimePaint;
+    private boolean blockRtl;
     private TLRPC.Document boundDocument;
     private boolean buttonPressed;
     private int buttonState;
-    private final int buttonX;
+    private int buttonX;
     private final int buttonY;
     private final RichCaptionController caption;
     private final int currentAccount;
-    private BlockRow currentRow;
     private Delegate delegate;
     private StaticLayout durationLayout;
     private String lastTimeString;
@@ -90,12 +89,11 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
         super(context);
         this.selectionPaint = new Paint(1);
         this.audioTimePaint = new TextPaint(1);
-        int iDp = AndroidUtilities.dp(16.0f);
-        this.buttonX = iDp;
-        int iDp2 = AndroidUtilities.dp(10.0f);
-        this.buttonY = iDp2;
-        int iDp3 = AndroidUtilities.dp(44.0f);
-        this.size = iDp3;
+        this.buttonX = AndroidUtilities.dp(16.0f);
+        int iDp = AndroidUtilities.dp(10.0f);
+        this.buttonY = iDp;
+        int iDp2 = AndroidUtilities.dp(44.0f);
+        this.size = iDp2;
         this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
@@ -103,7 +101,8 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
         RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
-        radialProgress2.setProgressRect(iDp, iDp2, iDp + iDp3, iDp3 + iDp2);
+        int i2 = this.buttonX;
+        radialProgress2.setProgressRect(i2, iDp, i2 + iDp2, iDp2 + iDp);
         SeekBar seekBar = new SeekBar(this);
         this.seekBar = seekBar;
         seekBar.setDelegate(new SeekBar.SeekBarDelegate() {
@@ -165,9 +164,9 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
             }
 
             @Override
-            public void onCaptionWillChange(int i2, int i3) {
+            public void onCaptionWillChange(int i3, int i4) {
                 if (RichAudioCell.this.delegate != null) {
-                    RichAudioCell.this.delegate.onCaptionWillChange(RichAudioCell.this.currentRow, i2, i3);
+                    RichAudioCell.this.delegate.onCaptionWillChange(RichAudioCell.this.currentRow, i3, i4);
                 }
             }
 
@@ -216,12 +215,30 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
         updateColors();
     }
 
+    @Override
+    protected void onBlockInsetChanged(int i) {
+        int iDp = AndroidUtilities.dp(16.0f);
+        if (this.blockRtl) {
+            i = 0;
+        }
+        int i2 = iDp + i;
+        this.buttonX = i2;
+        RadialProgress2 radialProgress2 = this.radialProgress;
+        int i3 = this.buttonY;
+        int i4 = this.size;
+        radialProgress2.setProgressRect(i2, i3, i2 + i4, i4 + i3);
+        requestLayout();
+        invalidate();
+    }
+
     public void bind(BlockRow blockRow, Delegate delegate) {
         this.currentRow = blockRow;
         this.delegate = delegate;
         if (blockRow != null && blockRow.media == null) {
             blockRow.media = new MediaUploadState();
         }
+        this.blockRtl = RichBlockChrome.rtl();
+        bindBlockInset(blockRow);
         this.caption.bind();
         rebuildFromRow();
         requestLayout();
@@ -316,7 +333,7 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
     private void layoutInner() {
         SpannableStringBuilder spannableStringBuilder;
         this.seekBarX = this.buttonX + AndroidUtilities.dp(50.0f) + this.size;
-        this.seekBarWidth = Math.max(0, ((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - this.seekBarX) - AndroidUtilities.dp(18.0f));
+        this.seekBarWidth = Math.max(0, (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - this.seekBarX) - AndroidUtilities.dp(18.0f)) - (this.blockRtl ? blockInset() : 0));
         String strAudioAuthor = audioAuthor();
         String strAudioTitle = audioTitle();
         if (!TextUtils.isEmpty(strAudioTitle) || !TextUtils.isEmpty(strAudioAuthor)) {
@@ -398,12 +415,12 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
     @Override
     protected void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        setMeasuredDimension(size, AndroidUtilities.dp(66.0f) + this.caption.measure(size));
+        setMeasuredDimension(size, AndroidUtilities.dp(66.0f) + this.caption.measure(this.blockRtl ? 0 : blockInset(), this.blockRtl ? blockInset() : 0, size));
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        this.caption.layout(i3 - i, AndroidUtilities.dp(66.0f));
+        this.caption.layout(this.blockRtl ? 0 : blockInset(), this.blockRtl ? blockInset() : 0, i3 - i, AndroidUtilities.dp(66.0f));
         layoutInner();
     }
 
@@ -636,7 +653,7 @@ public class RichAudioCell extends FrameLayout implements Theme.Colorable, TextS
             canvas.restore();
         }
         if (isCellSelected()) {
-            canvas.drawRoundRect(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), getWidth() - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
+            canvas.drawRoundRect((this.blockRtl ? 0 : blockInset()) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? blockInset() : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
         }
     }
 

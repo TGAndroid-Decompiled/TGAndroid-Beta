@@ -20,10 +20,10 @@ public abstract class RichHtml {
         return c == ' ' || c == '\n' || c == '\t' || c == '\r';
     }
 
-    public static String serialize(List list, int i, int i2, int i3, int i4) {
+    public static String serialize(List list, int i, int i2, int i3, int i4, Map map) {
         StringBuilder sb = new StringBuilder();
         ListState listState = new ListState();
-        serializeRange(sb, list, new int[]{i}, i2, i, i2, i3, i4, listState, false);
+        serializeRange(sb, list, new int[]{i}, i2, i, i2, i3, i4, listState, false, 0, map);
         listState.closeAll(sb);
         return sb.toString();
     }
@@ -68,22 +68,25 @@ public abstract class RichHtml {
         }
     }
 
-    private static void serializeRange(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5, ListState listState, boolean z) {
+    private static void serializeRange(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5, ListState listState, boolean z, int i6, Map map) {
         while (true) {
-            int i6 = iArr[0];
-            if (i6 > i) {
+            int i7 = iArr[0];
+            if (i7 > i) {
                 return;
             }
-            BlockRow blockRow = (BlockRow) list.get(i6);
+            BlockRow blockRow = (BlockRow) list.get(i7);
             if (blockRow.detailsEnd) {
                 if (z) {
                     return;
                 } else {
                     iArr[0] = iArr[0] + 1;
                 }
+            } else if (blockRow.quoteIds.size() > i6) {
+                listState.closeAll(sb);
+                serializeQuote(sb, list, iArr, i, i2, i3, i4, i5, z, i6, map);
             } else if (RichEditorListView.isDetailsHeader(blockRow)) {
                 listState.closeAll(sb);
-                serializeDetails(sb, list, iArr, i, i2, i3, i4, i5);
+                serializeDetails(sb, list, iArr, i, i2, i3, i4, i5, i6, map);
             } else if (blockRow.level > 0 && isTextBlock(blockRow.block)) {
                 listState.sync(sb, blockRow.level, blockRow.num > 0);
                 sb.append("<li>");
@@ -98,7 +101,7 @@ public abstract class RichHtml {
         }
     }
 
-    private static void serializeDetails(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5) {
+    private static void serializeDetails(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5, int i6, Map map) {
         BlockRow blockRow = (BlockRow) list.get(iArr[0]);
         sb.append(((TL_iv.pageBlockDetails) blockRow.block).open ? "<details open>" : "<details>");
         sb.append("<summary>");
@@ -106,13 +109,55 @@ public abstract class RichHtml {
         sb.append("</summary>");
         iArr[0] = iArr[0] + 1;
         ListState listState = new ListState();
-        serializeRange(sb, list, iArr, i, i2, i3, i4, i5, listState, true);
+        serializeRange(sb, list, iArr, i, i2, i3, i4, i5, listState, true, i6, map);
         listState.closeAll(sb);
-        int i6 = iArr[0];
-        if (i6 <= i && i6 < list.size() && ((BlockRow) list.get(iArr[0])).detailsEnd) {
+        int i7 = iArr[0];
+        if (i7 <= i && i7 < list.size() && ((BlockRow) list.get(iArr[0])).detailsEnd) {
             iArr[0] = iArr[0] + 1;
         }
         sb.append("</details>");
+    }
+
+    private static void serializeQuote(StringBuilder sb, List list, int[] iArr, int i, int i2, int i3, int i4, int i5, boolean z, int i6, Map map) {
+        int i7;
+        BlockRow blockRow;
+        Long l = (Long) ((BlockRow) list.get(iArr[0])).quoteIds.get(i6);
+        long jLongValue = l.longValue();
+        int i8 = iArr[0];
+        do {
+            i7 = i8;
+            i8 = i7 + 1;
+            if (i8 > i) {
+                break;
+            }
+            blockRow = (BlockRow) list.get(i8);
+            if (blockRow.quoteIds.size() <= i6) {
+                break;
+            }
+        } while (((Long) blockRow.quoteIds.get(i6)).longValue() == jLongValue);
+        sb.append("<blockquote>");
+        ListState listState = new ListState();
+        serializeRange(sb, list, iArr, i7, i2, i3, i4, i5, listState, z, i6 + 1, map);
+        listState.closeAll(sb);
+        appendAuthorCite(sb, map == null ? null : authorText((TL_iv.RichText) map.get(l)));
+        sb.append("</blockquote>");
+    }
+
+    private static CharSequence authorText(TL_iv.RichText richText) {
+        CharSequence spannable;
+        if (richText == null || (richText instanceof TL_iv.textEmpty) || (spannable = RichTextStyle.toSpannable(richText)) == null || spannable.length() <= 0) {
+            return null;
+        }
+        return spannable;
+    }
+
+    private static void appendAuthorCite(StringBuilder sb, CharSequence charSequence) {
+        if (charSequence == null || charSequence.length() == 0) {
+            return;
+        }
+        sb.append("<cite>");
+        appendInline(sb, charSequence);
+        sb.append("</cite>");
     }
 
     private static void serializeLeaf(StringBuilder sb, BlockRow blockRow, int i, int i2, int i3, int i4, int i5) {
@@ -172,6 +217,14 @@ public abstract class RichHtml {
         if (pageBlock instanceof TL_iv.pageBlockPullquote) {
             sb.append("<blockquote class=\"pull\">");
             appendInline(sb, slicedStyled(blockRow, i, i2, i3, i4, i5));
+            appendAuthorCite(sb, authorText(((TL_iv.pageBlockPullquote) pageBlock).caption));
+            sb.append("</blockquote>");
+            return;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockBlockquote) {
+            sb.append("<blockquote>");
+            appendInline(sb, slicedStyled(blockRow, i, i2, i3, i4, i5));
+            appendAuthorCite(sb, authorText(((TL_iv.pageBlockBlockquote) pageBlock).caption));
             sb.append("</blockquote>");
             return;
         }
@@ -448,6 +501,21 @@ public abstract class RichHtml {
         }
     }
 
+    public static String inlineToHtml(CharSequence charSequence) {
+        StringBuilder sb = new StringBuilder();
+        appendInline(sb, charSequence);
+        return sb.toString();
+    }
+
+    public static String tableToHtml(TL_iv.pageBlockTable pageblocktable) {
+        if (pageblocktable == null) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        serializeTable(sb, pageblocktable);
+        return sb.toString();
+    }
+
     private static void appendInline(java.lang.StringBuilder r10, java.lang.CharSequence r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.appendInline(java.lang.StringBuilder, java.lang.CharSequence):void");
     }
@@ -553,19 +621,19 @@ public abstract class RichHtml {
         return str.replace("&", "&amp;").replace("\"", "&quot;").replace("<", "&lt;").replace(">", "&gt;");
     }
 
-    public static List parse(String str) throws NumberFormatException {
+    public static List parse(String str, Map map) throws NumberFormatException {
         ArrayList arrayList = new ArrayList();
         if (str == null) {
             return arrayList;
         }
-        parseBlocks(new Parser(str).parse(), arrayList, 0);
+        parseBlocks(new Parser(str).parse(), arrayList, 0, map);
         if (arrayList.isEmpty()) {
             arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph()));
         }
         return arrayList;
     }
 
-    private static void parseBlocks(List list, ArrayList arrayList, int i) throws NumberFormatException {
+    private static void parseBlocks(List list, ArrayList arrayList, int i, Map map) throws NumberFormatException {
         Iterator it = list.iterator();
         SpannableStringBuilder spannableStringBuilder = null;
         while (it.hasNext()) {
@@ -630,7 +698,7 @@ public abstract class RichHtml {
                         case "tr":
                         case "tbody":
                         case "thead":
-                            parseBlocks(node.children, arrayList, i);
+                            parseBlocks(node.children, arrayList, i, map);
                             break;
                         case "div":
                             String strAttr = node.attr("class");
@@ -663,17 +731,22 @@ public abstract class RichHtml {
                             addRow(arrayList, buildMediaRow(node));
                             break;
                         case "blockquote":
-                            addText(arrayList, hasPullClass(node) ? new TL_iv.pageBlockPullquote() : new TL_iv.pageBlockBlockquote(), node, i);
-                            break;
+                            if (hasPullClass(node)) {
+                                parsePullquote(node, arrayList, i);
+                                break;
+                            } else {
+                                parseBlockquote(node, arrayList, i, map);
+                                break;
+                            }
                         case "details":
-                            parseDetails(node, arrayList, i);
+                            parseDetails(node, arrayList, i, map);
                             break;
                         case "location":
                             addRow(arrayList, buildMediaRow(node));
                             break;
                         default:
                             if (!node.children.isEmpty()) {
-                                parseBlocks(node.children, arrayList, i);
+                                parseBlocks(node.children, arrayList, i, map);
                                 break;
                             } else {
                                 break;
@@ -1040,7 +1113,7 @@ public abstract class RichHtml {
         }
     }
 
-    private static void parseDetails(Node node, ArrayList arrayList, int i) throws NumberFormatException {
+    private static void parseDetails(Node node, ArrayList arrayList, int i, Map map) throws NumberFormatException {
         TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
         pageblockdetails.open = node.has("open");
         pageblockdetails.blocks = new ArrayList<>();
@@ -1058,13 +1131,110 @@ public abstract class RichHtml {
         pageblockdetails.title = RichTextStyle.fromSpannable(trim(spannableStringBuilder));
         arrayList.add(new BlockRow(pageblockdetails));
         int size = arrayList.size();
-        parseBlocks(arrayList2, arrayList, i);
+        parseBlocks(arrayList2, arrayList, i, map);
         if (arrayList.size() == size) {
             arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph()));
         }
         BlockRow blockRow = new BlockRow(new TL_iv.pageBlockParagraph());
         blockRow.detailsEnd = true;
         arrayList.add(blockRow);
+    }
+
+    private static void parseBlockquote(Node node, ArrayList arrayList, int i, Map map) throws NumberFormatException {
+        String str;
+        Iterator it = node.children.iterator();
+        Node node2 = null;
+        boolean z = false;
+        while (it.hasNext()) {
+            Node node3 = (Node) it.next();
+            if (!node3.isText && (str = node3.tag) != null) {
+                if ("cite".equals(str)) {
+                    if (node2 == null) {
+                        node2 = node3;
+                    }
+                } else if (!isInlineTag(node3.tag)) {
+                    z = true;
+                }
+            }
+        }
+        TL_iv.RichText richTextCiteAuthor = citeAuthor(node2);
+        if (!z) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            appendChildrenInlineExcept(spannableStringBuilder, node, "cite");
+            TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
+            RichTextCell.applyStyledTextToBlock(pageblockblockquote, trim(spannableStringBuilder));
+            if (richTextCiteAuthor != null) {
+                pageblockblockquote.caption = richTextCiteAuthor;
+            }
+            arrayList.add(new BlockRow(pageblockblockquote, i, 0));
+            return;
+        }
+        long jNewId = RichContainer.newId();
+        int size = arrayList.size();
+        ArrayList arrayList2 = new ArrayList();
+        Iterator it2 = node.children.iterator();
+        while (it2.hasNext()) {
+            Node node4 = (Node) it2.next();
+            if (node4.isText || !"cite".equals(node4.tag)) {
+                arrayList2.add(node4);
+            }
+        }
+        parseBlocks(arrayList2, arrayList, i, map);
+        if (arrayList.size() == size) {
+            arrayList.add(new BlockRow(new TL_iv.pageBlockParagraph(), i, 0));
+        }
+        while (size < arrayList.size()) {
+            ((BlockRow) arrayList.get(size)).quoteIds.add(0, Long.valueOf(jNewId));
+            size++;
+        }
+        if (richTextCiteAuthor == null || map == null) {
+            return;
+        }
+        map.put(Long.valueOf(jNewId), richTextCiteAuthor);
+    }
+
+    private static void parsePullquote(Node node, ArrayList arrayList, int i) throws NumberFormatException {
+        Node node2;
+        Iterator it = node.children.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                node2 = null;
+                break;
+            }
+            node2 = (Node) it.next();
+            if (!node2.isText && "cite".equals(node2.tag)) {
+                break;
+            }
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        appendChildrenInlineExcept(spannableStringBuilder, node, "cite");
+        TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
+        RichTextCell.applyStyledTextToBlock(pageblockpullquote, trim(spannableStringBuilder));
+        TL_iv.RichText richTextCiteAuthor = citeAuthor(node2);
+        if (richTextCiteAuthor != null) {
+            pageblockpullquote.caption = richTextCiteAuthor;
+        }
+        arrayList.add(new BlockRow(pageblockpullquote, i, 0));
+    }
+
+    private static TL_iv.RichText citeAuthor(Node node) {
+        CharSequence charSequenceInlineOf;
+        if (node == null || (charSequenceInlineOf = inlineOf(node)) == null || charSequenceInlineOf.length() == 0) {
+            return null;
+        }
+        return RichTextStyle.fromSpannable(charSequenceInlineOf);
+    }
+
+    private static void appendChildrenInlineExcept(SpannableStringBuilder spannableStringBuilder, Node node, String str) throws NumberFormatException {
+        Iterator it = node.children.iterator();
+        while (it.hasNext()) {
+            Node node2 = (Node) it.next();
+            if (node2.isText) {
+                appendStyled(spannableStringBuilder, decode(node2.text), 0, null, 0L);
+            } else if (!str.equals(node2.tag)) {
+                appendInlineNode(spannableStringBuilder, node2, 0, null, 0L);
+            }
+        }
     }
 
     private static boolean isInlineTag(String str) {
