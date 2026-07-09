@@ -204,7 +204,7 @@ public abstract class RichHtml {
         if (pageBlock instanceof TL_iv.pageBlockPreformatted) {
             String str = ((TL_iv.pageBlockPreformatted) pageBlock).language;
             if (!TextUtils.isEmpty(str)) {
-                sb.append("<pre lang=\"");
+                sb.append("<pre language=\"");
                 sb.append(escapeAttr(str));
                 sb.append("\">");
             } else {
@@ -507,6 +507,24 @@ public abstract class RichHtml {
         return sb.toString();
     }
 
+    public static String preToHtml(CharSequence charSequence, String str) {
+        String strInlineToHtml = inlineToHtml(charSequence);
+        if (strInlineToHtml.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        if (!TextUtils.isEmpty(str)) {
+            sb.append("<pre language=\"");
+            sb.append(escapeAttr(str));
+            sb.append("\">");
+        } else {
+            sb.append("<pre>");
+        }
+        sb.append(strInlineToHtml);
+        sb.append("</pre>");
+        return sb.toString();
+    }
+
     public static String tableToHtml(TL_iv.pageBlockTable pageblocktable) {
         if (pageblocktable == null) {
             return "";
@@ -718,7 +736,7 @@ public abstract class RichHtml {
                             break;
                         case "pre":
                             TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-                            pageblockpreformatted.language = node.attr("lang");
+                            pageblockpreformatted.language = firstAttr(node, "language", "lang", "lng");
                             addText(arrayList, pageblockpreformatted, node, i);
                             break;
                         case "audio":
@@ -1042,6 +1060,16 @@ public abstract class RichHtml {
         pageCaption.text = new TL_iv.textEmpty();
         pageCaption.credit = new TL_iv.textEmpty();
         pageBlock.caption = pageCaption;
+    }
+
+    private static String firstAttr(Node node, String... strArr) {
+        for (String str : strArr) {
+            String strAttr = node.attr(str);
+            if (strAttr != null) {
+                return strAttr;
+            }
+        }
+        return null;
     }
 
     private static long parseLongAttr(String str, long j) {

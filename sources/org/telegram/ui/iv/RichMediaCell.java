@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout;
@@ -32,6 +33,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
@@ -42,6 +44,7 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRender
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
+import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.iv.RichCaptionController;
 import org.telegram.ui.iv.RichEditor;
 
@@ -61,7 +64,6 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
     private final ArrayList collageRects;
     private int currentPage;
     private Delegate delegate;
-    private final ArrayList deleteButtons;
     private float downX;
     private float downY;
     private boolean dragging;
@@ -71,6 +73,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
     private final ArrayList itemRects;
     private final ArrayList items;
     private int lastSwitchIconRes;
+    private final ArrayList menuButtons;
     private final AnimatedFloat modeProgress;
     private float pageOffset;
     private int pressedItem;
@@ -79,11 +82,14 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
     private ValueAnimator settleAnimator;
     private int slideH;
     private int slideW;
+    private SpoilerEffect2 spoilerEffect;
     private final ImageView switchModeButton;
     private int touchSlop;
 
     public interface Delegate {
         TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
+
+        ItemOptions makeMenu(View view);
 
         void onAddMedia(BlockRow blockRow);
 
@@ -108,6 +114,8 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         void onRequestWindowFocusable(RichEditText richEditText, boolean z);
 
         void onSwitchMode(BlockRow blockRow);
+
+        void onToggleSpoiler(BlockRow blockRow, MediaUploadState mediaUploadState);
     }
 
     public RichMediaCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -115,7 +123,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         this.backgroundPaint = new Paint(1);
         this.selectionPaint = new Paint(1);
         this.items = new ArrayList();
-        this.deleteButtons = new ArrayList();
+        this.menuButtons = new ArrayList();
         this.collageRects = new ArrayList();
         this.itemRects = new ArrayList();
         int i = Build.VERSION.SDK_INT;
@@ -402,9 +410,9 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         for (int i = 0; i < listMedias.size(); i++) {
             ((RichMediaItem) this.items.get(i)).setMedia((MediaUploadState) listMedias.get(i));
         }
-        while (this.deleteButtons.size() < listMedias.size()) {
+        while (this.menuButtons.size() < listMedias.size()) {
             ImageView imageViewCreateCircleButton = createCircleButton();
-            imageViewCreateCircleButton.setImageResource(R.drawable.iv_media_delete);
+            imageViewCreateCircleButton.setImageResource(R.drawable.iv_media_dots);
             imageViewCreateCircleButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -412,31 +420,87 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
                 }
             });
             addView(imageViewCreateCircleButton, LayoutHelper.createFrame(32, 32, 51));
-            this.deleteButtons.add(imageViewCreateCircleButton);
+            this.menuButtons.add(imageViewCreateCircleButton);
         }
         this.addButton.bringToFront();
         this.switchModeButton.bringToFront();
-        while (this.deleteButtons.size() > listMedias.size()) {
-            ImageView imageView = (ImageView) this.deleteButtons.remove(r1.size() - 1);
+        while (this.menuButtons.size() > listMedias.size()) {
+            ImageView imageView = (ImageView) this.menuButtons.remove(r1.size() - 1);
             removeView(imageView);
             this.circleButtons.remove(imageView);
             this.circleButtonBg.remove(imageView);
         }
+        if (this.spoilerEffect == null || hasAnySpoiler()) {
+            return;
+        }
+        this.spoilerEffect.detach(this);
+        this.spoilerEffect = null;
     }
 
     public void lambda$rebuildItems$2(View view) {
-        onDeleteClicked(this.deleteButtons.indexOf(view));
+        onMenuClicked(this.menuButtons.indexOf(view));
     }
 
-    private void onDeleteClicked(int i) {
+    private boolean hasAnySpoiler() {
+        for (int i = 0; i < this.items.size(); i++) {
+            MediaUploadState media = ((RichMediaItem) this.items.get(i)).getMedia();
+            if (media != null && media.hasSpoiler) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void onMenuClicked(int i) {
         if (this.delegate == null || this.currentRow == null) {
             return;
         }
         List listMedias = medias();
-        if (i < 0 || i >= listMedias.size()) {
+        if (i < 0 || i >= listMedias.size() || i >= this.menuButtons.size()) {
             return;
         }
-        this.delegate.onDeleteMedia(this.currentRow, (MediaUploadState) listMedias.get(i));
+        final MediaUploadState mediaUploadState = (MediaUploadState) listMedias.get(i);
+        ItemOptions itemOptionsMakeMenu = this.delegate.makeMenu((View) this.menuButtons.get(i));
+        if (itemOptionsMakeMenu == null) {
+            return;
+        }
+        boolean z = mediaUploadState.hasSpoiler;
+        itemOptionsMakeMenu.add(z ? R.drawable.msg_spoiler_off : R.drawable.msg_spoiler, LocaleController.getString(z ? R.string.DisablePhotoSpoiler : R.string.EnablePhotoSpoiler), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$onMenuClicked$3(mediaUploadState);
+            }
+        });
+        itemOptionsMakeMenu.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$onMenuClicked$4(mediaUploadState);
+            }
+        });
+        itemOptionsMakeMenu.translate(0.0f, -AndroidUtilities.dp(38.0f));
+        if (this.glass) {
+            itemOptionsMakeMenu.setBlur(false, true);
+            itemOptionsMakeMenu.setDimAlpha(0);
+        }
+        itemOptionsMakeMenu.show();
+    }
+
+    public void lambda$onMenuClicked$3(MediaUploadState mediaUploadState) {
+        BlockRow blockRow;
+        Delegate delegate = this.delegate;
+        if (delegate == null || (blockRow = this.currentRow) == null) {
+            return;
+        }
+        delegate.onToggleSpoiler(blockRow, mediaUploadState);
+    }
+
+    public void lambda$onMenuClicked$4(MediaUploadState mediaUploadState) {
+        BlockRow blockRow;
+        Delegate delegate = this.delegate;
+        if (delegate == null || (blockRow = this.currentRow) == null) {
+            return;
+        }
+        delegate.onDeleteMedia(blockRow, mediaUploadState);
     }
 
     @Override
@@ -475,11 +539,30 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         for (int i = 0; i < this.items.size(); i++) {
             ((RichMediaItem) this.items.get(i)).detach();
         }
+        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
+        if (spoilerEffect2 != null) {
+            spoilerEffect2.detach(this);
+            this.spoilerEffect = null;
+        }
         ValueAnimator valueAnimator = this.settleAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.settleAnimator = null;
         }
+    }
+
+    private SpoilerEffect2 getSpoilerEffect() {
+        if (!this.attached || !SpoilerEffect2.supports()) {
+            return null;
+        }
+        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
+        if (spoilerEffect2 != null && spoilerEffect2.destroyed) {
+            this.spoilerEffect = null;
+        }
+        if (this.spoilerEffect == null) {
+            this.spoilerEffect = SpoilerEffect2.getInstance(this);
+        }
+        return this.spoilerEffect;
     }
 
     @Override
@@ -507,8 +590,8 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         setMeasuredDimension(size, getPaddingTop() + this.imageH + this.caption.measure(paddingLeft - iCaptionMargin, paddingRight - iCaptionMargin, size) + getPaddingBottom());
         this.addButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
         this.switchModeButton.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
-        for (int i3 = 0; i3 < this.deleteButtons.size(); i3++) {
-            ((ImageView) this.deleteButtons.get(i3)).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+        for (int i3 = 0; i3 < this.menuButtons.size(); i3++) {
+            ((ImageView) this.menuButtons.get(i3)).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
         }
         if (this.modeProgress.isInProgress()) {
             requestLayout();
@@ -697,8 +780,8 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         int i8 = i7 - iDp;
         this.switchModeButton.layout((i8 - this.addButton.getMeasuredWidth()) - this.switchModeButton.getMeasuredWidth(), getPaddingTop() + iDp, i8 - this.addButton.getMeasuredWidth(), getPaddingTop() + iDp + this.addButton.getMeasuredHeight());
         List listMedias = medias();
-        for (int i9 = 0; i9 < this.deleteButtons.size(); i9++) {
-            ImageView imageView2 = (ImageView) this.deleteButtons.get(i9);
+        for (int i9 = 0; i9 < this.menuButtons.size(); i9++) {
+            ImageView imageView2 = (ImageView) this.menuButtons.get(i9);
             if (i9 >= listMedias.size() || ((MediaUploadState) listMedias.get(i9)).state == 0 || i9 >= this.itemRects.size()) {
                 imageView2.setVisibility(8);
             } else {
@@ -749,7 +832,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
-        if (this.deleteButtons.contains(view) && RichBlockChrome.quoteDepth(this.currentRow) > 0) {
+        if (this.menuButtons.contains(view) && RichBlockChrome.quoteDepth(this.currentRow) > 0) {
             canvas.save();
             this.clipPath.rewind();
             this.clipPath.addRoundRect(getPaddingLeft(), getPaddingTop(), getPaddingLeft() + Math.max(0, (getWidth() - getPaddingLeft()) - getPaddingRight()), getPaddingTop() + this.imageH, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
@@ -789,6 +872,10 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
                 canvas.drawRect(rectF3, this.backgroundPaint);
             }
             richMediaItem.draw(canvas, rectF3);
+            MediaUploadState media = richMediaItem.getMedia();
+            if (media != null && media.hasSpoiler && richMediaItem.hasImage()) {
+                richMediaItem.drawSpoiler(canvas, rectF3, getSpoilerEffect(), this);
+            }
         }
         canvas.restore();
     }
@@ -962,7 +1049,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         this.settleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                this.f$0.lambda$settle$3(valueAnimator);
+                this.f$0.lambda$settle$5(valueAnimator);
             }
         });
         this.settleAnimator.addListener(new AnimatorListenerAdapter() {
@@ -977,7 +1064,7 @@ public class RichMediaCell extends RichBlockCell implements Theme.Colorable, Tex
         this.settleAnimator.start();
     }
 
-    public void lambda$settle$3(ValueAnimator valueAnimator) {
+    public void lambda$settle$5(ValueAnimator valueAnimator) {
         this.pageOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         requestLayout();
         invalidate();

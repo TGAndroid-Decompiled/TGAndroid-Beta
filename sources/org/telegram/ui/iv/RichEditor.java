@@ -36,6 +36,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
@@ -59,6 +60,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
 import org.telegram.ui.Cells.TextSelectionHelper;
@@ -90,6 +92,7 @@ import org.telegram.ui.Components.chat.ChatInputViewsContainer;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.StickersActivity;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.iv.RichCommandSuggestions;
 import org.telegram.ui.iv.RichEditorListView;
 
@@ -141,6 +144,9 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     private HorizontalScrollView formattingScrollView;
     private LinearLayout historyButtons;
     private int imeInset;
+    private String initialHtml;
+    private CharSequence initialHtmlAfter;
+    private CharSequence initialHtmlBefore;
     private TL_iv.RichMessage initialRichMessage;
     private int initialSelectionEnd;
     private int initialSelectionStart;
@@ -158,6 +164,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     private Runnable onSentCallback;
     private Runnable pendingSend;
     private boolean persistedDraftOnEnd;
+    private ArrayList premiumButtons;
     private Button quoteButton;
     private ImageView redoButton;
     private int reorderSavedPanelType;
@@ -192,6 +199,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.tempRect = new Rect();
         this.location = new int[2];
         this.animateOpenProgress = 1.0f;
+        this.premiumButtons = new ArrayList();
         this.blockButtons = new ArrayList();
         this.formattingScrollMaxWidth = Integer.MAX_VALUE;
         this.formattingButtons = new ArrayList();
@@ -218,6 +226,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.tempRect = new Rect();
         this.location = new int[2];
         this.animateOpenProgress = 1.0f;
+        this.premiumButtons = new ArrayList();
         this.blockButtons = new ArrayList();
         this.formattingScrollMaxWidth = Integer.MAX_VALUE;
         this.formattingButtons = new ArrayList();
@@ -230,6 +239,33 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             }
         };
         this.initialRichMessage = richMessage;
+    }
+
+    public RichEditor(String str, boolean z) {
+        this.initialSelectionStart = -1;
+        this.initialSelectionEnd = -1;
+        this.tempRect = new Rect();
+        this.location = new int[2];
+        this.animateOpenProgress = 1.0f;
+        this.premiumButtons = new ArrayList();
+        this.blockButtons = new ArrayList();
+        this.formattingScrollMaxWidth = Integer.MAX_VALUE;
+        this.formattingButtons = new ArrayList();
+        this.reorderSavedPanelType = 0;
+        this.bottomPanelType = -1;
+        this.limitCheckRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.updateSendButtonEnabled();
+            }
+        };
+        this.initialHtml = z ? str : null;
+    }
+
+    public RichEditor setHtmlSurrounding(CharSequence charSequence, CharSequence charSequence2) {
+        this.initialHtmlBefore = charSequence;
+        this.initialHtmlAfter = charSequence2;
+        return this;
     }
 
     public RichEditor setEditing(MessageObject messageObject) {
@@ -347,7 +383,10 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             richEditorListView2.applyInitialSelection(i, i2);
             return;
         }
-        if (!z || z2 || this.initialRichMessage == null || (richEditorListView = this.listView) == null) {
+        if (!z || z2) {
+            return;
+        }
+        if ((this.initialRichMessage == null && this.initialHtml == null) || (richEditorListView = this.listView) == null) {
             return;
         }
         richEditorListView.focusForDraft();
@@ -369,13 +408,15 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     @Override
-    public View createView(Context context) {
+    public View createView(final Context context) {
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
+        this.premiumButtons.clear();
         this.container = new SizeNotifierFrameLayout(context) {
             private final Paint bgPaint = new Paint(1);
             private final Path clipPath = new Path();
             private final RectF rect = new RectF();
+            private boolean touchStartedInBottomPanel;
 
             @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
@@ -389,10 +430,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 if ((motionEvent.getAction() != 0 || (motionEvent.getY() > getPaddingTop() + AndroidUtilities.dp(60.0f) && motionEvent.getY() < height)) && RichEditor.this.listView.textSelectionOverlay.checkOnTap(motionEvent)) {
                     motionEvent.setAction(3);
                 }
-                if (RichEditor.this.listView.handleSelectionTouch(motionEvent)) {
-                    return true;
+                if (motionEvent.getAction() == 0) {
+                    this.touchStartedInBottomPanel = RichEditor.this.bottomPanel.getVisibility() == 0 && motionEvent.getY() >= ((float) ((getHeight() - AndroidUtilities.dp(60.0f)) - Math.max(Math.max(RichEditor.this.emojiPadding, RichEditor.this.bottomInset), RichEditor.this.imeInset)));
                 }
-                return super.dispatchTouchEvent(motionEvent);
+                if (this.touchStartedInBottomPanel || !RichEditor.this.listView.handleSelectionTouch(motionEvent)) {
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+                return true;
             }
 
             @Override
@@ -440,8 +484,6 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                         canvas.restore();
                     }
                     canvas.save();
-                    this.clipPath.rewind();
-                    this.clipPath.addRoundRect(this.rect, fLerp, fLerp, Path.Direction.CW);
                     super.dispatchDraw(canvas);
                     canvas.restore();
                     return;
@@ -474,9 +516,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         if (richMessage != null) {
             this.listView.loadRichMessage(richMessage);
         } else {
-            CharSequence charSequence = this.initialText;
-            if (charSequence != null) {
-                this.listView.setInitialText(charSequence);
+            String str = this.initialHtml;
+            if (str != null) {
+                this.listView.loadHtml(this.initialHtmlBefore, str, this.initialHtmlAfter);
+            } else {
+                CharSequence charSequence = this.initialText;
+                if (charSequence != null) {
+                    this.listView.setInitialText(charSequence);
+                }
             }
         }
         View view = new View(context);
@@ -638,23 +685,23 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         addBlockButton(R.drawable.iv_text, 1).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
-                this.f$0.lambda$createView$20(view3);
+                this.f$0.lambda$createView$20(context, view3);
             }
         });
-        addBlockButton(R.drawable.iv_lists, 2).setOnClickListener(new View.OnClickListener() {
+        addBlockButton(R.drawable.iv_lists, 2, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$27(view3);
             }
         });
-        addBlockButton(R.drawable.iv_table, 4).setOnClickListener(new View.OnClickListener() {
+        addBlockButton(R.drawable.iv_table, 4, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$28(view3);
             }
         });
         int i4 = R.drawable.iv_math;
-        addBlockButton(i4, 7).setOnClickListener(new View.OnClickListener() {
+        addBlockButton(i4, 7, true).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$30(view3);
@@ -799,9 +846,9 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         addFormattingButton(context, R.drawable.formatting_strikethrough, 8);
         addFormattingButton(context, R.drawable.formatting_spoiler, 256);
         addFormattingButton(context, R.drawable.iv_code, 4);
-        addFormattingButton(context, R.drawable.formatting_marked, 65536);
-        addFormattingButton(context, R.drawable.iv_sub, 16384);
-        addFormattingButton(context, R.drawable.iv_super, 32768);
+        addFormattingButton(context, R.drawable.formatting_marked, 65536, true);
+        addFormattingButton(context, R.drawable.iv_sub, 16384, true);
+        addFormattingButton(context, R.drawable.iv_super, 32768, true);
         Button button = new Button(context, R.drawable.iv_quote, getResourceProvider());
         this.quoteButton = button;
         button.setOnClickListener(new View.OnClickListener() {
@@ -844,7 +891,9 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.formattingPanel.addView(this.formattingLayout3, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
         Button button4 = new Button(context, i4, getResourceProvider());
         this.mathButton = button4;
-        button4.setOnClickListener(new View.OnClickListener() {
+        button4.setPremium();
+        this.premiumButtons.add(this.mathButton);
+        this.mathButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 this.f$0.lambda$createView$35(view3);
@@ -905,6 +954,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 this.f$0.lambda$createView$38(view3, view4);
             }
         });
+        updatePremiumButtons();
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.container;
         this.fragmentView = sizeNotifierFrameLayout;
         return sizeNotifierFrameLayout;
@@ -1036,12 +1086,13 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.listView.addRichMessage(richMessage);
     }
 
-    public void lambda$createView$20(View view) {
+    public void lambda$createView$20(Context context, View view) {
         ItemOptions itemOptions = this.currentMenuVisible;
         if (itemOptions != null) {
             itemOptions.dismiss();
             this.currentMenuVisible = null;
         }
+        boolean z = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
         final BlockRow blockRowFindFocusedRow = this.listView.findFocusedRow();
         final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((BaseFragment) this, view, true).dontFocus();
         final ItemOptions itemOptionsMakeSwipeback = itemOptionsDontFocus.makeSwipeback();
@@ -1100,13 +1151,17 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         });
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptionsMakeSwipeback.getLast().textView.setTextSize(1, SharedConfig.fontSize - 3);
-        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && RichEditorListView.isHeading(blockRowFindFocusedRow.block), R.drawable.iv_h, LocaleController.getString(R.string.ArticleHeading), new Runnable() {
+        boolean z2 = blockRowFindFocusedRow != null && RichEditorListView.isHeading(blockRowFindFocusedRow.block);
+        RequiresPremiumDrawable premium = new RequiresPremiumDrawable(context, R.drawable.iv_h).setPremium(z);
+        int i = Theme.key_actionBarDefaultSubmenuBackground;
+        itemOptionsDontFocus.addChecked(z2, premium.setCutoutColorKey(i), LocaleController.getString(R.string.ArticleHeading), new Runnable() {
             @Override
             public final void run() {
                 itemOptionsDontFocus.openSwipeback(itemOptionsMakeSwipeback);
             }
         });
         itemOptionsDontFocus.getLast().textView.setTypeface(AndroidUtilities.bold());
+        itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockParagraph), R.drawable.iv_text2, LocaleController.getString(R.string.ArticleText), new Runnable() {
             @Override
             public final void run() {
@@ -1119,24 +1174,26 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 this.f$0.lambda$createView$16(blockRowFindFocusedRow);
             }
         });
-        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPullquote), R.drawable.iv_pullquote, LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
+        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPullquote), new RequiresPremiumDrawable(context, R.drawable.iv_pullquote).setPremium(z).setCutoutColorKey(i), LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$createView$17(blockRowFindFocusedRow);
             }
         });
+        itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
         itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPreformatted), R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$createView$18(blockRowFindFocusedRow);
             }
         });
-        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockFooter), R.drawable.iv_footer, LocaleController.getString(R.string.ArticleFooter), new Runnable() {
+        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockFooter), new RequiresPremiumDrawable(context, R.drawable.iv_footer).setPremium(z).setCutoutColorKey(i), LocaleController.getString(R.string.ArticleFooter), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$createView$19(blockRowFindFocusedRow);
             }
         });
+        itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
         this.currentMenuVisible = itemOptionsDontFocus.show();
     }
 
@@ -1528,7 +1585,15 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
     }
 
     private Button addBlockButton(int i, int i2) {
+        return addBlockButton(i, i2, false);
+    }
+
+    private Button addBlockButton(int i, int i2, boolean z) {
         Button button = new Button(this.blocksLayout.getContext(), i, getResourceProvider());
+        if (z) {
+            button.setPremium();
+            this.premiumButtons.add(button);
+        }
         button.setTag(Integer.valueOf(i2));
         this.blockButtons.add(button);
         LinearLayout linearLayout = this.blocksLayout;
@@ -1540,8 +1605,16 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditor.updateBlockButtons():void");
     }
 
-    private void addFormattingButton(Context context, int i, final int i2) {
+    private void addFormattingButton(Context context, int i, int i2) {
+        addFormattingButton(context, i, i2, false);
+    }
+
+    private void addFormattingButton(Context context, int i, final int i2, boolean z) {
         Button button = new Button(context, i, getResourceProvider());
+        if (z) {
+            button.setPremium();
+            this.premiumButtons.add(button);
+        }
         button.setTag(Integer.valueOf(i2));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1708,6 +1781,8 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         private int backgroundColorKey;
         private int currentIcon;
         private boolean enabled;
+        private boolean premium;
+        private boolean premiumLocked;
         private Theme.ResourcesProvider resourcesProvider;
         private int roundRadius;
         private boolean selected;
@@ -1728,6 +1803,23 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             setScaleType(ImageView.ScaleType.CENTER);
             ScaleStateListAnimator.apply(this);
             updateColors();
+        }
+
+        public Button setPremium() {
+            this.premium = true;
+            setImageDrawable(wrapPremium(this.currentIcon));
+            return this;
+        }
+
+        public void setPremiumLocked(boolean z) {
+            this.premiumLocked = z;
+            if (getDrawable() instanceof RequiresPremiumDrawable) {
+                ((RequiresPremiumDrawable) getDrawable()).setPremium(z);
+            }
+        }
+
+        private RequiresPremiumDrawable wrapPremium(int i) {
+            return new RequiresPremiumDrawable(getContext(), i).setCutoutColorKey(this.backgroundColorKey).setPremium(this.premiumLocked);
         }
 
         @Override
@@ -1764,7 +1856,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
                 return;
             }
             this.currentIcon = i;
-            AndroidUtilities.updateImageViewImageAnimated(this, i);
+            if (this.premium) {
+                AndroidUtilities.updateImageViewImageAnimated(this, wrapPremium(i));
+            } else {
+                AndroidUtilities.updateImageViewImageAnimated(this, i);
+            }
         }
 
         public void resetIcon() {
@@ -1801,6 +1897,99 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
 
     public static Drawable withShadow(Drawable drawable) {
         return new ShadowWrapperDrawable(drawable);
+    }
+
+    public static class RequiresPremiumDrawable extends Drawable {
+        private final Context context;
+        public final Drawable icon;
+        private Drawable premiumIcon;
+        private Drawable premiumIconCutout;
+        private int premiumIconCutoutColor;
+        private int premiumIconCutoutColorKey;
+        public boolean showPremiumIcon;
+
+        public RequiresPremiumDrawable(Context context, int i) {
+            this(context, context.getResources().getDrawable(i).mutate());
+        }
+
+        public RequiresPremiumDrawable(Context context, Drawable drawable) {
+            this.premiumIconCutoutColorKey = Theme.key_windowBackgroundWhite;
+            this.showPremiumIcon = true;
+            this.context = context;
+            this.icon = drawable;
+        }
+
+        public RequiresPremiumDrawable setPremium(boolean z) {
+            if (this.showPremiumIcon == z) {
+                return this;
+            }
+            this.showPremiumIcon = z;
+            invalidateSelf();
+            return this;
+        }
+
+        public RequiresPremiumDrawable setCutoutColorKey(int i) {
+            this.premiumIconCutoutColorKey = i;
+            return this;
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            Rect bounds = getBounds();
+            int iCenterX = bounds.centerX();
+            int iCenterY = bounds.centerY();
+            Drawable drawable = this.icon;
+            drawable.setBounds(iCenterX - (drawable.getIntrinsicWidth() / 2), iCenterY - (this.icon.getIntrinsicHeight() / 2), (this.icon.getIntrinsicWidth() / 2) + iCenterX, (this.icon.getIntrinsicHeight() / 2) + iCenterY);
+            this.icon.draw(canvas);
+            if (this.showPremiumIcon) {
+                int iDp = iCenterX + AndroidUtilities.dp(9.0f);
+                int iDp2 = iCenterY + AndroidUtilities.dp(9.0f);
+                int color = Theme.getColor(this.premiumIconCutoutColorKey);
+                if (this.premiumIconCutout == null) {
+                    Drawable drawableMutate = this.context.getResources().getDrawable(R.drawable.star_premium_cutout).mutate();
+                    this.premiumIconCutout = drawableMutate;
+                    this.premiumIconCutoutColor = color;
+                    drawableMutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+                }
+                if (color != this.premiumIconCutoutColor) {
+                    Drawable drawable2 = this.premiumIconCutout;
+                    this.premiumIconCutoutColor = color;
+                    drawable2.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
+                }
+                if (this.premiumIcon == null) {
+                    this.premiumIcon = this.context.getResources().getDrawable(R.drawable.star_premium).mutate();
+                }
+                this.premiumIconCutout.setBounds(iDp - AndroidUtilities.dp(9.0f), iDp2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f) + iDp, AndroidUtilities.dp(9.0f) + iDp2);
+                this.premiumIconCutout.draw(canvas);
+                this.premiumIcon.setBounds(iDp - AndroidUtilities.dp(9.0f), iDp2 - AndroidUtilities.dp(9.0f), iDp + AndroidUtilities.dp(9.0f), iDp2 + AndroidUtilities.dp(9.0f));
+                this.premiumIcon.draw(canvas);
+            }
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.icon.setAlpha(i);
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+            this.icon.setColorFilter(colorFilter);
+        }
+
+        @Override
+        public int getOpacity() {
+            return this.icon.getOpacity();
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return Math.max(AndroidUtilities.dp(38.0f), this.icon.getIntrinsicHeight());
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return Math.max(AndroidUtilities.dp(38.0f), this.icon.getIntrinsicWidth());
+        }
     }
 
     private static class ShadowWrapperDrawable extends Drawable implements Drawable.Callback {
@@ -2428,11 +2617,15 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         if (richMessageBuildDraftRichMessage == null && (runnable = this.onClearedCallback) != null) {
             runnable.run();
         }
-        getMediaDataController().saveDraft(this.chatActivity.getDialogId(), this.chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessageBuildDraftRichMessage);
-        if (this.chatActivity.getChatActivityEnterView() == null) {
+        ChatActivityEnterView chatActivityEnterView = this.chatActivity.getChatActivityEnterView();
+        if (richMessageBuildDraftRichMessage != null && !this.sent && this.listView.isSimpleConvertible() && chatActivityEnterView != null) {
+            chatActivityEnterView.applyConvertedSimpleDraft(this.listView.toSimpleMessage());
             return true;
         }
-        this.chatActivity.getChatActivityEnterView().setRichDraftPreview(richMessageBuildDraftRichMessage);
+        getMediaDataController().saveDraft(this.chatActivity.getDialogId(), this.chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessageBuildDraftRichMessage);
+        if (chatActivityEnterView != null) {
+            chatActivityEnterView.setRichDraftPreview(richMessageBuildDraftRichMessage);
+        }
         return true;
     }
 
@@ -2872,10 +3065,19 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         return super.onBackPressed(z);
     }
 
+    private void updatePremiumButtons() {
+        boolean z = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
+        Iterator it = this.premiumButtons.iterator();
+        while (it.hasNext()) {
+            ((Button) it.next()).setPremiumLocked(z);
+        }
+    }
+
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.currentUserPremiumStatusChanged) {
             this.sendButton.setLocked(!MessagesController.getInstance(this.currentAccount).richEditorAllowed());
+            updatePremiumButtons();
         }
     }
 
@@ -2921,5 +3123,61 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             return;
         }
         sizeNotifierFrameLayout.removeDelegate(sizeNotifierFrameLayoutDelegate);
+    }
+
+    public static BottomSheet openConversionSheet(Context context, final Runnable runnable, final Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
+        BottomSheet.Builder builder = new BottomSheet.Builder(context, false, resourcesProvider);
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        builder.setCustomView(linearLayout);
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(R.drawable.large_article);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
+        linearLayout.addView(imageView, LayoutHelper.createLinear(80, 80, 1, 0, 18, 0, 0));
+        TextView textView = new TextView(context);
+        textView.setText(LocaleController.getString(R.string.ArticleConversionTitle));
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setGravity(17);
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 49, 25, 16, 25, 0));
+        TextView textView2 = new TextView(context);
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ArticleConversionText)));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setTextColor(Theme.getColor(i, resourcesProvider));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 25, 11, 25, 0));
+        ButtonWithCounterView round = new ButtonWithCounterView(context, resourcesProvider).setRound();
+        round.setText(LocaleController.getString(R.string.ArticleConversionSubscribe));
+        linearLayout.addView(round, LayoutHelper.createLinear(-1, 48, 49, 14, 31, 14, 0));
+        ButtonWithCounterView round2 = new ButtonWithCounterView(context, false, resourcesProvider).setRound();
+        round2.setText(LocaleController.getString(R.string.ArticleConversionSendPlain));
+        linearLayout.addView(round2, LayoutHelper.createLinear(-1, 48, 49, 14, 2, 14, 6));
+        final BottomSheet bottomSheetShow = builder.show();
+        round.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                RichEditor.lambda$openConversionSheet$54(bottomSheetShow, runnable2, view);
+            }
+        });
+        round2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                RichEditor.lambda$openConversionSheet$55(bottomSheetShow, runnable, view);
+            }
+        });
+        return bottomSheetShow;
+    }
+
+    public static void lambda$openConversionSheet$54(BottomSheet bottomSheet, Runnable runnable, View view) {
+        bottomSheet.lambda$new$0();
+        runnable.run();
+    }
+
+    public static void lambda$openConversionSheet$55(BottomSheet bottomSheet, Runnable runnable, View view) {
+        bottomSheet.lambda$new$0();
+        runnable.run();
     }
 }

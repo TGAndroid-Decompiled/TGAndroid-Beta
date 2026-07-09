@@ -17,6 +17,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 
 public class RichMediaItem {
     private static ColorMatrixColorFilter fancyBlurFilter;
@@ -43,6 +44,10 @@ public class RichMediaItem {
     public void setMedia(MediaUploadState mediaUploadState) {
         this.media = mediaUploadState;
         applyImage();
+    }
+
+    public MediaUploadState getMedia() {
+        return this.media;
     }
 
     public boolean hasImage() {
@@ -110,10 +115,10 @@ public class RichMediaItem {
         this.blurSource = null;
     }
 
-    public void drawBlurBackground(Canvas canvas, RectF rectF) {
+    private boolean ensureBlur() {
         Bitmap bitmap;
         if (!hasImage() || (bitmap = this.imageReceiver.getBitmap()) == null || bitmap.isRecycled()) {
-            return;
+            return false;
         }
         if ((this.blurImageReceiver.getBitmap() == null || this.imageReceiver.getAnimation() == null) && (bitmap != this.blurSource || this.blurImageReceiver.getBitmap() == null)) {
             this.blurSource = bitmap;
@@ -126,12 +131,15 @@ public class RichMediaItem {
             }
             this.blurImageReceiver.setColorFilter(fancyBlurFilter);
         }
-        if (this.blurImageReceiver.getBitmap() == null) {
-            return;
+        return this.blurImageReceiver.getBitmap() != null;
+    }
+
+    public void drawBlurBackground(Canvas canvas, RectF rectF) {
+        if (ensureBlur()) {
+            this.blurImageReceiver.setImageCoords(rectF);
+            this.blurImageReceiver.setAlpha(this.imageReceiver.getCurrentAlpha());
+            this.blurImageReceiver.draw(canvas);
         }
-        this.blurImageReceiver.setImageCoords(rectF);
-        this.blurImageReceiver.setAlpha(this.imageReceiver.getCurrentAlpha());
-        this.blurImageReceiver.draw(canvas);
     }
 
     public void draw(Canvas canvas, RectF rectF) {
@@ -139,6 +147,25 @@ public class RichMediaItem {
         if (hasImage()) {
             this.imageReceiver.draw(canvas);
         }
+        drawProgress(canvas, rectF);
+    }
+
+    public void drawSpoiler(Canvas canvas, RectF rectF, SpoilerEffect2 spoilerEffect2, View view) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        if (ensureBlur()) {
+            this.blurImageReceiver.setImageCoords(rectF);
+            this.blurImageReceiver.setAlpha(this.imageReceiver.getCurrentAlpha());
+            this.blurImageReceiver.draw(canvas);
+        }
+        if (spoilerEffect2 != null) {
+            canvas.translate(rectF.left, rectF.top);
+            spoilerEffect2.draw(canvas, view, Math.round(rectF.width()), Math.round(rectF.height()), this.imageReceiver.getCurrentAlpha());
+        }
+        canvas.restore();
+    }
+
+    private void drawProgress(Canvas canvas, RectF rectF) {
         MediaUploadState mediaUploadState = this.media;
         if (mediaUploadState == null || !mediaUploadState.isPending()) {
             return;

@@ -459,11 +459,19 @@ public class ItemOptions {
         return addChecked(z, i, charSequence, runnable, null);
     }
 
+    public ItemOptions addChecked(boolean z, Drawable drawable, CharSequence charSequence, Runnable runnable) {
+        return addChecked(z, 0, drawable, charSequence, runnable, null);
+    }
+
     public ItemOptions addChecked(boolean z, CharSequence charSequence, Runnable runnable, Runnable runnable2) {
         return addChecked(z, 0, charSequence, runnable, runnable2);
     }
 
-    public ItemOptions addChecked(boolean z, int i, CharSequence charSequence, final Runnable runnable, final Runnable runnable2) {
+    public ItemOptions addChecked(boolean z, int i, CharSequence charSequence, Runnable runnable, Runnable runnable2) {
+        return addChecked(z, i, null, charSequence, runnable, runnable2);
+    }
+
+    public ItemOptions addChecked(boolean z, int i, Drawable drawable, CharSequence charSequence, final Runnable runnable, final Runnable runnable2) {
         if (this.context == null) {
             return this;
         }
@@ -471,7 +479,9 @@ public class ItemOptions {
         int i3 = Theme.key_actionBarDefaultSubmenuItemIcon;
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, i != 0 ? 2 : 1, false, false, this.resourcesProvider);
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        if (i != 0) {
+        if (drawable != null) {
+            actionBarMenuSubItem.setTextAndIcon(charSequence, 0, drawable);
+        } else if (i != 0) {
             actionBarMenuSubItem.setTextAndIcon(charSequence, i);
         } else {
             actionBarMenuSubItem.setText(charSequence);
@@ -1745,7 +1755,7 @@ public class ItemOptions {
                 this.cachedBitmapPaint = null;
                 this.cachedBitmap = null;
             }
-            if (ItemOptions.this.blur) {
+            if (ItemOptions.this.blur || ItemOptions.this.blurForMenu) {
                 this.blurPaint = new Paint(3);
                 ItemOptions.this.scrimView.setAlpha(0.0f);
                 ScrimOptions.makeGlobalBlurBitmaps(ItemOptions.this.pointContainer, new Utilities.Callback2() {
@@ -1759,7 +1769,9 @@ public class ItemOptions {
 
         public void lambda$new$0(Bitmap bitmap, Bitmap bitmap2) {
             ItemOptions.this.scrimView.setAlpha(1.0f);
-            this.blurBitmap = bitmap;
+            if (ItemOptions.this.blur) {
+                this.blurBitmap = bitmap;
+            }
             if (ItemOptions.this.scrimBlur3SourceBitmap != null) {
                 ItemOptions.this.scrimBlur3SourceBitmap.setBitmap(bitmap2);
                 Blur3Utils.checkBitmapSourceMatrixScale(ItemOptions.this.scrimBlur3SourceBitmap, this);

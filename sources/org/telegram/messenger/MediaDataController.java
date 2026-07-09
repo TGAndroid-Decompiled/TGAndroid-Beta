@@ -4284,7 +4284,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = stickerSet4.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda163(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda159(delayedAction));
             if (frameLayout != null) {
                 Bulletin.make(frameLayout, stickerSetBulletinLayout, 2750).show();
             } else {
@@ -4393,7 +4393,7 @@ public class MediaDataController extends BaseController {
             LongSparseArray longSparseArray = this.removingStickerSetsUndos;
             long j = arrayList.get(i8).set.id;
             Objects.requireNonNull(delayedAction);
-            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda163(delayedAction));
+            longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda159(delayedAction));
         }
         Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
     }
@@ -7208,69 +7208,70 @@ public class MediaDataController extends BaseController {
     }
 
     public ArrayList<TLRPC.MessageEntity> getEntities(CharSequence[] charSequenceArr, boolean z) {
+        return getEntities(charSequenceArr, z, true);
+    }
+
+    public ArrayList<TLRPC.MessageEntity> getEntities(CharSequence[] charSequenceArr, boolean z, boolean z2) {
         int i;
-        int iIndexOf;
         int i2;
         int i3;
-        int i4;
-        int i5;
-        int i6 = -1;
-        int i7 = 2;
+        int i4 = -1;
+        int i5 = 2;
         ArrayList<TLRPC.MessageEntity> arrayList = null;
         if (charSequenceArr != null && charSequenceArr[0] != null) {
-            boolean z2 = false;
-            int i8 = 0;
+            boolean z3 = false;
+            int i6 = 0;
             loop0: while (true) {
                 i = -1;
-                while (true) {
-                    iIndexOf = TextUtils.indexOf(charSequenceArr[0], !z2 ? "`" : "```", i8);
-                    if (iIndexOf == i6) {
+                while (z2) {
+                    int iIndexOf = TextUtils.indexOf(charSequenceArr[0], !z3 ? "`" : "```", i6);
+                    if (iIndexOf == i4) {
                         break loop0;
                     }
-                    if (i == i6) {
-                        z2 = charSequenceArr[0].length() - iIndexOf > i7 && charSequenceArr[0].charAt(iIndexOf + 1) == '`' && charSequenceArr[0].charAt(iIndexOf + 2) == '`';
+                    if (i == i4) {
+                        z3 = charSequenceArr[0].length() - iIndexOf > i5 && charSequenceArr[0].charAt(iIndexOf + 1) == '`' && charSequenceArr[0].charAt(iIndexOf + 2) == '`';
                         i = iIndexOf;
-                        i8 = (z2 ? 3 : 1) + iIndexOf;
+                        i6 = (z3 ? 3 : 1) + iIndexOf;
                     } else {
                         if (arrayList == null) {
                             arrayList = new ArrayList<>();
                         }
-                        for (int i9 = (z2 ? 3 : 1) + iIndexOf; i9 < charSequenceArr[0].length() && charSequenceArr[0].charAt(i9) == '`'; i9++) {
+                        for (int i7 = (z3 ? 3 : 1) + iIndexOf; i7 < charSequenceArr[0].length() && charSequenceArr[0].charAt(i7) == '`'; i7++) {
                             iIndexOf++;
                         }
-                        i2 = (z2 ? 3 : 1) + iIndexOf;
-                        if (z2) {
+                        int i8 = (z3 ? 3 : 1) + iIndexOf;
+                        if (z3) {
                             char cCharAt = i > 0 ? charSequenceArr[0].charAt(i - 1) : (char) 0;
-                            int i10 = (cCharAt == ' ' || cCharAt == '\n') ? 1 : 0;
-                            int i11 = i + 3;
-                            int iIndexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i11);
-                            String strSubstring = (iIndexOf2 < 0 || iIndexOf2 - i11 <= 0) ? "" : charSequenceArr[0].toString().substring(i11, iIndexOf2);
-                            CharSequence charSequenceSubstring = substring(charSequenceArr[0], 0, i - i10);
-                            int length = i11 + strSubstring.length() + (!strSubstring.isEmpty());
+                            int i9 = (cCharAt == ' ' || cCharAt == '\n') ? 1 : 0;
+                            int i10 = i + 3;
+                            int iIndexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i10);
+                            String strSubstring = (iIndexOf2 < 0 || iIndexOf2 - i10 <= 0) ? "" : charSequenceArr[0].toString().substring(i10, iIndexOf2);
+                            CharSequence charSequenceSubstring = substring(charSequenceArr[0], 0, i - i9);
+                            int length = i10 + strSubstring.length() + (!strSubstring.isEmpty());
                             if (length >= 0 && length < charSequenceArr[0].length() && length <= iIndexOf) {
                                 CharSequence charSequenceSubstring2 = substring(charSequenceArr[0], length, iIndexOf);
-                                int i12 = iIndexOf + 3;
-                                char cCharAt2 = i12 < charSequenceArr[0].length() ? charSequenceArr[0].charAt(i12) : (char) 0;
+                                int i11 = iIndexOf + 3;
+                                char cCharAt2 = i11 < charSequenceArr[0].length() ? charSequenceArr[0].charAt(i11) : (char) 0;
                                 CharSequence charSequence = charSequenceArr[0];
-                                CharSequence charSequenceSubstring3 = substring(charSequence, i12 + ((cCharAt2 == ' ' || cCharAt2 == '\n') ? 1 : 0), charSequence.length());
+                                CharSequence charSequenceSubstring3 = substring(charSequence, i11 + ((cCharAt2 == ' ' || cCharAt2 == '\n') ? 1 : 0), charSequence.length());
                                 if (charSequenceSubstring.length() != 0) {
-                                    i4 = 2;
+                                    i2 = 2;
                                     charSequenceSubstring = AndroidUtilities.concat(charSequenceSubstring, "\n");
                                 } else {
-                                    i4 = 2;
-                                    i10 = 1;
+                                    i2 = 2;
+                                    i9 = 1;
                                 }
                                 if (charSequenceSubstring3.length() > 0 && charSequenceSubstring3.charAt(0) != '\n') {
-                                    CharSequence[] charSequenceArr2 = new CharSequence[i4];
+                                    CharSequence[] charSequenceArr2 = new CharSequence[i2];
                                     charSequenceArr2[0] = "\n";
                                     charSequenceArr2[1] = charSequenceSubstring3;
                                     charSequenceSubstring3 = AndroidUtilities.concat(charSequenceArr2);
                                 }
                                 if (charSequenceSubstring2.length() <= 0 || charSequenceSubstring2.charAt(charSequenceSubstring2.length() - 1) != '\n') {
-                                    i5 = 0;
+                                    i3 = 0;
                                 } else {
                                     charSequenceSubstring2 = substring(charSequenceSubstring2, 0, charSequenceSubstring2.length() - 1);
-                                    i5 = 1;
+                                    i3 = 1;
                                 }
                                 if (!TextUtils.isEmpty(charSequenceSubstring2)) {
                                     if (charSequenceSubstring2.length() > 1 && charSequenceSubstring2.charAt(0) == '\n') {
@@ -7279,50 +7280,58 @@ public class MediaDataController extends BaseController {
                                     }
                                     charSequenceArr[0] = AndroidUtilities.concat(charSequenceSubstring, charSequenceSubstring2, charSequenceSubstring3);
                                     TLRPC.MessageEntity tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
-                                    int i13 = i10 ^ 1;
-                                    tL_messageEntityPre.offset = i + i13;
-                                    tL_messageEntityPre.length = ((((iIndexOf - i) - 3) - (strSubstring.length() + (!strSubstring.isEmpty()))) + i13) - i5;
+                                    int i12 = i9 ^ 1;
+                                    tL_messageEntityPre.offset = i + i12;
+                                    tL_messageEntityPre.length = ((((iIndexOf - i) - 3) - (strSubstring.length() + (!strSubstring.isEmpty()))) + i12) - i3;
                                     if (TextUtils.isEmpty(strSubstring) || strSubstring.trim().length() == 0) {
                                         strSubstring = "";
                                     }
                                     tL_messageEntityPre.language = strSubstring;
                                     arrayList.add(tL_messageEntityPre);
-                                    i2 -= 6;
+                                    i8 -= 6;
                                 }
+                                i6 = i8;
+                                i4 = -1;
+                                i5 = 2;
+                                z3 = false;
                             }
-                            i8 = i2;
-                            i6 = -1;
-                            i7 = 2;
+                            i6 = i8;
+                            i4 = -1;
+                            i5 = 2;
                         } else {
-                            i3 = i + 1;
-                            if (i3 == iIndexOf) {
-                                break;
+                            int i13 = i + 1;
+                            if (i13 != iIndexOf) {
+                                CharSequence charSequence2 = charSequenceArr[0];
+                                if (!(charSequence2 instanceof Spanned) || ((CodeHighlighting.Span[]) ((Spanned) charSequence2).getSpans(Utilities.clamp(i, charSequence2.length(), 0), Utilities.clamp(i13, charSequenceArr[0].length(), 0), CodeHighlighting.Span.class)).length <= 0) {
+                                    CharSequence charSequenceSubstring4 = substring(charSequenceArr[0], 0, i);
+                                    CharSequence charSequenceSubstring5 = substring(charSequenceArr[0], i13, iIndexOf);
+                                    CharSequence charSequence3 = charSequenceArr[0];
+                                    charSequenceArr[0] = AndroidUtilities.concat(charSequenceSubstring4, charSequenceSubstring5, substring(charSequence3, iIndexOf + 1, charSequence3.length()));
+                                    TLRPC.MessageEntity tL_messageEntityCode = new TLRPC.TL_messageEntityCode();
+                                    tL_messageEntityCode.offset = i;
+                                    tL_messageEntityCode.length = (iIndexOf - i) - 1;
+                                    arrayList.add(tL_messageEntityCode);
+                                    i8 -= 2;
+                                    i6 = i8;
+                                    i4 = -1;
+                                    i5 = 2;
+                                    z3 = false;
+                                }
+                                i6 = i8;
+                                i4 = -1;
+                                i5 = 2;
+                            } else {
+                                i6 = i8;
+                                i4 = -1;
+                                i5 = 2;
+                                z3 = false;
                             }
-                            CharSequence charSequence2 = charSequenceArr[0];
-                            if (!(charSequence2 instanceof Spanned) || ((CodeHighlighting.Span[]) ((Spanned) charSequence2).getSpans(Utilities.clamp(i, charSequence2.length(), 0), Utilities.clamp(i3, charSequenceArr[0].length(), 0), CodeHighlighting.Span.class)).length <= 0) {
-                                break;
-                            }
-                            i8 = i2;
-                            i6 = -1;
-                            i7 = 2;
                         }
                     }
                 }
-                CharSequence charSequenceSubstring4 = substring(charSequenceArr[0], 0, i);
-                CharSequence charSequenceSubstring5 = substring(charSequenceArr[0], i3, iIndexOf);
-                CharSequence charSequence3 = charSequenceArr[0];
-                charSequenceArr[0] = AndroidUtilities.concat(charSequenceSubstring4, charSequenceSubstring5, substring(charSequence3, iIndexOf + 1, charSequence3.length()));
-                TLRPC.MessageEntity tL_messageEntityCode = new TLRPC.TL_messageEntityCode();
-                tL_messageEntityCode.offset = i;
-                tL_messageEntityCode.length = (iIndexOf - i) - 1;
-                arrayList.add(tL_messageEntityCode);
-                i2 -= 2;
-                i8 = i2;
-                i6 = -1;
-                i7 = 2;
-                z2 = false;
+                break loop0;
             }
-            if (i != i6 && z2) {
+            if (i != i4 && z3) {
                 CharSequence charSequenceSubstring6 = substring(charSequenceArr[0], 0, i);
                 CharSequence charSequence4 = charSequenceArr[0];
                 charSequenceArr[0] = AndroidUtilities.concat(charSequenceSubstring6, substring(charSequence4, i + 2, charSequence4.length()));
@@ -7497,36 +7506,38 @@ public class MediaDataController extends BaseController {
                     }
                 }
             }
-            CharSequence charSequence6 = charSequenceArr[0];
+            CharSequence charSequenceSubSequence = charSequenceArr[0];
             if (arrayList == null) {
                 arrayList = new ArrayList<>();
             }
-            CharSequence pattern = parsePattern(parsePattern(parsePattern(charSequence6, BOLD_PATTERN, arrayList, new GenericProvider() {
-                @Override
-                public final Object provide(Object obj) {
-                    return MediaDataController.lambda$getEntities$181((Void) obj);
-                }
-            }), ITALIC_PATTERN, arrayList, new GenericProvider() {
-                @Override
-                public final Object provide(Object obj) {
-                    return MediaDataController.lambda$getEntities$182((Void) obj);
-                }
-            }), SPOILER_PATTERN, arrayList, new GenericProvider() {
-                @Override
-                public final Object provide(Object obj) {
-                    return MediaDataController.lambda$getEntities$183((Void) obj);
-                }
-            });
-            if (z) {
-                pattern = parsePattern(pattern, STRIKE_PATTERN, arrayList, new GenericProvider() {
+            if (z2) {
+                charSequenceSubSequence = parsePattern(parsePattern(parsePattern(charSequenceSubSequence, BOLD_PATTERN, arrayList, new GenericProvider() {
                     @Override
                     public final Object provide(Object obj) {
-                        return MediaDataController.lambda$getEntities$184((Void) obj);
+                        return MediaDataController.lambda$getEntities$181((Void) obj);
+                    }
+                }), ITALIC_PATTERN, arrayList, new GenericProvider() {
+                    @Override
+                    public final Object provide(Object obj) {
+                        return MediaDataController.lambda$getEntities$182((Void) obj);
+                    }
+                }), SPOILER_PATTERN, arrayList, new GenericProvider() {
+                    @Override
+                    public final Object provide(Object obj) {
+                        return MediaDataController.lambda$getEntities$183((Void) obj);
                     }
                 });
+                if (z) {
+                    charSequenceSubSequence = parsePattern(charSequenceSubSequence, STRIKE_PATTERN, arrayList, new GenericProvider() {
+                        @Override
+                        public final Object provide(Object obj) {
+                            return MediaDataController.lambda$getEntities$184((Void) obj);
+                        }
+                    });
+                }
             }
-            while (pattern.length() > 0 && (pattern.charAt(0) == '\n' || pattern.charAt(0) == ' ')) {
-                pattern = pattern.subSequence(1, pattern.length());
+            while (charSequenceSubSequence.length() > 0 && (charSequenceSubSequence.charAt(0) == '\n' || charSequenceSubSequence.charAt(0) == ' ')) {
+                charSequenceSubSequence = charSequenceSubSequence.subSequence(1, charSequenceSubSequence.length());
                 for (int i21 = 0; i21 < arrayList.size(); i21++) {
                     TLRPC.MessageEntity messageEntity = arrayList.get(i21);
                     int i22 = messageEntity.offset;
@@ -7536,16 +7547,16 @@ public class MediaDataController extends BaseController {
                     messageEntity.offset = Math.max(0, i22 - 1);
                 }
             }
-            while (pattern.length() > 0 && (pattern.charAt(pattern.length() - 1) == '\n' || pattern.charAt(pattern.length() - 1) == ' ')) {
-                pattern = pattern.subSequence(0, pattern.length() - 1);
+            while (charSequenceSubSequence.length() > 0 && (charSequenceSubSequence.charAt(charSequenceSubSequence.length() - 1) == '\n' || charSequenceSubSequence.charAt(charSequenceSubSequence.length() - 1) == ' ')) {
+                charSequenceSubSequence = charSequenceSubSequence.subSequence(0, charSequenceSubSequence.length() - 1);
                 for (int i23 = 0; i23 < arrayList.size(); i23++) {
                     TLRPC.MessageEntity messageEntity2 = arrayList.get(i23);
-                    if (messageEntity2.offset + messageEntity2.length > pattern.length()) {
+                    if (messageEntity2.offset + messageEntity2.length > charSequenceSubSequence.length()) {
                         messageEntity2.length--;
                     }
                 }
             }
-            charSequenceArr[0] = pattern;
+            charSequenceArr[0] = charSequenceSubSequence;
         }
         return arrayList;
     }

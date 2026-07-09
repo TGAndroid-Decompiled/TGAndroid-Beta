@@ -56,6 +56,7 @@ public class RichEditorToolbar extends FrameLayout {
     private final RichEditor.Button linkButton;
     private final RichEditor.Button mathButton;
     private int panelType;
+    private final ArrayList premiumButtons;
     private final RichEditor.Button quoteButton;
     private final ImageView redoButton;
     private int reorderSavedPanelType;
@@ -108,6 +109,8 @@ public class RichEditorToolbar extends FrameLayout {
         this.formattingScrollMaxWidth = Integer.MAX_VALUE;
         this.blockButtons = new ArrayList();
         this.formattingButtons = new ArrayList();
+        ArrayList arrayList = new ArrayList();
+        this.premiumButtons = arrayList;
         this.panelType = -1;
         this.reorderSavedPanelType = 0;
         this.delegate = delegate;
@@ -270,11 +273,11 @@ public class RichEditorToolbar extends FrameLayout {
         linearLayout3.setOrientation(0);
         horizontalScrollView.addView(linearLayout3);
         frameLayout5.addView(horizontalScrollView, LayoutHelper.createFrame(-1, -1.0f));
-        addBlockButton(R.drawable.iv_text, 1);
-        addBlockButton(R.drawable.iv_lists, 2);
-        addBlockButton(R.drawable.iv_table, 4);
+        addBlockButton(R.drawable.iv_text, 1, false);
+        addBlockButton(R.drawable.iv_lists, 2, true);
+        addBlockButton(R.drawable.iv_table, 4, true);
         int i5 = R.drawable.iv_math;
-        addBlockButton(i5, 7);
+        addBlockButton(i5, 7, true);
         linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(0, 44, 1.0f));
         ImageView imageView5 = new ImageView(context);
         this.addButton = imageView5;
@@ -381,8 +384,8 @@ public class RichEditorToolbar extends FrameLayout {
         addFormattingButton(R.drawable.formatting_strikethrough, 8);
         addFormattingButton(R.drawable.formatting_spoiler, 256);
         addFormattingButton(R.drawable.iv_code, 4);
-        addFormattingButton(R.drawable.iv_sub, 16384);
-        addFormattingButton(R.drawable.iv_super, 32768);
+        addFormattingButton(R.drawable.iv_sub, 16384, true);
+        addFormattingButton(R.drawable.iv_super, 32768, true);
         RichEditor.Button button = new RichEditor.Button(context, R.drawable.iv_quote, resourcesProvider);
         this.quoteButton = button;
         button.setBackgroundColorKey(i2);
@@ -428,6 +431,8 @@ public class RichEditorToolbar extends FrameLayout {
         RichEditor.Button button4 = new RichEditor.Button(context, i5, resourcesProvider);
         this.mathButton = button4;
         button4.setBackgroundColorKey(i2);
+        button4.setPremium();
+        arrayList.add(button4);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -478,9 +483,13 @@ public class RichEditorToolbar extends FrameLayout {
         updatePanel(0, false);
     }
 
-    private RichEditor.Button addBlockButton(int i, final int i2) {
+    private RichEditor.Button addBlockButton(int i, final int i2, boolean z) {
         RichEditor.Button button = new RichEditor.Button(this.blocksLayout.getContext(), i, this.resourcesProvider);
         button.setBackgroundColorKey(Theme.key_glass_targetMainTabs);
+        if (z) {
+            button.setPremium();
+            this.premiumButtons.add(button);
+        }
         button.setTag(Integer.valueOf(i2));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -498,9 +507,17 @@ public class RichEditorToolbar extends FrameLayout {
         this.delegate.onBlockButton(i, view);
     }
 
-    private void addFormattingButton(int i, final int i2) {
+    private void addFormattingButton(int i, int i2) {
+        addFormattingButton(i, i2, false);
+    }
+
+    private void addFormattingButton(int i, final int i2, boolean z) {
         RichEditor.Button button = new RichEditor.Button(getContext(), i, this.resourcesProvider);
         button.setBackgroundColorKey(Theme.key_glass_targetMainTabs);
+        if (z) {
+            button.setPremium();
+            this.premiumButtons.add(button);
+        }
         button.setTag(Integer.valueOf(i2));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -515,6 +532,13 @@ public class RichEditorToolbar extends FrameLayout {
 
     public void lambda$addFormattingButton$14(int i, View view) {
         this.delegate.onFormatting(i);
+    }
+
+    public void setPremiumLocked(boolean z) {
+        Iterator it = this.premiumButtons.iterator();
+        while (it.hasNext()) {
+            ((RichEditor.Button) it.next()).setPremiumLocked(z);
+        }
     }
 
     public void setBackVisible(boolean z) {

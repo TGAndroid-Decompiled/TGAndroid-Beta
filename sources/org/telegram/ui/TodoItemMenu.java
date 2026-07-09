@@ -35,6 +35,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -360,7 +361,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) throws IOException {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -383,7 +384,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws IOException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -868,7 +869,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws IOException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -1443,7 +1444,7 @@ public class TodoItemMenu extends Dialog {
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, NumberFormatException {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
@@ -1519,7 +1520,7 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {

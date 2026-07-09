@@ -80,7 +80,7 @@ public abstract class ChatActivityContainer extends FrameLayout {
         }
     }
 
-    public void onResume() throws Resources.NotFoundException, NumberFormatException {
+    public void onResume() throws Resources.NotFoundException {
         this.isActive = true;
         if (this.fragmentView != null) {
             this.chatActivity.onResume();

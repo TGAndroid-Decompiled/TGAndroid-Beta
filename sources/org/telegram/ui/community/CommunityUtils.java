@@ -43,7 +43,6 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.community.cells.CommunityPendingRequestCell;
 import org.telegram.ui.community.sheet.CommunityAddOptionsSheet;
-import org.telegram.ui.community.sheet.CommunityChatsToAddSheet;
 
 public abstract class CommunityUtils {
     public static void fillLinkedPeers(int i, ArrayList arrayList, long j, boolean z) {
@@ -489,7 +488,7 @@ public abstract class CommunityUtils {
 
     private static void showChatsToAddSheet(final BaseFragment baseFragment, final int i, final TLRPC.Chat chat, ArrayList arrayList) {
         if (!arrayList.isEmpty()) {
-            baseFragment.showDialog(new CommunityChatsToAddSheet(baseFragment.getContext(), arrayList, new Utilities.Callback() {
+            baseFragment.showDialog(new CommunitySheet(baseFragment, 0L, arrayList, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     CommunityUtils.lambda$showChatsToAddSheet$3(baseFragment, chat, i, (TLRPC.Chat) obj);
@@ -597,7 +596,7 @@ public abstract class CommunityUtils {
             baseFragment.finishFragment();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, NumberFormatException {
+                public final void run() throws Resources.NotFoundException {
                     CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
@@ -609,7 +608,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, NumberFormatException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();

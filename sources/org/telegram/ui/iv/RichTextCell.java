@@ -595,6 +595,15 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         scheduleHighlight();
     }
 
+    public void rebindInPlace() {
+        Delegate delegate;
+        BlockRow blockRow = this.currentRow;
+        if (blockRow == null || (delegate = this.delegate) == null) {
+            return;
+        }
+        bind(blockRow, delegate, this.forceHint);
+    }
+
     private void bindAuthor(TL_iv.PageBlock pageBlock) {
         if (!isQuoteBlock(pageBlock)) {
             this.authorEditText.setVisibility(8);
@@ -975,7 +984,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         }
         TL_iv.PageBlock pageBlock = blockRow.block;
         if (pageBlock instanceof TL_iv.pageBlockHeading1) {
-            return LocaleController.getString(R.string.ArticleHeading1);
+            return LocaleController.getString(blockRow.firstBlock ? R.string.ArticleHintTitle : R.string.ArticleHeading1);
         }
         if (pageBlock instanceof TL_iv.pageBlockHeading2) {
             return LocaleController.getString(R.string.ArticleHeading2);
@@ -996,13 +1005,10 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             return LocaleController.getString(R.string.ArticleHintCode);
         }
         if (!(pageBlock instanceof TL_iv.pageBlockBlockquote) && !(pageBlock instanceof TL_iv.pageBlockPullquote)) {
-            if (!this.forceHint) {
-                if (this.editText.isFocused() && !this.currentRow.isInList()) {
-                    return "";
-                }
-                return null;
+            if (blockRow.singleParagraph) {
+                return LocaleController.getString(R.string.ArticleHintText);
             }
-            return "";
+            return null;
         }
         return LocaleController.getString(R.string.ArticleHintQuote);
     }

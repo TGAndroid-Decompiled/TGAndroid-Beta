@@ -377,7 +377,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         } catch (Throwable unused) {
         }
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
-        getWindow().setFormat(-1);
         FlagSecureReason flagSecureReason = new FlagSecureReason(getWindow(), new FlagSecureReason.FlagSecureCondition() {
             @Override
             public final boolean run() {
@@ -397,9 +396,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
         this.actionBarLayout = new ActionBarLayout(this, true);
-        ActivityContentLayout activityContentLayout = new ActivityContentLayout(this);
-        this.frameLayout = activityContentLayout;
-        activityContentLayout.setClipToPadding(false);
+        FrameLayout frameLayout = new FrameLayout(this) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                LaunchActivity.this.drawRippleAbove(canvas, this);
+            }
+
+            @Override
+            public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
+                return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
+            }
+        };
+        this.frameLayout = frameLayout;
+        frameLayout.setClipToPadding(false);
         this.frameLayout.setClipChildren(false);
         setContentView(this.frameLayout);
         this.rootAnimatedInsetsListener = new WindowAnimatedInsetsProvider(this.frameLayout);
@@ -438,11 +448,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ImageView imageView = new ImageView(this);
         this.themeSwitchImageView = imageView;
         imageView.setVisibility(8);
-        DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
-        this.drawerLayoutContainer = drawerLayoutContainer;
-        drawerLayoutContainer.setActionBarLayout(this.actionBarLayout);
-        this.drawerLayoutContainer.addOnLayoutChangeListener(new AnonymousClass3());
-        this.drawerLayoutContainer.setClipChildren(false);
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(this);
+        this.drawerLayoutContainer = anonymousClass4;
+        anonymousClass4.setClipChildren(false);
         this.drawerLayoutContainer.setClipToPadding(false);
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         ImageView imageView2 = new ImageView(this) {
@@ -456,11 +464,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         this.frameLayout.addView(this.themeSwitchSunView, LayoutHelper.createFrame(48, 48.0f));
         this.themeSwitchSunView.setVisibility(8);
-        FrameLayout frameLayout = this.frameLayout;
+        FrameLayout frameLayout2 = this.frameLayout;
         BottomSheetTabsOverlay bottomSheetTabsOverlay = new BottomSheetTabsOverlay(this);
         this.bottomSheetTabsOverlay = bottomSheetTabsOverlay;
-        frameLayout.addView(bottomSheetTabsOverlay);
-        FrameLayout frameLayout2 = this.frameLayout;
+        frameLayout2.addView(bottomSheetTabsOverlay);
+        FrameLayout frameLayout3 = this.frameLayout;
         FireworksOverlay fireworksOverlay = new FireworksOverlay(this) {
             {
                 setVisibility(8);
@@ -479,7 +487,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         };
         this.fireworksOverlay = fireworksOverlay;
-        frameLayout2.addView(fireworksOverlay);
+        frameLayout3.addView(fireworksOverlay);
         setupActionBarLayout();
         this.drawerLayoutContainer.setParentActionBarLayout(this.actionBarLayout);
         this.actionBarLayout.setDrawerLayoutContainer(this.drawerLayoutContainer);
@@ -788,31 +796,41 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
     }
 
-    class AnonymousClass3 implements View.OnLayoutChangeListener {
+    class AnonymousClass4 extends DrawerLayoutContainer {
         private boolean wasPortrait;
 
-        AnonymousClass3() {
+        AnonymousClass4(Context context) {
+            super(context);
         }
 
         @Override
-        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-            boolean z = i4 - i2 > i3 - i;
-            if (z != this.wasPortrait) {
-                AndroidUtilities.runOnUIThread(new Runnable() {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws Exception {
+            super.onLayout(z, i, i2, i3, i4);
+            boolean z2 = i4 - i2 > i3 - i;
+            if (z2 != this.wasPortrait) {
+                post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onLayoutChange$0();
+                        this.f$0.lambda$onLayout$0();
                     }
                 });
-                this.wasPortrait = z;
+                this.wasPortrait = z2;
             }
         }
 
-        public void lambda$onLayoutChange$0() {
+        public void lambda$onLayout$0() {
             if (LaunchActivity.this.selectAnimatedEmojiDialog != null) {
                 LaunchActivity.this.selectAnimatedEmojiDialog.dismiss();
                 LaunchActivity.this.selectAnimatedEmojiDialog = null;
             }
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            if (LaunchActivity.this.actionBarLayout.getParent() == this) {
+                LaunchActivity.this.actionBarLayout.parentDraw(this, canvas);
+            }
+            super.dispatchDraw(canvas);
         }
     }
 
@@ -1393,7 +1411,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new AnonymousClass12());
+            this.termsOfServiceView.setDelegate(new AnonymousClass13());
         }
         TLRPC.TL_help_termsOfService tL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tL_help_termsOfService2 != tL_help_termsOfService && (tL_help_termsOfService2 == null || !tL_help_termsOfService2.id.data.equals(tL_help_termsOfService.id.data))) {
@@ -1404,8 +1422,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    class AnonymousClass12 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        AnonymousClass12() {
+    class AnonymousClass13 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        AnonymousClass13() {
         }
 
         @Override
@@ -1916,30 +1934,30 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     public void lambda$runCommentRequest$31(final int i, final TLRPC.Chat chat, final Long l, final Integer num, final Integer num2, final Runnable runnable, final String str, final Integer num3, final byte[] bArr, final int i2, final int i3, final TLRPC.TL_messages_getDiscussionMessage tL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$runCommentRequest$30(tLObject, i, chat, l, num, num2, runnable, str, num3, bArr, i2, i3, tL_messages_getDiscussionMessage, runnable2);
             }
         });
     }
 
-    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r18, int r19, org.telegram.tgnet.TLRPC.Chat r20, java.lang.Long r21, java.lang.Integer r22, java.lang.Integer r23, java.lang.Runnable r24, java.lang.String r25, java.lang.Integer r26, byte[] r27, int r28, int r29, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r30, java.lang.Runnable r31) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public void lambda$runCommentRequest$30(org.telegram.tgnet.TLObject r18, int r19, org.telegram.tgnet.TLRPC.Chat r20, java.lang.Long r21, java.lang.Integer r22, java.lang.Integer r23, java.lang.Runnable r24, java.lang.String r25, java.lang.Integer r26, byte[] r27, int r28, int r29, org.telegram.tgnet.TLRPC.TL_messages_getDiscussionMessage r30, java.lang.Runnable r31) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$30(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, java.lang.Integer, byte[], int, int, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
     }
 
-    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final byte[] r25, final int r26, final java.util.ArrayList r27, final int r28) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    private void openTopicRequest(final int r17, final int r18, final org.telegram.tgnet.TLRPC.Chat r19, final int r20, org.telegram.tgnet.TLRPC.TL_forumTopic r21, final java.lang.Runnable r22, final java.lang.String r23, final java.lang.Integer r24, final byte[] r25, final int r26, final java.util.ArrayList r27, final int r28) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, java.lang.Integer, byte[], int, java.util.ArrayList, int):void");
     }
 
     public void lambda$openTopicRequest$33(final int i, final TLRPC.Chat chat, final int i2, final int i3, final Runnable runnable, final String str, final Integer num, final byte[] bArr, final int i4, final ArrayList arrayList, final int i5, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, NumberFormatException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$openTopicRequest$32(tL_error, tLObject, i, chat, i2, i3, runnable, str, num, bArr, i4, arrayList, i5);
             }
         });
     }
 
-    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, byte[] bArr, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$openTopicRequest$32(TLRPC.TL_error tL_error, TLObject tLObject, int i, TLRPC.Chat chat, int i2, int i3, Runnable runnable, String str, Integer num, byte[] bArr, int i4, ArrayList arrayList, int i5) throws Resources.NotFoundException {
         if (tL_error == null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
             LongSparseArray longSparseArray = new LongSparseArray();
@@ -2880,7 +2898,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass14 implements MessagesController.MessagesLoadedCallback {
+    class AnonymousClass15 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -2888,7 +2906,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        AnonymousClass14(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        AnonymousClass15(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2899,7 +2917,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         @Override
         public void onMessagesLoaded(boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass14.onMessagesLoaded(boolean):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass15.onMessagesLoaded(boolean):void");
         }
 
         public void lambda$onMessagesLoaded$2(String str, final long j, final BaseFragment baseFragment) {
@@ -4122,7 +4140,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r47, final java.util.ArrayList r48, final java.lang.CharSequence r49, final boolean r50, boolean r51, int r52, final int r53, org.telegram.ui.TopicsFragment r54) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException, java.io.IOException {
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r47, final java.util.ArrayList r48, final java.lang.CharSequence r49, final boolean r50, boolean r51, int r52, final int r53, org.telegram.ui.TopicsFragment r54) throws android.content.res.Resources.NotFoundException, java.io.IOException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
@@ -6542,23 +6560,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         public void hide() {
             setHidden(true);
-        }
-    }
-
-    private class ActivityContentLayout extends FrameLayout {
-        public ActivityContentLayout(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            super.dispatchDraw(canvas);
-            LaunchActivity.this.drawRippleAbove(canvas, this);
-        }
-
-        @Override
-        public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
-            return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
         }
     }
 }

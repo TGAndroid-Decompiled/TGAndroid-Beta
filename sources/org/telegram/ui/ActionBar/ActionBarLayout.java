@@ -134,7 +134,6 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     public Theme.MessageDrawable messageDrawableOutMediaStart;
     public Theme.MessageDrawable messageDrawableOutStart;
     private int navigationBarInsetHeight;
-    private int navigationBarWithImeInsetHeight;
     private BaseFragment newFragment;
     AnimationNotificationsLocker notificationsLocker;
     private BaseFragment oldFragment;
@@ -428,7 +427,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 baseFragment = ActionBarLayout.this.sheetFragment;
             }
             BaseFragment.AttachedSheet lastSheet = baseFragment != null ? baseFragment.getLastSheet() : null;
-            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1351getWindowView() != view) {
+            if (lastSheet != null && lastSheet.isFullyVisible() && lastSheet.mo1352getWindowView() != view) {
                 return true;
             }
             if (view instanceof ActionBar) {
@@ -3380,12 +3379,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-        Insets insetsIgnoringVisibility = windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
-        Insets insetsMax = Insets.max(insetsIgnoringVisibility, windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()));
+        Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars());
         this.lastWindowInsetsCompat = windowInsetsCompat;
-        this.navigationBarInsetHeight = insetsIgnoringVisibility.bottom;
-        this.statusBarInsetHeight = insetsIgnoringVisibility.top;
-        this.navigationBarWithImeInsetHeight = insetsMax.bottom;
+        this.navigationBarInsetHeight = insets.bottom;
+        this.statusBarInsetHeight = insets.top;
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             dispatchApplyWindowInsetsInternal(getChildAt(i), windowInsetsCompat);

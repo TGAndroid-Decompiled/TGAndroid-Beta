@@ -16,6 +16,7 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.FormattedDateSpan;
 import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
 
 public abstract class RichTextStyle {
@@ -455,6 +456,9 @@ public abstract class RichTextStyle {
     private static Run runAt(Spanned spanned, int i, int i2) {
         Run run = new Run();
         run.flags = flagsBetween(spanned, i, i2);
+        if (((URLSpanMono[]) spanned.getSpans(i, i2, URLSpanMono.class)).length > 0) {
+            run.flags |= 4;
+        }
         URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(i, i2, URLSpanReplacement.class);
         if (uRLSpanReplacementArr.length > 0) {
             run.url = uRLSpanReplacementArr[0].getURL();

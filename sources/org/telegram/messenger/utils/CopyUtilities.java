@@ -255,7 +255,14 @@ public abstract class CopyUtilities {
                 }
             } else if (str.equals("pre")) {
                 if (z) {
-                    editable.setSpan(new ParsedSpan(i2, HTMLTagAttributesHandler.getValue(attributes, "lang")), editable.length(), editable.length(), 17);
+                    String value2 = HTMLTagAttributesHandler.getValue(attributes, "language");
+                    if (value2 == null) {
+                        value2 = HTMLTagAttributesHandler.getValue(attributes, "lang");
+                    }
+                    if (value2 == null) {
+                        value2 = HTMLTagAttributesHandler.getValue(attributes, "lng");
+                    }
+                    editable.setSpan(new ParsedSpan(i2, value2), editable.length(), editable.length(), 17);
                     return true;
                 }
                 ParsedSpan last2 = getLast(editable, ParsedSpan.class, 1);

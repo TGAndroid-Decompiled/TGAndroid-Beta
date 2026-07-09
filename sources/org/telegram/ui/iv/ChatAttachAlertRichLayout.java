@@ -71,6 +71,7 @@ import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.MessageSendPreview;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.iv.RichCommandSuggestions;
+import org.telegram.ui.iv.RichEditor;
 import org.telegram.ui.iv.RichEditorListView;
 import org.telegram.ui.iv.RichEditorToolbar;
 import ru.noties.jlatexmath.JLatexMathDrawable;
@@ -475,6 +476,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
         final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((ViewGroup) this, this.resourcesProvider, view, true).dontFocus();
         final ItemOptions itemOptionsMakeSwipeback = itemOptionsDontFocus.makeSwipeback();
+        boolean z = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
         itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new Runnable() {
             @Override
             public final void run() {
@@ -490,7 +492,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading4(), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), SharedConfig.fontSize - 1, itemOptionsDontFocus);
         addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading5(), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), SharedConfig.fontSize - 2, itemOptionsDontFocus);
         addHeadingItem(itemOptionsMakeSwipeback, blockRow, new TL_iv.pageBlockHeading6(), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), SharedConfig.fontSize - 3, itemOptionsDontFocus);
-        itemOptionsDontFocus.addChecked(blockRow != null && RichEditorListView.isHeading(blockRow.block), i, LocaleController.getString(R.string.ArticleHeading), new Runnable() {
+        itemOptionsDontFocus.addChecked(blockRow != null && RichEditorListView.isHeading(blockRow.block), new RichEditor.RequiresPremiumDrawable(getContext(), i).setPremium(z), LocaleController.getString(R.string.ArticleHeading), new Runnable() {
             @Override
             public final void run() {
                 itemOptionsDontFocus.openSwipeback(itemOptionsMakeSwipeback);
@@ -508,7 +510,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 this.f$0.lambda$showTextTypeMenu$7(blockRow);
             }
         });
-        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockPullquote), R.drawable.iv_pullquote, LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockPullquote), new RichEditor.RequiresPremiumDrawable(getContext(), R.drawable.iv_pullquote).setPremium(z), LocaleController.getString(R.string.ArticlePullquote), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$showTextTypeMenu$8(blockRow);
@@ -520,7 +522,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 this.f$0.lambda$showTextTypeMenu$9(blockRow);
             }
         });
-        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockFooter), R.drawable.iv_footer, LocaleController.getString(R.string.ArticleFooter), new Runnable() {
+        itemOptionsDontFocus.addChecked(blockRow != null && (blockRow.block instanceof TL_iv.pageBlockFooter), new RichEditor.RequiresPremiumDrawable(getContext(), R.drawable.iv_footer).setPremium(z), LocaleController.getString(R.string.ArticleFooter), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$showTextTypeMenu$10(blockRow);
@@ -1463,9 +1465,10 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     private void updateSendButtonLocked() {
-        RichEditorToolbar richEditorToolbar = this.toolbar;
-        if (richEditorToolbar != null) {
-            richEditorToolbar.getSendButton().setLocked(!MessagesController.getInstance(this.currentAccount).richEditorAllowed());
+        if (this.toolbar != null) {
+            boolean zRichEditorAllowed = MessagesController.getInstance(this.currentAccount).richEditorAllowed();
+            this.toolbar.getSendButton().setLocked(!zRichEditorAllowed);
+            this.toolbar.setPremiumLocked((zRichEditorAllowed || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true);
         }
     }
 

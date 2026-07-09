@@ -266,6 +266,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private final LongSparseArray dialogsCommunityFoundCommunities;
     private final LongSparseIntArray dialogsCommunityLastMessageDate;
     private final LongSparseIntArray dialogsCommunityUnreadCount;
+    private final LongSparseIntArray dialogsCommunityUnreadMark;
     private SparseBooleanArray dialogsEndReached;
     public ArrayList<TLRPC.Dialog> dialogsForBlock;
     public ArrayList<TLRPC.Dialog> dialogsForward;
@@ -1897,6 +1898,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.joinedCommunities = new ArrayList<>();
         this.dialogsCommunityLastMessageDate = new LongSparseIntArray();
         this.dialogsCommunityUnreadCount = new LongSparseIntArray();
+        this.dialogsCommunityUnreadMark = new LongSparseIntArray();
         this.dialogsCommunityFoundCommunities = new LongSparseArray();
         this.sensitiveAgreed = new HashSet<>();
         this.cachedIsUserContactBlocked = new LongSparseArray();
@@ -4573,6 +4575,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.dialogsCommunityUnreadCount.clear();
         this.dialogsCommunityLastMessageDate.clear();
         this.dialogsCommunityFoundCommunities.clear();
+        this.dialogsCommunityUnreadMark.clear();
         this.unreadUnmutedDialogs = 0;
         this.joiningToChannels.clear();
         this.migratedChats.clear();
@@ -11997,7 +12000,7 @@ public class MessagesController extends BaseController implements NotificationCe
             Iterator<TLRPC.Chat> it = messages_chats.chats.iterator();
             while (it.hasNext()) {
                 TLRPC.Chat next = it.next();
-                if (!ChatObject.isMonoForum(next) && !ChatObject.isCommunity(next)) {
+                if (next.creator && !ChatObject.isMonoForum(next) && !ChatObject.isCommunity(next)) {
                     arrayList.add(next);
                 }
             }
@@ -12015,42 +12018,44 @@ public class MessagesController extends BaseController implements NotificationCe
         return linkCommunityInternal(j, j2, true, false, callback2);
     }
 
-    private int linkCommunityInternal(final long j, final long j2, boolean z, boolean z2, final Utilities.Callback2<TLRPC.Bool, TLRPC.TL_error> callback2) {
+    private int linkCommunityInternal(final long j, final long j2, final boolean z, boolean z2, final Utilities.Callback2<TLRPC.Bool, TLRPC.TL_error> callback2) {
         TL_communities.TL_communities_togglePeerLink tL_communities_togglePeerLink = new TL_communities.TL_communities_togglePeerLink();
         tL_communities_togglePeerLink.community = getInputChannel(j2);
         tL_communities_togglePeerLink.peer = getInputPeer(j);
         tL_communities_togglePeerLink.deleted = z;
         tL_communities_togglePeerLink.visible = !z2;
         tL_communities_togglePeerLink.hidden = z2;
-        if (j > 0) {
-            TLRPC.User user = getUser(Long.valueOf(j));
-            if (user != null) {
-                user.linked_community_id = z ? 0L : j2;
-                user.flags2 = BitwiseUtils.setFlag(user.flags2, 2097152, !z);
-            }
-        } else {
-            TLRPC.Chat chat = getChat(Long.valueOf(-j));
-            if (chat != null) {
-                chat.linked_community_id = z ? 0L : j2;
-                chat.flags2 = BitwiseUtils.setFlag(chat.flags2, 1048576, !z);
-            }
-        }
         return getConnectionsManager().sendRequestTyped(tL_communities_togglePeerLink, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$linkCommunityInternal$249(j, callback2, j2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                this.f$0.lambda$linkCommunityInternal$249(j, callback2, z, j2, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
             }
         });
     }
 
-    public void lambda$linkCommunityInternal$249(long j, Utilities.Callback2 callback2, long j2, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
+    public void lambda$linkCommunityInternal$249(long j, Utilities.Callback2 callback2, boolean z, long j2, TLRPC.Bool bool, TLRPC.TL_error tL_error) {
         TLRPC.Chat chat;
         if (tL_error != null && TextUtils.equals("CHANNEL_ALREADY_LINKED", tL_error.text) && (chat = getChat(Long.valueOf(-j))) != null) {
             unlinkCommunity(j, chat.linked_community_id, callback2);
-        } else {
-            loadFullChat(j2, 0, true);
-            callback2.run(bool, tL_error);
+            return;
         }
+        if (bool instanceof TLRPC.TL_boolTrue) {
+            if (j > 0) {
+                TLRPC.User user = getUser(Long.valueOf(j));
+                if (user != null) {
+                    user.linked_community_id = z ? 0L : j2;
+                    user.flags2 = BitwiseUtils.setFlag(user.flags2, 2097152, !z);
+                }
+            } else {
+                TLRPC.Chat chat2 = getChat(Long.valueOf(-j));
+                if (chat2 != null) {
+                    chat2.linked_community_id = z ? 0L : j2;
+                    chat2.flags2 = BitwiseUtils.setFlag(chat2.flags2, 1048576, !z);
+                }
+            }
+        }
+        loadFullChat(j2, 0, true);
+        callback2.run(bool, tL_error);
     }
 
     public int toggleCommunityCollapsedInDialogs(long j, boolean z) {
@@ -16498,6 +16503,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.dialogsCommunityLastMessageDate.clear();
         this.dialogsCommunityUnreadCount.clear();
         this.dialogsCommunityFoundCommunities.clear();
+        this.dialogsCommunityUnreadMark.clear();
         int size = this.allDialogs.size();
         int i = 0;
         while (i < size) {
@@ -16526,6 +16532,9 @@ public class MessagesController extends BaseController implements NotificationCe
                         longSparseIntArray.put(j3, Math.max(longSparseIntArray.get(j3), dialog.last_message_date));
                         LongSparseIntArray longSparseIntArray2 = this.dialogsCommunityUnreadCount;
                         longSparseIntArray2.put(j3, longSparseIntArray2.get(j3) + getDialogUnreadCount(dialog));
+                        if (dialog.unread_mark) {
+                            this.dialogsCommunityUnreadMark.put(j3, 1);
+                        }
                     }
                 } else if (j2 > 0) {
                     TLRPC.User user = getUser(Long.valueOf(j2));
@@ -16535,6 +16544,9 @@ public class MessagesController extends BaseController implements NotificationCe
                         longSparseIntArray3.put(j4, Math.max(longSparseIntArray3.get(j4), dialog.last_message_date));
                         LongSparseIntArray longSparseIntArray4 = this.dialogsCommunityUnreadCount;
                         longSparseIntArray4.put(j4, longSparseIntArray4.get(j4) + getDialogUnreadCount(dialog));
+                        if (dialog.unread_mark) {
+                            this.dialogsCommunityUnreadMark.put(j4, 1);
+                        }
                     }
                 }
             }
@@ -16546,16 +16558,19 @@ public class MessagesController extends BaseController implements NotificationCe
             long jKeyAt = this.dialogsCommunityLastMessageDate.keyAt(i2);
             int iValueAt = this.dialogsCommunityLastMessageDate.valueAt(i2);
             int i3 = this.dialogsCommunityUnreadCount.get(jKeyAt);
+            boolean z = this.dialogsCommunityUnreadMark.get(jKeyAt) > 0;
             TLRPC.Dialog dialog2 = (TLRPC.Dialog) this.dialogsCommunityFoundCommunities.get(jKeyAt);
             if (dialog2 != null) {
                 dialog2.unread_count = i3;
                 dialog2.last_message_date = iValueAt;
+                dialog2.unread_mark = z;
             } else {
                 long j5 = -jKeyAt;
                 TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.get(j5);
                 if (dialog3 instanceof TLRPC.TL_dialogCommunity) {
                     dialog3.unread_count = i3;
                     dialog3.last_message_date = iValueAt;
+                    dialog3.unread_mark = z;
                     this.allDialogs.add(dialog3);
                 } else {
                     TLRPC.TL_dialogCommunity tL_dialogCommunity = new TLRPC.TL_dialogCommunity();
@@ -16567,6 +16582,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     } else {
                         tL_dialogCommunity.notify_settings = new TLRPC.TL_peerNotifySettings();
                     }
+                    tL_dialogCommunity.unread_mark = z;
                     tL_dialogCommunity.last_message_date = iValueAt;
                     tL_dialogCommunity.unread_count = i3;
                     DialogObject.initDialog(tL_dialogCommunity);
