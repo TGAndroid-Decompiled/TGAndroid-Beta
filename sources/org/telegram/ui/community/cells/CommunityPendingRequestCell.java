@@ -65,6 +65,10 @@ public class CommunityPendingRequestCell extends FrameLayout implements Theme.Co
     public static void lambda$set$4() {
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public CommunityPendingRequestCell(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory;
         super(context);

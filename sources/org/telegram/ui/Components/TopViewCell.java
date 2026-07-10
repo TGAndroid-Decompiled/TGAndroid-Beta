@@ -18,6 +18,10 @@ public class TopViewCell extends LinearLayout implements Theme.Colorable {
     public final LinkSpanDrawable.LinksTextView textView;
     public final LinkSpanDrawable.LinksTextView titleView;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public TopViewCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.imageSize = 90;

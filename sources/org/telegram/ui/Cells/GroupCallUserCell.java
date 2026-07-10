@@ -722,23 +722,32 @@ public class GroupCallUserCell extends FrameLayout {
     public void applyStatus(int i) {
         float fDp;
         int i2 = 0;
-        if (i == 0) {
-            while (true) {
-                SimpleTextView[] simpleTextViewArr = this.statusTextView;
-                if (i2 >= simpleTextViewArr.length) {
-                    return;
-                }
-                simpleTextViewArr[i2].setTranslationY(i2 == i ? 0.0f : AndroidUtilities.dp(-2.0f));
-                this.statusTextView[i2].setAlpha(i2 == i ? 1.0f : 0.0f);
-                i2++;
+        int i3 = 0;
+        while (true) {
+            SimpleTextView[] simpleTextViewArr = this.statusTextView;
+            if (i3 >= simpleTextViewArr.length) {
+                break;
             }
-        } else {
+            simpleTextViewArr[i3].setImportantForAccessibility(i3 == i ? 1 : 2);
+            i3++;
+        }
+        if (i == 0) {
             while (true) {
                 SimpleTextView[] simpleTextViewArr2 = this.statusTextView;
                 if (i2 >= simpleTextViewArr2.length) {
                     return;
                 }
-                SimpleTextView simpleTextView = simpleTextViewArr2[i2];
+                simpleTextViewArr2[i2].setTranslationY(i2 == i ? 0.0f : AndroidUtilities.dp(-2.0f));
+                this.statusTextView[i2].setAlpha(i2 == i ? 1.0f : 0.0f);
+                i2++;
+            }
+        } else {
+            while (true) {
+                SimpleTextView[] simpleTextViewArr3 = this.statusTextView;
+                if (i2 >= simpleTextViewArr3.length) {
+                    return;
+                }
+                SimpleTextView simpleTextView = simpleTextViewArr3[i2];
                 if (i2 == i) {
                     fDp = 0.0f;
                 } else {

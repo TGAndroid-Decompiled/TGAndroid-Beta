@@ -15,6 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -120,6 +121,15 @@ public class StoryPrivacyButton extends View {
     }
 
     private void setIcon(int i, float f) {
+        if (i == R.drawable.msg_stories_closefriends) {
+            setContentDescription(LocaleController.getString(R.string.StoryPrivacyOptionCloseFriends));
+        } else if (i == R.drawable.msg_folders_private) {
+            setContentDescription(LocaleController.getString(R.string.StoryPrivacyOptionContacts));
+        } else if (i == R.drawable.msg_folders_groups) {
+            setContentDescription(LocaleController.getString(R.string.StoryPrivacyOptionSelectedContacts));
+        } else if (i == R.drawable.msg_folders_channels) {
+            setContentDescription(LocaleController.getString(R.string.StoryPrivacyOptionEveryone));
+        }
         Drawable[] drawableArr = this.icon;
         Drawable drawable = drawableArr[0];
         drawableArr[1] = drawable;

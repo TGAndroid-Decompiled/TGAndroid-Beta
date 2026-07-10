@@ -15,9 +15,9 @@ public final class R {
     }
 
     public static final class id {
-        public static final int center = 0x7f090079;
-        public static final int end = 0x7f0900a6;
-        public static final int start = 0x7f09019a;
+        public static final int center = 0x7f09007b;
+        public static final int end = 0x7f0900a8;
+        public static final int start = 0x7f09019c;
 
         private id() {
         }

@@ -25,6 +25,10 @@ public class FoundStickerPackCell extends FrameLayout implements FactorAnimator.
     private final StickerEmojiCell stickerView;
     private final TextView textView;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     @Override
     public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         FactorAnimator.Target.CC.$default$onFactorChangeFinished(this, i, f, factorAnimator);

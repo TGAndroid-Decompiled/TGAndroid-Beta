@@ -600,6 +600,10 @@ public class AddressBarList extends FrameLayout {
         public final TextView textView;
         public final TextView timeView;
 
+        public int[] getColorKeys() {
+            return Theme.Colorable.CC.$default$getColorKeys(this);
+        }
+
         public BookmarkView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.dividerPaint = new Paint(1);

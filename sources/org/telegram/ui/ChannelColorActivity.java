@@ -378,7 +378,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
     }
 
-    public ChannelColorActivity(long j) throws IOException {
+    public ChannelColorActivity(long j) {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.rowsCount = 0;
@@ -1682,6 +1682,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         public TextView textInfo1;
         public TextView textInfo2;
         public SimpleTextView title;
+
+        public int[] getColorKeys() {
+            return Theme.Colorable.CC.$default$getColorKeys(this);
+        }
 
         public void setTitleSize() {
             float f;

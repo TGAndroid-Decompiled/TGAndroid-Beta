@@ -124,6 +124,15 @@ public class RichEditorHistory {
         commit();
     }
 
+    public void resetBaseline() {
+        AndroidUtilities.cancelRunOnUIThread(this.commitRunnable);
+        this.undoStack.clear();
+        this.redoStack.clear();
+        this.baseline = capture();
+        this.dirty = false;
+        this.delegate.onHistoryChanged();
+    }
+
     public boolean canUndo() {
         return this.dirty || !this.undoStack.isEmpty();
     }

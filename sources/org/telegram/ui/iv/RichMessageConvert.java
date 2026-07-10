@@ -477,6 +477,18 @@ public abstract class RichMessageConvert {
         return join(arrayList);
     }
 
+    public static CharSequence rowsToSimpleMessage(List list) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(rowsToCharSequence(list));
+        int length = spannableStringBuilder.length();
+        RichTextStyle.setStyle(spannableStringBuilder, 0, length, 65536, false);
+        RichTextStyle.setStyle(spannableStringBuilder, 0, length, 16384, false);
+        RichTextStyle.setStyle(spannableStringBuilder, 0, length, 32768, false);
+        for (MathSpan mathSpan : (MathSpan[]) spannableStringBuilder.getSpans(0, length, MathSpan.class)) {
+            spannableStringBuilder.removeSpan(mathSpan);
+        }
+        return spannableStringBuilder;
+    }
+
     private static boolean inlineLossy(TL_iv.RichText richText) {
         if (richText == null || (richText instanceof TL_iv.textEmpty) || (richText instanceof TL_iv.textPlain) || (richText instanceof TL_iv.textCustomEmoji)) {
             return false;

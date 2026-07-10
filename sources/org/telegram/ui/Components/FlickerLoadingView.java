@@ -53,6 +53,10 @@ public class FlickerLoadingView extends View implements Theme.Colorable {
         return 0;
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public int getColumnsCount() {
         return 2;
     }

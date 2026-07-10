@@ -106,6 +106,10 @@ public class RichCommand {
         private final TextView textView;
         private final TextView textView2;
 
+        public int[] getColorKeys() {
+            return Theme.Colorable.CC.$default$getColorKeys(this);
+        }
+
         public View(Context context, RichCommand richCommand, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.cmd = richCommand;

@@ -16,6 +16,10 @@ public class RichDetailsEndCell extends View implements Theme.Colorable {
     private final Paint paint;
     private final Theme.ResourcesProvider resourcesProvider;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public RichDetailsEndCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.paint = new Paint();

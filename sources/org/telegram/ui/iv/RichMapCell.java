@@ -64,6 +64,10 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
         void onRequestWindowFocusable(RichEditText richEditText, boolean z);
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public RichMapCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.backgroundPaint = new Paint(1);

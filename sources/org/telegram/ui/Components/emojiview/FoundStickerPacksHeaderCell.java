@@ -20,6 +20,10 @@ public class FoundStickerPacksHeaderCell extends FrameLayout implements Theme.Co
     private final TextView headerText;
     private final Theme.ResourcesProvider resourcesProvider;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public FoundStickerPacksHeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;

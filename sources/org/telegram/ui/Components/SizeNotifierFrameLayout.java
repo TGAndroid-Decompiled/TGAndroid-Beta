@@ -134,6 +134,10 @@ public class SizeNotifierFrameLayout extends FrameLayout implements Theme.Colora
         return 0.0f;
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     protected float getListTranslationY() {
         return 0.0f;
     }

@@ -693,6 +693,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
                 this.f$0.lambda$new$1(view);
             }
         });
+        imageView.setContentDescription(LocaleController.getString(R.string.ShareFile));
         ScaleStateListAnimator.apply(imageView);
         if (!DISABLE_STORY_REPOSTING) {
             ImageView imageView2 = new ImageView(context);
@@ -824,12 +825,14 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         imageView3.setImageDrawable(sharedResources.optionsDrawable);
         imageView3.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         imageView3.setBackground(Theme.createSelectorDrawable(-1));
+        imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
         this.storyContainer.addView(imageView3, LayoutHelper.createFrame(40, 40.0f, 53, 2.0f, 15.0f, 2.0f, 0.0f));
         ImageView imageView4 = new ImageView(context);
         this.pipIconView = imageView4;
         imageView4.setImageDrawable(sharedResources.pipDrawable);
         imageView4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         imageView4.setBackground(Theme.createSelectorDrawable(-1));
+        imageView4.setContentDescription(LocaleController.getString(R.string.AccDescrPipMode));
         this.storyContainer.addView(imageView4, LayoutHelper.createFrame(40, 40.0f, 53, 2.0f, 15.0f, 42.0f, 0.0f));
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1836,7 +1839,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1846,7 +1849,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1958,7 +1961,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() throws Resources.NotFoundException, IOException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1968,7 +1971,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -2538,8 +2541,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             storyViewer.toggleSilentMode();
             if (storyViewer.soundEnabled()) {
                 MessagesController.getGlobalMainSettings().edit().putInt("taptostorysoundhint", 3).apply();
-                return;
             }
+            this.muteIconContainer.setContentDescription(LocaleController.getString(storyViewer.soundEnabled() ? R.string.Mute : R.string.Unmute));
             return;
         }
         showNoSoundHint(true);
@@ -2768,10 +2771,12 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         TL_stories.StoryItem storyItem2 = this.currentStory.storyItem;
         if (storyItem2 == null || (reaction = storyItem2.sent_reaction) == null) {
             this.storiesLikeButton.setReaction(null);
+            this.likeButtonContainer.setContentDescription(LocaleController.getString(R.string.AccDescrLike));
             z = false;
         } else {
             z2 = !z2;
             this.storiesLikeButton.setReaction(ReactionsLayoutInBubble.VisibleReaction.fromTL(reaction));
+            this.likeButtonContainer.setContentDescription(LocaleController.getString(R.string.AccDescrLiked));
             try {
                 performHapticFeedback(3);
             } catch (Exception unused) {
@@ -4420,7 +4425,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4430,7 +4435,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws IOException {
+    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, IOException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;

@@ -1297,6 +1297,18 @@ public class MessageObject {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.GroupedMessages.calculate():void");
         }
 
+        public int getMaxEditDate() {
+            TLRPC.Message message;
+            int iMax = 0;
+            for (int i = 0; i < this.messages.size(); i++) {
+                MessageObject messageObject = this.messages.get(i);
+                if (messageObject != null && (message = messageObject.messageOwner) != null) {
+                    iMax = Math.max(iMax, message.edit_date);
+                }
+            }
+            return iMax;
+        }
+
         public MessageObject findPrimaryMessageObject() {
             return findMessageWithFlags(this.reversed ? 10 : 5);
         }
@@ -3160,14 +3172,14 @@ public class MessageObject {
                     TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = (TLRPC.TL_documentAttributeFilename) AndroidUtilities.find(document.attributes, TLRPC.TL_documentAttributeFilename.class);
                     if (tL_documentAttributeAudio != null) {
                         if (!TextUtils.isEmpty(tL_documentAttributeAudio.title) && !TextUtils.isEmpty(tL_documentAttributeAudio.performer)) {
-                            spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeAudio.performer).append(" – ").append((CharSequence) tL_documentAttributeAudio.title);
+                            spannableStringBuilder.append((CharSequence) span("🎵", R.drawable.iv_audio_preview)).append(" ").append((CharSequence) tL_documentAttributeAudio.performer).append(" – ").append((CharSequence) tL_documentAttributeAudio.title);
                         } else if (!TextUtils.isEmpty(tL_documentAttributeAudio.title)) {
-                            spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeAudio.title);
+                            spannableStringBuilder.append((CharSequence) span("🎵", R.drawable.iv_audio_preview)).append(" ").append((CharSequence) tL_documentAttributeAudio.title);
                         } else if (tL_documentAttributeFilename != null && tL_documentAttributeFilename.file_name != null) {
-                            spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeFilename.file_name);
+                            spannableStringBuilder.append((CharSequence) span("🎵", R.drawable.iv_audio_preview)).append(" ").append((CharSequence) tL_documentAttributeFilename.file_name);
                         }
                     } else if (tL_documentAttributeFilename != null && tL_documentAttributeFilename.file_name != null) {
-                        spannableStringBuilder.append("🎵 ").append((CharSequence) tL_documentAttributeFilename.file_name);
+                        spannableStringBuilder.append((CharSequence) span("🎵", R.drawable.iv_audio_preview)).append(" ").append((CharSequence) tL_documentAttributeFilename.file_name);
                     }
                 }
             } else if (pageBlock instanceof TL_iv.pageBlockCover) {

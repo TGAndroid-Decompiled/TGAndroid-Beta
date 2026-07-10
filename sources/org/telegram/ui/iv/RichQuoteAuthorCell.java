@@ -40,6 +40,10 @@ public class RichQuoteAuthorCell extends RichBlockCell implements Theme.Colorabl
         void setQuoteAuthor(long j, TL_iv.RichText richText);
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public RichQuoteAuthorCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.tmpBlocks = new ArrayList();

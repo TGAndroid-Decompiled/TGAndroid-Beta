@@ -28,6 +28,10 @@ public class CommunityLinkView2 extends FrameLayout implements Theme.Colorable {
     public final TextView subtitleView;
     public final TextView titleView;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public CommunityLinkView2(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;

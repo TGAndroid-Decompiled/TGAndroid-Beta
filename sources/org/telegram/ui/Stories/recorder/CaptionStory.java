@@ -189,6 +189,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         ImageView imageView2 = this.roundButton;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView2.setScaleType(scaleType);
+        this.roundButton.setContentDescription(LocaleController.getString(R.string.AccDescrVideoMessage));
         addView(this.roundButton, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 11.0f, 6.0f));
         this.roundButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +204,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         imageView3.setImageDrawable(periodDrawable);
         this.periodButton.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         this.periodButton.setScaleType(scaleType);
+        this.periodButton.setContentDescription(LocaleController.getString(R.string.StoryPeriodHint));
         setPeriod(86400, false);
         addView(this.periodButton, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 51.0f, 6.0f));
         this.periodButton.setOnClickListener(new View.OnClickListener() {
@@ -305,6 +307,7 @@ public abstract class CaptionStory extends CaptionContainerView {
 
     public void setHasRoundVideo(boolean z) {
         this.roundButton.setImageResource(z ? R.drawable.input_video_story_remove : R.drawable.input_video_story);
+        this.roundButton.setContentDescription(LocaleController.getString(z ? R.string.AccDescrRemoveRoundVideo : R.string.AccDescrVideoMessage));
         this.hasRoundVideo = z;
     }
 

@@ -134,6 +134,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         addView(richEditorListView, LayoutHelper.createFrame(-1, -1, 119));
         addView(richEditorListView.getOverlayView(), LayoutHelper.createFrame(-1, -1, 119));
         richEditorListView.seedEmptyArticle();
+        richEditorListView.resetHistoryBaseline();
         setFocusable(true);
         setFocusableInTouchMode(true);
         if (Build.VERSION.SDK_INT >= 26) {
@@ -180,12 +181,14 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         @Override
         public void onContentChanged() {
             ChatAttachAlertRichLayout.this.updateSendButtonLoading();
+            ChatAttachAlertRichLayout.this.updateSendButtonLocked();
             ChatAttachAlertRichLayout.this.scheduleLimitCheck();
         }
 
         @Override
         public void onHistoryChanged() {
             ChatAttachAlertRichLayout.this.updateHistoryButtons();
+            ChatAttachAlertRichLayout.this.updateSendButtonLocked();
         }
 
         @Override
@@ -312,7 +315,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onSend() {
+        public void onSend() throws Resources.NotFoundException {
             ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
         }
 
@@ -374,14 +377,14 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         if (this.listView.getChildCount() <= 0) {
             return this.listView.getPaddingTop();
         }
-        int y = Integer.MAX_VALUE;
+        int top = Integer.MAX_VALUE;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
-            if (this.listView.getChildAdapterPosition(childAt) >= 0 && childAt.getY() < y) {
-                y = (int) childAt.getY();
+            if (this.listView.getChildAdapterPosition(childAt) >= 0 && childAt.getTop() < top) {
+                top = childAt.getTop();
             }
         }
-        return y == Integer.MAX_VALUE ? this.listView.getPaddingTop() : y;
+        return top == Integer.MAX_VALUE ? this.listView.getPaddingTop() : top;
     }
 
     public void updateHistoryButtons() {
@@ -602,7 +605,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         String string = LocaleController.getString(R.string.ArticleToggleBlock);
         RichEditorListView richEditorListView = this.listView;
         Objects.requireNonNull(richEditorListView);
-        itemOptionsAddChecked.addChecked(z, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda28(richEditorListView));
+        itemOptionsAddChecked.addChecked(z, i, string, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda30(richEditorListView));
         boolean zCanIndentSelection = this.listView.canIndentSelection();
         boolean zCanOutdentSelection = this.listView.canOutdentSelection();
         if (zCanIndentSelection || zCanOutdentSelection) {
@@ -811,24 +814,30 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public void layoutBottomPanels() {
+        float f;
         int iEmojiVisibleHeight = emojiVisibleHeight();
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
             if (this.emojiViewVisible) {
-                f = (this.emojiSearchOpened ? -this.parentAlert.currentPanTranslationY : 0.0f) + (this.emojiPadding - iEmojiVisibleHeight);
+                f = (this.emojiPadding - iEmojiVisibleHeight) + (this.emojiSearchOpened ? -this.parentAlert.currentPanTranslationY : 0.0f);
+            } else {
+                f = 0.0f;
             }
             emojiView.setTranslationY(f);
         }
         if (this.toolbar != null) {
-            if (!this.emojiViewVisible) {
-                iEmojiVisibleHeight = bottomNavInset();
-            }
-            float f = iEmojiVisibleHeight;
+            float fBottomNavInset = this.emojiViewVisible ? iEmojiVisibleHeight : bottomNavInset();
             if (!this.emojiViewVisible || this.emojiSearchOpened) {
-                f += this.parentAlert.currentPanTranslationY;
+                fBottomNavInset += this.parentAlert.currentPanTranslationY;
             }
             this.toolbar.getBottomContainer().animate().cancel();
-            this.toolbar.getBottomContainer().setTranslationY(-f);
+            this.toolbar.getBottomContainer().setTranslationY(-fBottomNavInset);
+            boolean z = this.emojiViewVisible;
+            float f2 = z ? iEmojiVisibleHeight : 0.0f;
+            if (!z || this.emojiSearchOpened) {
+                f2 += this.parentAlert.currentPanTranslationY;
+            }
+            this.toolbar.setBottomGradientTranslationY(-f2);
             if (this.lastAttachRise != this.attachRaise) {
                 ViewPropertyAnimator viewPropertyAnimatorAnimate = this.toolbar.getBottomInnerContainer().animate();
                 this.lastAttachRise = this.attachRaise;
@@ -875,7 +884,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             richEditorListView.setTopGlowOffset(paddingTop);
             return Integer.MAX_VALUE;
         }
-        int y = Integer.MAX_VALUE;
+        int top = Integer.MAX_VALUE;
         boolean z = false;
         for (int i = 0; i < this.listView.getChildCount(); i++) {
             View childAt = this.listView.getChildAt(i);
@@ -883,15 +892,15 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             if (childAdapterPosition == 0) {
                 z = true;
             }
-            if (childAdapterPosition >= 0 && childAt.getTop() < y) {
-                y = (int) childAt.getY();
+            if (childAdapterPosition >= 0 && childAt.getTop() < top) {
+                top = childAt.getTop();
             }
         }
-        if (y == Integer.MAX_VALUE) {
+        if (top == Integer.MAX_VALUE) {
             return Integer.MAX_VALUE;
         }
-        this.listView.setTopGlowOffset(Math.max(0, y));
-        int i2 = y - AndroidUtilities.statusBarHeight;
+        this.listView.setTopGlowOffset(Math.max(0, top));
+        int i2 = top - AndroidUtilities.statusBarHeight;
         int iDp = AndroidUtilities.dp(7.0f);
         if (i2 < AndroidUtilities.dp(7.0f) || !z) {
             i2 = iDp;
@@ -1021,15 +1030,14 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     @Override
-    public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
+    public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) throws Resources.NotFoundException {
         MessageObject messageObject;
         MessageObject messageObject2;
         long j2;
         int quickReplyId;
-        if (!MessagesController.getInstance(this.currentAccount).richEditorAllowed()) {
-            if (!UserConfig.getInstance(this.currentAccount).isPremium()) {
-                new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.currentAccount, 43, true).show();
-            }
+        ChatActivityEnterView chatActivityEnterView;
+        if (isSendLocked()) {
+            showConversionSheet();
             return false;
         }
         if (!this.listView.hasAnyText() || this.listView.hasPendingUploads()) {
@@ -1039,21 +1047,30 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             updateSendButtonEnabled();
             return false;
         }
+        if (!MessagesController.getInstance(this.currentAccount).richEditorAllowed()) {
+            BaseFragment baseFragment = this.parentAlert.baseFragment;
+            if (!(baseFragment instanceof ChatActivity) || (chatActivityEnterView = ((ChatActivity) baseFragment).getChatActivityEnterView()) == null) {
+                return false;
+            }
+            chatActivityEnterView.sendConvertedRichAsSimple(this.listView.toSimpleMessage(), z, i, i2);
+            this.parentAlert.dismiss(true);
+            return true;
+        }
         ArrayList arrayListFlattenRowsToBlocks = this.listView.flattenRowsToBlocks();
         if (arrayListFlattenRowsToBlocks.isEmpty()) {
             return false;
         }
         ArrayList arrayListCollectPhotos = this.listView.collectPhotos();
         ArrayList arrayListCollectDocuments = this.listView.collectDocuments();
-        BaseFragment baseFragment = this.parentAlert.baseFragment;
-        if (baseFragment instanceof ChatActivity) {
-            ChatActivity chatActivity = (ChatActivity) baseFragment;
+        BaseFragment baseFragment2 = this.parentAlert.baseFragment;
+        if (baseFragment2 instanceof ChatActivity) {
+            ChatActivity chatActivity = (ChatActivity) baseFragment2;
             MessageObject replyMessage = chatActivity.getReplyMessage();
             MessageObject threadMessage = chatActivity.getThreadMessage();
             long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
             quickReplyId = chatActivity.getQuickReplyId();
-            messageObject = replyMessage;
-            messageObject2 = threadMessage;
+            messageObject2 = replyMessage;
+            messageObject = threadMessage;
             j2 = sendMonoForumPeerId;
         } else {
             messageObject = null;
@@ -1061,7 +1078,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             j2 = 0;
             quickReplyId = 0;
         }
-        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject, messageObject2, z, i, i2, null, quickReplyId, j, j2, 0L);
+        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject2, messageObject, z, i, i2, null, quickReplyId, j, j2, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }
@@ -1133,7 +1150,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         sendButton.setScaleY(1.0f);
         ChatActivityEnterView.SendButton sendButton2 = this.messageSendPreview.setSendButton(sendButton, true, new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) {
+            public final void onClick(View view2) throws Resources.NotFoundException {
                 this.f$0.lambda$showSendPreview$19(view2);
             }
         });
@@ -1155,7 +1172,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             if (!z && dialogId > 0) {
                 itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new Runnable() {
                     @Override
-                    public final void run() {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$showSendPreview$21();
                     }
                 });
@@ -1164,7 +1181,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         if (!z) {
             itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$showSendPreview$22();
                 }
             });
@@ -1183,7 +1200,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         this.messageSendPreview = null;
     }
 
-    public void lambda$showSendPreview$19(View view) {
+    public void lambda$showSendPreview$19(View view) throws Resources.NotFoundException {
         sendSelectedItems(true, 0, 0, 0L, false);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1195,7 +1212,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     public void lambda$showSendPreview$20(long j) {
         AlertsCreator.createScheduleDatePickerDialog(this.parentAlert.baseFragment.getParentActivity(), j, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
-            public void didSelectDate(boolean z, int i, int i2) {
+            public void didSelectDate(boolean z, int i, int i2) throws Resources.NotFoundException {
                 ChatAttachAlertRichLayout.this.sendSelectedItems(z, i, i2, 0L, false);
                 if (ChatAttachAlertRichLayout.this.messageSendPreview != null) {
                     ChatAttachAlertRichLayout.this.messageSendPreview.dismissInstant();
@@ -1205,7 +1222,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }, this.resourcesProvider);
     }
 
-    public void lambda$showSendPreview$21() {
+    public void lambda$showSendPreview$21() throws Resources.NotFoundException {
         sendSelectedItems(true, 2147483646, 0, 0L, false);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1214,7 +1231,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void lambda$showSendPreview$22() {
+    public void lambda$showSendPreview$22() throws Resources.NotFoundException {
         sendSelectedItems(false, 0, 0, 0L, false);
         MessageSendPreview messageSendPreview = this.messageSendPreview;
         if (messageSendPreview != null) {
@@ -1464,12 +1481,40 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    private void updateSendButtonLocked() {
+    public void updateSendButtonLocked() {
         if (this.toolbar != null) {
-            boolean zRichEditorAllowed = MessagesController.getInstance(this.currentAccount).richEditorAllowed();
-            this.toolbar.getSendButton().setLocked(!zRichEditorAllowed);
-            this.toolbar.setPremiumLocked((zRichEditorAllowed || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true);
+            boolean z = false;
+            boolean z2 = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
+            ChatActivityEnterView.SendButton sendButton = this.toolbar.getSendButton();
+            if (z2 && this.listView.isLossy()) {
+                z = true;
+            }
+            sendButton.setLocked(z);
+            this.toolbar.setPremiumLocked(z2);
         }
+    }
+
+    private boolean isSendLocked() {
+        return (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium() || !this.listView.isLossy()) ? false : true;
+    }
+
+    private void showConversionSheet() {
+        Context context = getContext();
+        RichEditorListView richEditorListView = this.listView;
+        Objects.requireNonNull(richEditorListView);
+        RichEditor.openConversionSheet(context, new ChatAttachAlertRichLayout$$ExternalSyntheticLambda1(richEditorListView), new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$showConversionSheet$27();
+            }
+        }, this.resourcesProvider);
+    }
+
+    public void lambda$showConversionSheet$27() {
+        if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+            return;
+        }
+        new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.currentAccount, 43, true).show();
     }
 
     @Override
@@ -1846,13 +1891,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         final Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$29(strArr, (String) obj, (Utilities.Callback2) obj2);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$30(strArr, (String) obj, (Utilities.Callback2) obj2);
             }
         };
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$31(strArr, horizontalScrollView, round, zArr2, callback2, imageView, resourcesProvider, iArr);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$32(strArr, horizontalScrollView, round, zArr2, callback2, imageView, resourcesProvider, iArr);
             }
         };
         final EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.ArticleLatexEquation), true, false, -1, resourcesProvider);
@@ -1883,7 +1928,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         builder.setOnPreDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$32(editTextCell, zArr, zArr2, str, strArr, callback, dialogInterface);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$33(editTextCell, zArr, zArr2, str, strArr, callback, dialogInterface);
             }
         });
         final BottomSheet bottomSheetShow = builder.show();
@@ -1893,27 +1938,27 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         round.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$33(round, zArr, callback, strArr, bottomSheetShow, view);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$34(round, zArr, callback, strArr, bottomSheetShow, view);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$34(editTextCell);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$35(editTextCell);
             }
         }, 200L);
     }
 
-    public static void lambda$showEditLatexSheet$29(final String[] strArr, String str, final Utilities.Callback2 callback2) {
+    public static void lambda$showEditLatexSheet$30(final String[] strArr, String str, final Utilities.Callback2 callback2) {
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$28(strArr, callback2);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$29(strArr, callback2);
             }
         });
     }
 
-    public static void lambda$showEditLatexSheet$28(String[] strArr, final Utilities.Callback2 callback2) {
+    public static void lambda$showEditLatexSheet$29(String[] strArr, final Utilities.Callback2 callback2) {
         final boolean z = true;
         final Bitmap bitmap = null;
         try {
@@ -1948,16 +1993,16 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$27(callback2, bitmap, z);
+                ChatAttachAlertRichLayout.lambda$showEditLatexSheet$28(callback2, bitmap, z);
             }
         });
     }
 
-    public static void lambda$showEditLatexSheet$27(Utilities.Callback2 callback2, Bitmap bitmap, boolean z) {
+    public static void lambda$showEditLatexSheet$28(Utilities.Callback2 callback2, Bitmap bitmap, boolean z) {
         callback2.run(bitmap, Boolean.valueOf(z));
     }
 
-    public static void lambda$showEditLatexSheet$31(final String[] strArr, final HorizontalScrollView horizontalScrollView, final ButtonWithCounterView buttonWithCounterView, final boolean[] zArr, Utilities.Callback2 callback2, final ImageView imageView, final Theme.ResourcesProvider resourcesProvider, final int[] iArr) {
+    public static void lambda$showEditLatexSheet$32(final String[] strArr, final HorizontalScrollView horizontalScrollView, final ButtonWithCounterView buttonWithCounterView, final boolean[] zArr, Utilities.Callback2 callback2, final ImageView imageView, final Theme.ResourcesProvider resourcesProvider, final int[] iArr) {
         if (TextUtils.isEmpty(strArr[0].trim())) {
             horizontalScrollView.setVisibility(8);
             buttonWithCounterView.setEnabled(false);
@@ -1967,13 +2012,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             callback2.run(str, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatAttachAlertRichLayout.lambda$showEditLatexSheet$30(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
+                    ChatAttachAlertRichLayout.lambda$showEditLatexSheet$31(str, strArr, imageView, resourcesProvider, z, iArr, buttonWithCounterView, horizontalScrollView, zArr, (Bitmap) obj, (Boolean) obj2);
                 }
             });
         }
     }
 
-    public static void lambda$showEditLatexSheet$30(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
+    public static void lambda$showEditLatexSheet$31(String str, String[] strArr, ImageView imageView, Theme.ResourcesProvider resourcesProvider, boolean z, int[] iArr, ButtonWithCounterView buttonWithCounterView, HorizontalScrollView horizontalScrollView, boolean[] zArr, Bitmap bitmap, Boolean bool) {
         if (TextUtils.equals(str, strArr[0])) {
             if (bool.booleanValue()) {
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), PorterDuff.Mode.SRC_IN));
@@ -1994,7 +2039,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void lambda$showEditLatexSheet$32(EditTextCell editTextCell, boolean[] zArr, boolean[] zArr2, String str, String[] strArr, Utilities.Callback callback, DialogInterface dialogInterface) {
+    public static void lambda$showEditLatexSheet$33(EditTextCell editTextCell, boolean[] zArr, boolean[] zArr2, String str, String[] strArr, Utilities.Callback callback, DialogInterface dialogInterface) {
         editTextCell.editText.clearFocus();
         AndroidUtilities.hideKeyboard(editTextCell.editText);
         if (zArr[0] || zArr2[0] || TextUtils.equals(str, strArr[0])) {
@@ -2004,7 +2049,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         callback.run(strArr[0]);
     }
 
-    public static void lambda$showEditLatexSheet$33(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
+    public static void lambda$showEditLatexSheet$34(ButtonWithCounterView buttonWithCounterView, boolean[] zArr, Utilities.Callback callback, String[] strArr, BottomSheet bottomSheet, View view) {
         if (buttonWithCounterView.isEnabled()) {
             if (!zArr[0]) {
                 zArr[0] = true;
@@ -2014,7 +2059,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public static void lambda$showEditLatexSheet$34(EditTextCell editTextCell) {
+    public static void lambda$showEditLatexSheet$35(EditTextCell editTextCell) {
         editTextCell.editText.requestFocus();
         AndroidUtilities.showKeyboard(editTextCell.editText);
     }

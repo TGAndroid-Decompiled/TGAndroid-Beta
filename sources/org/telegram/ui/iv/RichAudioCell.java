@@ -81,6 +81,10 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
         void onRequestWindowFocusable(RichEditText richEditText, boolean z);
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     @Override
     public void onProgressUpload(String str, long j, long j2, boolean z) {
     }

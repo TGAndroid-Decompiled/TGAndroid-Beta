@@ -99,6 +99,10 @@ public class ChatReplyContainer extends FrameLayout {
         public SimpleTextView objHint;
         private final Theme.ResourcesProvider resourcesProvider;
 
+        public int[] getColorKeys() {
+            return Theme.Colorable.CC.$default$getColorKeys(this);
+        }
+
         public Layout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.resourcesProvider = resourcesProvider;

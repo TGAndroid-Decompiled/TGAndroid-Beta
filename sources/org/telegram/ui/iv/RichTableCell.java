@@ -68,6 +68,10 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         void onTextWillChange(BlockRow blockRow, int i, int i2);
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public int titleChildPos() {
         return 0;
     }

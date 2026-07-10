@@ -27,6 +27,10 @@ public class GraySectionCell extends FrameLayout implements Theme.Colorable {
     private FrameLayout.LayoutParams rightTextViewLayoutParams;
     private AnimatedEmojiSpan.TextViewEmojis textView;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public GraySectionCell(Context context) {
         this(context, null);
     }

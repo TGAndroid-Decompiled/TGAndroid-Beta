@@ -511,6 +511,7 @@ public abstract class CaptionContainerView extends FrameLayout {
         combinedDrawable.setCustomSize(AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
         this.applyButton.setImageDrawable(this.applyButtonDrawable);
         this.applyButton.setScaleType(ImageView.ScaleType.CENTER);
+        this.applyButton.setContentDescription(LocaleController.getString(R.string.Done));
         this.applyButton.setAlpha(0.0f);
         this.applyButton.setVisibility(8);
         this.applyButton.setOnClickListener(new View.OnClickListener() {

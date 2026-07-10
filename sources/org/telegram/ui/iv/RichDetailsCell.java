@@ -57,6 +57,10 @@ public class RichDetailsCell extends FrameLayout implements Theme.Colorable, Tex
         void onToggle(BlockRow blockRow);
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public RichDetailsCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.dividerPaint = new Paint();

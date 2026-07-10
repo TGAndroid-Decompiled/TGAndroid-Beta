@@ -26,6 +26,10 @@ public class RichDividerCell extends RichBlockCell implements Theme.Colorable, T
         TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public RichDividerCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.paint = new Paint(1);

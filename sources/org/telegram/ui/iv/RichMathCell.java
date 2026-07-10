@@ -40,6 +40,10 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
         TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper();
     }
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public RichMathCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.selectionPaint = new Paint(1);

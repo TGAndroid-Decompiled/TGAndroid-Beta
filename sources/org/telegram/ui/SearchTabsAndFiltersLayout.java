@@ -12,6 +12,10 @@ public class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Col
     private BlurredBackgroundDrawable blurredBackgroundDrawable;
     private final Path clipPath;
 
+    public int[] getColorKeys() {
+        return Theme.Colorable.CC.$default$getColorKeys(this);
+    }
+
     public SearchTabsAndFiltersLayout(Context context) {
         super(context);
         this.clipPath = new Path();

@@ -3,6 +3,7 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Bundle;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.StaticLayout;
@@ -586,6 +587,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String string;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
         if (this.currentMessageObject.isMusic()) {
@@ -597,6 +599,26 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }
+        int iconForCurrentState = getIconForCurrentState();
+        if (iconForCurrentState == 1) {
+            string = LocaleController.getString("AccActionPause", R.string.AccActionPause);
+        } else if (iconForCurrentState == 2) {
+            string = LocaleController.getString("AccActionDownload", R.string.AccActionDownload);
+        } else if (iconForCurrentState == 3) {
+            string = LocaleController.getString("AccActionCancelDownload", R.string.AccActionCancelDownload);
+        } else {
+            string = LocaleController.getString("AccActionPlay", R.string.AccActionPlay);
+        }
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, string));
+    }
+
+    @Override
+    public boolean performAccessibilityAction(int i, Bundle bundle) {
+        if (i == 16) {
+            didPressedButton();
+            return true;
+        }
+        return super.performAccessibilityAction(i, bundle);
     }
 
     @Override
