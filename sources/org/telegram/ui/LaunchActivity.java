@@ -48,6 +48,10 @@ import androidx.appcompat.app.AppCompatDelegateImpl$Api33Impl$$ExternalSynthetic
 import androidx.arch.core.util.Function;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import com.google.common.primitives.Longs;
 import j$.util.function.Consumer$CC;
 import java.io.File;
@@ -128,6 +132,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.LanguageCell;
 import org.telegram.ui.ChatRightsEditActivity;
+import org.telegram.ui.Components.ActivityWindowEmptyBackgroundDrawable;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AttachBotIntroTopView;
 import org.telegram.ui.Components.BatteryDrawable;
@@ -267,7 +272,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialog;
     private CharSequence sendingText;
     private FrameLayout shadowTablet;
-    private FrameLayout shadowTabletSide;
     private boolean switchingAccount;
     private HashMap systemLocaleStrings;
     private boolean tabletFullSize;
@@ -376,7 +380,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             setTaskDescription(new ActivityManager.TaskDescription((String) null, (Bitmap) null, Theme.getColor(Theme.key_actionBarDefault) | (-16777216)));
         } catch (Throwable unused) {
         }
-        getWindow().setBackgroundDrawableResource(R.drawable.transparent);
+        getWindow().setBackgroundDrawable(new ActivityWindowEmptyBackgroundDrawable());
+        getWindow().setFormat(-1);
         FlagSecureReason flagSecureReason = new FlagSecureReason(getWindow(), new FlagSecureReason.FlagSecureCondition() {
             @Override
             public final boolean run() {
@@ -396,20 +401,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         AndroidUtilities.fillStatusBarHeight(this, false);
         this.actionBarLayout = new ActionBarLayout(this, true);
-        FrameLayout frameLayout = new FrameLayout(this) {
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                LaunchActivity.this.drawRippleAbove(canvas, this);
-            }
-
-            @Override
-            public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
-                return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
-            }
-        };
-        this.frameLayout = frameLayout;
-        frameLayout.setClipToPadding(false);
+        ActivityContentLayout activityContentLayout = new ActivityContentLayout(this);
+        this.frameLayout = activityContentLayout;
+        activityContentLayout.setClipToPadding(false);
         this.frameLayout.setClipChildren(false);
         setContentView(this.frameLayout);
         this.rootAnimatedInsetsListener = new WindowAnimatedInsetsProvider(this.frameLayout);
@@ -448,9 +442,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ImageView imageView = new ImageView(this);
         this.themeSwitchImageView = imageView;
         imageView.setVisibility(8);
-        AnonymousClass4 anonymousClass4 = new AnonymousClass4(this);
-        this.drawerLayoutContainer = anonymousClass4;
-        anonymousClass4.setClipChildren(false);
+        DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
+        this.drawerLayoutContainer = drawerLayoutContainer;
+        drawerLayoutContainer.setActionBarLayout(this.actionBarLayout);
+        this.drawerLayoutContainer.addOnLayoutChangeListener(new AnonymousClass3());
+        this.drawerLayoutContainer.setClipChildren(false);
         this.drawerLayoutContainer.setClipToPadding(false);
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         ImageView imageView2 = new ImageView(this) {
@@ -464,11 +460,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         this.frameLayout.addView(this.themeSwitchSunView, LayoutHelper.createFrame(48, 48.0f));
         this.themeSwitchSunView.setVisibility(8);
-        FrameLayout frameLayout2 = this.frameLayout;
+        FrameLayout frameLayout = this.frameLayout;
         BottomSheetTabsOverlay bottomSheetTabsOverlay = new BottomSheetTabsOverlay(this);
         this.bottomSheetTabsOverlay = bottomSheetTabsOverlay;
-        frameLayout2.addView(bottomSheetTabsOverlay);
-        FrameLayout frameLayout3 = this.frameLayout;
+        frameLayout.addView(bottomSheetTabsOverlay);
+        FrameLayout frameLayout2 = this.frameLayout;
         FireworksOverlay fireworksOverlay = new FireworksOverlay(this) {
             {
                 setVisibility(8);
@@ -487,7 +483,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         };
         this.fireworksOverlay = fireworksOverlay;
-        frameLayout3.addView(fireworksOverlay);
+        frameLayout2.addView(fireworksOverlay);
         setupActionBarLayout();
         this.drawerLayoutContainer.setParentActionBarLayout(this.actionBarLayout);
         this.actionBarLayout.setDrawerLayoutContainer(this.drawerLayoutContainer);
@@ -796,41 +792,31 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
     }
 
-    class AnonymousClass4 extends DrawerLayoutContainer {
+    class AnonymousClass3 implements View.OnLayoutChangeListener {
         private boolean wasPortrait;
 
-        AnonymousClass4(Context context) {
-            super(context);
+        AnonymousClass3() {
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) throws Exception {
-            super.onLayout(z, i, i2, i3, i4);
-            boolean z2 = i4 - i2 > i3 - i;
-            if (z2 != this.wasPortrait) {
-                post(new Runnable() {
+        public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            boolean z = i4 - i2 > i3 - i;
+            if (z != this.wasPortrait) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onLayout$0();
+                        this.f$0.lambda$onLayoutChange$0();
                     }
                 });
-                this.wasPortrait = z2;
+                this.wasPortrait = z;
             }
         }
 
-        public void lambda$onLayout$0() {
+        public void lambda$onLayoutChange$0() {
             if (LaunchActivity.this.selectAnimatedEmojiDialog != null) {
                 LaunchActivity.this.selectAnimatedEmojiDialog.dismiss();
                 LaunchActivity.this.selectAnimatedEmojiDialog = null;
             }
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            if (LaunchActivity.this.actionBarLayout.getParent() == this) {
-                LaunchActivity.this.actionBarLayout.parentDraw(this, canvas);
-            }
-            super.dispatchDraw(canvas);
         }
     }
 
@@ -923,81 +909,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (AndroidUtilities.isTablet()) {
             getWindow().setSoftInputMode(16);
-            RelativeLayout relativeLayout = new RelativeLayout(this) {
-                private boolean inLayout;
-
-                @Override
-                public void requestLayout() {
-                    if (this.inLayout) {
-                        return;
-                    }
-                    super.requestLayout();
-                }
-
-                @Override
-                protected void onMeasure(int i, int i2) {
-                    this.inLayout = true;
-                    int size = View.MeasureSpec.getSize(i);
-                    int size2 = View.MeasureSpec.getSize(i2);
-                    setMeasuredDimension(size, size2);
-                    if (AndroidUtilities.isInMultiwindow || (AndroidUtilities.isSmallTablet() && getResources().getConfiguration().orientation != 2)) {
-                        LaunchActivity.this.tabletFullSize = true;
-                        LaunchActivity.this.actionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    } else {
-                        LaunchActivity.this.tabletFullSize = false;
-                        int iDp = (size / 100) * 35;
-                        if (iDp < AndroidUtilities.dp(320.0f)) {
-                            iDp = AndroidUtilities.dp(320.0f);
-                        }
-                        LaunchActivity.this.actionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(iDp, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                        LaunchActivity.this.shadowTabletSide.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                        LaunchActivity.this.rightActionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(size - iDp, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    }
-                    LaunchActivity.this.backgroundTablet.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    LaunchActivity.this.shadowTablet.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    LaunchActivity.this.layersActionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(500.0f), size - AndroidUtilities.dp(16.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(((size2 - AndroidUtilities.statusBarHeight) - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(16.0f), 1073741824));
-                    this.inLayout = false;
-                }
-
-                @Override
-                protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                    int i5 = i3 - i;
-                    if (!AndroidUtilities.isInMultiwindow && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
-                        int iDp = (i5 / 100) * 35;
-                        if (iDp < AndroidUtilities.dp(320.0f)) {
-                            iDp = AndroidUtilities.dp(320.0f);
-                        }
-                        LaunchActivity.this.shadowTabletSide.layout(iDp, 0, LaunchActivity.this.shadowTabletSide.getMeasuredWidth() + iDp, LaunchActivity.this.shadowTabletSide.getMeasuredHeight());
-                        LaunchActivity.this.actionBarLayout.getView().layout(0, 0, LaunchActivity.this.actionBarLayout.getView().getMeasuredWidth(), LaunchActivity.this.actionBarLayout.getView().getMeasuredHeight());
-                        LaunchActivity.this.rightActionBarLayout.getView().layout(iDp, 0, LaunchActivity.this.rightActionBarLayout.getView().getMeasuredWidth() + iDp, LaunchActivity.this.rightActionBarLayout.getView().getMeasuredHeight());
-                    } else {
-                        LaunchActivity.this.actionBarLayout.getView().layout(0, 0, LaunchActivity.this.actionBarLayout.getView().getMeasuredWidth(), LaunchActivity.this.actionBarLayout.getView().getMeasuredHeight());
-                    }
-                    int measuredWidth = (i5 - LaunchActivity.this.layersActionBarLayout.getView().getMeasuredWidth()) / 2;
-                    int iDp2 = AndroidUtilities.statusBarHeight + AndroidUtilities.dp(8.0f);
-                    LaunchActivity.this.layersActionBarLayout.getView().layout(measuredWidth, iDp2, LaunchActivity.this.layersActionBarLayout.getView().getMeasuredWidth() + measuredWidth, LaunchActivity.this.layersActionBarLayout.getView().getMeasuredHeight() + iDp2);
-                    LaunchActivity.this.backgroundTablet.layout(0, 0, LaunchActivity.this.backgroundTablet.getMeasuredWidth(), LaunchActivity.this.backgroundTablet.getMeasuredHeight());
-                    LaunchActivity.this.shadowTablet.layout(0, 0, LaunchActivity.this.shadowTablet.getMeasuredWidth(), LaunchActivity.this.shadowTablet.getMeasuredHeight());
-                }
-
-                @Override
-                protected void dispatchDraw(Canvas canvas) {
-                    if (LaunchActivity.this.layersActionBarLayout != null) {
-                        LaunchActivity.this.layersActionBarLayout.parentDraw(this, canvas);
-                    }
-                    super.dispatchDraw(canvas);
-                }
-
-                @Override
-                public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
-                    return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
-                }
-            };
-            this.launchLayout = relativeLayout;
+            AnonymousClass10 anonymousClass10 = new AnonymousClass10(this);
+            this.launchLayout = anonymousClass10;
             if (iIndexOfChild != -1) {
-                this.drawerLayoutContainer.addView(relativeLayout, iIndexOfChild, LayoutHelper.createFrame(-1, -1.0f));
+                this.drawerLayoutContainer.addView(anonymousClass10, iIndexOfChild, LayoutHelper.createFrame(-1, -1.0f));
             } else {
-                this.drawerLayoutContainer.addView(relativeLayout, LayoutHelper.createFrame(-1, -1.0f));
+                this.drawerLayoutContainer.addView(anonymousClass10, LayoutHelper.createFrame(-1, -1.0f));
             }
             SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this) {
                 @Override
@@ -1021,11 +938,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.rightActionBarLayout.setDelegate(this);
             this.launchLayout.addView(this.rightActionBarLayout.getView());
             FrameLayout frameLayout = new FrameLayout(this);
-            this.shadowTabletSide = frameLayout;
-            frameLayout.setBackgroundColor(1076449908);
-            FrameLayout frameLayout2 = new FrameLayout(this);
-            this.shadowTablet = frameLayout2;
-            frameLayout2.setVisibility(this.layerFragmentsStack.isEmpty() ? 8 : 0);
+            this.shadowTablet = frameLayout;
+            frameLayout.setVisibility(this.layerFragmentsStack.isEmpty() ? 8 : 0);
             this.shadowTablet.setBackgroundColor(1056964608);
             this.launchLayout.addView(this.shadowTablet);
             this.shadowTablet.setOnTouchListener(new View.OnTouchListener() {
@@ -1065,6 +979,95 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         }
         FloatingDebugController.setActive(this, SharedConfig.isFloatingDebugActive, false);
+    }
+
+    class AnonymousClass10 extends RelativeLayout {
+        private boolean inLayout;
+        private Insets insets;
+
+        AnonymousClass10(Context context) {
+            super(context);
+            this.insets = Insets.NONE;
+            ViewCompat.setOnApplyWindowInsetsListener(this, new OnApplyWindowInsetsListener() {
+                @Override
+                public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                    return this.f$0.lambda$new$0(view, windowInsetsCompat);
+                }
+            });
+        }
+
+        public WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
+            Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+            if (!this.insets.equals(defaultWindowInsets)) {
+                this.insets = defaultWindowInsets;
+                requestLayout();
+            }
+            int childCount = getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                ViewCompat.dispatchApplyWindowInsets(getChildAt(i), windowInsetsCompat);
+            }
+            return windowInsetsCompat;
+        }
+
+        @Override
+        public void requestLayout() {
+            if (this.inLayout) {
+                return;
+            }
+            super.requestLayout();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            this.inLayout = true;
+            int size = View.MeasureSpec.getSize(i);
+            int size2 = View.MeasureSpec.getSize(i2);
+            setMeasuredDimension(size, size2);
+            if (AndroidUtilities.isInMultiwindow || (AndroidUtilities.isSmallTablet() && getResources().getConfiguration().orientation != 2)) {
+                LaunchActivity.this.tabletFullSize = true;
+                LaunchActivity.this.actionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            } else {
+                LaunchActivity.this.tabletFullSize = false;
+                Insets insets = this.insets;
+                int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(size, insets.left, insets.right);
+                LaunchActivity.this.actionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                LaunchActivity.this.rightActionBarLayout.getView().measure(View.MeasureSpec.makeMeasureSpec(size - tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            }
+            LaunchActivity.this.backgroundTablet.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            LaunchActivity.this.shadowTablet.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            ViewGroup view = LaunchActivity.this.layersActionBarLayout.getView();
+            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(500.0f), size - AndroidUtilities.dp(16.0f)), 1073741824);
+            Insets insets2 = this.insets;
+            view.measure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - insets2.top) - insets2.bottom) - AndroidUtilities.dp(16.0f), 1073741824));
+            this.inLayout = false;
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            int measuredWidth = getMeasuredWidth();
+            getMeasuredHeight();
+            if (!AndroidUtilities.isInMultiwindow && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
+                Insets insets = this.insets;
+                int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(measuredWidth, insets.left, insets.right);
+                LaunchActivity.this.actionBarLayout.getView().layout(0, 0, LaunchActivity.this.actionBarLayout.getView().getMeasuredWidth(), LaunchActivity.this.actionBarLayout.getView().getMeasuredHeight());
+                LaunchActivity.this.rightActionBarLayout.getView().layout(tabletLeftFragmentSize, 0, LaunchActivity.this.rightActionBarLayout.getView().getMeasuredWidth() + tabletLeftFragmentSize, LaunchActivity.this.rightActionBarLayout.getView().getMeasuredHeight());
+            } else {
+                LaunchActivity.this.actionBarLayout.getView().layout(0, 0, LaunchActivity.this.actionBarLayout.getView().getMeasuredWidth(), LaunchActivity.this.actionBarLayout.getView().getMeasuredHeight());
+            }
+            int measuredWidth2 = (measuredWidth - LaunchActivity.this.layersActionBarLayout.getView().getMeasuredWidth()) / 2;
+            int iDp = this.insets.top + AndroidUtilities.dp(8.0f);
+            LaunchActivity.this.layersActionBarLayout.getView().layout(measuredWidth2, iDp, LaunchActivity.this.layersActionBarLayout.getView().getMeasuredWidth() + measuredWidth2, LaunchActivity.this.layersActionBarLayout.getView().getMeasuredHeight() + iDp);
+            LaunchActivity.this.backgroundTablet.layout(0, 0, LaunchActivity.this.backgroundTablet.getMeasuredWidth(), LaunchActivity.this.backgroundTablet.getMeasuredHeight());
+            LaunchActivity.this.shadowTablet.layout(0, 0, LaunchActivity.this.shadowTablet.getMeasuredWidth(), LaunchActivity.this.shadowTablet.getMeasuredHeight());
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            if (LaunchActivity.this.layersActionBarLayout != null) {
+                LaunchActivity.this.layersActionBarLayout.parentDraw(this, canvas);
+            }
+            super.dispatchDraw(canvas);
+        }
     }
 
     public boolean lambda$setupActionBarLayout$3(View view, MotionEvent motionEvent) {
@@ -1244,7 +1247,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.layersActionBarLayout.removeAllFragments();
             this.rightActionBarLayout.removeAllFragments();
             if (!this.tabletFullSize) {
-                this.shadowTabletSide.setVisibility(0);
                 if (this.rightActionBarLayout.getFragmentStack().isEmpty()) {
                     this.backgroundTablet.setVisibility(0);
                 }
@@ -1368,7 +1370,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
                 this.rightActionBarLayout.getView().setVisibility(this.rightActionBarLayout.getFragmentStack().isEmpty() ? 8 : 0);
                 this.backgroundTablet.setVisibility(this.rightActionBarLayout.getFragmentStack().isEmpty() ? 0 : 8);
-                this.shadowTabletSide.setVisibility(this.actionBarLayout.getFragmentStack().isEmpty() ? 8 : 0);
                 return;
             }
             this.tabletFullSize = true;
@@ -1390,7 +1391,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     this.actionBarLayout.rebuildFragments(1);
                 }
             }
-            this.shadowTabletSide.setVisibility(8);
             this.rightActionBarLayout.getView().setVisibility(8);
             this.backgroundTablet.setVisibility(this.actionBarLayout.getFragmentStack().isEmpty() ? 0 : 8);
         }
@@ -1411,7 +1411,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             this.termsOfServiceView = termsOfServiceView;
             termsOfServiceView.setAlpha(0.0f);
             this.drawerLayoutContainer.addView(this.termsOfServiceView, LayoutHelper.createFrame(-1, -1.0f));
-            this.termsOfServiceView.setDelegate(new AnonymousClass13());
+            this.termsOfServiceView.setDelegate(new AnonymousClass12());
         }
         TLRPC.TL_help_termsOfService tL_help_termsOfService2 = UserConfig.getInstance(i).unacceptedTermsOfService;
         if (tL_help_termsOfService2 != tL_help_termsOfService && (tL_help_termsOfService2 == null || !tL_help_termsOfService2.id.data.equals(tL_help_termsOfService.id.data))) {
@@ -1422,8 +1422,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.termsOfServiceView.animate().alpha(1.0f).setDuration(150L).setInterpolator(AndroidUtilities.decelerateInterpolator).setListener(null).start();
     }
 
-    class AnonymousClass13 implements TermsOfServiceView.TermsOfServiceViewDelegate {
-        AnonymousClass13() {
+    class AnonymousClass12 implements TermsOfServiceView.TermsOfServiceViewDelegate {
+        AnonymousClass12() {
         }
 
         @Override
@@ -2898,7 +2898,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    class AnonymousClass15 implements MessagesController.MessagesLoadedCallback {
+    class AnonymousClass14 implements MessagesController.MessagesLoadedCallback {
         final Bundle val$args;
         final long val$dialog_id;
         final Runnable val$dismissLoading;
@@ -2906,7 +2906,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final String val$livestream;
         final Integer val$messageId;
 
-        AnonymousClass15(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+        AnonymousClass14(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -2917,7 +2917,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         @Override
         public void onMessagesLoaded(boolean r8) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass15.onMessagesLoaded(boolean):void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.AnonymousClass14.onMessagesLoaded(boolean):void");
         }
 
         public void lambda$onMessagesLoaded$2(String str, final long j, final BaseFragment baseFragment) {
@@ -4135,7 +4135,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public boolean didSelectStories(org.telegram.ui.DialogsActivity r22) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectStories(org.telegram.ui.DialogsActivity):boolean");
     }
 
@@ -4416,7 +4416,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) throws Resources.NotFoundException {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         super.onRequestPermissionsResult(i, strArr, iArr);
         if (checkPermissionsResult(i, strArr, iArr)) {
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -4670,7 +4670,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() throws Resources.NotFoundException {
+    protected void onResume() {
         MessageObject playingMessageObject;
         super.onResume();
         isResumed = true;
@@ -4804,7 +4804,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     if (!(baseFragment instanceof MainTabsActivity)) {
                         if (baseFragment instanceof DialogsActivity) {
                             DialogsActivity dialogsActivity = (DialogsActivity) baseFragment;
-                            if (!dialogsActivity.isMainDialogList() || dialogsActivity.isArchive()) {
+                            if (!dialogsActivity.isMainDialogList() || dialogsActivity.isArchive() || dialogsActivity.isCommunity()) {
                             }
                         }
                         if (baseFragment instanceof ChatActivity) {
@@ -5799,11 +5799,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     getActionBarLayout().presentFragment(navigationParams.setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(false));
                     this.layersActionBarLayout.removeAllFragments();
                     this.layersActionBarLayout.getView().setVisibility(8);
-                    if (!this.tabletFullSize) {
-                        this.shadowTabletSide.setVisibility(0);
-                        if (this.rightActionBarLayout.getFragmentStack().isEmpty()) {
-                            this.backgroundTablet.setVisibility(0);
-                        }
+                    if (!this.tabletFullSize && this.rightActionBarLayout.getFragmentStack().isEmpty()) {
+                        this.backgroundTablet.setVisibility(0);
                     }
                     return false;
                 }
@@ -5814,15 +5811,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     getActionBarLayout().presentFragment(navigationParams.setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(false));
                     this.layersActionBarLayout.removeAllFragments();
                     this.layersActionBarLayout.getView().setVisibility(8);
-                    if (!this.tabletFullSize) {
-                        this.shadowTabletSide.setVisibility(0);
-                        if (this.rightActionBarLayout.getFragmentStack().isEmpty()) {
-                            this.backgroundTablet.setVisibility(0);
-                        }
+                    if (!this.tabletFullSize && this.rightActionBarLayout.getFragmentStack().isEmpty()) {
+                        this.backgroundTablet.setVisibility(0);
                     }
                     return false;
                 }
-                if (iNavigationLayout == this.actionBarLayout && dialogsActivity.getArguments() != null && dialogsActivity.getArguments().getInt("folderId", 0) == 1) {
+                if (iNavigationLayout == this.actionBarLayout && dialogsActivity.getArguments() != null && (dialogsActivity.getArguments().getInt("folderId", 0) == 1 || dialogsActivity.getArguments().getLong("community_id", 0L) != 0)) {
                     return true;
                 }
             }
@@ -5903,7 +5897,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
                 if ((baseFragment instanceof LoginActivity) && i == -1) {
                     this.backgroundTablet.setVisibility(0);
-                    this.shadowTabletSide.setVisibility(8);
                     this.shadowTablet.setBackgroundColor(0);
                 } else {
                     this.shadowTablet.setBackgroundColor(2130706432);
@@ -5931,11 +5924,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     this.actionBarLayout.addFragmentToStack(baseFragment);
                     this.layersActionBarLayout.removeAllFragments();
                     this.layersActionBarLayout.getView().setVisibility(8);
-                    if (!this.tabletFullSize) {
-                        this.shadowTabletSide.setVisibility(0);
-                        if (this.rightActionBarLayout.getFragmentStack().isEmpty()) {
-                            this.backgroundTablet.setVisibility(0);
-                        }
+                    if (!this.tabletFullSize && this.rightActionBarLayout.getFragmentStack().isEmpty()) {
+                        this.backgroundTablet.setVisibility(0);
                     }
                     return false;
                 }
@@ -5983,7 +5973,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     }
                     if ((baseFragment instanceof LoginActivity) && i == -1) {
                         this.backgroundTablet.setVisibility(0);
-                        this.shadowTabletSide.setVisibility(8);
                         this.shadowTablet.setBackgroundColor(0);
                     } else {
                         this.shadowTablet.setBackgroundColor(2130706432);
@@ -6560,6 +6549,23 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         public void hide() {
             setHidden(true);
+        }
+    }
+
+    private class ActivityContentLayout extends FrameLayout {
+        public ActivityContentLayout(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            super.dispatchDraw(canvas);
+            LaunchActivity.this.drawRippleAbove(canvas, this);
+        }
+
+        @Override
+        public WindowInsets dispatchApplyWindowInsets(WindowInsets windowInsets) {
+            return AndroidUtilities.fixedDispatchApplyWindowInsets(windowInsets, this);
         }
     }
 }

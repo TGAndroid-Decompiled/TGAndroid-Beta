@@ -1729,7 +1729,7 @@ public class ChatObject {
     private static boolean isHiddenInCommunity(int i, long j, long j2) {
         TLRPC.ChatFull chatFull;
         ArrayList<TL_communities.CommunityPeer> arrayList;
-        if (j != 0 && j2 != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(-j2)) != null && (arrayList = chatFull.linked_peers) != null) {
+        if (j != 0 && j2 != 0 && (chatFull = MessagesController.getInstance(i).getChatFull(j)) != null && (arrayList = chatFull.linked_peers) != null) {
             Iterator<TL_communities.CommunityPeer> it = arrayList.iterator();
             while (it.hasNext()) {
                 TL_communities.CommunityPeer next = it.next();

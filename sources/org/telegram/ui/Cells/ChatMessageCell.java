@@ -6875,17 +6875,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject != null && messageObject.preview) {
             parentWidth = this.parentWidth;
         }
-        if (AndroidUtilities.isInMultiwindow || !AndroidUtilities.isTablet()) {
-            return parentWidth;
-        }
-        if (AndroidUtilities.isSmallTablet() && getResources().getConfiguration().orientation != 2) {
-            return parentWidth;
-        }
-        int iDp = (parentWidth / 100) * 35;
-        if (iDp < AndroidUtilities.dp(320.0f)) {
-            iDp = AndroidUtilities.dp(320.0f);
-        }
-        return parentWidth - iDp;
+        return (AndroidUtilities.isInMultiwindow || !AndroidUtilities.isTablet()) ? parentWidth : (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2) ? parentWidth - AndroidUtilities.getTabletLeftFragmentSize(parentWidth, 0, 0) : parentWidth;
     }
 
     int getExtraTextX() {

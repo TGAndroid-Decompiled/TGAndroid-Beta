@@ -85,6 +85,7 @@ import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
 import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -218,6 +219,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.EdgeToEdgeSupportMode;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -744,6 +746,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private long inlineReturn;
     private float inputIslandHeightCurrent;
     private float inputIslandHeightTarget;
+    private int insetSystemLeft;
+    private int insetSystemRight;
     public InstantCameraView instantCameraView;
     private OnPostDrawView invalidateBlurredSourcesView;
     private boolean invalidateChatListViewTopPadding;
@@ -1276,11 +1280,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i;
     }
 
-    public static void access$52900(ChatActivity chatActivity) {
+    public static void access$53100(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$57710(ChatActivity chatActivity) {
+    static int access$57910(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
@@ -6947,7 +6951,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+        int i = defaultWindowInsets.left;
+        int i2 = defaultWindowInsets.right;
+        if (this.insetSystemLeft != i || this.insetSystemRight != i2) {
+            this.insetSystemLeft = i;
+            this.insetSystemRight = i2;
+            this.contentView.requestLayout();
+        }
         this.windowInsetsStateHolder.setInsets(windowInsetsCompat);
+        ChatActivitySearchContainer chatActivitySearchContainer = this.messagesSearchListContainer;
+        if (chatActivitySearchContainer != null) {
+            chatActivitySearchContainer.setPadding(i, 0, i2, 0);
+        }
         checkUi_chatListViewPaddings();
         checkUi_messagesSearchListPadding();
         boolean zIsVisible = windowInsetsCompat.isVisible(WindowInsetsCompat.Type.ime());
@@ -14277,6 +14293,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         protected void dispatchDraw(android.graphics.Canvas r34) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.dispatchDraw(android.graphics.Canvas):void");
+        }
+
+        private boolean isFullSizeIgnoreInsersChild(View view) {
+            if (view != null) {
+                if (view != this.backgroundView && view != ChatActivity.this.blurredView && view != ChatActivity.this.searchViewPager) {
+                    ChatActivity chatActivity = ChatActivity.this;
+                    if (view == chatActivity.fireworksOverlay || view == chatActivity.chatActivityFadeView || view == ChatActivity.this.messagesSearchListContainer) {
+                    }
+                }
+                return true;
+            }
+            return false;
         }
 
         @Override
@@ -28022,7 +28050,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -28059,7 +28087,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -28650,7 +28678,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -28726,7 +28754,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -28932,7 +28960,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -28962,7 +28990,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -28992,7 +29020,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -29066,7 +29094,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -29096,7 +29124,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$52900(chatActivity);
+                        ChatActivity.access$53100(chatActivity);
                     }
                 }, 250L);
             }
@@ -33282,6 +33310,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (mentionsContainerView != null) {
             mentionsContainerView.setTranslationY(mentionsContainerView.isReversed() ? AndroidUtilities.dp(5.0f) : -animatedMaxBottomInset);
         }
+    }
+
+    @Override
+    public EdgeToEdgeSupportMode getEdgeToEdgeSupportMode() {
+        return EdgeToEdgeSupportMode.FULL;
     }
 
     private float calculateInputIslandHeight(boolean z) {

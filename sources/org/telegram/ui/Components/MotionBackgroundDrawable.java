@@ -20,7 +20,6 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.SystemClock;
 import android.view.View;
-import androidx.core.graphics.ColorUtils;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Random;
@@ -673,74 +672,6 @@ public class MotionBackgroundDrawable extends Drawable {
             errorWhileGenerateLegacyBitmap = true;
             this.paint2.setXfermode(null);
         }
-    }
-
-    public void drawBackground(Canvas canvas) {
-        Rect bounds = getBounds();
-        canvas.save();
-        float f = this.patternBitmap != null ? bounds.top : this.translationY;
-        int width = this.currentBitmap.getWidth();
-        int height = this.currentBitmap.getHeight();
-        float fWidth = bounds.width();
-        float fHeight = bounds.height();
-        float f2 = width;
-        float f3 = height;
-        float fMax = Math.max(fWidth / f2, fHeight / f3);
-        float f4 = f2 * fMax;
-        float f5 = f3 * fMax;
-        float f6 = (fWidth - f4) / 2.0f;
-        float f7 = (fHeight - f5) / 2.0f;
-        if (this.isPreview) {
-            int i = bounds.left;
-            f6 += i;
-            int i2 = bounds.top;
-            f7 += i2;
-            canvas.clipRect(i, i2, bounds.right, bounds.bottom);
-        }
-        if (this.intensity < 0) {
-            canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (this.alpha * this.backgroundAlpha)));
-        } else if (this.roundRadius != 0) {
-            this.matrix.reset();
-            this.matrix.setTranslate(f6, f7);
-            float fMin = 1.0f / Math.min(this.currentBitmap.getWidth() / bounds.width(), this.currentBitmap.getHeight() / bounds.height());
-            this.matrix.preScale(fMin, fMin);
-            this.bitmapShader.setLocalMatrix(this.matrix);
-            BitmapShader bitmapShader = this.bitmapGiftShader;
-            if (bitmapShader != null) {
-                bitmapShader.setLocalMatrix(this.matrix);
-            }
-            this.rect.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-            int alpha = this.paint.getAlpha();
-            this.paint.setAlpha((int) (alpha * this.backgroundAlpha));
-            RectF rectF = this.rect;
-            float f8 = this.roundRadius;
-            canvas.drawRoundRect(rectF, f8, f8, this.paint);
-            this.paint.setAlpha(alpha);
-        } else {
-            canvas.translate(0.0f, f);
-            GradientDrawable gradientDrawable = this.gradientDrawable;
-            if (gradientDrawable != null) {
-                gradientDrawable.setBounds((int) f6, (int) f7, (int) (f6 + f4), (int) (f7 + f5));
-                this.gradientDrawable.setAlpha((int) (this.backgroundAlpha * 255.0f));
-                this.gradientDrawable.draw(canvas);
-            } else {
-                this.rect.set(f6, f7, f4 + f6, f5 + f7);
-                Paint paint = this.overrideBitmapPaint;
-                if (paint == null) {
-                    paint = this.paint;
-                }
-                int alpha2 = paint.getAlpha();
-                paint.setAlpha((int) (alpha2 * this.backgroundAlpha));
-                canvas.drawBitmap(this.currentBitmap, (Rect) null, this.rect, paint);
-                paint.setAlpha(alpha2);
-            }
-        }
-        canvas.restore();
-        lambda$new$0();
-    }
-
-    public void drawPattern(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MotionBackgroundDrawable.drawPattern(android.graphics.Canvas):void");
     }
 
     @Override

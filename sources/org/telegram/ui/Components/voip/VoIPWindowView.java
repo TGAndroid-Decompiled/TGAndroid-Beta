@@ -3,7 +3,6 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import android.os.Build;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.WindowManager;
@@ -166,10 +165,8 @@ public abstract class VoIPWindowView extends FrameLayout {
         layoutParams.gravity = 51;
         layoutParams.type = 99;
         layoutParams.screenOrientation = 1;
-        if (Build.VERSION.SDK_INT >= 28) {
-            layoutParams.layoutInDisplayCutoutMode = 1;
-        }
-        layoutParams.flags = 2621568 | (-2147286784);
+        AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
+        layoutParams.flags = -2144665216;
         return layoutParams;
     }
 

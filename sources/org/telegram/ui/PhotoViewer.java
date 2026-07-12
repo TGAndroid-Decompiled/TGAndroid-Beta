@@ -4425,10 +4425,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         layoutParams.width = -1;
         layoutParams.gravity = 51;
         layoutParams.type = 99;
-        if (Build.VERSION.SDK_INT >= 28) {
-            layoutParams.layoutInDisplayCutoutMode = 1;
-        }
-        layoutParams.flags = -2147286784;
+        AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
+        this.windowLayoutParams.flags = -2147286784;
         PaintingOverlay paintingOverlay = new PaintingOverlay(this.parentActivity);
         this.paintingOverlay = paintingOverlay;
         this.containerView.addView(paintingOverlay, LayoutHelper.createFrame(-2, -2.0f));
@@ -6095,15 +6093,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     public WindowInsetsCompat lambda$setParentActivity$6(View view, WindowInsetsCompat windowInsetsCompat) {
         Rect rect = new Rect(this.insets);
-        Insets insetsIgnoringVisibility = windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-        this.insets.set(insetsIgnoringVisibility.left, insetsIgnoringVisibility.top, insetsIgnoringVisibility.right, insetsIgnoringVisibility.bottom);
-        int i = this.insets.top;
-        Activity activity = this.parentActivity;
-        if ((activity instanceof LaunchActivity) && ((i != 0 || AndroidUtilities.isInMultiwindow) && !this.inBubbleMode && AndroidUtilities.statusBarHeight != i)) {
-            AndroidUtilities.statusBarHeight = i;
-            ((LaunchActivity) activity).drawerLayoutContainer.requestLayout();
-        }
-        if (!rect.equals(this.insets)) {
+        Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+        this.insets.set(defaultWindowInsets.left, defaultWindowInsets.top, defaultWindowInsets.right, defaultWindowInsets.bottom);
+        Rect rect2 = this.insets;
+        int i = rect2.top;
+        if (!rect.equals(rect2)) {
             int i2 = this.animationInProgress;
             if (i2 == 1 || i2 == 3) {
                 ClippingImageView clippingImageView = this.animatingImageView;
@@ -6124,7 +6118,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             marginLayoutParams.bottomMargin = (-i3) / 2;
             this.navigationBar.setLayoutParams(marginLayoutParams);
         }
-        this.containerView.setPadding(insetsIgnoringVisibility.left, 0, insetsIgnoringVisibility.right, 0);
+        this.containerView.setPadding(defaultWindowInsets.left, 0, defaultWindowInsets.right, 0);
         if (this.actionBar != null) {
             AndroidUtilities.cancelRunOnUIThread(this.updateContainerFlagsRunnable);
             if (this.isVisible && this.animationInProgress == 0) {

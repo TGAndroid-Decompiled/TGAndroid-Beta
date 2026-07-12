@@ -51,6 +51,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
 import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -61,7 +62,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -3432,7 +3432,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$19(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$19(View view) {
         openStoriesRecorder();
     }
 
@@ -9909,6 +9909,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return this.folderId == 1;
     }
 
+    public boolean isCommunity() {
+        return this.communityId != 0;
+    }
+
     public void setInitialSearchType(int i) {
         this.initialSearchType = i;
     }
@@ -11995,7 +11999,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
+    private void openStoriesRecorder() {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -12355,8 +12359,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
         this.windowInsetsStateHolder.setInsets(windowInsetsCompat);
-        this.statusBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).top;
-        this.navigationBarHeight = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+        Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+        this.statusBarHeight = defaultWindowInsets.top;
+        this.navigationBarHeight = defaultWindowInsets.bottom;
         int i = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime()).bottom;
         if (this.imeInsetHeight != i) {
             this.imeInsetHeight = i;

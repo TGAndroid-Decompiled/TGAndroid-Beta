@@ -145,6 +145,7 @@ public abstract class BaseFragment {
         return true;
     }
 
+    @Deprecated
     public boolean isSupportEdgeToEdge() {
         return false;
     }
@@ -1487,6 +1488,13 @@ public abstract class BaseFragment {
         addSheet(articleViewerMakeSheet.sheet);
         BottomSheetTabDialog.checkSheet(articleViewerMakeSheet.sheet);
         return articleViewerMakeSheet;
+    }
+
+    public EdgeToEdgeSupportMode getEdgeToEdgeSupportMode() {
+        if (isSupportEdgeToEdge()) {
+            return EdgeToEdgeSupportMode.VERTICAL;
+        }
+        return EdgeToEdgeSupportMode.NONE;
     }
 
     public boolean drawEdgeNavigationBar() {

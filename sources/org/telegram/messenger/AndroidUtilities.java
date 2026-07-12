@@ -103,8 +103,10 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
 import androidx.core.math.MathUtils;
 import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -318,6 +320,9 @@ public class AndroidUtilities {
     }
 
     public static void dumpCanvas(View view) {
+    }
+
+    public static void fillStatusBarHeight(Context context, boolean z) {
     }
 
     public static double fixLocationCoord(double d) {
@@ -1547,25 +1552,8 @@ public class AndroidUtilities {
         return 1;
     }
 
-    public static void fillStatusBarHeight(Context context, boolean z) {
-        if (context != null) {
-            if ((statusBarHeight <= 0 || z) && BuildVars.USE_LEGACY_SYSTEM_INSETS) {
-                statusBarHeight = getStatusBarHeight(context);
-                navigationBarHeight = getNavigationBarHeight(context);
-            }
-        }
-    }
-
     public static int getStatusBarHeight(Context context) {
         int identifier = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (identifier > 0) {
-            return context.getResources().getDimensionPixelSize(identifier);
-        }
-        return 0;
-    }
-
-    private static int getNavigationBarHeight(Context context) {
-        int identifier = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
         if (identifier > 0) {
             return context.getResources().getDimensionPixelSize(identifier);
         }
@@ -2979,21 +2967,17 @@ public class AndroidUtilities {
         if (!isSmallTablet()) {
             Point point = displaySize;
             int iMin = Math.min(point.x, point.y);
-            int iDp = (iMin * 35) / 100;
-            if (iDp < dp(320.0f)) {
-                iDp = dp(320.0f);
-            }
-            return iMin - iDp;
+            return iMin - getTabletLeftFragmentSize(iMin, 0, 0);
         }
         Point point2 = displaySize;
         int iMin2 = Math.min(point2.x, point2.y);
         Point point3 = displaySize;
         int iMax = Math.max(point3.x, point3.y);
-        int iDp2 = (iMax * 35) / 100;
-        if (iDp2 < dp(320.0f)) {
-            iDp2 = dp(320.0f);
-        }
-        return Math.min(iMin2, iMax - iDp2);
+        return Math.min(iMin2, iMax - getTabletLeftFragmentSize(iMax, 0, 0));
+    }
+
+    public static int getTabletLeftFragmentSize(int i, int i2, int i3) {
+        return i2 + Math.max(dp(320.0f), (((i - i2) - i3) * 35) / 100);
     }
 
     public static int getPhotoSize() {
@@ -6342,6 +6326,36 @@ public class AndroidUtilities {
         if (i >= 29) {
             window.setStatusBarContrastEnforced(false);
             window.setNavigationBarContrastEnforced(false);
+        }
+    }
+
+    public static void applyEdgeToEdgeLayoutParams(WindowManager.LayoutParams layoutParams) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 28) {
+            layoutParams.layoutInDisplayCutoutMode = i >= 30 ? 3 : 1;
+        }
+    }
+
+    public static Insets getDefaultWindowInsets(WindowInsetsCompat windowInsetsCompat, boolean z) {
+        Insets insetsIgnoringVisibility = windowInsetsCompat.getInsetsIgnoringVisibility(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
+        return z ? Insets.max(insetsIgnoringVisibility, windowInsetsCompat.getInsets(WindowInsetsCompat.Type.ime())) : insetsIgnoringVisibility;
+    }
+
+    public static void setViewLayoutMargins(View view, int i, int i2, int i3, int i4) {
+        if (view == null) {
+            return;
+        }
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) layoutParams;
+            if (marginLayoutParams.leftMargin == i && marginLayoutParams.topMargin == i2 && marginLayoutParams.rightMargin == i3 && marginLayoutParams.bottomMargin == i4) {
+                return;
+            }
+            marginLayoutParams.leftMargin = i;
+            marginLayoutParams.topMargin = i2;
+            marginLayoutParams.rightMargin = i3;
+            marginLayoutParams.bottomMargin = i4;
+            view.requestLayout();
         }
     }
 

@@ -25,13 +25,12 @@ public class BuildVars {
     public static String SAFETYNET_KEY = null;
     public static boolean SUPPORTS_PASSKEYS = false;
     public static boolean USE_CLOUD_STRINGS = true;
-    public static boolean USE_LEGACY_SYSTEM_INSETS;
     private static Boolean betaApp;
 
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = "12.9.0";
+        BUILD_VERSION_STRING = "12.9.1";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -41,7 +40,6 @@ public class BuildVars {
         HUAWEI_APP_ID = "101184875";
         IS_BILLING_UNAVAILABLE = false;
         SUPPORTS_PASSKEYS = true;
-        USE_LEGACY_SYSTEM_INSETS = false;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
             boolean z2 = DEBUG_VERSION;

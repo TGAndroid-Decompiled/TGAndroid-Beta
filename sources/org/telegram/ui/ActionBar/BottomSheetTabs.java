@@ -660,7 +660,6 @@ public class BottomSheetTabs extends FrameLayout {
             return;
         }
         this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.backgroundPaint);
         super.dispatchDraw(canvas);
         int i = this.tabColorAnimated.set(this.tabColor);
         float f = this.tabDarkAnimated.set(this.tabIsDark);
@@ -677,6 +676,10 @@ public class BottomSheetTabs extends FrameLayout {
                 }
             }
         }
+    }
+
+    public Paint getBackgroundPaint() {
+        return this.backgroundPaint;
     }
 
     public void setupTab(TabDrawable tabDrawable) {

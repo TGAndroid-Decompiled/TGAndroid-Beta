@@ -7900,7 +7900,9 @@ public abstract class Theme {
 
     public static Paint fillingPaint(int i) {
         Paint paint = PAINT_FILLING;
-        paint.setColor(i);
+        if (paint.getColor() != i) {
+            paint.setColor(i);
+        }
         return paint;
     }
 }

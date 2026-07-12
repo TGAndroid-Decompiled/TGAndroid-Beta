@@ -34,7 +34,11 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
 import androidx.core.util.Consumer;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.billingclient.api.BillingFlowParams;
@@ -70,6 +74,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.EdgeToEdgeSupportMode;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -149,6 +154,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
     private final BlurredBackgroundSource iBlur3Source;
     private final BlurredBackgroundSourceRenderNode iBlur3SourceGlassFrosted;
     boolean inc;
+    private Insets insets;
     private boolean isDialogVisible;
     boolean isLandscapeMode;
     int lastPaddingRow;
@@ -348,6 +354,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.gradientTextureBitmap = bitmapCreateBitmap;
         this.gradientCanvas = new Canvas(bitmapCreateBitmap);
         this.gradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradientBackground1, Theme.key_premiumGradientBackground2, Theme.key_premiumGradientBackground3, Theme.key_premiumGradientBackground4);
+        this.insets = Insets.NONE;
         PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1);
         this.tiersGradientTools = premiumGradientTools;
         premiumGradientTools.exactly = true;
@@ -476,7 +483,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.contentView = new FrameLayout(context) {
             private final Paint backgroundPaint = new Paint(1);
             boolean iconInterceptedTouch;
-            boolean ignoreLayout;
             int lastSize;
             boolean listInterceptedTouch;
 
@@ -521,11 +527,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 PremiumPreviewFragment.this.statusBarHeight = AndroidUtilities.statusBarHeight;
                 PremiumPreviewFragment.this.backgroundView.measure(i2, View.MeasureSpec.makeMeasureSpec(0, 0));
                 PremiumPreviewFragment.this.particlesView.getLayoutParams().height = PremiumPreviewFragment.this.backgroundView.getMeasuredHeight();
-                if (PremiumPreviewFragment.this.buttonContainer != null) {
-                    this.ignoreLayout = true;
-                    PremiumPreviewFragment.this.buttonContainer.setPadding(0, AndroidUtilities.dp(14.0f), 0, AndroidUtilities.navigationBarHeight);
-                    this.ignoreLayout = false;
-                }
                 if (PremiumPreviewFragment.this.buttonContainer != null && PremiumPreviewFragment.this.buttonContainer.getVisibility() != 8) {
                     iDp = AndroidUtilities.dp(68.0f);
                 }
@@ -536,14 +537,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 if (this.lastSize != ((getMeasuredHeight() + getMeasuredWidth()) << 16)) {
                     PremiumPreviewFragment.this.updateBackgroundImage();
                 }
-            }
-
-            @Override
-            public void requestLayout() {
-                if (this.ignoreLayout) {
-                    return;
-                }
-                super.requestLayout();
             }
 
             @Override
@@ -650,8 +643,8 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 }
                 super.dispatchDraw(canvas);
                 if (PremiumPreviewFragment.this.buttonContainer.getVisibility() != 0) {
-                    PremiumPreviewFragment.this.navbarProtectionDrawable.setFadeHeight(AndroidUtilities.navigationBarHeight, false);
-                    PremiumPreviewFragment.this.navbarProtectionDrawable.setBounds(0, getHeight() - AndroidUtilities.navigationBarHeight, getWidth(), getHeight());
+                    PremiumPreviewFragment.this.navbarProtectionDrawable.setFadeHeight(PremiumPreviewFragment.this.insets.bottom, false);
+                    PremiumPreviewFragment.this.navbarProtectionDrawable.setBounds(0, getHeight() - PremiumPreviewFragment.this.insets.bottom, getWidth(), getHeight());
                     PremiumPreviewFragment.this.navbarProtectionDrawable.draw(canvas);
                 }
                 if (((BaseFragment) PremiumPreviewFragment.this).parentLayout == null || !PremiumPreviewFragment.this.whiteBackground) {
@@ -682,7 +675,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         this.listView.setCaptureSectionsDecoratorAllowed(true);
         this.listView.setSections(true);
         this.listView.setClipToPadding(false);
-        this.listView.setPadding(0, AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), 0, AndroidUtilities.dp(48.0f) + AndroidUtilities.navigationBarHeight);
         RecyclerListView recyclerListView2 = this.listView;
         FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, (AndroidUtilities.dp(68.0f) + this.statusBarHeight) - AndroidUtilities.dp(16.0f), this.listView);
         this.layoutManager = fillLastLinearLayoutManager;
@@ -812,6 +804,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         }
         MediaDataController.getInstance(this.currentAccount).preloadPremiumPreviewStickers();
         sentShowScreenStat(this.source);
+        ViewCompat.setOnApplyWindowInsetsListener(this.fragmentView, new OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                return this.f$0.onApplyWindowInsets(view, windowInsetsCompat);
+            }
+        });
         return this.fragmentView;
     }
 
@@ -2051,7 +2049,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
             @Override
             public int getBottomOffset(int i) {
-                return AndroidUtilities.navigationBarHeight;
+                return PremiumPreviewFragment.this.insets.bottom;
             }
         });
     }
@@ -2404,11 +2402,36 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PremiumPreviewFragment.showSelectStatusDialog(org.telegram.ui.PremiumFeatureCell, java.lang.Long, org.telegram.messenger.Utilities$Callback2):void");
     }
 
+    @Override
+    public EdgeToEdgeSupportMode getEdgeToEdgeSupportMode() {
+        return EdgeToEdgeSupportMode.FULL;
+    }
+
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+        this.insets = defaultWindowInsets;
+        this.listView.setPadding(0, defaultWindowInsets.top, 0, AndroidUtilities.dp(48.0f) + this.insets.bottom);
+        RecyclerListView recyclerListView = this.listView;
+        Insets insets = this.insets;
+        AndroidUtilities.setViewLayoutMargins(recyclerListView, insets.left, 0, insets.right, 0);
+        BackgroundView backgroundView = this.backgroundView;
+        Insets insets2 = this.insets;
+        backgroundView.setPadding(insets2.left, 0, insets2.right, 0);
+        FrameLayout frameLayout = this.buttonContainer;
+        if (frameLayout != null) {
+            int i = this.insets.left;
+            int iDp = AndroidUtilities.dp(14.0f);
+            Insets insets3 = this.insets;
+            frameLayout.setPadding(i, iDp, insets3.right, insets3.bottom);
+        }
+        return WindowInsetsCompat.CONSUMED;
+    }
+
     public void blur3_InvalidateBlur() {
         if (Build.VERSION.SDK_INT < 31 || this.scrollableViewNoiseSuppressor == null) {
             return;
         }
-        this.iBlur3PositionMainTabs.set(0.0f, (this.fragmentView.getMeasuredHeight() - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(132.0f), this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight() + AndroidUtilities.dp(48.0f));
+        this.iBlur3PositionMainTabs.set(0.0f, (this.fragmentView.getMeasuredHeight() - this.insets.bottom) - AndroidUtilities.dp(132.0f), this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight() + AndroidUtilities.dp(48.0f));
         this.scrollableViewNoiseSuppressor.setupRenderNodes(this.iBlur3Positions, 1);
         this.scrollableViewNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.fragmentView.getMeasuredWidth(), this.fragmentView.getMeasuredHeight());
     }

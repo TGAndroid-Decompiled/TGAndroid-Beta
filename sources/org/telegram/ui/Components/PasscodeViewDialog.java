@@ -2,15 +2,16 @@ package org.telegram.ui.Components;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
@@ -25,16 +26,13 @@ public class PasscodeViewDialog extends Dialog {
     public PasscodeViewDialog(Context context) {
         super(context, R.style.TransparentDialog);
         this.context = context;
+        AndroidUtilities.enableEdgeToEdge(getWindow());
         FrameLayout frameLayout = new FrameLayout(context);
         this.windowView = frameLayout;
-        frameLayout.setFitsSystemWindows(true);
-        frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
             @Override
-            public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                if (Build.VERSION.SDK_INT >= 30) {
-                    return WindowInsets.CONSUMED;
-                }
-                return windowInsets.consumeSystemWindowInsets();
+            public final WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+                return PasscodeViewDialog.lambda$new$0(view, windowInsetsCompat);
             }
         });
         PasscodeView passcodeView = new PasscodeView(context) {
@@ -65,6 +63,10 @@ public class PasscodeViewDialog extends Dialog {
         frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1, -1, 119));
     }
 
+    public static WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
+        return WindowInsetsCompat.CONSUMED;
+    }
+
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -83,11 +85,7 @@ public class PasscodeViewDialog extends Dialog {
             attributes.flags = i | 8192;
             AndroidUtilities.logFlagSecure();
         }
-        int i2 = Build.VERSION.SDK_INT;
         attributes.flags |= -2013198976;
-        if (i2 >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
-        }
         window.setAttributes(attributes);
         this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar((Dialog) this, false);

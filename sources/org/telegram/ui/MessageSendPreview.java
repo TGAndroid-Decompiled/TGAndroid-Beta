@@ -14,7 +14,6 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.style.CharacterStyle;
 import android.view.KeyEvent;
@@ -178,6 +177,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         this.cellDelta = new Rect();
         this.context = context;
         this.resourcesProvider = resourcesProvider;
+        AndroidUtilities.enableEdgeToEdge(getWindow());
         this.activityVisibilityController = LaunchActivity.obtainActivityVisibilityController();
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
@@ -246,7 +246,7 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         ViewCompat.setOnApplyWindowInsetsListener(frameLayout, new OnApplyWindowInsetsListener() {
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
-                MessageSendPreview.this.insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                MessageSendPreview.this.insets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
                 MessageSendPreview.this.containerView.setPadding(MessageSendPreview.this.insets.left, MessageSendPreview.this.insets.top, MessageSendPreview.this.insets.right, MessageSendPreview.this.insets.bottom);
                 MessageSendPreview.this.windowView.requestLayout();
                 return WindowInsetsCompat.CONSUMED;
@@ -1398,9 +1398,6 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
         int i = attributes.flags & (-3);
         attributes.softInputMode = 16;
         attributes.flags = i | (-1945959040);
-        if (Build.VERSION.SDK_INT >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
-        }
         window.setAttributes(attributes);
         this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.isCurrentThemeDark());

@@ -1477,7 +1477,7 @@ public class ActionBar extends FrameLayout implements FactorAnimator.Target, The
     }
 
     @Override
-    protected void onLayout(boolean r15, int r16, int r17, int r18, int r19) {
+    protected void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBar.onLayout(boolean, int, int, int, int):void");
     }
 
