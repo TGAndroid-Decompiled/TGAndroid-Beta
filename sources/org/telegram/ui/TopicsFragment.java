@@ -967,8 +967,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             };
             this.fragmentContextView = fragmentContextView;
-            fragmentContextView.isInsideBubble = true;
             this.fragmentContextViewWrapper.addView(fragmentContextView);
+            this.topPanelLayout.setCallFragmentContextView(this.fragmentContextView);
         }
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, -2.0f);
         if (this.inPreviewMode) {

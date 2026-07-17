@@ -1350,50 +1350,7 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     private int getTotalAllUnreadCount() {
-        int size;
-        int dialogUnreadCount = 0;
-        for (int i = 0; i < 4; i++) {
-            if (UserConfig.getInstance(i).isClientActivated() && (SharedConfig.showNotificationsForAllAccounts || UserConfig.selectedAccount == i)) {
-                NotificationsController notificationsController = getInstance(i);
-                if (notificationsController.showBadgeNumber) {
-                    if (notificationsController.showBadgeMessages) {
-                        if (notificationsController.showBadgeMuted) {
-                            try {
-                                ArrayList arrayList = new ArrayList(MessagesController.getInstance(i).allDialogs);
-                                int size2 = arrayList.size();
-                                for (int i2 = 0; i2 < size2; i2++) {
-                                    TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i2);
-                                    if ((dialog == null || !DialogObject.isChatDialog(dialog.id) || !ChatObject.isNotInChat(getMessagesController().getChat(Long.valueOf(-dialog.id)))) && dialog != null) {
-                                        dialogUnreadCount += MessagesController.getInstance(i).getDialogUnreadCount(dialog);
-                                    }
-                                }
-                            } catch (Exception e) {
-                                FileLog.e(e);
-                            }
-                        } else {
-                            size = notificationsController.total_unread_count;
-                            dialogUnreadCount += size;
-                        }
-                    } else if (notificationsController.showBadgeMuted) {
-                        try {
-                            int size3 = MessagesController.getInstance(i).allDialogs.size();
-                            for (int i3 = 0; i3 < size3; i3++) {
-                                TLRPC.Dialog dialog2 = MessagesController.getInstance(i).allDialogs.get(i3);
-                                if ((!DialogObject.isChatDialog(dialog2.id) || !ChatObject.isNotInChat(getMessagesController().getChat(Long.valueOf(-dialog2.id)))) && MessagesController.getInstance(i).getDialogUnreadCount(dialog2) != 0) {
-                                    dialogUnreadCount++;
-                                }
-                            }
-                        } catch (Exception e2) {
-                            FileLog.e((Throwable) e2, false);
-                        }
-                    } else {
-                        size = notificationsController.pushDialogs.size();
-                        dialogUnreadCount += size;
-                    }
-                }
-            }
-        }
-        return dialogUnreadCount;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getTotalAllUnreadCount():int");
     }
 
     public void lambda$updateBadge$34() {

@@ -45,6 +45,8 @@ import android.widget.Toast;
 import androidx.collection.ArrayMap;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
@@ -76,6 +78,7 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.EdgeToEdgeSupportMode;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
@@ -113,7 +116,9 @@ public class QrActivity extends BaseFragment {
     private final ArrayMap emojiThemeDarkIcons;
     private Bitmap emojiThemeIcon;
     private final EmojiThemes homeTheme;
+    private Insets insets;
     private boolean isCurrentThemeDark;
+    private boolean isFragmentViewPortrait;
     private RLottieImageView logoImageView;
     private final Rect logoRect;
     private ValueAnimator patternAlphaAnimator;
@@ -131,6 +136,16 @@ public class QrActivity extends BaseFragment {
 
     interface OnItemSelectedListener {
         void onItemSelected(EmojiThemes emojiThemes, int i);
+    }
+
+    @Override
+    public boolean drawEdgeNavigationBar() {
+        return false;
+    }
+
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
     }
 
     static {
@@ -168,6 +183,7 @@ public class QrActivity extends BaseFragment {
         this.currMotionDrawable = new MotionBackgroundDrawable();
         this.currentTheme = emojiThemesCreateHomeQrTheme;
         this.selectedPosition = -1;
+        this.insets = Insets.NONE;
     }
 
     @Override
@@ -678,7 +694,7 @@ public class QrActivity extends BaseFragment {
         themeListViewController.shareButton.setClickable(true);
     }
 
-    class AnonymousClass6 implements CameraScanActivity.CameraScanActivityDelegate {
+    class AnonymousClass5 implements CameraScanActivity.CameraScanActivityDelegate {
         final int val$currentAccount;
         final BaseFragment val$fragment;
 
@@ -702,7 +718,7 @@ public class QrActivity extends BaseFragment {
             return CameraScanActivity.CameraScanActivityDelegate.CC.$default$processQr(this, str, runnable);
         }
 
-        AnonymousClass6(int i, BaseFragment baseFragment) {
+        AnonymousClass5(int i, BaseFragment baseFragment) {
             this.val$currentAccount = i;
             this.val$fragment = baseFragment;
         }
@@ -716,7 +732,7 @@ public class QrActivity extends BaseFragment {
                 userNameResolver.resolve(strExtractUsername, new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        QrActivity.AnonymousClass6.lambda$didFindQr$1(baseFragment, (Long) obj);
+                        QrActivity.AnonymousClass5.lambda$didFindQr$1(baseFragment, (Long) obj);
                     }
                 });
                 return;
@@ -724,7 +740,7 @@ public class QrActivity extends BaseFragment {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    QrActivity.AnonymousClass6.lambda$didFindQr$2();
+                    QrActivity.AnonymousClass5.lambda$didFindQr$2();
                 }
             });
         }
@@ -737,7 +753,7 @@ public class QrActivity extends BaseFragment {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        QrActivity.AnonymousClass6.lambda$didFindQr$0();
+                        QrActivity.AnonymousClass5.lambda$didFindQr$0();
                     }
                 });
             } else {
@@ -755,7 +771,7 @@ public class QrActivity extends BaseFragment {
     }
 
     public static void openCameraScanActivity(BaseFragment baseFragment) {
-        CameraScanActivity.showAsSheet(baseFragment, false, 1, (CameraScanActivity.CameraScanActivityDelegate) new AnonymousClass6(baseFragment.getCurrentAccount(), baseFragment));
+        CameraScanActivity.showAsSheet(baseFragment, false, 1, (CameraScanActivity.CameraScanActivityDelegate) new AnonymousClass5(baseFragment.getCurrentAccount(), baseFragment));
     }
 
     @Override
@@ -1287,9 +1303,6 @@ public class QrActivity extends BaseFragment {
         private final Paint backgroundPaint = new Paint(1);
         public int prevSelectedPosition = -1;
 
-        protected void setDarkTheme(boolean z) {
-        }
-
         public ThemeListViewController(BaseFragment baseFragment, Window window) {
             this.fragment = baseFragment;
             this.window = window;
@@ -1317,13 +1330,11 @@ public class QrActivity extends BaseFragment {
                     ThemeListViewController.this.backgroundPaint.setColor(baseFragment.getThemedColor(Theme.key_windowBackgroundWhite));
                     ThemeListViewController.this.backgroundDrawable.setCallback(this);
                     ThemeListViewController.this.backgroundDrawable.getPadding(rect);
-                    setPadding(0, rect.top + AndroidUtilities.dp(8.0f), 0, rect.bottom);
                 }
 
                 @Override
                 protected void onMeasure(int i, int i2) {
-                    Point point = AndroidUtilities.displaySize;
-                    boolean z = point.x < point.y;
+                    boolean z = QrActivity.this.isFragmentViewPortrait;
                     int iDp = AndroidUtilities.dp(12.0f);
                     if (z) {
                         ThemeListViewController.this.recyclerView.setLayoutParams(LayoutHelper.createFrame(-1, 104.0f, 8388611, 0.0f, 44.0f, 0.0f, 0.0f));
@@ -1376,7 +1387,9 @@ public class QrActivity extends BaseFragment {
                 @Override
                 protected void dispatchDraw(Canvas canvas) {
                     if (ThemeListViewController.this.prevIsPortrait) {
-                        ThemeListViewController.this.backgroundDrawable.setBounds(-this.backgroundPadding.left, 0, getWidth() + this.backgroundPadding.right, getHeight());
+                        Drawable drawable = ThemeListViewController.this.backgroundDrawable;
+                        Rect rect = this.backgroundPadding;
+                        drawable.setBounds(-rect.left, -rect.top, getWidth() + this.backgroundPadding.right, getHeight() + this.backgroundPadding.bottom);
                         ThemeListViewController.this.backgroundDrawable.draw(canvas);
                     } else {
                         RectF rectF = AndroidUtilities.rectTmp;
@@ -1439,8 +1452,7 @@ public class QrActivity extends BaseFragment {
             this.progressView = flickerLoadingView;
             flickerLoadingView.setVisibility(0);
             frameLayout.addView(flickerLoadingView, LayoutHelper.createFrame(-1, 104.0f, 8388611, 0.0f, 44.0f, 0.0f, 0.0f));
-            Point point = AndroidUtilities.displaySize;
-            this.prevIsPortrait = point.x < point.y;
+            this.prevIsPortrait = true;
             RecyclerListView recyclerListView = new RecyclerListView(parentActivity);
             this.recyclerView = recyclerListView;
             ChatThemeBottomSheet.Adapter adapter = new ChatThemeBottomSheet.Adapter(((BaseFragment) QrActivity.this).currentAccount, QrActivity.this.resourcesProvider, 2);
@@ -1723,6 +1735,12 @@ public class QrActivity extends BaseFragment {
             }
         }
 
+        protected void setDarkTheme(boolean z) {
+            QrActivity.this.isCurrentThemeDark = z;
+            QrActivity qrActivity = QrActivity.this;
+            qrActivity.onItemSelected(qrActivity.currentTheme, QrActivity.this.selectedPosition, false);
+        }
+
         public void setForceDark(boolean z, boolean z2) {
             if (this.forceDark == z) {
                 return;
@@ -1819,5 +1837,16 @@ public class QrActivity extends BaseFragment {
             }
             return arrayList;
         }
+    }
+
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        this.insets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+        this.fragmentView.requestLayout();
+        return WindowInsetsCompat.CONSUMED;
+    }
+
+    @Override
+    public EdgeToEdgeSupportMode getEdgeToEdgeSupportMode() {
+        return EdgeToEdgeSupportMode.FULL;
     }
 }

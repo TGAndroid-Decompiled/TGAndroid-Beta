@@ -755,11 +755,13 @@ public class RichMessageLayout {
                 rect2.top += AndroidUtilities.dp(4.0f);
             }
             RichTextBlock richTextBlock = new RichTextBlock(this, rect2, this.maxWidth, text);
+            richTextBlock.accessibilityLabelResId = getBlockAccessibilityLabel(pageBlock);
             this.blocks.add(richTextBlock);
             return richTextBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockPreformatted) {
             RichPreformattedBlock richPreformattedBlock = new RichPreformattedBlock(this, rect, this.maxWidth, (TL_iv.pageBlockPreformatted) pageBlock, (RichPreformattedBlock) findPrevBlock(pageBlock, RichPreformattedBlock.class));
+            richPreformattedBlock.accessibilityLabelResId = R.string.ArticleCode;
             this.blocks.add(richPreformattedBlock);
             return richPreformattedBlock;
         }
@@ -936,6 +938,7 @@ public class RichMessageLayout {
                 spannableStringBuilder.append(formatText(pageblockblockquote.caption, setBlockFlags(i2, 11)));
             }
             RichTextBlock richTextBlock4 = new RichTextBlock(this, new Rect(rect.left + AndroidUtilities.dp(12.0f), rect.top + AndroidUtilities.dp(4.0f), rect.right + AndroidUtilities.dp(12.0f), rect.bottom + AndroidUtilities.dp(4.0f)), this.maxWidth, spannableStringBuilder);
+            richTextBlock4.accessibilityLabelResId = R.string.ArticleQuote;
             richTextBlock4.quoteAuthorStart = length;
             this.blocks.add(richTextBlock4);
             this.quotes.add(new QuoteBackground(size, this.blocks.size() - 1, i11, i));
@@ -957,6 +960,9 @@ public class RichMessageLayout {
                 f3 = 12.0f;
             }
             int i16 = i12;
+            if (this.blocks.size() > size2) {
+                this.blocks.get(size2).accessibilityParentLabelResId = R.string.ArticleQuote;
+            }
             if (z3) {
                 RichTextBlock richTextBlock5 = new RichTextBlock(this, new Rect(rect.left + AndroidUtilities.dp(12.0f), rect.top, rect.right + AndroidUtilities.dp(12.0f), rect.bottom + AndroidUtilities.dp(4.0f)), this.maxWidth, new SpannableStringBuilder(formatText(pageblockblockquoteblocks.caption, setBlockFlags(i2, 11))));
                 richTextBlock5.quoteAuthorStart = 0;
@@ -974,12 +980,14 @@ public class RichMessageLayout {
                 spannableStringBuilder2.append(formatText(pageblockpullquote.caption, setBlockFlags(i2, 11)));
             }
             RichTextBlock richTextBlock6 = new RichTextBlock(this, new Rect(rect.left + AndroidUtilities.dp(30.0f), rect.top + AndroidUtilities.dp(8.0f), rect.right + AndroidUtilities.dp(30.0f), rect.bottom + AndroidUtilities.dp(8.0f)), this.maxWidth, spannableStringBuilder2, Layout.Alignment.ALIGN_CENTER);
+            richTextBlock6.accessibilityLabelResId = R.string.ArticlePullquote;
             richTextBlock6.pullquote = true;
             this.blocks.add(richTextBlock6);
             return richTextBlock6;
         }
         if (pageBlock instanceof TL_iv.pageBlockTable) {
             RichTableBlock richTableBlock = new RichTableBlock(this, rect, this.maxWidth, (TL_iv.pageBlockTable) pageBlock);
+            richTableBlock.accessibilityLabelResId = R.string.AccDescrIVTable;
             this.blocks.add(richTableBlock);
             return richTableBlock;
         }
@@ -1734,6 +1742,31 @@ public class RichMessageLayout {
             return 12;
         }
         return pageBlock instanceof TL_iv.pageBlockFooter ? 7 : 0;
+    }
+
+    private static int getBlockAccessibilityLabel(TL_iv.PageBlock pageBlock) {
+        if (pageBlock instanceof TL_iv.pageBlockHeading1) {
+            return R.string.ArticleHeading1;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockHeading2) {
+            return R.string.ArticleHeading2;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockHeading3) {
+            return R.string.ArticleHeading3;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockHeading4) {
+            return R.string.ArticleHeading4;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockHeading5) {
+            return R.string.ArticleHeading5;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockHeading6) {
+            return R.string.ArticleHeading6;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockFooter) {
+            return R.string.ArticleFooter;
+        }
+        return 0;
     }
 
     public CharSequence formatText(TL_iv.RichText richText) {
@@ -2983,19 +3016,35 @@ public class RichMessageLayout {
         public final Text title;
 
         @Override
-        public int getAccessibilityElementCount() {
+        protected int getBlockAccessibilityElementCount() {
             return 1;
         }
 
         @Override
-        public CharSequence getAccessibilityElementText(int i) {
-            StaticLayout staticLayout;
-            Text text = this.title;
-            return TextUtils.concat((text == null || (staticLayout = text.layout) == null) ? "" : staticLayout.getText(), ", ", LocaleController.getString(isOpen() ? R.string.AccDescrExpanded : R.string.AccDescrCollapsed));
+        protected boolean isBlockAccessibilityElementText(int i) {
+            return true;
         }
 
         @Override
-        public void getAccessibilityElementBounds(int i, Rect rect) {
+        public void appendAccessibilityText(SpannableStringBuilder spannableStringBuilder) {
+            RichBlock.appendText(spannableStringBuilder, this.title, this.texts);
+        }
+
+        @Override
+        protected CharSequence getBlockAccessibilityElementText(int i) {
+            StaticLayout staticLayout;
+            Text text = this.title;
+            CharSequence charSequenceWithReplacements = (text == null || (staticLayout = text.layout) == null) ? null : RichBlock.withReplacements(staticLayout.getText());
+            return TextUtils.concat(LocaleController.getString(R.string.ArticleToggleBlock), ", ", LocaleController.getString(isOpen() ? R.string.AccDescrExpanded : R.string.AccDescrCollapsed), TextUtils.isEmpty(charSequenceWithReplacements) ? "" : TextUtils.concat(", ", charSequenceWithReplacements));
+        }
+
+        @Override
+        protected CharSequence getBlockAccessibilityElementStateDescription(int i) {
+            return LocaleController.getString(isOpen() ? R.string.AccDescrExpanded : R.string.AccDescrCollapsed);
+        }
+
+        @Override
+        protected void getBlockAccessibilityElementBounds(int i, Rect rect) {
             int iDp = AndroidUtilities.dp(26.0f);
             Text text = this.title;
             int iMax = Math.max(iDp, text != null ? text.getHeight() : 0);
@@ -3005,7 +3054,7 @@ public class RichMessageLayout {
         }
 
         @Override
-        public boolean onAccessibilityElementClick(int i, View view) {
+        protected boolean onBlockAccessibilityElementClick(int i, View view) {
             toggle();
             return true;
         }
@@ -3887,6 +3936,16 @@ public class RichMessageLayout {
             RichBlock.appendText(spannableStringBuilder, this.text, this.texts);
         }
 
+        @Override
+        public CharSequence getAccessibilityLabel() {
+            CharSequence accessibilityLabel = super.getAccessibilityLabel();
+            if (TextUtils.isEmpty(this.language)) {
+                return accessibilityLabel;
+            }
+            String strCapitalizeLanguage = MessageObject.TextLayoutBlock.capitalizeLanguage(this.language);
+            return TextUtils.isEmpty(strCapitalizeLanguage) ? accessibilityLabel : TextUtils.concat(accessibilityLabel, " (", strCapitalizeLanguage, ")");
+        }
+
         public RichPreformattedBlock(RichMessageLayout richMessageLayout, Rect rect, int i, TL_iv.pageBlockPreformatted pageblockpreformatted, RichPreformattedBlock richPreformattedBlock) {
             super(richMessageLayout, rect, i);
             this.bgPaint = new Paint(1);
@@ -4731,12 +4790,12 @@ public class RichMessageLayout {
 
         protected abstract boolean fileExists();
 
+        public abstract TL_iv.PageBlock getBlock();
+
         @Override
-        public int getAccessibilityElementCount() {
+        protected int getBlockAccessibilityElementCount() {
             return 1;
         }
-
-        public abstract TL_iv.PageBlock getBlock();
 
         protected abstract String getFileName();
 
@@ -4974,20 +5033,20 @@ public class RichMessageLayout {
         }
 
         @Override
-        public CharSequence getAccessibilityElementText(int i) {
+        protected CharSequence getBlockAccessibilityElementText(int i) {
             String string = LocaleController.getString(isRealVideo() ? R.string.AttachVideo : R.string.AttachPhoto);
             return (!isSpoiler() || this.spoilerReveal.fullyRevealed()) ? string : TextUtils.concat(string, ", ", LocaleController.getString(R.string.Spoiler));
         }
 
         @Override
-        public void getAccessibilityElementBounds(int i, Rect rect) {
+        protected void getBlockAccessibilityElementBounds(int i, Rect rect) {
             int imageLeft = this.padding.left + getImageLeft();
             int i2 = ((int) this.currY) + this.padding.top;
             rect.set(imageLeft, i2, this.imgWidth + imageLeft, this.imgHeight + i2);
         }
 
         @Override
-        public boolean onAccessibilityElementClick(int i, View view) {
+        protected boolean onBlockAccessibilityElementClick(int i, View view) {
             if (!isSpoiler() || this.spoilerReveal.isRevealing()) {
                 if (this.root.delegate == null) {
                     return false;
@@ -6880,12 +6939,12 @@ public class RichMessageLayout {
         }
 
         @Override
-        public int getAccessibilityElementCount() {
+        protected int getBlockAccessibilityElementCount() {
             return this.cells.size();
         }
 
         @Override
-        public CharSequence getAccessibilityElementText(int i) {
+        protected CharSequence getBlockAccessibilityElementText(int i) {
             if (i < 0 || i >= this.cells.size()) {
                 return null;
             }
@@ -6893,7 +6952,7 @@ public class RichMessageLayout {
         }
 
         @Override
-        public void getAccessibilityElementBounds(int i, Rect rect) {
+        protected void getBlockAccessibilityElementBounds(int i, Rect rect) {
             if (i < 0 || i >= this.cells.size()) {
                 return;
             }
@@ -6905,7 +6964,7 @@ public class RichMessageLayout {
         }
 
         @Override
-        public boolean onAccessibilityElementClick(int i, View view) {
+        protected boolean onBlockAccessibilityElementClick(int i, View view) {
             if (i < 0 || i >= this.cells.size()) {
                 return false;
             }
@@ -6931,8 +6990,7 @@ public class RichMessageLayout {
 
     public static class RichSlideshowBlock extends RichBlock {
         private static Paint mediaBgPaint;
-        private static Drawable slideDotBigDrawable;
-        private static Drawable slideDotDrawable;
+        private static Paint slideDotPaint;
         public final TL_iv.pageBlockSlideshow block;
         public final ArrayList<MediaCell> cells;
         private final Path clipPath;
@@ -6942,11 +7000,14 @@ public class RichMessageLayout {
         private float downY;
         private boolean dragging;
         public final boolean first;
+        private int maxFlingVelocity;
+        private int minFlingVelocity;
         private float pageOffset;
         private ValueAnimator settleAnimator;
         private int slideHeight;
         private int slideWidth;
         private int touchSlop;
+        private VelocityTracker velocityTracker;
 
         public RichSlideshowBlock(RichMessageLayout richMessageLayout, Rect rect, int i, TL_iv.pageBlockSlideshow pageblockslideshow, boolean z) {
             super(richMessageLayout, rect, i);
@@ -6994,8 +7055,140 @@ public class RichMessageLayout {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r24) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.RichMessageLayout.RichSlideshowBlock.onDraw(android.graphics.Canvas):void");
+        protected void onDraw(Canvas canvas) {
+            int i;
+            int i2;
+            int i3;
+            int i4;
+            int iDp;
+            float fClamp;
+            int i5;
+            float f;
+            MediaCell mediaCell;
+            int i6 = 0;
+            if (this.cells.isEmpty()) {
+                return;
+            }
+            if (mediaBgPaint == null) {
+                Paint paint = new Paint(1);
+                mediaBgPaint = paint;
+                paint.setColor(251658240);
+            }
+            boolean zIsInQuote = isInQuote();
+            int iDp2 = AndroidUtilities.dp(2.0f);
+            int i7 = zIsInQuote ? 0 : this.root.padLeft - iDp2;
+            int i8 = zIsInQuote ? 0 : this.root.padRight - iDp2;
+            int i9 = this.slideWidth + i7 + i8;
+            canvas.save();
+            if (zIsInQuote) {
+                int iDp3 = AndroidUtilities.dp(8.0f);
+                this.clipPath.rewind();
+                float f2 = iDp3;
+                this.clipPath.addRoundRect(0.0f, 0.0f, this.slideWidth, this.slideHeight, f2, f2, Path.Direction.CW);
+                canvas.clipPath(this.clipPath);
+                i = iDp3;
+                i2 = i;
+                i3 = i2;
+                i4 = i3;
+            } else if (this.first) {
+                int i10 = SharedConfig.bubbleRadius;
+                if (i10 > 2) {
+                    iDp = AndroidUtilities.dp(i10 - 2);
+                } else {
+                    iDp = AndroidUtilities.dp(i10);
+                }
+                int iMin = Math.min(AndroidUtilities.dp(3.0f), iDp);
+                int i11 = (this.root.isOut() || !this.root.isPinnedTop()) ? iDp : iMin;
+                if (this.root.isOut() && this.root.isPinnedTop()) {
+                    iDp = iMin;
+                }
+                float f3 = i11;
+                float f4 = iDp;
+                float f5 = iMin;
+                this.clipPath.rewind();
+                this.clipPath.addRoundRect(-i7, 0.0f, this.slideWidth + i8, this.slideHeight, new float[]{f3, f3, f4, f4, f5, f5, f5, f5}, Path.Direction.CW);
+                canvas.clipPath(this.clipPath);
+                i2 = iDp;
+                i3 = iMin;
+                i4 = i3;
+                i = i11;
+            } else {
+                canvas.clipRect(-i7, 0, this.root.getMinWidth() + i8, this.slideHeight);
+                i = 0;
+                i2 = 0;
+                i3 = 0;
+                i4 = 0;
+            }
+            int i12 = this.currentPage;
+            float f6 = 0.0f;
+            if ((i12 == 0 && this.pageOffset < 0.0f) || (i12 == this.cells.size() - 1 && this.pageOffset > 0.0f)) {
+                RichMessageLayout richMessageLayout = this.root;
+                canvas.drawColor(Theme.multAlpha(richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_outReplyNameText : Theme.key_chat_inReplyNameText), 0.2f));
+            }
+            float f7 = i9;
+            float f8 = (-this.pageOffset) * f7;
+            int i13 = this.currentPage - 1;
+            while (i13 <= this.currentPage + 1) {
+                if (i13 < 0 || i13 >= this.cells.size()) {
+                    i5 = i13;
+                    f = f7;
+                } else {
+                    MediaCell mediaCell2 = this.cells.get(i13);
+                    canvas.save();
+                    canvas.translate(((i13 - this.currentPage) * i9) + f8, f6);
+                    ImageReceiver imageReceiver = mediaCell2.imageReceiver;
+                    if (i13 == 0) {
+                        i6 = i;
+                    }
+                    imageReceiver.setRoundRadius(i6, i13 == this.cells.size() - 1 ? i2 : 0, i13 == this.cells.size() - 1 ? i3 : 0, i13 == 0 ? i4 : 0);
+                    mediaCell2.blurImageReceiver.setRoundRadius(i13 == 0 ? i : 0, i13 == this.cells.size() - 1 ? i2 : 0, i13 == this.cells.size() - 1 ? i3 : 0, i13 == 0 ? i4 : 0);
+                    float f9 = -i7;
+                    mediaCell2.imageReceiver.setImageCoords(f9, 0.0f, f7, this.slideHeight);
+                    if (mediaCell2.imageReceiver.hasBitmapImage() && mediaCell2.imageReceiver.getCurrentAlpha() == 1.0f) {
+                        mediaCell = mediaCell2;
+                        i5 = i13;
+                        f = f7;
+                    } else {
+                        mediaCell = mediaCell2;
+                        i5 = i13;
+                        f = f7;
+                        canvas.drawRect(f9, 0.0f, i9 + i8, this.slideHeight, mediaBgPaint);
+                    }
+                    mediaCell.draw(canvas);
+                    canvas.restore();
+                }
+                i13 = i5 + 1;
+                f7 = f;
+                f6 = 0.0f;
+                i6 = 0;
+            }
+            canvas.restore();
+            int size = this.cells.size();
+            if (size > 1) {
+                if (slideDotPaint == null) {
+                    Paint paint2 = new Paint(1);
+                    slideDotPaint = paint2;
+                    paint2.setColor(-1);
+                }
+                float fDp = (this.slideHeight - AndroidUtilities.dp(23.0f)) + AndroidUtilities.dp(5.0f);
+                int iDp4 = (AndroidUtilities.dp(7.0f) * size) + ((size - 1) * AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(4.0f);
+                float f10 = this.currentPage + this.pageOffset;
+                if (iDp4 < i9) {
+                    fClamp = (i9 - iDp4) / 2.0f;
+                } else {
+                    float fDp2 = AndroidUtilities.dp(4.0f);
+                    int iDp5 = AndroidUtilities.dp(13.0f);
+                    fClamp = fDp2 - (Utilities.clamp(f10 - (((i9 - AndroidUtilities.dp(8.0f)) / 2) / iDp5), Math.max(0, (size - (r12 * 2)) - 1), 0.0f) * iDp5);
+                }
+                canvas.save();
+                canvas.clipRect(0, this.slideHeight - AndroidUtilities.dp(23.0f), i9, this.slideHeight);
+                for (int i14 = 0; i14 < size; i14++) {
+                    float fMax = Math.max(0.0f, 1.0f - Math.abs(i14 - f10));
+                    slideDotPaint.setAlpha((int) ((fMax * 95.0f) + 160.0f));
+                    canvas.drawCircle(AndroidUtilities.dp(4.0f) + fClamp + (AndroidUtilities.dp(13.0f) * i14), fDp, AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(1.0f) * fMax), slideDotPaint);
+                }
+                canvas.restore();
+            }
         }
 
         @Override
@@ -7015,12 +7208,12 @@ public class RichMessageLayout {
         }
 
         @Override
-        public int getAccessibilityElementCount() {
+        protected int getBlockAccessibilityElementCount() {
             return !this.cells.isEmpty() ? 1 : 0;
         }
 
         @Override
-        public CharSequence getAccessibilityElementText(int i) {
+        protected CharSequence getBlockAccessibilityElementText(int i) {
             if (this.cells.isEmpty()) {
                 return null;
             }
@@ -7029,7 +7222,7 @@ public class RichMessageLayout {
         }
 
         @Override
-        public void getAccessibilityElementBounds(int i, Rect rect) {
+        protected void getBlockAccessibilityElementBounds(int i, Rect rect) {
             Rect rect2 = this.padding;
             int i2 = rect2.left;
             int i3 = ((int) this.currY) + rect2.top;
@@ -7037,7 +7230,7 @@ public class RichMessageLayout {
         }
 
         @Override
-        public boolean onAccessibilityElementClick(int i, View view) {
+        protected boolean onBlockAccessibilityElementClick(int i, View view) {
             if (this.cells.isEmpty()) {
                 return false;
             }
@@ -7047,6 +7240,7 @@ public class RichMessageLayout {
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
             boolean zOnTouchEvent;
+            VelocityTracker velocityTracker;
             View view;
             int actionMasked = motionEvent.getActionMasked();
             Rect rect = this.padding;
@@ -7054,11 +7248,22 @@ public class RichMessageLayout {
             try {
                 if (actionMasked == 0) {
                     if (this.touchSlop == 0 && (view = this.view) != null) {
-                        this.touchSlop = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+                        ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
+                        this.touchSlop = viewConfiguration.getScaledTouchSlop();
+                        this.minFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
+                        this.maxFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
                     }
                     this.downX = motionEvent.getX();
                     this.downY = motionEvent.getY();
                     this.dragging = false;
+                    VelocityTracker velocityTracker2 = this.velocityTracker;
+                    if (velocityTracker2 == null) {
+                        this.velocityTracker = VelocityTracker.obtain();
+                    } else {
+                        velocityTracker2.clear();
+                    }
+                    this.velocityTracker.addMovement(motionEvent);
+                    requestDisallowParentIntercept(true);
                     ValueAnimator valueAnimator = this.settleAnimator;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
@@ -7069,12 +7274,27 @@ public class RichMessageLayout {
                         this.cells.get(this.currentPage).onTouchEvent(motionEvent, this.view);
                     }
                 } else {
+                    float f = 0.0f;
                     if (actionMasked != 2) {
                         if (actionMasked == 1 || actionMasked == 3) {
+                            if (actionMasked == 1 && (velocityTracker = this.velocityTracker) != null) {
+                                velocityTracker.addMovement(motionEvent);
+                                this.velocityTracker.computeCurrentVelocity(1000, this.maxFlingVelocity);
+                                float xVelocity = this.velocityTracker.getXVelocity();
+                                float yVelocity = this.velocityTracker.getYVelocity();
+                                if (Math.abs(xVelocity) >= this.minFlingVelocity && Math.abs(xVelocity) > Math.abs(yVelocity)) {
+                                    f = xVelocity;
+                                }
+                            }
+                            VelocityTracker velocityTracker3 = this.velocityTracker;
+                            if (velocityTracker3 != null) {
+                                velocityTracker3.recycle();
+                                this.velocityTracker = null;
+                            }
+                            requestDisallowParentIntercept(false);
                             if (this.dragging) {
                                 this.dragging = false;
-                                requestDisallowParentIntercept(false);
-                                settle();
+                                settle(f);
                             } else {
                                 int i2 = this.currentPage;
                                 if (i2 >= 0 && i2 < this.cells.size()) {
@@ -7089,11 +7309,14 @@ public class RichMessageLayout {
                         motionEvent.offsetLocation(rect3.left, rect3.top);
                         return false;
                     }
+                    VelocityTracker velocityTracker4 = this.velocityTracker;
+                    if (velocityTracker4 != null) {
+                        velocityTracker4.addMovement(motionEvent);
+                    }
                     float x = motionEvent.getX() - this.downX;
                     float y = motionEvent.getY() - this.downY;
                     if (!this.dragging && Math.abs(x) > this.touchSlop && Math.abs(x) > Math.abs(y)) {
                         this.dragging = true;
-                        requestDisallowParentIntercept(true);
                         int i3 = this.currentPage;
                         if (i3 >= 0 && i3 < this.cells.size()) {
                             MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
@@ -7103,15 +7326,15 @@ public class RichMessageLayout {
                         }
                     }
                     if (this.dragging) {
-                        float f = (-x) / this.slideWidth;
+                        float f2 = (-x) / this.slideWidth;
                         int i4 = this.currentPage;
-                        if (i4 == 0 && f < 0.0f) {
-                            f *= 0.3f;
+                        if (i4 == 0 && f2 < 0.0f) {
+                            f2 *= 0.3f;
                         }
-                        if (i4 == this.cells.size() - 1 && f > 0.0f) {
-                            f *= 0.3f;
+                        if (i4 == this.cells.size() - 1 && f2 > 0.0f) {
+                            f2 *= 0.3f;
                         }
-                        this.pageOffset = f;
+                        this.pageOffset = f2;
                         View view2 = this.view;
                         if (view2 != null) {
                             view2.invalidate();
@@ -7139,30 +7362,8 @@ public class RichMessageLayout {
             }
         }
 
-        private void settle() {
-            int i = (this.pageOffset <= 0.5f || this.currentPage >= this.cells.size() - 1) ? (this.pageOffset >= -0.5f || this.currentPage <= 0) ? 0 : -1 : 1;
-            final int i2 = i + this.currentPage;
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pageOffset, i2 - r3);
-            this.settleAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.setDuration(220L);
-            this.settleAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    this.f$0.lambda$settle$0(valueAnimator);
-                }
-            });
-            this.settleAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    RichSlideshowBlock.this.currentPage = i2;
-                    RichSlideshowBlock.this.pageOffset = 0.0f;
-                    View view = RichSlideshowBlock.this.view;
-                    if (view != null) {
-                        view.invalidate();
-                    }
-                }
-            });
-            this.settleAnimator.start();
+        private void settle(float r6) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.RichMessageLayout.RichSlideshowBlock.settle(float):void");
         }
 
         public void lambda$settle$0(ValueAnimator valueAnimator) {
@@ -7193,6 +7394,12 @@ public class RichMessageLayout {
 
         @Override
         protected void onDetachedFromWindow() {
+            requestDisallowParentIntercept(false);
+            VelocityTracker velocityTracker = this.velocityTracker;
+            if (velocityTracker != null) {
+                velocityTracker.recycle();
+                this.velocityTracker = null;
+            }
             Iterator<MediaCell> it = this.cells.iterator();
             while (it.hasNext()) {
                 it.next().detach();
@@ -7214,6 +7421,8 @@ public class RichMessageLayout {
     }
 
     public static abstract class RichBlock implements MultiLayoutTypingAnimator.Block {
+        public int accessibilityLabelResId;
+        public int accessibilityParentLabelResId;
         private CheckBoxBase checkbox;
         private ButtonBounce checkboxBounce;
         private TLObject checkboxItem;
@@ -7245,11 +7454,15 @@ public class RichMessageLayout {
         public void appendAccessibilityText(SpannableStringBuilder spannableStringBuilder) {
         }
 
-        public int getAccessibilityElementCount() {
+        protected int getBlockAccessibilityElementCount() {
             return 0;
         }
 
-        public CharSequence getAccessibilityElementText(int i) {
+        protected CharSequence getBlockAccessibilityElementStateDescription(int i) {
+            return null;
+        }
+
+        protected CharSequence getBlockAccessibilityElementText(int i) {
             return null;
         }
 
@@ -7271,15 +7484,19 @@ public class RichMessageLayout {
             return null;
         }
 
+        protected boolean isBlockAccessibilityElementText(int i) {
+            return false;
+        }
+
         public boolean isHorizontallyDragging() {
             return false;
         }
 
-        public boolean onAccessibilityElementClick(int i, View view) {
-            return false;
+        protected void onAttachedToWindow() {
         }
 
-        protected void onAttachedToWindow() {
+        protected boolean onBlockAccessibilityElementClick(int i, View view) {
+            return false;
         }
 
         protected void onDetachedFromWindow() {
@@ -7290,6 +7507,22 @@ public class RichMessageLayout {
 
         protected boolean onTouchEvent(MotionEvent motionEvent) {
             return false;
+        }
+
+        public CharSequence getAccessibilityLabel() {
+            int i = this.accessibilityParentLabelResId;
+            String string = i == 0 ? null : LocaleController.getString(i);
+            int i2 = this.accessibilityLabelResId;
+            String string2 = i2 != 0 ? LocaleController.getString(i2) : null;
+            return TextUtils.isEmpty(string) ? string2 : TextUtils.isEmpty(string2) ? string : TextUtils.concat(string, ", ", string2);
+        }
+
+        public CharSequence getAccessibilityListMarker() {
+            StaticLayout staticLayout;
+            if (!this.listOrdered || (staticLayout = this.numLayout) == null) {
+                return null;
+            }
+            return staticLayout.getText();
         }
 
         public RichBlock(RichMessageLayout richMessageLayout, Rect rect, int i) {
@@ -7376,10 +7609,85 @@ public class RichMessageLayout {
             return spanned.getSpanStart(replaceCopyTextSpannable2) - spanned.getSpanStart(replaceCopyTextSpannable);
         }
 
-        public void getAccessibilityElementBounds(int i, Rect rect) {
+        public final int getAccessibilityElementCount() {
+            return getCheckboxAccessibilityElementCount() + getBlockAccessibilityElementCount();
+        }
+
+        public final CharSequence getAccessibilityElementText(int i) {
+            if (this.checkbox != null && i == 0) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                CharSequence accessibilityListMarker = getAccessibilityListMarker();
+                CharSequence accessibilityLabel = getAccessibilityLabel();
+                if (!TextUtils.isEmpty(accessibilityListMarker)) {
+                    spannableStringBuilder.append(accessibilityListMarker).append(' ');
+                }
+                if (!TextUtils.isEmpty(accessibilityLabel)) {
+                    spannableStringBuilder.append(accessibilityLabel).append(", ");
+                }
+                appendAccessibilityText(spannableStringBuilder);
+                return spannableStringBuilder.length() > 0 ? spannableStringBuilder : LocaleController.getString(R.string.AccDescrCheckbox);
+            }
+            return getBlockAccessibilityElementText(i - getCheckboxAccessibilityElementCount());
+        }
+
+        public final boolean isAccessibilityElementCheckbox(int i) {
+            return this.checkbox != null && i == 0;
+        }
+
+        public final boolean isAccessibilityElementChecked(int i) {
+            return isAccessibilityElementCheckbox(i) && getCheckboxChecked();
+        }
+
+        public final boolean isAccessibilityElementClickable(int i) {
+            return !isAccessibilityElementCheckbox(i) || canToggleCheckbox();
+        }
+
+        public final boolean isAccessibilityElementText(int i) {
+            return !isAccessibilityElementCheckbox(i) && isBlockAccessibilityElementText(i - getCheckboxAccessibilityElementCount());
+        }
+
+        public final CharSequence getAccessibilityElementStateDescription(int i) {
+            if (isAccessibilityElementCheckbox(i)) {
+                return LocaleController.getString(getCheckboxChecked() ? R.string.AccDescrChecked : R.string.AccDescrNotChecked);
+            }
+            return getBlockAccessibilityElementStateDescription(i - getCheckboxAccessibilityElementCount());
+        }
+
+        public final void getAccessibilityElementBounds(int i, Rect rect) {
+            if (this.checkbox != null && i == 0) {
+                int i2 = this.padding.left;
+                float f = this.currY;
+                rect.set(i2, (int) f, this.maxWidth + i2, (int) (f + getHeight()));
+            } else {
+                getBlockAccessibilityElementBounds(i - getCheckboxAccessibilityElementCount(), rect);
+            }
+            RichMessageLayout richMessageLayout = this.root;
+            int i3 = -richMessageLayout.padLeft;
+            int minWidth = richMessageLayout.getMinWidth() + this.root.padRight;
+            int iMin = Math.min(minWidth, Math.max(rect.left, i3));
+            rect.left = iMin;
+            rect.right = Math.max(iMin, Math.min(rect.right, minWidth));
+        }
+
+        protected void getBlockAccessibilityElementBounds(int i, Rect rect) {
             int i2 = this.padding.left;
             float f = this.currY;
             rect.set(i2, (int) f, this.maxWidth + i2, (int) (f + getHeight()));
+        }
+
+        public final boolean onAccessibilityElementClick(int i, View view) {
+            if (this.checkbox != null && i == 0) {
+                if (!canToggleCheckbox()) {
+                    return false;
+                }
+                toggleCheckbox();
+                return true;
+            }
+            return onBlockAccessibilityElementClick(i - getCheckboxAccessibilityElementCount(), view);
+        }
+
+        private int getCheckboxAccessibilityElementCount() {
+            return this.checkbox == null ? 0 : 1;
         }
 
         public void snapshot() {

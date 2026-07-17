@@ -1450,6 +1450,15 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         updateBlockButtons();
     }
 
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        RichEditorListView richEditorListView = this.listView;
+        if (richEditorListView == null || !richEditorListView.textSelectionHelper.isInSelectionMode()) {
+            return super.isSwipeBackEnabled(motionEvent);
+        }
+        return false;
+    }
+
     public boolean isOverTrash(float f) {
         FrameLayout frameLayout = this.trashPanel;
         if (frameLayout == null) {

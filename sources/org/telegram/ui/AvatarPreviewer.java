@@ -125,6 +125,7 @@ public class AvatarPreviewer {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(-1, -1, 1000, 0, -3);
         layoutParams.softInputMode = 16;
         layoutParams.flags |= -1945959040;
+        AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
         AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.layout, layoutParams);
         this.windowManager.addView(this.layout, layoutParams);
         viewGroup.requestDisallowInterceptTouchEvent(true);
@@ -132,10 +133,10 @@ public class AvatarPreviewer {
     }
 
     public WindowInsetsCompat lambda$show$0(View view, WindowInsetsCompat windowInsetsCompat) {
-        Insets insets = windowInsetsCompat.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+        Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
         Layout layout = this.layout;
         if (layout == view && layout.container != null) {
-            this.layout.container.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+            this.layout.container.setPadding(defaultWindowInsets.left, defaultWindowInsets.top, defaultWindowInsets.right, defaultWindowInsets.bottom);
         }
         return WindowInsetsCompat.CONSUMED;
     }

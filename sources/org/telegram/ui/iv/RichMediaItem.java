@@ -55,6 +55,11 @@ public class RichMediaItem {
         return mediaUploadState != null && (mediaUploadState.localPath != null || mediaUploadState.isReady());
     }
 
+    public void setRoundRadius(int i, int i2, int i3, int i4) {
+        this.imageReceiver.setRoundRadius(i, i2, i3, i4);
+        this.blurImageReceiver.setRoundRadius(i, i2, i3, i4);
+    }
+
     public int getWidth() {
         if (this.media == null) {
             return 0;

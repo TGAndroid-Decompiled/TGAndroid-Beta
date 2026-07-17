@@ -4,7 +4,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RadialGradient;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
@@ -30,12 +29,7 @@ public class FragmentContextViewWavesDrawable {
     float progressToState = 1.0f;
     ArrayList parents = new ArrayList();
     Paint paint = new Paint(1);
-    LineBlobDrawable lineBlobDrawable = new LineBlobDrawable(5);
-    LineBlobDrawable lineBlobDrawable1 = new LineBlobDrawable(7);
-    LineBlobDrawable lineBlobDrawable2 = new LineBlobDrawable(8);
-    RectF rect = new RectF();
     Path path = new Path();
-    private final Paint selectedPaint = new Paint(1);
 
     public FragmentContextViewWavesDrawable() {
         for (int i = 0; i < 4; i++) {
@@ -43,7 +37,7 @@ public class FragmentContextViewWavesDrawable {
         }
     }
 
-    public void draw(float r21, float r22, float r23, float r24, android.graphics.Canvas r25, org.telegram.ui.Components.FragmentContextView r26, float r27) {
+    public void draw(float r18, float r19, float r20, float r21, android.graphics.Canvas r22, org.telegram.ui.Components.FragmentContextView r23, float r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FragmentContextViewWavesDrawable.draw(float, float, float, float, android.graphics.Canvas, org.telegram.ui.Components.FragmentContextView, float):void");
     }
 

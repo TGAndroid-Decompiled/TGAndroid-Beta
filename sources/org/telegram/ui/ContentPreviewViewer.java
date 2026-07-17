@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -125,11 +126,9 @@ public class ContentPreviewViewer {
     private boolean isStickerEditor;
     private boolean isVisible;
     private int keyboardHeight;
-    private WindowInsetsCompat lastInsets;
     private float lastTouchY;
     private long lastUpdateTime;
     private boolean menuVisible;
-    private float moveY = 0.0f;
     private Runnable openPreviewRunnable;
     private final Paint paint;
     public PaintingOverlay paintingOverlay;
@@ -157,6 +156,8 @@ public class ContentPreviewViewer {
     VibrationEffect vibrationEffect;
     private WindowManager.LayoutParams windowLayoutParams;
     private FrameLayout windowView;
+    private float moveY = 0.0f;
+    private Insets lastInsets = Insets.NONE;
 
     public interface ContentPreviewViewerDelegate {
 
@@ -500,17 +501,7 @@ public class ContentPreviewViewer {
         @Override
         public void run() {
             boolean zHasRecentGif;
-            int stableInsetTop;
-            int stableInsetBottom;
-            int stableInsetTop2;
-            int stableInsetBottom2;
-            int stableInsetTop3;
-            int stableInsetBottom3;
-            int stableInsetTop4;
-            int stableInsetBottom4;
             ItemOptions customItemOptions;
-            int stableInsetTop5;
-            int stableInsetBottom5;
             if (ContentPreviewViewer.this.parentActivity == null || ContentPreviewViewer.this.isPhotoEditor) {
                 return;
             }
@@ -549,15 +540,10 @@ public class ContentPreviewViewer {
                 layout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                 ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
                 ContentPreviewViewer.this.popupWindow.getContentView().setFocusableInTouchMode(true);
-                if (ContentPreviewViewer.this.lastInsets != null) {
-                    stableInsetBottom5 = ContentPreviewViewer.this.lastInsets.getStableInsetBottom() + ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                    stableInsetTop5 = ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                } else {
-                    stableInsetTop5 = AndroidUtilities.statusBarHeight;
-                    stableInsetBottom5 = 0;
-                }
-                int iMin = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom5) - AndroidUtilities.dp(40.0f)) / 2;
-                int iMax = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(stableInsetTop5 + iMin + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom5) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
+                int i2 = ContentPreviewViewer.this.lastInsets.bottom + ContentPreviewViewer.this.lastInsets.top;
+                int i3 = ContentPreviewViewer.this.lastInsets.top;
+                int iMin = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i2) - AndroidUtilities.dp(40.0f)) / 2;
+                int iMax = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(i3 + iMin + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - i2) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
                 ContentPreviewViewer contentPreviewViewer = ContentPreviewViewer.this;
                 contentPreviewViewer.popupWindow.showAtLocation(contentPreviewViewer.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - layout.getMeasuredWidth()) / 2.0f), iMax);
                 try {
@@ -653,11 +639,11 @@ public class ContentPreviewViewer {
                         ContentPreviewViewer.this.containerView.invalidate();
                         AnonymousClass2 anonymousClass2 = new AnonymousClass2(arrayList2, zIsStickerInFavorites);
                         ContentPreviewViewer.this.addVoteOptions(actionBarPopupWindowLayout);
-                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i2)).intValue(), (CharSequence) arrayList.get(i2), false, ContentPreviewViewer.this.resourcesProvider);
-                            actionBarMenuSubItemAddItem.setTag(Integer.valueOf(i2));
+                        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                            ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i4)).intValue(), (CharSequence) arrayList.get(i4), false, ContentPreviewViewer.this.resourcesProvider);
+                            actionBarMenuSubItemAddItem.setTag(Integer.valueOf(i4));
                             actionBarMenuSubItemAddItem.setOnClickListener(anonymousClass2);
-                            if (((Integer) arrayList2.get(i2)).intValue() == 8) {
+                            if (((Integer) arrayList2.get(i4)).intValue() == 8) {
                                 int themedColor = ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedBold);
                                 actionBarMenuSubItemAddItem.setColors(themedColor, themedColor);
                                 actionBarMenuSubItemAddItem.setSelectorColor(Theme.multAlpha(themedColor, 0.1f));
@@ -695,14 +681,9 @@ public class ContentPreviewViewer {
                         actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                         ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
                         ContentPreviewViewer.this.popupWindow.getContentView().setFocusableInTouchMode(true);
-                        if (ContentPreviewViewer.this.lastInsets != null) {
-                            stableInsetBottom3 = ContentPreviewViewer.this.lastInsets.getStableInsetBottom() + ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                            stableInsetTop3 = ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                        } else {
-                            stableInsetTop3 = AndroidUtilities.statusBarHeight;
-                            stableInsetBottom3 = 0;
-                        }
-                        int iMax2 = ((int) (ContentPreviewViewer.this.moveY + Math.max(stableInsetTop3 + r2 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom3) - ContentPreviewViewer.this.keyboardHeight) / 2) + ((ContentPreviewViewer.this.currentContentType == 1 ? Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom3) - AndroidUtilities.dp(40.0f) : (int) (ContentPreviewViewer.this.drawEffect ? Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom3) - AndroidUtilities.dpf2(40.0f) : Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom3) / 1.8f)) / 2))) + AndroidUtilities.dp(24.0f);
+                        int i5 = ContentPreviewViewer.this.lastInsets.bottom + ContentPreviewViewer.this.lastInsets.top;
+                        int i6 = ContentPreviewViewer.this.lastInsets.top;
+                        int iMax2 = ((int) (ContentPreviewViewer.this.moveY + Math.max(i6 + r2 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - i5) - ContentPreviewViewer.this.keyboardHeight) / 2) + ((ContentPreviewViewer.this.currentContentType == 1 ? Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i5) - AndroidUtilities.dp(40.0f) : (int) (ContentPreviewViewer.this.drawEffect ? Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i5) - AndroidUtilities.dpf2(40.0f) : Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i5) / 1.8f)) / 2))) + AndroidUtilities.dp(24.0f);
                         if (ContentPreviewViewer.this.drawEffect) {
                             iMax2 += AndroidUtilities.dp(24.0f);
                         }
@@ -768,8 +749,8 @@ public class ContentPreviewViewer {
                         ContentPreviewViewer.this.menuVisible = true;
                         ContentPreviewViewer.this.containerView.invalidate();
                         int[] iArr = new int[arrayList6.size()];
-                        for (int i3 = 0; i3 < arrayList6.size(); i3++) {
-                            iArr[i3] = ((Integer) arrayList6.get(i3)).intValue();
+                        for (int i7 = 0; i7 < arrayList6.size(); i7++) {
+                            iArr[i7] = ((Integer) arrayList6.get(i7)).intValue();
                         }
                         View.OnClickListener onClickListener = new View.OnClickListener() {
                             @Override
@@ -777,11 +758,11 @@ public class ContentPreviewViewer {
                                 this.f$0.lambda$run$10(arrayList5, view);
                             }
                         };
-                        for (int i4 = 0; i4 < arrayList4.size(); i4++) {
-                            ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList6.get(i4)).intValue(), (CharSequence) arrayList4.get(i4), false, ContentPreviewViewer.this.resourcesProvider);
-                            actionBarMenuSubItemAddItem2.setTag(Integer.valueOf(i4));
+                        for (int i8 = 0; i8 < arrayList4.size(); i8++) {
+                            ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList6.get(i8)).intValue(), (CharSequence) arrayList4.get(i8), false, ContentPreviewViewer.this.resourcesProvider);
+                            actionBarMenuSubItemAddItem2.setTag(Integer.valueOf(i8));
                             actionBarMenuSubItemAddItem2.setOnClickListener(onClickListener);
-                            if (zHasRecentGif && i4 == arrayList4.size() - 1) {
+                            if (zHasRecentGif && i8 == arrayList4.size() - 1) {
                                 actionBarMenuSubItemAddItem2.setColors(ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedBold), ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedRegular));
                             }
                         }
@@ -807,15 +788,10 @@ public class ContentPreviewViewer {
                         actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                         ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
                         ContentPreviewViewer.this.popupWindow.getContentView().setFocusableInTouchMode(true);
-                        if (ContentPreviewViewer.this.lastInsets != null) {
-                            stableInsetBottom = ContentPreviewViewer.this.lastInsets.getStableInsetBottom() + ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                            stableInsetTop = ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                        } else {
-                            stableInsetTop = AndroidUtilities.statusBarHeight;
-                            stableInsetBottom = 0;
-                        }
-                        int iMin2 = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom) - AndroidUtilities.dp(40.0f)) / 2;
-                        int iMax3 = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(stableInsetTop + iMin2 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin2)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
+                        int i9 = ContentPreviewViewer.this.lastInsets.bottom + ContentPreviewViewer.this.lastInsets.top;
+                        int i10 = ContentPreviewViewer.this.lastInsets.top;
+                        int iMin2 = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i9) - AndroidUtilities.dp(40.0f)) / 2;
+                        int iMax3 = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(i10 + iMin2 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - i9) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin2)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
                         ContentPreviewViewer contentPreviewViewer4 = ContentPreviewViewer.this;
                         contentPreviewViewer4.popupWindow.showAtLocation(contentPreviewViewer4.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) / 2.0f), iMax3);
                         try {
@@ -883,8 +859,8 @@ public class ContentPreviewViewer {
                     ContentPreviewViewer.this.menuVisible = true;
                     ContentPreviewViewer.this.containerView.invalidate();
                     int[] iArr2 = new int[arrayList9.size()];
-                    for (int i5 = 0; i5 < arrayList9.size(); i5++) {
-                        iArr2[i5] = ((Integer) arrayList9.get(i5)).intValue();
+                    for (int i11 = 0; i11 < arrayList9.size(); i11++) {
+                        iArr2[i11] = ((Integer) arrayList9.get(i11)).intValue();
                     }
                     View.OnClickListener onClickListener2 = new View.OnClickListener() {
                         @Override
@@ -893,16 +869,16 @@ public class ContentPreviewViewer {
                         }
                     };
                     boolean zAddVoteOptions = ContentPreviewViewer.this.addVoteOptions(actionBarPopupWindowLayout);
-                    int i6 = 0;
-                    while (i6 < arrayList7.size()) {
-                        ActionBarMenuSubItem actionBarMenuSubItemAddItem3 = ActionBarMenuItem.addItem(!zAddVoteOptions && i6 == 0, i6 == arrayList7.size() - 1, actionBarPopupWindowLayout, ((Integer) arrayList9.get(i6)).intValue(), (CharSequence) arrayList7.get(i6), false, ContentPreviewViewer.this.resourcesProvider);
-                        if (((Integer) arrayList8.get(i6)).intValue() == 4) {
+                    int i12 = 0;
+                    while (i12 < arrayList7.size()) {
+                        ActionBarMenuSubItem actionBarMenuSubItemAddItem3 = ActionBarMenuItem.addItem(!zAddVoteOptions && i12 == 0, i12 == arrayList7.size() - 1, actionBarPopupWindowLayout, ((Integer) arrayList9.get(i12)).intValue(), (CharSequence) arrayList7.get(i12), false, ContentPreviewViewer.this.resourcesProvider);
+                        if (((Integer) arrayList8.get(i12)).intValue() == 4) {
                             actionBarMenuSubItemAddItem3.setIconColor(ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedRegular));
                             actionBarMenuSubItemAddItem3.setTextColor(ContentPreviewViewer.this.getThemedColor(Theme.key_text_RedBold));
                         }
-                        actionBarMenuSubItemAddItem3.setTag(Integer.valueOf(i6));
+                        actionBarMenuSubItemAddItem3.setTag(Integer.valueOf(i12));
                         actionBarMenuSubItemAddItem3.setOnClickListener(onClickListener2);
-                        i6++;
+                        i12++;
                     }
                     ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, i, i) {
                         @Override
@@ -926,15 +902,10 @@ public class ContentPreviewViewer {
                     actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
                     ContentPreviewViewer.this.popupWindow.setInputMethodMode(2);
                     ContentPreviewViewer.this.popupWindow.getContentView().setFocusableInTouchMode(true);
-                    if (ContentPreviewViewer.this.lastInsets != null) {
-                        stableInsetBottom2 = ContentPreviewViewer.this.lastInsets.getStableInsetBottom() + ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                        stableInsetTop2 = ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                    } else {
-                        stableInsetTop2 = AndroidUtilities.statusBarHeight;
-                        stableInsetBottom2 = 0;
-                    }
-                    int iMin3 = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom2) - AndroidUtilities.dp(40.0f)) / 2;
-                    int iMax4 = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(stableInsetTop2 + iMin3 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom2) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin3)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
+                    int i13 = ContentPreviewViewer.this.lastInsets.bottom + ContentPreviewViewer.this.lastInsets.top;
+                    int i14 = ContentPreviewViewer.this.lastInsets.top;
+                    int iMin3 = (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i13) - AndroidUtilities.dp(40.0f)) / 2;
+                    int iMax4 = (int) (((int) (ContentPreviewViewer.this.moveY + Math.max(i14 + iMin3 + (ContentPreviewViewer.this.stickerEmojiLayout != null ? AndroidUtilities.dp(40.0f) : 0), ((ContentPreviewViewer.this.containerView.getHeight() - i13) - ContentPreviewViewer.this.keyboardHeight) / 2) + iMin3)) + (AndroidUtilities.dp(24.0f) - ContentPreviewViewer.this.moveY));
                     ContentPreviewViewer contentPreviewViewer6 = ContentPreviewViewer.this;
                     contentPreviewViewer6.popupWindow.showAtLocation(contentPreviewViewer6.containerView, 0, (int) ((ContentPreviewViewer.this.containerView.getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth()) / 2.0f), iMax4);
                     ActionBarPopupWindow.startAnimation(actionBarPopupWindowLayout);
@@ -996,8 +967,8 @@ public class ContentPreviewViewer {
                 final RecyclerListView recyclerListViewCreateMyStickerPacksListView = ContentPreviewViewer.this.createMyStickerPacksListView();
                 recyclerListViewCreateMyStickerPacksListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                     @Override
-                    public final void onItemClick(View view, int i7) {
-                        this.f$0.lambda$run$4(view, i7);
+                    public final void onItemClick(View view, int i15) {
+                        this.f$0.lambda$run$4(view, i15);
                     }
                 });
                 frameLayout.addView(actionBarMenuSubItem);
@@ -1009,9 +980,9 @@ public class ContentPreviewViewer {
                         this.f$0.lambda$run$5(arrayList11, recyclerListViewCreateMyStickerPacksListView, linearLayout, actionBarPopupWindowLayout, view);
                     }
                 };
-                for (int i7 = 0; i7 < arrayList10.size(); i7++) {
-                    ActionBarMenuSubItem actionBarMenuSubItemAddItem4 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList12.get(i7)).intValue(), (CharSequence) arrayList10.get(i7), false, ContentPreviewViewer.this.resourcesProvider);
-                    actionBarMenuSubItemAddItem4.setTag(Integer.valueOf(i7));
+                for (int i15 = 0; i15 < arrayList10.size(); i15++) {
+                    ActionBarMenuSubItem actionBarMenuSubItemAddItem4 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList12.get(i15)).intValue(), (CharSequence) arrayList10.get(i15), false, ContentPreviewViewer.this.resourcesProvider);
+                    actionBarMenuSubItemAddItem4.setTag(Integer.valueOf(i15));
                     actionBarMenuSubItemAddItem4.setOnClickListener(onClickListener3);
                 }
                 actionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
@@ -1023,15 +994,10 @@ public class ContentPreviewViewer {
                         ContentPreviewViewer.AnonymousClass1.lambda$run$6(actionBarPopupWindowLayout, view);
                     }
                 });
-                if (ContentPreviewViewer.this.lastInsets != null) {
-                    stableInsetBottom4 = ContentPreviewViewer.this.lastInsets.getStableInsetBottom() + ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                    stableInsetTop4 = ContentPreviewViewer.this.lastInsets.getStableInsetTop();
-                } else {
-                    stableInsetTop4 = AndroidUtilities.statusBarHeight;
-                    stableInsetBottom4 = 0;
-                }
-                int iMin4 = ((int) (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom4) / 1.8f)) / 2;
-                ContentPreviewViewer.this.containerView.addView(actionBarPopupWindowLayout, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, (((int) ((ContentPreviewViewer.this.moveY + Math.max(stableInsetTop4 + iMin4, ((ContentPreviewViewer.this.containerView.getHeight() - stableInsetBottom4) - ContentPreviewViewer.this.keyboardHeight) / 2)) + iMin4)) + AndroidUtilities.dp(84.0f)) / AndroidUtilities.density, 0.0f, 0.0f));
+                int i16 = ContentPreviewViewer.this.lastInsets.bottom + ContentPreviewViewer.this.lastInsets.top;
+                int i17 = ContentPreviewViewer.this.lastInsets.top;
+                int iMin4 = ((int) (Math.min(ContentPreviewViewer.this.containerView.getWidth(), ContentPreviewViewer.this.containerView.getHeight() - i16) / 1.8f)) / 2;
+                ContentPreviewViewer.this.containerView.addView(actionBarPopupWindowLayout, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, (((int) ((ContentPreviewViewer.this.moveY + Math.max(i17 + iMin4, ((ContentPreviewViewer.this.containerView.getHeight() - i16) - ContentPreviewViewer.this.keyboardHeight) / 2)) + iMin4)) + AndroidUtilities.dp(84.0f)) / AndroidUtilities.density, 0.0f, 0.0f));
                 ContentPreviewViewer.this.popupLayout = actionBarPopupWindowLayout;
                 ContentPreviewViewer.this.popupLayout.setTranslationY(-AndroidUtilities.dp(12.0f));
                 ContentPreviewViewer.this.popupLayout.setAlpha(0.0f);
@@ -1044,13 +1010,13 @@ public class ContentPreviewViewer {
                 ContentPreviewViewer.this.menuVisible = true;
                 ContentPreviewViewer.this.containerView.invalidate();
             }
-            int i8 = 0;
-            while (i8 < actionBarPopupWindowLayout.getItemsCount()) {
-                View itemAt = actionBarPopupWindowLayout.getItemAt(i8);
+            int i18 = 0;
+            while (i18 < actionBarPopupWindowLayout.getItemsCount()) {
+                View itemAt = actionBarPopupWindowLayout.getItemAt(i18);
                 if (itemAt instanceof ActionBarMenuSubItem) {
-                    ((ActionBarMenuSubItem) itemAt).updateSelectorBackground(i8 == 0, i8 == actionBarPopupWindowLayout.getItemsCount() - 1, 12);
+                    ((ActionBarMenuSubItem) itemAt).updateSelectorBackground(i18 == 0, i18 == actionBarPopupWindowLayout.getItemsCount() - 1, 12);
                 }
-                i8++;
+                i18++;
             }
         }
 
@@ -1646,10 +1612,7 @@ public class ContentPreviewViewer {
         layoutParams.gravity = 48;
         layoutParams.type = 99;
         layoutParams.flags = -2147286784;
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 28) {
-            layoutParams.layoutInDisplayCutoutMode = i2 >= 30 ? 3 : 1;
-        }
+        AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
         this.centerImage.setAspectFit(true);
         this.centerImage.setInvalidateAll(true);
         this.centerImage.setParentView(this.containerView);
@@ -1659,7 +1622,7 @@ public class ContentPreviewViewer {
     }
 
     public WindowInsetsCompat lambda$setParentActivity$11(View view, WindowInsetsCompat windowInsetsCompat) {
-        this.lastInsets = windowInsetsCompat;
+        this.lastInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
         return windowInsetsCompat;
     }
 

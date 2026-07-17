@@ -1,25 +1,14 @@
 package org.telegram.ui.Components.blur3.utils;
 
 import android.graphics.Bitmap;
-import java.lang.ref.WeakReference;
 
 public class BitmapMemoizedMetadata {
-    private long generationId;
+    private final BitmapChangeTracker lastBitmap = new BitmapChangeTracker();
     private Object memoized;
     private final Provider provider;
-    private WeakReference ref;
 
     public interface Provider {
-
-        public abstract class CC {
-            public static boolean $default$isValid(Provider provider, Object obj) {
-                return true;
-            }
-        }
-
         Object get(Bitmap bitmap);
-
-        boolean isValid(Object obj);
     }
 
     public BitmapMemoizedMetadata(Provider provider) {
@@ -27,16 +16,10 @@ public class BitmapMemoizedMetadata {
     }
 
     public Object get(Bitmap bitmap) {
-        WeakReference weakReference = this.ref;
-        Bitmap bitmap2 = weakReference != null ? (Bitmap) weakReference.get() : null;
-        long generationId = (bitmap == null || bitmap.isRecycled()) ? 0L : bitmap.getGenerationId();
-        if (bitmap != null && bitmap2 == bitmap && generationId == this.generationId && this.provider.isValid(this.memoized)) {
-            return this.memoized;
+        if (this.lastBitmap.isInvalidated(bitmap)) {
+            this.memoized = this.provider.get(bitmap);
+            this.lastBitmap.set(bitmap);
         }
-        this.ref = new WeakReference(bitmap);
-        this.generationId = generationId;
-        Object obj = this.provider.get(bitmap);
-        this.memoized = obj;
-        return obj;
+        return this.memoized;
     }
 }

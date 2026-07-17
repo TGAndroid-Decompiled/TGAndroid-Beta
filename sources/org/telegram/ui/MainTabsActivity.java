@@ -242,17 +242,25 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                int iBlendARGB = ColorUtils.blendARGB(MainTabsActivity.this.getThemedColor(Theme.key_windowBackgroundGray), MainTabsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite), MainTabsActivity.this.viewPager.getPositionVisibility(0));
+                int estBackgroundColor = MainTabsActivity.this.getEstBackgroundColor();
                 if (MainTabsActivity.this.insetLeft != 0) {
-                    canvas.drawRect(0.0f, 0.0f, MainTabsActivity.this.insetLeft, getHeight(), Theme.fillingPaint(iBlendARGB));
+                    canvas.drawRect(0.0f, 0.0f, MainTabsActivity.this.insetLeft, getHeight(), Theme.fillingPaint(estBackgroundColor));
                 }
                 if (MainTabsActivity.this.insetRight != 0) {
-                    canvas.drawRect(getWidth() - MainTabsActivity.this.insetRight, 0.0f, getWidth(), getHeight(), Theme.fillingPaint(iBlendARGB));
+                    canvas.drawRect(getWidth() - MainTabsActivity.this.insetRight, 0.0f, getWidth(), getHeight(), Theme.fillingPaint(estBackgroundColor));
                 }
                 super.dispatchDraw(canvas);
                 MainTabsActivity.this.blur3_invalidateBlur();
+                MainTabsActivity.this.blur3_updateFadeColors();
             }
         };
+    }
+
+    public int getEstBackgroundColor() {
+        int themedColor = getThemedColor(Theme.key_windowBackgroundGray);
+        int themedColor2 = getThemedColor(Theme.key_windowBackgroundWhite);
+        ViewPagerActivity.ViewPagerActivityPagerLayout viewPagerActivityPagerLayout = this.viewPager;
+        return ColorUtils.blendARGB(themedColor, themedColor2, viewPagerActivityPagerLayout != null ? viewPagerActivityPagerLayout.getPositionVisibility(0) : 1.0f);
     }
 
     @Override
@@ -1165,8 +1173,16 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         this.iBlur3SourceTabGlass.updateDisplayListIfNeeded();
     }
 
+    public void blur3_updateFadeColors() {
+        this.iBlur3SourceColor.setColor(getEstBackgroundColor());
+        View view = this.fadeView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
     public void blur3_updateColors() {
-        this.iBlur3SourceColor.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
+        blur3_updateFadeColors();
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.tabsViewBackground;
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.updateColors();

@@ -253,59 +253,75 @@ public abstract class CopyUtilities {
                     }
                     return true;
                 }
-            } else if (str.equals("pre")) {
+            } else if (!str.equals("pre")) {
+                if (str.equals("blockquote")) {
+                    if (z) {
+                        String value2 = HTMLTagAttributesHandler.getValue(attributes, "class");
+                        if (HTMLTagAttributesHandler.getValue(attributes, "data-collapsed") != null || (value2 != null && value2.contains("telegram-collapsed-quote"))) {
+                            i = 1;
+                        }
+                        editable.setSpan(new ParsedSpan(i == 0 ? 2 : 3), editable.length(), editable.length(), 17);
+                        return true;
+                    }
+                    ParsedSpan lastQuote = getLastQuote(editable);
+                    if (lastQuote != null) {
+                        int spanStart3 = editable.getSpanStart(lastQuote);
+                        editable.removeSpan(lastQuote);
+                        if (spanStart3 != editable.length()) {
+                            editable.setSpan(lastQuote, spanStart3, editable.length(), 33);
+                        }
+                        return true;
+                    }
+                } else if (str.equals("details")) {
+                    if (z) {
+                        editable.setSpan(new ParsedSpan(i), editable.length(), editable.length(), 17);
+                        return true;
+                    }
+                    ParsedSpan last2 = getLast(editable, ParsedSpan.class, 3);
+                    if (last2 != null) {
+                        int spanStart4 = editable.getSpanStart(last2);
+                        editable.removeSpan(last2);
+                        if (spanStart4 != editable.length()) {
+                            editable.setSpan(last2, spanStart4, editable.length(), 33);
+                        }
+                        return true;
+                    }
+                }
+            } else {
                 if (z) {
-                    String value2 = HTMLTagAttributesHandler.getValue(attributes, "language");
-                    if (value2 == null) {
-                        value2 = HTMLTagAttributesHandler.getValue(attributes, "lang");
+                    String value3 = HTMLTagAttributesHandler.getValue(attributes, "language");
+                    if (value3 == null) {
+                        value3 = HTMLTagAttributesHandler.getValue(attributes, "lang");
                     }
-                    if (value2 == null) {
-                        value2 = HTMLTagAttributesHandler.getValue(attributes, "lng");
+                    if (value3 == null) {
+                        value3 = HTMLTagAttributesHandler.getValue(attributes, "lng");
                     }
-                    editable.setSpan(new ParsedSpan(i2, value2), editable.length(), editable.length(), 17);
+                    editable.setSpan(new ParsedSpan(i2, value3), editable.length(), editable.length(), 17);
                     return true;
                 }
-                ParsedSpan last2 = getLast(editable, ParsedSpan.class, 1);
-                if (last2 != null) {
-                    int spanStart3 = editable.getSpanStart(last2);
-                    editable.removeSpan(last2);
-                    if (spanStart3 != editable.length()) {
-                        editable.setSpan(last2, spanStart3, editable.length(), 33);
-                    }
-                    return true;
-                }
-            } else if (str.equals("blockquote")) {
-                int i3 = 2;
-                if (z) {
-                    editable.setSpan(new ParsedSpan(i3), editable.length(), editable.length(), 17);
-                    return true;
-                }
-                ParsedSpan last3 = getLast(editable, ParsedSpan.class, 2);
+                ParsedSpan last3 = getLast(editable, ParsedSpan.class, 1);
                 if (last3 != null) {
-                    int spanStart4 = editable.getSpanStart(last3);
+                    int spanStart5 = editable.getSpanStart(last3);
                     editable.removeSpan(last3);
-                    if (spanStart4 != editable.length()) {
-                        editable.setSpan(last3, spanStart4, editable.length(), 33);
-                    }
-                    return true;
-                }
-            } else if (str.equals("details")) {
-                int i4 = 3;
-                if (z) {
-                    editable.setSpan(new ParsedSpan(i4), editable.length(), editable.length(), 17);
-                    return true;
-                }
-                ParsedSpan last4 = getLast(editable, ParsedSpan.class, 3);
-                if (last4 != null) {
-                    int spanStart5 = editable.getSpanStart(last4);
-                    editable.removeSpan(last4);
                     if (spanStart5 != editable.length()) {
-                        editable.setSpan(last4, spanStart5, editable.length(), 33);
+                        editable.setSpan(last3, spanStart5, editable.length(), 33);
                     }
                     return true;
                 }
             }
             return false;
+        }
+
+        private ParsedSpan getLastQuote(Editable editable) {
+            int i;
+            ParsedSpan[] parsedSpanArr = (ParsedSpan[]) editable.getSpans(0, editable.length(), ParsedSpan.class);
+            for (int length = parsedSpanArr.length - 1; length >= 0; length--) {
+                ParsedSpan parsedSpan = parsedSpanArr[length];
+                if (editable.getSpanFlags(parsedSpan) == 17 && ((i = parsedSpan.type) == 2 || i == 3)) {
+                    return parsedSpan;
+                }
+            }
+            return null;
         }
 
         private Object getLast(Editable editable, Class cls) {

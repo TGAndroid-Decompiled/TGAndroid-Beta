@@ -951,8 +951,8 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             }
         };
         this.fragmentContextView = fragmentContextView;
-        fragmentContextView.isInsideBubble = true;
         this.fragmentContextViewWrapper.addView(fragmentContextView);
+        this.topPanelLayout.setCallFragmentContextView(this.fragmentContextView);
         this.contentView.addView(this.topPanelLayout, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, -14.0f, 0.0f, 0.0f));
         this.contentView.addView(this.actionBar);
         HeaderShadowView headerShadowView = new HeaderShadowView(context, this.parentLayout);

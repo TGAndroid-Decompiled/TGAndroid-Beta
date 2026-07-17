@@ -15,6 +15,7 @@ public class AppGlobalConfig {
     public final ConfigInt aicomposeToneTitleLengthMax;
     public final ConfigInt botsCreateLimitDefault;
     public final ConfigInt botsCreateLimitPremium;
+    public final ConfigInt communityBotPeersLimit;
     public final ConfigInt communityPeersLimit;
     public final ConfigInt contactNoteLengthLimit;
     public final ConfigBoolean disableBlurInDarkTheme;
@@ -127,6 +128,7 @@ public class AppGlobalConfig {
         this.richMessageMaxTableCols = ofInt("rich_message_max_table_cols", 20);
         this.richMessagePosting = ofString("rich_message_posting", "premium");
         this.communityPeersLimit = ofInt("community_peers_limit", 100);
+        this.communityBotPeersLimit = ofInt("community_bot_peers_limit", 100);
         this.messageLengthLimitDefault = ofInt("message_length_limit_default", 4096);
         this.messageLengthLimitPremium = ofInt("message_length_limit_premium", 8192);
     }

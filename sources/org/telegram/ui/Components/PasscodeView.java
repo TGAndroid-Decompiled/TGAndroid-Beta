@@ -991,7 +991,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         this.backgroundAnimationSpring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                motionBackgroundDrawable.lambda$new$0();
+                motionBackgroundDrawable.updateAnimation();
             }
         });
         this.backgroundAnimationSpring.start();

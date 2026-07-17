@@ -310,8 +310,6 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
     private ImageView searchUpButton;
     public final Sheet sheet;
     private boolean showRestrictedToastOnResume;
-    private Drawable slideDotBigDrawable;
-    private Drawable slideDotDrawable;
     private Paint statusBarPaint;
     TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
     TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelperBottomSheet;
@@ -4038,8 +4036,6 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         createPaint(this, false);
         this.backgroundPaint = new Paint();
         this.layerShadowDrawable = activity.getResources().getDrawable(R.drawable.layer_shadow);
-        this.slideDotDrawable = activity.getResources().getDrawable(R.drawable.slide_dot_small);
-        this.slideDotBigDrawable = activity.getResources().getDrawable(R.drawable.slide_dot_big);
         this.scrimPaint = new Paint();
         WindowView windowView = new WindowView(activity);
         this.windowView = windowView;
@@ -10583,13 +10579,24 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             }
             ViewPager viewPager = new ViewPager(context) {
                 @Override
-                public boolean onTouchEvent(MotionEvent motionEvent) {
-                    return super.onTouchEvent(motionEvent);
+                public boolean onTouchEvent(MotionEvent motionEvent) throws Resources.NotFoundException, PackageManager.NameNotFoundException {
+                    if (motionEvent.getActionMasked() == 0) {
+                        ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(true);
+                    }
+                    boolean zOnTouchEvent = super.onTouchEvent(motionEvent);
+                    if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+                        ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(false);
+                    }
+                    return zOnTouchEvent;
                 }
 
                 @Override
                 public boolean onInterceptTouchEvent(MotionEvent motionEvent) throws PackageManager.NameNotFoundException {
-                    ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(true);
+                    if (motionEvent.getActionMasked() == 0) {
+                        ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(true);
+                    } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+                        ArticleViewer.this.windowView.requestDisallowInterceptTouchEvent(false);
+                    }
                     ArticleViewer.this.cancelCheckLongPress();
                     return super.onInterceptTouchEvent(motionEvent);
                 }
@@ -10682,43 +10689,28 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             View view = new View(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
-                    int measuredWidth;
-                    int i;
+                    float fClamp;
                     if (BlockSlideshowCell.this.currentBlock == null) {
                         return;
                     }
                     int count = BlockSlideshowCell.this.innerAdapter.getCount();
                     int iDp = (AndroidUtilities.dp(7.0f) * count) + ((count - 1) * AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(4.0f);
+                    float f = BlockSlideshowCell.this.currentPage + BlockSlideshowCell.this.pageOffset;
                     if (iDp < getMeasuredWidth()) {
-                        measuredWidth = (getMeasuredWidth() - iDp) / 2;
+                        fClamp = (getMeasuredWidth() - iDp) / 2.0f;
                     } else {
-                        int iDp2 = AndroidUtilities.dp(4.0f);
-                        int iDp3 = AndroidUtilities.dp(13.0f);
-                        int measuredWidth2 = ((getMeasuredWidth() - AndroidUtilities.dp(8.0f)) / 2) / iDp3;
-                        int i2 = (count - measuredWidth2) - 1;
-                        if (BlockSlideshowCell.this.currentPage != i2 || BlockSlideshowCell.this.pageOffset >= 0.0f) {
-                            if (BlockSlideshowCell.this.currentPage >= i2) {
-                                i = ((count - (measuredWidth2 * 2)) - 1) * iDp3;
-                            } else if (BlockSlideshowCell.this.currentPage > measuredWidth2) {
-                                i = ((int) (BlockSlideshowCell.this.pageOffset * iDp3)) + ((BlockSlideshowCell.this.currentPage - measuredWidth2) * iDp3);
-                            } else if (BlockSlideshowCell.this.currentPage != measuredWidth2 || BlockSlideshowCell.this.pageOffset <= 0.0f) {
-                                measuredWidth = iDp2;
-                            } else {
-                                i = (int) (BlockSlideshowCell.this.pageOffset * iDp3);
-                            }
-                            measuredWidth = iDp2 - i;
-                        } else {
-                            measuredWidth = iDp2 - (((int) (BlockSlideshowCell.this.pageOffset * iDp3)) + (((count - (measuredWidth2 * 2)) - 1) * iDp3));
-                        }
+                        float fDp = AndroidUtilities.dp(4.0f);
+                        int iDp2 = AndroidUtilities.dp(13.0f);
+                        fClamp = fDp - (Utilities.clamp(f - (((getMeasuredWidth() - AndroidUtilities.dp(8.0f)) / 2) / iDp2), Math.max(0, (count - (r9 * 2)) - 1), 0.0f) * iDp2);
                     }
-                    int i3 = 0;
-                    while (i3 < BlockSlideshowCell.this.currentBlock.items.size()) {
-                        int iDp4 = AndroidUtilities.dp(4.0f) + measuredWidth + (AndroidUtilities.dp(13.0f) * i3);
-                        Drawable drawable = BlockSlideshowCell.this.currentPage == i3 ? ArticleViewer.this.slideDotBigDrawable : ArticleViewer.this.slideDotDrawable;
-                        drawable.setBounds(iDp4 - AndroidUtilities.dp(5.0f), 0, iDp4 + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f));
-                        drawable.draw(canvas);
-                        i3++;
+                    canvas.save();
+                    canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                    for (int i = 0; i < BlockSlideshowCell.this.currentBlock.items.size(); i++) {
+                        float fMax = Math.max(0.0f, 1.0f - Math.abs(i - f));
+                        ArticleViewer.dotsPaint.setAlpha((int) ((fMax * 95.0f) + 160.0f));
+                        canvas.drawCircle(AndroidUtilities.dp(4.0f) + fClamp + (AndroidUtilities.dp(13.0f) * i), getMeasuredHeight() / 2.0f, AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(1.0f) * fMax), ArticleViewer.dotsPaint);
                     }
+                    canvas.restore();
                 }
             };
             this.dotsContainer = view;
@@ -16225,7 +16217,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        public WindowView mo1351getWindowView() {
+        public WindowView mo1339getWindowView() {
             return this.windowView;
         }
 
@@ -16620,7 +16612,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1351getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1339getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

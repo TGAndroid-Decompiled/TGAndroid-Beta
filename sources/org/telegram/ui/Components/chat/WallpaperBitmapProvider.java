@@ -24,32 +24,17 @@ public class WallpaperBitmapProvider {
         public final Object get(Bitmap bitmap) {
             return WallpaperBitmapProvider.blurBitmap(bitmap);
         }
-
-        @Override
-        public boolean isValid(Object obj) {
-            return BitmapMemoizedMetadata.Provider.CC.$default$isValid(this, obj);
-        }
     });
     private final BitmapMemoizedMetadata navbarColorFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
         @Override
         public final Object get(Bitmap bitmap) {
             return Integer.valueOf(WallpaperBitmapProvider.averageBottomColor(bitmap));
         }
-
-        @Override
-        public boolean isValid(Object obj) {
-            return BitmapMemoizedMetadata.Provider.CC.$default$isValid(this, obj);
-        }
     });
     private final BitmapMemoizedMetadata statusBarColorFromBitmap = new BitmapMemoizedMetadata(new BitmapMemoizedMetadata.Provider() {
         @Override
         public final Object get(Bitmap bitmap) {
             return Integer.valueOf(WallpaperBitmapProvider.averageTopColor(bitmap));
-        }
-
-        @Override
-        public boolean isValid(Object obj) {
-            return BitmapMemoizedMetadata.Provider.CC.$default$isValid(this, obj);
         }
     });
 

@@ -25,13 +25,13 @@ public abstract class CustomHtml {
             QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, iNextSpanTransition, QuoteSpan.class);
             if (quoteSpanArr != null) {
                 for (QuoteSpan quoteSpan : quoteSpanArr) {
-                    sb.append(quoteSpan.isCollapsing ? "<details>" : "<blockquote>");
+                    sb.append(quoteSpan.isCollapsing ? "<blockquote collapsed>" : "<blockquote>");
                 }
             }
             toHTML_1_wrapTextStyle(sb, spanned, i, iNextSpanTransition);
             if (quoteSpanArr != null) {
                 for (int length = quoteSpanArr.length - 1; length >= 0; length--) {
-                    sb.append(quoteSpanArr[length].isCollapsing ? "</details>" : "</blockquote>");
+                    sb.append("</blockquote>");
                 }
             }
             i = iNextSpanTransition;

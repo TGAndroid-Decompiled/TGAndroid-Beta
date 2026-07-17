@@ -304,9 +304,7 @@ public class CameraScanActivity extends BaseFragment {
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
         destroy(false, null);
-        if (getParentActivity() != null) {
-            getParentActivity().setRequestedOrientation(-1);
-        }
+        AndroidUtilities.unlockOrientation(getParentActivity());
         BarcodeDetector barcodeDetector = this.visionQrReader;
         if (barcodeDetector != null) {
             barcodeDetector.release();
@@ -721,9 +719,7 @@ public class CameraScanActivity extends BaseFragment {
                 }
             });
         }
-        if (getParentActivity() != null) {
-            getParentActivity().setRequestedOrientation(1);
-        }
+        AndroidUtilities.lockOrientation(getParentActivity(), 1);
         this.fragmentView.setKeepScreenOn(true);
         return this.fragmentView;
     }
@@ -978,11 +974,11 @@ public class CameraScanActivity extends BaseFragment {
         if (this.normalBounds == null) {
             this.normalBounds = new RectF();
         }
-        int iMax = Math.max(AndroidUtilities.displaySize.x, this.fragmentView.getWidth());
-        int iMin = (int) (Math.min(iMax, r1) / 1.5f);
-        float f = iMax;
-        float fMax = Math.max(AndroidUtilities.displaySize.y, this.fragmentView.getHeight());
-        this.normalBounds.set(((iMax - iMin) / 2.0f) / f, ((r1 - iMin) / 2.0f) / fMax, ((iMax + iMin) / 2.0f) / f, ((r1 + iMin) / 2.0f) / fMax);
+        int width = this.fragmentView.getWidth();
+        int iMin = (int) (Math.min(width, r1) / 1.5f);
+        float f = width;
+        float height = this.fragmentView.getHeight();
+        this.normalBounds.set(((width - iMin) / 2.0f) / f, ((r1 - iMin) / 2.0f) / height, ((width + iMin) / 2.0f) / f, ((r1 + iMin) / 2.0f) / height);
     }
 
     public RectF getBounds() {

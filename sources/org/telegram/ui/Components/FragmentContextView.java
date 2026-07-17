@@ -94,6 +94,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
     private View applyingView;
     private AvatarsImageView avatars;
     private final ReplaceAnimator callMessagesAnimator;
+    private final CapsuleBlobDrawable capsuleBlobDrawable;
     private ChatActivityInterface chatActivity;
     private boolean checkCallAfterAnimation;
     private boolean checkImportAfterAnimation;
@@ -118,7 +119,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
     private int groupCallMessageCounter;
     private FrameLayout groupCallMessagesContainer;
     private RLottieImageView importingImageView;
-    public boolean isInsideBubble;
     private boolean isLocation;
     private boolean isMusic;
     private boolean isMuted;
@@ -148,7 +148,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
     private final Theme.ResourcesProvider resourcesProvider;
     private boolean scheduleRunnableScheduled;
     private View selector;
-    private View shadow;
     private FrameLayout silentButton;
     private ImageView silentButtonImage;
     private boolean slidingSpeed;
@@ -211,10 +210,12 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             rLottieDrawable.setCurrentFrame(rLottieDrawable.getCustomEndFrame() - 1, false, true);
             this.muteButton.invalidate();
             Theme.getFragmentContextViewWavesDrawable().updateState(this.visible);
+            this.capsuleBlobDrawable.updateState(this.visible);
         }
         if (this.isMuted) {
             this.micAmplitude = 0.0f;
             Theme.getFragmentContextViewWavesDrawable().setAmplitude(0.0f);
+            this.capsuleBlobDrawable.setAmplitude(0.0f, false);
         }
     }
 
@@ -232,6 +233,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
 
     public FragmentContextView(Context context, BaseFragment baseFragment, View view, boolean z, Theme.ResourcesProvider resourcesProvider, boolean z2) {
         super(context);
+        this.capsuleBlobDrawable = new CapsuleBlobDrawable();
         this.speedItems = new ActionBarMenuItem.Item[6];
         this.currentProgress = -1;
         this.currentStyle = -1;
@@ -332,6 +334,10 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
 
     public void setDelegate(FragmentContextViewDelegate fragmentContextViewDelegate) {
         this.delegate = fragmentContextViewDelegate;
+    }
+
+    public CapsuleBlobDrawable getCapsuleBlobDrawable() {
+        return this.capsuleBlobDrawable;
     }
 
     private void checkCreateView() {
@@ -436,12 +442,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         View view = new View(context);
         this.selector = view;
         this.frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f));
-        if (!this.isInsideBubble) {
-            View view2 = new View(context);
-            this.shadow = view2;
-            view2.setBackgroundResource(R.drawable.blockpanel_shadow);
-            addView(this.shadow, LayoutHelper.createFrame(-1, 2.0f, 51, 0.0f, 36.0f, 0.0f, 0.0f));
-        }
         ImageView imageView = new ImageView(context);
         this.playButton = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -459,8 +459,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         addView(this.playButton, LayoutHelper.createFrame(36, 36, 51));
         this.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                this.f$0.lambda$checkCreateView$0(view3);
+            public final void onClick(View view2) {
+                this.f$0.lambda$checkCreateView$0(view2);
             }
         });
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -574,8 +574,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         addView(this.joinButton, LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 10.0f, 14.0f, 0.0f));
         this.joinButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                this.f$0.lambda$checkCreateView$1(view3);
+            public final void onClick(View view2) {
+                this.f$0.lambda$checkCreateView$1(view2);
             }
         });
         if (this.flickOnAttach) {
@@ -593,8 +593,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         this.silentButton.setContentDescription(LocaleController.getString(R.string.Unmute));
         this.silentButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                FragmentContextView.lambda$checkCreateView$2(view3);
+            public final void onClick(View view2) {
+                FragmentContextView.lambda$checkCreateView$2(view2);
             }
         });
         this.silentButton.setVisibility(8);
@@ -625,8 +625,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         addView(this.muteButton, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 0.0f, 2.0f, 0.0f));
         this.muteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                this.f$0.lambda$checkCreateView$4(view3);
+            public final void onClick(View view2) {
+                this.f$0.lambda$checkCreateView$4(view2);
             }
         });
         ImageView imageView6 = new ImageView(context);
@@ -638,8 +638,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         addView(this.closeButton, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
         this.closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                this.f$0.lambda$checkCreateView$6(view3);
+            public final void onClick(View view2) {
+                this.f$0.lambda$checkCreateView$6(view2);
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext()) {
@@ -652,8 +652,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         addView(frameLayout2, LayoutHelper.createFrame(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
         setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
-                this.f$0.lambda$checkCreateView$8(view3);
+            public final void onClick(View view2) {
+                this.f$0.lambda$checkCreateView$8(view2);
             }
         });
         setLeftMargin(this.leftMargin);
@@ -717,6 +717,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             FragmentContextView.this.muteButton.playAnimation();
             Theme.getFragmentContextViewWavesDrawable().updateState(true);
+            FragmentContextView.this.capsuleBlobDrawable.updateState(true);
         }
 
         public void lambda$$1() {
@@ -771,6 +772,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                         }
                         this.pressed = false;
                         Theme.getFragmentContextViewWavesDrawable().updateState(true);
+                        FragmentContextView.this.capsuleBlobDrawable.updateState(true);
                         MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
                         super.onTouchEvent(motionEventObtain);
                         motionEventObtain.recycle();
@@ -816,6 +818,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         }
         this.muteButton.playAnimation();
         Theme.getFragmentContextViewWavesDrawable().updateState(true);
+        this.capsuleBlobDrawable.updateState(true);
         try {
             this.muteButton.performHapticFeedback(3, 2);
         } catch (Exception unused) {
@@ -1287,17 +1290,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
 
     public void setTopPadding(float f) {
         this.topPadding = f;
-        if (this.fragment == null || getParent() == null || this.isInsideBubble) {
-            return;
-        }
-        View fragmentView = this.applyingView;
-        if (fragmentView == null) {
-            fragmentView = this.fragment.getFragmentView();
-        }
-        if (fragmentView == null || getParent() == null) {
-            return;
-        }
-        fragmentView.setPadding(0, (int) (getVisibility() == 0 ? this.topPadding : 0.0f), 0, 0);
     }
 
     private boolean equals(float f, float f2) {
@@ -1345,6 +1337,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             int i2 = this.currentStyle;
             if (i2 == 3 || i2 == 1) {
                 Theme.getFragmentContextViewWavesDrawable().removeParent(this);
+                this.capsuleBlobDrawable.stop();
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().unregisterStateListener(this);
                 }
@@ -1364,12 +1357,8 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 this.avatars.setLayoutParams(LayoutHelper.createFrame(108, getStyleHeight(), 51));
             }
             this.frameLayout.setLayoutParams(LayoutHelper.createFrame(-1, getStyleHeight(), 51, 0.0f, 0.0f, 0.0f, 0.0f));
-            if (!this.isInsideBubble) {
-                this.shadow.setLayoutParams(LayoutHelper.createFrame(-1, 2.0f, 51, 0.0f, getStyleHeight(), 0.0f, 0.0f));
-            }
             float f = this.topPadding;
             if (f > 0.0f && f != AndroidUtilities.dp2(getStyleHeight())) {
-                updatePaddings();
                 setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
             }
             if (i == 6) {
@@ -1401,7 +1390,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             if (i == 5) {
                 this.selector.setBackground(Theme.getSelectorDrawable(false));
-                this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
+                this.frameLayout.setBackgroundColor(0);
                 this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
                 int i4 = 0;
                 while (i4 < 2) {
@@ -1434,7 +1423,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             if (i == 0 || i == 2) {
                 this.selector.setBackground(Theme.getSelectorDrawable(false));
-                this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
+                this.frameLayout.setBackgroundColor(0);
                 this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
                 this.subtitleTextView.setVisibility(8);
                 this.joinButton.setVisibility(8);
@@ -1482,7 +1471,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             if (i == 4) {
                 this.selector.setBackground(Theme.getSelectorDrawable(false));
-                this.frameLayout.setBackgroundColor(this.isInsideBubble ? 0 : getThemedColor(Theme.key_inappPlayerBackground));
+                this.frameLayout.setBackgroundColor(0);
                 this.frameLayout.setTag(Integer.valueOf(Theme.key_inappPlayerBackground));
                 this.muteButton.setVisibility(8);
                 this.subtitleTextView.setVisibility(0);
@@ -1545,6 +1534,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 this.importingImageView.setVisibility(8);
                 this.importingImageView.stopAnimation();
                 Theme.getFragmentContextViewWavesDrawable().addParent(this);
+                this.capsuleBlobDrawable.start();
                 invalidate();
                 int i7 = 0;
                 while (i7 < 2) {
@@ -1562,7 +1552,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 this.playButton.setVisibility(8);
                 this.subtitleTextView.setVisibility(8);
                 this.joinButton.setVisibility(8);
-                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, this.isSideMenued ? 64 : 0, this.isInsideBubble ? 0.0f : 2.0f));
+                this.titleTextView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, this.isSideMenued ? 64 : 0, 0.0f));
                 this.titleTextView.setPadding(AndroidUtilities.dp(88.0f), 0, AndroidUtilities.dp(88.0f) + this.joinButtonWidth, 0);
                 ActionBarMenuItem actionBarMenuItem4 = this.playbackSpeedButton;
                 if (actionBarMenuItem4 != null) {
@@ -1613,6 +1603,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         int i2 = this.currentStyle;
         if (i2 == 3 || i2 == 1) {
             Theme.getFragmentContextViewWavesDrawable().removeParent(this);
+            this.capsuleBlobDrawable.stop();
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().unregisterStateListener(this);
@@ -1665,6 +1656,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         int i2 = this.currentStyle;
         if (i2 == 3 || i2 == 1) {
             Theme.getFragmentContextViewWavesDrawable().addParent(this);
+            this.capsuleBlobDrawable.start();
             if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().registerStateListener(this);
             }
@@ -1681,7 +1673,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             this.updateScheduleTimeRunnable.run();
         }
         if (this.visible && this.topPadding == 0.0f) {
-            updatePaddings();
             setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
         }
         this.speakerAmplitude = 0.0f;
@@ -1690,7 +1681,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, AndroidUtilities.dp2(getStyleHeight() + (this.isInsideBubble ? 0 : 2)));
+        super.onMeasure(i, AndroidUtilities.dp2(getStyleHeight()));
     }
 
     @Override
@@ -1783,6 +1774,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             if (VoIPService.getSharedInstance() != null) {
                 Theme.getFragmentContextViewWavesDrawable().setAmplitude(Math.max(this.speakerAmplitude, this.micAmplitude));
+                this.capsuleBlobDrawable.setAmplitude(Math.max(this.speakerAmplitude, this.micAmplitude));
                 return;
             }
             return;
@@ -1795,6 +1787,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             if (VoIPService.getSharedInstance() != null) {
                 Theme.getFragmentContextViewWavesDrawable().setAmplitude(Math.max(this.speakerAmplitude, this.micAmplitude));
+                this.capsuleBlobDrawable.setAmplitude(Math.max(this.speakerAmplitude, this.micAmplitude));
             }
             this.avatars.invalidate();
             return;
@@ -2116,7 +2109,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         }
         updateStyle(0);
         if (z && this.topPadding == 0.0f) {
-            updatePaddings();
             setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
             FragmentContextViewDelegate fragmentContextViewDelegate2 = this.delegate;
             if (fragmentContextViewDelegate2 != null) {
@@ -2133,9 +2125,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                 }
                 this.notificationsLocker.lock();
                 this.animatorSet = new AnimatorSet();
-                if (!this.isInsideBubble) {
-                    ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = -AndroidUtilities.dp(getStyleHeight());
-                }
                 FragmentContextViewDelegate fragmentContextViewDelegate3 = this.delegate;
                 if (fragmentContextViewDelegate3 != null) {
                     fragmentContextViewDelegate3.onAnimation(true, true);
@@ -2316,7 +2305,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             }
             updateStyle(5);
             if (z && this.topPadding == 0.0f) {
-                updatePaddings();
                 setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
                 FragmentContextViewDelegate fragmentContextViewDelegate = this.delegate;
                 if (fragmentContextViewDelegate != null) {
@@ -2333,9 +2321,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                     }
                     this.notificationsLocker.lock();
                     this.animatorSet = new AnimatorSet();
-                    if (!this.isInsideBubble) {
-                        ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = -AndroidUtilities.dp(getStyleHeight());
-                    }
                     FragmentContextViewDelegate fragmentContextViewDelegate2 = this.delegate;
                     if (fragmentContextViewDelegate2 != null) {
                         fragmentContextViewDelegate2.onAnimation(true, true);
@@ -2490,9 +2475,6 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                         this.animatorSet = null;
                     }
                     this.animatorSet = new AnimatorSet();
-                    if (!this.isInsideBubble) {
-                        ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = -AndroidUtilities.dp(getStyleHeight());
-                    }
                     this.notificationsLocker2.lock();
                     this.animatorSet.playTogether(ObjectAnimator.ofFloat(this, "topPadding", AndroidUtilities.dp2(getStyleHeight())));
                     this.animatorSet.setDuration(220L);
@@ -2524,14 +2506,12 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
                     });
                     this.animatorSet.start();
                 } else {
-                    updatePaddings();
                     setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
                     startJoinFlickerAnimation();
                 }
                 this.visible = true;
                 setVisibility(0);
             } else {
-                updatePaddings();
                 setTopPadding(AndroidUtilities.dp2(getStyleHeight()));
                 setVisibility(0);
             }
@@ -2650,9 +2630,12 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         avatarsImageView.updateAfterTransitionEnd();
     }
 
+    public int getCurrentStyle() {
+        return this.currentStyle;
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        boolean z;
         MessageObject playingMessageObject;
         if (this.frameLayout == null) {
             return;
@@ -2661,41 +2644,23 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
             int i = this.currentStyle;
             if (i == 3 || i == 1) {
                 Theme.getFragmentContextViewWavesDrawable().updateState(this.wasDraw);
+                this.capsuleBlobDrawable.updateState(this.wasDraw);
                 float fDp = this.topPadding / AndroidUtilities.dp(getStyleHeight());
                 if (this.collapseTransition) {
-                    Theme.getFragmentContextViewWavesDrawable().draw(0.0f, (AndroidUtilities.dp(getStyleHeight()) - this.topPadding) + this.extraHeight, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(this.isInsideBubble ? 0.0f : 2.0f), canvas, null, Math.min(fDp, 1.0f - this.collapseProgress));
+                    Theme.getFragmentContextViewWavesDrawable().draw(0.0f, this.extraHeight + 0.0f, getMeasuredWidth(), getMeasuredHeight(), canvas, null, Math.min(fDp, 1.0f - this.collapseProgress));
                 } else {
-                    Theme.getFragmentContextViewWavesDrawable().draw(0.0f, AndroidUtilities.dp(getStyleHeight()) - this.topPadding, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(this.isInsideBubble ? 0.0f : 2.0f), canvas, this, fDp);
-                }
-                if (this.isInsideBubble) {
-                    z = false;
-                } else {
-                    float fDp2 = AndroidUtilities.dp(getStyleHeight()) - this.topPadding;
-                    if (this.collapseTransition) {
-                        fDp2 += this.extraHeight;
-                    }
-                    if (fDp2 > getMeasuredHeight()) {
-                        return;
-                    }
-                    canvas.save();
-                    canvas.clipRect(0.0f, fDp2, getMeasuredWidth(), getMeasuredHeight());
-                    z = true;
+                    Theme.getFragmentContextViewWavesDrawable().draw(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), canvas, this, fDp);
                 }
                 invalidate();
-            } else {
-                z = false;
             }
             super.dispatchDraw(canvas);
             if (this.currentStyle == 0 && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
                 float f = -AndroidUtilities.dpf2(1.0f);
                 float fLerp = AndroidUtilities.lerp(f, getMeasuredWidth() + AndroidUtilities.dpf2(1.0f), playingMessageObject.audioProgress);
-                float measuredHeight = getMeasuredHeight() - (this.isInsideBubble ? 0 : AndroidUtilities.dp(2.0f));
+                float measuredHeight = getMeasuredHeight();
                 float fDpf2 = measuredHeight - AndroidUtilities.dpf2(2.0f);
                 this.progressPaint.setColor(getThemedColor(Theme.key_telegram_color));
                 canvas.drawRoundRect(f, fDpf2, fLerp, measuredHeight, AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(1.0f), this.progressPaint);
-            }
-            if (z) {
-                canvas.restore();
             }
             this.wasDraw = true;
         }
@@ -2722,18 +2687,10 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
     @Override
     public void setVisibility(int i) {
         super.setVisibility(i);
-        updatePaddings();
         setTopPadding(this.topPadding);
         if (i == 8) {
             this.wasDraw = false;
         }
-    }
-
-    private void updatePaddings() {
-        if (this.isInsideBubble) {
-            return;
-        }
-        ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = getVisibility() == 0 ? 0 - AndroidUtilities.dp(getStyleHeight()) : 0;
     }
 
     @Override

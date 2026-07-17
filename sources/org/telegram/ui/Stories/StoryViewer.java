@@ -540,11 +540,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                protected void onLayout(boolean z3, int i3, int i4, int i5, int i6) {
-                    super.onLayout(z3, i3, i4, i5, i6);
-                }
-
-                @Override
                 protected void dispatchDraw(Canvas canvas) {
                     PeerStoriesView currentPeerView = StoryViewer.this.storiesViewPager.getCurrentPeerView();
                     StoryViewer storyViewer = StoryViewer.this;
@@ -2407,7 +2402,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public View mo1351getWindowView() {
+    public View mo1339getWindowView() {
         return this.windowView;
     }
 

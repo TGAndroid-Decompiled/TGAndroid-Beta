@@ -1169,11 +1169,16 @@ public abstract class RichHtml {
     }
 
     private static void parseBlockquote(Node node, ArrayList arrayList, int i, Map map) throws NumberFormatException {
+        boolean z;
         String str;
         Iterator it = node.children.iterator();
         Node node2 = null;
-        boolean z = false;
-        while (it.hasNext()) {
+        boolean z2 = false;
+        while (true) {
+            z = true;
+            if (!it.hasNext()) {
+                break;
+            }
             Node node3 = (Node) it.next();
             if (!node3.isText && (str = node3.tag) != null) {
                 if ("cite".equals(str)) {
@@ -1181,15 +1186,19 @@ public abstract class RichHtml {
                         node2 = node3;
                     }
                 } else if (!isInlineTag(node3.tag)) {
-                    z = true;
+                    z2 = true;
                 }
             }
         }
         TL_iv.RichText richTextCiteAuthor = citeAuthor(node2);
-        if (!z) {
+        if (!z2) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             appendChildrenInlineExcept(spannableStringBuilder, node, "cite");
             TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
+            if (!node.has("data-collapsed") && !node.has("collapsed")) {
+                z = false;
+            }
+            pageblockblockquote.collapsed = z;
             RichTextCell.applyStyledTextToBlock(pageblockblockquote, trim(spannableStringBuilder));
             if (richTextCiteAuthor != null) {
                 pageblockblockquote.caption = richTextCiteAuthor;

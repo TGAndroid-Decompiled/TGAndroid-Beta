@@ -4,17 +4,23 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
+import android.view.View;
 import me.vkryl.android.animator.ListAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedLinearLayout;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
 public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
     BlurredBackgroundDrawable backgroundDrawable;
+    private FragmentContextView callFragmentContextView;
     private final Path clipPath;
     private final RectF clipRectF;
     private int defaultRadiusDp;
+    private boolean exceptCall;
+    private boolean onlyCall;
 
     public DialogsActivityTopPanelLayout(Context context) {
         super(context);
@@ -75,8 +81,20 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
         invalidate();
     }
 
+    public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
+        this.callFragmentContextView = fragmentContextView;
+        fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        FragmentContextView fragmentContextView;
+        return super.verifyDrawable(drawable) || ((fragmentContextView = this.callFragmentContextView) != null && fragmentContextView.getCapsuleBlobDrawable() == drawable);
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        int currentStyle;
         if (getMetadata().getTotalVisibility() == 0.0f) {
             return;
         }
@@ -84,22 +102,71 @@ public class DialogsActivityTopPanelLayout extends AnimatedLinearLayout {
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.draw(canvas);
         }
+        FragmentContextView fragmentContextView = this.callFragmentContextView;
+        View view = null;
+        if (fragmentContextView != null && ((currentStyle = fragmentContextView.getCurrentStyle()) == 3 || currentStyle == 1)) {
+            int entriesCount = getEntriesCount();
+            for (int i = 0; i < entriesCount; i++) {
+                ListAnimator.Entry entry = getEntry(i);
+                float paddingTop = getPaddingTop() + entry.getRectF().top;
+                View view2 = ((AnimatedLinearLayout.Holder) entry.item).view;
+                float visibility = entry.getVisibility();
+                if (visibility > 0.0f && isCallView(view2)) {
+                    CapsuleBlobDrawable capsuleBlobDrawable = this.callFragmentContextView.getCapsuleBlobDrawable();
+                    int requiredInset = capsuleBlobDrawable.getRequiredInset();
+                    int i2 = -requiredInset;
+                    capsuleBlobDrawable.setBounds(getPaddingLeft() - requiredInset, i2, (getMeasuredWidth() - getPaddingRight()) + requiredInset, AndroidUtilities.dp(36.0f) + (requiredInset * 2) + i2);
+                    capsuleBlobDrawable.setAlpha((int) (visibility * 255.0f));
+                    canvas.save();
+                    canvas.translate(0.0f, paddingTop);
+                    capsuleBlobDrawable.draw(canvas);
+                    canvas.restore();
+                    view = view2;
+                }
+            }
+        }
+        View view3 = view;
         canvas.save();
         canvas.clipPath(this.clipPath);
-        int entriesCount = getEntriesCount();
-        for (int i = 0; i < entriesCount; i++) {
-            ListAnimator.Entry entry = getEntry(i);
-            float paddingTop = getPaddingTop() + entry.getRectF().top;
-            float visibility = entry.getVisibility() * Math.min(1.0f, entry.getPosition());
-            if (visibility > 0.0f) {
+        int entriesCount2 = getEntriesCount();
+        for (int i3 = 0; i3 < entriesCount2; i3++) {
+            ListAnimator.Entry entry2 = getEntry(i3);
+            float paddingTop2 = getPaddingTop() + entry2.getRectF().top;
+            View view4 = ((AnimatedLinearLayout.Holder) entry2.item).view;
+            float visibility2 = entry2.getVisibility() * Math.min(1.0f, entry2.getPosition());
+            if (visibility2 > 0.0f && view3 != view4) {
                 int alpha = Theme.dividerPaint.getAlpha();
-                Theme.dividerPaint.setAlpha((int) (alpha * visibility));
-                float f = 1.0f - visibility;
-                canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop, Theme.dividerPaint);
+                Theme.dividerPaint.setAlpha((int) (alpha * visibility2));
+                float f = 1.0f - visibility2;
+                canvas.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f), paddingTop2, getWidth() - (getPaddingRight() + (AndroidUtilities.dp(16.0f) * f)), paddingTop2, Theme.dividerPaint);
                 Theme.dividerPaint.setAlpha(alpha);
             }
         }
+        this.exceptCall = view3 != null;
+        this.onlyCall = false;
         super.dispatchDraw(canvas);
         canvas.restore();
+        if (view3 != null) {
+            this.onlyCall = true;
+            this.exceptCall = false;
+            super.dispatchDraw(canvas);
+        }
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        boolean zIsCallView = isCallView(view);
+        if (zIsCallView && this.exceptCall) {
+            return false;
+        }
+        if (zIsCallView || !this.onlyCall) {
+            return super.drawChild(canvas, view, j);
+        }
+        return false;
+    }
+
+    private boolean isCallView(View view) {
+        FragmentContextView fragmentContextView = this.callFragmentContextView;
+        return fragmentContextView != null && (fragmentContextView == view || fragmentContextView.getParent() == view);
     }
 }

@@ -477,7 +477,7 @@ public class ItemOptions {
         }
         int i2 = Theme.key_actionBarDefaultSubmenuItem;
         int i3 = Theme.key_actionBarDefaultSubmenuItemIcon;
-        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, i != 0 ? 2 : 1, false, false, this.resourcesProvider);
+        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, (i == 0 && drawable == null) ? 1 : 2, false, false, this.resourcesProvider);
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         if (drawable != null) {
             actionBarMenuSubItem.setTextAndIcon(charSequence, 0, drawable);

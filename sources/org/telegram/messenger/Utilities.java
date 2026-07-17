@@ -108,6 +108,8 @@ public class Utilities {
 
     private static native void aesIgeEncryptionByteArray(byte[] bArr, byte[] bArr2, byte[] bArr3, boolean z, int i, int i2);
 
+    public static native boolean applyAlphaInvert(Bitmap bitmap, Bitmap bitmap2, int i);
+
     public static native boolean applySoftLight(Bitmap bitmap, Bitmap bitmap2, int i);
 
     public static native int averageBitmapColor(Bitmap bitmap, int i, int i2, int i3, int i4);
@@ -123,6 +125,8 @@ public class Utilities {
     public static native boolean copyBitmaps(Bitmap bitmap, Bitmap bitmap2);
 
     public static native void drawDitheredGradient(Bitmap bitmap, int[] iArr, int i, int i2, int i3, int i4);
+
+    public static native boolean expandAlphaToBlack(Bitmap bitmap, Bitmap bitmap2);
 
     public static native void generateGradient(Bitmap bitmap, boolean z, int i, float f, int i2, int i3, int i4, int[] iArr);
 

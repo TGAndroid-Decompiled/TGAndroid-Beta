@@ -6758,7 +6758,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesCount$194(int, long, int, java.util.ArrayList, int):void");
     }
 
-    private boolean isValidKeyboardToSave(TLRPC.Message message) {
+    public static boolean isValidKeyboardToSave(TLRPC.Message message) {
         TLRPC.ReplyMarkup replyMarkup = message.reply_markup;
         return (replyMarkup == null || (replyMarkup instanceof TLRPC.TL_replyInlineMarkup) || (replyMarkup.selective && !message.mentioned)) ? false : true;
     }
@@ -6989,51 +6989,14 @@ public class MessagesStorage extends BaseController {
     public void deleteEphemeralMessages(final LongSparseArray longSparseArray, final boolean z) {
         executeInStorageQueue(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws Throwable {
                 this.f$0.lambda$deleteEphemeralMessages$202(longSparseArray, z);
             }
         });
     }
 
-    public void lambda$deleteEphemeralMessages$202(LongSparseArray longSparseArray, boolean z) {
-        SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
-        if (z) {
-            try {
-                try {
-                    this.database.beginTransaction();
-                } catch (Exception e) {
-                    checkSQLException(e);
-                    if (sQLitePreparedStatementExecuteFast == null) {
-                        return;
-                    }
-                }
-            } catch (Throwable th) {
-                if (sQLitePreparedStatementExecuteFast != null) {
-                    sQLitePreparedStatementExecuteFast.dispose();
-                }
-                throw th;
-            }
-        }
-        sQLitePreparedStatementExecuteFast = this.database.executeFast("DELETE FROM ephemeral_messages WHERE dialog_id = ? AND id = ?;");
-        for (int i = 0; i < longSparseArray.size(); i++) {
-            long jKeyAt = longSparseArray.keyAt(i);
-            ArrayList arrayList = (ArrayList) longSparseArray.valueAt(i);
-            if (arrayList != null) {
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    sQLitePreparedStatementExecuteFast.requery();
-                    sQLitePreparedStatementExecuteFast.bindLong(1, jKeyAt);
-                    sQLitePreparedStatementExecuteFast.bindInteger(2, ((Integer) arrayList.get(i2)).intValue());
-                    sQLitePreparedStatementExecuteFast.step();
-                }
-            }
-        }
-        if (z) {
-            this.database.commitTransaction();
-        }
-        if (sQLitePreparedStatementExecuteFast == null) {
-            return;
-        }
-        sQLitePreparedStatementExecuteFast.dispose();
+    public void lambda$deleteEphemeralMessages$202(androidx.collection.LongSparseArray r17, boolean r18) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$deleteEphemeralMessages$202(androidx.collection.LongSparseArray, boolean):void");
     }
 
     public void lambda$getEphemeralMessages$203(Utilities.Callback callback, long j, long j2) {
