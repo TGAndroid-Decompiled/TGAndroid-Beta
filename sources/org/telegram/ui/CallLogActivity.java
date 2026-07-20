@@ -2178,13 +2178,13 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         public static void lambda$onCallUsersSelected$3(final int i, final boolean z, final HashSet hashSet, final BaseFragment baseFragment, final TLObject tLObject, final TLRPC.TL_error tL_error) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws InterruptedException {
+                public final void run() {
                     CallLogActivity.AnonymousClass9.lambda$onCallUsersSelected$2(tLObject, i, z, hashSet, tL_error, baseFragment);
                 }
             });
         }
 
-        public static void lambda$onCallUsersSelected$2(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) throws InterruptedException {
+        public static void lambda$onCallUsersSelected$2(TLObject tLObject, int i, boolean z, HashSet hashSet, TLRPC.TL_error tL_error, BaseFragment baseFragment) {
             if (tLObject instanceof TLRPC.Updates) {
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 MessagesController.getInstance(i).putUsers(updates.users, false);

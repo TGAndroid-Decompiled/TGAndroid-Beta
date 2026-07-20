@@ -30,21 +30,62 @@ public final class RLottieNative {
         this.mMetaData = iArr;
     }
 
+    public static RLottieNative createFromFile(String str, String str2, int i, int i2, boolean z, int[] iArr, boolean z2, int i3) {
+        return createFromFile(str, str2, i, i2, null, z, iArr, z2, i3);
+    }
+
+    public static RLottieNative createFromFile(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3) {
+        int[] iArr3 = new int[3];
+        long jCreate = create(str, str2, i, i2, iArr3, z, iArr2, z2, i3);
+        if (jCreate == 0) {
+            return null;
+        }
+        if (iArr != null && iArr.length == 3) {
+            System.arraycopy(iArr3, 0, iArr, 0, 3);
+        }
+        return new RLottieNative(jCreate, iArr3);
+    }
+
     public static RLottieNative createFromRawJson(String str, String str2, int[] iArr) {
+        return createFromRawJson(str, str2, null, iArr);
+    }
+
+    public static RLottieNative createFromRawJson(String str, String str2, int[] iArr, int[] iArr2) {
         if (str == null || str.isEmpty()) {
             return null;
         }
-        int[] iArr2 = new int[3];
-        long jCreateWithJson = createWithJson(str, str2, iArr2, iArr);
+        int[] iArr3 = new int[3];
+        long jCreateWithJson = createWithJson(str, str2, iArr3, iArr2);
         if (jCreateWithJson == 0) {
             return null;
         }
-        return new RLottieNative(jCreateWithJson, iArr2);
+        if (iArr != null && iArr.length == 3) {
+            System.arraycopy(iArr3, 0, iArr, 0, 3);
+        }
+        return new RLottieNative(jCreateWithJson, iArr3);
     }
 
     public int getFrame(int i, Bitmap bitmap, boolean z) {
         checkNotRecycled();
         return getFrame(this.mNativePtr, i, bitmap, z);
+    }
+
+    public void setLayerColor(String str, int i) {
+        checkNotRecycled();
+        setLayerColor(this.mNativePtr, str, i);
+    }
+
+    public void replaceColors(int[] iArr) {
+        checkNotRecycled();
+        replaceColors(this.mNativePtr, iArr);
+    }
+
+    public int getFrameCount() {
+        return this.mMetaData[0];
+    }
+
+    public int getFps() {
+        return this.mMetaData[1];
     }
 
     public void recycle() {
@@ -82,7 +123,7 @@ public final class RLottieNative {
         }
     }
 
-    public static long createWithJson(String str, String str2, int[] iArr, int[] iArr2) {
+    private static long createWithJson(String str, String str2, int[] iArr, int[] iArr2) {
         Trace.beginSection("RLottieNative#createWithJson");
         try {
             return nCreateWithJson(str, str2, iArr, iArr2);
@@ -100,11 +141,11 @@ public final class RLottieNative {
         }
     }
 
-    public static void setLayerColor(long j, String str, int i) {
+    private static void setLayerColor(long j, String str, int i) {
         nSetLayerColor(j, str, i);
     }
 
-    public static void replaceColors(long j, int[] iArr) {
+    private static void replaceColors(long j, int[] iArr) {
         nReplaceColors(j, iArr);
     }
 

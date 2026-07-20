@@ -121,6 +121,7 @@ import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
@@ -1809,7 +1810,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     }
 
     public static void lambda$onEventReceived$34(File file, int[] iArr, Runnable runnable) {
-        AnimatedFileDrawable.getVideoInfo(file.getAbsolutePath(), iArr, 0L);
+        AnimatedFileNative.getVideoInfo(file.getAbsolutePath(), iArr, 0L);
         AndroidUtilities.runOnUIThread(runnable);
     }
 

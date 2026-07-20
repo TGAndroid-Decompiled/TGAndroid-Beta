@@ -14,19 +14,19 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.ChatMessageCell;
 
-public class SlotsDrawable extends RLottieDrawable {
+public final class SlotsDrawable extends RLottieDiceDrawable {
     private ReelValue center;
     private final int[] frameCounts;
     private final int[] frameNums;
     private ReelValue left;
-    private final long[] nativePtrs;
+    private final RLottieNative[] lottieNatives;
     private boolean playWinAnimation;
     private ReelValue right;
     private final int[] secondFrameCounts;
     private final int[] secondFrameNums;
-    private final long[] secondNativePtrs;
+    private final RLottieNative[] secondLottieNatives;
 
-    enum ReelValue {
+    private enum ReelValue {
         bar,
         berries,
         lemon,
@@ -36,31 +36,26 @@ public class SlotsDrawable extends RLottieDrawable {
 
     public SlotsDrawable(String str, int i, int i2) {
         super(str, i, i2);
-        this.nativePtrs = new long[5];
+        this.lottieNatives = new RLottieNative[5];
         this.frameCounts = new int[5];
         this.frameNums = new int[5];
-        this.secondNativePtrs = new long[3];
+        this.secondLottieNatives = new RLottieNative[3];
         this.secondFrameCounts = new int[3];
         this.secondFrameNums = new int[3];
-        this.loadFrameRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                this.f$0.lambda$new$0();
-            }
-        };
     }
 
-    public void lambda$new$0() {
+    @Override
+    protected void loadFrameRunnableImpl() {
         int frame;
         if (this.isRecycled) {
             return;
         }
-        if (this.nativePtr == 0 || (this.isDice == 2 && this.secondNativePtr == 0)) {
+        if (this.nativePtr == null || (this.isDice == 2 && this.secondNativePtr == null)) {
             CountDownLatch countDownLatch = this.frameWaitSync;
             if (countDownLatch != null) {
                 countDownLatch.countDown();
             }
-            RLottieDrawable.uiHandler.post(this.uiRunnableNoFrame);
+            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
             return;
         }
         if (this.backgroundBitmap == null) {
@@ -76,11 +71,11 @@ public class SlotsDrawable extends RLottieDrawable {
                     int i = 0;
                     frame = -1;
                     while (true) {
-                        long[] jArr = this.nativePtrs;
-                        if (i >= jArr.length) {
+                        RLottieNative[] rLottieNativeArr = this.lottieNatives;
+                        if (i >= rLottieNativeArr.length) {
                             break;
                         }
-                        frame = RLottieNative.getFrame(jArr[i], this.frameNums[i], this.backgroundBitmap, i == 0);
+                        frame = rLottieNativeArr[i].getFrame(this.frameNums[i], this.backgroundBitmap, i == 0);
                         if (i != 0) {
                             int[] iArr = this.frameNums;
                             int i2 = iArr[i] + 1;
@@ -89,7 +84,7 @@ public class SlotsDrawable extends RLottieDrawable {
                             } else if (i != 4) {
                                 iArr[i] = 0;
                                 this.nextFrameIsLast = false;
-                                if (this.secondNativePtr != 0) {
+                                if (this.secondNativePtr != null) {
                                     this.isDice = 2;
                                 }
                             }
@@ -117,19 +112,19 @@ public class SlotsDrawable extends RLottieDrawable {
                             iArr3[0] = -1;
                         }
                     }
-                    RLottieNative.getFrame(this.nativePtrs[0], Math.max(this.frameNums[0], 0), this.backgroundBitmap, true);
+                    this.lottieNatives[0].getFrame(Math.max(this.frameNums[0], 0), this.backgroundBitmap, true);
                     int i5 = 0;
                     while (true) {
-                        long[] jArr2 = this.secondNativePtrs;
-                        if (i5 >= jArr2.length) {
+                        RLottieNative[] rLottieNativeArr2 = this.secondLottieNatives;
+                        if (i5 >= rLottieNativeArr2.length) {
                             break;
                         }
-                        long j = jArr2[i5];
+                        RLottieNative rLottieNative = rLottieNativeArr2[i5];
                         int i6 = this.secondFrameNums[i5];
                         if (i6 < 0) {
                             i6 = this.secondFrameCounts[i5] - 1;
                         }
-                        RLottieNative.getFrame(j, i6, this.backgroundBitmap, false);
+                        rLottieNative.getFrame(i6, this.backgroundBitmap, false);
                         if (!this.nextFrameIsLast) {
                             int[] iArr4 = this.secondFrameNums;
                             int i7 = iArr4[i5] + 1;
@@ -141,7 +136,7 @@ public class SlotsDrawable extends RLottieDrawable {
                         }
                         i5++;
                     }
-                    frame = RLottieNative.getFrame(this.nativePtrs[4], this.frameNums[4], this.backgroundBitmap, false);
+                    frame = this.lottieNatives[4].getFrame(this.frameNums[4], this.backgroundBitmap, false);
                     int[] iArr5 = this.frameNums;
                     int i8 = iArr5[4] + 1;
                     if (i8 < this.frameCounts[4]) {
@@ -170,7 +165,7 @@ public class SlotsDrawable extends RLottieDrawable {
                     }
                 }
                 if (frame == -1) {
-                    RLottieDrawable.uiHandler.post(this.uiRunnableNoFrame);
+                    AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
                     CountDownLatch countDownLatch2 = this.frameWaitSync;
                     if (countDownLatch2 != null) {
                         countDownLatch2.countDown();
@@ -183,7 +178,7 @@ public class SlotsDrawable extends RLottieDrawable {
                 FileLog.e(e);
             }
         }
-        RLottieDrawable.uiHandler.post(this.uiRunnable);
+        AndroidUtilities.runOnUIThread(this.uiRunnable);
         CountDownLatch countDownLatch3 = this.frameWaitSync;
         if (countDownLatch3 != null) {
             countDownLatch3.countDown();
@@ -220,27 +215,27 @@ public class SlotsDrawable extends RLottieDrawable {
     }
 
     public boolean setBaseDice(final ChatMessageCell chatMessageCell, final TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
-        if (this.nativePtr == 0 && !this.loadingInBackground) {
+        if (this.nativePtr == null && !this.loadingInBackground) {
             this.loadingInBackground = true;
             final MessageObject messageObject = chatMessageCell.getMessageObject();
             final int i = chatMessageCell.getMessageObject().currentAccount;
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setBaseDice$5(tL_messages_stickerSet, i, messageObject, chatMessageCell);
+                    this.f$0.lambda$setBaseDice$4(tL_messages_stickerSet, i, messageObject, chatMessageCell);
                 }
             });
         }
         return true;
     }
 
-    public void lambda$setBaseDice$5(final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final int i, final MessageObject messageObject, final ChatMessageCell chatMessageCell) {
+    public void lambda$setBaseDice$4(final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final int i, final MessageObject messageObject, final ChatMessageCell chatMessageCell) {
         int i2;
         if (this.destroyAfterLoading) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setBaseDice$1();
+                    this.f$0.lambda$setBaseDice$0();
                 }
             });
             return;
@@ -248,11 +243,11 @@ public class SlotsDrawable extends RLottieDrawable {
         int i3 = 0;
         boolean z = false;
         while (true) {
-            long[] jArr = this.nativePtrs;
-            if (i3 >= jArr.length) {
+            RLottieNative[] rLottieNativeArr = this.lottieNatives;
+            if (i3 >= rLottieNativeArr.length) {
                 break;
             }
-            if (jArr[i3] == 0) {
+            if (rLottieNativeArr[i3] == null) {
                 if (i3 == 0) {
                     i2 = 1;
                 } else if (i3 == 1) {
@@ -272,12 +267,12 @@ public class SlotsDrawable extends RLottieDrawable {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                SlotsDrawable.lambda$setBaseDice$2(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
+                                SlotsDrawable.lambda$setBaseDice$1(document, i, messageObject, chatMessageCell, tL_messages_stickerSet);
                             }
                         });
                         z = true;
                     } else {
-                        this.nativePtrs[i3] = RLottieNative.createWithJson(res, "dice", this.metaData, null);
+                        this.lottieNatives[i3] = RLottieNative.createFromRawJson(res, "dice", this.metaData, null);
                         this.frameCounts[i3] = this.metaData[0];
                     }
                 }
@@ -288,20 +283,20 @@ public class SlotsDrawable extends RLottieDrawable {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setBaseDice$3();
+                    this.f$0.lambda$setBaseDice$2();
                 }
             });
         } else {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setBaseDice$4(i, chatMessageCell);
+                    this.f$0.lambda$setBaseDice$3(i, chatMessageCell);
                 }
             });
         }
     }
 
-    public void lambda$setBaseDice$1() {
+    public void lambda$setBaseDice$0() {
         this.loadingInBackground = false;
         if (this.secondLoadingInBackground || !this.destroyAfterLoading) {
             return;
@@ -309,30 +304,30 @@ public class SlotsDrawable extends RLottieDrawable {
         recycle(true);
     }
 
-    public static void lambda$setBaseDice$2(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static void lambda$setBaseDice$1(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(document), messageObject, chatMessageCell);
         FileLoader.getInstance(i).loadFile(document, tL_messages_stickerSet, 1, 1);
     }
 
-    public void lambda$setBaseDice$3() {
+    public void lambda$setBaseDice$2() {
         this.loadingInBackground = false;
     }
 
-    public void lambda$setBaseDice$4(int i, ChatMessageCell chatMessageCell) {
+    public void lambda$setBaseDice$3(int i, ChatMessageCell chatMessageCell) {
         this.loadingInBackground = false;
         if (!this.secondLoadingInBackground && this.destroyAfterLoading) {
             recycle(true);
             return;
         }
-        this.nativePtr = this.nativePtrs[0];
+        this.nativePtr = this.lottieNatives[0];
+        checkChoreographer();
         DownloadController.getInstance(i).removeLoadingFileObserver(chatMessageCell);
-        this.timeBetweenFrames = Math.max(16, (int) (1000.0f / this.metaData[1]));
         scheduleNextGetFrame();
         invalidateInternal();
     }
 
     public boolean setDiceNumber(final ChatMessageCell chatMessageCell, int i, final TLRPC.TL_messages_stickerSet tL_messages_stickerSet, final boolean z) {
-        if (this.secondNativePtr == 0 && !this.secondLoadingInBackground) {
+        if (this.secondNativePtr == null && !this.secondLoadingInBackground) {
             init(i);
             final MessageObject messageObject = chatMessageCell.getMessageObject();
             final int i2 = chatMessageCell.getMessageObject().currentAccount;
@@ -340,18 +335,18 @@ public class SlotsDrawable extends RLottieDrawable {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$setDiceNumber$10(tL_messages_stickerSet, i2, messageObject, chatMessageCell, z);
+                    this.f$0.lambda$setDiceNumber$9(tL_messages_stickerSet, i2, messageObject, chatMessageCell, z);
                 }
             });
         }
         return true;
     }
 
-    public void lambda$setDiceNumber$10(final org.telegram.tgnet.TLRPC.TL_messages_stickerSet r18, final int r19, final org.telegram.messenger.MessageObject r20, final org.telegram.ui.Cells.ChatMessageCell r21, final boolean r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SlotsDrawable.lambda$setDiceNumber$10(org.telegram.tgnet.TLRPC$TL_messages_stickerSet, int, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, boolean):void");
+    public void lambda$setDiceNumber$9(final org.telegram.tgnet.TLRPC.TL_messages_stickerSet r17, final int r18, final org.telegram.messenger.MessageObject r19, final org.telegram.ui.Cells.ChatMessageCell r20, final boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SlotsDrawable.lambda$setDiceNumber$9(org.telegram.tgnet.TLRPC$TL_messages_stickerSet, int, org.telegram.messenger.MessageObject, org.telegram.ui.Cells.ChatMessageCell, boolean):void");
     }
 
-    public void lambda$setDiceNumber$6() {
+    public void lambda$setDiceNumber$5() {
         this.secondLoadingInBackground = false;
         if (this.loadingInBackground || !this.destroyAfterLoading) {
             return;
@@ -359,16 +354,16 @@ public class SlotsDrawable extends RLottieDrawable {
         recycle(true);
     }
 
-    public static void lambda$setDiceNumber$7(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static void lambda$setDiceNumber$6(TLRPC.Document document, int i, MessageObject messageObject, ChatMessageCell chatMessageCell, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         DownloadController.getInstance(i).addLoadingFileObserver(FileLoader.getAttachFileName(document), messageObject, chatMessageCell);
         FileLoader.getInstance(i).loadFile(document, tL_messages_stickerSet, 1, 1);
     }
 
-    public void lambda$setDiceNumber$8() {
+    public void lambda$setDiceNumber$7() {
         this.secondLoadingInBackground = false;
     }
 
-    public void lambda$setDiceNumber$9(boolean z, int i, ChatMessageCell chatMessageCell) {
+    public void lambda$setDiceNumber$8(boolean z, int i, ChatMessageCell chatMessageCell) {
         if (z && this.nextRenderingBitmap == null && this.renderingBitmap == null && this.loadFrameTask == null) {
             this.isDice = 2;
             this.setLastFrame = true;
@@ -378,59 +373,25 @@ public class SlotsDrawable extends RLottieDrawable {
             recycle(true);
             return;
         }
-        this.secondNativePtr = this.secondNativePtrs[0];
+        this.secondNativePtr = this.secondLottieNatives[0];
         DownloadController.getInstance(i).removeLoadingFileObserver(chatMessageCell);
-        this.timeBetweenFrames = Math.max(16, (int) (1000.0f / this.metaData[1]));
         scheduleNextGetFrame();
         invalidateInternal();
     }
 
     @Override
     public void recycle(boolean z) {
-        int i = 0;
         this.isRunning = false;
         this.isRecycled = true;
         checkRunningTasks();
+        checkChoreographer();
         if (this.loadingInBackground || this.secondLoadingInBackground) {
             this.destroyAfterLoading = true;
-            return;
-        }
-        if (this.loadFrameTask != null || this.cacheGenerateTask != null) {
+        } else if (this.loadFrameTask == null) {
+            recycleInternal(true);
+            recycleResources();
+        } else {
             this.destroyWhenDone = true;
-            return;
-        }
-        int i2 = 0;
-        while (true) {
-            long[] jArr = this.nativePtrs;
-            if (i2 >= jArr.length) {
-                break;
-            }
-            long j = jArr[i2];
-            if (j != 0) {
-                if (j == this.nativePtr) {
-                    this.nativePtr = 0L;
-                }
-                RLottieNative.destroy(this.nativePtrs[i2]);
-                this.nativePtrs[i2] = 0;
-            }
-            i2++;
-        }
-        while (true) {
-            long[] jArr2 = this.secondNativePtrs;
-            if (i < jArr2.length) {
-                long j2 = jArr2[i];
-                if (j2 != 0) {
-                    if (j2 == this.secondNativePtr) {
-                        this.secondNativePtr = 0L;
-                    }
-                    RLottieNative.destroy(this.secondNativePtrs[i]);
-                    this.secondNativePtrs[i] = 0;
-                }
-                i++;
-            } else {
-                recycleResources();
-                return;
-            }
         }
     }
 
@@ -438,36 +399,11 @@ public class SlotsDrawable extends RLottieDrawable {
     protected void decodeFrameFinishedInternal() {
         if (this.destroyWhenDone) {
             checkRunningTasks();
-            if (this.loadFrameTask == null && this.cacheGenerateTask == null) {
-                int i = 0;
-                int i2 = 0;
-                while (true) {
-                    long[] jArr = this.nativePtrs;
-                    if (i2 >= jArr.length) {
-                        break;
-                    }
-                    long j = jArr[i2];
-                    if (j != 0) {
-                        RLottieNative.destroy(j);
-                        this.nativePtrs[i2] = 0;
-                    }
-                    i2++;
-                }
-                while (true) {
-                    long[] jArr2 = this.secondNativePtrs;
-                    if (i >= jArr2.length) {
-                        break;
-                    }
-                    long j2 = jArr2[i];
-                    if (j2 != 0) {
-                        RLottieNative.destroy(j2);
-                        this.secondNativePtrs[i] = 0;
-                    }
-                    i++;
-                }
+            if (this.loadFrameTask == null) {
+                recycleInternal(false);
             }
         }
-        if (this.nativePtr == 0 && this.secondNativePtr == 0) {
+        if (this.nativePtr == null && this.secondNativePtr == null) {
             recycleResources();
             return;
         }
@@ -476,5 +412,40 @@ public class SlotsDrawable extends RLottieDrawable {
             stop();
         }
         scheduleNextGetFrame();
+    }
+
+    private void recycleInternal(boolean z) {
+        int i = 0;
+        int i2 = 0;
+        while (true) {
+            RLottieNative[] rLottieNativeArr = this.lottieNatives;
+            if (i2 >= rLottieNativeArr.length) {
+                break;
+            }
+            RLottieNative rLottieNative = rLottieNativeArr[i2];
+            if (rLottieNative != null) {
+                if (z && rLottieNative == this.nativePtr) {
+                    this.nativePtr = null;
+                }
+                this.lottieNatives[i2].recycle();
+                this.lottieNatives[i2] = null;
+            }
+            i2++;
+        }
+        while (true) {
+            RLottieNative[] rLottieNativeArr2 = this.secondLottieNatives;
+            if (i >= rLottieNativeArr2.length) {
+                return;
+            }
+            RLottieNative rLottieNative2 = rLottieNativeArr2[i];
+            if (rLottieNative2 != null) {
+                if (z && rLottieNative2 == this.secondNativePtr) {
+                    this.secondNativePtr = null;
+                }
+                this.secondLottieNatives[i].recycle();
+                this.secondLottieNatives[i] = null;
+            }
+            i++;
+        }
     }
 }

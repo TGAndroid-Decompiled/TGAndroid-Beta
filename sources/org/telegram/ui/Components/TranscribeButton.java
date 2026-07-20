@@ -614,6 +614,7 @@ public abstract class TranscribeButton {
     }
 
     private static class LoadingPointsDrawable extends Drawable {
+        private final Drawable.Callback callback;
         private int lastColor;
         private RLottieDrawable lottie;
         private Paint paint;
@@ -632,16 +633,27 @@ public abstract class TranscribeButton {
         }
 
         public LoadingPointsDrawable(TextPaint textPaint) {
-            this.paint = textPaint;
-            float textSize = textPaint.getTextSize() * 0.89f;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f)) {
+            Drawable.Callback callback = new Drawable.Callback() {
                 @Override
-                protected boolean hasParentView() {
-                    return true;
+                public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+                }
+
+                @Override
+                public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                }
+
+                @Override
+                public void invalidateDrawable(Drawable drawable) {
+                    LoadingPointsDrawable.this.invalidateSelf();
                 }
             };
+            this.callback = callback;
+            this.paint = textPaint;
+            float textSize = textPaint.getTextSize() * 0.89f;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.dots_loading, "dots_loading", (int) textSize, (int) (textSize * 1.25f));
             this.lottie = rLottieDrawable;
-            rLottieDrawable.setAutoRepeat(1);
+            rLottieDrawable.setCallback(callback);
+            this.lottie.setAutoRepeat(1);
             this.lottie.setCurrentFrame((int) ((SystemClock.elapsedRealtime() / 16.0f) % 60.0f));
             this.lottie.setAllowDecodeSingleFrame(true);
             this.lottie.start();

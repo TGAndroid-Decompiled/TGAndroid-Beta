@@ -218,6 +218,7 @@ import org.telegram.ui.ChooseDownloadQualityLayout;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AnimationProperties;
@@ -6067,7 +6068,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             PhotoViewer.this.showShareAlert(arrayList);
         }
 
-        public boolean lambda$onItemClick$14(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
+        public boolean lambda$onItemClick$14(ArrayList arrayList, ChatActivity chatActivity, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
             UndoView undoView;
             long j;
             if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(PhotoViewer.this.currentAccount).getClientUserId() || charSequence != null) {
@@ -6736,7 +6737,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             return;
         }
         int[] iArr = new int[11];
-        AnimatedFileDrawable.getVideoInfo(photoEntry2.path, iArr, 0L);
+        AnimatedFileNative.getVideoInfo(photoEntry2.path, iArr, 0L);
         int iMax = Math.max(iArr[1], photoEntry2.width);
         int iMax2 = Math.max(iArr[2], photoEntry2.height);
         if ((iArr[8] / 90) % 2 == 1) {
@@ -16563,7 +16564,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             int videoBitrate = MediaController.getVideoBitrate(this.val$videoPath);
             final int[] iArr = new int[11];
-            AnimatedFileDrawable.getVideoInfo(this.val$videoPath, iArr, this.val$videoPathOffset);
+            AnimatedFileNative.getVideoInfo(this.val$videoPath, iArr, this.val$videoPathOffset);
             boolean z = false;
             boolean z2 = iArr[10] != 0;
             PhotoViewer photoViewer = PhotoViewer.this;

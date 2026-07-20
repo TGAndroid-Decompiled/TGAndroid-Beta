@@ -76,6 +76,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.Components.poll.PollAttachedMedia;
@@ -5984,7 +5985,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     private static VideoEditedInfo createCompressionSettings(String str, long j) {
         int[] iArr = new int[11];
-        AnimatedFileDrawable.getVideoInfo(str, iArr, j);
+        AnimatedFileNative.getVideoInfo(str, iArr, j);
         if (iArr[0] == 0) {
             if (!BuildVars.LOGS_ENABLED) {
                 return null;

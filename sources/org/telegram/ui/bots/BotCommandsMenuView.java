@@ -69,19 +69,7 @@ public class BotCommandsMenuView extends View {
         };
         this.backDrawable = menuDrawable;
         int i = R.raw.bot_webview_sheet_to_cross;
-        this.webViewAnimation = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)) {
-            @Override
-            public void invalidateSelf() {
-                super.invalidateSelf();
-                BotCommandsMenuView.this.invalidate();
-            }
-
-            @Override
-            protected void invalidateInternal() {
-                super.invalidateInternal();
-                BotCommandsMenuView.this.invalidate();
-            }
-        };
+        this.webViewAnimation = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
         this.menuText = LocaleController.getString(R.string.BotsMenuTitle);
         this.drawBackgroundDrawable = true;
         updateColors();
@@ -94,24 +82,14 @@ public class BotCommandsMenuView extends View {
         Drawable drawableCreateSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
         this.backgroundDrawable = drawableCreateSimpleSelectorRoundRectDrawable;
         drawableCreateSimpleSelectorRoundRectDrawable.setCallback(this);
+        this.webViewAnimation.setCallback(this);
+        this.webViewAnimation.setMasterParent(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
     }
 
     public void setDrawBackgroundDrawable(boolean z) {
         this.drawBackgroundDrawable = z;
         invalidate();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.webViewAnimation.setMasterParent(this);
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.webViewAnimation.setMasterParent(this);
     }
 
     public void setWebView(boolean z) {

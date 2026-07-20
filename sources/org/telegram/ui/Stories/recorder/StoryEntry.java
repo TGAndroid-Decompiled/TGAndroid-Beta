@@ -48,7 +48,7 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.RLottieNative;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
@@ -1362,14 +1362,14 @@ public class StoryEntry {
         for (int i = 0; i < strArr.length; i++) {
             String str = strArr[i];
             if (str != null) {
-                AnimatedFileDrawable.getVideoInfo(str, iArr[i], 0L);
+                AnimatedFileNative.getVideoInfo(str, iArr[i], 0L);
             }
         }
         AndroidUtilities.runOnUIThread(runnable);
     }
 
     public static void lambda$getVideoEditedInfo$11(String str, int[][] iArr, Runnable runnable) {
-        AnimatedFileDrawable.getVideoInfo(str, iArr[0], 0L);
+        AnimatedFileNative.getVideoInfo(str, iArr[0], 0L);
         AndroidUtilities.runOnUIThread(runnable);
     }
 

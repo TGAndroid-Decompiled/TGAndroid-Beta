@@ -5088,7 +5088,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         UndoView undoView = null;
         if (currentVisibleFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) currentVisibleFragment;
-            if (chatActivity.getDialogId() == (-chat.id)) {
+            if (chat != null && chatActivity.getDialogId() == (-chat.id)) {
                 chat = null;
             }
             undoView = chatActivity.getUndoView();

@@ -41,6 +41,7 @@ import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Looper;
 import android.os.PowerManager;
 import android.os.Process;
 import android.os.SystemClock;
@@ -2891,6 +2892,14 @@ public class AndroidUtilities {
 
     public static int getPeerLayerVersion(int i) {
         return Math.max(73, (i >> 16) & 65535);
+    }
+
+    public static void executeOnUIThread(Runnable runnable) {
+        if (Looper.myLooper() != Looper.getMainLooper()) {
+            runOnUIThread(runnable);
+        } else {
+            runnable.run();
+        }
     }
 
     public static void runOnUIThread(Runnable runnable) {
