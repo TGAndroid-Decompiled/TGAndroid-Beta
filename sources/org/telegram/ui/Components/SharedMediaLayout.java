@@ -4349,7 +4349,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.cantDeleteMessagesCount = 0;
     }
 
-    public boolean lambda$onActionBarItemClick$47(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public boolean lambda$onActionBarItemClick$47(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) throws Resources.NotFoundException {
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i3 = 1;
         while (true) {
