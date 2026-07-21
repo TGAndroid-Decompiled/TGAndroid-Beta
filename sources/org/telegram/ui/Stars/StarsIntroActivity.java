@@ -2621,6 +2621,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     public static class StarsNeededSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
         private final int BUTTON_EXPAND;
         private UniversalAdapter adapter;
+        private final boolean canBuy;
         private boolean expanded;
         private final FireworksOverlay fireworksOverlay;
         private final FrameLayout footerView;
@@ -2721,70 +2722,74 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         }
 
         public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-            arrayList.add(UItem.asCustom(this.headerView));
-            arrayList.add(UItem.asHeader(LocaleController.getString(R.string.TelegramStarsChoose)));
+            arrayList.add(UItem.asCustomShadow(this.headerView));
+            if (this.canBuy) {
+                arrayList.add(UItem.asHeader(LocaleController.getString(R.string.TelegramStarsChoose)));
+            }
             ArrayList options = StarsController.getInstance(this.currentAccount).getOptions();
-            if (options != null && !options.isEmpty()) {
-                int i = 0;
-                int i2 = 0;
-                int i3 = 0;
-                boolean z = false;
-                int i4 = 1;
-                for (int i5 = 0; i5 < options.size(); i5++) {
-                    TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) options.get(i5);
-                    if (tL_starsTopupOption.stars >= this.starsNeeded) {
-                        if (tL_starsTopupOption.extended && !this.expanded && z) {
-                            i3++;
+            if (this.canBuy) {
+                if (options != null && !options.isEmpty()) {
+                    int i = 0;
+                    int i2 = 0;
+                    int i3 = 0;
+                    boolean z = false;
+                    int i4 = 1;
+                    for (int i5 = 0; i5 < options.size(); i5++) {
+                        TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) options.get(i5);
+                        if (tL_starsTopupOption.stars >= this.starsNeeded) {
+                            if (tL_starsTopupOption.extended && !this.expanded && z) {
+                                i3++;
+                            } else {
+                                arrayList.add(StarTierView.Factory.asStarTier(i5, i4, tL_starsTopupOption));
+                                i2++;
+                                i4++;
+                                z = true;
+                            }
+                        }
+                    }
+                    if (i2 < 3) {
+                        arrayList.clear();
+                        arrayList.add(UItem.asCustom(this.headerView));
+                        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.TelegramStarsChoose)));
+                        int i6 = 0;
+                        for (int i7 = 0; i7 < options.size(); i7++) {
+                            TL_stars.TL_starsTopupOption tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) options.get(i7);
+                            if (tL_starsTopupOption2.stars >= this.starsNeeded) {
+                                arrayList.add(StarTierView.Factory.asStarTier(i7, i4, tL_starsTopupOption2));
+                                i6++;
+                                i4++;
+                            }
+                        }
+                        if (i6 == 0) {
+                            while (i < options.size()) {
+                                arrayList.add(StarTierView.Factory.asStarTier(i, i4, (TL_stars.TL_starsTopupOption) options.get(i)));
+                                i++;
+                                i4++;
+                            }
+                            boolean z2 = this.expanded;
+                            if (!z2 && i3 > 0) {
+                                arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z2 ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), !this.expanded).accent());
+                            }
                         } else {
-                            arrayList.add(StarTierView.Factory.asStarTier(i5, i4, tL_starsTopupOption));
-                            i2++;
-                            i4++;
-                            z = true;
+                            this.expanded = true;
                         }
-                    }
-                }
-                if (i2 < 3) {
-                    arrayList.clear();
-                    arrayList.add(UItem.asCustom(this.headerView));
-                    arrayList.add(UItem.asHeader(LocaleController.getString(R.string.TelegramStarsChoose)));
-                    int i6 = 0;
-                    for (int i7 = 0; i7 < options.size(); i7++) {
-                        TL_stars.TL_starsTopupOption tL_starsTopupOption2 = (TL_stars.TL_starsTopupOption) options.get(i7);
-                        if (tL_starsTopupOption2.stars >= this.starsNeeded) {
-                            arrayList.add(StarTierView.Factory.asStarTier(i7, i4, tL_starsTopupOption2));
-                            i6++;
-                            i4++;
+                    } else if (i2 > 0) {
+                        boolean z3 = this.expanded;
+                        if (!z3 && i3 > 0) {
+                            arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z3 ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), !this.expanded).accent());
                         }
-                    }
-                    if (i6 == 0) {
+                    } else {
                         while (i < options.size()) {
                             arrayList.add(StarTierView.Factory.asStarTier(i, i4, (TL_stars.TL_starsTopupOption) options.get(i)));
                             i++;
                             i4++;
                         }
-                        boolean z2 = this.expanded;
-                        if (!z2 && i3 > 0) {
-                            arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z2 ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), !this.expanded).accent());
-                        }
-                    } else {
-                        this.expanded = true;
-                    }
-                } else if (i2 > 0) {
-                    boolean z3 = this.expanded;
-                    if (!z3 && i3 > 0) {
-                        arrayList.add(ExpandView.Factory.asExpand(-1, LocaleController.getString(z3 ? R.string.NotifyLessOptions : R.string.NotifyMoreOptions), !this.expanded).accent());
                     }
                 } else {
-                    while (i < options.size()) {
-                        arrayList.add(StarTierView.Factory.asStarTier(i, i4, (TL_stars.TL_starsTopupOption) options.get(i)));
-                        i++;
-                        i4++;
-                    }
+                    arrayList.add(UItem.asFlicker(31));
+                    arrayList.add(UItem.asFlicker(31));
+                    arrayList.add(UItem.asFlicker(31));
                 }
-            } else {
-                arrayList.add(UItem.asFlicker(31));
-                arrayList.add(UItem.asFlicker(31));
-                arrayList.add(UItem.asFlicker(31));
             }
             arrayList.add(UItem.asCustom(this.footerView));
         }

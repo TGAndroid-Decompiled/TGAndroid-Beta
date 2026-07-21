@@ -933,11 +933,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             int themedColor2 = ChatActivityEnterView.this.getThemedColor(Theme.key_chat_messagePanelBackground);
             ChatActivityEnterView.this.redDotPaint.setColor(themedColor);
             this.drawable.beginApplyLayerColors();
-            this.drawable.setLayerColor("Cup Red.**", themedColor);
-            this.drawable.setLayerColor("Box.**", themedColor);
-            this.drawable.setLayerColor("Line 1.**", themedColor2);
-            this.drawable.setLayerColor("Line 2.**", themedColor2);
-            this.drawable.setLayerColor("Line 3.**", themedColor2);
+            this.drawable.setLayerColor("Cup Red", themedColor);
+            this.drawable.setLayerColor("Box", themedColor);
+            this.drawable.setLayerColor("Line 1", themedColor2);
+            this.drawable.setLayerColor("Line 2", themedColor2);
+            this.drawable.setLayerColor("Line 3", themedColor2);
             this.drawable.commitApplyLayerColors();
         }
 
@@ -9888,13 +9888,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         int themedColor3 = getThemedColor(Theme.key_chat_messagePanelVoiceDelete);
         RLottieImageView rLottieImageView = this.recordDeleteImageView;
         if (rLottieImageView != null) {
-            rLottieImageView.setLayerColor("Cup Red.**", themedColor);
-            this.recordDeleteImageView.setLayerColor("Box Red.**", themedColor);
-            this.recordDeleteImageView.setLayerColor("Cup Grey.**", themedColor3);
-            this.recordDeleteImageView.setLayerColor("Box Grey.**", themedColor3);
-            this.recordDeleteImageView.setLayerColor("Line 1.**", themedColor2);
-            this.recordDeleteImageView.setLayerColor("Line 2.**", themedColor2);
-            this.recordDeleteImageView.setLayerColor("Line 3.**", themedColor2);
+            rLottieImageView.setLayerColor("Cup Red", themedColor);
+            this.recordDeleteImageView.setLayerColor("Box Red", themedColor);
+            this.recordDeleteImageView.setLayerColor("Cup Grey", themedColor3);
+            this.recordDeleteImageView.setLayerColor("Box Grey", themedColor3);
+            this.recordDeleteImageView.setLayerColor("Line 1", themedColor2);
+            this.recordDeleteImageView.setLayerColor("Line 2", themedColor2);
+            this.recordDeleteImageView.setLayerColor("Line 3", themedColor2);
         }
     }
 

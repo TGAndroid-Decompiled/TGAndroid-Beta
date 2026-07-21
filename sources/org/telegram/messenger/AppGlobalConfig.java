@@ -49,6 +49,7 @@ public class AppGlobalConfig {
     public final ConfigInt stargiftsCollectionGiftsLimit;
     public final ConfigInt stargiftsCollectionsLimit;
     public final ConfigString starsRatingLearnMoreUrl;
+    public final ConfigBoolean starsSpendTopUpInvoiceDisabled;
     public final ConfigInt starsStarGiftResaleAmountMax;
     public final ConfigInt starsStarGiftResaleAmountMin;
     public final ConfigInt starsStarGiftResaleCommissionPermille;
@@ -131,6 +132,7 @@ public class AppGlobalConfig {
         this.communityBotPeersLimit = ofInt("community_bot_peers_limit", 100);
         this.messageLengthLimitDefault = ofInt("message_length_limit_default", 4096);
         this.messageLengthLimitPremium = ofInt("message_length_limit_premium", 8192);
+        this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
     }
 
     public boolean apply(SharedPreferences.Editor editor, TLRPC.TL_jsonObject tL_jsonObject) {

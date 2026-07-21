@@ -570,8 +570,8 @@ public abstract class AlertsCreator {
         builder.setTitle(str);
         HashMap map = new HashMap();
         int i = Theme.key_dialogTopBackground;
-        map.put("info1.**", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
-        map.put("info2.**", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
+        map.put("info1", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
+        map.put("info2", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
         builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i, resourcesProvider), map);
         builder.setTopAnimationIsNew(true);
         builder.setPositiveButton(LocaleController.getString(R.string.Close), null);

@@ -32,41 +32,28 @@ public class BitmapsCache {
     byte[] bufferTmp;
     volatile boolean cacheCreated;
     RandomAccessFile cachedFile;
+    public AtomicBoolean cancelled;
     public volatile boolean checked;
+    private Runnable cleanupSharedBuffers;
     int compressQuality;
     boolean error;
     final File file;
     volatile boolean fileExist;
     String fileName;
     private int frameIndex;
+    ArrayList frameOffsets;
+    public final AtomicInteger framesProcessed;
     int h;
+    private final Object mutex;
     BitmapFactory.Options options;
     volatile boolean recycled;
     private final Cacheable source;
+    private Bitmap tmpRgbaBitmap;
     private int tryCount;
     final boolean useSharedBuffers;
     int w;
     static final ConcurrentHashMap sharedBuffers = new ConcurrentHashMap();
     private static final int N = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
-    public final AtomicInteger framesProcessed = new AtomicInteger(0);
-    ArrayList frameOffsets = new ArrayList();
-    private final Object mutex = new Object();
-    public AtomicBoolean cancelled = new AtomicBoolean(false);
-    private Runnable cleanupSharedBuffers = new Runnable() {
-        @Override
-        public void run() {
-            for (Thread thread : BitmapsCache.sharedBuffers.keySet()) {
-                if (!thread.isAlive()) {
-                    BitmapsCache.sharedBuffers.remove(thread);
-                }
-            }
-            if (!BitmapsCache.sharedBuffers.isEmpty()) {
-                AndroidUtilities.runOnUIThread(BitmapsCache.this.cleanupSharedBuffers, 5000L);
-            } else {
-                BitmapsCache.cleanupScheduled = false;
-            }
-        }
-    };
 
     public static class CacheOptions {
         public int compressQuality = 100;
@@ -89,17 +76,40 @@ public class BitmapsCache {
     public void cancelCreate() {
     }
 
-    public BitmapsCache(File file, Cacheable cacheable, CacheOptions cacheOptions, int i, int i2, boolean z) throws IOException {
+    public BitmapsCache(File file, Cacheable cacheable, CacheOptions cacheOptions, int i, int i2, boolean z) {
+        this(file, cacheable, cacheOptions, i, i2, z, 0);
+    }
+
+    public BitmapsCache(File file, Cacheable cacheable, CacheOptions cacheOptions, int i, int i2, boolean z, int i3) throws IOException {
+        String str;
         RandomAccessFile randomAccessFile;
-        Throwable th;
+        this.framesProcessed = new AtomicInteger(0);
+        this.frameOffsets = new ArrayList();
+        this.mutex = new Object();
+        this.cancelled = new AtomicBoolean(false);
+        this.cleanupSharedBuffers = new Runnable() {
+            @Override
+            public void run() {
+                for (Thread thread : BitmapsCache.sharedBuffers.keySet()) {
+                    if (!thread.isAlive()) {
+                        BitmapsCache.sharedBuffers.remove(thread);
+                    }
+                }
+                if (!BitmapsCache.sharedBuffers.isEmpty()) {
+                    AndroidUtilities.runOnUIThread(BitmapsCache.this.cleanupSharedBuffers, 5000L);
+                } else {
+                    BitmapsCache.cleanupScheduled = false;
+                }
+            }
+        };
         this.source = cacheable;
         this.w = i;
         this.h = i2;
         this.compressQuality = cacheOptions.compressQuality;
         this.fileName = file.getName();
         if (bitmapCompressExecutor == null) {
-            int i3 = N;
-            bitmapCompressExecutor = new ThreadPoolExecutor(i3, i3, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
+            int i4 = N;
+            bitmapCompressExecutor = new ThreadPoolExecutor(i4, i4, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue());
         }
         File file2 = new File(FileLoader.checkDirectory(4), "acache");
         if (!mkdir) {
@@ -113,6 +123,12 @@ public class BitmapsCache {
         sb.append("_");
         sb.append(i2);
         sb.append(z ? "_nolimit" : " ");
+        if (i3 != 0) {
+            str = "_fitz" + i3;
+        } else {
+            str = "";
+        }
+        sb.append(str);
         sb.append(".pcache2");
         File file3 = new File(file2, sb.toString());
         this.file = file3;
@@ -120,22 +136,22 @@ public class BitmapsCache {
         if (SharedConfig.getDevicePerformanceClass() >= 2) {
             this.fileExist = file3.exists();
             if (this.fileExist) {
+                RandomAccessFile randomAccessFile2 = null;
                 try {
                     try {
                         randomAccessFile = new RandomAccessFile(file3, "r");
-                    } catch (Throwable th2) {
-                        randomAccessFile = null;
-                        th = th2;
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                } catch (Throwable th) {
+                    th = th;
                 }
                 try {
                     this.cacheCreated = randomAccessFile.readBoolean();
                     if (this.cacheCreated && this.frameOffsets.isEmpty()) {
                         randomAccessFile.seek(randomAccessFile.readInt());
-                        int i4 = randomAccessFile.readInt();
-                        fillFrames(randomAccessFile, i4 > 10000 ? 0 : i4);
+                        int i5 = randomAccessFile.readInt();
+                        fillFrames(randomAccessFile, i5 > 10000 ? 0 : i5);
                         if (this.frameOffsets.size() == 0) {
                             this.cacheCreated = false;
                             this.fileExist = false;
@@ -151,27 +167,20 @@ public class BitmapsCache {
                     if (this.cachedFile != randomAccessFile) {
                         randomAccessFile.close();
                     }
-                } catch (Throwable th3) {
-                    th = th3;
+                } catch (Throwable th2) {
+                    th = th2;
+                    randomAccessFile2 = randomAccessFile;
                     try {
                         th.printStackTrace();
                         this.file.delete();
                         this.fileExist = false;
                         this.checked = true;
-                        if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
-                            randomAccessFile.close();
+                        if (this.cachedFile != randomAccessFile2 && randomAccessFile2 != null) {
+                            randomAccessFile2.close();
                         }
                         this.checked = true;
                         return;
-                    } catch (Throwable th4) {
-                        try {
-                            if (this.cachedFile != randomAccessFile && randomAccessFile != null) {
-                                randomAccessFile.close();
-                            }
-                        } catch (IOException e2) {
-                            e2.printStackTrace();
-                        }
-                        throw th4;
+                    } finally {
                     }
                 }
             }
@@ -273,7 +282,7 @@ public class BitmapsCache {
         return frame;
     }
 
-    public int getFrame(int r8, android.graphics.Bitmap r9) throws java.io.IOException {
+    public int getFrame(int r11, android.graphics.Bitmap r12) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.utils.BitmapsCache.getFrame(int, android.graphics.Bitmap):int");
     }
 

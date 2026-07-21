@@ -4023,10 +4023,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         private void applyLottieColors(RLottieDrawable rLottieDrawable) {
             if (rLottieDrawable != null) {
-                rLottieDrawable.setLayerColor("Bubble.**", Theme.getColor(Theme.key_chats_actionBackground));
+                rLottieDrawable.setLayerColor("Bubble", Theme.getColor(Theme.key_chats_actionBackground));
                 int i = Theme.key_windowBackgroundWhiteBlackText;
-                rLottieDrawable.setLayerColor("Phone.**", Theme.getColor(i));
-                rLottieDrawable.setLayerColor("Note.**", Theme.getColor(i));
+                rLottieDrawable.setLayerColor("Phone", Theme.getColor(i));
+                rLottieDrawable.setLayerColor("Note", Theme.getColor(i));
             }
         }
 

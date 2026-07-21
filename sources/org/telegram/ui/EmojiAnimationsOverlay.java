@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.FileLoader;
@@ -759,6 +760,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                 drawingObject.isOut = z3;
                 drawingObject.imageReceiver.setAllowStartAnimation(true);
                 drawingObject.imageReceiver.setAllowLottieVibration(z);
+                boolean z7 = SharedConfig.getDevicePerformanceClass() <= 1 || !BuildVars.DEBUG_VERSION;
                 if (premiumStickerAnimation == null) {
                     int filterWidth = getFilterWidth();
                     Integer num = (Integer) this.lastAnimationIndex.get(Long.valueOf(document2.id));
@@ -766,7 +768,13 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                     this.lastAnimationIndex.put(Long.valueOf(document2.id), Integer.valueOf(iIntValue2));
                     ImageLocation forDocument = ImageLocation.getForDocument(document2);
                     drawingObject.imageReceiver.setUniqKeyPrefix(iIntValue2 + "_" + drawingObject.messageId + "_");
-                    drawingObject.imageReceiver.setImage(forDocument, filterWidth + "_" + filterWidth + "_pcache", null, "tgs", this.set, 1);
+                    ImageReceiver imageReceiver = drawingObject.imageReceiver;
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(filterWidth);
+                    sb.append("_");
+                    sb.append(filterWidth);
+                    sb.append(z7 ? "_pcache" : "");
+                    imageReceiver.setImage(forDocument, sb.toString(), null, "tgs", this.set, 1);
                     drawingObject.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                         @Override
                         public void didSetImageBitmap(int i9, String str2, Drawable drawable) {
@@ -774,16 +782,16 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                         }
 
                         @Override
-                        public void didSetImage(ImageReceiver imageReceiver, boolean z7, boolean z8, boolean z9) {
+                        public void didSetImage(ImageReceiver imageReceiver2, boolean z8, boolean z9, boolean z10) {
                             if (drawingObject.imageReceiver.getLottieAnimation() != null) {
                                 drawingObject.imageReceiver.getLottieAnimation().setCurrentFrame(0, false, true);
                             }
                         }
 
                         @Override
-                        public void onAnimationReady(ImageReceiver imageReceiver) {
+                        public void onAnimationReady(ImageReceiver imageReceiver2) {
                             MessageObject messageObject3;
-                            if (!z || (messageObject3 = messageObject2) == null || !messageObject3.isAnimatedAnimatedEmoji() || imageReceiver.getLottieAnimation() == null || imageReceiver.getLottieAnimation().hasVibrationPattern()) {
+                            if (!z || (messageObject3 = messageObject2) == null || !messageObject3.isAnimatedAnimatedEmoji() || imageReceiver2.getLottieAnimation() == null || imageReceiver2.getLottieAnimation().hasVibrationPattern()) {
                                 return;
                             }
                             try {
@@ -804,7 +812,14 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                         drawingObject.imageReceiver.setUniqKeyPrefix(iIntValue3 + "_" + drawingObject.messageId + "_");
                     }
                     drawingObject.document = document2;
-                    drawingObject.imageReceiver.setImage(ImageLocation.getForDocument(premiumStickerAnimation, document2), filterWidth2 + "_" + filterWidth2 + "_pcache", null, "tgs", this.set, 1);
+                    ImageReceiver imageReceiver2 = drawingObject.imageReceiver;
+                    ImageLocation forDocument2 = ImageLocation.getForDocument(premiumStickerAnimation, document2);
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append(filterWidth2);
+                    sb2.append("_");
+                    sb2.append(filterWidth2);
+                    sb2.append(z7 ? "_pcache" : "");
+                    imageReceiver2.setImage(forDocument2, sb2.toString(), null, "tgs", this.set, 1);
                 }
                 drawingObject.imageReceiver.setLayerNum(Integer.MAX_VALUE);
                 drawingObject.imageReceiver.setAutoRepeat(0);

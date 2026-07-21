@@ -33,6 +33,7 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
@@ -965,6 +966,17 @@ public class StarsController {
         safeLastFragment.presentFragment(new StarsIntroActivity());
     }
 
+    private boolean isInvoiceBillingDisabled(TLRPC.InputPeer inputPeer) {
+        return AppGlobalConfig.getInstance(this.currentAccount).starsSpendTopUpInvoiceDisabled.get() && inputPeer != null;
+    }
+
+    public boolean canBuy(TLRPC.InputPeer inputPeer) {
+        if (inputPeer == null || !isInvoiceBillingDisabled(inputPeer)) {
+            return true;
+        }
+        return BillingController.getInstance().isReady();
+    }
+
     public void buy(final Activity activity, final TL_stars.TL_starsTopupOption tL_starsTopupOption, final Utilities.Callback2 callback2, TLRPC.InputPeer inputPeer) {
         if (activity == null) {
             return;
@@ -979,7 +991,8 @@ public class StarsController {
                 return;
             }
         }
-        if (BuildVars.useInvoiceBilling() || !BillingController.getInstance().isReady()) {
+        boolean zIsInvoiceBillingDisabled = isInvoiceBillingDisabled(inputPeer);
+        if ((BuildVars.useInvoiceBilling() || !BillingController.getInstance().isReady()) && !zIsInvoiceBillingDisabled) {
             TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup = new TLRPC.TL_inputStorePaymentStarsTopup();
             tL_inputStorePaymentStarsTopup.stars = tL_starsTopupOption.stars;
             tL_inputStorePaymentStarsTopup.amount = tL_starsTopupOption.amount;
@@ -1002,6 +1015,13 @@ public class StarsController {
                     this.f$0.lambda$buy$28(callback2, tL_inputInvoiceStars, tLObject, tL_error);
                 }
             });
+            return;
+        }
+        if (!BillingController.getInstance().isReady()) {
+            if (callback2 != null) {
+                callback2.run(Boolean.FALSE, LocaleController.getString(R.string.PaymentInvoiceDisabledError));
+                return;
+            }
             return;
         }
         final TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup2 = new TLRPC.TL_inputStorePaymentStarsTopup();

@@ -128,6 +128,8 @@ public class Utilities {
 
     public static native boolean expandAlphaToBlack(Bitmap bitmap, Bitmap bitmap2);
 
+    public static native boolean extractAlpha(Bitmap bitmap, Bitmap bitmap2);
+
     public static native void generateGradient(Bitmap bitmap, boolean z, int i, float f, int i2, int i3, int i4, int[] iArr);
 
     public static native long getDirSize(String str, int i, boolean z);

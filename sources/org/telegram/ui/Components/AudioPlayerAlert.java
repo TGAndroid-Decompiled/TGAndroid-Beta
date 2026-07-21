@@ -802,9 +802,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         RLottieImageView rLottieImageView = this.prevButton;
         int i7 = R.raw.player_prev;
         rLottieImageView.setAnimation(i7, 20, 20);
-        this.prevButton.setLayerColor("Triangle 3.**", themedColor);
-        this.prevButton.setLayerColor("Triangle 4.**", themedColor);
-        this.prevButton.setLayerColor("Rectangle 4.**", themedColor);
+        this.prevButton.setLayerColor("Triangle 3", themedColor);
+        this.prevButton.setLayerColor("Triangle 4", themedColor);
+        this.prevButton.setLayerColor("Rectangle 4", themedColor);
         this.prevButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i5), 1, AndroidUtilities.dp(22.0f)));
         frameLayout2.addView(this.prevButton, LayoutHelper.createFrame(48, 48, 51));
         this.prevButton.setContentDescription(LocaleController.getString(R.string.AccDescrPrevious));
@@ -833,9 +833,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         viewArr4[3] = anonymousClass13;
         anonymousClass13.setScaleType(scaleType);
         this.nextButton.setAnimation(i7, 20, 20);
-        this.nextButton.setLayerColor("Triangle 3.**", themedColor);
-        this.nextButton.setLayerColor("Triangle 4.**", themedColor);
-        this.nextButton.setLayerColor("Rectangle 4.**", themedColor);
+        this.nextButton.setLayerColor("Triangle 3", themedColor);
+        this.nextButton.setLayerColor("Triangle 4", themedColor);
+        this.nextButton.setLayerColor("Rectangle 4", themedColor);
         this.nextButton.setRotation(180.0f);
         this.nextButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i5), 1, AndroidUtilities.dp(22.0f)));
         frameLayout2.addView(this.nextButton, LayoutHelper.createFrame(48, 48, 51));

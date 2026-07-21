@@ -146,7 +146,6 @@ public class RichMessageLayout {
     public boolean detailsAnimating;
     private int fontSize;
     public boolean forceTranslationLoading;
-    private boolean hasNameOffset;
     protected int height;
     public boolean invalidateAnimatedEmojiInParent;
     public boolean isPart;
@@ -242,6 +241,11 @@ public class RichMessageLayout {
         return chatMessageCell != null && chatMessageCell.isPinnedTop();
     }
 
+    public boolean hasNameOffset() {
+        ChatMessageCell chatMessageCell = this.cell;
+        return chatMessageCell != null && chatMessageCell.namesOffset > 0;
+    }
+
     public RichMessageLayout(MessageObject messageObject, int i, RichMessageLayout richMessageLayout) {
         this.messageObject = messageObject;
         this.maxWidth = i;
@@ -298,7 +302,6 @@ public class RichMessageLayout {
         this.textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize));
         this.numTextPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize));
         this.isPart = false;
-        this.hasNameOffset = false;
         this.richMessage = null;
         MessageObject messageObject = this.messageObject;
         if (messageObject == null || messageObject.messageOwner == null || messageObject.getDisplayRichMessage() == null) {
@@ -307,8 +310,6 @@ public class RichMessageLayout {
         TL_iv.RichMessage displayRichMessage = this.messageObject.getDisplayRichMessage();
         this.richMessage = displayRichMessage;
         this.isPart = displayRichMessage.part;
-        MessageObject messageObject2 = this.messageObject;
-        this.hasNameOffset = messageObject2.replyMessageObject != null || messageObject2.isForwarded() || (!this.messageObject.isOutOwner() && this.messageObject.needDrawAvatar());
         this.prev = richMessageLayout;
         for (int i2 = 0; i2 < this.richMessage.blocks.size(); i2++) {
             emitBlock(this.richMessage.blocks.get(i2), 0, new Rect(), 0);
@@ -1003,28 +1004,28 @@ public class RichMessageLayout {
         }
         if (pageBlock instanceof TL_iv.pageBlockPhoto) {
             TL_iv.pageBlockPhoto pageblockphoto = (TL_iv.pageBlockPhoto) pageBlock;
-            RichPhotoBlock richPhotoBlock = new RichPhotoBlock(this, rect, this.maxWidth, pageblockphoto, !this.hasNameOffset && this.blocks.isEmpty());
+            RichPhotoBlock richPhotoBlock = new RichPhotoBlock(this, rect, this.maxWidth, pageblockphoto, this.blocks.isEmpty());
             this.blocks.add(richPhotoBlock);
             emitCaption(pageblockphoto.caption, rect, i2);
             return richPhotoBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockVideo) {
             TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            RichVideoBlock richVideoBlock = new RichVideoBlock(this, rect, this.maxWidth, pageblockvideo, !this.hasNameOffset && this.blocks.isEmpty());
+            RichVideoBlock richVideoBlock = new RichVideoBlock(this, rect, this.maxWidth, pageblockvideo, this.blocks.isEmpty());
             this.blocks.add(richVideoBlock);
             emitCaption(pageblockvideo.caption, rect, i2);
             return richVideoBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockCollage) {
             TL_iv.pageBlockCollage pageblockcollage = (TL_iv.pageBlockCollage) pageBlock;
-            RichCollageBlock richCollageBlock = new RichCollageBlock(this, rect, this.maxWidth, pageblockcollage, !this.hasNameOffset && this.blocks.isEmpty());
+            RichCollageBlock richCollageBlock = new RichCollageBlock(this, rect, this.maxWidth, pageblockcollage, this.blocks.isEmpty());
             this.blocks.add(richCollageBlock);
             emitCaption(pageblockcollage.caption, rect, i2);
             return richCollageBlock;
         }
         if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
             TL_iv.pageBlockSlideshow pageblockslideshow = (TL_iv.pageBlockSlideshow) pageBlock;
-            RichSlideshowBlock richSlideshowBlock = new RichSlideshowBlock(this, rect, this.maxWidth, pageblockslideshow, !this.hasNameOffset && this.blocks.isEmpty());
+            RichSlideshowBlock richSlideshowBlock = new RichSlideshowBlock(this, rect, this.maxWidth, pageblockslideshow, this.blocks.isEmpty());
             this.blocks.add(richSlideshowBlock);
             emitCaption(pageblockslideshow.caption, rect, i2);
             return richSlideshowBlock;
@@ -4964,7 +4965,7 @@ public class RichMessageLayout {
                 iDp = AndroidUtilities.dp(i);
             }
             int iMin = Math.min(AndroidUtilities.dp(3.0f), iDp);
-            int i2 = (!this.first || (!this.root.isOut() && this.root.isPinnedTop())) ? iMin : iDp;
+            int i2 = (!this.first || this.root.hasNameOffset() || (!this.root.isOut() && this.root.isPinnedTop())) ? iMin : iDp;
             if (!this.first || (this.root.isOut() && this.root.isPinnedTop())) {
                 iDp = iMin;
             }
@@ -6843,13 +6844,13 @@ public class RichMessageLayout {
             }
             int iMin = Math.min(AndroidUtilities.dp(3.0f), iDp);
             if (z2 && z4) {
-                i2 = (!this.first || (!this.root.isOut() && this.root.isPinnedTop())) ? iMin : iDp;
+                i2 = (!this.first || this.root.hasNameOffset() || (!this.root.isOut() && this.root.isPinnedTop())) ? iMin : iDp;
             } else {
                 i2 = 0;
             }
             if (!z2 || !z5) {
                 iDp = 0;
-            } else if (!this.first || (this.root.isOut() && this.root.isPinnedTop())) {
+            } else if (!this.first || this.root.hasNameOffset() || (this.root.isOut() && this.root.isPinnedTop())) {
                 iDp = iMin;
             }
             int i8 = (z3 && z5) ? iMin : 0;
@@ -7098,8 +7099,8 @@ public class RichMessageLayout {
                     iDp = AndroidUtilities.dp(i10);
                 }
                 int iMin = Math.min(AndroidUtilities.dp(3.0f), iDp);
-                int i11 = (this.root.isOut() || !this.root.isPinnedTop()) ? iDp : iMin;
-                if (this.root.isOut() && this.root.isPinnedTop()) {
+                int i11 = ((this.root.isOut() || !this.root.isPinnedTop()) && !this.root.hasNameOffset()) ? iDp : iMin;
+                if ((this.root.isOut() && this.root.isPinnedTop()) || this.root.hasNameOffset()) {
                     iDp = iMin;
                 }
                 float f3 = i11;

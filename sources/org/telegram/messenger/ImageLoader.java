@@ -1414,7 +1414,7 @@ public class ImageLoader {
             return ((AnimatedFileDrawable) bitmapDrawable).estimateSizeInCache();
         }
         if (bitmapDrawable instanceof RLottieDrawable) {
-            return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 8;
+            return ((RLottieDrawable) bitmapDrawable).estimateSizeInCache();
         }
         return bitmapDrawable.getBitmap().getByteCount();
     }

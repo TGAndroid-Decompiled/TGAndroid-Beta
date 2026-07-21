@@ -7652,7 +7652,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (messageObject.type == 36) {
                 RichMessageLayout richMessageLayout = messageObject.richLayout;
                 if (richMessageLayout != null && richMessageLayout.startsWithMedia()) {
-                    this.textY -= AndroidUtilities.dp(3.0f);
+                    this.textY += AndroidUtilities.dp(this.namesOffset <= 0 ? -3.0f : 2.0f);
                 }
             } else {
                 if (messageObject.hasCodeAtTop && (i = SharedConfig.bubbleRadius) > 10) {

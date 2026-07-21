@@ -483,6 +483,7 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
         }
         ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         this.buttonView = buttonWithCounterView;
+        buttonWithCounterView.setRound();
         if (z || z2) {
             if (!z) {
                 buttonWithCounterView.setAlpha(0.5f);
@@ -642,9 +643,9 @@ public class StarsReactionsSheet extends BottomSheet implements NotificationCent
             if (!starsController.balanceAvailable() || starsController.getBalance().amount >= value) {
                 runnable.run();
             } else if (z) {
-                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 17, DialogObject.getShortName(i, j), runnable, 0L).show();
+                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 17, DialogObject.getShortName(i, j), runnable, j).show();
             } else {
-                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable, 0L).show();
+                new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, chat == null ? "" : chat.title, runnable, j).show();
             }
         }
     }

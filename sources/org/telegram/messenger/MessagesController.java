@@ -16818,8 +16818,8 @@ public class MessagesController extends BaseController implements NotificationCe
         builder.setTitle(LocaleController.getString(R.string.DialogNotAvailable));
         HashMap map = new HashMap();
         int i = Theme.key_dialogTopBackground;
-        map.put("info1.**", Integer.valueOf(baseFragment.getThemedColor(i)));
-        map.put("info2.**", Integer.valueOf(baseFragment.getThemedColor(i)));
+        map.put("info1", Integer.valueOf(baseFragment.getThemedColor(i)));
+        map.put("info2", Integer.valueOf(baseFragment.getThemedColor(i)));
         builder.setTopAnimation(R.raw.not_available, 52, false, baseFragment.getThemedColor(i), map);
         builder.setTopAnimationIsNew(true);
         builder.setPositiveButton(LocaleController.getString(R.string.Close), null);

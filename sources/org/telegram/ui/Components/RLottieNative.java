@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
 import android.os.Trace;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class RLottieNative {
@@ -9,9 +10,9 @@ public final class RLottieNative {
     private long mNativePtr;
     private final AtomicBoolean mRecycled = new AtomicBoolean(false);
 
-    private static native long nCreate(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3);
+    private static native long nCreate(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3, String[] strArr, int[] iArr3);
 
-    private static native long nCreateWithJson(String str, String str2, int[] iArr, int[] iArr2);
+    private static native long nCreateWithJson(String str, String str2, int[] iArr, int[] iArr2, String[] strArr, int[] iArr3);
 
     private static native void nDestroy(long j);
 
@@ -21,22 +22,14 @@ public final class RLottieNative {
 
     private static native long nGetFramesCount(String str, String str2);
 
-    private static native void nReplaceColors(long j, int[] iArr);
-
-    private static native void nSetLayerColor(long j, String str, int i);
-
     private RLottieNative(long j, int[] iArr) {
         this.mNativePtr = j;
         this.mMetaData = iArr;
     }
 
-    public static RLottieNative createFromFile(String str, String str2, int i, int i2, boolean z, int[] iArr, boolean z2, int i3) {
-        return createFromFile(str, str2, i, i2, null, z, iArr, z2, i3);
-    }
-
-    public static RLottieNative createFromFile(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3) {
+    public static RLottieNative createFromFile(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3, Map map) {
         int[] iArr3 = new int[3];
-        long jCreate = create(str, str2, i, i2, iArr3, z, iArr2, z2, i3);
+        long jCreate = create(str, str2, i, i2, iArr3, z, iArr2, z2, i3, map);
         if (jCreate == 0) {
             return null;
         }
@@ -51,11 +44,16 @@ public final class RLottieNative {
     }
 
     public static RLottieNative createFromRawJson(String str, String str2, int[] iArr, int[] iArr2) {
+        return createFromRawJson(str, str2, iArr, iArr2, null);
+    }
+
+    public static RLottieNative createFromRawJson(String str, String str2, int[] iArr, int[] iArr2, Map map) {
         if (str == null || str.isEmpty()) {
             return null;
         }
         int[] iArr3 = new int[3];
-        long jCreateWithJson = createWithJson(str, str2, iArr3, iArr2);
+        String[] strArr = map == null ? null : (String[]) map.keySet().toArray(new String[0]);
+        long jCreateWithJson = createWithJson(str, str2, iArr3, iArr2, strArr, map == null ? null : layerNamesToColors(strArr, map));
         if (jCreateWithJson == 0) {
             return null;
         }
@@ -68,16 +66,6 @@ public final class RLottieNative {
     public int getFrame(int i, Bitmap bitmap, boolean z) {
         checkNotRecycled();
         return getFrame(this.mNativePtr, i, bitmap, z);
-    }
-
-    public void setLayerColor(String str, int i) {
-        checkNotRecycled();
-        setLayerColor(this.mNativePtr, str, i);
-    }
-
-    public void replaceColors(int[] iArr) {
-        checkNotRecycled();
-        replaceColors(this.mNativePtr, iArr);
     }
 
     public int getFrameCount() {
@@ -115,18 +103,28 @@ public final class RLottieNative {
     }
 
     public static long create(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3) {
-        Trace.beginSection("RLottieNative#create");
-        try {
-            return nCreate(str, str2, i, i2, iArr, z, iArr2, z2, i3);
-        } finally {
-            Trace.endSection();
-        }
+        return create(str, str2, i, i2, iArr, z, iArr2, z2, i3, null);
     }
 
-    private static long createWithJson(String str, String str2, int[] iArr, int[] iArr2) {
+    private static long create(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3, Map map) {
+        String[] strArr;
+        Trace.beginSection("RLottieNative#create");
+        if (map == null) {
+            strArr = null;
+        } else {
+            try {
+                strArr = (String[]) map.keySet().toArray(new String[0]);
+            } finally {
+                Trace.endSection();
+            }
+        }
+        return nCreate(str, str2, i, i2, iArr, z, iArr2, z2, i3, strArr, map != null ? layerNamesToColors(strArr, map) : null);
+    }
+
+    private static long createWithJson(String str, String str2, int[] iArr, int[] iArr2, String[] strArr, int[] iArr3) {
         Trace.beginSection("RLottieNative#createWithJson");
         try {
-            return nCreateWithJson(str, str2, iArr, iArr2);
+            return nCreateWithJson(str, str2, iArr, iArr2, strArr, iArr3);
         } finally {
             Trace.endSection();
         }
@@ -141,12 +139,12 @@ public final class RLottieNative {
         }
     }
 
-    private static void setLayerColor(long j, String str, int i) {
-        nSetLayerColor(j, str, i);
-    }
-
-    private static void replaceColors(long j, int[] iArr) {
-        nReplaceColors(j, iArr);
+    private static int[] layerNamesToColors(String[] strArr, Map map) {
+        int[] iArr = new int[strArr.length];
+        for (int i = 0; i < strArr.length; i++) {
+            iArr[i] = ((Integer) map.get(strArr[i])).intValue();
+        }
+        return iArr;
     }
 
     public static void destroy(long j) {
