@@ -99,6 +99,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ButtonSpan;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -2655,6 +2656,10 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
 
         @Override
         public void show() {
+            if (!this.canBuy) {
+                BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.PaymentInvoiceDisabledStarsText)).show();
+                return;
+            }
             if (StarsController.getInstance(this.currentAccount).getBalance().amount >= this.starsNeeded) {
                 Runnable runnable = this.whenPurchased;
                 if (runnable != null) {

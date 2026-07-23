@@ -106,18 +106,22 @@ public class WebmEncoder {
 
         private void drawEntity(Canvas canvas, VideoEditedInfo.MediaEntity mediaEntity, int i, long j) {
             VideoEditedInfo.MediaEntity mediaEntity2;
-            long j2 = mediaEntity.ptr;
-            if (j2 != 0) {
+            RLottieNative rLottieNative = mediaEntity.lottieNative;
+            if (rLottieNative != null) {
                 Bitmap bitmap = mediaEntity.bitmap;
                 if (bitmap == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
                     return;
                 }
-                RLottieNative.getFrame(j2, (int) mediaEntity.currentFrame, bitmap, true);
-                applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
+                rLottieNative.getFrame((int) mediaEntity.currentFrame, bitmap, true);
+                Bitmap bitmap2 = mediaEntity.bitmap;
+                if ((mediaEntity.subType & 8) == 0) {
+                    i = 0;
+                }
+                applyRoundRadius(mediaEntity, bitmap2, i);
                 canvas.drawBitmap(mediaEntity.bitmap, mediaEntity.matrix, this.bitmapPaint);
                 float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f;
-                if (f >= mediaEntity.metadata[0]) {
+                if (f >= mediaEntity.lottieNative.getFrameCount()) {
                     mediaEntity.currentFrame = 0.0f;
                     return;
                 }
@@ -286,10 +290,9 @@ public class WebmEncoder {
                     return;
                 }
                 mediaEntity.bitmap = Bitmap.createBitmap(i5, i, Bitmap.Config.ARGB_8888);
-                int[] iArr = new int[3];
-                mediaEntity.metadata = iArr;
-                mediaEntity.ptr = RLottieNative.create(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, iArr, false, null, false, 0);
-                mediaEntity.framesPerDraw = mediaEntity.metadata[1] / this.fps;
+                RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, false, null, false, 0);
+                mediaEntity.lottieNative = rLottieNativeCreateFromFile;
+                mediaEntity.framesPerDraw = rLottieNativeCreateFromFile != null ? rLottieNativeCreateFromFile.getFps() / this.fps : 0.0f;
             } else if ((b & 4) != 0) {
                 mediaEntity.looped = false;
                 mediaEntity.animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null);

@@ -120,8 +120,6 @@ public class Utilities {
 
     public static native void clearDir(String str, int i, long j, boolean z);
 
-    public static native int convertVideoFrame(ByteBuffer byteBuffer, ByteBuffer byteBuffer2, int i, int i2, int i3, int i4, int i5);
-
     public static native boolean copyBitmaps(Bitmap bitmap, Bitmap bitmap2);
 
     public static native void drawDitheredGradient(Bitmap bitmap, int[] iArr, int i, int i2, int i3, int i4);

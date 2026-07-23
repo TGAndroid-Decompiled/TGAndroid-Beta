@@ -60,7 +60,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private File file;
     private int finishFrame;
     private boolean forceFrameRedraw;
-    protected CountDownLatch frameWaitSync;
+    private CountDownLatch frameWaitSync;
     private boolean genCacheSend;
     int generateCacheFramePointer;
     private RLottieNative generateCacheNative;
@@ -93,10 +93,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private int[] pendingReplaceColors;
     protected boolean playInDirectionOfCustomEndFrame;
     private boolean precache;
-    private Bitmap rawBackgroundBitmap;
-    private int rawBackgroundBitmapFrame;
     protected volatile Bitmap renderingBitmap;
     protected boolean resetVibrationAfterRestart;
+    private int retryDelay;
     private float scaleX;
     private float scaleY;
     private boolean shouldLimitFps;
@@ -105,10 +104,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private float speedMultiply;
     private boolean swapBuffersAllowedByChoreographer;
     private int ticksWithoutDraw;
-    protected final Runnable uiRunnable;
+    private final Runnable uiRunnable;
     private final Runnable uiRunnableCacheFinished;
     private final Runnable uiRunnableGenerateCache;
-    protected final Runnable uiRunnableNoFrame;
+    private final Runnable uiRunnableNoFrame;
     protected HashMap vibrationPattern;
     protected boolean waitingForNextTask;
     public Runnable whenCacheDone;
@@ -282,8 +281,25 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         }
     }
 
-    protected void loadFrameRunnableImpl() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.loadFrameRunnableImpl():void");
+    public void loadFrameRunnableInternal() {
+        int iLoadFrameRunnableImpl = loadFrameRunnableImpl();
+        if (iLoadFrameRunnableImpl == 1) {
+            this.retryDelay = 0;
+            AndroidUtilities.runOnUIThread(this.uiRunnable);
+        } else if (iLoadFrameRunnableImpl == 2) {
+            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame, this.retryDelay);
+            this.retryDelay = Math.min((Math.max(this.retryDelay, 2) * 3) / 2, 2000);
+        } else if (iLoadFrameRunnableImpl == 3) {
+            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
+        }
+        CountDownLatch countDownLatch = this.frameWaitSync;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+        }
+    }
+
+    protected int loadFrameRunnableImpl() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.loadFrameRunnableImpl():int");
     }
 
     private void applyPendingColorsUpdates() {
@@ -366,10 +382,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.loadFrameRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.loadFrameRunnableImpl();
+                this.f$0.loadFrameRunnableInternal();
             }
         };
-        this.rawBackgroundBitmapFrame = -1;
         this.mUiThreadChoreographerCallback = new Choreographer60FpsContent.FrameCallback() {
             @Override
             public final void doFrame(long j) {
@@ -470,10 +485,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.loadFrameRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.loadFrameRunnableImpl();
+                this.f$0.loadFrameRunnableInternal();
             }
         };
-        this.rawBackgroundBitmapFrame = -1;
         this.mUiThreadChoreographerCallback = new Choreographer60FpsContent.FrameCallback() {
             @Override
             public final void doFrame(long j) {
@@ -546,10 +560,9 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.loadFrameRunnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.loadFrameRunnableImpl();
+                this.f$0.loadFrameRunnableInternal();
             }
         };
-        this.rawBackgroundBitmapFrame = -1;
         this.mUiThreadChoreographerCallback = new Choreographer60FpsContent.FrameCallback() {
             @Override
             public final void doFrame(long j) {
@@ -801,7 +814,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     protected final boolean scheduleNextGetFrame() {
-        if (this.loadFrameTask != null || this.nextRenderingBitmap != null || !canLoadFrames() || ignoreScheduleNextGetFrame() || this.destroyWhenDone) {
+        if (this.loadFrameTask != null || this.nextRenderingBitmap != null || !canLoadFrames() || ignoreScheduleNextGetFrame() || this.destroyWhenDone || this.isRecycled) {
             return false;
         }
         if (!this.isRunning && (!this.decodeSingleFrame || this.singleFrameDecoded)) {
@@ -1130,7 +1143,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     @Override
     public final void prepareForGenerateCache() {
         File file;
-        String string = this.args.file.toString();
+        File file2 = this.args.file;
+        String string = file2 != null ? file2.toString() : null;
         NativePtrArgs nativePtrArgs = this.args;
         RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(string, nativePtrArgs.json, this.width, this.height, this.createdForFirstFrame ? this.metaData : null, false, nativePtrArgs.colorReplacement, false, nativePtrArgs.fitzModifier, this.layerColors);
         this.generateCacheNative = rLottieNativeCreateFromFile;
@@ -1165,26 +1179,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         }
         this.generateCacheFramePointer += i;
         return 1;
-    }
-
-    public final void cacheFrame(int i) {
-        if (this.rawBackgroundBitmapFrame != i || this.rawBackgroundBitmap == null) {
-            if (this.rawBackgroundBitmap == null) {
-                this.rawBackgroundBitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888);
-            }
-            RLottieNative rLottieNative = this.nativePtr;
-            this.rawBackgroundBitmapFrame = i;
-            rLottieNative.getFrame(i, this.rawBackgroundBitmap, true);
-        }
-    }
-
-    public final void drawFrame(Canvas canvas, int i) {
-        cacheFrame(i);
-        if (this.rawBackgroundBitmap != null) {
-            Rect rect = AndroidUtilities.rectTmp2;
-            rect.set(0, 0, this.width, this.height);
-            canvas.drawBitmap(this.rawBackgroundBitmap, rect, getBounds(), getPaint());
-        }
     }
 
     @Override

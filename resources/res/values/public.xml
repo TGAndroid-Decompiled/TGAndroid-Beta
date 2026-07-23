@@ -10876,7 +10876,7 @@
     <public type="string" name="PaymentInfoHint" id="0x7f0f1b57" />
     <public type="string" name="PaymentInfoHintStars_other" id="0x7f0f1b58" />
     <public type="string" name="PaymentInvoice" id="0x7f0f1b59" />
-    <public type="string" name="PaymentInvoiceDisabledError" id="0x7f0f1b5a" />
+    <public type="string" name="PaymentInvoiceDisabledStarsText" id="0x7f0f1b5a" />
     <public type="string" name="PaymentInvoiceLinkInvalid" id="0x7f0f1b5b" />
     <public type="string" name="PaymentInvoiceSubscriptionLinkAlreadyPaid" id="0x7f0f1b5c" />
     <public type="string" name="PaymentNoShippingMethod" id="0x7f0f1b5d" />

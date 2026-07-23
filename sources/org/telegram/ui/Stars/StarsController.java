@@ -1019,7 +1019,7 @@ public class StarsController {
         }
         if (!BillingController.getInstance().isReady()) {
             if (callback2 != null) {
-                callback2.run(Boolean.FALSE, LocaleController.getString(R.string.PaymentInvoiceDisabledError));
+                callback2.run(Boolean.FALSE, "INVOICE DISABLED");
                 return;
             }
             return;

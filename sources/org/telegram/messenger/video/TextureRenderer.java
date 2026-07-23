@@ -361,22 +361,23 @@ public class TextureRenderer {
         long j2;
         long j3;
         long jClamp;
-        long j4 = mediaEntity.ptr;
-        if (j4 != 0) {
+        TextureRenderer textureRenderer = this;
+        RLottieNative rLottieNative = mediaEntity.lottieNative;
+        if (rLottieNative != null) {
             Bitmap bitmap2 = mediaEntity.bitmap;
             if (bitmap2 == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
                 return;
             }
-            RLottieNative.getFrame(j4, (int) mediaEntity.currentFrame, bitmap2, true);
-            applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
-            GLES20.glBindTexture(3553, this.stickerTexture[0]);
+            rLottieNative.getFrame((int) mediaEntity.currentFrame, bitmap2, true);
+            textureRenderer.applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
+            GLES20.glBindTexture(3553, textureRenderer.stickerTexture[0]);
             GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
             float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
             mediaEntity.currentFrame = f;
-            if (f >= mediaEntity.metadata[0]) {
+            if (f >= mediaEntity.lottieNative.getFrameCount()) {
                 mediaEntity.currentFrame = 0.0f;
             }
-            drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+            drawTexture(false, textureRenderer.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
             return;
         }
         if (mediaEntity.animatedFileDrawable != null) {
@@ -384,12 +385,13 @@ public class TextureRenderer {
             int i2 = (int) f2;
             float interpolation = 1.0f;
             if (mediaEntity.type == 5) {
-                if (this.isPhoto) {
+                if (textureRenderer.isPhoto) {
                     j3 = mediaEntity.roundDuration;
                     j2 = 0;
                 } else {
-                    j2 = mediaEntity.roundOffset;
-                    j3 = j2 + (mediaEntity.roundRight - mediaEntity.roundLeft);
+                    long j4 = mediaEntity.roundOffset;
+                    j2 = j4;
+                    j3 = j4 + (mediaEntity.roundRight - mediaEntity.roundLeft);
                 }
                 long j5 = j / 1000000;
                 if (j5 < j2) {
@@ -397,8 +399,9 @@ public class TextureRenderer {
                 } else if (j5 > j3) {
                     interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(1.0f - ((j5 - j3) / 400.0f), 1.0f, 0.0f));
                 }
+                textureRenderer = this;
                 if (interpolation > 0.0f) {
-                    if (this.isPhoto) {
+                    if (textureRenderer.isPhoto) {
                         jClamp = Utilities.clamp(j5, mediaEntity.roundDuration, 0L);
                     } else {
                         jClamp = Utilities.clamp((j5 - mediaEntity.roundOffset) + mediaEntity.roundLeft, mediaEntity.roundDuration, 0L);
@@ -422,50 +425,50 @@ public class TextureRenderer {
             Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
             if (backgroundBitmap != null) {
                 if (mediaEntity.type == 5) {
-                    if (this.roundBitmap == null) {
+                    if (textureRenderer.roundBitmap == null) {
                         int iMin = Math.min(backgroundBitmap.getWidth(), backgroundBitmap.getHeight());
-                        this.roundBitmap = Bitmap.createBitmap(iMin, iMin, Bitmap.Config.ARGB_8888);
-                        this.roundCanvas = new Canvas(this.roundBitmap);
+                        textureRenderer.roundBitmap = Bitmap.createBitmap(iMin, iMin, Bitmap.Config.ARGB_8888);
+                        textureRenderer.roundCanvas = new Canvas(textureRenderer.roundBitmap);
                     }
-                    Bitmap bitmap3 = this.roundBitmap;
+                    Bitmap bitmap3 = textureRenderer.roundBitmap;
                     if (bitmap3 != null) {
                         bitmap3.eraseColor(0);
-                        this.roundCanvas.save();
-                        if (this.roundClipPath == null) {
-                            this.roundClipPath = new Path();
+                        textureRenderer.roundCanvas.save();
+                        if (textureRenderer.roundClipPath == null) {
+                            textureRenderer.roundClipPath = new Path();
                         }
-                        this.roundClipPath.rewind();
-                        this.roundClipPath.addCircle(this.roundBitmap.getWidth() / 2.0f, this.roundBitmap.getHeight() / 2.0f, (this.roundBitmap.getWidth() / 2.0f) * interpolation, Path.Direction.CW);
-                        this.roundCanvas.clipPath(this.roundClipPath);
+                        textureRenderer.roundClipPath.rewind();
+                        textureRenderer.roundClipPath.addCircle(textureRenderer.roundBitmap.getWidth() / 2.0f, textureRenderer.roundBitmap.getHeight() / 2.0f, (textureRenderer.roundBitmap.getWidth() / 2.0f) * interpolation, Path.Direction.CW);
+                        textureRenderer.roundCanvas.clipPath(textureRenderer.roundClipPath);
                         if (backgroundBitmap.getWidth() >= backgroundBitmap.getHeight()) {
-                            this.roundSrc.set((backgroundBitmap.getWidth() - backgroundBitmap.getHeight()) / 2, 0, backgroundBitmap.getWidth() - ((backgroundBitmap.getWidth() - backgroundBitmap.getHeight()) / 2), backgroundBitmap.getHeight());
+                            textureRenderer.roundSrc.set((backgroundBitmap.getWidth() - backgroundBitmap.getHeight()) / 2, 0, backgroundBitmap.getWidth() - ((backgroundBitmap.getWidth() - backgroundBitmap.getHeight()) / 2), backgroundBitmap.getHeight());
                         } else {
-                            this.roundSrc.set(0, (backgroundBitmap.getHeight() - backgroundBitmap.getWidth()) / 2, backgroundBitmap.getWidth(), backgroundBitmap.getHeight() - ((backgroundBitmap.getHeight() - backgroundBitmap.getWidth()) / 2));
+                            textureRenderer.roundSrc.set(0, (backgroundBitmap.getHeight() - backgroundBitmap.getWidth()) / 2, backgroundBitmap.getWidth(), backgroundBitmap.getHeight() - ((backgroundBitmap.getHeight() - backgroundBitmap.getWidth()) / 2));
                         }
-                        this.roundDst.set(0.0f, 0.0f, this.roundBitmap.getWidth(), this.roundBitmap.getHeight());
-                        this.roundCanvas.drawBitmap(backgroundBitmap, this.roundSrc, this.roundDst, (Paint) null);
-                        this.roundCanvas.restore();
+                        textureRenderer.roundDst.set(0.0f, 0.0f, textureRenderer.roundBitmap.getWidth(), textureRenderer.roundBitmap.getHeight());
+                        textureRenderer.roundCanvas.drawBitmap(backgroundBitmap, textureRenderer.roundSrc, textureRenderer.roundDst, (Paint) null);
+                        textureRenderer.roundCanvas.restore();
                     }
-                    bitmap = this.roundBitmap;
+                    bitmap = textureRenderer.roundBitmap;
                 } else {
-                    if (this.stickerCanvas == null && this.stickerBitmap != null) {
-                        this.stickerCanvas = new Canvas(this.stickerBitmap);
-                        if (this.stickerBitmap.getHeight() != backgroundBitmap.getHeight() || this.stickerBitmap.getWidth() != backgroundBitmap.getWidth()) {
-                            this.stickerCanvas.scale(this.stickerBitmap.getWidth() / backgroundBitmap.getWidth(), this.stickerBitmap.getHeight() / backgroundBitmap.getHeight());
+                    if (textureRenderer.stickerCanvas == null && textureRenderer.stickerBitmap != null) {
+                        textureRenderer.stickerCanvas = new Canvas(textureRenderer.stickerBitmap);
+                        if (textureRenderer.stickerBitmap.getHeight() != backgroundBitmap.getHeight() || textureRenderer.stickerBitmap.getWidth() != backgroundBitmap.getWidth()) {
+                            textureRenderer.stickerCanvas.scale(textureRenderer.stickerBitmap.getWidth() / backgroundBitmap.getWidth(), textureRenderer.stickerBitmap.getHeight() / backgroundBitmap.getHeight());
                         }
                     }
-                    Bitmap bitmap4 = this.stickerBitmap;
+                    Bitmap bitmap4 = textureRenderer.stickerBitmap;
                     if (bitmap4 != null) {
                         bitmap4.eraseColor(0);
-                        this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
-                        applyRoundRadius(mediaEntity, this.stickerBitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
+                        textureRenderer.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
+                        textureRenderer.applyRoundRadius(mediaEntity, textureRenderer.stickerBitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
                     }
-                    bitmap = this.stickerBitmap;
+                    bitmap = textureRenderer.stickerBitmap;
                 }
                 if (bitmap != null) {
-                    GLES20.glBindTexture(3553, this.stickerTexture[0]);
+                    GLES20.glBindTexture(3553, textureRenderer.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, bitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, textureRenderer.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                     return;
                 }
                 return;
@@ -473,9 +476,9 @@ public class TextureRenderer {
             return;
         }
         if (mediaEntity.bitmap != null) {
-            GLES20.glBindTexture(3553, this.stickerTexture[0]);
+            GLES20.glBindTexture(3553, textureRenderer.stickerTexture[0]);
             GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-            int i4 = this.stickerTexture[0];
+            int i4 = textureRenderer.stickerTexture[0];
             float f4 = mediaEntity.x;
             float f5 = mediaEntity.additionalWidth;
             float f6 = f4 - (f5 / 2.0f);
@@ -490,7 +493,7 @@ public class TextureRenderer {
         for (int i5 = 0; i5 < mediaEntity.entities.size(); i5++) {
             VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i5);
             if (emojiEntity != null && (mediaEntity2 = emojiEntity.entity) != null) {
-                drawEntity(mediaEntity2, mediaEntity.color, j);
+                textureRenderer.drawEntity(mediaEntity2, mediaEntity.color, j);
             }
         }
     }
@@ -838,10 +841,9 @@ public class TextureRenderer {
                 return;
             }
             mediaEntity.bitmap = Bitmap.createBitmap(i5, i, Bitmap.Config.ARGB_8888);
-            int[] iArr = new int[3];
-            mediaEntity.metadata = iArr;
-            mediaEntity.ptr = RLottieNative.create(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, iArr, false, null, false, 0);
-            mediaEntity.framesPerDraw = mediaEntity.metadata[1] / this.videoFps;
+            RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, false, null, false, 0);
+            mediaEntity.lottieNative = rLottieNativeCreateFromFile;
+            mediaEntity.framesPerDraw = rLottieNativeCreateFromFile != null ? rLottieNativeCreateFromFile.getFps() / this.videoFps : 0.0f;
             return;
         }
         if ((b & 4) != 0) {
@@ -888,7 +890,7 @@ public class TextureRenderer {
             canvas.scale(f5, f5);
             MediaController.CropState cropState4 = mediaEntity.crop;
             canvas.translate(cropState4.cropPx * f3, cropState4.cropPy * f4);
-            canvas.rotate(mediaEntity.crop.cropRotate + r9.transformRotation);
+            canvas.rotate(mediaEntity.crop.cropRotate + r10.transformRotation);
             if (mediaEntity.crop.mirrored) {
                 canvas.scale(-1.0f, 1.0f);
             }
@@ -1212,9 +1214,9 @@ public class TextureRenderer {
             int size = arrayList.size();
             for (int i = 0; i < size; i++) {
                 VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i);
-                long j = mediaEntity.ptr;
-                if (j != 0) {
-                    RLottieNative.destroy(j);
+                RLottieNative rLottieNative = mediaEntity.lottieNative;
+                if (rLottieNative != null) {
+                    rLottieNative.recycle();
                 }
                 AnimatedFileDrawable animatedFileDrawable = mediaEntity.animatedFileDrawable;
                 if (animatedFileDrawable != null) {

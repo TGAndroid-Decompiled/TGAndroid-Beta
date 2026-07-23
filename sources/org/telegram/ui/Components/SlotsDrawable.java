@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.text.TextUtils;
 import java.lang.ref.WeakReference;
-import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
@@ -45,18 +44,12 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
     }
 
     @Override
-    protected void loadFrameRunnableImpl() {
-        int frame;
+    protected int loadFrameRunnableImpl() {
         if (this.isRecycled) {
-            return;
+            return 3;
         }
         if (this.nativePtr == null || (this.isDice == 2 && this.secondNativePtr == null)) {
-            CountDownLatch countDownLatch = this.frameWaitSync;
-            if (countDownLatch != null) {
-                countDownLatch.countDown();
-            }
-            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
-            return;
+            return 2;
         }
         if (this.backgroundBitmap == null) {
             try {
@@ -67,9 +60,9 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
         }
         if (this.backgroundBitmap != null) {
             try {
+                int frame = -1;
                 if (this.isDice == 1) {
                     int i = 0;
-                    frame = -1;
                     while (true) {
                         RLottieNative[] rLottieNativeArr = this.lottieNatives;
                         if (i >= rLottieNativeArr.length) {
@@ -136,7 +129,7 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
                         }
                         i5++;
                     }
-                    frame = this.lottieNatives[4].getFrame(this.frameNums[4], this.backgroundBitmap, false);
+                    int frame2 = this.lottieNatives[4].getFrame(this.frameNums[4], this.backgroundBitmap, false);
                     int[] iArr5 = this.frameNums;
                     int i8 = iArr5[4] + 1;
                     if (i8 < this.frameCounts[4]) {
@@ -163,26 +156,17 @@ public final class SlotsDrawable extends RLottieDiceDrawable {
                     } else {
                         this.frameNums[0] = -1;
                     }
+                    frame = frame2;
                 }
-                if (frame == -1) {
-                    AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
-                    CountDownLatch countDownLatch2 = this.frameWaitSync;
-                    if (countDownLatch2 != null) {
-                        countDownLatch2.countDown();
-                        return;
-                    }
-                    return;
+                if (frame < 0) {
+                    return 2;
                 }
                 this.nextRenderingBitmap = this.backgroundBitmap;
             } catch (Exception e) {
                 FileLog.e(e);
             }
         }
-        AndroidUtilities.runOnUIThread(this.uiRunnable);
-        CountDownLatch countDownLatch3 = this.frameWaitSync;
-        if (countDownLatch3 != null) {
-            countDownLatch3.countDown();
-        }
+        return 1;
     }
 
     private ReelValue reelValue(int i) {

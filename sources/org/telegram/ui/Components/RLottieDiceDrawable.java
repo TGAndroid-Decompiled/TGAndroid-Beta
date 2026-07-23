@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.text.TextUtils;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.FileLog;
@@ -165,19 +164,14 @@ public class RLottieDiceDrawable extends RLottieDrawable {
     }
 
     @Override
-    protected void loadFrameRunnableImpl() {
+    protected int loadFrameRunnableImpl() {
         boolean z;
         RLottieNative rLottieNative;
         if (this.isRecycled) {
-            return;
+            return 3;
         }
         if (this.nativePtr == null || (this.isDice == 2 && this.secondNativePtr == null)) {
-            CountDownLatch countDownLatch = this.frameWaitSync;
-            if (countDownLatch != null) {
-                countDownLatch.countDown();
-            }
-            AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
-            return;
+            return 2;
         }
         if (this.backgroundBitmap == null) {
             try {
@@ -200,14 +194,8 @@ public class RLottieDiceDrawable extends RLottieDrawable {
                 } else {
                     rLottieNative = this.nativePtr;
                 }
-                if (rLottieNative.getFrame(this.currentFrame, this.backgroundBitmap, z) == -1) {
-                    AndroidUtilities.runOnUIThread(this.uiRunnableNoFrame);
-                    CountDownLatch countDownLatch2 = this.frameWaitSync;
-                    if (countDownLatch2 != null) {
-                        countDownLatch2.countDown();
-                        return;
-                    }
-                    return;
+                if (rLottieNative.getFrame(this.currentFrame, this.backgroundBitmap, z) < 0) {
+                    return 2;
                 }
                 this.nextRenderingBitmap = this.backgroundBitmap;
                 int i2 = this.isDice;
@@ -243,11 +231,7 @@ public class RLottieDiceDrawable extends RLottieDrawable {
                 FileLog.e(e);
             }
         }
-        AndroidUtilities.runOnUIThread(this.uiRunnable);
-        CountDownLatch countDownLatch3 = this.frameWaitSync;
-        if (countDownLatch3 != null) {
-            countDownLatch3.countDown();
-        }
+        return 1;
     }
 
     @Override

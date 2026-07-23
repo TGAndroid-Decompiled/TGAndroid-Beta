@@ -120,6 +120,7 @@ public class QrActivity extends BaseFragment {
     private boolean isCurrentThemeDark;
     private boolean isFragmentViewPortrait;
     private RLottieImageView logoImageView;
+    private Bitmap logoOptimal;
     private final Rect logoRect;
     private ValueAnimator patternAlphaAnimator;
     private ValueAnimator patternIntensityAnimator;
@@ -243,7 +244,15 @@ public class QrActivity extends BaseFragment {
 
     public void lambda$createView$5() {
         onItemSelected(this.currentTheme, 0, true);
-        this.logoImageView.getAnimatedDrawable().cacheFrame(33);
+        RLottieDrawable animatedDrawable = this.logoImageView.getAnimatedDrawable();
+        if (this.logoOptimal != null || animatedDrawable == null) {
+            return;
+        }
+        this.logoOptimal = Bitmap.createBitmap(animatedDrawable.getIntrinsicWidth(), animatedDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        animatedDrawable.prepareForGenerateCache();
+        animatedDrawable.setGeneratingFrame(33);
+        animatedDrawable.getNextFrame(this.logoOptimal);
+        animatedDrawable.releaseForGenerateCache();
     }
 
     public void lambda$createView$7() {
@@ -650,7 +659,7 @@ public class QrActivity extends BaseFragment {
         this.themeLayout.setVisibility(8);
         this.closeImageView.setVisibility(8);
         this.logoImageView.setVisibility(8);
-        RLottieDrawable animatedDrawable = this.logoImageView.getAnimatedDrawable();
+        this.logoImageView.getAnimatedDrawable();
         QrView qrView = this.qrView;
         if (qrView != null) {
             qrView.setForShare(true);
@@ -658,8 +667,11 @@ public class QrActivity extends BaseFragment {
         this.fragmentView.measure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(iMax, 1073741824));
         this.fragmentView.layout(0, 0, iMin, iMax);
         this.fragmentView.draw(canvas);
-        animatedDrawable.setBounds(this.logoImageView.getLeft(), this.logoImageView.getTop(), this.logoImageView.getRight(), this.logoImageView.getBottom());
-        animatedDrawable.drawFrame(canvas, 33);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(this.logoImageView.getLeft(), this.logoImageView.getTop(), this.logoImageView.getRight(), this.logoImageView.getBottom());
+        if (this.logoOptimal != null) {
+            canvas.drawBitmap(this.logoOptimal, (Rect) null, rectF, new Paint(2));
+        }
         canvas.setBitmap(null);
         this.themeLayout.setVisibility(0);
         this.closeImageView.setVisibility(0);

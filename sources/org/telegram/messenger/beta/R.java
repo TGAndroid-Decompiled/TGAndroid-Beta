@@ -10921,7 +10921,7 @@ public final class R {
         public static final int PaymentInfoHint = 0x7f0f1b57;
         public static final int PaymentInfoHintStars_other = 0x7f0f1b58;
         public static final int PaymentInvoice = 0x7f0f1b59;
-        public static final int PaymentInvoiceDisabledError = 0x7f0f1b5a;
+        public static final int PaymentInvoiceDisabledStarsText = 0x7f0f1b5a;
         public static final int PaymentInvoiceLinkInvalid = 0x7f0f1b5b;
         public static final int PaymentInvoiceSubscriptionLinkAlreadyPaid = 0x7f0f1b5c;
         public static final int PaymentNoShippingMethod = 0x7f0f1b5d;
