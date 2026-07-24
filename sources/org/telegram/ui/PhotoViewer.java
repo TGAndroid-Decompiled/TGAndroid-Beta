@@ -11466,14 +11466,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 cropState = this.editState.cropState;
             }
             MediaController.CropState cropState2 = cropState;
-            KeyboardNotifier keyboardNotifier = new KeyboardNotifier(this.windowView, new Utilities.Callback() {
+            KeyboardNotifier keyboardNotifierUseMinusNavbar = new KeyboardNotifier(this.windowView, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     this.f$0.lambda$createPaintView$119((Integer) obj);
                 }
-            });
-            this.paintKeyboardNotifier = keyboardNotifier;
-            keyboardNotifier.ignore(this.currentEditMode != 3);
+            }).useInsets().useMinusNavbar();
+            this.paintKeyboardNotifier = keyboardNotifierUseMinusNavbar;
+            keyboardNotifierUseMinusNavbar.ignore(this.currentEditMode != 3);
             Activity activity = this.parentActivity;
             LPhotoPaintView lPhotoPaintView = new LPhotoPaintView(activity, activity, this.currentAccount, bitmapCreateBitmap, this.isCurrentVideo ? null : this.centerImage.getBitmap(), this.centerImage.getOrientation(), this.editState.mediaEntities, cropState2, new Runnable() {
                 @Override

@@ -706,6 +706,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z, boolean z2) {
+                    forceUpdate(chatMessageCell3, z);
+                }
+
+                @Override
                 public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell3, boolean z) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell3, z);
                 }
@@ -1197,6 +1202,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell6, boolean z, boolean z2) {
+                    forceUpdate(chatMessageCell6, z);
+                }
+
+                @Override
                 public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell6, boolean z) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell6, z);
                 }
@@ -1440,7 +1450,7 @@ public class TodoItemMenu extends Dialog {
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException, NumberFormatException {
+                    public final void run() throws Resources.NotFoundException {
                         this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
@@ -1516,7 +1526,7 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException, NumberFormatException {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {

@@ -916,6 +916,11 @@ public class MessageSendPreview extends Dialog implements NotificationCenter.Not
                     }
 
                     @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell, boolean z, boolean z2) {
+                        forceUpdate(chatMessageCell, z);
+                    }
+
+                    @Override
                     public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell, boolean z) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell, z);
                     }

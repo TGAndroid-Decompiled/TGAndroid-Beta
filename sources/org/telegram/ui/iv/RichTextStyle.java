@@ -15,6 +15,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.FormattedDateSpan;
+import org.telegram.ui.Components.SquigglyLinesSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
@@ -43,6 +44,28 @@ public abstract class RichTextStyle {
             }
             return;
         }
+        if (richText instanceof TL_iv.textDiff) {
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            boolean zIsEmpty = isEmpty(textdiff.text);
+            boolean zIsEmpty2 = isEmpty(textdiff.old_text);
+            int length = spannableStringBuilder.length();
+            if (zIsEmpty) {
+                append(spannableStringBuilder, textdiff.old_text, i, pageBlock);
+                setDiffStyle(spannableStringBuilder, length, 8192);
+                return;
+            }
+            append(spannableStringBuilder, textdiff.text, i, pageBlock);
+            if (zIsEmpty2) {
+                setDiffStyle(spannableStringBuilder, length, 4096);
+                return;
+            } else {
+                if (spannableStringBuilder.length() > length) {
+                    spannableStringBuilder.setSpan(new SquigglyLinesSpan(), length, spannableStringBuilder.length(), 33);
+                    return;
+                }
+                return;
+            }
+        }
         if (richText instanceof TL_iv.textPlain) {
             appendLeaf(spannableStringBuilder, ((TL_iv.textPlain) richText).text, i, pageBlock);
             return;
@@ -51,56 +74,56 @@ public abstract class RichTextStyle {
             TL_iv.textCustomEmoji textcustomemoji = (TL_iv.textCustomEmoji) richText;
             String str = textcustomemoji.alt;
             CharSequence charSequence = (str == null || str.isEmpty()) ? "😀" : textcustomemoji.alt;
-            int length = spannableStringBuilder.length();
+            int length2 = spannableStringBuilder.length();
             spannableStringBuilder.append(charSequence);
             AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(textcustomemoji.document_id, (Paint.FontMetricsInt) null);
             animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-            spannableStringBuilder.setSpan(animatedEmojiSpan, length, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(animatedEmojiSpan, length2, spannableStringBuilder.length(), 33);
             if (i != 0) {
-                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length2, spannableStringBuilder.length(), 33);
                 return;
             }
             return;
         }
         if (richText instanceof TL_iv.textUrl) {
             TL_iv.textUrl texturl = (TL_iv.textUrl) richText;
-            int length2 = spannableStringBuilder.length();
+            int length3 = spannableStringBuilder.length();
             append(spannableStringBuilder, texturl.text, i, pageBlock);
-            if (spannableStringBuilder.length() <= length2 || texturl.url == null) {
+            if (spannableStringBuilder.length() <= length3 || texturl.url == null) {
                 return;
             }
-            spannableStringBuilder.setSpan(new URLSpanReplacement(texturl.url), length2, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new URLSpanReplacement(texturl.url), length3, spannableStringBuilder.length(), 33);
             return;
         }
         if (richText instanceof TL_iv.textDate) {
             TL_iv.textDate textdate = (TL_iv.textDate) richText;
-            int length3 = spannableStringBuilder.length();
+            int length4 = spannableStringBuilder.length();
             append(spannableStringBuilder, textdate.text, i, pageBlock);
-            if (spannableStringBuilder.length() > length3) {
-                spannableStringBuilder.setSpan(dateSpan(textdate, spannableStringBuilder.subSequence(length3, spannableStringBuilder.length()).toString()), length3, spannableStringBuilder.length(), 33);
+            if (spannableStringBuilder.length() > length4) {
+                spannableStringBuilder.setSpan(dateSpan(textdate, spannableStringBuilder.subSequence(length4, spannableStringBuilder.length()).toString()), length4, spannableStringBuilder.length(), 33);
                 return;
             }
             return;
         }
         if (richText instanceof TL_iv.textMath) {
             TL_iv.textMath textmath = (TL_iv.textMath) richText;
-            int length4 = spannableStringBuilder.length();
+            int length5 = spannableStringBuilder.length();
             spannableStringBuilder.append(" ");
             Object objCreate = MathSpan.create(textmath.source, Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), AndroidUtilities.dp(SharedConfig.fontSize + 4));
             if (objCreate != null) {
-                spannableStringBuilder.setSpan(objCreate, length4, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(objCreate, length5, spannableStringBuilder.length(), 33);
             } else {
-                int length5 = spannableStringBuilder.length();
+                int length6 = spannableStringBuilder.length();
                 CharSequence charSequence2 = textmath.source;
                 if (charSequence2 == null) {
                     charSequence2 = "";
                 }
-                spannableStringBuilder.replace(length4, length5, charSequence2);
+                spannableStringBuilder.replace(length5, length6, charSequence2);
             }
-            if (spannableStringBuilder.length() <= length4 || i == 0) {
+            if (spannableStringBuilder.length() <= length5 || i == 0) {
                 return;
             }
-            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length4, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length5, spannableStringBuilder.length(), 33);
             return;
         }
         int iFlagOf = flagOf(richText);
@@ -108,6 +131,14 @@ public abstract class RichTextStyle {
             append(spannableStringBuilder, richText.text, i | iFlagOf, pageBlock);
         } else {
             appendLeaf(spannableStringBuilder, plainOf(richText), i, pageBlock);
+        }
+    }
+
+    private static void setDiffStyle(SpannableStringBuilder spannableStringBuilder, int i, int i2) {
+        if (spannableStringBuilder.length() > i) {
+            TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+            textStyleRun.flags = i2;
+            spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), i, spannableStringBuilder.length(), 33);
         }
     }
 
@@ -173,7 +204,42 @@ public abstract class RichTextStyle {
             }
             return sb.toString();
         }
+        if (richText instanceof TL_iv.textDiff) {
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            return isEmpty(textdiff.text) ? plainOf(textdiff.old_text) : plainOf(textdiff.text);
+        }
         return plainOf(richText.text);
+    }
+
+    public static boolean isEmpty(TL_iv.RichText richText) {
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return true;
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str = ((TL_iv.textPlain) richText).text;
+            return str == null || str.isEmpty();
+        }
+        if (richText instanceof TL_iv.textCustomEmoji) {
+            return false;
+        }
+        if (richText instanceof TL_iv.textMath) {
+            String str2 = ((TL_iv.textMath) richText).source;
+            return str2 == null || str2.isEmpty();
+        }
+        if (richText instanceof TL_iv.textConcat) {
+            Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
+            while (it.hasNext()) {
+                if (!isEmpty(it.next())) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        if (richText instanceof TL_iv.textDiff) {
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            return isEmpty(textdiff.text) && isEmpty(textdiff.old_text);
+        }
+        return isEmpty(richText.text);
     }
 
     private static FormattedDateSpan dateSpan(TL_iv.textDate textdate, String str) {

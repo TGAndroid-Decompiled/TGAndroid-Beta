@@ -1557,7 +1557,7 @@ public abstract class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             if (EmojiTabsStrip.this.currentType == 5 || EmojiTabsStrip.this.currentType == 7) {
                 i = EmojiTabsStrip.this.accentColor;
             }
-            PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY);
+            PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
             BackupImageView backupImageView = this.imageView;
             if (backupImageView != null && !this.isAnimatedEmoji) {
                 backupImageView.setColorFilter(porterDuffColorFilter);

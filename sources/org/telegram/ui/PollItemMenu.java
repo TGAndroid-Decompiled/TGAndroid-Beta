@@ -733,6 +733,11 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z3, boolean z4) {
+                    forceUpdate(chatMessageCell3, z3);
+                }
+
+                @Override
                 public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell3, boolean z3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell3, z3);
                 }
@@ -1215,6 +1220,11 @@ public class PollItemMenu extends Dialog {
                 @Override
                 public void forceUpdate(ChatMessageCell chatMessageCell7, boolean z3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell7, z3);
+                }
+
+                @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell7, boolean z3, boolean z4) {
+                    forceUpdate(chatMessageCell7, z3);
                 }
 
                 @Override

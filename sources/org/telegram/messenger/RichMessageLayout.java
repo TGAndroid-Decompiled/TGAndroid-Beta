@@ -93,6 +93,7 @@ import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ReplyMessageLine;
 import org.telegram.ui.Components.SeekBar;
+import org.telegram.ui.Components.SquigglyLinesSpan;
 import org.telegram.ui.Components.TableLayout;
 import org.telegram.ui.Components.TextPaintImageReceiverSpan;
 import org.telegram.ui.Components.TextStyleSpan;
@@ -110,6 +111,7 @@ import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.MultiLayoutTypingAnimator;
 import org.telegram.ui.iv.RichHtml;
+import org.telegram.ui.iv.RichTextStyle;
 import org.telegram.ui.web.WebInstantView;
 import ru.noties.jlatexmath.JLatexMathDrawable;
 
@@ -641,6 +643,25 @@ public class RichMessageLayout {
         }
     }
 
+    public boolean setSlideshowPage(TL_iv.PageBlock pageBlock) {
+        if (pageBlock == null) {
+            return false;
+        }
+        for (int i = 0; i < this.blocks.size(); i++) {
+            RichBlock richBlock = this.blocks.get(i);
+            if (richBlock instanceof RichSlideshowBlock) {
+                RichSlideshowBlock richSlideshowBlock = (RichSlideshowBlock) richBlock;
+                for (int i2 = 0; i2 < richSlideshowBlock.cells.size(); i2++) {
+                    if (richSlideshowBlock.cells.get(i2).pageBlock == pageBlock) {
+                        richSlideshowBlock.setCurrentPage(i2);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public ImageReceiver findMediaImageReceiver(TL_iv.PageBlock pageBlock, int[] iArr) {
         ImageReceiver imageReceiver;
         TL_iv.PageBlock pageBlock2;
@@ -1045,13 +1066,18 @@ public class RichMessageLayout {
                 int i17 = -Long.valueOf(pageblockaudio.audio_id).hashCode();
                 pageblockaudio.mid = i17;
                 tL_message.id = i17;
-                tL_message.peer_id = new TLRPC.TL_peerUser();
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_message.from_id = tL_peerUser;
-                TLRPC.Peer peer = tL_message.peer_id;
-                long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-                peer.user_id = clientUserId;
-                tL_peerUser.user_id = clientUserId;
+                tL_message.realId = this.messageObject.getRealId();
+                tL_message.dialog_id = this.messageObject.getDialogId();
+                TLRPC.Peer peer = this.messageObject.messageOwner.peer_id;
+                tL_message.peer_id = peer;
+                if (peer == null) {
+                    TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                    tL_message.peer_id = tL_peerUser;
+                    tL_peerUser.user_id = UserConfig.getInstance(this.currentAccount).getClientUserId();
+                }
+                TLRPC.TL_peerUser tL_peerUser2 = new TLRPC.TL_peerUser();
+                tL_message.from_id = tL_peerUser2;
+                tL_peerUser2.user_id = UserConfig.getInstance(this.currentAccount).getClientUserId();
                 tL_message.date = (int) (System.currentTimeMillis() / 1000);
                 tL_message.message = "";
                 TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
@@ -1849,6 +1875,17 @@ public class RichMessageLayout {
         if (!(richText instanceof TL_iv.textEmpty)) {
             if (richText instanceof TL_iv.textPlain) {
                 spannableStringBuilder.append((CharSequence) ((TL_iv.textPlain) richText).text);
+            } else if (richText instanceof TL_iv.textDiff) {
+                TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+                boolean zIsEmpty = RichTextStyle.isEmpty(textdiff.text);
+                boolean zIsEmpty2 = RichTextStyle.isEmpty(textdiff.old_text);
+                if (zIsEmpty && !zIsEmpty2) {
+                    formatTextAndSetSpan(textdiff.old_text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(8192)));
+                } else if (!zIsEmpty && zIsEmpty2) {
+                    formatTextAndSetSpan(textdiff.text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(4096)));
+                } else if (!zIsEmpty) {
+                    formatTextAndSetSpan(textdiff.text, spannableStringBuilder, i, new SquigglyLinesSpan());
+                }
             } else if (richText instanceof TL_iv.textBold) {
                 int i2 = i | 16;
                 formatTextAndSetSpan(richText.text, spannableStringBuilder, i2, new StyleSpan(this, i2));
@@ -2012,6 +2049,19 @@ public class RichMessageLayout {
         if (richText instanceof TL_iv.textPlain) {
             sb.append(((TL_iv.textPlain) richText).text);
             return;
+        }
+        if (richText instanceof TL_iv.textDiff) {
+            TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
+            if (!RichTextStyle.isEmpty(textdiff.text)) {
+                getString(textdiff.text, sb);
+                return;
+            } else {
+                if (RichTextStyle.isEmpty(textdiff.old_text)) {
+                    return;
+                }
+                getString(textdiff.old_text, sb);
+                return;
+            }
         }
         if (richText instanceof TL_iv.textConcat) {
             for (int i = 0; i < richText.texts.size(); i++) {
@@ -2334,6 +2384,7 @@ public class RichMessageLayout {
                 view2.invalidate();
             }
             SpoilerEffect.renderWithRipple(view2, false, themedColor, 0, this.spoilersPatchedTextLayout, 0, this.layout, this.spoilers, canvas, false);
+            SquigglyLinesSpan.drawOnText(canvas, this.layout);
             if (!this.root.isOverlayActive()) {
                 AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f);
             }
@@ -2400,6 +2451,7 @@ public class RichMessageLayout {
 
         public void lambda$drawFade$0(View view, int i, Canvas canvas) {
             SpoilerEffect.renderWithRipple(view, false, i, 0, this.spoilersPatchedTextLayout, 0, this.layout, this.spoilers, canvas, false);
+            SquigglyLinesSpan.drawOnText(canvas, this.layout);
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f);
         }
 
@@ -3215,7 +3267,7 @@ public class RichMessageLayout {
             if (cell == null || delegate == null) {
                 return;
             }
-            delegate.forceUpdate(cell, false);
+            delegate.forceUpdate(cell, true, true);
         }
     }
 
@@ -3782,7 +3834,8 @@ public class RichMessageLayout {
             }
             int iMax = Math.max(0, Math.min(this.viewportWidth, this.contentMeasuredWidth));
             Text text = this.title;
-            return Math.max(0, Math.round((iMax - (text.right - text.left)) / 2.0f));
+            int i = text.right;
+            return Math.round(((iMax - (i - r1)) / 2.0f) - text.left);
         }
 
         @Override
@@ -5658,6 +5711,7 @@ public class RichMessageLayout {
         private final MessageObject currentMessageObject;
         private StaticLayout durationLayout;
         private String lastTimeString;
+        private int layoutWidth;
         private final int observerTag;
         private final RadialProgress2 radialProgress;
         private final SeekBar seekBar;
@@ -5680,6 +5734,7 @@ public class RichMessageLayout {
             this.buttonY = iDp2;
             int iDp3 = AndroidUtilities.dp(44.0f);
             this.size = iDp3;
+            this.layoutWidth = -1;
             this.block = pageblockaudio;
             MessageObject messageObject = richMessageLayout.audioBlocks.get(pageblockaudio);
             this.currentMessageObject = messageObject;
@@ -5737,9 +5792,12 @@ public class RichMessageLayout {
 
         private void layoutInner() {
             SpannableStringBuilder spannableStringBuilder;
+            int i = this.maxWidth;
+            RichMessageLayout richMessageLayout = this.root;
+            this.layoutWidth = i + richMessageLayout.padLeft + richMessageLayout.padRight;
             int iDp = this.buttonX + AndroidUtilities.dp(50.0f) + this.size;
             this.seekBarX = iDp;
-            this.seekBarWidth = Math.max(0, (this.maxWidth - iDp) - AndroidUtilities.dp(18.0f));
+            this.seekBarWidth = Math.max(0, (this.layoutWidth - iDp) - AndroidUtilities.dp(18.0f));
             MessageObject messageObject = this.currentMessageObject;
             String musicAuthor = messageObject != null ? messageObject.getMusicAuthor(false) : null;
             MessageObject messageObject2 = this.currentMessageObject;
@@ -5756,7 +5814,8 @@ public class RichMessageLayout {
                     spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, musicAuthor.length(), 18);
                 }
                 this.audioTimePaint.setTextSize(AndroidUtilities.dp(16.0f));
-                this.titleLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, Theme.chat_audioTitlePaint, this.seekBarWidth, TextUtils.TruncateAt.END), this.audioTimePaint, this.seekBarWidth + AndroidUtilities.dp(50.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                int iDp2 = this.seekBarWidth + AndroidUtilities.dp(50.0f);
+                this.titleLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, Theme.chat_audioTitlePaint, iDp2, TextUtils.TruncateAt.END), this.audioTimePaint, iDp2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.seekBarY = this.buttonY + ((this.size - AndroidUtilities.dp(30.0f)) / 2) + AndroidUtilities.dp(11.0f);
             } else {
                 this.titleLayout = null;
@@ -5789,6 +5848,11 @@ public class RichMessageLayout {
                 return 2;
             }
             return i == 3 ? 3 : 0;
+        }
+
+        private boolean canStream() {
+            MessageObject messageObject;
+            return (!SharedConfig.streamMedia || (messageObject = this.currentMessageObject) == null || !messageObject.isMusic() || this.currentMessageObject.shouldEncryptPhotoOrVideo() || DialogObject.isEncryptedDialog(this.currentMessageObject.getDialogId())) ? false : true;
         }
 
         public void updatePlayingMessageProgress() {
@@ -5851,15 +5915,20 @@ public class RichMessageLayout {
                 this.radialProgress.setIcon(getIconForCurrentState(), false, z);
             } else {
                 DownloadController.getInstance(i).addLoadingFileObserver(attachFileName, null, this);
-                if (!FileLoader.getInstance(i).isLoadingFile(attachFileName)) {
-                    this.buttonState = 2;
-                    this.radialProgress.setProgress(0.0f, z);
+                if (canStream()) {
+                    this.buttonState = (!MediaController.getInstance().isPlayingMessage(this.currentMessageObject) || MediaController.getInstance().isMessagePaused()) ? 0 : 1;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, z);
                 } else {
-                    this.buttonState = 3;
-                    Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
-                    this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, z);
-                    this.radialProgress.setIcon(getIconForCurrentState(), true, z);
+                    if (!FileLoader.getInstance(i).isLoadingFile(attachFileName)) {
+                        this.buttonState = 2;
+                        this.radialProgress.setProgress(0.0f, z);
+                        this.radialProgress.setIcon(getIconForCurrentState(), false, z);
+                    } else {
+                        this.buttonState = 3;
+                        Float fileProgress = ImageLoader.getInstance().getFileProgress(attachFileName);
+                        this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, z);
+                        this.radialProgress.setIcon(getIconForCurrentState(), true, z);
+                    }
                 }
             }
             updatePlayingMessageProgress();
@@ -5922,24 +5991,30 @@ public class RichMessageLayout {
             if (this.currentMessageObject == null || this.currentDocument == null) {
                 return;
             }
+            int i = this.layoutWidth;
+            int i2 = this.maxWidth;
+            RichMessageLayout richMessageLayout = this.root;
+            if (i != i2 + richMessageLayout.padLeft + richMessageLayout.padRight) {
+                layoutInner();
+            }
             canvas.save();
             canvas.translate(-this.root.padLeft, 0.0f);
             this.radialProgress.setColorKeys(this.root.isOut() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader, this.root.isOut() ? Theme.key_chat_outLoaderSelected : Theme.key_chat_inLoaderSelected, this.root.isOut() ? Theme.key_chat_outMediaIcon : Theme.key_chat_inMediaIcon, this.root.isOut() ? Theme.key_chat_outMediaIconSelected : Theme.key_chat_inMediaIconSelected);
             RadialProgress2 radialProgress2 = this.radialProgress;
-            RichMessageLayout richMessageLayout = this.root;
-            radialProgress2.setProgressColor(richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_outFileProgress : Theme.key_chat_inFileProgress));
+            RichMessageLayout richMessageLayout2 = this.root;
+            radialProgress2.setProgressColor(richMessageLayout2.getThemedColor(richMessageLayout2.isOut() ? Theme.key_chat_outFileProgress : Theme.key_chat_inFileProgress));
             this.radialProgress.draw(canvas);
             SeekBar seekBar = this.seekBar;
-            RichMessageLayout richMessageLayout2 = this.root;
-            int themedColor = richMessageLayout2.getThemedColor(richMessageLayout2.isOut() ? Theme.key_chat_outAudioSeekbar : Theme.key_chat_inAudioSeekbar);
             RichMessageLayout richMessageLayout3 = this.root;
-            int themedColor2 = richMessageLayout3.getThemedColor(richMessageLayout3.isOut() ? Theme.key_chat_outAudioCacheSeekbar : Theme.key_chat_inAudioCacheSeekbar);
+            int themedColor = richMessageLayout3.getThemedColor(richMessageLayout3.isOut() ? Theme.key_chat_outAudioSeekbar : Theme.key_chat_inAudioSeekbar);
             RichMessageLayout richMessageLayout4 = this.root;
-            int themedColor3 = richMessageLayout4.getThemedColor(richMessageLayout4.isOut() ? Theme.key_chat_outAudioSeekbarFill : Theme.key_chat_inAudioSeekbarFill);
+            int themedColor2 = richMessageLayout4.getThemedColor(richMessageLayout4.isOut() ? Theme.key_chat_outAudioCacheSeekbar : Theme.key_chat_inAudioCacheSeekbar);
             RichMessageLayout richMessageLayout5 = this.root;
-            int themedColor4 = richMessageLayout5.getThemedColor(richMessageLayout5.isOut() ? Theme.key_chat_outAudioSeekbarFill : Theme.key_chat_inAudioSeekbarFill);
+            int themedColor3 = richMessageLayout5.getThemedColor(richMessageLayout5.isOut() ? Theme.key_chat_outAudioSeekbarFill : Theme.key_chat_inAudioSeekbarFill);
             RichMessageLayout richMessageLayout6 = this.root;
-            seekBar.setColors(themedColor, themedColor2, themedColor3, themedColor4, richMessageLayout6.getThemedColor(richMessageLayout6.isOut() ? Theme.key_chat_outAudioSeekbarSelected : Theme.key_chat_inAudioSeekbarSelected));
+            int themedColor4 = richMessageLayout6.getThemedColor(richMessageLayout6.isOut() ? Theme.key_chat_outAudioSeekbarFill : Theme.key_chat_inAudioSeekbarFill);
+            RichMessageLayout richMessageLayout7 = this.root;
+            seekBar.setColors(themedColor, themedColor2, themedColor3, themedColor4, richMessageLayout7.getThemedColor(richMessageLayout7.isOut() ? Theme.key_chat_outAudioSeekbarSelected : Theme.key_chat_inAudioSeekbarSelected));
             canvas.save();
             canvas.translate(this.seekBarX, this.seekBarY);
             this.seekBar.draw(canvas);
@@ -5960,8 +6035,54 @@ public class RichMessageLayout {
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.RichMessageLayout.RichAudioBlock.onTouchEvent(android.view.MotionEvent):boolean");
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            int actionMasked = motionEvent.getActionMasked();
+            float x = motionEvent.getX() + this.root.padLeft;
+            float y = motionEvent.getY();
+            if (this.seekBar.onTouch(actionMasked, x - this.seekBarX, y - this.seekBarY)) {
+                if (actionMasked == 0) {
+                    requestDisallowParentIntercept(true);
+                }
+                if (actionMasked == 1 || actionMasked == 3) {
+                    requestDisallowParentIntercept(false);
+                }
+                View view = this.view;
+                if (view != null) {
+                    view.invalidate();
+                }
+                return true;
+            }
+            if (actionMasked == 0) {
+                if (this.buttonState != -1) {
+                    if (x >= this.buttonX && x <= r0 + AndroidUtilities.dp(48.0f)) {
+                        if (y >= this.buttonY && y <= r0 + AndroidUtilities.dp(48.0f)) {
+                            this.buttonPressed = true;
+                            View view2 = this.view;
+                            if (view2 != null) {
+                                view2.invalidate();
+                            }
+                            return true;
+                        }
+                    }
+                }
+            } else if (actionMasked == 1) {
+                if (this.buttonPressed) {
+                    this.buttonPressed = false;
+                    View view3 = this.view;
+                    if (view3 != null) {
+                        view3.playSoundEffect(0);
+                    }
+                    didPressedButton(true);
+                    View view4 = this.view;
+                    if (view4 != null) {
+                        view4.invalidate();
+                    }
+                    return true;
+                }
+            } else if (actionMasked == 3) {
+                this.buttonPressed = false;
+            }
+            return this.buttonPressed;
         }
 
         @Override
@@ -7009,6 +7130,7 @@ public class RichMessageLayout {
         private int slideWidth;
         private int touchSlop;
         private VelocityTracker velocityTracker;
+        private boolean verticalDragging;
 
         public RichSlideshowBlock(RichMessageLayout richMessageLayout, Rect rect, int i, TL_iv.pageBlockSlideshow pageblockslideshow, boolean z) {
             super(richMessageLayout, rect, i);
@@ -7170,6 +7292,7 @@ public class RichMessageLayout {
                     Paint paint2 = new Paint(1);
                     slideDotPaint = paint2;
                     paint2.setColor(-1);
+                    slideDotPaint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dpf2(1.0f), Integer.MIN_VALUE);
                 }
                 float fDp = (this.slideHeight - AndroidUtilities.dp(23.0f)) + AndroidUtilities.dp(5.0f);
                 int iDp4 = (AndroidUtilities.dp(7.0f) * size) + ((size - 1) * AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(4.0f);
@@ -7179,7 +7302,7 @@ public class RichMessageLayout {
                 } else {
                     float fDp2 = AndroidUtilities.dp(4.0f);
                     int iDp5 = AndroidUtilities.dp(13.0f);
-                    fClamp = fDp2 - (Utilities.clamp(f10 - (((i9 - AndroidUtilities.dp(8.0f)) / 2) / iDp5), Math.max(0, (size - (r12 * 2)) - 1), 0.0f) * iDp5);
+                    fClamp = fDp2 - (Utilities.clamp(f10 - (((i9 - AndroidUtilities.dp(8.0f)) / 2) / iDp5), Math.max(0, (size - (r11 * 2)) - 1), 0.0f) * iDp5);
                 }
                 canvas.save();
                 canvas.clipRect(0, this.slideHeight - AndroidUtilities.dp(23.0f), i9, this.slideHeight);
@@ -7257,6 +7380,7 @@ public class RichMessageLayout {
                     this.downX = motionEvent.getX();
                     this.downY = motionEvent.getY();
                     this.dragging = false;
+                    this.verticalDragging = false;
                     VelocityTracker velocityTracker2 = this.velocityTracker;
                     if (velocityTracker2 == null) {
                         this.velocityTracker = VelocityTracker.obtain();
@@ -7278,7 +7402,9 @@ public class RichMessageLayout {
                     float f = 0.0f;
                     if (actionMasked != 2) {
                         if (actionMasked == 1 || actionMasked == 3) {
-                            if (actionMasked == 1 && (velocityTracker = this.velocityTracker) != null) {
+                            boolean z = this.verticalDragging;
+                            this.verticalDragging = false;
+                            if (!z && actionMasked == 1 && (velocityTracker = this.velocityTracker) != null) {
                                 velocityTracker.addMovement(motionEvent);
                                 this.velocityTracker.computeCurrentVelocity(1000, this.maxFlingVelocity);
                                 float xVelocity = this.velocityTracker.getXVelocity();
@@ -7293,16 +7419,18 @@ public class RichMessageLayout {
                                 this.velocityTracker = null;
                             }
                             requestDisallowParentIntercept(false);
-                            if (this.dragging) {
-                                this.dragging = false;
-                                settle(f);
-                            } else {
-                                int i2 = this.currentPage;
-                                if (i2 >= 0 && i2 < this.cells.size()) {
-                                    zOnTouchEvent = this.cells.get(this.currentPage).onTouchEvent(motionEvent, this.view);
-                                    Rect rect2 = this.padding;
-                                    motionEvent.offsetLocation(rect2.left, rect2.top);
-                                    return zOnTouchEvent;
+                            if (!z) {
+                                if (this.dragging) {
+                                    this.dragging = false;
+                                    settle(f);
+                                } else {
+                                    int i2 = this.currentPage;
+                                    if (i2 >= 0 && i2 < this.cells.size()) {
+                                        zOnTouchEvent = this.cells.get(this.currentPage).onTouchEvent(motionEvent, this.view);
+                                        Rect rect2 = this.padding;
+                                        motionEvent.offsetLocation(rect2.left, rect2.top);
+                                        return zOnTouchEvent;
+                                    }
                                 }
                             }
                         }
@@ -7310,56 +7438,67 @@ public class RichMessageLayout {
                         motionEvent.offsetLocation(rect3.left, rect3.top);
                         return false;
                     }
-                    VelocityTracker velocityTracker4 = this.velocityTracker;
-                    if (velocityTracker4 != null) {
-                        velocityTracker4.addMovement(motionEvent);
-                    }
-                    float x = motionEvent.getX() - this.downX;
-                    float y = motionEvent.getY() - this.downY;
-                    if (!this.dragging && Math.abs(x) > this.touchSlop && Math.abs(x) > Math.abs(y)) {
-                        this.dragging = true;
-                        int i3 = this.currentPage;
-                        if (i3 >= 0 && i3 < this.cells.size()) {
-                            MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
-                            motionEventObtain.setAction(3);
-                            this.cells.get(this.currentPage).onTouchEvent(motionEventObtain, this.view);
-                            motionEventObtain.recycle();
+                    if (!this.verticalDragging) {
+                        VelocityTracker velocityTracker4 = this.velocityTracker;
+                        if (velocityTracker4 != null) {
+                            velocityTracker4.addMovement(motionEvent);
                         }
-                    }
-                    if (this.dragging) {
-                        float f2 = (-x) / this.slideWidth;
-                        int i4 = this.currentPage;
-                        if (i4 == 0 && f2 < 0.0f) {
-                            f2 *= 0.3f;
+                        float x = motionEvent.getX() - this.downX;
+                        float y = motionEvent.getY() - this.downY;
+                        if (!this.dragging && Math.abs(y) > this.touchSlop && Math.abs(y) > Math.abs(x)) {
+                            this.verticalDragging = true;
+                            int i3 = this.currentPage;
+                            if (i3 >= 0 && i3 < this.cells.size()) {
+                                MotionEvent motionEventObtain = MotionEvent.obtain(motionEvent);
+                                motionEventObtain.setAction(3);
+                                this.cells.get(this.currentPage).onTouchEvent(motionEventObtain, this.view);
+                                motionEventObtain.recycle();
+                            }
+                            requestDisallowParentIntercept(false);
+                        } else {
+                            if (!this.dragging && Math.abs(x) > this.touchSlop && Math.abs(x) > Math.abs(y)) {
+                                this.dragging = true;
+                                int i4 = this.currentPage;
+                                if (i4 >= 0 && i4 < this.cells.size()) {
+                                    MotionEvent motionEventObtain2 = MotionEvent.obtain(motionEvent);
+                                    motionEventObtain2.setAction(3);
+                                    this.cells.get(this.currentPage).onTouchEvent(motionEventObtain2, this.view);
+                                    motionEventObtain2.recycle();
+                                }
+                            }
+                            if (this.dragging) {
+                                float f2 = (-x) / this.slideWidth;
+                                int i5 = this.currentPage;
+                                if (i5 == 0 && f2 < 0.0f) {
+                                    f2 *= 0.3f;
+                                }
+                                if (i5 == this.cells.size() - 1 && f2 > 0.0f) {
+                                    f2 *= 0.3f;
+                                }
+                                this.pageOffset = f2;
+                                View view2 = this.view;
+                                if (view2 != null) {
+                                    view2.invalidate();
+                                }
+                            } else {
+                                int i6 = this.currentPage;
+                                if (i6 >= 0 && i6 < this.cells.size()) {
+                                    zOnTouchEvent = this.cells.get(this.currentPage).onTouchEvent(motionEvent, this.view);
+                                    Rect rect22 = this.padding;
+                                    motionEvent.offsetLocation(rect22.left, rect22.top);
+                                    return zOnTouchEvent;
+                                }
+                                Rect rect32 = this.padding;
+                                motionEvent.offsetLocation(rect32.left, rect32.top);
+                                return false;
+                            }
                         }
-                        if (i4 == this.cells.size() - 1 && f2 > 0.0f) {
-                            f2 *= 0.3f;
-                        }
-                        this.pageOffset = f2;
-                        View view2 = this.view;
-                        if (view2 != null) {
-                            view2.invalidate();
-                        }
-                    } else {
-                        int i5 = this.currentPage;
-                        if (i5 >= 0 && i5 < this.cells.size()) {
-                            zOnTouchEvent = this.cells.get(this.currentPage).onTouchEvent(motionEvent, this.view);
-                            Rect rect22 = this.padding;
-                            motionEvent.offsetLocation(rect22.left, rect22.top);
-                            return zOnTouchEvent;
-                        }
-                        Rect rect32 = this.padding;
-                        motionEvent.offsetLocation(rect32.left, rect32.top);
-                        return false;
                     }
                 }
+                return true;
+            } finally {
                 Rect rect4 = this.padding;
                 motionEvent.offsetLocation(rect4.left, rect4.top);
-                return true;
-            } catch (Throwable th) {
-                Rect rect5 = this.padding;
-                motionEvent.offsetLocation(rect5.left, rect5.top);
-                throw th;
             }
         }
 
@@ -7379,6 +7518,26 @@ public class RichMessageLayout {
             return this.currentPage;
         }
 
+        public void setCurrentPage(int i) {
+            int iMax = Math.max(0, Math.min(i, this.cells.size() - 1));
+            ValueAnimator valueAnimator = this.settleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.settleAnimator = null;
+            }
+            if (this.currentPage == iMax && this.pageOffset == 0.0f) {
+                return;
+            }
+            this.currentPage = iMax;
+            this.pageOffset = 0.0f;
+            this.dragging = false;
+            this.verticalDragging = false;
+            View view = this.view;
+            if (view != null) {
+                view.invalidate();
+            }
+        }
+
         @Override
         public boolean isHorizontallyDragging() {
             ValueAnimator valueAnimator;
@@ -7396,6 +7555,8 @@ public class RichMessageLayout {
         @Override
         protected void onDetachedFromWindow() {
             requestDisallowParentIntercept(false);
+            this.dragging = false;
+            this.verticalDragging = false;
             VelocityTracker velocityTracker = this.velocityTracker;
             if (velocityTracker != null) {
                 velocityTracker.recycle();
@@ -7991,7 +8152,7 @@ public class RichMessageLayout {
             for (TextSelectionHelper.TextLayoutBlock textLayoutBlock : text2) {
                 if ((textLayoutBlock instanceof Text) && (emojiGroupedSpans = (text = (Text) textLayoutBlock).animatedEmojiStack) != null && !emojiGroupedSpans.holders.isEmpty()) {
                     canvas.save();
-                    canvas.translate(text.x - text.left, text.y - this.currY);
+                    canvas.translate(text.x, text.y - this.currY);
                     AnimatedEmojiSpan.drawAnimatedEmojis(canvas, text.layout, text.animatedEmojiStack, 0.0f, text.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
                     canvas.restore();
                     z = true;

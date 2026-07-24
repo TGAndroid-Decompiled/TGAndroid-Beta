@@ -695,6 +695,11 @@ public class BotShareSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
+            public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z, boolean z2) {
+                forceUpdate(chatMessageCell2, z);
+            }
+
+            @Override
             public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell2, z);
             }

@@ -333,8 +333,11 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
             ImageView backButton;
             if (((BaseFragment) GradientHeaderActivity.this).actionBar != null && (backButton = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBackButton()) != null && backButton.getVisibility() == 0) {
-                if (motionEvent.getAction() == 0 && ViewPositionWatcher.computeRectInParent(backButton, this, AndroidUtilities.rectTmp)) {
-                    this.isTouchedActionBarBackButton = true;
+                if (motionEvent.getAction() == 0) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    if (ViewPositionWatcher.computeRectInParent(backButton, this, rectF) && rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                        this.isTouchedActionBarBackButton = true;
+                    }
                 }
                 if (this.isTouchedActionBarBackButton) {
                     boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
@@ -347,9 +350,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             BackgroundView backgroundView = GradientHeaderActivity.this.backgroundView;
             float x = backgroundView.getX() + backgroundView.subtitleView.getX();
             float y = backgroundView.getY() + backgroundView.subtitleView.getY();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(x, y, backgroundView.subtitleView.getMeasuredWidth() + x, backgroundView.subtitleView.getMeasuredHeight() + y);
-            if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.subtitleInterceptedTouch) && !GradientHeaderActivity.this.listView.scrollingByUser && backgroundView.subtitleView.hasLinks() && GradientHeaderActivity.this.progressToFull < 1.0f) {
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(x, y, backgroundView.subtitleView.getMeasuredWidth() + x, backgroundView.subtitleView.getMeasuredHeight() + y);
+            if ((rectF2.contains(motionEvent.getX(), motionEvent.getY()) || this.subtitleInterceptedTouch) && !GradientHeaderActivity.this.listView.scrollingByUser && backgroundView.subtitleView.hasLinks() && GradientHeaderActivity.this.progressToFull < 1.0f) {
                 motionEvent.offsetLocation(-x, -y);
                 if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
                     this.subtitleInterceptedTouch = true;
@@ -362,8 +365,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             float x2 = backgroundView.getX() + backgroundView.aboveTitleLayout.getX();
             float y2 = backgroundView.getY() + backgroundView.aboveTitleLayout.getY();
             boolean zIsClickable = backgroundView.aboveTitleLayout.isClickable();
-            rectF.set(x2, y2, backgroundView.aboveTitleLayout.getMeasuredWidth() + x2, backgroundView.aboveTitleLayout.getMeasuredHeight() + y2);
-            if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
+            rectF2.set(x2, y2, backgroundView.aboveTitleLayout.getMeasuredWidth() + x2, backgroundView.aboveTitleLayout.getMeasuredHeight() + y2);
+            if (rectF2.contains(motionEvent.getX(), motionEvent.getY()) || this.topInterceptedTouch) {
                 GradientHeaderActivity gradientHeaderActivity = GradientHeaderActivity.this;
                 if (!gradientHeaderActivity.listView.scrollingByUser && zIsClickable && gradientHeaderActivity.progressToFull < 1.0f) {
                     motionEvent.offsetLocation(-x2, -y2);
@@ -378,8 +381,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             }
             float x3 = backgroundView.getX() + backgroundView.belowSubTitleLayout.getX();
             float y3 = backgroundView.getY() + backgroundView.belowSubTitleLayout.getY();
-            rectF.set(x3, y3, backgroundView.belowSubTitleLayout.getMeasuredWidth() + x3, backgroundView.belowSubTitleLayout.getMeasuredHeight() + y3);
-            if (rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.bottomInterceptedTouch) {
+            rectF2.set(x3, y3, backgroundView.belowSubTitleLayout.getMeasuredWidth() + x3, backgroundView.belowSubTitleLayout.getMeasuredHeight() + y3);
+            if (rectF2.contains(motionEvent.getX(), motionEvent.getY()) || this.bottomInterceptedTouch) {
                 GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
                 if (!gradientHeaderActivity2.listView.scrollingByUser && gradientHeaderActivity2.progressToFull < 1.0f) {
                     motionEvent.offsetLocation(-x3, -y3);

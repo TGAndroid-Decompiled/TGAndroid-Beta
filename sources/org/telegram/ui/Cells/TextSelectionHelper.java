@@ -13,9 +13,12 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.text.Layout;
+import android.text.NoCopySpan;
+import android.text.SpanWatcher;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
+import android.text.TextWatcher;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.ActionMode;
@@ -2262,6 +2265,38 @@ public abstract class TextSelectionHelper {
         public int anchorOffset = -1;
         public int anchorChildPosition = 0;
 
+        private static CharSequence detachedText(CharSequence charSequence) {
+            if (charSequence == null) {
+                return "";
+            }
+            if (!(charSequence instanceof Spanned)) {
+                return charSequence.toString();
+            }
+            Spanned spanned = (Spanned) charSequence;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence.toString());
+            for (Object obj : spanned.getSpans(0, spanned.length(), Object.class)) {
+                if (!(obj instanceof TextWatcher) && !(obj instanceof SpanWatcher) && !(obj instanceof NoCopySpan)) {
+                    int spanStart = spanned.getSpanStart(obj);
+                    int spanEnd = spanned.getSpanEnd(obj);
+                    if (spanStart >= 0 && spanEnd >= spanStart && spanStart <= spannableStringBuilder.length()) {
+                        spannableStringBuilder.setSpan(obj, spanStart, Math.min(spanEnd, spannableStringBuilder.length()), spanned.getSpanFlags(obj));
+                    }
+                }
+            }
+            return spannableStringBuilder;
+        }
+
+        private void cacheLayoutBlock(int i, int i2, TextLayoutBlock textLayoutBlock) {
+            int i3 = i + (i2 << 16);
+            this.textByPosition.put(i3, detachedText(textLayoutBlock.getText()));
+            CharSequence prefix = textLayoutBlock.getPrefix();
+            if (prefix == null) {
+                this.prefixTextByPosition.remove(i3);
+            } else {
+                this.prefixTextByPosition.put(i3, detachedText(prefix));
+            }
+        }
+
         public ArticleTextSelectionHelper() {
             this.multiselect = true;
             this.showActionsAsPopupAlways = true;
@@ -2578,9 +2613,7 @@ public abstract class TextSelectionHelper {
             int size = this.arrayList.size();
             this.childCountByPosition.put(adapterPosition, size);
             for (int i2 = 0; i2 < size; i2++) {
-                int i3 = (i2 << 16) + adapterPosition;
-                this.textByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getText());
-                this.prefixTextByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getPrefix());
+                cacheLayoutBlock(adapterPosition, i2, (TextLayoutBlock) this.arrayList.get(i2));
             }
         }
 
@@ -2865,25 +2898,18 @@ public abstract class TextSelectionHelper {
         }
 
         public void cacheText(int i, CharSequence charSequence, CharSequence charSequence2) {
-            SparseArray sparseArray = this.textByPosition;
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            sparseArray.put(i, charSequence);
-            if (charSequence2 != null) {
-                this.prefixTextByPosition.put(i, charSequence2);
+            this.textByPosition.put(i, detachedText(charSequence));
+            if (charSequence2 == null) {
+                this.prefixTextByPosition.remove(i);
+            } else {
+                this.prefixTextByPosition.put(i, detachedText(charSequence2));
             }
             SparseIntArray sparseIntArray = this.childCountByPosition;
             sparseIntArray.put(i, Math.max(1, sparseIntArray.get(i)));
         }
 
         public void cacheChildText(int i, int i2, CharSequence charSequence) {
-            SparseArray sparseArray = this.textByPosition;
-            int i3 = (i2 << 16) + i;
-            if (charSequence == null) {
-                charSequence = "";
-            }
-            sparseArray.put(i3, charSequence);
+            this.textByPosition.put((i2 << 16) + i, detachedText(charSequence));
             SparseIntArray sparseIntArray = this.childCountByPosition;
             sparseIntArray.put(i, Math.max(i2 + 1, sparseIntArray.get(i)));
         }
@@ -2894,9 +2920,7 @@ public abstract class TextSelectionHelper {
             int size = this.arrayList.size();
             this.childCountByPosition.put(i, size);
             for (int i2 = 0; i2 < size; i2++) {
-                int i3 = (i2 << 16) + i;
-                this.textByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getText());
-                this.prefixTextByPosition.put(i3, ((TextLayoutBlock) this.arrayList.get(i2)).getPrefix());
+                cacheLayoutBlock(i, i2, (TextLayoutBlock) this.arrayList.get(i2));
             }
         }
 
@@ -3041,9 +3065,7 @@ public abstract class TextSelectionHelper {
             int size = this.arrayList.size();
             this.childCountByPosition.put(adapterPosition, size);
             for (int i7 = 0; i7 < size; i7++) {
-                int i8 = (i7 << 16) + adapterPosition;
-                this.textByPosition.put(i8, ((TextLayoutBlock) this.arrayList.get(i7)).getText());
-                this.prefixTextByPosition.put(i8, ((TextLayoutBlock) this.arrayList.get(i7)).getPrefix());
+                cacheLayoutBlock(adapterPosition, i7, (TextLayoutBlock) this.arrayList.get(i7));
             }
         }
 
