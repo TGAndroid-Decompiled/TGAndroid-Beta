@@ -5138,6 +5138,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 final TLRPC.User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser != null) {
                     ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.actionsView);
+                    itemOptionsMakeOptions.setLongPressSelectionEnabled(false);
                     itemOptionsMakeOptions.setGravity(3);
                     itemOptionsMakeOptions.add(R.drawable.msg_qrcode, LocaleController.getString(R.string.QrCode), new Runnable() {
                         @Override
@@ -7774,7 +7775,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         final String str5 = str;
         final boolean z25 = z8;
         final boolean z26 = z6;
-        ItemOptions.makeOptions(this, view).setScrimViewBackground(view.getParent() instanceof RecyclerListView ? ((RecyclerListView) view.getParent()).getClipBackground(view) : null).addIf(!z13, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
+        ItemOptions.makeOptions(this, view).setScrimViewBackground(view.getParent() instanceof RecyclerListView ? ((RecyclerListView) view.getParent()).getClipBackground(view) : null).setLongPressSelectionEnabled(false).addIf(!z13, R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$onMemberClick$59(user);
@@ -8121,7 +8122,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (getParentActivity() == null) {
             return;
         }
-        ItemOptions.makeOptions(this, view).setScrimViewBackground(this.listView.getClipBackground(view)).add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+        ItemOptions.makeOptions(this, view).setScrimViewBackground(this.listView.getClipBackground(view)).setLongPressSelectionEnabled(false).add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
                 this.f$0.lambda$processOnClickOrPress$78(str, i);
@@ -15180,6 +15181,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     public boolean editNotes(View view, final int i) {
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
         itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view));
+        itemOptionsMakeOptions.setLongPressSelectionEnabled(false);
         itemOptionsMakeOptions.addIf(this.userInfo != null, R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
             @Override
             public final void run() {
@@ -15284,6 +15286,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
         itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view));
+        itemOptionsMakeOptions.setLongPressSelectionEnabled(false);
         itemOptionsMakeOptions.setGravity(3);
         if (i == this.bizLocationRow && (tL_businessLocation = userFull.business_location) != null) {
             if (tL_businessLocation.geo_point != null) {

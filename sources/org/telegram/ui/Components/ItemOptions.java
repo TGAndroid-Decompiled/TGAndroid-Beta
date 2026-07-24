@@ -115,6 +115,7 @@ public class ItemOptions {
     private ActionBarPopupWindow.ActionBarPopupWindowLayout lastLayout;
     private ViewGroup layout;
     private LinearLayout linearLayout;
+    private boolean longPressSelectionEnabled;
     private int maxHeight;
     private int minWidthDp;
     public boolean needsFocus;
@@ -185,6 +186,11 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions setLongPressSelectionEnabled(boolean z) {
+        this.longPressSelectionEnabled = z;
+        return this;
+    }
+
     public ItemOptions setBlur(boolean z, boolean z2) {
         this.blur = z;
         this.blurForMenu = z2;
@@ -216,6 +222,7 @@ public class ItemOptions {
         this.gravity = 5;
         this.point = new float[2];
         this.drawScrim = true;
+        this.longPressSelectionEnabled = true;
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
@@ -244,6 +251,7 @@ public class ItemOptions {
         this.gravity = 5;
         this.point = new float[2];
         this.drawScrim = true;
+        this.longPressSelectionEnabled = true;
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;
@@ -271,6 +279,7 @@ public class ItemOptions {
         this.gravity = 5;
         this.point = new float[2];
         this.drawScrim = true;
+        this.longPressSelectionEnabled = true;
         this.viewAdditionalOffsets = new Rect();
         this.dismissWithButtons = true;
         this.shiftDp = -4;

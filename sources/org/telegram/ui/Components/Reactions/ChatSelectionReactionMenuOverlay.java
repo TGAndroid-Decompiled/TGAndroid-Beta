@@ -149,20 +149,20 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
             ChatSelectionReactionMenuOverlay.this.parentFragment.selectReaction(null, ChatSelectionReactionMenuOverlay.this.currentPrimaryObject, ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     this.f$0.lambda$onReactionClicked$0();
                 }
             });
         }
 
-        public void lambda$onReactionClicked$0() throws Resources.NotFoundException {
+        public void lambda$onReactionClicked$0() throws Resources.NotFoundException, NumberFormatException {
             if (ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout != null) {
                 ChatSelectionReactionMenuOverlay.this.reactionsContainerLayout.dismissParent(true);
             }
             hideMenu();
         }
 
-        public void hideMenu() throws Resources.NotFoundException {
+        public void hideMenu() throws Resources.NotFoundException, NumberFormatException {
             ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
         }
     }

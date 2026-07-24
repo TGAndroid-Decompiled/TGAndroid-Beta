@@ -19,6 +19,8 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
@@ -94,7 +96,7 @@ public class RichTableCell extends RichBlockCell implements Theme.Colorable, Tex
         richEditText.setGravity(49);
         richEditText.setTextSize(1, Math.max(8, SharedConfig.fontSize));
         richEditText.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        richEditText.setHint("Add title…");
+        richEditText.setHint(LocaleController.getString(R.string.ArticleTableTitleHint));
         richEditText.setCenterEmptyHint(true);
         richEditText.setListener(new AnonymousClass1());
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {

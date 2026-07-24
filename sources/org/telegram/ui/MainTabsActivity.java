@@ -9,7 +9,10 @@ import android.graphics.RectF;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.ReplacementSpan;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -530,6 +533,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
     public boolean openFoldersSelector(View view) {
         ArrayList<MessagesController.DialogFilter> dialogFilters;
+        int mainUnreadCount;
         if (getContext() == null || getParentActivity() == null || (dialogFilters = getMessagesController().getDialogFilters()) == null || dialogFilters.size() <= 1) {
             return false;
         }
@@ -541,6 +545,19 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
             CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(dialogFilter.isDefault() ? LocaleController.getString(R.string.FilterAllChats) : dialogFilter.name, actionBarMenuSubItem.getTextView().getPaint().getFontMetricsInt(), false);
             if (!dialogFilter.isDefault()) {
                 charSequenceReplaceEmoji = MessageObject.replaceAnimatedEmoji(charSequenceReplaceEmoji, dialogFilter.entities, actionBarMenuSubItem.getTextView().getPaint().getFontMetricsInt());
+            }
+            if (dialogFilter.isDefault()) {
+                mainUnreadCount = MessagesStorage.getInstance(this.currentAccount).getMainUnreadCount();
+            } else {
+                mainUnreadCount = dialogFilter.unreadCount;
+            }
+            if (mainUnreadCount > 0) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceReplaceEmoji);
+                int length = spannableStringBuilder.length();
+                spannableStringBuilder.append((CharSequence) String.valueOf(mainUnreadCount));
+                spannableStringBuilder.setSpan(new FolderCounterSpan(mainUnreadCount, hasUnmutedUnreadDialogs(dialogFilter)), length, spannableStringBuilder.length(), 33);
+                actionBarMenuSubItem.setContentDescription(TextUtils.concat(dialogFilter.isDefault() ? LocaleController.getString(R.string.FilterAllChats) : dialogFilter.name, "\n", LocaleController.formatPluralString("AccDescrUnreadCount", mainUnreadCount, new Object[0])));
+                charSequenceReplaceEmoji = spannableStringBuilder;
             }
             actionBarMenuSubItem.setEmojiCacheType(dialogFilter.title_noanimate ? 26 : 0);
             actionBarMenuSubItem.setTextAndIcon(charSequenceReplaceEmoji, 0, new FolderDrawable(getContext(), R.drawable.msg_folders, getMessagesController().folderTags ? dialogFilter.color : -1));
@@ -567,6 +584,59 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
     public void lambda$openFoldersSelector$7(ItemOptions itemOptions, MessagesController.DialogFilter dialogFilter, View view) {
         itemOptions.dismiss();
         openFolder(dialogFilter.id);
+    }
+
+    private boolean hasUnmutedUnreadDialogs(org.telegram.messenger.MessagesController.DialogFilter r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.MainTabsActivity.hasUnmutedUnreadDialogs(org.telegram.messenger.MessagesController$DialogFilter):boolean");
+    }
+
+    private class FolderCounterSpan extends ReplacementSpan {
+        private final Paint backgroundPaint;
+        private final String count;
+        private final float counterWidth;
+        private final boolean hasUnmutedUnreadDialogs;
+        private final TextPaint textPaint;
+
+        FolderCounterSpan(int i, boolean z) {
+            TextPaint textPaint = new TextPaint(1);
+            this.textPaint = textPaint;
+            this.backgroundPaint = new Paint(1);
+            String strValueOf = String.valueOf(i);
+            this.count = strValueOf;
+            this.hasUnmutedUnreadDialogs = z;
+            textPaint.setTextSize(AndroidUtilities.dpf2(11.0f));
+            textPaint.setTypeface(AndroidUtilities.bold());
+            this.counterWidth = Math.max(AndroidUtilities.dp(7.333f), textPaint.measureText(strValueOf)) + AndroidUtilities.dp(10.0f);
+        }
+
+        @Override
+        public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+            return (int) Math.ceil(AndroidUtilities.dp(5.0f) + this.counterWidth);
+        }
+
+        @Override
+        public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+            int i6;
+            float fDp = f + AndroidUtilities.dp(5.0f);
+            float fDp2 = ((i3 + i5) / 2.0f) + AndroidUtilities.dp(1.0f);
+            float fDp3 = AndroidUtilities.dp(17.333f) / 2.0f;
+            Paint paint2 = this.backgroundPaint;
+            MainTabsActivity mainTabsActivity = MainTabsActivity.this;
+            if (this.hasUnmutedUnreadDialogs) {
+                i6 = Theme.key_featuredStickers_addButton;
+            } else {
+                i6 = Theme.key_chats_tabUnreadUnactiveBackground;
+            }
+            paint2.setColor(mainTabsActivity.getThemedColor(i6));
+            this.textPaint.setColor(MainTabsActivity.this.getThemedColor(Theme.key_actionBarDefault));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(fDp, fDp2 - fDp3, this.counterWidth + fDp, fDp2 + fDp3);
+            canvas.drawRoundRect(rectF, fDp3, fDp3, this.backgroundPaint);
+            Paint.FontMetrics fontMetrics = this.textPaint.getFontMetrics();
+            float f2 = fDp2 - ((fontMetrics.ascent + fontMetrics.descent) / 2.0f);
+            String str = this.count;
+            canvas.drawText(str, fDp + ((this.counterWidth - this.textPaint.measureText(str)) / 2.0f), f2, this.textPaint);
+        }
     }
 
     private void openFolder(int i) {
