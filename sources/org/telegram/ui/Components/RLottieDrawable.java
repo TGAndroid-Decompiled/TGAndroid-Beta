@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
@@ -26,6 +28,7 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MonoColorLottieList;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.BitmapsCache;
 import org.telegram.messenger.utils.Choreographer60FpsContent;
@@ -73,7 +76,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private volatile boolean isPaused;
     protected volatile boolean isRecycled;
     protected volatile boolean isRunning;
-    private boolean isSingleChannel;
+    private final boolean isSingleChannel;
     private final HashMap layerColors;
     protected final Runnable loadFrameRunnable;
     protected Runnable loadFrameTask;
@@ -336,7 +339,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         }
     }
 
-    public RLottieDrawable(File file, String str, int i, int i2, BitmapsCache.CacheOptions cacheOptions, boolean z, int[] iArr, int i3) throws IOException {
+    public RLottieDrawable(File file, String str, int i, int i2, BitmapsCache.CacheOptions cacheOptions, boolean z, int[] iArr, int i3, boolean z2) throws IOException {
         int[] iArr2 = new int[3];
         this.metaData = iArr2;
         this.customEndFrame = -1;
@@ -394,6 +397,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.width = i;
         this.height = i2;
         this.shouldLimitFps = z;
+        this.isSingleChannel = z2;
         this.precache = cacheOptions != null;
         this.fallbackCache = str == null && cacheOptions != null && cacheOptions.fallback;
         this.createdForFirstFrame = cacheOptions != null && cacheOptions.firstFrame;
@@ -431,10 +435,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             return;
         }
         this.shouldLimitFps = false;
-    }
-
-    public final void setIsSingleChannel(boolean z) {
-        this.isSingleChannel = z;
     }
 
     private void parseLottieMetadata(java.io.File r15, java.lang.String r16, int[] r17) throws java.io.IOException {
@@ -496,6 +496,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         };
         this.width = i;
         this.height = i2;
+        this.isSingleChannel = false;
     }
 
     private void checkDispatchOnAnimationEnd() {
@@ -571,6 +572,11 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         };
         this.width = i2;
         this.height = i3;
+        boolean zIsMonoColorLottie = MonoColorLottieList.isMonoColorLottie(i);
+        this.isSingleChannel = zIsMonoColorLottie;
+        if (zIsMonoColorLottie) {
+            setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        }
         this.autoRepeat = 0;
         String res = AndroidUtilities.readRes(i);
         if (TextUtils.isEmpty(res)) {

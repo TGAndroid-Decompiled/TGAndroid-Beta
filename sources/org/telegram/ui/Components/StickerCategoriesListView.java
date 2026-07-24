@@ -749,7 +749,7 @@ public abstract class StickerCategoriesListView extends RecyclerListView {
         public void setImageColor(int i) {
             if (this.imageColor != i) {
                 this.imageColor = i;
-                setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
             }
         }
 

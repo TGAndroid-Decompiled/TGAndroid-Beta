@@ -1436,7 +1436,7 @@ public class QrActivity extends BaseFragment {
             this.forceDark = Theme.getActiveTheme().isDark() ^ true;
             setForceDark(Theme.getActiveTheme().isDark(), false);
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
-            rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor2, mode));
+            rLottieDrawable.setColorFilter(new PorterDuffColorFilter(themedColor2, PorterDuff.Mode.SRC_IN));
             RLottieImageView rLottieImageView = new RLottieImageView(parentActivity) {
                 @Override
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
@@ -1822,7 +1822,7 @@ public class QrActivity extends BaseFragment {
                         ThemeListViewController.this.onAnimationStart();
                         this.isAnimationStarted = true;
                     }
-                    ThemeListViewController.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(ThemeListViewController.this.fragment.getThemedColor(Theme.key_featuredStickers_addButton), PorterDuff.Mode.MULTIPLY));
+                    ThemeListViewController.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(ThemeListViewController.this.fragment.getThemedColor(Theme.key_featuredStickers_addButton), PorterDuff.Mode.SRC_IN));
                     ThemeListViewController themeListViewController = ThemeListViewController.this;
                     if (themeListViewController.isLightDarkChangeAnimation) {
                         themeListViewController.setItemsAnimationProgress(f);

@@ -7043,7 +7043,7 @@ public abstract class Theme {
         drawable.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         drawable.draw(new Canvas(bitmapCreateBitmap));
         drawable.setColorFilter(colorFilter);
-        Utilities.blurBitmap(bitmapCreateBitmap, 3, 1, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), bitmapCreateBitmap.getRowBytes());
+        Utilities.blurBitmap(bitmapCreateBitmap, 3);
         blurredBitmap = bitmapCreateBitmap;
         return bitmapCreateBitmap;
     }

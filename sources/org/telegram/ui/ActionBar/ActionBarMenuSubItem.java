@@ -73,15 +73,14 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.bottom = z2;
         this.textColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItem);
         this.iconColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        this.iconColorMode = mode;
+        this.iconColorMode = PorterDuff.Mode.MULTIPLY;
         this.selectorColor = getThemedColor(Theme.key_dialogButtonSelector);
         updateBackground();
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(this.iconColor, mode));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(this.iconColor, PorterDuff.Mode.SRC_IN));
         addView(this.imageView, LayoutHelper.createFrame(-2, 40, (LocaleController.isRTL ? 5 : 3) | 16));
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
         this.textView = textViewEmojis;
@@ -273,7 +272,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     }
 
     public void setIconColor(int i) {
-        setIconColor(i, PorterDuff.Mode.MULTIPLY);
+        setIconColor(i, PorterDuff.Mode.SRC_IN);
     }
 
     public void setIconColor(int i, PorterDuff.Mode mode) {

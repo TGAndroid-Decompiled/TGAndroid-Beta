@@ -122,7 +122,7 @@ public class TextCell extends FrameLayout {
         this.imageView = rLottieImageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         rLottieImageView.setScaleType(scaleType);
-        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
         addView(rLottieImageView);
         ImageView imageView = new ImageView(context);
         this.valueImageView = imageView;
@@ -316,7 +316,7 @@ public class TextCell extends FrameLayout {
             if (iIntValue2 != Theme.key_dialogIcon && iIntValue2 != Theme.key_windowBackgroundWhiteGrayIcon) {
                 color2 = processColor(color2);
             }
-            this.imageView.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
         }
         this.subtitleView.setTextColor(processColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider)));
         AnimatedTextView animatedTextView = this.valueTextView;
@@ -329,7 +329,7 @@ public class TextCell extends FrameLayout {
         this.textView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         this.textView.setTag(Integer.valueOf(i2));
         if (i >= 0) {
-            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
             this.imageView.setTag(Integer.valueOf(i));
         }
         updateColors();

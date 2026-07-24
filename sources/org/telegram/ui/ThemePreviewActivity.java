@@ -1977,7 +1977,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         drawable.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
         drawable.draw(new Canvas(bitmapCreateBitmap));
         drawable.setColorFilter(colorFilter);
-        Utilities.blurBitmap(bitmapCreateBitmap, 3, 1, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), bitmapCreateBitmap.getRowBytes());
+        Utilities.blurBitmap(bitmapCreateBitmap, 3);
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), bitmapCreateBitmap);
         this.blurredDrawable = bitmapDrawable;
         bitmapDrawable.setFilterBitmap(true);

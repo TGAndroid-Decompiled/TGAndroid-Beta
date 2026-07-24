@@ -5879,8 +5879,8 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         if (AndroidUtilities.computePerceivedBrightness(AndroidUtilities.getDominantColor(bitmap)) < 0.15f) {
             canvas.drawColor(ColorUtils.setAlphaComponent(-1, 102));
         }
-        Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
-        Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
+        Utilities.blurBitmap(bitmap, 3);
+        Utilities.blurBitmap(bitmap, 3);
     }
 
     public void stopPlaying(boolean z) {

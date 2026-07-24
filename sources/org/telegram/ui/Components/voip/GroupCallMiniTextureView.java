@@ -1230,7 +1230,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
         if (this.textureView.renderer.isFirstFrameRendered()) {
             Bitmap bitmap = this.textureView.blurRenderer.getBitmap(100, 100);
             if (bitmap != null) {
-                Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
+                Utilities.blurBitmap(bitmap, 3);
                 this.blurredFlippingStub.setBackground(new BitmapDrawable(bitmap));
             }
             this.blurredFlippingStub.setAlpha(0.0f);

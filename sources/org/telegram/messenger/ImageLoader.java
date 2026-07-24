@@ -128,10 +128,6 @@ public class ImageLoader {
         return bytesLocal;
     }
 
-    static long access$2200(ImageLoader imageLoader) {
-        return imageLoader.lastCacheOutTime;
-    }
-
     static long access$2202(ImageLoader imageLoader, long j) {
         imageLoader.lastCacheOutTime = j;
         return j;
@@ -797,7 +793,7 @@ public class ImageLoader {
             bitmapDecodeByteArray = bitmapCreateBitmap;
         }
         if (bitmapDecodeByteArray != null && !TextUtils.isEmpty(str) && str.contains("b")) {
-            Utilities.blurBitmap(bitmapDecodeByteArray, 3, 1, bitmapDecodeByteArray.getWidth(), bitmapDecodeByteArray.getHeight(), bitmapDecodeByteArray.getRowBytes());
+            Utilities.blurBitmap(bitmapDecodeByteArray, 3);
         }
         return bitmapDecodeByteArray;
     }
@@ -2247,7 +2243,7 @@ public class ImageLoader {
         return f / f2 > 10.0f || f2 / f > 10.0f;
     }
 
-    public static android.graphics.Bitmap loadBitmap(java.lang.String r17, android.net.Uri r18, float r19, float r20, boolean r21) {
+    public static android.graphics.Bitmap loadBitmap(java.lang.String r18, android.net.Uri r19, float r20, float r21, boolean r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.loadBitmap(java.lang.String, android.net.Uri, float, float, boolean):android.graphics.Bitmap");
     }
 
@@ -2708,7 +2704,7 @@ public class ImageLoader {
                     float f2 = AndroidUtilities.density;
                     Bitmap bitmapLoadBitmap = loadBitmap(path, null, (int) (f / f2), (int) (messageSize.y / f2), false);
                     if (bitmapLoadBitmap != null) {
-                        Utilities.blurBitmap(bitmapLoadBitmap, 3, 1, bitmapLoadBitmap.getWidth(), bitmapLoadBitmap.getHeight(), bitmapLoadBitmap.getRowBytes());
+                        Utilities.blurBitmap(bitmapLoadBitmap, 3);
                         float f3 = messageSize.x;
                         float f4 = AndroidUtilities.density;
                         Bitmap bitmapCreateScaledBitmap = Bitmaps.createScaledBitmap(bitmapLoadBitmap, (int) (f3 / f4), (int) (messageSize.y / f4), true);
@@ -2751,7 +2747,7 @@ public class ImageLoader {
                         PointF messageSize2 = ChatMessageCell.getMessageSize(i, i2);
                         String str2 = String.format(Locale.US, "%s_false@%d_%d_b", ImageLocation.getStrippedKey(message, message, photoSize), Integer.valueOf((int) (messageSize2.x / AndroidUtilities.density)), Integer.valueOf((int) (messageSize2.y / AndroidUtilities.density)));
                         if (!getInstance().isInMemCache(str2, false) && (strippedPhotoBitmap = getStrippedPhotoBitmap(photoSize.bytes, null)) != null) {
-                            Utilities.blurBitmap(strippedPhotoBitmap, 3, 1, strippedPhotoBitmap.getWidth(), strippedPhotoBitmap.getHeight(), strippedPhotoBitmap.getRowBytes());
+                            Utilities.blurBitmap(strippedPhotoBitmap, 3);
                             float f5 = messageSize2.x;
                             float f6 = AndroidUtilities.density;
                             Bitmap bitmapCreateScaledBitmap2 = Bitmaps.createScaledBitmap(strippedPhotoBitmap, (int) (f5 / f6), (int) (messageSize2.y / f6), true);

@@ -114,7 +114,7 @@ public class Utilities {
 
     public static native int averageBitmapColor(Bitmap bitmap, int i, int i2, int i3, int i4);
 
-    public static native void blurBitmap(Object obj, int i, int i2, int i3, int i4, int i5);
+    public static native void blurBitmap(Object obj, int i);
 
     public static native void calcCDT(ByteBuffer byteBuffer, int i, int i2, ByteBuffer byteBuffer2, ByteBuffer byteBuffer3);
 
@@ -128,7 +128,7 @@ public class Utilities {
 
     public static native boolean extractAlpha(Bitmap bitmap, Bitmap bitmap2);
 
-    public static native void generateGradient(Bitmap bitmap, boolean z, int i, float f, int i2, int i3, int i4, int[] iArr);
+    public static native void generateGradient(Bitmap bitmap, int i, float f, int[] iArr);
 
     public static native long getDirSize(String str, int i, boolean z);
 
@@ -136,11 +136,9 @@ public class Utilities {
 
     private static native boolean nLibyuvARGBSaleBitmap(Bitmap bitmap, Bitmap bitmap2, int i);
 
-    public static native int needInvert(Object obj, int i, int i2, int i3, int i4);
+    public static native int needInvert(Object obj);
 
     private static native int pbkdf2(byte[] bArr, byte[] bArr2, byte[] bArr3, int i);
-
-    public static native int pinBitmap(Bitmap bitmap);
 
     public static native String readlink(String str);
 
@@ -149,8 +147,6 @@ public class Utilities {
     public static native void setupNativeCrashesListener(String str);
 
     public static native void stackBlurBitmap(Bitmap bitmap, int i);
-
-    public static native void unpinBitmap(Bitmap bitmap);
 
     static {
         try {

@@ -58,10 +58,8 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     public void updateColors() {
         RLottieDrawable rLottieDrawable = this.downloadDrawable;
         int i = Theme.key_actionBarDefaultIcon;
-        int color = Theme.getColor(i);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(color, mode));
-        this.downloadCompleteDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), mode));
+        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN));
+        this.downloadCompleteDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC));
         invalidate();
     }
 
@@ -89,7 +87,7 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             this.paint2.setColor(Theme.getColor(i2));
             ImageReceiver imageReceiver = this.downloadImageReceiver;
             int color = Theme.getColor(i2);
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             imageReceiver.setColorFilter(new PorterDuffColorFilter(color, mode));
             this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
             this.paint2.setAlpha(100);

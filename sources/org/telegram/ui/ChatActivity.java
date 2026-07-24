@@ -31362,12 +31362,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     this.src.set(0, 0, bitmap.getWidth(), bitmap.getHeight());
                     this.dst.set(0, 0, this.serviceBitmap.getWidth(), this.serviceBitmap.getHeight());
                     this.serviceCanvas.drawBitmap(bitmap, this.src, this.dst, (Paint) null);
-                    Bitmap bitmap2 = this.serviceBitmap;
-                    Utilities.blurBitmap(bitmap2, 3, 1, bitmap2.getWidth(), this.serviceBitmap.getHeight(), this.serviceBitmap.getRowBytes());
+                    Utilities.blurBitmap(this.serviceBitmap, 3);
                     this.serviceCanvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (dimAmount * 255.0f)));
-                    Bitmap bitmap3 = this.serviceBitmap;
+                    Bitmap bitmap2 = this.serviceBitmap;
                     Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    this.serviceShader = new BitmapShader(bitmap3, tileMode, tileMode);
+                    this.serviceShader = new BitmapShader(bitmap2, tileMode, tileMode);
                     this.serviceBitmapSource = Bitmap.createBitmap(this.serviceBitmap);
                     this.serviceShaderSource = new BitmapShader(this.serviceBitmapSource, tileMode, tileMode);
                     if (Build.VERSION.SDK_INT >= 33) {
@@ -31377,10 +31376,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     this.useSourceShader = true;
                 } else {
                     this.serviceBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
-                    Bitmap bitmap4 = ((MotionBackgroundDrawable) drawable2).getBitmap();
-                    this.serviceBitmapSource = bitmap4;
+                    Bitmap bitmap3 = ((MotionBackgroundDrawable) drawable2).getBitmap();
+                    this.serviceBitmapSource = bitmap3;
                     if (z2) {
-                        this.serviceBitmapSource = Bitmap.createBitmap(bitmap4);
+                        this.serviceBitmapSource = Bitmap.createBitmap(bitmap3);
                         new Canvas(this.serviceBitmapSource).drawColor(-870178270);
                     }
                     this.serviceCanvas = new Canvas(this.serviceBitmap);
@@ -31391,9 +31390,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (z2) {
                         this.serviceCanvas.drawColor(-870178270);
                     }
-                    Bitmap bitmap5 = this.serviceBitmap;
+                    Bitmap bitmap4 = this.serviceBitmap;
                     Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                    this.serviceShader = new BitmapShader(bitmap5, tileMode2, tileMode2);
+                    this.serviceShader = new BitmapShader(bitmap4, tileMode2, tileMode2);
                     this.serviceShaderSource = new BitmapShader(this.serviceBitmapSource, tileMode2, tileMode2);
                     if (Build.VERSION.SDK_INT >= 33) {
                         this.serviceShader.setFilterMode(2);

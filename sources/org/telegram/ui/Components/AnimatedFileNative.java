@@ -44,6 +44,10 @@ public class AnimatedFileNative {
         return this.mMetaData[6] == 1;
     }
 
+    public boolean isStaticVideoDetected() {
+        return this.mMetaData[7] == 1;
+    }
+
     public void stopDecoder() {
         checkNotDestroyed();
         stopDecoder(this.mNativePtr);

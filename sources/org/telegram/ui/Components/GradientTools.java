@@ -76,12 +76,11 @@ public class GradientTools {
             if (this.gradientBitmap == null) {
                 this.gradientBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
             }
-            Bitmap bitmap = this.gradientBitmap;
-            Utilities.generateGradient(bitmap, true, 0, 0.0f, bitmap.getWidth(), this.gradientBitmap.getHeight(), this.gradientBitmap.getRowBytes(), this.colors);
+            Utilities.generateGradient(this.gradientBitmap, 0, 0.0f, this.colors);
             Paint paint6 = this.paint;
-            Bitmap bitmap2 = this.gradientBitmap;
+            Bitmap bitmap = this.gradientBitmap;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
             this.shader = bitmapShader;
             paint6.setShader(bitmapShader);
         }

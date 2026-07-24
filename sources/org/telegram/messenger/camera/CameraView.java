@@ -222,7 +222,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         }
         this.blurredStubView.animate().setListener(null).cancel();
         if (this.firstFrameRendered && (bitmap = this.textureView.getBitmap(100, 100)) != null) {
-            Utilities.blurBitmap(bitmap, 3, 1, bitmap.getWidth(), bitmap.getHeight(), bitmap.getRowBytes());
+            Utilities.blurBitmap(bitmap, 3);
             this.blurredStubView.setBackground(new BitmapDrawable(bitmap));
         }
         this.blurredStubView.setAlpha(1.0f);

@@ -264,7 +264,7 @@ public class ActionBarMenuItem extends FrameLayout {
         this.iconView.setImportantForAccessibility(2);
         addView(this.iconView, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 != 0) {
-            this.iconView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+            this.iconView.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
         }
     }
 
@@ -400,7 +400,7 @@ public class ActionBarMenuItem extends FrameLayout {
     public void setIconColor(int i) {
         RLottieImageView rLottieImageView = this.iconView;
         if (rLottieImageView != null) {
-            rLottieImageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+            rLottieImageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
         TextView textView = this.textView;
         if (textView != null) {
@@ -408,7 +408,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
         ImageView imageView = this.clearButton;
         if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
         }
     }
 

@@ -3058,7 +3058,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         if (bitmapCreateScaledBitmap != bitmapCreateBitmap) {
                             bitmapCreateBitmap.recycle();
                         }
-                        Utilities.blurBitmap(bitmapCreateScaledBitmap, 7, 1, bitmapCreateScaledBitmap.getWidth(), bitmapCreateScaledBitmap.getHeight(), bitmapCreateScaledBitmap.getRowBytes());
+                        Utilities.blurBitmap(bitmapCreateScaledBitmap, 7);
                         FileOutputStream fileOutputStream = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb.jpg"));
                         bitmapCreateScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
                         bitmapCreateScaledBitmap.recycle();

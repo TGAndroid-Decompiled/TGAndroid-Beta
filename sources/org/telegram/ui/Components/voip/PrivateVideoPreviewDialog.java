@@ -429,7 +429,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                         if (bitmapCreateScaledBitmap != bitmapCreateBitmap) {
                             bitmapCreateBitmap.recycle();
                         }
-                        Utilities.blurBitmap(bitmapCreateScaledBitmap, 7, 1, bitmapCreateScaledBitmap.getWidth(), bitmapCreateScaledBitmap.getHeight(), bitmapCreateScaledBitmap.getRowBytes());
+                        Utilities.blurBitmap(bitmapCreateScaledBitmap, 7);
                         bitmapCreateScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg")));
                         View viewFindViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (1 ^ (this.needScreencast ? 1 : 0))));
                         if (viewFindViewWithTag instanceof ImageView) {
