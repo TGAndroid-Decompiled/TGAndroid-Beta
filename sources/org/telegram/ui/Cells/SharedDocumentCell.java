@@ -203,7 +203,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.statusImageView.setVisibility(4);
         RLottieImageView rLottieImageView2 = this.statusImageView;
         int i4 = Theme.key_sharedMedia_startStopLoadIcon;
-        rLottieImageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), PorterDuff.Mode.MULTIPLY));
+        rLottieImageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), PorterDuff.Mode.SRC_IN));
         if (i == 1) {
             View view8 = this.statusImageView;
             boolean z11 = LocaleController.isRTL;

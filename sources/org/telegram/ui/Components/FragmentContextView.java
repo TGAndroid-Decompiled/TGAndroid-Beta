@@ -617,7 +617,7 @@ public abstract class FragmentContextView extends FrameLayout implements Notific
         this.muteDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
         AnonymousClass7 anonymousClass7 = new AnonymousClass7(context);
         this.muteButton = anonymousClass7;
-        anonymousClass7.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_returnToCallText), mode));
+        anonymousClass7.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_returnToCallText), PorterDuff.Mode.SRC_IN));
         this.muteButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i2) & 436207615, 1, AndroidUtilities.dp(14.0f)));
         this.muteButton.setAnimation(this.muteDrawable);
         this.muteButton.setScaleType(scaleType);

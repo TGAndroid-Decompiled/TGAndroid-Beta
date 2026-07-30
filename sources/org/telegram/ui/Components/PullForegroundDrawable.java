@@ -460,8 +460,8 @@ public abstract class PullForegroundDrawable {
         Theme.dialogs_archiveAvatarDrawable.setProgress(0.0f);
         if (!Theme.dialogs_archiveAvatarDrawableRecolored) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
-            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1", Theme.getNonAnimatedColor(this.avatarBackgroundColorKey));
-            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow2", Theme.getNonAnimatedColor(this.avatarBackgroundColorKey));
+            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1.**", Theme.getNonAnimatedColor(this.avatarBackgroundColorKey));
+            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow2.**", Theme.getNonAnimatedColor(this.avatarBackgroundColorKey));
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }
@@ -694,8 +694,8 @@ public abstract class PullForegroundDrawable {
         this.paintBackgroundAccent.setColor(iBlendARGB);
         if (this.changeAvatarColor && isDraw()) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
-            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1", iBlendARGB);
-            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow2", iBlendARGB);
+            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow1.**", iBlendARGB);
+            Theme.dialogs_archiveAvatarDrawable.setLayerColor("Arrow2.**", iBlendARGB);
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }

@@ -305,7 +305,7 @@ public class HashtagActivity extends BaseFragment implements NotificationCenter.
         };
         this.sharedMediaLayout = sharedMediaLayout;
         if (sharedMediaLayout.getSearchOptionsItem() != null) {
-            this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourceProvider), PorterDuff.Mode.MULTIPLY));
+            this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourceProvider), PorterDuff.Mode.SRC_IN));
         }
         this.sharedMediaLayout.setPinnedToTop(true);
         this.sharedMediaLayout.photoVideoOptionsItem.setTranslationY(0.0f);

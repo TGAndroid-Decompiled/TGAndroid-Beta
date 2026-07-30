@@ -378,7 +378,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
     }
 
-    public ChannelColorActivity(long j) {
+    public ChannelColorActivity(long j) throws IOException {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.rowsCount = 0;
@@ -497,10 +497,10 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         }
         this.sunDrawable.beginApplyLayerColors();
         int color = Theme.getColor(Theme.key_chats_menuName, this.resourceProvider);
-        this.sunDrawable.setLayerColor("Sunny", color);
-        this.sunDrawable.setLayerColor("Path 6", color);
-        this.sunDrawable.setLayerColor("Path", color);
-        this.sunDrawable.setLayerColor("Path 5", color);
+        this.sunDrawable.setLayerColor("Sunny.**", color);
+        this.sunDrawable.setLayerColor("Path 6.**", color);
+        this.sunDrawable.setLayerColor("Path.**", color);
+        this.sunDrawable.setLayerColor("Path 5.**", color);
         this.dayNightItem = this.actionBar.createMenu().addItem(1, this.sunDrawable);
         FrameLayout frameLayout = new FrameLayout(context);
         updateRows();

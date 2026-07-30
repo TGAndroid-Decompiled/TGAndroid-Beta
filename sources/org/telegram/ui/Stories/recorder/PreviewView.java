@@ -792,7 +792,7 @@ public abstract class PreviewView extends FrameLayout {
         });
     }
 
-    public void lambda$setupImage$5(final org.telegram.ui.Stories.recorder.StoryEntry r14) throws java.lang.NumberFormatException {
+    public void lambda$setupImage$5(final org.telegram.ui.Stories.recorder.StoryEntry r15) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.lambda$setupImage$5(org.telegram.ui.Stories.recorder.StoryEntry):void");
     }
 

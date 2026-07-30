@@ -285,9 +285,8 @@ public class ThemeDescription {
                                 if (background instanceof View) {
                                     ((View) background).invalidate();
                                 }
-                                String str2 = this.lottieLayerName;
-                                if (str2 != null && (background instanceof RLottieImageView)) {
-                                    ((RLottieImageView) background).setLayerColor(str2, i);
+                                if (this.lottieLayerName != null && (background instanceof RLottieImageView)) {
+                                    ((RLottieImageView) background).setLayerColor(this.lottieLayerName + ".**", i);
                                 }
                                 if ((this.changeFlags & FLAG_USEBACKGROUNDDRAWABLE) != 0 && (background instanceof View)) {
                                     background = ((View) background).getBackground();

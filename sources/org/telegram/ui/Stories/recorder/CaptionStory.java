@@ -862,8 +862,8 @@ public abstract class CaptionStory extends CaptionContainerView {
         public void updateColors() {
             this.redDotPaint.setColor(-2406842);
             this.drawable.beginApplyLayerColors();
-            this.drawable.setLayerColor("Cup Red", -2406842);
-            this.drawable.setLayerColor("Box", -2406842);
+            this.drawable.setLayerColor("Cup Red.**", -2406842);
+            this.drawable.setLayerColor("Box.**", -2406842);
             this.drawable.commitApplyLayerColors();
         }
 

@@ -2,12 +2,9 @@ package org.telegram.ui.Stories.recorder;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaExtractor;
@@ -289,6 +286,19 @@ public class StoryEntry {
     }
 
     public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z, boolean z2) {
+        return getScaledBitmap(decodeBitmap, i, i2, 0, z, z2);
+    }
+
+    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, int i3, boolean z, boolean z2) {
+        int i4;
+        int i5;
+        if (i3 == 90 || i3 == 270) {
+            i4 = i;
+            i5 = i2;
+        } else {
+            i5 = i;
+            i4 = i2;
+        }
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         decodeBitmap.decode(options);
@@ -296,34 +306,31 @@ public class StoryEntry {
         options.inScaled = false;
         Runtime runtime = Runtime.getRuntime();
         long jMaxMemory = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory());
-        int i3 = options.outWidth;
-        int i4 = options.outHeight;
-        boolean z3 = ((double) ((((long) (i3 * i4)) * 4) + (((long) (i * i2)) * 4))) * 1.1d <= ((double) jMaxMemory);
-        if (i3 <= i && i4 <= i2) {
+        int i6 = options.outWidth;
+        int i7 = options.outHeight;
+        boolean z3 = ((double) ((((long) (i6 * i7)) * 4) + (((long) (i5 * i4)) * 4))) * 1.1d <= ((double) jMaxMemory);
+        if (i6 <= i5 && i7 <= i4) {
             return decodeBitmap.decode(options);
         }
         if (z2 && z3 && SharedConfig.getDevicePerformanceClass() >= 1) {
             Bitmap bitmapDecode = decodeBitmap.decode(options);
-            float fMax = Math.max(i / bitmapDecode.getWidth(), i2 / bitmapDecode.getHeight());
-            int width = (int) (bitmapDecode.getWidth() * fMax);
-            int height = (int) (bitmapDecode.getHeight() * fMax);
-            Bitmap bitmapCreateBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmapCreateBitmap);
-            Matrix matrix = new Matrix();
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader = new BitmapShader(bitmapDecode, tileMode, tileMode);
-            Paint paint = new Paint(3);
-            paint.setShader(bitmapShader);
+            float fMax = Math.max(i5 / bitmapDecode.getWidth(), i4 / bitmapDecode.getHeight());
+            Bitmap bitmapCreateBitmap = Bitmap.createBitmap((int) (bitmapDecode.getWidth() * fMax), (int) (bitmapDecode.getHeight() * fMax), Bitmap.Config.ARGB_8888);
+            Utilities.libyuvARGBSaleBitmap(bitmapDecode, bitmapCreateBitmap, Utilities.libyuv_ScaleFilter.Box);
             Utilities.clamp(Math.round(1.0f / fMax), 8, 0);
-            matrix.reset();
-            matrix.postScale(fMax, fMax);
-            bitmapShader.setLocalMatrix(matrix);
-            canvas.drawRect(0.0f, 0.0f, width, height, paint);
             return bitmapCreateBitmap;
         }
         options.inScaled = true;
-        options.inDensity = options.outWidth;
-        options.inTargetDensity = i;
+        int i8 = options.outWidth;
+        float f = i5 / i8;
+        int i9 = options.outHeight;
+        if (f > i4 / i9) {
+            options.inDensity = i8;
+            options.inTargetDensity = i5;
+        } else {
+            options.inDensity = i9;
+            options.inTargetDensity = i4;
+        }
         return decodeBitmap.decode(options);
     }
 

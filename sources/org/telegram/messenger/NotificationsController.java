@@ -616,14 +616,16 @@ public class NotificationsController extends BaseController implements Notificat
                             num = numValueOf;
                         }
                         if (!num.equals(num2)) {
-                            if (getMessagesController().isForum(dialogId)) {
-                                int i4 = this.total_unread_count - (num2.intValue() > 0 ? 1 : 0);
-                                this.total_unread_count = i4;
-                                this.total_unread_count = i4 + (num.intValue() > 0 ? 1 : 0);
-                            } else {
-                                int iIntValue3 = this.total_unread_count - num2.intValue();
-                                this.total_unread_count = iIntValue3;
-                                this.total_unread_count = iIntValue3 + num.intValue();
+                            if (!getMessagesController().isCommunity(dialogId)) {
+                                if (getMessagesController().isForum(dialogId)) {
+                                    int i4 = this.total_unread_count - (num2.intValue() > 0 ? 1 : 0);
+                                    this.total_unread_count = i4;
+                                    this.total_unread_count = i4 + (num.intValue() > 0 ? 1 : 0);
+                                } else {
+                                    int iIntValue3 = this.total_unread_count - num2.intValue();
+                                    this.total_unread_count = iIntValue3;
+                                    this.total_unread_count = iIntValue3 + num.intValue();
+                                }
                             }
                             this.pushDialogs.put(dialogId, num);
                         }
@@ -754,14 +756,16 @@ public class NotificationsController extends BaseController implements Notificat
                 numValueOf = num4;
             }
             if (!numValueOf.equals(num3)) {
-                if (getMessagesController().isForum(j)) {
-                    int i4 = this.total_unread_count - (num3.intValue() > 0 ? 1 : 0);
-                    this.total_unread_count = i4;
-                    this.total_unread_count = i4 + (numValueOf.intValue() <= 0 ? 0 : 1);
-                } else {
-                    int iIntValue = this.total_unread_count - num3.intValue();
-                    this.total_unread_count = iIntValue;
-                    this.total_unread_count = iIntValue + numValueOf.intValue();
+                if (!getMessagesController().isCommunity(j)) {
+                    if (getMessagesController().isForum(j)) {
+                        int i4 = this.total_unread_count - (num3.intValue() > 0 ? 1 : 0);
+                        this.total_unread_count = i4;
+                        this.total_unread_count = i4 + (numValueOf.intValue() <= 0 ? 0 : 1);
+                    } else {
+                        int iIntValue = this.total_unread_count - num3.intValue();
+                        this.total_unread_count = iIntValue;
+                        this.total_unread_count = iIntValue + numValueOf.intValue();
+                    }
                 }
                 this.pushDialogs.put(j, numValueOf);
             }

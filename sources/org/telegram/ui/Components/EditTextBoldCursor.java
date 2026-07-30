@@ -16,6 +16,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -54,6 +55,7 @@ import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 
 public class EditTextBoldCursor extends EditTextEffects {
+    private static final String BLINK_CLASS = "android.widget.Editor$Blink";
     private static Class editorClass;
     private static Method getVerticalOffsetMethod;
     private static Field mCursorDrawableResField;
@@ -983,14 +985,35 @@ public class EditTextBoldCursor extends EditTextEffects {
             FileLog.e(e);
         }
         this.attachedToWindow = getRootView();
-        Choreographer60FpsContent.getInstance().addFrameCallback(this.invalidateCallback, 2);
+        if (Build.VERSION.SDK_INT < 29) {
+            Choreographer60FpsContent.getInstance().addFrameCallback(this.invalidateCallback, 2);
+        }
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = null;
-        Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateCallback);
+        if (Build.VERSION.SDK_INT < 29) {
+            Choreographer60FpsContent.getInstance().removeFrameCallback(this.invalidateCallback);
+        }
+    }
+
+    @Override
+    public boolean postDelayed(Runnable runnable, long j) {
+        if (Build.VERSION.SDK_INT >= 29 && runnable != null && j == 500 && "android.widget.Editor$Blink".equals(runnable.getClass().getName()) && Looper.myLooper() == Looper.getMainLooper()) {
+            Choreographer60FpsContent.getInstance().addFrameCallbackOnce(runnable, 2);
+            return true;
+        }
+        return super.postDelayed(runnable, j);
+    }
+
+    @Override
+    public boolean removeCallbacks(Runnable runnable) {
+        if (Looper.myLooper() == Looper.getMainLooper()) {
+            Choreographer60FpsContent.getInstance().removeFrameCallbackOnce(runnable);
+        }
+        return super.removeCallbacks(runnable);
     }
 
     public void setBlurredBackgroundDrawableViewFactory(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {

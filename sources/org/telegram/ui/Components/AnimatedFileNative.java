@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Trace;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AnimatedFileDrawableStream;
@@ -19,7 +18,7 @@ public class AnimatedFileNative {
 
     private static native int nGetVideoFrame(long j, Bitmap bitmap, int[] iArr, boolean z, float f, float f2, boolean z2);
 
-    private static native void nGetVideoInfo(int i, String str, int[] iArr, long j);
+    private static native void nGetVideoInfo(String str, int[] iArr, long j);
 
     private static native void nPrepareToSeek(long j);
 
@@ -163,7 +162,7 @@ public class AnimatedFileNative {
     public static void getVideoInfo(String str, int[] iArr, long j) {
         Trace.beginSection("AnimatedFileNative#getVideoInfo");
         try {
-            nGetVideoInfo(Build.VERSION.SDK_INT, str, iArr, j);
+            nGetVideoInfo(str, iArr, j);
         } finally {
             Trace.endSection();
         }

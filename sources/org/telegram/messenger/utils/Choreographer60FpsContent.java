@@ -42,6 +42,20 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
         this.mDrawablesToInvalidate30fps.add(drawable);
     }
 
+    public void addFrameCallbackOnce(Runnable runnable, int i) {
+        checkMainThread();
+        if (runnable == null) {
+            return;
+        }
+        int iMax = Math.max(1, Math.min(i, 60));
+        removeFrameCallbackOnce(runnable);
+        CallbackGroup orCreateGroup = getOrCreateGroup(iMax);
+        if (orCreateGroup.runnableCallbacksOnce == null) {
+            orCreateGroup.runnableCallbacksOnce = new ReferenceList();
+        }
+        orCreateGroup.runnableCallbacksOnce.add(runnable);
+    }
+
     public void addFrameCallback(Runnable runnable, int i) {
         checkMainThread();
         if (runnable == null) {
@@ -65,6 +79,19 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
             return;
         }
         for (int i = 0; i < this.mGroups.size() && !((CallbackGroup) this.mGroups.valueAt(i)).runnableCallbacks.remove(runnable); i++) {
+        }
+    }
+
+    public void removeFrameCallbackOnce(Runnable runnable) {
+        checkMainThread();
+        if (runnable == null) {
+            return;
+        }
+        for (int i = 0; i < this.mGroups.size(); i++) {
+            ReferenceList referenceList = ((CallbackGroup) this.mGroups.valueAt(i)).runnableCallbacksOnce;
+            if (referenceList != null && referenceList.remove(runnable)) {
+                return;
+            }
         }
     }
 
@@ -122,6 +149,7 @@ public final class Choreographer60FpsContent implements Choreographer.FrameCallb
     private static final class CallbackGroup {
         long accumulatedNs;
         final long intervalNs;
+        ReferenceList runnableCallbacksOnce;
         final int stride;
         final ReferenceList callbacks = new ReferenceList();
         final ReferenceList runnableCallbacks = new ReferenceList();

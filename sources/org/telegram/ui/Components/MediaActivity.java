@@ -630,7 +630,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     public void updateColors() {
         if (this.sharedMediaLayout.getSearchOptionsItem() != null) {
-            this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
+            this.sharedMediaLayout.getSearchOptionsItem().setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.SRC_IN));
         }
         this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ActionBar actionBar = this.actionBar;

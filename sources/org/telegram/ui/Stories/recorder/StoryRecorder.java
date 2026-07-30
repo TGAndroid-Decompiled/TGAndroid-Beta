@@ -645,7 +645,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         frameLayout.setBackgroundColor(i);
     }
 
-    public void openBot(long j, String str, SourceView sourceView) {
+    public void openBot(long j, String str, SourceView sourceView) throws Resources.NotFoundException, IOException {
         this.botId = j;
         this.botLang = str;
         this.botEdit = null;
@@ -712,11 +712,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         addNotificationObservers();
     }
 
-    public void open(SourceView sourceView) {
+    public void open(SourceView sourceView) throws Resources.NotFoundException, IOException {
         open(sourceView, true);
     }
 
-    public void open(SourceView sourceView, boolean z) {
+    public void open(SourceView sourceView, boolean z) throws Resources.NotFoundException, IOException {
         StoriesController.StoryLimit storyLimitCheckStoryLimit;
         WindowView windowView;
         if (this.isShown) {
@@ -8156,10 +8156,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             }
             this.themeButtonDrawable.beginApplyLayerColors();
             int color = Theme.getColor(Theme.key_chats_menuName, this.resourcesProvider);
-            this.themeButtonDrawable.setLayerColor("Sunny", color);
-            this.themeButtonDrawable.setLayerColor("Path 6", color);
-            this.themeButtonDrawable.setLayerColor("Path", color);
-            this.themeButtonDrawable.setLayerColor("Path 5", color);
+            this.themeButtonDrawable.setLayerColor("Sunny.**", color);
+            this.themeButtonDrawable.setLayerColor("Path 6.**", color);
+            this.themeButtonDrawable.setLayerColor("Path.**", color);
+            this.themeButtonDrawable.setLayerColor("Path 5.**", color);
             this.themeButtonDrawable.commitApplyLayerColors();
             ImageView imageView = new ImageView(getContext());
             this.themeButton = imageView;

@@ -14,7 +14,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.video.audio_input.AudioInput;
 import org.telegram.messenger.video.audio_input.GeneralAudioInput;
@@ -48,7 +47,7 @@ public class MediaCodecVideoConvertor {
         return this.endPresentationTime;
     }
 
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r93, boolean r94, int r95) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r94, boolean r95, int r96) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -223,17 +222,61 @@ public class MediaCodecVideoConvertor {
         return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     }
 
-    private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5) {
-        int iClamp = (int) Utilities.clamp((Math.max(i, i2) / Math.max(i4, i3)) * 0.8f, 2.0f, 1.0f);
-        if (iClamp > 1 && SharedConfig.deviceIsAverage()) {
-            iClamp = 1;
-        }
-        int iMin = Math.min(i5, iClamp);
-        FileLog.d("source size " + i + "x" + i2 + "    dest size " + i3 + i4 + "   kernelRadius " + iMin);
+    private static String glslFloat(float f) {
+        boolean z = f < 0.0f;
         if (z) {
-            return "#extension GL_OES_EGL_image_external : require\nprecision mediump float;\nvarying vec2 vTextureCoord;\nconst float kernel = " + iMin + ".0;\nconst float pixelSizeX = 1.0 / " + i + ".0;\nconst float pixelSizeY = 1.0 / " + i2 + ".0;\nuniform samplerExternalOES sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nvec3 weightsum = vec3(0);\nfor (float x = -kernel; x <= kernel; x++){\n   for (float y = -kernel; y <= kernel; y++){\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n       weightsum += 1.0;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+            f = -f;
         }
-        return "precision mediump float;\nvarying vec2 vTextureCoord;\nconst float kernel = " + iMin + ".0;\nconst float pixelSizeX = 1.0 / " + i2 + ".0;\nconst float pixelSizeY = 1.0 / " + i + ".0;\nuniform sampler2D sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nvec3 weightsum = vec3(0);\nfor (float x = -kernel; x <= kernel; x++){\n   for (float y = -kernel; y <= kernel; y++){\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n       weightsum += 1.0;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+        long jRound = Math.round(f * 1000000.0f);
+        long j = jRound / 1000000;
+        long j2 = jRound % 1000000;
+        StringBuilder sb = new StringBuilder();
+        if (z) {
+            sb.append('-');
+        }
+        sb.append(j);
+        sb.append('.');
+        String strValueOf = String.valueOf(j2);
+        for (int length = strValueOf.length(); length < 6; length++) {
+            sb.append('0');
+        }
+        sb.append(strValueOf);
+        return sb.toString();
+    }
+
+    private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5, boolean z2) {
+        int i6 = z2 ? i4 : i3;
+        int i7 = z2 ? i3 : i4;
+        float f = i;
+        float f2 = i2;
+        int i8 = 1;
+        int iMax = Math.max(1, Math.round(f / i6));
+        int iMax2 = Math.max(1, Math.round(f2 / i7));
+        if (SharedConfig.deviceIsAverage()) {
+            iMax2 = 1;
+        } else {
+            i8 = iMax;
+        }
+        int iMin = Math.min(i5, i8);
+        int iMin2 = Math.min(i5, iMax2);
+        float f3 = (-(iMin - 1)) / 2.0f;
+        float f4 = (-(iMin2 - 1)) / 2.0f;
+        if ((iMin & 1) == 0) {
+            f3 += 0.01f;
+        }
+        if ((iMin2 & 1) == 0) {
+            f4 += 0.01f;
+        }
+        FileLog.d("source size " + i + "x" + i2 + "    dest size " + i3 + "x" + i4 + "   rotated " + z2 + "   samples " + iMin + "x" + iMin2);
+        String strGlslFloat = glslFloat(f3);
+        String strGlslFloat2 = glslFloat(f4);
+        String strGlslFloat3 = glslFloat((float) (iMin * iMin2));
+        String strGlslFloat4 = glslFloat(1.0f / f);
+        String strGlslFloat5 = glslFloat(1.0f / f2);
+        if (z) {
+            return "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nconst float offsetX = " + strGlslFloat + ";\nconst float offsetY = " + strGlslFloat2 + ";\nconst float weightsum = " + strGlslFloat3 + ";\nconst float pixelSizeX = " + strGlslFloat4 + ";\nconst float pixelSizeY = " + strGlslFloat5 + ";\nuniform samplerExternalOES sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nfor (int i = 0; i < " + iMin + "; ++i){\n   for (int j = 0; j < " + iMin2 + "; ++j){\n       float x = offsetX + float(i);\n       float y = offsetY + float(j);\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+        }
+        return "precision highp float;\nvarying vec2 vTextureCoord;\nconst float offsetX = " + strGlslFloat + ";\nconst float offsetY = " + strGlslFloat2 + ";\nconst float weightsum = " + strGlslFloat3 + ";\nconst float pixelSizeX = " + strGlslFloat4 + ";\nconst float pixelSizeY = " + strGlslFloat5 + ";\nuniform sampler2D sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nfor (int i = 0; i < " + iMin + "; ++i){\n   for (int j = 0; j < " + iMin2 + "; ++j){\n       float x = offsetX + float(i);\n       float y = offsetY + float(j);\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
     }
 
     public class ConversionCanceledException extends RuntimeException {

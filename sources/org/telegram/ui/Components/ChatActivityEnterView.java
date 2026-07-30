@@ -89,6 +89,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -933,11 +934,11 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             int themedColor2 = ChatActivityEnterView.this.getThemedColor(Theme.key_chat_messagePanelBackground);
             ChatActivityEnterView.this.redDotPaint.setColor(themedColor);
             this.drawable.beginApplyLayerColors();
-            this.drawable.setLayerColor("Cup Red", themedColor);
-            this.drawable.setLayerColor("Box", themedColor);
-            this.drawable.setLayerColor("Line 1", themedColor2);
-            this.drawable.setLayerColor("Line 2", themedColor2);
-            this.drawable.setLayerColor("Line 3", themedColor2);
+            this.drawable.setLayerColor("Cup Red.**", themedColor);
+            this.drawable.setLayerColor("Box.**", themedColor);
+            this.drawable.setLayerColor("Line 1.**", themedColor2);
+            this.drawable.setLayerColor("Line 2.**", themedColor2);
+            this.drawable.setLayerColor("Line 3.**", themedColor2);
             this.drawable.commitApplyLayerColors();
         }
 
@@ -5078,7 +5079,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() {
+                            public final void run() throws Resources.NotFoundException, IOException {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -5090,7 +5091,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws Resources.NotFoundException, IOException {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -5163,7 +5164,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void run() throws Resources.NotFoundException, IOException {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -9888,13 +9889,13 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         int themedColor3 = getThemedColor(Theme.key_chat_messagePanelVoiceDelete);
         RLottieImageView rLottieImageView = this.recordDeleteImageView;
         if (rLottieImageView != null) {
-            rLottieImageView.setLayerColor("Cup Red", themedColor);
-            this.recordDeleteImageView.setLayerColor("Box Red", themedColor);
-            this.recordDeleteImageView.setLayerColor("Cup Grey", themedColor3);
-            this.recordDeleteImageView.setLayerColor("Box Grey", themedColor3);
-            this.recordDeleteImageView.setLayerColor("Line 1", themedColor2);
-            this.recordDeleteImageView.setLayerColor("Line 2", themedColor2);
-            this.recordDeleteImageView.setLayerColor("Line 3", themedColor2);
+            rLottieImageView.setLayerColor("Cup Red.**", themedColor);
+            this.recordDeleteImageView.setLayerColor("Box Red.**", themedColor);
+            this.recordDeleteImageView.setLayerColor("Cup Grey.**", themedColor3);
+            this.recordDeleteImageView.setLayerColor("Box Grey.**", themedColor3);
+            this.recordDeleteImageView.setLayerColor("Line 1.**", themedColor2);
+            this.recordDeleteImageView.setLayerColor("Line 2.**", themedColor2);
+            this.recordDeleteImageView.setLayerColor("Line 3.**", themedColor2);
         }
     }
 
@@ -11468,7 +11469,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) {
+        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws Resources.NotFoundException, IOException {
             if (ChatActivityEnterView.this.parentFragment == null) {
                 return;
             }

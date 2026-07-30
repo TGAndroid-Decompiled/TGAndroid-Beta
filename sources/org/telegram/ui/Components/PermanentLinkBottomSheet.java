@@ -258,9 +258,9 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         rLottieImageView.setBackground(Theme.createCircleDrawable(iDp, Theme.getColor(i)));
         this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
         int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
-        this.linkIcon.setLayerColor("Top", color);
-        this.linkIcon.setLayerColor("Bottom", color);
-        this.linkIcon.setLayerColor("Center", color);
+        this.linkIcon.setLayerColor("Top.**", color);
+        this.linkIcon.setLayerColor("Bottom.**", color);
+        this.linkIcon.setLayerColor("Center.**", color);
         this.linkActionView.updateColors();
         setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
     }
