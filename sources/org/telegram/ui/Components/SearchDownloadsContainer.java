@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
@@ -121,7 +120,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         recyclerListView.setItemAnimator(defaultItemAnimator);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) throws Resources.NotFoundException, IOException {
+            public final void onItemClick(View view, int i2) throws Resources.NotFoundException {
                 this.f$0.lambda$new$0(i, view, i2);
             }
         });
@@ -145,7 +144,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         FileLoader.getInstance(i).getCurrentLoadingFiles(this.currentLoadingFiles);
     }
 
-    public void lambda$new$0(int i, View view, int i2) throws Resources.NotFoundException, IOException {
+    public void lambda$new$0(int i, View view, int i2) throws Resources.NotFoundException {
         MessageObject message = this.adapter.getMessage(i2);
         if (message == null) {
             return;

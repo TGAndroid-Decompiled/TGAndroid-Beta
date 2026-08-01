@@ -62,7 +62,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -2772,12 +2771,12 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$createView$11(View view) throws IOException {
+    public void lambda$createView$11(View view) {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
     }
 
-    public boolean lambda$createView$12(View view) throws IOException {
+    public boolean lambda$createView$12(View view) {
         getContactsController().loadGlobalPrivacySetting();
         showItemOptions();
         return true;
@@ -3433,7 +3432,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         addSearchFilter(this.filtersView.getFilterAt(i));
     }
 
-    public void lambda$createView$19(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$createView$19(View view) throws Resources.NotFoundException {
         openStoriesRecorder();
     }
 
@@ -9598,7 +9597,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.shareTopView = shareTopView;
             shareTopView.setLayoutClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException, IOException {
+                public final void onClick(View view) throws Resources.NotFoundException {
                     this.f$0.lambda$attachShareTopView$128(view);
                 }
             });
@@ -9637,7 +9636,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         updateShareTopViewRecipients();
     }
 
-    public void lambda$attachShareTopView$128(View view) throws Resources.NotFoundException, IOException {
+    public void lambda$attachShareTopView$128(View view) throws Resources.NotFoundException {
         if (hasSharedMediaEntries()) {
             openSharedMediaEditor();
         }
@@ -9663,7 +9662,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         shareTopView.setRecipients(this.currentAccount, this.selectedDialogs);
     }
 
-    private void openSharedMediaEditor() throws Resources.NotFoundException, IOException {
+    private void openSharedMediaEditor() throws Resources.NotFoundException {
         ArrayList arrayList = this.sharedMediaEntries;
         if (arrayList == null || arrayList.isEmpty() || getParentActivity() == null) {
             return;
@@ -12000,7 +11999,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         presentFragment(new ContactsActivity(bundle));
     }
 
-    private void openStoriesRecorder() throws Resources.NotFoundException, IOException {
+    private void openStoriesRecorder() throws Resources.NotFoundException {
         if (!this.storiesEnabled) {
             HintView2 hintView2 = this.storyPremiumHint;
             if (hintView2 != null) {
@@ -12131,7 +12130,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         return z ? z3 && !z2 : z2;
     }
 
-    private void showItemOptions() throws IOException {
+    private void showItemOptions() {
         boolean zIsCurrentThemeDark;
         ArrayList<TLRPC.TL_attachMenuBot> arrayList;
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.optionsItem);

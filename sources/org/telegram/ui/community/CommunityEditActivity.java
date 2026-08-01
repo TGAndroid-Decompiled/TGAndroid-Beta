@@ -23,7 +23,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
@@ -187,7 +186,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException, IOException {
+            public void openPhotoForEdit(String str, String str2, boolean z) throws Resources.NotFoundException {
                 CommunityEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -339,7 +338,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws Resources.NotFoundException, IOException {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws Resources.NotFoundException {
                 this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -420,7 +419,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
     }
 
-    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) throws android.content.res.Resources.NotFoundException, java.io.IOException {
+    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) throws android.content.res.Resources.NotFoundException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.community.CommunityEditActivity.onClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
     }
 
@@ -612,7 +611,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 

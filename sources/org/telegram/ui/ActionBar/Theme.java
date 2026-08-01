@@ -2201,7 +2201,7 @@ public abstract class Theme {
         ThemeAccent() {
         }
 
-        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) throws java.io.IOException {
+        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.ThemeAccent.fillAccentColors(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
         }
 
@@ -2840,7 +2840,7 @@ public abstract class Theme {
             return this.defaultAccentCount != 0;
         }
 
-        public boolean isDark() throws IOException {
+        public boolean isDark() {
             int i = this.isDark;
             if (i != -1) {
                 return i == 1;
@@ -5083,7 +5083,7 @@ public abstract class Theme {
         return currentTheme == currentNightTheme;
     }
 
-    public static boolean isCurrentThemeDark() throws IOException {
+    public static boolean isCurrentThemeDark() {
         return currentTheme.isDark();
     }
 
@@ -6117,7 +6117,7 @@ public abstract class Theme {
         setDrawableColorByKey(dialogs_fakeDrawable, i10);
     }
 
-    public static void reloadAllResources(Context context) throws Resources.NotFoundException, IOException {
+    public static void reloadAllResources(Context context) throws Resources.NotFoundException {
         destroyResources();
         if (chat_msgInDrawable != null) {
             chat_msgInDrawable = null;
@@ -6350,7 +6350,7 @@ public abstract class Theme {
         }
     }
 
-    public static void createChatResources(Context context, boolean z) throws Resources.NotFoundException, IOException {
+    public static void createChatResources(Context context, boolean z) throws Resources.NotFoundException {
         TextPaint textPaint;
         createCommonChatResources();
         if (!z && chat_msgInDrawable == null) {
@@ -6645,7 +6645,7 @@ public abstract class Theme {
         chat_commentTextPaint.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void applyChatTheme(boolean z, boolean z2) throws IOException {
+    public static void applyChatTheme(boolean z, boolean z2) {
         if (chat_msgTextPaint == null || chat_msgInDrawable == null || z) {
             return;
         }
@@ -6815,7 +6815,7 @@ public abstract class Theme {
         applyChatMessageSelectedBackgroundColor();
     }
 
-    public static void applyChatServiceMessageColor() throws IOException {
+    public static void applyChatServiceMessageColor() {
         Drawable drawable = wallpaper;
         if (drawable != null) {
             applyChatServiceMessageColor(null, null, drawable);
@@ -6877,7 +6877,7 @@ public abstract class Theme {
         bitmapShader.setLocalMatrix(matrix);
     }
 
-    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) throws IOException {
+    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) {
         int iValueAt;
         int i;
         int iValueAt2;
@@ -7482,13 +7482,13 @@ public abstract class Theme {
         final Drawable drawableLoadWallpaperInternal = loadWallpaperInternal(overrideWallpaperInfo, file, i, z, document, z2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 Theme.lambda$loadWallpaper$11(drawableLoadWallpaperInternal);
             }
         });
     }
 
-    public static void lambda$loadWallpaper$11(Drawable drawable) throws IOException {
+    public static void lambda$loadWallpaper$11(Drawable drawable) {
         wallpaperLoadTask = null;
         createCommonChatResources();
         if (!disallowChangeServiceMessageColor) {

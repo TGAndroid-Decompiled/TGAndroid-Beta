@@ -20,7 +20,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -653,7 +652,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         MentionsListView listView = getListView();
         RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) throws Resources.NotFoundException, IOException, NumberFormatException {
+            public final void onItemClick(View view, int i) throws Resources.NotFoundException, NumberFormatException {
                 this.f$0.lambda$withDelegate$4(delegate, view, i);
             }
         };
@@ -667,7 +666,7 @@ public abstract class MentionsContainerView extends FrameLayout implements Notif
         });
     }
 
-    public void lambda$withDelegate$4(Delegate delegate, View view, int i) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public void lambda$withDelegate$4(Delegate delegate, View view, int i) throws Resources.NotFoundException, NumberFormatException {
         Paint.FontMetricsInt fontMetrics;
         AnimatedEmojiSpan animatedEmojiSpan;
         if (i == 0 || getAdapter().isBannedInline()) {
