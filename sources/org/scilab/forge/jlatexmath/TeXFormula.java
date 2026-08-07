@@ -495,6 +495,7 @@ public class TeXFormula {
             TeXEnvironment teXEnvironment;
             TeXIcon teXIcon;
             HorizontalBox horizontalBox;
+            Box.resetBoxBudget();
             if (this.style == null) {
                 throw new IllegalStateException("A style is required. Use setStyle()");
             }

@@ -1379,7 +1379,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void onShowPress(MotionEvent motionEvent) {
     }
 
-    public static void access$16700(PhotoViewer photoViewer) throws Resources.NotFoundException {
+    public static void access$16700(PhotoViewer photoViewer) {
         photoViewer.updateCaptionTranslated();
     }
 
@@ -1923,7 +1923,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.classGuid;
     }
 
-    public void setCaption(CharSequence charSequence) throws Resources.NotFoundException {
+    public void setCaption(CharSequence charSequence) {
         this.hasCaptionForAllMedia = true;
         this.captionForAllMedia = charSequence;
         setCurrentCaption(null, charSequence, false, false);
@@ -4271,19 +4271,19 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void setParentActivity(Activity activity) throws Resources.NotFoundException {
+    public void setParentActivity(Activity activity) {
         setParentActivity(activity, null, null);
     }
 
-    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
+    public void setParentActivity(Activity activity, Theme.ResourcesProvider resourcesProvider) {
         setParentActivity(activity, null, resourcesProvider);
     }
 
-    public void setParentActivity(BaseFragment baseFragment) throws Resources.NotFoundException {
+    public void setParentActivity(BaseFragment baseFragment) {
         setParentActivity(baseFragment, (Theme.ResourcesProvider) null);
     }
 
-    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
+    public void setParentActivity(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         setParentActivity(null, baseFragment, resourcesProvider);
     }
 
@@ -4291,7 +4291,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return this.parentActivity;
     }
 
-    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) throws Resources.NotFoundException {
+    public void setParentActivity(Activity activity, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider) {
         boolean z;
         boolean z2 = true;
         WindowVisibilityManager.Controller controller = this.activityVisibilityController;
@@ -11297,7 +11297,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                public void onAnimationEnd(Animator animator2) throws Resources.NotFoundException {
+                public void onAnimationEnd(Animator animator2) {
                     if (PhotoViewer.this.videoConvertSupported && PhotoViewer.this.isCurrentVideo) {
                         PhotoViewer.this.updateVideoInfo();
                     }
@@ -12472,11 +12472,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) throws Resources.NotFoundException {
+    private void setIsAboutToSwitchToIndex(int i, boolean z, boolean z2) {
         setIsAboutToSwitchToIndex(i, z, z2, false);
     }
 
-    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) throws android.content.res.Resources.NotFoundException {
+    public void setIsAboutToSwitchToIndex(final int r43, boolean r44, boolean r45, boolean r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean, boolean):void");
     }
 
@@ -12522,7 +12522,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void updateCaptionTranslated() throws Resources.NotFoundException {
+    public void updateCaptionTranslated() {
         int i;
         MessageObject messageObject;
         TLRPC.Message message;
@@ -12958,7 +12958,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         setIndexToImage(this.centerImage, this.currentIndex, null);
     }
 
-    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) throws Resources.NotFoundException {
+    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
         int i;
         boolean z3;
         TLRPC.Message message;
@@ -13714,30 +13714,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         return openPhoto(null, null, null, null, null, null, null, i, photoViewerProvider, null, 0L, 0L, 0L, true, pageBlocksAdapter, null);
     }
 
-    private static String attrsToString(TLRPC.Document document) {
-        if (document == null) {
-            return "null";
-        }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < document.attributes.size(); i++) {
-            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i);
-            if (sb.length() > 0) {
-                sb.append(",");
-            }
-            sb.append(documentAttribute.getClass().getSimpleName());
-            if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                sb.append("(w=");
-                sb.append(documentAttribute.w);
-                sb.append(",h=");
-                sb.append(documentAttribute.h);
-                sb.append(",dur=");
-                sb.append(documentAttribute.duration);
-                sb.append(")");
-            }
-        }
-        return sb.toString();
-    }
-
     public boolean openPhotoForSelect(ArrayList arrayList, int i, int i2, boolean z, PhotoViewerProvider photoViewerProvider, ChatActivity chatActivity) {
         return openPhotoForSelect(null, null, arrayList, i, i2, z, photoViewerProvider, chatActivity);
     }
@@ -14000,7 +13976,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             long dialogId = PhotoViewer.this.parentChatActivity.getDialogId();
                             MessageObject threadMessage = PhotoViewer.this.parentChatActivity.getThreadMessage();
                             MediaController.PhotoEntry photoEntry3 = orientation;
-                            SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, null, null, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry3.entities, photoEntry3.ttl, messageObject3, z4, i2, i3, z6, photoEntry3.hasSpoiler, photoEntry3.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
+                            SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, null, null, dialogId, replyMessage, threadMessage, null, replyQuote, photoEntry3.entities, photoEntry3.ttl, messageObject3, z4, i2, i3, z6, photoEntry3.hasSpoiler, photoEntry3.caption, PhotoViewer.this.parentChatActivity.getMessageChatSendParams(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
                             return;
                         }
                         AccountInstance accountInstance2 = PhotoViewer.this.parentChatActivity.getAccountInstance();
@@ -14008,7 +13984,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         long dialogId2 = PhotoViewer.this.parentChatActivity.getDialogId();
                         MessageObject threadMessage2 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         MediaController.PhotoEntry photoEntry4 = orientation;
-                        SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, null, null, dialogId2, replyMessage, threadMessage2, null, replyQuote, photoEntry4.entities, photoEntry4.ttl, messageObject3, z4, i2, i3, z6, photoEntry4.hasSpoiler, photoEntry4.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
+                        SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, null, null, dialogId2, replyMessage, threadMessage2, null, replyQuote, photoEntry4.entities, photoEntry4.ttl, messageObject3, z4, i2, i3, z6, photoEntry4.hasSpoiler, photoEntry4.caption, PhotoViewer.this.parentChatActivity.getMessageChatSendParams(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
                         return;
                     }
                     if (photoEntry2.imagePath != null) {
@@ -14019,7 +13995,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         long dialogId3 = PhotoViewer.this.parentChatActivity.getDialogId();
                         MessageObject threadMessage3 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         MediaController.PhotoEntry photoEntry6 = orientation;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, dialogId3, replyMessage, threadMessage3, null, replyQuote, photoEntry6.entities, photoEntry6.stickers, null, photoEntry6.ttl, messageObject3, videoEditedInfo, z4, i2, i3, 0, z6, photoEntry6.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, dialogId3, replyMessage, threadMessage3, null, replyQuote, photoEntry6.entities, photoEntry6.stickers, null, photoEntry6.ttl, messageObject3, videoEditedInfo, z4, i2, i3, 0, z6, photoEntry6.caption, PhotoViewer.this.parentChatActivity.getMessageChatSendParams(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
                         return;
                     }
                     if (photoEntry2.path != null) {
@@ -14030,7 +14006,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         long dialogId4 = PhotoViewer.this.parentChatActivity.getDialogId();
                         MessageObject threadMessage4 = PhotoViewer.this.parentChatActivity.getThreadMessage();
                         MediaController.PhotoEntry photoEntry8 = orientation;
-                        SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, dialogId4, replyMessage, threadMessage4, null, replyQuote, photoEntry8.entities, photoEntry8.stickers, null, photoEntry8.ttl, messageObject3, videoEditedInfo, z4, i2, i3, 0, z6, photoEntry8.caption, PhotoViewer.this.parentChatActivity.quickReplyShortcut, PhotoViewer.this.parentChatActivity.getQuickReplyId(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
+                        SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, dialogId4, replyMessage, threadMessage4, null, replyQuote, photoEntry8.entities, photoEntry8.stickers, null, photoEntry8.ttl, messageObject3, videoEditedInfo, z4, i2, i3, 0, z6, photoEntry8.caption, PhotoViewer.this.parentChatActivity.getMessageChatSendParams(), 0L, 0L, PhotoViewer.this.parentChatActivity.getSendMonoForumPeerId(), PhotoViewer.this.parentChatActivity.getSendMessageSuggestionParams());
                     }
                 }
             }
@@ -14113,7 +14089,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.padImageForHorizontalInsets = true;
     }
 
-    public boolean openPhoto(org.telegram.messenger.MessageObject r19, org.telegram.tgnet.TLRPC.FileLocation r20, org.telegram.messenger.ImageLocation r21, org.telegram.messenger.ImageLocation r22, java.util.ArrayList r23, java.util.ArrayList r24, java.util.ArrayList r25, int r26, final org.telegram.ui.PhotoViewer.PhotoViewerProvider r27, org.telegram.ui.ChatActivity r28, long r29, long r31, long r33, boolean r35, org.telegram.ui.PhotoViewer.PageBlocksAdapter r36, final java.lang.Integer r37) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public boolean openPhoto(org.telegram.messenger.MessageObject r17, org.telegram.tgnet.TLRPC.FileLocation r18, org.telegram.messenger.ImageLocation r19, org.telegram.messenger.ImageLocation r20, java.util.ArrayList r21, java.util.ArrayList r22, java.util.ArrayList r23, int r24, final org.telegram.ui.PhotoViewer.PhotoViewerProvider r25, org.telegram.ui.ChatActivity r26, long r27, long r29, long r31, boolean r33, org.telegram.ui.PhotoViewer.PageBlocksAdapter r34, final java.lang.Integer r35) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.openPhoto(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, org.telegram.messenger.ImageLocation, org.telegram.messenger.ImageLocation, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int, org.telegram.ui.PhotoViewer$PhotoViewerProvider, org.telegram.ui.ChatActivity, long, long, long, boolean, org.telegram.ui.PhotoViewer$PageBlocksAdapter, java.lang.Integer):boolean");
     }
 
@@ -14991,7 +14967,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                                     }
                                 }
                                 if (chatActivity2 != null) {
-                                    chatActivity2.lambda$openDiscussionMessageChat$381(PhotoViewer.this.animationEndRunnable);
+                                    chatActivity2.lambda$openDiscussionMessageChat$382(PhotoViewer.this.animationEndRunnable);
                                 } else {
                                     PhotoViewer.this.animationEndRunnable.run();
                                     PhotoViewer.this.animationEndRunnable = null;

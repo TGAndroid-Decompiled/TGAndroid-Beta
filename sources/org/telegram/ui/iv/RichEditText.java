@@ -34,6 +34,7 @@ public class RichEditText extends EditTextCaption {
     private boolean accentHint;
     private boolean allowNewlines;
     private boolean applyingEmptyHint;
+    private boolean autoBold;
     public TL_iv.PageBlock block;
     private boolean centerEmptyHint;
     private boolean ignoreTextChange;
@@ -287,6 +288,9 @@ public class RichEditText extends EditTextCaption {
                 if (RichEditText.this.ignoreTextChange || RichEditText.this.listener == null) {
                     return;
                 }
+                if (RichEditText.this.autoBold && editable.length() > 0) {
+                    RichTextStyle.setStyle(editable, 0, editable.length(), 1, true, RichEditText.this.block);
+                }
                 if (RichEditText.this.allowNewlines || RichEditText.this.insertingNewline || RichEditText.this.softEnterNewline) {
                     RichEditText.this.listener.onTextChanged(RichEditText.this, editable);
                     return;
@@ -338,6 +342,14 @@ public class RichEditText extends EditTextCaption {
 
     public void setAllowNewlines(boolean z) {
         this.allowNewlines = z;
+    }
+
+    public void setAutoBold(boolean z) {
+        this.autoBold = z;
+    }
+
+    public boolean isAutoBold() {
+        return this.autoBold;
     }
 
     public void setSoftEnterNewline(boolean z) {
@@ -741,6 +753,9 @@ public class RichEditText extends EditTextCaption {
         Editable text = getText();
         if (text == null || i2 < 0 || i3 < 0 || i2 >= i3 || i2 >= (iMin = Math.min(i3, text.length()))) {
             return;
+        }
+        if ((i & 1) != 0) {
+            this.autoBold = false;
         }
         RichTextStyle.setStyle(text, i2, iMin, i, false, this.block);
         if ((i & 256) != 0) {

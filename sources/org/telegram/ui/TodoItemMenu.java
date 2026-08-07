@@ -34,6 +34,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -49,6 +50,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
@@ -357,7 +359,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) throws IOException {
                     canvas.save();
                     int todoIndex = getTodoIndex(i);
                     float pollButtonTop = getPollButtonTop(todoIndex);
@@ -380,7 +382,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws IOException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -411,6 +413,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean canSaveRichDocument(ChatMessageCell chatMessageCell3) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell3);
+                }
+
+                @Override
                 public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell3) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell3);
                 }
@@ -421,8 +428,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didLongPressBotButton(ChatMessageCell chatMessageCell3, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell3, keyboardButton);
+                public void didLongPressBotButton(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell3, keyboardButtonProto);
                 }
 
                 @Override
@@ -471,13 +478,18 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didPressAppUpdateButton() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAppUpdateButton(this);
+                }
+
+                @Override
                 public void didPressBoostCounter(ChatMessageCell chatMessageCell3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell3);
                 }
 
                 @Override
-                public void didPressBotButton(ChatMessageCell chatMessageCell3, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell3, keyboardButton);
+                public void didPressBotButton(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell3, keyboardButtonProto);
                 }
 
                 @Override
@@ -521,8 +533,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell3, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell3, keyboardButton);
+                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell3, keyboardInlineButton);
                 }
 
                 @Override
@@ -593,6 +605,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell3);
+                }
+
+                @Override
+                public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell3, TLRPC.Document document, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell3, document, f, f2);
                 }
 
                 @Override
@@ -870,7 +887,7 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws IOException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -902,6 +919,11 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean canSaveRichDocument(ChatMessageCell chatMessageCell6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell6);
+                }
+
+                @Override
                 public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell6) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell6);
                 }
@@ -912,8 +934,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didLongPressBotButton(ChatMessageCell chatMessageCell6, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell6, keyboardButton);
+                public void didLongPressBotButton(ChatMessageCell chatMessageCell6, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell6, keyboardButtonProto);
                 }
 
                 @Override
@@ -962,13 +984,18 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didPressAppUpdateButton() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAppUpdateButton(this);
+                }
+
+                @Override
                 public void didPressBoostCounter(ChatMessageCell chatMessageCell6) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell6);
                 }
 
                 @Override
-                public void didPressBotButton(ChatMessageCell chatMessageCell6, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell6, keyboardButton);
+                public void didPressBotButton(ChatMessageCell chatMessageCell6, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell6, keyboardButtonProto);
                 }
 
                 @Override
@@ -1012,8 +1039,8 @@ public class TodoItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell6, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell6, keyboardButton);
+                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell6, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell6, keyboardInlineButton);
                 }
 
                 @Override
@@ -1084,6 +1111,11 @@ public class TodoItemMenu extends Dialog {
                 @Override
                 public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell6) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell6);
+                }
+
+                @Override
+                public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell6, TLRPC.Document document, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell6, document, f, f2);
                 }
 
                 @Override
@@ -1450,7 +1482,7 @@ public class TodoItemMenu extends Dialog {
             if (tL_messageMediaToDo.todo.list.size() > 1) {
                 itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.TodoDeleteItem), new Runnable() {
                     @Override
-                    public final void run() throws Resources.NotFoundException {
+                    public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
                         this.f$0.lambda$setCell$8(tL_messageMediaToDo, i, chatActivity);
                     }
                 });
@@ -1526,7 +1558,7 @@ public class TodoItemMenu extends Dialog {
         chatActivity.getSendMessagesHelper().editMessage(this.messageObject, null, null, null, null, null, null, false, false, null);
     }
 
-    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException {
+    public void lambda$setCell$8(TLRPC.TL_messageMediaToDo tL_messageMediaToDo, int i, ChatActivity chatActivity) throws Resources.NotFoundException, IOException, NumberFormatException {
         int i2 = 0;
         while (i2 < tL_messageMediaToDo.todo.list.size()) {
             if (tL_messageMediaToDo.todo.list.get(i2).id == i) {

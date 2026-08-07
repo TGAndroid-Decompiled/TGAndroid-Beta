@@ -262,14 +262,14 @@ public abstract class VoIPHelper {
         joinConference(activity, i, inputGroupCall, z, groupCall, null);
     }
 
-    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) {
+    public static void joinConference(final Activity activity, final int i, final TLRPC.InputGroupCall inputGroupCall, final boolean z, final TLRPC.GroupCall groupCall, final HashSet hashSet) throws InterruptedException {
         if (activity == null) {
             return;
         }
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws InterruptedException {
                     VoIPHelper.lambda$joinConference$4(activity, i, inputGroupCall, z, groupCall, hashSet);
                 }
             });
@@ -313,7 +313,7 @@ public abstract class VoIPHelper {
         }
     }
 
-    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) {
+    public static void lambda$joinConference$4(Activity activity, int i, TLRPC.InputGroupCall inputGroupCall, boolean z, TLRPC.GroupCall groupCall, HashSet hashSet) throws InterruptedException {
         lastCallTime = 0L;
         joinConference(activity, i, inputGroupCall, z, groupCall, hashSet);
     }
@@ -766,7 +766,7 @@ public abstract class VoIPHelper {
             MessagesController.getInstance(i).processUpdates((TLRPC.TL_updates) tLObject, false);
         }
         if (zArr[0] && file.exists() && setcallrating.rating < 4) {
-            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, 0, false);
+            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, null, true, 0, null, null, false);
             Toast.makeText(context, LocaleController.getString(R.string.CallReportSent), 1).show();
         }
     }

@@ -11,7 +11,7 @@ import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.Text;
@@ -19,7 +19,7 @@ import org.telegram.ui.Components.Text;
 class BotButton {
     public int angle;
     public AnimatedEmojiDrawable animatedEmojiDrawable;
-    public TLRPC.KeyboardButton button;
+    public TL_keyboard.KeyboardInlineButton button;
     public BotInlineKeyboard.ButtonCustom buttonCustom;
     public BotInlineKeyboard.Button buttonImpl;
     public int height;

@@ -20,6 +20,7 @@ public class AppGlobalConfig {
     public final ConfigInt contactNoteLengthLimit;
     public final ConfigBoolean disableBlurInDarkTheme;
     public final ConfigBoolean disableBlurInLightTheme;
+    public final ConfigInt ephemeralWelcomeMessagesMax;
     public final ConfigInt groupCallMessageLengthLimit;
     public final ConfigTime groupCallMessageTtl;
     public final ConfigInt messageLengthLimitDefault;
@@ -39,6 +40,7 @@ public class AppGlobalConfig {
     public final ConfigInt pollCountriesMax;
     public final ConfigInt pollQuestionLengthMax;
     public final ConfigInt pollSolutionLengthMax;
+    public final ConfigInt quickReplyMessagesLimit;
     public final ConfigInt richMessageLengthLimit;
     public final ConfigInt richMessageMaxBlocks;
     public final ConfigInt richMessageMaxDepth;
@@ -132,6 +134,8 @@ public class AppGlobalConfig {
         this.communityBotPeersLimit = ofInt("community_bot_peers_limit", 100);
         this.messageLengthLimitDefault = ofInt("message_length_limit_default", 4096);
         this.messageLengthLimitPremium = ofInt("message_length_limit_premium", 8192);
+        this.quickReplyMessagesLimit = ofInt("quick_reply_messages_limit", 20);
+        this.ephemeralWelcomeMessagesMax = ofInt("ephemeral_welcome_messages_max", 5);
         this.starsSpendTopUpInvoiceDisabled = ofBoolean("stars_spend_topup_invoice_disabled", false);
     }
 

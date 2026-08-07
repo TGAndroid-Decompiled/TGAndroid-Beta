@@ -9,6 +9,8 @@ import ru.noties.jlatexmath.awt.geom.Rectangle2D;
 
 public abstract class Box {
     public static boolean DEBUG = false;
+    private static final int MAX_BOX_BUDGET = 100000;
+    private static int boxBudgetUsed;
     protected Color background;
     protected LinkedList<Box> children;
     protected float depth;
@@ -26,13 +28,27 @@ public abstract class Box {
 
     public abstract int getLastFontId();
 
+    public static void resetBoxBudget() {
+        boxBudgetUsed = 0;
+    }
+
+    private static void countBoxAllocation() {
+        int i = boxBudgetUsed + 1;
+        boxBudgetUsed = i;
+        if (i > 100000) {
+            throw new ParseException("Formula is too large to lay out!");
+        }
+    }
+
     public void add(Box box) {
+        countBoxAllocation();
         this.children.add(box);
         box.parent = this;
         box.elderParent = this.elderParent;
     }
 
     public void add(int i, Box box) {
+        countBoxAllocation();
         this.children.add(i, box);
         box.parent = this;
         box.elderParent = this.elderParent;
@@ -49,6 +65,7 @@ public abstract class Box {
         this.shift = 0.0f;
         this.type = -1;
         this.children = new LinkedList<>();
+        countBoxAllocation();
         this.foreground = color;
         this.background = color2;
     }

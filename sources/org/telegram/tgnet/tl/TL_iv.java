@@ -15,6 +15,7 @@ import org.telegram.tgnet.TLRPC$TL_inputPrivacyValueAllowUsers$$ExternalSyntheti
 import org.telegram.tgnet.TLRPC$TL_photos_photos$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 
 public class TL_iv {
 
@@ -353,6 +354,8 @@ public class TL_iv {
                     return new textDate();
                 case -1402305622:
                     return new textAutoUrl();
+                case -1345872682:
+                    return new textButton();
                 case -1185513171:
                     return new textBankCard();
                 case -1054465340:
@@ -924,6 +927,60 @@ public class TL_iv {
         }
     }
 
+    public static class textButton extends RichText implements TL_keyboard.KeyboardButtonProto {
+        public static final int constructor = -1345872682;
+        public int flags;
+        public TL_keyboard.RichButtonStyle style;
+        public TL_keyboard.InlineButtonType type;
+
+        @Override
+        public byte[] getData() {
+            return TL_keyboard.KeyboardButtonProto.CC.$default$getData(this);
+        }
+
+        @Override
+        public String getUrl() {
+            return TL_keyboard.KeyboardButtonProto.CC.$default$getUrl(this);
+        }
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.type = TL_keyboard.InlineButtonType.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.style = TL_keyboard.RichButtonStyle.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(-1345872682);
+            int flag = TLObject.setFlag(this.flags, 1, this.style != null);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
+            this.text.serializeToStream(outputSerializedData);
+            this.type.serializeToStream(outputSerializedData);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.style.serializeToStream(outputSerializedData);
+            }
+        }
+
+        @Override
+        public TL_keyboard.ButtonTypeProto getType() {
+            return this.type;
+        }
+
+        @Override
+        public String getText() {
+            RichText richText = this.text;
+            if (richText instanceof textPlain) {
+                return ((textPlain) richText).text;
+            }
+            return null;
+        }
+    }
+
     public static abstract class PageBlock extends TLObject {
         public boolean bottom;
         public int cachedHeight;
@@ -1005,11 +1062,13 @@ public class TL_iv {
                 case 534181569:
                     return new pageBlockOrderedList();
                 case 641563686:
-                    return new pageBlockBlockquote();
+                    return new pageBlockBlockquote_layer228();
                 case 690781161:
                     return new pageBlockEmbedPost_layer82();
                 case 834148991:
                     return new pageBlockAudio_layer82();
+                case 955923363:
+                    return new pageBlockDocument();
                 case 972174080:
                     return new pageBlockCover();
                 case 978896884:
@@ -1030,10 +1089,14 @@ public class TL_iv {
                     return new pageBlockMath();
                 case 1705048653:
                     return new pageBlockCollage();
+                case 1724999435:
+                    return new pageBlockBlockquote();
                 case 1743204781:
                     return new pageBlockHeading3();
                 case 1747599785:
                     return new pageBlockHeading6();
+                case 1835270936:
+                    return new pageBlockButtonRow();
                 case 1890305021:
                     return new pageBlockTitle();
                 case 1987480557:
@@ -1056,6 +1119,61 @@ public class TL_iv {
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(324435594);
+        }
+    }
+
+    public static class pageBlockButtonRow extends PageBlock {
+        public static final int constructor = 1835270936;
+        public boolean align_center;
+        public boolean align_left;
+        public boolean align_right;
+        public ArrayList<TL_keyboard.PageButton> buttons = new ArrayList<>();
+        public int flags;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.align_left = TLObject.hasFlag(int32, 1);
+            this.align_center = TLObject.hasFlag(this.flags, 2);
+            this.align_right = TLObject.hasFlag(this.flags, 4);
+            this.buttons = Vector.deserialize(inputSerializedData, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData2, int i, boolean z2) {
+                    return TL_keyboard.PageButton.TLdeserialize(inputSerializedData2, i, z2);
+                }
+            }, z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(1835270936);
+            int flag = TLObject.setFlag(this.flags, 1, this.align_left);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.align_center);
+            this.flags = flag2;
+            int flag3 = TLObject.setFlag(flag2, 4, this.align_right);
+            this.flags = flag3;
+            outputSerializedData.writeInt32(flag3);
+            Vector.serialize(outputSerializedData, this.buttons);
+        }
+    }
+
+    public static class pageBlockDocument extends PageBlock {
+        public static final int constructor = 955923363;
+        public long document_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.document_id = inputSerializedData.readInt64(z);
+            this.caption = PageCaption.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(955923363);
+            outputSerializedData.writeInt64(this.document_id);
+            this.caption.serializeToStream(outputSerializedData);
         }
     }
 
@@ -1285,21 +1403,45 @@ public class TL_iv {
     }
 
     public static class pageBlockBlockquote extends PageBlock {
-        public static final int constructor = 641563686;
+        public static final int constructor = 1724999435;
         public RichText caption;
         public boolean collapsed;
+        public int flags;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            int int32 = inputSerializedData.readInt32(z);
+            this.flags = int32;
+            this.collapsed = TLObject.hasFlag(int32, 1);
             this.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             this.caption = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeInt32(641563686);
+            outputSerializedData.writeInt32(1724999435);
+            int flag = TLObject.setFlag(this.flags, 1, this.collapsed);
+            this.flags = flag;
+            outputSerializedData.writeInt32(flag);
             this.text.serializeToStream(outputSerializedData);
             this.caption.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class pageBlockBlockquote_layer228 extends pageBlockBlockquote {
+        public static final int constructor = 641563686;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.text = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            ((pageBlockBlockquote) this).caption = RichText.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(641563686);
+            this.text.serializeToStream(outputSerializedData);
+            ((pageBlockBlockquote) this).caption.serializeToStream(outputSerializedData);
         }
     }
 

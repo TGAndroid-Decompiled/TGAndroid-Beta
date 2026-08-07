@@ -10,6 +10,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_payments;
 
 public class TL_bots {
@@ -1209,14 +1210,14 @@ public class TL_bots {
         }
     }
 
-    public static class getRequestedWebViewButton extends TLMethod<TLRPC.KeyboardButton> {
+    public static class getRequestedWebViewButton extends TLMethod<TL_keyboard.KeyboardButton> {
         public static final int constructor = -1088047117;
         public TLRPC.InputUser bot;
         public String webapp_req_id;
 
         @Override
-        public TLRPC.KeyboardButton deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
-            return TLRPC.KeyboardButton.TLdeserialize(inputSerializedData, i, z);
+        public TL_keyboard.KeyboardButton deserializeResponseT(InputSerializedData inputSerializedData, int i, boolean z) {
+            return TL_keyboard.KeyboardButton.TLdeserialize(inputSerializedData, i, z);
         }
 
         @Override

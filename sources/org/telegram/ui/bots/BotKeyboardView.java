@@ -20,7 +20,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.utils.tlutils.TLKeyboardHelper;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -45,7 +47,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
     private final ScrollView scrollView;
 
     public interface BotKeyboardViewDelegate {
-        void didPressedButton(TLRPC.KeyboardButton keyboardButton);
+        void didPressedButton(TL_keyboard.KeyboardButton keyboardButton);
     }
 
     @Override
@@ -161,18 +163,18 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             this.buttonHeight = z ? 44 : (int) Math.max(44.0f, (((this.panelHeight - AndroidUtilities.dp(16.0f)) - ((this.botButtons.rows.size() - 1) * AndroidUtilities.dp(4.0f))) / this.botButtons.rows.size()) / AndroidUtilities.density);
             int i2 = 0;
             while (i2 < tL_replyKeyboardMarkup.rows.size()) {
-                TLRPC.TL_keyboardButtonRow tL_keyboardButtonRow = tL_replyKeyboardMarkup.rows.get(i2);
+                TL_keyboard.KeyboardButtonRow keyboardButtonRow = tL_replyKeyboardMarkup.rows.get(i2);
                 LinearLayout linearLayout = new LinearLayout(getContext());
                 linearLayout.setOrientation(i);
                 buttonsLayout2.addView(linearLayout, LayoutHelper.createLinear(-1, this.buttonHeight, 8.0f, i2 == 0 ? 8.0f : 4.0f, 8.0f, i2 == tL_replyKeyboardMarkup.rows.size() - 1 ? 8.0f : 0.0f));
-                float size = 1.0f / tL_keyboardButtonRow.buttons.size();
+                float size = 1.0f / keyboardButtonRow.buttons.size();
                 int i3 = 0;
-                while (i3 < tL_keyboardButtonRow.buttons.size()) {
-                    Button button = new Button(getContext(), tL_keyboardButtonRow.buttons.get(i3));
-                    button.setPositionFlags(i3 == 0, i2 == 0, i3 == tL_keyboardButtonRow.buttons.size() - 1, i2 == tL_replyKeyboardMarkup.rows.size() - 1);
+                while (i3 < keyboardButtonRow.buttons.size()) {
+                    Button button = new Button(getContext(), keyboardButtonRow.buttons.get(i3));
+                    button.setPositionFlags(i3 == 0, i2 == 0, i3 == keyboardButtonRow.buttons.size() - 1, i2 == tL_replyKeyboardMarkup.rows.size() - 1);
                     FrameLayout frameLayout = new FrameLayout(getContext());
                     frameLayout.addView(button, LayoutHelper.createFrame(-1, -1.0f));
-                    linearLayout.addView(frameLayout, LayoutHelper.createLinear(0, -1, size, 0, 0, i3 != tL_keyboardButtonRow.buttons.size() - 1 ? 4 : 0, 0));
+                    linearLayout.addView(frameLayout, LayoutHelper.createLinear(0, -1, size, 0, 0, i3 != keyboardButtonRow.buttons.size() - 1 ? 4 : 0, 0));
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -194,11 +196,11 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
     }
 
     public void lambda$setButtons$0(View view) {
-        this.delegate.didPressedButton((TLRPC.KeyboardButton) view.getTag());
+        this.delegate.didPressedButton((TL_keyboard.KeyboardButton) view.getTag());
     }
 
     private class Button extends FrameLayout {
-        private final TLRPC.KeyboardButton button;
+        private final TL_keyboard.KeyboardButton button;
         private final ImageView icon;
         private boolean isBottom;
         private boolean isLeft;
@@ -206,7 +208,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
         private boolean isTop;
         private final SpoilersTextView textView;
 
-        public Button(Context context, TLRPC.KeyboardButton keyboardButton) {
+        public Button(Context context, TL_keyboard.KeyboardButton keyboardButton) {
             super(context);
             this.button = keyboardButton;
             SpoilersTextView spoilersTextView = new SpoilersTextView(context);
@@ -219,8 +221,8 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             NotificationCenter.listenEmojiLoading(spoilersTextView);
             setTag(keyboardButton);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = keyboardButton.style;
-            if (tL_keyboardButtonStyle != null && tL_keyboardButtonStyle.icon != 0) {
+            TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = keyboardButton.style;
+            if (keyboardButtonStyle != null && keyboardButtonStyle.icon != 0) {
                 spannableStringBuilder.append((CharSequence) "* ");
                 spannableStringBuilder.setSpan(new AnimatedEmojiSpan(keyboardButton.style.icon, spoilersTextView.getPaint().getFontMetricsInt()), 0, 1, 33);
             }
@@ -228,7 +230,7 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             ImageView imageView = new ImageView(getContext());
             this.icon = imageView;
             imageView.setColorFilter(BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonText));
-            if ((keyboardButton instanceof TLRPC.TL_keyboardButtonWebView) || (keyboardButton instanceof TLRPC.TL_keyboardButtonSimpleWebView)) {
+            if (TLKeyboardHelper.isButtonWebView(keyboardButton)) {
                 imageView.setImageResource(R.drawable.bot_webview);
                 imageView.setVisibility(0);
             } else {
@@ -256,19 +258,19 @@ public abstract class BotKeyboardView extends LinearLayout implements InAppKeybo
             int themedColor = BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonBackground);
             int themedColor2 = BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonBackgroundPressed);
             int themedColor3 = BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonText);
-            TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = this.button.style;
-            if (tL_keyboardButtonStyle == null) {
+            TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.button.style;
+            if (keyboardButtonStyle == null) {
                 i = themedColor;
                 i2 = themedColor2;
             } else {
-                if (tL_keyboardButtonStyle.bg_primary) {
+                if (keyboardButtonStyle.bg_primary) {
                     iMultAlpha = Theme.multAlpha(BotKeyboardView.this.getThemedColor(Theme.key_botKeyboard_button_primary), 0.8f);
                     iCompositeColors = ColorUtils.compositeColors(BotKeyboardView.this.getThemedColor(Theme.key_listSelector), iMultAlpha);
-                } else if (tL_keyboardButtonStyle.bg_danger) {
+                } else if (keyboardButtonStyle.bg_danger) {
                     iMultAlpha = Theme.multAlpha(BotKeyboardView.this.getThemedColor(Theme.key_botKeyboard_button_danger), 0.8f);
                     iCompositeColors = ColorUtils.compositeColors(BotKeyboardView.this.getThemedColor(Theme.key_listSelector), iMultAlpha);
                 } else {
-                    if (tL_keyboardButtonStyle.bg_success) {
+                    if (keyboardButtonStyle.bg_success) {
                         iMultAlpha = Theme.multAlpha(BotKeyboardView.this.getThemedColor(Theme.key_botKeyboard_button_success), 0.8f);
                         iCompositeColors = ColorUtils.compositeColors(BotKeyboardView.this.getThemedColor(Theme.key_listSelector), iMultAlpha);
                     }

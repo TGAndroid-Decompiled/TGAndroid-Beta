@@ -22,6 +22,7 @@ import androidx.core.math.MathUtils;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.utils.RadiiUtils;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.Blur3HashImpl;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
@@ -287,7 +288,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         }
 
         public void build() {
-            this.radiiAreSame = BlurredBackgroundDrawable.radiiAreSame(this.radii);
+            this.radiiAreSame = RadiiUtils.radiiAreSame(this.radii);
             this.boundsWithPadding.set(this.bounds);
             Rect rect = this.boundsWithPadding;
             int i = this.padding;
@@ -421,7 +422,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     }
 
     protected static void getOutline(Outline outline, Rect rect, float[] fArr) {
-        if (radiiAreSame(fArr)) {
+        if (RadiiUtils.radiiAreSame(fArr)) {
             outline.setRoundRect(rect, Math.min(fArr[0], Math.min(rect.width(), rect.height()) / 2.0f));
             return;
         }
@@ -433,11 +434,6 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         }
         tmpPath.addRoundRect(rect.left, rect.top, rect.right, rect.bottom, fArr, Path.Direction.CW);
         outline.setConvexPath(tmpPath);
-    }
-
-    public static boolean radiiAreSame(float[] fArr) {
-        float f = fArr[0];
-        return f == fArr[1] && f == fArr[2] && f == fArr[3] && f == fArr[4] && f == fArr[5] && f == fArr[6] && f == fArr[7];
     }
 
     @Override
@@ -705,7 +701,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         }
         if (z) {
             float[] fArrCopyOf = Arrays.copyOf(this.boundProps.radii, 8);
-            boolean zRadiiAreSame = radiiAreSame(fArrCopyOf);
+            boolean zRadiiAreSame = RadiiUtils.radiiAreSame(fArrCopyOf);
             float fMin = Math.min(rectF.width(), rectF.height()) / 2.0f;
             Paint paint2 = new Paint(1);
             if (Color.alpha(this.strokeColorTop) > 0 && fArrCopyOf[0] > 0.0f) {

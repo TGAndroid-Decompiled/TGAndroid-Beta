@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 
 public class CheckBoxBase {
@@ -35,7 +36,7 @@ public class CheckBoxBase {
     private boolean drawUnchecked;
     private boolean forbidden;
     private boolean isChecked;
-    private Theme.MessageDrawable messageDrawable;
+    private MessageDrawable messageDrawable;
     private View parentView;
     private float progress;
     private ProgressDelegate progressDelegate;
@@ -314,7 +315,7 @@ public class CheckBoxBase {
         invalidate();
     }
 
-    public void setBackgroundDrawable(Theme.MessageDrawable messageDrawable) {
+    public void setBackgroundDrawable(MessageDrawable messageDrawable) {
         if (this.messageDrawable == messageDrawable) {
             return;
         }

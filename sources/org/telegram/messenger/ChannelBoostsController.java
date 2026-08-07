@@ -64,8 +64,8 @@ public class ChannelBoostsController {
                 builder.setTitle(LocaleController.getString(R.string.AppName));
                 HashMap map = new HashMap();
                 int i = Theme.key_dialogTopBackground;
-                map.put("info1.**", Integer.valueOf(Theme.getColor(i)));
-                map.put("info2.**", Integer.valueOf(Theme.getColor(i)));
+                map.put("info1", Integer.valueOf(Theme.getColor(i)));
+                map.put("info2", Integer.valueOf(Theme.getColor(i)));
                 builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), map);
                 builder.setTopAnimationIsNew(true);
                 builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));

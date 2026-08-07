@@ -16,6 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Stories.StoriesController;
@@ -32,9 +33,6 @@ public class FileRefController extends BaseController {
     private ArrayList<Waiter> savedGifsWaiters;
     private ArrayList<Waiter> wallpaperWaiters;
 
-    public static void lambda$onUpdateObjectReference$36(TLObject tLObject, TLRPC.TL_error tL_error) {
-    }
-
     public static void lambda$onUpdateObjectReference$37(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
@@ -42,6 +40,9 @@ public class FileRefController extends BaseController {
     }
 
     public static void lambda$onUpdateObjectReference$39(TLObject tLObject, TLRPC.TL_error tL_error) {
+    }
+
+    public static void lambda$onUpdateObjectReference$40(TLObject tLObject, TLRPC.TL_error tL_error) {
     }
 
     static class Requester {
@@ -201,11 +202,11 @@ public class FileRefController extends BaseController {
         if (z && (((TLRPC.TL_messages_sendMedia) obj2).media instanceof TLRPC.TL_inputMediaPoll) && (obj instanceof ArrayList)) {
             return null;
         }
-        boolean z2 = obj2 instanceof TLRPC.TL_ephemeral_sendMessage;
-        if (z2 && (((TLRPC.TL_ephemeral_sendMessage) obj2).media instanceof TLRPC.TL_inputMediaPaidMedia) && (obj instanceof ArrayList)) {
+        boolean z2 = obj2 instanceof TL_ephemeral.TL_sendMessage;
+        if (z2 && (((TL_ephemeral.TL_sendMessage) obj2).media instanceof TLRPC.TL_inputMediaPaidMedia) && (obj instanceof ArrayList)) {
             return null;
         }
-        if (z2 && (((TLRPC.TL_ephemeral_sendMessage) obj2).media instanceof TLRPC.TL_inputMediaPoll) && (obj instanceof ArrayList)) {
+        if (z2 && (((TL_ephemeral.TL_sendMessage) obj2).media instanceof TLRPC.TL_inputMediaPoll) && (obj instanceof ArrayList)) {
             return null;
         }
         if (obj2 instanceof StoriesController.BotPreview) {
@@ -289,7 +290,7 @@ public class FileRefController extends BaseController {
                     }
                 }
             } else if (z2) {
-                TLRPC.InputMedia inputMedia4 = ((TLRPC.TL_ephemeral_sendMessage) obj2).media;
+                TLRPC.InputMedia inputMedia4 = ((TL_ephemeral.TL_sendMessage) obj2).media;
                 if (inputMedia4 instanceof TLRPC.TL_inputMediaDocument) {
                     TLRPC.TL_inputMediaDocument tL_inputMediaDocument5 = (TLRPC.TL_inputMediaDocument) inputMedia4;
                     TLRPC.TL_inputDocumentFileLocation tL_inputDocumentFileLocation7 = new TLRPC.TL_inputDocumentFileLocation();
@@ -532,6 +533,7 @@ public class FileRefController extends BaseController {
         if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
             long channelId = messageObject.getChannelId();
+            TLRPC.InputPeer inputPeer = getMessagesController().getInputPeer(messageObject.getDialogId());
             if (messageObject.scheduled) {
                 TLRPC.TL_messages_getScheduledMessages tL_messages_getScheduledMessages = new TLRPC.TL_messages_getScheduledMessages();
                 tL_messages_getScheduledMessages.peer = getMessagesController().getInputPeer(messageObject.getDialogId());
@@ -557,6 +559,19 @@ public class FileRefController extends BaseController {
                 });
                 return;
             }
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message != null && message.rich_message != null && inputPeer != null) {
+                TL_iv.getRichMessage getrichmessage = new TL_iv.getRichMessage();
+                getrichmessage.peer = inputPeer;
+                getrichmessage.id = messageObject.getRealId();
+                getConnectionsManager().sendRequest(getrichmessage, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
+                        this.f$0.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                    }
+                });
+                return;
+            }
             if (channelId != 0) {
                 TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
                 tL_channels_getMessages.channel = getMessagesController().getInputChannel(channelId);
@@ -564,7 +579,7 @@ public class FileRefController extends BaseController {
                 getConnectionsManager().sendRequest(tL_channels_getMessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                        this.f$0.lambda$requestReferenceFromServer$9(str, str2, tLObject, tL_error);
+                        this.f$0.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
                     }
                 });
                 return;
@@ -574,7 +589,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(tL_messages_getMessages, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$10(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -589,7 +604,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(getwallpaper, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$11(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -605,7 +620,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(gettheme, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$12(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -617,7 +632,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(tL_messages_getWebPage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$13(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -628,7 +643,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(tL_users_getUsers, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$14(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -641,7 +656,7 @@ public class FileRefController extends BaseController {
                 getConnectionsManager().sendRequest(tL_messages_getChats, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                        this.f$0.lambda$requestReferenceFromServer$15(str, str2, tLObject, tL_error);
+                        this.f$0.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
                     }
                 });
                 return;
@@ -652,7 +667,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(tL_channels_getChannels, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$16(str, str2, tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$17(str, str2, tLObject, tL_error);
                         }
                     });
                     return;
@@ -667,7 +682,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(new TL_account.getWallPapers(), new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$17(tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$18(tLObject, tL_error);
                         }
                     });
                 }
@@ -679,7 +694,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getSavedGifs(), new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$18(tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$19(tLObject, tL_error);
                         }
                     });
                 }
@@ -691,7 +706,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getRecentStickers(), new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$19(tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$20(tLObject, tL_error);
                         }
                     });
                 }
@@ -703,7 +718,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(new TLRPC.TL_messages_getFavedStickers(), new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$20(tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$21(tLObject, tL_error);
                         }
                     });
                 }
@@ -722,7 +737,7 @@ public class FileRefController extends BaseController {
                 getConnectionsManager().sendRequest(tL_help_getAppUpdate, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                        this.f$0.lambda$requestReferenceFromServer$21(str, str2, tLObject, tL_error);
+                        this.f$0.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
                     }
                 });
                 return;
@@ -738,7 +753,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(tL_photos_getUserPhotos, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$22(str, str2, tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
                         }
                     });
                     return;
@@ -752,7 +767,7 @@ public class FileRefController extends BaseController {
                 getConnectionsManager().sendRequest(tL_messages_search, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                        this.f$0.lambda$requestReferenceFromServer$23(str, str2, tLObject, tL_error);
+                        this.f$0.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
                     }
                 });
                 return;
@@ -768,7 +783,7 @@ public class FileRefController extends BaseController {
                         getConnectionsManager().sendRequest(tL_channels_getMessages2, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                                this.f$0.lambda$requestReferenceFromServer$24(str, str2, tLObject, tL_error);
+                                this.f$0.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
                             }
                         });
                         return;
@@ -778,7 +793,7 @@ public class FileRefController extends BaseController {
                     getConnectionsManager().sendRequest(tL_messages_getMessages2, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                            this.f$0.lambda$requestReferenceFromServer$25(str, str2, tLObject, tL_error);
+                            this.f$0.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
                         }
                     });
                     return;
@@ -799,7 +814,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(tL_messages_getStickerSet, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$26(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -814,7 +829,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(tL_messages_getStickerSet2, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$27(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -825,7 +840,7 @@ public class FileRefController extends BaseController {
             getConnectionsManager().sendRequest(tL_messages_getStickerSet3, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-                    this.f$0.lambda$requestReferenceFromServer$28(str, str2, tLObject, tL_error);
+                    this.f$0.lambda$requestReferenceFromServer$29(str, str2, tLObject, tL_error);
                 }
             });
             return;
@@ -910,24 +925,24 @@ public class FileRefController extends BaseController {
         onRequestComplete(str, str2, tLObject, tL_error, true, false);
     }
 
-    public void lambda$requestReferenceFromServer$17(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        broadcastWaitersData(this.wallpaperWaiters, tLObject, tL_error);
+    public void lambda$requestReferenceFromServer$17(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
+        onRequestComplete(str, str2, tLObject, tL_error, true, false);
     }
 
     public void lambda$requestReferenceFromServer$18(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        broadcastWaitersData(this.savedGifsWaiters, tLObject, tL_error);
+        broadcastWaitersData(this.wallpaperWaiters, tLObject, tL_error);
     }
 
     public void lambda$requestReferenceFromServer$19(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        broadcastWaitersData(this.recentStickersWaiter, tLObject, tL_error);
+        broadcastWaitersData(this.savedGifsWaiters, tLObject, tL_error);
     }
 
     public void lambda$requestReferenceFromServer$20(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        broadcastWaitersData(this.favStickersWaiter, tLObject, tL_error);
+        broadcastWaitersData(this.recentStickersWaiter, tLObject, tL_error);
     }
 
-    public void lambda$requestReferenceFromServer$21(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        onRequestComplete(str, str2, tLObject, tL_error, true, false);
+    public void lambda$requestReferenceFromServer$21(TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
+        broadcastWaitersData(this.favStickersWaiter, tLObject, tL_error);
     }
 
     public void lambda$requestReferenceFromServer$22(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
@@ -939,7 +954,7 @@ public class FileRefController extends BaseController {
     }
 
     public void lambda$requestReferenceFromServer$24(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        onRequestComplete(str, str2, tLObject, tL_error, false, false);
+        onRequestComplete(str, str2, tLObject, tL_error, true, false);
     }
 
     public void lambda$requestReferenceFromServer$25(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
@@ -947,7 +962,7 @@ public class FileRefController extends BaseController {
     }
 
     public void lambda$requestReferenceFromServer$26(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
-        onRequestComplete(str, str2, tLObject, tL_error, true, false);
+        onRequestComplete(str, str2, tLObject, tL_error, false, false);
     }
 
     public void lambda$requestReferenceFromServer$27(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
@@ -955,6 +970,10 @@ public class FileRefController extends BaseController {
     }
 
     public void lambda$requestReferenceFromServer$28(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
+        onRequestComplete(str, str2, tLObject, tL_error, true, false);
+    }
+
+    public void lambda$requestReferenceFromServer$29(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws InterruptedException, IOException {
         onRequestComplete(str, str2, tLObject, tL_error, true, false);
     }
 
@@ -1008,14 +1027,14 @@ public class FileRefController extends BaseController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onUpdateObjectReference$29(tL_messages_sendMultiMedia, objArr);
+                            this.f$0.lambda$onUpdateObjectReference$30(tL_messages_sendMultiMedia, objArr);
                         }
                     });
                 }
             } else if (requester.args.length < 2 || !(requester.args[1] instanceof TLRPC.TL_messages_sendMedia) || !(((TLRPC.TL_messages_sendMedia) requester.args[1]).media instanceof TLRPC.TL_inputMediaPaidMedia) || (!(requester.args[0] instanceof TLRPC.TL_inputMediaPhoto) && !(requester.args[0] instanceof TLRPC.TL_inputMediaDocument))) {
-                if (requester.args.length < 2 || !(requester.args[1] instanceof TLRPC.TL_ephemeral_sendMessage) || !(((TLRPC.TL_ephemeral_sendMessage) requester.args[1]).media instanceof TLRPC.TL_inputMediaPaidMedia) || (!(requester.args[0] instanceof TLRPC.TL_inputMediaPhoto) && !(requester.args[0] instanceof TLRPC.TL_inputMediaDocument))) {
+                if (requester.args.length < 2 || !(requester.args[1] instanceof TL_ephemeral.TL_sendMessage) || !(((TL_ephemeral.TL_sendMessage) requester.args[1]).media instanceof TLRPC.TL_inputMediaPaidMedia) || (!(requester.args[0] instanceof TLRPC.TL_inputMediaPhoto) && !(requester.args[0] instanceof TLRPC.TL_inputMediaDocument))) {
                     if (!(requester.args[0] instanceof TLRPC.TL_messages_sendMedia)) {
-                        if (!(requester.args[0] instanceof TLRPC.TL_ephemeral_sendMessage)) {
+                        if (!(requester.args[0] instanceof TL_ephemeral.TL_sendMessage)) {
                             if (!(requester.args[0] instanceof TLRPC.TL_messages_editMessage)) {
                                 if ((requester.args[0] instanceof TLRPC.InputPhoto) || (requester.args[0] instanceof TLRPC.InputDocument)) {
                                     if (requester.args[0] instanceof TLRPC.InputPhoto) {
@@ -1044,7 +1063,7 @@ public class FileRefController extends BaseController {
                                         getConnectionsManager().sendRequest(tL_messages_saveGif, new RequestDelegate() {
                                             @Override
                                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                                FileRefController.lambda$onUpdateObjectReference$36(tLObject, tL_error);
+                                                FileRefController.lambda$onUpdateObjectReference$37(tLObject, tL_error);
                                             }
                                         });
                                     } else if (requester.args[0] instanceof TLRPC.TL_messages_saveRecentSticker) {
@@ -1056,7 +1075,7 @@ public class FileRefController extends BaseController {
                                         getConnectionsManager().sendRequest(tL_messages_saveRecentSticker, new RequestDelegate() {
                                             @Override
                                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                                FileRefController.lambda$onUpdateObjectReference$37(tLObject, tL_error);
+                                                FileRefController.lambda$onUpdateObjectReference$38(tLObject, tL_error);
                                             }
                                         });
                                     } else if (requester.args[0] instanceof TLRPC.TL_stickers_addStickerToSet) {
@@ -1068,7 +1087,7 @@ public class FileRefController extends BaseController {
                                         getConnectionsManager().sendRequest(tL_stickers_addStickerToSet, new RequestDelegate() {
                                             @Override
                                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                                FileRefController.lambda$onUpdateObjectReference$38(tLObject, tL_error);
+                                                FileRefController.lambda$onUpdateObjectReference$39(tLObject, tL_error);
                                             }
                                         });
                                     } else if (requester.args[0] instanceof TLRPC.TL_messages_faveSticker) {
@@ -1080,7 +1099,7 @@ public class FileRefController extends BaseController {
                                         getConnectionsManager().sendRequest(tL_messages_faveSticker, new RequestDelegate() {
                                             @Override
                                             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                                                FileRefController.lambda$onUpdateObjectReference$39(tLObject, tL_error);
+                                                FileRefController.lambda$onUpdateObjectReference$40(tLObject, tL_error);
                                             }
                                         });
                                     } else if (requester.args[0] instanceof TLRPC.TL_messages_getAttachedStickers) {
@@ -1146,7 +1165,7 @@ public class FileRefController extends BaseController {
                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                         @Override
                                         public final void run() {
-                                            this.f$0.lambda$onUpdateObjectReference$35(requester);
+                                            this.f$0.lambda$onUpdateObjectReference$36(requester);
                                         }
                                     });
                                 }
@@ -1168,12 +1187,12 @@ public class FileRefController extends BaseController {
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
-                                        this.f$0.lambda$onUpdateObjectReference$34(requester);
+                                        this.f$0.lambda$onUpdateObjectReference$35(requester);
                                     }
                                 });
                             }
                         } else {
-                            TLRPC.InputMedia inputMedia4 = ((TLRPC.TL_ephemeral_sendMessage) requester.args[0]).media;
+                            TLRPC.InputMedia inputMedia4 = ((TL_ephemeral.TL_sendMessage) requester.args[0]).media;
                             if (inputMedia4 instanceof TLRPC.TL_inputMediaDocument) {
                                 TLRPC.TL_inputMediaDocument tL_inputMediaDocument4 = (TLRPC.TL_inputMediaDocument) inputMedia4;
                                 if (z && isSameReference(tL_inputMediaDocument4.id.file_reference, bArr)) {
@@ -1190,7 +1209,7 @@ public class FileRefController extends BaseController {
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    this.f$0.lambda$onUpdateObjectReference$33(requester);
+                                    this.f$0.lambda$onUpdateObjectReference$34(requester);
                                 }
                             });
                         }
@@ -1212,13 +1231,13 @@ public class FileRefController extends BaseController {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onUpdateObjectReference$32(requester);
+                                this.f$0.lambda$onUpdateObjectReference$33(requester);
                             }
                         });
                     }
                 } else {
-                    final TLRPC.TL_ephemeral_sendMessage tL_ephemeral_sendMessage = (TLRPC.TL_ephemeral_sendMessage) requester.args[1];
-                    final Object[] objArr2 = this.multiMediaCache.get(tL_ephemeral_sendMessage);
+                    final TL_ephemeral.TL_sendMessage tL_sendMessage = (TL_ephemeral.TL_sendMessage) requester.args[1];
+                    final Object[] objArr2 = this.multiMediaCache.get(tL_sendMessage);
                     if (objArr2 == null) {
                         return true;
                     }
@@ -1239,7 +1258,7 @@ public class FileRefController extends BaseController {
                     } else {
                         tL_inputMediaPhoto = null;
                     }
-                    int iIndexOf2 = ((TLRPC.TL_inputMediaPaidMedia) tL_ephemeral_sendMessage.media).extended_media.indexOf(tL_inputMediaPhoto);
+                    int iIndexOf2 = ((TLRPC.TL_inputMediaPaidMedia) tL_sendMessage.media).extended_media.indexOf(tL_inputMediaPhoto);
                     if (iIndexOf2 < 0) {
                         return true;
                     }
@@ -1252,11 +1271,11 @@ public class FileRefController extends BaseController {
                         }
                     }
                     if (z3) {
-                        this.multiMediaCache.remove(tL_ephemeral_sendMessage);
+                        this.multiMediaCache.remove(tL_sendMessage);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                this.f$0.lambda$onUpdateObjectReference$31(tL_ephemeral_sendMessage, objArr2);
+                                this.f$0.lambda$onUpdateObjectReference$32(tL_sendMessage, objArr2);
                             }
                         });
                     }
@@ -1301,7 +1320,7 @@ public class FileRefController extends BaseController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$onUpdateObjectReference$30(tL_messages_sendMedia, objArr3);
+                            this.f$0.lambda$onUpdateObjectReference$31(tL_messages_sendMedia, objArr3);
                         }
                     });
                 }
@@ -1312,20 +1331,16 @@ public class FileRefController extends BaseController {
         return true;
     }
 
-    public void lambda$onUpdateObjectReference$29(TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr) {
+    public void lambda$onUpdateObjectReference$30(TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr) {
         getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_messages_sendMultiMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$onUpdateObjectReference$30(TLRPC.TL_messages_sendMedia tL_messages_sendMedia, Object[] objArr) {
+    public void lambda$onUpdateObjectReference$31(TLRPC.TL_messages_sendMedia tL_messages_sendMedia, Object[] objArr) {
         getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_messages_sendMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$onUpdateObjectReference$31(TLRPC.TL_ephemeral_sendMessage tL_ephemeral_sendMessage, Object[] objArr) {
-        getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_ephemeral_sendMessage, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
-    }
-
-    public void lambda$onUpdateObjectReference$32(Requester requester) {
-        getSendMessagesHelper().lambda$performSendMessageRequest$82((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
+    public void lambda$onUpdateObjectReference$32(TL_ephemeral.TL_sendMessage tL_sendMessage, Object[] objArr) {
+        getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_sendMessage, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
     public void lambda$onUpdateObjectReference$33(Requester requester) {
@@ -1340,27 +1355,31 @@ public class FileRefController extends BaseController {
         getSendMessagesHelper().lambda$performSendMessageRequest$82((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
     }
 
+    public void lambda$onUpdateObjectReference$36(Requester requester) {
+        getSendMessagesHelper().lambda$performSendMessageRequest$82((TLObject) requester.args[0], (MessageObject) requester.args[1], (String) requester.args[2], (SendMessagesHelper.DelayedMessage) requester.args[3], ((Boolean) requester.args[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) requester.args[5], null, null, ((Boolean) requester.args[6]).booleanValue());
+    }
+
     private void sendErrorToObject(final java.lang.Object[] r7, int r8) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileRefController.sendErrorToObject(java.lang.Object[], int):void");
     }
 
-    public void lambda$sendErrorToObject$40(TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr) {
+    public void lambda$sendErrorToObject$41(TLRPC.TL_messages_sendMultiMedia tL_messages_sendMultiMedia, Object[] objArr) {
         getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_messages_sendMultiMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$sendErrorToObject$41(TLRPC.TL_messages_sendMedia tL_messages_sendMedia, Object[] objArr) {
+    public void lambda$sendErrorToObject$42(TLRPC.TL_messages_sendMedia tL_messages_sendMedia, Object[] objArr) {
         getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_messages_sendMedia, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
-    public void lambda$sendErrorToObject$42(TLRPC.TL_ephemeral_sendMessage tL_ephemeral_sendMessage, Object[] objArr) {
-        getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_ephemeral_sendMessage, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
-    }
-
-    public void lambda$sendErrorToObject$43(Object[] objArr) {
-        getSendMessagesHelper().lambda$performSendMessageRequest$82((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
+    public void lambda$sendErrorToObject$43(TL_ephemeral.TL_sendMessage tL_sendMessage, Object[] objArr) {
+        getSendMessagesHelper().lambda$performSendMessageRequestMulti$64(tL_sendMessage, (ArrayList) objArr[1], (ArrayList) objArr[2], null, (SendMessagesHelper.DelayedMessage) objArr[4], ((Boolean) objArr[5]).booleanValue());
     }
 
     public void lambda$sendErrorToObject$44(Object[] objArr) {
+        getSendMessagesHelper().lambda$performSendMessageRequest$82((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
+    }
+
+    public void lambda$sendErrorToObject$45(Object[] objArr) {
         getSendMessagesHelper().lambda$performSendMessageRequest$82((TLObject) objArr[0], (MessageObject) objArr[1], (String) objArr[2], (SendMessagesHelper.DelayedMessage) objArr[3], ((Boolean) objArr[4]).booleanValue(), (SendMessagesHelper.DelayedMessage) objArr[5], null, null, ((Boolean) objArr[6]).booleanValue());
     }
 
@@ -1368,19 +1387,19 @@ public class FileRefController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileRefController.onRequestComplete(java.lang.String, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error, boolean, boolean):boolean");
     }
 
-    public void lambda$onRequestComplete$46(TLRPC.User user) {
+    public void lambda$onRequestComplete$47(TLRPC.User user) {
         getMessagesController().putUser(user, false);
-    }
-
-    public void lambda$onRequestComplete$47(TLRPC.Chat chat) {
-        getMessagesController().putChat(chat, false);
     }
 
     public void lambda$onRequestComplete$48(TLRPC.Chat chat) {
         getMessagesController().putChat(chat, false);
     }
 
-    public void lambda$onRequestComplete$49(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public void lambda$onRequestComplete$49(TLRPC.Chat chat) {
+        getMessagesController().putChat(chat, false);
+    }
+
+    public void lambda$onRequestComplete$50(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         getMediaDataController().replaceStickerSet(tL_messages_stickerSet);
     }
 
@@ -1442,14 +1461,19 @@ public class FileRefController extends BaseController {
                                 break;
                             }
                         }
-                    } else if (messageMedia4 instanceof TLRPC.TL_messageMediaPoll) {
-                        fileReference = getFileReferenceForPoll((TLRPC.TL_messageMediaPoll) messageMedia4, inputFileLocation, zArr, inputFileLocationArr);
-                    } else if (messageMedia4 != null) {
-                        fileReference = getFileReferenceForMediaImpl(messageMedia4, inputFileLocation, zArr, inputFileLocationArr);
                     } else {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if ((messageAction instanceof TLRPC.TL_messageActionChatEditPhoto) || (messageAction instanceof TLRPC.TL_messageActionSuggestProfilePhoto)) {
-                            fileReference = getFileReference(messageAction.photo, inputFileLocation, zArr, inputFileLocationArr);
+                        TL_iv.RichMessage richMessage = message.rich_message;
+                        if (richMessage != null) {
+                            fileReference = getFileReferenceForRichMessage(richMessage, inputFileLocation, zArr, inputFileLocationArr);
+                        } else if (messageMedia4 instanceof TLRPC.TL_messageMediaPoll) {
+                            fileReference = getFileReferenceForPoll((TLRPC.TL_messageMediaPoll) messageMedia4, inputFileLocation, zArr, inputFileLocationArr);
+                        } else if (messageMedia4 != null) {
+                            fileReference = getFileReferenceForMediaImpl(messageMedia4, inputFileLocation, zArr, inputFileLocationArr);
+                        } else {
+                            TLRPC.MessageAction messageAction = message.action;
+                            if ((messageAction instanceof TLRPC.TL_messageActionChatEditPhoto) || (messageAction instanceof TLRPC.TL_messageActionSuggestProfilePhoto)) {
+                                fileReference = getFileReference(messageAction.photo, inputFileLocation, zArr, inputFileLocationArr);
+                            }
                         }
                     }
                 }
@@ -1777,13 +1801,13 @@ public class FileRefController extends BaseController {
         }
         if (objArr.length >= 2) {
             Object obj4 = objArr[1];
-            if ((obj4 instanceof TLRPC.TL_ephemeral_sendMessage) && (((TLRPC.TL_ephemeral_sendMessage) obj4).media instanceof TLRPC.TL_inputMediaPaidMedia) && ((obj instanceof TLRPC.TL_inputMediaPhoto) || (obj instanceof TLRPC.TL_inputMediaDocument))) {
+            if ((obj4 instanceof TL_ephemeral.TL_sendMessage) && (((TL_ephemeral.TL_sendMessage) obj4).media instanceof TLRPC.TL_inputMediaPaidMedia) && ((obj instanceof TLRPC.TL_inputMediaPhoto) || (obj instanceof TLRPC.TL_inputMediaDocument))) {
                 return false;
             }
         }
         if (objArr.length >= 2) {
             Object obj5 = objArr[1];
-            if ((obj5 instanceof TLRPC.TL_ephemeral_sendMessage) && (((TLRPC.TL_ephemeral_sendMessage) obj5).media instanceof TLRPC.TL_inputMediaPoll) && ((obj instanceof TLRPC.TL_inputMediaPhoto) || (obj instanceof TLRPC.TL_inputMediaDocument))) {
+            if ((obj5 instanceof TL_ephemeral.TL_sendMessage) && (((TL_ephemeral.TL_sendMessage) obj5).media instanceof TLRPC.TL_inputMediaPoll) && ((obj instanceof TLRPC.TL_inputMediaPhoto) || (obj instanceof TLRPC.TL_inputMediaDocument))) {
                 return false;
             }
         }
@@ -1802,8 +1826,8 @@ public class FileRefController extends BaseController {
                 }
                 tL_inputMediaPhoto.id.file_reference = bArr;
             }
-        } else if (obj instanceof TLRPC.TL_ephemeral_sendMessage) {
-            TLRPC.InputMedia inputMedia2 = ((TLRPC.TL_ephemeral_sendMessage) obj).media;
+        } else if (obj instanceof TL_ephemeral.TL_sendMessage) {
+            TLRPC.InputMedia inputMedia2 = ((TL_ephemeral.TL_sendMessage) obj).media;
             if (inputMedia2 instanceof TLRPC.TL_inputMediaDocument) {
                 TLRPC.TL_inputMediaDocument tL_inputMediaDocument2 = (TLRPC.TL_inputMediaDocument) inputMedia2;
                 if (isSameReference(tL_inputMediaDocument2.id.file_reference, bArr)) {

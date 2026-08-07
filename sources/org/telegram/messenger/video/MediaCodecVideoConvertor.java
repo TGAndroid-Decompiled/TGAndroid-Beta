@@ -47,7 +47,7 @@ public class MediaCodecVideoConvertor {
         return this.endPresentationTime;
     }
 
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r94, boolean r95, int r96) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r83, boolean r84, int r85) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -209,17 +209,47 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private static String hdrFragmentShader(int i, int i2, int i3, int i4, boolean z, StoryEntry.HDRInfo hDRInfo) {
+    private static String hdrFragmentShader(int i, int i2, int i3, int i4, boolean z, StoryEntry.HDRInfo hDRInfo, int i5, boolean z2) {
         String res;
-        if (z) {
-            if (hDRInfo.getHDRType() == 1) {
-                res = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
-            } else {
-                res = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
-            }
-            return res.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
+        if (!z) {
+            return createFragmentShader(i, i2, i3, i4, false, i5, z2);
         }
-        return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
+        float f = i;
+        float f2 = f / (z2 ? i4 : i3);
+        float f3 = i2;
+        float f4 = f3 / (z2 ? i3 : i4);
+        int iMax = Math.max(1, Math.round(f2));
+        int iMax2 = Math.max(1, Math.round(f4));
+        if (SharedConfig.deviceIsAverage()) {
+            iMax = 1;
+            iMax2 = 1;
+        }
+        int iMin = Math.min(i5, iMax);
+        int iMin2 = Math.min(i5, iMax2);
+        float f5 = f2 / iMin;
+        float f6 = f4 / iMin2;
+        float f7 = (-(iMin - 1)) / 2.0f;
+        float f8 = (-(iMin2 - 1)) / 2.0f;
+        if ((iMin & 1) == 0) {
+            f7 += 0.01f;
+        }
+        if ((iMin2 & 1) == 0) {
+            f8 += 0.01f;
+        }
+        FileLog.d("HDR source size " + i + "x" + i2 + "    dest size " + i3 + "x" + i4 + "   rotated " + z2 + "   ratio " + f2 + "x" + f4 + "   samples " + iMin + "x" + iMin2 + "   kernel scale " + f5 + "x" + f6);
+        String strGlslFloat = glslFloat(f7);
+        String strGlslFloat2 = glslFloat(f8);
+        String strGlslFloat3 = glslFloat(f5);
+        String strGlslFloat4 = glslFloat(f6);
+        String strGlslFloat5 = glslFloat((float) (iMin * iMin2));
+        String strGlslFloat6 = glslFloat(1.0f / f);
+        String strGlslFloat7 = glslFloat(1.0f / f3);
+        if (hDRInfo.getHDRType() == 1) {
+            res = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
+        } else {
+            res = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
+        }
+        return res + "\nvarying vec2 vTextureCoord;\nconst float offsetX = " + strGlslFloat + ";\nconst float offsetY = " + strGlslFloat2 + ";\nconst float kernelScaleX = " + strGlslFloat3 + ";\nconst float kernelScaleY = " + strGlslFloat4 + ";\nconst float weightsum = " + strGlslFloat5 + ";\nconst float pixelSizeX = " + strGlslFloat6 + ";\nconst float pixelSizeY = " + strGlslFloat7 + ";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < " + iMin + "; ++i) {\n        for (int j = 0; j < " + iMin2 + "; ++j) {\n            float x = (offsetX + float(i)) * kernelScaleX;\n            float y = (offsetY + float(j)) * kernelScaleY;\n            vec2 uv = vTextureCoord + vec2(\n                    x * pixelSizeX,\n                    y * pixelSizeY\n            );\n            accumulation += TEX(uv).rgb;\n        }\n    }\n    gl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
     }
 
     private static String glslFloat(float f) {
@@ -245,38 +275,45 @@ public class MediaCodecVideoConvertor {
     }
 
     private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5, boolean z2) {
-        int i6 = z2 ? i4 : i3;
-        int i7 = z2 ? i3 : i4;
+        String str;
         float f = i;
-        float f2 = i2;
-        int i8 = 1;
-        int iMax = Math.max(1, Math.round(f / i6));
-        int iMax2 = Math.max(1, Math.round(f2 / i7));
+        float f2 = f / (z2 ? i4 : i3);
+        float f3 = i2;
+        float f4 = f3 / (z2 ? i3 : i4);
+        int i6 = 1;
+        int iMax = Math.max(1, Math.round(f2));
+        int iMax2 = Math.max(1, Math.round(f4));
         if (SharedConfig.deviceIsAverage()) {
             iMax2 = 1;
         } else {
-            i8 = iMax;
+            i6 = iMax;
         }
-        int iMin = Math.min(i5, i8);
+        int iMin = Math.min(i5, i6);
         int iMin2 = Math.min(i5, iMax2);
-        float f3 = (-(iMin - 1)) / 2.0f;
-        float f4 = (-(iMin2 - 1)) / 2.0f;
+        float f5 = f2 / iMin;
+        float f6 = f4 / iMin2;
+        float f7 = (-(iMin - 1)) / 2.0f;
+        float f8 = (-(iMin2 - 1)) / 2.0f;
         if ((iMin & 1) == 0) {
-            f3 += 0.01f;
+            f7 += 0.01f;
         }
         if ((iMin2 & 1) == 0) {
-            f4 += 0.01f;
+            f8 += 0.01f;
         }
-        FileLog.d("source size " + i + "x" + i2 + "    dest size " + i3 + "x" + i4 + "   rotated " + z2 + "   samples " + iMin + "x" + iMin2);
-        String strGlslFloat = glslFloat(f3);
-        String strGlslFloat2 = glslFloat(f4);
-        String strGlslFloat3 = glslFloat((float) (iMin * iMin2));
-        String strGlslFloat4 = glslFloat(1.0f / f);
-        String strGlslFloat5 = glslFloat(1.0f / f2);
+        FileLog.d("source size " + i + "x" + i2 + "    dest size " + i3 + "x" + i4 + "   rotated " + z2 + "   ratio " + f2 + "x" + f4 + "   samples " + iMin + "x" + iMin2 + "   kernel scale " + f5 + "x" + f6);
+        String strGlslFloat = glslFloat(f7);
+        String strGlslFloat2 = glslFloat(f8);
+        String strGlslFloat3 = glslFloat(f5);
+        String strGlslFloat4 = glslFloat(f6);
+        String strGlslFloat5 = glslFloat((float) (iMin * iMin2));
+        String strGlslFloat6 = glslFloat(1.0f / f);
+        String strGlslFloat7 = glslFloat(1.0f / f3);
         if (z) {
-            return "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nconst float offsetX = " + strGlslFloat + ";\nconst float offsetY = " + strGlslFloat2 + ";\nconst float weightsum = " + strGlslFloat3 + ";\nconst float pixelSizeX = " + strGlslFloat4 + ";\nconst float pixelSizeY = " + strGlslFloat5 + ";\nuniform samplerExternalOES sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nfor (int i = 0; i < " + iMin + "; ++i){\n   for (int j = 0; j < " + iMin2 + "; ++j){\n       float x = offsetX + float(i);\n       float y = offsetY + float(j);\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+            str = "#extension GL_OES_EGL_image_external : require\nuniform samplerExternalOES sTexture;\n";
+        } else {
+            str = "uniform sampler2D sTexture;\n";
         }
-        return "precision highp float;\nvarying vec2 vTextureCoord;\nconst float offsetX = " + strGlslFloat + ";\nconst float offsetY = " + strGlslFloat2 + ";\nconst float weightsum = " + strGlslFloat3 + ";\nconst float pixelSizeX = " + strGlslFloat4 + ";\nconst float pixelSizeY = " + strGlslFloat5 + ";\nuniform sampler2D sTexture;\nvoid main() {\nvec3 accumulation = vec3(0);\nfor (int i = 0; i < " + iMin + "; ++i){\n   for (int j = 0; j < " + iMin2 + "; ++j){\n       float x = offsetX + float(i);\n       float y = offsetY + float(j);\n       accumulation += texture2D(sTexture, vTextureCoord + vec2(x * pixelSizeX, y * pixelSizeY)).xyz;\n   }\n}\ngl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
+        return str + "precision highp float;\nvarying vec2 vTextureCoord;\nconst float offsetX = " + strGlslFloat + ";\nconst float offsetY = " + strGlslFloat2 + ";\nconst float kernelScaleX = " + strGlslFloat3 + ";\nconst float kernelScaleY = " + strGlslFloat4 + ";\nconst float weightsum = " + strGlslFloat5 + ";\nconst float pixelSizeX = " + strGlslFloat6 + ";\nconst float pixelSizeY = " + strGlslFloat7 + ";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < " + iMin + "; ++i) {\n        for (int j = 0; j < " + iMin2 + "; ++j) {\n            float x = (offsetX + float(i)) * kernelScaleX;\n            float y = (offsetY + float(j)) * kernelScaleY;\n            vec2 uv = vTextureCoord + vec2(\n                    x * pixelSizeX,\n                    y * pixelSizeY\n            );\n            accumulation += texture2D(sTexture, uv).rgb;\n        }\n    }\n    gl_FragColor = vec4(accumulation / weightsum, 1.0);\n}\n";
     }
 
     public class ConversionCanceledException extends RuntimeException {

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -26,6 +25,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
@@ -38,6 +38,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
@@ -61,6 +62,7 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
+import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmojiView;
@@ -74,7 +76,6 @@ import org.telegram.ui.iv.RichCommandSuggestions;
 import org.telegram.ui.iv.RichEditor;
 import org.telegram.ui.iv.RichEditorListView;
 import org.telegram.ui.iv.RichEditorToolbar;
-import ru.noties.jlatexmath.JLatexMathDrawable;
 
 public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 256, 4, 16384, 32768};
@@ -192,12 +193,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onOpenAttachRequest(int i, int i2) {
+        public void onOpenAttachRequest(int i, int i2) throws IOException {
             ChatAttachAlertRichLayout.this.openAttach(i, i2);
         }
 
         @Override
-        public void onOpenLocationRequest(BlockRow blockRow) {
+        public void onOpenLocationRequest(BlockRow blockRow) throws IOException {
             ChatAttachAlertRichLayout.this.openLocationPicker(blockRow);
         }
 
@@ -309,9 +310,9 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onAttach() {
+        public void onAttach() throws IOException {
             ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
-            ChatAttachAlertRichLayout.this.openAttach(74, 0);
+            ChatAttachAlertRichLayout.this.openAttach(90, 0);
         }
 
         @Override
@@ -1032,9 +1033,9 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     @Override
     public boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) throws Resources.NotFoundException {
         MessageObject messageObject;
+        long sendMonoForumPeerId;
         MessageObject messageObject2;
-        long j2;
-        int quickReplyId;
+        SendMessageChatArguments messageChatSendParams;
         ChatActivityEnterView chatActivityEnterView;
         if (isSendLocked()) {
             showConversionSheet();
@@ -1067,18 +1068,17 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             ChatActivity chatActivity = (ChatActivity) baseFragment2;
             MessageObject replyMessage = chatActivity.getReplyMessage();
             MessageObject threadMessage = chatActivity.getThreadMessage();
-            long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
-            quickReplyId = chatActivity.getQuickReplyId();
+            sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
+            messageChatSendParams = chatActivity.getMessageChatSendParams();
             messageObject2 = replyMessage;
             messageObject = threadMessage;
-            j2 = sendMonoForumPeerId;
         } else {
             messageObject = null;
+            sendMonoForumPeerId = 0;
             messageObject2 = null;
-            j2 = 0;
-            quickReplyId = 0;
+            messageChatSendParams = null;
         }
-        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject2, messageObject, z, i, i2, null, quickReplyId, j, j2, 0L);
+        SendMessagesHelper.prepareSendingArticle(AccountInstance.getInstance(this.parentAlert.currentAccount), arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, null, false, this.parentAlert.getDialogId(), messageObject2, messageObject, z, i, i2, messageChatSendParams, j, sendMonoForumPeerId, 0L);
         this.parentAlert.dismiss(true);
         return true;
     }
@@ -1240,7 +1240,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void openLocationPicker(final BlockRow blockRow) {
+    public void openLocationPicker(final BlockRow blockRow) throws IOException {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment != null && blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(baseFragment)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this.parentAlert.baseFragment, false, false, false, null);
@@ -1339,7 +1339,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void openAttach(int i, int i2) {
+    public void openAttach(int i, int i2) throws IOException {
         if (this.parentAlert.baseFragment == null) {
             return;
         }
@@ -1424,6 +1424,38 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
                 this.f$0.lambda$openAttach$26(chatAttachAlert, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
         });
+        chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
+            @Override
+            public void didSelectPhotos(ArrayList arrayList, boolean z, int i3, int i4, long j) {
+                ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$didSelectPhotos(this, arrayList, z, i3, i4, j);
+            }
+
+            @Override
+            public void startMusicSelectActivity() {
+                ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startMusicSelectActivity(this);
+            }
+
+            @Override
+            public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i3, int i4, long j, boolean z2, long j2) {
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    ChatAttachAlertRichLayout.this.listView.lambda$attachDocument$38((String) arrayList.get(0));
+                } else if (arrayList3 != null && !arrayList3.isEmpty()) {
+                    ChatAttachAlertRichLayout.this.listView.attachDocument((MessageObject) arrayList3.get(0));
+                }
+                chatAttachAlert.dismiss(true);
+            }
+
+            @Override
+            public void startDocumentSelectActivity() {
+                try {
+                    Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                    intent.setType("*/*");
+                    ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).parentAlert.baseFragment.startActivityForResult(intent, 21);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        });
         chatAttachAlert.init();
         if (i2 != 0) {
             chatAttachAlert.openAttachLayoutForType(i2);
@@ -1459,6 +1491,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             return;
         }
         this.listView.attachExternalMedia(intent.getData());
+    }
+
+    public void onExternalDocumentPicked(Intent intent) {
+        if (intent == null || intent.getData() == null) {
+            return;
+        }
+        this.listView.attachDocument(intent.getData());
     }
 
     public void updateSendButtonLoading() {
@@ -1959,37 +1998,13 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
     }
 
     public static void lambda$showEditLatexSheet$29(String[] strArr, final Utilities.Callback2 callback2) {
-        final boolean z = true;
-        final Bitmap bitmap = null;
-        try {
-            JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(strArr[0]).textSize(AndroidUtilities.dp(26.0f)).build();
-            int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
-            int intrinsicHeight = jLatexMathDrawableBuild.getIntrinsicHeight();
-            if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
-                jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
-                bitmap = bitmapCreateBitmap;
-                z = false;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+        final boolean z = false;
+        Latex latexRender = Latex.render(strArr[0], AndroidUtilities.dp(26.0f), false);
+        if (latexRender == null) {
+            latexRender = Latex.render(LocaleController.getString(R.string.ArticleLatexError), AndroidUtilities.dp(26.0f), false);
+            z = true;
         }
-        if (z) {
-            try {
-                JLatexMathDrawable jLatexMathDrawableBuild2 = JLatexMathDrawable.builder(LocaleController.getString(R.string.ArticleLatexError)).textSize(AndroidUtilities.dp(26.0f)).build();
-                int intrinsicWidth2 = jLatexMathDrawableBuild2.getIntrinsicWidth();
-                int intrinsicHeight2 = jLatexMathDrawableBuild2.getIntrinsicHeight();
-                if (intrinsicWidth2 > 0 && intrinsicHeight2 > 0) {
-                    Bitmap bitmapCreateBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ALPHA_8);
-                    jLatexMathDrawableBuild2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
-                    jLatexMathDrawableBuild2.draw(new Canvas(bitmapCreateBitmap2));
-                    bitmap = bitmapCreateBitmap2;
-                }
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-        }
+        final Bitmap bitmap = latexRender != null ? latexRender.bitmap : null;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

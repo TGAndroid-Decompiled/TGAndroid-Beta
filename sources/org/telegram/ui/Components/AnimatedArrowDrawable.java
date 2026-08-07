@@ -11,6 +11,9 @@ import org.telegram.messenger.AndroidUtilities;
 public class AnimatedArrowDrawable extends Drawable {
     private float animProgress;
     private float animateToProgress;
+    private float customHeightDp;
+    private float customStrokeWidthDp;
+    private float customWidthDp;
     private boolean isSmall;
     private long lastUpdateTime;
     private Paint paint;
@@ -37,6 +40,21 @@ public class AnimatedArrowDrawable extends Drawable {
         updatePath();
     }
 
+    public AnimatedArrowDrawable(int i, float f, float f2, float f3) {
+        Paint paint = new Paint(1);
+        this.paint = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        this.paint.setStrokeWidth(AndroidUtilities.dpf2(f3));
+        this.paint.setColor(i);
+        this.paint.setStrokeCap(Paint.Cap.ROUND);
+        this.paint.setStrokeJoin(Paint.Join.ROUND);
+        this.isSmall = true;
+        this.customWidthDp = f;
+        this.customHeightDp = f2;
+        this.customStrokeWidthDp = f3;
+        updatePath();
+    }
+
     @Override
     public void draw(Canvas canvas) {
         canvas.drawPath(this.path, this.paint);
@@ -46,6 +64,16 @@ public class AnimatedArrowDrawable extends Drawable {
     private void updatePath() {
         this.path.reset();
         float f = (this.animProgress * 2.0f) - 1.0f;
+        if (this.customWidthDp > 0.0f && this.customHeightDp > 0.0f) {
+            float fDpf2 = AndroidUtilities.dpf2(this.customStrokeWidthDp) / 2.0f;
+            float fDpf22 = AndroidUtilities.dpf2(this.customWidthDp) - fDpf2;
+            float fDpf23 = AndroidUtilities.dpf2(this.customHeightDp) - fDpf2;
+            float f2 = fDpf23 - fDpf2;
+            this.path.moveTo(fDpf2, fDpf23 - (this.animProgress * f2));
+            this.path.lineTo((fDpf2 + fDpf22) / 2.0f, fDpf2 + (this.animProgress * f2));
+            this.path.lineTo(fDpf22, fDpf23 - (f2 * this.animProgress));
+            return;
+        }
         if (this.isSmall) {
             this.path.moveTo(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f) - (AndroidUtilities.dp(2.0f) * f));
             this.path.lineTo(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + (AndroidUtilities.dp(2.0f) * f));
@@ -110,11 +138,19 @@ public class AnimatedArrowDrawable extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(26.0f);
+        float f = this.customWidthDp;
+        if (f <= 0.0f) {
+            f = 26.0f;
+        }
+        return AndroidUtilities.dp(f);
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(26.0f);
+        float f = this.customHeightDp;
+        if (f <= 0.0f) {
+            f = 26.0f;
+        }
+        return AndroidUtilities.dp(f);
     }
 }

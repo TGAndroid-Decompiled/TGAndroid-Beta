@@ -2464,9 +2464,9 @@ public class StoriesController {
             for (int i = 0; i < size; i++) {
                 long jLongValue = ((Long) this.entry.shareUserIds.get(i)).longValue();
                 if (this.entry.wouldBeVideo()) {
-                    SendMessagesHelper.prepareSendingVideo(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, null, jLongValue, null, null, null, null, entities, 0, null, !r8.silent, this.entry.scheduleDate, 0, false, false, string, null, 0, 0L, 0L);
+                    SendMessagesHelper.prepareSendingVideo(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, null, jLongValue, null, null, null, null, entities, 0, null, !r8.silent, this.entry.scheduleDate, 0, false, false, string, null, 0L, 0L);
                 } else {
-                    SendMessagesHelper.prepareSendingPhoto(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, jLongValue, null, null, null, null, entities, null, null, 0, null, null, !r8.silent, this.entry.scheduleDate, 0, false, string, null, 0, 0L, 0L);
+                    SendMessagesHelper.prepareSendingPhoto(AccountInstance.getInstance(StoriesController.this.currentAccount), this.path, null, null, jLongValue, null, null, null, null, entities, null, null, 0, null, null, !r8.silent, this.entry.scheduleDate, 0, false, string, null, 0L, 0L);
                 }
             }
             this.putMessages = true;
@@ -5354,7 +5354,7 @@ public class StoriesController {
     }
 
     public void checkUnsupportedStory(final long j, final int i) {
-        final String str = "228:" + j + ":" + i;
+        final String str = "229:" + j + ":" + i;
         if (this.requestingUnsupportedStories.contains(str) || this.unsupportedStoriesChecked.contains(str)) {
             return;
         }

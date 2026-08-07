@@ -107,7 +107,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotGuardHelper;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.DownloadController;
@@ -205,6 +204,7 @@ import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 import org.telegram.ui.bots.BotSensors;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.iv.Latex;
 import org.telegram.ui.web.AddressBarList;
 import org.telegram.ui.web.BookmarksFragment;
 import org.telegram.ui.web.BotWebViewContainer;
@@ -214,7 +214,6 @@ import org.telegram.ui.web.SearchEngine;
 import org.telegram.ui.web.WebActionBar;
 import org.telegram.ui.web.WebBrowserSettings;
 import org.telegram.ui.web.WebInstantView;
-import ru.noties.jlatexmath.JLatexMathDrawable;
 
 public class ArticleViewer extends IArticleViewer implements NotificationCenter.NotificationCenterDelegate {
     private static TextPaint channelNamePaint;
@@ -2981,7 +2980,6 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         int i2;
         int i3;
         int i4;
-        int i5;
         Object textPaintUrlSpan;
         Object textPaintUrlSpan2;
         if (richText2 == null) {
@@ -3037,21 +3035,21 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         if (richText2 instanceof TL_iv.textEmpty) {
             return "";
         }
-        int i6 = 1;
+        int i5 = 1;
         if (richText2 instanceof TL_iv.textConcat) {
             SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
             int size = richText2.texts.size();
-            int i7 = 0;
-            while (i7 < size) {
-                TL_iv.RichText richText3 = richText2.texts.get(i7);
+            int i6 = 0;
+            while (i6 < size) {
+                TL_iv.RichText richText3 = richText2.texts.get(i6);
                 TL_iv.RichText lastRichText = getLastRichText(richText3);
                 boolean z = i >= 0 && (richText3 instanceof TL_iv.textUrl) && ((TL_iv.textUrl) richText3).webpage_id != 0;
-                if (z && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - i6) != '\n') {
+                if (z && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - i5) != '\n') {
                     spannableStringBuilder4.append((CharSequence) " ");
-                    spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - i6, spannableStringBuilder4.length(), 33);
+                    spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - i5, spannableStringBuilder4.length(), 33);
                 }
-                int i8 = i7;
-                int i9 = size;
+                int i7 = i6;
+                int i8 = size;
                 CharSequence text = getText(iArticleViewer, webPage, view, richText, richText3, pageBlock, i);
                 int textFlags = getTextFlags(lastRichText);
                 int length = spannableStringBuilder4.length();
@@ -3074,13 +3072,13 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                         spannableStringBuilder4.setSpan(new TextPaintSpan(getTextPaint(iArticleViewer, richText, lastRichText, pageBlock)), length, spannableStringBuilder4.length(), 33);
                     }
                 }
-                if (z && i8 != i9 - 1) {
+                if (z && i7 != i8 - 1) {
                     spannableStringBuilder4.append((CharSequence) " ");
                     spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
                 }
-                i7 = i8 + 1;
-                size = i9;
-                i6 = 1;
+                i6 = i7 + 1;
+                size = i8;
+                i5 = 1;
             }
             return spannableStringBuilder4;
         }
@@ -3126,13 +3124,12 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 int iAbs = Math.abs(i);
                 if (iDp > iAbs) {
                     i4 = (int) (iDp2 * (iAbs / iDp));
-                    i5 = iAbs;
                 } else {
                     i4 = iDp2;
-                    i5 = iDp;
+                    iAbs = iDp;
                 }
                 if (view != null) {
-                    spannableStringBuilder8.setSpan(new TextPaintImageReceiverSpan(view, documentWithId, (Object) webPage, i5, i4, false, AndroidUtilities.computePerceivedBrightness(iArticleViewer.getThemedColor(Theme.key_windowBackgroundWhite)) <= 0.705f), 0, spannableStringBuilder8.length(), 33);
+                    spannableStringBuilder8.setSpan(new TextPaintImageReceiverSpan(view, documentWithId, (Object) webPage, iAbs, i4, false, AndroidUtilities.computePerceivedBrightness(iArticleViewer.getThemedColor(Theme.key_windowBackgroundWhite)) <= 0.705f), 0, spannableStringBuilder8.length(), 33);
                 }
                 return spannableStringBuilder8;
             }
@@ -3145,14 +3142,14 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             int iDp4 = AndroidUtilities.dp(textimage.h);
             int iAbs2 = Math.abs(i);
             if (iDp3 > iAbs2) {
-                i2 = (int) (iDp4 * (iAbs2 / iDp3));
-                i3 = iAbs2;
+                i3 = (int) (iDp4 * (iAbs2 / iDp3));
+                i2 = iAbs2;
             } else {
-                i2 = iDp4;
-                i3 = iDp3;
+                i2 = iDp3;
+                i3 = iDp4;
             }
             if (view != null) {
-                spannableStringBuilder9.setSpan(new TextPaintImageReceiverSpan(view, webPhoto, (Object) webPage, i3, i2, false, false), 0, spannableStringBuilder9.length(), 33);
+                spannableStringBuilder9.setSpan(new TextPaintImageReceiverSpan(view, webPhoto, (Object) webPage, i2, i3, false, false), 0, spannableStringBuilder9.length(), 33);
             }
             return spannableStringBuilder9;
         }
@@ -3160,25 +3157,12 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
             TL_iv.textMath textmath = (TL_iv.textMath) richText2;
             if (textmath.bitmap == null && !textmath.tried) {
                 textmath.tried = true;
-                try {
-                    JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(textmath.source).textSize(AndroidUtilities.dp(20.0f)).build();
-                    int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
-                    int intrinsicHeight = jLatexMathDrawableBuild.getIntrinsicHeight();
-                    if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-                        Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
-                        jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                        jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
-                        textmath.w = intrinsicWidth;
-                        textmath.h = intrinsicHeight;
-                        try {
-                            textmath.depth = jLatexMathDrawableBuild.icon().getIconDepth();
-                        } catch (Throwable th) {
-                            FileLog.e(th);
-                        }
-                        textmath.bitmap = bitmapCreateBitmap;
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                Latex latexRender = Latex.render(textmath.source, AndroidUtilities.dp(20.0f), true);
+                if (latexRender != null) {
+                    textmath.w = latexRender.width;
+                    textmath.h = latexRender.height;
+                    textmath.depth = latexRender.depth;
+                    textmath.bitmap = latexRender.bitmap;
                 }
             }
             if (textmath.bitmap == null) {
@@ -6470,36 +6454,11 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         public static boolean isVideo(TL_iv.RichMessage richMessage, TL_iv.PageBlock pageBlock) {
-            String str;
-            if (!(pageBlock instanceof TL_iv.pageBlockVideo)) {
+            TLRPC.Document documentWithId;
+            if (!(pageBlock instanceof TL_iv.pageBlockVideo) || (documentWithId = getDocumentWithId(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) == null) {
                 return false;
             }
-            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            TLRPC.Document documentWithId = getDocumentWithId(richMessage, pageblockvideo.video_id);
-            if (BuildVars.LOGS_ENABLED) {
-                StringBuilder sb = new StringBuilder();
-                if (documentWithId != null) {
-                    Iterator<TLRPC.DocumentAttribute> it = documentWithId.attributes.iterator();
-                    while (it.hasNext()) {
-                        sb.append(it.next().getClass().getSimpleName());
-                        sb.append(",");
-                    }
-                }
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append("[richmedia] WebPageUtils.isVideo video_id=");
-                sb2.append(pageblockvideo.video_id);
-                if (documentWithId == null) {
-                    str = " doc=NOT_FOUND documents.size=" + richMessage.documents.size();
-                } else {
-                    str = " doc=" + documentWithId.id + " mime=" + documentWithId.mime_type + " attrs=[" + ((Object) sb) + "] isVideoDocument=" + MessageObject.isVideoDocument(documentWithId) + " isGifDocument=" + MessageObject.isGifDocument(documentWithId);
-                }
-                sb2.append(str);
-                FileLog.d(sb2.toString());
-            }
-            if (documentWithId != null) {
-                return MessageObject.isVideoDocument(documentWithId);
-            }
-            return false;
+            return MessageObject.isVideoDocument(documentWithId);
         }
 
         public static boolean isVideo(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
@@ -14628,31 +14587,20 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         public void setBlock(TL_iv.pageBlockMath pageblockmath) {
+            Latex latexRender;
             this.currentBlock = pageblockmath;
             this.imageView.setImageBitmap(null);
             this.imageView.setPadding(AndroidUtilities.dp(this.parent.padx()), 0, AndroidUtilities.dp(this.parent.padx()), 0);
             this.imageView.setLayoutParams(new FrameLayout.LayoutParams(0, 0));
             this.width = AndroidUtilities.dp(this.parent.padx() * 2);
-            if (pageblockmath != null) {
-                try {
-                    JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(pageblockmath.source).textSize(AndroidUtilities.dp(20.0f)).build();
-                    int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
-                    int intrinsicHeight = jLatexMathDrawableBuild.getIntrinsicHeight();
-                    if (intrinsicWidth <= 0 || intrinsicHeight <= 0) {
-                        return;
-                    }
-                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
-                    jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                    jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
-                    this.imageView.setImageBitmap(bitmapCreateBitmap);
-                    ImageView imageView = this.imageView;
-                    int iDp = intrinsicWidth + AndroidUtilities.dp(this.parent.padx() * 2);
-                    this.width = iDp;
-                    imageView.setLayoutParams(new FrameLayout.LayoutParams(iDp, intrinsicHeight));
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+            if (pageblockmath == null || (latexRender = Latex.render(pageblockmath.source, AndroidUtilities.dp(20.0f), false)) == null) {
+                return;
             }
+            this.imageView.setImageBitmap(latexRender.bitmap);
+            ImageView imageView = this.imageView;
+            int iDp = latexRender.width + AndroidUtilities.dp(this.parent.padx() * 2);
+            this.width = iDp;
+            imageView.setLayoutParams(new FrameLayout.LayoutParams(iDp, latexRender.height));
         }
 
         @Override
@@ -14770,7 +14718,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
     }
 
     @Override
-    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) throws Resources.NotFoundException {
+    public boolean openPhoto(TL_iv.PageBlock pageBlock, WebpageAdapter webpageAdapter) {
         ArrayList arrayList;
         int iIndexOf;
         BaseFragment baseFragment = this.parentFragment;

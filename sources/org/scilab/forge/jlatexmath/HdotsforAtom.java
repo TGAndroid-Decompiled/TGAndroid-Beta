@@ -17,12 +17,22 @@ public class HdotsforAtom extends MulticolumnAtom {
         horizontalBox.add(ldotp.createBox(teXEnvironment));
         horizontalBox.add(strutBox);
         if (this.w != 0.0f) {
-            horizontalBox.getWidth();
-            HorizontalBox horizontalBox2 = new HorizontalBox(horizontalBox);
-            while (horizontalBox2.getWidth() < this.w) {
-                horizontalBox2.add(horizontalBox);
+            float width = horizontalBox.getWidth();
+            float f = this.w;
+            if (width <= 0.0f || !DelimiterFactory$$ExternalSyntheticBackport0.m(width) || f > 65536.0f) {
+                f = 0.0f;
             }
-            horizontalBox = new HorizontalBox(horizontalBox2, this.w, 2);
+            HorizontalBox horizontalBox2 = new HorizontalBox(horizontalBox);
+            int i = 0;
+            while (horizontalBox2.getWidth() < f) {
+                int i2 = i + 1;
+                if (i >= 65536) {
+                    break;
+                }
+                horizontalBox2.add(horizontalBox);
+                i = i2;
+            }
+            horizontalBox = f != 0.0f ? new HorizontalBox(horizontalBox2, f, 2) : horizontalBox2;
         }
         horizontalBox.type = 12;
         return horizontalBox;

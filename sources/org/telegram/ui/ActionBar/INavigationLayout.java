@@ -62,9 +62,9 @@ public interface INavigationLayout {
 
     BaseFragment getLastFragment();
 
-    Theme.MessageDrawable getMessageDrawableOutMediaStart();
+    MessageDrawable getMessageDrawableOutMediaStart();
 
-    Theme.MessageDrawable getMessageDrawableOutStart();
+    MessageDrawable getMessageDrawableOutStart();
 
     FrameLayout getOverlayContainerView();
 

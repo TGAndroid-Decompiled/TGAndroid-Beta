@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -120,7 +119,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         recyclerListView.setItemAnimator(defaultItemAnimator);
         recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) throws Resources.NotFoundException {
+            public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$new$0(i, view, i2);
             }
         });
@@ -144,7 +143,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         FileLoader.getInstance(i).getCurrentLoadingFiles(this.currentLoadingFiles);
     }
 
-    public void lambda$new$0(int i, View view, int i2) throws Resources.NotFoundException {
+    public void lambda$new$0(int i, View view, int i2) {
         MessageObject message = this.adapter.getMessage(i2);
         if (message == null) {
             return;

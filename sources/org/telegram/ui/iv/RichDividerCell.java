@@ -68,20 +68,20 @@ public class RichDividerCell extends RichBlockCell implements Theme.Colorable, T
 
     @Override
     public void updateColors() {
-        this.paint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
+        this.paint.setColor(Theme.getColor(Theme.key_chat_inDivider, this.resourcesProvider));
         this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
     }
 
     @Override
     public void fillTextLayoutBlocks(ArrayList arrayList) {
         int iRegionLo = regionLo();
-        int iMax = Math.max(1, (regionHi() - iRegionLo) / 3);
-        arrayList.add(RichBlockSelection.of((iRegionLo + iMax) - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), iRegionLo + (iMax * 2) + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f)));
+        int iRegionHi = (regionHi() - iRegionLo) / 4;
+        arrayList.add(RichBlockSelection.of((iRegionLo + iRegionHi) - AndroidUtilities.dp(12.0f), 0, (regionHi() - iRegionHi) + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f)));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(18.0f));
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(12.0f));
     }
 
     private boolean isCellSelected() {
@@ -94,16 +94,16 @@ public class RichDividerCell extends RichBlockCell implements Theme.Colorable, T
     @Override
     protected void onDraw(Canvas canvas) {
         int iRegionLo = regionLo();
-        int iMax = Math.max(1, (regionHi() - iRegionLo) / 3);
-        int i = iRegionLo + iMax;
-        int i2 = iRegionLo + (iMax * 2);
-        this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_chat_inReplyMessageText, this.resourcesProvider), 0.2f));
+        int iRegionHi = (regionHi() - iRegionLo) / 4;
+        int i = iRegionLo + iRegionHi;
+        int iRegionHi2 = regionHi() - iRegionHi;
         if (isCellSelected()) {
-            canvas.drawRoundRect(i - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f) + i2, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.selectionPaint);
+            canvas.drawRoundRect(i - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + iRegionHi2, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.selectionPaint);
         }
+        float fDp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(i, AndroidUtilities.dp(8.0f), i2, AndroidUtilities.dp(10.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), this.paint);
+        rectF.set(i, fDp, iRegionHi2, AndroidUtilities.dp(1.0f) + fDp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(0.5f), AndroidUtilities.dp(0.5f), this.paint);
     }
 
     public static final class Factory extends UItem.UItemFactory {

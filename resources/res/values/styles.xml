@@ -1019,6 +1019,9 @@
         <item name="android:windowEnterAnimation">@null</item>
         <item name="android:windowExitAnimation">@null</item>
     </style>
+    <style name="EditTextNoBackgroundStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@null</item>
+    </style>
     <style name="MyTextViewStyle" parent="@android:style/Widget.Material.Light.TextView">
     </style>
     <style name="Platform.AppCompat" parent="@style/Platform.V21.AppCompat">

@@ -3,8 +3,14 @@ package org.telegram.ui.iv;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.ReplyMessageLine;
 
 public abstract class RichBlockChrome {
+    public static void applyEditorQuoteColor(ReplyMessageLine replyMessageLine, Theme.ResourcesProvider resourcesProvider) {
+        replyMessageLine.setSimpleColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark());
+    }
+
     public static int quoteEdgePad(int i) {
         if (i <= 0) {
             return 0;

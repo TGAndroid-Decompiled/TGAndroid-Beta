@@ -1732,7 +1732,7 @@ public class StickerMakerView extends FrameLayout implements NotificationCenter.
             return;
         }
         if (stickerUploader.sendToDialogId != 0) {
-            SendMessagesHelper.getInstance(i).sendSticker(stickerUploader.mediaDocument.document, null, stickerUploader.sendToDialogId, null, null, null, null, null, true, 0, 0, false, null, null, 0, 0L, 0L, null);
+            SendMessagesHelper.getInstance(i).sendSticker(stickerUploader.mediaDocument.document, null, stickerUploader.sendToDialogId, null, null, null, null, null, true, 0, 0, false, null, null, 0L, 0L, null);
             DownloadButton.PreparingVideoToast preparingVideoToast = this.loadingToast;
             if (preparingVideoToast != null) {
                 preparingVideoToast.setProgress(1.0f);

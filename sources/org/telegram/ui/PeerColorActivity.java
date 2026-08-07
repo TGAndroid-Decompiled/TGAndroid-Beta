@@ -65,6 +65,7 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -132,8 +133,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     private final boolean isChannel;
     private boolean isDark;
     public boolean loading;
-    private final Theme.MessageDrawable msgInDrawable;
-    private final Theme.MessageDrawable msgInDrawableSelected;
+    private final MessageDrawable msgInDrawable;
+    private final MessageDrawable msgInDrawableSelected;
     public Page namePage;
     private Theme.ResourcesProvider parentResourcesProvider;
     public Page profilePage;
@@ -1310,7 +1311,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.updateThemeColors():void");
     }
 
-    public PeerColorActivity(long j) {
+    public PeerColorActivity(long j) throws IOException {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.forceDark = zIsCurrentThemeDark;
@@ -1398,8 +1399,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 return PeerColorActivity.this.isDark;
             }
         };
-        this.msgInDrawable = new Theme.MessageDrawable(0, false, false, this.resourceProvider);
-        this.msgInDrawableSelected = new Theme.MessageDrawable(0, false, true, this.resourceProvider);
+        this.msgInDrawable = new MessageDrawable(0, false, false, this.resourceProvider);
+        this.msgInDrawableSelected = new MessageDrawable(0, false, true, this.resourceProvider);
     }
 
     @Override
@@ -1611,10 +1612,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         this.sunDrawable.beginApplyLayerColors();
         int color = Theme.getColor(Theme.key_chats_menuName);
-        this.sunDrawable.setLayerColor("Sunny.**", color);
-        this.sunDrawable.setLayerColor("Path 6.**", color);
-        this.sunDrawable.setLayerColor("Path.**", color);
-        this.sunDrawable.setLayerColor("Path 5.**", color);
+        this.sunDrawable.setLayerColor("Sunny", color);
+        this.sunDrawable.setLayerColor("Path 6", color);
+        this.sunDrawable.setLayerColor("Path", color);
+        this.sunDrawable.setLayerColor("Path 5", color);
         this.sunDrawable.commitApplyLayerColors();
         ImageView imageView4 = new ImageView(context);
         this.dayNightItem = imageView4;
@@ -2001,7 +2002,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             } else {
                 i2 = R.string.ChangeUserNameColor;
             }
-            CharSequence string = LocaleController.getString(i2);
+            String string = LocaleController.getString(i2);
             if (z && !z2 && MessagesController.getInstance(i).getMainSettings().getInt("boostingappearance", 0) < 3) {
                 MessagesController.PeerColors peerColors = messagesController.peerColors;
                 if (peerColors != null) {
@@ -2036,9 +2037,6 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
             }
             setContentDescription(string);
-            if (z && this.lock == null) {
-                string = TextCell.applyNewSpan(string);
-            }
             this.buttonText = new Text(string, 16.0f);
             updateColors();
         }

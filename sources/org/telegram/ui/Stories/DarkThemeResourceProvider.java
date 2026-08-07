@@ -9,6 +9,7 @@ import android.util.SparseIntArray;
 import androidx.core.graphics.ColorUtils;
 import j$.util.Objects;
 import java.util.HashSet;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 
 public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
@@ -226,7 +227,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
     public Drawable getDrawable(String str) {
         if (Objects.equals(str, "drawableMsgOutMedia")) {
             if (this.msgOutMedia == null) {
-                this.msgOutMedia = new Theme.MessageDrawable(1, true, false, this);
+                this.msgOutMedia = new MessageDrawable(1, true, false, this);
             }
             return this.msgOutMedia;
         }

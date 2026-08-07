@@ -68,6 +68,7 @@ import me.vkryl.core.BitwiseUtils;
 import me.vkryl.core.reference.ReferenceList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
@@ -98,6 +99,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -115,6 +117,7 @@ import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticApiModelOutline1;
 import org.telegram.ui.Cells.ChatLoadingCell;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Cells.ChatMessageUnsupportedCell;
 import org.telegram.ui.Cells.ChatUnreadCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.AdminLogFilterAlert2;
@@ -666,7 +669,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
             if (jMessageDeletedBy != jMessageDeletedBy2 && !arrayList2.isEmpty()) {
                 TLRPC.ReplyMarkup replyMarkup = messageObject.messageOwner.reply_markup;
-                boolean z = (replyMarkup == null || replyMarkup.rows.isEmpty()) ? false : true;
+                boolean z = (replyMarkup instanceof TLRPC.TL_replyInlineMarkup) && !((TLRPC.TL_replyInlineMarkup) replyMarkup).rows.isEmpty();
                 int size = arrayList.size();
                 ArrayList arrayList3 = new ArrayList();
                 for (int size2 = arrayList2.size() - 1; size2 >= 0 && ((MessageObject) arrayList2.get(size2)).contentType == 1; size2--) {
@@ -685,7 +688,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                         arrayList.add(messageObject2);
                     }
                     TLRPC.ReplyMarkup replyMarkup2 = messageObject2.messageOwner.reply_markup;
-                    if (z != ((replyMarkup2 == null || replyMarkup2.rows.isEmpty()) ? false : true)) {
+                    if (z != ((replyMarkup2 instanceof TLRPC.TL_replyInlineMarkup) && !((TLRPC.TL_replyInlineMarkup) replyMarkup2).rows.isEmpty())) {
                         messageObject2.forceUpdate = true;
                         this.chatAdapter.notifyItemChanged((z ? arrayList2.size() - 1 : 0) + size);
                         this.chatAdapter.notifyItemChanged(size + (z ? arrayList2.size() - 1 : 0) + 1);
@@ -844,17 +847,21 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
         if (i <= 0) {
             TLRPC.ReplyMarkup replyMarkup = messageObject.messageOwner.reply_markup;
-            if (replyMarkup != null) {
-                replyMarkup.rows.clear();
+            if (replyMarkup instanceof TLRPC.TL_replyInlineMarkup) {
+                ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows.clear();
+            }
+            TLRPC.ReplyMarkup replyMarkup2 = messageObject.messageOwner.reply_markup;
+            if (replyMarkup2 instanceof TLRPC.TL_replyKeyboardMarkup) {
+                ((TLRPC.TL_replyKeyboardMarkup) replyMarkup2).rows.clear();
             }
         } else {
             TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup = new TLRPC.TL_replyInlineMarkup();
             messageObject.messageOwner.reply_markup = tL_replyInlineMarkup;
-            TLRPC.TL_keyboardButtonRow tL_keyboardButtonRow = new TLRPC.TL_keyboardButtonRow();
-            tL_replyInlineMarkup.rows.add(tL_keyboardButtonRow);
-            TLRPC.TL_keyboardButton tL_keyboardButton = new TLRPC.TL_keyboardButton();
-            tL_keyboardButton.text = LocaleController.formatPluralString("EventLogExpandMore", i, new Object[0]);
-            tL_keyboardButtonRow.buttons.add(tL_keyboardButton);
+            TL_keyboard.TL_keyboardInlineButtonRow tL_keyboardInlineButtonRow = new TL_keyboard.TL_keyboardInlineButtonRow();
+            tL_replyInlineMarkup.rows.add(tL_keyboardInlineButtonRow);
+            TL_keyboard.TL_keyboardInlineButton tL_keyboardInlineButton = new TL_keyboard.TL_keyboardInlineButton();
+            tL_keyboardInlineButton.text = LocaleController.formatPluralString("EventLogExpandMore", i, new Object[0]);
+            tL_keyboardInlineButtonRow.buttons.add(tL_keyboardInlineButton);
         }
         messageObject.measureInlineBotButtons();
     }
@@ -963,7 +970,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public View createView(Context context) throws Resources.NotFoundException {
+    public View createView(Context context) {
         if (this.chatMessageCellsCache.isEmpty()) {
             for (int i = 0; i < 8; i++) {
                 this.chatMessageCellsCache.add(new ChatMessageCell(context, this.currentAccount));
@@ -1172,6 +1179,12 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 ImageReceiver avatarImage;
                 int y;
                 int adapterPosition;
+                if (view instanceof ChatMessageUnsupportedCell) {
+                    canvas.save();
+                    canvas.translate(view.getX(), view.getY());
+                    ((ChatMessageUnsupportedCell) view).drawBackground(canvas);
+                    canvas.restore();
+                }
                 boolean zDrawChild = super.drawChild(canvas, view, j);
                 if ((view instanceof ChatMessageCell) && (avatarImage = (chatMessageCell = (ChatMessageCell) view).getAvatarImage()) != null) {
                     boolean z = (chatMessageCell.getMessageObject().deleted || ChannelAdminLogActivity.this.chatListView.getChildAdapterPosition(chatMessageCell) == -1) ? false : true;
@@ -2071,7 +2084,9 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         View view3 = null;
         for (int i3 = 0; i3 < childCount; i3++) {
             View childAt = this.chatListView.getChildAt(i3);
-            if (childAt instanceof ChatMessageCell) {
+            if (childAt instanceof ChatMessageUnsupportedCell) {
+                ((ChatMessageUnsupportedCell) childAt).setVisiblePart((childAt.getY() + this.actionBar.getMeasuredHeight()) - this.contentView.getBackgroundTranslationY(), this.contentView.getBackgroundSizeY());
+            } else if (childAt instanceof ChatMessageCell) {
                 ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
                 int top = chatMessageCell.getTop();
                 chatMessageCell.getBottom();
@@ -2407,6 +2422,497 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                 chatLoadingCell = r42;
             } else if (i == 2) {
                 chatLoadingCell = new ChatUnreadCell(this.mContext, null);
+            } else if (i == 10) {
+                ?? chatMessageUnsupportedCell = new ChatMessageUnsupportedCell(this.mContext, ((BaseFragment) ChannelAdminLogActivity.this).resourceProvider);
+                chatMessageUnsupportedCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                    @Override
+                    public boolean allowAddPollOptions() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$allowAddPollOptions(this);
+                    }
+
+                    @Override
+                    public boolean canDrawOutboundsContent() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
+                    }
+
+                    @Override
+                    public boolean canPerformActions() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canPerformActions(this);
+                    }
+
+                    @Override
+                    public boolean canPerformReply() {
+                        return canPerformActions();
+                    }
+
+                    @Override
+                    public boolean canSaveRichDocument(ChatMessageCell chatMessageCell3) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell3) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didLongPress(ChatMessageCell chatMessageCell3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPress(this, chatMessageCell3, f, f2);
+                    }
+
+                    @Override
+                    public void didLongPressBotButton(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell3, keyboardButtonProto);
+                    }
+
+                    @Override
+                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i2, float f, float f2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell3, chat, i2, f, f2);
+                    }
+
+                    @Override
+                    public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell3, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressCustomBotButton(this, chatMessageCell3, buttonCustom);
+                    }
+
+                    @Override
+                    public boolean didLongPressPollOption(ChatMessageCell chatMessageCell3, TLRPC.PollAnswer pollAnswer) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressPollOption(this, chatMessageCell3, pollAnswer);
+                    }
+
+                    @Override
+                    public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressToDoButton(this, chatMessageCell3, todoItem);
+                    }
+
+                    @Override
+                    public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell3, TLRPC.User user, float f, float f2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell3, user, f, f2);
+                    }
+
+                    @Override
+                    public void didPressAboutRevenueSharingAds() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                    }
+
+                    @Override
+                    public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAddPollOptionButton(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressAdmin(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAdmin(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell3, AnimatedEmojiSpan animatedEmojiSpan) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell3, animatedEmojiSpan);
+                    }
+
+                    @Override
+                    public void didPressBoostCounter(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressBotButton(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell3, keyboardButtonProto);
+                    }
+
+                    @Override
+                    public void didPressCancelSendButton(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCancelSendButton(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell3, TLRPC.Chat chat, int i2, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell3, chat, i2, f, f2, z);
+                    }
+
+                    @Override
+                    public void didPressChannelRecommendation(ChatMessageCell chatMessageCell3, TLObject tLObject, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendation(this, chatMessageCell3, tLObject, z);
+                    }
+
+                    @Override
+                    public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelRecommendationsClose(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressCodeCopy(ChatMessageCell chatMessageCell3, MessageObject.TextLayoutBlock textLayoutBlock) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCodeCopy(this, chatMessageCell3, textLayoutBlock);
+                    }
+
+                    @Override
+                    public void didPressCommentButton(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressCustomBotButton(ChatMessageCell chatMessageCell3, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCustomBotButton(this, chatMessageCell3, buttonCustom);
+                    }
+
+                    @Override
+                    public void didPressEffect(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell3, keyboardInlineButton);
+                    }
+
+                    @Override
+                    public void didPressFactCheck(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressFactCheckWhat(ChatMessageCell chatMessageCell3, int i2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell3, i2, i3);
+                    }
+
+                    @Override
+                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell3, int i2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell3, i2);
+                    }
+
+                    @Override
+                    public void didPressGroupImage(ChatMessageCell chatMessageCell3, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell3, imageReceiver, messageExtendedMedia, f, f2);
+                    }
+
+                    @Override
+                    public void didPressHiddenForward(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHiddenForward(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressHint(ChatMessageCell chatMessageCell3, int i2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell3, i2);
+                    }
+
+                    @Override
+                    public void didPressImage(ChatMessageCell chatMessageCell3, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell3, f, f2, z);
+                    }
+
+                    @Override
+                    public void didPressInstantButton(ChatMessageCell chatMessageCell3, int i2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell3, i2);
+                    }
+
+                    @Override
+                    public void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressMoreChannelRecommendations(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressOther(ChatMessageCell chatMessageCell3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressOther(this, chatMessageCell3, f, f2);
+                    }
+
+                    @Override
+                    public void didPressPollMedia(ChatMessageCell chatMessageCell3, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressPollMedia(this, chatMessageCell3, imageReceiver, pollAnswer, messageMedia, f, f2, i2);
+                    }
+
+                    @Override
+                    public void didPressReaction(ChatMessageCell chatMessageCell3, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell3, reactionCount, z, f, f2);
+                    }
+
+                    @Override
+                    public void didPressReplyMessage(ChatMessageCell chatMessageCell3, int i2, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell3, i2, f, f2, z);
+                    }
+
+                    @Override
+                    public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell3, TLRPC.Document document, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell3, document, f, f2);
+                    }
+
+                    @Override
+                    public void didPressShowMore(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressShowMore(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressSideButton(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSideButton(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressSponsoredClose(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didPressSponsoredInfo(ChatMessageCell chatMessageCell3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell3, f, f2);
+                    }
+
+                    @Override
+                    public void didPressSummarize(ChatMessageCell chatMessageCell3, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSummarize(this, chatMessageCell3, z);
+                    }
+
+                    @Override
+                    public void didPressTime(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public boolean didPressToDoButton(ChatMessageCell chatMessageCell3, TLRPC.TodoItem todoItem, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressToDoButton(this, chatMessageCell3, todoItem, z);
+                    }
+
+                    @Override
+                    public void didPressUrl(ChatMessageCell chatMessageCell3, CharacterStyle characterStyle, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell3, characterStyle, z);
+                    }
+
+                    @Override
+                    public void didPressUserAvatar(ChatMessageCell chatMessageCell3, TLRPC.User user, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell3, user, f, f2, z);
+                    }
+
+                    @Override
+                    public void didPressUserStatus(ChatMessageCell chatMessageCell3, TLRPC.User user, TLRPC.Document document, String str) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserStatus(this, chatMessageCell3, user, document, str);
+                    }
+
+                    @Override
+                    public void didPressViaBot(ChatMessageCell chatMessageCell3, String str) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressViaBot(this, chatMessageCell3, str);
+                    }
+
+                    @Override
+                    public void didPressViaBotNotInline(ChatMessageCell chatMessageCell3, long j) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressViaBotNotInline(this, chatMessageCell3, j);
+                    }
+
+                    @Override
+                    public void didPressVoteButtons(ChatMessageCell chatMessageCell3, ArrayList arrayList, int i2, int i3, int i4) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell3, arrayList, i2, i3, i4);
+                    }
+
+                    @Override
+                    public void didPressWebPage(ChatMessageCell chatMessageCell3, TLRPC.WebPage webPage, String str, boolean z) {
+                        Browser.openUrl(chatMessageCell3.getContext(), str);
+                    }
+
+                    @Override
+                    public void didQuickShareEnd(ChatMessageCell chatMessageCell3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareEnd(this, chatMessageCell3, f, f2);
+                    }
+
+                    @Override
+                    public void didQuickShareMove(ChatMessageCell chatMessageCell3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareMove(this, chatMessageCell3, f, f2);
+                    }
+
+                    @Override
+                    public void didQuickShareStart(ChatMessageCell chatMessageCell3, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didQuickShareStart(this, chatMessageCell3, f, f2);
+                    }
+
+                    @Override
+                    public void didStartVideoStream(MessageObject messageObject) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject);
+                    }
+
+                    @Override
+                    public void didTogglePollPreview(ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didTogglePollPreview(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell3, boolean z, Runnable runnable) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didToggleRichMessageCheckbox(this, chatMessageCell3, z, runnable);
+                    }
+
+                    @Override
+                    public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                    }
+
+                    @Override
+                    public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$drawPollMode(this, canvas, chatMessageCell3);
+                    }
+
+                    @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell3, z);
+                    }
+
+                    @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell3, boolean z, boolean z2) {
+                        forceUpdate(chatMessageCell3, z);
+                    }
+
+                    @Override
+                    public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell3, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdateNoAnimation(this, chatMessageCell3, z);
+                    }
+
+                    @Override
+                    public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell3) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public String getAdminRank(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                    }
+
+                    @Override
+                    public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
+                    }
+
+                    @Override
+                    public PinchToZoomHelper getPinchToZoomHelper() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getPinchToZoomHelper(this);
+                    }
+
+                    @Override
+                    public String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell3) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getProgressLoadingBotButtonUrl(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell3) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getProgressLoadingLink(this, chatMessageCell3);
+                    }
+
+                    @Override
+                    public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getTextSelectionHelper(this);
+                    }
+
+                    @Override
+                    public boolean hasSelectedMessages() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$hasSelectedMessages(this);
+                    }
+
+                    @Override
+                    public void invalidateBlur() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$invalidateBlur(this);
+                    }
+
+                    @Override
+                    public boolean isAdmin(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isAdmin(this, j);
+                    }
+
+                    @Override
+                    public boolean isLandscape() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                    }
+
+                    @Override
+                    public boolean isOwner(long j) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isOwner(this, j);
+                    }
+
+                    @Override
+                    public boolean isProgressLoading(ChatMessageCell chatMessageCell3, int i2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell3, i2);
+                    }
+
+                    @Override
+                    public boolean isReplyOrSelf() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isReplyOrSelf(this);
+                    }
+
+                    @Override
+                    public boolean keyboardIsOpened() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$keyboardIsOpened(this);
+                    }
+
+                    @Override
+                    public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i2, i3);
+                    }
+
+                    @Override
+                    public boolean needPlayMessage(ChatMessageCell chatMessageCell3, MessageObject messageObject, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell3, messageObject, z);
+                    }
+
+                    @Override
+                    public void needReloadPolls() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needReloadPolls(this);
+                    }
+
+                    @Override
+                    public void needShowPremiumBulletin(int i2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i2);
+                    }
+
+                    @Override
+                    public boolean onAccessibilityAction(int i2, Bundle bundle) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i2, bundle);
+                    }
+
+                    @Override
+                    public void onDiceFinished() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$onDiceFinished(this);
+                    }
+
+                    @Override
+                    public boolean openArticlePhoto(ChatMessageCell chatMessageCell3, TL_iv.PageBlock pageBlock) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$openArticlePhoto(this, chatMessageCell3, pageBlock);
+                    }
+
+                    @Override
+                    public void setShouldNotRepeatSticker(MessageObject messageObject) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject);
+                    }
+
+                    @Override
+                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell3, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell3, z);
+                    }
+
+                    @Override
+                    public boolean shouldRepeatSticker(MessageObject messageObject) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
+                    }
+
+                    @Override
+                    public void videoTimerReached() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
+                    }
+
+                    @Override
+                    public void didPressAppUpdateButton() {
+                        if (ApplicationLoader.isStandaloneBuild()) {
+                            LaunchActivity launchActivity = LaunchActivity.instance;
+                            if (launchActivity != null) {
+                                launchActivity.checkAppUpdate(true, null);
+                                return;
+                            }
+                            return;
+                        }
+                        if (BuildVars.isHuaweiStoreApp()) {
+                            Browser.openUrl(ChannelAdminLogActivity.this.getContext(), BuildVars.HUAWEI_STORE_URL);
+                        } else {
+                            Browser.openUrl(ChannelAdminLogActivity.this.getContext(), BuildVars.PLAYSTORE_APP_URL);
+                        }
+                    }
+                });
+                chatLoadingCell = chatMessageUnsupportedCell;
             } else {
                 chatLoadingCell = new ChatLoadingCell(this.mContext, ChannelAdminLogActivity.this.contentView, null);
             }
@@ -2436,13 +2942,18 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public boolean canSaveRichDocument(ChatMessageCell chatMessageCell) {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell);
+            }
+
+            @Override
             public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell);
             }
 
             @Override
-            public void didLongPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, keyboardButton);
+            public void didLongPressBotButton(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell, keyboardButtonProto);
             }
 
             @Override
@@ -2525,8 +3036,8 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell, keyboardButton);
+            public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell, keyboardInlineButton);
             }
 
             @Override
@@ -2577,6 +3088,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell) {
                 ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell);
+            }
+
+            @Override
+            public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell, TLRPC.Document document, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell, document, f, f2);
             }
 
             @Override
@@ -2812,6 +3328,23 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
+            public void didPressAppUpdateButton() {
+                if (ApplicationLoader.isStandaloneBuild()) {
+                    LaunchActivity launchActivity = LaunchActivity.instance;
+                    if (launchActivity != null) {
+                        launchActivity.checkAppUpdate(true, null);
+                        return;
+                    }
+                    return;
+                }
+                if (BuildVars.isHuaweiStoreApp()) {
+                    Browser.openUrl(ChannelAdminLogActivity.this.getContext(), BuildVars.HUAWEI_STORE_URL);
+                } else {
+                    Browser.openUrl(ChannelAdminLogActivity.this.getContext(), BuildVars.PLAYSTORE_APP_URL);
+                }
+            }
+
+            @Override
             public void didPressSideButton(ChatMessageCell chatMessageCell) {
                 if (ChannelAdminLogActivity.this.getParentActivity() == null) {
                     return;
@@ -3044,7 +3577,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) throws android.content.res.Resources.NotFoundException {
+            public void didPressImage(org.telegram.ui.Cells.ChatMessageCell r11, float r12, float r13, boolean r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChannelAdminLogActivity.ChatActivityAdapter.AnonymousClass1.didPressImage(org.telegram.ui.Cells.ChatMessageCell, float, float, boolean):void");
             }
 
@@ -3091,7 +3624,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressBotButton(ChatMessageCell chatMessageCell, TLRPC.KeyboardButton keyboardButton) {
+            public void didPressBotButton(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
                 MessageObject messageObject = chatMessageCell.getMessageObject();
                 if (ChannelAdminLogActivity.this.expandedEvents.contains(Long.valueOf(messageObject.eventId))) {
                     ChannelAdminLogActivity.this.expandedEvents.remove(Long.valueOf(messageObject.eventId));
@@ -3163,7 +3696,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didClickImage(ChatActionCell chatActionCell) throws Resources.NotFoundException {
+            public void didClickImage(ChatActionCell chatActionCell) {
                 MessageObject messageObject = chatActionCell.getMessageObject();
                 if (messageObject.type == 22) {
                     ChannelAdminLogActivity.this.presentFragment(new ChannelColorActivity(getDialogId()).setOnApplied(ChannelAdminLogActivity.this));
@@ -4035,7 +4568,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         Objects.requireNonNull(chatActivityFragmentView);
         if (downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(new IBlur3Capture() {
             @Override
-            public final void capture(Canvas canvas, RectF rectF) {
+            public final void capture(Canvas canvas, RectF rectF) throws IOException {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
 
@@ -4116,7 +4649,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             super(context);
         }
 
-        public void drawList(Canvas canvas, RectF rectF) {
+        public void drawList(Canvas canvas, RectF rectF) throws IOException {
             long jUptimeMillis = SystemClock.uptimeMillis();
             if (ChannelAdminLogActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();

@@ -165,9 +165,9 @@ public abstract class RichMessageConvert {
         if (pageBlock instanceof TL_iv.pageBlockDetails) {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) pageBlock;
             ArrayList arrayList2 = new ArrayList();
-            CharSequence charSequenceBold = bold(RichTextStyle.toSpannable(pageblockdetails.title));
-            if (!TextUtils.isEmpty(charSequenceBold)) {
-                arrayList2.add(charSequenceBold);
+            CharSequence spannable = RichTextStyle.toSpannable(pageblockdetails.title);
+            if (!TextUtils.isEmpty(spannable)) {
+                arrayList2.add(spannable);
             }
             collectBlocks(arrayList2, pageblockdetails.blocks);
             if (arrayList2.isEmpty()) {
@@ -195,11 +195,11 @@ public abstract class RichMessageConvert {
             return "——————————";
         }
         if (isHeading(pageBlock)) {
-            CharSequence charSequenceBold2 = bold(RichTextStyle.toSpannable(pageBlock.text, pageBlock));
-            if (TextUtils.isEmpty(charSequenceBold2)) {
+            CharSequence charSequenceBold = bold(RichTextStyle.toSpannable(pageBlock.text, pageBlock));
+            if (TextUtils.isEmpty(charSequenceBold)) {
                 return null;
             }
-            return charSequenceBold2;
+            return charSequenceBold;
         }
         if (pageBlock instanceof TL_iv.pageBlockAuthorDate) {
             return RichTextStyle.toSpannable(((TL_iv.pageBlockAuthorDate) pageBlock).author);
@@ -252,9 +252,9 @@ public abstract class RichMessageConvert {
 
     private static CharSequence renderTable(TL_iv.pageBlockTable pageblocktable) {
         ArrayList arrayList = new ArrayList();
-        CharSequence charSequenceBold = bold(RichTextStyle.toSpannable(pageblocktable.title));
-        if (!TextUtils.isEmpty(charSequenceBold)) {
-            arrayList.add(charSequenceBold);
+        CharSequence spannable = RichTextStyle.toSpannable(pageblocktable.title);
+        if (!TextUtils.isEmpty(spannable)) {
+            arrayList.add(spannable);
         }
         ArrayList<TL_iv.pageTableRow> arrayList2 = pageblocktable.rows;
         if (arrayList2 != null) {

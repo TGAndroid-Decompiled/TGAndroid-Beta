@@ -10,6 +10,7 @@ import ru.noties.jlatexmath.awt.geom.AffineTransform;
 import ru.noties.jlatexmath.swing.Icon;
 
 public class TeXIcon implements Icon {
+    private static final int MAX_PIXELS = 4096;
     private static final Color defaultColor = new Color(0, 0, 0);
     public static float defaultSize = -1.0f;
     public static float magFactor = 0.0f;
@@ -18,6 +19,13 @@ public class TeXIcon implements Icon {
     private Insets insets;
     public boolean isColored;
     private final float size;
+
+    private static int sanitizePx(int i) {
+        if (i < 0 || i > 4096) {
+            return 4096;
+        }
+        return i;
+    }
 
     protected TeXIcon(Box box, float f) {
         this(box, f, false);
@@ -89,18 +97,18 @@ public class TeXIcon implements Icon {
 
     @Override
     public int getIconHeight() {
-        return ((int) ((this.box.getHeight() * this.size) + 0.99d + this.insets.top)) + ((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom));
+        return sanitizePx(((int) ((this.box.getHeight() * this.size) + 0.99d + this.insets.top)) + ((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom)));
     }
 
     public int getIconDepth() {
-        return (int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom);
+        return sanitizePx((int) ((this.box.getDepth() * this.size) + 0.99d + this.insets.bottom));
     }
 
     @Override
     public int getIconWidth() {
         double width = (this.box.getWidth() * this.size) + 0.99d;
         Insets insets = this.insets;
-        return (int) (width + insets.left + insets.right);
+        return sanitizePx((int) (width + insets.left + insets.right));
     }
 
     public float getTrueIconHeight() {

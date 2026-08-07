@@ -133,8 +133,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private final boolean main;
     private boolean maybeStartTracking;
     private int[] measureSpec;
-    public Theme.MessageDrawable messageDrawableOutMediaStart;
-    public Theme.MessageDrawable messageDrawableOutStart;
+    public MessageDrawable messageDrawableOutMediaStart;
+    public MessageDrawable messageDrawableOutStart;
     private BaseFragment newFragment;
     AnimationNotificationsLocker notificationsLocker;
     private BaseFragment oldFragment;
@@ -708,13 +708,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             this.sheetFragment = emptyBaseFragment;
             emptyBaseFragment.setParentLayout(this);
             EmptyBaseFragment emptyBaseFragment2 = this.sheetFragment;
-            View viewCreateView = emptyBaseFragment2.fragmentView;
-            if (viewCreateView == null) {
-                viewCreateView = emptyBaseFragment2.createView(this.parentActivity);
+            View viewPerformCreateView = emptyBaseFragment2.fragmentView;
+            if (viewPerformCreateView == null) {
+                viewPerformCreateView = emptyBaseFragment2.performCreateView(this.parentActivity);
             }
-            if (viewCreateView.getParent() != this.sheetContainer) {
-                AndroidUtilities.removeFromParent(viewCreateView);
-                this.sheetContainer.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
+            if (viewPerformCreateView.getParent() != this.sheetContainer) {
+                AndroidUtilities.removeFromParent(viewPerformCreateView);
+                this.sheetContainer.addView(viewPerformCreateView, LayoutHelper.createFrame(-1, -1.0f));
                 this.sheetContainer.setShouldHandleBottomInsets(this.sheetFragment.getEdgeToEdgeSupportMode());
                 this.sheetContainer.setDrawNavigationBar(this.sheetFragment.drawEdgeNavigationBar());
             }
@@ -867,13 +867,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         if (emptyBaseFragment != null) {
             emptyBaseFragment.setParentLayout(this);
             EmptyBaseFragment emptyBaseFragment2 = this.sheetFragment;
-            View viewCreateView = emptyBaseFragment2.fragmentView;
-            if (viewCreateView == null) {
-                viewCreateView = emptyBaseFragment2.createView(this.parentActivity);
+            View viewPerformCreateView = emptyBaseFragment2.fragmentView;
+            if (viewPerformCreateView == null) {
+                viewPerformCreateView = emptyBaseFragment2.performCreateView(this.parentActivity);
             }
-            if (viewCreateView.getParent() != this.sheetContainer) {
-                AndroidUtilities.removeFromParent(viewCreateView);
-                this.sheetContainer.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
+            if (viewPerformCreateView.getParent() != this.sheetContainer) {
+                AndroidUtilities.removeFromParent(viewPerformCreateView);
+                this.sheetContainer.addView(viewPerformCreateView, LayoutHelper.createFrame(-1, -1.0f));
                 this.sheetContainer.setShouldHandleBottomInsets(this.sheetFragment.getEdgeToEdgeSupportMode());
             }
             this.sheetFragment.onResume();
@@ -1201,27 +1201,27 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.beginTrackingSent = false;
         List list = this.fragmentsStack;
         BaseFragment baseFragment = (BaseFragment) list.get(list.size() - 2);
-        View viewCreateView = baseFragment.fragmentView;
-        if (viewCreateView == null && (viewCreateView = baseFragment.createView(this.parentActivity)) != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
-            ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
+        View viewPerformCreateView = baseFragment.fragmentView;
+        if (viewPerformCreateView == null && (viewPerformCreateView = baseFragment.performCreateView(this.parentActivity)) != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+            ViewCompat.setOnApplyWindowInsetsListener(viewPerformCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
             this.containerViewBack.invalidate();
         }
-        ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
+        ViewGroup viewGroup = (ViewGroup) viewPerformCreateView.getParent();
         if (viewGroup != null) {
             baseFragment.onRemoveFromParent();
-            viewGroup.removeView(viewCreateView);
+            viewGroup.removeView(viewPerformCreateView);
         }
-        this.containerViewBack.addView(viewCreateView);
+        this.containerViewBack.addView(viewPerformCreateView);
         this.containerViewBack.setShouldHandleBottomInsets(baseFragment.getEdgeToEdgeSupportMode());
         this.containerViewBack.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewPerformCreateView.getLayoutParams();
         layoutParams.width = -1;
         layoutParams.height = -1;
         layoutParams.leftMargin = 0;
         layoutParams.rightMargin = 0;
         layoutParams.bottomMargin = 0;
         layoutParams.topMargin = 0;
-        viewCreateView.setLayoutParams(layoutParams);
+        viewPerformCreateView.setLayoutParams(layoutParams);
         ActionBar actionBar = baseFragment.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             AndroidUtilities.removeFromParent(baseFragment.actionBar);
@@ -1232,8 +1232,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         }
         baseFragment.setTitleOverlayTextIfActionBarAttached(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
         baseFragment.attachSheets(this.containerViewBack);
-        if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
-            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment.hasOwnBackground && viewPerformCreateView.getBackground() == null) {
+            viewPerformCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
         baseFragment.onResume();
         if (this.themeAnimatorSet != null) {
@@ -1812,21 +1812,21 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             baseFragment = (BaseFragment) list.get(list.size() - 1);
         }
         baseFragment2.setParentLayout(this);
-        View viewCreateView = baseFragment2.fragmentView;
-        if (viewCreateView == null) {
-            viewCreateView = baseFragment2.createView(this.parentActivity);
-            if (viewCreateView != null && baseFragment2.isSupportEdgeToEdge() && baseFragment2.drawEdgeNavigationBar()) {
-                ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment2));
+        View viewPerformCreateView = baseFragment2.fragmentView;
+        if (viewPerformCreateView == null) {
+            viewPerformCreateView = baseFragment2.performCreateView(this.parentActivity);
+            if (viewPerformCreateView != null && baseFragment2.isSupportEdgeToEdge() && baseFragment2.drawEdgeNavigationBar()) {
+                ViewCompat.setOnApplyWindowInsetsListener(viewPerformCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment2));
                 this.containerViewBack.invalidate();
             }
         } else {
-            ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
+            ViewGroup viewGroup = (ViewGroup) viewPerformCreateView.getParent();
             if (viewGroup != null) {
                 baseFragment2.onRemoveFromParent();
-                viewGroup.removeView(viewCreateView);
+                viewGroup.removeView(viewPerformCreateView);
             }
         }
-        this.containerViewBack.addView(viewCreateView);
+        this.containerViewBack.addView(viewPerformCreateView);
         LayoutContainer layoutContainer = this.containerViewBack;
         if (z4) {
             edgeToEdgeSupportMode = edgeToEdgeSupportMode2;
@@ -1845,7 +1845,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         } else {
             measuredHeight = 0;
         }
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) viewPerformCreateView.getLayoutParams();
         layoutParams2.width = -1;
         layoutParams2.height = -1;
         if (z4) {
@@ -1877,7 +1877,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             layoutParams2.bottomMargin = 0;
             layoutParams2.topMargin = 0;
         }
-        viewCreateView.setLayoutParams(layoutParams2);
+        viewPerformCreateView.setLayoutParams(layoutParams2);
         ActionBar actionBar = baseFragment2.actionBar;
         if (actionBar != null && actionBar.shouldAddToContainer()) {
             if (this.removeActionBarExtraHeight) {
@@ -1892,8 +1892,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         onFragmentStackChanged("presentFragment");
         baseFragment2.onResume();
         this.currentActionBar = baseFragment2.actionBar;
-        if (!baseFragment2.hasOwnBackground && viewCreateView.getBackground() == null) {
-            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment2.hasOwnBackground && viewPerformCreateView.getBackground() == null) {
+            viewPerformCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
         LayoutContainer layoutContainer2 = this.containerView;
         LayoutContainer layoutContainer3 = this.containerViewBack;
@@ -1904,9 +1904,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         this.containerView.setTranslationY(0.0f);
         if (z4) {
             if (!(baseFragment2 instanceof ChatActivity)) {
-                viewCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(actionBarPopupWindowLayout == null ? 24.0f : 12.0f)));
+                viewPerformCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(actionBarPopupWindowLayout == null ? 24.0f : 12.0f)));
             } else if (actionBarPopupWindowLayout != null) {
-                viewCreateView.setOutlineProvider(new ViewOutlineProvider() {
+                viewPerformCreateView.setOutlineProvider(new ViewOutlineProvider() {
                     private final Path path = new Path();
 
                     @Override
@@ -1923,13 +1923,13 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     }
                 });
             } else {
-                viewCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(29.0f)));
+                viewPerformCreateView.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(29.0f)));
             }
-            viewCreateView.setClipToOutline(true);
-            viewCreateView.setElevation(AndroidUtilities.dp(4.0f));
+            viewPerformCreateView.setClipToOutline(true);
+            viewPerformCreateView.setElevation(AndroidUtilities.dp(4.0f));
             if (Build.VERSION.SDK_INT >= 28) {
-                viewCreateView.setOutlineSpotShadowColor(-1342177280);
-                viewCreateView.setOutlineAmbientShadowColor(-1342177280);
+                viewPerformCreateView.setOutlineSpotShadowColor(-1342177280);
+                viewPerformCreateView.setOutlineAmbientShadowColor(-1342177280);
             }
             if (this.previewBackgroundDrawable == null) {
                 this.previewBackgroundDrawable = new ColorDrawable(771751936);
@@ -2228,24 +2228,24 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     private void attachView(BaseFragment baseFragment) {
-        View viewCreateView = baseFragment.fragmentView;
-        if (viewCreateView == null) {
-            viewCreateView = baseFragment.createView(this.parentActivity);
-            if (viewCreateView != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
-                ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
+        View viewPerformCreateView = baseFragment.fragmentView;
+        if (viewPerformCreateView == null) {
+            viewPerformCreateView = baseFragment.performCreateView(this.parentActivity);
+            if (viewPerformCreateView != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+                ViewCompat.setOnApplyWindowInsetsListener(viewPerformCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
                 this.containerView.invalidate();
             }
         } else {
-            ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
+            ViewGroup viewGroup = (ViewGroup) viewPerformCreateView.getParent();
             if (viewGroup != null) {
                 baseFragment.onRemoveFromParent();
-                viewGroup.removeView(viewCreateView);
+                viewGroup.removeView(viewPerformCreateView);
             }
         }
-        if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
-            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment.hasOwnBackground && viewPerformCreateView.getBackground() == null) {
+            viewPerformCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
-        this.containerView.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
+        this.containerView.addView(viewPerformCreateView, LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.setShouldHandleBottomInsets(baseFragment.getEdgeToEdgeSupportMode());
         this.containerView.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
         ActionBar actionBar = baseFragment.actionBar;
@@ -2264,25 +2264,25 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     private void attachViewTo(BaseFragment baseFragment, int i) {
-        View viewCreateView = baseFragment.fragmentView;
-        if (viewCreateView == null) {
-            viewCreateView = baseFragment.createView(this.parentActivity);
-            if (viewCreateView != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
-                ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
+        View viewPerformCreateView = baseFragment.fragmentView;
+        if (viewPerformCreateView == null) {
+            viewPerformCreateView = baseFragment.performCreateView(this.parentActivity);
+            if (viewPerformCreateView != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+                ViewCompat.setOnApplyWindowInsetsListener(viewPerformCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
                 this.containerView.invalidate();
             }
         } else {
-            ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
+            ViewGroup viewGroup = (ViewGroup) viewPerformCreateView.getParent();
             if (viewGroup != null) {
                 baseFragment.onRemoveFromParent();
-                viewGroup.removeView(viewCreateView);
+                viewGroup.removeView(viewPerformCreateView);
             }
         }
-        if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
-            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        if (!baseFragment.hasOwnBackground && viewPerformCreateView.getBackground() == null) {
+            viewPerformCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
         LayoutContainer layoutContainer = this.containerView;
-        layoutContainer.addView(viewCreateView, Utilities.clamp(i, layoutContainer.getChildCount(), 0), LayoutHelper.createFrame(-1, -1.0f));
+        layoutContainer.addView(viewPerformCreateView, Utilities.clamp(i, layoutContainer.getChildCount(), 0), LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.setShouldHandleBottomInsets(baseFragment.getEdgeToEdgeSupportMode());
         this.containerView.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
         ActionBar actionBar = baseFragment.actionBar;
@@ -2428,33 +2428,33 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                 this.containerView = this.containerViewBack;
                 this.containerViewBack = layoutContainer;
                 baseFragment.setParentLayout(this);
-                View viewCreateView = baseFragment.fragmentView;
-                if (viewCreateView == null && (viewCreateView = baseFragment.createView(this.parentActivity)) != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
-                    ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
+                View viewPerformCreateView = baseFragment.fragmentView;
+                if (viewPerformCreateView == null && (viewPerformCreateView = baseFragment.performCreateView(this.parentActivity)) != null && baseFragment.isSupportEdgeToEdge() && baseFragment.drawEdgeNavigationBar()) {
+                    ViewCompat.setOnApplyWindowInsetsListener(viewPerformCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment));
                     this.containerView.invalidate();
                 }
                 if (!this.inPreviewMode) {
                     this.containerView.setVisibility(0);
-                    ViewGroup viewGroup = (ViewGroup) viewCreateView.getParent();
+                    ViewGroup viewGroup = (ViewGroup) viewPerformCreateView.getParent();
                     if (viewGroup != null) {
                         baseFragment.onRemoveFromParent();
                         try {
-                            viewGroup.removeView(viewCreateView);
+                            viewGroup.removeView(viewPerformCreateView);
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
                     }
-                    this.containerView.addView(viewCreateView);
+                    this.containerView.addView(viewPerformCreateView);
                     this.containerView.setShouldHandleBottomInsets(baseFragment.getEdgeToEdgeSupportMode());
                     this.containerView.setDrawNavigationBar(baseFragment.drawEdgeNavigationBar());
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewCreateView.getLayoutParams();
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewPerformCreateView.getLayoutParams();
                     layoutParams.width = -1;
                     layoutParams.height = -1;
                     layoutParams.leftMargin = 0;
                     layoutParams.rightMargin = 0;
                     layoutParams.bottomMargin = 0;
                     layoutParams.topMargin = 0;
-                    viewCreateView.setLayoutParams(layoutParams);
+                    viewPerformCreateView.setLayoutParams(layoutParams);
                     ActionBar actionBar = baseFragment.actionBar;
                     if (actionBar != null && actionBar.shouldAddToContainer()) {
                         if (this.removeActionBarExtraHeight) {
@@ -2475,8 +2475,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     this.presentingFragmentDescriptions = baseFragment.getThemeDescriptions();
                 }
                 this.currentActionBar = baseFragment.actionBar;
-                if (!baseFragment.hasOwnBackground && viewCreateView.getBackground() == null) {
-                    viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                if (!baseFragment.hasOwnBackground && viewPerformCreateView.getBackground() == null) {
+                    viewPerformCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 }
                 if (z3) {
                     this.transitionAnimationStartTime = System.currentTimeMillis();
@@ -2632,21 +2632,21 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             }
             BaseFragment baseFragment2 = (BaseFragment) this.fragmentsStack.get(i);
             baseFragment2.setParentLayout(this);
-            View viewCreateView = baseFragment2.fragmentView;
-            if (viewCreateView == null) {
-                viewCreateView = baseFragment2.createView(this.parentActivity);
-                if (viewCreateView != null && baseFragment2.isSupportEdgeToEdge() && baseFragment2.drawEdgeNavigationBar()) {
-                    ViewCompat.setOnApplyWindowInsetsListener(viewCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment2));
+            View viewPerformCreateView = baseFragment2.fragmentView;
+            if (viewPerformCreateView == null) {
+                viewPerformCreateView = baseFragment2.performCreateView(this.parentActivity);
+                if (viewPerformCreateView != null && baseFragment2.isSupportEdgeToEdge() && baseFragment2.drawEdgeNavigationBar()) {
+                    ViewCompat.setOnApplyWindowInsetsListener(viewPerformCreateView, new ActionBarLayout$$ExternalSyntheticLambda5(baseFragment2));
                     this.containerView.invalidate();
                 }
             } else {
-                ViewGroup viewGroup3 = (ViewGroup) viewCreateView.getParent();
+                ViewGroup viewGroup3 = (ViewGroup) viewPerformCreateView.getParent();
                 if (viewGroup3 != null) {
                     baseFragment2.onRemoveFromParent();
-                    viewGroup3.removeView(viewCreateView);
+                    viewGroup3.removeView(viewPerformCreateView);
                 }
             }
-            this.containerView.addView(viewCreateView, LayoutHelper.createFrame(-1, -1.0f));
+            this.containerView.addView(viewPerformCreateView, LayoutHelper.createFrame(-1, -1.0f));
             this.containerView.setShouldHandleBottomInsets(baseFragment2.getEdgeToEdgeSupportMode());
             this.containerView.setDrawNavigationBar(baseFragment2.drawEdgeNavigationBar());
             ActionBar actionBar2 = baseFragment2.actionBar;
@@ -2662,10 +2662,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             baseFragment2.onResume();
             baseFragment2.onBecomeFullyVisible();
             this.currentActionBar = baseFragment2.actionBar;
-            if (baseFragment2.hasOwnBackground || viewCreateView.getBackground() != null) {
+            if (baseFragment2.hasOwnBackground || viewPerformCreateView.getBackground() != null) {
                 return;
             }
-            viewCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            viewPerformCreateView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         }
     }
 
@@ -2877,10 +2877,10 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             if (lastFragment != null) {
                 if (themeAnimationSettings.resourcesProvider != null) {
                     if (this.messageDrawableOutStart == null) {
-                        Theme.MessageDrawable messageDrawable = new Theme.MessageDrawable(0, true, false, this.startColorsProvider);
+                        MessageDrawable messageDrawable = new MessageDrawable(0, true, false, this.startColorsProvider);
                         this.messageDrawableOutStart = messageDrawable;
                         messageDrawable.isCrossfadeBackground = true;
-                        Theme.MessageDrawable messageDrawable2 = new Theme.MessageDrawable(1, true, false, this.startColorsProvider);
+                        MessageDrawable messageDrawable2 = new MessageDrawable(1, true, false, this.startColorsProvider);
                         this.messageDrawableOutMediaStart = messageDrawable2;
                         messageDrawable2.isCrossfadeBackground = true;
                     }
@@ -3154,12 +3154,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
-    public Theme.MessageDrawable getMessageDrawableOutStart() {
+    public MessageDrawable getMessageDrawableOutStart() {
         return this.messageDrawableOutStart;
     }
 
     @Override
-    public Theme.MessageDrawable getMessageDrawableOutMediaStart() {
+    public MessageDrawable getMessageDrawableOutMediaStart() {
         return this.messageDrawableOutMediaStart;
     }
 

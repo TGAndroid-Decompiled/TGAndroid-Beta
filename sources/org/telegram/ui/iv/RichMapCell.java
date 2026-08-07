@@ -68,6 +68,11 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
         return Theme.Colorable.CC.$default$getColorKeys(this);
     }
 
+    @Override
+    protected int nestedContentMargin() {
+        return 0;
+    }
+
     public RichMapCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.backgroundPaint = new Paint(1);
@@ -82,7 +87,7 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
         textPaint.setTextAlign(Paint.Align.CENTER);
         this.imageReceiver = new ImageReceiver(this);
         this.placeholderIcon = getContext().getResources().getDrawable(R.drawable.msg_map).mutate();
-        setBlockPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(4.0f));
+        setBlockPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         View view = new View(context);
         this.clickView = view;
         view.setOnClickListener(new View.OnClickListener() {
@@ -170,11 +175,6 @@ public class RichMapCell extends RichBlockCell implements Theme.Colorable, TextS
             return;
         }
         delegate.onPickLocation(blockRow);
-    }
-
-    @Override
-    protected int nestedContentMargin() {
-        return AndroidUtilities.dp(16.0f);
     }
 
     public void bind(BlockRow blockRow, Delegate delegate) {

@@ -216,9 +216,9 @@ public class SwipeGestureSettingsView extends FrameLayout {
             int iBlendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_chats_archiveBackground), 0.9f);
             int color = Theme.getColor(Theme.key_chats_archiveIcon);
             if (i == 2) {
-                this.icons[i].setLayerColor("Arrow.**", iBlendARGB);
-                this.icons[i].setLayerColor("Box2.**", color);
-                this.icons[i].setLayerColor("Box1.**", color);
+                this.icons[i].setLayerColor("Arrow", iBlendARGB);
+                this.icons[i].setLayerColor("Box2", color);
+                this.icons[i].setLayerColor("Box1", color);
                 return;
             }
             this.icons[i].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));

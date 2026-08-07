@@ -54,7 +54,6 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.LocationActivity;
-import org.xml.sax.SAXException;
 
 public class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String address;
@@ -84,7 +83,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public View createView(Context context) throws SAXException, IOException {
+    public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));

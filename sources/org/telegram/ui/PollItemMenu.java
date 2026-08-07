@@ -33,6 +33,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -53,6 +54,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -370,7 +372,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                protected void onDraw(Canvas canvas) {
+                protected void onDraw(Canvas canvas) throws IOException {
                     canvas.save();
                     int pollIndex = getPollIndex(bArr);
                     float pollButtonTop = getPollButtonTop(pollIndex);
@@ -401,7 +403,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws IOException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     this.resultsPollButtonOffset = (-AndroidUtilities.dp(7.0f)) * PollItemMenu.this.openProgress;
@@ -433,6 +435,11 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean canSaveRichDocument(ChatMessageCell chatMessageCell3) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell3);
+                }
+
+                @Override
                 public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell3) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell3);
                 }
@@ -443,8 +450,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didLongPressBotButton(ChatMessageCell chatMessageCell3, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell3, keyboardButton);
+                public void didLongPressBotButton(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell3, keyboardButtonProto);
                 }
 
                 @Override
@@ -493,13 +500,18 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didPressAppUpdateButton() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAppUpdateButton(this);
+                }
+
+                @Override
                 public void didPressBoostCounter(ChatMessageCell chatMessageCell3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell3);
                 }
 
                 @Override
-                public void didPressBotButton(ChatMessageCell chatMessageCell3, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell3, keyboardButton);
+                public void didPressBotButton(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell3, keyboardButtonProto);
                 }
 
                 @Override
@@ -543,8 +555,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell3, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell3, keyboardButton);
+                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell3, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell3, keyboardInlineButton);
                 }
 
                 @Override
@@ -615,6 +627,11 @@ public class PollItemMenu extends Dialog {
                 @Override
                 public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell3);
+                }
+
+                @Override
+                public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell3, TLRPC.Document document, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell3, document, f, f2);
                 }
 
                 @Override
@@ -891,7 +908,7 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void drawOverlays(Canvas canvas) {
+                public void drawOverlays(Canvas canvas) throws IOException {
                     this.firstVisiblePollButton = 0;
                     this.lastVisiblePollButton = this.pollButtons.size() - 1;
                     super.drawOverlays(canvas);
@@ -923,6 +940,11 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public boolean canSaveRichDocument(ChatMessageCell chatMessageCell7) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell7);
+                }
+
+                @Override
                 public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell7) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell7);
                 }
@@ -933,8 +955,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didLongPressBotButton(ChatMessageCell chatMessageCell7, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell7, keyboardButton);
+                public void didLongPressBotButton(ChatMessageCell chatMessageCell7, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell7, keyboardButtonProto);
                 }
 
                 @Override
@@ -983,13 +1005,18 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
+                public void didPressAppUpdateButton() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAppUpdateButton(this);
+                }
+
+                @Override
                 public void didPressBoostCounter(ChatMessageCell chatMessageCell7) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell7);
                 }
 
                 @Override
-                public void didPressBotButton(ChatMessageCell chatMessageCell7, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell7, keyboardButton);
+                public void didPressBotButton(ChatMessageCell chatMessageCell7, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell7, keyboardButtonProto);
                 }
 
                 @Override
@@ -1033,8 +1060,8 @@ public class PollItemMenu extends Dialog {
                 }
 
                 @Override
-                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell7, TLRPC.KeyboardButton keyboardButton) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell7, keyboardButton);
+                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell7, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell7, keyboardInlineButton);
                 }
 
                 @Override
@@ -1105,6 +1132,11 @@ public class PollItemMenu extends Dialog {
                 @Override
                 public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell7) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell7);
+                }
+
+                @Override
+                public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell7, TLRPC.Document document, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell7, document, f, f2);
                 }
 
                 @Override
@@ -1434,7 +1466,7 @@ public class PollItemMenu extends Dialog {
                 final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
                 itemOptionsMakeSwipeback.setGapBackgroundColor(Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), 0.06f));
                 itemOptionsMakeSwipeback.setBlurBackgroundForSwipeback(this.iBlur3Factory, BlurredBackgroundProviderImpl.scrimMenuBackground(this.resourcesProvider), false);
-                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda392(itemOptionsMakeOptions));
+                itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda333(itemOptionsMakeOptions));
                 itemOptionsMakeSwipeback.addGap();
                 arrayList = arrayList3;
                 z2 = z4;

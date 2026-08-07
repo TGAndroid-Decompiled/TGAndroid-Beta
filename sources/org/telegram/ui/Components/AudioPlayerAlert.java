@@ -93,7 +93,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CastSync;
 import org.telegram.ui.Cells.AudioPlayerCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda392;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda333;
 import org.telegram.ui.ChooseQualityLayout$QualityIcon;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.AudioPlayerAlert;
@@ -802,9 +802,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         RLottieImageView rLottieImageView = this.prevButton;
         int i7 = R.raw.player_prev;
         rLottieImageView.setAnimation(i7, 20, 20);
-        this.prevButton.setLayerColor("Triangle 3.**", themedColor);
-        this.prevButton.setLayerColor("Triangle 4.**", themedColor);
-        this.prevButton.setLayerColor("Rectangle 4.**", themedColor);
+        this.prevButton.setLayerColor("Triangle 3", themedColor);
+        this.prevButton.setLayerColor("Triangle 4", themedColor);
+        this.prevButton.setLayerColor("Rectangle 4", themedColor);
         this.prevButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i5), 1, AndroidUtilities.dp(22.0f)));
         frameLayout2.addView(this.prevButton, LayoutHelper.createFrame(48, 48, 51));
         this.prevButton.setContentDescription(LocaleController.getString(R.string.AccDescrPrevious));
@@ -833,9 +833,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         viewArr4[3] = anonymousClass13;
         anonymousClass13.setScaleType(scaleType);
         this.nextButton.setAnimation(i7, 20, 20);
-        this.nextButton.setLayerColor("Triangle 3.**", themedColor);
-        this.nextButton.setLayerColor("Triangle 4.**", themedColor);
-        this.nextButton.setLayerColor("Rectangle 4.**", themedColor);
+        this.nextButton.setLayerColor("Triangle 3", themedColor);
+        this.nextButton.setLayerColor("Triangle 4", themedColor);
+        this.nextButton.setLayerColor("Rectangle 4", themedColor);
         this.nextButton.setRotation(180.0f);
         this.nextButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i5), 1, AndroidUtilities.dp(22.0f)));
         frameLayout2.addView(this.nextButton, LayoutHelper.createFrame(48, 48, 51));
@@ -3113,7 +3113,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             TLRPC.Document document = messageObject.getDocument();
             long j = document != null ? document.id : 0L;
             final ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda392(itemOptionsMakeOptions));
+            itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda333(itemOptionsMakeOptions));
             itemOptionsMakeSwipeback.addGap();
             itemOptionsMakeSwipeback.addIf(!savedMusicIds.ids.contains(Long.valueOf(j)), R.drawable.left_status_profile, LocaleController.getString(R.string.AudioSaveToMyProfile), new Runnable() {
                 @Override

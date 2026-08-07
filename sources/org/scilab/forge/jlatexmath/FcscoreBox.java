@@ -18,6 +18,11 @@ public class FcscoreBox extends Box {
     }
 
     public FcscoreBox(int i, float f, float f2, float f3, boolean z) {
+        if (i < 0) {
+            i = 0;
+        } else if (i > 4096) {
+            i = 4096;
+        }
         this.N = i;
         this.width = (i * (f2 + f3)) + (2.0f * f3);
         this.height = f;

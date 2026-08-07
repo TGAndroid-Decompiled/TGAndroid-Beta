@@ -76,7 +76,7 @@ public class BotGuardHelper extends BaseController {
             while (it.hasNext()) {
                 BotWebViewSheet botWebViewSheet = (BotWebViewSheet) it.next();
                 if (botWebViewSheet.isGuardBotTab(j, j2)) {
-                    botWebViewSheet.lambda$openOptions$41();
+                    botWebViewSheet.lambda$openOptions$42();
                     return;
                 }
             }

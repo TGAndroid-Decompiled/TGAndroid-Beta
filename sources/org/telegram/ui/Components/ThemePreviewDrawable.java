@@ -18,6 +18,7 @@ import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 
 public class ThemePreviewDrawable extends BitmapDrawable {
@@ -61,13 +62,13 @@ public class ThemePreviewDrawable extends BitmapDrawable {
         Theme.setDrawableColor(drawableMutate3, previewColor4);
         Drawable drawableMutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
         Theme.setDrawableColor(drawableMutate4, previewColor4);
-        Theme.MessageDrawable[] messageDrawableArr = new Theme.MessageDrawable[2];
+        MessageDrawable[] messageDrawableArr = new MessageDrawable[2];
         int i7 = 0;
         while (i7 < 2) {
             Drawable drawable = drawableMutate4;
             Drawable drawable2 = drawableMutate;
             Drawable drawable3 = drawableMutate2;
-            Theme.MessageDrawable messageDrawable = new Theme.MessageDrawable(2, i7 == 1, false) {
+            MessageDrawable messageDrawable = new MessageDrawable(2, i7 == 1, false) {
                 @Override
                 protected int getColor(int i8) {
                     return sparseIntArrayClone.get(i8);

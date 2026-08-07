@@ -30,6 +30,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
@@ -104,7 +105,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         int lineCount;
         int i;
         int i2;
-        Theme.MessageDrawable currentBackgroundDrawable;
+        MessageDrawable currentBackgroundDrawable;
         int i3;
         ?? r1;
         Object[] spans;
@@ -421,7 +422,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r51) {
+    public void onDraw(android.graphics.Canvas r51) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TextMessageEnterTransition.onDraw(android.graphics.Canvas):void");
     }
 

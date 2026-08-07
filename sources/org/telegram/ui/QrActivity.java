@@ -98,7 +98,6 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.Components.RLottieNative;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.ThemeSmallPreviewView;
@@ -245,15 +244,15 @@ public class QrActivity extends BaseFragment {
 
     public void lambda$createView$5() {
         onItemSelected(this.currentTheme, 0, true);
-        if (this.logoOptimal == null) {
-            int iDp = AndroidUtilities.dp(60.0f);
-            this.logoOptimal = Bitmap.createBitmap(iDp, iDp, Bitmap.Config.ARGB_8888);
-            RLottieNative rLottieNativeCreateFromRawJson = RLottieNative.createFromRawJson(AndroidUtilities.readRes(R.raw.plane_logo_plain), "plane_logo_plain", null);
-            if (rLottieNativeCreateFromRawJson != null) {
-                rLottieNativeCreateFromRawJson.getFrame(33, this.logoOptimal, false);
-                rLottieNativeCreateFromRawJson.recycle();
-            }
+        RLottieDrawable animatedDrawable = this.logoImageView.getAnimatedDrawable();
+        if (this.logoOptimal != null || animatedDrawable == null) {
+            return;
         }
+        this.logoOptimal = Bitmap.createBitmap(animatedDrawable.getIntrinsicWidth(), animatedDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        animatedDrawable.prepareForGenerateCache();
+        animatedDrawable.setGeneratingFrame(33);
+        animatedDrawable.getNextFrame(this.logoOptimal);
+        animatedDrawable.releaseForGenerateCache();
     }
 
     public void lambda$createView$7() {

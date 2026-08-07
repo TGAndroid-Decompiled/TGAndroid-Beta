@@ -5,10 +5,12 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
@@ -130,7 +132,12 @@ public class EditTextBoldCursor extends EditTextEffects {
     public boolean lineYFix;
     private ViewTreeObserver.OnPreDrawListener listenerFixer;
     private Drawable mCursorDrawable;
+    private int mHandlesColor;
+    private ColorFilter mHandlesColorFilter;
     private Rect mTempRect;
+    private Drawable mTextSelectHandle;
+    private Drawable mTextSelectHandleLeft;
+    private Drawable mTextSelectHandleRight;
     private boolean nextSetTextAnimated;
     private Runnable onPremiumMenuLockClickListener;
     private Rect padding;
@@ -1122,23 +1129,73 @@ public class EditTextBoldCursor extends EditTextEffects {
         }
     }
 
+    private Drawable updateHandleDrawable(Drawable drawable, boolean z) {
+        if (drawable != null) {
+            if (z) {
+                drawable = drawable.mutate();
+            }
+            ColorFilter colorFilter = this.mHandlesColorFilter;
+            if (colorFilter != null) {
+                drawable.setColorFilter(colorFilter);
+            }
+        }
+        return drawable;
+    }
+
     public void setHandlesColor(int i) {
-        if (Build.VERSION.SDK_INT < 29 || XiaomiUtilities.isMIUI()) {
+        if (Build.VERSION.SDK_INT < 29 || XiaomiUtilities.isMIUI() || this.mHandlesColor == i) {
             return;
         }
-        try {
-            Drawable textSelectHandleLeft = getTextSelectHandleLeft();
-            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            textSelectHandleLeft.setColorFilter(i, mode);
-            setTextSelectHandleLeft(textSelectHandleLeft);
-            Drawable textSelectHandle = getTextSelectHandle();
-            textSelectHandle.setColorFilter(i, mode);
-            setTextSelectHandle(textSelectHandle);
-            Drawable textSelectHandleRight = getTextSelectHandleRight();
-            textSelectHandleRight.setColorFilter(i, mode);
-            setTextSelectHandleRight(textSelectHandleRight);
-        } catch (Exception unused) {
+        this.mHandlesColor = i;
+        this.mHandlesColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+        updateHandleDrawable(this.mTextSelectHandleLeft, false);
+        updateHandleDrawable(this.mTextSelectHandleRight, false);
+        updateHandleDrawable(this.mTextSelectHandle, false);
+    }
+
+    @Override
+    public Drawable getTextSelectHandleLeft() {
+        if (this.mTextSelectHandleLeft == null) {
+            this.mTextSelectHandleLeft = updateHandleDrawable(super.getTextSelectHandleLeft(), true);
         }
+        return this.mTextSelectHandleLeft;
+    }
+
+    @Override
+    public Drawable getTextSelectHandleRight() {
+        if (this.mTextSelectHandleRight == null) {
+            this.mTextSelectHandleRight = updateHandleDrawable(super.getTextSelectHandleRight(), true);
+        }
+        return this.mTextSelectHandleRight;
+    }
+
+    @Override
+    public Drawable getTextSelectHandle() {
+        if (this.mTextSelectHandle == null) {
+            this.mTextSelectHandle = updateHandleDrawable(super.getTextSelectHandle(), true);
+        }
+        return this.mTextSelectHandle;
+    }
+
+    @Override
+    public void setTextSelectHandleLeft(Drawable drawable) {
+        Drawable drawableUpdateHandleDrawable = updateHandleDrawable(drawable, true);
+        this.mTextSelectHandleLeft = drawableUpdateHandleDrawable;
+        super.setTextSelectHandleLeft(drawableUpdateHandleDrawable);
+    }
+
+    @Override
+    public void setTextSelectHandleRight(Drawable drawable) {
+        Drawable drawableUpdateHandleDrawable = updateHandleDrawable(drawable, true);
+        this.mTextSelectHandleRight = drawableUpdateHandleDrawable;
+        super.setTextSelectHandleRight(drawableUpdateHandleDrawable);
+    }
+
+    @Override
+    public void setTextSelectHandle(Drawable drawable) {
+        Drawable drawableUpdateHandleDrawable = updateHandleDrawable(drawable, true);
+        this.mTextSelectHandle = drawableUpdateHandleDrawable;
+        super.setTextSelectHandle(drawableUpdateHandleDrawable);
     }
 
     public void setOnPremiumMenuLockClickListener(Runnable runnable) {

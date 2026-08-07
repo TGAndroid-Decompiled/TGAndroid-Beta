@@ -103,12 +103,14 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.browser.Browser;
+import org.telegram.messenger.utils.tlutils.TLKeyboardHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -1933,9 +1935,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onVerifiedAge.run(Boolean.valueOf(z), Double.valueOf(d), str, Double.valueOf(d2));
     }
 
-    public void lambda$onEventReceived$57(final String str, TLRPC.KeyboardButton keyboardButton, TLRPC.TL_error tL_error) {
+    public void lambda$onEventReceived$57(final String str, TL_keyboard.KeyboardButton keyboardButton, TLRPC.TL_error tL_error) {
         int i;
-        if (!(keyboardButton instanceof TLRPC.TL_keyboardButtonRequestPeer)) {
+        final TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) TLKeyboardHelper.getType(keyboardButton, TL_keyboard.TL_buttonTypeRequestPeer.class);
+        if (tL_buttonTypeRequestPeer == null) {
             if (tL_error != null) {
                 BulletinFactory.of(this, this.resourcesProvider).showForError(tL_error);
                 notifyEvent("requested_chat_failed", obj("req_id", str));
@@ -1946,8 +1949,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return;
             }
         }
-        final TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer = (TLRPC.TL_keyboardButtonRequestPeer) keyboardButton;
-        TLRPC.RequestPeerType requestPeerType = tL_keyboardButtonRequestPeer.peer_type;
+        TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeCreateBot) {
             Context context = getContext();
             int i2 = this.currentAccount;
@@ -1955,20 +1957,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             Utilities.Callback callback = new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    this.f$0.lambda$onEventReceived$51(str, tL_keyboardButtonRequestPeer, (TLRPC.User) obj);
+                    this.f$0.lambda$onEventReceived$51(str, tL_buttonTypeRequestPeer, (TLRPC.User) obj);
                 }
             };
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             CreateBotAlert.show(context, i2, user, (TLRPC.TL_requestPeerTypeCreateBot) requestPeerType, false, callback, resourcesProvider, BulletinFactory.of(this, resourcesProvider), true);
             return;
         }
-        if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i = tL_keyboardButtonRequestPeer.max_quantity) > 1) {
+        if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i = tL_buttonTypeRequestPeer.max_quantity) > 1) {
             TLRPC.TL_requestPeerTypeUser tL_requestPeerTypeUser = (TLRPC.TL_requestPeerTypeUser) requestPeerType;
             final boolean[] zArr = new boolean[1];
             MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheetOpen = MultiContactsSelectorBottomSheet.open(tL_requestPeerTypeUser.bot, tL_requestPeerTypeUser.premium, i, new MultiContactsSelectorBottomSheet.SelectorListener() {
                 @Override
                 public final void onUserSelected(List list) {
-                    this.f$0.lambda$onEventReceived$53(zArr, str, tL_keyboardButtonRequestPeer, list);
+                    this.f$0.lambda$onEventReceived$53(zArr, str, tL_buttonTypeRequestPeer, list);
                 }
             });
             if (multiContactsSelectorBottomSheetOpen != null) {
@@ -1987,8 +1989,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         bundle.putInt("dialogsType", 15);
         bundle.putLong("requestPeerBotId", this.botUser.id);
         try {
-            SerializedData serializedData = new SerializedData(tL_keyboardButtonRequestPeer.peer_type.getObjectSize());
-            tL_keyboardButtonRequestPeer.peer_type.serializeToStream(serializedData);
+            SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
+            tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
             bundle.putByteArray("requestPeerType", serializedData.toByteArray());
             serializedData.cleanup();
         } catch (Exception e) {
@@ -2015,7 +2017,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             @Override
             public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i3, int i4, TopicsFragment topicsFragment) {
-                return this.f$0.lambda$onEventReceived$56(zArr2, str, tL_keyboardButtonRequestPeer, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
+                return this.f$0.lambda$onEventReceived$56(zArr2, str, tL_buttonTypeRequestPeer, dialogsActivity2, arrayList, charSequence, z, z2, i3, i4, topicsFragment);
             }
 
             @Override
@@ -2033,7 +2035,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         safeLastFragment.showAsSheet(dialogsActivity, bottomSheetParams);
     }
 
-    public void lambda$onEventReceived$51(final String str, TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer, final TLRPC.User user) {
+    public void lambda$onEventReceived$51(final String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, final TLRPC.User user) {
         if (user == null) {
             notifyEvent("requested_chat_failed", obj("req_id", str));
             return;
@@ -2041,7 +2043,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
         tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(this.botUser);
         tL_messages_sendBotRequestedPeer.webapp_req_id = str;
-        tL_messages_sendBotRequestedPeer.button_id = tL_keyboardButtonRequestPeer.button_id;
+        tL_messages_sendBotRequestedPeer.button_id = tL_buttonTypeRequestPeer.button_id;
         tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInputPeer(user));
         ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_sendBotRequestedPeer, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
@@ -2116,7 +2118,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void lambda$onEventReceived$53(boolean[] zArr, final String str, TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer, List list) {
+    public void lambda$onEventReceived$53(boolean[] zArr, final String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, List list) {
         if (list == null || list.isEmpty()) {
             return;
         }
@@ -2125,7 +2127,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         MessagesController.getInstance(this.currentAccount);
         tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(this.botUser);
         tL_messages_sendBotRequestedPeer.webapp_req_id = str;
-        tL_messages_sendBotRequestedPeer.button_id = tL_keyboardButtonRequestPeer.button_id;
+        tL_messages_sendBotRequestedPeer.button_id = tL_buttonTypeRequestPeer.button_id;
         Iterator it = list.iterator();
         while (it.hasNext()) {
             tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(this.currentAccount).getInputPeer(((Long) it.next()).longValue()));
@@ -2159,14 +2161,14 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         notifyEvent("requested_chat_failed", obj("req_id", str));
     }
 
-    public boolean lambda$onEventReceived$56(boolean[] zArr, final String str, TLRPC.TL_keyboardButtonRequestPeer tL_keyboardButtonRequestPeer, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+    public boolean lambda$onEventReceived$56(boolean[] zArr, final String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         if (arrayList != null && !arrayList.isEmpty()) {
             zArr[0] = true;
             TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
             MessagesController.getInstance(this.currentAccount);
             tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(this.botUser);
             tL_messages_sendBotRequestedPeer.webapp_req_id = str;
-            tL_messages_sendBotRequestedPeer.button_id = tL_keyboardButtonRequestPeer.button_id;
+            tL_messages_sendBotRequestedPeer.button_id = tL_buttonTypeRequestPeer.button_id;
             HashSet hashSet = new HashSet();
             Iterator it = arrayList.iterator();
             while (it.hasNext()) {

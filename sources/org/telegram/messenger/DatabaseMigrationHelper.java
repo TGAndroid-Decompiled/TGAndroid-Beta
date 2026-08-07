@@ -1499,13 +1499,22 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase2.executeFast("PRAGMA user_version = 175").stepThis().dispose();
             i5 = 175;
         }
-        if (i5 != 175) {
+        if (i5 == 175) {
+            sQLiteDatabase2.executeFast("CREATE TABLE ephemeral_messages (id INTEGER, dialog_id INTEGER, topic_id INTEGER, date INTEGER, data BLOB, PRIMARY KEY(dialog_id, id));").stepThis().dispose();
+            sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS ephemeral_messages_date_idx ON ephemeral_messages(date);").stepThis().dispose();
+            sQLiteDatabase2.executeFast("PRAGMA user_version = 176").stepThis().dispose();
+            i5 = 176;
+        }
+        if (i5 != 176) {
             return i5;
         }
-        sQLiteDatabase2.executeFast("CREATE TABLE ephemeral_messages (id INTEGER, dialog_id INTEGER, topic_id INTEGER, date INTEGER, data BLOB, PRIMARY KEY(dialog_id, id));").stepThis().dispose();
-        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS ephemeral_messages_date_idx ON ephemeral_messages(date);").stepThis().dispose();
-        sQLiteDatabase2.executeFast("PRAGMA user_version = 176").stepThis().dispose();
-        return 176;
+        sQLiteDatabase2.executeFast("CREATE TABLE welcome_messages(mid INTEGER, dialog_id INTEGER, send_state INTEGER, date INTEGER, data BLOB, ttl INTEGER, replydata BLOB, reply_to_message_id INTEGER, PRIMARY KEY(mid, dialog_id))").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS send_state_idx_welcome_messages ON welcome_messages(mid, send_state, date);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS dialog_date_idx_welcome_messages ON welcome_messages(dialog_id, date);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS reply_to_idx_welcome_messages ON welcome_messages(mid, reply_to_message_id);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_welcome_messages ON welcome_messages(reply_to_message_id, mid);").stepThis().dispose();
+        sQLiteDatabase2.executeFast("PRAGMA user_version = 177").stepThis().dispose();
+        return 177;
     }
 
     private static void executeNoException(SQLiteDatabase sQLiteDatabase, String str) {

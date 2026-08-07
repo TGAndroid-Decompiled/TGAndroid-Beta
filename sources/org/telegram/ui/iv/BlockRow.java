@@ -24,6 +24,8 @@ public class BlockRow {
     public boolean quoteLast;
     public int quoteTopEdge;
     public boolean singleParagraph;
+    public boolean titleAutoBold;
+    public boolean titleAutoBoldInitialized;
 
     public BlockRow(TL_iv.PageBlock pageBlock) {
         this(pageBlock, 0, 0);

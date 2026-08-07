@@ -1,10 +1,10 @@
 package org.telegram.ui.iv;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -17,9 +17,10 @@ public class RichTableCellHost extends FrameLayout {
         super(context);
         RichEditText richEditText = new RichEditText(context, resourcesProvider);
         this.editText = richEditText;
-        richEditText.setTextSize(1, 16.0f);
+        richEditText.setTextSize(1, 14.0f);
         richEditText.setAllowNewlines(true);
-        richEditText.setPadding(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(9.0f));
+        richEditText.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(9.0f));
+        richEditText.setMinHeight(AndroidUtilities.dp(36.0f));
         addView(richEditText, LayoutHelper.createFrame(-1, -2, 51));
     }
 
@@ -42,11 +43,26 @@ public class RichTableCellHost extends FrameLayout {
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public void bind(TL_iv.pageTableCell pagetablecell) {
-        this.cell = pagetablecell;
-        applyAlignment();
-        this.editText.setTextSilently(Emoji.replaceEmoji(TableModel.readStyledText(pagetablecell), this.editText.getPaint().getFontMetricsInt(), false));
-        this.editText.invalidateEffects();
+    public void bind(org.telegram.tgnet.tl.TL_iv.pageTableCell r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCellHost.bind(org.telegram.tgnet.tl.TL_iv$pageTableCell):void");
+    }
+
+    public void applyHeaderWithDefaultBold(boolean z) {
+        if (this.cell == null) {
+            return;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
+        boolean z2 = spannableStringBuilder.length() > 0 && (RichTextStyle.stylesFullyCovering(spannableStringBuilder, 0, spannableStringBuilder.length()) & 1) != 0;
+        TableModel.setHeader(this.cell, z);
+        if (z) {
+            if (spannableStringBuilder.length() > 0) {
+                RichTextStyle.setStyle(spannableStringBuilder, 0, spannableStringBuilder.length(), 1, true);
+            }
+        } else if (z2) {
+            RichTextStyle.setStyle(spannableStringBuilder, 0, spannableStringBuilder.length(), 1, false);
+        }
+        TableModel.applyStyledText(this.cell, spannableStringBuilder);
+        bind(this.cell);
     }
 
     public void refreshFromCell() {
@@ -86,10 +102,6 @@ public class RichTableCellHost extends FrameLayout {
             i3 = pagetablecell2.align_center ? 49 : 51;
         }
         this.editText.setGravity(i3);
-        if (this.cell.header) {
-            this.editText.setTypeface(AndroidUtilities.bold());
-        } else {
-            this.editText.setTypeface(null);
-        }
+        this.editText.setTypeface(null);
     }
 }

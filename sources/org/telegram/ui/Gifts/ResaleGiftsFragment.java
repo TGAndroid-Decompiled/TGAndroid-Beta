@@ -1801,7 +1801,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             super(context, false, false, resourcesProvider);
             setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             setColors(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider));
-            setIconColor(-1);
+            setIconColor(-1, PorterDuff.Mode.MULTIPLY);
             this.imageView.setTranslationX(AndroidUtilities.dp(2.0f));
             makeCheckView(2);
             setBackground(null);

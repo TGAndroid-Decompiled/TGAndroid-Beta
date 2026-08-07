@@ -34,6 +34,7 @@ public abstract class RichTextStyle {
     }
 
     private static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i, TL_iv.PageBlock pageBlock) {
+        String str;
         if (richText == null || (richText instanceof TL_iv.textEmpty)) {
             return;
         }
@@ -72,8 +73,8 @@ public abstract class RichTextStyle {
         }
         if (richText instanceof TL_iv.textCustomEmoji) {
             TL_iv.textCustomEmoji textcustomemoji = (TL_iv.textCustomEmoji) richText;
-            String str = textcustomemoji.alt;
-            CharSequence charSequence = (str == null || str.isEmpty()) ? "😀" : textcustomemoji.alt;
+            String str2 = textcustomemoji.alt;
+            CharSequence charSequence = (str2 == null || str2.isEmpty()) ? "😀" : textcustomemoji.alt;
             int length2 = spannableStringBuilder.length();
             spannableStringBuilder.append(charSequence);
             AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(textcustomemoji.document_id, (Paint.FontMetricsInt) null);
@@ -89,10 +90,10 @@ public abstract class RichTextStyle {
             TL_iv.textUrl texturl = (TL_iv.textUrl) richText;
             int length3 = spannableStringBuilder.length();
             append(spannableStringBuilder, texturl.text, i, pageBlock);
-            if (spannableStringBuilder.length() <= length3 || texturl.url == null) {
+            if (spannableStringBuilder.length() <= length3 || (str = texturl.url) == null) {
                 return;
             }
-            spannableStringBuilder.setSpan(new URLSpanReplacement(texturl.url), length3, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(linkSpan(str), length3, spannableStringBuilder.length(), 33);
             return;
         }
         if (richText instanceof TL_iv.textDate) {
@@ -479,12 +480,18 @@ public abstract class RichTextStyle {
             int spanEnd = spannable.getSpanEnd(uRLSpanReplacement);
             spannable.removeSpan(uRLSpanReplacement);
             if (spanStart < iMax) {
-                spannable.setSpan(new URLSpanReplacement(uRLSpanReplacement.getURL()), spanStart, iMax, 33);
+                spannable.setSpan(linkSpan(uRLSpanReplacement.getURL()), spanStart, iMax, 33);
             }
             if (spanEnd > iMax2) {
-                spannable.setSpan(new URLSpanReplacement(uRLSpanReplacement.getURL()), iMax2, spanEnd, 33);
+                spannable.setSpan(linkSpan(uRLSpanReplacement.getURL()), iMax2, spanEnd, 33);
             }
         }
+    }
+
+    static URLSpanReplacement linkSpan(String str) {
+        TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+        textStyleRun.flags = 1024;
+        return new URLSpanReplacement(str, textStyleRun);
     }
 
     public static void removeDate(Spannable spannable, int i, int i2) {

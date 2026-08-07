@@ -29,6 +29,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ClipRoundedDrawable;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -257,7 +258,7 @@ public abstract class BotHelpCell extends View {
             measuredHeight = view.getMeasuredHeight();
         }
         int i = measuredHeight;
-        Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) getThemedDrawable("drawableMsgInMedia");
+        MessageDrawable messageDrawable = (MessageDrawable) getThemedDrawable("drawableMsgInMedia");
         messageDrawable.setTop((int) getY(), measuredWidth, i, false, false);
         messageDrawable.setBounds(width, 0, this.width + width, this.height);
         messageDrawable.draw(canvas);

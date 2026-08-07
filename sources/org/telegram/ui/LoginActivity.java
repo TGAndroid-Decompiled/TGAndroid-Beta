@@ -792,7 +792,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);
@@ -1362,7 +1362,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).checkPromoInfo(true);
         ConnectionsManager.getInstance(this.currentAccount).updateDcSettings();
         MessagesController.getInstance(this.currentAccount).loadAppConfig();
-        MessagesController.getInstance(this.currentAccount).lambda$removeWebBrowserException$503();
+        MessagesController.getInstance(this.currentAccount).lambda$removeWebBrowserException$507();
         MessagesController.getInstance(this.currentAccount).checkPeerColors(false);
         if (tL_auth_authorization.future_auth_token != null) {
             AuthTokensHelper.saveLogInToken(tL_auth_authorization);
@@ -4023,10 +4023,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         private void applyLottieColors(RLottieDrawable rLottieDrawable) {
             if (rLottieDrawable != null) {
-                rLottieDrawable.setLayerColor("Bubble.**", Theme.getColor(Theme.key_chats_actionBackground));
+                rLottieDrawable.setLayerColor("Bubble", Theme.getColor(Theme.key_chats_actionBackground));
                 int i = Theme.key_windowBackgroundWhiteBlackText;
-                rLottieDrawable.setLayerColor("Phone.**", Theme.getColor(i));
-                rLottieDrawable.setLayerColor("Note.**", Theme.getColor(i));
+                rLottieDrawable.setLayerColor("Phone", Theme.getColor(i));
+                rLottieDrawable.setLayerColor("Note", Theme.getColor(i));
             }
         }
 

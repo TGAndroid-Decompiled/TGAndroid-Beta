@@ -24,6 +24,11 @@ public class NewCommandMacro {
         return macrocode.containsKey(str);
     }
 
+    public static void reset() {
+        macrocode.clear();
+        macroreplacement.clear();
+    }
+
     public static void addReNewCommand(String str, String str2, int i) {
         if (macrocode.get(str) == null) {
             throw new ParseException("Command " + str + " is not defined ! Use newcommand instead ...");

@@ -12,6 +12,12 @@ public class TeXParser {
     private static final char ESCAPE = '\\';
     private static final char L_BRACK = '[';
     private static final char L_GROUP = '{';
+    private static final int MAX_FIRSTPASS_EXPANSIONS = 10000;
+    private static final int MAX_FIRSTPASS_LENGTH = 65536;
+    private static final long MAX_FIRSTPASS_WORK = 33554432;
+    private static final int MAX_LASTPASS_EXPANSIONS = 10000;
+    private static final int MAX_MACRO_ARGS = 256;
+    private static final int MAX_PARSE_DEPTH = 64;
     private static final char PERCENT = '%';
     private static final char PRIME = '\'';
     private static final char R_BRACK = ']';
@@ -49,7 +55,10 @@ public class TeXParser {
     private static final char SUPTHREE = 179;
     private static final char SUPTWO = 178;
     private static final char SUPZERO = 8304;
+    private static long firstpassExpansionWork = 0;
     protected static boolean isLoading = false;
+    private static int lastpassExpansions;
+    private static int parseDepth;
     private static final Set<String> unparsedContents;
     private boolean arrayMode;
     private int atIsLetter;
@@ -296,130 +305,141 @@ public class TeXParser {
         int i;
         boolean z;
         char cCharAt;
-        if (this.len != 0) {
-            while (true) {
-                int i2 = this.pos;
-                if (i2 >= this.len) {
-                    break;
-                }
-                char cCharAt2 = this.parseString.charAt(i2);
-                if (cCharAt2 != '\t') {
-                    if (cCharAt2 == '\n') {
-                        this.line++;
-                        this.col = this.pos;
-                    } else if (cCharAt2 != '\r') {
-                        if (cCharAt2 == ' ') {
-                            this.pos++;
-                            if (!this.ignoreWhiteSpace) {
-                                this.formula.add(new SpaceAtom());
-                                this.formula.add(new BreakMarkAtom());
-                                while (true) {
-                                    int i3 = this.pos;
-                                    if (i3 >= this.len || (cCharAt = this.parseString.charAt(i3)) != ' ' || cCharAt != '\t' || cCharAt != '\r') {
-                                        break;
-                                    } else {
-                                        this.pos++;
+        int i2 = parseDepth;
+        int i3 = i2 + 1;
+        parseDepth = i3;
+        if (i3 > 64) {
+            parseDepth = i2;
+            throw new DepthLimitExceededException();
+        }
+        try {
+            if (this.len != 0) {
+                while (true) {
+                    int i4 = this.pos;
+                    if (i4 >= this.len) {
+                        break;
+                    }
+                    char cCharAt2 = this.parseString.charAt(i4);
+                    if (cCharAt2 != '\t') {
+                        if (cCharAt2 == '\n') {
+                            this.line++;
+                            this.col = this.pos;
+                        } else if (cCharAt2 != '\r') {
+                            if (cCharAt2 == ' ') {
+                                this.pos++;
+                                if (!this.ignoreWhiteSpace) {
+                                    this.formula.add(new SpaceAtom());
+                                    this.formula.add(new BreakMarkAtom());
+                                    while (true) {
+                                        int i5 = this.pos;
+                                        if (i5 < this.len && (cCharAt = this.parseString.charAt(i5)) == ' ' && cCharAt == '\t' && cCharAt == '\r') {
+                                            this.pos++;
+                                        }
                                     }
                                 }
-                            }
-                        } else if (cCharAt2 == '\"') {
-                            if (this.ignoreWhiteSpace) {
-                                this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
-                                this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
-                            } else {
-                                this.formula.add(convertCharacter('\'', true));
-                                this.formula.add(convertCharacter('\'', true));
-                            }
-                            this.pos++;
-                        } else if (cCharAt2 == '$') {
-                            int i4 = this.pos + 1;
-                            this.pos = i4;
-                            if (!this.ignoreWhiteSpace) {
-                                if (this.parseString.charAt(i4) == '$') {
-                                    this.pos++;
-                                    i = 0;
-                                    z = true;
-                                } else {
-                                    i = 2;
-                                    z = false;
-                                }
-                                this.formula.add(new MathAtom(new TeXFormula(this, getDollarGroup('$'), false).root, i));
-                                if (z && this.parseString.charAt(this.pos) == '$') {
-                                    this.pos++;
-                                }
-                            }
-                        } else if (cCharAt2 == '\\') {
-                            Atom atomProcessEscape = processEscape();
-                            this.formula.add(atomProcessEscape);
-                            if (this.arrayMode && (atomProcessEscape instanceof HlineAtom)) {
-                                ((ArrayOfAtoms) this.formula).addRow();
-                            }
-                            if (this.insertion) {
-                                this.insertion = false;
-                            }
-                        } else if (cCharAt2 == '{') {
-                            Atom argument = getArgument();
-                            if (argument != null) {
-                                argument.type = 0;
-                            }
-                            this.formula.add(argument);
-                        } else if (cCharAt2 == 8245) {
-                            if (this.ignoreWhiteSpace) {
-                                this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("backprime")));
-                            } else {
-                                this.formula.add(convertCharacter((char) 8245, true));
-                            }
-                            this.pos++;
-                        } else if (cCharAt2 != '&') {
-                            if (cCharAt2 == '\'') {
+                            } else if (cCharAt2 == '\"') {
                                 if (this.ignoreWhiteSpace) {
+                                    this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
                                     this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
                                 } else {
                                     this.formula.add(convertCharacter('\'', true));
+                                    this.formula.add(convertCharacter('\'', true));
                                 }
                                 this.pos++;
-                            } else if (cCharAt2 == '^') {
-                                this.formula.add(getScripts(cCharAt2));
-                            } else if (cCharAt2 != '_') {
-                                if (cCharAt2 == '}') {
-                                    int i5 = this.group - 1;
-                                    this.group = i5;
-                                    this.pos++;
-                                    if (i5 == -1) {
-                                        throw new ParseException("Found a closing '}' without an opening '{'!");
+                            } else if (cCharAt2 == '$') {
+                                int i6 = this.pos + 1;
+                                this.pos = i6;
+                                if (!this.ignoreWhiteSpace) {
+                                    if (this.parseString.charAt(i6) == '$') {
+                                        this.pos++;
+                                        i = 0;
+                                        z = true;
+                                    } else {
+                                        i = 2;
+                                        z = false;
                                     }
-                                    return;
+                                    this.formula.add(new MathAtom(new TeXFormula(this, getDollarGroup('$'), false).root, i));
+                                    if (z && this.parseString.charAt(this.pos) == '$') {
+                                        this.pos++;
+                                    }
                                 }
-                                if (cCharAt2 == '~') {
-                                    this.formula.add(new SpaceAtom());
-                                    this.pos++;
+                            } else if (cCharAt2 == '\\') {
+                                Atom atomProcessEscape = processEscape();
+                                this.formula.add(atomProcessEscape);
+                                if (this.arrayMode && (atomProcessEscape instanceof HlineAtom)) {
+                                    ((ArrayOfAtoms) this.formula).addRow();
+                                }
+                                if (this.insertion) {
+                                    this.insertion = false;
+                                }
+                            } else if (cCharAt2 == '{') {
+                                Atom argument = getArgument();
+                                if (argument != null) {
+                                    argument.type = 0;
+                                }
+                                this.formula.add(argument);
+                            } else if (cCharAt2 == 8245) {
+                                if (this.ignoreWhiteSpace) {
+                                    this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("backprime")));
                                 } else {
-                                    this.formula.add(convertCharacter(cCharAt2, false));
+                                    this.formula.add(convertCharacter((char) 8245, true));
+                                }
+                                this.pos++;
+                            } else if (cCharAt2 != '&') {
+                                if (cCharAt2 == '\'') {
+                                    if (this.ignoreWhiteSpace) {
+                                        this.formula.add(new CumulativeScriptsAtom(getLastAtom(), null, SymbolAtom.get("prime")));
+                                    } else {
+                                        this.formula.add(convertCharacter('\'', true));
+                                    }
+                                    this.pos++;
+                                } else if (cCharAt2 == '^') {
+                                    this.formula.add(getScripts(cCharAt2));
+                                } else if (cCharAt2 != '_') {
+                                    if (cCharAt2 == '}') {
+                                        int i7 = this.group - 1;
+                                        this.group = i7;
+                                        this.pos++;
+                                        if (i7 == -1) {
+                                            throw new ParseException("Found a closing '}' without an opening '{'!");
+                                        }
+                                        parseDepth--;
+                                        return;
+                                    }
+                                    if (cCharAt2 == '~') {
+                                        this.formula.add(new SpaceAtom());
+                                        this.pos++;
+                                    } else {
+                                        this.formula.add(convertCharacter(cCharAt2, false));
+                                        this.pos++;
+                                    }
+                                } else if (this.ignoreWhiteSpace) {
+                                    this.formula.add(getScripts(cCharAt2));
+                                } else {
+                                    this.formula.add(new UnderscoreAtom());
                                     this.pos++;
                                 }
-                            } else if (this.ignoreWhiteSpace) {
-                                this.formula.add(getScripts(cCharAt2));
                             } else {
-                                this.formula.add(new UnderscoreAtom());
+                                if (!this.arrayMode) {
+                                    throw new ParseException("Character '&' is only available in array mode !");
+                                }
+                                ((ArrayOfAtoms) this.formula).addCol();
                                 this.pos++;
                             }
-                        } else {
-                            if (!this.arrayMode) {
-                                throw new ParseException("Character '&' is only available in array mode !");
-                            }
-                            ((ArrayOfAtoms) this.formula).addCol();
-                            this.pos++;
                         }
                     }
+                    this.pos++;
                 }
-                this.pos++;
             }
+            TeXFormula teXFormula = this.formula;
+            if (teXFormula.root == null && !this.arrayMode) {
+                teXFormula.add(new EmptyAtom());
+            }
+            parseDepth--;
+        } catch (Throwable th) {
+            parseDepth--;
+            throw th;
         }
-        TeXFormula teXFormula = this.formula;
-        if (teXFormula.root != null || this.arrayMode) {
-            return;
-        }
-        teXFormula.add(new EmptyAtom());
     }
 
     private org.scilab.forge.jlatexmath.Atom getScripts(char r10) {
@@ -700,6 +720,9 @@ public class TeXParser {
     }
 
     public String[] getOptsArgs(int i, int i2) {
+        if (i < 0 || i > 256) {
+            i = 256;
+        }
         String[] strArr = new String[i + 11];
         if (i != 0) {
             if (i2 == 1) {
@@ -790,6 +813,11 @@ public class TeXParser {
         String[] optsArgs = getOptsArgs(macroInfo.nbArgs, macroInfo.hasOptions ? macroInfo.posOpts : 0);
         optsArgs[0] = str;
         if (NewCommandMacro.isMacro(str)) {
+            int i = lastpassExpansions + 1;
+            lastpassExpansions = i;
+            if (i > 10000) {
+                throw new ParseException("Macro expansion limit exceeded");
+            }
             insert(this.spos, this.pos, (String) macroInfo.invoke(this, optsArgs));
             return null;
         }

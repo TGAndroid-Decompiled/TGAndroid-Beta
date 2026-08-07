@@ -179,21 +179,21 @@ public class UndoView extends FrameLayout {
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         RLottieImageView rLottieImageView2 = this.leftImageView;
         int i3 = Theme.key_undo_background;
-        rLottieImageView2.setLayerColor("info1.**", getThemedColor(i3) | (-16777216));
-        this.leftImageView.setLayerColor("info2.**", getThemedColor(i3) | (-16777216));
-        this.leftImageView.setLayerColor("luc12.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc11.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc10.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc9.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc8.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc7.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc6.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc5.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc4.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc3.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc2.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("luc1.**", getThemedColor(i));
-        this.leftImageView.setLayerColor("Oval.**", getThemedColor(i));
+        rLottieImageView2.setLayerColor("info1", getThemedColor(i3) | (-16777216));
+        this.leftImageView.setLayerColor("info2", getThemedColor(i3) | (-16777216));
+        this.leftImageView.setLayerColor("luc12", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc11", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc10", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc9", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc8", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc7", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc6", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc5", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc4", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc3", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc2", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc1", getThemedColor(i));
+        this.leftImageView.setLayerColor("Oval", getThemedColor(i));
         addView(this.leftImageView, LayoutHelper.createFrame(54, -2.0f, 19, 3.0f, 0.0f, 0.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -256,8 +256,8 @@ public class UndoView extends FrameLayout {
         this.infoTextView.setTextColor(i2);
         this.subinfoTextView.setTextColor(i2);
         int i3 = i | (-16777216);
-        this.leftImageView.setLayerColor("info1.**", i3);
-        this.leftImageView.setLayerColor("info2.**", i3);
+        this.leftImageView.setLayerColor("info1", i3);
+        this.leftImageView.setLayerColor("info2", i3);
     }
 
     private boolean isTooltipAction() {

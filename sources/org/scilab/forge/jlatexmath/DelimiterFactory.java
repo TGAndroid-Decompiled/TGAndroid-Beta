@@ -1,6 +1,8 @@
 package org.scilab.forge.jlatexmath;
 
 public class DelimiterFactory {
+    private static final float MAX_LENGTH = 4096.0f;
+
     public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i) {
         if (i > 4) {
             return symbolAtom.createBox(teXEnvironment);
@@ -22,6 +24,10 @@ public class DelimiterFactory {
 
     public static Box create(String str, TeXEnvironment teXEnvironment, float f) {
         float f2;
+        if (!DelimiterFactory$$ExternalSyntheticBackport0.m(f) || f < 0.0f) {
+            f = 0.0f;
+        }
+        float fMin = Math.min(f, 4096.0f);
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char nextLarger = teXFont.getChar(str, style);
@@ -30,7 +36,7 @@ public class DelimiterFactory {
         float depth = metrics.getDepth();
         while (true) {
             f2 = height + depth;
-            if (f2 >= f || !teXFont.hasNextLarger(nextLarger)) {
+            if (f2 >= fMin || !teXFont.hasNextLarger(nextLarger)) {
                 break;
             }
             nextLarger = teXFont.getNextLarger(nextLarger, style);
@@ -38,7 +44,7 @@ public class DelimiterFactory {
             height = metrics2.getHeight();
             depth = metrics2.getDepth();
         }
-        if (f2 >= f) {
+        if (f2 >= fMin) {
             return new CharBox(nextLarger);
         }
         if (teXFont.isExtensionChar(nextLarger)) {
@@ -55,7 +61,7 @@ public class DelimiterFactory {
                 verticalBox.add(new CharBox(extension.getBottom()));
             }
             CharBox charBox = new CharBox(extension.getRepeat());
-            while (verticalBox.getHeight() + verticalBox.getDepth() <= f) {
+            while (verticalBox.getHeight() + verticalBox.getDepth() <= fMin) {
                 if (extension.hasTop() && extension.hasBottom()) {
                     verticalBox.add(1, charBox);
                     if (zHasMiddle) {

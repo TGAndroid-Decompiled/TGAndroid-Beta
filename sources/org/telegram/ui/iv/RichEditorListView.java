@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.text.Editable;
@@ -15,12 +16,15 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.ViewTreeObserver;
+import android.webkit.MimeTypeMap;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Map;
 import j$.util.Objects;
+import java.io.File;
+import java.io.IOException;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -59,6 +63,7 @@ import org.telegram.ui.iv.RichAudioCell;
 import org.telegram.ui.iv.RichDetailsCell;
 import org.telegram.ui.iv.RichDetailsEndCell;
 import org.telegram.ui.iv.RichDividerCell;
+import org.telegram.ui.iv.RichDocumentCell;
 import org.telegram.ui.iv.RichEditor;
 import org.telegram.ui.iv.RichEditorHistory;
 import org.telegram.ui.iv.RichMapCell;
@@ -83,11 +88,13 @@ public class RichEditorListView extends UniversalRecyclerView {
     private Delegate delegate;
     private final RichDetailsCell.Delegate detailsDelegate;
     private final RichDividerCell.Delegate dividerDelegate;
+    private final RichDocumentCell.Delegate documentDelegate;
     private int dotSelectedCol;
     private int dotSelectedRow;
     private boolean draggingOverTrash;
     private BlockRow draggingRow;
     private int emojiPadding;
+    private MessageObject fileRefParentObject;
     private RichEditText focusedEditText;
     RichEditorHistory history;
     private final RichEditorHistory.Delegate historyDelegate;
@@ -180,6 +187,10 @@ public class RichEditorListView extends UniversalRecyclerView {
 
     public RichEditorListView(Context context, int i, Theme.ResourcesProvider resourcesProvider, Delegate delegate) {
         this(context, i, resourcesProvider, delegate, new RichEditorListView[1]);
+    }
+
+    public void setFileRefParentObject(MessageObject messageObject) {
+        this.fileRefParentObject = messageObject;
     }
 
     private RichEditorListView(Context context, int i, Theme.ResourcesProvider resourcesProvider, final Delegate delegate, final RichEditorListView[] richEditorListViewArr) {
@@ -316,6 +327,67 @@ public class RichEditorListView extends UniversalRecyclerView {
             @Override
             public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
                 return RichEditorListView.this.getTextSelectionHelper();
+            }
+
+            @Override
+            public void onCaptionWillChange(BlockRow blockRow, int i2, int i3) {
+                RichEditorHistory richEditorHistory = RichEditorListView.this.history;
+                if (richEditorHistory != null) {
+                    richEditorHistory.onBeforeChange(i2, i3);
+                }
+            }
+
+            @Override
+            public void onCaptionChanged(BlockRow blockRow) {
+                RichEditorHistory richEditorHistory = RichEditorListView.this.history;
+                if (richEditorHistory != null) {
+                    richEditorHistory.onTyping();
+                }
+                RichEditorListView.this.delegate.onContentChanged();
+            }
+
+            @Override
+            public void onCaptionSpansChanged(BlockRow blockRow) {
+                RichEditorListView.this.onCellSpansChanged();
+            }
+
+            @Override
+            public void onCaptionEnter(BlockRow blockRow) {
+                RichEditorListView.this.onCaptionEnter(blockRow);
+            }
+
+            @Override
+            public void onCaptionLockedInsert(CharSequence charSequence) {
+                if (charSequence == null || charSequence.length() <= 0) {
+                    return;
+                }
+                RichEditorListView.this.replaceHelperSelectionWith(charSequence.toString());
+            }
+
+            @Override
+            public boolean onCaptionSelectAll(BlockRow blockRow) {
+                return RichEditorListView.this.tryEscalateSelectAll();
+            }
+        };
+        this.documentDelegate = new RichDocumentCell.Delegate() {
+            @Override
+            public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
+                RichEditorListView.this.delegate.makeEditTextFocusable(richEditText, z);
+            }
+
+            @Override
+            public void onCancelUpload(BlockRow blockRow) {
+                RichEditorListView.this.cancelDocumentUpload(blockRow);
+            }
+
+            @Override
+            public TextSelectionHelper.ArticleTextSelectionHelper getSelectionHelper() {
+                return RichEditorListView.this.getTextSelectionHelper();
+            }
+
+            @Override
+            public MessageObject getFileRefParentObject() {
+                return RichEditorListView.this.fileRefParentObject;
             }
 
             @Override
@@ -551,7 +623,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         this.cellSelectionListener = new RichTableCell.CellSelectionListener() {
             @Override
             public final void onCellSelectionChanged(RichTableCell richTableCell) {
-                this.f$0.lambda$new$19(richTableCell);
+                this.f$0.lambda$new$20(richTableCell);
             }
         };
         this.cellDelegate = new RichTextCell.Delegate() {
@@ -647,6 +719,56 @@ public class RichEditorListView extends UniversalRecyclerView {
             @Override
             public boolean onPaste(BlockRow blockRow, RichEditText richEditText) {
                 return RichEditorListView.this.onCellPaste(blockRow, richEditText);
+            }
+
+            @Override
+            public int getListPaddingTop(BlockRow blockRow) {
+                int iIndexOf = RichEditorListView.this.rows.indexOf(blockRow);
+                return AndroidUtilities.dp((iIndexOf <= 0 || ((BlockRow) RichEditorListView.this.rows.get(iIndexOf + (-1))).level <= 0) ? 8.0f : 2.0f);
+            }
+
+            @Override
+            public int getListPaddingBottom(BlockRow blockRow) {
+                int i2;
+                int iIndexOf = RichEditorListView.this.rows.indexOf(blockRow);
+                return AndroidUtilities.dp((iIndexOf < 0 || (i2 = iIndexOf + 1) >= RichEditorListView.this.rows.size() || ((BlockRow) RichEditorListView.this.rows.get(i2)).level <= 0) ? 11.0f : 5.0f);
+            }
+
+            @Override
+            public int getOrderedListMarkerWidth(BlockRow blockRow, Paint paint) {
+                int i2;
+                BlockRow blockRow2;
+                int i3;
+                int iIndexOf = RichEditorListView.this.rows.indexOf(blockRow);
+                if (iIndexOf < 0 || (i2 = blockRow.level) <= 0 || blockRow.num <= 0) {
+                    return RichTextCell.Delegate.CC.$default$getOrderedListMarkerWidth(this, blockRow, paint);
+                }
+                int i4 = iIndexOf;
+                while (i4 > 0) {
+                    BlockRow blockRow3 = (BlockRow) RichEditorListView.this.rows.get(i4 - 1);
+                    int i5 = blockRow3.level;
+                    if (i5 < i2 || (i5 == i2 && blockRow3.num <= 0)) {
+                        break;
+                    }
+                    i4--;
+                }
+                while (true) {
+                    iIndexOf++;
+                    if (iIndexOf >= RichEditorListView.this.rows.size() || (i3 = (blockRow2 = (BlockRow) RichEditorListView.this.rows.get(iIndexOf)).level) < i2 || (i3 == i2 && blockRow2.num <= 0)) {
+                        break;
+                    }
+                }
+                Paint paint2 = new Paint(paint);
+                paint2.setTypeface(AndroidUtilities.bold());
+                float fMax = 0.0f;
+                while (i4 < iIndexOf) {
+                    BlockRow blockRow4 = (BlockRow) RichEditorListView.this.rows.get(i4);
+                    if (blockRow4.level == i2 && blockRow4.num > 0) {
+                        fMax = Math.max(fMax, paint2.measureText(blockRow4.num + "."));
+                    }
+                    i4++;
+                }
+                return Math.max(AndroidUtilities.dp(28.0f), ((int) Math.ceil(fMax)) + AndroidUtilities.dp(10.0f));
             }
 
             @Override
@@ -1329,32 +1451,43 @@ public class RichEditorListView extends UniversalRecyclerView {
             mediaUploadState.audioDisplayDocument = documentFindLoadedDocument;
             return mediaUploadState;
         }
-        if (pageBlock instanceof TL_iv.pageBlockVideo) {
-            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            TLRPC.Document documentFindLoadedDocument2 = findLoadedDocument(pageblockvideo.video_id);
+        if (pageBlock instanceof TL_iv.pageBlockDocument) {
+            TLRPC.Document documentFindLoadedDocument2 = findLoadedDocument(((TL_iv.pageBlockDocument) pageBlock).document_id);
             if (documentFindLoadedDocument2 == null) {
                 return null;
             }
             MediaUploadState mediaUploadState2 = new MediaUploadState();
-            mediaUploadState2.isVideo = true;
+            mediaUploadState2.isDocument = true;
             mediaUploadState2.state = 2;
             mediaUploadState2.document = documentFindLoadedDocument2;
-            mediaUploadState2.hasSpoiler = pageblockvideo.spoiler;
+            return mediaUploadState2;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockVideo) {
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            TLRPC.Document documentFindLoadedDocument3 = findLoadedDocument(pageblockvideo.video_id);
+            if (documentFindLoadedDocument3 == null) {
+                return null;
+            }
+            MediaUploadState mediaUploadState3 = new MediaUploadState();
+            mediaUploadState3.isVideo = true;
+            mediaUploadState3.state = 2;
+            mediaUploadState3.document = documentFindLoadedDocument3;
+            mediaUploadState3.hasSpoiler = pageblockvideo.spoiler;
             int i = 0;
             while (true) {
-                if (i >= documentFindLoadedDocument2.attributes.size()) {
+                if (i >= documentFindLoadedDocument3.attributes.size()) {
                     break;
                 }
-                if (documentFindLoadedDocument2.attributes.get(i) instanceof TLRPC.TL_documentAttributeVideo) {
-                    TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentFindLoadedDocument2.attributes.get(i);
-                    mediaUploadState2.width = tL_documentAttributeVideo.w;
-                    mediaUploadState2.height = tL_documentAttributeVideo.h;
-                    mediaUploadState2.duration = (int) tL_documentAttributeVideo.duration;
+                if (documentFindLoadedDocument3.attributes.get(i) instanceof TLRPC.TL_documentAttributeVideo) {
+                    TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = (TLRPC.TL_documentAttributeVideo) documentFindLoadedDocument3.attributes.get(i);
+                    mediaUploadState3.width = tL_documentAttributeVideo.w;
+                    mediaUploadState3.height = tL_documentAttributeVideo.h;
+                    mediaUploadState3.duration = (int) tL_documentAttributeVideo.duration;
                     break;
                 }
                 i++;
             }
-            return mediaUploadState2;
+            return mediaUploadState3;
         }
         if (!(pageBlock instanceof TL_iv.pageBlockPhoto)) {
             return null;
@@ -1364,16 +1497,16 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (photoFindLoadedPhoto == null) {
             return null;
         }
-        MediaUploadState mediaUploadState3 = new MediaUploadState();
-        mediaUploadState3.state = 2;
-        mediaUploadState3.photo = photoFindLoadedPhoto;
-        mediaUploadState3.hasSpoiler = pageblockphoto.spoiler;
+        MediaUploadState mediaUploadState4 = new MediaUploadState();
+        mediaUploadState4.state = 2;
+        mediaUploadState4.photo = photoFindLoadedPhoto;
+        mediaUploadState4.hasSpoiler = pageblockphoto.spoiler;
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photoFindLoadedPhoto.sizes, AndroidUtilities.getPhotoSize());
         if (closestPhotoSizeWithSize != null) {
-            mediaUploadState3.width = closestPhotoSizeWithSize.w;
-            mediaUploadState3.height = closestPhotoSizeWithSize.h;
+            mediaUploadState4.width = closestPhotoSizeWithSize.w;
+            mediaUploadState4.height = closestPhotoSizeWithSize.h;
         }
-        return mediaUploadState3;
+        return mediaUploadState4;
     }
 
     private List resolvePastedMedia(List list) {
@@ -1407,7 +1540,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 }
             } else {
                 TL_iv.PageBlock pageBlock2 = blockRow.block;
-                if ((pageBlock2 instanceof TL_iv.pageBlockPhoto) || (pageBlock2 instanceof TL_iv.pageBlockVideo) || (pageBlock2 instanceof TL_iv.pageBlockAudio)) {
+                if ((pageBlock2 instanceof TL_iv.pageBlockPhoto) || (pageBlock2 instanceof TL_iv.pageBlockVideo) || (pageBlock2 instanceof TL_iv.pageBlockAudio) || (pageBlock2 instanceof TL_iv.pageBlockDocument)) {
                     MediaUploadState mediaUploadStateResolveBlockMedia2 = resolveBlockMedia(pageBlock2);
                     if (mediaUploadStateResolveBlockMedia2 != null) {
                         blockRow.media = mediaUploadStateResolveBlockMedia2;
@@ -1581,6 +1714,10 @@ public class RichEditorListView extends UniversalRecyclerView {
             onFormattingClickedTable(i);
             return;
         }
+        if (isDetailsSelection()) {
+            onFormattingClickedDetails(i);
+            return;
+        }
         if (isCaptionSelection()) {
             onFormattingClickedCaption(i);
             return;
@@ -1706,6 +1843,10 @@ public class RichEditorListView extends UniversalRecyclerView {
             onLinkClickedTable();
             return;
         }
+        if (isDetailsSelection()) {
+            onLinkClickedDetails();
+            return;
+        }
         if (isCaptionSelection()) {
             onLinkClickedCaption();
             return;
@@ -1761,6 +1902,10 @@ public class RichEditorListView extends UniversalRecyclerView {
     void onDateClicked() {
         if (isTableSelection()) {
             onDateClickedTable();
+            return;
+        }
+        if (isDetailsSelection()) {
+            onDateClickedDetails();
             return;
         }
         if (isCaptionSelection()) {
@@ -1819,22 +1964,31 @@ public class RichEditorListView extends UniversalRecyclerView {
                     this.f$0.lambda$onMathClicked$6(startCell, startChildPosition);
                 }
             };
-        } else if (isCaptionSelection()) {
+        } else if (isDetailsSelection()) {
             final int startCell2 = this.textSelectionHelper.getStartCell();
-            editText = captionEditText(startCell2);
+            editText = detailsEditText(startCell2);
             runnable = new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onMathClicked$7(startCell2);
                 }
             };
-        } else if (isQuoteAuthorSelection()) {
+        } else if (isCaptionSelection()) {
             final int startCell3 = this.textSelectionHelper.getStartCell();
-            editText = quoteAuthorEditText(startCell3);
+            editText = captionEditText(startCell3);
             runnable = new Runnable() {
                 @Override
                 public final void run() {
                     this.f$0.lambda$onMathClicked$8(startCell3);
+                }
+            };
+        } else if (isQuoteAuthorSelection()) {
+            final int startCell4 = this.textSelectionHelper.getStartCell();
+            editText = quoteAuthorEditText(startCell4);
+            runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    this.f$0.lambda$onMathClicked$9(startCell4);
                 }
             };
         } else {
@@ -1872,12 +2026,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), strSourceAt, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$insertInlineMath$10(color, fDp, richEditText, i, i2, runnable, (String) obj);
+                this.f$0.lambda$insertInlineMath$11(color, fDp, richEditText, i, i2, runnable, (String) obj);
             }
         }, this.resourcesProvider);
     }
 
-    public void lambda$insertInlineMath$10(int i, float f, final RichEditText richEditText, int i2, int i3, Runnable runnable, String str) {
+    public void lambda$insertInlineMath$11(int i, float f, final RichEditText richEditText, int i2, int i3, Runnable runnable, String str) {
         MathSpan mathSpanCreate;
         if (TextUtils.isEmpty(str) || (mathSpanCreate = MathSpan.create(str, i, f)) == null) {
             return;
@@ -1907,12 +2061,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                RichEditorListView.lambda$insertInlineMath$9(richEditText, iMin);
+                RichEditorListView.lambda$insertInlineMath$10(richEditText, iMin);
             }
         });
     }
 
-    public static void lambda$insertInlineMath$9(RichEditText richEditText, int i) {
+    public static void lambda$insertInlineMath$10(RichEditText richEditText, int i) {
         richEditText.requestEditFocus();
         richEditText.setSelection(Math.min(i, richEditText.length()));
     }
@@ -2218,6 +2372,13 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (i != i3) {
             return null;
         }
+        if (isDetailsHeader(rowForCell(i))) {
+            RichEditText richEditTextDetailsEditText = detailsEditText(i);
+            if (richEditTextDetailsEditText != null) {
+                return richEditTextDetailsEditText.getText();
+            }
+            return null;
+        }
         if (isQuoteAuthorSelection()) {
             RichEditText richEditTextQuoteAuthorEditText = quoteAuthorEditText(i);
             if (richEditTextQuoteAuthorEditText != null) {
@@ -2239,15 +2400,21 @@ public class RichEditorListView extends UniversalRecyclerView {
 
     boolean isStyleFullyApplied(int i, int i2, int i3, int i4, int i5) {
         boolean zHasStyle;
+        int iMax;
+        int iMax2;
+        if (isDetailsSelection()) {
+            RichEditText richEditTextDetailsEditText = detailsEditText(i2);
+            return (richEditTextDetailsEditText == null || (iMax = Math.max(0, Math.min(Math.min(i3, i5), richEditTextDetailsEditText.length()))) >= (iMax2 = Math.max(0, Math.min(Math.max(i3, i5), richEditTextDetailsEditText.length()))) || (i & richEditTextDetailsEditText.getCurrentStyle(iMax, iMax2)) == 0) ? false : true;
+        }
         if (isQuoteAuthorSelection()) {
             RichEditText richEditTextQuoteAuthorEditText = quoteAuthorEditText(i2);
             if (richEditTextQuoteAuthorEditText == null) {
                 return false;
             }
             int length = richEditTextQuoteAuthorEditText.length();
-            int iMax = Math.max(0, Math.min(Math.min(i3, i5), length));
-            int iMax2 = Math.max(0, Math.min(Math.max(i3, i5), length));
-            return iMax < iMax2 && (i & richEditTextQuoteAuthorEditText.getCurrentStyle(iMax, iMax2)) != 0;
+            int iMax3 = Math.max(0, Math.min(Math.min(i3, i5), length));
+            int iMax4 = Math.max(0, Math.min(Math.max(i3, i5), length));
+            return iMax3 < iMax4 && (i & richEditTextQuoteAuthorEditText.getCurrentStyle(iMax3, iMax4)) != 0;
         }
         int i6 = i2;
         boolean z = false;
@@ -2257,14 +2424,14 @@ public class RichEditorListView extends UniversalRecyclerView {
                 int iBlockTextLength = blockTextLength(i6);
                 int i7 = i6 == i2 ? i3 : 0;
                 int i8 = i6 == i4 ? i5 : iBlockTextLength;
-                int iMax3 = Math.max(0, Math.min(i7, iBlockTextLength));
-                int iMax4 = Math.max(0, Math.min(i8, iBlockTextLength));
-                if (iMax3 < iMax4) {
+                int iMax5 = Math.max(0, Math.min(i7, iBlockTextLength));
+                int iMax6 = Math.max(0, Math.min(i8, iBlockTextLength));
+                if (iMax5 < iMax6) {
                     RichTextCell richTextCellCellAt = cellAt(i6);
                     if (richTextCellCellAt != null) {
-                        zHasStyle = (richTextCellCellAt.getStyleDelegate().getCurrentStyle(iMax3, iMax4) & i) != 0;
+                        zHasStyle = (richTextCellCellAt.getStyleDelegate().getCurrentStyle(iMax5, iMax6) & i) != 0;
                     } else {
-                        zHasStyle = RichTextStyle.hasStyle(RichTextCell.readStyledText(rowForCell(i6).block), iMax3, iMax4, i);
+                        zHasStyle = RichTextStyle.hasStyle(RichTextCell.readStyledText(rowForCell(i6).block), iMax5, iMax6, i);
                     }
                     if (!zHasStyle) {
                         return false;
@@ -2280,6 +2447,10 @@ public class RichEditorListView extends UniversalRecyclerView {
     }
 
     private int blockTextLength(int i) {
+        RichEditText richEditTextDetailsEditText = detailsEditText(i);
+        if (richEditTextDetailsEditText != null) {
+            return richEditTextDetailsEditText.length();
+        }
         RichTextCell richTextCellCellAt = cellAt(i);
         if (richTextCellCellAt != null) {
             return richTextCellCellAt.getEditText().length();
@@ -2308,6 +2479,147 @@ public class RichEditorListView extends UniversalRecyclerView {
         int endCell = this.textSelectionHelper.getEndCell();
         BlockRow blockRowRowForCell = rowForCell(startCell);
         return startCell == endCell && blockRowRowForCell != null && (blockRowRowForCell.block instanceof TL_iv.pageBlockTable);
+    }
+
+    private boolean isDetailsSelection() {
+        int startCell;
+        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
+        return articleTextSelectionHelper != null && articleTextSelectionHelper.isInSelectionMode() && (startCell = this.textSelectionHelper.getStartCell()) == this.textSelectionHelper.getEndCell() && isDetailsHeader(rowForCell(startCell));
+    }
+
+    private RichEditText detailsEditText(int i) {
+        if (!isDetailsHeader(rowForCell(i))) {
+            return null;
+        }
+        View viewSelectableAt = selectableAt(i);
+        if (viewSelectableAt instanceof RichDetailsCell) {
+            return ((RichDetailsCell) viewSelectableAt).getEditText();
+        }
+        return null;
+    }
+
+    public void lambda$onMathClicked$7(int i) {
+        BlockRow blockRowRowForCell = rowForCell(i);
+        RichEditText richEditTextDetailsEditText = detailsEditText(i);
+        if (!isDetailsHeader(blockRowRowForCell) || richEditTextDetailsEditText == null) {
+            return;
+        }
+        ((TL_iv.pageBlockDetails) blockRowRowForCell.block).title = RichTextStyle.fromSpannable(richEditTextDetailsEditText.getText());
+    }
+
+    private void onFormattingClickedDetails(int i) {
+        int startCell = this.textSelectionHelper.getStartCell();
+        RichEditText richEditTextDetailsEditText = detailsEditText(startCell);
+        if (richEditTextDetailsEditText == null) {
+            return;
+        }
+        int length = richEditTextDetailsEditText.length();
+        int iMax = Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        int iMax2 = Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        if (iMax >= iMax2) {
+            return;
+        }
+        boolean z = (richEditTextDetailsEditText.getCurrentStyle(iMax, iMax2) & i) == 0;
+        RichEditorHistory richEditorHistory = this.history;
+        if (richEditorHistory != null) {
+            richEditorHistory.flush();
+        }
+        this.suppressSpansChanged = true;
+        if (z) {
+            int iClearMaskFor = clearMaskFor(i);
+            if (iClearMaskFor != 0) {
+                richEditTextDetailsEditText.removeStyle(iClearMaskFor, iMax, iMax2);
+            }
+            richEditTextDetailsEditText.addStyle(i, iMax, iMax2);
+        } else {
+            richEditTextDetailsEditText.removeStyle(i, iMax, iMax2);
+        }
+        this.suppressSpansChanged = false;
+        lambda$onMathClicked$7(startCell);
+        richEditTextDetailsEditText.invalidateEffects();
+        richEditTextDetailsEditText.requestLayout();
+        RichEditorHistory richEditorHistory2 = this.history;
+        if (richEditorHistory2 != null) {
+            richEditorHistory2.record();
+        }
+        this.delegate.onSelectionChanged();
+        refreshSelectionHighlight();
+    }
+
+    private void onLinkClickedDetails() {
+        int startCell = this.textSelectionHelper.getStartCell();
+        RichEditText richEditTextDetailsEditText = detailsEditText(startCell);
+        if (richEditTextDetailsEditText == null) {
+            return;
+        }
+        int length = richEditTextDetailsEditText.length();
+        int iMax = Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        int iMax2 = Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        if (iMax >= iMax2) {
+            return;
+        }
+        if (RichTextStyle.hasLink(richEditTextDetailsEditText.getText(), iMax, iMax2)) {
+            RichEditorHistory richEditorHistory = this.history;
+            if (richEditorHistory != null) {
+                richEditorHistory.flush();
+            }
+            RichTextStyle.removeLink(richEditTextDetailsEditText.getText(), iMax, iMax2);
+            richEditTextDetailsEditText.invalidateEffects();
+            lambda$onMathClicked$7(startCell);
+            RichEditorHistory richEditorHistory2 = this.history;
+            if (richEditorHistory2 != null) {
+                richEditorHistory2.record();
+            }
+            this.delegate.onSelectionChanged();
+            refreshSelectionHighlight();
+            return;
+        }
+        RichEditorHistory richEditorHistory3 = this.history;
+        if (richEditorHistory3 != null) {
+            richEditorHistory3.flush();
+        }
+        if (RichTextStyle.hasDate(richEditTextDetailsEditText.getText(), iMax, iMax2)) {
+            RichTextStyle.removeDate(richEditTextDetailsEditText.getText(), iMax, iMax2);
+            richEditTextDetailsEditText.invalidateEffects();
+            lambda$onMathClicked$7(startCell);
+            RichEditorHistory richEditorHistory4 = this.history;
+            if (richEditorHistory4 != null) {
+                richEditorHistory4.record();
+            }
+            refreshSelectionHighlight();
+        }
+        richEditTextDetailsEditText.setSelectionOverride(iMax, iMax2);
+        richEditTextDetailsEditText.makeSelectedUrl();
+    }
+
+    private void onDateClickedDetails() {
+        int startCell = this.textSelectionHelper.getStartCell();
+        RichEditText richEditTextDetailsEditText = detailsEditText(startCell);
+        if (richEditTextDetailsEditText == null) {
+            return;
+        }
+        int length = richEditTextDetailsEditText.length();
+        int iMax = Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        int iMax2 = Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        if (iMax >= iMax2) {
+            return;
+        }
+        RichEditorHistory richEditorHistory = this.history;
+        if (richEditorHistory != null) {
+            richEditorHistory.flush();
+        }
+        if (RichTextStyle.hasLink(richEditTextDetailsEditText.getText(), iMax, iMax2)) {
+            RichTextStyle.removeLink(richEditTextDetailsEditText.getText(), iMax, iMax2);
+            richEditTextDetailsEditText.invalidateEffects();
+            lambda$onMathClicked$7(startCell);
+            RichEditorHistory richEditorHistory2 = this.history;
+            if (richEditorHistory2 != null) {
+                richEditorHistory2.record();
+            }
+            refreshSelectionHighlight();
+        }
+        richEditTextDetailsEditText.setSelectionOverride(iMax, iMax2);
+        richEditTextDetailsEditText.makeSelectedDate();
     }
 
     RichEditText tableEditText(int i, int i2) {
@@ -2553,14 +2865,14 @@ public class RichEditorListView extends UniversalRecyclerView {
         return null;
     }
 
-    public void lambda$onMathClicked$8(int i) {
+    public void lambda$onMathClicked$9(int i) {
         View viewSelectableAt = selectableAt(i);
         if (viewSelectableAt instanceof RichTextCell) {
             ((RichTextCell) viewSelectableAt).persistAuthor();
         }
     }
 
-    public void lambda$onMathClicked$7(int i) {
+    public void lambda$onMathClicked$8(int i) {
         KeyEvent.Callback callbackSelectableAt = selectableAt(i);
         if (callbackSelectableAt instanceof RichCaptionHost) {
             ((RichCaptionHost) callbackSelectableAt).persistCaption();
@@ -2608,7 +2920,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
         richEditTextCaptionEditText.invalidateEffects();
         richEditTextCaptionEditText.requestLayout();
-        lambda$onMathClicked$7(startCell);
+        lambda$onMathClicked$8(startCell);
         this.suppressSpansChanged = false;
         RichEditorHistory richEditorHistory2 = this.history;
         if (richEditorHistory2 != null) {
@@ -2637,7 +2949,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             }
             RichTextStyle.removeLink(richEditTextCaptionEditText.getText(), iMax, iMax2);
             richEditTextCaptionEditText.invalidateEffects();
-            lambda$onMathClicked$7(startCell);
+            lambda$onMathClicked$8(startCell);
             RichEditorHistory richEditorHistory2 = this.history;
             if (richEditorHistory2 != null) {
                 richEditorHistory2.record();
@@ -2653,7 +2965,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (RichTextStyle.hasDate(richEditTextCaptionEditText.getText(), iMax, iMax2)) {
             RichTextStyle.removeDate(richEditTextCaptionEditText.getText(), iMax, iMax2);
             richEditTextCaptionEditText.invalidateEffects();
-            lambda$onMathClicked$7(startCell);
+            lambda$onMathClicked$8(startCell);
             RichEditorHistory richEditorHistory4 = this.history;
             if (richEditorHistory4 != null) {
                 richEditorHistory4.record();
@@ -2683,7 +2995,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (RichTextStyle.hasLink(richEditTextCaptionEditText.getText(), iMax, iMax2)) {
             RichTextStyle.removeLink(richEditTextCaptionEditText.getText(), iMax, iMax2);
             richEditTextCaptionEditText.invalidateEffects();
-            lambda$onMathClicked$7(startCell);
+            lambda$onMathClicked$8(startCell);
             RichEditorHistory richEditorHistory2 = this.history;
             if (richEditorHistory2 != null) {
                 richEditorHistory2.record();
@@ -2733,7 +3045,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
         richEditTextQuoteAuthorEditText.invalidateEffects();
         richEditTextQuoteAuthorEditText.requestLayout();
-        lambda$onMathClicked$8(startCell);
+        lambda$onMathClicked$9(startCell);
         this.suppressSpansChanged = false;
         RichEditorHistory richEditorHistory2 = this.history;
         if (richEditorHistory2 != null) {
@@ -2762,7 +3074,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             }
             RichTextStyle.removeLink(richEditTextQuoteAuthorEditText.getText(), iMax, iMax2);
             richEditTextQuoteAuthorEditText.invalidateEffects();
-            lambda$onMathClicked$8(startCell);
+            lambda$onMathClicked$9(startCell);
             RichEditorHistory richEditorHistory2 = this.history;
             if (richEditorHistory2 != null) {
                 richEditorHistory2.record();
@@ -2778,7 +3090,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (RichTextStyle.hasDate(richEditTextQuoteAuthorEditText.getText(), iMax, iMax2)) {
             RichTextStyle.removeDate(richEditTextQuoteAuthorEditText.getText(), iMax, iMax2);
             richEditTextQuoteAuthorEditText.invalidateEffects();
-            lambda$onMathClicked$8(startCell);
+            lambda$onMathClicked$9(startCell);
             RichEditorHistory richEditorHistory4 = this.history;
             if (richEditorHistory4 != null) {
                 richEditorHistory4.record();
@@ -2808,7 +3120,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (RichTextStyle.hasLink(richEditTextQuoteAuthorEditText.getText(), iMax, iMax2)) {
             RichTextStyle.removeLink(richEditTextQuoteAuthorEditText.getText(), iMax, iMax2);
             richEditTextQuoteAuthorEditText.invalidateEffects();
-            lambda$onMathClicked$8(startCell);
+            lambda$onMathClicked$9(startCell);
             RichEditorHistory richEditorHistory2 = this.history;
             if (richEditorHistory2 != null) {
                 richEditorHistory2.record();
@@ -2834,6 +3146,10 @@ public class RichEditorListView extends UniversalRecyclerView {
         if (articleTextSelectionHelper != null && articleTextSelectionHelper.isInSelectionMode()) {
             if (isTableSelection()) {
                 return tableSelectionHasFormattable();
+            }
+            if (isDetailsSelection()) {
+                RichEditText richEditTextDetailsEditText = detailsEditText(this.textSelectionHelper.getStartCell());
+                return richEditTextDetailsEditText != null && Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), richEditTextDetailsEditText.length())) < Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), richEditTextDetailsEditText.length()));
             }
             if (isCaptionSelection()) {
                 return captionSelectionHasFormattable();
@@ -2911,7 +3227,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.handleSelectionTouch(android.view.MotionEvent):boolean");
     }
 
-    public void lambda$handleSelectionTouch$11() {
+    public void lambda$handleSelectionTouch$12() {
         if (this.pressTarget == null || this.textSelectionHelper.isInSelectionMode()) {
             return;
         }
@@ -2994,6 +3310,17 @@ public class RichEditorListView extends UniversalRecyclerView {
 
     private View findCellUnder(int i, int i2) {
         int top = i2 - getTop();
+        RichTableCell richTableCellFindFocusedTableCell = this.activeCellSelectionTable;
+        if (richTableCellFindFocusedTableCell == null) {
+            richTableCellFindFocusedTableCell = findFocusedTableCell();
+        }
+        if (richTableCellFindFocusedTableCell != null && richTableCellFindFocusedTableCell.getParent() == this) {
+            int left = i - richTableCellFindFocusedTableCell.getLeft();
+            int top2 = top - richTableCellFindFocusedTableCell.getTop();
+            if (richTableCellFindFocusedTableCell.findRowHandleAt(left, top2) >= 0 || richTableCellFindFocusedTableCell.findColHandleAt(left, top2) >= 0) {
+                return richTableCellFindFocusedTableCell;
+            }
+        }
         for (int i3 = 0; i3 < getChildCount(); i3++) {
             View childAt = getChildAt(i3);
             if (top >= childAt.getTop() && top < childAt.getBottom() && i >= childAt.getLeft() && i < childAt.getRight()) {
@@ -3039,7 +3366,7 @@ public class RichEditorListView extends UniversalRecyclerView {
     private void onTapAboveContent() {
         BlockRow blockRow = this.rows.isEmpty() ? null : (BlockRow) this.rows.get(0);
         if (blockRow != null && !isNonText(blockRow.block) && !blockRow.detailsEnd && !isDetailsHeader(blockRow) && !endsWithOwnParagraph(blockRow.block)) {
-            lambda$onTapAboveContent$12(blockRow);
+            lambda$onTapAboveContent$13(blockRow);
             return;
         }
         RichEditorHistory richEditorHistory = this.history;
@@ -3056,7 +3383,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onTapAboveContent$12(blockRow2);
+                this.f$0.lambda$onTapAboveContent$13(blockRow2);
             }
         });
     }
@@ -3085,7 +3412,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             if (!(findViewByItemObject(blockRow) instanceof RichTextCell)) {
                 return false;
             }
-            lambda$onTapBelowContent$14(blockRow);
+            lambda$onTapBelowContent$15(blockRow);
         } else {
             RichEditorHistory richEditorHistory = this.history;
             if (richEditorHistory != null) {
@@ -3101,7 +3428,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$focusForDraftInternal$13(blockRow2);
+                    this.f$0.lambda$focusForDraftInternal$14(blockRow2);
                 }
             });
         }
@@ -3116,7 +3443,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             blockRow = (BlockRow) this.rows.get(r0.size() - 1);
         }
         if (blockRow != null && blockRow.quoteIds.isEmpty() && !isNonText(blockRow.block) && !blockRow.detailsEnd && !isDetailsHeader(blockRow) && !endsWithOwnParagraph(blockRow.block)) {
-            lambda$onTapBelowContent$14(blockRow);
+            lambda$onTapBelowContent$15(blockRow);
             return;
         }
         RichEditorHistory richEditorHistory = this.history;
@@ -3133,7 +3460,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onTapBelowContent$14(blockRow2);
+                this.f$0.lambda$onTapBelowContent$15(blockRow2);
             }
         });
     }
@@ -3433,7 +3760,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$insertParagraphAfterQuote$15(blockRow2);
+                this.f$0.lambda$insertParagraphAfterQuote$16(blockRow2);
             }
         });
     }
@@ -3446,14 +3773,14 @@ public class RichEditorListView extends UniversalRecyclerView {
                 ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), TextUtils.isEmpty(pageblockmath.source) ? "" : pageblockmath.source, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        this.f$0.lambda$openMathEditor$16(pageblockmath, (String) obj);
+                        this.f$0.lambda$openMathEditor$17(pageblockmath, (String) obj);
                     }
                 }, this.resourcesProvider);
             }
         }
     }
 
-    public void lambda$openMathEditor$16(TL_iv.pageBlockMath pageblockmath, String str) {
+    public void lambda$openMathEditor$17(TL_iv.pageBlockMath pageblockmath, String str) {
         if (TextUtils.equals(str, pageblockmath.source)) {
             return;
         }
@@ -3505,7 +3832,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$deleteDetails$17(blockRow2);
+                    this.f$0.lambda$deleteDetails$18(blockRow2);
                 }
             });
         }
@@ -3545,12 +3872,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onDetailsTitleEnter$18(blockRow2);
+                this.f$0.lambda$onDetailsTitleEnter$19(blockRow2);
             }
         });
     }
 
-    public void lambda$new$19(RichTableCell richTableCell) {
+    public void lambda$new$20(RichTableCell richTableCell) {
         if (richTableCell != this.activeCellSelectionTable) {
             return;
         }
@@ -3757,7 +4084,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             buttonArr[i11].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    RichEditorListView.lambda$showTableCellMenu$20(richTableCell, i11, buttonArr, view);
+                    RichEditorListView.lambda$showTableCellMenu$21(richTableCell, i11, buttonArr, view);
                 }
             });
         }
@@ -3765,7 +4092,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             buttonArr2[i12].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    RichEditorListView.lambda$showTableCellMenu$21(richTableCell, i12, buttonArr2, view);
+                    RichEditorListView.lambda$showTableCellMenu$22(richTableCell, i12, buttonArr2, view);
                 }
             });
         }
@@ -3784,14 +4111,14 @@ public class RichEditorListView extends UniversalRecyclerView {
         itemOptionsMakeMenu.add(zAllSelectedHeader ? R.drawable.iv_table_highlight_remove : R.drawable.iv_table_highlight, string, new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTableCellMenu$22(richTableCell, zAllSelectedHeader);
+                this.f$0.lambda$showTableCellMenu$23(richTableCell, zAllSelectedHeader);
             }
         });
         if (i2 != 0) {
             itemOptionsMakeMenu.add(R.drawable.iv_table_merge, LocaleController.getString(R.string.ArticleMergeCells), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$23(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$24(richTableCell);
                 }
             });
         }
@@ -3799,7 +4126,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.add(R.drawable.iv_table_unmerge, LocaleController.getString(R.string.ArticleSplitCells), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$24(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$25(richTableCell);
                 }
             });
         }
@@ -3807,13 +4134,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.add(R.drawable.iv_table_insert_left, LocaleController.getString(R.string.ArticleInsertLeft), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$25(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$26(richTableCell);
                 }
             });
             itemOptionsMakeMenu.add(R.drawable.iv_table_insert_right, LocaleController.getString(R.string.ArticleInsertRight), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$26(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$27(richTableCell);
                 }
             });
         }
@@ -3821,13 +4148,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.add(R.drawable.iv_table_insert_top, LocaleController.getString(R.string.ArticleInsertAbove), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$27(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$28(richTableCell);
                 }
             });
             itemOptionsMakeMenu.add(R.drawable.iv_table_insert_bottom, LocaleController.getString(R.string.ArticleInsertBelow), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$28(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$29(richTableCell);
                 }
             });
         }
@@ -3836,7 +4163,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.add(R.drawable.iv_table_remove, LocaleController.getString(R.string.ArticleDeleteColumn), true, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$29(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$30(richTableCell);
                 }
             });
         } else {
@@ -3846,7 +4173,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.add(R.drawable.iv_table_remove, LocaleController.getString(R.string.ArticleDeleteRow), z, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$30(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$31(richTableCell);
                 }
             });
         }
@@ -3854,21 +4181,21 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.add(R.drawable.iv_table_remove, LocaleController.getString(R.string.ArticleDeleteTable), z, new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$showTableCellMenu$31(richTableCell);
+                    this.f$0.lambda$showTableCellMenu$32(richTableCell);
                 }
             });
         }
         itemOptionsMakeMenu.setOnDismiss(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$showTableCellMenu$32(itemOptionsMakeMenu);
+                this.f$0.lambda$showTableCellMenu$33(itemOptionsMakeMenu);
             }
         });
         this.tableCellMenu = itemOptionsMakeMenu;
         itemOptionsMakeMenu.show();
     }
 
-    public static void lambda$showTableCellMenu$20(RichTableCell richTableCell, int i, RichEditor.Button[] buttonArr, View view) {
+    public static void lambda$showTableCellMenu$21(RichTableCell richTableCell, int i, RichEditor.Button[] buttonArr, View view) {
         richTableCell.applyHorizontalAlign(i);
         int i2 = 0;
         while (i2 < 3) {
@@ -3877,7 +4204,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public static void lambda$showTableCellMenu$21(RichTableCell richTableCell, int i, RichEditor.Button[] buttonArr, View view) {
+    public static void lambda$showTableCellMenu$22(RichTableCell richTableCell, int i, RichEditor.Button[] buttonArr, View view) {
         richTableCell.applyVerticalAlign(i);
         int i2 = 0;
         while (i2 < 3) {
@@ -3886,52 +4213,52 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public void lambda$showTableCellMenu$22(RichTableCell richTableCell, boolean z) {
+    public void lambda$showTableCellMenu$23(RichTableCell richTableCell, boolean z) {
         richTableCell.applyHeaderToggle(!z);
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$23(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$24(RichTableCell richTableCell) {
         richTableCell.applyMergeFromSelection();
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$24(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$25(RichTableCell richTableCell) {
         richTableCell.applyUnmergeFromSelection();
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$25(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$26(RichTableCell richTableCell) {
         richTableCell.applyInsertColumnFromSelection(true);
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$26(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$27(RichTableCell richTableCell) {
         richTableCell.applyInsertColumnFromSelection(false);
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$27(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$28(RichTableCell richTableCell) {
         richTableCell.applyInsertRowFromSelection(true);
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$28(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$29(RichTableCell richTableCell) {
         richTableCell.applyInsertRowFromSelection(false);
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$29(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$30(RichTableCell richTableCell) {
         richTableCell.applyDeleteColumnsFromSelection();
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$30(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$31(RichTableCell richTableCell) {
         richTableCell.applyDeleteRowsFromSelection();
         exitCellSelectionMode();
     }
 
-    public void lambda$showTableCellMenu$31(RichTableCell richTableCell) {
+    public void lambda$showTableCellMenu$32(RichTableCell richTableCell) {
         BlockRow row = richTableCell.getRow();
         exitCellSelectionMode();
         if (row != null) {
@@ -3951,7 +4278,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public void lambda$showTableCellMenu$32(ItemOptions itemOptions) {
+    public void lambda$showTableCellMenu$33(ItemOptions itemOptions) {
         if (this.tableCellMenu == itemOptions) {
             this.tableCellMenu = null;
         }
@@ -4117,12 +4444,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), "", new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$openLatexEditorAndAdd$33((String) obj);
+                this.f$0.lambda$openLatexEditorAndAdd$34((String) obj);
             }
         }, this.resourcesProvider);
     }
 
-    public void lambda$openLatexEditorAndAdd$33(String str) {
+    public void lambda$openLatexEditorAndAdd$34(String str) {
         if (TextUtils.isEmpty(str)) {
             return;
         }
@@ -4174,14 +4501,14 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$restoreFromHistory$34(focusState);
+                    this.f$0.lambda$restoreFromHistory$35(focusState);
                 }
             });
         }
         this.delegate.onContentChanged();
     }
 
-    public void lambda$restoreFromHistory$34(RichEditorHistory.FocusState focusState) {
+    public void lambda$restoreFromHistory$35(RichEditorHistory.FocusState focusState) {
         int iIndexOfRowId = indexOfRowId(focusState.rowId);
         if (iIndexOfRowId < 0) {
             return;
@@ -4389,6 +4716,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             ReplyMessageLine replyMessageLine = new ReplyMessageLine(this);
             this.quoteLine = replyMessageLine;
             replyMessageLine.check(null, null, null, this.resourcesProvider, 1);
+            RichBlockChrome.applyEditorQuoteColor(this.quoteLine, this.resourcesProvider);
         }
         int i3 = 0;
         while (i3 < size) {
@@ -4506,7 +4834,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             BlockRow blockRow = (BlockRow) this.rows.get(i2);
             if (!blockRow.detailsEnd) {
                 for (int i3 = 0; i3 < blockRow.quoteIds.size(); i3++) {
-                    Map.EL.merge(map, (Long) blockRow.quoteIds.get(i3), 1, new RichEditorListView$$ExternalSyntheticLambda59());
+                    Map.EL.merge(map, (Long) blockRow.quoteIds.get(i3), 1, new RichEditorListView$$ExternalSyntheticLambda61());
                 }
                 if (blockRow.block instanceof TL_iv.pageBlockParagraph) {
                     i++;
@@ -4583,6 +4911,8 @@ public class RichEditorListView extends UniversalRecyclerView {
                         TL_iv.PageBlock pageBlock2 = blockRow3.block;
                         if (pageBlock2 instanceof TL_iv.pageBlockAudio) {
                             arrayList.add(RichAudioCell.Factory.of(blockRow3, this.audioDelegate));
+                        } else if (pageBlock2 instanceof TL_iv.pageBlockDocument) {
+                            arrayList.add(RichDocumentCell.Factory.of(blockRow3, this.documentDelegate));
                         } else if (pageBlock2 instanceof TL_iv.pageBlockMap) {
                             arrayList.add(RichMapCell.Factory.of(blockRow3, this.mapDelegate));
                         } else if (pageBlock2 instanceof TL_iv.pageBlockMath) {
@@ -4881,7 +5211,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.addBlock(org.telegram.tgnet.tl.TL_iv$PageBlock):void");
     }
 
-    public void lambda$addBlock$35(BlockRow blockRow) {
+    public void lambda$addBlock$36(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -4894,7 +5224,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.insertDetails():void");
     }
 
-    public void lambda$insertDetails$36(BlockRow blockRow) {
+    public void lambda$insertDetails$37(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichDetailsCell) {
             ((RichDetailsCell) viewFindViewByItemObject).requestEditFocus();
@@ -4945,11 +5275,211 @@ public class RichEditorListView extends UniversalRecyclerView {
         this.delegate.onContentChanged();
     }
 
+    void attachDocument(MessageObject messageObject) {
+        if (messageObject == null || messageObject.getDocument() == null) {
+            return;
+        }
+        TLRPC.Document document = messageObject.getDocument();
+        TLRPC.Message message = messageObject.messageOwner;
+        attachDocument(document, message != null ? message.attachPath : null);
+    }
+
+    public void lambda$attachDocument$38(String str) {
+        int i;
+        if (TextUtils.isEmpty(str)) {
+            return;
+        }
+        File file = new File(str);
+        if (file.exists()) {
+            TLRPC.TL_document tL_document = new TLRPC.TL_document();
+            tL_document.id = 0L;
+            tL_document.dc_id = 0;
+            tL_document.size = file.length();
+            String name = file.getName();
+            int iLastIndexOf = name.lastIndexOf(46);
+            String mimeTypeFromExtension = (iLastIndexOf < 0 || (i = iLastIndexOf + 1) >= name.length()) ? null : MimeTypeMap.getSingleton().getMimeTypeFromExtension(name.substring(i).toLowerCase());
+            if (TextUtils.isEmpty(mimeTypeFromExtension)) {
+                mimeTypeFromExtension = "application/octet-stream";
+            }
+            tL_document.mime_type = mimeTypeFromExtension;
+            TLRPC.TL_documentAttributeFilename tL_documentAttributeFilename = new TLRPC.TL_documentAttributeFilename();
+            tL_documentAttributeFilename.file_name = name;
+            tL_document.attributes.add(tL_documentAttributeFilename);
+            attachDocument(tL_document, str);
+        }
+    }
+
+    private void attachDocument(TLRPC.Document document, String str) {
+        if (document == null) {
+            return;
+        }
+        RichEditorHistory richEditorHistory = this.history;
+        if (richEditorHistory != null) {
+            richEditorHistory.flush();
+        }
+        TL_iv.pageBlockDocument pageblockdocument = new TL_iv.pageBlockDocument();
+        BlockRow blockRow = new BlockRow(pageblockdocument);
+        MediaUploadState mediaUploadState = new MediaUploadState();
+        blockRow.media = mediaUploadState;
+        mediaUploadState.isDocument = true;
+        long j = document.id;
+        boolean z = j == 0 || document.dc_id == 0 || document.access_hash == 0;
+        if (z) {
+            if (TextUtils.isEmpty(str) || !new File(str).exists()) {
+                return;
+            }
+            MediaUploadState mediaUploadState2 = blockRow.media;
+            mediaUploadState2.document = document;
+            mediaUploadState2.localPath = str;
+            mediaUploadState2.state = 1;
+            mediaUploadState2.progress = 0.0f;
+        } else {
+            mediaUploadState.document = document;
+            mediaUploadState.state = 2;
+            pageblockdocument.document_id = j;
+        }
+        insertPreparedRow(blockRow);
+        if (z) {
+            startDocumentUpload(blockRow, str, document);
+        }
+        RichEditorHistory richEditorHistory2 = this.history;
+        if (richEditorHistory2 != null) {
+            richEditorHistory2.record();
+        }
+        this.delegate.onContentChanged();
+    }
+
+    void attachDocument(final Uri uri) {
+        if (uri == null || getContext() == null) {
+            return;
+        }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() throws IOException {
+                this.f$0.lambda$attachDocument$39(uri);
+            }
+        });
+    }
+
+    public void lambda$attachDocument$39(Uri uri) throws IOException {
+        final String strCopyDocumentUriToCache;
+        try {
+            strCopyDocumentUriToCache = AndroidUtilities.getPath(uri);
+        } catch (Exception e) {
+            FileLog.e(e);
+            strCopyDocumentUriToCache = null;
+        }
+        if (TextUtils.isEmpty(strCopyDocumentUriToCache) || !new File(strCopyDocumentUriToCache).exists()) {
+            strCopyDocumentUriToCache = copyDocumentUriToCache(uri);
+        }
+        if (TextUtils.isEmpty(strCopyDocumentUriToCache) || !new File(strCopyDocumentUriToCache).exists()) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$attachDocument$38(strCopyDocumentUriToCache);
+            }
+        });
+    }
+
+    private java.lang.String copyDocumentUriToCache(android.net.Uri r9) throws java.io.IOException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.copyDocumentUriToCache(android.net.Uri):java.lang.String");
+    }
+
+    private void startDocumentUpload(final BlockRow blockRow, final String str, TLRPC.Document document) {
+        final MediaUploadState mediaUploadState = blockRow.media;
+        RichMediaUploader richMediaUploader = (RichMediaUploader) this.uploaders.remove(mediaUploadState);
+        if (richMediaUploader != null) {
+            richMediaUploader.cancel();
+        }
+        RichMediaUploader richMediaUploaderForDocument = RichMediaUploader.forDocument(this.currentAccount, str, document, new RichMediaUploader.Listener() {
+            @Override
+            public void onAudioUploaded(TLRPC.Document document2) {
+                RichMediaUploader.Listener.CC.$default$onAudioUploaded(this, document2);
+            }
+
+            @Override
+            public void onPhotoUploaded(TLRPC.Photo photo) {
+                RichMediaUploader.Listener.CC.$default$onPhotoUploaded(this, photo);
+            }
+
+            @Override
+            public void onVideoUploaded(TLRPC.Document document2) {
+                RichMediaUploader.Listener.CC.$default$onVideoUploaded(this, document2);
+            }
+
+            @Override
+            public void onWidthHeightResolved(int i, int i2) {
+                RichMediaUploader.Listener.CC.$default$onWidthHeightResolved(this, i, i2);
+            }
+
+            @Override
+            public void onProgress(float f) {
+                mediaUploadState.progress = f;
+                RichEditorListView.this.invalidateDocumentCell(blockRow);
+                RichEditorListView.this.delegate.onContentChanged();
+            }
+
+            @Override
+            public void onDocumentUploaded(TLRPC.Document document2) {
+                document2.localPath = str;
+                FileLoader.getInstance(RichEditorListView.this.currentAccount).setLocalPathTo(document2, str);
+                MediaUploadState mediaUploadState2 = mediaUploadState;
+                mediaUploadState2.document = document2;
+                mediaUploadState2.state = 2;
+                TL_iv.PageBlock pageBlock = blockRow.block;
+                if (pageBlock instanceof TL_iv.pageBlockDocument) {
+                    ((TL_iv.pageBlockDocument) pageBlock).document_id = document2.id;
+                }
+                RichEditorListView.this.uploaders.remove(mediaUploadState);
+                RichEditorListView.this.adapter.update(false);
+                RichEditorListView.this.delegate.onContentChanged();
+            }
+
+            @Override
+            public void onError() {
+                mediaUploadState.state = 3;
+                RichEditorListView.this.uploaders.remove(mediaUploadState);
+                RichEditorListView.this.rows.remove(blockRow);
+                RichEditorListView.this.adapter.update(true);
+                RichEditorListView.this.delegate.onContentChanged();
+            }
+        });
+        this.uploaders.put(mediaUploadState, richMediaUploaderForDocument);
+        richMediaUploaderForDocument.start();
+    }
+
+    public void cancelDocumentUpload(BlockRow blockRow) {
+        RichMediaUploader richMediaUploader = (RichMediaUploader) this.uploaders.remove(blockRow.media);
+        if (richMediaUploader != null) {
+            richMediaUploader.cancel();
+        }
+        RichEditorHistory richEditorHistory = this.history;
+        if (richEditorHistory != null) {
+            richEditorHistory.flush();
+        }
+        this.rows.remove(blockRow);
+        this.adapter.update(true);
+        RichEditorHistory richEditorHistory2 = this.history;
+        if (richEditorHistory2 != null) {
+            richEditorHistory2.record();
+        }
+        this.delegate.onContentChanged();
+    }
+
+    public void invalidateDocumentCell(BlockRow blockRow) {
+        View viewFindViewByItemObject = findViewByItemObject(blockRow);
+        if (viewFindViewByItemObject instanceof RichDocumentCell) {
+            ((RichDocumentCell) viewFindViewByItemObject).refreshUploadState();
+        }
+    }
+
     private void insertPreparedRow(org.telegram.ui.iv.BlockRow r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.insertPreparedRow(org.telegram.ui.iv.BlockRow):void");
     }
 
-    public void lambda$insertPreparedRow$37(BlockRow blockRow) {
+    public void lambda$insertPreparedRow$40(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -4965,6 +5495,11 @@ public class RichEditorListView extends UniversalRecyclerView {
             richMediaUploader.cancel();
         }
         RichMediaUploader richMediaUploaderForAudio = RichMediaUploader.forAudio(this.currentAccount, str, document, new RichMediaUploader.Listener() {
+            @Override
+            public void onDocumentUploaded(TLRPC.Document document2) {
+                RichMediaUploader.Listener.CC.$default$onDocumentUploaded(this, document2);
+            }
+
             @Override
             public void onPhotoUploaded(TLRPC.Photo photo) {
                 RichMediaUploader.Listener.CC.$default$onPhotoUploaded(this, photo);
@@ -5178,16 +5713,16 @@ public class RichEditorListView extends UniversalRecyclerView {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() throws Throwable {
-                this.f$0.lambda$attachExternalMedia$39(uri, zStartsWith, str, i, blockRow);
+                this.f$0.lambda$attachExternalMedia$42(uri, zStartsWith, str, i, blockRow);
             }
         });
     }
 
-    public void lambda$attachExternalMedia$39(android.net.Uri r15, final boolean r16, java.lang.String r17, final int r18, final org.telegram.ui.iv.BlockRow r19) throws java.lang.Throwable {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.lambda$attachExternalMedia$39(android.net.Uri, boolean, java.lang.String, int, org.telegram.ui.iv.BlockRow):void");
+    public void lambda$attachExternalMedia$42(android.net.Uri r15, final boolean r16, java.lang.String r17, final int r18, final org.telegram.ui.iv.BlockRow r19) throws java.lang.Throwable {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.lambda$attachExternalMedia$42(android.net.Uri, boolean, java.lang.String, int, org.telegram.ui.iv.BlockRow):void");
     }
 
-    public void lambda$attachExternalMedia$38(int i, String str, boolean z, int i2, int i3, int i4, int i5, int i6, BlockRow blockRow) {
+    public void lambda$attachExternalMedia$41(int i, String str, boolean z, int i2, int i3, int i4, int i5, int i6, BlockRow blockRow) {
         MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, i, 0L, str, z ? i2 : 0, z, i3, i4, 0L);
         photoEntry.setOrientation(i5, i6);
         if (blockRow != null && isMedia(blockRow.block)) {
@@ -5264,6 +5799,11 @@ public class RichEditorListView extends UniversalRecyclerView {
             @Override
             public void onAudioUploaded(TLRPC.Document document) {
                 RichMediaUploader.Listener.CC.$default$onAudioUploaded(this, document);
+            }
+
+            @Override
+            public void onDocumentUploaded(TLRPC.Document document) {
+                RichMediaUploader.Listener.CC.$default$onDocumentUploaded(this, document);
             }
 
             @Override
@@ -5515,12 +6055,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCaptionEnter$41(blockRow2);
+                this.f$0.lambda$onCaptionEnter$44(blockRow2);
             }
         });
     }
 
-    public void lambda$onCaptionEnter$41(BlockRow blockRow) {
+    public void lambda$onCaptionEnter$44(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -5568,7 +6108,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCellEnter$42(blockRow);
+                        this.f$0.lambda$onCellEnter$45(blockRow);
                     }
                 });
                 return;
@@ -5584,7 +6124,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCellEnter$43(blockRow);
+                        this.f$0.lambda$onCellEnter$46(blockRow);
                     }
                 });
                 return;
@@ -5614,7 +6154,8 @@ public class RichEditorListView extends UniversalRecyclerView {
         final BlockRow blockRow2 = new BlockRow(pageblockparagraph, blockRow.level, i2);
         blockRow2.checkbox = blockRow.checkbox;
         blockRow2.quoteIds.addAll(blockRow.quoteIds);
-        this.rows.add(iIndexOf + 1, blockRow2);
+        int i3 = iIndexOf + 1;
+        this.rows.add(i3, blockRow2);
         renumberAllRuns();
         if (z) {
             this.adapter.update(false);
@@ -5625,7 +6166,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCellEnter$44(blockRow2);
+                    this.f$0.lambda$onCellEnter$47(blockRow2);
                 }
             });
             return;
@@ -5634,6 +6175,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             ((RichTextCell) viewFindViewByItemObject).getEditText().deleteToEndSilently(length);
         }
         this.adapter.updateWithoutNotify();
+        refreshVisibleListPaddingAround(i3);
         int iIndexOf2 = this.itemRows.indexOf(blockRow2);
         if (iIndexOf2 < 0) {
             this.adapter.notifyDataSetChanged();
@@ -5647,7 +6189,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCellEnter$45(itemAnimator);
+                    this.f$0.lambda$onCellEnter$48(itemAnimator);
                 }
             });
         }
@@ -5658,16 +6200,16 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCellEnter$46(blockRow2);
+                this.f$0.lambda$onCellEnter$49(blockRow2);
             }
         });
     }
 
-    public void lambda$onCellEnter$45(RecyclerView.ItemAnimator itemAnimator) {
+    public void lambda$onCellEnter$48(RecyclerView.ItemAnimator itemAnimator) {
         setItemAnimator(itemAnimator);
     }
 
-    public void lambda$onCellEnter$46(BlockRow blockRow) {
+    public void lambda$onCellEnter$49(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -5711,7 +6253,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             BlockRow blockRow = (BlockRow) this.rows.get(i);
             if (!blockRow.detailsEnd) {
                 for (int i2 = 0; i2 < blockRow.quoteIds.size(); i2++) {
-                    Map.EL.merge(map, (Long) blockRow.quoteIds.get(i2), 1, new RichEditorListView$$ExternalSyntheticLambda59());
+                    Map.EL.merge(map, (Long) blockRow.quoteIds.get(i2), 1, new RichEditorListView$$ExternalSyntheticLambda61());
                 }
             }
         }
@@ -5777,7 +6319,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCellBackspaceAtStart$47(blockRow);
+                        this.f$0.lambda$onCellBackspaceAtStart$50(blockRow);
                     }
                 });
             }
@@ -5800,7 +6342,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCellBackspaceAtStart$48(blockRow);
+                    this.f$0.lambda$onCellBackspaceAtStart$51(blockRow);
                 }
             });
             return true;
@@ -5826,7 +6368,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCellBackspaceAtStart$49(blockRow2);
+                        this.f$0.lambda$onCellBackspaceAtStart$52(blockRow2);
                     }
                 });
             }
@@ -5847,7 +6389,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCellBackspaceAtStart$50(blockRow);
+                    this.f$0.lambda$onCellBackspaceAtStart$53(blockRow);
                 }
             });
             return true;
@@ -5883,12 +6425,13 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$onCellBackspaceAtStart$51(blockRow2, iMax);
+                        this.f$0.lambda$onCellBackspaceAtStart$54(blockRow2, iMax);
                     }
                 });
                 return true;
             }
             this.adapter.updateWithoutNotify();
+            refreshVisibleListPaddingAround(iIndexOf);
             final RecyclerView.ItemAnimator itemAnimator = getItemAnimator();
             setItemAnimator(null);
             this.adapter.notifyItemRemoved(iIndexOf2);
@@ -5898,7 +6441,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onCellBackspaceAtStart$52(itemAnimator);
+                    this.f$0.lambda$onCellBackspaceAtStart$55(itemAnimator);
                 }
             });
             RichEditorHistory richEditorHistory12 = this.history;
@@ -5923,13 +6466,13 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onCellBackspaceAtStart$53(blockRow2, length2);
+                this.f$0.lambda$onCellBackspaceAtStart$56(blockRow2, length2);
             }
         });
         return true;
     }
 
-    public void lambda$onCellBackspaceAtStart$51(BlockRow blockRow, int i) {
+    public void lambda$onCellBackspaceAtStart$54(BlockRow blockRow, int i) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -5938,11 +6481,11 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public void lambda$onCellBackspaceAtStart$52(RecyclerView.ItemAnimator itemAnimator) {
+    public void lambda$onCellBackspaceAtStart$55(RecyclerView.ItemAnimator itemAnimator) {
         setItemAnimator(itemAnimator);
     }
 
-    public void lambda$onCellBackspaceAtStart$53(BlockRow blockRow, int i) {
+    public void lambda$onCellBackspaceAtStart$56(BlockRow blockRow, int i) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -5966,7 +6509,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         itemOptionsMakeMenu.addChecked(TextUtils.isEmpty(pageblockpreformatted.language), LocaleController.getString(R.string.ArticleNone), new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$onLanguageClick$54(blockRow);
+                this.f$0.lambda$onLanguageClick$57(blockRow);
             }
         });
         if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
@@ -5979,18 +6522,18 @@ public class RichEditorListView extends UniversalRecyclerView {
             itemOptionsMakeMenu.addChecked(TextUtils.equals(str, pageblockpreformatted.language), MessageObject.TextLayoutBlock.capitalizeLanguage(str), new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$onLanguageClick$55(blockRow, str);
+                    this.f$0.lambda$onLanguageClick$58(blockRow, str);
                 }
             });
         }
         itemOptionsMakeMenu.show();
     }
 
-    public void lambda$onLanguageClick$54(BlockRow blockRow) {
-        lambda$onLanguageClick$55(blockRow, "");
+    public void lambda$onLanguageClick$57(BlockRow blockRow) {
+        lambda$onLanguageClick$58(blockRow, "");
     }
 
-    public void lambda$onLanguageClick$55(BlockRow blockRow, String str) {
+    public void lambda$onLanguageClick$58(BlockRow blockRow, String str) {
         if (blockRow != null) {
             TL_iv.PageBlock pageBlock = blockRow.block;
             if (pageBlock instanceof TL_iv.pageBlockPreformatted) {
@@ -6015,7 +6558,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public void lambda$onTapBelowContent$14(BlockRow blockRow) {
+    public void lambda$onTapBelowContent$15(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -6032,7 +6575,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public void lambda$onTapAboveContent$12(BlockRow blockRow) {
+    public void lambda$onTapAboveContent$13(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -6179,20 +6722,20 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$toggleQuoteOnSelection$56(blockRow3, blockRow4);
+                    this.f$0.lambda$toggleQuoteOnSelection$59(blockRow3, blockRow4);
                 }
             });
         } else {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$toggleQuoteOnSelection$57(blockRow3);
+                    this.f$0.lambda$toggleQuoteOnSelection$60(blockRow3);
                 }
             });
         }
     }
 
-    public void lambda$toggleQuoteOnSelection$56(BlockRow blockRow, BlockRow blockRow2) {
+    public void lambda$toggleQuoteOnSelection$59(BlockRow blockRow, BlockRow blockRow2) {
         if (this.textSelectionHelper == null || blockRow == null || blockRow2 == null) {
             return;
         }
@@ -6318,7 +6861,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             if (richEditorHistory2 != null) {
                 richEditorHistory2.record();
             }
-            lambda$tryPlainArrowAcrossCells$68(blockRow);
+            lambda$tryPlainArrowAcrossCells$71(blockRow);
             return;
         }
         this.adapter.update(false);
@@ -6329,7 +6872,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$applyQuote$58(blockRow);
+                this.f$0.lambda$applyQuote$61(blockRow);
             }
         });
     }
@@ -6358,7 +6901,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.transformRow(org.telegram.ui.iv.BlockRow, org.telegram.tgnet.tl.TL_iv$PageBlock, int, int, boolean, boolean):void");
     }
 
-    public void lambda$transformRow$59(BlockRow blockRow) {
+    public void lambda$transformRow$62(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -6640,12 +7183,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$restoreCaret$60(blockRow, i);
+                this.f$0.lambda$restoreCaret$63(blockRow, i);
             }
         });
     }
 
-    public void lambda$restoreCaret$60(BlockRow blockRow, int i) {
+    public void lambda$restoreCaret$63(BlockRow blockRow, int i) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -6654,7 +7197,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
-    public void lambda$tryPlainArrowAcrossCells$68(BlockRow blockRow) {
+    public void lambda$tryPlainArrowAcrossCells$71(BlockRow blockRow) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             ((RichTextCell) viewFindViewByItemObject).requestEditFocus();
@@ -6677,12 +7220,25 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
+    private void refreshVisibleListPaddingAround(int i) {
+        int iMin = Math.min(this.rows.size() - 1, i + 1);
+        for (int iMax = Math.max(0, i - 1); iMax <= iMin; iMax++) {
+            BlockRow blockRow = (BlockRow) this.rows.get(iMax);
+            if (blockRow.level > 0) {
+                View viewFindViewByItemObject = findViewByItemObject(blockRow);
+                if (viewFindViewByItemObject instanceof RichTextCell) {
+                    ((RichTextCell) viewFindViewByItemObject).refreshListVerticalPadding();
+                }
+            }
+        }
+    }
+
     private static boolean isListableText(TL_iv.PageBlock pageBlock) {
         return (pageBlock instanceof TL_iv.pageBlockParagraph) || isHeading(pageBlock) || (pageBlock instanceof TL_iv.pageBlockPreformatted) || (pageBlock instanceof TL_iv.pageBlockFooter);
     }
 
     private static boolean isNonText(TL_iv.PageBlock pageBlock) {
-        return (pageBlock instanceof TL_iv.pageBlockDivider) || (pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockVideo) || (pageBlock instanceof TL_iv.pageBlockCollage) || (pageBlock instanceof TL_iv.pageBlockSlideshow) || (pageBlock instanceof TL_iv.pageBlockAudio) || (pageBlock instanceof TL_iv.pageBlockMath) || (pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockTable) || (pageBlock instanceof TL_iv.pageBlockList) || (pageBlock instanceof TL_iv.pageBlockOrderedList);
+        return (pageBlock instanceof TL_iv.pageBlockDivider) || (pageBlock instanceof TL_iv.pageBlockPhoto) || (pageBlock instanceof TL_iv.pageBlockVideo) || (pageBlock instanceof TL_iv.pageBlockCollage) || (pageBlock instanceof TL_iv.pageBlockSlideshow) || (pageBlock instanceof TL_iv.pageBlockAudio) || (pageBlock instanceof TL_iv.pageBlockDocument) || (pageBlock instanceof TL_iv.pageBlockMath) || (pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockTable) || (pageBlock instanceof TL_iv.pageBlockList) || (pageBlock instanceof TL_iv.pageBlockOrderedList);
     }
 
     TL_iv.RichMessage buildDraftRichMessage() {
@@ -6718,32 +7274,7 @@ public class RichEditorListView extends UniversalRecyclerView {
     }
 
     boolean hasAnyText() {
-        for (int i = 0; i < this.rows.size(); i++) {
-            BlockRow blockRow = (BlockRow) this.rows.get(i);
-            if (!RichTextCell.readPlainText(blockRow.block).isEmpty()) {
-                return true;
-            }
-            if (isMedia(blockRow.block) || (blockRow.block instanceof TL_iv.pageBlockAudio)) {
-                for (MediaUploadState mediaUploadState : mediasOf(blockRow)) {
-                    if (mediaUploadState.isReady() || mediaUploadState.isPending()) {
-                        return true;
-                    }
-                }
-            }
-            TL_iv.PageBlock pageBlock = blockRow.block;
-            if ((pageBlock instanceof TL_iv.pageBlockMath) && !TextUtils.isEmpty(((TL_iv.pageBlockMath) pageBlock).source)) {
-                return true;
-            }
-            TL_iv.PageBlock pageBlock2 = blockRow.block;
-            if ((pageBlock2 instanceof TL_iv.pageBlockMap) && RichMapCell.hasGeo((TL_iv.pageBlockMap) pageBlock2)) {
-                return true;
-            }
-            TL_iv.PageBlock pageBlock3 = blockRow.block;
-            if ((pageBlock3 instanceof TL_iv.pageBlockTable) && tableHasText((TL_iv.pageBlockTable) pageBlock3)) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.hasAnyText():boolean");
     }
 
     private static boolean tableHasText(TL_iv.pageBlockTable pageblocktable) {
@@ -6781,12 +7312,21 @@ public class RichEditorListView extends UniversalRecyclerView {
 
     ArrayList collectDocuments() {
         TLRPC.Document document;
+        MediaUploadState mediaUploadState;
+        TLRPC.Document document2;
         ArrayList arrayList = new ArrayList();
         HashSet hashSet = new HashSet();
         for (int i = 0; i < this.rows.size(); i++) {
-            for (MediaUploadState mediaUploadState : mediasOf((BlockRow) this.rows.get(i))) {
-                if (mediaUploadState.isReady() && (document = mediaUploadState.document) != null && hashSet.add(Long.valueOf(document.id))) {
-                    arrayList.add(mediaUploadState.document);
+            BlockRow blockRow = (BlockRow) this.rows.get(i);
+            if ((blockRow.block instanceof TL_iv.pageBlockDocument) && (mediaUploadState = blockRow.media) != null && mediaUploadState.isReady() && (document2 = blockRow.media.document) != null) {
+                ((TL_iv.pageBlockDocument) blockRow.block).document_id = document2.id;
+            }
+            for (MediaUploadState mediaUploadState2 : mediasOf(blockRow)) {
+                if (mediaUploadState2.isReady() && (document = mediaUploadState2.document) != null) {
+                    long j = document.id;
+                    if (j != 0 && document.access_hash != 0 && hashSet.add(Long.valueOf(j))) {
+                        arrayList.add(mediaUploadState2.document);
+                    }
                 }
             }
         }
@@ -6902,6 +7442,7 @@ public class RichEditorListView extends UniversalRecyclerView {
     }
 
     private void emitLeafBlock(BlockRow blockRow, ArrayList arrayList) {
+        TLRPC.Document document;
         TL_iv.pageBlockCollage pageblockcollage;
         TL_iv.PageBlock pageBlock = blockRow.block;
         if (pageBlock instanceof TL_iv.pageBlockDivider) {
@@ -6993,6 +7534,22 @@ public class RichEditorListView extends UniversalRecyclerView {
             }
             return;
         }
+        if (pageBlock5 instanceof TL_iv.pageBlockDocument) {
+            MediaUploadState mediaUploadState4 = blockRow.media;
+            if (mediaUploadState4 != null && (document = mediaUploadState4.document) != null) {
+                ((TL_iv.pageBlockDocument) pageBlock5).document_id = document.id;
+            }
+            if (mediaUploadState4 == null || !mediaUploadState4.isReady()) {
+                return;
+            }
+            TL_iv.PageBlock pageBlock7 = blockRow.block;
+            if (((TL_iv.pageBlockDocument) pageBlock7).document_id != 0) {
+                RichCaptionController.ensureCaption(pageBlock7);
+                arrayList.add(blockRow.block);
+                return;
+            }
+            return;
+        }
         if (pageBlock5 instanceof TL_iv.pageBlockMap) {
             TL_iv.pageBlockMap pageblockmap = (TL_iv.pageBlockMap) pageBlock5;
             if (RichMapCell.hasGeo(pageblockmap)) {
@@ -7067,7 +7624,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                     post(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$tryPlainArrowAcrossCells$61(blockRow);
+                            this.f$0.lambda$tryPlainArrowAcrossCells$64(blockRow);
                         }
                     });
                 } else {
@@ -7075,7 +7632,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                     post(new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$tryPlainArrowAcrossCells$62(blockRow2);
+                            this.f$0.lambda$tryPlainArrowAcrossCells$65(blockRow2);
                         }
                     });
                 }
@@ -7089,7 +7646,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$63(blockRow3);
+                    this.f$0.lambda$tryPlainArrowAcrossCells$66(blockRow3);
                 }
             });
             return true;
@@ -7109,7 +7666,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$tryPlainArrowAcrossCells$66(blockRowNextNavItemRow);
+                        this.f$0.lambda$tryPlainArrowAcrossCells$69(blockRowNextNavItemRow);
                     }
                 });
                 return true;
@@ -7125,7 +7682,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$tryPlainArrowAcrossCells$64(blockRow4);
+                        this.f$0.lambda$tryPlainArrowAcrossCells$67(blockRow4);
                     }
                 });
                 return true;
@@ -7133,7 +7690,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$65(blockRowNextNavItemRow2);
+                    this.f$0.lambda$tryPlainArrowAcrossCells$68(blockRowNextNavItemRow2);
                 }
             });
             return true;
@@ -7172,7 +7729,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$tryPlainArrowAcrossCells$70(blockRowAdjacentAuthorRow);
+                        this.f$0.lambda$tryPlainArrowAcrossCells$73(blockRowAdjacentAuthorRow);
                     }
                 });
                 return true;
@@ -7185,7 +7742,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$71(blockRow5);
+                    this.f$0.lambda$tryPlainArrowAcrossCells$74(blockRow5);
                 }
             });
             return true;
@@ -7198,7 +7755,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$67(blockRowAdjacentAuthorRow2);
+                    this.f$0.lambda$tryPlainArrowAcrossCells$70(blockRowAdjacentAuthorRow2);
                 }
             });
             return true;
@@ -7211,7 +7768,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$68(blockRow6);
+                    this.f$0.lambda$tryPlainArrowAcrossCells$71(blockRow6);
                 }
             });
         } else {
@@ -7219,42 +7776,42 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    this.f$0.lambda$tryPlainArrowAcrossCells$69(blockRow7);
+                    this.f$0.lambda$tryPlainArrowAcrossCells$72(blockRow7);
                 }
             });
         }
         return true;
     }
 
-    public void lambda$tryPlainArrowAcrossCells$62(BlockRow blockRow) {
-        focusNavRow(blockRow, false);
-    }
-
-    public void lambda$tryPlainArrowAcrossCells$63(BlockRow blockRow) {
-        focusNavRow(blockRow, true);
-    }
-
     public void lambda$tryPlainArrowAcrossCells$65(BlockRow blockRow) {
-        focusItemRow(blockRow, false);
+        focusNavRow(blockRow, false);
     }
 
     public void lambda$tryPlainArrowAcrossCells$66(BlockRow blockRow) {
-        focusItemRow(blockRow, true);
+        focusNavRow(blockRow, true);
     }
 
-    public void lambda$tryPlainArrowAcrossCells$67(BlockRow blockRow) {
-        focusItemRow(blockRow, true);
+    public void lambda$tryPlainArrowAcrossCells$68(BlockRow blockRow) {
+        focusItemRow(blockRow, false);
     }
 
     public void lambda$tryPlainArrowAcrossCells$69(BlockRow blockRow) {
-        focusNavRow(blockRow, false);
+        focusItemRow(blockRow, true);
     }
 
     public void lambda$tryPlainArrowAcrossCells$70(BlockRow blockRow) {
         focusItemRow(blockRow, true);
     }
 
-    public void lambda$tryPlainArrowAcrossCells$71(BlockRow blockRow) {
+    public void lambda$tryPlainArrowAcrossCells$72(BlockRow blockRow) {
+        focusNavRow(blockRow, false);
+    }
+
+    public void lambda$tryPlainArrowAcrossCells$73(BlockRow blockRow) {
+        focusItemRow(blockRow, true);
+    }
+
+    public void lambda$tryPlainArrowAcrossCells$74(BlockRow blockRow) {
         focusNavRow(blockRow, true);
     }
 
@@ -7293,7 +7850,7 @@ public class RichEditorListView extends UniversalRecyclerView {
     }
 
     private static boolean hasCaption(TL_iv.PageBlock pageBlock) {
-        return (pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockAudio) || isMedia(pageBlock);
+        return (pageBlock instanceof TL_iv.pageBlockMap) || (pageBlock instanceof TL_iv.pageBlockAudio) || (pageBlock instanceof TL_iv.pageBlockDocument) || isMedia(pageBlock);
     }
 
     private RichEditText navEditTextOf(View view) {
@@ -7424,7 +7981,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
         RichEditText richEditTextNavEditTextOf = navEditTextOf(viewFindViewByItemObject);
         if (richEditTextNavEditTextOf == null) {
-            lambda$tryPlainArrowAcrossCells$68(blockRow);
+            lambda$tryPlainArrowAcrossCells$71(blockRow);
             return;
         }
         richEditTextNavEditTextOf.requestEditFocus();
@@ -7497,7 +8054,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$tryEscalateSelectionFromCaret$72(blockRow);
+                        this.f$0.lambda$tryEscalateSelectionFromCaret$75(blockRow);
                     }
                 });
             }
@@ -7513,7 +8070,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$tryEscalateSelectionFromCaret$73(blockRow);
+                        this.f$0.lambda$tryEscalateSelectionFromCaret$76(blockRow);
                     }
                 });
             }
@@ -7521,14 +8078,14 @@ public class RichEditorListView extends UniversalRecyclerView {
         return true;
     }
 
-    public void lambda$tryEscalateSelectionFromCaret$72(BlockRow blockRow) {
+    public void lambda$tryEscalateSelectionFromCaret$75(BlockRow blockRow) {
         KeyEvent.Callback callbackFindViewByItemObject = findViewByItemObject(blockRow);
         if (callbackFindViewByItemObject instanceof TextSelectionHelper.ArticleSelectableView) {
             this.textSelectionHelper.extendSelectionTo((TextSelectionHelper.ArticleSelectableView) callbackFindViewByItemObject, 0);
         }
     }
 
-    public void lambda$tryEscalateSelectionFromCaret$73(BlockRow blockRow) {
+    public void lambda$tryEscalateSelectionFromCaret$76(BlockRow blockRow) {
         KeyEvent.Callback callbackFindViewByItemObject = findViewByItemObject(blockRow);
         if (callbackFindViewByItemObject instanceof TextSelectionHelper.ArticleSelectableView) {
             this.textSelectionHelper.extendSelectionTo((TextSelectionHelper.ArticleSelectableView) callbackFindViewByItemObject, callbackFindViewByItemObject instanceof RichTextCell ? ((RichTextCell) callbackFindViewByItemObject).getEditText().length() : 0);
@@ -7575,7 +8132,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichEditorListView.tryExtendSelectionAcrossCells(int, boolean):boolean");
     }
 
-    public void lambda$tryExtendSelectionAcrossCells$74(int i, int i2, int i3) {
+    public void lambda$tryExtendSelectionAcrossCells$77(int i, int i2, int i3) {
         KeyEvent.Callback callbackSelectableAt = selectableAt(i);
         if (callbackSelectableAt instanceof TextSelectionHelper.ArticleSelectableView) {
             this.textSelectionHelper.extendSelectionTo((TextSelectionHelper.ArticleSelectableView) callbackSelectableAt, i2, i3);
@@ -7988,13 +8545,13 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$spliceBlocksInto$75(blockRow2, iCaretEndOf);
+                this.f$0.lambda$spliceBlocksInto$78(blockRow2, iCaretEndOf);
             }
         });
         return true;
     }
 
-    public void lambda$spliceBlocksInto$75(BlockRow blockRow, int i) {
+    public void lambda$spliceBlocksInto$78(BlockRow blockRow, int i) {
         View viewFindViewByItemObject = blockRow == null ? null : findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -8175,7 +8732,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 post(new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$applyEditRange$76(blockRow3, length);
+                        this.f$0.lambda$applyEditRange$79(blockRow3, length);
                     }
                 });
                 return true;
@@ -8188,7 +8745,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         return false;
     }
 
-    public void lambda$applyEditRange$76(BlockRow blockRow, int i) {
+    public void lambda$applyEditRange$79(BlockRow blockRow, int i) {
         View viewFindViewByItemObject = blockRow == null ? null : findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -8238,7 +8795,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$removeSelectedBlocks$77(blockRow2);
+                this.f$0.lambda$removeSelectedBlocks$80(blockRow2);
             }
         });
     }
@@ -8290,13 +8847,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditorListView.lambda$applyEditInsideTableTitle$78(titleEditText, length);
+                    RichEditorListView.lambda$applyEditInsideTableTitle$81(titleEditText, length);
                 }
             });
         }
     }
 
-    public static void lambda$applyEditInsideTableTitle$78(RichEditText richEditText, int i) {
+    public static void lambda$applyEditInsideTableTitle$81(RichEditText richEditText, int i) {
         richEditText.requestEditFocus();
         richEditText.setSelection(Math.max(0, Math.min(i, richEditText.length())));
     }
@@ -8335,13 +8892,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditorListView.lambda$applyEditInsideAuthor$79(authorEditText, length2);
+                    RichEditorListView.lambda$applyEditInsideAuthor$82(authorEditText, length2);
                 }
             });
         }
     }
 
-    public static void lambda$applyEditInsideAuthor$79(RichEditText richEditText, int i) {
+    public static void lambda$applyEditInsideAuthor$82(RichEditText richEditText, int i) {
         richEditText.requestEditFocus();
         richEditText.setSelection(Math.max(0, Math.min(i, richEditText.length())));
     }
@@ -8464,12 +9021,12 @@ public class RichEditorListView extends UniversalRecyclerView {
         post(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$deleteAcrossDetails$80(blockRow, length);
+                this.f$0.lambda$deleteAcrossDetails$83(blockRow, length);
             }
         });
     }
 
-    public void lambda$deleteAcrossDetails$80(BlockRow blockRow, int i) {
+    public void lambda$deleteAcrossDetails$83(BlockRow blockRow, int i) {
         View viewFindViewByItemObject = findViewByItemObject(blockRow);
         if (viewFindViewByItemObject instanceof RichTextCell) {
             RichTextCell richTextCell = (RichTextCell) viewFindViewByItemObject;
@@ -8510,13 +9067,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditorListView.lambda$applyEditInsideDetails$81(editText, length2);
+                    RichEditorListView.lambda$applyEditInsideDetails$84(editText, length2);
                 }
             });
         }
     }
 
-    public static void lambda$applyEditInsideDetails$81(RichEditText richEditText, int i) {
+    public static void lambda$applyEditInsideDetails$84(RichEditText richEditText, int i) {
         richEditText.requestEditFocus();
         richEditText.setSelection(Math.max(0, Math.min(i, richEditText.length())));
     }
@@ -8554,13 +9111,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditorListView.lambda$applyEditInsideCaption$82(captionEditText, length2);
+                    RichEditorListView.lambda$applyEditInsideCaption$85(captionEditText, length2);
                 }
             });
         }
     }
 
-    public static void lambda$applyEditInsideCaption$82(RichEditText richEditText, int i) {
+    public static void lambda$applyEditInsideCaption$85(RichEditText richEditText, int i) {
         richEditText.requestEditFocus();
         richEditText.setSelection(Math.max(0, Math.min(i, richEditText.length())));
     }
@@ -8651,13 +9208,13 @@ public class RichEditorListView extends UniversalRecyclerView {
             post(new Runnable() {
                 @Override
                 public final void run() {
-                    RichEditorListView.lambda$applyEditInsideTable$83(richTableCell, pagetablecell, length);
+                    RichEditorListView.lambda$applyEditInsideTable$86(richTableCell, pagetablecell, length);
                 }
             });
         }
     }
 
-    public static void lambda$applyEditInsideTable$83(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell, int i) {
+    public static void lambda$applyEditInsideTable$86(RichTableCell richTableCell, TL_iv.pageTableCell pagetablecell, int i) {
         RichTableCellHost richTableCellHostHostForAnchor = richTableCell.getGrid().hostForAnchor(pagetablecell);
         if (richTableCellHostHostForAnchor == null) {
             return;

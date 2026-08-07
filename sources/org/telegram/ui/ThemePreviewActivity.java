@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.BlendMode;
@@ -94,6 +93,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -239,10 +239,10 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private FrameLayout messagesPlayAnimationView;
     private AnimatorSet messagesPlayViewAnimator;
     private AnimatorSet motionAnimation;
-    Theme.MessageDrawable msgOutDrawable;
-    Theme.MessageDrawable msgOutDrawableSelected;
-    Theme.MessageDrawable msgOutMediaDrawable;
-    Theme.MessageDrawable msgOutMediaDrawableSelected;
+    org.telegram.ui.ActionBar.MessageDrawable msgOutDrawable;
+    org.telegram.ui.ActionBar.MessageDrawable msgOutDrawableSelected;
+    org.telegram.ui.ActionBar.MessageDrawable msgOutMediaDrawable;
+    org.telegram.ui.ActionBar.MessageDrawable msgOutMediaDrawableSelected;
     private boolean nightTheme;
     private ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener;
     DayNightSwitchDelegate onSwitchDayNightDelegate;
@@ -741,7 +741,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public void onItemClick(int i) throws Resources.NotFoundException, IOException {
+        public void onItemClick(int i) throws IOException {
             File file;
             Theme.ThemeAccent accent;
             String url;
@@ -4125,6 +4125,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public boolean canSaveRichDocument(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canSaveRichDocument(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canToggleRichMessageCheckbox(this, chatMessageCell2);
                     }
@@ -4135,8 +4140,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TLRPC.KeyboardButton keyboardButton) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell2, keyboardButton);
+                    public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell2, keyboardButtonProto);
                     }
 
                     @Override
@@ -4185,13 +4190,18 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didPressAppUpdateButton() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAppUpdateButton(this);
+                    }
+
+                    @Override
                     public void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBoostCounter(this, chatMessageCell2);
                     }
 
                     @Override
-                    public void didPressBotButton(ChatMessageCell chatMessageCell2, TLRPC.KeyboardButton keyboardButton) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell2, keyboardButton);
+                    public void didPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell2, keyboardButtonProto);
                     }
 
                     @Override
@@ -4235,8 +4245,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC.KeyboardButton keyboardButton) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, keyboardButton);
+                    public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, keyboardInlineButton);
                     }
 
                     @Override
@@ -4307,6 +4317,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell2, TLRPC.Document document, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRichDocumentOptions(this, chatMessageCell2, document, f, f2);
                     }
 
                     @Override
@@ -5184,7 +5199,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
     }
 
-    private class MessageDrawable extends Theme.MessageDrawable {
+    private class MessageDrawable extends org.telegram.ui.ActionBar.MessageDrawable {
         public MessageDrawable(int i, boolean z, boolean z2) {
             super(i, z, z2);
         }

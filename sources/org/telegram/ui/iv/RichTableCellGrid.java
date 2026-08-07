@@ -72,10 +72,12 @@ public class RichTableCellGrid extends ViewGroup {
         this.arcRect = new RectF();
         this.bulgePath = new Path();
         this.resourcesProvider = resourcesProvider;
+        setClipChildren(false);
+        setClipToPadding(false);
         setWillNotDraw(false);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        paint.setStrokeWidth(AndroidUtilities.dpf2(0.66f));
         paint2.setStyle(style);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeJoin(Paint.Join.ROUND);
@@ -85,12 +87,12 @@ public class RichTableCellGrid extends ViewGroup {
     }
 
     public void applyColors() {
-        this.linePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, this.resourcesProvider));
+        this.linePaint.setColor(Theme.getColor(Theme.key_table_border, this.resourcesProvider));
         int color = Theme.getColor(Theme.key_switchTrack, this.resourcesProvider);
         int iRed = Color.red(color);
         int iGreen = Color.green(color);
         int iBlue = Color.blue(color);
-        this.headerPaint.setColor(Color.argb(34, iRed, iGreen, iBlue));
+        this.headerPaint.setColor(Theme.getColor(Theme.key_table_background, this.resourcesProvider));
         this.stripPaint.setColor(Color.argb(20, iRed, iGreen, iBlue));
         this.selectedFillBaseAlpha = 80;
         this.selectedStrokeBaseAlpha = 255;
@@ -156,7 +158,7 @@ public class RichTableCellGrid extends ViewGroup {
     }
 
     @Override
-    protected void onMeasure(int r18, int r19) {
+    protected void onMeasure(int r19, int r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCellGrid.onMeasure(int, int):void");
     }
 

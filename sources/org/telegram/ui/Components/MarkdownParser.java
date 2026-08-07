@@ -1,7 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.text.TextUtils;
 import io.noties.markwon.MarkwonPlugin;
 import io.noties.markwon.ext.latex.JLatexMathBlock;
@@ -71,7 +69,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.MarkdownParser;
-import ru.noties.jlatexmath.JLatexMathDrawable;
+import org.telegram.ui.iv.Latex;
 
 public abstract class MarkdownParser {
     private static final Pattern FOOTNOTE_DEF = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
@@ -211,25 +209,12 @@ public abstract class MarkdownParser {
         String strTrim = str == null ? "" : str.trim();
         textmath.source = strTrim;
         textmath.tried = true;
-        try {
-            JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(strTrim).textSize(AndroidUtilities.dp(20.0f)).build();
-            int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
-            int intrinsicHeight = jLatexMathDrawableBuild.getIntrinsicHeight();
-            if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-                Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
-                jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
-                textmath.w = intrinsicWidth;
-                textmath.h = intrinsicHeight;
-                try {
-                    textmath.depth = jLatexMathDrawableBuild.icon().getIconDepth();
-                } catch (Throwable th) {
-                    FileLog.e(th);
-                }
-                textmath.bitmap = bitmapCreateBitmap;
-            }
-        } catch (Throwable th2) {
-            FileLog.e(th2);
+        Latex latexRender = Latex.render(strTrim, AndroidUtilities.dp(20.0f), true);
+        if (latexRender != null) {
+            textmath.w = latexRender.width;
+            textmath.h = latexRender.height;
+            textmath.depth = latexRender.depth;
+            textmath.bitmap = latexRender.bitmap;
         }
         return textmath;
     }

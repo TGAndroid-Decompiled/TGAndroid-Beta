@@ -15,6 +15,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_quickReplies$$ExternalSyntheticLambd
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.Vector$$ExternalSyntheticLambda7;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 
@@ -3082,11 +3083,11 @@ public class TL_update {
 
     public static class TL_updateNewEphemeralMessage extends TLRPC.Update {
         public static final int constructor = 549239713;
-        public TLRPC.EphemeralMessage message;
+        public TL_ephemeral.EphemeralMessage message;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
@@ -3117,16 +3118,65 @@ public class TL_update {
 
     public static class TL_updateEditEphemeralMessage extends TLRPC.Update {
         public static final int constructor = 1270583041;
-        public TLRPC.EphemeralMessage message;
+        public TL_ephemeral.EphemeralMessage message;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.message = TLRPC.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1270583041);
+            this.message.serializeToStream(outputSerializedData);
+        }
+    }
+
+    public static class TL_updateEphemeralBotCallbackQuery extends TLRPC.Update {
+        public static final int constructor = 2081454550;
+        public long chat_instance;
+        public byte[] data;
+        public int flags;
+        public TL_ephemeral.EphemeralMessage message;
+        public int msg_id;
+        public TLRPC.Peer peer;
+        public long query_id;
+        public long user_id;
+
+        @Override
+        public void readParams(InputSerializedData inputSerializedData, boolean z) {
+            this.flags = inputSerializedData.readInt32(z);
+            this.query_id = inputSerializedData.readInt64(z);
+            this.user_id = inputSerializedData.readInt64(z);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.peer = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+            }
+            this.msg_id = inputSerializedData.readInt32(z);
+            this.data = inputSerializedData.readByteArray(z);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                this.chat_instance = inputSerializedData.readInt64(z);
+            }
+            this.message = TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
+        }
+
+        @Override
+        public void serializeToStream(OutputSerializedData outputSerializedData) {
+            outputSerializedData.writeInt32(2081454550);
+            int flag = TLObject.setFlag(this.flags, 1, this.peer != null);
+            this.flags = flag;
+            int flag2 = TLObject.setFlag(flag, 2, this.chat_instance != 0);
+            this.flags = flag2;
+            outputSerializedData.writeInt32(flag2);
+            outputSerializedData.writeInt64(this.query_id);
+            outputSerializedData.writeInt64(this.user_id);
+            if (TLObject.hasFlag(this.flags, 1)) {
+                this.peer.serializeToStream(outputSerializedData);
+            }
+            outputSerializedData.writeInt32(this.msg_id);
+            outputSerializedData.writeByteArray(this.data);
+            if (TLObject.hasFlag(this.flags, 2)) {
+                outputSerializedData.writeInt64(this.chat_instance);
+            }
             this.message.serializeToStream(outputSerializedData);
         }
     }

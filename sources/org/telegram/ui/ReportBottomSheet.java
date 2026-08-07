@@ -28,6 +28,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -274,15 +275,15 @@ public class ReportBottomSheet extends BottomSheet {
                 tL_stories_report.option = bArr;
                 tL_messages_report = tL_stories_report;
             } else if (this.ephemeral) {
-                TLRPC.TL_ephemeral_reportMessage tL_ephemeral_reportMessage = new TLRPC.TL_ephemeral_reportMessage();
-                tL_ephemeral_reportMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+                TL_ephemeral.TL_reportMessage tL_reportMessage = new TL_ephemeral.TL_reportMessage();
+                tL_reportMessage.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
                 ArrayList arrayList2 = this.messageIds;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    tL_ephemeral_reportMessage.id = ((Integer) this.messageIds.get(0)).intValue();
+                    tL_reportMessage.id = ((Integer) this.messageIds.get(0)).intValue();
                 }
-                tL_ephemeral_reportMessage.message = str != null ? str : "";
-                tL_ephemeral_reportMessage.option = bArr;
-                tL_messages_report = tL_ephemeral_reportMessage;
+                tL_reportMessage.message = str != null ? str : "";
+                tL_reportMessage.option = bArr;
+                tL_messages_report = tL_reportMessage;
             } else {
                 TLRPC.TL_messages_report tL_messages_report2 = new TLRPC.TL_messages_report();
                 tL_messages_report2.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
@@ -841,6 +842,10 @@ public class ReportBottomSheet extends BottomSheet {
         }
     }
 
+    public static void openChat(int i, Context context, BulletinFactory bulletinFactory, long j) {
+        open(i, context, j, false, false, new ArrayList(), bulletinFactory, null, new byte[0], null, null);
+    }
+
     public static void openChat(ChatActivity chatActivity) {
         if (chatActivity == null) {
             return;
@@ -911,14 +916,14 @@ public class ReportBottomSheet extends BottomSheet {
             tL_messages_report2 = tL_stories_report;
         } else {
             if (z2) {
-                TLRPC.TL_ephemeral_reportMessage tL_ephemeral_reportMessage = new TLRPC.TL_ephemeral_reportMessage();
-                tL_ephemeral_reportMessage.peer = MessagesController.getInstance(i).getInputPeer(j);
+                TL_ephemeral.TL_reportMessage tL_reportMessage = new TL_ephemeral.TL_reportMessage();
+                tL_reportMessage.peer = MessagesController.getInstance(i).getInputPeer(j);
                 if (!arrayList.isEmpty()) {
-                    tL_ephemeral_reportMessage.id = ((Integer) arrayList.get(0)).intValue();
+                    tL_reportMessage.id = ((Integer) arrayList.get(0)).intValue();
                 }
-                tL_ephemeral_reportMessage.message = TextUtils.isEmpty(str) ? "" : str;
-                tL_ephemeral_reportMessage.option = bArr;
-                tL_messages_report = tL_ephemeral_reportMessage;
+                tL_reportMessage.message = TextUtils.isEmpty(str) ? "" : str;
+                tL_reportMessage.option = bArr;
+                tL_messages_report = tL_reportMessage;
                 ConnectionsManager.getInstance(i).sendRequest(tL_messages_report, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {

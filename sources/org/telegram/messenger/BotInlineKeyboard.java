@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
 
 public class BotInlineKeyboard {
 
@@ -29,10 +30,10 @@ public class BotInlineKeyboard {
     }
 
     public static class ButtonBot extends Button {
-        public final TLRPC.KeyboardButton button;
+        public final TL_keyboard.KeyboardInlineButton button;
 
-        public ButtonBot(TLRPC.KeyboardButton keyboardButton) {
-            this.button = keyboardButton;
+        public ButtonBot(TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+            this.button = keyboardInlineButton;
         }
 
         @Override
@@ -42,15 +43,15 @@ public class BotInlineKeyboard {
 
         @Override
         public BackgroundColor getColor() {
-            TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = this.button.style;
-            if (tL_keyboardButtonStyle != null) {
-                if (tL_keyboardButtonStyle.bg_success) {
+            TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.button.style;
+            if (keyboardButtonStyle != null) {
+                if (keyboardButtonStyle.bg_success) {
                     return BackgroundColor.SUCCESS;
                 }
-                if (tL_keyboardButtonStyle.bg_danger) {
+                if (keyboardButtonStyle.bg_danger) {
                     return BackgroundColor.DANGER;
                 }
-                if (tL_keyboardButtonStyle.bg_primary) {
+                if (keyboardButtonStyle.bg_primary) {
                     return BackgroundColor.PRIMARY;
                 }
             }
@@ -59,9 +60,9 @@ public class BotInlineKeyboard {
 
         @Override
         public long getIconEmoji() {
-            TLRPC.TL_keyboardButtonStyle tL_keyboardButtonStyle = this.button.style;
-            if (tL_keyboardButtonStyle != null) {
-                return tL_keyboardButtonStyle.icon;
+            TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.button.style;
+            if (keyboardButtonStyle != null) {
+                return keyboardButtonStyle.icon;
             }
             return 0L;
         }
@@ -156,7 +157,7 @@ public class BotInlineKeyboard {
 
         public void addBotKeyboard(TLRPC.TL_replyInlineMarkup tL_replyInlineMarkup) {
             for (int i = 0; i < tL_replyInlineMarkup.rows.size(); i++) {
-                ArrayList<TLRPC.KeyboardButton> arrayList = tL_replyInlineMarkup.rows.get(i).buttons;
+                ArrayList<TL_keyboard.KeyboardInlineButton> arrayList = tL_replyInlineMarkup.rows.get(i).buttons;
                 ButtonBot[] buttonBotArr = new ButtonBot[arrayList.size()];
                 for (int i2 = 0; i2 < arrayList.size(); i2++) {
                     buttonBotArr[i2] = new ButtonBot(arrayList.get(i2));

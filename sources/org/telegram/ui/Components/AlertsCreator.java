@@ -570,8 +570,8 @@ public abstract class AlertsCreator {
         builder.setTitle(str);
         HashMap map = new HashMap();
         int i = Theme.key_dialogTopBackground;
-        map.put("info1.**", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
-        map.put("info2.**", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
+        map.put("info1", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
+        map.put("info2", Integer.valueOf(Theme.getColor(i, resourcesProvider)));
         builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i, resourcesProvider), map);
         builder.setTopAnimationIsNew(true);
         builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
@@ -8497,13 +8497,13 @@ public abstract class AlertsCreator {
     public static void lambda$showCallsForbidden$260(final int i, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final long j, final Theme.ResourcesProvider resourcesProvider, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws InterruptedException {
                 AlertsCreator.lambda$showCallsForbidden$259(tLObject, i, buttonWithCounterView, bottomSheet, j, tL_error, resourcesProvider);
             }
         });
     }
 
-    public static void lambda$showCallsForbidden$259(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) {
+    public static void lambda$showCallsForbidden$259(TLObject tLObject, final int i, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, long j, TLRPC.TL_error tL_error, Theme.ResourcesProvider resourcesProvider) throws InterruptedException {
         if (tLObject instanceof TLRPC.Updates) {
             final TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             MessagesController.getInstance(i).putUsers(updates.users, false);

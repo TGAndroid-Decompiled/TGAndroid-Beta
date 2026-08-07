@@ -7,11 +7,12 @@ public class XLeftRightArrowFactory {
 
     public static Box create(boolean z, TeXEnvironment teXEnvironment, float f) {
         float f2;
+        float fMin = Math.min((!DelimiterFactory$$ExternalSyntheticBackport0.m(f) || f < 0.0f) ? 0.0f : f, 4096.0f);
         Box boxCreateBox = (z ? LEFT : RIGHT).createBox(teXEnvironment);
         float height = boxCreateBox.getHeight();
         float depth = boxCreateBox.getDepth();
         float width = boxCreateBox.getWidth();
-        if (f <= width) {
+        if (fMin <= width) {
             boxCreateBox.setDepth(depth / 2.0f);
             return boxCreateBox;
         }
@@ -22,7 +23,7 @@ public class XLeftRightArrowFactory {
         HorizontalBox horizontalBox = new HorizontalBox();
         float f3 = 0.0f;
         while (true) {
-            f2 = f - width3;
+            f2 = fMin - width3;
             if (f3 >= f2 - width2) {
                 break;
             }
@@ -47,13 +48,17 @@ public class XLeftRightArrowFactory {
     }
 
     public static Box create(TeXEnvironment teXEnvironment, float f) {
+        float f2 = 0.0f;
+        if (!DelimiterFactory$$ExternalSyntheticBackport0.m(f) || f < 0.0f) {
+            f = 0.0f;
+        }
+        float fMin = Math.min(f, 4096.0f);
         Box boxCreateBox = LEFT.createBox(teXEnvironment);
         Box boxCreateBox2 = RIGHT.createBox(teXEnvironment);
         float width = boxCreateBox.getWidth() + boxCreateBox2.getWidth();
-        float f2 = 0.0f;
-        if (f < width) {
+        if (fMin < width) {
             HorizontalBox horizontalBox = new HorizontalBox(boxCreateBox);
-            horizontalBox.add(new StrutBox(-Math.min(width - f, boxCreateBox.getWidth()), 0.0f, 0.0f, 0.0f));
+            horizontalBox.add(new StrutBox(-Math.min(width - fMin, boxCreateBox.getWidth()), 0.0f, 0.0f, 0.0f));
             horizontalBox.add(boxCreateBox2);
             return horizontalBox;
         }
@@ -63,7 +68,7 @@ public class XLeftRightArrowFactory {
         float width3 = width + (boxCreateBox4.getWidth() * 2.0f);
         HorizontalBox horizontalBox2 = new HorizontalBox();
         while (true) {
-            if (f2 < (f - width3) - width2) {
+            if (f2 < (fMin - width3) - width2) {
                 horizontalBox2.add(boxCreateBox3);
                 horizontalBox2.add(boxCreateBox4);
                 f2 += width2;

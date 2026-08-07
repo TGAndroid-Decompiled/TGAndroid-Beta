@@ -25,6 +25,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
@@ -34,6 +35,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
@@ -55,14 +57,14 @@ public abstract class MessageEntityView extends EntityView {
     private boolean isDark;
     public final RecyclerListView listView;
     public final ArrayList messageObjects;
-    private Theme.MessageDrawable msgInDrawable;
-    private Theme.MessageDrawable msgInDrawableSelected;
-    private Theme.MessageDrawable msgMediaInDrawable;
-    private Theme.MessageDrawable msgMediaInDrawableSelected;
-    private Theme.MessageDrawable msgMediaOutDrawable;
-    private Theme.MessageDrawable msgMediaOutDrawableSelected;
-    private Theme.MessageDrawable msgOutDrawable;
-    private Theme.MessageDrawable msgOutDrawableSelected;
+    private MessageDrawable msgInDrawable;
+    private MessageDrawable msgInDrawableSelected;
+    private MessageDrawable msgMediaInDrawable;
+    private MessageDrawable msgMediaInDrawableSelected;
+    private MessageDrawable msgMediaOutDrawable;
+    private MessageDrawable msgMediaOutDrawableSelected;
+    private MessageDrawable msgOutDrawable;
+    private MessageDrawable msgOutDrawableSelected;
     public final Theme.ResourcesProvider resourcesProvider;
     private TextureView textureView;
     private boolean textureViewActive;
@@ -171,50 +173,50 @@ public abstract class MessageEntityView extends EntityView {
             public Drawable getDrawable(String str) {
                 if (str.equals("drawableMsgIn")) {
                     if (MessageEntityView.this.msgInDrawable == null) {
-                        MessageEntityView.this.msgInDrawable = new Theme.MessageDrawable(0, false, false, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgInDrawable = new MessageDrawable(0, false, false, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgInDrawable;
                 }
                 if (str.equals("drawableMsgInSelected")) {
                     if (MessageEntityView.this.msgInDrawableSelected == null) {
-                        MessageEntityView.this.msgInDrawableSelected = new Theme.MessageDrawable(0, false, true, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgInDrawableSelected = new MessageDrawable(0, false, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgInDrawableSelected;
                 }
                 if (str.equals("drawableMsgOut")) {
                     if (MessageEntityView.this.msgOutDrawable == null) {
-                        MessageEntityView.this.msgOutDrawable = new Theme.MessageDrawable(0, true, false, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgOutDrawable = new MessageDrawable(0, true, false, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgOutDrawable;
                 }
                 if (str.equals("drawableMsgOutSelected")) {
                     if (MessageEntityView.this.msgOutDrawableSelected == null) {
-                        MessageEntityView.this.msgOutDrawableSelected = new Theme.MessageDrawable(0, true, true, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgOutDrawableSelected = new MessageDrawable(0, true, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgOutDrawableSelected;
                 }
                 if (str.equals("drawableMsgInMedia")) {
                     if (MessageEntityView.this.msgMediaInDrawable == null) {
-                        MessageEntityView.this.msgMediaInDrawable = new Theme.MessageDrawable(1, false, false, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgMediaInDrawable = new MessageDrawable(1, false, false, MessageEntityView.this.resourcesProvider);
                     }
                     MessageEntityView.this.msgMediaInDrawable.invalidateSelf();
                     return MessageEntityView.this.msgMediaInDrawable;
                 }
                 if (str.equals("drawableMsgInMediaSelected")) {
                     if (MessageEntityView.this.msgMediaInDrawableSelected == null) {
-                        MessageEntityView.this.msgMediaInDrawableSelected = new Theme.MessageDrawable(1, false, true, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgMediaInDrawableSelected = new MessageDrawable(1, false, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgMediaInDrawableSelected;
                 }
                 if (str.equals("drawableMsgOutMedia")) {
                     if (MessageEntityView.this.msgMediaOutDrawable == null) {
-                        MessageEntityView.this.msgMediaOutDrawable = new Theme.MessageDrawable(1, true, false, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgMediaOutDrawable = new MessageDrawable(1, true, false, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgMediaOutDrawable;
                 }
                 if (str.equals("drawableMsgOutMediaSelected")) {
                     if (MessageEntityView.this.msgMediaOutDrawableSelected == null) {
-                        MessageEntityView.this.msgMediaOutDrawableSelected = new Theme.MessageDrawable(1, true, true, MessageEntityView.this.resourcesProvider);
+                        MessageEntityView.this.msgMediaOutDrawableSelected = new MessageDrawable(1, true, true, MessageEntityView.this.resourcesProvider);
                     }
                     return MessageEntityView.this.msgMediaOutDrawableSelected;
                 }
@@ -370,7 +372,7 @@ public abstract class MessageEntityView extends EntityView {
             private final ArrayList drawingGroups = new ArrayList(10);
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) throws IOException {
                 canvas.save();
                 this.selectorRect.setEmpty();
                 drawChatBackgroundElements(canvas);
@@ -379,7 +381,7 @@ public abstract class MessageEntityView extends EntityView {
                 canvas.restore();
             }
 
-            private void drawChatForegroundElements(android.graphics.Canvas r17) {
+            private void drawChatForegroundElements(android.graphics.Canvas r17) throws java.io.IOException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChatForegroundElements(android.graphics.Canvas):void");
             }
 
@@ -388,7 +390,7 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
+            public boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) throws java.io.IOException {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
             }
         };
@@ -454,7 +456,7 @@ public abstract class MessageEntityView extends EntityView {
                     }
 
                     @Override
-                    protected void onDraw(Canvas canvas) {
+                    protected void onDraw(Canvas canvas) throws IOException {
                         AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
                         PreviewView.TextureViewHolder textureViewHolder2 = textureViewHolder;
                         if ((textureViewHolder2 != null && textureViewHolder2.active && textureViewHolder2.textureViewActive) || MessageEntityView.this.clipVideoMessageForBitmap) {

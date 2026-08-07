@@ -58,6 +58,7 @@ public class TableLayout extends View {
     private boolean drawLines;
     private boolean isRtl;
     private boolean isStriped;
+    private int itemPaddingBottom;
     private int itemPaddingLeft;
     private int itemPaddingTop;
     private Path linePath;
@@ -68,6 +69,7 @@ public class TableLayout extends View {
     private int mOrientation;
     private boolean mUseDefaultMargins;
     private final Axis mVerticalAxis;
+    private int minimumCellHeight;
     private float[] radii;
     private RectF rect;
     private ArrayList rowSpans;
@@ -139,7 +141,7 @@ public class TableLayout extends View {
         public int x;
         public int y;
 
-        static int access$1420(Child child, int i) {
+        static int access$1520(Child child, int i) {
             int i2 = child.measuredHeight - i;
             child.measuredHeight = i2;
             return i2;
@@ -207,7 +209,7 @@ public class TableLayout extends View {
             if (pagetablecell.valign_middle) {
                 this.textY = (i2 - this.textHeight) / 2;
             } else if (pagetablecell.valign_bottom) {
-                this.textY = (i2 - this.textHeight) - TableLayout.this.itemPaddingTop;
+                this.textY = (i2 - this.textHeight) - TableLayout.this.itemPaddingBottom;
             }
         }
 
@@ -436,6 +438,11 @@ public class TableLayout extends View {
         this.isStriped = z;
     }
 
+    public void setMinimumCellHeight(int i) {
+        this.minimumCellHeight = i;
+        requestLayout();
+    }
+
     public void setRtl(boolean z) {
         this.isRtl = z;
     }
@@ -465,8 +472,9 @@ public class TableLayout extends View {
         this.mUseDefaultMargins = false;
         this.mAlignmentMode = 1;
         this.mLastLayoutParamsHashCode = 0;
-        this.itemPaddingTop = AndroidUtilities.dp(7.0f);
-        this.itemPaddingLeft = AndroidUtilities.dp(8.0f);
+        this.itemPaddingTop = AndroidUtilities.dp(8.0f);
+        this.itemPaddingBottom = AndroidUtilities.dp(9.0f);
+        this.itemPaddingLeft = AndroidUtilities.dp(12.0f);
         this.cellsToFixHeight = new ArrayList();
         this.rowSpans = new ArrayList();
         this.linePath = new Path();
@@ -837,7 +845,7 @@ public class TableLayout extends View {
                 childAt.setTextLayout(this.delegate.createTextLayout(childAt.cell, this.colCount == 2 ? ((int) (size / 2.0f)) - (this.itemPaddingLeft * 4) : (int) (size / 1.5f)));
                 if (childAt.textLayout != null) {
                     ((ViewGroup.MarginLayoutParams) layoutParams).width = childAt.textWidth + (this.itemPaddingLeft * 2);
-                    ((ViewGroup.MarginLayoutParams) layoutParams).height = childAt.textHeight + (this.itemPaddingTop * 2);
+                    ((ViewGroup.MarginLayoutParams) layoutParams).height = Math.max(this.minimumCellHeight, childAt.textHeight + this.itemPaddingTop + this.itemPaddingBottom);
                 } else {
                     ((ViewGroup.MarginLayoutParams) layoutParams).width = 0;
                     ((ViewGroup.MarginLayoutParams) layoutParams).height = 0;
@@ -1010,7 +1018,7 @@ public class TableLayout extends View {
                                 }
                                 size2--;
                             }
-                            Child.access$1420(child4, iMin);
+                            Child.access$1520(child4, iMin);
                             child4.measure(child4.measuredWidth, child4.measuredHeight, true);
                         } else if (child.layoutParams.rowSpec.span.min < child4.layoutParams.rowSpec.span.min) {
                             child4.y -= iMin;

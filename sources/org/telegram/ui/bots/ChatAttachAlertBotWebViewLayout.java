@@ -60,6 +60,7 @@ import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+import org.telegram.ui.ReportBottomSheet;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 import org.telegram.ui.web.BotWebViewContainer;
 
@@ -202,10 +203,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         }
         if (i == R.id.menu_settings) {
             this.webViewContainer.onSettingsButtonPressed();
-        } else if (i == R.id.menu_add_to_home_screen_bot) {
+            return;
+        }
+        if (i == R.id.menu_add_to_home_screen_bot) {
             MediaDataController.getInstance(this.currentAccount).installShortcut(this.botId, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT);
         } else if (i == R.id.menu_tos_bot) {
             Browser.openUrl(getContext(), LocaleController.getString(R.string.BotWebViewToSLink));
+        } else if (i == R.id.menu_report_bot) {
+            ReportBottomSheet.openChat(this.currentAccount, getContext(), BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider), this.botId);
         }
     }
 
@@ -228,6 +233,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         this.addToHomeScreenItem = actionBarMenuSubItemAddSubItem2;
         actionBarMenuSubItemAddSubItem2.setVisibility(8);
         this.otherItem.addSubItem(R.id.menu_tos_bot, R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS));
+        this.otherItem.addSubItem(R.id.menu_report_bot, R.drawable.msg_report, LocaleController.getString(R.string.BotWebViewReportBot));
         this.otherItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         this.webViewContainer = new BotWebViewContainer(context, resourcesProvider, getThemedColor(Theme.key_dialogBackground), true) {
             @Override

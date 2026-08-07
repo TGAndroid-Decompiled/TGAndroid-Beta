@@ -27,6 +27,7 @@ import android.widget.TextView;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -47,6 +48,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.ChatActivity;
@@ -506,7 +508,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public boolean onBackPressed() {
+    public boolean onBackPressed() throws IOException {
         this.parentAlert.updatePhotoPreview(false);
         return true;
     }
@@ -1140,7 +1142,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r20) throws android.content.res.Resources.NotFoundException, java.lang.IllegalArgumentException {
+        public boolean onTouchEvent(android.view.MotionEvent r20) throws java.lang.IllegalArgumentException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -1223,7 +1225,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         class PreviewGroupCell {
-            private final Theme.MessageDrawable.PathDrawParams backgroundCacheParams;
+            private final MessageDrawable.PathDrawParams backgroundCacheParams;
             private float bottom;
             private Text buttonText;
             private final Paint buttonTextBgPaint;
@@ -1240,7 +1242,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             private long lastMediaUpdate;
             private float left;
             public ArrayList media;
-            private final Theme.MessageDrawable messageBackground;
+            private final MessageDrawable messageBackground;
             final int padding;
             private float previousGroupHeight;
             private float previousGroupWidth;
@@ -1268,8 +1270,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 this.halfGap = iDp / 2;
                 this.buttonTextRect = new RectF();
                 this.buttonTextBgPaint = new Paint(1);
-                this.messageBackground = (Theme.MessageDrawable) ChatAttachAlertPhotoLayoutPreview.this.getThemedDrawable("drawableMsgOutMedia");
-                this.backgroundCacheParams = new Theme.MessageDrawable.PathDrawParams();
+                this.messageBackground = (MessageDrawable) ChatAttachAlertPhotoLayoutPreview.this.getThemedDrawable("drawableMsgOutMedia");
+                this.backgroundCacheParams = new MessageDrawable.PathDrawParams();
             }
 
             public void detach() {

@@ -37,8 +37,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.utils.tlutils.TLKeyboardHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -230,6 +232,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
 
             @Override
             public void didPressAttachButton() {
+            }
+
+            @Override
+            public void didPressStreamingStop() {
+                ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$didPressStreamingStop(this);
             }
 
             @Override
@@ -680,8 +687,10 @@ public class PopupNotificationActivity extends Activity implements NotificationC
 
     private LinearLayout getButtonsViewForMessage(int i, boolean z) {
         int i2;
+        LinearLayout linearLayout;
+        ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList;
+        LinearLayout linearLayout2;
         int size = i;
-        LinearLayout linearLayout = null;
         if (this.popupMessages.size() == 1 && (size < 0 || size >= this.popupMessages.size())) {
             return null;
         }
@@ -693,69 +702,80 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
         final MessageObject messageObject = (MessageObject) this.popupMessages.get(size);
         TLRPC.ReplyMarkup replyMarkup = messageObject.messageOwner.reply_markup;
-        if (messageObject.getDialogId() != 777000 || replyMarkup == null) {
-            i2 = 0;
-        } else {
-            ArrayList<TLRPC.TL_keyboardButtonRow> arrayList = replyMarkup.rows;
-            int size2 = arrayList.size();
+        if (messageObject.getDialogId() == 777000 && (replyMarkup instanceof TLRPC.TL_replyInlineMarkup)) {
+            ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList2 = ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows;
+            int size2 = arrayList2.size();
             i2 = 0;
             for (int i4 = 0; i4 < size2; i4++) {
-                TLRPC.TL_keyboardButtonRow tL_keyboardButtonRow = arrayList.get(i4);
-                int size3 = tL_keyboardButtonRow.buttons.size();
+                TL_keyboard.KeyboardInlineButtonRow keyboardInlineButtonRow = arrayList2.get(i4);
+                int size3 = keyboardInlineButtonRow.buttons.size();
                 for (int i5 = 0; i5 < size3; i5++) {
-                    if (tL_keyboardButtonRow.buttons.get(i5) instanceof TLRPC.TL_keyboardButtonCallback) {
+                    if (TLKeyboardHelper.isType(keyboardInlineButtonRow.buttons.get(i5), TL_keyboard.TL_inlineButtonTypeCallback.class)) {
                         i2++;
                     }
                 }
             }
+        } else {
+            i2 = 0;
         }
         final int i6 = messageObject.currentAccount;
-        if (i2 > 0) {
-            ArrayList<TLRPC.TL_keyboardButtonRow> arrayList2 = replyMarkup.rows;
-            int size4 = arrayList2.size();
+        if (i2 <= 0 || !(replyMarkup instanceof TLRPC.TL_replyInlineMarkup)) {
+            linearLayout = null;
+        } else {
+            ArrayList<TL_keyboard.KeyboardInlineButtonRow> arrayList3 = ((TLRPC.TL_replyInlineMarkup) replyMarkup).rows;
+            int size4 = arrayList3.size();
             int i7 = 0;
+            LinearLayout linearLayout3 = null;
             while (i7 < size4) {
-                TLRPC.TL_keyboardButtonRow tL_keyboardButtonRow2 = arrayList2.get(i7);
-                int size5 = tL_keyboardButtonRow2.buttons.size();
+                TL_keyboard.KeyboardInlineButtonRow keyboardInlineButtonRow2 = arrayList3.get(i7);
+                int size5 = keyboardInlineButtonRow2.buttons.size();
                 int i8 = 0;
                 while (i8 < size5) {
-                    TLRPC.KeyboardButton keyboardButton = tL_keyboardButtonRow2.buttons.get(i8);
-                    if (keyboardButton instanceof TLRPC.TL_keyboardButtonCallback) {
-                        if (linearLayout == null) {
-                            linearLayout = new LinearLayout(this);
-                            linearLayout.setOrientation(i3);
-                            linearLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                            linearLayout.setWeightSum(100.0f);
-                            linearLayout.setTag("b");
-                            linearLayout.setOnTouchListener(new View.OnTouchListener() {
+                    TL_keyboard.KeyboardInlineButton keyboardInlineButton = keyboardInlineButtonRow2.buttons.get(i8);
+                    if (TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeCallback.class)) {
+                        if (linearLayout3 == null) {
+                            linearLayout2 = new LinearLayout(this);
+                            linearLayout2.setOrientation(i3);
+                            linearLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                            linearLayout2.setWeightSum(100.0f);
+                            linearLayout2.setTag("b");
+                            linearLayout2.setOnTouchListener(new View.OnTouchListener() {
                                 @Override
                                 public final boolean onTouch(View view, MotionEvent motionEvent) {
                                     return PopupNotificationActivity.lambda$getButtonsViewForMessage$4(view, motionEvent);
                                 }
                             });
+                        } else {
+                            linearLayout2 = linearLayout3;
                         }
                         TextView textView = new TextView(this);
+                        arrayList = arrayList3;
                         textView.setTextSize(1, 16.0f);
                         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
                         textView.setTypeface(AndroidUtilities.bold());
-                        textView.setText(keyboardButton.text.toUpperCase());
-                        textView.setTag(keyboardButton);
+                        textView.setText(keyboardInlineButton.text.toUpperCase());
+                        textView.setTag(keyboardInlineButton);
                         textView.setGravity(17);
                         textView.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-                        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -1, 100.0f / i2));
+                        linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -1, 100.0f / i2));
                         textView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
                                 PopupNotificationActivity.lambda$getButtonsViewForMessage$5(i6, messageObject, view);
                             }
                         });
+                        linearLayout3 = linearLayout2;
+                    } else {
+                        arrayList = arrayList3;
                     }
                     i8++;
+                    arrayList3 = arrayList;
                     i3 = 0;
                 }
                 i7++;
                 i3 = 0;
             }
+            linearLayout = linearLayout3;
         }
         if (linearLayout != null) {
             int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(24.0f);
@@ -777,9 +797,9 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     public static void lambda$getButtonsViewForMessage$5(int i, MessageObject messageObject, View view) {
-        TLRPC.KeyboardButton keyboardButton = (TLRPC.KeyboardButton) view.getTag();
-        if (keyboardButton != null) {
-            SendMessagesHelper.getInstance(i).sendNotificationCallback(messageObject.getDialogId(), messageObject.getId(), keyboardButton.data);
+        TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) view.getTag();
+        if (keyboardButtonProto != null) {
+            SendMessagesHelper.getInstance(i).sendNotificationCallback(messageObject.getDialogId(), messageObject.getId(), keyboardButtonProto.getData());
         }
     }
 

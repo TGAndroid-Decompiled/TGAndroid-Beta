@@ -627,7 +627,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
                 simpleTextView.layout(iDp2, AndroidUtilities.dp(1.66f) + currentActionBarHeight, simpleTextView.getMeasuredWidth() + iDp2, simpleTextView.getTextHeight() + currentActionBarHeight + AndroidUtilities.dp(1.66f));
             }
         } else {
-            this.titleTextView.layout(iDp2, (AndroidUtilities.dp(10.0f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + iDp2, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.dp(10.0f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
+            this.titleTextView.layout(iDp2, (AndroidUtilities.dp(11.0f) + currentActionBarHeight) - this.titleTextView.getPaddingTop(), this.titleTextView.getMeasuredWidth() + iDp2, (((this.titleTextView.getTextHeight() + currentActionBarHeight) + AndroidUtilities.dp(11.0f)) - this.titleTextView.getPaddingTop()) + this.titleTextView.getPaddingBottom());
             if (simpleTextView != null) {
                 simpleTextView.layout(iDp2, AndroidUtilities.dp(10.0f) + currentActionBarHeight, simpleTextView.getMeasuredWidth() + iDp2, simpleTextView.getTextHeight() + currentActionBarHeight + AndroidUtilities.dp(10.0f));
             }
@@ -1664,9 +1664,9 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
             fMax = Math.max(fMax, simpleTextView2.getExactWidthIncludeDrawables());
         }
         if (hasVisibleAvatar()) {
-            iDp = AndroidUtilities.dp(64.0f);
+            iDp = AndroidUtilities.dp(68.0f);
         } else {
-            iDp = AndroidUtilities.dp(30.0f);
+            iDp = AndroidUtilities.dp(34.0f);
         }
         return (int) (fMax + iDp);
     }

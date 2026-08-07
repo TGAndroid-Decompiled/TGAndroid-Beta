@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
@@ -24,7 +23,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import ru.noties.jlatexmath.JLatexMathDrawable;
 
 public class RichMathCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     private Bitmap bitmap;
@@ -51,7 +49,7 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
         this.rect = new int[4];
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
-        setBlockPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        setBlockPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f));
         ImageView imageView = new ImageView(context);
         this.image = imageView;
         FrameLayout frameLayout = new FrameLayout(context);
@@ -60,7 +58,7 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
         this.scrollView = horizontalScrollView;
         horizontalScrollView.setHorizontalScrollBarEnabled(false);
         horizontalScrollView.setClipToPadding(false);
-        horizontalScrollView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        horizontalScrollView.setPadding(0, 0, 0, 0);
         horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
         addView(horizontalScrollView, LayoutHelper.createFrame(-1, -2, 16));
@@ -91,23 +89,12 @@ public class RichMathCell extends RichBlockCell implements Theme.Colorable, Text
     }
 
     public void rebuild() {
+        Latex latexRender;
         this.bitmap = null;
         this.scrollView.scrollTo(0, 0);
         String source = getSource();
-        if (!TextUtils.isEmpty(source)) {
-            try {
-                JLatexMathDrawable jLatexMathDrawableBuild = JLatexMathDrawable.builder(source).textSize(AndroidUtilities.dp(SharedConfig.fontSize + 4)).build();
-                int intrinsicWidth = jLatexMathDrawableBuild.getIntrinsicWidth();
-                int intrinsicHeight = jLatexMathDrawableBuild.getIntrinsicHeight();
-                if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-                    Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ALPHA_8);
-                    jLatexMathDrawableBuild.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
-                    jLatexMathDrawableBuild.draw(new Canvas(bitmapCreateBitmap));
-                    this.bitmap = bitmapCreateBitmap;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+        if (!TextUtils.isEmpty(source) && (latexRender = Latex.render(source, AndroidUtilities.dp(SharedConfig.fontSize + 4), false)) != null) {
+            this.bitmap = latexRender.bitmap;
         }
         this.image.setImageBitmap(this.bitmap);
         invalidate();

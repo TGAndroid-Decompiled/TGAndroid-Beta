@@ -102,7 +102,7 @@ public abstract class ViewPagerActivity extends BaseFragment {
                 }
                 baseFragment.setParentLayout(ViewPagerActivity.this.getParentLayout());
                 if (baseFragment.getFragmentView() == null) {
-                    baseFragment.createView(context);
+                    baseFragment.performCreateView(context);
                     baseFragment.setTitleOverlayText(ViewPagerActivity.this.titleOverlay, ViewPagerActivity.this.titleOverlayId, ViewPagerActivity.this.titleOverlayAction);
                 }
                 FrameLayout frameLayout = (FrameLayout) view;

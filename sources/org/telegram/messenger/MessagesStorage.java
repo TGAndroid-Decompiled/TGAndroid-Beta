@@ -34,13 +34,13 @@ import org.telegram.messenger.Timer;
 import org.telegram.messenger.TopicsController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
@@ -54,7 +54,7 @@ public class MessagesStorage extends BaseController {
     public static final int FORUM_TYPE_CHAT = 1;
     public static final int FORUM_TYPE_CHAT_TABS = 2;
     public static final int FORUM_TYPE_DIRECT = 4;
-    public static final int LAST_DB_VERSION = 176;
+    public static final int LAST_DB_VERSION = 177;
     public static final int SENT_FILE_TYPE_AUDIO = 1;
     public static final int SENT_FILE_TYPE_AUDIO_ENCRYPTED = 4;
     public static final int SENT_FILE_TYPE_PHOTO = 0;
@@ -405,7 +405,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (iIntValue < 176) {
+                if (iIntValue < 177) {
                     try {
                         updateDbToLastVersion(iIntValue);
                     } catch (Exception e4) {
@@ -667,6 +667,11 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS topic_date_idx_quick_replies_messages ON quick_replies_messages(topic_id, date);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reply_to_idx_quick_replies_messages ON quick_replies_messages(mid, reply_to_message_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_quick_replies_messages ON quick_replies_messages(reply_to_message_id, mid);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE welcome_messages(mid INTEGER, dialog_id INTEGER, send_state INTEGER, date INTEGER, data BLOB, ttl INTEGER, replydata BLOB, reply_to_message_id INTEGER, PRIMARY KEY(mid, dialog_id))").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS send_state_idx_welcome_messages ON welcome_messages(mid, send_state, date);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS dialog_date_idx_welcome_messages ON welcome_messages(dialog_id, date);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reply_to_idx_welcome_messages ON welcome_messages(mid, reply_to_message_id);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_welcome_messages ON welcome_messages(reply_to_message_id, mid);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE business_links(data BLOB, order_value INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT, pos INTEGER);").stepThis().dispose();
@@ -678,7 +683,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS poll_votes_mentions_topics_did ON poll_votes_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE ephemeral_messages (id INTEGER, dialog_id INTEGER, topic_id INTEGER, date INTEGER, data BLOB, PRIMARY KEY(dialog_id, id));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS ephemeral_messages_date_idx ON ephemeral_messages(date);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 176").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 177").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -692,7 +697,7 @@ public class MessagesStorage extends BaseController {
                 this.f$0.lambda$updateDbToLastVersion$3();
             }
         });
-        FileLog.d("MessagesStorage start db migration from " + i + " to 176");
+        FileLog.d("MessagesStorage start db migration from " + i + " to 177");
         int iMigrate = DatabaseMigrationHelper.migrate(this, i);
         StringBuilder sb = new StringBuilder();
         sb.append("MessagesStorage db migration finished to varsion ");
@@ -2299,7 +2304,7 @@ public class MessagesStorage extends BaseController {
         arrayList2.add(message);
     }
 
-    protected void loadReplyMessages(androidx.collection.LongSparseArray r23, androidx.collection.LongSparseArray r24, java.util.ArrayList<java.lang.Long> r25, java.util.ArrayList<java.lang.Long> r26, int r27) {
+    protected void loadReplyMessages(androidx.collection.LongSparseArray r25, androidx.collection.LongSparseArray r26, java.util.ArrayList<java.lang.Long> r27, java.util.ArrayList<java.lang.Long> r28, int r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.loadReplyMessages(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
@@ -6831,7 +6836,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putMessages$200(java.util.ArrayList<org.telegram.tgnet.TLRPC.Message> r60, boolean r61, boolean r62, int r63, boolean r64, int r65, long r66) {
+    public void lambda$putMessages$200(java.util.ArrayList<org.telegram.tgnet.TLRPC.Message> r61, boolean r62, boolean r63, int r64, boolean r65, int r66, long r67) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$200(java.util.ArrayList, boolean, boolean, int, boolean, int, long):void");
     }
 
@@ -6914,7 +6919,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void putMessages(final ArrayList<TLRPC.Message> arrayList, final boolean z, boolean z2, final boolean z3, final int i, final boolean z4, final int i2, final long j) {
-        if (arrayList.size() == 0) {
+        if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
         if (z2) {
@@ -6929,7 +6934,10 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void putEphemeralMessages(final ArrayList<TLRPC.EphemeralMessage> arrayList, final boolean z) {
+    public void putEphemeralMessages(final ArrayList<TL_ephemeral.EphemeralMessage> arrayList, final boolean z) {
+        if (arrayList == null || arrayList.isEmpty()) {
+            return;
+        }
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() {
@@ -6938,7 +6946,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void lambda$putEphemeralMessages$201(ArrayList<TLRPC.EphemeralMessage> arrayList, boolean z) {
+    public void lambda$putEphemeralMessages$201(ArrayList<TL_ephemeral.EphemeralMessage> arrayList, boolean z) {
         SQLitePreparedStatement sQLitePreparedStatementExecuteFast = null;
         if (z) {
             try {
@@ -6958,16 +6966,18 @@ public class MessagesStorage extends BaseController {
             }
         }
         sQLitePreparedStatementExecuteFast = this.database.executeFast("INSERT OR REPLACE INTO ephemeral_messages (dialog_id, id, topic_id, date, data) VALUES (?, ?, ?, ?, ?);");
-        Iterator<TLRPC.EphemeralMessage> it = arrayList.iterator();
+        Iterator<TL_ephemeral.EphemeralMessage> it = arrayList.iterator();
         while (it.hasNext()) {
-            TLRPC.EphemeralMessage next = it.next();
-            sQLitePreparedStatementExecuteFast.requery();
-            sQLitePreparedStatementExecuteFast.bindLong(1, DialogObject.getPeerDialogId(next.peer_id));
-            sQLitePreparedStatementExecuteFast.bindInteger(2, next.id);
-            sQLitePreparedStatementExecuteFast.bindInteger(3, 0);
-            sQLitePreparedStatementExecuteFast.bindInteger(4, next.date);
-            sQLitePreparedStatementExecuteFast.bindTlObject(5, next);
-            sQLitePreparedStatementExecuteFast.step();
+            TL_ephemeral.EphemeralMessage next = it.next();
+            if (!next.welcome) {
+                sQLitePreparedStatementExecuteFast.requery();
+                sQLitePreparedStatementExecuteFast.bindLong(1, DialogObject.getPeerDialogId(next.peer_id));
+                sQLitePreparedStatementExecuteFast.bindInteger(2, next.id);
+                sQLitePreparedStatementExecuteFast.bindInteger(3, 0);
+                sQLitePreparedStatementExecuteFast.bindInteger(4, next.date);
+                sQLitePreparedStatementExecuteFast.bindTlObject(5, next);
+                sQLitePreparedStatementExecuteFast.step();
+            }
         }
         if (z) {
             this.database.commitTransaction();
@@ -7012,7 +7022,7 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    public void getEphemeralMessages(final long j, final long j2, final Utilities.Callback<ArrayList<TLRPC.EphemeralMessage>> callback) {
+    public void getEphemeralMessages(final long j, final long j2, final Utilities.Callback<ArrayList<TL_ephemeral.EphemeralMessage>> callback) {
         executeInStorageQueue(new Runnable() {
             @Override
             public final void run() {
@@ -7021,19 +7031,14 @@ public class MessagesStorage extends BaseController {
         });
     }
 
-    private ArrayList<TLRPC.EphemeralMessage> getEphemeralMessagesInternal(long j, long j2) {
-        ArrayList<TLRPC.EphemeralMessage> arrayList = new ArrayList<>();
+    private ArrayList<TL_ephemeral.EphemeralMessage> getEphemeralMessagesInternal(long j, long j2) {
+        ArrayList<TL_ephemeral.EphemeralMessage> arrayList = new ArrayList<>();
         SQLiteCursor sQLiteCursorQueryFinalized = null;
         try {
             try {
                 sQLiteCursorQueryFinalized = this.database.queryFinalized("SELECT data FROM ephemeral_messages WHERE dialog_id = ? AND topic_id = ? AND date >= ? ORDER BY date DESC LIMIT 30", Long.valueOf(j), Long.valueOf(j2), Integer.valueOf(getConnectionsManager().getCurrentTime() - 172800));
                 while (sQLiteCursorQueryFinalized.next()) {
-                    TLRPC.EphemeralMessage ephemeralMessage = (TLRPC.EphemeralMessage) sQLiteCursorQueryFinalized.tlObjectValue(0, new Vector.TLDeserializer() {
-                        @Override
-                        public final TLObject deserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-                            return TLRPC.EphemeralMessage.TLdeserialize(inputSerializedData, i, z);
-                        }
-                    }, false);
+                    TL_ephemeral.EphemeralMessage ephemeralMessage = (TL_ephemeral.EphemeralMessage) sQLiteCursorQueryFinalized.tlObjectValue(0, new MessagesStorage$$ExternalSyntheticLambda79(), false);
                     if (ephemeralMessage != null) {
                         arrayList.add(ephemeralMessage);
                     }
@@ -7053,8 +7058,8 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public ArrayList<TLRPC.EphemeralMessage> getEphemeralMessagesInternal(long j, ArrayList<Integer> arrayList) {
-        ArrayList<TLRPC.EphemeralMessage> arrayList2 = new ArrayList<>();
+    public ArrayList<TL_ephemeral.EphemeralMessage> getEphemeralMessagesInternal(long j, ArrayList<Integer> arrayList) {
+        ArrayList<TL_ephemeral.EphemeralMessage> arrayList2 = new ArrayList<>();
         if (arrayList == null || arrayList.isEmpty()) {
             return arrayList2;
         }
@@ -7065,7 +7070,7 @@ public class MessagesStorage extends BaseController {
                 while (sQLiteCursorQueryFinalized.next()) {
                     NativeByteBuffer nativeByteBufferByteBufferValue = sQLiteCursorQueryFinalized.byteBufferValue(0);
                     if (nativeByteBufferByteBufferValue != null) {
-                        TLRPC.EphemeralMessage ephemeralMessageTLdeserialize = TLRPC.EphemeralMessage.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
+                        TL_ephemeral.EphemeralMessage ephemeralMessageTLdeserialize = TL_ephemeral.EphemeralMessage.TLdeserialize(nativeByteBufferByteBufferValue, nativeByteBufferByteBufferValue.readInt32(false), false);
                         nativeByteBufferByteBufferValue.reuse();
                         if (ephemeralMessageTLdeserialize != null) {
                             arrayList2.add(ephemeralMessageTLdeserialize);
@@ -7101,17 +7106,25 @@ public class MessagesStorage extends BaseController {
             long j = message.id;
             if (MessageObject.isQuickReply(message)) {
                 i = 5;
+            } else if (MessageObject.isWelcomeMessage(message)) {
+                i = 9;
+            }
+            if (i == 9) {
+                this.database.executeFast(String.format(Locale.US, "UPDATE welcome_messages SET send_state = 2 WHERE mid = %d AND dialog_id = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
+                return;
             }
             if (i == 5) {
                 this.database.executeFast(String.format(Locale.US, "UPDATE quick_replies_messages SET send_state = 2 WHERE mid = %d AND topic_id = %d", Long.valueOf(j), Integer.valueOf(MessageObject.getQuickReplyId(this.currentAccount, message)))).stepThis().dispose();
-            } else if (i == 1) {
-                this.database.executeFast(String.format(Locale.US, "UPDATE scheduled_messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
-            } else {
-                SQLiteDatabase sQLiteDatabase = this.database;
-                Locale locale = Locale.US;
-                sQLiteDatabase.executeFast(String.format(locale, "UPDATE messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
-                this.database.executeFast(String.format(locale, "UPDATE messages_topics SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
+                return;
             }
+            if (i == 1) {
+                this.database.executeFast(String.format(Locale.US, "UPDATE scheduled_messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
+                return;
+            }
+            SQLiteDatabase sQLiteDatabase = this.database;
+            Locale locale = Locale.US;
+            sQLiteDatabase.executeFast(String.format(locale, "UPDATE messages_v2 SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
+            this.database.executeFast(String.format(locale, "UPDATE messages_topics SET send_state = 2 WHERE mid = %d AND uid = %d", Long.valueOf(j), Long.valueOf(MessageObject.getDialogId(message)))).stepThis().dispose();
         } catch (Exception e) {
             checkSQLException(e);
         }
@@ -7209,7 +7222,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public long[] lambda$updateMessageStateAndId$209(long r18, long r20, java.lang.Integer r22, int r23, int r24, int r25, int r26) throws java.lang.Throwable {
+    public long[] lambda$updateMessageStateAndId$209(long r22, long r24, java.lang.Integer r26, int r27, int r28, int r29, int r30) throws java.lang.Throwable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageStateAndId$209(long, long, java.lang.Integer, int, int, int, int):long[]");
     }
 
@@ -7779,12 +7792,12 @@ public class MessagesStorage extends BaseController {
         TLRPC.MessageMedia messageMedia = message.media;
         if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported_old) {
             if (messageMedia.bytes.length == 0) {
-                messageMedia.bytes = Utilities.intToBytes(228);
+                messageMedia.bytes = Utilities.intToBytes(229);
             }
         } else if (messageMedia instanceof TLRPC.TL_messageMediaUnsupported) {
             TLRPC.TL_messageMediaUnsupported_old tL_messageMediaUnsupported_old = new TLRPC.TL_messageMediaUnsupported_old();
             message.media = tL_messageMediaUnsupported_old;
-            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(228);
+            tL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(229);
             message.flags |= 512;
         }
     }
@@ -7935,13 +7948,13 @@ public class MessagesStorage extends BaseController {
     public void putMessages(final TLRPC.messages_Messages messages_messages, final long j, final int i, final int i2, final boolean z, final int i3, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
-            public final void run() throws Throwable {
+            public final void run() {
                 this.f$0.lambda$putMessages$234(i3, messages_messages, j, j2, i, i2, z);
             }
         });
     }
 
-    public void lambda$putMessages$234(int r52, org.telegram.tgnet.TLRPC.messages_Messages r53, long r54, long r56, int r58, int r59, boolean r60) throws java.lang.Throwable {
+    public void lambda$putMessages$234(int r50, org.telegram.tgnet.TLRPC.messages_Messages r51, long r52, long r54, int r56, int r57, boolean r58) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$234(int, org.telegram.tgnet.TLRPC$messages_Messages, long, long, int, int, boolean):void");
     }
 

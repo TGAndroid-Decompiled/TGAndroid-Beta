@@ -208,21 +208,6 @@ public class RichEditorToolbar extends FrameLayout {
         linearLayout2.setClipChildren(false);
         linearLayout2.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
         frameLayout3.addView(linearLayout2, LayoutHelper.createFrame(-1, 60, 87));
-        ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context, 24);
-        this.emojiButton = chatActivityEnterViewAnimatedIconView;
-        chatActivityEnterViewAnimatedIconView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(color(i4), mode));
-        chatActivityEnterViewAnimatedIconView.setBackground(RichEditor.withShadow(Theme.createRadSelectorDrawable(color(i2), Theme.blendOver(color(i2), color(i3)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
-        chatActivityEnterViewAnimatedIconView.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
-        linearLayout2.addView(chatActivityEnterViewAnimatedIconView, LayoutHelper.createLinear(44, 44, 0.0f, 19, 0, 0, 8, 0));
-        ScaleStateListAnimator.apply(chatActivityEnterViewAnimatedIconView);
-        chatActivityEnterViewAnimatedIconView.setContentDescription("Emoji");
-        chatActivityEnterViewAnimatedIconView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view3) {
-                delegate.onEmoji();
-            }
-        });
         ImageView imageView4 = new ImageView(context);
         this.aiButton = imageView4;
         imageView4.setImageDrawable(new AiButtonDrawable(context));
@@ -242,7 +227,7 @@ public class RichEditorToolbar extends FrameLayout {
         frameLayout4.setClipToPadding(false);
         frameLayout4.setClipChildren(false);
         FrameLayout frameLayout5 = new FrameLayout(context);
-        frameLayout5.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i2))));
+        frameLayout5.setBackground(RichEditor.withShadow(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), color(i))));
         frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-2, 44, 81));
         HorizontalScrollView horizontalScrollView = new HorizontalScrollView(context) {
             @Override
@@ -275,19 +260,33 @@ public class RichEditorToolbar extends FrameLayout {
         linearLayout3.setOrientation(0);
         horizontalScrollView.addView(linearLayout3);
         frameLayout5.addView(horizontalScrollView, LayoutHelper.createFrame(-1, -1.0f));
+        ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context, 24);
+        this.emojiButton = chatActivityEnterViewAnimatedIconView;
+        chatActivityEnterViewAnimatedIconView.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
+        chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(color(i4), mode));
+        chatActivityEnterViewAnimatedIconView.setBackground(Theme.createRadSelectorDrawable(color(i), color(i3), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
+        chatActivityEnterViewAnimatedIconView.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
+        linearLayout3.addView(chatActivityEnterViewAnimatedIconView, LayoutHelper.createLinear(38, 38, 16));
+        ScaleStateListAnimator.apply(chatActivityEnterViewAnimatedIconView);
+        chatActivityEnterViewAnimatedIconView.setContentDescription("Emoji");
+        chatActivityEnterViewAnimatedIconView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                delegate.onEmoji();
+            }
+        });
         addBlockButton(R.drawable.iv_text, 1, false);
         addBlockButton(R.drawable.iv_lists, 2, true);
         addBlockButton(R.drawable.iv_table, 4, true);
         int i5 = R.drawable.iv_math;
         addBlockButton(i5, 7, true);
-        linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(0, 44, 1.0f));
         ImageView imageView5 = new ImageView(context);
         this.addButton = imageView5;
         imageView5.setImageResource(R.drawable.outline_poll_attach_24);
         imageView5.setScaleType(scaleType);
         imageView5.setColorFilter(new PorterDuffColorFilter(color(i4), mode));
-        imageView5.setBackground(RichEditor.withShadow(Theme.createRadSelectorDrawable(color(i2), Theme.blendOver(color(i2), color(i3)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
-        linearLayout2.addView(imageView5, LayoutHelper.createLinear(44, 44, 0.0f, 21, 8, 0, 0, 0));
+        imageView5.setBackground(Theme.createRadSelectorDrawable(color(i), color(i3), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
+        linearLayout3.addView(imageView5, LayoutHelper.createLinear(38, 38, 16, 2, 0, 0, 0));
         ScaleStateListAnimator.apply(imageView5);
         imageView5.setContentDescription("Attach");
         imageView5.setOnClickListener(new View.OnClickListener() {
@@ -296,6 +295,7 @@ public class RichEditorToolbar extends FrameLayout {
                 delegate.onAttach();
             }
         });
+        linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(0, 44, 1.0f));
         LinearLayout linearLayout4 = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i6, int i7) {
@@ -492,7 +492,7 @@ public class RichEditorToolbar extends FrameLayout {
 
     private RichEditor.Button addBlockButton(int i, final int i2, boolean z) {
         RichEditor.Button button = new RichEditor.Button(this.blocksLayout.getContext(), i, this.resourcesProvider);
-        button.setBackgroundColorKey(Theme.key_glass_targetMainTabs);
+        button.setBackgroundColorKey(Theme.key_windowBackgroundWhite);
         if (z) {
             button.setPremium();
             this.premiumButtons.add(button);

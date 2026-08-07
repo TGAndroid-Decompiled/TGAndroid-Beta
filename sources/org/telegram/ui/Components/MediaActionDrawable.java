@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.MessageDrawable;
 
 public class MediaActionDrawable extends Drawable {
     private float animatedDownloadProgress;
@@ -30,7 +30,7 @@ public class MediaActionDrawable extends Drawable {
     private boolean hasOverlayImage;
     private boolean isMini;
     private long lastAnimationTime;
-    private Theme.MessageDrawable messageDrawable;
+    private MessageDrawable messageDrawable;
     private int nextIcon;
     private String percentString;
     private int percentStringWidth;
@@ -201,7 +201,7 @@ public class MediaActionDrawable extends Drawable {
         return 1.0f;
     }
 
-    public void setBackgroundDrawable(Theme.MessageDrawable messageDrawable) {
+    public void setBackgroundDrawable(MessageDrawable messageDrawable) {
         this.messageDrawable = messageDrawable;
     }
 
@@ -229,7 +229,7 @@ public class MediaActionDrawable extends Drawable {
     }
 
     public void applyShaderMatrix(boolean z) {
-        Theme.MessageDrawable messageDrawable = this.messageDrawable;
+        MessageDrawable messageDrawable = this.messageDrawable;
         if (messageDrawable == null || !messageDrawable.hasGradient() || this.hasOverlayImage) {
             return;
         }

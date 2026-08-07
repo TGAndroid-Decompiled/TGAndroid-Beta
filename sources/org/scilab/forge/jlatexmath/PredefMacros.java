@@ -72,6 +72,9 @@ public class PredefMacros {
 
     public static final Atom fcscore_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
         int i = Integer.parseInt(strArr[1]);
+        if (i > 4096) {
+            i = 4096;
+        }
         if (i > 5) {
             int i2 = i / 5;
             int i3 = i % 5;
@@ -87,7 +90,15 @@ public class PredefMacros {
 
     public static final Atom longdiv_macro(TeXParser teXParser, String[] strArr) {
         try {
-            return new LongdivAtom(Long.valueOf(strArr[2]).longValue(), Long.valueOf(strArr[1]).longValue());
+            long jLongValue = Long.valueOf(strArr[1]).longValue();
+            long jLongValue2 = Long.valueOf(strArr[2]).longValue();
+            if (jLongValue2 == 0) {
+                throw new ParseException("Divisor must not be 0");
+            }
+            if (jLongValue > 1000000000 || jLongValue < -1000000000 || jLongValue2 > 1000000000 || jLongValue2 < -1000000000) {
+                throw new ParseException("Operands are too large for longdiv");
+            }
+            return new LongdivAtom(jLongValue2, jLongValue);
         } catch (NumberFormatException unused) {
             throw new ParseException("Divisor and dividend must be integer numbers");
         }
@@ -765,13 +776,23 @@ public class PredefMacros {
 
     public static final Atom multicolumn_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
         int i = Integer.parseInt(strArr[1]);
+        if (i > 4096) {
+            i = 4096;
+        }
         teXParser.addAtom(new MulticolumnAtom(i, strArr[2], new TeXFormula(teXParser, strArr[3]).root));
         ((ArrayOfAtoms) teXParser.formula).addCol(i);
         return null;
     }
 
     public static final Atom hdotsfor_macro(TeXParser teXParser, String[] strArr) throws NumberFormatException {
-        int i = Integer.parseInt(strArr[1]);
+        int i = 1;
+        int i2 = Integer.parseInt(strArr[1]);
+        if (i2 >= 1) {
+            i = 4096;
+            if (i2 <= 4096) {
+                i = i2;
+            }
+        }
         String str = strArr[2];
         teXParser.addAtom(new HdotsforAtom(i, str != null ? Float.parseFloat(str) : 1.0f));
         ((ArrayOfAtoms) teXParser.formula).addCol(i);
@@ -1567,6 +1588,9 @@ public class PredefMacros {
         int[] iArr = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
         String[] strArr2 = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         int i = Integer.parseInt(strArr[1].trim());
+        if (i > 4000000) {
+            i = 4000000;
+        }
         String lowerCase = "";
         for (int i2 = 0; i2 < 13; i2++) {
             while (i >= iArr[i2]) {

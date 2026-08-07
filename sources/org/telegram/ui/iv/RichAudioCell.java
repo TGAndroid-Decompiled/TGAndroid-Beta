@@ -337,7 +337,7 @@ public class RichAudioCell extends RichBlockCell implements Theme.Colorable, Tex
     private void layoutInner() {
         SpannableStringBuilder spannableStringBuilder;
         this.seekBarX = this.buttonX + AndroidUtilities.dp(50.0f) + this.size;
-        this.seekBarWidth = Math.max(0, (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - this.seekBarX) - AndroidUtilities.dp(18.0f)) - (this.blockRtl ? blockInset() : 0));
+        this.seekBarWidth = Math.max(0, (((getMeasuredWidth() > 0 ? getMeasuredWidth() : AndroidUtilities.displaySize.x) - this.seekBarX) - AndroidUtilities.dp(16.0f)) - (this.blockRtl ? blockInset() : 0));
         String strAudioAuthor = audioAuthor();
         String strAudioTitle = audioTitle();
         if (!TextUtils.isEmpty(strAudioTitle) || !TextUtils.isEmpty(strAudioAuthor)) {

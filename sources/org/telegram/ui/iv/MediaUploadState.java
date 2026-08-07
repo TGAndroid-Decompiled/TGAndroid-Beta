@@ -11,6 +11,7 @@ public class MediaUploadState {
     public int height;
     public int invert;
     public boolean isAudio;
+    public boolean isDocument;
     public boolean isVideo;
     public String localPath;
     public Bitmap localThumbBitmap;
@@ -24,7 +25,7 @@ public class MediaUploadState {
         if (this.state != 2) {
             return false;
         }
-        if (this.isVideo || this.isAudio) {
+        if (this.isVideo || this.isAudio || this.isDocument) {
             if (this.document == null) {
                 return false;
             }

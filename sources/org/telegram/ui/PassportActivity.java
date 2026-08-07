@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -4047,7 +4046,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         secureDocumentCell.setTextAndValueAndImage(string, dateForBan, secureDocument);
         secureDocumentCell.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws Resources.NotFoundException {
+            public final void onClick(View view) {
                 this.f$0.lambda$addDocumentView$55(i, view);
             }
         });
@@ -4059,7 +4058,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         });
     }
 
-    public void lambda$addDocumentView$55(int i, View view) throws Resources.NotFoundException {
+    public void lambda$addDocumentView$55(int i, View view) {
         this.uploadingFileType = i;
         if (i == 1) {
             this.currentPhotoViewerLayout = this.selfieLayout;
