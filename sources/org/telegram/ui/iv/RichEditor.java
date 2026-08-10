@@ -40,6 +40,7 @@ import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -737,7 +738,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.addButton.setContentDescription(LocaleController.getString(R.string.AccDescrAttachButton));
         this.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
+            public final void onClick(View view3) throws IOException {
                 this.f$0.lambda$createView$31(view3);
             }
         });
@@ -1044,12 +1045,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
 
         @Override
-        public void onOpenAttachRequest(int i, int i2) {
+        public void onOpenAttachRequest(int i, int i2) throws IOException {
             RichEditor.this.openAttach(i, i2);
         }
 
         @Override
-        public void onOpenLocationRequest(BlockRow blockRow) {
+        public void onOpenLocationRequest(BlockRow blockRow) throws IOException {
             RichEditor.this.openLocationPicker(blockRow);
         }
 
@@ -1446,7 +1447,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$createView$31(View view) {
+    public void lambda$createView$31(View view) throws IOException {
         this.listView.pendingMediaRow = null;
         openAttach();
     }
@@ -2254,11 +2255,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    private void openAttach() {
+    private void openAttach() throws IOException {
         openAttach(90, 0);
     }
 
-    public void openAttach(int i, int i2) {
+    public void openAttach(int i, int i2) throws IOException {
         RichEditorListView richEditorListView = this.listView;
         richEditorListView.pendingInsertRow = richEditorListView.findFocusedRow();
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, true, getResourceProvider());
@@ -2357,7 +2358,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             @Override
             public void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i3, int i4, long j, boolean z2, long j2) {
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    RichEditor.this.listView.lambda$attachDocument$46((String) arrayList.get(0));
+                    RichEditor.this.listView.lambda$attachDocument$42((String) arrayList.get(0));
                 } else if (arrayList3 != null && !arrayList3.isEmpty()) {
                     RichEditor.this.listView.attachDocument((MessageObject) arrayList3.get(0));
                 }
@@ -2478,7 +2479,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         showDialog(new PremiumFeatureBottomSheet(this, 43, true));
     }
 
-    public void openLocationPicker(final BlockRow blockRow) {
+    public void openLocationPicker(final BlockRow blockRow) throws IOException {
         if (blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(this)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, false, getResourceProvider());
             chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {

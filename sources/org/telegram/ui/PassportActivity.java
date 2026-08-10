@@ -3087,7 +3087,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             this.linearLayout2.addView(this.uploadDocumentCell, LayoutHelper.createLinear(-1, -2));
             this.uploadDocumentCell.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
+                public final void onClick(View view) throws IOException {
                     this.f$0.lambda$createAddressInterface$32(view);
                 }
             });
@@ -3146,7 +3146,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 this.linearLayout2.addView(this.uploadTranslationCell, LayoutHelper.createLinear(-1, -2));
                 this.uploadTranslationCell.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view) {
+                    public final void onClick(View view) throws IOException {
                         this.f$0.lambda$createAddressInterface$33(view);
                     }
                 });
@@ -3435,12 +3435,12 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         updateUploadText(4);
     }
 
-    public void lambda$createAddressInterface$32(View view) {
+    public void lambda$createAddressInterface$32(View view) throws IOException {
         this.uploadingFileType = 0;
         openAttachMenu();
     }
 
-    public void lambda$createAddressInterface$33(View view) {
+    public void lambda$createAddressInterface$33(View view) throws IOException {
         this.uploadingFileType = 4;
         openAttachMenu();
     }
@@ -3620,22 +3620,22 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PassportActivity.createIdentityInterface(android.content.Context):void");
     }
 
-    public void lambda$createIdentityInterface$40(View view) {
+    public void lambda$createIdentityInterface$40(View view) throws IOException {
         this.uploadingFileType = 2;
         openAttachMenu();
     }
 
-    public void lambda$createIdentityInterface$41(View view) {
+    public void lambda$createIdentityInterface$41(View view) throws IOException {
         this.uploadingFileType = 3;
         openAttachMenu();
     }
 
-    public void lambda$createIdentityInterface$42(View view) {
+    public void lambda$createIdentityInterface$42(View view) throws IOException {
         this.uploadingFileType = 1;
         openAttachMenu();
     }
 
-    public void lambda$createIdentityInterface$43(View view) {
+    public void lambda$createIdentityInterface$43(View view) throws IOException {
         this.uploadingFileType = 4;
         openAttachMenu();
     }
@@ -4046,7 +4046,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         secureDocumentCell.setTextAndValueAndImage(string, dateForBan, secureDocument);
         secureDocumentCell.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws IOException {
                 this.f$0.lambda$addDocumentView$55(i, view);
             }
         });
@@ -4058,7 +4058,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         });
     }
 
-    public void lambda$addDocumentView$55(int i, View view) {
+    public void lambda$addDocumentView$55(int i, View view) throws IOException {
         this.uploadingFileType = i;
         if (i == 1) {
             this.currentPhotoViewerLayout = this.selfieLayout;
@@ -5904,7 +5904,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         }
     }
 
-    private void openAttachMenu() {
+    private void openAttachMenu() throws IOException {
         if (getParentActivity() == null) {
             return;
         }

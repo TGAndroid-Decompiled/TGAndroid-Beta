@@ -379,7 +379,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         getNotificationCenter().removeObserver(this, NotificationCenter.dialogDeleted);
     }
 
-    public ChannelColorActivity(long j) {
+    public ChannelColorActivity(long j) throws IOException {
         boolean zIsCurrentThemeDark = Theme.isCurrentThemeDark();
         this.isDark = zIsCurrentThemeDark;
         this.rowsCount = 0;
@@ -521,7 +521,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 68.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i3) {
+            public final void onItemClick(View view, int i3) throws IOException {
                 this.f$0.lambda$createView$4(chatFull, view, i3);
             }
         });
@@ -591,7 +591,7 @@ public class ChannelColorActivity extends BaseFragment implements NotificationCe
         return frameLayout;
     }
 
-    public void lambda$createView$4(TLRPC.ChatFull chatFull, final View view, final int i) {
+    public void lambda$createView$4(TLRPC.ChatFull chatFull, final View view, final int i) throws IOException {
         long emojiStatusDocumentId = 0;
         if (view instanceof EmojiCell) {
             if (i == this.packStickerRow) {

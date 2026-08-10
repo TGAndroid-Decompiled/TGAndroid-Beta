@@ -1840,7 +1840,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onCreate$16(activityFindActivity, storyViewer, sharedResources);
                 }
             };
@@ -1850,7 +1850,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$16(Activity activity, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
             File file;
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
@@ -1962,7 +1962,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException {
+                public final void run() throws Resources.NotFoundException {
                     this.f$0.lambda$onCreate$26(activityFindActivity, storyItem, storyViewer, sharedResources);
                 }
             };
@@ -1972,7 +1972,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             runnable.run();
         }
 
-        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException, IOException {
+        public void lambda$onCreate$26(Activity activity, final TL_stories.StoryItem storyItem, StoryViewer storyViewer, final SharedResources sharedResources) throws Resources.NotFoundException {
             StoryViewer.VideoPlayerHolder videoPlayerHolder;
             StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, PeerStoriesView.this.currentAccount);
             VideoPlayerSharedScope videoPlayerSharedScope = PeerStoriesView.this.playerSharedScope;
@@ -3398,7 +3398,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.sideControlsButtonsLayout = chatActivitySideControlsButtonsLayout;
         chatActivitySideControlsButtonsLayout.setOnClickListener(new ButtonOnClickListener() {
             @Override
-            public final void onClick(int i, View view) {
+            public final void onClick(int i, View view) throws IOException {
                 this.f$0.onSideControlButtonOnClick(i, view);
             }
         });
@@ -3884,7 +3884,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
 
         @Override
-        public void didPressAttachButton() {
+        public void didPressAttachButton() throws IOException {
             PeerStoriesView.this.openAttachMenu();
         }
 
@@ -3969,7 +3969,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
     }
 
-    public void onSideControlButtonOnClick(int i, View view) {
+    public void onSideControlButtonOnClick(int i, View view) throws IOException {
         if (i == 0) {
             openAttachMenu();
         }
@@ -4132,7 +4132,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         return this.storyViewer.livePlayer.getSendPaidMessagesStars();
     }
 
-    public void openAttachMenu() {
+    public void openAttachMenu() throws IOException {
         if (this.chatActivityEnterView == null) {
             return;
         }
@@ -4149,7 +4149,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         this.delegate.showDialog(this.chatAttachAlert);
     }
 
-    private void createChatAttachView() {
+    private void createChatAttachView() throws IOException {
         if (this.chatAttachAlert == null) {
             BaseFragment baseFragment = null;
             boolean z = false;
@@ -4431,7 +4431,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         }
         Runnable runnable = new Runnable() {
             @Override
-            public final void run() throws Resources.NotFoundException, IOException {
+            public final void run() throws Resources.NotFoundException {
                 this.f$0.lambda$openRepostStory$38(activityFindActivity);
             }
         };
@@ -4441,7 +4441,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         AndroidUtilities.runOnUIThread(runnable, 80L);
     }
 
-    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException, IOException {
+    public void lambda$openRepostStory$38(Activity activity) throws Resources.NotFoundException {
         StoryViewer.VideoPlayerHolder videoPlayerHolder;
         final StoryRecorder storyRecorder = StoryRecorder.getInstance(activity, this.currentAccount);
         VideoPlayerSharedScope videoPlayerSharedScope = this.playerSharedScope;
@@ -6161,7 +6161,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
         cancelTextSelection();
     }
 
-    public void onActivityResult(int i, int i2, Intent intent) {
+    public void onActivityResult(int i, int i2, Intent intent) throws IOException {
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();

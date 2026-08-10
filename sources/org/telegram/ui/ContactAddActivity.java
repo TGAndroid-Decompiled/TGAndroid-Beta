@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
@@ -344,7 +345,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.suggestPhoto.imageView.setAnimation(rLottieDrawable);
             this.suggestPhoto.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
+                public final void onClick(View view2) throws IOException {
                     this.f$0.lambda$createView$5(user, rLottieDrawable, view2);
                 }
             });
@@ -359,7 +360,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             this.setAvatarCell.imageView.setAnimation(rLottieDrawable2);
             this.setAvatarCell.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
+                public final void onClick(View view2) throws IOException {
                     this.f$0.lambda$createView$8(user, rLottieDrawable2, view2);
                 }
             });
@@ -481,7 +482,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         return true;
     }
 
-    public void lambda$createView$5(TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
+    public void lambda$createView$5(TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) throws IOException {
         TLRPC.UserProfilePhoto userProfilePhoto;
         this.photoSelectedType = 1;
         this.imageUpdater.setUser(user);
@@ -510,7 +511,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
     }
 
-    public void lambda$createView$8(TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) {
+    public void lambda$createView$8(TLRPC.User user, final RLottieDrawable rLottieDrawable, View view) throws IOException {
         TLRPC.UserProfilePhoto userProfilePhoto;
         this.photoSelectedType = 2;
         this.imageUpdater.setUser(user);
@@ -935,7 +936,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         updateCustomPhotoInfo();
     }
 
-    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException {
+    public boolean lambda$didUploadPhoto$18(BaseFragment baseFragment) throws Resources.NotFoundException, IOException, NumberFormatException {
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
             if (chatActivity.getDialogId() == this.user_id && chatActivity.getChatMode() == 0) {
