@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:versionCode="70009"
+    android:versionCode="70059"
     android:versionName="12.10.0"
     android:installLocation="auto"
     android:compileSdkVersion="35"
@@ -923,12 +923,6 @@
                 android:name="com.google.firebase.components:com.google.firebase.crashlytics.CrashlyticsRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.remoteconfig.FirebaseRemoteConfigKtxRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data
@@ -945,9 +939,6 @@
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
-                android:value="com.google.firebase.components.ComponentRegistrar"/>
-            <meta-data
-                android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar"/>
         </service>
         <provider

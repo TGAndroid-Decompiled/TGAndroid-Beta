@@ -4,7 +4,7 @@ import j$.util.function.BiFunction$CC;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public final class RichEditorListView$$ExternalSyntheticLambda61 implements BiFunction {
+public final class RichEditorListView$$ExternalSyntheticLambda67 implements BiFunction {
     public BiFunction andThen(Function function) {
         return BiFunction$CC.$default$andThen(this, function);
     }

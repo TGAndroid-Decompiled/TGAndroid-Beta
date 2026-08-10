@@ -37,7 +37,6 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -290,7 +289,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.chooseBackgroundTextView.setTextSize(1, 15.0f);
         this.chooseBackgroundTextView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view2) throws IOException {
+            public void onClick(View view2) {
                 ChatThemeBottomSheet.this.openGalleryForBackground();
             }
         });
@@ -1445,7 +1444,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public static void openGalleryForBackground(Activity activity, BaseFragment baseFragment, long j, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback, ThemePreviewActivity.DayNightSwitchDelegate dayNightSwitchDelegate, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) throws IOException {
+    public static void openGalleryForBackground(Activity activity, BaseFragment baseFragment, long j, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback, ThemePreviewActivity.DayNightSwitchDelegate dayNightSwitchDelegate, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(activity, baseFragment, false, false, false, resourcesProvider);
         chatAttachAlert.drawNavigationBar = true;
         chatAttachAlert.setupPhotoPicker(LocaleController.getString(R.string.ChooseBackground));
@@ -1602,7 +1601,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public void openGalleryForBackground() throws IOException {
+    public void openGalleryForBackground() {
         Activity parentActivity = this.chatActivity.getParentActivity();
         ChatActivity chatActivity = this.chatActivity;
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(parentActivity, chatActivity, false, false, false, chatActivity.getResourceProvider());
@@ -1641,7 +1640,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         this.chatAttachButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(0.0f), getThemedColor(Theme.key_windowBackgroundWhite), ColorUtils.setAlphaComponent(getThemedColor(i), 76)));
         this.chatAttachButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws IOException {
+            public final void onClick(View view) {
                 this.f$0.lambda$openGalleryForBackground$16(view);
             }
         });
@@ -1759,7 +1758,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public void lambda$openGalleryForBackground$16(View view) throws IOException {
+    public void lambda$openGalleryForBackground$16(View view) {
         if (this.chatAttachAlert.getCurrentAttachLayout() == this.chatAttachAlert.getPhotoLayout()) {
             this.chatAttachButtonText.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
             this.chatAttachAlert.openColorsLayout();
@@ -1771,7 +1770,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         }
     }
 
-    public void lambda$showAsSheet$21() throws InterruptedException, IOException {
+    public void lambda$showAsSheet$21() throws InterruptedException {
         if (isDismissed() || this.isApplyClicked) {
             return;
         }
@@ -1817,7 +1816,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
-            public final void run() throws InterruptedException, IOException {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$showAsSheet$18();
             }
         };
@@ -1881,7 +1880,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
-            public final void run() throws InterruptedException, IOException {
+            public final void run() throws InterruptedException {
                 this.f$0.lambda$showAsSheet$21();
             }
         };

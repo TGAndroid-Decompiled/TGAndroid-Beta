@@ -750,6 +750,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
+                public int getChatMode() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
+                }
+
+                @Override
                 public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                 }

@@ -7,16 +7,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
-import android.util.Base64;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.play.core.integrity.IntegrityManagerFactory;
 import com.google.android.play.core.integrity.IntegrityTokenRequest;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ByteArrayOutputStream;
@@ -1005,23 +1001,13 @@ public class ConnectionsManager extends BaseController {
             currentTask = mozillaDnsLoadTask;
             return;
         }
-        if (i == 1) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("start google txt task");
-            }
-            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(i2);
-            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            FileLog.d("11. currentTask = dnstxt");
-            currentTask = googleDnsLoadTask;
-            return;
-        }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start firebase task");
+            FileLog.d("start google txt task");
         }
-        FirebaseTask firebaseTask = new FirebaseTask(i2);
-        firebaseTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-        FileLog.d("12. currentTask = firebase");
-        currentTask = firebaseTask;
+        GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(i2);
+        googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+        FileLog.d("11. currentTask = dnstxt");
+        currentTask = googleDnsLoadTask;
     }
 
     public static void lambda$onProxyError$19() {
@@ -1444,119 +1430,6 @@ public class ConnectionsManager extends BaseController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("failed to get mozilla txt result");
             }
-        }
-    }
-
-    static class FirebaseTask extends AsyncTask<Void, Void, NativeByteBuffer> {
-        private int currentAccount;
-        private FirebaseRemoteConfig firebaseRemoteConfig;
-
-        @Override
-        public void onPostExecute(NativeByteBuffer nativeByteBuffer) {
-        }
-
-        public FirebaseTask(int i) {
-            this.currentAccount = i;
-        }
-
-        @Override
-        public NativeByteBuffer doInBackground(Void... voidArr) {
-            try {
-                if (ConnectionsManager.native_isTestBackend(this.currentAccount) != 0) {
-                    throw new Exception("test backend");
-                }
-                FirebaseRemoteConfig firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-                this.firebaseRemoteConfig = firebaseRemoteConfig;
-                String string = firebaseRemoteConfig.getString("ipconfigv3");
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("current firebase value = " + string);
-                }
-                this.firebaseRemoteConfig.fetch(0L).addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public final void onComplete(Task task) {
-                        this.f$0.lambda$doInBackground$2(task);
-                    }
-                });
-                return null;
-            } catch (Throwable th) {
-                Utilities.stageQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        this.f$0.lambda$doInBackground$3();
-                    }
-                });
-                FileLog.e(th, false);
-                return null;
-            }
-        }
-
-        public void lambda$doInBackground$2(Task task) {
-            final boolean zIsSuccessful = task.isSuccessful();
-            Utilities.stageQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    this.f$0.lambda$doInBackground$1(zIsSuccessful);
-                }
-            });
-        }
-
-        public void lambda$doInBackground$1(boolean z) {
-            if (z) {
-                this.firebaseRemoteConfig.activate().addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public final void onComplete(Task task) {
-                        this.f$0.lambda$doInBackground$0(task);
-                    }
-                });
-                return;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("failed to get firebase result 2");
-                FileLog.d("start dns txt task");
-            }
-            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
-            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            FileLog.d("7. currentTask = GoogleDnsLoadTask");
-            AsyncTask unused = ConnectionsManager.currentTask = googleDnsLoadTask;
-        }
-
-        public void lambda$doInBackground$0(Task task) {
-            FileLog.d("6. currentTask = null");
-            AsyncTask unused = ConnectionsManager.currentTask = null;
-            String string = this.firebaseRemoteConfig.getString("ipconfigv3");
-            if (!TextUtils.isEmpty(string)) {
-                byte[] bArrDecode = Base64.decode(string, 0);
-                try {
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(bArrDecode.length);
-                    nativeByteBuffer.writeBytes(bArrDecode);
-                    int fetchTimeMillis = (int) (this.firebaseRemoteConfig.getInfo().getFetchTimeMillis() / 1000);
-                    int i = this.currentAccount;
-                    ConnectionsManager.native_applyDnsConfig(i, nativeByteBuffer.address, AccountInstance.getInstance(i).getUserConfig().getClientPhone(), fetchTimeMillis);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("failed to get firebase result");
-                FileLog.d("start dns txt task");
-            }
-            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
-            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            FileLog.d("7. currentTask = GoogleDnsLoadTask");
-            AsyncTask unused2 = ConnectionsManager.currentTask = googleDnsLoadTask;
-        }
-
-        public void lambda$doInBackground$3() {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("failed to get firebase result");
-                FileLog.d("start dns txt task");
-            }
-            GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
-            googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            FileLog.d("8. currentTask = GoogleDnsLoadTask");
-            AsyncTask unused = ConnectionsManager.currentTask = googleDnsLoadTask;
         }
     }
 

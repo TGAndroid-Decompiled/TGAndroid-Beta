@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.FloatingActionMode;
@@ -29,6 +30,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.URLSpanReplacement;
 
 public class RichEditText extends EditTextCaption {
     private boolean accentHint;
@@ -37,7 +39,11 @@ public class RichEditText extends EditTextCaption {
     private boolean autoBold;
     public TL_iv.PageBlock block;
     private boolean centerEmptyHint;
+    private int currentAccount;
     private boolean ignoreTextChange;
+    private InlineButtonClickListener inlineButtonClickListener;
+    private final Runnable inlineButtonLongPressRunnable;
+    private boolean inlineButtonLongPressed;
     private boolean insertingNewline;
     private Layout lastMarkLayout;
     private int lastMarkTextLength;
@@ -50,10 +56,15 @@ public class RichEditText extends EditTextCaption {
     private long mathDownTime;
     private float mathDownX;
     private float mathDownY;
+    private RichInlineButtonSpan pressedInlineButton;
     private Theme.ResourcesProvider resourcesProvider;
     private boolean softEnterNewline;
     private int textColorKey;
     private int touchSlop;
+
+    public interface InlineButtonClickListener {
+        void onInlineButtonClick(RichEditText richEditText, RichInlineButtonSpan richInlineButtonSpan, boolean z);
+    }
 
     public interface Listener {
 
@@ -73,9 +84,6 @@ public class RichEditText extends EditTextCaption {
 
             public static boolean $default$onPaste(Listener listener, RichEditText richEditText) {
                 return false;
-            }
-
-            public static void $default$onRequestWindowFocusable(Listener listener, RichEditText richEditText, boolean z) {
             }
 
             public static boolean $default$onSelectAll(Listener listener, RichEditText richEditText) {
@@ -186,6 +194,7 @@ public class RichEditText extends EditTextCaption {
 
     public RichEditText(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
+        this.currentAccount = UserConfig.selectedAccount;
         this.lastMarkTextLength = -1;
         this.markPathDirty = true;
         this.lockingFilter = new InputFilter() {
@@ -195,7 +204,14 @@ public class RichEditText extends EditTextCaption {
             }
         };
         this.textColorKey = Theme.key_windowBackgroundWhiteBlackText;
+        this.inlineButtonLongPressRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$new$3();
+            }
+        };
         this.resourcesProvider = resourcesProvider;
+        this.adaptiveCreateLinkDialog = true;
         setBackground(null);
         setCursorWidth(1.5f);
         setGravity(8388659);
@@ -336,8 +352,32 @@ public class RichEditText extends EditTextCaption {
         return this.resourcesProvider;
     }
 
+    @Override
+    protected URLSpanReplacement createUrlSpan(String str) {
+        return RichTextStyle.linkSpan(str);
+    }
+
     public void setListener(Listener listener) {
         this.listener = listener;
+    }
+
+    public void setInlineButtonClickListener(InlineButtonClickListener inlineButtonClickListener) {
+        this.inlineButtonClickListener = inlineButtonClickListener;
+    }
+
+    public void setInlineButtonContext(int i) {
+        this.currentAccount = i;
+        bindInlineButtons();
+    }
+
+    private void bindInlineButtons() {
+        Editable text = getText();
+        if (text == null) {
+            return;
+        }
+        for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) text.getSpans(0, text.length(), RichInlineButtonSpan.class)) {
+            richInlineButtonSpan.bind(this, this.currentAccount, this.resourcesProvider);
+        }
     }
 
     public void setAllowNewlines(boolean z) {
@@ -369,8 +409,29 @@ public class RichEditText extends EditTextCaption {
     public void setTextSilently(CharSequence charSequence) {
         this.ignoreTextChange = true;
         setText(charSequence);
+        bindInlineButtons();
         setSelection(length());
         this.ignoreTextChange = false;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        bindInlineButtons();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
+        this.pressedInlineButton = null;
+        this.inlineButtonLongPressed = false;
+        Editable text = getText();
+        if (text != null) {
+            for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) text.getSpans(0, text.length(), RichInlineButtonSpan.class)) {
+                richInlineButtonSpan.detach(this);
+            }
+        }
+        super.onDetachedFromWindow();
     }
 
     public void deleteToEndSilently(int i) {
@@ -404,6 +465,7 @@ public class RichEditText extends EditTextCaption {
         setHintTextColor(this.accentHint ? Theme.multAlpha(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 0.5f) : Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider));
         setCursorColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         setHandlesColor(Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, this.resourcesProvider));
+        bindInlineButtons();
     }
 
     public void setLocked(boolean z) {
@@ -472,6 +534,20 @@ public class RichEditText extends EditTextCaption {
         }
     }
 
+    public void lambda$new$3() {
+        RichInlineButtonSpan richInlineButtonSpan = this.pressedInlineButton;
+        if (richInlineButtonSpan == null || this.inlineButtonClickListener == null) {
+            return;
+        }
+        this.inlineButtonLongPressed = true;
+        richInlineButtonSpan.setPressed(false);
+        try {
+            performHapticFeedback(0);
+        } catch (Exception unused) {
+        }
+        this.inlineButtonClickListener.onInlineButtonClick(this, this.pressedInlineButton, true);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         MathSpan mathSpanMathSpanAt;
@@ -483,21 +559,78 @@ public class RichEditText extends EditTextCaption {
                 this.mathDownX = motionEvent.getX();
                 this.mathDownY = motionEvent.getY();
                 this.mathDownTime = motionEvent.getEventTime();
-            } else if (motionEvent.getAction() == 1) {
-                if (this.touchSlop == 0) {
-                    this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-                }
-                float x = motionEvent.getX() - this.mathDownX;
-                float y = motionEvent.getY() - this.mathDownY;
-                float f = (x * x) + (y * y);
-                int i = this.touchSlop;
-                if (f <= i * i && motionEvent.getEventTime() - this.mathDownTime < ViewConfiguration.getLongPressTimeout() && (mathSpanMathSpanAt = mathSpanAt(motionEvent.getX(), motionEvent.getY())) != null) {
-                    openMathEditor(mathSpanMathSpanAt);
+                RichInlineButtonSpan richInlineButtonSpanInlineButtonSpanAt = inlineButtonSpanAt(motionEvent.getX(), motionEvent.getY());
+                this.pressedInlineButton = richInlineButtonSpanInlineButtonSpanAt;
+                if (richInlineButtonSpanInlineButtonSpanAt != null && this.inlineButtonClickListener != null) {
+                    this.inlineButtonLongPressed = false;
+                    richInlineButtonSpanInlineButtonSpanAt.setPressed(true);
+                    AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
+                    AndroidUtilities.runOnUIThread(this.inlineButtonLongPressRunnable, ViewConfiguration.getLongPressTimeout());
                     return true;
+                }
+                this.pressedInlineButton = null;
+            } else {
+                RichInlineButtonSpan richInlineButtonSpan = this.pressedInlineButton;
+                if (richInlineButtonSpan != null) {
+                    boolean z = motionEvent.getAction() == 1 || motionEvent.getAction() == 3;
+                    boolean z2 = motionEvent.getAction() != 3 && inlineButtonSpanAt(motionEvent.getX(), motionEvent.getY()) == richInlineButtonSpan;
+                    if (!z2 || z) {
+                        richInlineButtonSpan.setPressed(false);
+                        AndroidUtilities.cancelRunOnUIThread(this.inlineButtonLongPressRunnable);
+                    }
+                    if (z) {
+                        this.pressedInlineButton = null;
+                        if (!this.inlineButtonLongPressed && z2 && motionEvent.getAction() == 1) {
+                            this.inlineButtonClickListener.onInlineButtonClick(this, richInlineButtonSpan, false);
+                        }
+                        this.inlineButtonLongPressed = false;
+                    }
+                    return true;
+                }
+                if (motionEvent.getAction() == 1) {
+                    if (this.touchSlop == 0) {
+                        this.touchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+                    }
+                    float x = motionEvent.getX() - this.mathDownX;
+                    float y = motionEvent.getY() - this.mathDownY;
+                    float f = (x * x) + (y * y);
+                    int i = this.touchSlop;
+                    if (f <= i * i && motionEvent.getEventTime() - this.mathDownTime < ViewConfiguration.getLongPressTimeout() && (mathSpanMathSpanAt = mathSpanAt(motionEvent.getX(), motionEvent.getY())) != null) {
+                        openMathEditor(mathSpanMathSpanAt);
+                        return true;
+                    }
                 }
             }
         }
         return super.onTouchEvent(motionEvent);
+    }
+
+    private RichInlineButtonSpan inlineButtonSpanAt(float f, float f2) {
+        int totalPaddingTop;
+        Layout layout = getLayout();
+        Editable text = getText();
+        if (layout != null && text != null && text.length() != 0 && (totalPaddingTop = (int) ((f2 - getTotalPaddingTop()) + getScrollY())) >= 0 && totalPaddingTop <= layout.getHeight()) {
+            int lineForVertical = layout.getLineForVertical(totalPaddingTop);
+            float totalPaddingLeft = (f - getTotalPaddingLeft()) + getScrollX();
+            for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) text.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), RichInlineButtonSpan.class)) {
+                int spanStart = text.getSpanStart(richInlineButtonSpan);
+                int spanEnd = text.getSpanEnd(richInlineButtonSpan);
+                if (spanStart >= 0 && spanEnd > spanStart) {
+                    float primaryHorizontal = layout.getPrimaryHorizontal(spanStart);
+                    float primaryHorizontal2 = layout.getPrimaryHorizontal(spanEnd);
+                    if (totalPaddingLeft >= Math.min(primaryHorizontal, primaryHorizontal2) - AndroidUtilities.dp(2.0f) && totalPaddingLeft <= Math.max(primaryHorizontal, primaryHorizontal2) + AndroidUtilities.dp(2.0f)) {
+                        return richInlineButtonSpan;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public void notifyInlineContentChanged() {
+        notifySpansChanged();
+        requestLayout();
+        invalidateEffects();
     }
 
     private MathSpan mathSpanAt(float f, float f2) {
@@ -528,12 +661,12 @@ public class RichEditText extends EditTextCaption {
         ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), mathSpan.source, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$openMathEditor$3(mathSpan, (String) obj);
+                this.f$0.lambda$openMathEditor$4(mathSpan, (String) obj);
             }
         }, this.resourcesProvider);
     }
 
-    public void lambda$openMathEditor$3(MathSpan mathSpan, String str) {
+    public void lambda$openMathEditor$4(MathSpan mathSpan, String str) {
         MathSpan mathSpanCreate;
         if (TextUtils.isEmpty(str)) {
             return;

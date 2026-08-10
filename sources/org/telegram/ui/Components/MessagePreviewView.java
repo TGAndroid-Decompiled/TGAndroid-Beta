@@ -32,7 +32,6 @@ import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -320,7 +319,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public boolean drawChild(Canvas canvas, View view, long j) throws IOException {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (view instanceof ChatMessageCell) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) view;
                     boolean zDrawChild = super.drawChild(canvas, view, j);
@@ -1218,7 +1217,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) throws Resources.NotFoundException, IOException, NumberFormatException {
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
                         Page.this.updateLinkHighlight(this);
                     }
@@ -1575,6 +1574,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                     @Override
                     public String getAdminRank(long j) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                    }
+
+                    @Override
+                    public int getChatMode() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
                     }
 
                     @Override
@@ -2116,6 +2120,11 @@ public abstract class MessagePreviewView extends FrameLayout {
                             @Override
                             public String getAdminRank(long j) {
                                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                            }
+
+                            @Override
+                            public int getChatMode() {
+                                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
                             }
 
                             @Override

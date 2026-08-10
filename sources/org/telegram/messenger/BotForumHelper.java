@@ -240,29 +240,58 @@ public class BotForumHelper extends BaseController {
 
     public SteamingSendButtonState getStreamingSendButtonState(long j, int i) {
         LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j, i);
-        if (longSparseArray == null || longSparseArray.size() <= 0) {
-            return SteamingSendButtonState.NO_STREAMING;
+        if (longSparseArray != null && longSparseArray.size() > 0) {
+            int size = longSparseArray.size();
+            BotDraftMessage botDraftMessageValueAt = null;
+            for (int i2 = 0; i2 < size; i2++) {
+                botDraftMessageValueAt = longSparseArray.valueAt(i2);
+                if (!botDraftMessageValueAt.removed) {
+                    break;
+                }
+            }
+            if (botDraftMessageValueAt == null || botDraftMessageValueAt.removed) {
+                return SteamingSendButtonState.NO_STREAMING;
+            }
+            if (botDraftMessageValueAt.canStop) {
+                return SteamingSendButtonState.STOP;
+            }
+            return SteamingSendButtonState.BLOCKING;
         }
-        if (longSparseArray.valueAt(0).canStop) {
-            return SteamingSendButtonState.STOP;
-        }
-        return SteamingSendButtonState.BLOCKING;
+        return SteamingSendButtonState.NO_STREAMING;
     }
 
     public void stopStreaming(long j, long j2) {
-        LongSparseArray<BotDraftMessage> longSparseArrayRemoveAll = this.botTextDraftsByRandomIds.removeAll(j, j2);
-        if (longSparseArrayRemoveAll == null || longSparseArrayRemoveAll.size() <= 0) {
+        LongSparseArray<BotDraftMessage> longSparseArray = this.botTextDraftsByRandomIds.get(j, j2);
+        if (longSparseArray == null || longSparseArray.size() <= 0) {
             return;
         }
-        long jKeyAt = longSparseArrayRemoveAll.keyAt(0);
-        BotDraftMessage botDraftMessageValueAt = longSparseArrayRemoveAll.valueAt(0);
-        if (botDraftMessageValueAt.selfDestruct != null) {
-            AndroidUtilities.cancelRunOnUIThread(botDraftMessageValueAt.selfDestruct);
+        int size = longSparseArray.size();
+        BotDraftMessage botDraftMessageValueAt = null;
+        long jKeyAt = 0;
+        for (int i = 0; i < size; i++) {
+            jKeyAt = longSparseArray.keyAt(i);
+            botDraftMessageValueAt = longSparseArray.valueAt(i);
+            if (!botDraftMessageValueAt.removed) {
+                break;
+            }
         }
-        this.botTextDraftsByRandomIdsBlocklist.put(j, j2, jKeyAt, new Object());
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumDraftDelete, new BotForumTextDraftDeleteNotification(j, j2, botDraftMessageValueAt.localMessageId));
+        BotDraftMessage botDraftMessage = botDraftMessageValueAt;
+        long j3 = jKeyAt;
+        if (botDraftMessage == null || botDraftMessage.removed) {
+            return;
+        }
+        if (botDraftMessage.selfDestruct != null) {
+            AndroidUtilities.cancelRunOnUIThread(botDraftMessage.selfDestruct);
+        }
+        this.botTextDraftsByRandomIdsBlocklist.put(j, j2, j3, new Object());
+        if (!botDraftMessage.keepOnStop) {
+            this.botTextDraftsByRandomIds.remove(j, j2, j3);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botForumDraftDelete, new BotForumTextDraftDeleteNotification(j, j2, botDraftMessage.localMessageId));
+        } else {
+            botDraftMessage.removed = true;
+        }
         TLRPC.TL_sendMessageStopDraftAction tL_sendMessageStopDraftAction = new TLRPC.TL_sendMessageStopDraftAction();
-        tL_sendMessageStopDraftAction.random_id = jKeyAt;
+        tL_sendMessageStopDraftAction.random_id = j3;
         TLRPC.TL_messages_setTyping tL_messages_setTyping = new TLRPC.TL_messages_setTyping();
         tL_messages_setTyping.peer = getMessagesController().getInputPeer(j);
         tL_messages_setTyping.action = tL_sendMessageStopDraftAction;
@@ -333,6 +362,7 @@ public class BotForumHelper extends BaseController {
         public final int localMessageId;
         private MessageObject messageObject;
         public final long randomId;
+        private boolean removed;
         private TL_iv.RichMessage richMessage;
         private Runnable selfDestruct;
         private TLRPC.TL_textWithEntities text;

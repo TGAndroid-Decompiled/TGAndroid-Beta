@@ -73,6 +73,10 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         void onSpansChanged();
     }
 
+    public interface InputDialogCallback {
+        void run(String str);
+    }
+
     public static void lambda$makeSelectedDate$1() {
     }
 
@@ -311,16 +315,72 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
     }
 
     public void makeSelectedUrl() {
-        Object builder;
+        makeSelectedUrl(null);
+    }
+
+    public void makeSelectedUrl(final Runnable runnable) {
         final int selectionEnd;
+        final int selectionStart = this.selectionStart;
+        if (selectionStart >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
+            this.selectionEnd = -1;
+            this.selectionStart = -1;
+        } else {
+            selectionStart = getSelectionStart();
+            selectionEnd = getSelectionEnd();
+        }
+        showInputDialog(LocaleController.getString(R.string.CreateLink), LocaleController.getString(R.string.URL), "http://", true, new InputDialogCallback() {
+            @Override
+            public final void run(String str) {
+                this.f$0.lambda$makeSelectedUrl$3(selectionStart, selectionEnd, runnable, str);
+            }
+        });
+    }
+
+    public void lambda$makeSelectedUrl$3(int i, int i2, Runnable runnable, String str) {
+        Editable text = getText();
+        CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i, i2, CharacterStyle.class);
+        if (characterStyleArr != null && characterStyleArr.length > 0) {
+            for (CharacterStyle characterStyle : characterStyleArr) {
+                if (!(characterStyle instanceof AnimatedEmojiSpan) && !(characterStyle instanceof QuoteSpan.QuoteStyleSpan)) {
+                    int spanStart = text.getSpanStart(characterStyle);
+                    int spanEnd = text.getSpanEnd(characterStyle);
+                    text.removeSpan(characterStyle);
+                    if (spanStart < i) {
+                        text.setSpan(characterStyle, spanStart, i, 33);
+                    }
+                    if (spanEnd > i2) {
+                        text.setSpan(characterStyle, i2, spanEnd, 33);
+                    }
+                }
+            }
+        }
+        try {
+            text.setSpan(createUrlSpan(str), i, i2, 33);
+        } catch (Exception unused) {
+        }
+        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
+        if (editTextCaptionDelegate != null) {
+            editTextCaptionDelegate.onSpansChanged();
+        }
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    protected URLSpanReplacement createUrlSpan(String str) {
+        return new URLSpanReplacement(str);
+    }
+
+    public void showInputDialog(String str, String str2, String str3, final boolean z, final InputDialogCallback inputDialogCallback) {
+        Object builder;
         CharSequence charSequenceCoerceToText;
         if (this.adaptiveCreateLinkDialog) {
             builder = new AlertDialogDecor.Builder(getContext(), this.resourcesProvider);
         } else {
             builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         }
-        ?? r2 = builder;
-        r2.setTitle(LocaleController.getString(R.string.CreateLink));
+        ?? r8 = builder;
+        r8.setTitle(str);
         ?? frameLayout = new FrameLayout(getContext());
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             @Override
@@ -328,10 +388,11 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
             }
         };
+        String str4 = str3 == null ? "" : str3;
         editTextBoldCursor.setTextSize(1, 18.0f);
-        editTextBoldCursor.setText("http://");
+        editTextBoldCursor.setText(str4);
         editTextBoldCursor.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-        editTextBoldCursor.setHintText(LocaleController.getString(R.string.URL));
+        editTextBoldCursor.setHintText(str2);
         editTextBoldCursor.setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
@@ -355,16 +416,18 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(themedColor, 0.12f), Theme.multAlpha(themedColor, 0.15f)));
         ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 0.0f, 24.0f, 3.0f));
+        textView.setVisibility(z ? 0 : 8);
+        final String str5 = str4;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$makeSelectedUrl$3(editTextBoldCursor, textView);
+                this.f$0.lambda$showInputDialog$4(z, editTextBoldCursor, str5, textView);
             }
         };
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                this.f$0.lambda$makeSelectedUrl$4(editTextBoldCursor, runnable, view);
+                this.f$0.lambda$showInputDialog$5(editTextBoldCursor, runnable, view);
             }
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -382,7 +445,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             }
         });
         ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        if (clipboardManager != null && clipboardManager.hasPrimaryClip()) {
+        if (z && TextUtils.equals(str4, "http://") && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
             try {
                 charSequenceCoerceToText = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(getContext());
             } catch (Exception e) {
@@ -395,43 +458,35 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             }
         }
         runnable.run();
-        r2.setView(frameLayout);
-        final int selectionStart = this.selectionStart;
-        if (selectionStart >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
-            this.selectionEnd = -1;
-            this.selectionStart = -1;
-        } else {
-            selectionStart = getSelectionStart();
-            selectionEnd = getSelectionEnd();
-        }
-        r2.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
+        r8.setView(frameLayout);
+        r8.setPositiveButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
             @Override
             public final void onClick(AlertDialog alertDialog, int i) {
-                this.f$0.lambda$makeSelectedUrl$5(selectionStart, selectionEnd, editTextBoldCursor, alertDialog, i);
+                EditTextCaption.lambda$showInputDialog$6(inputDialogCallback, editTextBoldCursor, alertDialog, i);
             }
         });
-        r2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        r8.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         if (this.adaptiveCreateLinkDialog) {
-            AlertDialog alertDialogCreate = r2.create();
+            AlertDialog alertDialogCreate = r8.create();
             this.creationLinkDialog = alertDialogCreate;
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    this.f$0.lambda$makeSelectedUrl$6(dialogInterface);
+                    this.f$0.lambda$showInputDialog$7(dialogInterface);
                 }
             });
             this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$7(editTextBoldCursor, dialogInterface);
+                    EditTextCaption.lambda$showInputDialog$8(editTextBoldCursor, dialogInterface);
                 }
             });
             this.creationLinkDialog.showDelayed(250L);
         } else {
-            r2.show().setOnShowListener(new DialogInterface.OnShowListener() {
+            r8.show().setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$8(editTextBoldCursor, dialogInterface);
+                    EditTextCaption.lambda$showInputDialog$9(editTextBoldCursor, dialogInterface);
                 }
             });
         }
@@ -449,13 +504,13 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
     }
 
-    public void lambda$makeSelectedUrl$3(EditTextBoldCursor editTextBoldCursor, TextView textView) {
+    public void lambda$showInputDialog$4(boolean z, EditTextBoldCursor editTextBoldCursor, String str, TextView textView) {
         ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        boolean z = (TextUtils.isEmpty(editTextBoldCursor.getText()) || TextUtils.equals(editTextBoldCursor.getText().toString(), "http://")) && clipboardManager != null && clipboardManager.hasPrimaryClip();
-        textView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.7f).scaleY(z ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
+        boolean z2 = z && (TextUtils.isEmpty(editTextBoldCursor.getText()) || TextUtils.equals(editTextBoldCursor.getText().toString(), str)) && clipboardManager != null && clipboardManager.hasPrimaryClip();
+        textView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.7f).scaleY(z2 ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(300L).start();
     }
 
-    public void lambda$makeSelectedUrl$4(EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
+    public void lambda$showInputDialog$5(EditTextBoldCursor editTextBoldCursor, Runnable runnable, View view) {
         CharSequence charSequenceCoerceToText;
         try {
             charSequenceCoerceToText = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip().getItemAt(0).coerceToText(getContext());
@@ -470,45 +525,21 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         runnable.run();
     }
 
-    public void lambda$makeSelectedUrl$5(int i, int i2, EditTextBoldCursor editTextBoldCursor, AlertDialog alertDialog, int i3) {
-        Editable text = getText();
-        CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i, i2, CharacterStyle.class);
-        if (characterStyleArr != null && characterStyleArr.length > 0) {
-            for (CharacterStyle characterStyle : characterStyleArr) {
-                if (!(characterStyle instanceof AnimatedEmojiSpan) && !(characterStyle instanceof QuoteSpan.QuoteStyleSpan)) {
-                    int spanStart = text.getSpanStart(characterStyle);
-                    int spanEnd = text.getSpanEnd(characterStyle);
-                    text.removeSpan(characterStyle);
-                    if (spanStart < i) {
-                        text.setSpan(characterStyle, spanStart, i, 33);
-                    }
-                    if (spanEnd > i2) {
-                        text.setSpan(characterStyle, i2, spanEnd, 33);
-                    }
-                }
-            }
-        }
-        try {
-            text.setSpan(new URLSpanReplacement(editTextBoldCursor.getText().toString().trim()), i, i2, 33);
-        } catch (Exception unused) {
-        }
-        EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
-        if (editTextCaptionDelegate != null) {
-            editTextCaptionDelegate.onSpansChanged();
-        }
+    public static void lambda$showInputDialog$6(InputDialogCallback inputDialogCallback, EditTextBoldCursor editTextBoldCursor, AlertDialog alertDialog, int i) {
+        inputDialogCallback.run(editTextBoldCursor.getText().toString().trim());
     }
 
-    public void lambda$makeSelectedUrl$6(DialogInterface dialogInterface) {
+    public void lambda$showInputDialog$7(DialogInterface dialogInterface) {
         this.creationLinkDialog = null;
         requestFocus();
     }
 
-    public static void lambda$makeSelectedUrl$7(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$showInputDialog$8(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }
 
-    public static void lambda$makeSelectedUrl$8(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
+    public static void lambda$showInputDialog$9(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }

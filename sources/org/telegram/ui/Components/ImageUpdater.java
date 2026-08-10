@@ -15,7 +15,6 @@ import android.util.Pair;
 import androidx.core.content.FileProvider;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -326,7 +325,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
     }
 
-    public void updateColors() throws IOException {
+    public void updateColors() {
         ChatAttachAlert chatAttachAlert = this.chatAttachAlert;
         if (chatAttachAlert != null) {
             chatAttachAlert.checkColors();

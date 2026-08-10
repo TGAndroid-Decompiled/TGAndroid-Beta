@@ -4460,6 +4460,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public int getChatMode() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
+                    }
+
+                    @Override
                     public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                     }

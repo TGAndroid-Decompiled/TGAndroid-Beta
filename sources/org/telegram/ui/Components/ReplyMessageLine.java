@@ -11,7 +11,6 @@ import android.graphics.Shader;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
@@ -140,7 +139,7 @@ public class ReplyMessageLine {
         this.emojiColor = i;
     }
 
-    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) throws IOException {
+    private void resolveColor(MessageObject messageObject, int i, Theme.ResourcesProvider resourcesProvider) {
         if (resourcesProvider != null) {
             resourcesProvider.isDark();
         } else {

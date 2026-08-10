@@ -29,13 +29,11 @@ public abstract class RichMessageConvert {
             i++;
             int i3 = i < iArrLineStarts.length ? iArrLineStarts[i] - 1 : length;
             CodeHighlighting.Span span = spanned == null ? null : (CodeHighlighting.Span) blockSpan(spanned, i2, i3, CodeHighlighting.Span.class);
-            Object obj = (spanned == null || span != null) ? null : (QuoteSpan) blockSpan(spanned, i2, i3, QuoteSpan.class);
-            if (span == null && obj == null) {
+            QuoteSpan quoteSpan = (spanned == null || span != null) ? 0 : (QuoteSpan) blockSpan(spanned, i2, i3, QuoteSpan.class);
+            if (span == null && quoteSpan == 0) {
                 arrayList.add(paragraph(charSequence.subSequence(i2, i3)));
             } else {
-                if (span != null) {
-                    obj = span;
-                }
+                CodeHighlighting.Span span2 = span != null ? span : quoteSpan;
                 while (i < iArrLineStarts.length) {
                     int i4 = iArrLineStarts[i];
                     int i5 = i + 1;
@@ -45,7 +43,7 @@ public abstract class RichMessageConvert {
                     } else {
                         objBlockSpan = blockSpan(spanned, i4, i6, QuoteSpan.class);
                     }
-                    if (objBlockSpan != obj) {
+                    if (objBlockSpan != span2) {
                         break;
                     }
                     i = i5;
@@ -65,6 +63,7 @@ public abstract class RichMessageConvert {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = RichTextStyle.fromSpannable(charSequenceSubSequence);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
+                    pageblockblockquote.collapsed = quoteSpan != 0 && quoteSpan.isCollapsing;
                     arrayList.add(pageblockblockquote);
                 }
             }

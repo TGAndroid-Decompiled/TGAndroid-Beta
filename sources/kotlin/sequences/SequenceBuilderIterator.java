@@ -54,7 +54,7 @@ final class SequenceBuilderIterator extends SequenceScope implements Iterator, C
             Intrinsics.checkNotNull(continuation);
             this.nextStep = null;
             Result.Companion companion = Result.Companion;
-            continuation.resumeWith(Result.m300constructorimpl(Unit.INSTANCE));
+            continuation.resumeWith(Result.m291constructorimpl(Unit.INSTANCE));
         }
     }
 

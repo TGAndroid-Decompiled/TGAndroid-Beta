@@ -634,6 +634,12 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         }
     }
 
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        QuoteCollapseButton quoteCollapseButton;
+        return super.verifyDrawable(drawable) || ((quoteCollapseButton = this.collapseButton) != null && quoteCollapseButton.verifyDrawable(drawable));
+    }
+
     public void bind(BlockRow blockRow, Delegate delegate, boolean z) {
         this.currentRow = blockRow;
         this.delegate = delegate;
@@ -1407,7 +1413,10 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
         if (lowerCase.equals("/latex") || lowerCase.equals("/equation") || lowerCase.equals("/math")) {
             return 3;
         }
-        return (lowerCase.equals("/toggle") || lowerCase.equals("/details")) ? 6 : 0;
+        if (lowerCase.equals("/toggle") || lowerCase.equals("/details")) {
+            return 6;
+        }
+        return lowerCase.equals("/button") ? 7 : 0;
     }
 
     public static TL_iv.pageBlockTable newEmptyTable(int i, int i2) {
@@ -1866,7 +1875,7 @@ public class RichTextCell extends FrameLayout implements Theme.Colorable, TextSe
             TL_iv.pageBlockBlockquote pageblockblockquote = (TL_iv.pageBlockBlockquote) this.currentRow.block;
             int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
             int iDp = AndroidUtilities.dp(3.333f);
-            this.collapseButton.draw(canvas, this.collapseButtonBounds, (getWidth() - AndroidUtilities.dp(16.0f)) - iDp, getHeight() - iDp, color, pageblockblockquote.collapsed, hasCollapseButton());
+            this.collapseButton.draw(canvas, this.collapseButtonBounds, (getWidth() - AndroidUtilities.dp(16.0f)) - iDp, (getHeight() - AndroidUtilities.dp(8.0f)) - iDp, color, pageblockblockquote.collapsed, hasCollapseButton());
         }
     }
 

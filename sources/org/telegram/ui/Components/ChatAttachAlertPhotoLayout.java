@@ -157,6 +157,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private ViewPropertyAnimator headerAnimator;
     private Rect hitRect;
     private boolean ignoreLayout;
+    private boolean includeVideosInGallery;
     private DecelerateInterpolator interpolator;
     private Boolean isCameraFrontfaceBeforeEnteringEditMode;
     private boolean isHidden;
@@ -2884,9 +2885,18 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
+    public void setIncludeVideosInGallery(boolean z) {
+        this.includeVideosInGallery = z;
+    }
+
     private boolean shouldLoadAllMedia() {
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
-        return !chatAttachAlert.isPhotoPicker && ((chatAttachAlert.baseFragment instanceof ChatActivity) || chatAttachAlert.storyMediaPicker || chatAttachAlert.avatarPicker == 2);
+        if (!this.includeVideosInGallery) {
+            ChatAttachAlert chatAttachAlert = this.parentAlert;
+            if (chatAttachAlert.isPhotoPicker || (!(chatAttachAlert.baseFragment instanceof ChatActivity) && !chatAttachAlert.storyMediaPicker && chatAttachAlert.avatarPicker != 2)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void showCamera() {
@@ -3470,12 +3480,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onMenuItemClick(int i) throws IOException {
+    public void onMenuItemClick(int i) {
         TLRPC.Chat chat;
         boolean z;
         boolean z2;
         if (i == 8) {
-            this.parentAlert.setCaptionAbove(!r10.captionAbove);
+            this.parentAlert.setCaptionAbove(!r9.captionAbove);
             this.captionItem.setState(!this.parentAlert.captionAbove, true);
             return;
         }
@@ -3656,8 +3666,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             return;
         }
         try {
-            ChatAttachAlert chatAttachAlert6 = this.parentAlert;
-            if ((chatAttachAlert6.baseFragment instanceof ChatActivity) || chatAttachAlert6.avatarPicker == 2) {
+            if (shouldLoadAllMedia()) {
                 Intent intent = new Intent();
                 intent.setType("video/*");
                 intent.setAction("android.intent.action.GET_CONTENT");
@@ -3666,20 +3675,20 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 intent2.setType("image/*");
                 Intent intentCreateChooser = Intent.createChooser(intent2, null);
                 intentCreateChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
-                ChatAttachAlert chatAttachAlert7 = this.parentAlert;
-                if (chatAttachAlert7.avatarPicker != 0) {
-                    chatAttachAlert7.baseFragment.startActivityForResult(intentCreateChooser, 14);
+                ChatAttachAlert chatAttachAlert6 = this.parentAlert;
+                if (chatAttachAlert6.avatarPicker != 0) {
+                    chatAttachAlert6.baseFragment.startActivityForResult(intentCreateChooser, 14);
                 } else {
-                    chatAttachAlert7.baseFragment.startActivityForResult(intentCreateChooser, 1);
+                    chatAttachAlert6.baseFragment.startActivityForResult(intentCreateChooser, 1);
                 }
             } else {
                 Intent intent3 = new Intent("android.intent.action.PICK");
                 intent3.setType("image/*");
-                ChatAttachAlert chatAttachAlert8 = this.parentAlert;
-                if (chatAttachAlert8.avatarPicker != 0) {
-                    chatAttachAlert8.baseFragment.startActivityForResult(intent3, 14);
+                ChatAttachAlert chatAttachAlert7 = this.parentAlert;
+                if (chatAttachAlert7.avatarPicker != 0) {
+                    chatAttachAlert7.baseFragment.startActivityForResult(intent3, 14);
                 } else {
-                    chatAttachAlert8.baseFragment.startActivityForResult(intent3, 1);
+                    chatAttachAlert7.baseFragment.startActivityForResult(intent3, 1);
                 }
             }
             this.parentAlert.dismiss(true);

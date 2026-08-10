@@ -37,6 +37,8 @@ public class RichQuoteAuthorCell extends RichBlockCell implements Theme.Colorabl
 
         void onQuoteAuthorEnter(BlockRow blockRow);
 
+        void onRequestWindowFocusable(RichEditText richEditText, boolean z);
+
         void setQuoteAuthor(long j, TL_iv.RichText richText);
     }
 
@@ -93,11 +95,6 @@ public class RichQuoteAuthorCell extends RichBlockCell implements Theme.Colorabl
         }
 
         @Override
-        public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
-            RichEditText.Listener.CC.$default$onRequestWindowFocusable(this, richEditText, z);
-        }
-
-        @Override
         public boolean onSelectAll(RichEditText richEditText) {
             return RichEditText.Listener.CC.$default$onSelectAll(this, richEditText);
         }
@@ -128,6 +125,13 @@ public class RichQuoteAuthorCell extends RichBlockCell implements Theme.Colorabl
         @Override
         public void onTextChanged(RichEditText richEditText, Editable editable) {
             RichQuoteAuthorCell.this.persist();
+        }
+
+        @Override
+        public void onRequestWindowFocusable(RichEditText richEditText, boolean z) {
+            if (RichQuoteAuthorCell.this.delegate != null) {
+                RichQuoteAuthorCell.this.delegate.onRequestWindowFocusable(richEditText, z);
+            }
         }
 
         @Override

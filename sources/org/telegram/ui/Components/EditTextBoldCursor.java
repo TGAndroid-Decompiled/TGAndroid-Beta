@@ -147,6 +147,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private int scrollY;
     private boolean supportRtlHint;
     private boolean transformHintToHeader;
+    private boolean transformHintToHeaderOnFocus;
     private View windowView;
 
     protected void extendActionMode(ActionMode actionMode, Menu menu) {
@@ -244,6 +245,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         this.lineActiveness = 0.0f;
         this.lastLineActiveness = 0.0f;
         this.activeLineWidth = 0.0f;
+        this.transformHintToHeaderOnFocus = true;
         this.lastOffset = -1;
         this.registeredTextWatchers = new ArrayList();
         this.isTextWatchersSuppressed = false;
@@ -490,6 +492,14 @@ public class EditTextBoldCursor extends EditTextEffects {
         }
     }
 
+    public void setTransformHintToHeaderOnFocus(boolean z) {
+        if (this.transformHintToHeaderOnFocus == z) {
+            return;
+        }
+        this.transformHintToHeaderOnFocus = z;
+        checkHeaderVisibility(false);
+    }
+
     public void setAllowDrawCursor(boolean z) {
         this.allowDrawCursor = z;
         invalidate();
@@ -714,7 +724,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     private void checkHeaderVisibility(boolean z) {
-        boolean z2 = this.transformHintToHeader && (isFocused() || getText().length() > 0);
+        boolean z2 = this.transformHintToHeader && (getText().length() > 0 || (this.transformHintToHeaderOnFocus && isFocused()));
         if (this.currentDrawHintAsHeader != z2) {
             AnimatorSet animatorSet = this.headerTransformAnimation;
             if (animatorSet != null) {
@@ -734,6 +744,15 @@ public class EditTextBoldCursor extends EditTextEffects {
             }
             invalidate();
         }
+    }
+
+    @Override
+    protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        super.onTextChanged(charSequence, i, i2, i3);
+        if (!this.transformHintToHeader || this.transformHintToHeaderOnFocus) {
+            return;
+        }
+        checkHeaderVisibility(true);
     }
 
     public void setHeaderAnimationProgress(float f) {

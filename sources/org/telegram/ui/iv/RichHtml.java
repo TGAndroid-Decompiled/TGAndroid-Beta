@@ -11,6 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 
@@ -163,6 +164,10 @@ public abstract class RichHtml {
         TL_iv.PageBlock pageBlock = blockRow.block;
         if (pageBlock instanceof TL_iv.pageBlockDivider) {
             sb.append("<hr>");
+            return;
+        }
+        if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+            serializeButtonRow(sb, (TL_iv.pageBlockButtonRow) pageBlock);
             return;
         }
         if (pageBlock instanceof TL_iv.pageBlockTable) {
@@ -320,8 +325,18 @@ public abstract class RichHtml {
         if (pageblocktable.bordered) {
             sb.append(" border=\"1\"");
         }
-        if (pageblocktable.striped) {
-            sb.append(" class=\"striped\"");
+        if (pageblocktable.striped || pageblocktable.compact) {
+            sb.append(" class=\"");
+            if (pageblocktable.striped) {
+                sb.append("striped");
+            }
+            if (pageblocktable.striped && pageblocktable.compact) {
+                sb.append(' ');
+            }
+            if (pageblocktable.compact) {
+                sb.append("compact");
+            }
+            sb.append('\"');
         }
         sb.append('>');
         TL_iv.RichText richText = pageblocktable.title;
@@ -542,8 +557,75 @@ public abstract class RichHtml {
         return sb.toString();
     }
 
-    private static void appendInline(java.lang.StringBuilder r10, java.lang.CharSequence r11) {
+    private static void appendInline(java.lang.StringBuilder r11, java.lang.CharSequence r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.appendInline(java.lang.StringBuilder, java.lang.CharSequence):void");
+    }
+
+    private static void appendInlineButton(StringBuilder sb, TL_iv.textButton textbutton) {
+        if (textbutton == null || !RichInlineButtonSpan.isSupported(textbutton.type)) {
+            return;
+        }
+        appendButton(sb, textbutton.text, textbutton.type, textbutton.style);
+    }
+
+    private static void appendButton(StringBuilder sb, TL_iv.RichText richText, TL_keyboard.InlineButtonType inlineButtonType, TL_keyboard.RichButtonStyle richButtonStyle) {
+        String str;
+        if (RichInlineButtonSpan.isSupported(inlineButtonType)) {
+            sb.append("<button");
+            if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
+                sb.append(" data-type=\"url\" data-url=\"");
+                sb.append(escapeAttr(((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url));
+                sb.append("\"");
+            } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) {
+                sb.append(" data-type=\"copy\" data-copy-text=\"");
+                sb.append(escapeAttr(((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text));
+                sb.append("\"");
+            } else if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                sb.append(" data-type=\"user-profile\" data-user-id=\"");
+                sb.append(((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id);
+                sb.append("\"");
+            }
+            if (richButtonStyle != null) {
+                if (richButtonStyle.bg_primary) {
+                    str = "primary";
+                } else if (richButtonStyle.bg_danger) {
+                    str = "danger";
+                } else {
+                    str = richButtonStyle.bg_success ? "success" : "default";
+                }
+                sb.append(" data-style=\"");
+                sb.append(str);
+                sb.append("\"");
+            }
+            sb.append(">");
+            appendInline(sb, RichTextStyle.toSpannable(richText));
+            sb.append("</button>");
+        }
+    }
+
+    private static void serializeButtonRow(StringBuilder sb, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
+        sb.append("<div class=\"button-row\"");
+        if (pageblockbuttonrow.align_left) {
+            sb.append(" data-align=\"left\"");
+        } else if (pageblockbuttonrow.align_center) {
+            sb.append(" data-align=\"center\"");
+        } else if (pageblockbuttonrow.align_right) {
+            sb.append(" data-align=\"right\"");
+        } else {
+            sb.append(" data-align=\"fill\"");
+        }
+        sb.append(">");
+        ArrayList<TL_keyboard.PageButton> arrayList = pageblockbuttonrow.buttons;
+        if (arrayList != null) {
+            Iterator<TL_keyboard.PageButton> it = arrayList.iterator();
+            while (it.hasNext()) {
+                TL_keyboard.PageButton next = it.next();
+                if (next != null) {
+                    appendButton(sb, next.text, next.type, next.style);
+                }
+            }
+        }
+        sb.append("</div>");
     }
 
     private static void openInline(StringBuilder sb, int i, String str, long j) {
@@ -729,7 +811,10 @@ public abstract class RichHtml {
                         case "div":
                             String strAttr = node.attr("class");
                             String lowerCase = strAttr == null ? "" : strAttr.toLowerCase();
-                            if (lowerCase.contains("collage")) {
+                            if (lowerCase.contains("button-row")) {
+                                arrayList.add(parseButtonRow(node));
+                                break;
+                            } else if (lowerCase.contains("collage")) {
                                 addRow(arrayList, parseGallery(node, false));
                                 break;
                             } else if (lowerCase.contains("slideshow")) {
@@ -819,7 +904,12 @@ public abstract class RichHtml {
         pageblocktable.rows = new ArrayList<>();
         pageblocktable.bordered = node.has("border");
         String strAttr = node.attr("class");
+        boolean z = false;
         pageblocktable.striped = strAttr != null && strAttr.toLowerCase().contains("striped");
+        if (strAttr != null && strAttr.toLowerCase().contains("compact")) {
+            z = true;
+        }
+        pageblocktable.compact = z;
         collectTableRows(node, pageblocktable);
         if (pageblocktable.rows.isEmpty()) {
             TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
@@ -829,6 +919,35 @@ public abstract class RichHtml {
             pageblocktable.rows.add(pagetablerow);
         }
         return new BlockRow(pageblocktable);
+    }
+
+    private static BlockRow parseButtonRow(Node node) throws NumberFormatException {
+        TL_keyboard.InlineButtonType inlineButtonTypeInlineButtonTypeOf;
+        TL_iv.pageBlockButtonRow pageblockbuttonrow = new TL_iv.pageBlockButtonRow();
+        String strAttr = node.attr("data-align");
+        pageblockbuttonrow.align_left = "left".equalsIgnoreCase(strAttr);
+        pageblockbuttonrow.align_center = "center".equalsIgnoreCase(strAttr);
+        pageblockbuttonrow.align_right = "right".equalsIgnoreCase(strAttr);
+        Iterator it = node.children.iterator();
+        while (it.hasNext()) {
+            Node node2 = (Node) it.next();
+            if (pageblockbuttonrow.buttons.size() >= 8) {
+                break;
+            }
+            if (!node2.isText && "button".equals(node2.tag) && (inlineButtonTypeInlineButtonTypeOf = inlineButtonTypeOf(node2)) != null) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                appendChildrenInline(spannableStringBuilder, node2, 0, null, 0L);
+                CharSequence charSequenceTrim = trim(spannableStringBuilder);
+                if (charSequenceTrim.length() != 0) {
+                    TL_keyboard.PageButton pageButton = new TL_keyboard.PageButton();
+                    pageButton.text = RichTextStyle.fromSpannable(charSequenceTrim);
+                    pageButton.type = inlineButtonTypeInlineButtonTypeOf;
+                    pageButton.style = inlineButtonStyleOf(node2);
+                    pageblockbuttonrow.buttons.add(pageButton);
+                }
+            }
+        }
+        return new BlockRow(pageblockbuttonrow);
     }
 
     private static void collectTableRows(Node node, TL_iv.pageBlockTable pageblocktable) {
@@ -1299,6 +1418,7 @@ public abstract class RichHtml {
         str.hashCode();
         switch (str) {
             case "spoiler":
+            case "button":
             case "strike":
             case "strong":
             case "a":
@@ -1334,8 +1454,49 @@ public abstract class RichHtml {
         }
     }
 
-    private static void appendInlineNode(android.text.SpannableStringBuilder r8, org.telegram.ui.iv.RichHtml.Node r9, int r10, java.lang.String r11, long r12) throws java.lang.NumberFormatException {
+    private static void appendInlineNode(android.text.SpannableStringBuilder r11, org.telegram.ui.iv.RichHtml.Node r12, int r13, java.lang.String r14, long r15) throws java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichHtml.appendInlineNode(android.text.SpannableStringBuilder, org.telegram.ui.iv.RichHtml$Node, int, java.lang.String, long):void");
+    }
+
+    private static TL_keyboard.InlineButtonType inlineButtonTypeOf(Node node) {
+        String strAttr = node.attr("data-type");
+        if ("url".equals(strAttr)) {
+            String strAttr2 = node.attr("data-url");
+            if (TextUtils.isEmpty(strAttr2)) {
+                return null;
+            }
+            TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = new TL_keyboard.TL_inlineButtonTypeUrl();
+            tL_inlineButtonTypeUrl.url = strAttr2;
+            return tL_inlineButtonTypeUrl;
+        }
+        if ("copy".equals(strAttr)) {
+            String strAttr3 = node.attr("data-copy-text");
+            if (TextUtils.isEmpty(strAttr3)) {
+                return null;
+            }
+            TL_keyboard.TL_inlineButtonTypeCopy tL_inlineButtonTypeCopy = new TL_keyboard.TL_inlineButtonTypeCopy();
+            tL_inlineButtonTypeCopy.copy_text = strAttr3;
+            return tL_inlineButtonTypeCopy;
+        }
+        if (!"user-profile".equals(strAttr)) {
+            return null;
+        }
+        long longAttr = parseLongAttr(node.attr("data-user-id"), 0L);
+        if (longAttr <= 0) {
+            return null;
+        }
+        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
+        tL_inlineButtonTypeUserProfile.user_id = longAttr;
+        return tL_inlineButtonTypeUserProfile;
+    }
+
+    private static TL_keyboard.RichButtonStyle inlineButtonStyleOf(Node node) {
+        TL_keyboard.RichButtonStyle richButtonStyle = new TL_keyboard.RichButtonStyle();
+        String strAttr = node.attr("data-style");
+        richButtonStyle.bg_primary = "primary".equals(strAttr);
+        richButtonStyle.bg_danger = "danger".equals(strAttr);
+        richButtonStyle.bg_success = "success".equals(strAttr);
+        return richButtonStyle;
     }
 
     private static void appendStyled(SpannableStringBuilder spannableStringBuilder, CharSequence charSequence, int i, String str, long j) {

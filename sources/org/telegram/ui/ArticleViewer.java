@@ -564,6 +564,11 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         public int emojiCacheType = 0;
 
         @Override
+        public int getEmojiOnlyCount() {
+            return TableLayout.CellText.CC.$default$getEmojiOnlyCount(this);
+        }
+
+        @Override
         public Rect getSelectionBounds() {
             return TextSelectionHelper.TextLayoutBlock.CC.$default$getSelectionBounds(this);
         }
@@ -16165,7 +16170,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
         }
 
         @Override
-        public WindowView mo1338getWindowView() {
+        public WindowView mo1343getWindowView() {
             return this.windowView;
         }
 
@@ -16560,7 +16565,7 @@ public class ArticleViewer extends IArticleViewer implements NotificationCenter.
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true);
-                AndroidUtilities.setLightNavigationBar(mo1338getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo1343getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

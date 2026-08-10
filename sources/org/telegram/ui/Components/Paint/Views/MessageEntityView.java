@@ -25,7 +25,6 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
@@ -372,7 +371,7 @@ public abstract class MessageEntityView extends EntityView {
             private final ArrayList drawingGroups = new ArrayList(10);
 
             @Override
-            protected void dispatchDraw(Canvas canvas) throws IOException {
+            protected void dispatchDraw(Canvas canvas) {
                 canvas.save();
                 this.selectorRect.setEmpty();
                 drawChatBackgroundElements(canvas);
@@ -381,7 +380,7 @@ public abstract class MessageEntityView extends EntityView {
                 canvas.restore();
             }
 
-            private void drawChatForegroundElements(android.graphics.Canvas r17) throws java.io.IOException {
+            private void drawChatForegroundElements(android.graphics.Canvas r17) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChatForegroundElements(android.graphics.Canvas):void");
             }
 
@@ -390,7 +389,7 @@ public abstract class MessageEntityView extends EntityView {
             }
 
             @Override
-            public boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) throws java.io.IOException {
+            public boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.MessageEntityView.AnonymousClass2.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
             }
         };
@@ -456,7 +455,7 @@ public abstract class MessageEntityView extends EntityView {
                     }
 
                     @Override
-                    protected void onDraw(Canvas canvas) throws IOException {
+                    protected void onDraw(Canvas canvas) {
                         AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
                         PreviewView.TextureViewHolder textureViewHolder2 = textureViewHolder;
                         if ((textureViewHolder2 != null && textureViewHolder2.active && textureViewHolder2.textureViewActive) || MessageEntityView.this.clipVideoMessageForBitmap) {

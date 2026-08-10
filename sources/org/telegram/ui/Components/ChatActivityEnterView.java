@@ -10480,6 +10480,9 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             MediaDataController.getInstance(this.currentAccount).saveDraft(this.parentFragment.getDialogId(), this.parentFragment.getDraftThreadId(), charSequenceArr[0], MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true, false), null, null, null, 0L, false, false, null);
         }
         setRichDraftPreview(null);
+        if (this.messageEditText.getText() != null) {
+            this.messageEditText.getText().clear();
+        }
         setFieldText(spannableStringBuilder);
     }
 

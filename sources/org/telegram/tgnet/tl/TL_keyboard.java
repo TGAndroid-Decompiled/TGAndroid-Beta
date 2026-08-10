@@ -771,7 +771,7 @@ public class TL_keyboard {
             return fromConstructorLegacy(i);
         }
 
-        public static KeyboardInlineButton fromConstructorLegacy(int i) {
+        private static KeyboardInlineButton fromConstructorLegacy(int i) {
             switch (i) {
                 case -1983540999:
                     return new TL_keyboardButtonGame_layer228();
@@ -829,6 +829,14 @@ public class TL_keyboard {
         }
 
         public static KeyboardInlineButton TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
+            KeyboardButton keyboardButtonFromConstructor = KeyboardButton.fromConstructor(i);
+            if (keyboardButtonFromConstructor != null) {
+                keyboardButtonFromConstructor.readParams(inputSerializedData, z);
+                TL_keyboardInlineButton tL_keyboardInlineButton = new TL_keyboardInlineButton();
+                tL_keyboardInlineButton.text = keyboardButtonFromConstructor.text;
+                tL_keyboardInlineButton.type = new TL_inlineButtonTypeDisabled();
+                return tL_keyboardInlineButton;
+            }
             return (KeyboardInlineButton) TLObject.TLdeserialize(KeyboardInlineButton.class, fromConstructor(i), inputSerializedData, i, z);
         }
     }
@@ -914,11 +922,11 @@ public class TL_keyboard {
         }
 
         public static KeyboardButton TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
-            KeyboardInlineButton keyboardInlineButtonFromConstructorLegacy = KeyboardInlineButton.fromConstructorLegacy(i);
-            if (keyboardInlineButtonFromConstructorLegacy != null) {
-                keyboardInlineButtonFromConstructorLegacy.readParams(inputSerializedData, z);
+            KeyboardInlineButton keyboardInlineButtonFromConstructor = KeyboardInlineButton.fromConstructor(i);
+            if (keyboardInlineButtonFromConstructor != null) {
+                keyboardInlineButtonFromConstructor.readParams(inputSerializedData, z);
                 TL_keyboardButton_layer223 tL_keyboardButton_layer223 = new TL_keyboardButton_layer223();
-                tL_keyboardButton_layer223.text = keyboardInlineButtonFromConstructorLegacy.text;
+                tL_keyboardButton_layer223.text = keyboardInlineButtonFromConstructor.text;
                 tL_keyboardButton_layer223.type = new TL_buttonTypeDefault();
                 return tL_keyboardButton_layer223;
             }

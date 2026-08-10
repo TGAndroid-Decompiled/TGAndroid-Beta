@@ -146,6 +146,7 @@ public class RichTableCellGrid extends ViewGroup {
         for (int i = 0; i < size; i++) {
             TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) this.model.anchors().get(i);
             RichTableCellHost richTableCellHost = new RichTableCellHost(getContext(), this.resourcesProvider);
+            richTableCellHost.setCompact(this.model.block.compact);
             richTableCellHost.bind(pagetablecell);
             addView(richTableCellHost);
         }
@@ -157,8 +158,22 @@ public class RichTableCellGrid extends ViewGroup {
         invalidate();
     }
 
+    public void refreshCompact() {
+        if (this.model == null) {
+            return;
+        }
+        for (int i = 0; i < getChildCount(); i++) {
+            View childAt = getChildAt(i);
+            if (childAt instanceof RichTableCellHost) {
+                ((RichTableCellHost) childAt).setCompact(this.model.block.compact);
+            }
+        }
+        requestLayout();
+        invalidate();
+    }
+
     @Override
-    protected void onMeasure(int r19, int r20) {
+    protected void onMeasure(int r18, int r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTableCellGrid.onMeasure(int, int):void");
     }
 
@@ -237,6 +252,17 @@ public class RichTableCellGrid extends ViewGroup {
         return true;
     }
 
+    private boolean rowHasSelection(int i) {
+        if (i >= 0 && i < this.model.rowCount) {
+            for (int i2 = 0; i2 < this.model.colCount; i2++) {
+                if (isSelected(i, i2)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private boolean isColFullySelected(int i) {
         if (i < 0 || i >= this.model.colCount) {
             return false;
@@ -247,6 +273,93 @@ public class RichTableCellGrid extends ViewGroup {
             }
         }
         return true;
+    }
+
+    private boolean colHasSelection(int i) {
+        if (i >= 0 && i < this.model.colCount) {
+            for (int i2 = 0; i2 < this.model.rowCount; i2++) {
+                if (isSelected(i2, i)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private int firstSelectedRow() {
+        for (int i = 0; i < this.model.rowCount; i++) {
+            if (rowHasSelection(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int lastSelectedRow() {
+        for (int i = this.model.rowCount - 1; i >= 0; i--) {
+            if (rowHasSelection(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int firstSelectedCol() {
+        for (int i = 0; i < this.model.colCount; i++) {
+            if (colHasSelection(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private int lastSelectedCol() {
+        for (int i = this.model.colCount - 1; i >= 0; i--) {
+            if (colHasSelection(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private boolean areRowsFullySelected(int i, int i2) {
+        if (i < 0 || i2 < i) {
+            return false;
+        }
+        while (i <= i2) {
+            if (!isRowFullySelected(i)) {
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+
+    private boolean areColsFullySelected(int i, int i2) {
+        if (i < 0 || i2 < i) {
+            return false;
+        }
+        while (i <= i2) {
+            if (!isColFullySelected(i)) {
+                return false;
+            }
+            i++;
+        }
+        return true;
+    }
+
+    private boolean useCombinedRowHandle() {
+        if (hasAnySelection()) {
+            return !areColsFullySelected(firstSelectedCol(), lastSelectedCol()) || areRowsFullySelected(firstSelectedRow(), lastSelectedRow());
+        }
+        return false;
+    }
+
+    private boolean useCombinedColHandle() {
+        if (hasAnySelection()) {
+            return !areRowsFullySelected(firstSelectedRow(), lastSelectedRow()) || areColsFullySelected(firstSelectedCol(), lastSelectedCol());
+        }
+        return false;
     }
 
     private void computeHandlesState() {
@@ -278,146 +391,259 @@ public class RichTableCellGrid extends ViewGroup {
     }
 
     private void drawBulgeFills(Canvas canvas) {
+        if (hasAnySelection()) {
+            int iFirstSelectedRow = firstSelectedRow();
+            int iLastSelectedRow = lastSelectedRow();
+            int iFirstSelectedCol = firstSelectedCol();
+            int iLastSelectedCol = lastSelectedCol();
+            if (areRowsFullySelected(iFirstSelectedRow, iLastSelectedRow)) {
+                int[] iArr = this.rowStarts;
+                drawLeftBulgeFill(canvas, iArr[iFirstSelectedRow], iArr[iLastSelectedRow + 1]);
+            }
+            if (areColsFullySelected(iFirstSelectedCol, iLastSelectedCol)) {
+                int[] iArr2 = this.colStarts;
+                drawBottomBulgeFill(canvas, iArr2[iFirstSelectedCol], iArr2[iLastSelectedCol + 1]);
+                return;
+            }
+            return;
+        }
         if (this.leftBulge) {
-            float fDpf2 = this.bulgeRowTop - AndroidUtilities.dpf2(1.0f);
-            float fDpf22 = this.bulgeRowBot + AndroidUtilities.dpf2(1.0f);
-            float fDp = this.colStarts[0] - AndroidUtilities.dp(16.0f);
-            float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf22 - fDpf2) / 2.0f);
-            float fCornerRadiusFor = cornerRadiusFor(this.colStarts[0], this.bulgeRowTop);
-            float fCornerRadiusFor2 = cornerRadiusFor(this.colStarts[0], this.bulgeRowBot);
-            this.bulgePath.rewind();
-            this.bulgePath.moveTo(this.colStarts[0] + fCornerRadiusFor, fDpf2);
-            this.bulgePath.lineTo(fDp + fMin, fDpf2);
-            float f = fMin * 2.0f;
-            float f2 = fDp + f;
-            this.arcRect.set(fDp, fDpf2, f2, fDpf2 + f);
-            this.bulgePath.arcTo(this.arcRect, 270.0f, -90.0f);
-            this.bulgePath.lineTo(fDp, fDpf22 - fMin);
-            this.arcRect.set(fDp, fDpf22 - f, f2, fDpf22);
-            this.bulgePath.arcTo(this.arcRect, 180.0f, -90.0f);
-            this.bulgePath.lineTo(this.colStarts[0] + fCornerRadiusFor2, fDpf22);
-            if (fCornerRadiusFor2 > 0.0f) {
-                RectF rectF = this.arcRect;
-                float f3 = this.colStarts[0];
-                float f4 = fCornerRadiusFor2 * 2.0f;
-                rectF.set(f3, fDpf22 - f4, f4 + f3, fDpf22);
-                this.bulgePath.arcTo(this.arcRect, 90.0f, 90.0f);
-            } else {
-                this.bulgePath.lineTo(this.colStarts[0], fDpf22);
-            }
-            this.bulgePath.lineTo(this.colStarts[0], fDpf2 + fCornerRadiusFor);
-            if (fCornerRadiusFor > 0.0f) {
-                RectF rectF2 = this.arcRect;
-                float f5 = this.colStarts[0];
-                float f6 = fCornerRadiusFor * 2.0f;
-                rectF2.set(f5, fDpf2, f5 + f6, f6 + fDpf2);
-                this.bulgePath.arcTo(this.arcRect, 180.0f, 90.0f);
-            } else {
-                this.bulgePath.lineTo(this.colStarts[0], fDpf2);
-            }
-            this.bulgePath.close();
-            canvas.drawPath(this.bulgePath, this.bulgeFillPaint);
+            drawLeftBulgeFill(canvas, this.bulgeRowTop, this.bulgeRowBot);
         }
         if (this.bottomBulge) {
-            float fDpf23 = this.bulgeColLeft - AndroidUtilities.dpf2(1.0f);
-            float fDpf24 = this.bulgeColRight + AndroidUtilities.dpf2(1.0f);
-            float f7 = this.rowStarts[this.model.rowCount];
-            float fDp2 = AndroidUtilities.dp(16.0f) + f7;
-            float fMin2 = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf24 - fDpf23) / 2.0f);
-            float fCornerRadiusFor3 = cornerRadiusFor(this.bulgeColLeft, this.rowStarts[this.model.rowCount]);
-            float fCornerRadiusFor4 = cornerRadiusFor(this.bulgeColRight, this.rowStarts[this.model.rowCount]);
-            this.bulgePath.rewind();
-            this.bulgePath.moveTo(fDpf23, f7 - fCornerRadiusFor3);
-            this.bulgePath.lineTo(fDpf23, fDp2 - fMin2);
-            float f8 = fMin2 * 2.0f;
-            float f9 = fDp2 - f8;
-            this.arcRect.set(fDpf23, f9, fDpf23 + f8, fDp2);
-            this.bulgePath.arcTo(this.arcRect, 180.0f, -90.0f);
-            this.bulgePath.lineTo(fDpf24 - fMin2, fDp2);
-            this.arcRect.set(fDpf24 - f8, f9, fDpf24, fDp2);
-            this.bulgePath.arcTo(this.arcRect, 90.0f, -90.0f);
-            this.bulgePath.lineTo(fDpf24, f7 - fCornerRadiusFor4);
-            if (fCornerRadiusFor4 > 0.0f) {
-                float f10 = fCornerRadiusFor4 * 2.0f;
-                this.arcRect.set(fDpf24 - f10, f7 - f10, fDpf24, f7);
-                this.bulgePath.arcTo(this.arcRect, 0.0f, 90.0f);
-            } else {
-                this.bulgePath.lineTo(fDpf24, f7);
-            }
-            this.bulgePath.lineTo(fDpf23 + fCornerRadiusFor3, f7);
-            if (fCornerRadiusFor3 > 0.0f) {
-                float f11 = fCornerRadiusFor3 * 2.0f;
-                this.arcRect.set(fDpf23, f7 - f11, f11 + fDpf23, f7);
-                this.bulgePath.arcTo(this.arcRect, 90.0f, 90.0f);
-            } else {
-                this.bulgePath.lineTo(fDpf23, f7);
-            }
-            this.bulgePath.close();
-            canvas.drawPath(this.bulgePath, this.bulgeFillPaint);
+            drawBottomBulgeFill(canvas, this.bulgeColLeft, this.bulgeColRight);
         }
     }
 
+    private void drawLeftBulgeFill(Canvas canvas, int i, int i2) {
+        float fDpf2 = i - AndroidUtilities.dpf2(1.0f);
+        float fDpf22 = i2 + AndroidUtilities.dpf2(1.0f);
+        float fDp = this.colStarts[0] - AndroidUtilities.dp(16.0f);
+        float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf22 - fDpf2) / 2.0f);
+        float fCornerRadiusFor = cornerRadiusFor(this.colStarts[0], i);
+        float fCornerRadiusFor2 = cornerRadiusFor(this.colStarts[0], i2);
+        this.bulgePath.rewind();
+        this.bulgePath.moveTo(this.colStarts[0] + fCornerRadiusFor, fDpf2);
+        this.bulgePath.lineTo(fDp + fMin, fDpf2);
+        float f = fMin * 2.0f;
+        float f2 = fDp + f;
+        this.arcRect.set(fDp, fDpf2, f2, fDpf2 + f);
+        this.bulgePath.arcTo(this.arcRect, 270.0f, -90.0f);
+        this.bulgePath.lineTo(fDp, fDpf22 - fMin);
+        this.arcRect.set(fDp, fDpf22 - f, f2, fDpf22);
+        this.bulgePath.arcTo(this.arcRect, 180.0f, -90.0f);
+        this.bulgePath.lineTo(this.colStarts[0] + fCornerRadiusFor2, fDpf22);
+        if (fCornerRadiusFor2 > 0.0f) {
+            RectF rectF = this.arcRect;
+            float f3 = this.colStarts[0];
+            float f4 = fCornerRadiusFor2 * 2.0f;
+            rectF.set(f3, fDpf22 - f4, f4 + f3, fDpf22);
+            this.bulgePath.arcTo(this.arcRect, 90.0f, 90.0f);
+        } else {
+            this.bulgePath.lineTo(this.colStarts[0], fDpf22);
+        }
+        this.bulgePath.lineTo(this.colStarts[0], fDpf2 + fCornerRadiusFor);
+        if (fCornerRadiusFor > 0.0f) {
+            RectF rectF2 = this.arcRect;
+            float f5 = this.colStarts[0];
+            float f6 = fCornerRadiusFor * 2.0f;
+            rectF2.set(f5, fDpf2, f5 + f6, f6 + fDpf2);
+            this.bulgePath.arcTo(this.arcRect, 180.0f, 90.0f);
+        } else {
+            this.bulgePath.lineTo(this.colStarts[0], fDpf2);
+        }
+        this.bulgePath.close();
+        canvas.drawPath(this.bulgePath, this.bulgeFillPaint);
+    }
+
+    private void drawBottomBulgeFill(Canvas canvas, int i, int i2) {
+        float fDpf2 = i - AndroidUtilities.dpf2(1.0f);
+        float fDpf22 = i2 + AndroidUtilities.dpf2(1.0f);
+        float f = this.rowStarts[this.model.rowCount];
+        float fDp = AndroidUtilities.dp(16.0f) + f;
+        float fMin = Math.min(AndroidUtilities.dpf2(10.0f), (fDpf22 - fDpf2) / 2.0f);
+        float fCornerRadiusFor = cornerRadiusFor(i, this.rowStarts[this.model.rowCount]);
+        float fCornerRadiusFor2 = cornerRadiusFor(i2, this.rowStarts[this.model.rowCount]);
+        this.bulgePath.rewind();
+        this.bulgePath.moveTo(fDpf2, f - fCornerRadiusFor);
+        this.bulgePath.lineTo(fDpf2, fDp - fMin);
+        float f2 = fMin * 2.0f;
+        float f3 = fDp - f2;
+        this.arcRect.set(fDpf2, f3, fDpf2 + f2, fDp);
+        this.bulgePath.arcTo(this.arcRect, 180.0f, -90.0f);
+        this.bulgePath.lineTo(fDpf22 - fMin, fDp);
+        this.arcRect.set(fDpf22 - f2, f3, fDpf22, fDp);
+        this.bulgePath.arcTo(this.arcRect, 90.0f, -90.0f);
+        this.bulgePath.lineTo(fDpf22, f - fCornerRadiusFor2);
+        if (fCornerRadiusFor2 > 0.0f) {
+            float f4 = fCornerRadiusFor2 * 2.0f;
+            this.arcRect.set(fDpf22 - f4, f - f4, fDpf22, f);
+            this.bulgePath.arcTo(this.arcRect, 0.0f, 90.0f);
+        } else {
+            this.bulgePath.lineTo(fDpf22, f);
+        }
+        this.bulgePath.lineTo(fDpf2 + fCornerRadiusFor, f);
+        if (fCornerRadiusFor > 0.0f) {
+            float f5 = fCornerRadiusFor * 2.0f;
+            this.arcRect.set(fDpf2, f - f5, f5 + fDpf2, f);
+            this.bulgePath.arcTo(this.arcRect, 90.0f, 90.0f);
+        } else {
+            this.bulgePath.lineTo(fDpf2, f);
+        }
+        this.bulgePath.close();
+        canvas.drawPath(this.bulgePath, this.bulgeFillPaint);
+    }
+
     private void drawHandleDots(Canvas canvas) {
-        TL_iv.pageTableCell pagetablecellActiveCell = activeCell();
-        if (pagetablecellActiveCell == null) {
+        float f;
+        float f2;
+        if (this.model == null) {
             return;
         }
-        int iAnchorRowOf = this.model.anchorRowOf(pagetablecellActiveCell);
-        int iAnchorColOf = this.model.anchorColOf(pagetablecellActiveCell);
-        if (iAnchorRowOf < 0 || iAnchorColOf < 0) {
-            return;
-        }
-        int iSpanRow = TableModel.spanRow(pagetablecellActiveCell);
-        int iSpanCol = TableModel.spanCol(pagetablecellActiveCell);
         float fDpf2 = AndroidUtilities.dpf2(3.0f) / 2.0f;
         float fDp = AndroidUtilities.dp(8.0f);
-        int[] iArr = this.rowStarts;
-        float f = (iArr[iAnchorRowOf] + iArr[Math.min(iAnchorRowOf + iSpanRow, this.model.rowCount)]) / 2.0f;
         float fDp2 = (this.colStarts[0] - AndroidUtilities.dp(6.0f)) - fDpf2;
-        this.dotPaint.setColor(this.leftBulge ? this.dotOnSelectionColor : this.dotColor);
-        for (int i = -1; i <= 1; i++) {
-            canvas.drawCircle(fDp2, (i * fDp) + f, fDpf2, this.dotPaint);
-        }
-        int[] iArr2 = this.colStarts;
-        float f2 = (iArr2[iAnchorColOf] + iArr2[Math.min(iAnchorColOf + iSpanCol, this.model.colCount)]) / 2.0f;
         float fDp3 = this.rowStarts[this.model.rowCount] + AndroidUtilities.dp(6.0f) + fDpf2;
+        if (hasAnySelection()) {
+            int iFirstSelectedRow = firstSelectedRow();
+            int iLastSelectedRow = lastSelectedRow();
+            int iFirstSelectedCol = firstSelectedCol();
+            int iLastSelectedCol = lastSelectedCol();
+            if (iFirstSelectedRow < 0 || iFirstSelectedCol < 0) {
+                return;
+            }
+            TL_iv.pageTableCell pagetablecellActiveCell = activeCell();
+            boolean zUseCombinedRowHandle = useCombinedRowHandle();
+            int iAnchorRowOf = pagetablecellActiveCell == null ? iFirstSelectedRow : this.model.anchorRowOf(pagetablecellActiveCell);
+            int iMin = pagetablecellActiveCell == null ? iAnchorRowOf + 1 : Math.min(iAnchorRowOf + TableModel.spanRow(pagetablecellActiveCell), this.model.rowCount);
+            if (zUseCombinedRowHandle) {
+                int[] iArr = this.rowStarts;
+                f = iArr[iFirstSelectedRow] + iArr[iLastSelectedRow + 1];
+            } else {
+                int[] iArr2 = this.rowStarts;
+                f = iArr2[iAnchorRowOf] + iArr2[iMin];
+            }
+            float f3 = f / 2.0f;
+            this.dotPaint.setColor((zUseCombinedRowHandle && areRowsFullySelected(iFirstSelectedRow, iLastSelectedRow)) ? this.dotOnSelectionColor : this.dotColor);
+            int i = -1;
+            for (int i2 = 1; i <= i2; i2 = 1) {
+                canvas.drawCircle(fDp2, (i * fDp) + f3, fDpf2, this.dotPaint);
+                i++;
+            }
+            boolean zUseCombinedColHandle = useCombinedColHandle();
+            int iAnchorColOf = pagetablecellActiveCell == null ? iFirstSelectedCol : this.model.anchorColOf(pagetablecellActiveCell);
+            int iMin2 = pagetablecellActiveCell == null ? iAnchorColOf + 1 : Math.min(TableModel.spanCol(pagetablecellActiveCell) + iAnchorColOf, this.model.colCount);
+            if (zUseCombinedColHandle) {
+                int[] iArr3 = this.colStarts;
+                f2 = iArr3[iFirstSelectedCol] + iArr3[iLastSelectedCol + 1];
+            } else {
+                int[] iArr4 = this.colStarts;
+                f2 = iArr4[iAnchorColOf] + iArr4[iMin2];
+            }
+            float f4 = f2 / 2.0f;
+            this.dotPaint.setColor((zUseCombinedColHandle && areColsFullySelected(iFirstSelectedCol, iLastSelectedCol)) ? this.dotOnSelectionColor : this.dotColor);
+            int i3 = -1;
+            for (int i4 = 1; i3 <= i4; i4 = 1) {
+                canvas.drawCircle((i3 * fDp) + f4, fDp3, fDpf2, this.dotPaint);
+                i3++;
+            }
+            return;
+        }
+        TL_iv.pageTableCell pagetablecellActiveCell2 = activeCell();
+        if (pagetablecellActiveCell2 == null) {
+            return;
+        }
+        int iAnchorRowOf2 = this.model.anchorRowOf(pagetablecellActiveCell2);
+        int iAnchorColOf2 = this.model.anchorColOf(pagetablecellActiveCell2);
+        if (iAnchorRowOf2 < 0 || iAnchorColOf2 < 0) {
+            return;
+        }
+        int iSpanRow = TableModel.spanRow(pagetablecellActiveCell2);
+        int iSpanCol = TableModel.spanCol(pagetablecellActiveCell2);
+        int[] iArr5 = this.rowStarts;
+        float f5 = (iArr5[iAnchorRowOf2] + iArr5[Math.min(iAnchorRowOf2 + iSpanRow, this.model.rowCount)]) / 2.0f;
+        this.dotPaint.setColor(this.leftBulge ? this.dotOnSelectionColor : this.dotColor);
+        int i5 = -1;
+        for (int i6 = 1; i5 <= i6; i6 = 1) {
+            canvas.drawCircle(fDp2, (i5 * fDp) + f5, fDpf2, this.dotPaint);
+            i5++;
+        }
+        int[] iArr6 = this.colStarts;
+        float f6 = (iArr6[iAnchorColOf2] + iArr6[Math.min(iAnchorColOf2 + iSpanCol, this.model.colCount)]) / 2.0f;
         this.dotPaint.setColor(this.bottomBulge ? this.dotOnSelectionColor : this.dotColor);
-        for (int i2 = -1; i2 <= 1; i2++) {
-            canvas.drawCircle((i2 * fDp) + f2, fDp3, fDpf2, this.dotPaint);
+        for (int i7 = -1; i7 <= 1; i7++) {
+            canvas.drawCircle((i7 * fDp) + f6, fDp3, fDpf2, this.dotPaint);
         }
     }
 
     public int rowHandleAtGrid(int i, int i2) {
         int iAnchorRowOf;
-        TL_iv.pageTableCell pagetablecellActiveCell = activeCell();
-        if (pagetablecellActiveCell == null || (iAnchorRowOf = this.model.anchorRowOf(pagetablecellActiveCell)) < 0) {
-            return -1;
+        if (this.model != null && i >= (this.colStarts[0] - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f) && i < this.colStarts[0]) {
+            if (useCombinedRowHandle()) {
+                int iFirstSelectedRow = firstSelectedRow();
+                int iLastSelectedRow = lastSelectedRow();
+                if (iFirstSelectedRow < 0) {
+                    return -1;
+                }
+                int[] iArr = this.rowStarts;
+                if (i2 < iArr[iFirstSelectedRow] || i2 >= iArr[iLastSelectedRow + 1]) {
+                    return -1;
+                }
+                return iFirstSelectedRow;
+            }
+            TL_iv.pageTableCell pagetablecellActiveCell = activeCell();
+            if (pagetablecellActiveCell == null || (iAnchorRowOf = this.model.anchorRowOf(pagetablecellActiveCell)) < 0) {
+                return -1;
+            }
+            int iSpanRow = TableModel.spanRow(pagetablecellActiveCell);
+            int[] iArr2 = this.rowStarts;
+            int i3 = iArr2[iAnchorRowOf];
+            int i4 = iArr2[Math.min(iSpanRow + iAnchorRowOf, this.model.rowCount)];
+            if (i2 >= i3 && i2 < i4) {
+                return iAnchorRowOf;
+            }
         }
-        int iSpanRow = TableModel.spanRow(pagetablecellActiveCell);
-        int[] iArr = this.rowStarts;
-        int i3 = iArr[iAnchorRowOf];
-        int i4 = iArr[Math.min(iSpanRow + iAnchorRowOf, this.model.rowCount)];
-        if (i < (this.colStarts[0] - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(4.0f) || i >= this.colStarts[0] || i2 < i3 || i2 >= i4) {
-            return -1;
-        }
-        return iAnchorRowOf;
+        return -1;
+    }
+
+    public int rowHandleEnd(int i) {
+        return (useCombinedRowHandle() && i == firstSelectedRow()) ? lastSelectedRow() : i;
     }
 
     public int colHandleAtGrid(int i, int i2) {
+        int i3;
         int iAnchorColOf;
-        TL_iv.pageTableCell pagetablecellActiveCell = activeCell();
-        if (pagetablecellActiveCell == null || (iAnchorColOf = this.model.anchorColOf(pagetablecellActiveCell)) < 0) {
-            return -1;
+        TableModel tableModel = this.model;
+        if (tableModel != null && i2 >= (i3 = this.rowStarts[tableModel.rowCount]) && i2 < i3 + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(4.0f)) {
+            if (useCombinedColHandle()) {
+                int iFirstSelectedCol = firstSelectedCol();
+                int iLastSelectedCol = lastSelectedCol();
+                if (iFirstSelectedCol < 0) {
+                    return -1;
+                }
+                int[] iArr = this.colStarts;
+                if (i < iArr[iFirstSelectedCol] || i >= iArr[iLastSelectedCol + 1]) {
+                    return -1;
+                }
+                return iFirstSelectedCol;
+            }
+            TL_iv.pageTableCell pagetablecellActiveCell = activeCell();
+            if (pagetablecellActiveCell == null || (iAnchorColOf = this.model.anchorColOf(pagetablecellActiveCell)) < 0) {
+                return -1;
+            }
+            int iSpanCol = TableModel.spanCol(pagetablecellActiveCell);
+            int[] iArr2 = this.colStarts;
+            int i4 = iArr2[iAnchorColOf];
+            int i5 = iArr2[Math.min(iSpanCol + iAnchorColOf, this.model.colCount)];
+            if (i >= i4 && i < i5) {
+                return iAnchorColOf;
+            }
         }
-        int iSpanCol = TableModel.spanCol(pagetablecellActiveCell);
-        int[] iArr = this.colStarts;
-        int i3 = iArr[iAnchorColOf];
-        int i4 = iArr[Math.min(iSpanCol + iAnchorColOf, this.model.colCount)];
-        int i5 = this.rowStarts[this.model.rowCount];
-        if (i2 < i5 || i2 >= i5 + AndroidUtilities.dp(16.0f) + AndroidUtilities.dp(4.0f) || i < i3 || i >= i4) {
-            return -1;
-        }
-        return iAnchorColOf;
+        return -1;
+    }
+
+    public int colHandleEnd(int i) {
+        return (useCombinedColHandle() && i == firstSelectedCol()) ? lastSelectedCol() : i;
     }
 
     public TL_iv.pageTableCell findFocusedCell() {

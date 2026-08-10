@@ -4774,41 +4774,11 @@ public class MessageObject {
     }
 
     public boolean needDrawAvatar() {
-        TLRPC.MessageFwdHeader messageFwdHeader;
-        TLRPC.Chat chat;
-        if (this.type == 27) {
-            return false;
-        }
-        if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null || this.searchType != 0) {
-            return true;
-        }
-        boolean z = getDialogId() >= 0 ? getDialogId() == 489000 : !((chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) == null || !chat.signature_profiles);
-        if (isSponsored()) {
-            return false;
-        }
-        return isFromUser() || isFromGroup() || z || this.eventId != 0 || !((messageFwdHeader = this.messageOwner.fwd_from) == null || messageFwdHeader.saved_from_peer == null);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.needDrawAvatar():boolean");
     }
 
     public boolean needDrawAvatarInternal() {
-        TLRPC.Chat chat;
-        if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null) {
-            return true;
-        }
-        TLRPC.Message message = this.messageOwner;
-        if ((message != null && message.guestchat_via_from != null) || this.searchType != 0) {
-            return true;
-        }
-        boolean z = getDialogId() >= 0 ? getDialogId() == 489000 : !((chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) == null || !chat.signature_profiles);
-        if (!isSponsored()) {
-            if ((isFromChat() && isFromUser()) || isFromGroup() || z || this.eventId != 0) {
-                return true;
-            }
-            TLRPC.MessageFwdHeader messageFwdHeader = this.messageOwner.fwd_from;
-            if (messageFwdHeader != null && messageFwdHeader.saved_from_peer != null) {
-                return true;
-            }
-        }
-        return false;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.needDrawAvatarInternal():boolean");
     }
 
     public boolean isFromChat() {
@@ -5048,7 +5018,9 @@ public class MessageObject {
     }
 
     public int getId() {
-        return this.messageOwner.id;
+        TLRPC.Message message = this.messageOwner;
+        int i = message.ephemeralAnchorMsgId;
+        return i != 0 ? i : message.id;
     }
 
     public int getRealId() {
@@ -8542,13 +8514,17 @@ public class MessageObject {
         return isWelcomeMessage(this.messageOwner);
     }
 
+    public boolean isWelcomeAnchored() {
+        return isWelcomeAnchored(this.messageOwner);
+    }
+
     public boolean isEphemeralAndNotWelcome() {
         return isEphemeralAndNotWelcome(this.messageOwner);
     }
 
     public int getEphemeralId() {
         if (isEphemeral()) {
-            return ephemeralMessageIdUnpack(getId());
+            return ephemeralMessageIdUnpack(this.messageOwner.id);
         }
         return 0;
     }
@@ -8562,7 +8538,11 @@ public class MessageObject {
     }
 
     public static boolean isWelcomeMessage(TLRPC.Message message) {
-        return isEphemeral(message) && message.ephemeralReceiverBotId == -1;
+        return isEphemeral(message) && (message.ephemeralReceiverBotId == -1 || message.ephemeralAnchorMsgId != 0);
+    }
+
+    public static boolean isWelcomeAnchored(TLRPC.Message message) {
+        return isEphemeral(message) && message.ephemeralAnchorMsgId != 0;
     }
 
     public static boolean isEphemeralAndNotWelcome(TLRPC.Message message) {

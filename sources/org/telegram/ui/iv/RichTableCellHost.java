@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -17,11 +18,20 @@ public class RichTableCellHost extends FrameLayout {
         super(context);
         RichEditText richEditText = new RichEditText(context, resourcesProvider);
         this.editText = richEditText;
-        richEditText.setTextSize(1, 14.0f);
+        richEditText.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         richEditText.setAllowNewlines(true);
-        richEditText.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(9.0f));
-        richEditText.setMinHeight(AndroidUtilities.dp(36.0f));
+        setCompact(false);
         addView(richEditText, LayoutHelper.createFrame(-1, -2, 51));
+    }
+
+    public void setCompact(boolean z) {
+        if (z) {
+            this.editText.setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+            this.editText.setMinHeight(AndroidUtilities.dp(18.0f));
+        } else {
+            this.editText.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(9.0f));
+            this.editText.setMinHeight(AndroidUtilities.dp(36.0f));
+        }
     }
 
     @Override

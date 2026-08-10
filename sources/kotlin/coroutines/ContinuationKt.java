@@ -12,6 +12,6 @@ public abstract class ContinuationKt {
         Intrinsics.checkNotNullParameter(completion, "completion");
         Continuation continuationIntercepted = IntrinsicsKt.intercepted(IntrinsicsKt.createCoroutineUnintercepted(function2, obj, completion));
         Result.Companion companion = Result.Companion;
-        continuationIntercepted.resumeWith(Result.m300constructorimpl(Unit.INSTANCE));
+        continuationIntercepted.resumeWith(Result.m291constructorimpl(Unit.INSTANCE));
     }
 }

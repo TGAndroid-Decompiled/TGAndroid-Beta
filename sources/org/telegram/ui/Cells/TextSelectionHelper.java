@@ -747,6 +747,11 @@ public abstract class TextSelectionHelper {
         }
     }
 
+    public void hideActionsMenu() {
+        AndroidUtilities.cancelRunOnUIThread(this.showActionsRunnable);
+        hideActions();
+    }
+
     public TextSelectionOverlay getOverlayView(Context context) {
         if (this.textSelectionOverlay == null) {
             this.textSelectionOverlay = new TextSelectionOverlay(context);

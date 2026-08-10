@@ -85,7 +85,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda99;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda103;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -659,15 +659,15 @@ public abstract class Theme {
     public static final int key_chat_msgIvButtonDefaultIn;
     public static final int key_chat_msgIvButtonDefaultInPressed;
     public static final int key_chat_msgIvButtonDefaultInText;
+    public static final int key_chat_msgIvButtonDefaultInlineIn;
+    public static final int key_chat_msgIvButtonDefaultInlineInPressed;
+    public static final int key_chat_msgIvButtonDefaultInlineInText;
+    public static final int key_chat_msgIvButtonDefaultInlineOut;
+    public static final int key_chat_msgIvButtonDefaultInlineOutPressed;
+    public static final int key_chat_msgIvButtonDefaultInlineOutText;
     public static final int key_chat_msgIvButtonDefaultOut;
     public static final int key_chat_msgIvButtonDefaultOutPressed;
     public static final int key_chat_msgIvButtonDefaultOutText;
-    public static final int key_chat_msgIvButtonLinkIn;
-    public static final int key_chat_msgIvButtonLinkInPressed;
-    public static final int key_chat_msgIvButtonLinkInText;
-    public static final int key_chat_msgIvButtonLinkOut;
-    public static final int key_chat_msgIvButtonLinkOutPressed;
-    public static final int key_chat_msgIvButtonLinkOutText;
     public static final int key_chat_msgIvButtonPrimaryIn;
     public static final int key_chat_msgIvButtonPrimaryInPressed;
     public static final int key_chat_msgIvButtonPrimaryInText;
@@ -1604,7 +1604,7 @@ public abstract class Theme {
         ThemeAccent() {
         }
 
-        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) throws java.io.IOException {
+        public boolean fillAccentColors(android.util.SparseIntArray r17, android.util.SparseIntArray r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.ThemeAccent.fillAccentColors(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
         }
 
@@ -2239,7 +2239,7 @@ public abstract class Theme {
             return this.defaultAccentCount != 0;
         }
 
-        public boolean isDark() throws IOException {
+        public boolean isDark() {
             int i = this.isDark;
             if (i != -1) {
                 return i == 1;
@@ -3957,7 +3957,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda99(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda103(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4003,7 +4003,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda99(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda103(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4118,7 +4118,7 @@ public abstract class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda99(), 2100L);
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda103(), 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -4647,7 +4647,7 @@ public abstract class Theme {
         return currentTheme == currentNightTheme;
     }
 
-    public static boolean isCurrentThemeDark() throws IOException {
+    public static boolean isCurrentThemeDark() {
         return currentTheme.isDark();
     }
 
@@ -5070,7 +5070,7 @@ public abstract class Theme {
         return (themeInfo == null || themesDict.get(themeInfo.getKey()) == null) ? false : true;
     }
 
-    public static void setThemeUploadInfo(ThemeInfo themeInfo, ThemeAccent themeAccent, TLRPC.TL_theme tL_theme, int i, boolean z) throws JSONException, IOException {
+    public static void setThemeUploadInfo(ThemeInfo themeInfo, ThemeAccent themeAccent, TLRPC.TL_theme tL_theme, int i, boolean z) {
         String key;
         TLRPC.WallPaperSettings wallPaperSettings;
         if (tL_theme == null) {
@@ -5389,7 +5389,7 @@ public abstract class Theme {
             }
             dialogs_archiveAvatarDrawable = new RLottieDrawable(R.raw.chats_archiveavatar, "chats_archiveavatar", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
             dialogs_archiveDrawable = new RLottieDrawable(R.raw.chats_archive, "chats_archive", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            dialogs_unarchiveDrawable = new RLottieDrawable(R.raw.chats_unarchive, "chats_unarchive", AndroidUtilities.dp(AndroidUtilities.dp(36.0f)), AndroidUtilities.dp(36.0f), false, null);
+            dialogs_unarchiveDrawable = new RLottieDrawable(R.raw.chats_unarchive, "chats_unarchive", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
             dialogs_pinArchiveDrawable = new RLottieDrawable(R.raw.chats_hide, "chats_hide", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
             dialogs_unpinArchiveDrawable = new RLottieDrawable(R.raw.chats_unhide, "chats_unhide", AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
             dialogs_hidePsaDrawable = new RLottieDrawable(R.raw.chat_audio_record_delete, "chats_psahide", AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), false, null);
@@ -6209,7 +6209,7 @@ public abstract class Theme {
         chat_commentTextPaint.setTypeface(AndroidUtilities.bold());
     }
 
-    public static void applyChatTheme(boolean z, boolean z2) throws IOException {
+    public static void applyChatTheme(boolean z, boolean z2) {
         if (chat_msgTextPaint == null || chat_msgInDrawable == null || z) {
             return;
         }
@@ -6379,7 +6379,7 @@ public abstract class Theme {
         applyChatMessageSelectedBackgroundColor();
     }
 
-    public static void applyChatServiceMessageColor() throws IOException {
+    public static void applyChatServiceMessageColor() {
         Drawable drawable = wallpaper;
         if (drawable != null) {
             applyChatServiceMessageColor(null, null, drawable);
@@ -6441,7 +6441,7 @@ public abstract class Theme {
         bitmapShader.setLocalMatrix(matrix);
     }
 
-    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) throws IOException {
+    public static void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2) {
         int iValueAt;
         int i;
         int iValueAt2;
@@ -7057,13 +7057,13 @@ public abstract class Theme {
         final Drawable drawableLoadWallpaperInternal = loadWallpaperInternal(overrideWallpaperInfo, file, i, z, document, z2);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() throws IOException {
+            public final void run() {
                 Theme.lambda$loadWallpaper$11(drawableLoadWallpaperInternal);
             }
         });
     }
 
-    public static void lambda$loadWallpaper$11(Drawable drawable) throws IOException {
+    public static void lambda$loadWallpaper$11(Drawable drawable) {
         wallpaperLoadTask = null;
         createCommonChatResources();
         if (!disallowChangeServiceMessageColor) {
@@ -7478,7 +7478,7 @@ public abstract class Theme {
         PRIMARY(Theme.key_chat_msgIvButtonPrimaryIn, Theme.key_chat_msgIvButtonPrimaryInPressed, Theme.key_chat_msgIvButtonPrimaryInText, Theme.key_chat_msgIvButtonPrimaryOut, Theme.key_chat_msgIvButtonPrimaryOutPressed, Theme.key_chat_msgIvButtonPrimaryOutText),
         DANGER(Theme.key_chat_msgIvButtonDangerIn, Theme.key_chat_msgIvButtonDangerInPressed, Theme.key_chat_msgIvButtonDangerInText, Theme.key_chat_msgIvButtonDangerOut, Theme.key_chat_msgIvButtonDangerOutPressed, Theme.key_chat_msgIvButtonDangerOutText),
         SUCCESS(Theme.key_chat_msgIvButtonSuccessIn, Theme.key_chat_msgIvButtonSuccessInPressed, Theme.key_chat_msgIvButtonSuccessInText, Theme.key_chat_msgIvButtonSuccessOut, Theme.key_chat_msgIvButtonSuccessOutPressed, Theme.key_chat_msgIvButtonSuccessOutText),
-        LINK(Theme.key_chat_msgIvButtonLinkIn, Theme.key_chat_msgIvButtonLinkInPressed, Theme.key_chat_msgIvButtonLinkInText, Theme.key_chat_msgIvButtonLinkOut, Theme.key_chat_msgIvButtonLinkOutPressed, Theme.key_chat_msgIvButtonLinkOutText);
+        DEFAULT_IN_TEXT(Theme.key_chat_msgIvButtonDefaultInlineIn, Theme.key_chat_msgIvButtonDefaultInlineInPressed, Theme.key_chat_msgIvButtonDefaultInlineInText, Theme.key_chat_msgIvButtonDefaultInlineOut, Theme.key_chat_msgIvButtonDefaultInlineOutPressed, Theme.key_chat_msgIvButtonDefaultInlineOutText);
 
         private final int backgroundIn;
         private final int backgroundInPressed;
@@ -7518,9 +7518,6 @@ public abstract class Theme {
                 }
                 if (richButtonStyle.bg_success) {
                     return SUCCESS;
-                }
-                if (richButtonStyle.link) {
-                    return LINK;
                 }
             }
             return DEFAULT;

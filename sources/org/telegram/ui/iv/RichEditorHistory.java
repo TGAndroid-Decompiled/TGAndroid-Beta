@@ -11,6 +11,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 
 public class RichEditorHistory {
     private final Delegate delegate;
@@ -391,14 +392,28 @@ public class RichEditorHistory {
             }
             return;
         }
+        if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+            TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
+            if (pageblockbuttonrow.buttons == null) {
+                pageblockbuttonrow.buttons = new ArrayList<>();
+            }
+            Iterator<TL_keyboard.PageButton> it4 = pageblockbuttonrow.buttons.iterator();
+            while (it4.hasNext()) {
+                TL_keyboard.PageButton next3 = it4.next();
+                if (next3 != null && next3.text == null) {
+                    next3.text = emptyRichText();
+                }
+            }
+            return;
+        }
         if (pageBlock instanceof TL_iv.pageBlockCollage) {
             TL_iv.pageBlockCollage pageblockcollage = (TL_iv.pageBlockCollage) pageBlock;
             if (pageblockcollage.items == null) {
                 pageblockcollage.items = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it4 = pageblockcollage.items.iterator();
-            while (it4.hasNext()) {
-                normalize(it4.next());
+            Iterator<TL_iv.PageBlock> it5 = pageblockcollage.items.iterator();
+            while (it5.hasNext()) {
+                normalize(it5.next());
             }
             return;
         }
@@ -407,9 +422,9 @@ public class RichEditorHistory {
             if (pageblockslideshow.items == null) {
                 pageblockslideshow.items = new ArrayList<>();
             }
-            Iterator<TL_iv.PageBlock> it5 = pageblockslideshow.items.iterator();
-            while (it5.hasNext()) {
-                normalize(it5.next());
+            Iterator<TL_iv.PageBlock> it6 = pageblockslideshow.items.iterator();
+            while (it6.hasNext()) {
+                normalize(it6.next());
             }
         }
     }

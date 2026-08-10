@@ -504,4 +504,4 @@ chat_msgIvButtonPrimaryOutPressed=-12412453
 chat_msgIvButtonPrimaryOutText=#ffffffff
 chat_msgIvButtonDangerInText=#ffff6d6d
 chat_msgIvButtonSuccessInText=#ff78ff7b
-chat_msgIvButtonLinkInText=#ff57b8ff
+chat_msgIvButtonDefaultInlineInText=#ff57b8ff

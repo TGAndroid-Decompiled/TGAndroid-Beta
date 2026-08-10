@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 
 public class RichEditorLimits {
     public int blocks;
@@ -120,20 +121,34 @@ public class RichEditorLimits {
             }
             return;
         }
+        if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+            ArrayList<TL_keyboard.PageButton> arrayList2 = ((TL_iv.pageBlockButtonRow) pageBlock).buttons;
+            if (arrayList2 != null) {
+                Iterator<TL_keyboard.PageButton> it = arrayList2.iterator();
+                while (it.hasNext()) {
+                    TL_keyboard.PageButton next = it.next();
+                    if (next != null) {
+                        addText(next.text, i + 1, richEditorLimits);
+                    }
+                }
+                return;
+            }
+            return;
+        }
         if (pageBlock instanceof TL_iv.pageBlockCollage) {
             addCaption(pageBlock.caption, i, richEditorLimits);
-            ArrayList<TL_iv.PageBlock> arrayList2 = ((TL_iv.pageBlockCollage) pageBlock).items;
-            while (i2 < arrayList2.size()) {
-                measureBlock(arrayList2.get(i2), i + 1, richEditorLimits);
+            ArrayList<TL_iv.PageBlock> arrayList3 = ((TL_iv.pageBlockCollage) pageBlock).items;
+            while (i2 < arrayList3.size()) {
+                measureBlock(arrayList3.get(i2), i + 1, richEditorLimits);
                 i2++;
             }
             return;
         }
         if (pageBlock instanceof TL_iv.pageBlockSlideshow) {
             addCaption(pageBlock.caption, i, richEditorLimits);
-            ArrayList<TL_iv.PageBlock> arrayList3 = ((TL_iv.pageBlockSlideshow) pageBlock).items;
-            while (i2 < arrayList3.size()) {
-                measureBlock(arrayList3.get(i2), i + 1, richEditorLimits);
+            ArrayList<TL_iv.PageBlock> arrayList4 = ((TL_iv.pageBlockSlideshow) pageBlock).items;
+            while (i2 < arrayList4.size()) {
+                measureBlock(arrayList4.get(i2), i + 1, richEditorLimits);
                 i2++;
             }
             return;

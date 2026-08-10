@@ -45,6 +45,7 @@ public class RichCommand {
         cmds.add(new RichCommand(R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleCommandOrderedList), "1."));
         cmds.add(new RichCommand(R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListChecklist), "[]", "/todo", "/checklist"));
         cmds.add(new RichCommand(R.drawable.iv_details, LocaleController.getString(R.string.ArticleCommandToggle), ">", "/toggle", "/details"));
+        cmds.add(new RichCommand(R.drawable.iv_button, LocaleController.getString(R.string.RichEditorButton), "/button"));
         cmds.add(new RichCommand(R.drawable.iv_table, LocaleController.getString(R.string.ArticleCommandTable), "/table"));
         cmds.add(new RichCommand(R.drawable.iv_math, LocaleController.getString(R.string.ArticleCommandMath), "/math", "/latex", "/expression"));
         cmds.add(new RichCommand(R.drawable.iv_divider, LocaleController.getString(R.string.ArticleCommandDivider), "---"));

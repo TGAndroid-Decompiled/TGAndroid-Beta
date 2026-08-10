@@ -23,6 +23,10 @@ import org.telegram.ui.Components.URLSpanReplacement;
 public abstract class RichTextStyle {
     private static final int[] STYLE_FLAGS = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
 
+    public static int emojiOnlyCount(java.lang.CharSequence r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextStyle.emojiOnlyCount(java.lang.CharSequence):int");
+    }
+
     public static CharSequence toSpannable(TL_iv.RichText richText) {
         return toSpannable(richText, null);
     }
@@ -125,6 +129,16 @@ public abstract class RichTextStyle {
                 return;
             }
             spannableStringBuilder.setSpan(spanFor(i, pageBlock), length5, spannableStringBuilder.length(), 33);
+            return;
+        }
+        if (richText instanceof TL_iv.textButton) {
+            TL_iv.textButton textbutton = (TL_iv.textButton) richText;
+            int length7 = spannableStringBuilder.length();
+            append(spannableStringBuilder, textbutton.text, i, pageBlock);
+            if (spannableStringBuilder.length() <= length7 || !RichInlineButtonSpan.isSupported(textbutton.type)) {
+                return;
+            }
+            spannableStringBuilder.setSpan(new RichInlineButtonSpan(textbutton), length7, spannableStringBuilder.length(), 33);
             return;
         }
         int iFlagOf = flagOf(richText);
@@ -292,6 +306,10 @@ public abstract class RichTextStyle {
     }
 
     private static TL_iv.RichText wrap(String str, Run run) {
+        RichInlineButtonSpan richInlineButtonSpan = run.button;
+        if (richInlineButtonSpan != null) {
+            return richInlineButtonSpan.getButton();
+        }
         if (run.mathSource != null) {
             TL_iv.textMath textmath = new TL_iv.textMath();
             textmath.source = run.mathSource;
@@ -548,6 +566,10 @@ public abstract class RichTextStyle {
         if (mathSpanArr.length > 0) {
             run.mathSource = mathSpanArr[0].source;
         }
+        RichInlineButtonSpan[] richInlineButtonSpanArr = (RichInlineButtonSpan[]) spanned.getSpans(i, i2, RichInlineButtonSpan.class);
+        if (richInlineButtonSpanArr.length > 0) {
+            run.button = richInlineButtonSpanArr[0];
+        }
         return run;
     }
 
@@ -559,6 +581,7 @@ public abstract class RichTextStyle {
     }
 
     private static class Run {
+        RichInlineButtonSpan button;
         FormattedDateSpan date;
         long emojiDocId;
         int flags;
@@ -568,19 +591,8 @@ public abstract class RichTextStyle {
         private Run() {
         }
 
-        boolean equals(Run run) {
-            if (this.emojiDocId != 0 || run.emojiDocId != 0 || this.mathSource != null || run.mathSource != null || this.flags != run.flags) {
-                return false;
-            }
-            String str = this.url;
-            if (str == null) {
-                if (run.url != null) {
-                    return false;
-                }
-            } else if (!str.equals(run.url)) {
-                return false;
-            }
-            return this.date == run.date;
+        boolean equals(org.telegram.ui.iv.RichTextStyle.Run r8) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iv.RichTextStyle.Run.equals(org.telegram.ui.iv.RichTextStyle$Run):boolean");
         }
     }
 }

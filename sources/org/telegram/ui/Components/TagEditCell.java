@@ -545,6 +545,11 @@ public class TagEditCell extends LinearLayout {
             }
 
             @Override
+            public int getChatMode() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
+            }
+
+            @Override
             public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
             }
@@ -1318,6 +1323,11 @@ public class TagEditCell extends LinearLayout {
                 @Override
                 public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAddPollOptionInputFieldHeight(this, chatMessageCell2);
+                }
+
+                @Override
+                public int getChatMode() {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
                 }
 
                 @Override

@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -34,6 +35,10 @@ public class QuoteCollapseButton {
         this.textCollapsed = false;
         animatedTextDrawable.setText(LocaleController.getString(R.string.QuoteCollapse), false);
         this.textWidth = (int) Math.ceil(Math.max(animatedTextDrawable.getPaint().measureText(LocaleController.getString(R.string.QuoteExpand)), animatedTextDrawable.getPaint().measureText(LocaleController.getString(r1))));
+    }
+
+    public boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.text || drawable == this.drawable;
     }
 
     public int width() {

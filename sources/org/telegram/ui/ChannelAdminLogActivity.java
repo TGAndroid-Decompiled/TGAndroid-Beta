@@ -2776,6 +2776,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     }
 
                     @Override
+                    public int getChatMode() {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
+                    }
+
+                    @Override
                     public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getDraftMessageMeasureController(this);
                     }
@@ -3212,6 +3217,11 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public String getAdminRank(long j) {
                 return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+            }
+
+            @Override
+            public int getChatMode() {
+                return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getChatMode(this);
             }
 
             @Override
@@ -4568,7 +4578,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         Objects.requireNonNull(chatActivityFragmentView);
         if (downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(new IBlur3Capture() {
             @Override
-            public final void capture(Canvas canvas, RectF rectF) throws IOException {
+            public final void capture(Canvas canvas, RectF rectF) {
                 chatActivityFragmentView.drawList(canvas, rectF);
             }
 
@@ -4649,7 +4659,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             super(context);
         }
 
-        public void drawList(Canvas canvas, RectF rectF) throws IOException {
+        public void drawList(Canvas canvas, RectF rectF) {
             long jUptimeMillis = SystemClock.uptimeMillis();
             if (ChannelAdminLogActivity.this.chatListView.hasActiveEdgeEffects()) {
                 canvas.save();
