@@ -371,10 +371,14 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
         return new URLSpanReplacement(str);
     }
 
-    public void showInputDialog(String str, String str2, String str3, final boolean z, final InputDialogCallback inputDialogCallback) {
+    public void showInputDialog(String str, String str2, String str3, boolean z, InputDialogCallback inputDialogCallback) {
+        showInputDialog(str, str2, str3, z, this.adaptiveCreateLinkDialog, inputDialogCallback);
+    }
+
+    public void showInputDialog(String str, String str2, String str3, final boolean z, boolean z2, final InputDialogCallback inputDialogCallback) {
         Object builder;
         CharSequence charSequenceCoerceToText;
-        if (this.adaptiveCreateLinkDialog) {
+        if (z2) {
             builder = new AlertDialogDecor.Builder(getContext(), this.resourcesProvider);
         } else {
             builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
@@ -466,7 +470,7 @@ public class EditTextCaption extends EditTextBoldCursor implements FloatingToolb
             }
         });
         r8.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        if (this.adaptiveCreateLinkDialog) {
+        if (z2) {
             AlertDialog alertDialogCreate = r8.create();
             this.creationLinkDialog = alertDialogCreate;
             alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {

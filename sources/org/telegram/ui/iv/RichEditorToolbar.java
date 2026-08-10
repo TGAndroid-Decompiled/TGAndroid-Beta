@@ -615,20 +615,20 @@ public class RichEditorToolbar extends FrameLayout {
         }
     }
 
-    public void setFormattingState(int i, boolean z, boolean z2, boolean z3, boolean z4) {
+    public void setFormattingState(int i, boolean z, boolean z2, boolean z3, boolean z4, boolean z5) {
         Iterator it = this.formattingButtons.iterator();
         while (it.hasNext()) {
             RichEditor.Button button = (RichEditor.Button) it.next();
             int iIntValue = ((Integer) button.getTag()).intValue();
             button.setSelected((i & iIntValue) != 0);
             if (iIntValue == 1 || iIntValue == 2) {
-                button.setEnabled(z4);
+                button.setEnabled(z5);
             }
         }
         this.linkButton.setSelected(z);
         this.dateButton.setSelected(z2);
         this.linkButton.setEnabled(z3);
-        this.inlineButton.setEnabled(z3);
+        this.inlineButton.setEnabled(z4);
         this.dateButton.setEnabled(z3);
         this.mathButton.setEnabled(z3);
     }

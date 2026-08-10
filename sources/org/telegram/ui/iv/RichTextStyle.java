@@ -32,12 +32,20 @@ public abstract class RichTextStyle {
     }
 
     public static CharSequence toSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock) {
+        return toSpannable(richText, pageBlock, true);
+    }
+
+    public static CharSequence toSimpleSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock) {
+        return toSpannable(richText, pageBlock, false);
+    }
+
+    private static CharSequence toSpannable(TL_iv.RichText richText, TL_iv.PageBlock pageBlock, boolean z) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        append(spannableStringBuilder, richText, 0, pageBlock);
+        append(spannableStringBuilder, richText, 0, pageBlock, z);
         return spannableStringBuilder;
     }
 
-    private static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i, TL_iv.PageBlock pageBlock) {
+    private static void append(SpannableStringBuilder spannableStringBuilder, TL_iv.RichText richText, int i, TL_iv.PageBlock pageBlock, boolean z) {
         String str;
         if (richText == null || (richText instanceof TL_iv.textEmpty)) {
             return;
@@ -45,7 +53,7 @@ public abstract class RichTextStyle {
         if (richText instanceof TL_iv.textConcat) {
             Iterator<TL_iv.RichText> it = ((TL_iv.textConcat) richText).texts.iterator();
             while (it.hasNext()) {
-                append(spannableStringBuilder, it.next(), i, pageBlock);
+                append(spannableStringBuilder, it.next(), i, pageBlock, z);
             }
             return;
         }
@@ -55,11 +63,11 @@ public abstract class RichTextStyle {
             boolean zIsEmpty2 = isEmpty(textdiff.old_text);
             int length = spannableStringBuilder.length();
             if (zIsEmpty) {
-                append(spannableStringBuilder, textdiff.old_text, i, pageBlock);
+                append(spannableStringBuilder, textdiff.old_text, i, pageBlock, z);
                 setDiffStyle(spannableStringBuilder, length, 8192);
                 return;
             }
-            append(spannableStringBuilder, textdiff.text, i, pageBlock);
+            append(spannableStringBuilder, textdiff.text, i, pageBlock, z);
             if (zIsEmpty2) {
                 setDiffStyle(spannableStringBuilder, length, 4096);
                 return;
@@ -93,7 +101,7 @@ public abstract class RichTextStyle {
         if (richText instanceof TL_iv.textUrl) {
             TL_iv.textUrl texturl = (TL_iv.textUrl) richText;
             int length3 = spannableStringBuilder.length();
-            append(spannableStringBuilder, texturl.text, i, pageBlock);
+            append(spannableStringBuilder, texturl.text, i, pageBlock, z);
             if (spannableStringBuilder.length() <= length3 || (str = texturl.url) == null) {
                 return;
             }
@@ -103,7 +111,7 @@ public abstract class RichTextStyle {
         if (richText instanceof TL_iv.textDate) {
             TL_iv.textDate textdate = (TL_iv.textDate) richText;
             int length4 = spannableStringBuilder.length();
-            append(spannableStringBuilder, textdate.text, i, pageBlock);
+            append(spannableStringBuilder, textdate.text, i, pageBlock, z);
             if (spannableStringBuilder.length() > length4) {
                 spannableStringBuilder.setSpan(dateSpan(textdate, spannableStringBuilder.subSequence(length4, spannableStringBuilder.length()).toString()), length4, spannableStringBuilder.length(), 33);
                 return;
@@ -134,16 +142,16 @@ public abstract class RichTextStyle {
         if (richText instanceof TL_iv.textButton) {
             TL_iv.textButton textbutton = (TL_iv.textButton) richText;
             int length7 = spannableStringBuilder.length();
-            append(spannableStringBuilder, textbutton.text, i, pageBlock);
-            if (spannableStringBuilder.length() <= length7 || !RichInlineButtonSpan.isSupported(textbutton.type)) {
+            append(spannableStringBuilder, textbutton.text, i, pageBlock, z);
+            if (z && spannableStringBuilder.length() > length7 && RichInlineButtonSpan.isSupported(textbutton.type)) {
+                spannableStringBuilder.setSpan(new RichInlineButtonSpan(textbutton), length7, spannableStringBuilder.length(), 33);
                 return;
             }
-            spannableStringBuilder.setSpan(new RichInlineButtonSpan(textbutton), length7, spannableStringBuilder.length(), 33);
             return;
         }
         int iFlagOf = flagOf(richText);
         if (iFlagOf != 0) {
-            append(spannableStringBuilder, richText.text, i | iFlagOf, pageBlock);
+            append(spannableStringBuilder, richText.text, i | iFlagOf, pageBlock, z);
         } else {
             appendLeaf(spannableStringBuilder, plainOf(richText), i, pageBlock);
         }

@@ -3213,6 +3213,15 @@ public class MessageObject {
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.AccDescrIVSlideshow));
             } else if (pageBlock instanceof TL_iv.pageBlockUnsupported) {
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.UnsupportedAttachment));
+            } else if (pageBlock instanceof TL_iv.pageBlockButtonRow) {
+                TL_iv.pageBlockButtonRow pageblockbuttonrow = (TL_iv.pageBlockButtonRow) pageBlock;
+                while (i2 < pageblockbuttonrow.buttons.size()) {
+                    if (i2 > 0) {
+                        spannableStringBuilder.append("  ");
+                    }
+                    formatRichText(pageblockbuttonrow.buttons.get(i2).text, z, z2, i, spannableStringBuilder, 0);
+                    i2++;
+                }
             }
         }
         return spannableStringBuilder;
@@ -3225,6 +3234,8 @@ public class MessageObject {
         int length = spannableStringBuilder.length();
         if (richText instanceof TL_iv.textPlain) {
             spannableStringBuilder.append((CharSequence) ((TL_iv.textPlain) richText).text);
+        } else if (richText instanceof TL_iv.textButton) {
+            formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2);
         } else if (richText instanceof TL_iv.textBold) {
             formatRichText(richText.text, z, z2, i, spannableStringBuilder, i2 | 1);
         } else if (richText instanceof TL_iv.textItalic) {

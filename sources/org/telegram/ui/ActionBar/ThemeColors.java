@@ -641,7 +641,7 @@ public abstract class ThemeColors {
         iArr[Theme.key_chat_msgIvButtonSuccessOutText] = -12539616;
         iArr[Theme.key_chat_msgIvButtonDefaultInlineOut] = -2296629;
         iArr[Theme.key_chat_msgIvButtonDefaultInlineOutPressed] = -2296629;
-        iArr[Theme.key_chat_msgIvButtonDefaultInlineOutText] = -14054705;
+        iArr[Theme.key_chat_msgIvButtonDefaultInlineOutText] = -11293879;
         iArr[Theme.key_statisticChartSignature] = 2133140777;
         iArr[Theme.key_statisticChartSignatureAlpha] = 2133140777;
         iArr[Theme.key_statisticChartHintLine] = 437792059;

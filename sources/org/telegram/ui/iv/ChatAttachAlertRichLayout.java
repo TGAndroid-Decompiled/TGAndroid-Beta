@@ -25,6 +25,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
@@ -192,12 +193,12 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onOpenAttachRequest(int i, int i2) {
+        public void onOpenAttachRequest(int i, int i2) throws IOException {
             ChatAttachAlertRichLayout.this.openAttach(i, i2);
         }
 
         @Override
-        public void onOpenLocationRequest(BlockRow blockRow) {
+        public void onOpenLocationRequest(BlockRow blockRow) throws IOException {
             ChatAttachAlertRichLayout.this.openLocationPicker(blockRow);
         }
 
@@ -323,7 +324,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
 
         @Override
-        public void onAttach() {
+        public void onAttach() throws IOException {
             ChatAttachAlertRichLayout.this.listView.pendingMediaRow = null;
             ChatAttachAlertRichLayout.this.openAttach(90, 0);
         }
@@ -723,7 +724,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         } else {
             i = 0;
         }
-        this.toolbar.setFormattingState(i, z && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset), z && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset), z && startCell == endCell, !this.listView.isSelectionAllHeadings());
+        this.toolbar.setFormattingState(i, z && this.listView.isLinkApplied(startCell, startOffset, endCell, endOffset), z && this.listView.isDateApplied(startCell, startOffset, endCell, endOffset), z && startCell == endCell, this.listView.canCreateInlineButtonOnSelection(), !this.listView.isSelectionAllHeadings());
     }
 
     private void updateFormattingButtonsTable() {
@@ -735,7 +736,6 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         int endOffset = textSelectionHelper.getEndOffset();
         int[] iArr = STYLE_FLAGS;
         int length = iArr.length;
-        boolean z = false;
         int i = 0;
         int i2 = 0;
         while (i < length) {
@@ -746,16 +746,11 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
             i = i4 + 1;
         }
-        boolean z2 = startChildPosition == endChildPosition;
-        RichEditText richEditTextTableEditText = z2 ? this.listView.tableEditText(startCell, startChildPosition) : null;
+        boolean z = startChildPosition == endChildPosition;
+        RichEditText richEditTextTableEditText = z ? this.listView.tableEditText(startCell, startChildPosition) : null;
         int iMax = Math.max(0, Math.min(startOffset, endOffset));
         int iMax2 = richEditTextTableEditText == null ? 0 : Math.max(0, Math.min(Math.max(startOffset, endOffset), richEditTextTableEditText.length()));
-        RichEditorToolbar richEditorToolbar = this.toolbar;
-        boolean z3 = richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2);
-        if (richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2)) {
-            z = true;
-        }
-        richEditorToolbar.setFormattingState(i2, z3, z, z2, true);
+        this.toolbar.setFormattingState(i2, richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextTableEditText.getText(), iMax, iMax2), richEditTextTableEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextTableEditText.getText(), iMax, iMax2), z, this.listView.canCreateInlineButtonOnSelection(), true);
     }
 
     private void updateFormattingButtonsCaption() {
@@ -777,7 +772,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
             }
             i = i2;
         }
-        this.toolbar.setFormattingState(i, richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextCaptionEditText.getText(), iMax, iMax2), richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextCaptionEditText.getText(), iMax, iMax2), true, true);
+        this.toolbar.setFormattingState(i, richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasLink(richEditTextCaptionEditText.getText(), iMax, iMax2), richEditTextCaptionEditText != null && iMax < iMax2 && RichTextStyle.hasDate(richEditTextCaptionEditText.getText(), iMax, iMax2), true, this.listView.canCreateInlineButtonOnSelection(), true);
     }
 
     public void updateToolbarBlockType() {
@@ -1259,7 +1254,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void openLocationPicker(final BlockRow blockRow) {
+    public void openLocationPicker(final BlockRow blockRow) throws IOException {
         BaseFragment baseFragment = this.parentAlert.baseFragment;
         if (baseFragment != null && blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(baseFragment)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this.parentAlert.baseFragment, false, false, false, null);
@@ -1358,7 +1353,7 @@ public class ChatAttachAlertRichLayout extends ChatAttachAlert.AttachAlertLayout
         }
     }
 
-    public void openAttach(int i, int i2) {
+    public void openAttach(int i, int i2) throws IOException {
         if (this.parentAlert.baseFragment == null) {
             return;
         }

@@ -1,5 +1,7 @@
 package org.telegram.messenger;
 
+import android.content.res.Resources;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -114,14 +116,14 @@ public class ChatMessagesMetadataController {
             storyItem.id = i;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
                     this.f$0.lambda$loadStoriesForMessages$1(messageObject, j, storyItem);
                 }
             });
         }
     }
 
-    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) {
+    public void lambda$loadStoriesForMessages$1(MessageObject messageObject, long j, TL_stories.StoryItem storyItem) throws Resources.NotFoundException, IOException, NumberFormatException {
         boolean zIsExpiredStory = messageObject.isExpiredStory();
         StoriesStorage.applyStory(this.chatActivity.getCurrentAccount(), j, messageObject, storyItem);
         final ArrayList arrayList = new ArrayList();

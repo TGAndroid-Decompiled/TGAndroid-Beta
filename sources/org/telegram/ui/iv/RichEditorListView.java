@@ -1320,7 +1320,7 @@ public class RichEditorListView extends UniversalRecyclerView {
     }
 
     public CharSequence toSimpleMessage() {
-        return RichMessageConvert.rowsToCharSequence(this.rows);
+        return RichMessageConvert.rowsToSimpleMessage(this.rows);
     }
 
     public void convertToSimple() {
@@ -2096,6 +2096,52 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
     }
 
+    boolean canCreateInlineButtonOnSelection() {
+        RichEditText editText;
+        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
+        if (articleTextSelectionHelper == null || !articleTextSelectionHelper.isInSelectionMode() || this.textSelectionHelper.getStartCell() != this.textSelectionHelper.getEndCell()) {
+            return false;
+        }
+        if (isTableSelection()) {
+            int startCell = this.textSelectionHelper.getStartCell();
+            int startChildPosition = this.textSelectionHelper.getStartChildPosition();
+            if (startChildPosition != this.textSelectionHelper.getEndChildPosition()) {
+                return false;
+            }
+            editText = tableEditText(startCell, startChildPosition);
+        } else if (isDetailsSelection()) {
+            editText = detailsEditText(this.textSelectionHelper.getStartCell());
+        } else if (isCaptionSelection()) {
+            editText = captionEditText(this.textSelectionHelper.getStartCell());
+        } else if (isQuoteAuthorSelection()) {
+            editText = quoteAuthorEditText(this.textSelectionHelper.getStartCell());
+        } else {
+            RichTextCell richTextCellSingleSelectionCell = singleSelectionCell();
+            if (richTextCellSingleSelectionCell == null) {
+                return false;
+            }
+            editText = richTextCellSingleSelectionCell.getEditText();
+        }
+        if (editText == null) {
+            return false;
+        }
+        int length = editText.length();
+        int iMax = Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        int iMax2 = Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
+        return iMax < iMax2 && !hasInlineButton(editText.getText(), iMax, iMax2);
+    }
+
+    private static boolean hasInlineButton(Editable editable, int i, int i2) {
+        if (editable != null && i < i2) {
+            for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) editable.getSpans(i, i2, RichInlineButtonSpan.class)) {
+                if (editable.getSpanStart(richInlineButtonSpan) < i2 && editable.getSpanEnd(richInlineButtonSpan) > i) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void hideTextSelectionUi(boolean z) {
         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
         if (articleTextSelectionHelper != null) {
@@ -2114,8 +2160,7 @@ public class RichEditorListView extends UniversalRecyclerView {
 
     private InlineButtonEdit beginInlineButtonEdit() {
         RichEditText editText;
-        TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
-        if (articleTextSelectionHelper == null || !articleTextSelectionHelper.isInSelectionMode()) {
+        if (!canCreateInlineButtonOnSelection()) {
             return null;
         }
         if (isTableSelection()) {
@@ -2143,12 +2188,7 @@ public class RichEditorListView extends UniversalRecyclerView {
             return null;
         }
         int length = richEditText.length();
-        int iMax = Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
-        int iMax2 = Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length));
-        if (iMax < iMax2) {
-            return new InlineButtonEdit(richEditText, iMax, iMax2, null);
-        }
-        return null;
+        return new InlineButtonEdit(richEditText, Math.max(0, Math.min(Math.min(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length)), Math.max(0, Math.min(Math.max(this.textSelectionHelper.getStartOffset(), this.textSelectionHelper.getEndOffset()), length)), null);
     }
 
     public class InlineButtonEdit {
@@ -2182,8 +2222,8 @@ public class RichEditorListView extends UniversalRecyclerView {
             return RichTextStyle.plainOf(this.label);
         }
 
-        public void showInputDialog(String str, String str2, String str3, boolean z, EditTextCaption.InputDialogCallback inputDialogCallback) {
-            this.editText.showInputDialog(str, str2, str3, z, inputDialogCallback);
+        public void showInputDialog(String str, String str2, String str3, boolean z, boolean z2, EditTextCaption.InputDialogCallback inputDialogCallback) {
+            this.editText.showInputDialog(str, str2, str3, z, z2, inputDialogCallback);
         }
 
         public void dismissSelectionUi() {

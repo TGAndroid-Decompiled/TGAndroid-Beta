@@ -439,6 +439,11 @@ public abstract class RichMessageConvert {
     }
 
     public static CharSequence rowsToCharSequence(List list) {
+        return rowsToCharSequence(list, false);
+    }
+
+    private static CharSequence rowsToCharSequence(List list, boolean z) {
+        CharSequence spannable;
         ArrayList arrayList = new ArrayList();
         int i = 0;
         while (list != null && i < list.size()) {
@@ -451,7 +456,7 @@ public abstract class RichMessageConvert {
                     if (i2 > i) {
                         spannableStringBuilder.append('\n');
                     }
-                    spannableStringBuilder.append(renderLeaf((BlockRow) list.get(i2)));
+                    spannableStringBuilder.append(renderLeaf((BlockRow) list.get(i2), z));
                     i2++;
                 }
                 if (spannableStringBuilder.length() > 0) {
@@ -461,16 +466,22 @@ public abstract class RichMessageConvert {
                 i = i2;
             } else {
                 if (isQuoteLeaf(blockRow.block)) {
-                    TL_iv.PageBlock pageBlock = blockRow.block;
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(RichTextStyle.toSpannable(pageBlock.text, pageBlock));
-                    TL_iv.PageBlock pageBlock2 = blockRow.block;
-                    boolean z = (pageBlock2 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock2).collapsed;
+                    if (z) {
+                        TL_iv.PageBlock pageBlock = blockRow.block;
+                        spannable = RichTextStyle.toSimpleSpannable(pageBlock.text, pageBlock);
+                    } else {
+                        TL_iv.PageBlock pageBlock2 = blockRow.block;
+                        spannable = RichTextStyle.toSpannable(pageBlock2.text, pageBlock2);
+                    }
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannable);
+                    TL_iv.PageBlock pageBlock3 = blockRow.block;
+                    boolean z2 = (pageBlock3 instanceof TL_iv.pageBlockBlockquote) && ((TL_iv.pageBlockBlockquote) pageBlock3).collapsed;
                     if (spannableStringBuilder2.length() > 0) {
-                        QuoteSpan.putQuote(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z);
+                        QuoteSpan.putQuote(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z2);
                     }
                     arrayList.add(spannableStringBuilder2);
                 } else {
-                    arrayList.add(renderLeaf(blockRow));
+                    arrayList.add(renderLeaf(blockRow, z));
                 }
                 i++;
             }
@@ -479,7 +490,7 @@ public abstract class RichMessageConvert {
     }
 
     public static CharSequence rowsToSimpleMessage(List list) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(rowsToCharSequence(list));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(rowsToCharSequence(list, true));
         int length = spannableStringBuilder.length();
         RichTextStyle.setStyle(spannableStringBuilder, 0, length, 65536, false);
         RichTextStyle.setStyle(spannableStringBuilder, 0, length, 16384, false);
@@ -503,7 +514,7 @@ public abstract class RichMessageConvert {
             }
             return false;
         }
-        if ((richText instanceof TL_iv.textMarked) || (richText instanceof TL_iv.textSubscript) || (richText instanceof TL_iv.textSuperscript) || (richText instanceof TL_iv.textMath)) {
+        if ((richText instanceof TL_iv.textMarked) || (richText instanceof TL_iv.textSubscript) || (richText instanceof TL_iv.textSuperscript) || (richText instanceof TL_iv.textMath) || (richText instanceof TL_iv.textButton)) {
             return true;
         }
         return inlineLossy(richText.text);
@@ -513,9 +524,15 @@ public abstract class RichMessageConvert {
         return (pageBlock instanceof TL_iv.pageBlockBlockquote) || (pageBlock instanceof TL_iv.pageBlockPullquote);
     }
 
-    private static CharSequence renderLeaf(BlockRow blockRow) {
-        TL_iv.PageBlock pageBlock = blockRow.block;
-        CharSequence spannable = RichTextStyle.toSpannable(pageBlock == null ? null : pageBlock.text, pageBlock);
+    private static CharSequence renderLeaf(BlockRow blockRow, boolean z) {
+        CharSequence spannable;
+        if (z) {
+            TL_iv.PageBlock pageBlock = blockRow.block;
+            spannable = RichTextStyle.toSimpleSpannable(pageBlock != null ? pageBlock.text : null, pageBlock);
+        } else {
+            TL_iv.PageBlock pageBlock2 = blockRow.block;
+            spannable = RichTextStyle.toSpannable(pageBlock2 != null ? pageBlock2.text : null, pageBlock2);
+        }
         if (!(blockRow.block instanceof TL_iv.pageBlockPreformatted)) {
             return spannable;
         }

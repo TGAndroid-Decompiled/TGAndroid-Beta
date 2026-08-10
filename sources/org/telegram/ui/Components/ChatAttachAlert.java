@@ -69,6 +69,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -412,11 +413,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return this.frameLayout2.getMeasuredHeight() - ((this.frameLayout2.getMeasuredHeight() - AndroidUtilities.dp(84.0f)) * (1.0f - this.frameLayout2.getAlpha()));
     }
 
-    public void showBotLayout(long j, boolean z) {
+    public void showBotLayout(long j, boolean z) throws IOException {
         showBotLayout(j, null, false, z);
     }
 
-    public void showBotLayout(long r19, java.lang.String r21, boolean r22, boolean r23) {
+    public void showBotLayout(long r19, java.lang.String r21, boolean r22, boolean r23) throws java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.showBotLayout(long, java.lang.String, boolean, boolean):void");
     }
 
@@ -1322,7 +1323,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this(context, baseFragment, z, z2, true, null);
     }
 
-    public ChatAttachAlert(final Context context, final BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, final Theme.ResourcesProvider resourcesProvider) {
+    public ChatAttachAlert(final Context context, final BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, final Theme.ResourcesProvider resourcesProvider) throws IOException {
         TextView textView;
         int i;
         int i2;
@@ -1356,7 +1357,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
 
             @Override
-            public final void onItemChanged(ReplaceAnimator replaceAnimator2) {
+            public final void onItemChanged(ReplaceAnimator replaceAnimator2) throws IOException {
                 this.f$0.onCurrentLayoutAnimatorChanged(replaceAnimator2);
             }
 
@@ -1774,7 +1775,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.optionsItem.setBackground(Theme.createSelectorDrawable(getThemedColor(i), 3));
         this.optionsItem.addSubItem(1, R.drawable.msg_addbot, LocaleController.getString(R.string.StickerCreateEmpty)).setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws Resources.NotFoundException, IOException {
                 this.f$0.lambda$new$6(resourcesProvider, view);
             }
         });
@@ -1813,7 +1814,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.headerView = frameLayout;
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) {
+            public final void onClick(View view) throws IOException {
                 this.f$0.lambda$new$8(view);
             }
         });
@@ -2086,7 +2087,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.containerView.addView(this.buttonsRecyclerViewWrapper, LayoutHelper.createFrame(-1, 70, 81));
         this.buttonsRecyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i9) {
+            public final void onItemClick(View view, int i9) throws IOException {
                 this.f$0.lambda$new$14(resourcesProvider, view, i9);
             }
         });
@@ -3399,7 +3400,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         lambda$new$0();
     }
 
-    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) {
+    public void lambda$new$6(Theme.ResourcesProvider resourcesProvider, View view) throws Resources.NotFoundException, IOException {
         this.optionsItem.toggleSubMenu();
         PhotoViewer.getInstance().setParentActivity(this.baseFragment, resourcesProvider);
         PhotoViewer.getInstance().setParentAlert(this);
@@ -3481,11 +3482,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.optionsItem.toggleSubMenu();
     }
 
-    public void lambda$new$8(View view) {
+    public void lambda$new$8(View view) throws IOException {
         updatePhotoPreview(this.currentAttachLayout != this.photoPreviewLayout);
     }
 
-    public void lambda$new$14(Theme.ResourcesProvider resourcesProvider, View view, int i) {
+    public void lambda$new$14(Theme.ResourcesProvider resourcesProvider, View view, int i) throws IOException {
         BaseFragment lastFragment = this.baseFragment;
         if (lastFragment == null) {
             lastFragment = LaunchActivity.getLastFragment();
@@ -3695,13 +3696,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     public void lambda$new$12(final AttachBotButton attachBotButton, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 this.f$0.lambda$new$11(attachBotButton);
             }
         });
     }
 
-    public void lambda$new$11(AttachBotButton attachBotButton) {
+    public void lambda$new$11(AttachBotButton attachBotButton) throws IOException {
         TLRPC.TL_attachMenuBot tL_attachMenuBot = attachBotButton.attachMenuBot;
         attachBotButton.attachMenuBot.side_menu_disclaimer_needed = false;
         tL_attachMenuBot.inactive = false;
@@ -4417,13 +4418,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     public void lambda$onLongClickBotButton$45(final TLRPC.TL_attachMenuBot tL_attachMenuBot, TLObject tLObject, TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
-            public final void run() {
+            public final void run() throws IOException {
                 this.f$0.lambda$onLongClickBotButton$44(tL_attachMenuBot);
             }
         });
     }
 
-    public void lambda$onLongClickBotButton$44(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+    public void lambda$onLongClickBotButton$44(TLRPC.TL_attachMenuBot tL_attachMenuBot) throws IOException {
         MediaDataController.getInstance(this.currentAccount).loadAttachMenuBots(false, true);
         if (this.currentAttachLayout == this.botAttachLayouts.get(tL_attachMenuBot.bot_id)) {
             showLayout(this.photoLayout);
@@ -4438,7 +4439,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     @Override
-    public void show() {
+    public void show() throws IOException {
         super.show();
         this.buttonPressed = false;
         BaseFragment baseFragment = this.baseFragment;
@@ -4542,7 +4543,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.buttonPressed = z;
     }
 
-    public void openAttachLayoutForType(int i) {
+    public void openAttachLayoutForType(int i) throws IOException {
         if (i == 3) {
             if (this.musicEnabled || !checkCanRemoveRestrictionsByBoosts()) {
                 BaseFragment baseFragment = this.baseFragment;
@@ -4590,7 +4591,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         ((ChatActivity) this.baseFragment).didSelectLocation(messageMedia, i, z, i2, j);
     }
 
-    public void showLayout(AttachAlertLayout attachAlertLayout) {
+    public void showLayout(AttachAlertLayout attachAlertLayout) throws IOException {
         long j = this.selectedId;
         ChatAttachRestrictedLayout chatAttachRestrictedLayout = this.restrictedLayout;
         if (attachAlertLayout == chatAttachRestrictedLayout) {
@@ -4623,7 +4624,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         showLayout(attachAlertLayout, j);
     }
 
-    private void showPollLayout(boolean z, Boolean bool) {
+    private void showPollLayout(boolean z, Boolean bool) throws IOException {
         if (this.pollLayout == null) {
             AttachAlertLayout[] attachAlertLayoutArr = this.layouts;
             ChatAttachAlertPollLayout chatAttachAlertPollLayout = new ChatAttachAlertPollLayout(this, getContext(), false, this.resourcesProvider, bool);
@@ -4649,11 +4650,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         showPollLayout(false, bool);
     }
 
-    private void showLayout(AttachAlertLayout attachAlertLayout, long j) {
+    private void showLayout(AttachAlertLayout attachAlertLayout, long j) throws IOException {
         showLayout(attachAlertLayout, j, true);
     }
 
-    private void showLayout(final AttachAlertLayout attachAlertLayout, long j, boolean z) {
+    private void showLayout(final AttachAlertLayout attachAlertLayout, long j, boolean z) throws IOException {
         ChatAttachAlertPhotoLayout.CameraViewInternal cameraViewInternal;
         ChatAttachAlertPhotoLayout.CameraViewInternal cameraViewInternal2;
         int iDp = 0;
@@ -4929,11 +4930,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         runnable.run();
     }
 
-    public void onCurrentLayoutAnimatorChanged(ReplaceAnimator replaceAnimator) {
+    public void onCurrentLayoutAnimatorChanged(ReplaceAnimator replaceAnimator) throws IOException {
         onCurrentLayoutAnimatorChanged();
     }
 
-    private void onCurrentLayoutAnimatorChanged() {
+    private void onCurrentLayoutAnimatorChanged() throws IOException {
         if (this.shadowDrawable == null || this.containerView == null) {
             return;
         }
@@ -4958,11 +4959,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    private int getShadowDrawableColor() {
+    private int getShadowDrawableColor() throws IOException {
         return getShadowDrawableColor(false);
     }
 
-    private int getShadowDrawableColor(boolean z) {
+    private int getShadowDrawableColor(boolean z) throws IOException {
         ActionBar actionBar;
         if (this.forceDarkTheme) {
             return getThemedColor(Theme.key_voipgroup_listViewBackground);
@@ -4997,7 +4998,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return this.photoPreviewLayout;
     }
 
-    public void updatePhotoPreview(boolean z) {
+    public void updatePhotoPreview(boolean z) throws IOException {
         if (z) {
             if (this.canOpenPreview) {
                 if (this.photoPreviewLayout == null) {
@@ -5023,7 +5024,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         showLayout(this.photoLayout);
     }
 
-    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
+    public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) throws IOException {
         ChatAttachAlertLocationLayout chatAttachAlertLocationLayout;
         if (i == 5 && iArr != null && iArr.length > 0 && iArr[0] == 0) {
             openContactsLayout();
@@ -5032,7 +5033,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    private void openContactsLayout() {
+    private void openContactsLayout() throws IOException {
         if (!this.plainTextEnabled) {
             ChatAttachRestrictedLayout chatAttachRestrictedLayout = new ChatAttachRestrictedLayout(5, this, getContext(), this.resourcesProvider);
             this.restrictedLayout = chatAttachRestrictedLayout;
@@ -5064,7 +5065,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         showLayout(this.contactsLayout);
     }
 
-    private void openQuickRepliesLayout() {
+    private void openQuickRepliesLayout() throws IOException {
         if (this.quickRepliesLayout == null) {
             AttachAlertLayout[] attachAlertLayoutArr = this.layouts;
             ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout = new ChatAttachAlertQuickRepliesLayout(this, getContext(), this.resourcesProvider);
@@ -5080,7 +5081,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         return (baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).checkCanRemoveRestrictionsByBoosts();
     }
 
-    public void openAudioLayout(boolean z) {
+    public void openAudioLayout(boolean z) throws IOException {
         if (!this.musicEnabled && z) {
             ChatAttachRestrictedLayout chatAttachRestrictedLayout = new ChatAttachRestrictedLayout(3, this, getContext(), this.resourcesProvider);
             this.restrictedLayout = chatAttachRestrictedLayout;
@@ -5134,7 +5135,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void openColorsLayout() {
+    public void openColorsLayout() throws IOException {
         if (this.colorsLayout == null) {
             ChatAttachAlertColorsLayout chatAttachAlertColorsLayout = new ChatAttachAlertColorsLayout(this, getContext(), this.resourcesProvider);
             this.colorsLayout = chatAttachAlertColorsLayout;
@@ -5155,7 +5156,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    private void openDocumentsLayout(boolean z) {
+    private void openDocumentsLayout(boolean z) throws IOException {
         if (!this.documentsEnabled && z) {
             ChatAttachRestrictedLayout chatAttachRestrictedLayout = new ChatAttachRestrictedLayout(4, this, getContext(), this.resourcesProvider);
             this.restrictedLayout = chatAttachRestrictedLayout;
@@ -5212,7 +5213,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 }
 
                 @Override
-                public void startMusicSelectActivity() {
+                public void startMusicSelectActivity() throws IOException {
                     ChatAttachAlert.this.openAudioLayout(true);
                 }
             });
@@ -5704,7 +5705,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void checkColors() {
+    public void checkColors() throws IOException {
         RecyclerListView recyclerListView = this.buttonsRecyclerView;
         if (recyclerListView == null) {
             return;

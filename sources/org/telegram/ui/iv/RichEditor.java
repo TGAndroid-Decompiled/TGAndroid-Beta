@@ -40,6 +40,7 @@ import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
 import j$.util.Objects;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -737,7 +738,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         this.addButton.setContentDescription(LocaleController.getString(R.string.AccDescrAttachButton));
         this.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view3) {
+            public final void onClick(View view3) throws IOException {
                 this.f$0.lambda$createView$31(view3);
             }
         });
@@ -1044,12 +1045,12 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
 
         @Override
-        public void onOpenAttachRequest(int i, int i2) {
+        public void onOpenAttachRequest(int i, int i2) throws IOException {
             RichEditor.this.openAttach(i, i2);
         }
 
         @Override
-        public void onOpenLocationRequest(BlockRow blockRow) {
+        public void onOpenLocationRequest(BlockRow blockRow) throws IOException {
             RichEditor.this.openLocationPicker(blockRow);
         }
 
@@ -1446,7 +1447,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    public void lambda$createView$31(View view) {
+    public void lambda$createView$31(View view) throws IOException {
         this.listView.pendingMediaRow = null;
         openAttach();
     }
@@ -1793,7 +1794,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         if (z2 && startCell == endCell) {
             z = true;
         }
-        setInlineButtonsEnabled(z);
+        setInlineButtonsEnabled(z, this.listView.canCreateInlineButtonOnSelection());
     }
 
     private void setBoldEnabled(boolean z) {
@@ -1806,14 +1807,14 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    private void setInlineButtonsEnabled(boolean z) {
+    private void setInlineButtonsEnabled(boolean z, boolean z2) {
         Button button = this.linkButton;
         if (button != null) {
             button.setEnabled(z);
         }
         Button button2 = this.inlineButton;
         if (button2 != null) {
-            button2.setEnabled(z);
+            button2.setEnabled(z2);
         }
         Button button3 = this.dateButton;
         if (button3 != null) {
@@ -1863,7 +1864,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             button3.setSelected(z);
         }
         setBoldEnabled(true);
-        setInlineButtonsEnabled(z2);
+        setInlineButtonsEnabled(z2, this.listView.canCreateInlineButtonOnSelection());
     }
 
     private void updateFormattingButtonsCaption() {
@@ -1899,7 +1900,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
             button3.setSelected(z);
         }
         setBoldEnabled(true);
-        setInlineButtonsEnabled(true);
+        setInlineButtonsEnabled(true, this.listView.canCreateInlineButtonOnSelection());
     }
 
     public static class Button extends ImageView implements Theme.Colorable {
@@ -2254,11 +2255,11 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         }
     }
 
-    private void openAttach() {
+    private void openAttach() throws IOException {
         openAttach(90, 0);
     }
 
-    public void openAttach(int i, int i2) {
+    public void openAttach(int i, int i2) throws IOException {
         RichEditorListView richEditorListView = this.listView;
         richEditorListView.pendingInsertRow = richEditorListView.findFocusedRow();
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, true, getResourceProvider());
@@ -2478,7 +2479,7 @@ public class RichEditor extends BaseFragment implements NotificationCenter.Notif
         showDialog(new PremiumFeatureBottomSheet(this, 43, true));
     }
 
-    public void openLocationPicker(final BlockRow blockRow) {
+    public void openLocationPicker(final BlockRow blockRow) throws IOException {
         if (blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(this)) {
             final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, false, getResourceProvider());
             chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
