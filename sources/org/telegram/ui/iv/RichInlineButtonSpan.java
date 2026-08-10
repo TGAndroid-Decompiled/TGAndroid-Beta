@@ -2,6 +2,7 @@ package org.telegram.ui.iv;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.text.Spannable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -28,6 +29,26 @@ public class RichInlineButtonSpan extends ReplacementSpan {
 
     public static boolean isSupported(TL_keyboard.InlineButtonType inlineButtonType) {
         return (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) || (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) || (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile);
+    }
+
+    public void removeNestedReplacementSpans(Spannable spannable) {
+        if (spannable == null) {
+            return;
+        }
+        int spanStart = spannable.getSpanStart(this);
+        int spanEnd = spannable.getSpanEnd(this);
+        if (spanStart < 0 || spanEnd <= spanStart) {
+            return;
+        }
+        for (ReplacementSpan replacementSpan : (ReplacementSpan[]) spannable.getSpans(spanStart, spanEnd, ReplacementSpan.class)) {
+            if (replacementSpan != this) {
+                int spanStart2 = spannable.getSpanStart(replacementSpan);
+                int spanEnd2 = spannable.getSpanEnd(replacementSpan);
+                if (spanStart2 < spanEnd && spanEnd2 > spanStart) {
+                    spannable.removeSpan(replacementSpan);
+                }
+            }
+        }
     }
 
     public void bind(View view, int i, Theme.ResourcesProvider resourcesProvider) {

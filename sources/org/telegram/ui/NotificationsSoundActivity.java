@@ -257,7 +257,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.listView.setLayoutManager(new LinearLayoutManager(context));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i2) throws IOException {
+            public final void onItemClick(View view, int i2) {
                 this.f$0.lambda$createView$1(context, view, i2);
             }
         });
@@ -401,7 +401,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
     }
 
-    public void lambda$createView$1(android.content.Context r9, android.view.View r10, int r11) throws java.io.IOException {
+    public void lambda$createView$1(android.content.Context r9, android.view.View r10, int r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSoundActivity.lambda$createView$1(android.content.Context, android.view.View, int):void");
     }
 

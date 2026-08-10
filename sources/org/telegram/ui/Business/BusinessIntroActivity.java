@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -410,7 +409,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             });
             emojiBottomSheet.whenPlusSelected(new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.openCustomStickerEditor();
                 }
             });
@@ -595,7 +594,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         finishFragment();
     }
 
-    public void openCustomStickerEditor() throws IOException {
+    public void openCustomStickerEditor() {
         ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(null);
         if (getParentActivity() == null) {
             return;

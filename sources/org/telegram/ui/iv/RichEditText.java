@@ -375,8 +375,12 @@ public class RichEditText extends EditTextCaption {
         if (text == null) {
             return;
         }
-        for (RichInlineButtonSpan richInlineButtonSpan : (RichInlineButtonSpan[]) text.getSpans(0, text.length(), RichInlineButtonSpan.class)) {
-            richInlineButtonSpan.bind(this, this.currentAccount, this.resourcesProvider);
+        RichInlineButtonSpan[] richInlineButtonSpanArr = (RichInlineButtonSpan[]) text.getSpans(0, text.length(), RichInlineButtonSpan.class);
+        for (RichInlineButtonSpan richInlineButtonSpan : richInlineButtonSpanArr) {
+            richInlineButtonSpan.removeNestedReplacementSpans(text);
+        }
+        for (RichInlineButtonSpan richInlineButtonSpan2 : richInlineButtonSpanArr) {
+            richInlineButtonSpan2.bind(this, this.currentAccount, this.resourcesProvider);
         }
     }
 

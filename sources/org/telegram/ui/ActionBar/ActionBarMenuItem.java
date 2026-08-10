@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -1095,7 +1094,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return true;
     }
 
-    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+    public void removeSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
         if (mediaFilterData.removable) {
             this.currentSearchFilters.remove(mediaFilterData);
             int i = this.selectedFilterIndex;
@@ -1115,7 +1114,7 @@ public class ActionBarMenuItem extends FrameLayout {
         onFiltersChanged();
     }
 
-    public void clearSearchFilters() throws Resources.NotFoundException {
+    public void clearSearchFilters() {
         int i = 0;
         while (i < this.currentSearchFilters.size()) {
             if (((FiltersView.MediaFilterData) this.currentSearchFilters.get(i)).removable) {
@@ -1127,7 +1126,7 @@ public class ActionBarMenuItem extends FrameLayout {
         onFiltersChanged();
     }
 
-    public void onFiltersChanged() throws Resources.NotFoundException {
+    public void onFiltersChanged() {
         final SearchFilterView searchFilterView;
         boolean zIsEmpty = this.currentSearchFilters.isEmpty();
         ArrayList arrayList = new ArrayList(this.currentSearchFilters);
@@ -1207,7 +1206,7 @@ public class ActionBarMenuItem extends FrameLayout {
             searchFilterView.setData(mediaFilterData);
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException {
+                public final void onClick(View view) {
                     this.f$0.lambda$onFiltersChanged$12(searchFilterView, view);
                 }
             });
@@ -1241,7 +1240,7 @@ public class ActionBarMenuItem extends FrameLayout {
         checkClearButton();
     }
 
-    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) throws Resources.NotFoundException {
+    public void lambda$onFiltersChanged$12(SearchFilterView searchFilterView, View view) {
         int iIndexOf = this.currentSearchFilters.indexOf(searchFilterView.getFilter());
         if (this.selectedFilterIndex != iIndexOf) {
             this.selectedFilterIndex = iIndexOf;
@@ -1545,7 +1544,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public boolean onKeyDown(int i2, KeyEvent keyEvent) throws Resources.NotFoundException {
+                public boolean onKeyDown(int i2, KeyEvent keyEvent) {
                     if (i2 == 67 && ActionBarMenuItem.this.searchField.length() == 0 && ((ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0 && ActionBarMenuItem.this.searchFieldCaption.length() > 0) || ActionBarMenuItem.this.hasRemovableFilters())) {
                         if (ActionBarMenuItem.this.hasRemovableFilters()) {
                             FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) ActionBarMenuItem.this.currentSearchFilters.get(ActionBarMenuItem.this.currentSearchFilters.size() - 1);
@@ -1621,7 +1620,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) throws Resources.NotFoundException {
+                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     if (ActionBarMenuItem.this.ignoreOnTextChange) {
                         ActionBarMenuItem.this.ignoreOnTextChange = false;
                         return;
@@ -1708,7 +1707,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.clearButton.setScaleY(0.0f);
             this.clearButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws Resources.NotFoundException {
+                public final void onClick(View view) {
                     this.f$0.lambda$checkCreateSearchField$14(view);
                 }
             });
@@ -1737,7 +1736,7 @@ public class ActionBarMenuItem extends FrameLayout {
         return false;
     }
 
-    public void lambda$checkCreateSearchField$14(View view) throws Resources.NotFoundException {
+    public void lambda$checkCreateSearchField$14(View view) {
         ActionBarMenuItemSearchListener actionBarMenuItemSearchListener;
         if (this.searchField.length() != 0) {
             this.searchField.setText("");
@@ -2307,7 +2306,7 @@ public class ActionBarMenuItem extends FrameLayout {
             setSelectedForDelete(false);
         }
 
-        public SearchFilterView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) throws Resources.NotFoundException {
+        public SearchFilterView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
             super(context);
             this.animatorIsSelected = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
             this.removeSelectionRunnable = new Runnable() {
@@ -2335,7 +2334,7 @@ public class ActionBarMenuItem extends FrameLayout {
             updateColors();
         }
 
-        public void setGlass() throws Resources.NotFoundException {
+        public void setGlass() {
             this.glass = true;
             updateColors();
         }
@@ -2358,7 +2357,7 @@ public class ActionBarMenuItem extends FrameLayout {
             super.dispatchDraw(canvas);
         }
 
-        public void updateColors() throws Resources.NotFoundException {
+        public void updateColors() {
             int themedColor;
             float floatValue = this.animatorIsSelected.getFloatValue();
             if (this.glass) {
@@ -2395,7 +2394,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return this.animatorIsSelected.getValue();
         }
 
-        public void setData(FiltersView.MediaFilterData mediaFilterData) throws Resources.NotFoundException {
+        public void setData(FiltersView.MediaFilterData mediaFilterData) {
             this.data = mediaFilterData;
             this.isCommunity = false;
             this.titleView.setText(mediaFilterData.getTitle());
@@ -2474,7 +2473,7 @@ public class ActionBarMenuItem extends FrameLayout {
         }
 
         @Override
-        public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) throws Resources.NotFoundException {
+        public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
             if (i == 0) {
                 updateColors();
                 invalidate();

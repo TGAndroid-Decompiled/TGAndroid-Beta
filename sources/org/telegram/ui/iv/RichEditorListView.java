@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.net.Uri;
 import android.text.Editable;
 import android.text.Layout;
+import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -2235,7 +2236,7 @@ public class RichEditorListView extends UniversalRecyclerView {
         }
 
         public void apply(TL_keyboard.InlineButtonType inlineButtonType) {
-            Editable text;
+            Spannable text;
             if (RichInlineButtonSpan.isSupported(inlineButtonType) && (text = this.editText.getText()) != null && this.from >= 0 && this.to <= text.length() && this.from < this.to) {
                 RichEditorHistory richEditorHistory = RichEditorListView.this.history;
                 if (richEditorHistory != null) {
@@ -2261,6 +2262,7 @@ public class RichEditorListView extends UniversalRecyclerView {
                 RichInlineButtonSpan richInlineButtonSpan3 = new RichInlineButtonSpan(textbutton);
                 richInlineButtonSpan3.bind(this.editText, RichEditorListView.this.currentAccount, RichEditorListView.this.resourcesProvider);
                 text.setSpan(richInlineButtonSpan3, this.from, this.to, 33);
+                richInlineButtonSpan3.removeNestedReplacementSpans(text);
                 RichEditText richEditText = this.editText;
                 richEditText.setSelection(Math.min(this.to, richEditText.length()));
                 RichEditorListView.this.suppressSpansChanged = true;

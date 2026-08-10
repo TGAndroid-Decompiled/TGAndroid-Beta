@@ -2128,7 +2128,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         return Boolean.TRUE;
     }
 
-    public Boolean lambda$openStickersView$27(boolean[] zArr, final EmojiBottomSheet emojiBottomSheet, Integer num) throws IOException {
+    public Boolean lambda$openStickersView$27(boolean[] zArr, final EmojiBottomSheet emojiBottomSheet, Integer num) {
         if (num.intValue() == 0) {
             zArr[0] = false;
             showLocationAlert(null, new Utilities.Callback2() {
@@ -2373,7 +2373,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         }
     }
 
-    private void showLocationAlert(LocationView locationView, Utilities.Callback2 callback2) throws IOException {
+    private void showLocationAlert(LocationView locationView, Utilities.Callback2 callback2) {
         TLRPC.MessageMedia messageMedia;
         TLRPC.GeoPoint geoPoint;
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new AnonymousClass24(null, callback2), false, true, false, this.resourcesProvider);
@@ -3639,7 +3639,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
             TextView textViewCreateActionLayoutButton = createActionLayoutButton(1, LocaleController.getString(R.string.PaintEdit));
             textViewCreateActionLayoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws IOException {
+                public final void onClick(View view) {
                     this.f$0.lambda$showMenuForEntity$49(entityView, view);
                 }
             });
@@ -3775,7 +3775,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$49(final EntityView entityView, View view) throws IOException {
+    public void lambda$showMenuForEntity$49(final EntityView entityView, View view) {
         lambda$createRound$61(null);
         showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
