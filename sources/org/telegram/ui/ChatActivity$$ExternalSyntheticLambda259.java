@@ -9,6 +9,10 @@ import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 public final class ChatActivity$$ExternalSyntheticLambda259 implements IBlur3Capture {
     public final ChatActivity.ChatActivityFragmentView f$0;
 
+    public ChatActivity$$ExternalSyntheticLambda259(ChatActivity.ChatActivityFragmentView chatActivityFragmentView) {
+        this.f$0 = chatActivityFragmentView;
+    }
+
     @Override
     public final void capture(Canvas canvas, RectF rectF) {
         this.f$0.drawList(canvas, rectF);

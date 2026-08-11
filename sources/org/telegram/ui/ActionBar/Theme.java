@@ -5070,7 +5070,7 @@ public abstract class Theme {
         return (themeInfo == null || themesDict.get(themeInfo.getKey()) == null) ? false : true;
     }
 
-    public static void setThemeUploadInfo(ThemeInfo themeInfo, ThemeAccent themeAccent, TLRPC.TL_theme tL_theme, int i, boolean z) {
+    public static void setThemeUploadInfo(ThemeInfo themeInfo, ThemeAccent themeAccent, TLRPC.TL_theme tL_theme, int i, boolean z) throws JSONException, IOException {
         String key;
         TLRPC.WallPaperSettings wallPaperSettings;
         if (tL_theme == null) {

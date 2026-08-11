@@ -22,7 +22,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import java.io.IOException;
 import java.util.ArrayList;
+import org.json.JSONException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -691,7 +693,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             final TLRPC.TL_theme tL_theme = (TLRPC.TL_theme) tLObject;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws JSONException, IOException {
                     this.f$0.lambda$saveTheme$10(tL_theme);
                 }
             });
@@ -705,7 +707,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public void lambda$saveTheme$10(TLRPC.TL_theme tL_theme) {
+    public void lambda$saveTheme$10(TLRPC.TL_theme tL_theme) throws JSONException, IOException {
         try {
             this.progressDialog.dismiss();
             this.progressDialog = null;

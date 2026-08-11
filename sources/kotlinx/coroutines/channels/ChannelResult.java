@@ -7,26 +7,26 @@ public abstract class ChannelResult {
     public static final Companion Companion = new Companion(null);
     private static final Failed failed = new Failed();
 
-    public static Object m333constructorimpl(Object obj) {
+    public static Object m332constructorimpl(Object obj) {
         return obj;
     }
 
-    public static final boolean m337isSuccessimpl(Object obj) {
+    public static final boolean m336isSuccessimpl(Object obj) {
         return !(obj instanceof Failed);
     }
 
-    public static final boolean m336isClosedimpl(Object obj) {
+    public static final boolean m335isClosedimpl(Object obj) {
         return obj instanceof Closed;
     }
 
-    public static final Object m335getOrNullimpl(Object obj) {
+    public static final Object m334getOrNullimpl(Object obj) {
         if (obj instanceof Failed) {
             return null;
         }
         return obj;
     }
 
-    public static final Throwable m334exceptionOrNullimpl(Object obj) {
+    public static final Throwable m333exceptionOrNullimpl(Object obj) {
         Closed closed = obj instanceof Closed ? (Closed) obj : null;
         if (closed != null) {
             return closed.cause;
@@ -73,16 +73,16 @@ public abstract class ChannelResult {
         private Companion() {
         }
 
-        public final Object m340successJP2dKIU(Object obj) {
-            return ChannelResult.m333constructorimpl(obj);
+        public final Object m339successJP2dKIU(Object obj) {
+            return ChannelResult.m332constructorimpl(obj);
         }
 
-        public final Object m339failurePtdJZtk() {
-            return ChannelResult.m333constructorimpl(ChannelResult.failed);
+        public final Object m338failurePtdJZtk() {
+            return ChannelResult.m332constructorimpl(ChannelResult.failed);
         }
 
-        public final Object m338closedJP2dKIU(Throwable th) {
-            return ChannelResult.m333constructorimpl(new Closed(th));
+        public final Object m337closedJP2dKIU(Throwable th) {
+            return ChannelResult.m332constructorimpl(new Closed(th));
         }
     }
 }

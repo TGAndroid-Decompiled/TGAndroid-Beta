@@ -596,7 +596,7 @@ public abstract class CommunityUtils {
             baseFragment.finishFragment();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException {
+                public final void run() throws Resources.NotFoundException, NumberFormatException {
                     CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
@@ -608,7 +608,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, NumberFormatException {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();

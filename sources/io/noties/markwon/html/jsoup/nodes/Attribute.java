@@ -64,7 +64,7 @@ public class Attribute implements Map.Entry, Cloneable {
         return iHashCode + (str2 != null ? str2.hashCode() : 0);
     }
 
-    public Attribute m279clone() {
+    public Attribute m278clone() {
         try {
             return (Attribute) super.clone();
         } catch (CloneNotSupportedException e) {
