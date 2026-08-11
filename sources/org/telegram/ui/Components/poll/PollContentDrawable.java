@@ -201,7 +201,7 @@ public class PollContentDrawable extends Drawable implements DownloadController.
         return this.hasMedia;
     }
 
-    private boolean setMediaImpl(org.telegram.tgnet.TLRPC.MessageMedia r23, java.lang.Object r24, int r25, java.lang.String r26) {
+    private boolean setMediaImpl(org.telegram.tgnet.TLRPC.MessageMedia r23, java.lang.Object r24, int r25, java.lang.String r26) throws org.xml.sax.SAXException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.poll.PollContentDrawable.setMediaImpl(org.telegram.tgnet.TLRPC$MessageMedia, java.lang.Object, int, java.lang.String):boolean");
     }
 

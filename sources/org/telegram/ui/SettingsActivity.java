@@ -55,7 +55,6 @@ import com.google.android.exoplayer2.util.Consumer;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -470,7 +469,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         this.topView.addView(frameLayout, LayoutHelper.createFrame(120, 120.0f, 49, 0.0f, 11.0f, 0.0f, 0.0f));
         this.avatarContainer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws IOException {
+            public final void onClick(View view2) {
                 this.f$0.lambda$createView$3(view2);
             }
         });
@@ -575,7 +574,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         });
     }
 
-    public void lambda$createView$3(View view) throws IOException {
+    public void lambda$createView$3(View view) {
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         if (user == null) {
             user = UserConfig.getInstance(this.currentAccount).getCurrentUser();

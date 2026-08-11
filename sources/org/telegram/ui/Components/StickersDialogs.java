@@ -10,7 +10,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
@@ -319,7 +318,7 @@ public abstract class StickersDialogs {
         final ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
-            public final void onClick(View view2) throws IOException {
+            public final void onClick(View view2) {
                 StickersDialogs.lambda$showAddStickerDialog$12(actionBarPopupWindow, arrayList2, tL_messages_stickerSet, baseFragment, resourcesProvider, view2);
             }
         };
@@ -343,7 +342,7 @@ public abstract class StickersDialogs {
         actionBarPopupWindow.dimBehind();
     }
 
-    public static void lambda$showAddStickerDialog$12(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) throws IOException {
+    public static void lambda$showAddStickerDialog$12(ActionBarPopupWindow actionBarPopupWindow, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, View view) {
         int iIntValue = ((Integer) view.getTag()).intValue();
         actionBarPopupWindow.dismiss();
         if (((Integer) arrayList.get(iIntValue)).intValue() == 1) {

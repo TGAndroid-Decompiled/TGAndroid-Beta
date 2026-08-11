@@ -89,7 +89,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -5096,7 +5095,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                         arrayList.add(photoEntry);
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
-                            public final void run() throws IOException {
+                            public final void run() {
                                 this.f$0.lambda$editPhoto$4(arrayList, file);
                             }
                         });
@@ -5108,7 +5107,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
             }
         }
 
-        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) throws IOException {
+        public void lambda$editPhoto$4(final ArrayList arrayList, final File file) {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -5181,7 +5180,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 AndroidUtilities.hideKeyboard(this);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
-                    public void run() throws IOException {
+                    public void run() {
                         ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                     }
                 }, 100L);
@@ -10792,7 +10791,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         return didPressedBotButton(keyboardButtonProto, messageObject, messageObject2, null);
     }
 
-    public boolean didPressedBotButton(final org.telegram.tgnet.tl.TL_keyboard.KeyboardButtonProto r30, final org.telegram.messenger.MessageObject r31, final org.telegram.messenger.MessageObject r32, org.telegram.messenger.browser.Browser.Progress r33) throws java.io.IOException {
+    public boolean didPressedBotButton(final org.telegram.tgnet.tl.TL_keyboard.KeyboardButtonProto r30, final org.telegram.messenger.MessageObject r31, final org.telegram.messenger.MessageObject r32, org.telegram.messenger.browser.Browser.Progress r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.didPressedBotButton(org.telegram.tgnet.tl.TL_keyboard$KeyboardButtonProto, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, org.telegram.messenger.browser.Browser$Progress):boolean");
     }
 
@@ -11246,7 +11245,7 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
 
         @Override
-        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) throws IOException {
+        public void onGifSelectedForAddCaption(final View view, final Object obj, final String str, final Object obj2, boolean z, int i, int i2) {
             if (ChatActivityEnterView.this.parentFragment == null) {
                 return;
             }

@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
@@ -1081,7 +1080,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i3) throws IOException {
+            public final void onItemClick(View view, int i3) {
                 this.f$0.lambda$createView$9(view, i3);
             }
         });
@@ -1100,7 +1099,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public void lambda$createView$9(android.view.View r10, final int r11) throws java.io.IOException {
+    public void lambda$createView$9(android.view.View r10, final int r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PrivacyControlActivity.lambda$createView$9(android.view.View, int):void");
     }
 

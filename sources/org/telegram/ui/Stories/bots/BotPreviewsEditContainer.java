@@ -713,7 +713,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
         }
     }
 
-    public void createStory(final String str) throws IOException {
+    public void createStory(final String str) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
@@ -768,7 +768,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             }
 
             @Override
-            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws Resources.NotFoundException {
+            public void didPressedButton(int i2, boolean z, boolean z2, int i3, int i4, long j, boolean z3, boolean z4, long j2) throws Resources.NotFoundException, IOException {
                 if (chatAttachAlert.getPhotoLayout().getSelectedPhotos().isEmpty()) {
                     return;
                 }
@@ -873,7 +873,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             String string3 = LocaleController.getString(R.string.ProfileBotAddPreview);
             Runnable runnable = new Runnable() {
                 @Override
-                public final void run() throws IOException {
+                public final void run() {
                     this.f$0.lambda$updateFooter$0();
                 }
             };
@@ -917,7 +917,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             this.emptyView.button.setVisibility(this.adapter.getItemCount() >= MessagesController.getInstance(BotPreviewsEditContainer.this.currentAccount).botPreviewMediasMax ? 8 : 0);
         }
 
-        public void lambda$updateFooter$0() throws IOException {
+        public void lambda$updateFooter$0() {
             BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
             StoriesController.BotPreviewsList botPreviewsList = this.list;
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
@@ -1221,7 +1221,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             stickerEmptyView.button.setVisibility(0);
             stickerEmptyView.button.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) throws IOException {
+                public final void onClick(View view) {
                     this.f$0.lambda$new$6(view);
                 }
             });
@@ -1348,7 +1348,7 @@ public abstract class BotPreviewsEditContainer extends FrameLayout implements No
             return true;
         }
 
-        public void lambda$new$6(View view) throws IOException {
+        public void lambda$new$6(View view) {
             BotPreviewsEditContainer botPreviewsEditContainer = BotPreviewsEditContainer.this;
             StoriesController.BotPreviewsList botPreviewsList = this.list;
             botPreviewsEditContainer.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);

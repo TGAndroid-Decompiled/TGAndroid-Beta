@@ -22,7 +22,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import me.vkryl.android.animator.BoolAnimator;
@@ -186,7 +185,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
 
             @Override
-            public void openPhotoForEdit(String str, String str2, boolean z) throws IOException {
+            public void openPhotoForEdit(String str, String str2, boolean z) {
                 CommunityEditActivity.this.imageUpdater.openPhotoForEdit(str, str2, 0, z);
             }
         };
@@ -338,7 +337,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
             }
         }, new Utilities.Callback5() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws IOException {
+            public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 this.f$0.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
         }, new Utilities.Callback5Return() {
@@ -419,7 +418,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
     }
 
-    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) throws java.io.IOException {
+    public void onClick(org.telegram.ui.Components.UItem r10, android.view.View r11, int r12, float r13, float r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.community.CommunityEditActivity.onClick(org.telegram.ui.Components.UItem, android.view.View, int, float, float):void");
     }
 
@@ -611,7 +610,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         this.imageUpdater.onActivityResult(i, i2, intent);
     }
 
@@ -640,7 +639,7 @@ public class CommunityEditActivity extends BaseFragment implements ImageUpdater.
         }
     }
 
-    public void openSetPhotoAlert() throws IOException {
+    public void openSetPhotoAlert() {
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {

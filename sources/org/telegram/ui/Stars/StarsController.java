@@ -2571,7 +2571,6 @@ public class StarsController {
         public MessageObject messageObject;
         public long not_added;
         public StarReactionsOverlay overlay;
-        public long random_id;
         public boolean shownBulletin;
         public Bulletin.TimerView timerView;
         public boolean wasChosen;
@@ -2615,7 +2614,6 @@ public class StarsController {
             };
             this.message = messageId;
             this.messageObject = messageObject;
-            this.random_id = (Utilities.random.nextLong() & 4294967295L) | (j << 32);
             this.chatActivity = chatActivity;
             Context context = StarsController.this.getContext(chatActivity);
             Bulletin.TwoLineAnimatedLottieLayout twoLineAnimatedLottieLayout = new Bulletin.TwoLineAnimatedLottieLayout(context, chatActivity.themeDelegate);
@@ -2789,7 +2787,7 @@ public class StarsController {
             TLRPC.TL_messages_sendPaidReaction tL_messages_sendPaidReaction = new TLRPC.TL_messages_sendPaidReaction();
             tL_messages_sendPaidReaction.peer = messagesController.getInputPeer(this.message.did);
             tL_messages_sendPaidReaction.msg_id = this.message.mid;
-            tL_messages_sendPaidReaction.random_id = this.random_id;
+            tL_messages_sendPaidReaction.random_id = (Utilities.random.nextLong() & 4294967295L) | (connectionsManager.getCurrentTime() << 32);
             tL_messages_sendPaidReaction.count = (int) this.amount;
             tL_messages_sendPaidReaction.flags = 1 | tL_messages_sendPaidReaction.flags;
             long peerId = getPeerId();

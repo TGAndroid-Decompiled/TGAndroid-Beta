@@ -27,7 +27,6 @@ import android.widget.TextView;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -508,7 +507,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public boolean onBackPressed() throws IOException {
+    public boolean onBackPressed() {
         this.parentAlert.updatePhotoPreview(false);
         return true;
     }
@@ -1142,7 +1141,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r20) throws java.io.IOException, java.lang.IllegalArgumentException {
+        public boolean onTouchEvent(android.view.MotionEvent r20) throws java.lang.IllegalArgumentException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onTouchEvent(android.view.MotionEvent):boolean");
         }
 

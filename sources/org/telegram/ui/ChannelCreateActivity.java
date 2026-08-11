@@ -32,7 +32,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import java.io.IOException;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -506,7 +505,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             frameLayout.addView(view2, LayoutHelper.createFrame(64, 64.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 16.0f, 12.0f, z2 ? 16.0f : 0.0f, 12.0f));
             this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view3) throws IOException {
+                public final void onClick(View view3) {
                     this.f$0.lambda$createView$8(view3);
                 }
             });
@@ -938,7 +937,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
     }
 
-    public void lambda$createView$8(View view) throws IOException {
+    public void lambda$createView$8(View view) {
         this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
             @Override
             public final void run() {
@@ -1248,7 +1247,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.onActivityResult(i, i2, intent);

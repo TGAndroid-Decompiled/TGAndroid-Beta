@@ -792,7 +792,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) throws IOException {
+    public void onActivityResultFragment(int i, int i2, Intent intent) {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);
@@ -8048,7 +8048,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f));
             this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) throws IOException {
+                public final void onClick(View view2) {
                     this.f$0.lambda$new$7(view2);
                 }
             });
@@ -8198,7 +8198,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.privacyView.setText(spannableStringBuilder);
         }
 
-        public void lambda$new$7(View view) throws IOException {
+        public void lambda$new$7(View view) {
             this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
                 @Override
                 public final void run() {

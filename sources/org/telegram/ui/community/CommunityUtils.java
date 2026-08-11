@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -597,7 +596,7 @@ public abstract class CommunityUtils {
             baseFragment.finishFragment();
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Resources.NotFoundException, IOException, NumberFormatException {
+                public final void run() throws Resources.NotFoundException {
                     CommunityUtils.lambda$onCommunityLinkSuccess$6(i, chatActivity, zIsChannelAndNotMegaGroup);
                 }
             }, 250L);
@@ -609,7 +608,7 @@ public abstract class CommunityUtils {
         showCommunityLinkSuccessToast(BulletinFactory.global(), i, zIsChannelAndNotMegaGroup);
     }
 
-    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException, IOException, NumberFormatException {
+    public static void lambda$onCommunityLinkSuccess$6(int i, ChatActivity chatActivity, boolean z) throws Resources.NotFoundException {
         if (i != 2) {
             chatActivity.onPageDownClicked();
             chatActivity.startFireworks();

@@ -63,7 +63,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.firebase.sessions.SessionDetails$$ExternalSyntheticBackport0;
 import j$.util.Objects;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7108,7 +7107,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
                     ScaleStateListAnimator.apply(linearLayout, 0.1f, 1.5f);
                     linearLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) throws IOException {
+                        public final void onClick(View view2) {
                             this.f$0.lambda$onCreateViewHolder$5(view2);
                         }
                     });
@@ -7133,7 +7132,7 @@ public class EmojiView extends FrameLayout implements FactorAnimator.Target, Not
             return new RecyclerListView.Holder(emptyCell);
         }
 
-        public void lambda$onCreateViewHolder$5(View view) throws IOException {
+        public void lambda$onCreateViewHolder$5(View view) {
             if (EmojiView.this.fragment instanceof ChatActivity) {
                 ((ChatActivity) EmojiView.this.fragment).openAttachMenuForCreatingSticker();
             }
