@@ -20332,7 +20332,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return createMenu(view, z, z2, f, f2, z3, z4, false);
     }
 
-    public boolean createMenu(final android.view.View r84, boolean r85, boolean r86, float r87, float r88, boolean r89, boolean r90, boolean r91) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public boolean createMenu(final android.view.View r86, boolean r87, boolean r88, float r89, float r90, boolean r91, boolean r92, boolean r93) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean, boolean, boolean):boolean");
     }
 

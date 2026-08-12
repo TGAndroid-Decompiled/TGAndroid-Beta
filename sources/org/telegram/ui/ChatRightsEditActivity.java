@@ -1704,23 +1704,21 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                     }
                 }
                 int i11 = this.rowCount;
-                this.startVoiceChatRow = i11;
-                this.addAdminsRow = i11 + 1;
-                int i12 = i11 + 3;
+                this.manageWelcomeRow = i11;
+                this.startVoiceChatRow = i11 + 1;
+                this.addAdminsRow = i11 + 2;
+                int i12 = i11 + 4;
                 this.rowCount = i12;
-                this.anonymousRow = i11 + 2;
+                this.anonymousRow = i11 + 3;
                 if (this.isForum) {
-                    this.rowCount = i11 + 4;
+                    this.rowCount = i11 + 5;
                     this.manageTopicsRow = i12;
                 }
-                int i13 = this.rowCount;
-                int i14 = i13 + 1;
-                this.rowCount = i14;
-                this.manageWelcomeRow = i13;
                 if (this.currentUserIsBotGuard) {
-                    this.guardBotRow = i14;
-                    this.rowCount = i13 + 3;
-                    this.guardBotInfoRow = i13 + 2;
+                    int i13 = this.rowCount;
+                    this.guardBotRow = i13;
+                    this.rowCount = i13 + 2;
+                    this.guardBotInfoRow = i13 + 1;
                 }
             }
         } else if (i3 == 1) {
@@ -1740,87 +1738,87 @@ public class ChatRightsEditActivity extends BaseFragment implements Notification
                 this.rowCount = 15;
                 this.sendReactionsRow = 14;
             }
-            int i15 = this.rowCount;
-            this.addUsersRow = i15;
-            this.pinMessagesRow = i15 + 1;
-            this.editTagsRow = i15 + 2;
-            int i16 = i15 + 4;
-            this.rowCount = i16;
-            this.changeInfoRow = i15 + 3;
+            int i14 = this.rowCount;
+            this.addUsersRow = i14;
+            this.pinMessagesRow = i14 + 1;
+            this.editTagsRow = i14 + 2;
+            int i15 = i14 + 4;
+            this.rowCount = i15;
+            this.changeInfoRow = i14 + 3;
             if (this.isForum) {
-                this.rowCount = i15 + 5;
-                this.manageTopicsRow = i16;
+                this.rowCount = i14 + 5;
+                this.manageTopicsRow = i15;
             }
-            int i17 = this.rowCount;
-            this.untilSectionRow = i17;
-            this.rowCount = i17 + 2;
-            this.untilDateRow = i17 + 1;
+            int i16 = this.rowCount;
+            this.untilSectionRow = i16;
+            this.rowCount = i16 + 2;
+            this.untilDateRow = i16 + 1;
         }
-        int i18 = this.rowCount;
-        this.permissionsEndRow = i18;
+        int i17 = this.rowCount;
+        this.permissionsEndRow = i17;
         if (this.canEdit) {
             if (!this.isChannel && ((i2 = this.currentType) == 0 || ((i2 == 2 && this.asAdmin) || i2 == 1))) {
-                this.rightsShadowRow = i18;
-                this.rankRow = i18 + 1;
-                this.rowCount = i18 + 3;
-                this.rankInfoRow = i18 + 2;
+                this.rightsShadowRow = i17;
+                this.rankRow = i17 + 1;
+                this.rowCount = i17 + 3;
+                this.rankInfoRow = i17 + 2;
             }
             TLRPC.Chat chat = this.currentChat;
             if (chat != null && chat.creator && this.currentType == 0 && hasAllAdminRights() && !this.currentUser.bot && !this.isCommunity) {
-                int i19 = this.rightsShadowRow;
-                if (i19 == -1) {
-                    int i20 = this.rowCount;
-                    this.rowCount = i20 + 1;
-                    this.transferOwnerShadowRow = i20;
+                int i18 = this.rightsShadowRow;
+                if (i18 == -1) {
+                    int i19 = this.rowCount;
+                    this.rowCount = i19 + 1;
+                    this.transferOwnerShadowRow = i19;
                 }
-                int i21 = this.rowCount;
-                int i22 = i21 + 1;
-                this.rowCount = i22;
-                this.transferOwnerRow = i21;
-                if (i19 != -1) {
-                    this.rowCount = i21 + 2;
-                    this.transferOwnerShadowRow = i22;
+                int i20 = this.rowCount;
+                int i21 = i20 + 1;
+                this.rowCount = i21;
+                this.transferOwnerRow = i20;
+                if (i18 != -1) {
+                    this.rowCount = i20 + 2;
+                    this.transferOwnerShadowRow = i21;
                 }
             }
             if (this.initialIsSet) {
                 if (this.rightsShadowRow == -1) {
-                    int i23 = this.rowCount;
-                    this.rowCount = i23 + 1;
-                    this.rightsShadowRow = i23;
+                    int i22 = this.rowCount;
+                    this.rowCount = i22 + 1;
+                    this.rightsShadowRow = i22;
                 }
-                int i24 = this.rowCount;
-                this.removeAdminRow = i24;
-                this.rowCount = i24 + 2;
-                this.removeAdminShadowRow = i24 + 1;
+                int i23 = this.rowCount;
+                this.removeAdminRow = i23;
+                this.rowCount = i23 + 2;
+                this.removeAdminShadowRow = i23 + 1;
             }
         } else if (this.currentType == 0) {
             if (!this.isChannel && (!this.currentRank.isEmpty() || (this.currentChat.creator && UserObject.isUserSelf(this.currentUser)))) {
-                int i25 = this.rowCount;
-                this.rightsShadowRow = i25;
-                this.rowCount = i25 + 2;
-                this.rankRow = i25 + 1;
+                int i24 = this.rowCount;
+                this.rightsShadowRow = i24;
+                this.rowCount = i24 + 2;
+                this.rankRow = i24 + 1;
                 if (this.currentChat.creator && UserObject.isUserSelf(this.currentUser)) {
+                    int i25 = this.rowCount;
+                    this.rowCount = i25 + 1;
+                    this.rankInfoRow = i25;
+                } else {
                     int i26 = this.rowCount;
                     this.rowCount = i26 + 1;
-                    this.rankInfoRow = i26;
-                } else {
-                    int i27 = this.rowCount;
-                    this.rowCount = i27 + 1;
-                    this.cantEditInfoRow = i27;
+                    this.cantEditInfoRow = i26;
                 }
             } else {
-                int i28 = this.rowCount;
-                this.rowCount = i28 + 1;
-                this.cantEditInfoRow = i28;
+                int i27 = this.rowCount;
+                this.rowCount = i27 + 1;
+                this.cantEditInfoRow = i27;
             }
         } else {
-            this.rowCount = i18 + 1;
-            this.rightsShadowRow = i18;
+            this.rowCount = i17 + 1;
+            this.rightsShadowRow = i17;
         }
         if (this.currentType == 2) {
-            int i29 = this.rowCount;
-            this.rowCount = i29 + 1;
-            this.addBotButtonRow = i29;
+            int i28 = this.rowCount;
+            this.rowCount = i28 + 1;
+            this.addBotButtonRow = i28;
         }
         if (z) {
             if (iMin == -1 && (i = this.transferOwnerShadowRow) != -1) {
