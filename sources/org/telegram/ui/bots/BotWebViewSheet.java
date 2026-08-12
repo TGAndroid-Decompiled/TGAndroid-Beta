@@ -2363,6 +2363,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     private void loadFromResponse() {
+        boolean z;
         if (this.requestProps == null) {
             return;
         }
@@ -2374,21 +2375,28 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject;
             this.queryId = tL_webViewResultUrl.query_id;
             str = tL_webViewResultUrl.url;
+            z = tL_webViewResultUrl.same_origin;
             this.fullsize = Boolean.valueOf(tL_webViewResultUrl.fullsize);
-            boolean z = this.fromTab;
-            if (!z) {
-                setFullscreen(tL_webViewResultUrl.fullscreen, !z);
+            boolean z2 = this.fromTab;
+            if (!z2) {
+                setFullscreen(tL_webViewResultUrl.fullscreen, !z2);
             }
-        } else if (tLObject instanceof TLRPC.TL_appWebViewResultUrl) {
-            this.queryId = 0L;
-            str = ((TLRPC.TL_appWebViewResultUrl) tLObject).url;
-        } else if (tLObject instanceof TLRPC.TL_simpleWebViewResultUrl) {
-            this.queryId = 0L;
-            str = ((TLRPC.TL_simpleWebViewResultUrl) tLObject).url;
+        } else {
+            if (tLObject instanceof TLRPC.TL_appWebViewResultUrl) {
+                this.queryId = 0L;
+                str = ((TLRPC.TL_appWebViewResultUrl) tLObject).url;
+            } else if (tLObject instanceof TLRPC.TL_simpleWebViewResultUrl) {
+                this.queryId = 0L;
+                str = ((TLRPC.TL_simpleWebViewResultUrl) tLObject).url;
+            }
+            z = false;
+        }
+        if (z) {
+            this.webViewContainer.setTrustedOrigin(str);
         }
         if (str != null && !this.fromTab) {
             MediaDataController.getInstance(this.currentAccount).increaseWebappRating(this.requestProps.botId);
-            this.webViewContainer.loadUrl(this.currentAccount, str);
+            this.webViewContainer.loadUrl(this.currentAccount, str, z);
         }
         AndroidUtilities.runOnUIThread(this.pollRunnable, jMax);
         ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = this.swipeContainer;

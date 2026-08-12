@@ -1,6 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
+import org.telegram.messenger.MessagePreviewParams$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -8,7 +9,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1;
 import org.telegram.tgnet.TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1;
-import org.telegram.tgnet.TLRPC$TL_contacts_found$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
 
@@ -26,7 +26,7 @@ public class TL_phone {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
-            this.peers = Vector.deserialize(inputSerializedData, new TLRPC$TL_contacts_found$$ExternalSyntheticLambda0(), z);
+            this.peers = Vector.deserialize(inputSerializedData, new MessagePreviewParams$$ExternalSyntheticLambda0(), z);
             this.chats = Vector.deserialize(inputSerializedData, new TLRPC$TL_channels_adminLogResults$$ExternalSyntheticLambda1(), z);
             this.users = Vector.deserialize(inputSerializedData, new TLRPC$TL_attachMenuBots$$ExternalSyntheticLambda1(), z);
         }

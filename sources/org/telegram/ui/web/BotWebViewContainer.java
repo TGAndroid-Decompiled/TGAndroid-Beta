@@ -219,6 +219,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private int shownDialogsCount;
     private BotStorage storage;
     private final int tag;
+    private String trustedOrigin;
     private float viewPortHeightOffset;
     private boolean wasFocusable;
     private WebViewRequestProps wasOpenedByBot;
@@ -1042,7 +1043,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
-    public void loadUrl(int i, final String str) {
+    public void loadUrl(int i, String str) {
+        loadUrl(i, str, false);
+    }
+
+    public void loadUrl(int i, final String str, boolean z) {
         this.currentAccount = i;
         NotificationCenter.getInstance(i).doOnIdle(new Runnable() {
             @Override
@@ -1289,6 +1294,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (this.bot || this.delegate == null) {
             return;
         }
+        if (this.trustedOrigin != null && !TextUtils.equals(getOriginHost(), this.trustedOrigin)) {
+            d("onWebEventReceived ignore " + str);
+            return;
+        }
         d("onWebEventReceived " + str + " " + str2);
         str.hashCode();
         switch (str) {
@@ -1402,11 +1411,21 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         }
     }
 
+    public void setTrustedOrigin(String str) {
+        this.trustedOrigin = getOriginHost(str);
+    }
+
     public String getOriginHost() {
-        String url;
         MyWebView myWebView = this.webView;
-        if (myWebView != null && (url = myWebView.getUrl()) != null && !url.isEmpty()) {
-            Uri uri = Uri.parse(url);
+        if (myWebView == null) {
+            return null;
+        }
+        return getOriginHost(myWebView.getUrl());
+    }
+
+    public static String getOriginHost(String str) {
+        if (str != null && !str.isEmpty()) {
+            Uri uri = Uri.parse(str);
             String scheme = uri.getScheme();
             String host = uri.getHost();
             int port = uri.getPort();

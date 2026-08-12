@@ -1567,7 +1567,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         return sendMessage(arrayList, j, z, z2, z3, i, 0, messageObject, i2, j2, 0L, null);
     }
 
-    public int sendMessage(final java.util.ArrayList<org.telegram.messenger.MessageObject> r70, final long r71, final boolean r73, final boolean r74, final boolean r75, final int r76, final int r77, final org.telegram.messenger.MessageObject r78, final int r79, long r80, final long r82, final org.telegram.messenger.MessageSuggestionParams r84) {
+    public int sendMessage(final java.util.ArrayList<org.telegram.messenger.MessageObject> r72, final long r73, final boolean r75, final boolean r76, final boolean r77, final int r78, final int r79, final org.telegram.messenger.MessageObject r80, final int r81, long r82, final long r84, final org.telegram.messenger.MessageSuggestionParams r86) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(java.util.ArrayList, long, boolean, boolean, boolean, int, int, org.telegram.messenger.MessageObject, int, long, long, org.telegram.messenger.MessageSuggestionParams):int");
     }
 

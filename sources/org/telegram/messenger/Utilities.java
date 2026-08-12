@@ -122,7 +122,7 @@ public class Utilities {
 
     public static native boolean copyBitmaps(Bitmap bitmap, Bitmap bitmap2);
 
-    public static native void drawDitheredGradient(Bitmap bitmap, int[] iArr, int i, int i2, int i3, int i4);
+    public static native boolean drawDitheredGradient(Bitmap bitmap, int[] iArr, int i, int i2, int i3, int i4);
 
     public static native boolean drawReplyLinePattern(Bitmap bitmap, int i, int i2, int i3, int i4, boolean z);
 

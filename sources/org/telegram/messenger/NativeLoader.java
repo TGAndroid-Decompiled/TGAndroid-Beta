@@ -13,8 +13,6 @@ public class NativeLoader {
     public static StringBuilder log = new StringBuilder();
     private static volatile boolean nativeLoaded = false;
 
-    private static native void init(String str, boolean z);
-
     private static File getNativeLibraryDir(Context context) {
         File file;
         if (context != null) {

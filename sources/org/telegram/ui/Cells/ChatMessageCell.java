@@ -8796,6 +8796,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     }
 
     protected boolean isNeedAuthorName() {
+        TLRPC.MessageFwdHeader messageFwdHeader;
+        TLRPC.Peer peer;
         TLRPC.Message message;
         MessageObject messageObject = this.currentMessageObject;
         if (messageObject.forceAvatar) {
@@ -8808,6 +8810,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return false;
         }
         if (this.isBotForum && !this.isPinnedChat) {
+            return false;
+        }
+        TLRPC.Message message2 = this.currentMessageObject.messageOwner;
+        if (message2 != null && (messageFwdHeader = message2.fwd_from) != null && (peer = messageFwdHeader.from_id) != null && message2.via_bot_id != 0 && DialogObject.getPeerDialogId(peer) == DialogObject.getPeerDialogId(this.currentMessageObject.messageOwner.peer_id)) {
             return false;
         }
         if (this.isPinnedChat && this.currentMessageObject.type == 0) {

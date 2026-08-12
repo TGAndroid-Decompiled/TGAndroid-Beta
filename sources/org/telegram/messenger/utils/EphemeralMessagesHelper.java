@@ -43,6 +43,10 @@ public class EphemeralMessagesHelper extends BaseController {
         }
         tL_message.date = ephemeralMessage.date;
         tL_message.message = ephemeralMessage.message;
+        if (ephemeralMessage.noforwards) {
+            tL_message.noforwards = true;
+            tL_message.flags |= 67108864;
+        }
         if (ephemeralMessage.invert_media) {
             tL_message.invert_media = true;
             tL_message.flags |= 134217728;

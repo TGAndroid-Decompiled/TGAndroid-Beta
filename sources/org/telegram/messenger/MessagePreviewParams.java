@@ -494,7 +494,7 @@ public class MessagePreviewParams {
         return messages.selectedIds.size();
     }
 
-    public org.telegram.messenger.MessageObject toPreviewMessage(org.telegram.messenger.MessageObject r12, java.lang.Boolean r13, final int r14) {
+    public org.telegram.messenger.MessageObject toPreviewMessage(org.telegram.messenger.MessageObject r16, java.lang.Boolean r17, final int r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.toPreviewMessage(org.telegram.messenger.MessageObject, java.lang.Boolean, int):org.telegram.messenger.MessageObject");
     }
 

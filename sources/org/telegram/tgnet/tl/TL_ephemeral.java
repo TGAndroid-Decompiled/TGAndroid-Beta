@@ -73,6 +73,7 @@ public class TL_ephemeral {
         public boolean invert_media;
         public TLRPC.MessageMedia media;
         public String message;
+        public boolean noforwards;
         public boolean out;
         public TLRPC.Peer peer_id;
         public long receiver_id;
@@ -110,6 +111,7 @@ public class TL_ephemeral {
             this.out = TLObject.hasFlag(int32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
+            this.noforwards = TLObject.hasFlag(this.flags, 4096);
             this.id = inputSerializedData.readInt32(z);
             this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
             if (TLObject.hasFlag(this.flags, 512)) {
@@ -165,7 +167,9 @@ public class TL_ephemeral {
             this.flags = flag8;
             int flag9 = TLObject.setFlag(flag8, 512, this.peer_id != null);
             this.flags = flag9;
-            outputSerializedData.writeInt32(flag9);
+            int flag10 = TLObject.setFlag(flag9, 4096, this.noforwards);
+            this.flags = flag10;
+            outputSerializedData.writeInt32(flag10);
             outputSerializedData.writeInt32(this.id);
             this.from_id.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 512)) {

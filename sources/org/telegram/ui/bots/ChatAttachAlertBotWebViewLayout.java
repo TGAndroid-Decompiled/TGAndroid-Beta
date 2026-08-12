@@ -653,6 +653,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         if (tLObject instanceof TLRPC.TL_webViewResultUrl) {
             TLRPC.TL_webViewResultUrl tL_webViewResultUrl = (TLRPC.TL_webViewResultUrl) tLObject;
             this.queryId = tL_webViewResultUrl.query_id;
+            if (tL_webViewResultUrl.same_origin) {
+                this.webViewContainer.setTrustedOrigin(tL_webViewResultUrl.url);
+            }
             this.webViewContainer.loadUrl(i, tL_webViewResultUrl.url);
             AndroidUtilities.runOnUIThread(this.pollRunnable);
         }
