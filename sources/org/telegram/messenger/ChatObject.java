@@ -43,6 +43,7 @@ public class ChatObject {
     public static final int ACTION_MANAGE_LINKED_CHATS = 27;
     public static final int ACTION_MANAGE_TAGS = 25;
     public static final int ACTION_MANAGE_TOPICS = 15;
+    public static final int ACTION_MANAGE_WELCOME = 28;
     public static final int ACTION_PIN = 0;
     public static final int ACTION_POST = 5;
     public static final int ACTION_SEND = 6;
@@ -1604,6 +1605,8 @@ public class ChatObject {
                 z = tL_chatAdminRights.manage_ranks;
             } else if (i == 27) {
                 z = tL_chatAdminRights.manage_linked_peers;
+            } else if (i == 28) {
+                z = tL_chatAdminRights.manage_welcome_messages;
             } else if (i == 0) {
                 z = tL_chatAdminRights.pin_messages;
             } else if (i == 1) {
