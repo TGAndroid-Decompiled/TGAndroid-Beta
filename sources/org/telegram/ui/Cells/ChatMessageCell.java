@@ -2621,10 +2621,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (messageObject == null || messageObject.richLayout == null || messageObject.type != 36) {
             return false;
         }
-        motionEvent.offsetLocation(-this.textX, -this.textY);
+        float starsPriceTopPadding = getStarsPriceTopPadding() + this.suggestionOfferTopPadding + getTopicSeparatorTopPadding() + this.textY;
+        motionEvent.offsetLocation(-this.textX, -starsPriceTopPadding);
         this.currentMessageObject.richLayout.setChatMessageCellDelegate(this, this.delegate);
         boolean zOnTouchEvent = this.currentMessageObject.richLayout.onTouchEvent(motionEvent);
-        motionEvent.offsetLocation(this.textX, this.textY);
+        motionEvent.offsetLocation(this.textX, starsPriceTopPadding);
         return zOnTouchEvent;
     }
 
@@ -9947,7 +9948,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return !TextUtils.equals(this.lastPostAuthor, this.currentMessageObject.messageOwner.post_author);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r44, float r45) {
+    public void drawNamesLayout(android.graphics.Canvas r48, float r49) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 
@@ -10178,6 +10179,21 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 canvas.restore();
             }
         }
+    }
+
+    private void drawRichLayoutOverlay(Canvas canvas, RichMessageLayout richMessageLayout, float f, ColorFilter colorFilter) {
+        int iSave;
+        if (richMessageLayout == null || f <= 0.0f || !richMessageLayout.hasOverlay()) {
+            return;
+        }
+        if (f < 1.0f) {
+            iSave = canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (f * 255.0f), 31);
+        } else {
+            iSave = canvas.save();
+        }
+        canvas.translate(this.textX, this.textY);
+        richMessageLayout.drawOverlay(canvas, colorFilter);
+        canvas.restoreToCount(iSave);
     }
 
     public boolean drawReactionsLayoutOverlay(Canvas canvas, float f) {
@@ -11868,6 +11884,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         public float animateChangeProgress = 1.0f;
         private ArrayList lastDrawBotButtons = new ArrayList();
         private ArrayList transitionBotButtons = new ArrayList();
+        public final float crossfadeProgressK = 0.5f;
+        public float oldProgress = 0.0f;
+        public float newProgress = 1.0f;
         public int lastStatusDrawableParams = -1;
         public StaticLayout[] lastDrawnForwardedNameLayout = new StaticLayout[2];
         public StaticLayout[] animatingForwardedNameLayout = new StaticLayout[2];
@@ -11877,6 +11896,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
 
         public TransitionParams() {
+        }
+
+        public void updateCrossfadeProgress() {
+            float fMax = Math.max(0.0f, Math.min(1.0f, this.animateChangeProgress));
+            this.oldProgress = (float) Math.pow(1.0f - fMax, 0.5d);
+            this.newProgress = (float) Math.pow(fMax, 0.5d);
         }
 
         public void recordDrawingState() {
@@ -12042,6 +12067,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.captionEnterProgress = 1.0f;
             this.animateRadius = false;
             this.animateChangeProgress = 1.0f;
+            this.oldProgress = 0.0f;
+            this.newProgress = 1.0f;
             this.animateMessageText = false;
             this.animateRichLayout = false;
             this.animateDrawingSideMenuEnabled = false;

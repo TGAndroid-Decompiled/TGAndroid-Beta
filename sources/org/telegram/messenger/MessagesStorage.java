@@ -6885,7 +6885,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putMessages$200(java.util.ArrayList<org.telegram.tgnet.TLRPC.Message> r61, boolean r62, boolean r63, int r64, boolean r65, int r66, long r67) {
+    public void lambda$putMessages$200(java.util.ArrayList<org.telegram.tgnet.TLRPC.Message> r60, boolean r61, boolean r62, int r63, boolean r64, int r65, long r66) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$200(java.util.ArrayList, boolean, boolean, int, boolean, int, long):void");
     }
 
@@ -7022,7 +7022,7 @@ public class MessagesStorage extends BaseController {
                 sQLitePreparedStatementExecuteFast.requery();
                 sQLitePreparedStatementExecuteFast.bindLong(1, DialogObject.getPeerDialogId(next.peer_id));
                 sQLitePreparedStatementExecuteFast.bindInteger(2, next.id);
-                sQLitePreparedStatementExecuteFast.bindInteger(3, 0);
+                sQLitePreparedStatementExecuteFast.bindInteger(3, next.top_msg_id);
                 sQLitePreparedStatementExecuteFast.bindInteger(4, next.date);
                 sQLitePreparedStatementExecuteFast.bindTlObject(5, next);
                 sQLitePreparedStatementExecuteFast.step();

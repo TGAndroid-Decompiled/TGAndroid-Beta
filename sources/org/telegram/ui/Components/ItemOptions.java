@@ -1428,6 +1428,20 @@ public class ItemOptions {
         return this;
     }
 
+    public static void setGapBackgroundColor(ViewGroup viewGroup, int i) {
+        if (viewGroup == null) {
+            return;
+        }
+        for (int i2 = 0; i2 < viewGroup.getChildCount(); i2++) {
+            View childAt = viewGroup.getChildAt(i2);
+            if (childAt instanceof ActionBarPopupWindow.GapView) {
+                ((ActionBarPopupWindow.GapView) childAt).setColor(i);
+            } else if (childAt instanceof ViewGroup) {
+                setGapBackgroundColor((ViewGroup) childAt, i);
+            }
+        }
+    }
+
     public ItemOptions setGapBackgroundColor(int i) {
         this.gapBackgroundColor = Integer.valueOf(i);
         if (this.layout != null) {

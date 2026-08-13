@@ -9889,19 +9889,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
         }).start();
         this.blurredView.setTag(1);
-        ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                this.f$0.lambda$checkShowBlur$120((Bitmap) obj, (Bitmap) obj2);
-            }
-        });
+        updateScrimSourceBitmap();
     }
 
     public void lambda$checkShowBlur$119(View view) {
         finishPreviewFragment();
     }
 
-    public void lambda$checkShowBlur$120(Bitmap bitmap, Bitmap bitmap2) {
+    private void updateScrimSourceBitmap() {
+        ScrimOptions.makeGlobalBlurBitmaps(new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                this.f$0.lambda$updateScrimSourceBitmap$120((Bitmap) obj, (Bitmap) obj2);
+            }
+        });
+    }
+
+    public void lambda$updateScrimSourceBitmap$120(Bitmap bitmap, Bitmap bitmap2) {
         this.scrimBlur3SourceBitmap.setBitmap(bitmap2);
         Blur3Utils.checkBitmapSourceMatrixScale(this.scrimBlur3SourceBitmap, this.fragmentView);
         this.scrimBlur3Factory.invalidateAllLinkedViews();
@@ -18190,7 +18194,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         this.convertingToastShown = true;
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.convert_video, LocaleController.getString(R.string.VideoConversionTitle), LocaleController.getString(R.string.VideoConversionText)).setDuration(5000).setOnHideListener(new ChatActivity$$ExternalSyntheticLambda109(this)).show(true);
+        BulletinFactory.of(this).createSimpleBulletin(R.raw.convert_video, LocaleController.getString(R.string.VideoConversionTitle), LocaleController.getString(R.string.VideoConversionText)).setDuration(5000).setOnHideListener(new ChatActivity$$ExternalSyntheticLambda108(this)).show(true);
     }
 
     public void checkConversionDateTimeToast() {
@@ -18244,8 +18248,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.videoConversionTimeHint.show();
             return;
         }
-        AndroidUtilities.cancelRunOnUIThread(new ChatActivity$$ExternalSyntheticLambda109(this));
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda109(this), 2000L);
+        AndroidUtilities.cancelRunOnUIThread(new ChatActivity$$ExternalSyntheticLambda108(this));
+        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda108(this), 2000L);
     }
 
     public void checkSavedMessagesHint() {
@@ -20332,7 +20336,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return createMenu(view, z, z2, f, f2, z3, z4, false);
     }
 
-    public boolean createMenu(final android.view.View r86, boolean r87, boolean r88, float r89, float r90, boolean r91, boolean r92, boolean r93) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
+    public boolean createMenu(final android.view.View r85, boolean r86, boolean r87, float r88, float r89, boolean r90, boolean r91, boolean r92) throws android.content.res.Resources.NotFoundException, java.lang.NumberFormatException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean, boolean, boolean):boolean");
     }
 
@@ -31998,7 +32002,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         TLRPC.WebPage webPage;
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         ScrimOptions scrimOptions2 = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda110(scrimOptions2));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions2));
         boolean z2 = (str.startsWith("video?") || Browser.isInternalUri(Uri.parse(str), null)) ? false : true;
         boolean zIsWebBrowserOpenInApp = getMessagesController().isWebBrowserOpenInApp(str);
         boolean z3 = zIsWebBrowserOpenInApp && z2;
@@ -32182,7 +32186,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final String entityFormattedDate = LocaleController.formatEntityFormattedDate(tL_messageEntityFormattedDate, true);
         final ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda110(scrimOptions));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions));
         itemOptionsMakeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.RelativeDateMenuCopy), new Runnable() {
             @Override
             public final void run() {
@@ -32295,7 +32299,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         progress.end();
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda110(scrimOptions));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions));
         itemOptionsMakeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyCardNumber), new Runnable() {
             @Override
             public final void run() {
@@ -32385,7 +32389,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
-        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda110(scrimOptions));
+        itemOptionsMakeOptions.setOnDismiss(new ChatActivity$$ExternalSyntheticLambda109(scrimOptions));
         if (j != 0) {
             itemOptionsMakeOptions.add(zIsChannelAndNotMegaGroup ? R.drawable.msg_channel : R.drawable.msg_discussion, LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.ViewChannel : R.string.SendMessage), new Runnable() {
                 @Override

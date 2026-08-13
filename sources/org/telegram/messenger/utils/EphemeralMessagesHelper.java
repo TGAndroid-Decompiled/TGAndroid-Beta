@@ -24,7 +24,29 @@ import org.telegram.tgnet.tl.TL_update;
 public class EphemeralMessagesHelper extends BaseController {
     private static volatile EphemeralMessagesHelper[] Instance = new EphemeralMessagesHelper[4];
 
+    public static TL_ephemeral.EphemeralMessage convertFakeDefaultToEphemeral(TLRPC.Message message, int i) {
+        TL_ephemeral.TL_ephemeralMessage tL_ephemeralMessage = new TL_ephemeral.TL_ephemeralMessage();
+        tL_ephemeralMessage.out = message.out;
+        tL_ephemeralMessage.invert_media = message.invert_media;
+        tL_ephemeralMessage.noforwards = message.noforwards;
+        tL_ephemeralMessage.id = message.id;
+        tL_ephemeralMessage.from_id = message.from_id;
+        tL_ephemeralMessage.peer_id = message.peer_id;
+        tL_ephemeralMessage.receiver_id = message.ephemeralReceiverBotId;
+        tL_ephemeralMessage.top_msg_id = i;
+        tL_ephemeralMessage.date = message.date;
+        tL_ephemeralMessage.message = message.message;
+        tL_ephemeralMessage.entities = message.entities;
+        tL_ephemeralMessage.media = message.media;
+        tL_ephemeralMessage.reply_markup = message.reply_markup;
+        tL_ephemeralMessage.reply_to = message.reply_to;
+        tL_ephemeralMessage.rich_message = message.rich_message;
+        tL_ephemeralMessage.anchor_msg_id = message.ephemeralAnchorMsgId;
+        return tL_ephemeralMessage;
+    }
+
     public static TLRPC.TL_message convertEphemeralToFakeDefault(TL_ephemeral.EphemeralMessage ephemeralMessage) {
+        int i;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.out = ephemeralMessage.out;
         tL_message.id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.id);
@@ -34,9 +56,9 @@ public class EphemeralMessagesHelper extends BaseController {
             tL_message.flags |= 256;
         }
         tL_message.peer_id = ephemeralMessage.peer_id;
-        int i = ephemeralMessage.anchor_msg_id;
-        tL_message.ephemeralAnchorMsgId = i;
-        if (ephemeralMessage.welcome || i != 0) {
+        int i2 = ephemeralMessage.anchor_msg_id;
+        tL_message.ephemeralAnchorMsgId = i2;
+        if (ephemeralMessage.welcome || i2 != 0) {
             tL_message.ephemeralReceiverBotId = -1L;
         } else {
             tL_message.ephemeralReceiverBotId = ephemeralMessage.receiver_id;
@@ -73,21 +95,26 @@ public class EphemeralMessagesHelper extends BaseController {
         }
         TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage.reply_to;
         if (messageReplyHeader != null) {
-            if (messageReplyHeader.reply_to_ephemeral) {
-                TLRPC.MessageReplyHeader messageReplyHeader2 = (TLRPC.MessageReplyHeader) TLObject.deepCopy(messageReplyHeader, new Vector.TLDeserializer() {
-                    @Override
-                    public final TLObject deserialize(InputSerializedData inputSerializedData, int i2, boolean z) {
-                        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i2, z);
-                    }
-                });
-                tL_message.reply_to = messageReplyHeader2;
-                int i2 = messageReplyHeader2.reply_to_msg_id;
-                if (i2 != 0) {
-                    messageReplyHeader2.reply_to_msg_id = MessageObject.ephemeralMessageIdPack(i2);
+            TLRPC.MessageReplyHeader messageReplyHeader2 = (TLRPC.MessageReplyHeader) TLObject.deepCopy(messageReplyHeader, new Vector.TLDeserializer() {
+                @Override
+                public final TLObject deserialize(InputSerializedData inputSerializedData, int i3, boolean z) {
+                    return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i3, z);
                 }
-            } else {
-                tL_message.reply_to = messageReplyHeader;
+            });
+            tL_message.reply_to = messageReplyHeader2;
+            if (ephemeralMessage.reply_to.reply_to_ephemeral && (i = messageReplyHeader2.reply_to_msg_id) != 0) {
+                messageReplyHeader2.reply_to_msg_id = MessageObject.ephemeralMessageIdPack(i);
             }
+            TLRPC.MessageReplyHeader messageReplyHeader3 = tL_message.reply_to;
+            if (messageReplyHeader3.reply_to_top_id == 0) {
+                messageReplyHeader3.reply_to_top_id = ephemeralMessage.top_msg_id;
+            }
+            tL_message.flags |= 8;
+        } else if (ephemeralMessage.top_msg_id != 0) {
+            TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
+            tL_message.reply_to = tL_messageReplyHeader;
+            tL_messageReplyHeader.reply_to_top_id = ephemeralMessage.top_msg_id;
+            tL_messageReplyHeader.flags |= 2;
             tL_message.flags |= 8;
         }
         MessageObject.getDialogId(tL_message);

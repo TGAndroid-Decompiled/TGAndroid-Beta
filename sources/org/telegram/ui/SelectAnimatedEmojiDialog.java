@@ -13,7 +13,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
-import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -35,7 +34,6 @@ import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewOutlineProvider;
 import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -86,6 +84,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -3903,7 +3902,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         this.showAnimator.start();
     }
 
-    public class SearchBox extends FrameLayout {
+    public class SearchBox extends FrameLayout implements Theme.Colorable {
         private FrameLayout box;
         private StickerCategoriesListView categoriesListView;
         private ImageView clear;
@@ -3916,6 +3915,11 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
         private boolean inputBoxShown;
         private ImageView search;
         private SearchStateDrawable searchStateDrawable;
+        private boolean useCustomBackground;
+
+        public int[] getColorKeys() {
+            return Theme.Colorable.CC.$default$getColorKeys(this);
+        }
 
         public SearchBox(Context context, final boolean z) {
             super(context);
@@ -3930,12 +3934,7 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             int i = Theme.key_chat_emojiPanelBackground;
             frameLayout.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i, SelectAnimatedEmojiDialog.this.resourcesProvider)));
             this.box.setClipToOutline(true);
-            this.box.setOutlineProvider(new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(18.0f));
-                }
-            });
+            this.box.setOutlineProvider(ViewOutlineProviderImpl.boundsWithPaddingRoundRect(0, AndroidUtilities.dp(18.0f)));
             addView(this.box, LayoutHelper.createFrame(-1, 36.0f, 55, 8.0f, 12.0f, 8.0f, 8.0f));
             ImageView imageView = new ImageView(context);
             this.search = imageView;
@@ -3981,9 +3980,9 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             };
             this.inputBox = frameLayout2;
             this.box.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f, 119, 36.0f, 0.0f, 0.0f, 0.0f));
-            AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, SelectAnimatedEmojiDialog.this.resourcesProvider, SelectAnimatedEmojiDialog.this);
-            this.input = anonymousClass3;
-            anonymousClass3.addTextChangedListener(new TextWatcher() {
+            AnonymousClass2 anonymousClass2 = new AnonymousClass2(context, SelectAnimatedEmojiDialog.this.resourcesProvider, SelectAnimatedEmojiDialog.this);
+            this.input = anonymousClass2;
+            anonymousClass2.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
                 }
@@ -4081,10 +4080,10 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
             }
         }
 
-        class AnonymousClass3 extends EditTextCaption {
+        class AnonymousClass2 extends EditTextCaption {
             final SelectAnimatedEmojiDialog val$this$0;
 
-            AnonymousClass3(Context context, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
+            AnonymousClass2(Context context, Theme.ResourcesProvider resourcesProvider, SelectAnimatedEmojiDialog selectAnimatedEmojiDialog) {
                 super(context, resourcesProvider);
                 this.val$this$0 = selectAnimatedEmojiDialog;
             }
@@ -4282,6 +4281,20 @@ public abstract class SelectAnimatedEmojiDialog extends FrameLayout implements N
                 return;
             }
             super.invalidate();
+        }
+
+        public void setUseCustomBackground() {
+            this.useCustomBackground = true;
+            setBackground(null);
+            updateColors();
+            invalidate();
+        }
+
+        @Override
+        public void updateColors() {
+            if (this.useCustomBackground) {
+                this.box.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), Theme.multAlpha(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, SelectAnimatedEmojiDialog.this.resourcesProvider), 0.06f)));
+            }
         }
     }
 

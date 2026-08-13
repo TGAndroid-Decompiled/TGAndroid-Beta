@@ -74,6 +74,9 @@ import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.recorder.HintView2;
 
@@ -95,9 +98,14 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     final HashSet alwaysSelectedReactions;
     private boolean animatePopup;
     private final boolean animationEnabled;
+    private BlurredBackgroundProvider backgroundColorProvider;
+    private BlurredBackgroundDrawableViewFactory backgroundFactory;
     private final Paint bgPaint;
     public int bigCircleOffset;
     private float bigCircleRadius;
+    private BlurredBackgroundDrawable blurredBackgroundDrawable;
+    private BlurredBackgroundDrawable blurredBackgroundDrawable1;
+    private BlurredBackgroundDrawable blurredBackgroundDrawable2;
     public float bubblesOffset;
     ValueAnimator cancelPressedAnimation;
     private float cancelPressedProgress;
@@ -573,8 +581,13 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
         CustomEmojiReactionsWindow customEmojiReactionsWindow = new CustomEmojiReactionsWindow(this.type, this.fragment, this.allReactionsList, this.selectedReactions, this, this.resourcesProvider, this.forceAttachToParent);
         this.reactionsWindow = customEmojiReactionsWindow;
+        BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = this.backgroundFactory;
+        if (blurredBackgroundDrawableViewFactory != null) {
+            customEmojiReactionsWindow.setBackgroundFactory(blurredBackgroundDrawableViewFactory, this.backgroundColorProvider);
+        }
+        CustomEmojiReactionsWindow customEmojiReactionsWindow2 = this.reactionsWindow;
         ReactionsContainerDelegate reactionsContainerDelegate = this.delegate;
-        customEmojiReactionsWindow.setLongPressEnabled(reactionsContainerDelegate == null || reactionsContainerDelegate.allowLongPress());
+        customEmojiReactionsWindow2.setLongPressEnabled(reactionsContainerDelegate == null || reactionsContainerDelegate.allowLongPress());
         invalidateLoopViews();
         this.reactionsWindow.onDismissListener(new Runnable() {
             @Override
@@ -685,6 +698,14 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.listAdapter.updateItems(z);
     }
 
+    public void setBackgroundFactory(BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundProvider blurredBackgroundProvider) {
+        this.backgroundFactory = blurredBackgroundDrawableViewFactory;
+        this.backgroundColorProvider = blurredBackgroundProvider;
+        this.blurredBackgroundDrawable = blurredBackgroundDrawableViewFactory.create((View) this, true).setColorProvider(blurredBackgroundProvider).setRadius(AndroidUtilities.dp(24.0f)).setPadding(AndroidUtilities.dp(8.0f));
+        this.blurredBackgroundDrawable1 = blurredBackgroundDrawableViewFactory.create((View) this, true).setColorProvider(blurredBackgroundProvider).setRadius(AndroidUtilities.dp(8.0f)).setPadding(AndroidUtilities.dp(8.0f));
+        this.blurredBackgroundDrawable2 = blurredBackgroundDrawableViewFactory.create((View) this, true).setColorProvider(blurredBackgroundProvider).setRadius(AndroidUtilities.dp(4.0f)).setPadding(AndroidUtilities.dp(8.0f));
+    }
+
     @Override
     protected void dispatchDraw(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReactionsContainerLayout.dispatchDraw(android.graphics.Canvas):void");
@@ -723,6 +744,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (this.delegate.drawBackground()) {
             this.rectF.set(f5, f8, f9, f10);
             this.delegate.drawRoundRect(canvas, this.rectF, f, getX(), getY(), i, false);
+        } else if (this.blurredBackgroundDrawable1 != null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(f5, f8, f9, f10);
+            Rect rect = AndroidUtilities.rectTmp2;
+            rectF.round(rect);
+            rect.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
+            this.blurredBackgroundDrawable1.setBounds(rect);
+            this.blurredBackgroundDrawable1.setAlpha(this.bgPaint.getAlpha());
+            this.blurredBackgroundDrawable1.draw(canvas);
         } else {
             canvas.drawCircle(width, paddingTop, f, this.bgPaint);
         }
@@ -734,6 +764,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (this.delegate.drawBackground()) {
             this.rectF.set(width2 - f3, fLerp - f3, width2 + f3, fLerp + f3);
             this.delegate.drawRoundRect(canvas, this.rectF, f3, getX(), getY(), i, false);
+        } else if (this.blurredBackgroundDrawable2 != null) {
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            rectF2.set(width2 - f3, fLerp - f3, width2 + f3, fLerp + f3);
+            Rect rect2 = AndroidUtilities.rectTmp2;
+            rectF2.round(rect2);
+            rect2.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
+            this.blurredBackgroundDrawable2.setBounds(rect2);
+            this.blurredBackgroundDrawable2.setAlpha(this.bgPaint.getAlpha());
+            this.blurredBackgroundDrawable2.draw(canvas);
         } else {
             canvas.drawCircle(width2, fLerp, f3, this.bgPaint);
         }

@@ -1,14 +1,16 @@
 package org.telegram.ui;
 
-public final class ChatActivity$$ExternalSyntheticLambda109 implements Runnable {
-    public final ChatActivity f$0;
+import org.telegram.ui.Components.ScrimOptions;
 
-    public ChatActivity$$ExternalSyntheticLambda109(ChatActivity chatActivity) {
-        this.f$0 = chatActivity;
+public final class ChatActivity$$ExternalSyntheticLambda109 implements Runnable {
+    public final ScrimOptions f$0;
+
+    public ChatActivity$$ExternalSyntheticLambda109(ScrimOptions scrimOptions) {
+        this.f$0 = scrimOptions;
     }
 
     @Override
     public final void run() {
-        this.f$0.checkConversionDateTimeToast();
+        this.f$0.dismissFast();
     }
 }
