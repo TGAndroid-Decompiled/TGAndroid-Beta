@@ -1543,7 +1543,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             boolean z3 = savedStarGift.gift instanceof TL_stars.TL_starGiftUnique;
             this.avatarView.setColorFilter(null);
             this.avatarView.setLayoutParams(this.avatarViewLayout1);
-            if (z3) {
+            if (z3 && savedStarGift.name_hidden) {
                 this.avatarView.setVisibility(8);
             } else if (savedStarGift.name_hidden) {
                 this.avatarView.setVisibility(0);
@@ -1647,7 +1647,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
             this.inCollection = z2;
             this.title = null;
             this.subtitle = null;
-            setPinned(savedStarGift.pinned_to_top, savedStarGift2 == savedStarGift);
+            setPinned(savedStarGift.pinned_to_top && (!z3 || savedStarGift.name_hidden), savedStarGift2 == savedStarGift);
             updateRibbonText();
             return savedStarGift2 == savedStarGift;
         }

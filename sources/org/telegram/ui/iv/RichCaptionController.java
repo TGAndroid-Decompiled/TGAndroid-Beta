@@ -8,6 +8,8 @@ import android.text.Layout;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
@@ -53,7 +55,7 @@ class RichCaptionController {
         richEditText.setInputType(147457);
         richEditText.setGravity(8388659);
         richEditText.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
-        richEditText.setHint("Add caption…");
+        richEditText.setHint(LocaleController.getString(R.string.AddCaption));
         richEditText.setListener(new AnonymousClass1(host));
         richEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override

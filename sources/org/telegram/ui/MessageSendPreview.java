@@ -30,7 +30,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,6 +84,7 @@ import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
+import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
 public class MessageSendPreview extends Dialog implements NotificationCenter.NotificationCenterDelegate {
     private WindowVisibilityManager.Controller activityVisibilityController;

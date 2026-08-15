@@ -17,7 +17,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import com.google.zxing.EncodeHintType;
-import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,6 +24,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.TelegramQRCodeWriter;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 
@@ -158,9 +158,9 @@ public class QRCodeBottomSheet extends BottomSheet {
             HashMap map = new HashMap();
             map.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.M);
             map.put(EncodeHintType.MARGIN, 0);
-            QRCodeWriter qRCodeWriter = new QRCodeWriter();
-            Bitmap bitmapEncode = qRCodeWriter.encode(str, 768, 768, map, bitmap);
-            this.imageSize = qRCodeWriter.getImageSize();
+            TelegramQRCodeWriter telegramQRCodeWriter = new TelegramQRCodeWriter();
+            Bitmap bitmapEncode = telegramQRCodeWriter.encode(str, 768, 768, map, bitmap);
+            this.imageSize = telegramQRCodeWriter.getImageSize();
             return bitmapEncode;
         } catch (Exception e) {
             FileLog.e(e);

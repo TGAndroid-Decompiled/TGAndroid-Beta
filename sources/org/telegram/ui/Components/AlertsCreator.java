@@ -55,6 +55,7 @@ import j$.time.YearMonth;
 import j$.time.ZoneId;
 import j$.time.ZoneOffset;
 import j$.time.temporal.ChronoUnit;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -144,6 +145,7 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.ThemePreviewActivity;
 import org.telegram.ui.community.cells.CommunityBanGroupConfirmCell;
+import org.xmlpull.v1.XmlPullParserException;
 
 public abstract class AlertsCreator {
     private static final Pattern URL_PATTERN = Pattern.compile("^([a-zA-Z][a-zA-Z0-9+\\-.]*://)?([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}(:\\d+)?(/[^\\s]*)?$");
@@ -475,7 +477,7 @@ public abstract class AlertsCreator {
             }
             builder.setPositiveButton(LocaleController.getString(R.string.Change), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i) {
+                public final void onClick(AlertDialog alertDialog, int i) throws XmlPullParserException, IOException {
                     AlertsCreator.lambda$createLanguageAlert$11(tL_langPackLanguage, launchActivity, alertDialog, i);
                 }
             });
@@ -518,7 +520,7 @@ public abstract class AlertsCreator {
         launchActivity.lambda$runLinkRequest$100(new LanguageSelectActivity());
     }
 
-    public static void lambda$createLanguageAlert$11(TLRPC.TL_langPackLanguage tL_langPackLanguage, LaunchActivity launchActivity, AlertDialog alertDialog, int i) {
+    public static void lambda$createLanguageAlert$11(TLRPC.TL_langPackLanguage tL_langPackLanguage, LaunchActivity launchActivity, AlertDialog alertDialog, int i) throws XmlPullParserException, IOException {
         String str;
         if (tL_langPackLanguage.official) {
             str = "remote_" + tL_langPackLanguage.lang_code;

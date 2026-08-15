@@ -15,6 +15,6 @@ final class ResumeOnCompletion extends JobNode {
     public void invoke(Throwable th) {
         Continuation continuation = this.continuation;
         Result.Companion companion = Result.Companion;
-        continuation.resumeWith(Result.m290constructorimpl(Unit.INSTANCE));
+        continuation.resumeWith(Result.m283constructorimpl(Unit.INSTANCE));
     }
 }

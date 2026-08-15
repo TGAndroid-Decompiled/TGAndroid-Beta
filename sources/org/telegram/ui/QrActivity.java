@@ -52,7 +52,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import com.google.zxing.qrcode.QRCodeWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -69,6 +68,7 @@ import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.TelegramQRCodeWriter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserNameResolver;
 import org.telegram.messenger.Utilities;
@@ -1089,7 +1089,7 @@ public class QrActivity extends BaseFragment {
                 float width4 = ((getWidth() / 2.0f) + f) - f2;
                 float fRound = ((Math.round((r9 / 4.65f) / r6) * width) / 2) * 0.75f;
                 canvas.drawCircle(width3, width4, fRound, this.bitmapGradientPaint);
-                QRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
+                TelegramQRCodeWriter.drawSideQuads(canvas, f2, f, this.bitmapGradientPaint, 7.0f, width, 16, i, 0.75f, this.radii, true);
                 if (this.logoCenterSet || (qrCenterChangedListener = this.centerChangedListener) == null) {
                     return;
                 }

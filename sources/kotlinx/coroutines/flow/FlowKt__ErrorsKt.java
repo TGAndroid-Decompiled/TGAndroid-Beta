@@ -27,7 +27,7 @@ abstract class FlowKt__ErrorsKt {
         }
     }
 
-    public static final Flow m343catch(Flow flow, Function3 function3) {
+    public static final Flow m336catch(Flow flow, Function3 function3) {
         return new FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1(flow, function3);
     }
 

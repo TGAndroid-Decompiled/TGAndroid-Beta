@@ -70,7 +70,7 @@ public abstract class AbstractSharedFlow {
         for (Continuation continuation : continuationArrFreeLocked) {
             if (continuation != null) {
                 Result.Companion companion = Result.Companion;
-                continuation.resumeWith(Result.m290constructorimpl(Unit.INSTANCE));
+                continuation.resumeWith(Result.m283constructorimpl(Unit.INSTANCE));
             }
         }
     }

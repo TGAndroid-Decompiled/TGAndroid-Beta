@@ -83,7 +83,6 @@ import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.recyclerview.widget.ChatListItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
@@ -203,6 +202,7 @@ import org.telegram.ui.bots.WebViewRequestProps;
 import org.telegram.ui.iv.RichEditor;
 import org.telegram.ui.iv.RichHtml;
 import org.telegram.ui.iv.RichMessageConvert;
+import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
 public class ChatActivityEnterView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, StickersAlert.StickersAlertDelegate, SuggestEmojiView.AnchorViewDelegate, FactorAnimator.Target, Theme.Colorable {
     private final Property ATTACH_LAYOUT_ALPHA;

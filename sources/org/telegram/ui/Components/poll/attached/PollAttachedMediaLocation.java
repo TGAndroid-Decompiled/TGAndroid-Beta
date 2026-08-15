@@ -5,6 +5,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
@@ -17,6 +18,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ClipRoundedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.poll.PollAttachedMedia;
+import org.xml.sax.SAXException;
 
 public class PollAttachedMediaLocation extends PollAttachedMedia {
     public final TLRPC.MessageMedia media;
@@ -42,7 +44,7 @@ public class PollAttachedMediaLocation extends PollAttachedMedia {
         this.imageReceiver.draw(canvas);
     }
 
-    public Drawable createMessagePreviewDrawable(View view) {
+    public Drawable createMessagePreviewDrawable(View view) throws SAXException, IOException {
         final ImageReceiver imageReceiver = new ImageReceiver(view);
         SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(R.raw.map_placeholder, Theme.key_chat_outLocationIcon, (Theme.isCurrentThemeDark() ? 3 : 6) * 0.12f);
         svgThumb.setAspectCenter(true);

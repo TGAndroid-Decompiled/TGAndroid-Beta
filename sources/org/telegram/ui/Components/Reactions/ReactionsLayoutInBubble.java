@@ -18,7 +18,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import androidx.core.graphics.ColorUtils;
-import androidx.recyclerview.widget.ChatListItemAnimator;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,6 +57,7 @@ import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stars.StarsReactionsSheet;
+import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
 public class ReactionsLayoutInBubble {
     private static int animationUniq;

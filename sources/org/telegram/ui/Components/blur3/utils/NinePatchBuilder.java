@@ -4,10 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.NinePatchDrawable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import org.telegram.messenger.ApplicationLoader;
 
 public abstract class NinePatchBuilder {
 
@@ -42,6 +44,19 @@ public abstract class NinePatchBuilder {
 
     public static android.graphics.drawable.NinePatchDrawable createNinePatch(android.graphics.Bitmap[] r28, float[] r29, float r30, float r31, float r32, int r33, org.telegram.ui.Components.blur3.utils.NinePatchBuilder.NinePathRenderer r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.blur3.utils.NinePatchBuilder.createNinePatch(android.graphics.Bitmap[], float[], float, float, float, int, org.telegram.ui.Components.blur3.utils.NinePatchBuilder$NinePathRenderer):android.graphics.drawable.NinePatchDrawable");
+    }
+
+    public static NinePatchDrawable createNinePatch(Bitmap bitmap, Rect rect, int i, int i2) {
+        if (bitmap == null) {
+            throw new IllegalArgumentException("bitmap == null");
+        }
+        if (bitmap.isRecycled()) {
+            throw new IllegalArgumentException("bitmap is recycled");
+        }
+        if (i < 0 || i >= bitmap.getWidth() || i2 < 0 || i2 >= bitmap.getHeight()) {
+            throw new IllegalArgumentException("center pixel is outside bitmap: (" + i + ", " + i2 + ") for " + bitmap.getWidth() + "x" + bitmap.getHeight());
+        }
+        return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, createNinePatchChunk(i, i + 1, i2, i2 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i, i2)).array(), rect, null);
     }
 
     public static ByteBuffer createNinePatchChunk(int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9) {

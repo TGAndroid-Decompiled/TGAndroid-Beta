@@ -37,7 +37,6 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Objects;
@@ -141,6 +140,7 @@ import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.MainTabsActivity;
 import org.telegram.ui.RightSlidingDialogContainer;
 import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
 
 public class TopicsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate, ChatActivityInterface, RightSlidingDialogContainer.BaseFragmentWithFullscreen, MainTabsActivity.TabFragmentDelegate {
     private static HashSet settingsPreloaded = new HashSet();

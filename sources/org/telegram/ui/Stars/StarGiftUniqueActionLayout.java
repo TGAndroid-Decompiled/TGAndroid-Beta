@@ -8,6 +8,7 @@ import android.graphics.RadialGradient;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.MotionEvent;
+import android.view.View;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
@@ -24,6 +25,7 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Gifts.GiftMessageDrawable;
 import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
@@ -34,8 +36,12 @@ public class StarGiftUniqueActionLayout {
     private TL_stars.starGiftAttributeBackdrop backdrop;
     private final ButtonBounce bounce;
     private boolean burned;
+    private final Paint buttonBackgroundPaint;
     private final ButtonBounce buttonBounce;
     private float buttonHeight;
+    private final StarsReactionsSheet.Particles buttonParticles;
+    private final Path buttonPath;
+    private final RectF buttonRect;
     private Text buttonText;
     private float buttonY;
     private final int currentAccount;
@@ -45,6 +51,8 @@ public class StarGiftUniqueActionLayout {
     private int gradientRadius;
     int height;
     public final ImageReceiver imageReceiver;
+    private final GiftMessageDrawable messageDrawable;
+    private float messageY;
     private TL_stars.starGiftAttributeModel model;
     private float nameWidth;
     private TL_stars.starGiftAttributePattern pattern;
@@ -56,17 +64,14 @@ public class StarGiftUniqueActionLayout {
     private Text title;
     private float titleY;
     private float valueWidth;
-    private final ChatActionCell view;
+    private final View view;
     int width;
+    private boolean widthExpanded;
     private final Paint backgroundPaint = new Paint(1);
     private final Matrix matrix = new Matrix();
     private final RectF backgroundRect = new RectF();
     private final Path backgroundPath = new Path();
     private final ArrayList table = new ArrayList();
-    private final RectF buttonRect = new RectF();
-    private final Path buttonPath = new Path();
-    private final Paint buttonBackgroundPaint = new Paint();
-    private final StarsReactionsSheet.Particles buttonParticles = new StarsReactionsSheet.Particles(1, 25);
 
     private static final class Row {
         public final Text name;
@@ -84,19 +89,30 @@ public class StarGiftUniqueActionLayout {
         }
     }
 
-    public StarGiftUniqueActionLayout(int i, ChatActionCell chatActionCell, Theme.ResourcesProvider resourcesProvider) {
+    public StarGiftUniqueActionLayout(int i, View view, Theme.ResourcesProvider resourcesProvider) {
+        GiftMessageDrawable giftMessageDrawable = new GiftMessageDrawable();
+        this.messageDrawable = giftMessageDrawable;
+        this.buttonRect = new RectF();
+        this.buttonPath = new Path();
+        this.buttonBackgroundPaint = new Paint();
+        this.buttonParticles = new StarsReactionsSheet.Particles(1, 25);
         this.currentAccount = i;
-        this.view = chatActionCell;
+        this.view = view;
         this.resourcesProvider = resourcesProvider;
-        this.ribbon = new GiftSheet.RibbonDrawable(chatActionCell, 1.0f);
-        this.buttonBounce = new ButtonBounce(chatActionCell);
-        this.bounce = new ButtonBounce(chatActionCell);
-        this.imageReceiver = new ImageReceiver(chatActionCell);
-        this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(chatActionCell, AndroidUtilities.dp(28.0f));
+        this.ribbon = new GiftSheet.RibbonDrawable(view, 1.0f);
+        this.buttonBounce = new ButtonBounce(view);
+        this.bounce = new ButtonBounce(view);
+        this.imageReceiver = new ImageReceiver(view);
+        this.emoji = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(view, AndroidUtilities.dp(28.0f));
+        giftMessageDrawable.setParentView(view);
     }
 
-    public void set(org.telegram.messenger.MessageObject r18, boolean r19) {
+    public void set(org.telegram.messenger.MessageObject r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.set(org.telegram.messenger.MessageObject, boolean):void");
+    }
+
+    private void setInternal(org.telegram.messenger.MessageObject r23, org.telegram.tgnet.TLRPC.TL_messageActionStarGiftUnique r24, org.telegram.tgnet.tl.TL_stars.TL_starGiftUnique r25, boolean r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stars.StarGiftUniqueActionLayout.setInternal(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$TL_messageActionStarGiftUnique, org.telegram.tgnet.tl.TL_stars$TL_starGiftUnique, boolean):void");
     }
 
     public boolean has() {
@@ -116,6 +132,7 @@ public class StarGiftUniqueActionLayout {
         if (this.action != null) {
             this.imageReceiver.onAttachedToWindow();
             this.emoji.attach();
+            this.messageDrawable.attach();
         }
     }
 
@@ -123,6 +140,7 @@ public class StarGiftUniqueActionLayout {
         this.attached = false;
         this.imageReceiver.onDetachedFromWindow();
         this.emoji.detach();
+        this.messageDrawable.detach();
     }
 
     public void draw(Canvas canvas) {
@@ -171,14 +189,24 @@ public class StarGiftUniqueActionLayout {
         this.subtitle.ellipsize(getWidth() - AndroidUtilities.dp(12.0f));
         Text text2 = this.subtitle;
         text2.draw(canvas, width - (text2.getCurrentWidth() / 2.0f), this.subtitleY, i, 1.0f);
-        float fDp = this.nameWidth + AndroidUtilities.dp(9.0f) + this.valueWidth;
-        Iterator it = this.table.iterator();
-        while (it.hasNext()) {
-            Row row = (Row) it.next();
-            Text text3 = row.name;
-            float f2 = width - (fDp / 2.0f);
-            text3.draw(canvas, (f2 + this.nameWidth) - text3.getCurrentWidth(), row.y, i, 1.0f);
-            row.value.draw(canvas, f2 + this.nameWidth + AndroidUtilities.dp(9.0f), row.y, -1, 1.0f);
+        if (this.messageDrawable.getMinimumHeight() > 0) {
+            int minimumWidth = this.messageDrawable.getMinimumWidth();
+            int minimumHeight = this.messageDrawable.getMinimumHeight();
+            int i2 = (int) (width - (minimumWidth / 2.0f));
+            GiftMessageDrawable giftMessageDrawable = this.messageDrawable;
+            int i3 = (int) this.messageY;
+            giftMessageDrawable.setBounds(i2, i3, minimumWidth + i2, minimumHeight + i3);
+            this.messageDrawable.draw(canvas);
+        } else {
+            float fDp = this.nameWidth + AndroidUtilities.dp(9.0f) + this.valueWidth;
+            Iterator it = this.table.iterator();
+            while (it.hasNext()) {
+                Row row = (Row) it.next();
+                Text text3 = row.name;
+                float f2 = width - (fDp / 2.0f);
+                text3.draw(canvas, (f2 + this.nameWidth) - text3.getCurrentWidth(), row.y, i, 1.0f);
+                row.value.draw(canvas, f2 + this.nameWidth + AndroidUtilities.dp(9.0f), row.y, -1, 1.0f);
+            }
         }
         if (!this.repost) {
             this.buttonRect.set(width - ((this.buttonText.getCurrentWidth() + AndroidUtilities.dp(30.0f)) / 2.0f), this.buttonY, width + ((this.buttonText.getCurrentWidth() + AndroidUtilities.dp(30.0f)) / 2.0f), this.buttonY + this.buttonHeight);
@@ -214,7 +242,12 @@ public class StarGiftUniqueActionLayout {
         this.buttonParticles.draw(canvas, Theme.multAlpha(-1, 0.7f));
         this.buttonText.draw(canvas, this.buttonRect.left + AndroidUtilities.dp(15.0f), this.buttonRect.centerY(), -1, 1.0f);
         canvas.restore();
-        this.view.invalidateOutbounds();
+        View view = this.view;
+        if (view instanceof ChatActionCell) {
+            ((ChatActionCell) view).invalidateOutbounds();
+        } else {
+            view.invalidate();
+        }
     }
 
     public boolean onTouchEvent(float f, float f2, MotionEvent motionEvent) {

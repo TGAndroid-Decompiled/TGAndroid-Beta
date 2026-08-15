@@ -21,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,6 +41,7 @@ import org.telegram.tgnet.Vector;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 public class LocaleController {
     static final int QUANTITY_FEW = 8;
@@ -1479,7 +1481,7 @@ public class LocaleController {
         editorEdit.commit();
     }
 
-    public boolean deleteLanguage(LocaleInfo localeInfo, int i) {
+    public boolean deleteLanguage(LocaleInfo localeInfo, int i) throws XmlPullParserException, IOException {
         if (localeInfo.pathToFile == null || (localeInfo.isRemote() && localeInfo.serverIndex != Integer.MAX_VALUE)) {
             return false;
         }
@@ -1539,11 +1541,11 @@ public class LocaleController {
         }
     }
 
-    private HashMap<String, String> getLocaleFileStrings(File file) {
+    private HashMap<String, String> getLocaleFileStrings(File file) throws XmlPullParserException, IOException {
         return getLocaleFileStrings(file, false);
     }
 
-    private HashMap<String, String> getLocaleFileStrings(File file, boolean z) throws Throwable {
+    private HashMap<String, String> getLocaleFileStrings(File file, boolean z) throws XmlPullParserException, IOException {
         FileInputStream fileInputStream;
         this.reloadLastFile = false;
         FileLog.d("getLocaleFileStrings: reloadLastFile = false");
@@ -1639,11 +1641,11 @@ public class LocaleController {
         }
     }
 
-    public int applyLanguage(LocaleInfo localeInfo, boolean z, boolean z2, int i) {
+    public int applyLanguage(LocaleInfo localeInfo, boolean z, boolean z2, int i) throws XmlPullParserException, IOException {
         return applyLanguage(localeInfo, z, z2, false, false, i, null);
     }
 
-    public int applyLanguage(final org.telegram.messenger.LocaleController.LocaleInfo r20, boolean r21, boolean r22, boolean r23, boolean r24, final int r25, final java.lang.Runnable r26) {
+    public int applyLanguage(final org.telegram.messenger.LocaleController.LocaleInfo r20, boolean r21, boolean r22, boolean r23, boolean r24, final int r25, final java.lang.Runnable r26) throws org.xmlpull.v1.XmlPullParserException, java.io.IOException {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LocaleController.applyLanguage(org.telegram.messenger.LocaleController$LocaleInfo, boolean, boolean, boolean, boolean, int, java.lang.Runnable):int");
     }
 
@@ -2364,7 +2366,7 @@ public class LocaleController {
         return sb.toString();
     }
 
-    public void onDeviceConfigurationChange(Configuration configuration) {
+    public void onDeviceConfigurationChange(Configuration configuration) throws XmlPullParserException, IOException {
         if (this.changingConfiguration) {
             return;
         }
@@ -3136,7 +3138,7 @@ public class LocaleController {
         }
     }
 
-    public void lambda$applyRemoteLanguage$20(final LocaleInfo localeInfo, final TLRPC.TL_langPackDifference tL_langPackDifference, int i, final Runnable runnable) throws Throwable {
+    public void lambda$applyRemoteLanguage$20(final LocaleInfo localeInfo, final TLRPC.TL_langPackDifference tL_langPackDifference, int i, final Runnable runnable) throws IOException {
         final int i2;
         File pathToBaseFile;
         HashMap<String, String> localeFileStrings;
@@ -3317,14 +3319,14 @@ public class LocaleController {
         if (tLObject instanceof Vector) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() {
+                public final void run() throws XmlPullParserException, IOException {
                     this.f$0.lambda$loadRemoteLanguages$11(tLObject, z, i);
                 }
             });
         }
     }
 
-    public void lambda$loadRemoteLanguages$11(TLObject tLObject, boolean z, int i) {
+    public void lambda$loadRemoteLanguages$11(TLObject tLObject, boolean z, int i) throws XmlPullParserException, IOException {
         this.loadingRemoteLanguages = false;
         Vector vector = (Vector) tLObject;
         int size = this.remoteLanguages.size();
@@ -3481,7 +3483,7 @@ public class LocaleController {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() throws IOException {
                     this.f$0.lambda$applyRemoteLanguage$14(localeInfo, tLObject, i, runnable);
                 }
             });
@@ -3492,7 +3494,7 @@ public class LocaleController {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() throws IOException {
                     this.f$0.lambda$applyRemoteLanguage$16(localeInfo, tLObject, i, runnable);
                 }
             });
@@ -3503,7 +3505,7 @@ public class LocaleController {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() throws IOException {
                     this.f$0.lambda$applyRemoteLanguage$18(localeInfo, tLObject, i, runnable);
                 }
             });
@@ -3514,7 +3516,7 @@ public class LocaleController {
         if (tLObject != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
-                public final void run() throws Throwable {
+                public final void run() throws IOException {
                     this.f$0.lambda$applyRemoteLanguage$20(localeInfo, tLObject, i, runnable);
                 }
             });

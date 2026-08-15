@@ -10,7 +10,6 @@ import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Map;
 import j$.util.function.BiConsumer$CC;
@@ -48,6 +47,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
 
 public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
