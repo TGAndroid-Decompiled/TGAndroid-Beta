@@ -31,7 +31,6 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import java.io.IOException;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -68,7 +67,6 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SimpleThemeDescription;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.IntroActivity;
-import org.xmlpull.v1.XmlPullParserException;
 
 public class IntroActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private BottomPagesView bottomPages;
@@ -283,7 +281,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.frameContainerView.addView(this.switchLanguageTextView, LayoutHelper.createFrame(-2, 30.0f, 81, 0.0f, 0.0f, 0.0f, 20.0f));
         this.switchLanguageTextView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public final void onClick(View view) throws XmlPullParserException, IOException {
+            public final void onClick(View view) {
                 this.f$0.lambda$createView$2(view);
             }
         });
@@ -391,7 +389,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         this.destroyed = true;
     }
 
-    public void lambda$createView$2(View view) throws XmlPullParserException, IOException {
+    public void lambda$createView$2(View view) {
         if (this.startPressed || this.localeInfo == null) {
             return;
         }

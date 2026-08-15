@@ -55,7 +55,6 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.common.primitives.Longs;
 import j$.util.function.Consumer$CC;
 import java.io.File;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -186,7 +185,6 @@ import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
-import org.xmlpull.v1.XmlPullParserException;
 
 public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate, IPipActivity {
     public static final Pattern PREFIX_T_ME_PATTERN = Pattern.compile("^(?:http(?:s|)://|)([A-z0-9-]+?)\\.t\\.me");
@@ -5259,7 +5257,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             builder.setView(linearLayout);
             builder.setNegativeButton(LocaleController.getString(R.string.OK), new AlertDialog.OnButtonClickListener() {
                 @Override
-                public final void onClick(AlertDialog alertDialog, int i4) throws XmlPullParserException, IOException {
+                public final void onClick(AlertDialog alertDialog, int i4) {
                     this.f$0.lambda$showLanguageAlertInternal$172(localeInfoArr2, alertDialog, i4);
                 }
             });
@@ -5291,7 +5289,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.visibleDialogs.clear();
     }
 
-    public void lambda$showLanguageAlertInternal$172(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) throws XmlPullParserException, IOException {
+    public void lambda$showLanguageAlertInternal$172(LocaleController.LocaleInfo[] localeInfoArr, AlertDialog alertDialog, int i) {
         LocaleController.getInstance().applyLanguage(localeInfoArr[0], true, false, this.currentAccount);
         rebuildAllFragments(true);
     }

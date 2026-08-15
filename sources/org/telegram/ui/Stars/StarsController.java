@@ -3667,7 +3667,11 @@ public class StarsController {
         bulletinFactoryOf.createEmojiBulletin(document, string, charSequence).show(true);
     }
 
-    public void getResellingGiftForm(final TL_stars.StarGift starGift, final long j, final Utilities.Callback callback) {
+    public void getResellingGiftForm(TL_stars.StarGift starGift, long j, Utilities.Callback callback) {
+        getResellingGiftForm(starGift, j, null, true, callback);
+    }
+
+    public void getResellingGiftForm(final TL_stars.StarGift starGift, final long j, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, final Utilities.Callback callback) {
         Context context = LaunchActivity.instance;
         if (context == null) {
             context = ApplicationLoader.applicationContext;
@@ -3689,6 +3693,8 @@ public class StarsController {
         tL_inputInvoiceStarGiftResale.slug = starGift.slug;
         tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         tL_inputInvoiceStarGiftResale.ton = this.ton;
+        tL_inputInvoiceStarGiftResale.message = tL_textWithEntities;
+        tL_inputInvoiceStarGiftResale.show_name = !z;
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
         JSONObject jSONObjectMakeThemeParams = BotWebViewSheet.makeThemeParams(resourceProvider);
         if (jSONObjectMakeThemeParams != null) {
@@ -3747,7 +3753,11 @@ public class StarsController {
         return j;
     }
 
-    public void buyResellingGift(final TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, final TL_stars.StarGift starGift, final long j, final Utilities.Callback2 callback2) {
+    public void buyResellingGift(TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, TL_stars.StarGift starGift, long j, Utilities.Callback2 callback2) {
+        buyResellingGift(tL_payments_paymentFormStarGift, starGift, j, null, true, callback2);
+    }
+
+    public void buyResellingGift(final TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift, final TL_stars.StarGift starGift, final long j, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, final Utilities.Callback2 callback2) {
         Context context = LaunchActivity.instance;
         if (context == null) {
             context = ApplicationLoader.applicationContext;
@@ -3771,6 +3781,8 @@ public class StarsController {
         tL_inputInvoiceStarGiftResale.slug = starGift.slug;
         tL_inputInvoiceStarGiftResale.to_id = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         tL_inputInvoiceStarGiftResale.ton = this.ton;
+        tL_inputInvoiceStarGiftResale.message = tL_textWithEntities;
+        tL_inputInvoiceStarGiftResale.show_name = !z;
         TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
         JSONObject jSONObjectMakeThemeParams = BotWebViewSheet.makeThemeParams(resourceProvider);
         if (jSONObjectMakeThemeParams != null) {
