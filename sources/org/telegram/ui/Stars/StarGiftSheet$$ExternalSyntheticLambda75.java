@@ -1,6 +1,8 @@
 package org.telegram.ui.Stars;
 
-public final class StarGiftSheet$$ExternalSyntheticLambda75 implements Runnable {
+import org.telegram.messenger.Utilities;
+
+public final class StarGiftSheet$$ExternalSyntheticLambda75 implements Utilities.Callback {
     public final StarGiftSheet f$0;
 
     public StarGiftSheet$$ExternalSyntheticLambda75(StarGiftSheet starGiftSheet) {
@@ -8,7 +10,7 @@ public final class StarGiftSheet$$ExternalSyntheticLambda75 implements Runnable 
     }
 
     @Override
-    public final void run() {
-        this.f$0.dismiss();
+    public final void run(Object obj) {
+        this.f$0.dismiss(((Boolean) obj).booleanValue());
     }
 }

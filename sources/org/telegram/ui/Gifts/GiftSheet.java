@@ -132,7 +132,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
     private UniversalAdapter adapter;
     private final StarsIntroActivity.StarsBalanceView balanceView;
     private boolean birthday;
-    private final Runnable closeParentSheet;
+    private final Utilities.Callback closeParentSheet;
     private final int currentAccount;
     private final long dialogId;
     private final DefaultItemAnimator itemAnimator;
@@ -156,12 +156,12 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         return false;
     }
 
-    public GiftSheet(Context context, int i, long j, Runnable runnable) {
-        this(context, i, j, null, runnable);
+    public GiftSheet(Context context, int i, long j, Utilities.Callback callback) {
+        this(context, i, j, null, callback);
     }
 
-    public GiftSheet(final android.content.Context r29, final int r30, final long r31, java.util.List r33, final java.lang.Runnable r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.<init>(android.content.Context, int, long, java.util.List, java.lang.Runnable):void");
+    public GiftSheet(final android.content.Context r29, final int r30, final long r31, java.util.List r33, final org.telegram.messenger.Utilities.Callback r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Gifts.GiftSheet.<init>(android.content.Context, int, long, java.util.List, org.telegram.messenger.Utilities$Callback):void");
     }
 
     public void lambda$new$0(View view) {
@@ -194,7 +194,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         lastFragment.showAsSheet(new PremiumPreviewFragment("gifts"), bottomSheetParams);
     }
 
-    public void lambda$new$5(StarsController.GiftsList giftsList, final long j, final Runnable runnable, final Context context) {
+    public void lambda$new$5(StarsController.GiftsList giftsList, final long j, final Utilities.Callback callback, final Context context) {
         TL_stars.StarGift starGift;
         TLRPC.Document document;
         int i = 0;
@@ -225,7 +225,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(spannableStringBuilder2, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$3(runnable, j);
+                        this.f$0.lambda$new$3(callback, j);
                     }
                 }), true));
             } else {
@@ -243,14 +243,14 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
     }
 
-    public void lambda$new$3(Runnable runnable, long j) {
+    public void lambda$new$3(Utilities.Callback callback, long j) {
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
         }
         lambda$new$0();
-        if (runnable != null) {
-            runnable.run();
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", j);
@@ -268,7 +268,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }
     }
 
-    public void lambda$new$19(final Context context, final int i, final Runnable runnable, final long j, View view, int i2) {
+    public void lambda$new$19(final Context context, final int i, final Utilities.Callback callback, final long j, View view, int i2) {
         TL_stars.SavedStarGift savedStarGift;
         UItem item = this.adapter.getItem(i2 - 1);
         if (item != null && item.instanceOf(GiftCell.Factory.class)) {
@@ -277,7 +277,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 new SendGiftSheet(context, i, (GiftPremiumBottomSheet$GiftTier) obj, this.dialogId, new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$7(runnable);
+                        this.f$0.lambda$new$7(callback);
                     }
                 }) {
                     @Override
@@ -317,7 +317,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     starGiftSheet.openTransferAlert(j, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj2) {
-                            this.f$0.lambda$new$10(starGiftSheet, j, runnable, (Browser.Progress) obj2);
+                            this.f$0.lambda$new$10(starGiftSheet, j, callback, (Browser.Progress) obj2);
                         }
                     });
                     return;
@@ -351,10 +351,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                             viewTreeObserver.addOnPreDrawListener(onPreDrawListener);
                         }
                     };
-                    resaleGiftsFragment.setCloseParentSheet(new Runnable() {
+                    resaleGiftsFragment.setCloseParentSheet(new Utilities.Callback() {
                         @Override
-                        public final void run() {
-                            this.f$0.lambda$new$12(runnable);
+                        public final void run(Object obj2) {
+                            this.f$0.lambda$new$12(callback, (Boolean) obj2);
                         }
                     });
                     safeLastFragment.showAsSheet(resaleGiftsFragment, bottomSheetParams);
@@ -364,7 +364,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     AuctionJoinSheet.show(context, this.resourcesProvider, i, j, starGift.id, new Runnable() {
                         @Override
                         public final void run() {
-                            this.f$0.lambda$new$13(runnable);
+                            this.f$0.lambda$new$13(callback);
                         }
                     });
                     return;
@@ -377,10 +377,10 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     BulletinFactory.of(this.container, this.resourcesProvider).createSimpleMultiBulletin(starGift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2PerUserLimit", starGift.per_user_total))).show();
                     return;
                 }
-                final Runnable runnable2 = new Runnable() {
+                final Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        this.f$0.lambda$new$15(context, i, starGift, runnable);
+                        this.f$0.lambda$new$15(context, i, starGift, callback);
                     }
                 };
                 if (starGift.locked_until_date > ConnectionsManager.getInstance(i).getCurrentTime()) {
@@ -391,7 +391,7 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     ConnectionsManager.getInstance(i).sendRequest(checkcansendgift, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                            this.f$0.lambda$new$18(alertDialog, runnable2, runnable, tLObject, tL_error);
+                            this.f$0.lambda$new$18(alertDialog, runnable, callback, tLObject, tL_error);
                         }
                     });
                     return;
@@ -422,32 +422,32 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                     swapAnimatedEmojiDrawable.play();
                     return;
                 }
-                runnable2.run();
+                runnable.run();
             }
         }
     }
 
-    public void lambda$new$7(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
+    public void lambda$new$7(Utilities.Callback callback) {
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         lambda$new$0();
     }
 
-    public void lambda$new$10(final StarGiftSheet starGiftSheet, long j, final Runnable runnable, final Browser.Progress progress) {
+    public void lambda$new$10(final StarGiftSheet starGiftSheet, long j, final Utilities.Callback callback, final Browser.Progress progress) {
         progress.init();
         starGiftSheet.doTransfer(j, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                this.f$0.lambda$new$9(progress, runnable, starGiftSheet, (TLRPC.TL_error) obj);
+                this.f$0.lambda$new$9(progress, callback, starGiftSheet, (TLRPC.TL_error) obj);
             }
         });
     }
 
-    public void lambda$new$9(Browser.Progress progress, Runnable runnable, final StarGiftSheet starGiftSheet, final TLRPC.TL_error tL_error) {
+    public void lambda$new$9(Browser.Progress progress, Utilities.Callback callback, final StarGiftSheet starGiftSheet, final TLRPC.TL_error tL_error) {
         progress.end();
-        if (runnable != null) {
-            runnable.run();
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         lambda$new$0();
         if (tL_error != null) {
@@ -466,32 +466,35 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         starGiftSheet.getBulletinFactory().showForError(tL_error);
     }
 
-    public void lambda$new$12(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
+    public void lambda$new$12(Utilities.Callback callback, Boolean bool) {
+        if (callback != null) {
+            callback.run(bool);
+        }
+        if (bool.booleanValue()) {
+            skipDismissAnimation();
         }
         lambda$new$0();
     }
 
-    public void lambda$new$13(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
+    public void lambda$new$13(Utilities.Callback callback) {
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         lambda$new$0();
     }
 
-    public void lambda$new$15(Context context, int i, TL_stars.StarGift starGift, final Runnable runnable) {
+    public void lambda$new$15(Context context, int i, TL_stars.StarGift starGift, final Utilities.Callback callback) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
         long j = this.dialogId;
-        Runnable runnable2 = new Runnable() {
+        Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$14(runnable);
+                this.f$0.lambda$new$14(callback);
             }
         };
         boolean z = starGift.limited;
-        new SendGiftSheet(context, i, starGift, j, runnable2, z && (disallowedGiftsSettings2 = this.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, z && (disallowedGiftsSettings = this.userSettings) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
+        new SendGiftSheet(context, i, starGift, j, runnable, z && (disallowedGiftsSettings2 = this.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, z && (disallowedGiftsSettings = this.userSettings) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
             @Override
             protected BulletinFactory getParentBulletinFactory() {
                 GiftSheet giftSheet = GiftSheet.this;
@@ -500,23 +503,23 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
         }.show();
     }
 
-    public void lambda$new$14(Runnable runnable) {
-        if (runnable != null) {
-            runnable.run();
+    public void lambda$new$14(Utilities.Callback callback) {
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         lambda$new$0();
     }
 
-    public void lambda$new$18(final AlertDialog alertDialog, final Runnable runnable, final Runnable runnable2, final TLObject tLObject, final TLRPC.TL_error tL_error) {
+    public void lambda$new$18(final AlertDialog alertDialog, final Runnable runnable, final Utilities.Callback callback, final TLObject tLObject, final TLRPC.TL_error tL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$new$17(alertDialog, tLObject, runnable, runnable2, tL_error);
+                this.f$0.lambda$new$17(alertDialog, tLObject, runnable, callback, tL_error);
             }
         });
     }
 
-    public void lambda$new$17(AlertDialog alertDialog, TLObject tLObject, Runnable runnable, final Runnable runnable2, TLRPC.TL_error tL_error) {
+    public void lambda$new$17(AlertDialog alertDialog, TLObject tLObject, Runnable runnable, final Utilities.Callback callback, TLRPC.TL_error tL_error) {
         alertDialog.dismiss();
         if (tLObject instanceof TL_stars.checkCanSendGiftResultOk) {
             runnable.run();
@@ -533,17 +536,17 @@ public class GiftSheet extends BottomSheetWithRecyclerListView implements Notifi
                 ((EffectsTextView) messageTextView).setOnLinkPressListener(new LinkSpanDrawable.LinksTextView.OnLinkPress() {
                     @Override
                     public final void run(ClickableSpan clickableSpan) {
-                        this.f$0.lambda$new$16(alertDialogShow, runnable2, messageTextView, clickableSpan);
+                        this.f$0.lambda$new$16(alertDialogShow, callback, messageTextView, clickableSpan);
                     }
                 });
             }
         }
     }
 
-    public void lambda$new$16(AlertDialog alertDialog, Runnable runnable, TextView textView, ClickableSpan clickableSpan) {
+    public void lambda$new$16(AlertDialog alertDialog, Utilities.Callback callback, TextView textView, ClickableSpan clickableSpan) {
         alertDialog.dismiss();
-        if (runnable != null) {
-            runnable.run();
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         lambda$new$0();
         clickableSpan.onClick(textView);

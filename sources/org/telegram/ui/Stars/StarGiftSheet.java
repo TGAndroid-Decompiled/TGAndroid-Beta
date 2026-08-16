@@ -178,7 +178,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final LinkSpanDrawable.LinksTextView beforeTableTextView;
     private final FrameLayout bottomBulletinContainer;
     private final View bottomView;
-    private Utilities.Callback2 boughtGift;
+    private BoughtGiftCallback boughtGift;
     private final ButtonWithCounterView button;
     private final FrameLayout buttonContainer;
     private final View buttonShadow;
@@ -186,7 +186,7 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final LinearLayout checkboxLayout;
     private final View checkboxSeparator;
     private final TextView checkboxTextView;
-    private Runnable closeParentSheet;
+    private Utilities.Callback closeParentSheet;
     private ContainerView container;
     private final AffiliateProgramFragment.FeatureCell[] craftFeatureCells;
     private final LinearLayout craftLayout;
@@ -249,6 +249,10 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     private final TextView wearSubtitle;
     private final TextView wearTitle;
 
+    public interface BoughtGiftCallback {
+        void onBoughtGift(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z);
+    }
+
     public static void lambda$onResellPressed$35(AlertDialog alertDialog, int i) {
     }
 
@@ -257,8 +261,8 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         return false;
     }
 
-    public StarGiftSheet setOnBoughtGift(Utilities.Callback2 callback2) {
-        this.boughtGift = callback2;
+    public StarGiftSheet setOnBoughtGift(BoughtGiftCallback boughtGiftCallback) {
+        this.boughtGift = boughtGiftCallback;
         return this;
     }
 
@@ -1197,9 +1201,9 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
     }
 
     public void lambda$showGiftOfferSheet$15() {
-        Runnable runnable = this.closeParentSheet;
-        if (runnable != null) {
-            runnable.run();
+        Utilities.Callback callback = this.closeParentSheet;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
         lambda$new$0();
     }
@@ -7162,15 +7166,21 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         });
     }
 
-    public void lambda$performBuyPressed$170(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, GiftMessageBottomSheet giftMessageBottomSheet, Boolean bool, String str) {
+    public void lambda$performBuyPressed$170(Browser.Progress progress, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, final GiftMessageBottomSheet giftMessageBottomSheet, Boolean bool, String str) {
         progress.end();
         if (bool.booleanValue()) {
-            Utilities.Callback2 callback2 = this.boughtGift;
-            if (callback2 != null) {
-                callback2.run(tL_starGiftUnique, Long.valueOf(j));
+            BoughtGiftCallback boughtGiftCallback = this.boughtGift;
+            if (boughtGiftCallback != null) {
+                boughtGiftCallback.onBoughtGift(tL_starGiftUnique, j, giftMessageBottomSheet != null);
             }
             if (giftMessageBottomSheet != null) {
-                giftMessageBottomSheet.lambda$new$0();
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        giftMessageBottomSheet.lambda$new$0();
+                    }
+                });
+                skipDismissAnimation();
             }
             lambda$new$0();
         }
@@ -8416,19 +8426,22 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
         bottomSheetParams.transitionFromLeft = true;
         bottomSheetParams.allowNestedScroll = false;
         ResaleGiftsFragment resaleGiftsFragment = new ResaleGiftsFragment(this.dialogId, str, j, this.resourcesProvider);
-        resaleGiftsFragment.setCloseParentSheet(new Runnable() {
+        resaleGiftsFragment.setCloseParentSheet(new Utilities.Callback() {
             @Override
-            public final void run() {
-                this.f$0.lambda$openValueStats$180();
+            public final void run(Object obj) {
+                this.f$0.lambda$openValueStats$180((Boolean) obj);
             }
         });
         lastFragment.showAsSheet(resaleGiftsFragment, bottomSheetParams);
     }
 
-    public void lambda$openValueStats$180() {
-        Runnable runnable = this.closeParentSheet;
-        if (runnable != null) {
-            runnable.run();
+    public void lambda$openValueStats$180(Boolean bool) {
+        Utilities.Callback callback = this.closeParentSheet;
+        if (callback != null) {
+            callback.run(bool);
+        }
+        if (bool.booleanValue()) {
+            skipDismissAnimation();
         }
         lambda$new$0();
     }
@@ -8645,10 +8658,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
                     return;
                 }
                 long peerDialogId = DialogObject.getPeerDialogId(peer);
+                long peerDialogId2 = DialogObject.getPeerDialogId(tL_messageActionStarGiftUnique.peer);
                 if (clientUserId == peerDialogId) {
                     set(AndroidUtilities.replaceTags(LocaleController.formatString((tL_messageActionStarGiftUnique.craft || tL_messageActionStarGiftUnique.gift.crafted) ? R.string.GiftSelfTopActionCrafted : R.string.GiftSelfTopAction, LocaleController.formatDate(messageObject.messageOwner.date))));
-                } else {
+                } else if (clientUserId == peerDialogId2) {
                     set(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTopAction, DialogObject.getShortName(i, peerDialogId), LocaleController.formatDate(messageObject.messageOwner.date))));
+                } else {
+                    set(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTopActionFromTo, DialogObject.getShortName(i, peerDialogId), DialogObject.getShortName(i, peerDialogId2), LocaleController.formatDate(messageObject.messageOwner.date))));
                 }
                 setVisibility(0);
                 return;
@@ -8664,10 +8680,13 @@ public class StarGiftSheet extends BottomSheetWithRecyclerListView implements No
             setVisibility(0);
             long clientUserId = UserConfig.getInstance(i).getClientUserId();
             long peerDialogId = DialogObject.getPeerDialogId(savedStarGift.from_id);
+            long peerDialogId2 = DialogObject.getPeerDialogId(savedStarGift.gift.owner_id);
             if (clientUserId == peerDialogId) {
                 set(AndroidUtilities.replaceTags(LocaleController.formatString(savedStarGift.gift.crafted ? R.string.GiftSelfTopActionCrafted : R.string.GiftSelfTopAction, LocaleController.formatDate(savedStarGift.date))));
-            } else {
+            } else if (clientUserId == peerDialogId2) {
                 set(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTopAction, DialogObject.getShortName(i, peerDialogId), LocaleController.formatDate(savedStarGift.date))));
+            } else {
+                set(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftTopActionFromTo, DialogObject.getShortName(i, peerDialogId), DialogObject.getShortName(i, peerDialogId2), LocaleController.formatDate(savedStarGift.date))));
             }
         }
 

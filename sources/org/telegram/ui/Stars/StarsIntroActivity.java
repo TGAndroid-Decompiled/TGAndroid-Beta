@@ -83,7 +83,6 @@ import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda7;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
@@ -3806,7 +3805,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     public static void lambda$showTransactionSheet$36(Context context, int i, long j, BottomSheet[] bottomSheetArr) {
         BottomSheet bottomSheet = bottomSheetArr[0];
         Objects.requireNonNull(bottomSheet);
-        new GiftSheet(context, i, j, new BottomSheet$$ExternalSyntheticLambda7(bottomSheet)).show();
+        new GiftSheet(context, i, j, new StarsIntroActivity$$ExternalSyntheticLambda42(bottomSheet)).show();
     }
 
     public static void lambda$showTransactionSheet$37(BottomSheet[] bottomSheetArr, int i) {
@@ -3848,7 +3847,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
     public static void lambda$showTransactionSheet$40(Context context, int i, long j, BottomSheet[] bottomSheetArr) {
         BottomSheet bottomSheet = bottomSheetArr[0];
         Objects.requireNonNull(bottomSheet);
-        new GiftSheet(context, i, j, new BottomSheet$$ExternalSyntheticLambda7(bottomSheet)).show();
+        new GiftSheet(context, i, j, new StarsIntroActivity$$ExternalSyntheticLambda42(bottomSheet)).show();
     }
 
     public static void lambda$showTransactionSheet$41(BottomSheet[] bottomSheetArr, long j) {

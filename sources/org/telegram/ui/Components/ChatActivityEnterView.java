@@ -37,10 +37,12 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -90,6 +92,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15113,5 +15116,40 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         }
         updateFieldRight(this.lastAttachVisible);
         checkSendButton(false);
+    }
+
+    public static void disableNewLines(EditText editText) {
+        InputFilter inputFilter = new InputFilter() {
+            @Override
+            public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+                return ChatActivityEnterView.lambda$disableNewLines$108(charSequence, i, i2, spanned, i3, i4);
+            }
+        };
+        InputFilter[] filters = editText.getFilters();
+        if (filters == null) {
+            editText.setFilters(new InputFilter[]{inputFilter});
+            return;
+        }
+        InputFilter[] inputFilterArr = (InputFilter[]) Arrays.copyOf(filters, filters.length + 1);
+        inputFilterArr[filters.length] = inputFilter;
+        editText.setFilters(inputFilterArr);
+    }
+
+    public static CharSequence lambda$disableNewLines$108(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+        for (int i5 = i; i5 < i2; i5++) {
+            char cCharAt = charSequence.charAt(i5);
+            if (cCharAt == '\n' || cCharAt == '\r') {
+                StringBuilder sb = new StringBuilder(i2 - i);
+                while (i < i2) {
+                    char cCharAt2 = charSequence.charAt(i);
+                    if (cCharAt2 != '\n' && cCharAt2 != '\r') {
+                        sb.append(cCharAt2);
+                    }
+                    i++;
+                }
+                return sb;
+            }
+        }
+        return null;
     }
 }

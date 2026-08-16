@@ -598,7 +598,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                     BulletinFactory.of(this.container, resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(j)))).show();
                     return;
                 }
-                GiftSheet giftSheet = new GiftSheet(getContext(), i2, j, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, 1)), new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
+                GiftSheet giftSheet = new GiftSheet(getContext(), i2, j, BoostRepository.filterGiftOptionsByBilling(BoostRepository.filterGiftOptions(this.paymentOptions, 1)), new UserSelectorBottomSheet$$ExternalSyntheticLambda12(this));
                 BirthdayController.BirthdayState birthdayState = this.birthdays;
                 if (birthdayState != null && birthdayState.contains(j)) {
                     z = true;
@@ -795,7 +795,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                         BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.error, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UserDisallowedGifts, DialogObject.getShortName(j)))).show();
                         return;
                     }
-                    GiftSheet giftSheet = new GiftSheet(getContext(), this.currentAccount, j, listFilterGiftOptionsByBilling, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
+                    GiftSheet giftSheet = new GiftSheet(getContext(), this.currentAccount, j, listFilterGiftOptionsByBilling, new UserSelectorBottomSheet$$ExternalSyntheticLambda12(this));
                     BirthdayController.BirthdayState birthdayState = this.birthdays;
                     if (birthdayState != null && birthdayState.contains(j)) {
                         z = true;

@@ -760,10 +760,10 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
                     public final void run() {
                         this.f$0.lambda$onItemClick$4();
                     }
-                }).setOnBoughtGift(new Utilities.Callback2() {
+                }).setOnBoughtGift(new StarGiftSheet.BoughtGiftCallback() {
                     @Override
-                    public final void run(Object obj2, Object obj3) {
-                        this.f$0.lambda$onItemClick$5(savedStarGift, (TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
+                    public final void onBoughtGift(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z3) {
+                        this.f$0.lambda$onItemClick$5(savedStarGift, tL_starGiftUnique, j, z3);
                     }
                 }).set(savedStarGift, this.list).show();
             }
@@ -773,13 +773,13 @@ public abstract class ProfileGiftsContainer extends FrameLayout implements Notif
             update(false);
         }
 
-        public void lambda$onItemClick$5(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftUnique tL_starGiftUnique, Long l) {
+        public void lambda$onItemClick$5(TL_stars.SavedStarGift savedStarGift, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z) {
             this.list.gifts.remove(savedStarGift);
             update(true);
-            if (l.longValue() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 BulletinFactory.of(this.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','))).hideAfterBottomSheet(false).show();
             } else {
-                BulletinFactory.of(this.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, l.longValue()))).hideAfterBottomSheet(false).show();
+                BulletinFactory.of(this.parent.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
             }
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null) {

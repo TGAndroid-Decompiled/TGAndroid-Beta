@@ -2,6 +2,7 @@ package org.telegram.ui.Gifts;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
@@ -96,7 +97,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
     private Filter backdropButton;
     private TextView clearFiltersButton;
     private FrameLayout clearFiltersContainer;
-    private Runnable closeParentSheet;
+    private Utilities.Callback closeParentSheet;
     private final long dialogId;
     private LargeEmptyView emptyView;
     private boolean emptyViewVisible;
@@ -146,8 +147,8 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         resaleGiftsList.load();
     }
 
-    public ResaleGiftsFragment setCloseParentSheet(Runnable runnable) {
-        this.closeParentSheet = runnable;
+    public ResaleGiftsFragment setCloseParentSheet(Utilities.Callback callback) {
+        this.closeParentSheet = callback;
         return this;
     }
 
@@ -1082,33 +1083,33 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
             StarGiftSheet starGiftSheet = new StarGiftSheet(getContext(), this.currentAccount, this.dialogId, this.resourceProvider);
             starGiftSheet.set(tL_starGiftUnique.slug, tL_starGiftUnique, this.list);
-            starGiftSheet.setOnBoughtGift(new Utilities.Callback2() {
+            starGiftSheet.setOnBoughtGift(new StarGiftSheet.BoughtGiftCallback() {
                 @Override
-                public final void run(Object obj2, Object obj3) {
-                    this.f$0.lambda$onItemClick$28((TL_stars.TL_starGiftUnique) obj2, (Long) obj3);
+                public final void onBoughtGift(TL_stars.TL_starGiftUnique tL_starGiftUnique2, long j, boolean z) {
+                    this.f$0.lambda$onItemClick$28(tL_starGiftUnique2, j, z);
                 }
             });
             showDialog(starGiftSheet);
         }
     }
 
-    public void lambda$onItemClick$28(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final Long l) {
-        if (l.longValue() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+    public void lambda$onItemClick$28(final TL_stars.TL_starGiftUnique tL_starGiftUnique, final long j, boolean z) {
+        if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
             this.list.gifts.remove(tL_starGiftUnique);
             updateList(false);
-            if (l.longValue() == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftTitle), LocaleController.formatString(R.string.BoughtResoldGiftText, tL_starGiftUnique.title + " #" + LocaleController.formatNumber(tL_starGiftUnique.num, ','))).hideAfterBottomSheet(false).show();
             } else {
-                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, l.longValue()))).hideAfterBottomSheet(false).show();
+                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
             }
             this.fireworksOverlay.start(true);
             return;
         }
         Bundle bundle = new Bundle();
-        if (l.longValue() >= 0) {
-            bundle.putLong("user_id", l.longValue());
+        if (j >= 0) {
+            bundle.putLong("user_id", j);
         } else {
-            bundle.putLong("chat_id", -l.longValue());
+            bundle.putLong("chat_id", -j);
         }
         ChatActivity chatActivity = new ChatActivity(bundle) {
             private boolean shownToast = false;
@@ -1120,7 +1121,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     return;
                 }
                 this.shownToast = true;
-                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, l.longValue()))).hideAfterBottomSheet(false).show();
+                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
                 FireworksOverlay fireworksOverlay = this.fireworksOverlay;
                 if (fireworksOverlay != null) {
                     fireworksOverlay.start(true);
@@ -1129,17 +1130,21 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         };
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
+            Dialog dialog = this.parentDialog;
+            if ((dialog instanceof BottomSheet) && z) {
+                ((BottomSheet) dialog).skipDismissAnimation();
+            }
             finishFragment();
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment != null) {
-                safeLastFragment.presentFragment(chatActivity);
+                safeLastFragment.presentFragment(chatActivity, false, z);
             }
         } else {
-            presentFragment(chatActivity, true);
+            presentFragment(chatActivity, true, z);
         }
-        Runnable runnable = this.closeParentSheet;
-        if (runnable != null) {
-            runnable.run();
+        Utilities.Callback callback = this.closeParentSheet;
+        if (callback != null) {
+            callback.run(Boolean.valueOf(z));
         }
     }
 
