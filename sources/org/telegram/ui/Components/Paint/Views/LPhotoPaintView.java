@@ -50,6 +50,7 @@ import androidx.dynamicanimation.animation.SpringForce;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -1599,7 +1600,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         return Boolean.TRUE;
     }
 
-    public Boolean lambda$openStickersView$20(Integer num) {
+    public Boolean lambda$openStickersView$20(Integer num) throws IOException {
         if (num.intValue() == 2) {
             showPhotoAlert();
         }
@@ -1611,7 +1612,7 @@ public abstract class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto imple
         switchTab(i);
     }
 
-    private void showPhotoAlert() {
+    private void showPhotoAlert() throws IOException {
         final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new ChatActivity(null) {
             @Override
             public long getDialogId() {

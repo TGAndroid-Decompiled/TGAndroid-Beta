@@ -172,6 +172,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
 
             public static void $default$onSeekStarted(VideoPlayerDelegate videoPlayerDelegate, AnalyticsListener.EventTime eventTime) {
             }
+
+            public static boolean $default$onSurfaceDestroyed(VideoPlayerDelegate videoPlayerDelegate, SurfaceTexture surfaceTexture) {
+                return false;
+            }
+
+            public static void $default$onSurfaceTextureUpdated(VideoPlayerDelegate videoPlayerDelegate, SurfaceTexture surfaceTexture) {
+            }
         }
 
         void onError(VideoPlayer videoPlayer, Exception exc);

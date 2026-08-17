@@ -4594,9 +4594,9 @@ public class MessageObject {
             StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(alignment);
             if (z) {
                 alignment2.setIncludePad(false);
-                if (i3 >= 28) {
-                    alignment2.setUseLineSpacingFromFallbacks(false);
-                }
+            }
+            if (i3 >= 28) {
+                alignment2.setUseLineSpacingFromFallbacks(false);
             }
             StaticLayout staticLayoutBuild = alignment2.build();
             for (int i4 = 0; i4 < staticLayoutBuild.getLineCount(); i4++) {
@@ -4604,9 +4604,9 @@ public class MessageObject {
                     StaticLayout.Builder alignment3 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i2).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(alignment);
                     if (z) {
                         alignment3.setIncludePad(false);
-                        if (Build.VERSION.SDK_INT >= 28) {
-                            alignment3.setUseLineSpacingFromFallbacks(false);
-                        }
+                    }
+                    if (Build.VERSION.SDK_INT >= 28) {
+                        alignment3.setUseLineSpacingFromFallbacks(false);
                     }
                     return alignment3.build();
                 }
@@ -4734,7 +4734,7 @@ public class MessageObject {
         if (bool != null) {
             return bool.booleanValue();
         }
-        if (isWelcomeMessage()) {
+        if (isWelcomeMessage() && !isWelcomeAnchored()) {
             this.isOutOwnerCached = Boolean.FALSE;
             return false;
         }

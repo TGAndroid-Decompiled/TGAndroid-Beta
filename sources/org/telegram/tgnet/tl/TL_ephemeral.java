@@ -1,8 +1,8 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda111;
-import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda77;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda115;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda82;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLMethod;
@@ -51,7 +51,7 @@ public class TL_ephemeral {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z) {
             this.hash = inputSerializedData.readInt64(z);
-            this.messages = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda77(), z);
+            this.messages = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda82(), z);
         }
 
         @Override
@@ -81,6 +81,7 @@ public class TL_ephemeral {
         public TLRPC.MessageReplyHeader reply_to;
         public TL_iv.RichMessage rich_message;
         public int top_msg_id;
+        public long via_bot_id;
         public boolean welcome;
 
         public static EphemeralMessage TLdeserialize(InputSerializedData inputSerializedData, int i, boolean z) {
@@ -124,7 +125,7 @@ public class TL_ephemeral {
             this.date = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda111(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda115(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -225,7 +226,7 @@ public class TL_ephemeral {
             this.date = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda111(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda115(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);
@@ -306,7 +307,7 @@ public class TL_ephemeral {
             this.date = inputSerializedData.readInt32(z);
             this.message = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda111(), z);
+                this.entities = Vector.deserialize(inputSerializedData, new MessagesStorage$$ExternalSyntheticLambda115(), z);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.media = TLRPC.MessageMedia.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z), z);

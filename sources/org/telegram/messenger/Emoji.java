@@ -650,6 +650,8 @@ public class Emoji {
         public Paint.FontMetricsInt fontMetrics;
         public float lastDrawX;
         public float lastDrawY;
+        private int minimumLineHeight;
+        private boolean preserveFontMetrics;
         public float scale;
         public int size;
 
@@ -683,34 +685,84 @@ public class Emoji {
             }
         }
 
+        public EmojiSpan setPreserveFontMetrics(boolean z) {
+            this.preserveFontMetrics = z;
+            return this;
+        }
+
+        public EmojiSpan setMinimumLineHeight(int i) {
+            this.minimumLineHeight = i;
+            return this;
+        }
+
         @Override
         public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-            if (fontMetricsInt == null) {
-                fontMetricsInt = new Paint.FontMetricsInt();
-            }
-            int i3 = (int) (this.scale * this.size);
-            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            Paint.FontMetricsInt fontMetricsInt2 = fontMetricsInt;
+            boolean z = this.preserveFontMetrics && fontMetricsInt2 != null;
+            int i3 = z ? fontMetricsInt2.top : 0;
+            int i4 = z ? fontMetricsInt2.ascent : 0;
+            int i5 = z ? fontMetricsInt2.descent : 0;
+            int i6 = z ? fontMetricsInt2.bottom : 0;
+            int i7 = z ? fontMetricsInt2.leading : 0;
             if (fontMetricsInt2 == null) {
-                int size = super.getSize(paint, charSequence, i, i2, fontMetricsInt);
+                fontMetricsInt2 = new Paint.FontMetricsInt();
+            }
+            Paint.FontMetricsInt fontMetricsInt3 = fontMetricsInt2;
+            int i8 = (int) (this.scale * this.size);
+            Paint.FontMetricsInt fontMetricsInt4 = this.fontMetrics;
+            if (fontMetricsInt4 == null) {
+                int size = super.getSize(paint, charSequence, i, i2, fontMetricsInt3);
                 int iDp = AndroidUtilities.dp(8.0f);
                 int iDp2 = AndroidUtilities.dp(10.0f);
-                int i4 = (-iDp2) - iDp;
-                fontMetricsInt.top = i4;
-                int i5 = iDp2 - iDp;
-                fontMetricsInt.bottom = i5;
-                fontMetricsInt.ascent = i4;
-                fontMetricsInt.leading = 0;
-                fontMetricsInt.descent = i5;
+                int i9 = (-iDp2) - iDp;
+                fontMetricsInt3.top = i9;
+                int i10 = iDp2 - iDp;
+                fontMetricsInt3.bottom = i10;
+                fontMetricsInt3.ascent = i9;
+                fontMetricsInt3.leading = 0;
+                fontMetricsInt3.descent = i10;
+                if (z) {
+                    fontMetricsInt3.top = i3;
+                    fontMetricsInt3.ascent = i4;
+                    fontMetricsInt3.descent = i5;
+                    fontMetricsInt3.bottom = i6;
+                    fontMetricsInt3.leading = i7;
+                    expandFontMetrics(fontMetricsInt3, this.minimumLineHeight);
+                }
                 return size;
             }
-            fontMetricsInt.ascent = fontMetricsInt2.ascent;
-            fontMetricsInt.descent = fontMetricsInt2.descent;
-            fontMetricsInt.top = fontMetricsInt2.top;
-            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            fontMetricsInt3.ascent = fontMetricsInt4.ascent;
+            fontMetricsInt3.descent = fontMetricsInt4.descent;
+            fontMetricsInt3.top = fontMetricsInt4.top;
+            fontMetricsInt3.bottom = fontMetricsInt4.bottom;
             if (getDrawable() != null) {
-                getDrawable().setBounds(0, 0, i3, i3);
+                getDrawable().setBounds(0, 0, i8, i8);
             }
-            return i3;
+            if (z) {
+                fontMetricsInt3.top = i3;
+                fontMetricsInt3.ascent = i4;
+                fontMetricsInt3.descent = i5;
+                fontMetricsInt3.bottom = i6;
+                fontMetricsInt3.leading = i7;
+                expandFontMetrics(fontMetricsInt3, this.minimumLineHeight);
+            }
+            return i8;
+        }
+
+        private static void expandFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i) {
+            int i2 = fontMetricsInt.descent;
+            int i3 = fontMetricsInt.ascent;
+            int i4 = i2 - i3;
+            if (i <= i4) {
+                return;
+            }
+            int i5 = i - i4;
+            int i6 = (i5 + 1) / 2;
+            int i7 = i3 - i6;
+            fontMetricsInt.ascent = i7;
+            fontMetricsInt.descent = i2 + (i5 - i6);
+            fontMetricsInt.top = Math.min(fontMetricsInt.top, i7);
+            fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
         }
 
         @Override

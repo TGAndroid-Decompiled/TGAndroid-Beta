@@ -792,7 +792,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
     }
 
     @Override
-    public void onActivityResultFragment(int i, int i2, Intent intent) {
+    public void onActivityResultFragment(int i, int i2, Intent intent) throws Resources.NotFoundException, IOException {
         LoginActivityRegisterView loginActivityRegisterView = (LoginActivityRegisterView) this.views[5];
         if (loginActivityRegisterView != null) {
             loginActivityRegisterView.imageUpdater.onActivityResult(i, i2, intent);
@@ -1362,7 +1362,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         MessagesController.getInstance(this.currentAccount).checkPromoInfo(true);
         ConnectionsManager.getInstance(this.currentAccount).updateDcSettings();
         MessagesController.getInstance(this.currentAccount).loadAppConfig();
-        MessagesController.getInstance(this.currentAccount).lambda$removeWebBrowserException$508();
+        MessagesController.getInstance(this.currentAccount).lambda$removeWebBrowserException$514();
         MessagesController.getInstance(this.currentAccount).checkPeerColors(false);
         if (tL_auth_authorization.future_auth_token != null) {
             AuthTokensHelper.saveLogInToken(tL_auth_authorization);
@@ -8048,7 +8048,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f));
             this.avatarOverlay.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
+                public final void onClick(View view2) throws IOException {
                     this.f$0.lambda$new$7(view2);
                 }
             });
@@ -8198,7 +8198,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.privacyView.setText(spannableStringBuilder);
         }
 
-        public void lambda$new$7(View view) {
+        public void lambda$new$7(View view) throws IOException {
             this.imageUpdater.openMenu(this.avatar != null, new Runnable() {
                 @Override
                 public final void run() {

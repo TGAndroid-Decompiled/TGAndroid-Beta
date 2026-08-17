@@ -3337,6 +3337,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
         }
 
         AnonymousClass7(int i, MessageObject messageObject, int[] iArr, boolean z) {
@@ -3532,11 +3533,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-            return false;
+            return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
         }
 
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
         }
 
         @Override
@@ -3834,11 +3836,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
                     @Override
                     public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-                        return false;
+                        return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
                     }
 
                     @Override
                     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                        VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
                     }
 
                     @Override
@@ -4167,6 +4170,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
         }
 
         AnonymousClass9(int i, MessageObject messageObject, int[] iArr, boolean z) {

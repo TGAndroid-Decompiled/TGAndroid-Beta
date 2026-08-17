@@ -1,5 +1,6 @@
 package org.telegram.messenger.utils;
 
+import android.util.SparseIntArray;
 import androidx.collection.LongSparseArray;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -29,11 +30,14 @@ public class EphemeralMessagesHelper extends BaseController {
         tL_ephemeralMessage.out = message.out;
         tL_ephemeralMessage.invert_media = message.invert_media;
         tL_ephemeralMessage.noforwards = message.noforwards;
-        tL_ephemeralMessage.id = message.id;
+        tL_ephemeralMessage.id = MessageObject.ephemeralMessageIdUnpack(message.id);
         tL_ephemeralMessage.from_id = message.from_id;
         tL_ephemeralMessage.peer_id = message.peer_id;
         tL_ephemeralMessage.receiver_id = message.ephemeralReceiverBotId;
-        tL_ephemeralMessage.top_msg_id = i;
+        if (i != 0) {
+            tL_ephemeralMessage.top_msg_id = i;
+            tL_ephemeralMessage.flags |= 2;
+        }
         tL_ephemeralMessage.date = message.date;
         tL_ephemeralMessage.message = message.message;
         tL_ephemeralMessage.entities = message.entities;
@@ -41,12 +45,14 @@ public class EphemeralMessagesHelper extends BaseController {
         tL_ephemeralMessage.reply_markup = message.reply_markup;
         tL_ephemeralMessage.reply_to = message.reply_to;
         tL_ephemeralMessage.rich_message = message.rich_message;
+        tL_ephemeralMessage.via_bot_id = message.via_bot_id;
         tL_ephemeralMessage.anchor_msg_id = message.ephemeralAnchorMsgId;
         return tL_ephemeralMessage;
     }
 
     public static TLRPC.TL_message convertEphemeralToFakeDefault(TL_ephemeral.EphemeralMessage ephemeralMessage) {
         int i;
+        int i2;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
         tL_message.out = ephemeralMessage.out;
         tL_message.id = MessageObject.ephemeralMessageIdPack(ephemeralMessage.id);
@@ -56,9 +62,9 @@ public class EphemeralMessagesHelper extends BaseController {
             tL_message.flags |= 256;
         }
         tL_message.peer_id = ephemeralMessage.peer_id;
-        int i2 = ephemeralMessage.anchor_msg_id;
-        tL_message.ephemeralAnchorMsgId = i2;
-        if (ephemeralMessage.welcome || i2 != 0) {
+        int i3 = ephemeralMessage.anchor_msg_id;
+        tL_message.ephemeralAnchorMsgId = i3;
+        if (ephemeralMessage.welcome || i3 != 0) {
             tL_message.ephemeralReceiverBotId = -1L;
         } else {
             tL_message.ephemeralReceiverBotId = ephemeralMessage.receiver_id;
@@ -93,27 +99,36 @@ public class EphemeralMessagesHelper extends BaseController {
             tL_message.reply_markup = replyMarkup;
             tL_message.flags |= 64;
         }
+        long j = ephemeralMessage.via_bot_id;
+        if (j != 0) {
+            tL_message.via_bot_id = j;
+            tL_message.flags |= 2048;
+        }
         TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage.reply_to;
         if (messageReplyHeader != null) {
             TLRPC.MessageReplyHeader messageReplyHeader2 = (TLRPC.MessageReplyHeader) TLObject.deepCopy(messageReplyHeader, new Vector.TLDeserializer() {
                 @Override
-                public final TLObject deserialize(InputSerializedData inputSerializedData, int i3, boolean z) {
-                    return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i3, z);
+                public final TLObject deserialize(InputSerializedData inputSerializedData, int i4, boolean z) {
+                    return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i4, z);
                 }
             });
             tL_message.reply_to = messageReplyHeader2;
-            if (ephemeralMessage.reply_to.reply_to_ephemeral && (i = messageReplyHeader2.reply_to_msg_id) != 0) {
-                messageReplyHeader2.reply_to_msg_id = MessageObject.ephemeralMessageIdPack(i);
+            if (ephemeralMessage.reply_to.reply_to_ephemeral && (i2 = messageReplyHeader2.reply_to_msg_id) != 0) {
+                messageReplyHeader2.reply_to_msg_id = MessageObject.ephemeralMessageIdPack(i2);
+                tL_message.reply_to.reply_to_msg_id |= 16;
             }
             TLRPC.MessageReplyHeader messageReplyHeader3 = tL_message.reply_to;
-            if (messageReplyHeader3.reply_to_top_id == 0) {
-                messageReplyHeader3.reply_to_top_id = ephemeralMessage.top_msg_id;
+            if (messageReplyHeader3.reply_to_top_id == 0 && (i = ephemeralMessage.top_msg_id) != 0) {
+                messageReplyHeader3.reply_to_top_id = i;
+                messageReplyHeader3.forum_topic = true;
+                messageReplyHeader3.flags |= 2;
             }
             tL_message.flags |= 8;
         } else if (ephemeralMessage.top_msg_id != 0) {
             TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
             tL_message.reply_to = tL_messageReplyHeader;
             tL_messageReplyHeader.reply_to_top_id = ephemeralMessage.top_msg_id;
+            tL_messageReplyHeader.forum_topic = true;
             tL_messageReplyHeader.flags |= 2;
             tL_message.flags |= 8;
         }
@@ -304,11 +319,46 @@ public class EphemeralMessagesHelper extends BaseController {
     }
 
     public static class EphemeralUpdates {
-        public final Struct ephemeralMessagesToAdd = new Struct();
-        public final Struct ephemeralMessagesToEdit = new Struct();
         public final Struct welcomeMessagesToAdd = new Struct();
         public final Struct welcomeMessagesToEdit = new Struct();
-        public final Struct welcomeMessagesAnchor = new Struct();
+        public final StructBuilder ephemeralMessagesToAdd = new StructBuilder();
+        public final StructBuilder ephemeralMessagesToEdit = new StructBuilder();
+        public final StructBuilder welcomeMessagesAnchor = new StructBuilder();
+
+        public static class StructBuilder extends Struct {
+            public void put(TL_ephemeral.EphemeralMessage ephemeralMessage) {
+                this.messages.add(ephemeralMessage);
+            }
+
+            public void build(int i, AbstractMap abstractMap, AbstractMap abstractMap2, int i2) {
+                Iterator it = this.messages.iterator();
+                while (it.hasNext()) {
+                    TLRPC.TL_message tL_messageConvertEphemeralToFakeDefault = EphemeralMessagesHelper.convertEphemeralToFakeDefault((TL_ephemeral.EphemeralMessage) it.next());
+                    MessageObject messageObject = new MessageObject(i, (TLRPC.Message) tL_messageConvertEphemeralToFakeDefault, (AbstractMap<Long, TLRPC.User>) abstractMap, (AbstractMap<Long, TLRPC.Chat>) abstractMap2, true, true);
+                    long dialogId = MessageObject.getDialogId(tL_messageConvertEphemeralToFakeDefault);
+                    if (i2 != 0) {
+                        tL_messageConvertEphemeralToFakeDefault.edit_date = i2;
+                        tL_messageConvertEphemeralToFakeDefault.flags |= 32768;
+                    }
+                    TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) this.convertedByDialog.get(dialogId);
+                    if (tL_messages_messages == null) {
+                        tL_messages_messages = new TLRPC.TL_messages_messages();
+                        this.convertedByDialog.put(dialogId, tL_messages_messages);
+                    }
+                    tL_messages_messages.messages.add(tL_messageConvertEphemeralToFakeDefault);
+                    ArrayList arrayList = (ArrayList) this.objectsByDialog.get(dialogId);
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                        this.objectsByDialog.put(dialogId, arrayList);
+                    }
+                    arrayList.add(messageObject);
+                }
+            }
+
+            public boolean isEmpty() {
+                return this.messages.isEmpty();
+            }
+        }
 
         public static class Struct {
             public final ArrayList messages = new ArrayList();
@@ -335,36 +385,64 @@ public class EphemeralMessagesHelper extends BaseController {
 
         public void apply(TL_update.TL_updateNewEphemeralMessage tL_updateNewEphemeralMessage, int i, AbstractMap abstractMap, AbstractMap abstractMap2) {
             TL_ephemeral.EphemeralMessage ephemeralMessage = tL_updateNewEphemeralMessage.message;
-            TLRPC.TL_message tL_messageConvertEphemeralToFakeDefault = EphemeralMessagesHelper.convertEphemeralToFakeDefault(ephemeralMessage);
-            MessageObject messageObject = new MessageObject(i, (TLRPC.Message) tL_messageConvertEphemeralToFakeDefault, (AbstractMap<Long, TLRPC.User>) abstractMap, (AbstractMap<Long, TLRPC.Chat>) abstractMap2, true, true);
-            boolean z = ephemeralMessage.welcome;
             if (ephemeralMessage.anchor_msg_id != 0) {
-                this.welcomeMessagesAnchor.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
-            } else if (z) {
-                this.welcomeMessagesToAdd.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
+                this.welcomeMessagesAnchor.put(ephemeralMessage);
             } else {
-                this.ephemeralMessagesToAdd.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
+                if (ephemeralMessage.welcome) {
+                    TLRPC.TL_message tL_messageConvertEphemeralToFakeDefault = EphemeralMessagesHelper.convertEphemeralToFakeDefault(ephemeralMessage);
+                    this.welcomeMessagesToAdd.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, new MessageObject(i, (TLRPC.Message) tL_messageConvertEphemeralToFakeDefault, (AbstractMap<Long, TLRPC.User>) abstractMap, (AbstractMap<Long, TLRPC.Chat>) abstractMap2, true, true));
+                    return;
+                }
+                this.ephemeralMessagesToAdd.put(ephemeralMessage);
             }
         }
 
         public void apply(TL_update.TL_updateEditEphemeralMessage tL_updateEditEphemeralMessage, int i, AbstractMap abstractMap, AbstractMap abstractMap2) {
             TL_ephemeral.EphemeralMessage ephemeralMessage = tL_updateEditEphemeralMessage.message;
-            TLRPC.TL_message tL_messageConvertEphemeralToFakeDefault = EphemeralMessagesHelper.convertEphemeralToFakeDefault(ephemeralMessage);
-            MessageObject messageObject = new MessageObject(i, (TLRPC.Message) tL_messageConvertEphemeralToFakeDefault, (AbstractMap<Long, TLRPC.User>) abstractMap, (AbstractMap<Long, TLRPC.Chat>) abstractMap2, true, true);
-            boolean z = ephemeralMessage.welcome;
-            tL_messageConvertEphemeralToFakeDefault.edit_date = ConnectionsManager.getInstance(i).getCurrentTime();
-            tL_messageConvertEphemeralToFakeDefault.flags |= 32768;
             if (ephemeralMessage.anchor_msg_id != 0) {
-                this.welcomeMessagesAnchor.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
-            } else if (z) {
-                this.welcomeMessagesToEdit.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
-            } else {
-                this.ephemeralMessagesToEdit.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
+                this.welcomeMessagesAnchor.put(ephemeralMessage);
+                return;
             }
+            if (ephemeralMessage.welcome) {
+                TLRPC.TL_message tL_messageConvertEphemeralToFakeDefault = EphemeralMessagesHelper.convertEphemeralToFakeDefault(ephemeralMessage);
+                MessageObject messageObject = new MessageObject(i, (TLRPC.Message) tL_messageConvertEphemeralToFakeDefault, (AbstractMap<Long, TLRPC.User>) abstractMap, (AbstractMap<Long, TLRPC.Chat>) abstractMap2, true, true);
+                tL_messageConvertEphemeralToFakeDefault.edit_date = ConnectionsManager.getInstance(i).getCurrentTime();
+                tL_messageConvertEphemeralToFakeDefault.flags |= 32768;
+                this.welcomeMessagesToEdit.put(ephemeralMessage, tL_messageConvertEphemeralToFakeDefault, messageObject);
+                return;
+            }
+            this.ephemeralMessagesToEdit.put(ephemeralMessage);
         }
 
         public void apply(TL_update.TL_updateDeleteEphemeralMessages tL_updateDeleteEphemeralMessages) {
             DialogObject.getPeerDialogId(tL_updateDeleteEphemeralMessages.peer);
+        }
+    }
+
+    public static class WelcomeAnchorsState {
+        private final LongSparseArray state = new LongSparseArray();
+
+        public void put(long j, int i, int i2) {
+            SparseIntArray sparseIntArray = (SparseIntArray) this.state.get(j);
+            if (sparseIntArray == null) {
+                sparseIntArray = new SparseIntArray();
+                this.state.put(j, sparseIntArray);
+            }
+            sparseIntArray.put(i, i2);
+        }
+
+        public void remove(long j, int i, int i2) {
+            SparseIntArray sparseIntArray = (SparseIntArray) this.state.get(j);
+            if (sparseIntArray != null && sparseIntArray.get(i, -1) == i2) {
+                sparseIntArray.delete(i);
+                if (sparseIntArray.size() == 0) {
+                    this.state.remove(j);
+                }
+            }
+        }
+
+        public SparseIntArray getAnchorBindings(long j) {
+            return (SparseIntArray) this.state.get(j);
         }
     }
 

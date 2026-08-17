@@ -38,7 +38,6 @@ import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
-import android.text.style.LineHeightSpan;
 import android.text.style.MetricAffectingSpan;
 import android.text.style.ReplacementSpan;
 import android.text.style.URLSpan;
@@ -2542,7 +2541,7 @@ public class RichMessageLayout {
     }
 
     public static class Text implements TextSelectionHelper.TextLayoutBlock, TableLayout.CellText {
-        private static final int EMOJI_GRID_MIN_PERCENT = 70;
+        private static final int EMOJI_LINE_HEIGHT_MIN_PERCENT = 70;
         private static Paint markPaint;
         public AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
         public int blockX;
@@ -2645,12 +2644,12 @@ public class RichMessageLayout {
             } else {
                 z = false;
             }
-            CharSequence charSequenceAddEmojiGridLineHeights = addEmojiGridLineHeights(Emoji.replaceEmoji(charSequence, fontMetricsInt, false, z ? 0.85f : 1.0f), richMessageLayout.textPaint);
-            int iEmojiOnlyCount = RichTextStyle.emojiOnlyCount(charSequenceAddEmojiGridLineHeights);
+            CharSequence charSequenceConfigureEmojiLineHeights = configureEmojiLineHeights(Emoji.replaceEmoji(charSequence, fontMetricsInt, false, z ? 0.85f : 1.0f), richMessageLayout.textPaint);
+            int iEmojiOnlyCount = RichTextStyle.emojiOnlyCount(charSequenceConfigureEmojiLineHeights);
             this.emojiOnlyCount = iEmojiOnlyCount;
-            if (iEmojiOnlyCount == 0 && (charSequenceAddEmojiGridLineHeights instanceof Spanned)) {
-                final Spanned spanned = (Spanned) charSequenceAddEmojiGridLineHeights;
-                RichButtonSpan[] richButtonSpanArr = (RichButtonSpan[]) spanned.getSpans(0, charSequenceAddEmojiGridLineHeights.length(), RichButtonSpan.class);
+            if (iEmojiOnlyCount == 0 && (charSequenceConfigureEmojiLineHeights instanceof Spanned)) {
+                final Spanned spanned = (Spanned) charSequenceConfigureEmojiLineHeights;
+                RichButtonSpan[] richButtonSpanArr = (RichButtonSpan[]) spanned.getSpans(0, charSequenceConfigureEmojiLineHeights.length(), RichButtonSpan.class);
                 if (richButtonSpanArr.length > 0) {
                     Arrays.sort(richButtonSpanArr, new Comparator() {
                         @Override
@@ -2658,7 +2657,7 @@ public class RichMessageLayout {
                             return RichMessageLayout.Text.lambda$new$0(spanned, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
                         }
                     });
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceAddEmojiGridLineHeights);
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceConfigureEmojiLineHeights);
                     int length = richButtonSpanArr.length;
                     int i3 = 0;
                     while (true) {
@@ -2678,20 +2677,20 @@ public class RichMessageLayout {
                     }
                 }
             }
-            if (this.emojiOnlyCount > 0 && (charSequenceAddEmojiGridLineHeights instanceof Spanned)) {
-                for (StyleSpan styleSpan2 : (StyleSpan[]) ((Spanned) charSequenceAddEmojiGridLineHeights).getSpans(0, charSequenceAddEmojiGridLineHeights.length(), StyleSpan.class)) {
+            if (this.emojiOnlyCount > 0 && (charSequenceConfigureEmojiLineHeights instanceof Spanned)) {
+                for (StyleSpan styleSpan2 : (StyleSpan[]) ((Spanned) charSequenceConfigureEmojiLineHeights).getSpans(0, charSequenceConfigureEmojiLineHeights.length(), StyleSpan.class)) {
                     if ((styleSpan2.flags & 15) == 14) {
                         styleSpan2.fullSizeTableEmoji = true;
                     }
                 }
             }
-            if (charSequenceAddEmojiGridLineHeights instanceof Spanned) {
-                StyleSpan[] styleSpanArr = (StyleSpan[]) ((Spanned) charSequenceAddEmojiGridLineHeights).getSpans(0, charSequenceAddEmojiGridLineHeights.length(), StyleSpan.class);
+            if (charSequenceConfigureEmojiLineHeights instanceof Spanned) {
+                StyleSpan[] styleSpanArr = (StyleSpan[]) ((Spanned) charSequenceConfigureEmojiLineHeights).getSpans(0, charSequenceConfigureEmojiLineHeights.length(), StyleSpan.class);
                 int length2 = styleSpanArr.length;
                 for (int i4 = 0; i4 < length2 && (styleSpanArr[i4].flags & 15) == 0; i4++) {
                 }
             }
-            this.layout = MessageObject.makeStaticLayout(charSequenceAddEmojiGridLineHeights, richMessageLayout.textPaint, i, f, 0.0f, false, alignment);
+            this.layout = MessageObject.makeStaticLayout(charSequenceConfigureEmojiLineHeights, richMessageLayout.textPaint, i, f, 0.0f, false, alignment);
             this.left = i;
             this.right = 0;
             for (int i5 = 0; i5 < this.layout.getLineCount(); i5++) {
@@ -2743,11 +2742,22 @@ public class RichMessageLayout {
             return spanned.getSpanStart(richButtonSpan2) - spanned.getSpanStart(richButtonSpan);
         }
 
-        private static CharSequence addEmojiGridLineHeights(CharSequence charSequence, TextPaint textPaint) {
-            if (!(charSequence instanceof Spanned) || TextUtils.indexOf(charSequence, '\n') < 0) {
+        private static CharSequence configureEmojiLineHeights(CharSequence charSequence, TextPaint textPaint) {
+            if (!(charSequence instanceof Spanned)) {
                 return charSequence;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+            for (AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class)) {
+                animatedEmojiSpan.setPreserveFontMetrics(true);
+            }
+            for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), Emoji.EmojiSpan.class)) {
+                emojiSpan.setPreserveFontMetrics(true);
+            }
+            for (RichButtonSpan richButtonSpan : (RichButtonSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), RichButtonSpan.class)) {
+                if (richButtonSpan.getButton().text.getEmojiOnlyCount() > 0) {
+                    richButtonSpan.preserveFontMetrics = true;
+                }
+            }
             int i = 0;
             while (i < spannableStringBuilder.length()) {
                 int iIndexOf = TextUtils.indexOf((CharSequence) spannableStringBuilder, '\n', i);
@@ -2755,9 +2765,9 @@ public class RichMessageLayout {
                 if (!z) {
                     iIndexOf = spannableStringBuilder.length();
                 }
-                EmojiGridLineMetrics emojiGridLineMetricsMeasureEmojiGridLine = measureEmojiGridLine(spannableStringBuilder, i, iIndexOf, textPaint);
-                if (emojiGridLineMetricsMeasureEmojiGridLine.isGridLine() && emojiGridLineMetricsMeasureEmojiGridLine.emojiSide > 0) {
-                    spannableStringBuilder.setSpan(new EmojiGridLineHeightSpan(emojiGridLineMetricsMeasureEmojiGridLine.emojiSide, textPaint.getFontMetricsInt()), i, z ? iIndexOf + 1 : iIndexOf, 33);
+                EmojiLineMetrics emojiLineMetricsMeasureEmojiLine = measureEmojiLine(spannableStringBuilder, i, iIndexOf, textPaint);
+                if (emojiLineMetricsMeasureEmojiLine.allowsEmojiLineHeight() && emojiLineMetricsMeasureEmojiLine.emojiSide > 0) {
+                    allowEmojiLineHeight(spannableStringBuilder, i, iIndexOf, emojiLineMetricsMeasureEmojiLine.emojiSide);
                 }
                 if (!z) {
                     break;
@@ -2767,13 +2777,34 @@ public class RichMessageLayout {
             return spannableStringBuilder;
         }
 
-        private static EmojiGridLineMetrics measureEmojiGridLine(Spanned spanned, int i, int i2, TextPaint textPaint) {
+        private static void allowEmojiLineHeight(Spanned spanned, int i, int i2, int i3) {
+            for (AnimatedEmojiSpan animatedEmojiSpan : (AnimatedEmojiSpan[]) spanned.getSpans(i, i2, AnimatedEmojiSpan.class)) {
+                int spanStart = spanned.getSpanStart(animatedEmojiSpan);
+                if (spanStart >= i && spanStart < i2) {
+                    animatedEmojiSpan.setMinimumLineHeight(i3);
+                }
+            }
+            for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) spanned.getSpans(i, i2, Emoji.EmojiSpan.class)) {
+                int spanStart2 = spanned.getSpanStart(emojiSpan);
+                if (spanStart2 >= i && spanStart2 < i2) {
+                    emojiSpan.setMinimumLineHeight(i3);
+                }
+            }
+            for (RichButtonSpan richButtonSpan : (RichButtonSpan[]) spanned.getSpans(i, i2, RichButtonSpan.class)) {
+                int spanStart3 = spanned.getSpanStart(richButtonSpan);
+                if (richButtonSpan.button.text.getEmojiOnlyCount() > 0 && spanStart3 >= i && spanStart3 < i2) {
+                    richButtonSpan.minimumLineHeight = i3;
+                }
+            }
+        }
+
+        private static EmojiLineMetrics measureEmojiLine(Spanned spanned, int i, int i2, TextPaint textPaint) {
             RichButtonSpan[] richButtonSpanArr;
             int i3;
-            EmojiGridLineMetrics emojiGridLineMetrics = new EmojiGridLineMetrics();
+            EmojiLineMetrics emojiLineMetrics = new EmojiLineMetrics();
             int i4 = i2 - i;
             if (i4 <= 0) {
-                return emojiGridLineMetrics;
+                return emojiLineMetrics;
             }
             AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(i, i2, AnimatedEmojiSpan.class);
             Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spanned.getSpans(i, i2, Emoji.EmojiSpan.class);
@@ -2790,7 +2821,7 @@ public class RichMessageLayout {
                     int i6 = spanStart - i;
                     iArr[i6] = Math.max(iArr[i6], iMin);
                     i3 = i5;
-                    emojiGridLineMetrics.emojiSide = Math.max(emojiGridLineMetrics.emojiSide, animatedEmojiSpan.getSize(textPaint, spanned, spanStart, iMin, null) + 1);
+                    emojiLineMetrics.emojiSide = Math.max(emojiLineMetrics.emojiSide, animatedEmojiSpan.getSize(textPaint, spanned, spanStart, iMin, null) + 1);
                 }
                 i5 = i3 + 1;
             }
@@ -2800,7 +2831,7 @@ public class RichMessageLayout {
                 if (spanStart2 >= i && spanStart2 < i2 && iMin2 > spanStart2) {
                     int i7 = spanStart2 - i;
                     iArr[i7] = Math.max(iArr[i7], iMin2);
-                    emojiGridLineMetrics.emojiSide = Math.max(emojiGridLineMetrics.emojiSide, emojiSpan.getSize(textPaint, spanned, spanStart2, iMin2, null));
+                    emojiLineMetrics.emojiSide = Math.max(emojiLineMetrics.emojiSide, emojiSpan.getSize(textPaint, spanned, spanStart2, iMin2, null));
                 }
             }
             RichButtonSpan[] richButtonSpanArr2 = (RichButtonSpan[]) spanned.getSpans(i, i2, RichButtonSpan.class);
@@ -2808,7 +2839,7 @@ public class RichMessageLayout {
                 richButtonSpanArr = null;
                 for (RichButtonSpan richButtonSpan : richButtonSpanArr2) {
                     int spanStart3 = spanned.getSpanStart(richButtonSpan);
-                    if (richButtonSpan.button.link && spanStart3 >= i && spanStart3 < i2) {
+                    if (richButtonSpan.button.text.getEmojiOnlyCount() > 0 && spanStart3 >= i && spanStart3 < i2) {
                         if (richButtonSpanArr == null) {
                             richButtonSpanArr = new RichButtonSpan[i4];
                         }
@@ -2819,7 +2850,7 @@ public class RichMessageLayout {
                 richButtonSpanArr = null;
             }
             if (iArr == null && richButtonSpanArr == null) {
-                return emojiGridLineMetrics;
+                return emojiLineMetrics;
             }
             int iCharCount = i;
             while (iCharCount < i2) {
@@ -2828,96 +2859,63 @@ public class RichMessageLayout {
                 if (richButtonSpan2 == null || !(richButtonSpan2.button.text.layout.getText() instanceof Spanned)) {
                     int i9 = iArr == null ? 0 : iArr[i8];
                     if (i9 > iCharCount) {
-                        EmojiGridLineMetrics.access$1408(emojiGridLineMetrics);
-                        EmojiGridLineMetrics.access$1508(emojiGridLineMetrics);
+                        EmojiLineMetrics.access$1408(emojiLineMetrics);
+                        EmojiLineMetrics.access$1508(emojiLineMetrics);
                         iCharCount = i9;
                     } else {
                         int iCodePointAt = Character.codePointAt(spanned, iCharCount);
                         if (!Character.isWhitespace(iCodePointAt)) {
-                            EmojiGridLineMetrics.access$1508(emojiGridLineMetrics);
+                            EmojiLineMetrics.access$1508(emojiLineMetrics);
                         }
                         iCharCount += Character.charCount(iCodePointAt);
                     }
                 } else {
                     Spanned spanned2 = (Spanned) richButtonSpan2.button.text.layout.getText();
-                    EmojiGridLineMetrics emojiGridLineMetricsMeasureEmojiGridLine = measureEmojiGridLine(spanned2, 0, spanned2.length(), richButtonSpan2.button.text.layout.getPaint());
-                    EmojiGridLineMetrics.access$1412(emojiGridLineMetrics, emojiGridLineMetricsMeasureEmojiGridLine.emojiCount);
-                    EmojiGridLineMetrics.access$1512(emojiGridLineMetrics, Math.max(1, emojiGridLineMetricsMeasureEmojiGridLine.contentCount));
-                    emojiGridLineMetrics.emojiSide = Math.max(emojiGridLineMetrics.emojiSide, emojiGridLineMetricsMeasureEmojiGridLine.emojiSide);
+                    EmojiLineMetrics emojiLineMetricsMeasureEmojiLine = measureEmojiLine(spanned2, 0, spanned2.length(), richButtonSpan2.button.text.layout.getPaint());
+                    EmojiLineMetrics.access$1412(emojiLineMetrics, emojiLineMetricsMeasureEmojiLine.emojiCount);
+                    EmojiLineMetrics.access$1512(emojiLineMetrics, Math.max(1, emojiLineMetricsMeasureEmojiLine.contentCount));
+                    emojiLineMetrics.emojiSide = Math.max(emojiLineMetrics.emojiSide, emojiLineMetricsMeasureEmojiLine.emojiSide);
                     iCharCount = Math.min(i2, spanned.getSpanEnd(richButtonSpan2));
                 }
             }
-            return emojiGridLineMetrics;
+            return emojiLineMetrics;
         }
 
-        private static class EmojiGridLineMetrics {
+        private static class EmojiLineMetrics {
             private int contentCount;
             private int emojiCount;
             private int emojiSide;
 
-            private EmojiGridLineMetrics() {
+            private EmojiLineMetrics() {
             }
 
-            static int access$1408(EmojiGridLineMetrics emojiGridLineMetrics) {
-                int i = emojiGridLineMetrics.emojiCount;
-                emojiGridLineMetrics.emojiCount = i + 1;
+            static int access$1408(EmojiLineMetrics emojiLineMetrics) {
+                int i = emojiLineMetrics.emojiCount;
+                emojiLineMetrics.emojiCount = i + 1;
                 return i;
             }
 
-            static int access$1412(EmojiGridLineMetrics emojiGridLineMetrics, int i) {
-                int i2 = emojiGridLineMetrics.emojiCount + i;
-                emojiGridLineMetrics.emojiCount = i2;
+            static int access$1412(EmojiLineMetrics emojiLineMetrics, int i) {
+                int i2 = emojiLineMetrics.emojiCount + i;
+                emojiLineMetrics.emojiCount = i2;
                 return i2;
             }
 
-            static int access$1508(EmojiGridLineMetrics emojiGridLineMetrics) {
-                int i = emojiGridLineMetrics.contentCount;
-                emojiGridLineMetrics.contentCount = i + 1;
+            static int access$1508(EmojiLineMetrics emojiLineMetrics) {
+                int i = emojiLineMetrics.contentCount;
+                emojiLineMetrics.contentCount = i + 1;
                 return i;
             }
 
-            static int access$1512(EmojiGridLineMetrics emojiGridLineMetrics, int i) {
-                int i2 = emojiGridLineMetrics.contentCount + i;
-                emojiGridLineMetrics.contentCount = i2;
+            static int access$1512(EmojiLineMetrics emojiLineMetrics, int i) {
+                int i2 = emojiLineMetrics.contentCount + i;
+                emojiLineMetrics.contentCount = i2;
                 return i2;
             }
 
-            public boolean isGridLine() {
+            public boolean allowsEmojiLineHeight() {
                 int i = this.contentCount;
                 return i > 0 && ((long) this.emojiCount) * 100 >= ((long) i) * 70;
-            }
-        }
-
-        private static class EmojiGridLineHeightSpan implements LineHeightSpan {
-            private final int ascent;
-            private final int bottom;
-            private final int descent;
-            private final int height;
-            private final int top;
-
-            private EmojiGridLineHeightSpan(int i, Paint.FontMetricsInt fontMetricsInt) {
-                int i2 = fontMetricsInt.descent - fontMetricsInt.ascent;
-                int iMax = Math.max(i, i2);
-                this.height = iMax;
-                int i3 = iMax - i2;
-                int i4 = (i3 + 1) / 2;
-                int i5 = fontMetricsInt.ascent - i4;
-                this.ascent = i5;
-                int i6 = fontMetricsInt.descent + (i3 - i4);
-                this.descent = i6;
-                this.top = Math.min(fontMetricsInt.top, i5);
-                this.bottom = Math.max(fontMetricsInt.bottom, i6);
-            }
-
-            @Override
-            public void chooseHeight(CharSequence charSequence, int i, int i2, int i3, int i4, Paint.FontMetricsInt fontMetricsInt) {
-                if (fontMetricsInt.descent - fontMetricsInt.ascent > this.height) {
-                    return;
-                }
-                fontMetricsInt.top = this.top;
-                fontMetricsInt.ascent = this.ascent;
-                fontMetricsInt.descent = this.descent;
-                fontMetricsInt.bottom = this.bottom;
             }
         }
 
@@ -5589,6 +5587,7 @@ public class RichMessageLayout {
     public static class RichButton {
         private static final float ICON_OFFSET_X = 12.33f;
         private static final float ICON_OFFSET_Y = 11.66f;
+        private static final float ICON_OFFSET_Y_INLINE = 9.33f;
         public static final int INLINE_PADDING_HORIZONTAL = 7;
         private static final int MIN_PADDING = 8;
         private static final int PADDING = 20;
@@ -5737,10 +5736,10 @@ public class RichMessageLayout {
                 return 0;
             }
             if (this.emojiLast && this.inline) {
-                return AndroidUtilities.dp(4.0f);
+                return AndroidUtilities.dp((this.iconDrawable != null ? 14 : 0) + 4);
             }
             if (this.inline) {
-                return AndroidUtilities.dp(7.0f);
+                return AndroidUtilities.dp((this.iconDrawable != null ? 14 : 0) + 7);
             }
             return AndroidUtilities.dp(this.iconDrawable != null ? 26.0f : 20.0f);
         }
@@ -5875,7 +5874,7 @@ public class RichMessageLayout {
             canvas.restore();
             Drawable drawable = this.iconDrawable;
             if (drawable != null) {
-                DrawableUtils.setBounds(drawable, this.width - AndroidUtilities.dp(12.33f), AndroidUtilities.dp(11.66f), 17);
+                DrawableUtils.setBounds(drawable, this.width - AndroidUtilities.dp(12.33f), AndroidUtilities.dp(this.inline ? 9.33f : 11.66f), 17);
                 this.iconDrawable.draw(canvas);
             }
             if (z2) {
@@ -6038,6 +6037,8 @@ public class RichMessageLayout {
         private static final int MARGIN_HORIZONTAL = 1;
         private final RectF bounds;
         private final RichButton button;
+        private int minimumLineHeight;
+        private boolean preserveFontMetrics;
         private float scale;
         private final TL_iv.textButton textButton;
         private View v;
@@ -6063,45 +6064,69 @@ public class RichMessageLayout {
 
         @Override
         public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+            boolean z = this.preserveFontMetrics && fontMetricsInt != null;
+            int i3 = z ? fontMetricsInt.top : 0;
+            int i4 = z ? fontMetricsInt.ascent : 0;
+            int i5 = z ? fontMetricsInt.descent : 0;
+            int i6 = z ? fontMetricsInt.bottom : 0;
+            int i7 = z ? fontMetricsInt.leading : 0;
             int iDp = AndroidUtilities.dp(8.0f);
             int iDp2 = AndroidUtilities.dp(10.0f);
             if (fontMetricsInt != null && this.button.link) {
                 float f = this.scale;
-                int i3 = (int) (((-iDp2) - iDp) * f);
-                fontMetricsInt.top = i3;
-                int i4 = (int) ((iDp2 - iDp) * f);
-                fontMetricsInt.bottom = i4;
-                fontMetricsInt.ascent = i3;
-                fontMetricsInt.descent = i4;
+                int i8 = (int) (((-iDp2) - iDp) * f);
+                fontMetricsInt.top = i8;
+                int i9 = (int) ((iDp2 - iDp) * f);
+                fontMetricsInt.bottom = i9;
+                fontMetricsInt.ascent = i8;
+                fontMetricsInt.descent = i9;
                 fontMetricsInt.leading = 0;
+            }
+            if (z) {
+                fontMetricsInt.top = i3;
+                fontMetricsInt.ascent = i4;
+                fontMetricsInt.descent = i5;
+                fontMetricsInt.bottom = i6;
+                fontMetricsInt.leading = i7;
+                expandFontMetrics(fontMetricsInt, this.minimumLineHeight);
             }
             RichButton richButton = this.button;
             return richButton.width + (richButton.link ? 0 : AndroidUtilities.dp(1.0f) * 2);
         }
 
+        private static void expandFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i) {
+            int i2 = fontMetricsInt.descent;
+            int i3 = fontMetricsInt.ascent;
+            int i4 = i2 - i3;
+            if (i <= i4) {
+                return;
+            }
+            int i5 = i - i4;
+            int i6 = (i5 + 1) / 2;
+            int i7 = i3 - i6;
+            fontMetricsInt.ascent = i7;
+            fontMetricsInt.descent = i2 + (i5 - i6);
+            fontMetricsInt.top = Math.min(fontMetricsInt.top, i7);
+            fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
+        }
+
         @Override
         public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-            int i6;
             float f2;
-            if (this.button.text.getEmojiOnlyCount() <= 0 || !(charSequence instanceof Spanned)) {
-                i6 = 0;
-            } else {
-                Spanned spanned = (Spanned) charSequence;
-                i6 = ((Text.EmojiGridLineHeightSpan[]) spanned.getSpans(i, i2, Text.EmojiGridLineHeightSpan.class)).length > 0 ? 1 : 0;
-                if (i6 == 0) {
-                    StyleSpan[] styleSpanArr = (StyleSpan[]) spanned.getSpans(i, i2, StyleSpan.class);
-                    int length = styleSpanArr.length;
-                    int i7 = 0;
-                    while (true) {
-                        if (i7 >= length) {
-                            break;
-                        }
-                        if ((styleSpanArr[i7].flags & 15) == 14) {
-                            i6 = 1;
-                            break;
-                        }
-                        i7++;
+            int i6 = (this.button.text.getEmojiOnlyCount() <= 0 || this.minimumLineHeight <= 0) ? 0 : 1;
+            if (i6 == 0 && this.button.text.getEmojiOnlyCount() > 0 && (charSequence instanceof Spanned)) {
+                StyleSpan[] styleSpanArr = (StyleSpan[]) ((Spanned) charSequence).getSpans(i, i2, StyleSpan.class);
+                int length = styleSpanArr.length;
+                int i7 = 0;
+                while (true) {
+                    if (i7 >= length) {
+                        break;
                     }
+                    if ((styleSpanArr[i7].flags & 15) == 14) {
+                        i6 = 1;
+                        break;
+                    }
+                    i7++;
                 }
             }
             if (i6 != 0) {

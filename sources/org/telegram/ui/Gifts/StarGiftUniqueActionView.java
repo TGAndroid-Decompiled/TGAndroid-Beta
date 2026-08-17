@@ -33,8 +33,8 @@ public class StarGiftUniqueActionView extends View {
         return super.verifyDrawable(drawable) || drawable == this.layout.getMessageDrawable();
     }
 
-    public void set(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, String str) {
-        this.layout.set(tL_starGiftUnique, j, tL_textWithEntities, str);
+    public void set(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z) {
+        this.layout.set(tL_starGiftUnique, j, tL_textWithEntities, str, z);
         requestLayout();
         invalidate();
     }
@@ -68,6 +68,7 @@ public class StarGiftUniqueActionView extends View {
         } else {
             Theme.applyServiceShaderMatrix(getMeasuredWidth(), height, 0.0f, getY());
         }
+        this.layoutX = (getWidth() - ((int) this.layout.getWidth())) / 2.0f;
         float width = this.layout.getWidth() + AndroidUtilities.dp(8.0f);
         float width2 = (getWidth() - width) / 2.0f;
         float fDp = this.layoutY - AndroidUtilities.dp(4.0f);

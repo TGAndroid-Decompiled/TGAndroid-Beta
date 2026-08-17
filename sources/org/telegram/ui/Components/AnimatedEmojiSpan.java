@@ -54,8 +54,10 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     float lastDrawnCx;
     float lastDrawnCy;
     protected int measuredSize;
+    private int minimumLineHeight;
     private ValueAnimator moveAnimator;
     boolean positionChanged;
+    private boolean preserveFontMetrics;
     private boolean recordPositions;
     private Runnable removedAction;
     private float scale;
@@ -197,6 +199,16 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         return this;
     }
 
+    public AnimatedEmojiSpan setPreserveFontMetrics(boolean z) {
+        this.preserveFontMetrics = z;
+        return this;
+    }
+
+    public AnimatedEmojiSpan setMinimumLineHeight(int i) {
+        this.minimumLineHeight = i;
+        return this;
+    }
+
     public static void applyFontMetricsForString(CharSequence charSequence, Paint paint) {
         if (charSequence instanceof Spannable) {
             AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
@@ -241,52 +253,83 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt == null && this.top) {
-            fontMetricsInt = paint.getFontMetricsInt();
+        Paint.FontMetricsInt fontMetricsInt2 = fontMetricsInt;
+        boolean z = this.preserveFontMetrics && fontMetricsInt2 != null;
+        int i3 = z ? fontMetricsInt2.top : 0;
+        int i4 = z ? fontMetricsInt2.ascent : 0;
+        int i5 = z ? fontMetricsInt2.descent : 0;
+        int i6 = z ? fontMetricsInt2.bottom : 0;
+        int i7 = z ? fontMetricsInt2.leading : 0;
+        if (fontMetricsInt2 == null && this.top) {
+            fontMetricsInt2 = paint.getFontMetricsInt();
         }
-        int i3 = fontMetricsInt == null ? 0 : fontMetricsInt.ascent;
-        int i4 = fontMetricsInt == null ? 0 : fontMetricsInt.descent;
-        Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
-        if (fontMetricsInt2 == null) {
-            int i5 = (int) this.size;
+        int i8 = fontMetricsInt2 == null ? 0 : fontMetricsInt2.ascent;
+        int i9 = fontMetricsInt2 == null ? 0 : fontMetricsInt2.descent;
+        Paint.FontMetricsInt fontMetricsInt3 = this.fontMetrics;
+        if (fontMetricsInt3 == null) {
+            int i10 = (int) this.size;
             int iDp = AndroidUtilities.dp(8.0f);
             int iDp2 = AndroidUtilities.dp(10.0f);
-            if (fontMetricsInt != null) {
+            if (fontMetricsInt2 != null) {
                 float f = this.scale;
-                int i6 = (int) (((-iDp2) - iDp) * f);
-                fontMetricsInt.top = i6;
-                int i7 = (int) ((iDp2 - iDp) * f);
-                fontMetricsInt.bottom = i7;
-                fontMetricsInt.ascent = i6;
-                fontMetricsInt.descent = i7;
-                fontMetricsInt.leading = 0;
+                int i11 = (int) (((-iDp2) - iDp) * f);
+                fontMetricsInt2.top = i11;
+                int i12 = (int) ((iDp2 - iDp) * f);
+                fontMetricsInt2.bottom = i12;
+                fontMetricsInt2.ascent = i11;
+                fontMetricsInt2.descent = i12;
+                fontMetricsInt2.leading = 0;
             }
-            this.measuredSize = (int) (i5 * this.scale);
+            this.measuredSize = (int) (i10 * this.scale);
         } else {
             this.measuredSize = (int) (this.size * this.scale);
-            if (fontMetricsInt != null) {
+            if (fontMetricsInt2 != null) {
                 if (!this.full) {
-                    fontMetricsInt.ascent = fontMetricsInt2.ascent;
-                    fontMetricsInt.descent = fontMetricsInt2.descent;
-                    fontMetricsInt.top = fontMetricsInt2.top;
-                    fontMetricsInt.bottom = fontMetricsInt2.bottom;
+                    fontMetricsInt2.ascent = fontMetricsInt3.ascent;
+                    fontMetricsInt2.descent = fontMetricsInt3.descent;
+                    fontMetricsInt2.top = fontMetricsInt3.top;
+                    fontMetricsInt2.bottom = fontMetricsInt3.bottom;
                 } else {
-                    float fAbs = Math.abs(fontMetricsInt2.bottom) + Math.abs(this.fontMetrics.top);
-                    fontMetricsInt.ascent = (int) Math.ceil((this.fontMetrics.top / fAbs) * this.measuredSize);
-                    fontMetricsInt.descent = (int) Math.ceil((this.fontMetrics.bottom / fAbs) * this.measuredSize);
-                    fontMetricsInt.top = (int) Math.ceil((this.fontMetrics.top / fAbs) * this.measuredSize);
-                    fontMetricsInt.bottom = (int) Math.ceil((this.fontMetrics.bottom / fAbs) * this.measuredSize);
+                    float fAbs = Math.abs(fontMetricsInt3.bottom) + Math.abs(this.fontMetrics.top);
+                    fontMetricsInt2.ascent = (int) Math.ceil((this.fontMetrics.top / fAbs) * this.measuredSize);
+                    fontMetricsInt2.descent = (int) Math.ceil((this.fontMetrics.bottom / fAbs) * this.measuredSize);
+                    fontMetricsInt2.top = (int) Math.ceil((this.fontMetrics.top / fAbs) * this.measuredSize);
+                    fontMetricsInt2.bottom = (int) Math.ceil((this.fontMetrics.bottom / fAbs) * this.measuredSize);
                 }
             }
         }
-        if (fontMetricsInt != null && this.top) {
-            int i8 = fontMetricsInt.ascent;
-            int i9 = fontMetricsInt.descent;
-            int i10 = ((i3 - i8) + (i4 - i9)) / 2;
-            fontMetricsInt.ascent = i8 + i10;
-            fontMetricsInt.descent = i9 - i10;
+        if (fontMetricsInt2 != null && this.top) {
+            int i13 = fontMetricsInt2.ascent;
+            int i14 = fontMetricsInt2.descent;
+            int i15 = ((i8 - i13) + (i9 - i14)) / 2;
+            fontMetricsInt2.ascent = i13 + i15;
+            fontMetricsInt2.descent = i14 - i15;
+        }
+        if (z) {
+            fontMetricsInt2.top = i3;
+            fontMetricsInt2.ascent = i4;
+            fontMetricsInt2.descent = i5;
+            fontMetricsInt2.bottom = i6;
+            fontMetricsInt2.leading = i7;
+            expandFontMetrics(fontMetricsInt2, this.minimumLineHeight);
         }
         return Math.max(0, this.measuredSize - 1);
+    }
+
+    private static void expandFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i) {
+        int i2 = fontMetricsInt.descent;
+        int i3 = fontMetricsInt.ascent;
+        int i4 = i2 - i3;
+        if (i <= i4) {
+            return;
+        }
+        int i5 = i - i4;
+        int i6 = (i5 + 1) / 2;
+        int i7 = i3 - i6;
+        fontMetricsInt.ascent = i7;
+        fontMetricsInt.descent = i2 + (i5 - i6);
+        fontMetricsInt.top = Math.min(fontMetricsInt.top, i7);
+        fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
     }
 
     public boolean isAnimating() {
